@@ -1,0 +1,287 @@
+{
+  "duplicate_customer": {
+    "duplicate_id": 1999,
+    "kept_id": 1007,
+    "name": "Gumisiriza Enterprises"
+  },
+  "generated_with_seed": 20260913,
+  "raw_order_items_rows": 20775,
+  "row_counts": {
+    "customers": 401,
+    "fx_rates": 731,
+    "order_items": 20234,
+    "orders": 6000,
+    "products": 120,
+    "reps": 12,
+    "returns": 501
+  },
+  "s2": {
+    "count_star_vs_customer_id": [
+      6000,
+      5828
+    ],
+    "orders_by_channel": [
+      [
+        "WhatsApp",
+        1237
+      ],
+      [
+        "Field visit",
+        1206
+      ],
+      [
+        "Online",
+        1201
+      ],
+      [
+        "Walk-in",
+        1183
+      ],
+      [
+        "Phone",
+        1173
+      ]
+    ],
+    "orders_cancelled": 575,
+    "orders_delivered": 4837,
+    "orders_total": 6000,
+    "products_per_category": [
+      [
+        "Bottled water",
+        15
+      ],
+      [
+        "Cooking oil",
+        15
+      ],
+      [
+        "Imported appliances",
+        15
+      ],
+      [
+        "Maize flour",
+        15
+      ],
+      [
+        "Rice",
+        15
+      ],
+      [
+        "Soap and detergent",
+        15
+      ],
+      [
+        "Sugar",
+        15
+      ],
+      [
+        "Tea and coffee",
+        15
+      ]
+    ],
+    "segments_over_80_customers": [
+      [
+        "Supermarket",
+        103
+      ],
+      [
+        "Institution",
+        85
+      ]
+    ]
+  },
+  "s3": {
+    "inner_join_drops_rows": 172,
+    "returns_value_ugx": 197830550.0,
+    "revenue_all_ugx": 10758894480.0,
+    "revenue_by_region_ugx": [
+      [
+        "Eastern",
+        2514623935.0
+      ],
+      [
+        "Northern",
+        2107303745.0
+      ],
+      [
+        "Central",
+        2022616760.0
+      ],
+      [
+        "Western",
+        1810419785.0
+      ]
+    ],
+    "revenue_delivered_from_raw_ugx": 8751672145.42,
+    "revenue_delivered_ugx": 8751705520.0,
+    "revenue_lost_to_inner_join_ugx": 390632335.0,
+    "top_rep_2025": [
+      [
+        "Hellen Hakizimana",
+        1204303210.0
+      ],
+      [
+        "Brian Lubega",
+        976461330.0
+      ],
+      [
+        "David Wanyama",
+        915808445.0
+      ]
+    ],
+    "usd_lines_delivered": 2016,
+    "usd_rounding_residual_ugx": 33374.58
+  },
+  "s7": {
+    "mean_over_median": 4.785,
+    "order_value_max_ugx": 46552400.0,
+    "order_value_mean_ugx": 1793149.08,
+    "order_value_median_ugx": 374760.0,
+    "order_value_p10_ugx": 38880.0,
+    "order_value_p90_ugx": 3896620.0,
+    "orders_with_value": 6000,
+    "return_rate_by_region": [
+      [
+        "Western",
+        0.027
+      ],
+      [
+        "Central",
+        0.0252
+      ],
+      [
+        "Northern",
+        0.0243
+      ],
+      [
+        "Eastern",
+        0.0226
+      ]
+    ],
+    "returns_count_by_region": [
+      [
+        "Eastern",
+        130
+      ],
+      [
+        "Western",
+        124
+      ],
+      [
+        "Central",
+        123
+      ],
+      [
+        "Northern",
+        108
+      ]
+    ],
+    "revenue_by_month_ugx": [
+      [
+        "2024-01",
+        318662545.0
+      ],
+      [
+        "2024-02",
+        257507585.0
+      ],
+      [
+        "2024-03",
+        388117705.0
+      ],
+      [
+        "2024-04",
+        391332695.0
+      ],
+      [
+        "2024-05",
+        362690610.0
+      ],
+      [
+        "2024-06",
+        337489340.0
+      ],
+      [
+        "2024-07",
+        260218840.0
+      ],
+      [
+        "2024-08",
+        390161885.0
+      ],
+      [
+        "2024-09",
+        465906685.0
+      ],
+      [
+        "2024-10",
+        395870355.0
+      ],
+      [
+        "2024-11",
+        205995270.0
+      ],
+      [
+        "2024-12",
+        579691810.0
+      ],
+      [
+        "2025-01",
+        349785240.0
+      ],
+      [
+        "2025-02",
+        228401080.0
+      ],
+      [
+        "2025-03",
+        288903650.0
+      ],
+      [
+        "2025-04",
+        406318900.0
+      ],
+      [
+        "2025-05",
+        348488195.0
+      ],
+      [
+        "2025-06",
+        346996610.0
+      ],
+      [
+        "2025-07",
+        343720210.0
+      ],
+      [
+        "2025-08",
+        357413100.0
+      ],
+      [
+        "2025-09",
+        365474355.0
+      ],
+      [
+        "2025-10",
+        357986555.0
+      ],
+      [
+        "2025-11",
+        419207660.0
+      ],
+      [
+        "2025-12",
+        585364640.0
+      ]
+    ]
+  },
+  "seeded_defects": {
+    "customer_names_messy": 117,
+    "dates_in_dd_mm_yyyy": 1055,
+    "discounts_over_one": 203,
+    "duplicate_rows": 40,
+    "lines_priced_in_usd": 2523,
+    "negative_quantity_lines": 501,
+    "orders_missing_customer_id": 172
+  }
+}

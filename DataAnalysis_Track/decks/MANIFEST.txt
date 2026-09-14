@@ -1,0 +1,17 @@
+# The 15 current decks. Anything else in this folder is
+# stale: delete it.
+DA_S01_From_a_spreadsheet_to_data.pptx
+DA_S02_Why_data_lives_in_several_tables.pptx
+DA_S03_Asking_a_database_for_rows.pptx
+DA_S04_Counting_and_grouping.pptx
+DA_S05_Joining_tables_carefully.pptx
+DA_S06_Your_first_program.pptx
+DA_S07_Reading_a_file_and_looking_at_it.pptx
+DA_S08_Cleaning_and_writing_down_what_you_did.pptx
+DA_S09_Grouping_and_joining_in_pandas.pptx
+DA_S10_Describing_one_column.pptx
+DA_S11_Comparing_groups_and_reading_time.pptx
+DA_S12_Charts_that_answer_the_question.pptx
+DA_S13_A_whole_investigation_end_to_end.pptx
+DA_S14_Getting_data_in_and_modelling_it.pptx
+DA_S15_Measures_a_dashboard_and_presenting_it.pptx
