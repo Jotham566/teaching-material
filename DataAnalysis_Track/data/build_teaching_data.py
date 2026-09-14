@@ -347,7 +347,10 @@ def write_db(path, D, walkins):
 
 # --------------------------------------------------------------- the raw CSVs
 def write_csv(path, rows, fields):
-    with open(path, "w", newline="", encoding="utf-8") as fh:
+    # newline="\n", not newline="": the csv module writes \r\n by default on
+    # every platform, and the repository normalises CSV to LF, so the default
+    # makes nine files show as modified after every regeneration.
+    with open(path, "w", newline="\n", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
         for r in rows:
