@@ -1,0 +1,1982 @@
+[
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 1,
+  "title": "Encoding, scaling, and building a column out of physics",
+  "text": "verify the domain feature empirically BEFORE the session. If the domain-feature demonstration fails, the argument of the week fails with it. Print the feature dictionary template, the ablation table template and the cohort reference sheet of standards. Publish the Test 2 specification today."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "keep the two concept blocks to time. The two working blocks are where the learning happens and they cannot be compressed."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A9. Reteach anything the Week 10 challenge showed the room got wrong, especially scaling before the split."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Take answers from people who have not spoken yet."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "resist showing any encoder until the encoding block. This block is the argument and it is worth the full fifteen minutes."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 8,
+  "title": "TODAY'S QUESTION",
+  "text": "ask the room what they would measure next if they could measure anything. Then point out that the answer needs no new measurement at all."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 9,
+  "title": "What a model can and cannot work out for itself",
+  "text": "ask for one relationship from their own discipline that a model could never work out from raw columns. Their examples land better than yours."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 11,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes. Use the two figures, then the live Pipeline. Do not teach every encoder scikit-learn offers — two is enough."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 12,
+  "title": "Text into columns a model can use",
+  "text": "put the cohort's own categorical column on the board and ask the room whether the spacing between its levels means anything. That question decides the encoding every time."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 13,
+  "title": "DEFINITION",
+  "text": "keep the trap to thirty seconds. It matters for interpreting coefficients and for very little else at this level."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 15,
+  "title": "Why the units of a column change the answer",
+  "text": "this is the slide that explains why a Pipeline containing a scaler helps one model and does nothing for another. Say it plainly, because students otherwise scale everything as a ritual."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 17,
+  "title": "LIVE CODING",
+  "text": "make the leak live and show the small improvement. Small is the teaching point — a one per cent gain is what makes this leak survive review."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 18,
+  "title": "SEGMENT 4",
+  "text": "this demonstration must be pre-verified. Show the figure, then build the column live on the cohort dataset and read the two scores out loud."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 19,
+  "title": "THE DOMAIN FEATURE",
+  "text": "state the caveat out loud. Then run it on the real dataset so the claim is not resting on a synthetic figure."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 20,
+  "title": "WORKED EXAMPLE",
+  "text": "work this live on the cohort dataset, including the describe() check. Deliberately divide by a column containing a zero once so they see the infinity."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 21,
+  "title": "MADE CONCRETE",
+  "text": "hand out the cohort reference sheet of standards and codes now. The stretch tier is a feature that encodes a design code or an empirical relation with the reference cited, and students need the sheet in front of them to attempt it."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 23,
+  "title": "10 minutes",
+  "text": "take it. Get the templates distributed during the break so the Feature Workshop starts on time."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 24,
+  "title": "SEGMENT 5",
+  "text": "circulate and ask 'why did you expect that to help?' before looking at any code. Do not fix syntax — pair students who are stuck with students who are not."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 25,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "use the reference sheet to unstick teams on the stretch tier. Keep the ablation table template visible — teams that build five features and never measure them have done half the work."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 26,
+  "title": "SEGMENT 6",
+  "text": "twenty-five minutes. Figure, definition, then the loop typed live."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 27,
+  "title": "Ablation: drop one column and refit",
+  "text": "point at the two apparently useless columns and ask why. The answer, that the ratio has absorbed them, is the whole subtlety of feature selection, and they can reach it themselves."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 30,
+  "title": "LIVE CODING",
+  "text": "run it live on the cohort dataset. The table it produces is the workshop deliverable, so they need to have seen it built."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 31,
+  "title": "SEGMENT 7",
+  "text": "pair teams so both conditions are genuinely competitive. Assign the conditions rather than letting teams choose. Carry the question card and give no answers for the full thirty minutes."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 32,
+  "title": "CHALLENGE",
+  "text": "expected outcome — The feature teams normally win by 3 to 5 MPa of MAE using linear regression alone, while the raw-column teams reach for a random forest and still come second. Water/cement ratio is doing all of it.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 33,
+  "title": "SEGMENT 8",
+  "text": "hand out the Test 2 specification and rubric on paper. Three weeks' notice is the point of publishing it now."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 34,
+  "title": "MILESTONE, ASSIGNMENT AND TEST 2",
+  "text": "put the PM2 slot times on the board now."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 35,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 40,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 11",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 41,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close on the domain advantage result the room generated, using their own numbers rather than the figure's."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 1,
+  "title": "WEEK 12  ·  Tue 24 November 2026",
+  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 90 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "say out loud that you will not answer questions during the challenge, and why. Students who are told to expect it cope far better."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A10. The quiz closes this session, so say when it will run."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs, then move. Question A leads straight into the comparison protocol."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "put the protocol poster up and leave it up for the rest of the session."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 8,
+  "title": "THE PROTOCOL",
+  "text": "write the four constants on the board and leave them there through the challenge. Teams will refer to them."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "this slide is what stops the challenge becoming a score chase. Emphasise it before you release them."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 10,
+  "title": "SELECTION CRITERIA",
+  "text": "make criterion 5 concrete with a local example if you have one. Students find the maintenance argument surprising and remember it."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 11,
+  "title": "THE TRADE-OFF",
+  "text": "the figure's own caption says the horizontal axis is a judgement. Point that out — the same honesty you are asking of them."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 12,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the tuning demonstration. If question A is weak, put the four constants back on the board."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 14,
+  "title": "SEGMENT 3",
+  "text": "one GridSearchCV, typed live, and stop. Do not demonstrate a second search method."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 15,
+  "title": "A grid search is a table you fill in, then read",
+  "text": "say the 140-fits number out loud. Grid search is expensive and students should feel that before they write a grid with 400 cells."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 17,
+  "title": "LIVE CODING",
+  "text": "run it, then run the broken version. The improvement is small, which is exactly why this leak survives review."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 18,
+  "title": "DEFERRED TO SEMESTER 2",
+  "text": "sixty seconds of demonstration at most, then the explicit deferral. Say why: the tool is not the lesson this week."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. Distribute the client briefs and the recommendation template during the break so the challenge starts on time."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "circulate with the question-bank cards and answer nothing for the full 90 minutes. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 21,
+  "title": "YOUR CLIENT, AND WHAT THEY ASKED FOR",
+  "text": "hand out the printed brief. Do not paraphrase it or explain the constraint — reading a brief carefully is part of what is being assessed."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 22,
+  "title": "CHALLENGE",
+  "text": "what is in the challenge dataset and the intended reading — The forest beats logistic regression by about 0.02 of F1, and the fold-to-fold spread on both is about 0.04 — so the two cannot be separated on this data. The tree at depth 3 reads as a mix rule the quality manager could sign. A team that reports the forest as the winner has ignored both the spread and the client's constraint.\n\nDo not reveal any of that. Mark the protocol and the reasoning. The score carries nothing on its own."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 23,
+  "title": "DELIVERABLE — A11",
+  "text": "collect the pages at the end of the defence round, after teams have had the chance to annotate them with what they conceded."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 24,
+  "title": "WORKED EXAMPLE",
+  "text": "put a good and a bad opening sentence on the board for thirty seconds. It visibly changes what gets handed in."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 25,
+  "title": "NON-NEGOTIABLE",
+  "text": "this is the protocol poster. Print it A3 and put it on the wall."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 26,
+  "title": "SEGMENT 5",
+  "text": "pair teams that took different approaches wherever you can. Time it strictly: five minutes each way, five minutes to write down what each side conceded."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 27,
+  "title": "THE DEFENCE ROUND",
+  "text": "mark the challenges as you circulate. Naming one team's challenge as the best of the session raises the standard immediately."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 28,
+  "title": "WORKED EXAMPLE",
+  "text": "these six are the question-bank cards. Print one card per team."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 29,
+  "title": "SEGMENT 6",
+  "text": "keep this to five minutes, then run the quiz."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 30,
+  "title": "MILESTONE AND QUIZ",
+  "text": "run the quiz now. Afterwards, look at the responses-by-question view and plan a five-minute reteach for the start of Week 13 for anything the room got wrong."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 31,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 36,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 12",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 37,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "name the best challenge raised in the defence round and say why it was good. Thirty seconds, and it sets the standard for Week 15."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 1,
+  "title": "Repository structure, README, environment capture and peer review",
+  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 22 teams, so 100 minutes gives roughly 4 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "put the booking sheet on the wall and the slot times on the board before the break."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A11 annotations if they were not handed in last week. Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Question C leads straight into the block on reproducibility."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "lead with the professional argument rather than the tidiness argument. Engineering students respond to 'defend your number', and they do not respond to 'keep your files neat'."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 8,
+  "title": "THE QUESTION SOMEBODY WILL ASK YOU",
+  "text": "if you have a real story of being asked to defend an old number, tell it here. It carries the segment."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 9,
+  "title": "REPOSITORY ANATOMY",
+  "text": "walk the figure in the numbered order. Then show a real repository, ideally one of your own, and open the files in that order."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 12,
+  "title": "SEGMENT 3",
+  "text": "use an anonymised real student notebook with permission. A synthetic mess does not land, because students recognise a real one as their own."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 13,
+  "title": "WHAT TO FIX FIRST",
+  "text": "put the real notebook on screen and let the room find these six before you name them. They will find four or five, which is more effective than being shown all six."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 14,
+  "title": "LIVE CODING",
+  "text": "make everyone run Restart and Run All at this point. Two minutes, and a visible number of hands go up, which makes the rest of the segment sell itself."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 15,
+  "title": "THE README",
+  "text": "put a good README and a bad one side by side for a minute. Then show that the good one is shorter."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 17,
+  "title": "WORKED EXAMPLE",
+  "text": "do this live on one cell of the real notebook. Include the restart, and let it fail if it does."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. Put the booking sheet and the slot times up during the break."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "keep to the booking sheet and use the printed checklist in every slot. With 22 teams and 4 minutes each, a slot that becomes a conversation costs another team its slot. Set a timer."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 21,
+  "title": "STUDIO — 85 MINUTES",
+  "text": "circulate between slots. The commonest finding will be an absolute path and an unpinned requirements file, and both take a minute to fix."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 22,
+  "title": "SELF-ASSESS FIRST",
+  "text": "this is the printed checklist. Hand it out at the start of the studio and require it filled in as the price of a slot."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 23,
+  "title": "DECLARING YOUR TOOLS",
+  "text": "show one strong and one weak declaration. Say plainly that a declared and verified use costs no marks at all."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 24,
+  "title": "SEGMENT 5",
+  "text": "use the pairing you prepared. Collect the review forms — they are marked, and the reviewed team must submit a written response to them."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 25,
+  "title": "PEER REVIEW",
+  "text": "the review forms are keyed to the rubric. Mark the quality of the reviews as well as the repositories."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 26,
+  "title": "WORKED EXAMPLE",
+  "text": "put one good and one useless comment on the board. Thirty seconds, and the quality of the written reviews visibly improves."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 27,
+  "title": "SEGMENT 6",
+  "text": "hand out the Test 2 information sheet again. Confirm the room, machine allocation and sitting times now — for a cohort of this size that must already be timetabled."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 28,
+  "title": "TEST 2, THE LAST QUIZ AND WEEK 15",
+  "text": "run the quiz now. Say clearly that it is the last of the twelve and that the best ten count."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 29,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 34,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 13",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 13",
+  "slide": 35,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "end by confirming the test room, the sitting time and what to bring. Do not let anyone leave uncertain about where to be."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 1,
+  "title": "Practical Test 2",
+  "text": "issue this deck in Week 13. On the day, read the rules slide aloud from the screen and confirm the offline state of every machine before distributing task sheets. Author three parallel dataset variants of matched difficulty with a model answer and mark scheme each, and seat them in a checkerboard pattern."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 3,
+  "title": "THE THREE HOURS",
+  "text": "confirm the sitting plan and the second invigilator for any sitting above 40 students. A cohort of about 100 will need two sittings, which must already be timetabled."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 4,
+  "title": "READ THIS BEFORE THE DAY",
+  "text": "read this slide aloud from the screen at the start. Then confirm every machine's offline state before you distribute the task sheets."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 8,
+  "title": "HOW IT IS MARKED",
+  "text": "put the answers cell in the task sheet as copyable text, and say at the 30-minute call that the cell should already have entries in it."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 9,
+  "title": "45 OF THE 100 MARKS",
+  "text": "publish the exact key list with the specification so nobody meets it for the first time in the room."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 11,
+  "title": "CONTINGENCY",
+  "text": "read the machine-fault item aloud and mean it. Candidates who lose ten minutes and say nothing until the end cannot be compensated fairly."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 12,
+  "title": "REVISION — WEEKS 8 TO 13",
+  "text": "tell them the deck continues past the briefing. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3112 Week 14",
+  "slide": 19,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "on the day, confirm the Week 15 demo running order before dismissal."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 1,
+  "title": "WEEK 15  ·  Tue 15 December 2026",
+  "text": "invite Faculty staff and one external practising engineer — it raises the standard of every submission more than any amount of exhortation. Book a fair layout with tables round the perimeter and power at every station. Print the assessor packs, the peer assessment forms, the viva tally sheets and the three certificates."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 2,
+  "title": "THE RUNNING ORDER",
+  "text": "allocate stations before the room fills. Post the running order on the wall."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 3,
+  "title": "THE THREE HOURS",
+  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student presents for the whole hundred minutes."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 4,
+  "title": "SIX DELIVERABLES",
+  "text": "collect items 1 to 5 at the door. Item 6 comes in at the end."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 6,
+  "title": "WORKED EXAMPLE",
+  "text": "run one team through this at the start as a demonstration if the room is nervous."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 7,
+  "title": "THE PROJECT RUBRIC, OUT OF 100",
+  "text": "the assessor packs carry this rubric. Brief invited staff to ask about reasoning and limits rather than about scores."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 8,
+  "title": "PEER ASSESSMENT",
+  "text": "collect the forms. Moderate before combining, and never use peer marks raw."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 10,
+  "title": "THE VIVA BANK",
+  "text": "the shape of a full-mark answer to each:\n\nA · After any exploration and before any fitting or scaling; earlier and the preprocessing sees the test rows.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees return the nearest leaf and give no warning. Credit any answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' scores nothing.\n\nTally two per student. Do not let teammates answer for each other."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 12,
+  "title": "AWARDED IN THE PLENARY",
+  "text": "award all three and say why each one won, naming the specific thing the team did. Thirty seconds each, and it is the most-remembered part of the session."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 13,
+  "title": "THE WEEK 1 PROMISE",
+  "text": "put this up next to the Week 1 slide if you can. The comparison is what makes fifteen weeks feel like progress."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 15,
+  "title": "WHERE WE ARE",
+  "text": "ninety seconds. Walk it and name one thing from each block."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 16,
+  "title": "THE TERRITORY, REVISITED",
+  "text": "ask the room how many of the stage names they could now explain. The change since Week 1 is large and they will not have noticed it."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 18,
+  "title": "THE LAST DELIVERABLE",
+  "text": "hand out the prompt on paper and collect the reflections before anybody leaves. Paper gets a full return; a form does not."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 19,
+  "title": "WHAT COMES NEXT",
+  "text": "issue the Semester 2 pre-reading and the holiday challenge sheet with the certificates."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 20,
+  "title": "WHAT THE COHORT ACHIEVED",
+  "text": "read the last one aloud and mean it."
+ },
+ {
+  "deck": "CML3112 Week 15",
+  "slide": 21,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close by naming two or three specific things individual students did well this semester. Then stay behind — the last ten minutes of the last session is when students ask the questions that matter to them."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 1,
+  "title": "Encoding, scaling, and building a column out of physics",
+  "text": "verify the domain feature empirically BEFORE the session. If the domain-feature demonstration fails, the argument of the week fails with it. Print the feature dictionary template, the ablation table template and the cohort reference sheet of standards. Publish the Test 2 specification today."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "keep the two concept blocks to time. The two working blocks are where the learning happens and they cannot be compressed."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A9. Reteach anything the Week 10 challenge showed the room got wrong, especially scaling before the split."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Take answers from people who have not spoken yet."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "resist showing any encoder until the encoding block. This block is the argument and it is worth the full fifteen minutes."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 8,
+  "title": "TODAY'S QUESTION",
+  "text": "ask the room what they would measure next if they could measure anything. Then point out that the answer needs no new measurement at all."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 9,
+  "title": "What a model can and cannot work out for itself",
+  "text": "ask for one relationship from their own discipline that a model could never work out from raw columns. Their examples land better than yours."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 11,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes. Use the two figures, then the live Pipeline. Do not teach every encoder scikit-learn offers — two is enough."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 12,
+  "title": "Text into columns a model can use",
+  "text": "put the cohort's own categorical column on the board and ask the room whether the spacing between its levels means anything. That question decides the encoding every time."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 13,
+  "title": "DEFINITION",
+  "text": "keep the trap to thirty seconds. It matters for interpreting coefficients and for very little else at this level."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 15,
+  "title": "Why the units of a column change the answer",
+  "text": "this is the slide that explains why a Pipeline containing a scaler helps one model and does nothing for another. Say it plainly, because students otherwise scale everything as a ritual."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 17,
+  "title": "LIVE CODING",
+  "text": "make the leak live and show the small improvement. Small is the teaching point — a one per cent gain is what makes this leak survive review."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 18,
+  "title": "SEGMENT 4",
+  "text": "this demonstration must be pre-verified. Show the figure, then build the column live on the cohort dataset and read the two scores out loud."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 19,
+  "title": "THE DOMAIN FEATURE",
+  "text": "state the caveat out loud. Then run it on the real dataset so the claim is not resting on a synthetic figure."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 20,
+  "title": "WORKED EXAMPLE",
+  "text": "work this live on the cohort dataset, including the describe() check. Deliberately divide by a column containing a zero once so they see the infinity."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 21,
+  "title": "MADE CONCRETE",
+  "text": "hand out the cohort reference sheet of standards and codes now. The stretch tier is a feature that encodes a design code or an empirical relation with the reference cited, and students need the sheet in front of them to attempt it."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 23,
+  "title": "10 minutes",
+  "text": "take it. Get the templates distributed during the break so the Feature Workshop starts on time."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 24,
+  "title": "SEGMENT 5",
+  "text": "circulate and ask 'why did you expect that to help?' before looking at any code. Do not fix syntax — pair students who are stuck with students who are not."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 25,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "use the reference sheet to unstick teams on the stretch tier. Keep the ablation table template visible — teams that build five features and never measure them have done half the work."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 26,
+  "title": "SEGMENT 6",
+  "text": "twenty-five minutes. Figure, definition, then the loop typed live."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 27,
+  "title": "Ablation: drop one column and refit",
+  "text": "point at the two apparently useless columns and ask why. The answer, that the ratio has absorbed them, is the whole subtlety of feature selection, and they can reach it themselves."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 30,
+  "title": "LIVE CODING",
+  "text": "run it live on the cohort dataset. The table it produces is the workshop deliverable, so they need to have seen it built."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 31,
+  "title": "SEGMENT 7",
+  "text": "pair teams so both conditions are genuinely competitive. Assign the conditions rather than letting teams choose. Carry the question card and give no answers for the full thirty minutes."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 32,
+  "title": "CHALLENGE",
+  "text": "expected outcome — The feature teams normally win by 0.3 to 0.5 percentage points of silica using linear regression, while the raw-column teams get most of the way there with a forest and cannot say which reading drove any prediction.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 33,
+  "title": "SEGMENT 8",
+  "text": "hand out the Test 2 specification and rubric on paper. Three weeks' notice is the point of publishing it now."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 34,
+  "title": "MILESTONE, ASSIGNMENT AND TEST 2",
+  "text": "put the PM2 slot times on the board now."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 35,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 40,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 11",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 41,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close on the domain advantage result the room generated, using their own numbers rather than the figure's."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 1,
+  "title": "WEEK 12  ·  Fri 27 November 2026",
+  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 90 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "say out loud that you will not answer questions during the challenge, and why. Students who are told to expect it cope far better."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A10. The quiz closes this session, so say when it will run."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs, then move. Question A leads straight into the comparison protocol."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "put the protocol poster up and leave it up for the rest of the session."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 8,
+  "title": "THE PROTOCOL",
+  "text": "write the four constants on the board and leave them there through the challenge. Teams will refer to them."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "this slide is what stops the challenge becoming a score chase. Emphasise it before you release them."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 10,
+  "title": "SELECTION CRITERIA",
+  "text": "make criterion 5 concrete with a local example if you have one. Students find the maintenance argument surprising and remember it."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 11,
+  "title": "THE TRADE-OFF",
+  "text": "the figure's own caption says the horizontal axis is a judgement. Point that out — the same honesty you are asking of them."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 12,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the tuning demonstration. If question A is weak, put the four constants back on the board."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 14,
+  "title": "SEGMENT 3",
+  "text": "one GridSearchCV, typed live, and stop. Do not demonstrate a second search method."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 15,
+  "title": "A grid search is a table you fill in, then read",
+  "text": "say the 140-fits number out loud. Grid search is expensive and students should feel that before they write a grid with 400 cells."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 17,
+  "title": "LIVE CODING",
+  "text": "run it, then run the broken version. The improvement is small, which is exactly why this leak survives review."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 18,
+  "title": "DEFERRED TO SEMESTER 2",
+  "text": "sixty seconds of demonstration at most, then the explicit deferral. Say why: the tool is not the lesson this week."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. Distribute the client briefs and the recommendation template during the break so the challenge starts on time."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "circulate with the question-bank cards and answer nothing for the full 90 minutes. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 21,
+  "title": "YOUR CLIENT, AND WHAT THEY ASKED FOR",
+  "text": "hand out the printed brief. Do not paraphrase it or explain the constraint — reading a brief carefully is part of what is being assessed."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 22,
+  "title": "CHALLENGE",
+  "text": "what is in the challenge dataset and the intended reading — The forest wins on MAE by about 0.15 percentage points and gives the operator nothing to act on. The linear model's coefficients read as set-point advice directly. There is also a lag in the data: the assay belongs to material that left the circuit twenty minutes earlier, and a team that spots the lag has found the real problem.\n\nDo not reveal any of that. Mark the protocol and the reasoning. The score carries nothing on its own."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 23,
+  "title": "DELIVERABLE — A11",
+  "text": "collect the pages at the end of the defence round, after teams have had the chance to annotate them with what they conceded."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 24,
+  "title": "WORKED EXAMPLE",
+  "text": "put a good and a bad opening sentence on the board for thirty seconds. It visibly changes what gets handed in."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 25,
+  "title": "NON-NEGOTIABLE",
+  "text": "this is the protocol poster. Print it A3 and put it on the wall."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 26,
+  "title": "SEGMENT 5",
+  "text": "pair teams that took different approaches wherever you can. Time it strictly: five minutes each way, five minutes to write down what each side conceded."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 27,
+  "title": "THE DEFENCE ROUND",
+  "text": "mark the challenges as you circulate. Naming one team's challenge as the best of the session raises the standard immediately."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 28,
+  "title": "WORKED EXAMPLE",
+  "text": "these six are the question-bank cards. Print one card per team."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 29,
+  "title": "SEGMENT 6",
+  "text": "keep this to five minutes, then run the quiz."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 30,
+  "title": "MILESTONE AND QUIZ",
+  "text": "run the quiz now. Afterwards, look at the responses-by-question view and plan a five-minute reteach for the start of Week 13 for anything the room got wrong."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 31,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 36,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 12",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 37,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "name the best challenge raised in the defence round and say why it was good. Thirty seconds, and it sets the standard for Week 15."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 1,
+  "title": "Repository structure, README, environment capture and peer review",
+  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 10 teams, so 100 minutes gives roughly 8 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "put the booking sheet on the wall and the slot times on the board before the break."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A11 annotations if they were not handed in last week. Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Question C leads straight into the block on reproducibility."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "lead with the professional argument rather than the tidiness argument. Engineering students respond to 'defend your number', and they do not respond to 'keep your files neat'."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 8,
+  "title": "THE QUESTION SOMEBODY WILL ASK YOU",
+  "text": "if you have a real story of being asked to defend an old number, tell it here. It carries the segment."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 9,
+  "title": "REPOSITORY ANATOMY",
+  "text": "walk the figure in the numbered order. Then show a real repository, ideally one of your own, and open the files in that order."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 12,
+  "title": "SEGMENT 3",
+  "text": "use an anonymised real student notebook with permission. A synthetic mess does not land, because students recognise a real one as their own."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 13,
+  "title": "WHAT TO FIX FIRST",
+  "text": "put the real notebook on screen and let the room find these six before you name them. They will find four or five, which is more effective than being shown all six."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 14,
+  "title": "LIVE CODING",
+  "text": "make everyone run Restart and Run All at this point. Two minutes, and a visible number of hands go up, which makes the rest of the segment sell itself."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 15,
+  "title": "THE README",
+  "text": "put a good README and a bad one side by side for a minute. Then show that the good one is shorter."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 17,
+  "title": "WORKED EXAMPLE",
+  "text": "do this live on one cell of the real notebook. Include the restart, and let it fail if it does."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. Put the booking sheet and the slot times up during the break."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "keep to the booking sheet and use the printed checklist in every slot. With 10 teams and 8 minutes each, a slot that becomes a conversation costs another team its slot. Set a timer."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 21,
+  "title": "STUDIO — 85 MINUTES",
+  "text": "circulate between slots. The commonest finding will be an absolute path and an unpinned requirements file, and both take a minute to fix."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 22,
+  "title": "SELF-ASSESS FIRST",
+  "text": "this is the printed checklist. Hand it out at the start of the studio and require it filled in as the price of a slot."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 23,
+  "title": "DECLARING YOUR TOOLS",
+  "text": "show one strong and one weak declaration. Say plainly that a declared and verified use costs no marks at all."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 24,
+  "title": "SEGMENT 5",
+  "text": "use the pairing you prepared. Collect the review forms — they are marked, and the reviewed team must submit a written response to them."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 25,
+  "title": "PEER REVIEW",
+  "text": "the review forms are keyed to the rubric. Mark the quality of the reviews as well as the repositories."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 26,
+  "title": "WORKED EXAMPLE",
+  "text": "put one good and one useless comment on the board. Thirty seconds, and the quality of the written reviews visibly improves."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 27,
+  "title": "SEGMENT 6",
+  "text": "hand out the Test 2 information sheet again. Confirm the room, machine allocation and sitting times now — for a cohort of this size that must already be timetabled."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 28,
+  "title": "TEST 2, THE LAST QUIZ AND WEEK 15",
+  "text": "run the quiz now. Say clearly that it is the last of the twelve and that the best ten count."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 29,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 34,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 13",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 13",
+  "slide": 35,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "end by confirming the test room, the sitting time and what to bring. Do not let anyone leave uncertain about where to be."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 1,
+  "title": "Practical Test 2",
+  "text": "issue this deck in Week 13. On the day, read the rules slide aloud from the screen and confirm the offline state of every machine before distributing task sheets. Author three parallel dataset variants of matched difficulty with a model answer and mark scheme each, and seat them in a checkerboard pattern."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 3,
+  "title": "THE THREE HOURS",
+  "text": "confirm the sitting plan and the second invigilator for any sitting above 40 students. A cohort of about 100 will need two sittings, which must already be timetabled."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 4,
+  "title": "READ THIS BEFORE THE DAY",
+  "text": "read this slide aloud from the screen at the start. Then confirm every machine's offline state before you distribute the task sheets."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 8,
+  "title": "HOW IT IS MARKED",
+  "text": "put the answers cell in the task sheet as copyable text, and say at the 30-minute call that the cell should already have entries in it."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 9,
+  "title": "45 OF THE 100 MARKS",
+  "text": "publish the exact key list with the specification so nobody meets it for the first time in the room."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 11,
+  "title": "CONTINGENCY",
+  "text": "read the machine-fault item aloud and mean it. Candidates who lose ten minutes and say nothing until the end cannot be compensated fairly."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 12,
+  "title": "REVISION — WEEKS 8 TO 13",
+  "text": "tell them the deck continues past the briefing. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3113 Week 14",
+  "slide": 19,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "on the day, confirm the Week 15 demo running order before dismissal."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 1,
+  "title": "WEEK 15  ·  Fri 18 December 2026",
+  "text": "invite Faculty staff and one external practising engineer — it raises the standard of every submission more than any amount of exhortation. Book a fair layout with tables round the perimeter and power at every station. Print the assessor packs, the peer assessment forms, the viva tally sheets and the three certificates."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 2,
+  "title": "THE RUNNING ORDER",
+  "text": "allocate stations before the room fills. Post the running order on the wall."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 3,
+  "title": "THE THREE HOURS",
+  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student presents for the whole hundred minutes."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 4,
+  "title": "SIX DELIVERABLES",
+  "text": "collect items 1 to 5 at the door. Item 6 comes in at the end."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 6,
+  "title": "WORKED EXAMPLE",
+  "text": "run one team through this at the start as a demonstration if the room is nervous."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 7,
+  "title": "THE PROJECT RUBRIC, OUT OF 100",
+  "text": "the assessor packs carry this rubric. Brief invited staff to ask about reasoning and limits rather than about scores."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 8,
+  "title": "PEER ASSESSMENT",
+  "text": "collect the forms. Moderate before combining, and never use peer marks raw."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 10,
+  "title": "THE VIVA BANK",
+  "text": "the shape of a full-mark answer to each:\n\nA · After any exploration and before any fitting or scaling; earlier and the preprocessing sees the test rows.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees return the nearest leaf and give no warning. Credit any answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' scores nothing.\n\nTally two per student. Do not let teammates answer for each other."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 12,
+  "title": "AWARDED IN THE PLENARY",
+  "text": "award all three and say why each one won, naming the specific thing the team did. Thirty seconds each, and it is the most-remembered part of the session."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 13,
+  "title": "THE WEEK 1 PROMISE",
+  "text": "put this up next to the Week 1 slide if you can. The comparison is what makes fifteen weeks feel like progress."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 15,
+  "title": "WHERE WE ARE",
+  "text": "ninety seconds. Walk it and name one thing from each block."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 16,
+  "title": "THE TERRITORY, REVISITED",
+  "text": "ask the room how many of the stage names they could now explain. The change since Week 1 is large and they will not have noticed it."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 18,
+  "title": "THE LAST DELIVERABLE",
+  "text": "hand out the prompt on paper and collect the reflections before anybody leaves. Paper gets a full return; a form does not."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 19,
+  "title": "WHAT COMES NEXT",
+  "text": "issue the Semester 2 pre-reading and the holiday challenge sheet with the certificates."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 20,
+  "title": "WHAT THE COHORT ACHIEVED",
+  "text": "read the last one aloud and mean it."
+ },
+ {
+  "deck": "CML3113 Week 15",
+  "slide": 21,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close by naming two or three specific things individual students did well this semester. Then stay behind — the last ten minutes of the last session is when students ask the questions that matter to them."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 1,
+  "title": "Encoding, scaling, and building a column out of physics",
+  "text": "verify the domain feature empirically BEFORE the session. If the domain-feature demonstration fails, the argument of the week fails with it. Print the feature dictionary template, the ablation table template and the cohort reference sheet of standards. Publish the Test 2 specification today."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "keep the two concept blocks to time. The two working blocks are where the learning happens and they cannot be compressed."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A9. Reteach anything the Week 10 challenge showed the room got wrong, especially scaling before the split."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Take answers from people who have not spoken yet."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "resist showing any encoder until the encoding block. This block is the argument and it is worth the full fifteen minutes."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 8,
+  "title": "TODAY'S QUESTION",
+  "text": "ask the room what they would measure next if they could measure anything. Then point out that the answer needs no new measurement at all."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 9,
+  "title": "What a model can and cannot work out for itself",
+  "text": "ask for one relationship from their own discipline that a model could never work out from raw columns. Their examples land better than yours."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 11,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes. Use the two figures, then the live Pipeline. Do not teach every encoder scikit-learn offers — two is enough."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 12,
+  "title": "Text into columns a model can use",
+  "text": "put the cohort's own categorical column on the board and ask the room whether the spacing between its levels means anything. That question decides the encoding every time."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 13,
+  "title": "DEFINITION",
+  "text": "keep the trap to thirty seconds. It matters for interpreting coefficients and for very little else at this level."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 15,
+  "title": "Why the units of a column change the answer",
+  "text": "this is the slide that explains why a Pipeline containing a scaler helps one model and does nothing for another. Say it plainly, because students otherwise scale everything as a ritual."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 17,
+  "title": "LIVE CODING",
+  "text": "make the leak live and show the small improvement. Small is the teaching point — a one per cent gain is what makes this leak survive review."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 18,
+  "title": "SEGMENT 4",
+  "text": "this demonstration must be pre-verified. Show the figure, then build the column live on the cohort dataset and read the two scores out loud."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 19,
+  "title": "THE DOMAIN FEATURE",
+  "text": "state the caveat out loud. Then run it on the real dataset so the claim is not resting on a synthetic figure."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 20,
+  "title": "WORKED EXAMPLE",
+  "text": "work this live on the cohort dataset, including the describe() check. Deliberately divide by a column containing a zero once so they see the infinity."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 21,
+  "title": "MADE CONCRETE",
+  "text": "hand out the cohort reference sheet of standards and codes now. The stretch tier is a feature that encodes a design code or an empirical relation with the reference cited, and students need the sheet in front of them to attempt it."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 23,
+  "title": "10 minutes",
+  "text": "take it. Get the templates distributed during the break so the Feature Workshop starts on time."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 24,
+  "title": "SEGMENT 5",
+  "text": "circulate and ask 'why did you expect that to help?' before looking at any code. Do not fix syntax — pair students who are stuck with students who are not."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 25,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "use the reference sheet to unstick teams on the stretch tier. Keep the ablation table template visible — teams that build five features and never measure them have done half the work."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 26,
+  "title": "SEGMENT 6",
+  "text": "twenty-five minutes. Figure, definition, then the loop typed live."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 27,
+  "title": "Ablation: drop one column and refit",
+  "text": "point at the two apparently useless columns and ask why. The answer, that the ratio has absorbed them, is the whole subtlety of feature selection, and they can reach it themselves."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 30,
+  "title": "LIVE CODING",
+  "text": "run it live on the cohort dataset. The table it produces is the workshop deliverable, so they need to have seen it built."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 31,
+  "title": "SEGMENT 7",
+  "text": "pair teams so both conditions are genuinely competitive. Assign the conditions rather than letting teams choose. Carry the question card and give no answers for the full thirty minutes."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 32,
+  "title": "CHALLENGE",
+  "text": "expected outcome — The feature teams normally win 8 to 12 points of recall on the failure class using logistic regression, while the raw-column teams reach for a forest and come close on accuracy and well short on recall.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 33,
+  "title": "SEGMENT 8",
+  "text": "hand out the Test 2 specification and rubric on paper. Three weeks' notice is the point of publishing it now."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 34,
+  "title": "MILESTONE, ASSIGNMENT AND TEST 2",
+  "text": "put the PM2 slot times on the board now."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 35,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 40,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 11",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 41,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close on the domain advantage result the room generated, using their own numbers rather than the figure's."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 1,
+  "title": "WEEK 12  ·  Fri 27 November 2026",
+  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 90 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "say out loud that you will not answer questions during the challenge, and why. Students who are told to expect it cope far better."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A10. The quiz closes this session, so say when it will run."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs, then move. Question A leads straight into the comparison protocol."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "put the protocol poster up and leave it up for the rest of the session."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 8,
+  "title": "THE PROTOCOL",
+  "text": "write the four constants on the board and leave them there through the challenge. Teams will refer to them."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "this slide is what stops the challenge becoming a score chase. Emphasise it before you release them."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 10,
+  "title": "SELECTION CRITERIA",
+  "text": "make criterion 5 concrete with a local example if you have one. Students find the maintenance argument surprising and remember it."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 11,
+  "title": "THE TRADE-OFF",
+  "text": "the figure's own caption says the horizontal axis is a judgement. Point that out — the same honesty you are asking of them."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 12,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the tuning demonstration. If question A is weak, put the four constants back on the board."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 14,
+  "title": "SEGMENT 3",
+  "text": "one GridSearchCV, typed live, and stop. Do not demonstrate a second search method."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 15,
+  "title": "A grid search is a table you fill in, then read",
+  "text": "say the 140-fits number out loud. Grid search is expensive and students should feel that before they write a grid with 400 cells."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 17,
+  "title": "LIVE CODING",
+  "text": "run it, then run the broken version. The improvement is small, which is exactly why this leak survives review."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 18,
+  "title": "DEFERRED TO SEMESTER 2",
+  "text": "sixty seconds of demonstration at most, then the explicit deferral. Say why: the tool is not the lesson this week."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. Distribute the client briefs and the recommendation template during the break so the challenge starts on time."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "circulate with the question-bank cards and answer nothing for the full 90 minutes. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 21,
+  "title": "YOUR CLIENT, AND WHAT THEY ASKED FOR",
+  "text": "hand out the printed brief. Do not paraphrase it or explain the constraint — reading a brief carefully is part of what is being assessed."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 22,
+  "title": "CHALLENGE",
+  "text": "what is in the challenge dataset and the intended reading — Failures are about 3.4 per cent of the rows, so every model reports over 96 per cent accuracy and one of them predicts no failures at all. The decision threshold matters more than the choice of model here, and a team that moves the threshold and shows the trade-off has understood the session better than a team that found a slightly better model.\n\nDo not reveal any of that. Mark the protocol and the reasoning. The score carries nothing on its own."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 23,
+  "title": "DELIVERABLE — A11",
+  "text": "collect the pages at the end of the defence round, after teams have had the chance to annotate them with what they conceded."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 24,
+  "title": "WORKED EXAMPLE",
+  "text": "put a good and a bad opening sentence on the board for thirty seconds. It visibly changes what gets handed in."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 25,
+  "title": "NON-NEGOTIABLE",
+  "text": "this is the protocol poster. Print it A3 and put it on the wall."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 26,
+  "title": "SEGMENT 5",
+  "text": "pair teams that took different approaches wherever you can. Time it strictly: five minutes each way, five minutes to write down what each side conceded."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 27,
+  "title": "THE DEFENCE ROUND",
+  "text": "mark the challenges as you circulate. Naming one team's challenge as the best of the session raises the standard immediately."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 28,
+  "title": "WORKED EXAMPLE",
+  "text": "these six are the question-bank cards. Print one card per team."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 29,
+  "title": "SEGMENT 6",
+  "text": "keep this to five minutes, then run the quiz."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 30,
+  "title": "MILESTONE AND QUIZ",
+  "text": "run the quiz now. Afterwards, look at the responses-by-question view and plan a five-minute reteach for the start of Week 13 for anything the room got wrong."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 31,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 36,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 12",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 37,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "name the best challenge raised in the defence round and say why it was good. Thirty seconds, and it sets the standard for Week 15."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 1,
+  "title": "Repository structure, README, environment capture and peer review",
+  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 11 teams, so 100 minutes gives roughly 7 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "put the booking sheet on the wall and the slot times on the board before the break."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A11 annotations if they were not handed in last week. Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Question C leads straight into the block on reproducibility."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "lead with the professional argument rather than the tidiness argument. Engineering students respond to 'defend your number', and they do not respond to 'keep your files neat'."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 8,
+  "title": "THE QUESTION SOMEBODY WILL ASK YOU",
+  "text": "if you have a real story of being asked to defend an old number, tell it here. It carries the segment."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 9,
+  "title": "REPOSITORY ANATOMY",
+  "text": "walk the figure in the numbered order. Then show a real repository, ideally one of your own, and open the files in that order."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 12,
+  "title": "SEGMENT 3",
+  "text": "use an anonymised real student notebook with permission. A synthetic mess does not land, because students recognise a real one as their own."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 13,
+  "title": "WHAT TO FIX FIRST",
+  "text": "put the real notebook on screen and let the room find these six before you name them. They will find four or five, which is more effective than being shown all six."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 14,
+  "title": "LIVE CODING",
+  "text": "make everyone run Restart and Run All at this point. Two minutes, and a visible number of hands go up, which makes the rest of the segment sell itself."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 15,
+  "title": "THE README",
+  "text": "put a good README and a bad one side by side for a minute. Then show that the good one is shorter."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 17,
+  "title": "WORKED EXAMPLE",
+  "text": "do this live on one cell of the real notebook. Include the restart, and let it fail if it does."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. Put the booking sheet and the slot times up during the break."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "keep to the booking sheet and use the printed checklist in every slot. With 11 teams and 7 minutes each, a slot that becomes a conversation costs another team its slot. Set a timer."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 21,
+  "title": "STUDIO — 85 MINUTES",
+  "text": "circulate between slots. The commonest finding will be an absolute path and an unpinned requirements file, and both take a minute to fix."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 22,
+  "title": "SELF-ASSESS FIRST",
+  "text": "this is the printed checklist. Hand it out at the start of the studio and require it filled in as the price of a slot."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 23,
+  "title": "DECLARING YOUR TOOLS",
+  "text": "show one strong and one weak declaration. Say plainly that a declared and verified use costs no marks at all."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 24,
+  "title": "SEGMENT 5",
+  "text": "use the pairing you prepared. Collect the review forms — they are marked, and the reviewed team must submit a written response to them."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 25,
+  "title": "PEER REVIEW",
+  "text": "the review forms are keyed to the rubric. Mark the quality of the reviews as well as the repositories."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 26,
+  "title": "WORKED EXAMPLE",
+  "text": "put one good and one useless comment on the board. Thirty seconds, and the quality of the written reviews visibly improves."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 27,
+  "title": "SEGMENT 6",
+  "text": "hand out the Test 2 information sheet again. Confirm the room, machine allocation and sitting times now — for a cohort of this size that must already be timetabled."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 28,
+  "title": "TEST 2, THE LAST QUIZ AND WEEK 15",
+  "text": "run the quiz now. Say clearly that it is the last of the twelve and that the best ten count."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 29,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 34,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 13",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 13",
+  "slide": 35,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "end by confirming the test room, the sitting time and what to bring. Do not let anyone leave uncertain about where to be."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 1,
+  "title": "Practical Test 2",
+  "text": "issue this deck in Week 13. On the day, read the rules slide aloud from the screen and confirm the offline state of every machine before distributing task sheets. Author three parallel dataset variants of matched difficulty with a model answer and mark scheme each, and seat them in a checkerboard pattern."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 3,
+  "title": "THE THREE HOURS",
+  "text": "confirm the sitting plan and the second invigilator for any sitting above 40 students. A cohort of about 100 will need two sittings, which must already be timetabled."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 4,
+  "title": "READ THIS BEFORE THE DAY",
+  "text": "read this slide aloud from the screen at the start. Then confirm every machine's offline state before you distribute the task sheets."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 8,
+  "title": "HOW IT IS MARKED",
+  "text": "put the answers cell in the task sheet as copyable text, and say at the 30-minute call that the cell should already have entries in it."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 9,
+  "title": "45 OF THE 100 MARKS",
+  "text": "publish the exact key list with the specification so nobody meets it for the first time in the room."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 11,
+  "title": "CONTINGENCY",
+  "text": "read the machine-fault item aloud and mean it. Candidates who lose ten minutes and say nothing until the end cannot be compensated fairly."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 12,
+  "title": "REVISION — WEEKS 8 TO 13",
+  "text": "tell them the deck continues past the briefing. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3111 Week 14",
+  "slide": 19,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "on the day, confirm the Week 15 demo running order before dismissal."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 1,
+  "title": "WEEK 15  ·  Fri 18 December 2026",
+  "text": "invite Faculty staff and one external practising engineer — it raises the standard of every submission more than any amount of exhortation. Book a fair layout with tables round the perimeter and power at every station. Print the assessor packs, the peer assessment forms, the viva tally sheets and the three certificates."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 2,
+  "title": "THE RUNNING ORDER",
+  "text": "allocate stations before the room fills. Post the running order on the wall."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 3,
+  "title": "THE THREE HOURS",
+  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student presents for the whole hundred minutes."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 4,
+  "title": "SIX DELIVERABLES",
+  "text": "collect items 1 to 5 at the door. Item 6 comes in at the end."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 6,
+  "title": "WORKED EXAMPLE",
+  "text": "run one team through this at the start as a demonstration if the room is nervous."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 7,
+  "title": "THE PROJECT RUBRIC, OUT OF 100",
+  "text": "the assessor packs carry this rubric. Brief invited staff to ask about reasoning and limits rather than about scores."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 8,
+  "title": "PEER ASSESSMENT",
+  "text": "collect the forms. Moderate before combining, and never use peer marks raw."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 10,
+  "title": "THE VIVA BANK",
+  "text": "the shape of a full-mark answer to each:\n\nA · After any exploration and before any fitting or scaling; earlier and the preprocessing sees the test rows.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees return the nearest leaf and give no warning. Credit any answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' scores nothing.\n\nTally two per student. Do not let teammates answer for each other."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 12,
+  "title": "AWARDED IN THE PLENARY",
+  "text": "award all three and say why each one won, naming the specific thing the team did. Thirty seconds each, and it is the most-remembered part of the session."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 13,
+  "title": "THE WEEK 1 PROMISE",
+  "text": "put this up next to the Week 1 slide if you can. The comparison is what makes fifteen weeks feel like progress."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 15,
+  "title": "WHERE WE ARE",
+  "text": "ninety seconds. Walk it and name one thing from each block."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 16,
+  "title": "THE TERRITORY, REVISITED",
+  "text": "ask the room how many of the stage names they could now explain. The change since Week 1 is large and they will not have noticed it."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 18,
+  "title": "THE LAST DELIVERABLE",
+  "text": "hand out the prompt on paper and collect the reflections before anybody leaves. Paper gets a full return; a form does not."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 19,
+  "title": "WHAT COMES NEXT",
+  "text": "issue the Semester 2 pre-reading and the holiday challenge sheet with the certificates."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 20,
+  "title": "WHAT THE COHORT ACHIEVED",
+  "text": "read the last one aloud and mean it."
+ },
+ {
+  "deck": "CML3111 Week 15",
+  "slide": 21,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close by naming two or three specific things individual students did well this semester. Then stay behind — the last ten minutes of the last session is when students ask the questions that matter to them."
+ }
+]

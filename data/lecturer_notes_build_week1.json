@@ -1,0 +1,794 @@
+[
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 1,
+  "title": "Introduction to Machine Learning in Design & Infrastructure",
+  "text": "print the 12-row dataset extracts (one per team), the Problem Hunt board sheets, the paper laptop-access survey and the question card for the challenge. Open by saying how long you have been doing this and one thing you got wrong recently. A room of beginners needs to know the lecturer is fallible before it will risk being wrong out loud."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 3,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read these out. Students at zero need to know the session has a bottom — that it is finite and achievable — or the volume of new words feels limitless. Come back to this slide at the end and ask them to self-assess against it: ninety seconds, and the cheapest way to make a three-hour session feel like progress."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 4,
+  "title": "HOW TODAY RUNS",
+  "text": "put this up and leave it up while you explain. Say the break time out loud so nobody spends the first hour wondering."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 5,
+  "title": "THE SEMESTER",
+  "text": "say the no-memorisation point plainly. If you are teaching a Friday cohort, flag now that Friday 9 October is Independence Day and Week 5 will be delivered as a recorded package."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 6,
+  "title": "THE PROMISE",
+  "text": "two minutes on this — it is the motivation slide of the session. Name the utterance you want to kill, 'Sir, what should I type?', and the one you want by December: 'we tried three approaches, the first two failed because of X, so we are testing the third.'"
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 7,
+  "title": "SEGMENT 1",
+  "text": "keep to time. The temptation is to spend forty minutes on admin; do not. The hands-on prediction exercise is what makes them come back next week."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 9,
+  "title": "What I expect, and what you can expect back",
+  "text": "read the 'ask well' item slowly. It is the single behaviour that most changes what a beginner gets from the semester."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 10,
+  "title": "SEGMENT 2",
+  "text": "this segment is new and it is worth protecting. Tell them explicitly that the structure is not a syllabus you invented."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 11,
+  "title": "THE TERRITORY",
+  "text": "walk it in order, about seventy seconds per column. Do not explain the individual terms. Say plainly that nobody expects them to know what a transformer is today."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 12,
+  "title": "WHERE YOU ALREADY ARE",
+  "text": "this slide exists to counter the belief that machine learning belongs to computer scientists. Say directly that the hard prerequisite for the field is the mathematics and they have already done it. Watch the room change posture."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 14,
+  "title": "WHERE IT LEADS",
+  "text": "expect the question 'what job does this get me?'. Answer it here rather than deflecting it to later in the semester."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 15,
+  "title": "SEGMENT 3",
+  "text": "keep it tight and move to the real work in the block on rules and learning."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 16,
+  "title": "The words, and how they nest",
+  "text": "draw this on the board as well as showing it. Drawn beats projected for a nested diagram."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 18,
+  "title": "DEFINITION",
+  "text": "write the definition on the board and leave it there for the whole session."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 19,
+  "title": "DEFINITION",
+  "text": "expect pushback here — they want the models. Give the eighty-twenty split honestly and move on."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "if you are running out of time elsewhere, protect this segment."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 21,
+  "title": "THE QUESTION THIS COURSE STARTS FROM",
+  "text": "ask the room how they would answer it today, then do not resolve it. The paper exercise resolves it."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 22,
+  "title": "THE ACTUAL IDEA",
+  "text": "walk the two columns slowly, left then right, then give the domain example. If a student asks which is better, ask them for a problem where they know the rule and one where they do not."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 23,
+  "title": "When to write the rule, and when to learn it from data",
+  "text": "say out loud that most of engineering stays in the left-hand column. It protects you from the charge of selling a technique."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 24,
+  "title": "THE VOCABULARY",
+  "text": "five minutes here at least. Point at the table and ask individual students 'feature or target?' four or five times until the answers come back quickly, then put the harder question about targets becoming features."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 25,
+  "title": "DEFINITION",
+  "text": "plant the causation point in one sentence and do not develop it here."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 26,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "ninety seconds in pairs before you reveal, and do not take an answer aloud immediately. Accept any answer to B that notices the timing problem."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 27,
+  "title": "How did you do?",
+  "text": "write 'data leakage' on the board and tell them it will come back in Week 10."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 28,
+  "title": "SEGMENT 5",
+  "text": "form teams HERE and keep them all semester. Mix by ability rather than friendship — use the Week 1 survey if you have it, otherwise count off around the room. Hand out the printed 12-row extracts now, one per team, plus a blank sheet."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 29,
+  "title": "TEAM TASK · 15 MINUTES",
+  "text": "circulate and ask 'why that number?' Do not help. If a team is stuck, ask which column they think matters most. Some teams will average everything and some will spot the trend; you contrast the two afterwards."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 30,
+  "title": "WORKED EXAMPLE",
+  "text": "show this AFTER they have tried, never before. Handing them the method first destroys the exercise."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 31,
+  "title": "THE REVEAL",
+  "text": "collect every team's number on the board before revealing. Then reveal, ask the closest team to explain their method, and ask whether that method would still be best on a different case. Usually nobody knows, and that is the honest answer."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 32,
+  "title": "NAMING IT",
+  "text": "go slowly here. This is the pedagogical payoff of the whole session."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 33,
+  "title": "10 minutes",
+  "text": "take the break. Do not skip it to catch up — attention at ninety minutes is genuinely gone and the challenge segment needs them fresh."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 36,
+  "title": "DEFINITION",
+  "text": "drill it. Call out five problems from their discipline and have the room answer 'number' or 'category' in unison. Thirty seconds, and it sticks far better than the definition."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 39,
+  "title": "SEGMENT 7",
+  "text": "this segment buys credibility for the whole semester. Engineering students are rightly sceptical of hype, and showing the limits early earns the right to teach the rest."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 40,
+  "title": "THE LIMITS",
+  "text": "say the caption twice. Ask the room for a case from their own experience that hits limit one — somebody always has a story about records that were never kept."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 41,
+  "title": "MADE CONCRETE",
+  "text": "read each of the four out and then ask for one more example from the room; their examples are better than yours because they own them. The closing paragraph is the project gate, so say it now and Week 9 will not be a surprise."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 42,
+  "title": "SEGMENT 8",
+  "text": "say out loud that you will not answer questions in this segment, and why. Carry the printed question card — it is there to stop YOU giving answers, which is harder than it sounds."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 43,
+  "title": "CHALLENGE",
+  "text": "seed prompts, only if a team is genuinely stuck: Concrete strength from a mix design, without waiting 28 days · A building's energy use before it is built · Which sections of road will deteriorate first · Defect severity from inspection records, more consistently than three inspectors. Harvest every board onto a class list afterwards — students take their own idea far more seriously than one you hand them."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 44,
+  "title": "How your team works, all semester",
+  "text": "collect the charters — you need the team list for the Week 9 project registration anyway. The charter takes five minutes and prevents most of the free-riding complaints that otherwise arrive in Week 12."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 46,
+  "title": "ASSIGNMENT",
+  "text": "collect the paper laptop-access survey before they leave. Paper gets a 100 per cent return; a form does not."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 47,
+  "title": "Watch this before Week 2",
+  "text": "link verified as existing on 7 September 2026. The runtime was not stated in the source, so check it and write it on the slide before you issue the deck."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 48,
+  "title": "SEGMENT 10",
+  "text": "tell them explicitly that the deck continues past the end of the session. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 49,
+  "title": "MODULE SUMMARY",
+  "text": "come back to the learning objectives slide after this and ask for a show of hands against each. Ninety seconds, and it converts a long session into visible progress."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 52,
+  "title": "GLOSSARY — KEEP THIS SLIDE",
+  "text": "do not teach the last two entries today."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 53,
+  "title": "CHEAT SHEET — KEEP THIS SLIDE",
+  "text": "tell students to photograph this slide."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 54,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 1",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 1",
+  "slide": 55,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close on the promise you opened with, then repeat the four practical instructions. Stay behind for ten minutes — the students who need the most help will not ask in front of the room."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 1,
+  "title": "Introduction to Machine Learning in Mining & Petroleum Engineering",
+  "text": "print the 12-row dataset extracts (one per team), the Problem Hunt board sheets, the paper laptop-access survey and the question card for the challenge. Open by saying how long you have been doing this and one thing you got wrong recently. A room of beginners needs to know the lecturer is fallible before it will risk being wrong out loud."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 3,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read these out. Students at zero need to know the session has a bottom — that it is finite and achievable — or the volume of new words feels limitless. Come back to this slide at the end and ask them to self-assess against it: ninety seconds, and the cheapest way to make a three-hour session feel like progress."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 4,
+  "title": "HOW TODAY RUNS",
+  "text": "put this up and leave it up while you explain. Say the break time out loud so nobody spends the first hour wondering."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 5,
+  "title": "THE SEMESTER",
+  "text": "say the no-memorisation point plainly. If you are teaching a Friday cohort, flag now that Friday 9 October is Independence Day and Week 5 will be delivered as a recorded package."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 6,
+  "title": "THE PROMISE",
+  "text": "two minutes on this — it is the motivation slide of the session. Name the utterance you want to kill, 'Sir, what should I type?', and the one you want by December: 'we tried three approaches, the first two failed because of X, so we are testing the third.'"
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 7,
+  "title": "SEGMENT 1",
+  "text": "keep to time. The temptation is to spend forty minutes on admin; do not. The hands-on prediction exercise is what makes them come back next week."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 9,
+  "title": "What I expect, and what you can expect back",
+  "text": "read the 'ask well' item slowly. It is the single behaviour that most changes what a beginner gets from the semester."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 10,
+  "title": "SEGMENT 2",
+  "text": "this segment is new and it is worth protecting. Tell them explicitly that the structure is not a syllabus you invented."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 11,
+  "title": "THE TERRITORY",
+  "text": "walk it in order, about seventy seconds per column. Do not explain the individual terms. Say plainly that nobody expects them to know what a transformer is today."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 12,
+  "title": "WHERE YOU ALREADY ARE",
+  "text": "this slide exists to counter the belief that machine learning belongs to computer scientists. Say directly that the hard prerequisite for the field is the mathematics and they have already done it. Watch the room change posture."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 14,
+  "title": "WHERE IT LEADS",
+  "text": "expect the question 'what job does this get me?'. Answer it here rather than deflecting it to later in the semester."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 15,
+  "title": "SEGMENT 3",
+  "text": "keep it tight and move to the real work in the block on rules and learning."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 16,
+  "title": "The words, and how they nest",
+  "text": "draw this on the board as well as showing it. Drawn beats projected for a nested diagram."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 18,
+  "title": "DEFINITION",
+  "text": "write the definition on the board and leave it there for the whole session."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 19,
+  "title": "DEFINITION",
+  "text": "expect pushback here — they want the models. Give the eighty-twenty split honestly and move on."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "if you are running out of time elsewhere, protect this segment."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 21,
+  "title": "THE QUESTION THIS COURSE STARTS FROM",
+  "text": "ask the room how they would answer it today, then do not resolve it. The paper exercise resolves it."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 22,
+  "title": "THE ACTUAL IDEA",
+  "text": "walk the two columns slowly, left then right, then give the domain example. If a student asks which is better, ask them for a problem where they know the rule and one where they do not."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 23,
+  "title": "When to write the rule, and when to learn it from data",
+  "text": "say out loud that most of engineering stays in the left-hand column. It protects you from the charge of selling a technique."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 24,
+  "title": "THE VOCABULARY",
+  "text": "five minutes here at least. Point at the table and ask individual students 'feature or target?' four or five times until the answers come back quickly, then put the harder question about targets becoming features."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 25,
+  "title": "DEFINITION",
+  "text": "plant the causation point in one sentence and do not develop it here."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 26,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "ninety seconds in pairs before you reveal, and do not take an answer aloud immediately. Accept any answer to B that notices the timing problem."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 27,
+  "title": "How did you do?",
+  "text": "write 'data leakage' on the board and tell them it will come back in Week 10."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 28,
+  "title": "SEGMENT 5",
+  "text": "form teams HERE and keep them all semester. Mix by ability rather than friendship — use the Week 1 survey if you have it, otherwise count off around the room. Hand out the printed 12-row extracts now, one per team, plus a blank sheet."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 29,
+  "title": "TEAM TASK · 15 MINUTES",
+  "text": "circulate and ask 'why that number?' Do not help. If a team is stuck, ask which column they think matters most. Some teams will average everything and some will spot the trend; you contrast the two afterwards."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 30,
+  "title": "WORKED EXAMPLE",
+  "text": "show this AFTER they have tried, never before. Handing them the method first destroys the exercise."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 31,
+  "title": "THE REVEAL",
+  "text": "collect every team's number on the board before revealing. Then reveal, ask the closest team to explain their method, and ask whether that method would still be best on a different case. Usually nobody knows, and that is the honest answer."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 32,
+  "title": "NAMING IT",
+  "text": "go slowly here. This is the pedagogical payoff of the whole session."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 33,
+  "title": "10 minutes",
+  "text": "take the break. Do not skip it to catch up — attention at ninety minutes is genuinely gone and the challenge segment needs them fresh."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 36,
+  "title": "DEFINITION",
+  "text": "drill it. Call out five problems from their discipline and have the room answer 'number' or 'category' in unison. Thirty seconds, and it sticks far better than the definition."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 39,
+  "title": "SEGMENT 7",
+  "text": "this segment buys credibility for the whole semester. Engineering students are rightly sceptical of hype, and showing the limits early earns the right to teach the rest."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 40,
+  "title": "THE LIMITS",
+  "text": "say the caption twice. Ask the room for a case from their own experience that hits limit one — somebody always has a story about records that were never kept."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 41,
+  "title": "MADE CONCRETE",
+  "text": "read each of the four out and then ask for one more example from the room; their examples are better than yours because they own them. The closing paragraph is the project gate, so say it now and Week 9 will not be a surprise."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 42,
+  "title": "SEGMENT 8",
+  "text": "say out loud that you will not answer questions in this segment, and why. Carry the printed question card — it is there to stop YOU giving answers, which is harder than it sounds."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 43,
+  "title": "CHALLENGE",
+  "text": "seed prompts, only if a team is genuinely stuck: Concentrate quality now, instead of in an hour · Lithology from well logs already drilled · Which haul truck fails next, from its own sensor history · Ore or waste, with the cost of each mistake made explicit. Harvest every board onto a class list afterwards — students take their own idea far more seriously than one you hand them."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 44,
+  "title": "How your team works, all semester",
+  "text": "collect the charters — you need the team list for the Week 9 project registration anyway. The charter takes five minutes and prevents most of the free-riding complaints that otherwise arrive in Week 12."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 46,
+  "title": "ASSIGNMENT",
+  "text": "collect the paper laptop-access survey before they leave. Paper gets a 100 per cent return; a form does not."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 47,
+  "title": "Watch this before Week 2",
+  "text": "link verified as existing on 7 September 2026. The runtime was not stated in the source, so check it and write it on the slide before you issue the deck."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 48,
+  "title": "SEGMENT 10",
+  "text": "tell them explicitly that the deck continues past the end of the session. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 49,
+  "title": "MODULE SUMMARY",
+  "text": "come back to the learning objectives slide after this and ask for a show of hands against each. Ninety seconds, and it converts a long session into visible progress."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 52,
+  "title": "GLOSSARY — KEEP THIS SLIDE",
+  "text": "do not teach the last two entries today."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 53,
+  "title": "CHEAT SHEET — KEEP THIS SLIDE",
+  "text": "tell students to photograph this slide."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 54,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 1",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 1",
+  "slide": 55,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close on the promise you opened with, then repeat the four practical instructions. Stay behind for ten minutes — the students who need the most help will not ask in front of the room."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 1,
+  "title": "Introduction to Machine Learning in Engineering",
+  "text": "print the 12-row dataset extracts (one per team), the Problem Hunt board sheets, the paper laptop-access survey and the question card for the challenge. Open by saying how long you have been doing this and one thing you got wrong recently. A room of beginners needs to know the lecturer is fallible before it will risk being wrong out loud."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 3,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read these out. Students at zero need to know the session has a bottom — that it is finite and achievable — or the volume of new words feels limitless. Come back to this slide at the end and ask them to self-assess against it: ninety seconds, and the cheapest way to make a three-hour session feel like progress."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 4,
+  "title": "HOW TODAY RUNS",
+  "text": "put this up and leave it up while you explain. Say the break time out loud so nobody spends the first hour wondering."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 5,
+  "title": "THE SEMESTER",
+  "text": "say the no-memorisation point plainly. If you are teaching a Friday cohort, flag now that Friday 9 October is Independence Day and Week 5 will be delivered as a recorded package."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 6,
+  "title": "THE PROMISE",
+  "text": "two minutes on this — it is the motivation slide of the session. Name the utterance you want to kill, 'Sir, what should I type?', and the one you want by December: 'we tried three approaches, the first two failed because of X, so we are testing the third.'"
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 7,
+  "title": "SEGMENT 1",
+  "text": "keep to time. The temptation is to spend forty minutes on admin; do not. The hands-on prediction exercise is what makes them come back next week."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 9,
+  "title": "What I expect, and what you can expect back",
+  "text": "read the 'ask well' item slowly. It is the single behaviour that most changes what a beginner gets from the semester."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 10,
+  "title": "SEGMENT 2",
+  "text": "this segment is new and it is worth protecting. Tell them explicitly that the structure is not a syllabus you invented."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 11,
+  "title": "THE TERRITORY",
+  "text": "walk it in order, about seventy seconds per column. Do not explain the individual terms. Say plainly that nobody expects them to know what a transformer is today."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 12,
+  "title": "WHERE YOU ALREADY ARE",
+  "text": "this slide exists to counter the belief that machine learning belongs to computer scientists. Say directly that the hard prerequisite for the field is the mathematics and they have already done it. Watch the room change posture."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 14,
+  "title": "WHERE IT LEADS",
+  "text": "expect the question 'what job does this get me?'. Answer it here rather than deflecting it to later in the semester."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 15,
+  "title": "SEGMENT 3",
+  "text": "keep it tight and move to the real work in the block on rules and learning."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 16,
+  "title": "The words, and how they nest",
+  "text": "draw this on the board as well as showing it. Drawn beats projected for a nested diagram."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 18,
+  "title": "DEFINITION",
+  "text": "write the definition on the board and leave it there for the whole session."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 19,
+  "title": "DEFINITION",
+  "text": "expect pushback here — they want the models. Give the eighty-twenty split honestly and move on."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 20,
+  "title": "SEGMENT 4",
+  "text": "if you are running out of time elsewhere, protect this segment."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 21,
+  "title": "THE QUESTION THIS COURSE STARTS FROM",
+  "text": "ask the room how they would answer it today, then do not resolve it. The paper exercise resolves it."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 22,
+  "title": "THE ACTUAL IDEA",
+  "text": "walk the two columns slowly, left then right, then give the domain example. If a student asks which is better, ask them for a problem where they know the rule and one where they do not."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 23,
+  "title": "When to write the rule, and when to learn it from data",
+  "text": "say out loud that most of engineering stays in the left-hand column. It protects you from the charge of selling a technique."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 24,
+  "title": "THE VOCABULARY",
+  "text": "five minutes here at least. Point at the table and ask individual students 'feature or target?' four or five times until the answers come back quickly, then put the harder question about targets becoming features."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 25,
+  "title": "DEFINITION",
+  "text": "plant the causation point in one sentence and do not develop it here."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 26,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "ninety seconds in pairs before you reveal, and do not take an answer aloud immediately. Accept any answer to B that notices the timing problem."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 27,
+  "title": "How did you do?",
+  "text": "write 'data leakage' on the board and tell them it will come back in Week 10."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 28,
+  "title": "SEGMENT 5",
+  "text": "form teams HERE and keep them all semester. Mix by ability rather than friendship — use the Week 1 survey if you have it, otherwise count off around the room. Hand out the printed 12-row extracts now, one per team, plus a blank sheet."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 29,
+  "title": "TEAM TASK · 15 MINUTES",
+  "text": "circulate and ask 'why that number?' Do not help. If a team is stuck, ask which column they think matters most. Some teams will average everything and some will spot the trend; you contrast the two afterwards."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 30,
+  "title": "WORKED EXAMPLE",
+  "text": "show this AFTER they have tried, never before. Handing them the method first destroys the exercise."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 31,
+  "title": "THE REVEAL",
+  "text": "collect every team's number on the board before revealing. Then reveal, ask the closest team to explain their method, and ask whether that method would still be best on a different case. Usually nobody knows, and that is the honest answer."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 32,
+  "title": "NAMING IT",
+  "text": "go slowly here. This is the pedagogical payoff of the whole session."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 33,
+  "title": "10 minutes",
+  "text": "take the break. Do not skip it to catch up — attention at ninety minutes is genuinely gone and the challenge segment needs them fresh."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 36,
+  "title": "DEFINITION",
+  "text": "drill it. Call out five problems from their discipline and have the room answer 'number' or 'category' in unison. Thirty seconds, and it sticks far better than the definition."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 39,
+  "title": "SEGMENT 7",
+  "text": "this segment buys credibility for the whole semester. Engineering students are rightly sceptical of hype, and showing the limits early earns the right to teach the rest."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 40,
+  "title": "THE LIMITS",
+  "text": "say the caption twice. Ask the room for a case from their own experience that hits limit one — somebody always has a story about records that were never kept."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 41,
+  "title": "MADE CONCRETE",
+  "text": "read each of the four out and then ask for one more example from the room; their examples are better than yours because they own them. The closing paragraph is the project gate, so say it now and Week 9 will not be a surprise."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 42,
+  "title": "SEGMENT 8",
+  "text": "say out loud that you will not answer questions in this segment, and why. Carry the printed question card — it is there to stop YOU giving answers, which is harder than it sounds."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 43,
+  "title": "CHALLENGE",
+  "text": "seed prompts, only if a team is genuinely stuck: Failure before it happens, from sensor history alone · Plant output from ambient conditions · A real fault told apart from a start-up transient · How many false alarms an operator will tolerate before disabling the alarm. Harvest every board onto a class list afterwards — students take their own idea far more seriously than one you hand them."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 44,
+  "title": "How your team works, all semester",
+  "text": "collect the charters — you need the team list for the Week 9 project registration anyway. The charter takes five minutes and prevents most of the free-riding complaints that otherwise arrive in Week 12."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 46,
+  "title": "ASSIGNMENT",
+  "text": "collect the paper laptop-access survey before they leave. Paper gets a 100 per cent return; a form does not."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 47,
+  "title": "Watch this before Week 2",
+  "text": "link verified as existing on 7 September 2026. The runtime was not stated in the source, so check it and write it on the slide before you issue the deck."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 48,
+  "title": "SEGMENT 10",
+  "text": "tell them explicitly that the deck continues past the end of the session. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 49,
+  "title": "MODULE SUMMARY",
+  "text": "come back to the learning objectives slide after this and ask for a show of hands against each. Ninety seconds, and it converts a long session into visible progress."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 52,
+  "title": "GLOSSARY — KEEP THIS SLIDE",
+  "text": "do not teach the last two entries today."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 53,
+  "title": "CHEAT SHEET — KEEP THIS SLIDE",
+  "text": "tell students to photograph this slide."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 54,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 1",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 1",
+  "slide": 55,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "close on the promise you opened with, then repeat the four practical instructions. Stay behind for ten minutes — the students who need the most help will not ask in front of the room."
+ }
+]

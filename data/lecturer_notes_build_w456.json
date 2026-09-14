@@ -1,0 +1,1460 @@
+[
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 1,
+  "title": "Collections, loops, files — and your first unguided investigation",
+  "text": "this session closes with the weekly quiz, as every session does. Have the QR ready and 20 paper copies of version A in the room in case the network is down."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "warn them now that the Investigation Lab is unguided and that this is on purpose. Students who are told to expect it cope far better than students who discover it."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A3. Two minutes of recall, then move."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Take answers from people who have not spoken yet."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "put a real file on screen and scroll it. Let the length do the arguing — the need for a loop should feel obvious before you name the word."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 8,
+  "title": "TODAY'S QUESTION",
+  "text": "ask how long it would take by hand and let someone estimate. Then make the point about scale."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 9,
+  "title": "SEGMENT 3",
+  "text": "twenty minutes. Keep it concrete — use real record types from their discipline."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 10,
+  "title": "COLLECTIONS",
+  "text": "ask the room for one example of each from their own field before you show the answers. Their examples are better than yours because they own them."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "a KeyError from asking a dictionary for a label it does not have is one of the bugs in this week's quiz. Mention it now."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 12,
+  "title": "SEGMENT 4",
+  "text": "this is the conceptual core of the session. Do not rush it — the file reading is mechanical once this is understood."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 13,
+  "title": "THE ACCUMULATOR",
+  "text": "draw the trace table on the board and fill it in one row at a time, asking the room for each value. It makes the loop mechanical rather than mysterious, and it takes four minutes."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 14,
+  "title": "A SILENT WRONG ANSWER",
+  "text": "make the mistake live and let them spot it from the magnitude. This exact bug appears in the quiz at the end of the session."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 15,
+  "title": "DEFINITION",
+  "text": "this is the moment to make the indentation point explicitly, because IndentationError is the traceback question in this week's quiz."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 16,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the file reading. If question C is weak, re-show the accumulator_bug figure — everything after the break depends on it."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 17,
+  "title": "How did you do?",
+  "text": "say that the bug in answer C is in the quiz."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 18,
+  "title": "SEGMENT 5",
+  "text": "lockstep. Say out loud that next week this becomes three lines — then say they will understand what those three lines do, which is why it is worth doing the long way once."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 19,
+  "title": "THE PIPELINE",
+  "text": "this is the forward reference that makes Week 6's 'a number stored as text' defect make sense."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 20,
+  "title": "LIVE CODING",
+  "text": "make BOTH mistakes. The first crashes and is a gift; the second is silent and is the dangerous one. Contrast them explicitly."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 21,
+  "title": "10 minutes",
+  "text": "take it. The Investigation Lab needs them fresh."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 22,
+  "title": "SEGMENT 6",
+  "text": "short segment, but the 'when NOT to catch' point is important and usually skipped."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 23,
+  "title": "LIVE CODING",
+  "text": "'except: pass' is the single worst line a data engineer can write. Say so plainly."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 24,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "circulate and ask for the expected magnitude before looking at anyone's code. Then ask 'how many rows did you skip?' — the students who have not counted will realise why it matters."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 25,
+  "title": "WORKED EXAMPLE",
+  "text": "walk this on the board with the actual column names from the file before you release them to work. Five minutes here saves the whole activity from becoming aimless clicking."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 26,
+  "title": "CHALLENGE",
+  "text": "what is actually in the file: One inspector's defect ratings run systematically about one grade harsher than everyone else's, on the same structures. Nobody will ever tell them that.\n\nTwo red herrings: one structure has genuinely severe cracking for a real reason (it is the oldest span), and crack widths look worse in the wet-season months because they were measured after rain.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 27,
+  "title": "QUIZ AND ASSIGNMENT",
+  "text": "afterwards spend five minutes on the responses-by-question view. Any question most of the room got wrong is a five-minute reteach at the start of Week 5, not a hard question. Bank: assessment-tools/quiz_04_questions.md"
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 28,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 33,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 4",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 4",
+  "slide": 34,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "— THIS COHORT: you teach Week 5 as normal on Tuesday 6 October. RECORD IT. The two Friday cohorts lose their Week 5 session to Independence Day and your recording is what they get instead, so set the recording up before you start."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 1,
+  "title": "And how to find data you can actually trust",
+  "text": "RECORD THIS SESSION. Both Friday cohorts lose their Week 5 to Independence Day and this recording is what they receive instead. Set up the recording before you start, and check it captured the screen as well as the audio."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "collect A4. Reteach anything last week's quiz showed the room got wrong — that is what the responses-by-question view is for."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 4,
+  "title": "SEGMENT 2",
+  "text": "this is the motivating comparison. Show it before teaching any syntax."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 5,
+  "title": "WHY PANDAS",
+  "text": "do not overclaim the speed figure. It was measured on one machine and the slide says so."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 6,
+  "title": "SEGMENT 3",
+  "text": "keep NumPy light. Arrays and elementwise arithmetic. Broadcasting is a footnote and should stay one."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 7,
+  "title": "DEFINITION",
+  "text": "demonstrate it against last week's loop for the same task. The contrast is the lesson."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 8,
+  "title": "SEGMENT 4",
+  "text": "budget generously. This is the most important twenty-five minutes of the semester."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 9,
+  "title": "The anatomy of a DataFrame",
+  "text": "run .info() on the anchor dataset live and read the dtypes out loud. It takes ninety seconds and it prevents a great deal of confusion later."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 10,
+  "title": "LIVE CODING",
+  "text": "run all four on the real anchor dataset and narrate what each tells you."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "make both mistakes live. Thirty seconds, and it removes a recurring source of confusion for the rest of the semester."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 12,
+  "title": "WORKED EXAMPLE",
+  "text": "work this example live, out loud, including the two non-code steps. Then release them onto the other eleven."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 13,
+  "title": "10 minutes",
+  "text": "take it. The next segment is dense."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 14,
+  "title": "SEGMENT 5",
+  "text": "thirty minutes, all hands-on. Give them the twelve questions to work through as you go rather than teaching all three operations first."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 15,
+  "title": "FILTERING",
+  "text": "print the mask on its own before using it. Students who have seen the True/False column never get confused by compound conditions."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 16,
+  "title": "Grouping: split, apply, combine",
+  "text": "the three-stage figure is worth walking slowly. Beginners otherwise treat groupby as an incantation."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 18,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "quick pulse check before the sourcing segment. Question B catches anyone still thinking a condition is a filter."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 20,
+  "title": "USING PUBLIC WORK",
+  "text": "open one real Kaggle notebook on the anchor dataset and walk the three checks live. Five minutes, and it makes the whole segment concrete."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 21,
+  "title": "SEGMENT 6",
+  "text": "this segment is often cut for time and should not be. It is what stops the Week 9 projects being built on unusable data."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 22,
+  "title": "JUDGING A DATASET",
+  "text": "walk them through the actual dataset card for Concrete Compressive Strength on screen, answering all six questions from it. Ten minutes, and it makes the abstract concrete."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 23,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "circulate and ask 'what does that number mean?' rather than checking syntax. Have the marked-up solution to hand with the expected units."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "this is the Week 7 rehearsal and you should say so. Students who take it seriously arrive at the test knowing the format and the pace, which removes most of the anxiety. Time it strictly — part of what is being calibrated is whether they can work at this pace."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 25,
+  "title": "PROJECT AND ASSIGNMENT",
+  "text": "hand out the approved dataset list with licences stated. A team that proposes its own dataset must answer the six judging questions before approval — that requirement is what prevents a Week 9 disaster."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 26,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 5",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 5",
+  "slide": 32,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "the closing point matters. Students who start with pandas cannot diagnose it. Students who started with loops can."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 1,
+  "title": "Data quality through visualisation",
+  "text": "— THIS COHORT: no consolidation needed for this cohort — you taught Week 5 normally. Publish the Test 1 format and rubric today."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "for the Friday cohorts this segment is the Week 5 consolidation and needs the full fifteen minutes. Run the four commands — shape, head, info, describe — live on the anchor dataset and take questions."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 4,
+  "title": "SEGMENT 2",
+  "text": "lead with the physical story behind each defect rather than the taxonomy. Defects have causes, and the cause tells you how to handle them."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 5,
+  "title": "TODAY'S QUESTION",
+  "text": "run the one-liner live on the damaged dataset and get a confident, wrong answer. Then spend the session finding out why. This framing is far more effective than starting with a list of defect types."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 6,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes. Use the figure, then the cohort-specific list."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 7,
+  "title": "THE SIX DEFECTS",
+  "text": "point at each one and ask the room what could have caused it physically. Their answers are usually better than a prepared list, because they have seen site records."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 8,
+  "title": "MADE CONCRETE",
+  "text": "read them out and ask which they have personally seen on placement or in a laboratory. Several will have."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "the missingness map in the next segment makes this visible rather than theoretical."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 10,
+  "title": "WORKED EXAMPLE",
+  "text": "run all four live on the damaged dataset and let the room spot the defects from the output. They will find most of them unprompted, which is far better than being told."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "the last caution is worth saying. Blindly dropping duplicates is itself a defect."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 12,
+  "title": "SEGMENT 4",
+  "text": "state the rule and then enforce it all semester."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 13,
+  "title": "FINDING DEFECTS",
+  "text": "run it on the damaged dataset live. The pattern will be obvious and the room will see it before you explain it, which is the ideal."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 14,
+  "title": "TWO VIEWS OF THE SAME DATA",
+  "text": "this figure's caption names the planted data-entry errors. Point that out — it is the same honesty you expect from them."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 15,
+  "title": "CHART GRAMMAR",
+  "text": "show one good and one bad caption for the same chart. Thirty seconds, and it visibly changes what gets submitted."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 16,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the Data Clinic. Question C is the one that catches over-confident cleaning."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 18,
+  "title": "THE DELIVERABLE",
+  "text": "put a blank register template on the board or hand it out. Students fill in a structure far more readily than they invent one."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. The Data Clinic is the long practical."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 20,
+  "title": "PRACTICAL — 35 MINUTES",
+  "text": "state the marking emphasis out loud. Circulate and ask 'why did you choose that?' and nothing else."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 21,
+  "title": "SEGMENT 5",
+  "text": "fifteen minutes of framing before the challenge. Do not give them the answers to the five cases here."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 22,
+  "title": "OUTLIER JUDGEMENT",
+  "text": "this framework is what the challenge is assessed against. Hand it out or leave it on screen during the challenge."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 23,
+  "title": "CHALLENGE",
+  "text": "the five cases and the intended reading:\n\n• A 28-day strength of 91 MPa — Real. High-performance mixes reach this. Keep it, and check the mix design confirms it.\n\n• A building using 4 kWh per square metre per year — Arguable. A genuine passive house can approach this; so can a building that stood empty all year. You cannot tell from the data alone — and saying so is the correct answer.\n\n• A crack width of -0.4 mm — Error. A width cannot be negative. Almost certainly a sign convention or a data-entry slip.\n\n• An inspection dated 14 months in the future — Error. Someone typed the wrong year.\n\n• A slab 2.5 m thick — Arguable. Wrong for a suspended floor slab, entirely normal for a raft foundation or a mass-concrete pour. Check what structure it belongs to before deleting it.\n\nMark the reasoning. Make each team commit publicly before you reveal anything."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 24,
+  "title": "TEST 1 AND THIS WEEK'S QUIZ",
+  "text": "publish the Test 1 rubric TODAY. Confirm the room and machine allocation now — CML3112 is ~100 students and will very likely need two sittings, which must be settled this week, not next."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 25,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives. This is the last summary before Practical Test 1, so it is worth the full two minutes."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 30,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 6",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 31,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "end by restating the test format and the rubric weighting one final time."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 1,
+  "title": "Collections, loops, files — and your first unguided investigation",
+  "text": "this session closes with the weekly quiz, as every session does. Have the QR ready and 20 paper copies of version A in the room in case the network is down."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "warn them now that the Investigation Lab is unguided and that this is on purpose. Students who are told to expect it cope far better than students who discover it."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A3. Two minutes of recall, then move."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Take answers from people who have not spoken yet."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "put a real file on screen and scroll it. Let the length do the arguing — the need for a loop should feel obvious before you name the word."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 8,
+  "title": "TODAY'S QUESTION",
+  "text": "ask how long it would take by hand and let someone estimate. Then make the point about scale."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 9,
+  "title": "SEGMENT 3",
+  "text": "twenty minutes. Keep it concrete — use real record types from their discipline."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 10,
+  "title": "COLLECTIONS",
+  "text": "ask the room for one example of each from their own field before you show the answers. Their examples are better than yours because they own them."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "a KeyError from asking a dictionary for a label it does not have is one of the bugs in this week's quiz. Mention it now."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 12,
+  "title": "SEGMENT 4",
+  "text": "this is the conceptual core of the session. Do not rush it — the file reading is mechanical once this is understood."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 13,
+  "title": "THE ACCUMULATOR",
+  "text": "draw the trace table on the board and fill it in one row at a time, asking the room for each value. It makes the loop mechanical rather than mysterious, and it takes four minutes."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 14,
+  "title": "A SILENT WRONG ANSWER",
+  "text": "make the mistake live and let them spot it from the magnitude. This exact bug appears in the quiz at the end of the session."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 15,
+  "title": "DEFINITION",
+  "text": "this is the moment to make the indentation point explicitly, because IndentationError is the traceback question in this week's quiz."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 16,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the file reading. If question C is weak, re-show the accumulator_bug figure — everything after the break depends on it."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 17,
+  "title": "How did you do?",
+  "text": "say that the bug in answer C is in the quiz."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 18,
+  "title": "SEGMENT 5",
+  "text": "lockstep. Say out loud that next week this becomes three lines — then say they will understand what those three lines do, which is why it is worth doing the long way once."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 19,
+  "title": "THE PIPELINE",
+  "text": "this is the forward reference that makes Week 6's 'a number stored as text' defect make sense."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 20,
+  "title": "LIVE CODING",
+  "text": "make BOTH mistakes. The first crashes and is a gift; the second is silent and is the dangerous one. Contrast them explicitly."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 21,
+  "title": "10 minutes",
+  "text": "take it. The Investigation Lab needs them fresh."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 22,
+  "title": "SEGMENT 6",
+  "text": "short segment, but the 'when NOT to catch' point is important and usually skipped."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 23,
+  "title": "LIVE CODING",
+  "text": "'except: pass' is the single worst line a data engineer can write. Say so plainly."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 24,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "circulate and ask for the expected magnitude before looking at anyone's code. Then ask 'how many rows did you skip?' — the students who have not counted will realise why it matters."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 25,
+  "title": "WORKED EXAMPLE",
+  "text": "walk this on the board with the actual column names from the file before you release them to work. Five minutes here saves the whole activity from becoming aimless clicking."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 26,
+  "title": "CHALLENGE",
+  "text": "what is actually in the file: One bit type performs clearly worse — but only on the night shift. Both facts are in the file and neither is in any single column.\n\nTwo red herrings: total downtime is highest for the deepest holes, which is expected rather than interesting, and one operator has very few rows because they only started last month.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 27,
+  "title": "QUIZ AND ASSIGNMENT",
+  "text": "afterwards spend five minutes on the responses-by-question view. Any question most of the room got wrong is a five-minute reteach at the start of Week 5, not a hard question. Bank: assessment-tools/quiz_04_questions.md"
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 28,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 33,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 4",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 4",
+  "slide": 34,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "— THIS COHORT: you will NOT meet next week. Friday 9 October is Independence Day. The Week 5 material comes to you as a recording of the Tuesday session plus the notebook, published by Wednesday 7 October, with a 45-minute online clinic that week. Week 6 opens with a 30-minute consolidation. Say this now, clearly, and put the dates on the board — do not let them find out by turning up to a locked room."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 1,
+  "title": "And how to find data you can actually trust",
+  "text": "publish by Wed 7 Oct. Hold the clinic. Open Week 6 with the consolidation."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "collect A4. Reteach anything last week's quiz showed the room got wrong — that is what the responses-by-question view is for."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 4,
+  "title": "SEGMENT 2",
+  "text": "this is the motivating comparison. Show it before teaching any syntax."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 5,
+  "title": "WHY PANDAS",
+  "text": "do not overclaim the speed figure. It was measured on one machine and the slide says so."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 6,
+  "title": "SEGMENT 3",
+  "text": "keep NumPy light. Arrays and elementwise arithmetic. Broadcasting is a footnote and should stay one."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 7,
+  "title": "DEFINITION",
+  "text": "demonstrate it against last week's loop for the same task. The contrast is the lesson."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 8,
+  "title": "SEGMENT 4",
+  "text": "budget generously. This is the most important twenty-five minutes of the semester."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 9,
+  "title": "The anatomy of a DataFrame",
+  "text": "run .info() on the anchor dataset live and read the dtypes out loud. It takes ninety seconds and it prevents a great deal of confusion later."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 10,
+  "title": "LIVE CODING",
+  "text": "run all four on the real anchor dataset and narrate what each tells you."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "make both mistakes live. Thirty seconds, and it removes a recurring source of confusion for the rest of the semester."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 12,
+  "title": "WORKED EXAMPLE",
+  "text": "work this example live, out loud, including the two non-code steps. Then release them onto the other eleven."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 13,
+  "title": "10 minutes",
+  "text": "take it. The next segment is dense."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 14,
+  "title": "SEGMENT 5",
+  "text": "thirty minutes, all hands-on. Give them the twelve questions to work through as you go rather than teaching all three operations first."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 15,
+  "title": "FILTERING",
+  "text": "print the mask on its own before using it. Students who have seen the True/False column never get confused by compound conditions."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 16,
+  "title": "Grouping: split, apply, combine",
+  "text": "the three-stage figure is worth walking slowly. Beginners otherwise treat groupby as an incantation."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 18,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "quick pulse check before the sourcing segment. Question B catches anyone still thinking a condition is a filter."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 20,
+  "title": "USING PUBLIC WORK",
+  "text": "open one real Kaggle notebook on the anchor dataset and walk the three checks live. Five minutes, and it makes the whole segment concrete."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 21,
+  "title": "SEGMENT 6",
+  "text": "this segment is often cut for time and should not be. It is what stops the Week 9 projects being built on unusable data."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 22,
+  "title": "JUDGING A DATASET",
+  "text": "walk them through the actual dataset card for Quality Prediction in a Mining Process (froth flotation) on screen, answering all six questions from it. Ten minutes, and it makes the abstract concrete."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 23,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "circulate and ask 'what does that number mean?' rather than checking syntax. Have the marked-up solution to hand with the expected units."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "this is the Week 7 rehearsal and you should say so. Students who take it seriously arrive at the test knowing the format and the pace, which removes most of the anxiety. Time it strictly — part of what is being calibrated is whether they can work at this pace."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 25,
+  "title": "PROJECT AND ASSIGNMENT",
+  "text": "hand out the approved dataset list with licences stated. A team that proposes its own dataset must answer the six judging questions before approval — that requirement is what prevents a Week 9 disaster."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 26,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 5",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 5",
+  "slide": 32,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "the closing point matters. Students who start with pandas cannot diagnose it. Students who started with loops can."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 1,
+  "title": "Data quality through visualisation",
+  "text": "— THIS COHORT: open with the 30-minute Week 5 consolidation, because this cohort lost Week 5 to Independence Day. Budget it in and cut the chart demonstration accordingly. Check who actually worked through the asynchronous package before you go on. Publish the Test 1 format and rubric today."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "for the Friday cohorts this segment is the Week 5 consolidation and needs the full fifteen minutes. Run the four commands — shape, head, info, describe — live on the anchor dataset and take questions."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 4,
+  "title": "SEGMENT 2",
+  "text": "lead with the physical story behind each defect rather than the taxonomy. Defects have causes, and the cause tells you how to handle them."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 5,
+  "title": "TODAY'S QUESTION",
+  "text": "run the one-liner live on the damaged dataset and get a confident, wrong answer. Then spend the session finding out why. This framing is far more effective than starting with a list of defect types."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 6,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes. Use the figure, then the cohort-specific list."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 7,
+  "title": "THE SIX DEFECTS",
+  "text": "point at each one and ask the room what could have caused it physically. Their answers are usually better than a prepared list, because they have seen site records."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 8,
+  "title": "MADE CONCRETE",
+  "text": "read them out and ask which they have personally seen on placement or in a laboratory. Several will have."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "the missingness map in the next segment makes this visible rather than theoretical."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 10,
+  "title": "WORKED EXAMPLE",
+  "text": "run all four live on the damaged dataset and let the room spot the defects from the output. They will find most of them unprompted, which is far better than being told."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "the last caution is worth saying. Blindly dropping duplicates is itself a defect."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 12,
+  "title": "SEGMENT 4",
+  "text": "state the rule and then enforce it all semester."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 13,
+  "title": "FINDING DEFECTS",
+  "text": "run it on the damaged dataset live. The pattern will be obvious and the room will see it before you explain it, which is the ideal."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 14,
+  "title": "TWO VIEWS OF THE SAME DATA",
+  "text": "this figure's caption names the planted data-entry errors. Point that out — it is the same honesty you expect from them."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 15,
+  "title": "CHART GRAMMAR",
+  "text": "show one good and one bad caption for the same chart. Thirty seconds, and it visibly changes what gets submitted."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 16,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the Data Clinic. Question C is the one that catches over-confident cleaning."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 18,
+  "title": "THE DELIVERABLE",
+  "text": "put a blank register template on the board or hand it out. Students fill in a structure far more readily than they invent one."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. The Data Clinic is the long practical."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 20,
+  "title": "PRACTICAL — 35 MINUTES",
+  "text": "state the marking emphasis out loud. Circulate and ask 'why did you choose that?' and nothing else."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 21,
+  "title": "SEGMENT 5",
+  "text": "fifteen minutes of framing before the challenge. Do not give them the answers to the five cases here."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 22,
+  "title": "OUTLIER JUDGEMENT",
+  "text": "this framework is what the challenge is assessed against. Hand it out or leave it on screen during the challenge."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 23,
+  "title": "CHALLENGE",
+  "text": "the five cases and the intended reading:\n\n• A gold assay of 45 grams per tonne — Real, and important. High-grade intersections exist and deleting them destroys the thing you were looking for.\n\n• A production spike immediately after a shutdown — Arguable. Could be a real catch-up run, could be a meter reset. The data alone will not tell you; the shift log would.\n\n• A negative reagent flow rate — Error. Flow cannot be negative. A sensor fault or a sign error.\n\n• A pulp pH of 14.0 — Error in practice. Achievable in a beaker; a flotation circuit never runs there.\n\n• A bottom-hole pressure of exactly 0 — Arguable. Either the gauge failed, or the well really was shut in and vented. Both happen, and they need different handling.\n\nMark the reasoning. Make each team commit publicly before you reveal anything."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 24,
+  "title": "TEST 1 AND THIS WEEK'S QUIZ",
+  "text": "publish the Test 1 rubric TODAY. Confirm the room and machine allocation now — CML3112 is ~100 students and will very likely need two sittings, which must be settled this week, not next."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 25,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives. This is the last summary before Practical Test 1, so it is worth the full two minutes."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 30,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 6",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 31,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "end by restating the test format and the rubric weighting one final time."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 1,
+  "title": "Collections, loops, files — and your first unguided investigation",
+  "text": "this session closes with the weekly quiz, as every session does. Have the QR ready and 20 paper copies of version A in the room in case the network is down."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "warn them now that the Investigation Lab is unguided and that this is on purpose. Students who are told to expect it cope far better than students who discover it."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A3. Two minutes of recall, then move."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. Take answers from people who have not spoken yet."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "put a real file on screen and scroll it. Let the length do the arguing — the need for a loop should feel obvious before you name the word."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 8,
+  "title": "TODAY'S QUESTION",
+  "text": "ask how long it would take by hand and let someone estimate. Then make the point about scale."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 9,
+  "title": "SEGMENT 3",
+  "text": "twenty minutes. Keep it concrete — use real record types from their discipline."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 10,
+  "title": "COLLECTIONS",
+  "text": "ask the room for one example of each from their own field before you show the answers. Their examples are better than yours because they own them."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "a KeyError from asking a dictionary for a label it does not have is one of the bugs in this week's quiz. Mention it now."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 12,
+  "title": "SEGMENT 4",
+  "text": "this is the conceptual core of the session. Do not rush it — the file reading is mechanical once this is understood."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 13,
+  "title": "THE ACCUMULATOR",
+  "text": "draw the trace table on the board and fill it in one row at a time, asking the room for each value. It makes the loop mechanical rather than mysterious, and it takes four minutes."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 14,
+  "title": "A SILENT WRONG ANSWER",
+  "text": "make the mistake live and let them spot it from the magnitude. This exact bug appears in the quiz at the end of the session."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 15,
+  "title": "DEFINITION",
+  "text": "this is the moment to make the indentation point explicitly, because IndentationError is the traceback question in this week's quiz."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 16,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the file reading. If question C is weak, re-show the accumulator_bug figure — everything after the break depends on it."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 17,
+  "title": "How did you do?",
+  "text": "say that the bug in answer C is in the quiz."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 18,
+  "title": "SEGMENT 5",
+  "text": "lockstep. Say out loud that next week this becomes three lines — then say they will understand what those three lines do, which is why it is worth doing the long way once."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 19,
+  "title": "THE PIPELINE",
+  "text": "this is the forward reference that makes Week 6's 'a number stored as text' defect make sense."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 20,
+  "title": "LIVE CODING",
+  "text": "make BOTH mistakes. The first crashes and is a gift; the second is silent and is the dangerous one. Contrast them explicitly."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 21,
+  "title": "10 minutes",
+  "text": "take it. The Investigation Lab needs them fresh."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 22,
+  "title": "SEGMENT 6",
+  "text": "short segment, but the 'when NOT to catch' point is important and usually skipped."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 23,
+  "title": "LIVE CODING",
+  "text": "'except: pass' is the single worst line a data engineer can write. Say so plainly."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 24,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "circulate and ask for the expected magnitude before looking at anyone's code. Then ask 'how many rows did you skip?' — the students who have not counted will realise why it matters."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 25,
+  "title": "WORKED EXAMPLE",
+  "text": "walk this on the board with the actual column names from the file before you release them to work. Five minutes here saves the whole activity from becoming aimless clicking."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 26,
+  "title": "CHALLENGE",
+  "text": "what is actually in the file: One motor runs hot, but only at low supply voltage — so at nominal voltage it passes every time and the pass/fail flag never caught it.\n\nTwo red herrings: vibration is higher across the board on one test day (the bench was not bolted down), and one motor has a single wild current reading that is a logging error.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 27,
+  "title": "QUIZ AND ASSIGNMENT",
+  "text": "afterwards spend five minutes on the responses-by-question view. Any question most of the room got wrong is a five-minute reteach at the start of Week 5, not a hard question. Bank: assessment-tools/quiz_04_questions.md"
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 28,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 33,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 4",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 4",
+  "slide": 34,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "— THIS COHORT: you will NOT meet next week. Friday 9 October is Independence Day. The Week 5 material comes to you as a recording of the Tuesday session plus the notebook, published by Wednesday 7 October, with a 45-minute online clinic that week. Week 6 opens with a 30-minute consolidation. Say this now, clearly, and put the dates on the board — do not let them find out by turning up to a locked room."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 1,
+  "title": "And how to find data you can actually trust",
+  "text": "publish by Wed 7 Oct. Hold the clinic. Open Week 6 with the consolidation."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "collect A4. Reteach anything last week's quiz showed the room got wrong — that is what the responses-by-question view is for."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 4,
+  "title": "SEGMENT 2",
+  "text": "this is the motivating comparison. Show it before teaching any syntax."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 5,
+  "title": "WHY PANDAS",
+  "text": "do not overclaim the speed figure. It was measured on one machine and the slide says so."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 6,
+  "title": "SEGMENT 3",
+  "text": "keep NumPy light. Arrays and elementwise arithmetic. Broadcasting is a footnote and should stay one."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 7,
+  "title": "DEFINITION",
+  "text": "demonstrate it against last week's loop for the same task. The contrast is the lesson."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 8,
+  "title": "SEGMENT 4",
+  "text": "budget generously. This is the most important twenty-five minutes of the semester."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 9,
+  "title": "The anatomy of a DataFrame",
+  "text": "run .info() on the anchor dataset live and read the dtypes out loud. It takes ninety seconds and it prevents a great deal of confusion later."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 10,
+  "title": "LIVE CODING",
+  "text": "run all four on the real anchor dataset and narrate what each tells you."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "make both mistakes live. Thirty seconds, and it removes a recurring source of confusion for the rest of the semester."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 12,
+  "title": "WORKED EXAMPLE",
+  "text": "work this example live, out loud, including the two non-code steps. Then release them onto the other eleven."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 13,
+  "title": "10 minutes",
+  "text": "take it. The next segment is dense."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 14,
+  "title": "SEGMENT 5",
+  "text": "thirty minutes, all hands-on. Give them the twelve questions to work through as you go rather than teaching all three operations first."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 15,
+  "title": "FILTERING",
+  "text": "print the mask on its own before using it. Students who have seen the True/False column never get confused by compound conditions."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 16,
+  "title": "Grouping: split, apply, combine",
+  "text": "the three-stage figure is worth walking slowly. Beginners otherwise treat groupby as an incantation."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 18,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "quick pulse check before the sourcing segment. Question B catches anyone still thinking a condition is a filter."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 20,
+  "title": "USING PUBLIC WORK",
+  "text": "open one real Kaggle notebook on the anchor dataset and walk the three checks live. Five minutes, and it makes the whole segment concrete."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 21,
+  "title": "SEGMENT 6",
+  "text": "this segment is often cut for time and should not be. It is what stops the Week 9 projects being built on unusable data."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 22,
+  "title": "JUDGING A DATASET",
+  "text": "walk them through the actual dataset card for Combined Cycle Power Plant on screen, answering all six questions from it. Ten minutes, and it makes the abstract concrete."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 23,
+  "title": "PRACTICAL — 30 MINUTES",
+  "text": "circulate and ask 'what does that number mean?' rather than checking syntax. Have the marked-up solution to hand with the expected units."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "this is the Week 7 rehearsal and you should say so. Students who take it seriously arrive at the test knowing the format and the pace, which removes most of the anxiety. Time it strictly — part of what is being calibrated is whether they can work at this pace."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 25,
+  "title": "PROJECT AND ASSIGNMENT",
+  "text": "hand out the approved dataset list with licences stated. A team that proposes its own dataset must answer the six judging questions before approval — that requirement is what prevents a Week 9 disaster."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 26,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 5",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 5",
+  "slide": 32,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "the closing point matters. Students who start with pandas cannot diagnose it. Students who started with loops can."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 1,
+  "title": "Data quality through visualisation",
+  "text": "— THIS COHORT: open with the 30-minute Week 5 consolidation, because this cohort lost Week 5 to Independence Day. Budget it in and cut the chart demonstration accordingly. Check who actually worked through the asynchronous package before you go on. Publish the Test 1 format and rubric today."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, return at the end."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "for the Friday cohorts this segment is the Week 5 consolidation and needs the full fifteen minutes. Run the four commands — shape, head, info, describe — live on the anchor dataset and take questions."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 4,
+  "title": "SEGMENT 2",
+  "text": "lead with the physical story behind each defect rather than the taxonomy. Defects have causes, and the cause tells you how to handle them."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 5,
+  "title": "TODAY'S QUESTION",
+  "text": "run the one-liner live on the damaged dataset and get a confident, wrong answer. Then spend the session finding out why. This framing is far more effective than starting with a list of defect types."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 6,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes. Use the figure, then the cohort-specific list."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 7,
+  "title": "THE SIX DEFECTS",
+  "text": "point at each one and ask the room what could have caused it physically. Their answers are usually better than a prepared list, because they have seen site records."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 8,
+  "title": "MADE CONCRETE",
+  "text": "read them out and ask which they have personally seen on placement or in a laboratory. Several will have."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "the missingness map in the next segment makes this visible rather than theoretical."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 10,
+  "title": "WORKED EXAMPLE",
+  "text": "run all four live on the damaged dataset and let the room spot the defects from the output. They will find most of them unprompted, which is far better than being told."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "the last caution is worth saying. Blindly dropping duplicates is itself a defect."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 12,
+  "title": "SEGMENT 4",
+  "text": "state the rule and then enforce it all semester."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 13,
+  "title": "FINDING DEFECTS",
+  "text": "run it on the damaged dataset live. The pattern will be obvious and the room will see it before you explain it, which is the ideal."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 14,
+  "title": "TWO VIEWS OF THE SAME DATA",
+  "text": "this figure's caption names the planted data-entry errors. Point that out — it is the same honesty you expect from them."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 15,
+  "title": "CHART GRAMMAR",
+  "text": "show one good and one bad caption for the same chart. Thirty seconds, and it visibly changes what gets submitted."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 16,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "pulse check before the Data Clinic. Question C is the one that catches over-confident cleaning."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 18,
+  "title": "THE DELIVERABLE",
+  "text": "put a blank register template on the board or hand it out. Students fill in a structure far more readily than they invent one."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 19,
+  "title": "10 minutes",
+  "text": "take it. The Data Clinic is the long practical."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 20,
+  "title": "PRACTICAL — 35 MINUTES",
+  "text": "state the marking emphasis out loud. Circulate and ask 'why did you choose that?' and nothing else."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 21,
+  "title": "SEGMENT 5",
+  "text": "fifteen minutes of framing before the challenge. Do not give them the answers to the five cases here."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 22,
+  "title": "OUTLIER JUDGEMENT",
+  "text": "this framework is what the challenge is assessed against. Hand it out or leave it on screen during the challenge."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 23,
+  "title": "CHALLENGE",
+  "text": "the five cases and the intended reading:\n\n• A current spike at motor start-up — Real. Inrush current is six to eight times running current and it is physics. Deleting it hides normal behaviour.\n\n• A winding temperature of 200 degrees — Arguable. Beyond every insulation class, so either the motor was destroyed or the sensor failed. Which one changes what you do.\n\n• Vibration of exactly 0.00 for six hours — Error. A real sensor is never exactly zero. This is a dead channel reading as good news, which is the most dangerous defect on this list.\n\n• A negative power reading — Arguable. An error on a motor; entirely correct on a regenerating drive or an inverter exporting to the grid.\n\n• 30,000 rpm on a four-pole induction motor — Error. The synchronous speed at 50 Hz is 1,500 rpm. A decimal point or a unit is wrong.\n\nMark the reasoning. Make each team commit publicly before you reveal anything."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 24,
+  "title": "TEST 1 AND THIS WEEK'S QUIZ",
+  "text": "publish the Test 1 rubric TODAY. Confirm the room and machine allocation now — CML3112 is ~100 students and will very likely need two sittings, which must be settled this week, not next."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 25,
+  "title": "MODULE SUMMARY",
+  "text": "return to objectives. This is the last summary before Practical Test 1, so it is worth the full two minutes."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 30,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 6",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 31,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "end by restating the test format and the rubric weighting one final time."
+ }
+]

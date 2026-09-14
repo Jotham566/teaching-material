@@ -1,0 +1,1280 @@
+[
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 1,
+  "title": "Colab, notebooks and version control",
+  "text": "read the Week 2 Lecturer Runsheet first. Confirm Room wifi before the session; with ~100 students on Colab in Room 106 that is the single biggest risk. If Colab is unreachable, fall back to the offline bundle and lab machines — the runsheet has the contingency tree. Have the four Break and Fix notebooks ready to share."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out. Come back to this slide in the last five minutes and ask for a show of hands on each. It converts a busy practical session into visible progress."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "say the break time out loud. In a practical session students will not ask, and they will start drifting out if they do not know when it is."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A1 at the door. Then two minutes of recall — do not re-teach it."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs, then take answers from three different people rather than the first hand up."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 6,
+  "title": "How did you do?",
+  "text": "if more than a third of the room struggles with the first one, spend three minutes re-showing the Week 1 data-table figure. Everything from Week 5 assumes it and it is cheaper to fix now."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "introduce every tool by its question, never by its name."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 8,
+  "title": "THE TOOL MAP",
+  "text": "if asked about VS Code — it is the professional local editor and the Student Setup Guide covers it. Anyone who wants a local setup is welcome. Note that the Week 7 and Week 14 tests run offline on lab machines, so everyone meets a local environment at least once."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "say the limitation out loud now rather than letting them discover it in Week 7."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 10,
+  "title": "SEGMENT 3",
+  "text": "lockstep, projected, everyone typing along. Do NOT hand out a finished notebook at this stage; the typing is where the structure is learned. Circulate constantly and watch for students who have not got Colab open at all."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 11,
+  "title": "LIVE CODING",
+  "text": "type it yourself on the projector, do not paste. Narrate as you go. When someone's cell 3 gives a different number from their neighbour's, that is the moment the execution-order block pays off — note who noticed."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 12,
+  "title": "TROUBLESHOOTING",
+  "text": "put this slide up and leave it up during the practical rather than reading it aloud. It answers most questions before they are asked, which frees you to help the students who have a real problem."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 13,
+  "title": "DEFINITION",
+  "text": "two minutes. Have them add one text cell above each code cell in the notebook they just built, saying what it does."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 14,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "this is a pulse check, not an assessment. Take it verbally and quickly — the point is to catch anyone who has been quietly lost for twenty minutes."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 15,
+  "title": "How did you do?",
+  "text": "if someone in the room has already noticed this discrepancy in their own work, name them when you reach the execution-order block. It lands far better coming from a student."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 16,
+  "title": "SEGMENT 4",
+  "text": "keep it to twenty minutes and get them back on keyboards."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 17,
+  "title": "The anatomy of a notebook",
+  "text": "draw the kernel on the board as a box that all the cells write into. Drawn beats projected for this one."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 18,
+  "title": "DEFINITION",
+  "text": "have them look at their own counters right now. Several will already be out of order from experimenting, which makes the point better than any explanation."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 19,
+  "title": "SEGMENT 5",
+  "text": "this is the highest-value twenty minutes of the session. If you are running late, take the time from the repository walkthrough rather than from here."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 20,
+  "title": "THE EXECUTION TRAP",
+  "text": "let the room discover it before you explain. Ask 'is the notebook broken?' and wait. Someone will get there."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 21,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "ninety seconds in pairs, then take B properly."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 22,
+  "title": "How did you do?",
+  "text": "say plainly that this is not a rule you invented to be difficult. It is how every automated grader and every colleague will run their code."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 23,
+  "title": "WORKED EXAMPLE",
+  "text": "walk it slowly. Then ask a student to read out their own counters and diagnose their own notebook, which makes it real."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 24,
+  "title": "10 minutes",
+  "text": "take it. Ninety minutes in, attention is genuinely gone, and Git needs them awake."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 25,
+  "title": "SEGMENT 6",
+  "text": "lead with the problem, not the commands. Students who do not understand what Git is FOR treat it as ceremony and never use it voluntarily."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 26,
+  "title": "VERSION CONTROL",
+  "text": "that line usually gets a laugh because everyone has done it — use it, the problem is familiar even though the solution is not. Be explicit about the assessment consequence; students engage with Git far more readily once they understand it is how their individual contribution is seen."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 27,
+  "title": "THE FOUR STATES",
+  "text": "'git status' is the single most useful command in the list. Tell them to run it before and after everything for the first fortnight."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 28,
+  "title": "DEFINITION",
+  "text": "show one good and one useless commit message side by side on the board. It takes thirty seconds and it changes their habits for the semester."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 29,
+  "title": "SEGMENT 7",
+  "text": "lockstep on the projector, line by line, everyone at the same step. Individually this takes three times as long and half the room ends up lost. Do not let the fast students run ahead."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 30,
+  "title": "LIVE CODING",
+  "text": "do the menu route with the whole room first so everyone has a URL. Then demonstrate the four commands once on the projector. Do not make them use the command line today — it doubles the failure surface for no gain."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 31,
+  "title": "WHAT YOU OWE ME",
+  "text": "the exact repository name matters — the grading tools pull repositories by name from a roster. State it and put it on the board."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 32,
+  "title": "THE README",
+  "text": "show one good and one empty README on the projector. Thirty seconds, and it visibly changes what gets submitted."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 33,
+  "title": "CHALLENGE",
+  "text": "the four planted faults: (1) an import of a package that is not installed; (2) a notebook reading a file by a path that is only correct from a different folder; (3) a cell that uses a variable created in a cell further down, so it only works if you run them out of order; (4) cells saved after being run out of order, so it produces a confident wrong number with no error at all. Fault four is the one to spend the last three minutes on. Circulate and ask only the six questions. Do not diagnose for them. Build the notebooks before the session; the runsheet has the specification."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 34,
+  "title": "QUIZ AND ASSIGNMENT",
+  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: setup/quiz_02_questions.md."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 35,
+  "title": "SEGMENT 8",
+  "text": "say that the deck continues past the end of the session. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 36,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide after this and ask for a show of hands against each."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 38,
+  "title": "How did you do?",
+  "text": "answer E is the one to read aloud. Students respect being told the reasoning behind a rule rather than just the rule."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 41,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 2",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 2",
+  "slide": 42,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "say the body text out loud and mean it. For a room of beginners this is the most useful thing they hear all week. Then stay behind for ten minutes — the students who need the most help will not ask in front of everyone."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 1,
+  "title": "Variables, decisions, functions — and reading errors",
+  "text": "check A2 at the door — repository URL, notebook runs, README present. Anyone without a working setup goes on the office-hours list now, not in Week 5."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, and return to this slide at the end."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "two minutes of recall, then move. Do not re-teach Week 2."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 4,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. If the first question is shaky, the Week 2 deck's cheat-sheet slide has it."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 6,
+  "title": "SEGMENT 2",
+  "text": "take the question seriously. A calculator IS faster for one calculation, and pretending otherwise loses you the sceptics in the room — who are usually the best students."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 7,
+  "title": "TODAY STARTS WITH AN OBJECTION",
+  "text": "ask the room for the answer before you give it. Someone usually says 'because you can do it lots of times', which is exactly right and better received from a student."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 8,
+  "title": "WHY BOTHER",
+  "text": "labour reason three. Make the Week 10 connection explicitly; students engage far better with syntax when they can see what it is for."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 9,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes is enough. They learn this by writing it, not by hearing it."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 10,
+  "title": "VARIABLES",
+  "text": "draw the box on the board and physically write a value into it, then rub it out and write another. Thirty seconds, and it lands better than any slide."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "demonstrate \"12\" + 3 live and let them read the error. It is the same TypeError they will see next week."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 12,
+  "title": "WHAT GOES WRONG",
+  "text": "demonstrate 0.1 + 0.2 live. It reliably produces an audible reaction and it makes the point permanently."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 13,
+  "title": "SEGMENT 4",
+  "text": "type it live, do not paste. Narrate the units as you go. The typing is where the structure is learned."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 14,
+  "title": "The parts of a function",
+  "text": "ask 'what will this print?' after typing only the definition. Answer: nothing. Let that land before you add the call."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 15,
+  "title": "WORKED EXAMPLE",
+  "text": "do steps 1 to 4 on the board, out loud, before opening Colab. It takes three minutes and it makes the live-coding segment much faster because the thinking is already done."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 16,
+  "title": "LIVE CODING",
+  "text": "type it, run it, confirm the output matches. THEN make the deliberate mistake and let the wrong number sit on screen for a few seconds before anyone speaks. Ask: what would have told you this was wrong? Physical intuition. The computer had no opinion about it."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 17,
+  "title": "DEFINITION",
+  "text": "demonstrate it. Change the return to a print, run the same script, and show the TypeError two lines later when it tries to multiply None. That error is worth meeting on purpose."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 18,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "quick pulse check before the break. Question C is the one to dwell on if the answers are weak."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 20,
+  "title": "10 minutes",
+  "text": "take it. The practical after the break is the long one."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 21,
+  "title": "SEGMENT 5",
+  "text": "keep this short. The concept is easy; the value is in connecting it to Week 1."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 22,
+  "title": "LIVE CODING",
+  "text": "make the ordering mistake live. It is the same class of failure as the unit error — no crash, wrong answer."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 23,
+  "title": "SEGMENT 6",
+  "text": "this fifteen minutes saves more student time than any other in the semester."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 24,
+  "title": "TRACEBACKS",
+  "text": "the format shown is Python 3.10. If Colab is on 3.11 or later there is one extra line with a ~~~^~~ marker pointing at the failing part of the expression, which is helpful rather than confusing. Say so if a student's output differs."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 25,
+  "title": "FIVE NAMES, AND ONE WITHOUT",
+  "text": "produce each of the five live if you have time; at minimum produce NameError and TypeError. Seeing them made on purpose removes most of their power to frighten."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 26,
+  "title": "WORKED EXAMPLE",
+  "text": "this is the first formal introduction of the AI ladder from the syllabus. 'Explain why this error is happening' is the level for Week 3; asking for whole functions is not."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 27,
+  "title": "SEGMENT 7",
+  "text": "circulate and ask for the EXPECTED value before you look at anyone's code. A student who cannot state it has not understood the formula."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 28,
+  "title": "PRACTICAL — 35 MINUTES",
+  "text": "commit per working function so the repository history shows the build. This is the week where git commit starts to feel useful rather than ceremonial."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 29,
+  "title": "THE POINT OF THIS WEEK",
+  "text": "this figure is the thesis of the week. Do not rush it, even though the challenge is waiting."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 30,
+  "title": "CHALLENGE",
+  "text": "the six planted bugs: integer division with //, operator precedence with a missing bracket, degrees where radians were needed, an if-chain whose branches are in the wrong order, a unit mismatch, and a parameter used in the wrong position in the call. Have the marking key ready naming each bug; you will need it when a team insists their diagnosis is right. Circulate with the question card and answer nothing."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 31,
+  "title": "ASSIGNMENT",
+  "text": "warn them properly about the quiz format so nobody sits down to revise definitions."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 32,
+  "title": "SEGMENT 8",
+  "text": "tell them the deck continues past the end of the session."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 33,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3112 Week 3",
+  "slide": 38,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 3",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 1,
+  "title": "Colab, notebooks and version control",
+  "text": "read the Week 2 Lecturer Runsheet first. Confirm Room wifi before the session; with ~100 students on Colab in Room 106 that is the single biggest risk. If Colab is unreachable, fall back to the offline bundle and lab machines — the runsheet has the contingency tree. Have the four Break and Fix notebooks ready to share."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out. Come back to this slide in the last five minutes and ask for a show of hands on each. It converts a busy practical session into visible progress."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "say the break time out loud. In a practical session students will not ask, and they will start drifting out if they do not know when it is."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A1 at the door. Then two minutes of recall — do not re-teach it."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs, then take answers from three different people rather than the first hand up."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 6,
+  "title": "How did you do?",
+  "text": "if more than a third of the room struggles with the first one, spend three minutes re-showing the Week 1 data-table figure. Everything from Week 5 assumes it and it is cheaper to fix now."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "introduce every tool by its question, never by its name."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 8,
+  "title": "THE TOOL MAP",
+  "text": "if asked about VS Code — it is the professional local editor and the Student Setup Guide covers it. Anyone who wants a local setup is welcome. Note that the Week 7 and Week 14 tests run offline on lab machines, so everyone meets a local environment at least once."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "say the limitation out loud now rather than letting them discover it in Week 7."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 10,
+  "title": "SEGMENT 3",
+  "text": "lockstep, projected, everyone typing along. Do NOT hand out a finished notebook at this stage; the typing is where the structure is learned. Circulate constantly and watch for students who have not got Colab open at all."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 11,
+  "title": "LIVE CODING",
+  "text": "type it yourself on the projector, do not paste. Narrate as you go. When someone's cell 3 gives a different number from their neighbour's, that is the moment the execution-order block pays off — note who noticed."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 12,
+  "title": "TROUBLESHOOTING",
+  "text": "put this slide up and leave it up during the practical rather than reading it aloud. It answers most questions before they are asked, which frees you to help the students who have a real problem."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 13,
+  "title": "DEFINITION",
+  "text": "two minutes. Have them add one text cell above each code cell in the notebook they just built, saying what it does."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 14,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "this is a pulse check, not an assessment. Take it verbally and quickly — the point is to catch anyone who has been quietly lost for twenty minutes."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 15,
+  "title": "How did you do?",
+  "text": "if someone in the room has already noticed this discrepancy in their own work, name them when you reach the execution-order block. It lands far better coming from a student."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 16,
+  "title": "SEGMENT 4",
+  "text": "keep it to twenty minutes and get them back on keyboards."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 17,
+  "title": "The anatomy of a notebook",
+  "text": "draw the kernel on the board as a box that all the cells write into. Drawn beats projected for this one."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 18,
+  "title": "DEFINITION",
+  "text": "have them look at their own counters right now. Several will already be out of order from experimenting, which makes the point better than any explanation."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 19,
+  "title": "SEGMENT 5",
+  "text": "this is the highest-value twenty minutes of the session. If you are running late, take the time from the repository walkthrough rather than from here."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 20,
+  "title": "THE EXECUTION TRAP",
+  "text": "let the room discover it before you explain. Ask 'is the notebook broken?' and wait. Someone will get there."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 21,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "ninety seconds in pairs, then take B properly."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 22,
+  "title": "How did you do?",
+  "text": "say plainly that this is not a rule you invented to be difficult. It is how every automated grader and every colleague will run their code."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 23,
+  "title": "WORKED EXAMPLE",
+  "text": "walk it slowly. Then ask a student to read out their own counters and diagnose their own notebook, which makes it real."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 24,
+  "title": "10 minutes",
+  "text": "take it. Ninety minutes in, attention is genuinely gone, and Git needs them awake."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 25,
+  "title": "SEGMENT 6",
+  "text": "lead with the problem, not the commands. Students who do not understand what Git is FOR treat it as ceremony and never use it voluntarily."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 26,
+  "title": "VERSION CONTROL",
+  "text": "that line usually gets a laugh because everyone has done it — use it, the problem is familiar even though the solution is not. Be explicit about the assessment consequence; students engage with Git far more readily once they understand it is how their individual contribution is seen."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 27,
+  "title": "THE FOUR STATES",
+  "text": "'git status' is the single most useful command in the list. Tell them to run it before and after everything for the first fortnight."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 28,
+  "title": "DEFINITION",
+  "text": "show one good and one useless commit message side by side on the board. It takes thirty seconds and it changes their habits for the semester."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 29,
+  "title": "SEGMENT 7",
+  "text": "lockstep on the projector, line by line, everyone at the same step. Individually this takes three times as long and half the room ends up lost. Do not let the fast students run ahead."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 30,
+  "title": "LIVE CODING",
+  "text": "do the menu route with the whole room first so everyone has a URL. Then demonstrate the four commands once on the projector. Do not make them use the command line today — it doubles the failure surface for no gain."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 31,
+  "title": "WHAT YOU OWE ME",
+  "text": "the exact repository name matters — the grading tools pull repositories by name from a roster. State it and put it on the board."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 32,
+  "title": "THE README",
+  "text": "show one good and one empty README on the projector. Thirty seconds, and it visibly changes what gets submitted."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 33,
+  "title": "CHALLENGE",
+  "text": "the four planted faults: (1) an import of a package that is not installed; (2) a notebook reading a file by a path that is only correct from a different folder; (3) a cell that uses a variable created in a cell further down, so it only works if you run them out of order; (4) cells saved after being run out of order, so it produces a confident wrong number with no error at all. Fault four is the one to spend the last three minutes on. Circulate and ask only the six questions. Do not diagnose for them. Build the notebooks before the session; the runsheet has the specification."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 34,
+  "title": "QUIZ AND ASSIGNMENT",
+  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: setup/quiz_02_questions.md."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 35,
+  "title": "SEGMENT 8",
+  "text": "say that the deck continues past the end of the session. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 36,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide after this and ask for a show of hands against each."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 38,
+  "title": "How did you do?",
+  "text": "answer E is the one to read aloud. Students respect being told the reasoning behind a rule rather than just the rule."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 41,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 2",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 2",
+  "slide": 42,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "say the body text out loud and mean it. For a room of beginners this is the most useful thing they hear all week. Then stay behind for ten minutes — the students who need the most help will not ask in front of everyone."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 1,
+  "title": "Variables, decisions, functions — and reading errors",
+  "text": "check A2 at the door — repository URL, notebook runs, README present. Anyone without a working setup goes on the office-hours list now, not in Week 5."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, and return to this slide at the end."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "two minutes of recall, then move. Do not re-teach Week 2."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 4,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. If the first question is shaky, the Week 2 deck's cheat-sheet slide has it."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 6,
+  "title": "SEGMENT 2",
+  "text": "take the question seriously. A calculator IS faster for one calculation, and pretending otherwise loses you the sceptics in the room — who are usually the best students."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 7,
+  "title": "TODAY STARTS WITH AN OBJECTION",
+  "text": "ask the room for the answer before you give it. Someone usually says 'because you can do it lots of times', which is exactly right and better received from a student."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 8,
+  "title": "WHY BOTHER",
+  "text": "labour reason three. Make the Week 10 connection explicitly; students engage far better with syntax when they can see what it is for."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 9,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes is enough. They learn this by writing it, not by hearing it."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 10,
+  "title": "VARIABLES",
+  "text": "draw the box on the board and physically write a value into it, then rub it out and write another. Thirty seconds, and it lands better than any slide."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "demonstrate \"12\" + 3 live and let them read the error. It is the same TypeError they will see next week."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 12,
+  "title": "WHAT GOES WRONG",
+  "text": "demonstrate 0.1 + 0.2 live. It reliably produces an audible reaction and it makes the point permanently."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 13,
+  "title": "SEGMENT 4",
+  "text": "type it live, do not paste. Narrate the units as you go. The typing is where the structure is learned."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 14,
+  "title": "The parts of a function",
+  "text": "ask 'what will this print?' after typing only the definition. Answer: nothing. Let that land before you add the call."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 15,
+  "title": "WORKED EXAMPLE",
+  "text": "do steps 1 to 4 on the board, out loud, before opening Colab. It takes three minutes and it makes the live-coding segment much faster because the thinking is already done."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 16,
+  "title": "LIVE CODING",
+  "text": "type it, run it, confirm the output matches. THEN make the deliberate mistake and let the wrong number sit on screen for a few seconds before anyone speaks. Ask: what would have told you this was wrong? Physical intuition. The computer had no opinion about it."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 17,
+  "title": "DEFINITION",
+  "text": "demonstrate it. Change the return to a print, run the same script, and show the TypeError two lines later when it tries to multiply None. That error is worth meeting on purpose."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 18,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "quick pulse check before the break. Question C is the one to dwell on if the answers are weak."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 20,
+  "title": "10 minutes",
+  "text": "take it. The practical after the break is the long one."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 21,
+  "title": "SEGMENT 5",
+  "text": "keep this short. The concept is easy; the value is in connecting it to Week 1."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 22,
+  "title": "LIVE CODING",
+  "text": "make the ordering mistake live. It is the same class of failure as the unit error — no crash, wrong answer."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 23,
+  "title": "SEGMENT 6",
+  "text": "this fifteen minutes saves more student time than any other in the semester."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 24,
+  "title": "TRACEBACKS",
+  "text": "the format shown is Python 3.10. If Colab is on 3.11 or later there is one extra line with a ~~~^~~ marker pointing at the failing part of the expression, which is helpful rather than confusing. Say so if a student's output differs."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 25,
+  "title": "FIVE NAMES, AND ONE WITHOUT",
+  "text": "produce each of the five live if you have time; at minimum produce NameError and TypeError. Seeing them made on purpose removes most of their power to frighten."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 26,
+  "title": "WORKED EXAMPLE",
+  "text": "this is the first formal introduction of the AI ladder from the syllabus. 'Explain why this error is happening' is the level for Week 3; asking for whole functions is not."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 27,
+  "title": "SEGMENT 7",
+  "text": "circulate and ask for the EXPECTED value before you look at anyone's code. A student who cannot state it has not understood the formula."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 28,
+  "title": "PRACTICAL — 35 MINUTES",
+  "text": "commit per working function so the repository history shows the build. This is the week where git commit starts to feel useful rather than ceremonial."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 29,
+  "title": "THE POINT OF THIS WEEK",
+  "text": "this figure is the thesis of the week. Do not rush it, even though the challenge is waiting."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 30,
+  "title": "CHALLENGE",
+  "text": "the six planted bugs: integer division with //, operator precedence with a missing bracket, degrees where radians were needed, an if-chain whose branches are in the wrong order, a unit mismatch, and a parameter used in the wrong position in the call. Have the marking key ready naming each bug; you will need it when a team insists their diagnosis is right. Circulate with the question card and answer nothing."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 31,
+  "title": "ASSIGNMENT",
+  "text": "warn them properly about the quiz format so nobody sits down to revise definitions."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 32,
+  "title": "SEGMENT 8",
+  "text": "tell them the deck continues past the end of the session."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 33,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3113 Week 3",
+  "slide": 38,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 3",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 1,
+  "title": "Colab, notebooks and version control",
+  "text": "read the Week 2 Lecturer Runsheet first. Confirm Room wifi before the session; with ~100 students on Colab in Room 106 that is the single biggest risk. If Colab is unreachable, fall back to the offline bundle and lab machines — the runsheet has the contingency tree. Have the four Break and Fix notebooks ready to share."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out. Come back to this slide in the last five minutes and ask for a show of hands on each. It converts a busy practical session into visible progress."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "say the break time out loud. In a practical session students will not ask, and they will start drifting out if they do not know when it is."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 4,
+  "title": "SEGMENT 1",
+  "text": "collect A1 at the door. Then two minutes of recall — do not re-teach it."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 5,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs, then take answers from three different people rather than the first hand up."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 6,
+  "title": "How did you do?",
+  "text": "if more than a third of the room struggles with the first one, spend three minutes re-showing the Week 1 data-table figure. Everything from Week 5 assumes it and it is cheaper to fix now."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 7,
+  "title": "SEGMENT 2",
+  "text": "introduce every tool by its question, never by its name."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 8,
+  "title": "THE TOOL MAP",
+  "text": "if asked about VS Code — it is the professional local editor and the Student Setup Guide covers it. Anyone who wants a local setup is welcome. Note that the Week 7 and Week 14 tests run offline on lab machines, so everyone meets a local environment at least once."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 9,
+  "title": "DEFINITION",
+  "text": "say the limitation out loud now rather than letting them discover it in Week 7."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 10,
+  "title": "SEGMENT 3",
+  "text": "lockstep, projected, everyone typing along. Do NOT hand out a finished notebook at this stage; the typing is where the structure is learned. Circulate constantly and watch for students who have not got Colab open at all."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 11,
+  "title": "LIVE CODING",
+  "text": "type it yourself on the projector, do not paste. Narrate as you go. When someone's cell 3 gives a different number from their neighbour's, that is the moment the execution-order block pays off — note who noticed."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 12,
+  "title": "TROUBLESHOOTING",
+  "text": "put this slide up and leave it up during the practical rather than reading it aloud. It answers most questions before they are asked, which frees you to help the students who have a real problem."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 13,
+  "title": "DEFINITION",
+  "text": "two minutes. Have them add one text cell above each code cell in the notebook they just built, saying what it does."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 14,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "this is a pulse check, not an assessment. Take it verbally and quickly — the point is to catch anyone who has been quietly lost for twenty minutes."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 15,
+  "title": "How did you do?",
+  "text": "if someone in the room has already noticed this discrepancy in their own work, name them when you reach the execution-order block. It lands far better coming from a student."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 16,
+  "title": "SEGMENT 4",
+  "text": "keep it to twenty minutes and get them back on keyboards."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 17,
+  "title": "The anatomy of a notebook",
+  "text": "draw the kernel on the board as a box that all the cells write into. Drawn beats projected for this one."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 18,
+  "title": "DEFINITION",
+  "text": "have them look at their own counters right now. Several will already be out of order from experimenting, which makes the point better than any explanation."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 19,
+  "title": "SEGMENT 5",
+  "text": "this is the highest-value twenty minutes of the session. If you are running late, take the time from the repository walkthrough rather than from here."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 20,
+  "title": "THE EXECUTION TRAP",
+  "text": "let the room discover it before you explain. Ask 'is the notebook broken?' and wait. Someone will get there."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 21,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "ninety seconds in pairs, then take B properly."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 22,
+  "title": "How did you do?",
+  "text": "say plainly that this is not a rule you invented to be difficult. It is how every automated grader and every colleague will run their code."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 23,
+  "title": "WORKED EXAMPLE",
+  "text": "walk it slowly. Then ask a student to read out their own counters and diagnose their own notebook, which makes it real."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 24,
+  "title": "10 minutes",
+  "text": "take it. Ninety minutes in, attention is genuinely gone, and Git needs them awake."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 25,
+  "title": "SEGMENT 6",
+  "text": "lead with the problem, not the commands. Students who do not understand what Git is FOR treat it as ceremony and never use it voluntarily."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 26,
+  "title": "VERSION CONTROL",
+  "text": "that line usually gets a laugh because everyone has done it — use it, the problem is familiar even though the solution is not. Be explicit about the assessment consequence; students engage with Git far more readily once they understand it is how their individual contribution is seen."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 27,
+  "title": "THE FOUR STATES",
+  "text": "'git status' is the single most useful command in the list. Tell them to run it before and after everything for the first fortnight."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 28,
+  "title": "DEFINITION",
+  "text": "show one good and one useless commit message side by side on the board. It takes thirty seconds and it changes their habits for the semester."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 29,
+  "title": "SEGMENT 7",
+  "text": "lockstep on the projector, line by line, everyone at the same step. Individually this takes three times as long and half the room ends up lost. Do not let the fast students run ahead."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 30,
+  "title": "LIVE CODING",
+  "text": "do the menu route with the whole room first so everyone has a URL. Then demonstrate the four commands once on the projector. Do not make them use the command line today — it doubles the failure surface for no gain."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 31,
+  "title": "WHAT YOU OWE ME",
+  "text": "the exact repository name matters — the grading tools pull repositories by name from a roster. State it and put it on the board."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 32,
+  "title": "THE README",
+  "text": "show one good and one empty README on the projector. Thirty seconds, and it visibly changes what gets submitted."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 33,
+  "title": "CHALLENGE",
+  "text": "the four planted faults: (1) an import of a package that is not installed; (2) a notebook reading a file by a path that is only correct from a different folder; (3) a cell that uses a variable created in a cell further down, so it only works if you run them out of order; (4) cells saved after being run out of order, so it produces a confident wrong number with no error at all. Fault four is the one to spend the last three minutes on. Circulate and ask only the six questions. Do not diagnose for them. Build the notebooks before the session; the runsheet has the specification."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 34,
+  "title": "QUIZ AND ASSIGNMENT",
+  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: setup/quiz_02_questions.md."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 35,
+  "title": "SEGMENT 8",
+  "text": "say that the deck continues past the end of the session. Students do not read past the last slide you present unless told to."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 36,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide after this and ask for a show of hands against each."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 38,
+  "title": "How did you do?",
+  "text": "answer E is the one to read aloud. Students respect being told the reasoning behind a rule rather than just the rule."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 41,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 2",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 2",
+  "slide": 42,
+  "title": "THE ONE THING TO REMEMBER",
+  "text": "say the body text out loud and mean it. For a room of beginners this is the most useful thing they hear all week. Then stay behind for ten minutes — the students who need the most help will not ask in front of everyone."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 1,
+  "title": "Variables, decisions, functions — and reading errors",
+  "text": "check A2 at the door — repository URL, notebook runs, README present. Anyone without a working setup goes on the office-hours list now, not in Week 5."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 2,
+  "title": "LEARNING OBJECTIVES",
+  "text": "read them out, and return to this slide at the end."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 3,
+  "title": "SEGMENT 1",
+  "text": "two minutes of recall, then move. Do not re-teach Week 2."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 4,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "thirty seconds in pairs. If the first question is shaky, the Week 2 deck's cheat-sheet slide has it."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 6,
+  "title": "SEGMENT 2",
+  "text": "take the question seriously. A calculator IS faster for one calculation, and pretending otherwise loses you the sceptics in the room — who are usually the best students."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 7,
+  "title": "TODAY STARTS WITH AN OBJECTION",
+  "text": "ask the room for the answer before you give it. Someone usually says 'because you can do it lots of times', which is exactly right and better received from a student."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 8,
+  "title": "WHY BOTHER",
+  "text": "labour reason three. Make the Week 10 connection explicitly; students engage far better with syntax when they can see what it is for."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 9,
+  "title": "SEGMENT 3",
+  "text": "twenty-five minutes is enough. They learn this by writing it, not by hearing it."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 10,
+  "title": "VARIABLES",
+  "text": "draw the box on the board and physically write a value into it, then rub it out and write another. Thirty seconds, and it lands better than any slide."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 11,
+  "title": "DEFINITION",
+  "text": "demonstrate \"12\" + 3 live and let them read the error. It is the same TypeError they will see next week."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 12,
+  "title": "WHAT GOES WRONG",
+  "text": "demonstrate 0.1 + 0.2 live. It reliably produces an audible reaction and it makes the point permanently."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 13,
+  "title": "SEGMENT 4",
+  "text": "type it live, do not paste. Narrate the units as you go. The typing is where the structure is learned."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 14,
+  "title": "The parts of a function",
+  "text": "ask 'what will this print?' after typing only the definition. Answer: nothing. Let that land before you add the call."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 15,
+  "title": "WORKED EXAMPLE",
+  "text": "do steps 1 to 4 on the board, out loud, before opening Colab. It takes three minutes and it makes the live-coding segment much faster because the thinking is already done."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 16,
+  "title": "LIVE CODING",
+  "text": "type it, run it, confirm the output matches. THEN make the deliberate mistake and let the wrong number sit on screen for a few seconds before anyone speaks. Ask: what would have told you this was wrong? Physical intuition. The computer had no opinion about it."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 17,
+  "title": "DEFINITION",
+  "text": "demonstrate it. Change the return to a print, run the same script, and show the TypeError two lines later when it tries to multiply None. That error is worth meeting on purpose."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 18,
+  "title": "CHECK YOUR UNDERSTANDING",
+  "text": "quick pulse check before the break. Question C is the one to dwell on if the answers are weak."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 20,
+  "title": "10 minutes",
+  "text": "take it. The practical after the break is the long one."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 21,
+  "title": "SEGMENT 5",
+  "text": "keep this short. The concept is easy; the value is in connecting it to Week 1."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 22,
+  "title": "LIVE CODING",
+  "text": "make the ordering mistake live. It is the same class of failure as the unit error — no crash, wrong answer."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 23,
+  "title": "SEGMENT 6",
+  "text": "this fifteen minutes saves more student time than any other in the semester."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 24,
+  "title": "TRACEBACKS",
+  "text": "the format shown is Python 3.10. If Colab is on 3.11 or later there is one extra line with a ~~~^~~ marker pointing at the failing part of the expression, which is helpful rather than confusing. Say so if a student's output differs."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 25,
+  "title": "FIVE NAMES, AND ONE WITHOUT",
+  "text": "produce each of the five live if you have time; at minimum produce NameError and TypeError. Seeing them made on purpose removes most of their power to frighten."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 26,
+  "title": "WORKED EXAMPLE",
+  "text": "this is the first formal introduction of the AI ladder from the syllabus. 'Explain why this error is happening' is the level for Week 3; asking for whole functions is not."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 27,
+  "title": "SEGMENT 7",
+  "text": "circulate and ask for the EXPECTED value before you look at anyone's code. A student who cannot state it has not understood the formula."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 28,
+  "title": "PRACTICAL — 35 MINUTES",
+  "text": "commit per working function so the repository history shows the build. This is the week where git commit starts to feel useful rather than ceremonial."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 29,
+  "title": "THE POINT OF THIS WEEK",
+  "text": "this figure is the thesis of the week. Do not rush it, even though the challenge is waiting."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 30,
+  "title": "CHALLENGE",
+  "text": "the six planted bugs: integer division with //, operator precedence with a missing bracket, degrees where radians were needed, an if-chain whose branches are in the wrong order, a unit mismatch, and a parameter used in the wrong position in the call. Have the marking key ready naming each bug; you will need it when a team insists their diagnosis is right. Circulate with the question card and answer nothing."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 31,
+  "title": "ASSIGNMENT",
+  "text": "warn them properly about the quiz format so nobody sits down to revise definitions."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 32,
+  "title": "SEGMENT 8",
+  "text": "tell them the deck continues past the end of the session."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 33,
+  "title": "MODULE SUMMARY",
+  "text": "return to the objectives slide and ask for hands against each."
+ },
+ {
+  "deck": "CML3111 Week 3",
+  "slide": 38,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 3",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ }
+]

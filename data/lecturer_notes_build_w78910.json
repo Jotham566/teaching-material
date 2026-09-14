@@ -1,0 +1,398 @@
+[
+ {
+  "deck": "CML3112 Week 7",
+  "slide": 1,
+  "title": "Individual · offline · two hours plus twenty-five minutes",
+  "text": "read the rules aloud from slide 4 rather than paraphrasing. Have the three dataset variants distributed in a checkerboard pattern before anyone sits down, and confirm the machines have no network before you start the clock."
+ },
+ {
+  "deck": "CML3112 Week 7",
+  "slide": 3,
+  "title": "How the three hours are spent",
+  "text": "put a visible countdown on the projector. Call the time at 1:00, 1:30, 1:50 and 2:10."
+ },
+ {
+  "deck": "CML3112 Week 7",
+  "slide": 4,
+  "title": "The rules",
+  "text": "state the variant distribution out loud so nobody wastes time attempting to collude. Have the absence procedure confirmed with the Faculty before the day."
+ },
+ {
+  "deck": "CML3112 Week 7",
+  "slide": 10,
+  "title": "CONTINGENCY",
+  "text": "agree the rescheduling rule with the Faculty before the day, and keep two spare machines powered on at the back."
+ },
+ {
+  "deck": "CML3112 Week 8",
+  "slide": 1,
+  "title": "Fitting, testing, and error in units you can act on",
+  "text": "open with the fifteen-minute Test 1 debrief — the three commonest failures, shown anonymously, with the fix. That debrief is worth more than returning the marks."
+ },
+ {
+  "deck": "CML3112 Week 8",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "the fourteen-line demonstration in the hands-on block is the most important half-hour of the semester. Rehearse it until it cannot fail."
+ },
+ {
+  "deck": "CML3112 Week 8",
+  "slide": 14,
+  "title": "SEGMENT 5",
+  "text": "type it live, do not paste. Justify each line aloud as you go. Plot predicted against actual BEFORE quoting any metric — the picture should come first."
+ },
+ {
+  "deck": "CML3112 Week 8",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "run a visible leaderboard on MAE in MPa. Pre-compute the baseline so nobody spends the segment on it."
+ },
+ {
+  "deck": "CML3112 Week 8",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 8",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 9",
+  "slide": 1,
+  "title": "Boundaries, trees, forests, and the two mistakes",
+  "text": "the Engineering ML Project is released today and runs to Week 15. Have the brief, the rubric and the milestone schedule printed."
+ },
+ {
+  "deck": "CML3112 Week 9",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "protect the last two segments. If time is short, shorten the trees-and-forests block rather than the confusion matrix or the imbalance challenge."
+ },
+ {
+  "deck": "CML3112 Week 9",
+  "slide": 15,
+  "title": "SEGMENT 5",
+  "text": "point out explicitly that only the constructor line changes. That is the payoff of learning the pattern in Week 8."
+ },
+ {
+  "deck": "CML3112 Week 9",
+  "slide": 22,
+  "title": "SEGMENT 8",
+  "text": "hand out the notebook and the fictional complaint. Give no hints for the full twenty minutes."
+ },
+ {
+  "deck": "CML3112 Week 9",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "the planted notebook must genuinely report high accuracy and a confusion matrix with an empty positive column. Prepare it beforehand; the marking key is that the positive class is ~3 per cent and recall is zero."
+ },
+ {
+  "deck": "CML3112 Week 9",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 9",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3112 Week 10",
+  "slide": 1,
+  "title": "Overfitting, cross-validation and data leakage",
+  "text": "Project Milestone 1 is reviewed today. Have the checklist and the booking sheet ready."
+ },
+ {
+  "deck": "CML3112 Week 10",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "the leakage segment and the challenge are the core. If the session runs late, cut the cross-validation demonstration rather than either of those."
+ },
+ {
+  "deck": "CML3112 Week 10",
+  "slide": 15,
+  "title": "SEGMENT 5",
+  "text": "the deliberate-leak exercise is the point of the block. Make sure everyone reaches it."
+ },
+ {
+  "deck": "CML3112 Week 10",
+  "slide": 21,
+  "title": "SEGMENT 7",
+  "text": "three different planted causes across the room so no diagnosis can be copied. Give no hints."
+ },
+ {
+  "deck": "CML3112 Week 10",
+  "slide": 22,
+  "title": "CHALLENGE",
+  "text": "the three planted causes for this cohort are — (1) a 28-day strength column left among the features while predicting strength class (2) the missing slump values filled with the mean of the whole file before the split, so every training row already carries information from the test rows (3) a specimen identifier that encodes the batch, and the batch determines the strength Distribute them so adjacent teams have different ones, and keep the marking key to hand."
+ },
+ {
+  "deck": "CML3112 Week 10",
+  "slide": 23,
+  "title": "MILESTONE 1",
+  "text": "run PM1 as a four-minute stand-up per team against a printed checklist rather than a conversation. With 22 teams in CML3112 anything longer will not fit."
+ },
+ {
+  "deck": "CML3112 Week 10",
+  "slide": 29,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 10",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 7",
+  "slide": 1,
+  "title": "Individual · offline · two hours plus twenty-five minutes",
+  "text": "read the rules aloud from slide 4 rather than paraphrasing. Have the three dataset variants distributed in a checkerboard pattern before anyone sits down, and confirm the machines have no network before you start the clock."
+ },
+ {
+  "deck": "CML3113 Week 7",
+  "slide": 3,
+  "title": "How the three hours are spent",
+  "text": "put a visible countdown on the projector. Call the time at 1:00, 1:30, 1:50 and 2:10."
+ },
+ {
+  "deck": "CML3113 Week 7",
+  "slide": 4,
+  "title": "The rules",
+  "text": "state the variant distribution out loud so nobody wastes time attempting to collude. Have the absence procedure confirmed with the Faculty before the day."
+ },
+ {
+  "deck": "CML3113 Week 7",
+  "slide": 10,
+  "title": "CONTINGENCY",
+  "text": "agree the rescheduling rule with the Faculty before the day, and keep two spare machines powered on at the back."
+ },
+ {
+  "deck": "CML3113 Week 8",
+  "slide": 1,
+  "title": "Fitting, testing, and error in units you can act on",
+  "text": "open with the fifteen-minute Test 1 debrief — the three commonest failures, shown anonymously, with the fix. That debrief is worth more than returning the marks."
+ },
+ {
+  "deck": "CML3113 Week 8",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "the fourteen-line demonstration in the hands-on block is the most important half-hour of the semester. Rehearse it until it cannot fail."
+ },
+ {
+  "deck": "CML3113 Week 8",
+  "slide": 14,
+  "title": "SEGMENT 5",
+  "text": "type it live, do not paste. Justify each line aloud as you go. Plot predicted against actual BEFORE quoting any metric — the picture should come first."
+ },
+ {
+  "deck": "CML3113 Week 8",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "run a visible leaderboard on MAE in % silica. Pre-compute the baseline so nobody spends the segment on it."
+ },
+ {
+  "deck": "CML3113 Week 8",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 8",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 9",
+  "slide": 1,
+  "title": "Boundaries, trees, forests, and the two mistakes",
+  "text": "the Engineering ML Project is released today and runs to Week 15. Have the brief, the rubric and the milestone schedule printed."
+ },
+ {
+  "deck": "CML3113 Week 9",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "protect the last two segments. If time is short, shorten the trees-and-forests block rather than the confusion matrix or the imbalance challenge."
+ },
+ {
+  "deck": "CML3113 Week 9",
+  "slide": 15,
+  "title": "SEGMENT 5",
+  "text": "point out explicitly that only the constructor line changes. That is the payoff of learning the pattern in Week 8."
+ },
+ {
+  "deck": "CML3113 Week 9",
+  "slide": 22,
+  "title": "SEGMENT 8",
+  "text": "hand out the notebook and the fictional complaint. Give no hints for the full twenty minutes."
+ },
+ {
+  "deck": "CML3113 Week 9",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "the planted notebook must genuinely report high accuracy and a confusion matrix with an empty positive column. Prepare it beforehand; the marking key is that the positive class is ~3 per cent and recall is zero."
+ },
+ {
+  "deck": "CML3113 Week 9",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 9",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3113 Week 10",
+  "slide": 1,
+  "title": "Overfitting, cross-validation and data leakage",
+  "text": "Project Milestone 1 is reviewed today. Have the checklist and the booking sheet ready."
+ },
+ {
+  "deck": "CML3113 Week 10",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "the leakage segment and the challenge are the core. If the session runs late, cut the cross-validation demonstration rather than either of those."
+ },
+ {
+  "deck": "CML3113 Week 10",
+  "slide": 15,
+  "title": "SEGMENT 5",
+  "text": "the deliberate-leak exercise is the point of the block. Make sure everyone reaches it."
+ },
+ {
+  "deck": "CML3113 Week 10",
+  "slide": 21,
+  "title": "SEGMENT 7",
+  "text": "three different planted causes across the room so no diagnosis can be copied. Give no hints."
+ },
+ {
+  "deck": "CML3113 Week 10",
+  "slide": 22,
+  "title": "CHALLENGE",
+  "text": "the three planted causes for this cohort are — (1) the laboratory silica assay left among the features while predicting silica (2) the sensor columns standardised across the whole file before the split, so the mean and spread the scaler used already included every test row (3) a hole identifier that encodes the lithology you are trying to predict Distribute them so adjacent teams have different ones, and keep the marking key to hand."
+ },
+ {
+  "deck": "CML3113 Week 10",
+  "slide": 23,
+  "title": "MILESTONE 1",
+  "text": "run PM1 as a four-minute stand-up per team against a printed checklist rather than a conversation. With 22 teams in CML3112 anything longer will not fit."
+ },
+ {
+  "deck": "CML3113 Week 10",
+  "slide": 29,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 10",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 7",
+  "slide": 1,
+  "title": "Individual · offline · two hours plus twenty-five minutes",
+  "text": "read the rules aloud from slide 4 rather than paraphrasing. Have the three dataset variants distributed in a checkerboard pattern before anyone sits down, and confirm the machines have no network before you start the clock."
+ },
+ {
+  "deck": "CML3111 Week 7",
+  "slide": 3,
+  "title": "How the three hours are spent",
+  "text": "put a visible countdown on the projector. Call the time at 1:00, 1:30, 1:50 and 2:10."
+ },
+ {
+  "deck": "CML3111 Week 7",
+  "slide": 4,
+  "title": "The rules",
+  "text": "state the variant distribution out loud so nobody wastes time attempting to collude. Have the absence procedure confirmed with the Faculty before the day."
+ },
+ {
+  "deck": "CML3111 Week 7",
+  "slide": 10,
+  "title": "CONTINGENCY",
+  "text": "agree the rescheduling rule with the Faculty before the day, and keep two spare machines powered on at the back."
+ },
+ {
+  "deck": "CML3111 Week 8",
+  "slide": 1,
+  "title": "Fitting, testing, and error in units you can act on",
+  "text": "open with the fifteen-minute Test 1 debrief — the three commonest failures, shown anonymously, with the fix. That debrief is worth more than returning the marks."
+ },
+ {
+  "deck": "CML3111 Week 8",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "the fourteen-line demonstration in the hands-on block is the most important half-hour of the semester. Rehearse it until it cannot fail."
+ },
+ {
+  "deck": "CML3111 Week 8",
+  "slide": 14,
+  "title": "SEGMENT 5",
+  "text": "type it live, do not paste. Justify each line aloud as you go. Plot predicted against actual BEFORE quoting any metric — the picture should come first."
+ },
+ {
+  "deck": "CML3111 Week 8",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "run a visible leaderboard on MAE in MW. Pre-compute the baseline so nobody spends the segment on it."
+ },
+ {
+  "deck": "CML3111 Week 8",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 8",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 9",
+  "slide": 1,
+  "title": "Boundaries, trees, forests, and the two mistakes",
+  "text": "the Engineering ML Project is released today and runs to Week 15. Have the brief, the rubric and the milestone schedule printed."
+ },
+ {
+  "deck": "CML3111 Week 9",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "protect the last two segments. If time is short, shorten the trees-and-forests block rather than the confusion matrix or the imbalance challenge."
+ },
+ {
+  "deck": "CML3111 Week 9",
+  "slide": 15,
+  "title": "SEGMENT 5",
+  "text": "point out explicitly that only the constructor line changes. That is the payoff of learning the pattern in Week 8."
+ },
+ {
+  "deck": "CML3111 Week 9",
+  "slide": 22,
+  "title": "SEGMENT 8",
+  "text": "hand out the notebook and the fictional complaint. Give no hints for the full twenty minutes."
+ },
+ {
+  "deck": "CML3111 Week 9",
+  "slide": 24,
+  "title": "CHALLENGE",
+  "text": "the planted notebook must genuinely report high accuracy and a confusion matrix with an empty positive column. Prepare it beforehand; the marking key is that the positive class is ~3 per cent and recall is zero."
+ },
+ {
+  "deck": "CML3111 Week 9",
+  "slide": 31,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 9",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ },
+ {
+  "deck": "CML3111 Week 10",
+  "slide": 1,
+  "title": "Overfitting, cross-validation and data leakage",
+  "text": "Project Milestone 1 is reviewed today. Have the checklist and the booking sheet ready."
+ },
+ {
+  "deck": "CML3111 Week 10",
+  "slide": 3,
+  "title": "HOW TODAY RUNS",
+  "text": "the leakage segment and the challenge are the core. If the session runs late, cut the cross-validation demonstration rather than either of those."
+ },
+ {
+  "deck": "CML3111 Week 10",
+  "slide": 15,
+  "title": "SEGMENT 5",
+  "text": "the deliberate-leak exercise is the point of the block. Make sure everyone reaches it."
+ },
+ {
+  "deck": "CML3111 Week 10",
+  "slide": 21,
+  "title": "SEGMENT 7",
+  "text": "three different planted causes across the room so no diagnosis can be copied. Give no hints."
+ },
+ {
+  "deck": "CML3111 Week 10",
+  "slide": 22,
+  "title": "CHALLENGE",
+  "text": "the three planted causes for this cohort are — (1) a maintenance-action column left among the features while predicting failure (2) the vibration and temperature columns scaled across the whole file before the split, so the scaler had already measured every test row (3) a machine identifier that encodes which units were already known to be failing Distribute them so adjacent teams have different ones, and keep the marking key to hand."
+ },
+ {
+  "deck": "CML3111 Week 10",
+  "slide": 23,
+  "title": "MILESTONE 1",
+  "text": "run PM1 as a four-minute stand-up per team against a printed checklist rather than a conversation. With 22 teams in CML3112 anything longer will not fit."
+ },
+ {
+  "deck": "CML3111 Week 10",
+  "slide": 29,
+  "title": "END-OF-SESSION QUIZ  ·  WEEK 10",
+  "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
+ }
+]
