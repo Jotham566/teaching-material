@@ -1,0 +1,28 @@
+# Everything the build scripts import. Versions are the ones the current
+# decks and documents were generated with.
+#
+#   python3 -m venv .iuea-env
+#   source .iuea-env/bin/activate
+#   pip install -r requirements.txt
+#
+# Python 3.10 or newer. The notebook grader and the teaching-data generator
+# are standard library only, on purpose, so they run on a locked-down work
+# laptop with nothing installed.
+
+python-pptx==1.0.2
+python-docx==1.2.0
+openpyxl==3.1.5
+pandas==2.3.3
+numpy==2.2.6
+matplotlib==3.10.9
+Pillow==12.3.0
+
+# Not pip-installable, and needed only for verification rather than for
+# building:
+#   LibreOffice  renders a deck or a document to PDF so it can be looked at,
+#                and recalculates a workbook so formula errors surface
+#   Poppler      pdftoppm and pdftotext, for turning those PDFs into images
+#   OpenCV       optional. scripts/qrgen_selftest.py uses it as an
+#                INDEPENDENT decoder to check the QR encoder. Without it the
+#                self-test skips that section loudly, and a round trip
+#                through our own code proves nothing.

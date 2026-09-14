@@ -1,0 +1,36 @@
+# Office files and images are ZIP archives or binary. Marking them binary
+# stops git attempting a line diff, which is both useless and slow on a
+# 1 MB pptx, and stops any line-ending normalisation corrupting them.
+*.pptx  binary
+*.potx  binary
+*.docx  binary
+*.dotx  binary
+*.xlsx  binary
+*.xlsm  binary
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.db    binary
+
+# Text, normalised to LF in the repo so the tree is identical whether it was
+# last touched on macOS or Windows.
+*.py     text eol=lf
+*.md     text eol=lf
+*.json   text eol=lf
+*.csv    text eol=lf
+*.sql    text eol=lf
+*.gs     text eol=lf
+*.js     text eol=lf
+*.cjs    text eol=lf
+*.txt    text eol=lf
+*.ipynb  text eol=lf
+
+# Generated: still tracked, because they are the deliverable, but marked so
+# that GitHub's language statistics describe the SOURCE rather than the
+# output, and so diffs on them collapse by default in review.
+IUEA_Teaching_Plan/decks/**  linguist-generated=true
+DataAnalysis_Track/decks/**  linguist-generated=true
+figs/**                      linguist-generated=true
+DataAnalysis_Track/figs/**   linguist-generated=true
+qr/**                        linguist-generated=true
