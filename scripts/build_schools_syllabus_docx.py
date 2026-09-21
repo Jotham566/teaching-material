@@ -94,8 +94,39 @@ def tidy_page_breaks(doc):
     return removed
 
 
-def h1_page(d, text):
-    h = h1(d, text)
+# ------------------------------------------------------------ the sections
+# In order, and numbered from this list rather than by hand. Two sections
+# were inserted in the middle of this document after it was first written,
+# which left one cross-reference pointing at the wrong section and another
+# pointing at a section that had moved. A number typed into prose is a
+# number that goes stale silently, so refer to a section with snum().
+SECTIONS = [
+    "The roadmap",
+    "Week by week",
+    "A session, hour by hour",
+    "The data you will actually work on",
+    "Project ideas, so you can picture yours",
+    "Marks, and what the certificate means",
+    "What to bring",
+    "The software, every piece of it by name",
+    "Questions parents ask",
+    "What this track does not do",
+    "Practical details",
+]
+
+
+def snum(title):
+    """The number a section ended up with. Raises if the title is wrong,
+    because a silently wrong cross-reference is the thing this replaces."""
+    return SECTIONS.index(title) + 1
+
+
+def sref(title):
+    return "section %d" % snum(title)
+
+
+def h1_page(d, title):
+    h = h1(d, "%d  ·  %s" % (snum(title), title))
     h.paragraph_format.page_break_before = True
     return h
 
@@ -133,11 +164,11 @@ fig(d, "timeline_schools",
     "The eight weeks, and what exists on their laptop at the end of each one.")
 
 # ===================================================================== part 1
-h1_page(d, "1  ·  The roadmap")
-para(d, "Machine learning has a published learning path that professionals "
-        "use, at roadmap.sh. The picture below is that path, with this "
-        "track's eight weeks mapped onto it. It is here because a student "
-        "deserves to see where they are going, and where this stops.",
+h1_page(d, "The roadmap")
+para(d, "Fifteen stages, in the order a person actually learns them. The "
+        "colour of each card says which fortnight of the track covers it. It "
+        "is the first thing in this syllabus because a student deserves to "
+        "see the whole route before they start, including where it stops.",
      size=T["lead"])
 
 fig(d, "roadmap_schools",
@@ -156,12 +187,14 @@ para(d, "Stage 2, the mathematics, is marked as something they already have. "
         "is the same thing.", size=T["body"])
 para(d, "Stage 15 is what comes next. Image recognition, language models and "
         "reinforcement learning all need the foundations this track builds. "
-        "Section 7 says where to learn them.", size=T["body"])
+        "%s says where to learn them."
+     % sref("What this track does not do").capitalize(),
+     size=T["body"])
 
 # ===================================================================== part 2
 # h1 rather than h1_page: the two roadmap notes above leave most of a page
 # free, and forcing a break here wasted it.
-h1(d, "2  ·  Week by week")
+h1(d, "%d  ·  %s" % (snum("Week by week"), "Week by week"))
 para(d, "Twenty-four sessions of three hours. Each week below says what is "
         "taught, which A-level mathematics it leans on, and what exists at "
         "the end of the week. That last column is the one to read if you are "
@@ -186,7 +219,7 @@ for w in C.WEEKS_PLAN:
     spacer(d, 10)
 
 # ===================================================================== part 3
-h1_page(d, "3  ·  A session, hour by hour")
+h1_page(d, "A session, hour by hour")
 para(d, "Every session has the same shape, so nobody has to wonder what is "
         "coming. These are teenagers on holiday, so no teaching block runs "
         "longer than twenty-five minutes and more than half of the time is "
@@ -208,7 +241,51 @@ callout(d, "Every session ends with something that runs",
         label_size=T["small"], text_size=T["body"])
 
 # ===================================================================== part 4
-h1_page(d, "4  ·  Marks, and what the certificate means")
+h1_page(d, "The data you will actually work on")
+para(d, "A course like this is only as concrete as its data, so here is all "
+        "of it. Nothing in the list below needs the room's internet to be "
+        "working, which is deliberate.", size=T["lead"])
+
+table(d, ["Where it comes from", "What it is"],
+      [[a, b] for a, b in C.DATA], [24, 76],
+      font=T["small"], hdr_font=T["small"])
+
+spacer(d, 8)
+callout(d, "The class survey stays in the class",
+        "The dataset the students spend the most time on is the one they "
+        "make in the first session, because a table with your own sleep and "
+        "your own journey to school in it is the one you argue with. It "
+        "carries no names, it is not published to anybody's portfolio, and it "
+        "is deleted at the end of the track.\n\n"
+        "Everything students do publish is built on public data, or on data "
+        "they collected themselves.",
+        "1F6F8B", "DDEAF0",
+        label_size=T["small"], text_size=T["body"])
+
+# ===================================================================== part 5
+h1_page(d, "Project ideas, so you can picture yours")
+para(d, "Students choose their own project in Week 7 and present it in Week "
+        "8. These are examples to start an argument with rather than a menu, "
+        "and the best projects every time are the ones a student brought "
+        "themselves. Each one names where the data would come from, because "
+        "an idea with no dataset behind it is a wish.", size=T["lead"])
+
+table(d, ["The question", "Where the data comes from"],
+      [[q, src] for q, src in C.PROJECTS], [46, 54],
+      font=T["small"], hdr_font=T["small"])
+
+spacer(d, 8)
+para(d, "What a project has to satisfy", size=T["h2"], bold=True, colour=NAVY,
+     after=4)
+# A table rather than numbered paragraphs: docxkit's para() has no hanging
+# indent, so a wrapped rule ran back to the left margin under its own
+# number. Every other list in this document is a table anyway.
+table(d, ["", ""],
+      [[str(i), rule] for i, rule in enumerate(C.PROJECT_RULES, 1)],
+      [4, 96], font=T["small"], hide_header=True)
+
+# ===================================================================== part 6
+h1_page(d, "Marks, and what the certificate means")
 para(d, "A certificate with real marks was asked for, so the marks come from "
         "work rather than from turning up. Attendance is expected and is not "
         "a grade.", size=T["lead"])
@@ -220,9 +297,12 @@ table(d, ["What", "Weight", "When", "How it is marked"],
       [[a, "%d%%" % w, when, how] for a, w, when, how in C.ASSESSMENT],
       [24, 9, 10, 57], font=T["small"], hdr_font=T["small"])
 
-# The bands table split across two pages, leaving one of them with a
-# repeated header row and three lines on it. Keep the heading, the table and
-# the note that follows it together.
+# The bands table split across two pages once, leaving one of them with a
+# repeated header row and three lines on it, so this heading forces a break
+# and the table, the notes and the callout all travel with it. That page was
+# then too empty to justify itself, which is what the mark notes below fix:
+# they are the questions a student asks the moment marks are mentioned and
+# they belong on this page anyway.
 _cert = para(d, "What the certificate says", size=T["h2"], bold=True,
              colour=NAVY, after=4)
 _cert.paragraph_format.page_break_before = True
@@ -231,7 +311,13 @@ table(d, ["Band", "Mark", "What it claims the student can do"],
        for name, cut, says in C.BANDS],
       [22, 16, 62], font=T["small"], hdr_font=T["small"])
 
-spacer(d, 8)
+spacer(d, 6)
+para(d, "Late work, missed checkpoints, and second attempts", size=T["h2"],
+     bold=True, colour=NAVY, after=4)
+table(d, ["", ""], [[a, b] for a, b in C.MARK_NOTES], [22, 78],
+      font=T["small"], hide_header=True)
+
+spacer(d, 6)
 callout(d, "A student below 50 still receives a certificate, and it does not "
            "overstate",
         "It states that they attended and took part, and it does not claim a "
@@ -241,8 +327,8 @@ callout(d, "A student below 50 still receives a certificate, and it does not "
         "C55A11", AMBER_H,
         label_size=T["small"], text_size=T["body"])
 
-# ===================================================================== part 5
-h1_page(d, "5  ·  What to bring, and what it costs to get ready")
+# ===================================================================== part 7
+h1_page(d, "What to bring")
 para(d, "Students bring their own laptops, which means a mixture of Windows "
         "and Mac of different ages. Everything below is planned around that.",
      size=T["lead"])
@@ -250,7 +336,7 @@ para(d, "Students bring their own laptops, which means a mixture of Windows "
 table(d, ["", ""], [[a, b] for a, b in C.KIT], [22, 78], font=T["small"],
       hide_header=True)
 
-spacer(d, 8)
+spacer(d, 6)
 callout(d, "No laptop? Tell us before Week 1, not on the first morning",
         "A student without a laptop can still take the track: they pair with "
         "somebody for the session work and use a lab machine for the "
@@ -262,14 +348,38 @@ callout(d, "No laptop? Tell us before Week 1, not on the first morning",
         "C55A11", AMBER_H,
         label_size=T["small"], text_size=T["body"])
 
-# ===================================================================== part 6
-h1_page(d, "6  ·  Questions parents ask")
+# ===================================================================== part 8
+h1_page(d, "The software, every piece of it by name")
+para(d, "All of it is free. None of it is a trial, none of it expires, and "
+        "nothing here asks for a card. It is also the same stack a first-year "
+        "university course and a working analyst use, so none of it is a toy "
+        "version that has to be unlearned later.", size=T["lead"])
+
+table(d, ["Tool", "What it is for"],
+      [[a, b] for a, b in C.STACK], [20, 80],
+      font=T["small"], hdr_font=T["small"])
+
+spacer(d, 8)
+callout(d, "One fixed version for the whole class",
+        "Please do not install Python at home before Week 1, however keen a "
+        "student is. The packages this track uses are compiled against a "
+        "particular version of Python, so a laptop carrying a different one "
+        "produces an error message nobody else in the room can reproduce, and "
+        "there is no way to fix it while a session is running.\n\n"
+        "We install the same version on every machine in Session 1, from a "
+        "USB stick, and a student who arrives with nothing installed is the "
+        "easiest person in the room to help.",
+        "1F6F8B", "DDEAF0",
+        label_size=T["small"], text_size=T["body"])
+
+# ===================================================================== part 9
+h1_page(d, "Questions parents ask")
 for q, a in C.POLICIES:
     para(d, q, size=T["h2"], bold=True, colour=NAVY, after=3)
     para(d, a, size=T["body"], after=9)
 
 # ===================================================================== part 7
-h1_page(d, "7  ·  What this track does not do")
+h1_page(d, "What this track does not do")
 para(d, "Written down because a family deciding how to spend a holiday and a "
         "fee deserves the edges as well as the promises.", size=T["lead"])
 for t, why in C.LIMITS:
@@ -283,7 +393,7 @@ table(d, ["", ""], [[a, b] for a, b in C.NEXT], [26, 74], font=T["small"],
       hide_header=True)
 
 # ===================================================================== part 8
-h1_page(d, "8  ·  Practical details")
+h1_page(d, "Practical details")
 para(d, "The teaching content of this syllabus is settled. The arrangements "
         "below are for the school to confirm, and they are left blank rather "
         "than guessed, because a syllabus that goes home with a date in it "

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Verify the S.5 / S.6 Machine Learning Track syllabus.
 
-Five things, and the third is the one that catches real defects:
+Seven sections. The last two catch the defects the others cannot see:
 
   1. the arithmetic: hours, sessions, the session block, the mark weights
   2. the roadmap and the week-by-week text agree about what is taught when
@@ -10,8 +10,13 @@ Five things, and the third is the one that catches real defects:
      what finds a stray size that only appears in one table cell, which is
      exactly where strays hide
   4. every figure the document embeds exists and is not blank
-  5. house style, and that the promises made to parents are all costed into
-     the timetable
+  5. house style, read back out of the BUILT file so that prose written
+     inline in the builder is checked too, plus the promises made to
+     parents being costed into the timetable
+  6. practicality: the software named, the data named, and every project
+     example carrying the dataset that would answer it
+  7. the RENDERED PAGES. A page that is nearly empty, or a figure orphaned
+     from its heading, passes every check above
 
 Run after any edit to schools_content.py or either builder.
 """
@@ -234,6 +239,9 @@ for w in C.WEEKS_PLAN:
 prose += [x for _, _, _, x in C.ASSESSMENT]
 prose += [b for _, b in C.KIT] + [b for _, b in C.POLICIES]
 prose += [b for _, b in C.LIMITS] + [b for _, b in C.NEXT]
+prose += [b for _, b in C.STACK] + [b for _, b in C.DATA]
+prose += [q for q, _ in C.PROJECTS] + [s for _, s in C.PROJECTS]
+prose += list(C.PROJECT_RULES) + [b for _, b in C.MARK_NOTES]
 
 pat = re.compile(r"\b(is|are|was|were)\s+not\s+\w+[^.]{0,40}?,\s+"
                  r"(?:it|they)\s+(?:is|are)\b", re.I)
@@ -242,6 +250,47 @@ if len(hits) <= 1:
     ok("no 'X, not Y' antithesis pile-up (%d)" % len(hits))
 else:
     bad("antithesis in %d places: %r" % (len(hits), hits[:3]))
+
+
+def doc_text():
+    """Every word the reader sees, pulled from the built file.
+
+    The prose list above only reaches schools_content, so a sentence written
+    inline in the builder -- section leads, callouts, figure captions, which
+    is a lot of this document -- was never style-checked at all. Reading the
+    built file cannot miss any of it, and it also catches prose that only
+    exists after string formatting.
+    """
+    with zipfile.ZipFile(DOCX) as z:
+        xml = z.read("word/document.xml").decode("utf-8")
+    xml = re.sub(r"</w:p>", "\n", xml)
+    return re.sub(r"<[^>]+>", "", xml)
+
+
+if os.path.exists(DOCX):
+    _seen = [l.strip() for l in doc_text().splitlines() if l.strip()]
+    _hits2 = [l[:70] for l in _seen if pat.search(l)]
+    if len(_hits2) <= 1:
+        ok("%d paragraphs of rendered text checked for the same antithesis "
+           "(%d)" % (len(_seen), len(_hits2)))
+    else:
+        bad("antithesis in the rendered text, %d places: %r"
+            % (len(_hits2), _hits2[:3]))
+
+    # Placeholders and unformatted templates reaching a parent-facing
+    # document is the embarrassing class of defect, and neither the source
+    # nor the page-count check can see it.
+    # "None" is flagged only when it is the WHOLE paragraph, which is how a
+    # stray Python None renders. As a word it is ordinary English -- "None
+    # of it is a trial", "None. Show somebody what you built" -- and the
+    # first version of this check failed on both of those.
+    _junk = [l[:70] for l in _seen
+             if re.search(r"%[sd]\b|\{\}|\bTODO\b|\bTBD\b|<<", l)
+             or l.strip() in ("None", "nan", "NaN")]
+    if not _junk:
+        ok("no unformatted placeholder, TODO or stray None in the text")
+    else:
+        bad("placeholder text reached the document: %r" % _junk[:3])
 
 # The four promises were all explicitly asked for, so each must be visible
 # in the document rather than only in the brief.
@@ -281,12 +330,108 @@ if len(C.LIMITS) >= 3:
 else:
     bad("the track's limits are not stated")
 
+# ------------------------------------------------------- 6. is it practical?
+# "As practical as possible" was the requirement, and the way a syllabus
+# fails it is by promising activity without naming the thing the activity is
+# done to. So: the software is named, the data is named, and a project idea
+# carries the dataset that would answer it.
+sec("6. Practicality: named software, named data, answerable projects")
+
+_tools = [t.lower() for t, _ in C.STACK]
+_want = ["python", "jupyter", "pandas", "scikit-learn"]
+_absent = [t for t in _want
+           if not any(t in name for name in _tools)]
+if not _absent:
+    ok("%d tools named, including the four a student has to have: %s"
+       % (len(C.STACK), ", ".join(t for t, _ in C.STACK[:4])))
+else:
+    bad("the software a student needs is not named: %r" % _absent)
+
+# A holiday track for school students cannot depend on anybody buying
+# anything, and cannot depend on a trial that expires mid-track.
+_paid = re.compile(r"\blicen[cs]e fee|\bsubscri|\btrial\b|\bper month\b|"
+                   r"\bpaid (?:plan|tier|version)\b", re.I)
+_costly = [t for t, b in C.STACK if _paid.search(b)]
+if not _costly:
+    ok("no tool in the stack needs a payment, a subscription or a trial")
+else:
+    bad("a tool implies a cost to the family: %r" % _costly)
+
+# Every dataset must say where it comes from, and at least one must be
+# something the class makes itself: that is the one they engage with, and it
+# is the only one that cannot fail to arrive.
+if len(C.DATA) >= 4 and all(len(str(b).split()) >= 15 for _, b in C.DATA):
+    ok("%d data sources, each described rather than just listed"
+       % len(C.DATA))
+else:
+    bad("the data sources are thin: %r" % [a for a, _ in C.DATA])
+
+_own = [a for a, b in C.DATA
+        if "class" in (a + b).lower() or "collect" in (a + b).lower()]
+if len(_own) >= 2:
+    ok("data the students make or gather themselves is in the list, so the "
+       "track does not depend entirely on downloads")
+else:
+    bad("no dataset is produced by the students themselves")
+
+# The class survey is about real children in the room, and they publish
+# their work. Those two facts together need an explicit rule.
+_survey = " ".join(b for a, b in C.DATA if "class" in a.lower()).lower()
+if "no names" in _survey and ("never published" in _survey
+                              or "not published" in _survey):
+    ok("the class survey is stated to carry no names and to stay unpublished")
+else:
+    bad("the class's own data is used without a stated rule about names and "
+        "publication")
+
+if len(C.PROJECTS) >= 6:
+    ok("%d project examples, so a student can picture one" % len(C.PROJECTS))
+else:
+    bad("too few project examples: %d" % len(C.PROJECTS))
+
+# The defect this check exists for: a project idea with no data behind it.
+_noq = [q for q, _ in C.PROJECTS if "?" not in q]
+_nosrc = [q for q, s in C.PROJECTS if len(str(s).split()) < 5]
+if not _noq and not _nosrc:
+    ok("every project example is a question and names where its data comes "
+       "from")
+else:
+    bad("project examples without a question (%r) or without a data source "
+        "(%r)" % (_noq[:2], _nosrc[:2]))
+
+if len(C.PROJECT_RULES) >= 4:
+    ok("%d rules a project must satisfy, so approval in Week 7 is not a "
+       "matter of taste" % len(C.PROJECT_RULES))
+else:
+    bad("the project rules are not written down")
+
+# Section numbers are generated from B.SECTIONS. A literal "section 4" typed
+# into prose survives an insertion and then points at the wrong place, which
+# is what happened when the data and project sections were added.
+_lit = [p[:60] for p in prose
+        if re.search(r"\bsection\s+\d", str(p), re.I)]
+if not _lit:
+    ok("no cross-reference hard-codes a section number")
+else:
+    bad("hard-coded section number in the text: %r" % _lit[:3])
+
+# The user asked that the syllabus not claim to follow a published external
+# roadmap. Checked rather than remembered.
+_src = ""
+for f in ("schools_content.py", "build_schools_syllabus_docx.py",
+          "make_schools_figures.py"):
+    _src += open(os.path.join(_HERE, f)).read()
+if "roadmap.sh" not in _src:
+    ok("the syllabus does not attribute its structure to an external roadmap")
+else:
+    bad("roadmap.sh is still referenced in the sources")
+
 # ------------------------------------------------------------- 6. the pages
 # The only check here that looks at the LAID-OUT document. Everything above
 # reads the source or the XML, and neither can see a figure orphaned away
 # from its heading or a page carrying three lines and a repeated table
 # header. Both of those happened, and both passed every other check.
-sec("6. The rendered pages")
+sec("7. The rendered pages")
 PDF = os.path.join(TRACK, "ML_Track_S5_S6_Syllabus.pdf")
 if not os.path.exists(PDF):
     print("  skip  no rendered PDF at %s. THIS IS NOT A PASS: run\n"

@@ -78,8 +78,10 @@ WEEKS_PLAN = [
               "Three live demonstrations: a model that reads handwriting, one "
               "that separates spam from real messages, one that guesses a "
               "price. Then how each of them is only arithmetic on a table of "
-              "numbers. Set up Python on your own laptop, and write and run "
-              "a program before you leave."),
+              "numbers. Everyone fills in the twelve-question class survey, "
+              "which becomes the dataset used in Weeks 2, 3, 4 and 7. Set up "
+              "Python on your own laptop, and write and run a program before "
+              "you leave."),
              ("Variables, numbers and text",
               "Storing a value under a name and using it again. The four "
               "types you need: whole numbers, decimals, text and true/false. "
@@ -125,9 +127,12 @@ WEEKS_PLAN = [
          stages=[4],
          sessions=[
              ("From spreadsheet to pandas",
-              "Opening a real data file in Python. Rows, columns and the "
-              "words the field uses for them. Six commands that tell you what "
-              "any new file contains, in the same order every time."),
+              "Opening a real data file in Python, starting with your own "
+              "class survey so the rows are people you can ask. Rows, columns "
+              "and the words the field uses for them. Six commands that tell "
+              "you what any new file contains, in the same order every time; "
+              "you will use those six on every dataset for the rest of the "
+              "track."),
              ("Choosing rows and columns",
               "Filtering to the rows you care about and picking the columns "
               "you need. This is the autofilter you already use, written down "
@@ -226,9 +231,11 @@ WEEKS_PLAN = [
          sessions=[
              ("Finding groups nobody labelled",
               "Letting a computer sort things into groups when you have not "
-              "told it what the groups are. Run on a dataset of your class, "
-              "and then on songs, and you see the same method behave "
-              "differently on each."),
+              "told it what the groups are. Run first on the class survey "
+              "from Week 1, where you can check the answer against people you "
+              "know, and then on the penguin measurements, where the groups "
+              "turn out to be the three species. Same six lines of code, two "
+              "very different answers."),
              ("What a neural network is, and where ChatGPT fits",
               "One artificial neuron, worked by hand on paper, then the same "
               "thing with thirty of them in three lines of code. What deep "
@@ -380,13 +387,37 @@ ASSESSMENT = [
 ]
 assert sum(w for _, w, _, _ in ASSESSMENT) == 100
 
+# The questions a student asks the moment marks are mentioned, and which a
+# syllabus that only publishes weights leaves unanswered.
+MARK_NOTES = [
+    ("When you get a mark back",
+     "Within a week of handing it in, with written comments on the work "
+     "itself rather than a number on its own. The two checkpoints are "
+     "returned in the next session, because a mark that arrives after the "
+     "topic has moved on teaches nothing."),
+    ("If you hand something in late",
+     "Practical work is accepted up to a week late at full marks, because "
+     "this is a holiday and life happens. After that it is marked and "
+     "capped at a pass. The final project cannot be late, because the "
+     "showcase is a fixed day and the room is booked."),
+    ("If you miss a checkpoint entirely",
+     "You sit it in the following session from a different dataset. A "
+     "student who misses both checkpoints and the project has no marked "
+     "work, and the certificate then records attendance only."),
+    ("If you want to improve a mark",
+     "Practical work can be redone once, any time before Week 8, and the "
+     "better mark stands. The checkpoints and the project are marked once. "
+     "Redoing work you got wrong is the most useful thing a student on this "
+     "track can do with an evening."),
+]
+
 BANDS = [
     ("Distinction", 70, "Can start a new dataset unaided and finish it."),
     ("Merit", 60, "Can do the whole workflow with the notes open."),
     ("Pass", 50, "Can follow the workflow and explain what each step does."),
     ("Certificate of attendance", 0,
-     "Below 50. Attended and took part; the certificate says so and does "
-     "not claim a skill that is not there."),
+     "Attended and took part. The certificate says exactly that and claims "
+     "no skill beyond it."),
 ]
 
 # ---------------------------------------------------------------- kit
@@ -396,15 +427,17 @@ KIT = [
      "enough; 8 GB is comfortable. About 6 GB of free disk space. A student "
      "without a laptop should tell us before Week 1 so we can pair them and "
      "arrange lab access, rather than discovering it on the first morning."),
-    ("Python, installed in Week 1 Session 1",
-     "We install it together, in the room, on their own machine. Windows and "
-     "Mac instructions are both in the setup sheet, and a USB stick with the "
-     "installers travels with the instructor so a slow connection cannot stop "
-     "the first session."),
-    ("A browser, as the fallback",
-     "If a laptop cannot take the install, the same work runs in Google Colab "
-     "in a browser with nothing to set up. A student needs a Google account "
-     "for this, and for the portfolio."),
+    ("Nothing installed beforehand, and this matters",
+     "We install everything together in Session 1 from a USB stick, so a slow "
+     "connection cannot stop the first morning. Please do not install Python "
+     "at home first: the whole class runs one fixed version, and a laptop "
+     "carrying a different one produces errors nobody else in the room can "
+     "reproduce and that cannot be fixed during a session. Every piece of "
+     "software we use is named in the next section."),
+    ("Two free accounts, made in Session 1",
+     "A Google account, for the browser fallback, and a GitHub account, for "
+     "the portfolio. Both are free and both are set up in the room. A student "
+     "under thirteen needs a parent to make the GitHub one."),
     ("A notebook and a pen",
      "Several things in this track are worked on paper first, including the "
      "neuron in Week 7. That is deliberate."),
@@ -412,6 +445,130 @@ KIT = [
      "Every dataset is handed out on the first day as well as being "
      "downloadable. The internet in the room is not a dependency for any "
      "session."),
+]
+
+# ------------------------------------------------------------------- stack
+# Every tool named, with a version policy, because "we will use Python" is
+# not something a parent can check and not something a student can prepare
+# for. All of it is free, none of it expires, and none of it needs a
+# subscription or a card.
+#
+# ONE fixed version for the whole class is the single most important line
+# here. Compiled packages are tied to the Python minor version, so a student
+# who installs a different one at home gets an error nobody else in the room
+# can reproduce and there is no fix available during a session. The rule
+# that follows from that is in the kit list: do not install anything before
+# Week 1.
+STACK = [
+    ("Python", "The language. One version is fixed for the whole class and "
+                "every laptop gets that one, so an error on your screen is "
+                "an error the person next to you can also read."),
+    ("Anaconda",
+     "The installer that puts Python and everything below on a laptop in one "
+     "go, with nothing left to configure. It runs from the USB stick we "
+     "bring, so the room's internet cannot stop the first session. About 5 "
+     "GB once installed."),
+    ("Jupyter Notebook",
+     "Where all the work happens: you type a few lines, run them, and see "
+     "the answer or the chart underneath. A notebook is also the thing you "
+     "submit, because it shows the working as well as the result."),
+    ("pandas",
+     "Tables in Python. Everything you can do to a spreadsheet, written down "
+     "so it runs again tomorrow on a file ten times the size."),
+    ("matplotlib",
+     "The charts. Line, bar, histogram and scatter, with the titles and the "
+     "axis labels that make a chart mean something."),
+    ("scikit-learn",
+     "The models. Regression, nearest neighbours, decision trees, clustering "
+     "and the small neural network, all in the same three lines of code: fit, "
+     "predict, score."),
+    ("Google Colab",
+     "The fallback. The same notebooks run in a browser with nothing "
+     "installed, which covers a laptop that is too old or too locked down "
+     "for the installer. Needs a free Google account."),
+    ("GitHub",
+     "The portfolio. A free account, and each finished piece of work is "
+     "pushed there as a public link the student keeps and can put on an "
+     "application."),
+]
+
+# ---------------------------------------------------------------- the data
+# Named, because "relevant datasets" is the question every serious parent
+# and every serious student asks next, and because the answer determines
+# whether the room needs internet.
+DATA = [
+    ("Your own class, from Week 1",
+     "Twelve questions everybody answers in the first session: hours of "
+     "sleep, distance to school, subject combination, screen time, how you "
+     "travel, and so on. About twenty-five rows, and every student is one of "
+     "them, which is why this is the dataset the room argues about. Used in "
+     "Weeks 2, 3, 4 and 7. No names on it, and it is never published to "
+     "anybody's portfolio."),
+    ("Data that arrives inside the software",
+     "Handwritten digits, house prices, penguin body measurements and a few "
+     "others are installed along with scikit-learn, so one line of code loads "
+     "them and nothing is downloaded. These are the standard teaching "
+     "datasets used in universities, which is deliberate: a student who meets "
+     "them here will meet them again next year."),
+    ("Ugandan open data, on the USB stick",
+     "Health facility locations, population and school enrolment by district, "
+     "and a rainfall series. All of it is published free by public bodies and "
+     "humanitarian data services, downloaded before the track starts and "
+     "handed out on day one. Working on data about places students know is "
+     "worth more than a tidier dataset about somewhere they do not."),
+    ("Data the student collects for the project",
+     "Boda fares against distance, second-hand phone prices against their "
+     "specifications, match results, a market's prices over three weeks. "
+     "Forty rows gathered by hand in a notebook is plenty for Week 8, and a "
+     "student defends their own data far better than anything handed to "
+     "them."),
+    ("Kaggle, for after the track",
+     "Thousands of free public datasets and beginner competitions. Week 8 "
+     "shows how to enter one, and it is where a student who wants to keep "
+     "going finds their next dataset."),
+]
+
+# Project examples. Every one is (question, where the data comes from),
+# because a project idea without a dataset behind it is a wish. These are
+# examples to choose from or to argue with, not a fixed list.
+PROJECTS = [
+    ("Does more sleep go with better marks?",
+     "The class survey, plus your own marks for the last three terms."),
+    ("What is a second-hand phone worth, given its age, memory and screen?",
+     "Forty listings you copy from an online marketplace into a spreadsheet."),
+    ("Can you predict a boda fare from the distance and the time of day?",
+     "Fares you record yourself for two weeks, with the distance from a maps "
+     "app."),
+    ("Which subject combinations go together in your school, and why?",
+     "Subject choices for your year, with no names attached."),
+    ("Can a computer read a handwritten digit?",
+     "The handwritten digit images that arrive with scikit-learn."),
+    ("Does rainfall predict the price of tomatoes in your market?",
+     "The rainfall series on the USB stick, and prices you record weekly."),
+    ("Which districts are furthest from a health facility?",
+     "The health facility and population data on the USB stick."),
+    ("Can you tell a real message from a scam message?",
+     "A public collection of scam and ordinary text messages, on the stick."),
+    ("Does a footballer's minutes played predict their goals?",
+     "A season of public match data for a league you follow."),
+]
+
+# What a project has to satisfy to be approved in Week 7. Practical, because
+# the commonest way a first project fails is a question that no number can
+# answer, or data that turns out not to exist.
+PROJECT_RULES = [
+    "Your question must have a number or a category as its answer. "
+    "“Is machine learning useful in farming” is an essay; "
+    "“can I predict maize yield from rainfall” is a project.",
+    "The data must exist before you commit to the question. You profile it "
+    "in Week 7 with the six commands from Week 3, in front of the "
+    "instructor.",
+    "About two hundred rows if you download it, or forty if you collect it "
+    "yourself. Below that, nothing you find will hold up.",
+    "No personal information about anybody who has not agreed to be in it, "
+    "and no names in anything you publish.",
+    "You must be able to explain every line you submit, including any line "
+    "an AI tool wrote for you.",
 ]
 
 # ---------------------------------------------------------------- policies
@@ -435,6 +592,13 @@ POLICIES = [
      "no school ID numbers, no photographs of other students without asking. "
      "Datasets are public and contain no personal information about anybody "
      "in the room."),
+    ("How much work there is at home",
+     "Fifteen to twenty minutes after most sessions, which is one small "
+     "exercise and is listed in the week-by-week table. Three weeks are "
+     "heavier because a marked piece is due: Week 4, Week 6 and Week 8 need "
+     "about two hours each at home. Over the whole track that is roughly ten "
+     "hours outside the room, and a student who does none of it will still "
+     "pass and will get noticeably less out of it."),
     ("Screens and breaks",
      "Every session has a fifteen-minute break away from screens, and no "
      "teaching block runs longer than twenty-five minutes."),
@@ -480,8 +644,9 @@ LIMITS = [
 NEXT = [
     ("If they want more machine learning",
      "Stage 15 of the roadmap: computer vision, language models, "
-     "reinforcement learning. The public roadmap.sh Machine Learning path "
-     "lists them in order and is free."),
+     "reinforcement learning. Kaggle Learn and Google's machine learning "
+     "crash course both cover the next step for nothing, and both assume "
+     "exactly what this track leaves a student with."),
     ("If they are heading for university computing",
      "This track covers roughly the practical half of a first-year "
      "introduction to programming and data. Keep the portfolio and keep "

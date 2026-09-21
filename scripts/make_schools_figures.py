@@ -178,9 +178,12 @@ def fig_roadmap():
         if hx > 15.0:
             raise SystemExit("legend row %d is %.2f wide, over the figure"
                              % (ri + 1, hx))
+    # Reads left to right, top to bottom, and each card lists the three
+    # things taught inside it. Stated on the figure because the figure
+    # travels on its own: it goes into the slide deck and into the parents'
+    # WhatsApp group without the caption that explains it.
     attr = ax.text(14.95, 7.94,
-                   "structure follows the roadmap.sh Machine Learning "
-                   "roadmap",
+                   "read left to right - each card lists what you learn in it",
                    ha="right", va="center", fontsize=FS_WHEN, color=MUTED,
                    style="italic")
 
