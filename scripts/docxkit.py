@@ -261,7 +261,12 @@ def table(doc, headers, rows, weights, font=8.5, hdr_font=8.5,
     return tbl
 
 
-def callout(doc, label, text, colour_hex=MID_H, fill=None):
+def callout(doc, label, text, colour_hex=MID_H, fill=None,
+            label_size=9.5, text_size=10.0):
+    """label_size and text_size exist so a caller working to a
+    declared type scale can pass its own values. The defaults are
+    the sizes this helper always used, so documents built before
+    they were added are unchanged."""
     total_w = usable_width(doc)
     tbl = doc.add_table(rows=1, cols=1)
     tbl.autofit = False
@@ -286,7 +291,7 @@ def callout(doc, label, text, colour_hex=MID_H, fill=None):
     p.paragraph_format.space_after = Pt(3)
     r = p.add_run(label)
     r.font.name = FONT
-    r.font.size = Pt(9.5)
+    r.font.size = Pt(label_size)
     r.bold = True
     r.font.color.rgb = RGBColor.from_string(colour_hex)
     p2 = c.add_paragraph()
@@ -294,7 +299,7 @@ def callout(doc, label, text, colour_hex=MID_H, fill=None):
     p2.paragraph_format.line_spacing = 1.12
     r2 = p2.add_run(text)
     r2.font.name = FONT
-    r2.font.size = Pt(10)
+    r2.font.size = Pt(text_size)
     spacer(doc, 8)
     return tbl
 
@@ -320,7 +325,7 @@ def toc(doc, levels="1-2"):
     return p
 
 
-def _field(paragraph, code):
+def _field(paragraph, code, size=8.0):
     r = paragraph.add_run()
     f1 = OxmlElement("w:fldChar"); f1.set(qn("w:fldCharType"), "begin")
     r._r.append(f1)
@@ -329,18 +334,20 @@ def _field(paragraph, code):
     f2 = OxmlElement("w:fldChar"); f2.set(qn("w:fldCharType"), "end")
     r._r.append(f2)
     r.font.name = FONT
-    r.font.size = Pt(8)
+    r.font.size = Pt(size)
     r.font.color.rgb = GREY
 
 
-def header_footer(doc, header_text):
+def header_footer(doc, header_text, size=8.0):
+    """size defaults to 8pt, which is what every existing document
+    uses. A document with a 9pt print floor passes 9."""
     sec = doc.sections[0]
     hp = sec.header.paragraphs[0]
     hp.text = ""
     hp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     r = hp.add_run(header_text)
     r.font.name = FONT
-    r.font.size = Pt(8)
+    r.font.size = Pt(size)
     r.font.color.rgb = GREY
     _border(hp, "bottom", "B4C6E7", 4)
 
@@ -348,11 +355,11 @@ def header_footer(doc, header_text):
     fp.text = ""
     fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = fp.add_run("Page ")
-    r.font.name = FONT; r.font.size = Pt(8); r.font.color.rgb = GREY
-    _field(fp, "PAGE")
+    r.font.name = FONT; r.font.size = Pt(size); r.font.color.rgb = GREY
+    _field(fp, "PAGE", size=size)
     r = fp.add_run(" of ")
-    r.font.name = FONT; r.font.size = Pt(8); r.font.color.rgb = GREY
-    _field(fp, "NUMPAGES")
+    r.font.name = FONT; r.font.size = Pt(size); r.font.color.rgb = GREY
+    _field(fp, "NUMPAGES", size=size)
 
 
 def first_page_different(doc):

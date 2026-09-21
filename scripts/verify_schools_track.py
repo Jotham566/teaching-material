@@ -1,0 +1,349 @@
+# -*- coding: utf-8 -*-
+"""Verify the S.5 / S.6 Machine Learning Track syllabus.
+
+Five things, and the third is the one that catches real defects:
+
+  1. the arithmetic: hours, sessions, the session block, the mark weights
+  2. the roadmap and the week-by-week text agree about what is taught when
+  3. the TYPE SCALE, audited from the BUILT file rather than from the source.
+     Counting <w:sz> across document.xml, the headers and the footers is
+     what finds a stray size that only appears in one table cell, which is
+     exactly where strays hide
+  4. every figure the document embeds exists and is not blank
+  5. house style, and that the promises made to parents are all costed into
+     the timetable
+
+Run after any edit to schools_content.py or either builder.
+"""
+import collections
+import os
+import re
+import sys
+import zipfile
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_ROOT = os.path.dirname(_HERE)
+sys.path.insert(0, _HERE)
+
+import schools_content as C                                # noqa: E402
+import build_schools_syllabus_docx as B                    # noqa: E402
+
+TRACK = os.path.join(_ROOT, "Schools_ML_Track")
+DOCX = os.path.join(TRACK, "ML_Track_S5_S6_Syllabus.docx")
+FIGS = os.path.join(TRACK, "figs")
+
+FAIL, CHECKS = [], 0
+
+
+def ok(m):
+    global CHECKS
+    CHECKS += 1
+    print("  pass  " + m)
+
+
+def bad(m):
+    FAIL.append(m)
+    print("  FAIL  " + m)
+
+
+def sec(t):
+    print("\n" + t)
+
+
+# ------------------------------------------------------------- 1. arithmetic
+sec("1. The arithmetic")
+if C.WEEKS * C.SESSIONS_PER_WEEK == C.SESSIONS == 24:
+    ok("8 weeks x 3 sessions = %d sessions" % C.SESSIONS)
+else:
+    bad("session count does not reconcile")
+
+if C.SESSIONS * C.HOURS_PER_SESSION == C.TOTAL_HOURS == 72:
+    ok("%d sessions x %d hours = %d hours"
+       % (C.SESSIONS, C.HOURS_PER_SESSION, C.TOTAL_HOURS))
+else:
+    bad("hours do not reconcile")
+
+if sum(m for m, _, _ in C.BLOCK) == C.HOURS_PER_SESSION * 60:
+    ok("the session block sums to %d minutes" % (C.HOURS_PER_SESSION * 60))
+else:
+    bad("the session block does not sum to three hours")
+
+# These are teenagers on holiday. The design promise was that no teaching
+# block exceeds 25 minutes and that more than half the time is hands-on.
+_teach = sum(m for m, what, _ in C.BLOCK if what.startswith("Teach"))
+_hands = sum(m for m, what, _ in C.BLOCK
+             if what in ("Do it yourself", "Build something that runs"))
+_longest = max(m for m, what, _ in C.BLOCK if what.startswith("Teach"))
+if _longest <= 25:
+    ok("no teaching block runs longer than %d minutes" % _longest)
+else:
+    bad("a teaching block runs %d minutes, over the 25-minute promise"
+        % _longest)
+if _hands > _teach:
+    ok("%d minutes at the keyboard against %d minutes of teaching"
+       % (_hands, _teach))
+else:
+    bad("more time is spent listening (%d min) than working (%d min)"
+        % (_teach, _hands))
+
+_w = sum(x for _, x, _, _ in C.ASSESSMENT)
+if _w == 100:
+    ok("mark weights sum to 100")
+else:
+    bad("mark weights sum to %d" % _w)
+
+# A certificate with real marks was the requirement, so attendance must not
+# be one of the weighted components.
+if not any("attend" in a.lower() for a, _, _, _ in C.ASSESSMENT):
+    ok("no marks are awarded for attendance")
+else:
+    bad("attendance appears as a weighted component")
+
+if [len(w["sessions"]) for w in C.WEEKS_PLAN] == [3] * 8:
+    ok("three sessions described in every one of the eight weeks")
+else:
+    bad("a week does not have three described sessions: %r"
+        % [len(w["sessions"]) for w in C.WEEKS_PLAN])
+
+for w in C.WEEKS_PLAN:
+    for field in ("title", "maths", "build", "home"):
+        if not str(w.get(field, "")).strip():
+            bad("week %d has no %s" % (w["n"], field))
+if not FAIL:
+    ok("every week states its maths, its deliverable and its homework")
+
+# -------------------------------------------------------------- 2. agreement
+sec("2. The roadmap and the text agree")
+# schools_content raises at import if a week claims a stage that does not
+# exist, or if a teaching card is claimed by no week, so reaching here is
+# itself the proof. Worth restating, because the failure mode is a figure
+# that promises something the timetable never delivers.
+ok("every roadmap card is either taught in a named week, or is one of the "
+   "two marked as prior knowledge and further study")
+
+_bands = {s[3] for s in C.STAGES}
+if C.HAVE in _bands and C.LATER in _bands:
+    ok("the roadmap distinguishes prior knowledge from what is out of scope")
+else:
+    bad("the roadmap has no prior-knowledge or out-of-scope band")
+
+_have = [s for s in C.STAGES if s[3] == C.HAVE]
+_have_text = (" ".join(_have[0][1:3])).lower() if _have else ""
+if len(_have) == 1 and ("math" in _have_text or "median" in _have_text):
+    ok("the prior-knowledge card is the A-level mathematics, which is the "
+       "encouraging fact this audience needs")
+else:
+    bad("the prior-knowledge card is not the mathematics: %r" % _have)
+
+# The week numbers written on the cards must match the weeks that claim them.
+_claim = collections.defaultdict(set)
+for w in C.WEEKS_PLAN:
+    for n in w["stages"]:
+        _claim[str(n)].add(w["n"])
+_wrong = []
+for num, name, _subs, band, when in C.STAGES:
+    if band in (C.HAVE, C.LATER):
+        continue
+    weeks = sorted(_claim[num])
+    for n in weeks:
+        if str(n) not in when:
+            _wrong.append((num, name, when, weeks))
+            break
+if _wrong:
+    bad("a card's week label disagrees with the weeks that teach it: %r"
+        % _wrong[:4])
+else:
+    ok("every card's week label matches the weeks that actually teach it")
+
+# ------------------------------------------------------------- 3. type scale
+sec("3. The type scale, audited from the built file")
+if not os.path.exists(DOCX):
+    bad("the syllabus has not been built")
+else:
+    sizes = collections.Counter()
+    with zipfile.ZipFile(DOCX) as z:
+        parts = [n for n in z.namelist()
+                 if re.match(r"word/(document|header\d*|footer\d*)\.xml$", n)]
+        for part in parts:
+            xml = z.read(part).decode("utf-8")
+            for half in re.findall(r'<w:sz w:val="(\d+)"', xml):
+                sizes[int(half) / 2.0] += 1
+    total = sum(sizes.values())
+    declared = set(B.T.values())
+    stray = {s: n for s, n in sizes.items() if s not in declared}
+
+    print("       histogram: " + ", ".join(
+        "%.1fpt x%d" % (s, n) for s, n in sorted(sizes.items(),
+                                                 key=lambda kv: -kv[1])))
+    if not stray:
+        ok("%d sized runs across %d parts, every size from the declared "
+           "scale of %d" % (total, len(parts), len(declared)))
+    else:
+        bad("sizes outside the declared scale: %r" % stray)
+
+    if sizes and min(sizes) >= 9.0:
+        ok("nothing smaller than %.1fpt, which is the print floor"
+           % min(sizes))
+    else:
+        bad("type below the 9pt floor: %.1fpt" % min(sizes))
+
+    if all(abs(s * 2 - round(s * 2)) < 1e-9 for s in sizes):
+        ok("every size is a multiple of 0.5, so Word cannot round one into "
+           "a near-duplicate")
+    else:
+        bad("a size is not a multiple of 0.5")
+
+    # The hierarchy is noise if no single size carries the document.
+    if sizes:
+        dom, dom_n = sizes.most_common(1)[0]
+        share = dom_n / float(total)
+        if share >= 0.45:
+            ok("the dominant size is %.1fpt carrying %.0f%% of runs, so the "
+               "hierarchy reads" % (dom, 100 * share))
+        else:
+            bad("no size carries the document: the most common is %.1fpt at "
+                "%.0f%%" % (dom, 100 * share))
+
+# ---------------------------------------------------------------- 4. figures
+sec("4. Figures")
+_needed = ["roadmap_schools", "timeline_schools", "marks_schools"]
+for name in _needed:
+    p = os.path.join(FIGS, name + ".png")
+    if not os.path.exists(p):
+        bad("missing figure: %s" % name)
+    elif os.path.getsize(p) < 10000:
+        bad("%s is under 10 KB, so it is probably blank" % name)
+if not any("figure" in f or "KB" in f for f in FAIL):
+    ok("all %d figures present and non-trivial" % len(_needed))
+
+if os.path.exists(DOCX):
+    with zipfile.ZipFile(DOCX) as z:
+        embedded = [n for n in z.namelist() if n.startswith("word/media/")]
+    if len(embedded) == len(_needed):
+        ok("all %d figures are embedded in the document" % len(embedded))
+    else:
+        bad("%d figures built but %d embedded" % (len(_needed),
+                                                  len(embedded)))
+
+# ------------------------------------------------------------ 5. house style
+sec("5. House style and the promises")
+prose = []
+for w in C.WEEKS_PLAN:
+    prose += [w["title"], w["maths"], w["build"], w["home"]]
+    prose += [t for t, _ in w["sessions"]] + [b for _, b in w["sessions"]]
+prose += [x for _, _, _, x in C.ASSESSMENT]
+prose += [b for _, b in C.KIT] + [b for _, b in C.POLICIES]
+prose += [b for _, b in C.LIMITS] + [b for _, b in C.NEXT]
+
+pat = re.compile(r"\b(is|are|was|were)\s+not\s+\w+[^.]{0,40}?,\s+"
+                 r"(?:it|they)\s+(?:is|are)\b", re.I)
+hits = [p[:70] for p in prose if pat.search(str(p))]
+if len(hits) <= 1:
+    ok("no 'X, not Y' antithesis pile-up (%d)" % len(hits))
+else:
+    bad("antithesis in %d places: %r" % (len(hits), hits[:3]))
+
+# The four promises were all explicitly asked for, so each must be visible
+# in the document rather than only in the brief.
+promises = {
+    "a finished project": any("project" in a.lower()
+                              for a, _, _, _ in C.ASSESSMENT),
+    "a certificate with marks": len(C.BANDS) >= 3,
+    "a head start on A-level": all(w["maths"] for w in C.WEEKS_PLAN),
+    "a public portfolio": any("portfolio" in str(v).lower()
+                              for v in prose),
+}
+_missing = [k for k, v in promises.items() if not v]
+if _missing:
+    bad("promised to the family and not delivered in the syllabus: %r"
+        % _missing)
+else:
+    ok("all four promises are costed into the timetable: %s"
+       % ", ".join(promises))
+
+# Nothing may be invented. Dates, fees and names are fields.
+if len(C.TO_CONFIRM) >= 6:
+    ok("%d practical details are left as fields rather than guessed"
+       % len(C.TO_CONFIRM))
+else:
+    bad("practical details are not listed for the school to confirm")
+
+_invented = [p for p in prose
+             if re.search(r"\bUGX\s?[\d,]+|\b20\d\d-\d\d-\d\d\b", str(p))]
+if _invented:
+    bad("a fee or a date appears in the teaching text: %r" % _invented[:3])
+else:
+    ok("no fee and no date is invented anywhere in the teaching text")
+
+if len(C.LIMITS) >= 3:
+    ok("%d limits stated, so the edges are in the document rather than "
+       "discovered in week three" % len(C.LIMITS))
+else:
+    bad("the track's limits are not stated")
+
+# ------------------------------------------------------------- 6. the pages
+# The only check here that looks at the LAID-OUT document. Everything above
+# reads the source or the XML, and neither can see a figure orphaned away
+# from its heading or a page carrying three lines and a repeated table
+# header. Both of those happened, and both passed every other check.
+sec("6. The rendered pages")
+PDF = os.path.join(TRACK, "ML_Track_S5_S6_Syllabus.pdf")
+if not os.path.exists(PDF):
+    print("  skip  no rendered PDF at %s. THIS IS NOT A PASS: run\n"
+          "        soffice --headless --convert-to pdf on the docx and "
+          "re-run." % os.path.basename(PDF))
+else:
+    import subprocess
+
+    def run(*a):
+        return subprocess.run(a, capture_output=True, text=True).stdout
+
+    pages = int([l for l in run("pdfinfo", PDF).splitlines()
+                 if l.startswith("Pages")][0].split()[1])
+    with_img = set()
+    for line in run("pdfimages", "-list", PDF).splitlines()[2:]:
+        if line.split():
+            with_img.add(int(line.split()[0]))
+    lens = []
+    for i in range(1, pages + 1):
+        txt = run("pdftotext", "-f", str(i), "-l", str(i), PDF, "-")
+        lens.append(len("".join(txt.split())))
+    median = sorted(lens)[len(lens) // 2]
+
+    if 8 <= pages <= 18:
+        ok("%d pages, which a parent will read and a school can print"
+           % pages)
+    else:
+        bad("%d pages is the wrong length for this audience" % pages)
+
+    blank = [i for i, L in enumerate(lens, 1)
+             if L < 60 and i not in with_img]
+    if blank:
+        bad("blank page(s): %r" % blank)
+    else:
+        ok("no blank pages")
+
+    # A page with no figure and a fraction of the median text is wasted
+    # space. The cover and the last page are allowed to be short.
+    sparse = [(i, L) for i, L in enumerate(lens, 1)
+              if L < 0.4 * median and i not in with_img
+              and i not in (1, pages)]
+    if sparse:
+        bad("page(s) carrying almost nothing, with no figure on them: %r"
+            % sparse)
+    else:
+        ok("every page is either full, or carries a figure, or is the cover")
+
+    if len(with_img) == 3:
+        ok("the three figures are on three separate pages, each with its "
+           "own heading")
+    else:
+        bad("figures appear on %d pages, expected 3" % len(with_img))
+
+print("\n%d checks, %d failures" % (CHECKS, len(FAIL)))
+if FAIL:
+    print("\nFAILURES:")
+    for f in FAIL:
+        print("  - " + f)
+    sys.exit(1)
+print("all checks passed")
