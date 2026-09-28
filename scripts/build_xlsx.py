@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Build the IUEA Semester 1 Master Teaching Plan workbook."""
 import sys
+import textwrap
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -172,9 +173,9 @@ for label, txt in [
     ("Week 5 holiday", "Friday 9 October 2026 is Uganda Independence Day and falls in Week 5. Both Friday cohorts lose "
                        "the most important pandas session of the semester. Either a make-up slot is approved or the "
                        "asynchronous mitigation is published by 7 October. Decide in Week 2. See Risk R1."),
-    ("Marking support", "Fully human marking of this design is about 246 hours a semester, roughly 16 hours a week. "
-                        "The auto-grading stack takes it to about 120 hours, roughly 8 hours a week. Still worth "
-                        "quantifying in a Week 1 request. See the 'Marking Load' sheet and Risk R8."),
+    ("Marking support", "Automatic grading is essential for one lecturer. The workload figures are planning assumptions, "
+                        "not measured savings. Pilot complete packets, record inference time and unresolved cases, "
+                        "and confirm operational capacity before releasing each assessment. See 'Marking Load' and Risk R8."),
     ("Assessment records", "There is no institutional LMS, so quiz responses and the gradebook will sit in a "
                            "personal Google account. Get a written Faculty position on ownership and data "
                            "protection, and export everything to the course share as CSV at the end of every "
@@ -283,7 +284,7 @@ def structure_with_cp(wk, structure):
     return (structure + "\n" + B + "LAST FIVE MINUTES — " + QUIZZES[wk][0] +
             ". Open the Form, project the QR, give it exactly five minutes, close it, and show the "
             "cohort's score distribution before they leave. Worth 1%, best 10 of 12 count, no resits. "
-            "If the network is down, convert it to a 48-hour link and say so out loud.")
+            "If the network is down, convert it to a 24-hour link and say so out loud.")
 
 
 ws = wb.create_sheet("Master Plan (Shared Core)")
@@ -433,7 +434,7 @@ ws = wb.create_sheet("Assessment")
 ws.sheet_properties.tabColor = "C55A11"
 title_block(ws, "Semester 1 assessment design",
             "Entirely practical, continuous and project-based. No traditional written examination. "
-            "65% of the mark is individual; 35% is machine-marked.", 6)
+            "65% of the mark is individual; automatic grading coverage is validated assessment by assessment.", 6)
 r = 4
 ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
 c = ws.cell(r, 1, "MODEL 1 — RECOMMENDED"); c.font = SEC_FONT; c.fill = SEC_FILL
@@ -460,14 +461,14 @@ write_row(ws, r, ["Of which individual", "", "",
 ws.cell(r, 4).number_format = "0%"; ws.cell(r, 4).alignment = TOPC
 r += 1
 write_row(ws, r, ["Of which team", "", "", f"=D{first+2}+D{first+5}", "",
-                  "Team marks are moderated by the individual viva and the contribution log."],
+                  "Shared project marks and individual typed-defence marks remain separate."],
           fill=AMBER, bold_first=True, heights=26)
 ws.cell(r, 4).number_format = "0%"; ws.cell(r, 4).alignment = TOPC
 r += 1
-write_row(ws, r, ["Of which machine-marked", "", "",
-                  f"=D{first}+D{first+1}+D{first+3}*0.4+D{first+4}*0.45", "",
-                  "Weekly quizzes and weekly challenges in full, plus 40% of Test 1 and 45% of Test 2. Held "
-                  "deliberately below half of the course mark — see the Assessment Tech Stack sheet."],
+write_row(ws, r, ["Automatic grading coverage", "", "",
+                  "Pending validation", "",
+                  "Executed checks and local evidence grading require assessment-specific validation. "
+                  "There is no fixed cap or verified percentage for the whole semester."],
           fill=LIGHT, bold_first=True, heights=30)
 ws.cell(r, 4).number_format = "0%"; ws.cell(r, 4).alignment = TOPC
 r += 3
@@ -501,14 +502,14 @@ notes = [
   "fixed at Weeks 7 and 14, two tests are available and they should examine different things: Week 7 certifies data "
   "literacy (can you investigate a dataset?) and Week 14 certifies end-to-end capability (can you build and defend a "
   "model?). Splitting them also means a student who struggles in October is not sunk."),
- ("Why the tests run offline", "It makes the AI policy enforceable without surveillance. AI assistance is permitted and "
+ ("Why the tests run offline", "An invigilated lab and approved-materials rules support the unaided assessment. Offline access alone does not block a local AI model. AI assistance is permitted and "
   "actively taught in coursework, where students explain and defend their work; it is excluded from the two tests, "
   "which certify unaided capability. Students are told the reasoning in Week 6, not on the day."),
  ("Why 65% individual", "With teams of 4–5 and up to 22 teams in Cohort A, a team-heavy mark scheme would let a weak "
   "student pass on a strong teammate's work. Twelve individual quizzes, two individual tests, individually "
-  "marked weekly challenges, and an individual viva make the team mark safe to award."),
+  "marked weekly challenges, and individual typed defence and reflection provide individual evidence alongside shared project marks."),
  ("Why continuous assessment", "Twelve auto-graded weekly quizzes plus eleven auto-graded weekly submissions mean "
-  "40% of the mark accumulates steadily rather than landing in two large events. Students get feedback in minutes, "
+  "20% of the mark comes from these recurring components. Quiz feedback is immediate; local assignment grading runs after collection, "
   "and the lecturer gets a weekly engagement signal across ~195 students that is otherwise invisible until the "
   "first test. See the 'Assessment Tech Stack' and 'Marking Load' sheets for how this is affordable for one person."),
  ("Why nothing rewards accuracy alone", "Across all six rubrics, method, reasoning, validation and interpretation carry "
@@ -553,10 +554,9 @@ for name, crits in RUBRICS.items():
     ws.cell(r, 2).font = BODY_B; ws.cell(r, 2).alignment = TOPC
     r += 2
 ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
-c = ws.cell(r, 1, "Standing marker rule across every rubric: a student is marked on what they can explain. If a "
-                  "submission contains work the student cannot account for in the viva or in the written reasoning "
-                  "section, the mark is reduced to the portion they can explain. This is stated in the syllabus and "
-                  "applied consistently, and it is what makes a permissive AI policy workable.")
+c = ws.cell(r, 1, "Apply the published execution, evidence and explanation criteria. Missing justification affects its "
+                  "specified criterion; there is no additional whole-submission penalty based on a live answer. "
+                  "Individual typed defence and reflection are separate from shared project marks. Live and peer feedback are formative.")
 c.font = BODY_B; c.alignment = TOP; c.fill = PatternFill("solid", fgColor=AMBER)
 ws.row_dimensions[r].height = 48
 ws.freeze_panes = "A4"
@@ -628,11 +628,10 @@ for row in TECH_STACK:
     r += 1
 r += 1
 ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
-c = ws.cell(r, 1, "Design principle: auto-grading is used on the HIGH-VOLUME, LOW-STAKES work, and human marking is "
-                  "concentrated on the reasoning. Machine-marked marks total 35% of the course (quizzes 10, "
-                  "challenges 10, 40% of Test 1, 45% of Test 2), and that share is capped deliberately. The 25% "
-                  "project, the 10% viva and the reasoning halves of both tests — 65% of the course — assess "
-                  "engineering judgement, and no auto-grader can read them.")
+c = ws.cell(r, 1, "Automatic grading is central to this one-teacher design. Execute numerical work independently and "
+                  "use calibrated local models for supported reasoning evidence. Validate chart, repository and presentation "
+                  "criteria separately. A draft assessment stays held until its complete evidence route passes; do not "
+                  "substitute an unsupported automatic mark or promise a fixed manual-marking workload.")
 c.font = BODY_B; c.alignment = TOP; c.fill = PatternFill("solid", fgColor=LIGHT)
 ws.row_dimensions[r].height = 46
 ws.freeze_panes = "B5"
@@ -649,20 +648,20 @@ header_row(ws, 4, ["Item", "Volume", "Min. each", "Hours if all human", "Hours w
 r = 5
 first_ml = r
 for item, vol, mins, before, after, how in MARKING_LOAD:
-    fill = GREEN if after < before else (BAND if r % 2 == 0 else None)
+    fill = GREEN if after is not None and after < before else (BAND if r % 2 == 0 else None)
     write_row(ws, r, [item, vol, mins, before, after, how], fill=fill, bold_first=True, heights=34)
     for col in (3, 4, 5):
         ws.cell(r, col).alignment = TOPC
     r += 1
 last_ml = r - 1
 write_row(ws, r, ["TOTAL (hours per semester)", "", "", f"=SUM(D{first_ml}:D{last_ml})",
-                  f"=SUM(E{first_ml}:E{last_ml})", "Roughly 16 hours a week becomes roughly 8."],
+                  f'=IF(COUNT(E{first_ml}:E{last_ml})=ROWS(E{first_ml}:E{last_ml}),SUM(E{first_ml}:E{last_ml}),"Pilot pending")', "Blank estimates require measurement during the pilot."],
           fill=LIGHT, bold_first=True, heights=20)
 for col in (4, 5):
     ws.cell(r, col).font = BODY_B; ws.cell(r, col).alignment = TOPC
 r += 1
-write_row(ws, r, ["Hours saved per semester", "", "", "", f"=D{r-1}-E{r-1}",
-                  "And the saving repeats every semester, while the authoring cost does not."],
+write_row(ws, r, ["Hours saved per semester", "", "", "", f'=IF(ISNUMBER(E{r-1}),D{r-1}-E{r-1},"Pilot pending")',
+                  "Earlier fixed savings estimates were not measured."],
           fill=GREEN, bold_first=True, heights=20)
 ws.cell(r, 5).font = BODY_B; ws.cell(r, 5).alignment = TOPC
 r += 2
@@ -672,13 +671,9 @@ c.font = BODY_B; c.alignment = TOP; c.fill = PatternFill("solid", fgColor=AMBER)
 ws.row_dimensions[r].height = 32
 r += 2
 ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
-c = ws.cell(r, 1, "The honest reading of this sheet: the QR quizzes are NOT where the saving comes from — they "
-                  "cost nothing to mark, but they were never the problem. The problem was ~2,145 weekly practical "
-                  "submissions, and it is Layer B, the notebook auto-grader, that removes about 97 hours of it. "
-                  "The quizzes do something different and also valuable: they give students instant feedback, "
-                  "they give you a weekly engagement signal across ~195 students you cannot otherwise see, and they "
-                  "let assessment weight move away from work that is expensive to mark. Both are worth having. "
-                  "Only one of them fixes the workload.")
+c = ws.cell(r, 1, "Before values are illustrative workload estimates. Blank after values are deliberately unestimated. "
+                  "Measure successful automatic scoring, retries, access support and substantive exceptions in the pilot. "
+                  "The design aims to avoid routine manual marking; no fixed saving is promised before calibration.")
 c.font = BODY; c.alignment = TOP
 ws.row_dimensions[r].height = 62
 ws.freeze_panes = "B5"
@@ -688,13 +683,15 @@ ws.freeze_panes = "B5"
 # ==========================================================================
 ws = wb.create_sheet("Risk Register")
 ws.sheet_properties.tabColor = "C00000"
-title_block(ws, "Risk register", "Twelve delivery risks. R1, R2 and R3 require action in the first fortnight.", 6)
+title_block(ws, "Risk register", f"{len(RISKS)} delivery risks. R1, R2 and R3 require action in the first fortnight.", 6)
 header_row(ws, 4, ["ID", "Risk", "Likelihood", "Impact", "Mitigation", "Owner"],
            [7, 62, 14, 12, 96, 26])
 r = 5
 for rid, risk, lik, imp, mit, own in RISKS:
     fill = RED if imp == "High" else (AMBER if imp == "Medium" else None)
-    write_row(ws, r, [rid, risk, lik, imp, mit, own], fill=fill, bold_first=True, heights=72)
+    values = [rid, risk, lik, imp, mit, own]
+    lines = max(sum(max(1, len(textwrap.wrap(part, width=int(width * .9)))) for part in str(value).split("\n")) for value, width in zip(values, [7, 62, 14, 12, 96, 26]))
+    write_row(ws, r, values, fill=fill, bold_first=True, heights=max(72, 12 * lines + 12))
     ws.cell(r, 3).alignment = TOPC
     ws.cell(r, 4).alignment = TOPC
     r += 1

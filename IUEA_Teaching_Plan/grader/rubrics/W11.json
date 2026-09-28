@@ -1,0 +1,25 @@
+{
+  "id": "W11-2026.09",
+  "title": "Features and ablation",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Features",
+      "maximum": 7.0,
+      "description": "Feature dictionary defines inputs, units, transformations and availability at prediction time."
+    },
+    {
+      "id": "c2",
+      "title": "Ablation",
+      "maximum": 9.0,
+      "description": "Same-split comparison measures the contribution of proposed features without leakage."
+    },
+    {
+      "id": "c3",
+      "title": "Decision",
+      "maximum": 4.0,
+      "description": "Retain/drop decision follows observed evidence rather than assumed improvement."
+    }
+  ]
+}

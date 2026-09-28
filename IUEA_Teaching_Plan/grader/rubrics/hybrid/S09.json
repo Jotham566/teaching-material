@@ -1,0 +1,89 @@
+{
+  "id": "S09-2026.09-hybrid-r1",
+  "title": "Independent track: reconciliation and cleaning log",
+  "maximum": 50,
+  "deterministic_maximum": 50,
+  "assessment_maximum": 100,
+  "criteria": [
+    {
+      "id": "duplicates",
+      "parent_criterion": "c1",
+      "title": "Duplicates",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log explains that exact duplicate exported rows are removed to avoid double-counting. Otherwise award zero."
+    },
+    {
+      "id": "returns",
+      "parent_criterion": "c1",
+      "title": "Returns",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log explains that negative-quantity return rows are retained separately and deducted, rather than treated as errors or additional sales. Otherwise award zero."
+    },
+    {
+      "id": "currency",
+      "parent_criterion": "c1",
+      "title": "Currency",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log uses the documented 3780 UGX per USD for Imported appliances and explains that other prices are already UGX. Otherwise award zero."
+    },
+    {
+      "id": "discount",
+      "parent_criterion": "c1",
+      "title": "Discount",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log explains converting percentage discounts above one to fractions by dividing by 100. Otherwise award zero."
+    },
+    {
+      "id": "dates",
+      "parent_criterion": "c1",
+      "title": "Dates",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log explicitly interprets slash dates as day/month/year and standardises dates without changing which month an order belongs to. Otherwise award zero."
+    },
+    {
+      "id": "customers",
+      "parent_criterion": "c1",
+      "title": "Customers",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log keeps missing-customer walk-in orders in the sales population and applies the documented customer alias without inventing an identity. Otherwise award zero."
+    },
+    {
+      "id": "reconciliation",
+      "parent_criterion": "c2",
+      "title": "Reconciliation",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log compares the same 2025 delivered-order rep/month population and checks gross, returned and net amounts against SQL using a stated 1 UGX rounding tolerance for the clean-table report. Otherwise award zero."
+    },
+    {
+      "id": "rounding",
+      "parent_criterion": "c2",
+      "title": "Rounding",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log explains that raw USD prices rounded to cents cannot recover exact original UGX prices, so residual differences must be explained rather than overwritten to match SQL. Otherwise award zero."
+    },
+    {
+      "id": "raw",
+      "parent_criterion": "c3",
+      "title": "Raw",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log retains original raw inputs unchanged and documents the ordered cleaning steps. Otherwise award zero."
+    },
+    {
+      "id": "run",
+      "parent_criterion": "c3",
+      "title": "Run",
+      "maximum": 5,
+      "binary": true,
+      "description": "Award 5 if the written log names the required input files and gives a clean top-to-bottom run procedure that regenerates the report. Otherwise award zero."
+    }
+  ]
+}

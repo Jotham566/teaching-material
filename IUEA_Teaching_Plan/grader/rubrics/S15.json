@@ -1,0 +1,31 @@
+{
+  "id": "S15-2026.09",
+  "title": "Dashboard and presentation",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Model and measures",
+      "maximum": 35.0,
+      "description": "Relationships and delivered revenue/AOV use consistent populations; totals reconcile."
+    },
+    {
+      "id": "c2",
+      "title": "Dashboard",
+      "maximum": 25.0,
+      "description": "Purposeful visuals and filters communicate the main finding."
+    },
+    {
+      "id": "c3",
+      "title": "Recommendation",
+      "maximum": 25.0,
+      "description": "Decision includes evidence, conditions and a meaningful limitation."
+    },
+    {
+      "id": "c4",
+      "title": "Presentation",
+      "maximum": 15.0,
+      "description": "Slides and narration notes answer the question before methods."
+    }
+  ]
+}

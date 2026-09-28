@@ -1,0 +1,212 @@
+{
+  "W06": {
+    "maximum": 20,
+    "deterministic_maximum": 12,
+    "reasoning_maximum": 8.0,
+    "criterion_allocation": [
+      {
+        "task": "clean",
+        "marks": 5,
+        "criterion": "c1"
+      },
+      {
+        "task": "summary",
+        "marks": 5,
+        "criterion": "c2"
+      },
+      {
+        "task": "audit",
+        "marks": 2,
+        "criterion": "c2"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "W08": {
+    "maximum": 20,
+    "deterministic_maximum": 10,
+    "reasoning_maximum": 10.0,
+    "criterion_allocation": [
+      {
+        "task": "regression",
+        "marks": 7,
+        "criterion": "c1"
+      },
+      {
+        "task": "errors",
+        "marks": 3,
+        "criterion": "c1"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "W09": {
+    "maximum": 20,
+    "deterministic_maximum": 9,
+    "reasoning_maximum": 11.0,
+    "criterion_allocation": [
+      {
+        "task": "classification",
+        "marks": 9,
+        "criterion": "c1"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "W10": {
+    "maximum": 20,
+    "deterministic_maximum": 10,
+    "reasoning_maximum": 10.0,
+    "criterion_allocation": [
+      {
+        "task": "split",
+        "marks": 6,
+        "criterion": "c1"
+      },
+      {
+        "task": "regression",
+        "marks": 4,
+        "criterion": "c3"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "W11": {
+    "maximum": 20,
+    "deterministic_maximum": 10,
+    "reasoning_maximum": 10.0,
+    "criterion_allocation": [
+      {
+        "task": "features",
+        "marks": 5,
+        "criterion": "c1"
+      },
+      {
+        "task": "ablation",
+        "marks": 5,
+        "criterion": "c2"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "W12": {
+    "maximum": 20,
+    "deterministic_maximum": 8,
+    "reasoning_maximum": 12.0,
+    "criterion_allocation": [
+      {
+        "task": "selection",
+        "marks": 5,
+        "criterion": "c1"
+      },
+      {
+        "task": "errors",
+        "marks": 3,
+        "criterion": "c2"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "TEST1": {
+    "maximum": 100,
+    "deterministic_maximum": 52,
+    "reasoning_maximum": 48.0,
+    "criterion_allocation": [
+      {
+        "task": "summary",
+        "marks": 10,
+        "criterion": "c1"
+      },
+      {
+        "task": "clean",
+        "marks": 10,
+        "criterion": "c2"
+      },
+      {
+        "task": "charts",
+        "marks": 12,
+        "criterion": "c3"
+      },
+      {
+        "task": "findings",
+        "marks": 20,
+        "criterion": "c4"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "TEST2": {
+    "maximum": 100,
+    "deterministic_maximum": 30,
+    "reasoning_maximum": 70.0,
+    "criterion_allocation": [
+      {
+        "task": "split",
+        "marks": 10,
+        "criterion": "c2"
+      },
+      {
+        "task": "regression",
+        "marks": 10,
+        "criterion": "c3"
+      },
+      {
+        "task": "errors",
+        "marks": 10,
+        "criterion": "c4"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "DA_PROJECT": {
+    "maximum": 100,
+    "deterministic_maximum": 42,
+    "reasoning_maximum": 58.0,
+    "criterion_allocation": [
+      {
+        "task": "clean",
+        "marks": 10,
+        "criterion": "c2"
+      },
+      {
+        "task": "summary",
+        "marks": 10,
+        "criterion": "c3"
+      },
+      {
+        "task": "charts4",
+        "marks": 12,
+        "criterion": "c3"
+      },
+      {
+        "task": "findings",
+        "marks": 10,
+        "criterion": "c4"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  },
+  "ML_PROJECT": {
+    "maximum": 100,
+    "deterministic_maximum": 20,
+    "reasoning_maximum": 80.0,
+    "criterion_allocation": [
+      {
+        "task": "regression",
+        "marks": 10,
+        "criterion": "c3"
+      },
+      {
+        "task": "split",
+        "marks": 5,
+        "criterion": "c5"
+      },
+      {
+        "task": "errors",
+        "marks": 5,
+        "criterion": "c5"
+      }
+    ],
+    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+  }
+}

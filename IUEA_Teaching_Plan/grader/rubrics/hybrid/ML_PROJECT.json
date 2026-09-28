@@ -1,0 +1,51 @@
+{
+  "id": "ML_PROJECT-2026.09-hybrid-r1",
+  "title": "Engineering ML project",
+  "maximum": 80.0,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Problem definition",
+      "maximum": 15.0,
+      "description": "The engineering problem is real, specific and bounded. The ML task is correctly derived from it. The target variable is justified, not merely available. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c2",
+      "title": "Data understanding",
+      "maximum": 15.0,
+      "description": "Provenance, licence and collection method stated. Defects found and handled with justification. Limitations of the data acknowledged before any modelling. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c3",
+      "title": "Methodology",
+      "maximum": 10.0,
+      "description": "Appropriate models chosen and compared under one protocol. Pipeline used. Hyperparameters handled sensibly. Choices explained rather than defaulted to. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c4",
+      "title": "Engineering reasoning",
+      "maximum": 20.0,
+      "description": "Domain knowledge visibly enters the work through features, banding, metric choice or interpretation. The result is discussed as engineering, not as a score. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c5",
+      "title": "Validation",
+      "maximum": 5.0,
+      "description": "Correct train/test discipline, cross-validation with a reported spread, leakage explicitly checked and ruled out, metric justified against the cost of error. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c6",
+      "title": "Communication",
+      "maximum": 10.0,
+      "description": "The 2-page brief is readable by a non-specialist engineer. Charts answer questions and are captioned with findings. Uncertainty and limitations stated honestly. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c7",
+      "title": "Reproducibility & documentation",
+      "maximum": 5.0,
+      "description": "Repository runs from a clean clone. README complete. requirements.txt present. Seeds set. AI use declared. Contribution log present. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    }
+  ],
+  "assessment_maximum": 100,
+  "deterministic_maximum": 20
+}

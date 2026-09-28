@@ -147,7 +147,7 @@
   "deck": "CML3112 Week 4",
   "slide": 26,
   "title": "CHALLENGE",
-  "text": "what is actually in the file: One inspector's defect ratings run systematically about one grade harsher than everyone else's, on the same structures. Nobody will ever tell them that.\n\nTwo red herrings: one structure has genuinely severe cracking for a real reason (it is the oldest span), and crack widths look worse in the wet-season months because they were measured after rain.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
+  "text": "what is actually in the file: One inspector's defect ratings run systematically about one grade harsher than everyone else's, on the same structures. Nobody will ever tell them that.\n\nCompare span, crack width and inspector ratings before suggesting a cause. The fixture supports associations only.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
  },
  {
   "deck": "CML3112 Week 4",
@@ -163,13 +163,13 @@
  },
  {
   "deck": "CML3112 Week 4",
-  "slide": 33,
+  "slide": 35,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 4",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3112 Week 4",
-  "slide": 34,
+  "slide": 36,
   "title": "THE ONE THING TO REMEMBER",
   "text": "— THIS COHORT: you teach Week 5 as normal on Tuesday 6 October. RECORD IT. The two Friday cohorts lose their Week 5 session to Independence Day and your recording is what they get instead, so set the recording up before you start."
  },
@@ -319,13 +319,13 @@
  },
  {
   "deck": "CML3112 Week 5",
-  "slide": 31,
+  "slide": 33,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 5",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3112 Week 5",
-  "slide": 32,
+  "slide": 34,
   "title": "THE ONE THING TO REMEMBER",
   "text": "the closing point matters. Students who start with pandas cannot diagnose it. Students who started with loops can."
  },
@@ -345,7 +345,7 @@
   "deck": "CML3112 Week 6",
   "slide": 3,
   "title": "SEGMENT 1",
-  "text": "for the Friday cohorts this segment is the Week 5 consolidation and needs the full fifteen minutes. Run the four commands — shape, head, info, describe — live on the anchor dataset and take questions."
+  "text": "Use 15 minutes for recall and 25 minutes for the chart demonstration. Run shape, head, info and describe on the anchor dataset. The total remains three hours."
  },
  {
   "deck": "CML3112 Week 6",
@@ -381,7 +381,7 @@
   "deck": "CML3112 Week 6",
   "slide": 9,
   "title": "DEFINITION",
-  "text": "the missingness map in the next segment makes this visible rather than theoretical."
+  "text": "ask what a technician's log could reveal. Source: National Research Council, Drawing Inferences from Incomplete Data, https://www.ncbi.nlm.nih.gov/books/NBK209900/."
  },
  {
   "deck": "CML3112 Week 6",
@@ -441,7 +441,7 @@
   "deck": "CML3112 Week 6",
   "slide": 20,
   "title": "PRACTICAL — 35 MINUTES",
-  "text": "state the marking emphasis out loud. Circulate and ask 'why did you choose that?' and nothing else."
+  "text": "circulate and ask students why they chose each action."
  },
  {
   "deck": "CML3112 Week 6",
@@ -475,15 +475,21 @@
  },
  {
   "deck": "CML3112 Week 6",
-  "slide": 30,
+  "slide": 32,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 6",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3112 Week 6",
-  "slide": 31,
+  "slide": 33,
   "title": "THE ONE THING TO REMEMBER",
   "text": "end by restating the test format and the rubric weighting one final time."
+ },
+ {
+  "deck": "CML3112 Week 6",
+  "slide": 34,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3113 Week 4",
@@ -633,7 +639,7 @@
   "deck": "CML3113 Week 4",
   "slide": 26,
   "title": "CHALLENGE",
-  "text": "what is actually in the file: One bit type performs clearly worse — but only on the night shift. Both facts are in the file and neither is in any single column.\n\nTwo red herrings: total downtime is highest for the deepest holes, which is expected rather than interesting, and one operator has very few rows because they only started last month.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
+  "text": "what is actually in the file: One bit type performs clearly worse — but only on the night shift. Both facts are in the file and neither is in any single column.\n\nCompare bit type within each shift. Check the number of readings behind each group mean.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
  },
  {
   "deck": "CML3113 Week 4",
@@ -649,13 +655,13 @@
  },
  {
   "deck": "CML3113 Week 4",
-  "slide": 33,
+  "slide": 35,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 4",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3113 Week 4",
-  "slide": 34,
+  "slide": 36,
   "title": "THE ONE THING TO REMEMBER",
   "text": "— THIS COHORT: you will NOT meet next week. Friday 9 October is Independence Day. The Week 5 material comes to you as a recording of the Tuesday session plus the notebook, published by Wednesday 7 October, with a 45-minute online clinic that week. Week 6 opens with a 30-minute consolidation. Say this now, clearly, and put the dates on the board — do not let them find out by turning up to a locked room."
  },
@@ -805,13 +811,13 @@
  },
  {
   "deck": "CML3113 Week 5",
-  "slide": 31,
+  "slide": 33,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 5",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3113 Week 5",
-  "slide": 32,
+  "slide": 34,
   "title": "THE ONE THING TO REMEMBER",
   "text": "the closing point matters. Students who start with pandas cannot diagnose it. Students who started with loops can."
  },
@@ -819,7 +825,7 @@
   "deck": "CML3113 Week 6",
   "slide": 1,
   "title": "Data quality through visualisation",
-  "text": "— THIS COHORT: open with the 30-minute Week 5 consolidation, because this cohort lost Week 5 to Independence Day. Budget it in and cut the chart demonstration accordingly. Check who actually worked through the asynchronous package before you go on. Publish the Test 1 format and rubric today."
+  "text": "— THIS COHORT: open with the 30-minute Week 5 consolidation, because this cohort lost Week 5 to Independence Day. This replaces the 15-minute recall; use 10 rather than 25 minutes for the chart demonstration. Keep the full practical and break. Check completion of the asynchronous package. Publish the Test 1 format and rubric today."
  },
  {
   "deck": "CML3113 Week 6",
@@ -831,7 +837,7 @@
   "deck": "CML3113 Week 6",
   "slide": 3,
   "title": "SEGMENT 1",
-  "text": "for the Friday cohorts this segment is the Week 5 consolidation and needs the full fifteen minutes. Run the four commands — shape, head, info, describe — live on the anchor dataset and take questions."
+  "text": "Use 30 minutes for Week 5 consolidation and 10 minutes for the later chart demonstration. Run shape, head, info and describe on the anchor dataset. The total remains three hours."
  },
  {
   "deck": "CML3113 Week 6",
@@ -867,7 +873,7 @@
   "deck": "CML3113 Week 6",
   "slide": 9,
   "title": "DEFINITION",
-  "text": "the missingness map in the next segment makes this visible rather than theoretical."
+  "text": "ask what a technician's log could reveal. Source: National Research Council, Drawing Inferences from Incomplete Data, https://www.ncbi.nlm.nih.gov/books/NBK209900/."
  },
  {
   "deck": "CML3113 Week 6",
@@ -927,7 +933,7 @@
   "deck": "CML3113 Week 6",
   "slide": 20,
   "title": "PRACTICAL — 35 MINUTES",
-  "text": "state the marking emphasis out loud. Circulate and ask 'why did you choose that?' and nothing else."
+  "text": "circulate and ask students why they chose each action."
  },
  {
   "deck": "CML3113 Week 6",
@@ -961,15 +967,21 @@
  },
  {
   "deck": "CML3113 Week 6",
-  "slide": 30,
+  "slide": 32,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 6",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3113 Week 6",
-  "slide": 31,
+  "slide": 33,
   "title": "THE ONE THING TO REMEMBER",
   "text": "end by restating the test format and the rubric weighting one final time."
+ },
+ {
+  "deck": "CML3113 Week 6",
+  "slide": 34,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3111 Week 4",
@@ -1119,7 +1131,7 @@
   "deck": "CML3111 Week 4",
   "slide": 26,
   "title": "CHALLENGE",
-  "text": "what is actually in the file: One motor runs hot, but only at low supply voltage — so at nominal voltage it passes every time and the pass/fail flag never caught it.\n\nTwo red herrings: vibration is higher across the board on one test day (the bench was not bolted down), and one motor has a single wild current reading that is a logging error.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
+  "text": "what is actually in the file: One motor runs hot only at low supply voltage. Compare temperature and voltage together before interpreting the status flag.\n\nCompare temperature by motor and voltage. Check the available values before attributing a difference to ambient conditions.\n\nYour only permitted moves are the six questions — carry the printed card and do not touch a keyboard. Sixty-second findings pitch per team at the end. Some teams will be frustrated: say plainly that most real investigations end without a finding, and that this is why the marks are on method."
  },
  {
   "deck": "CML3111 Week 4",
@@ -1135,13 +1147,13 @@
  },
  {
   "deck": "CML3111 Week 4",
-  "slide": 33,
+  "slide": 35,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 4",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3111 Week 4",
-  "slide": 34,
+  "slide": 36,
   "title": "THE ONE THING TO REMEMBER",
   "text": "— THIS COHORT: you will NOT meet next week. Friday 9 October is Independence Day. The Week 5 material comes to you as a recording of the Tuesday session plus the notebook, published by Wednesday 7 October, with a 45-minute online clinic that week. Week 6 opens with a 30-minute consolidation. Say this now, clearly, and put the dates on the board — do not let them find out by turning up to a locked room."
  },
@@ -1291,13 +1303,13 @@
  },
  {
   "deck": "CML3111 Week 5",
-  "slide": 31,
+  "slide": 33,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 5",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3111 Week 5",
-  "slide": 32,
+  "slide": 34,
   "title": "THE ONE THING TO REMEMBER",
   "text": "the closing point matters. Students who start with pandas cannot diagnose it. Students who started with loops can."
  },
@@ -1305,7 +1317,7 @@
   "deck": "CML3111 Week 6",
   "slide": 1,
   "title": "Data quality through visualisation",
-  "text": "— THIS COHORT: open with the 30-minute Week 5 consolidation, because this cohort lost Week 5 to Independence Day. Budget it in and cut the chart demonstration accordingly. Check who actually worked through the asynchronous package before you go on. Publish the Test 1 format and rubric today."
+  "text": "— THIS COHORT: open with the 30-minute Week 5 consolidation, because this cohort lost Week 5 to Independence Day. This replaces the 15-minute recall; use 10 rather than 25 minutes for the chart demonstration. Keep the full practical and break. Check completion of the asynchronous package. Publish the Test 1 format and rubric today."
  },
  {
   "deck": "CML3111 Week 6",
@@ -1317,7 +1329,7 @@
   "deck": "CML3111 Week 6",
   "slide": 3,
   "title": "SEGMENT 1",
-  "text": "for the Friday cohorts this segment is the Week 5 consolidation and needs the full fifteen minutes. Run the four commands — shape, head, info, describe — live on the anchor dataset and take questions."
+  "text": "Use 30 minutes for Week 5 consolidation and 10 minutes for the later chart demonstration. Run shape, head, info and describe on the anchor dataset. The total remains three hours."
  },
  {
   "deck": "CML3111 Week 6",
@@ -1353,7 +1365,7 @@
   "deck": "CML3111 Week 6",
   "slide": 9,
   "title": "DEFINITION",
-  "text": "the missingness map in the next segment makes this visible rather than theoretical."
+  "text": "ask what a technician's log could reveal. Source: National Research Council, Drawing Inferences from Incomplete Data, https://www.ncbi.nlm.nih.gov/books/NBK209900/."
  },
  {
   "deck": "CML3111 Week 6",
@@ -1413,7 +1425,7 @@
   "deck": "CML3111 Week 6",
   "slide": 20,
   "title": "PRACTICAL — 35 MINUTES",
-  "text": "state the marking emphasis out loud. Circulate and ask 'why did you choose that?' and nothing else."
+  "text": "circulate and ask students why they chose each action."
  },
  {
   "deck": "CML3111 Week 6",
@@ -1447,14 +1459,20 @@
  },
  {
   "deck": "CML3111 Week 6",
-  "slide": 30,
+  "slide": 32,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 6",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3111 Week 6",
-  "slide": 31,
+  "slide": 33,
   "title": "THE ONE THING TO REMEMBER",
   "text": "end by restating the test format and the rubric weighting one final time."
+ },
+ {
+  "deck": "CML3111 Week 6",
+  "slide": 34,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  }
 ]

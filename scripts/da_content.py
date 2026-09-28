@@ -100,8 +100,8 @@ DATASETS = [
      "account": "none",
      "use": "Banking, finance and telecom capstone. Campaign contacts "
             "against an outcome, so it carries segmentation, rates and "
-            "cross-tabs. The duration column leaks the outcome and must be "
-            "dropped, which makes it a good lesson about leakage."},
+            "cross-tabs. Call duration is known only after the call, so it "
+            "must not justify pre-call targeting decisions."},
     {"key": "machine",
      "name": "AI4I 2020 Predictive Maintenance (UCI 601)",
      "url": "https://archive.ics.uci.edu/dataset/601/"
@@ -110,8 +110,8 @@ DATASETS = [
      "shape": "10,000 rows x 14 columns, one CSV. Failures are about 3.4% of "
               "rows",
      "account": "none",
-     "use": "Energy, mining and manufacturing capstone. Machine sensor "
-            "readings against a failure flag. The imbalance is the point: a "
+     "use": "Energy, mining and manufacturing capstone. Synthetic machine "
+            "observations against a failure flag. The imbalance is the point: a "
             "rule that predicts no failure is 96.6% accurate and useless."},
     {"key": "worldbank",
      "name": "World Bank Open Data indicators API",
@@ -787,11 +787,11 @@ SESSIONS = [
             "somebody could do about it. Then the limitation beside each one.",
          lab="Run the routine on the sector dataset you chose: banking and "
              "telecom, energy and manufacturing, or public sector and "
-             "health. Five findings with numbers. This is the mid-track "
+             "development. Use the fixed Bank Marketing, synthetic AI4I or Uganda GDP snapshot. Five findings with numbers. This is the sector "
              "assessment and it is marked on the findings, not the code.",
          home="Finish and submit the investigation: half a page of findings "
               "plus the notebook behind it.",
-         check="Mid-track assessment: five findings on a sector dataset.",
+         check="Sector assessment: five findings on a sector dataset.",
          trap="A notebook with forty cells and no conclusion. The routine "
               "exists to stop exactly that."),
 
@@ -801,7 +801,7 @@ SESSIONS = [
          outcomes=[
              "Load several tables and clean them in Power Query without "
              "touching the source.",
-             "Build a star schema whose totals are correct.",
+             "Build a relational model whose totals reconcile.",
              "Check a dashboard total against a number you already trust.",
          ],
          vocab=[
@@ -818,16 +818,16 @@ SESSIONS = [
              ("Fact and dimension", "The fact table holds the events; "
                                     "dimensions hold the descriptions you "
                                     "slice by.", None),
-             ("Date table", "A separate table with one row per date. Without "
-                            "one, your months sort alphabetically.", None),
+             ("Date table", "A table with one row per date for consistent time "
+                            "filtering. Sort month names by month number.", None),
          ],
          b1="Power BI is three products people confuse: Power Query gets and "
             "shapes, the model relates, the report shows. Get Data from CSV, "
             "then Power Query: promote headers, set types, trim, remove "
             "duplicates. The Applied Steps list as the same idea as the "
             "cleaning log from session 8.",
-         b2="The model, which is where the marks are. The star schema figure, "
-            "then five relationships built by hand after deleting every one "
+         b2="The model: orders links order_items to customers and reps. Inspect "
+            "the four relationships built by hand after deleting every one "
             "Power BI guessed. A deliberately wrong relationship first, so "
             "the wrong total is seen before the rule is stated. Then the "
             "date table, and marking it.",
@@ -840,10 +840,10 @@ SESSIONS = [
          trap="Trusting the relationships Power BI detects for you. Check "
               "every direction, then check a total against a number you "
               "already trust.",
-         note="Power BI Desktop is Windows only. Mac participants work in "
-              "the browser Service throughout, loading CSVs they have "
-              "already cleaned in pandas; the lab gives both paths and names "
-              "the three things the browser cannot do.",
+         note="Power BI Desktop requires Windows. Rehearse the browser semantic-model "
+              "editor and Power Query with the actual learner account, workspace "
+              "permissions and tenant settings. Use the CSV lab route; arrange a "
+              "Windows lab machine if browser editing is unavailable.",
          figs=["fig_star_schema"]),
 
     dict(n=15, week=5, tool="Power BI",
@@ -885,20 +885,14 @@ SESSIONS = [
             "presentation structure: the question, the answer with its "
             "number, how you know, what you traded, and what would change "
             "your answer.",
-         lab="Finish the dashboard, then present. Five minutes each plus "
-             "questions from the room, and everybody asks at least one "
-             "question of somebody else. Then twenty minutes on the one "
-             "report you will replace at work this month.",
+         lab="Finish the dashboard in 50 minutes. Submit a five-minute narrated presentation. The final hour contains selected demonstrations and 20 minutes on applying the analysis at work.",
          home="None. Send the dashboard to the person who asked the question "
               "in week one.",
          check="Capstone: dashboard, one page, five-minute presentation.",
          trap="A dashboard with fourteen visuals and no answer, presented "
               "method first. Nobody outside the room cares which library you "
               "used.",
-         note="With more than about fourteen participants, five minutes each "
-              "will not fit alongside the dashboard clinic. Either run the "
-              "presentations in two parallel groups with a second marker, or "
-              "add a sixteenth session."),
+         note="Session 15 uses 30 minutes for DAX, 10 break, 20 for design, 50 dashboard completion, 10 break, 40 selected demonstrations and 20 application planning. Every learner submits a five-minute narrated presentation with the capstone for rubric assessment; selected live demonstrations provide discussion, not extra marks."),
 ]
 assert len(SESSIONS) == 15
 assert [s["n"] for s in SESSIONS] == list(range(1, 16))
@@ -912,12 +906,12 @@ ASSESSMENT = [
      "The same report in pandas, reconciled against the SQL, with the log "
      "that makes the starting numbers reproducible. Marked on the log as "
      "much as the answer."),
-    ("Mid-track investigation", 30, "Session 13",
+    ("Sector investigation", 30, "Session 13",
      "Five findings on a sector dataset, each with a number, a chart and a "
      "stated limitation. Marked on the findings, not the code."),
     ("Capstone", 40, "Session 15",
      "A dashboard whose totals reconcile, one page of recommendation, and "
-     "five minutes in front of the room. Marked on whether a decision maker "
+     "a five-minute presentation with narration in speaker notes. Marked on whether a decision maker "
      "could act on it."),
 ]
 assert sum(w for _, w, _, _ in ASSESSMENT) == 100
@@ -983,8 +977,9 @@ DEPARTURES = [
      "start from what a statistic IS rather than from a formula."),
     ("No machine learning",
      "It is on the roadmap's later branches and it is not on this one. "
-     "Forty-five hours buys either a competent analyst or a bad modeller. "
-     "Session 15 says where to go next for the other thing."),
+     "The available time is allocated to data foundations, analysis and "
+     "communication. Session 15 introduces further learning routes, including "
+     "machine learning where the learner needs prediction."),
 ]
 
 # ---------------------------------------------------------------- logistics
@@ -999,9 +994,7 @@ KIT = [
             "opens the course database by double-clicking it. Session 2 uses "
             "only its Browse Data tab, with no SQL at all."),
     ("Power BI", "Power BI Desktop on Windows, free. Mac participants use "
-                 "the browser Service: it cannot give them the full Power "
-                 "Query editor, local file refresh, or the SQLite "
-                 "connector, so the week five labs give both paths."),
+                 "the browser Service with model-editing permissions rehearsed before class. Use the supplied CSVs; web Power Query availability depends on account and tenant settings."),
     ("The data", "One folder, handed out in session 1 on a USB stick as well "
                  "as a link. The room's network is not a dependency."),
 ]
@@ -1011,14 +1004,13 @@ ROOM = [
                        "taken."),
     ("Group size", "Twelve to twenty. Above twenty the lab stops working, "
                    "because the instructor cannot reach everybody in fifty "
-                   "minutes. Above fourteen, session 15 needs a second "
-                   "marker or a sixteenth session for the presentations."),
+                   "minutes. Session 15 uses submitted narrated presentations for individual assessment and selected live demonstrations for discussion."),
     ("Between sessions", "One homework of 45 to 60 minutes, always with the "
                          "option to do it on the participant's own work "
                          "data, which is what makes it get done."),
-    ("What is on the screen", "The instructor types everything live. Nothing "
-                              "is pasted from a finished notebook, because "
-                              "the errors are half the teaching."),
+    ("What is on the screen", "Demonstrate short examples live, including error "
+                              "recovery. Keep a prepared notebook as a fallback "
+                              "so debugging does not consume the practical period."),
     ("Vocabulary", "Every session opens with its three to eight new terms, "
                    "defined in plain language with the Excel equivalent "
                    "where there is one. The glossary handout is the union of "

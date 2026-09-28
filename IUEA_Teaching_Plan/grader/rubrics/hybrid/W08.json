@@ -1,0 +1,43 @@
+{
+  "id": "W08-2026.09-hybrid-r5",
+  "title": "Regression and baseline",
+  "maximum": 10.0,
+  "criteria": [
+    {
+      "id": "choice",
+      "parent_criterion": "c2",
+      "title": "Choice",
+      "maximum": 3,
+      "description": "The response recommends linear regression as the preferred candidate for further evaluation in the supplied validation comparison. Referring to the supplied table as the reason is sufficient; it need not repeat the numbers. Do not award credit if it recommends another model or gives a contradictory justification, such as preferring a larger MAE.",
+      "binary": true
+    },
+    {
+      "id": "limits",
+      "parent_criterion": "c2",
+      "title": "Limits",
+      "maximum": 3,
+      "description": "Award 3 if the response explicitly cautions that synthetic validation results cannot establish safety or generalisation on real equipment. A claim that synthetic measurements prove real-world safety is incorrect and earns zero; merely mentioning synthetic data without this limitation also earns zero. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "data",
+      "parent_criterion": "c3",
+      "title": "Data",
+      "maximum": 2,
+      "description": "Award 2 if the response specifies that reproduction requires engineering_data.csv, the assigned cohort identifier and the target unit. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "protocol",
+      "parent_criterion": "c3",
+      "title": "Protocol",
+      "maximum": 2,
+      "description": "Award 2 if the response specifies a clean top-to-bottom run with a fixed group split and training-only preprocessing. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    }
+  ],
+  "assessment_maximum": 20,
+  "deterministic_maximum": 10,
+  "scenario": "On one fixed equipment-group validation set, the training-mean baseline has MAE 8.0, linear regression 2.1 and the depth-4 tree 3.4, all in the assigned target unit. The data are synthetic. Recommend a model for further evaluation, explain limits and specify reproducible data/run instructions.",
+  "evaluation_mode": "atomic"
+}

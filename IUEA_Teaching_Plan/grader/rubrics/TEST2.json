@@ -1,0 +1,43 @@
+{
+  "id": "TEST2-2026.09",
+  "title": "Practical Test 2",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Task framing",
+      "maximum": 10.0,
+      "description": "The ML task is correctly identified, the target named, and regression vs classification correctly chosen and justified."
+    },
+    {
+      "id": "c2",
+      "title": "Data preparation & leakage control",
+      "maximum": 20.0,
+      "description": "Cleaning and encoding appropriate. Split made before any fitting. Pipeline used. No leakage present - a leak found by the marker caps this criterion at zero."
+    },
+    {
+      "id": "c3",
+      "title": "Modelling protocol",
+      "maximum": 20.0,
+      "description": "At least two models built and compared under identical conditions. Baseline included. Hyperparameters handled sensibly."
+    },
+    {
+      "id": "c4",
+      "title": "Evaluation & metric justification",
+      "maximum": 20.0,
+      "description": "Correct metrics computed. Metric choice defended against the cost of error. Cross-validation reported with a spread, not a single number."
+    },
+    {
+      "id": "c5",
+      "title": "Engineering interpretation & limits",
+      "maximum": 20.0,
+      "description": "The result is stated in physical or operational units. Three genuine limitations given. A clear position on whether it should be deployed."
+    },
+    {
+      "id": "c6",
+      "title": "Code clarity",
+      "maximum": 10.0,
+      "description": "Runs top to bottom. Readable. Commented where the intent is not obvious."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# A1 — Three problems one dataset
+
+## Start here
+
+Use your own Student Registration Number exactly as on your university record. Sign in to upload with the Google account registered with the lecturer. If you need account or file help, read STUDENT_HOW_TO.md supplied with the student materials. A repository is a folder of saved project files; an upload form is where you hand in assessed work. Saving to a repository does not submit an assignment.
+
+No coding or GitHub account is needed for A1. Use the report route below.
+
+## Do the work
+
+Create a blank document in Word or Google Docs. Put your identity, cohort and assessment title at the top. Use the headings requested below, explain your decisions in your own words, and give units beside numerical results. In Google Docs choose File > Download > Microsoft Word (.docx) or PDF Document (.pdf). In Word use Save As for DOCX or Export for PDF. Reopen the downloaded file; check that text can be selected and charts have readable captions. A scan, photo or image-only PDF is not a readable report for automated assessment.
+
+1. Add headings Problem 1, Problem 2, Problem 3 and My selected problem and dataset.
+2. For each problem describe a specific engineering decision, the quantity or category involved, and why ML is or is not suitable.
+3. Name plausible features (input information), a target where appropriate (the result to predict), a data source and a limitation.
+4. Choose one problem/dataset and explain why its evidence could answer the question. Do not claim a model was trained when you only proposed a study.
+
+## Check and submit
+
+Check all three problems and your justified selection are present. Marks: problem framing 6, data and feasibility 8, judgement 6. Submit ONE complete report, preferably DOCX or selectable-text PDF. PPTX with full narration notes or a notebook containing the written report is also accepted. Do not upload several versions.
+

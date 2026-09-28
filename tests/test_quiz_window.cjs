@@ -1,0 +1,11 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+const ctx={};vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/create_quiz_forms.gs','utf8'),ctx);
+const start=Date.parse('2026-09-15T11:00:00+03:00');ctx.Date=class extends Date{constructor(...args){super(...(args.length?args:[start]));}};
+assert.equal(ctx.WINDOW_HOURS,24);
+let saved,pending,opened=false;
+ctx.loadLinks_=()=>({'CML3112|2':{formId:'quiz',title:'W2'}});ctx.saveLinks_=v=>saved=v;
+ctx.addPending_=(...args)=>pending=args;ctx.ensureCloseTrigger_=()=>true;ctx.publishForm_=()=> 'ok';
+ctx.FormApp={openById:id=>{assert.equal(id,'quiz');return {setAcceptingResponses:v=>opened=v};}};
+ctx.Logger={log:()=>{}};ctx.Utilities={formatDate:d=>d.toISOString()};ctx.Session={getScriptTimeZone:()=> 'Africa/Kampala'};
+ctx.openQuizFor(2,'CML3112');assert.equal(opened,true);assert.equal(saved['CML3112|2'].openedAt,start);assert.equal(saved['CML3112|2'].closeAt,start+86400000);assert.deepEqual(pending,['quiz',start+86400000,'CML3112|2']);
+console.log('Quiz activation records and schedules exactly 24 hours from activation.');

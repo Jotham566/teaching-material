@@ -1,0 +1,43 @@
+{
+  "id": "TEST1-2026.09",
+  "title": "Practical Test 1",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Loading & profiling",
+      "maximum": 15.0,
+      "description": "Data loaded correctly; shape, types and summary produced; the dataset is described accurately in the student's own words."
+    },
+    {
+      "id": "c2",
+      "title": "Cleaning decisions & justification",
+      "maximum": 20.0,
+      "description": "Defects found. Each handling decision stated AND justified. Marks are for the justification - an unjustified correct fix scores roughly half."
+    },
+    {
+      "id": "c3",
+      "title": "Visualisation",
+      "maximum": 20.0,
+      "description": "Three charts, each captioned with the question it answers. Correct chart type. Axes labelled with units. No decoration without purpose."
+    },
+    {
+      "id": "c4",
+      "title": "Findings",
+      "maximum": 20.0,
+      "description": "Five findings, supported by evidence from the data, stated with correct magnitudes and units. A wrong number loses the mark even if the method was right."
+    },
+    {
+      "id": "c5",
+      "title": "Engineering interpretation",
+      "maximum": 15.0,
+      "description": "One recommendation that an engineer could act on, plus a clear statement of what further data would be needed."
+    },
+    {
+      "id": "c6",
+      "title": "Clarity & reproducibility",
+      "maximum": 10.0,
+      "description": "Notebook runs top to bottom. Logical order. Markdown explains intent. No dead code."
+    }
+  ]
+}

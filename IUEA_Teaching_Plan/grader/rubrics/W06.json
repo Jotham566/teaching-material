@@ -1,0 +1,25 @@
+{
+  "id": "W06-2026.09",
+  "title": "Cleaning and quality",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Cleaning decisions",
+      "maximum": 8.0,
+      "description": "Defect register identifies actual defects and justified handling; preserves raw data."
+    },
+    {
+      "id": "c2",
+      "title": "Verification",
+      "maximum": 7.0,
+      "description": "Before/after counts and checks reconcile with cleaning code and outputs."
+    },
+    {
+      "id": "c3",
+      "title": "Quality statement",
+      "maximum": 5.0,
+      "description": "States remaining limitations and appropriate uses of the cleaned data."
+    }
+  ]
+}

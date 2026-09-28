@@ -189,8 +189,8 @@ BANKS[2] = [
             ("The notebook is tracked and edited; the CSV was never added",
              True,
              "Correct. Git reports a tracked file as modified and a file it "
-             "has never seen as untracked. Committing now would save the "
-             "notebook edit and leave the data file behind entirely."),
+             "has never seen as untracked. Stage the notebook edit with "
+             "git add before committing. A bare commit saves neither file here."),
             ("Both files will be saved by the next commit", False,
              "Neither will. The notebook change is unstaged and the CSV is "
              "untracked, so a bare commit captures nothing from this list."),
@@ -2763,20 +2763,18 @@ BANKS[12] = [
         "kind": "judgement",
         "stem_by": {
             "CML3112": "The quality manager points at one batch and asks: "
-                       "read me the reason your model rejected batch 812. "
+                       "show the exact, directly readable decision rule that rejected batch 812; post-hoc attributions do not meet this audit requirement. "
                        "You chose the forest. What is the honest position?",
             "CML3113": "The metallurgist asks: your model says lower the "
-                       "amina flow, by how much, and where does that number "
-                       "come from? You chose the forest. What is the honest "
+                       "amina flow. Our acceptance requirement is an exact, directly readable rule; post-hoc attribution is insufficient. Can this model meet it? You chose the forest. What is the honest "
                        "position?",
             "CML3111": "The planner asks: your model called a stop on "
                        "machine 14 this morning, why that machine and why "
-                       "today? You chose the forest. What is the honest "
+                       "today? The acceptance requirement is an exact, directly readable rule; post-hoc attribution is insufficient. You chose the forest. What is the honest "
                        "position?",
         },
         "options": [
-            ("Say plainly that this model cannot give a per-case reason, and "
-             "that the constraint therefore rules it out despite the score",
+            ("Recommend a readable-rule model that meets the stated acceptance requirement",
              True,
              "Correct. The professional answer is to name the limitation and "
              "change the recommendation. A stated condition of acceptance "
@@ -2792,8 +2790,7 @@ BANKS[12] = [
              "unexplained call. Asking for trust instead is not an answer."),
             ("Offer to retrain the forest with fewer trees so it is simpler",
              False,
-             "A smaller forest is still an ensemble of trees and remains "
-             "unreadable case by case. This concedes accuracy without "
+             "A smaller forest still does not meet this stated requirement for a directly readable rule. This concedes accuracy without "
              "gaining explainability."),
         ],
     },
@@ -3000,4 +2997,3 @@ BANKS[13] = [
         ],
     },
 ]
-

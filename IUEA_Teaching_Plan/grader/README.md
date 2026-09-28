@@ -1,264 +1,238 @@
-# grader/ - auto-grading for CML3111 / CML3112 / CML3113
+# Assessment operations
 
-One system, replacing the loose scripts in `assessment-tools/`. A student runs a
-check cell and gets told what is wrong. They run a submit cell and get a code to
-paste into a Google Form. One command grades the week and one gradebook holds
-the weighted total.
+Student notebooks run in a restricted Docker container. The authoritative checks run separately on the lecturer's computer. Practice receipts never become final marks. Report and presentation text is assessed by a local Ollama model; this tool has no cloud grading mode.
 
-Python standard library only. No server, no JupyterHub, no Docker, no pip
-install, no network. Everything runs on the lecturer's own Google account and on
-the students' Colab sessions or laptops.
+## First setup
 
-## Files
+On this Mac, run `source .iuea-grader-env/bin/activate` from the repository root. The Python 3.12 environment and pinned dependencies are installed. Keep using that environment for the commands below; the older `.iuea-env` is Python 3.9. On another computer, create a Python 3.11+ environment and install `requirements.txt`. Start Docker Desktop, then build the pinned grading image:
 
-| file | what it is |
-|---|---|
-| `iuea_grader.py` | the module students import. Checks, feedback, submission codes, `verify_token()` |
-| `specs/spec_W05.py` | W05 handout spec: pandas load, filter, groupby, derived column. 6 questions, 20 marks |
-| `specs/spec_W03.py` | W03 handout spec: variables and functions from engineering formulas. 5 questions, 20 marks, one question per cohort |
-| `specs/hidden/spec_W05_hidden.py` | the W05 hidden checks. Never handed out |
-| `specs/hidden/spec_W03_hidden.py` | the W03 hidden checks. Never handed out |
-| `spec_format.md` | how to write next week's spec |
-| `batch_grade.py` | the weekly command. Grades notebooks, verifies Form codes, audits a sample |
-| `gradebook.gs` | Apps Script for the Google Sheet: weighted total, best-of rules, code ingestion, progress line |
-| `student_template.ipynb` | the notebook to copy each week |
-| `simulate_cohort.py` | makes a fake cohort so you can load-test before Tuesday |
-| `data/campus_energy.csv` | the W05 dataset, 8 meters, Jan-Mar 2026 |
-| `_run_one_notebook.py` | generated. `batch_grade.py` writes it on every run and it is the thing that executes one student's notebook in a subprocess. Do not edit it; edit `RUNNER_SOURCE` in `batch_grade.py` |
-
-## What the student does
-
-1. Opens the notebook in Colab from the link in the course folder, or on their
-   own laptop in Jupyter.
-2. Runs the setup cell. It finds `iuea_grader.py`, the spec and the CSV next to
-   the notebook, in `/content`, or on the shared Drive folder. On Colab with
-   none of them present it asks them to upload the three files.
-3. Does a task, runs `g.check("q1")`, reads the sentence, fixes it, runs it
-   again.
-4. Runs `g.check_all()` for the progress summary.
-5. Puts their student number in the last cell and runs `g.submit("S24001")`,
-   which prints a code around 110 characters long.
-6. Pastes that code into the week's Google Form and uploads the notebook to the
-   same Form.
-
-Both halves are needed. The code carries the self-checked marks; the notebook is
-what the real mark comes from.
-
-## What the lecturer does, once a week
-
-Download the Form's file uploads into one folder and its responses as CSV, then:
-
-```bash
-cd grader
-python3 batch_grade.py -a W05 \
-    -n ~/Downloads/W05_submissions \
-    -t ~/Downloads/W05_responses.csv \
-    --data-dir data \
-    -o results/W05
+```sh
+docker build -t iuea-notebooks:2026.09 IUEA_Teaching_Plan/grader
+python3 -m unittest discover -s tests -v
+node tests/test_assessment_pipeline.cjs
 ```
 
-That writes `results/W05/results.csv`, `results/W05/summary.txt`, and one
-feedback file per student in `results/W05/feedback/`. Paste the
-`notebook_total` column into the week's column in the Google Sheet, and mail the
-feedback files out.
+The container has no network, an unprivileged user, a read-only system, bounded temporary storage, memory and process limits, and a hard wall-clock timeout. Only copied teaching inputs are mounted. Hidden checks and the host filesystem are not available to student code. This reduces risk; it does not prove a container runtime has no vulnerabilities.
 
-Read four numbers in the summary: `tokens UNVERIFIED`, `answer-hash mismatch`,
-`SCORE DISCREPANCIES`, and `student id in doubt`. Everything else is routine.
+Only distribute `IUEA_Teaching_Plan/student_packages/` and the student-facing decks. Keep `grader/specs/hidden/`, lecturer guides, answer keys and grade exports private. Week 1 earned marks are preserved.
 
-Once a week, on a different day, audit:
+## Submission forms and expiry
 
-```bash
-python3 batch_grade.py -a W05 -n ~/Downloads/W05_submissions \
-    -t ~/Downloads/W05_responses.csv --data-dir data \
-    --sample 20 --seed $RANDOM -o results/W05_audit
+`submission_forms.gs` is a separate lecturer-owned Apps Script project. Uploads are stored in your Google Drive; the AI assessment happens only after download to this Mac. Local inference does not make Google Forms storage local. It defines 52 assignment forms across the two tracks. The live deployment on 14 September 2026 created all 52; use `../Assignment_Submission_Links.md` and the live Assignment links sheet recorded in `review/2026-09-14/rework/live_setup.json`. Creating the script locally alone does **not** create live forms.
+
+1. In Google Forms create a private upload template with exactly one **required** file-upload question. Allow multiple files (up to 10), with a 10 MB per-file limit. The broad upload template accepts notebooks too; the assignment description specifies the required formats. Google requires respondents to sign in for file uploads. In Settings → Responses, select **Verified** email collection (not Responder input).
+2. Paste `submission_forms.gs` into a standalone Apps Script project. Run a small wrapper calling `configureSubmissionSystem('TEMPLATE_ID')`. Google requires the owner to authorize Forms, Drive, Sheets and trigger access.
+3. Run `buildSubmissionForms()` until every entry reported by `submissionStatus()` is ready. Reruns resume. It publishes forms closed and installs one five-minute scheduler. It does not send invitations or email.
+4. Open each copied form in the editor, click **Restore** if Google reports missing upload folders, and confirm Settings → Responses → Collect email addresses is **Verified**. Only after these checks, run `confirmSubmissionReadiness(['COHORT|ASSESSMENT', ...])` for the checked keys. Unverified forms cannot open. Run `finalizeSubmissionSetup()` to refresh the **Assignment links** sheet and attempt closed-message updates. Google currently rejects the custom closed-message update on these published forms; errors are logged per form, and students should use the dated link index.
+5. Review the cohort-specific deadlines in Kampala time. Run `setSubmissionWindow('CML3112|W02','2026-09-15T11:00:00+03:00','2026-09-22T11:00:00+03:00')` to set a window explicitly. DA dates remain unset and those forms remain closed until actual teaching dates are provided.
+6. Test with a non-owner student account: identity, two attachments, receipt, replacement response, closure and audit. Check owner storage capacity before releasing links.
+
+This is a shared opening/closing window, not an individual countdown. The server-recorded response timestamp determines timeliness even if a Google time trigger runs late. The form may remain visible briefly after expiry; such responses are marked LATE. No late mark is silently accepted. Any outage extension must be explicit.
+
+Run `exportSubmissionFiles('CML3112|W02')` after `syncSubmissions()`. It creates a private Drive folder with file-ID filenames and an audit CSV. Download/extract that folder locally. Export the roster as CSV with `student_id,name,email,cohort`. Then:
+
+```sh
+python3 IUEA_Teaching_Plan/grader/prepare_submissions.py \
+  --audit downloads/submission_audit.csv --downloads downloads \
+  --roster roster.csv --assessment 'CML3112|W02' --out prepared/W02
 ```
 
-## Setting it up, once
+The latest on-time response wins as a whole; attachments from competing responses are not mixed. IDs, email and cohort must match the roster. A missing roster email for a submitting student stops preparation. Unknown IDs, ambiguous files and equal-time conflicts stop the batch. Original uploads remain intact. Use registered team membership with `expand_team_grades.py` for a shared project component; individual reflection remains individual.
 
-1. Open `iuea_grader.py` and change `SIGNING_KEY`. Put the same string in
-   `gradebook.gs` as `SIGNING_KEY`. Do this before Week 3 and never again:
-   changing it invalidates every code already collected.
-2. Make a Google Drive folder, share it read-only with the class, and put
-   `iuea_grader.py`, that week's `spec_W0n.py` and the data file in it, along
-   with the notebook. `specs/hidden/` stays on your machine.
-3. Make one Google Form per week with three questions: student number, the
-   submission code, and a file upload for the notebook. Link it to the
-   gradebook spreadsheet, which creates the "Form responses 1" sheet that
-   `ingestTokenCsv()` reads.
-4. In the Sheet, make a `Grades` sheet with these headers in row 1:
-   `student_id, name, email, cohort, CP1..CP5, W03, W04, W05, W06, W08, W09,
-   W10, W11, W12, W13, W14, Data Analysis Project, Practical Test 1,
-   Practical Test 2, ML Project, Demo, Final %, Band, Challenges done, Missing`.
-   Order does not matter; the script finds columns by header name and ignores
-   case, spaces and underscores.
-5. Paste `gradebook.gs` into Extensions > Apps Script, save, reload the sheet.
-6. Run the checks below.
+## Deterministic grading
 
-## Checks you can run yourself
+Run from the repository root. For Week 4:
 
-```bash
-python3 iuea_grader.py --selftest        # 18 checks on tokens and hashing
-node gradebook.gs --test                 # 73 checks on the gradebook maths
-python3 simulate_cohort.py --n 195 --out /tmp/fake
-python3 batch_grade.py -a W05 -n /tmp/fake/notebooks \
-    -t /tmp/fake/form_responses.csv --data-dir data --sample 20 --seed 1 \
-    -o /tmp/fake/audit
-python3 iuea_grader.py --verify IUEA1-...-...
+```sh
+python3 IUEA_Teaching_Plan/grader/batch_grade.py -a W04 \
+  --cohort CML3112 -n prepared/W04 \
+  --data-dir IUEA_Teaching_Plan/practicals/W04/CML3112 -o results/W04
 ```
 
-`simulate_cohort.py` plants a corrupted code, a code signed with the wrong key,
-a validly signed code with inflated marks, a Form row with no code, and a
-resubmission. If a change you made stops the summary reporting all five, the
-change broke something.
+Week 3 uses W03 with no dataset. Week 5 uses W05 with the cohort practical directory. Always grade the complete roster submission set; `--sample` is a diagnostic audit, not a final-mark pipeline. Do not paste marks by row order.
 
-Measured on a 4-core Linux machine: 196 notebooks graded against all six tests
-in **84 seconds**, 0.43 s per notebook. Four of those notebooks contain infinite
-loops and each burns its full 20-second cell timeout, which is about 20 seconds
-of the total. On a 2-core laptop expect three to four minutes. Budget five.
+Week 2 has a 14-point deterministic component and a 6-point explanation component:
 
-## The weights
+```sh
+python3 IUEA_Teaching_Plan/grader/batch_grade.py -a W02 \
+  --cohort CML3112 -n prepared/W02 \
+  --data-dir IUEA_Teaching_Plan/setup/CML3112 -o results/W02_code
+python3 IUEA_Teaching_Plan/grader/artifact_grade.py \
+  --submissions prepared/W02/manifest.csv \
+  --rubric IUEA_Teaching_Plan/grader/rubrics/W02.json \
+  --deterministic-results results/W02_code/results.csv \
+  --calibration-report review/2026-09-14/rework/local_calibration_v10.json --out results/W02
+```
 
-| component | weight | rule |
-|---|---|---|
-| Block checkpoints | 10 % | best 4 of 5, each out of 10 |
-| Weekly challenges | 10 % | best 8 of 11, each out of 20 |
-| Data Analysis Project | 10 % | |
-| Practical Test 1 | 15 % | offline, invigilated |
-| Practical Test 2 | 20 % | offline, invigilated |
-| Engineering ML Project | 25 % | |
-| Demo / viva / reflection | 10 % | |
+DA Session 5 uses the local read-only Riverside SQL grader:
 
-`node gradebook.gs --test` asserts these sum to 100 and that a student with full
-marks everywhere scores exactly 100.
+```sh
+python3 IUEA_Teaching_Plan/grader/da_sql_grade.py \
+  --submissions prepared/S05/manifest.csv --out results/S05
+```
 
----
+SQL runs inside the restricted Docker image, using a read-only database with bounded execution and output. It checks report row keys, gross, returns and net amounts, 25 marks each. Repeated return events are combined before joining to sales, so they cannot multiply gross revenue. Columns must be `region,rep_name,month,gross_ugx,returned_ugx,net_ugx`; amount tolerance is 1 UGX. Writes, attached databases, extension loading and unbounded recursive execution are rejected. Missing, unreadable or ambiguous SQL files produce an individual pending result while other learners' reports proceed.
 
-# LIMITATIONS
+## Local report and presentation grading
 
-Read this before you rely on any number the system produces.
+On this Mac, double-click `start_local_model.command` before grading. Run Ollama on loopback with cloud features disabled (`OLLAMA_NO_CLOUD=1`, `OLLAMA_HOST=127.0.0.1:11434`). The configured candidate is `qwen3:4b`, chosen for this Mac's 8 GB memory. Installation and a successful model calibration are separate from the existence of the grading script: check the rework status before using it for real grades.
 
-## Client-side grading cannot be made tamper-proof without a server
+```sh
+python3 IUEA_Teaching_Plan/grader/artifact_grade.py \
+  --submissions prepared/DEMO/manifest.csv \
+  --rubric IUEA_Teaching_Plan/grader/rubrics/DEMO.json \
+  --calibration-report calibration/DEMO.json --out results/DEMO
+```
 
-`SIGNING_KEY` is a string inside `iuea_grader.py`, and the student has that file
-on their machine, because `g.check()` cannot work otherwise. A student who opens
-it can read the key, import the module, and call `make_token()` with any marks
-they like. The signature will be valid. **A determined student can forge a code
-that verifies.** There is no version of this design that fixes that. Anyone who
-tells you a client-side grader is secure has not read their own code.
+DOCX, selectable-text PDF and PPTX speaker notes are supported. PPTX submissions must include narration as text in notes. Native PBIX and ZIP files are not readable grading evidence; provide accessible report/slide exports. Images, animation, spoken delivery and interactive dashboard behaviour are not assessed by this text pipeline. Do not claim a visual-design mark has been verified from extracted text alone.
 
-What the mitigations actually buy:
+Files from one response are assessed together. The combined supported text limit is 12,000 characters; longer packets produce an exception instead of silent truncation. Each result retains source and rubric hashes, model name, two criterion-level evaluations and exact supporting quotations. A rerun reuses successful results only when the input, rubric, model and deterministic marks/status match. Temporary notebook staging paths and execution duration do not trigger fresh AI marking. The CLI selects the model recorded in the passing calibration unless an explicit matching `--model` is supplied. Transport timeouts receive one automatic retry of the complete two-pass evaluation. Model disagreement and low marks are not retried to search for a different score. Unresolved packets remain blank; a later explicit rerun can retry them. The CLI requires a passing calibration report covering the exact current authored cases, expected score ranges and input hashes, as well as the rubric, evaluator and local model digest. Incomplete or stale case sets cannot authorize marks. The DEMO example requires a report that has not yet been created; it is not a ready-to-run assessment. Agreement between two passes is not evidence of grading accuracy; calibration against known work is required.
 
-- **The code is not the mark.** `batch_grade.py` grades the notebook, from a
-  clean interpreter, against all six tests. That number is what goes in the
-  gradebook. Forging a code changes a provisional figure and nothing else. The
-  forgery only pays if you accept a code without a notebook, which is a
-  temptation on a week when uploads fail.
-- **The signature raises the effort.** Editing a character in a code is caught
-  immediately. To forge, a student has to find the key, understand the token
-  format, and call the function. That is a real filter, and a student who can do
-  it has learned more than the assignment was teaching.
-- **Sampling catches it statistically, and slowly.** `--sample 20` re-grades a
-  random fifth. A student who forges one week is caught that week with
-  probability 0.2. A student who forges all eleven weekly challenges is caught
-  with probability 1 - 0.8^11, about 0.91. One forgery is very likely to get
-  through. That is the honest number. Verified in practice: on the 195-student
-  simulation, seed 1 caught the planted forger and seed 7 missed them.
-- **The weight is small on purpose.** Weekly challenges are 10 % of the final
-  mark, and only the best 8 of 11 count. Forging every challenge to full marks
-  moves the final mark by at most 10 points, and only if the notebook is also
-  faked. 35 % sits in two offline invigilated tests, and 35 % more in a project
-  and a viva where the student has to explain their own work.
-- **The answer fingerprint ties the code to the notebook.** A forged code keeps
-  whatever hash the notebook produced, so `answer_hash_match` stays `yes` while
-  the scores disagree. That is what the score comparison is for.
+Exceptions have blank scores, never invented zeros. Resolve a file-format issue through a corrected accessible export; retain the original timestamp and a documented resubmission decision. Inconsistent substantive judgements need a calibrated stronger local model or a revised objective assessment, not blind acceptance.
 
-Do not present the token as a security control to the Faculty. It is a
-tamper-evident receipt, and it works as one.
+## Gradebook
 
-## Colab needs internet
+Run `python3 IUEA_Teaching_Plan/grader/prepare_grade_import.py results/W04/results.csv --out results/W04/import` to generate `import_ready.csv` and a separate `exceptions.csv`. This lets completed marks proceed while exceptions remain blank. Upload only `import_ready.csv` for the final component; a 14-point W02 code component is deliberately rejected until combined with its reasoning marks.
 
-A Colab session will not open, run or submit without a connection. On a bad
-bandwidth day the class cannot submit. Three consequences:
+Create a `Grades` sheet using `Grades_template.csv` and paste `gradebook.gs` into its bound Apps Script. `importMarkedResults('DRIVE_CSV_ID','W04')` imports authoritative results by student registration number, rejecting duplicates, unknown IDs, invalid marks, wrong maxima and unresolved statuses before any marks are written. Use the combined 20-point output for W02. The IUEA gradebook does not mix in the independent DA track.
 
-- Keep the local Jupyter path alive. The same three files on a USB stick give
-  identical behaviour with no network. `iuea_grader.py --selftest` passes
-  offline, and so does everything else in this folder.
-- Both practical tests run offline on lab machines. That is deliberate and it is
-  what makes the AI policy enforceable.
-- Friday 9 October 2026 is Uganda Independence Day and lands in Week 5, the
-  pandas session, so the two Friday cohorts lose that class. `spec_W05.py` and
-  the task sheet are written to be workable without the session.
+`configureQuizImports(...)` and `importQuizScores()` import Google Forms quiz marks by roster ID and cohort. Supply the actual close time for every quiz source. Practice tokens are diagnostic receipts only. They can be forged because their key is distributed; they are never a mark source.
 
-## Everything else worth knowing
+| Component | Weight | Rule |
+|---|---:|---|
+| Quizzes | 10% | Best 10 of 12, each /5 |
+| Challenges | 10% | Best 8 of 11, each /20; W01–W06 and W08–W12 |
+| Data analysis project | 10% | /100 |
+| Practical Test 1 | 15% | /100 |
+| Practical Test 2 | 20% | /100 |
+| ML project | 25% | /100 |
+| Demo / reflection | 10% | /100 |
 
-**Student code runs with your permissions.** `batch_grade.py` executes each
-notebook in a subprocess in a scratch directory, which stops a runaway loop and
-keeps files tidy. It is not a sandbox. A notebook containing `shutil.rmtree` or
-`os.system` will do exactly what it says, as you. Grade on a machine that does
-not hold the only copy of the gradebook, or in a throwaway VM. Nothing here
-checks what the code does before running it.
+Letter bands remain placeholders until verified against the Faculty's actual rules. The weighted percentage is separate from that policy. Existing Week 1 marks cannot be overwritten by the results importer.
 
-**The per-cell timeout is Unix-only.** It uses `SIGALRM`. On Windows only the
-120-second whole-notebook timeout applies, so one bad notebook costs two
-minutes instead of twenty seconds. Grade on Linux or macOS.
+## Verification
 
-**A cell timeout reports the wrong line.** There is no traceback to read, so the
-feedback file names the first line of the cell rather than the loop. Four
-students hit this in the simulation and the message was misleading each time.
+```sh
+python3 IUEA_Teaching_Plan/grader/iuea_grader.py --selftest
+node IUEA_Teaching_Plan/grader/gradebook.gs --test
+python3 -m unittest discover -s tests -v
+node tests/test_assessment_pipeline.cjs
+```
 
-**The answer hash can be wrong about an honest student.** It matches values, not
-work. It changes if the student re-runs the notebook after submitting, edits a
-number, or has a pandas version whose column sums differ in the sixth
-significant figure. Treat `answer_hash_match = NO` as something to look at.
-Across 189 real comparisons in the simulation it produced zero false positives,
-which is reassuring and is not a guarantee.
+See `review/2026-09-14/rework/` for the actual notebook isolation and cohort-simulation evidence. Rubrics for later reports/projects exist, but an arbitrary notebook's correctness is not proved by an AI reading its source. Practical exams need their issued task-specific deterministic checks before release.
 
-**Marks depend on exact variable names.** `n_meters` and `nMeters` are a pass and
-a fail. Every task sheet has to state the name, in a code font, and the
-notebook's task cell has to repeat it.
+## IUEA identity terminology
 
-**Nothing here marks a plot, a paragraph or a choice.** The grader compares
-values. Judgement is what the project, the viva and the human half of the tests
-are for. Do not let the auto-marked share grow past the current 35 %.
+The official student-facing term is **Student Registration Number**. Legacy machine fields `student_id` and `STUDENT_ID` remain for compatibility; they are not the display label. Form imports recognize both the old and new labels. The fictional format example (never a student identity) is `99/TEST/000/DEMO-X`. Four slash-separated components are accepted; the roster remains authoritative, and program codes are not restricted to this single example. Use `99_TEST_000_DEMO-X_W02.ipynb` for the filename, keeping the original slash-separated number in notebook values and grade records. Legacy S-numbers are retained only for compatibility with existing internal fixtures and the independent DA roster.
 
-**Nothing here detects plagiarism.** On shared wifi, near-identical notebooks
-will happen. The `answer_hash` column makes identical *answers* visible if you
-sort by it, which is a weak signal, because the correct answer is the same for
-everybody. Only the viva and the offline tests catch copying.
+## Later assessment contracts (release checks pending)
 
-**Student identity comes from two unreliable places.** Google Forms renames an
-uploaded file to `<original> - <Responder Name>`, so the file name often has no
-student number in it. The grader falls back to the `STUDENT_ID` variable inside
-the notebook, and flags any disagreement in the `id_source` column. A student
-who mistypes their number in both places becomes an orphan row you fix by hand.
+`../assessment_banks/` contains cohort-specific task sheets and starter notebooks for W06, W08–W12, both practical tests and both major projects. Each exam has variants A/B/C with the same schema and defect counts. These are synthetic engineering scenarios, labelled as such. `assessment_components.json` maps every deterministic mark back to its published rubric criterion; original criterion totals are preserved. The remaining marks use the corresponding `rubrics/hybrid/` rubric. Do not issue a draft bank until its release status, reference tests and calibration are complete.
 
-**Google Forms has no timer and cannot work offline.** You open the form and
-switch off "Accepting responses" by hand. On a free `@gmail.com` account you
-cannot restrict it to one response per person, so collect the student number and
-de-duplicate in Sheets.
+The fixed function interfaces are a machine-checkable skills component. Students still explain and justify the broader investigation. Checks use unseen inputs, not a saved screenshot or a claim that code ran. Figure checks inspect actual matplotlib figures, their plotted values and unit labels. They do not assess aesthetic quality or spoken delivery.
 
-**Apps Script has hard caps.** A single execution stops at 6 minutes.
-`recomputeAll()` and `ingestTokenCsv()` therefore write the whole block in one
-`setValues()` call instead of one call per student; the per-row version does not
-finish 195 rows. A free `@gmail.com` account sends to about 100 recipients a
-day, so `emailStandings()` stops at 90 and resumes the next day.
+A prepared hybrid assessment can be run with:
 
-**`GRADE_BANDS` in `gradebook.gs` is a placeholder.** Replace it with the IUEA
-regulations before any student sees a letter.
+```sh
+python3 IUEA_Teaching_Plan/grader/grade_assessment.py \
+  --assessment W06 --cohort CML3112 --prepared prepared/W06 \
+  --calibration validated/W06.json --out results/W06
+```
 
-**The token ingestion writes provisional marks.** `ingestTokenCsv()` writes the
-code's visible-test total, which is not the assignment mark. Overwrite that
-column with `notebook_total` from `results.csv` once you have run the batch.
+The calibration gate verifies the exact rubric, local model and evaluator implementation (including extraction and prompt). Changing the evaluator invalidates earlier calibration reports; retained historical reports are evidence, not current release approval.
 
-**Nothing was tested on Google Colab or in Apps Script.** Both are behind a
-network this build could not reach. The Python side was proven in a namespace
-built exactly the way ipykernel builds a notebook's namespace, and the
-gradebook's pure functions were proven under node. The two untested paths are
-Colab's `files.upload()` in the setup cell and Apps Script's
-`Utilities.computeHmacSha256Signature`. Both need ten minutes on the real thing
-before Week 3.
+## Offline practical-test collection
 
-**One Google account holds all of it.** That risk belongs to the teaching plan
-rather than to this folder, and it has not gone away. Export `results.csv` and
-the gradebook to the course share at the end of every block, so the
-authoritative record is a file the university holds.
+Google upload time must not replace the invigilator's offline collection time. Run `collect_offline.py` on the lecturer's machine with an invigilator-controlled intake folder, cohort roster, assessment and explicit deadline. It records the lecturer's clock, hashes copied notebooks, preserves originals and prepares only on-time files in its manifest. Keep the receipt with any later transport copy. Students do not run this receipt tool. Part B is 25 minutes of typed offline responses with code execution prohibited; printed/handwritten answers are not automatically graded by this system.
+
+```sh
+python3 IUEA_Teaching_Plan/grader/collect_offline.py \
+  --intake collected --roster roster.csv --assessment TEST1 --cohort CML3111 \
+  --deadline '2026-10-23T14:00:00+03:00' --out receipts/TEST1-sitting1
+```
+
+
+Document rendering and extraction require the separate local image:
+
+```sh
+docker build -t iuea-document-renderer:2026.09 IUEA_Teaching_Plan/grader/document_renderer
+python3 IUEA_Teaching_Plan/grader/render_submission.py report.docx --out rendered/report
+```
+
+DOCX/PDF/PPTX parsing is isolated as well as rendering. Rendered pages alone do not authorize visual marks: `visual_grade.py` has its own local model and calibration gate. A completed calibration report has a matching `.complete.json` record; interrupted or modified reports are rejected. A model or evaluator change requires recalibration.
+
+The quiz importer requires a populated roster email and a matching respondent email. It ignores the unscored registration field when summing five one-point questions. Existing Week 1 quiz marks are protected against replacement. Later notebook explanations belong in `## My written evidence`; starter instructions and source-code comments are excluded from reasoning marks. For exam variants use `grade_assessment.py --variant A`, `B` or `C` as issued. Submit only one cohort/variant per batch.
+
+
+### One command for prepared Weeks 2–5
+
+`grade_assessment.py --assessment W03 --cohort CML3112 --prepared prepared/W03 --out results/W03` selects the issued cohort data, grades only the eligible manifest packets and writes `results/W03/import/import_ready.csv`. W04 and W05 work the same way. W02 additionally requires `--calibration PATH_TO_CURRENT_PASSING_REPORT`; its notebook and README are combined to 20 marks. Failed or stale calibration cannot produce final marks.
+
+### Independent-track gradebook
+
+Fill `DataAnalysis_Track/learner_roster_template.csv` with learner IDs in the form `S10001`, names, Google account emails and cohort `DA`. After each assessment, pass its authoritative 100-point results to `da_gradebook.py --roster ROSTER.csv --s05 S05_RESULTS.csv --s09 S09_RESULTS.csv --s13 S13_RESULTS.csv --s15 S15_RESULTS.csv --out results/DA`. Omit sessions not yet graded. The weights are 15%, 15%, 30%, 40%; a missing or unresolved component leaves the final percentage blank. No Faculty grade bands are applied to this independent track.
+
+Session 5 is assessed through four 25-point SQL result checks: grain, gross amount, returned amount and net amount. The judgement comment is formative discussion, not an additional manually assessed component.
+
+### Live quiz settings checked on 15 September 2026
+
+All 36 existing quizzes have immediate grade release, Point values, Missed questions and Verified email collection selected. Their identity field is Student Registration Number. The generator preserves an existing email-collection mode rather than resetting Verified to typed input. New forms still require these UI settings to be checked. The owner-account synthetic quiz displayed 5/5 and imported it correctly without changing the control or prior Week 1 marks. Google may show a pending icon for the unscored identity field; the importer reads only the five marked questions. No score-release emails were sent.
+
+
+Hybrid marking also writes one private HTML feedback page per learner in `results/.../feedback/`. These show the final total, executed component, written-criterion feedback and any published execution requirements applied. Unresolved results say “pending”, not zero. Share only the named learner's page; the command does not send messages or publish the folder. Weeks 3–5 retain the deterministic grader's individual text feedback.
+
+## Independent Session 9 checkpoint (draft)
+
+`DataAnalysis_Track/assessment_banks/S09/TASKS.md` specifies a notebook plus a separate accessible PDF/DOCX cleaning log. Executed checks contribute 50/100; the log contributes 50/100, preserving the published 40/40/20 criterion totals. Unseen fixtures vary aliases, rates and categories and include repeat returns. Cleaning functions must preserve their inputs. The reasoning grader reads only the log, not starter prompts or code comments.
+
+After a current passing S09 calibration exists, use:
+
+```sh
+python3 IUEA_Teaching_Plan/grader/grade_assessment.py \
+  --assessment S09 --cohort DA --prepared prepared/S09 \
+  --calibration validated/S09.json --out results/S09
+```
+
+This command is not authorized for marks until calibration passes. Session 13/15 numerical contracts and reasoning calibration remain unfinished.
+
+The batch wrapper isolates incomplete packets: their marks remain blank with a correction message while complete packets proceed. Final results are in `results.csv`, importable rows in `import/import_ready.csv`, and individual HTML feedback in `feedback/`. These files remain private until the lecturer distributes them through an appropriate individual channel.
+
+## Assessment release gate
+
+Upload verification and grading readiness are separate. The scheduler permits IUEA W02–W05 and independent S05 through the release gate; normal dates and upload verification still apply. Other assignment forms are held closed by default, including draft later banks. The private **Assessment release** sheet records the audit.
+
+After validating the issued task, deterministic checks and current local rubric calibration, call `setAssessmentRelease('CML3112|W06', true, 'Reference to the exact passing calibration and task-check evidence')`. This is an explicit lecturer release record, not a cloud-side check of local files. Passing a prose calibration alone does not certify the whole assessment. To withdraw release, call the same function with `false` and a reason; the form closes immediately. Existing response timestamps and marks remain intact.
+
+## Optional reasoning-enabled profile
+
+`reasoned_artifact_grade.py` reuses the standard extraction, validation, caching and mark-combination code in an isolated module instance. It enables local model reasoning, allows up to 4,096 generated tokens and a six-minute deadline per request. It has a separate evaluator fingerprint: a standard-profile calibration cannot authorize it.
+
+Evaluate it with `calibrate_rubric.py --profile reasoned --model qwen3.5:4b` and the appropriate rubric/cases/output arguments. The complete known-answer case set must pass. `grade_assessment.py` selects the recorded model and profile from a passing calibration automatically. A two-case diagnostic probe is not sufficient and receives no calibration completion marker. No reasoning-profile rubric is approved until its full report passes.
+
+### Later independent-track numerical components
+
+The fixed sector snapshots and their source hashes are in `DataAnalysis_Track/data/sector_snapshots/`. `scripts/verify_sector_snapshots.py` checks them offline. The draft S13 notebook exposes `SECTOR` and five `FINDINGS` values, with published populations and units. Its isolated specification awards at most 40 Analysis marks; the final DA importer rejects a 40-point component. The remaining 60 marks and complete-packet calibration are still required before release.
+
+For S15, `dashboard_numbers.py --file REPORT.docx --out CHECK.json` verifies five reported revenue/order/AOV contexts from the accessible appendix specified in `DataAnalysis_Track/assessment_banks/S15/NUMERICAL_EVIDENCE.md`. It returns `COMPONENT_ONLY` (20 marks), never final marks or an import-ready CSV. It checks reported numbers against the hashed clean Riverside inputs; it does not execute DAX or prove relationships, interactive filters, design or spoken delivery. Those remain release requirements. Both forms stay held closed.
+
+### Check current calibration coverage
+
+```sh
+python IUEA_Teaching_Plan/grader/assessment_readiness.py \
+  --evidence review/2026-09-14/rework \
+  --out review/2026-09-14/rework/current_readiness.json
+```
+
+This reads the locally installed model identities and accepts only completed passing reports that match the current rubric and evaluator. It does not load a model for inference, open any form or change marks. `CALIBRATED` records known-answer coverage; `whole_packet` records a separate successful synthetic packet. Neither replaces the live release gate, dates or Faculty requirements.
+
+The header-only `IUEA_Teaching_Plan/roster_template.csv` is ready for the actual roster. Its technical `student_id` column stores the full **Student Registration Number**, including slashes. Use the assigned course code in `cohort` and the Google-account email students will use for verified submissions in `email`. Keep populated rosters and grade exports private. The template contains no invented student records.
+
+## Verified releases — 15 September 2026
+
+The live audit records 32 assessments eligible for scheduled opening and 20 held. W06, W08–W12 across all three IUEA cohorts and independent S09 were released after current calibration and complete-packet pilots passed. The four independent dates remain unset, so those forms stay closed. Week 1 stays protected. Both exams, both major IUEA projects, DEMO, S13 and S15 remain held for incomplete assessment coverage.
+
+Use the 30 IUEA ZIPs in `../student_packages/` and the S09 ZIP in `../../DataAnalysis_Track/student_packages/`; they contain intended student materials only. Later weekly submissions require one complete notebook, including the student's own `## My written evidence` cell. S09 requires the notebook and a separate accessible PDF/DOCX log in one response.
+
+W08 uses the calibrated atomic criterion mode with local qwen3.5:4b; its full calibration has eleven cases. W06 and W10 also use qwen3.5:4b; W09/W11/W12 use the model recorded in their passing reports. Let the CLI select that model from the report. S09's successful quiet pilot scored 100/100 after an earlier timeout; run inference serially on this 8 GB Mac.
+
+The standard and atomic visual candidates both failed known-answer checks. Neither authorizes final visual-design marks. A document upload working correctly does not mean every criterion in that document can yet be assessed reliably. The remaining coverage is listed in `review/2026-09-14/REWORK_STATUS.md` at the project root.

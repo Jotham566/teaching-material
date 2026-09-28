@@ -19,14 +19,14 @@ taught in Python, so the Python total is 24 of the 45.
 
 | File | What it is |
 |---|---|
-| `decks/DA_S01…S15.pptx` | The fifteen session decks, 351 slides. Each runs the same shape: title, where tonight sits, outcomes, the question, block one, break, block two, the trap on its own slide, check and answers, the lab brief, and the closing line. Speaker notes are participant-safe, because the decks are handed out after each session. |
+| `decks/DA_S01…S15.pptx` | The fifteen session decks, 356 slides. Each runs the same shape: title, where tonight sits, outcomes, the question, block one, break, block two, the trap on its own slide, check and answers, the lab brief, and the closing line. Speaker notes are participant-safe, because the decks are handed out after each session. |
 | `DataAnalysis_Glossary.docx` | The handout. 92 terms in plain language with the spreadsheet equivalent, generated from the sessions themselves. Printed once in session 1 and kept. 49 of the terms have no spreadsheet equivalent, and those are the genuinely new ideas. |
 | `figs/` | 12 explainer figures: table anatomy, grain, joins, distribution shapes, the real skew, percentiles, the four charts, chart anatomy, axis honesty, rate against count, the star schema, seasonality. Built from real data and asserted against the answer key. |
 | `DataAnalysis_Lecturer_Guide.docx` | Stage directions, generated FROM the decks. Timing per session and, slide by slide, what the instructor does. Lecturer only: this is the half of each note that is deliberately not in the decks. |
 | `DataAnalysis_Track_Plan.docx` | The instructor plan: the fifteen sessions in full with their vocabulary, assessment, the glossary summary, datasets with licences, what was cut and why, what to do before session 1, and where this departs from the roadmap.sh path. |
 | `DataAnalysis_Track_Workbook.xlsx` | Session grid, the three-hour block, assessment weights, a participant mark sheet with working formulas, the dataset register and the answer key. |
 | `labs/lab_sql.md` | Sessions 3, 4 and 5. Eight questions with their queries and answers, then the rep revenue report as named steps. No window functions: those were cut, and the ranking is done in the spreadsheet. |
-| `labs/lab_python.md` | Sessions 7, 8 and 9. Profile, clean seven seeded defects, keep a log, reconcile against SQL. |
+| `labs/lab_python.md` | Sessions 7, 8 and 9. Profile, clean eight seeded defects, keep a log, reconcile against SQL. |
 | `labs/lab_powerbi.md` | Sessions 14 and 15. Model, three measures, one dashboard, with the browser path for Mac participants. |
 | `data/build_teaching_data.py` | Generates the course dataset. Standard library only. |
 | `data/riverside.db` | The clean SQLite database the SQL sessions use. |
@@ -104,20 +104,19 @@ commercial delivery:
 - **World Bank indicators API** — public sector, and the API lesson
 - **Uganda Healthsites** (HDX, ODbL) — the local dataset, and the Power BI map
 
-Section 5 of the plan lists what was rejected and why, so the same options do
+Section 4 of the plan lists what was rejected and why, so the same options do
 not get proposed again.
 
 ## Before you teach it
 
-Section 6 of the plan is the checklist. The three that matter most: run both
+Section 5 of the plan is the checklist. The three that matter most: run both
 verifiers and do not teach from the pack unless they are green; work the SQL
 lab yourself from cold, because question 3 is where your room will stick; and
 build the Power BI model yourself on the machine you will teach from, because
 session 14 is the one most likely to lose the room.
 
 Also ask, in writing, how many participants are on a Mac. It changes week
-five: Power BI Desktop is Windows only, and the browser path needs the data
-pre-cleaned, which changes what you hand out in session 14.
+five: Power BI Desktop requires Windows. The browser teaching route depends on the account and workspace capabilities verified during setup; retain the supplied clean CSV fallback for participants without transformation permissions.
 
 
 ## Stale decks
@@ -134,3 +133,15 @@ they were. They were archived rather than deleted because they are not
 regenerable: the content modules that produced them were rewritten for this
 design, so those files are the only remaining copy of that build. Nothing
 live depends on them and they can go whenever you are sure.
+
+## Assessment operations
+
+This track has a separate learner roster and gradebook. The weights are Session 5: 15%, Session 9: 15%, Session 13: 30%, and Session 15: 40%. Missing or unresolved assessments stay blank; they do not silently become zero. See `../IUEA_Teaching_Plan/grader/README.md` for preparation, isolated grading and import commands.
+
+Session 5 SQL has deterministic checks for report grain, gross sales, returns and net sales. The issued `assessment_banks/S09/TASKS.md` adds notebook execution checks and a separate cleaning-log rubric, preserving the original criterion totals. Its six known-answer cases and full 100/100 synthetic packet now pass. Use `student_packages/DA_S09_student.zip`; the actual submission date remains required. Session 13/15 automatic checks still need completion. All four live assignment forms remain closed until actual dates are supplied.
+
+Keep answer keys, lecturer guides, hidden checks and grade exports private. Distribute only the intended student materials.
+
+### Fixed sector data and S13 checks
+
+The [sector snapshots](data/sector_snapshots/README.md) now include the documented Bank Marketing full variant, synthetic AI4I data and a fixed Uganda GDP series. Verify their hashes with `python scripts/verify_sector_snapshots.py` from the repository root. [S13 numerical tasks](assessment_banks/S13/TASKS.md) preserve its 40-mark analysis component and sector choice. The other 60 marks and complete-packet grading are still release requirements; a 40-mark component is rejected by the final DA gradebook.

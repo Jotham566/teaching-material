@@ -1,0 +1,40 @@
+{
+  "retrieved_at": "2026-09-15T00:41:29.588801+00:00",
+  "files": [
+    {
+      "file": "bank-full.csv",
+      "sha256": "d1513ec63b385506f7cfce9f2c5caa9fe99e7ba4e8c3fa264b3aaf0f849ed32d",
+      "bytes": 4610348,
+      "source": "https://archive.ics.uci.edu/static/public/222/bank%2Bmarketing.zip",
+      "notes": "Unmodified member of bank.zip; older full variant, not bank-additional-full.csv. CC BY 4.0; Moro, Rita and Cortez, UCI DOI 10.24432/C5K306."
+    },
+    {
+      "file": "bank-names.txt",
+      "sha256": "3899a77082573ed676a7dfce3765a5307915c7f11b1fe2f6f55fd3c5467c12f7",
+      "bytes": 3864,
+      "source": "https://archive.ics.uci.edu/static/public/222/bank%2Bmarketing.zip",
+      "notes": "Unmodified member of bank.zip; older full variant, not bank-additional-full.csv. CC BY 4.0; Moro, Rita and Cortez, UCI DOI 10.24432/C5K306."
+    },
+    {
+      "file": "ai4i2020.csv",
+      "sha256": "dc6630cd9b1f0f853922fad78a1b6436570d3f1ec863f1dd5c4340ac56bc8a8e",
+      "bytes": 522048,
+      "source": "https://archive.ics.uci.edu/static/public/601/ai4i%2B2020%2Bpredictive%2Bmaintenance%2Bdataset.zip",
+      "notes": "Unmodified original synthetic dataset. CC BY 4.0; AI4I 2020, UCI DOI 10.24432/C5HS5C. Not measured Ugandan machinery data."
+    },
+    {
+      "file": "uganda_gdp_2000_2023.source.json",
+      "sha256": "f76a979930126dd764f30c2f22dd22d7b260aec53e1855308052d98d1ab107a7",
+      "bytes": 5035,
+      "source": "https://api.worldbank.org/v2/country/UG/indicator/NY.GDP.MKTP.CD?format=json&date=2000:2023&per_page=100",
+      "notes": "Unmodified API response, including update metadata and nulls; current-US-dollar GDP, not real growth or household income."
+    },
+    {
+      "file": "uganda_gdp_2000_2023.csv",
+      "sha256": "86f7332769c1c4346f672e0e482275991409b552bd3d70f0bc1ab725a79f1b2d",
+      "bytes": 682,
+      "source": "https://api.worldbank.org/v2/country/UG/indicator/NY.GDP.MKTP.CD?format=json&date=2000:2023&per_page=100",
+      "notes": "Derived by selecting country ISO3, year and value, sorting ascending year, preserving null as blank; no imputation. World Bank WDI; CC BY 4.0 with World Bank additional terms."
+    }
+  ]
+}

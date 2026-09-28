@@ -1,0 +1,25 @@
+{
+  "id": "W12-2026.09",
+  "title": "Model recommendation",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Recommendation",
+      "maximum": 8.0,
+      "description": "Selects a model using the stated decision requirements rather than score alone."
+    },
+    {
+      "id": "c2",
+      "title": "Evidence",
+      "maximum": 7.0,
+      "description": "Comparison uses consistent validation and distinguishes local explanation from global importance."
+    },
+    {
+      "id": "c3",
+      "title": "Limits",
+      "maximum": 5.0,
+      "description": "States assumptions, failure conditions and what would change the recommendation."
+    }
+  ]
+}

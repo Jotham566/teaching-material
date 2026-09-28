@@ -59,7 +59,7 @@
     <button id="fsBtn">Full screen</button>
   </div>
   <div id="hint">Space start or pause &nbsp;·&nbsp; R reset &nbsp;·&nbsp;
-    F full screen &nbsp;·&nbsp; the form stays open 48 hours after this,
+    F full screen &nbsp;·&nbsp; the form closes 24 hours from lecturer activation,
     for a failed network rather than for extra thinking time</div>
 
 <script>
@@ -102,7 +102,7 @@
     if (left <= 0) {
       clock.className = 'over done';
       msg.innerHTML = '<b>Time. Phones down.</b> If something went wrong ' +
-        'for you, the form is open for 48 hours.';
+        'for you, use the closing time announced by your lecturer.';
       if (!beeped.end) { beeped.end = 1; beep(880, 400);
         setTimeout(function(){ beep(660, 500); }, 450); }
       return;

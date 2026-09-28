@@ -148,7 +148,7 @@ with window functions, and they are a session's worth of new ideas eight days
 after your first SELECT. Export this result and rank it in the spreadsheet,
 where you are already fluent.
 
-Build it in steps, as three CTEs. A CTE is just a named query you can use
+Build it in three steps, using two CTEs and a final SELECT. A CTE is just a named query you can use
 like a table, and three short named steps are readable by somebody who did
 not write them, which nested subqueries are not.
 
@@ -163,6 +163,7 @@ WITH lines AS (
     JOIN orders o ON o.order_id = oi.order_id
     WHERE o.status = 'Delivered'
       AND o.order_date >= '2025-01-01'
+      AND o.order_date < '2026-01-01'
 ),
 net AS (
     -- step 2: subtract what came back. LEFT JOIN, because most lines have
@@ -174,10 +175,14 @@ net AS (
                * (1 - oi.discount)) AS returned_ugx
     FROM lines l
     JOIN order_items oi ON oi.line_no = l.line_no
-    LEFT JOIN returns rt ON rt.line_no = l.line_no
+    LEFT JOIN (
+        -- Combine repeat return events first, so each sales line stays once.
+        SELECT line_no, SUM(quantity_returned) AS quantity_returned
+        FROM returns GROUP BY line_no
+    ) rt ON rt.line_no = l.line_no
     GROUP BY l.rep_id, l.month
 )
--- step 3: name the reps, rank them inside their region, run the total
+-- step 3: name the reps and show each monthly net amount
 SELECT r.region,
        r.rep_name,
        n.month,
@@ -199,9 +204,12 @@ before returns are taken off:
 Total value of everything returned, across both years: **UGX 197,830,550**.
 
 ### What to hand in
-The query, and one sentence naming which rep you would talk to first and
-why. The sentence is the assessed part. A query with no conclusion is not an
-analysis.
+Submit one `.sql` file. The automatic mark is 25 points each for the correct
+rep/month grain, gross amount, returned amount and net amount. Use the six
+output columns shown above, with no duplicate rep/month keys. Amounts are
+checked within 1 UGX after rounding; extra or missing rows reduce credit.
+Add a SQL comment naming which rep you would talk to first and why. Discuss
+that judgement in class; it is not a separately marked prose submission.
 
 ---
 
@@ -210,7 +218,7 @@ analysis.
 Do these three after it works. Each takes one minute and each teaches
 something that will otherwise cost you a day.
 
-1. **Change the `LEFT JOIN returns` to `JOIN`.** Revenue collapses, because
+1. **Change the `LEFT JOIN` on the grouped returns to `JOIN`.** Revenue collapses, because
    now only the returned lines survive. Note the new number.
 2. **Remove `WHERE o.status = 'Delivered'`.** Revenue rises by
    UGX 2,007,188,960, all of it from orders nobody paid for.

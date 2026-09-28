@@ -1,5 +1,7 @@
 # Teaching resources review
 
+This records the original findings. See [REWORK_STATUS.md](REWORK_STATUS.md) for implemented fixes, verification and remaining release work.
+
 **Reviewed 14 September 2026.** Scope: the IUEA engineering course, the independent Data Analysis track, generated teaching materials, Google Forms sources and public links, notebook grading, grade aggregation, and build/validation tools. Week 1 has already been taught; recommendations preserve existing submissions and published assessment commitments.
 
 ## Overall assessment

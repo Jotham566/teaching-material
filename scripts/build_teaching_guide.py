@@ -32,7 +32,8 @@ for r in rows:
     by_week.setdefault(wk, {})
     if key not in by_week[wk]:
         by_week[wk][key] = {"slide": r["slide"], "title": r["title"],
-                            "texts": {}, "order": r["slide"]}
+                            "texts": {}, "titles": set(), "order": r["slide"]}
+    by_week[wk][key]["titles"].add(r["title"])
     by_week[wk][key]["texts"][code] = r["text"]
 
 WEEK_TITLE = {
@@ -84,7 +85,9 @@ callout(d, "Why this document exists separately",
 page_break(d)
 
 h1(d, "Contents")
-toc(d)
+para(d, "How to use this guide", size=11, after=8)
+for week in range(1,16):
+    para(d, f"Week {week} — {WEEK_TITLE[week][0]}", size=11, after=8)
 page_break(d)
 
 h1(d, "How to use this guide")
@@ -104,8 +107,8 @@ table(d, ["Course code", "Cohort", "Day, time and room"],
 spacer(d, 10)
 callout(d, "The two standing operational facts",
         "Friday is a six-hour back-to-back day, 08:00 to 14:00, with a room change and no gap. Prepare both "
-        "Friday sessions as one preparation — they share roughly 70% of content — and put the most demanding "
-        "activity in the 08:00 slot.\n\n"
+        "Friday sessions together where content is shared. Prepare the room change in advance and protect "
+        "the full teaching and practice time for each cohort.\n\n"
         "Friday 9 October is Independence Day, so CML3113 and CML3111 lose Week 5. Teach it to CML3112 on "
         "Tuesday 6 October and record that session; the recording plus the notebook goes to the Friday "
         "cohorts by Wednesday 7 October, with a 45-minute online clinic that week and a 30-minute "
@@ -126,10 +129,12 @@ for wk in sorted(by_week):
             uniq.setdefault(t, []).append(code)
         n += 1
         label = f"Slide {e['slide']}"
-        if e["title"]:
+        if len(e["titles"]) > 1:
+            label += " · Cohort-specific opening slide"
+        elif e["title"]:
             label += f" · {e['title']}"
         h3(d, label)
-        if len(uniq) == 1:
+        if len(uniq) == 1 and set(texts) == {"CML3111", "CML3112", "CML3113"}:
             para(d, list(uniq)[0], size=10.5, space=1.18, after=8)
         else:
             for t, codes in uniq.items():

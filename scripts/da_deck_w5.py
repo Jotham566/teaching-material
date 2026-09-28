@@ -85,26 +85,25 @@ DECKS[13] = dict(
                None)],
 
     splits=[("Choose your sector dataset tonight",
-             "Three, all verified and open",
+             "Three fixed course snapshots",
              "BANKING, FINANCE, TELECOM\n"
              "Bank Marketing, UCI 222. 45,211 rows x 17. Campaign contacts "
-             "against an outcome. Drop the duration column: it leaks.\n\n"
+             "against an outcome. Duration is post-call; exclude it from pre-call decisions.\n\n"
              "ENERGY, MINING, MANUFACTURING\n"
-             "AI4I 2020, UCI 601. 10,000 rows x 14. Machine sensors against "
+             "AI4I 2020, UCI 601. 10,000 rows x 14. Synthetic observations against "
              "a failure flag, only 3.4% of which are failures.\n\n"
-             "PUBLIC SECTOR AND HEALTH\n"
-             "World Bank indicators API, plus Uganda Healthsites: about "
-             "7,969 facilities with coordinates.",
-             "All three are CC BY 4.0 or ODbL",
-             ["No account, no licence problem, and they stay usable after "
-              "this course ends.",
+             "PUBLIC SECTOR AND DEVELOPMENT\n"
+             "Uganda GDP in current USD, World Bank. One row per year, 2000–2023. "
+             "Nominal dollar changes are not real growth or health outcomes.",
+             "Use the supplied files and source notes",
+             ["Read data/sector_snapshots/README.md for attribution, source terms and interpretation limits.",
               "",
               "Pick the one closest to your own work. The capstone is worth "
               "more to you if the data looks like your data.",
               "",
               "Whichever you pick, the routine is the same. That is the "
               "point of having a routine."],
-             "THE MID-TRACK ASSESSMENT")],
+             "THE SECTOR ASSESSMENT")],
 
     worked=("Turning eleven observations into five findings",
             "An investigation produces far more observations than findings. "
@@ -140,7 +139,7 @@ DECKS[13] = dict(
              "saw, and you will still be the one defending the number.")]),
 
     lab=("Run the routine on your sector dataset",
-         "This is the mid-track assessment, worth 30%. Six questions in "
+         "This is the sector assessment, worth 30%. Six questions in "
          "order, then five findings. Marked on the findings and the "
          "limitations beside them, not on the code.",
          ["What is the file a record of? What is one row?",
@@ -184,11 +183,9 @@ DECKS[14] = dict(
                "Visuals. This is where everybody starts, and starting here "
                "is why the first dashboard most people build has wrong "
                "totals."),
-              ("On a Mac you get the third one only",
+              ("The browser route needs a readiness check",
                "Power BI Desktop is Windows only. The browser Service can "
-               "build reports on uploaded data, so Mac participants clean "
-               "in pandas first and upload clean CSVs. Both paths are on "
-               "the lab sheet.")],
+               "edit models and use Power Query when permissions and tenant settings allow it. Test the supplied CSV workflow with the actual student account before class.")],
              "THREE PARTS")],
 
     concepts=[("A data model",
@@ -214,8 +211,8 @@ DECKS[14] = dict(
               ("A date table",
                "A separate table with one row per date, marked as the date "
                "table and related to your fact's date column.",
-               "731 days, 1 January 2024 to 31 December 2025. Without it, "
-               "your months sort alphabetically and April comes first.",
+               "731 days, 1 January 2024 to 31 December 2025. Sort the Month "
+               "names by MonthNo so that January comes first.",
                "The helper column of month names you add by hand every "
                "time. This one is built once and reused.")],
 
@@ -251,7 +248,7 @@ DECKS[14] = dict(
              "orders to customers on customer_id\n\n"
              "orders to reps on rep_id\n\n"
              "order_items to products on product_id\n\n"
-             "Dates to orders on order_date",
+             "orders[order_date] to Dates[Date]",
              "Delete the auto-detected ones first",
              ["Power BI guesses relationships on load. It is right about "
               "most of them and wrong in a way you will not notice until a "
@@ -305,13 +302,13 @@ DECKS[14] = dict(
     lab=("Load it, model it, reconcile it",
          "Five tables in, five relationships built by hand, a date table "
          "marked and sorted, and three visuals whose totals match the "
-         "numbers you already got from SQL and pandas. Matching is the "
-         "mark.",
+         "numbers you already got from SQL and pandas. Reconciliation is your "
+         "practice check.",
          ["Get Data: the five CSVs, loaded separately.",
           "Power Query: headers, types, trim. Check the date range.",
           "Delete every auto-detected relationship.",
-          "Build the five relationships and check each direction.",
-          "Add the date table, mark it, sort Month by MonthNo.",
+          "Build the four source-table relationships and check each direction.",
+          "Add the date table and fifth relationship. Mark it; sort Month by MonthNo.",
           "Three visuals, each total reconciled against your own earlier "
           "answer."]),
 
@@ -367,7 +364,7 @@ DECKS[15] = dict(
                "A finding says what is true. A recommendation says what to "
                "do, and carries the risk of being acted on.")],
 
-    code=[("Three measures, and the function that prevents an incident",
+    code=[("Revenue: sum the value of each order line",
            "POWER BI · MODELLING · NEW MEASURE",
            "Revenue UGX =\n"
            "SUMX(\n"
@@ -375,25 +372,27 @@ DECKS[15] = dict(
            "    order_items[quantity] * order_items[unit_price_ugx]\n"
            "        * (1 - order_items[discount])\n"
            ")\n"
-           "\n"
+           "-- expected: <<rev_all>>",
+           "Check that discount is a fraction, and multiply at the order-line grain before summing."),
+          ("Delivered revenue: change the filter context",
+           "POWER BI · MODELLING · NEW MEASURE",
            "Delivered Revenue UGX =\n"
-           "CALCULATE([Revenue UGX], orders[status] = \"Delivered\")\n"
-           "\n"
+           "CALCULATE(\n"
+           "    [Revenue UGX],\n"
+           "    orders[status] = \"Delivered\"\n"
+           ")\n"
+           "-- expected: <<rev_delivered>>",
+           "Compare the two revenue cards. The status filter must propagate through the relationship to order_items."),
+          ("Average order value: match both populations",
+           "POWER BI · MODELLING · NEW MEASURE",
            "Avg Order Value UGX =\n"
            "DIVIDE(\n"
            "    [Delivered Revenue UGX],\n"
            "    CALCULATE(DISTINCTCOUNT(orders[order_id]),\n"
            "              orders[status] = \"Delivered\")\n"
            ")\n"
-           "\n"
-           "-- expected: <<rev_all>>, <<rev_delivered>>, about <<aov>>\n"
-           "-- NOTE the CALCULATE on the denominator. Both halves of an\n"
-           "-- average have to cover the SAME population.",
-           "Take the CALCULATE off the denominator. The measure still works "
-           "and now divides delivered revenue by ALL <<orders>> orders "
-           "instead of the <<delivered>> delivered ones, so it reads "
-           "<<aov_wrong>> instead of <<aov>>. That is 19% low, it is not an "
-           "error, and nothing on the card tells you."),
+           "-- expected: about <<aov>>",
+           "Without CALCULATE in the denominator, delivered revenue is divided by all <<orders>> orders instead of <<delivered>> delivered orders. The plausible result <<aov_wrong>> is about 19% low."),
 
           ("DISTINCTCOUNT, which is session 5 again",
            "POWER BI · MODELLING · NEW MEASURE",
@@ -454,13 +453,11 @@ DECKS[15] = dict(
              "What you traded away.\n\n"
              "What would change your answer.",
              "And what is marked",
-             ["The dashboard, or the notebook, whichever carries the work.",
+             ["Upload PPTX with narration notes and numerical evidence.",
               "",
-              "One page: question, answer, how you know, the trade, and "
-              "what would change it.",
+              "Add a DOCX/PDF appendix if needed. Keep PBIX as supporting material.",
               "",
-              "Marked on whether a decision maker could act on it. Not on "
-              "the code, not on the number of visuals.",
+              'Marks reward a supported decision and the required evidence.',
               "",
               "Everybody asks at least one question of somebody else. That "
               "is how you learn what a weak answer sounds like."],
@@ -507,10 +504,7 @@ DECKS[15] = dict(
              "your method.")]),
 
     lab=("Finish the dashboard, then present",
-         "First fifty minutes: finish it, with every total reconciled. Then "
-         "five minutes each plus questions from the room, and twenty "
-         "minutes at the end on the one report you will replace at work "
-         "this month.",
+         "Use the 50-minute clinic to finish and reconcile the dashboard. Submit a five-minute narrated presentation. Selected live demonstrations take 40 minutes, followed by 20 minutes on applying the work.",
          ["Four visuals, three measures, one slicer.",
           "Every total reconciled against a number you already trust.",
           "A title that states your finding.",

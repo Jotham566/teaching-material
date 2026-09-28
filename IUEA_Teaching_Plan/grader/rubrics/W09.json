@@ -1,0 +1,25 @@
+{
+  "id": "W09-2026.09",
+  "title": "Classification and cost",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Classification evidence",
+      "maximum": 9.0,
+      "description": "Confusion counts and metrics are internally consistent."
+    },
+    {
+      "id": "c2",
+      "title": "Costs and choice",
+      "maximum": 7.0,
+      "description": "Metric choice follows the stated relative costs of false positives/negatives."
+    },
+    {
+      "id": "c3",
+      "title": "Limits",
+      "maximum": 4.0,
+      "description": "Appropriate deployment limitation and reproducible setup."
+    }
+  ]
+}

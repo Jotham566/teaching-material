@@ -201,7 +201,7 @@
   "deck": "CML3112 Week 2",
   "slide": 34,
   "title": "QUIZ AND ASSIGNMENT",
-  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: setup/quiz_02_questions.md."
+  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: scripts/quiz_bank_weeks.py, Week 2."
  },
  {
   "deck": "CML3112 Week 2",
@@ -223,13 +223,13 @@
  },
  {
   "deck": "CML3112 Week 2",
-  "slide": 41,
+  "slide": 43,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 2",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3112 Week 2",
-  "slide": 42,
+  "slide": 44,
   "title": "THE ONE THING TO REMEMBER",
   "text": "say the body text out loud and mean it. For a room of beginners this is the most useful thing they hear all week. Then stay behind for ten minutes — the students who need the most help will not ask in front of everyone."
  },
@@ -421,7 +421,7 @@
  },
  {
   "deck": "CML3112 Week 3",
-  "slide": 38,
+  "slide": 40,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 3",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
@@ -627,7 +627,7 @@
   "deck": "CML3113 Week 2",
   "slide": 34,
   "title": "QUIZ AND ASSIGNMENT",
-  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: setup/quiz_02_questions.md."
+  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: scripts/quiz_bank_weeks.py, Week 2."
  },
  {
   "deck": "CML3113 Week 2",
@@ -649,13 +649,13 @@
  },
  {
   "deck": "CML3113 Week 2",
-  "slide": 41,
+  "slide": 43,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 2",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3113 Week 2",
-  "slide": 42,
+  "slide": 44,
   "title": "THE ONE THING TO REMEMBER",
   "text": "say the body text out loud and mean it. For a room of beginners this is the most useful thing they hear all week. Then stay behind for ten minutes — the students who need the most help will not ask in front of everyone."
  },
@@ -847,7 +847,7 @@
  },
  {
   "deck": "CML3113 Week 3",
-  "slide": 38,
+  "slide": 40,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 3",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
@@ -1053,7 +1053,7 @@
   "deck": "CML3111 Week 2",
   "slide": 34,
   "title": "QUIZ AND ASSIGNMENT",
-  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: setup/quiz_02_questions.md."
+  "text": "read the setup question's responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' is your office-hours list this week, and that list is the highest-return thirty minutes of the semester. Question bank: scripts/quiz_bank_weeks.py, Week 2."
  },
  {
   "deck": "CML3111 Week 2",
@@ -1075,13 +1075,13 @@
  },
  {
   "deck": "CML3111 Week 2",
-  "slide": 41,
+  "slide": 43,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 2",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3111 Week 2",
-  "slide": 42,
+  "slide": 44,
   "title": "THE ONE THING TO REMEMBER",
   "text": "say the body text out loud and mean it. For a room of beginners this is the most useful thing they hear all week. Then stay behind for ten minutes — the students who need the most help will not ask in front of everyone."
  },
@@ -1273,7 +1273,7 @@
  },
  {
   "deck": "CML3111 Week 3",
-  "slide": 38,
+  "slide": 40,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 3",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  }

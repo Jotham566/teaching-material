@@ -158,8 +158,8 @@ def build(code):
         # at about 18pt: seven rows could only fit by dropping the type back
         # to where a student in row twelve could not read it. The full version
         # is in the teaching guide and in the syllabus.
-        ["PhD Informatics, UEC Tokyo — in progress",
-         "MSc Data Science and ML, Yamaguchi, 2024 — valedictorian",
+        ["PhD student in Applied Informatics\nOsaka Metropolitan University, Japan",
+         "Master of Technology Management\nYamaguchi University, Japan",
          "BSc IT, Makerere · BA Economics, IUIU",
          "Eight years at Citibank, EY and D'isum Inc, Tokyo"],
         "Some of what I have built",
@@ -730,12 +730,8 @@ def build(code):
              "Questions only, no verdicts. This is the first peer review of the semester, and in Week 13 peer "
              "review is graded.")
 
-    s = s_split(prs, "Before Week 2", "Assignment A1 — one page, due at the start of Week 2",
-                "Three candidate machine learning problems from your own discipline.\n\n"
-                "For each one: what data it would need, and where that data might actually come from — who "
-                "measures it, how often, and whether anyone has kept it.\n\n"
-                "One of the three must be a problem you think is NOT solvable with the data that exists. Say "
-                "why.\n\nMarked pass or redo. What is being checked is engagement.",
+    s = s_split(prs, "Before Week 2", 'Assignment A1 — use the current form deadline',
+                'Three candidate machine learning problems from your own discipline.\n\nFor each: state inputs, target, data source and one limitation.\n\nChoose one problem and dataset. Explain why it is feasible.\n\nMarks: framing 6, data 8, judgement 6. Submit one DOCX or text PDF.',
                 "Also before next week",
                 ["Create a GitHub account.",
                  "Create a Google account if you",

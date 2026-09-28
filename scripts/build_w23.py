@@ -54,7 +54,7 @@ def week2(code):
 
     s = s_figure(prs, "How today runs", F("clock_w2.png"),
                  "The same eleven-segment shape as last week. Today is heavier on practical work than any "
-                 "session so far — you will be typing for well over half of it.",
+                 "session so far. Keep the cohort kit open for the practical activities.",
                  kicker="HOW TODAY RUNS")
     notes(s, "The same eleven-segment shape as Week 1, with more keyboard time than any session so far. The "
              "break falls at the midpoint, straight after the execution-trap segment.\n\nTO TEACH: say the "
@@ -70,7 +70,7 @@ def week2(code):
              "recall — do not re-teach it.")
 
     s = s_check(prs, [
-        "Last week you predicted case 13 from twelve examples. What was the name for the twelve columns you "
+        "Last week you predicted case 13 from twelve examples. What was the name for the input columns you "
         "were given, and what was the name for the value you predicted?",
         "You want to predict how many days until a pump needs servicing. Regression or classification?",
         "Name one of the four limits — one thing machine learning cannot do."],
@@ -82,7 +82,7 @@ def week2(code):
              "first hand up.")
 
     s = s_answers(prs, [
-        ("The twelve columns, and the value?",
+        ("The input columns, and the value?",
          "The columns you were given are the FEATURES. The value you predicted is the TARGET. One row with "
          "both is one EXAMPLE."),
         ("Days until servicing?",
@@ -363,8 +363,7 @@ def week2(code):
         "commit history is how a team mark becomes an individual one. It is not administrative — it is the "
         "evidence that you did your share.",
         "**And it is what industry uses**",
-        "Every engineering software team on earth. Learning it now costs you twenty minutes; not learning it "
-        "costs you a first job interview."],
+        "Many engineering software teams use version control. Today you practise the basic workflow."],
         kicker="VERSION CONTROL")
     notes(s, "The 'final_v3_REAL_final' folder is a problem everybody recognises, and Git is the tool built for "
              "it. The assessment consequence is the part to take seriously: your commit history is the evidence "
@@ -399,28 +398,15 @@ def week2(code):
 
     # -------- SEGMENT 8
     s = s_segment(prs, 8, NSEG2, "Doing it: repository, commit, push", 25,
-                  "Whole room in lockstep. Everyone finishes with a live URL, and that URL is your A2 "
-                  "submission.")
+                  "Whole room in lockstep. Everyone finishes with a live repository URL and keeps a downloaded notebook and README for A2.")
     notes(s, "Twenty-five minutes with the whole room in step. You leave this segment with a live GitHub URL, "
-             "and that URL is your A2 submission.\n\nTO TEACH: lockstep on the projector, line by line, "
+             "and submit that URL together with the notebook and README.md for A2.\n\nTO TEACH: lockstep on the projector, line by line, "
              "everyone at the same step. Individually this takes three times as long and half the room ends up "
              "lost. Do not let the fast students run ahead.")
 
-    s = s_livecode(prs, "From Colab to GitHub", "COLAB: FILE → SAVE A COPY IN GITHUB",
-                   ('# The menu route, which is what we use today:\n'
-                    '#   File  ->  Save a copy in GitHub\n'
-                    '#   choose "Create a new repository"\n'
-                    '#   name it exactly as given on the next slide\n'
-                    '#   write a commit message, then OK\n'
-                    '\n'
-                    '# The command route, for when you work locally later:\n'
-                    'git status                     # what have I changed?\n'
-                    'git add .                      # mark it all ready\n'
-                    'git commit -m "First commit"   # record it, with a message\n'
-                    'git push                       # send it to GitHub'),
-                   "Run git status BEFORE and AFTER git add. The same filenames move from red to green, which is "
-                   "the staging area doing its one job: holding the changes you have chosen for the next "
-                   "commit.")
+    s = s_livecode(prs, "From Colab to GitHub", 'GITHUB: UPLOAD AND COMMIT',
+                   ('# Browser route used today:\n#   Colab: download your completed .ipynb\n#   GitHub: create a private repo with README\n#   Add file -> Upload files: notebook and CSV\n#   Commit changes, then edit your README\n\n# The command route, for when you work locally later:\ngit status                     # what have I changed?\ngit add .                      # mark it all ready\ngit commit -m "First commit"   # record it, with a message\ngit push                       # send it to GitHub'),
+                   'Use GitHub in the browser today: upload your files and commit the changes. The commands above are optional local-terminal reference, not Python cells.')
     notes(s, "Colab can save straight to GitHub from the File menu, which is why today needs no command line at "
              "all. The four commands are shown because you will need them from Week 13, when the project has to "
              "be reproducible, and because every job you apply for expects them.\n\n"
@@ -429,14 +415,7 @@ def week2(code):
              "failure surface for no gain.")
 
     s = s_split(prs, "Assignment A2 — Proof of Life", "Due at the start of Week 3",
-                "One thing: a link to a GitHub repository.\n\n"
-                "It must contain the notebook you built today, run from top to bottom with its outputs visible, "
-                "and a README.\n\n"
-                "The README needs four short things: your name, student number and course code; one engineering "
-                "problem from your own discipline that you think data could help with; one sentence on what data "
-                "that would need; and one sentence on what you had to fix today, or 'nothing' if it worked "
-                "first time.\n\n"
-                "That last sentence carries marks.",
+                'Submit the notebook, README.md and repository URL through the A2 form.\n\nKeep the CSV in your repository. Upload only your notebook and README.md.\n\nExplain what changed when you repeated a cell, and what Restart and Run All does. Record one error you repaired.',
                 "Before you submit",
                 ["Restart and Run All.",
                  "It must finish with no errors.",
@@ -446,32 +425,25 @@ def week2(code):
                  "Repository name:",
                  "  " + code.lower() + "-yourstudentnumber",
                  "",
-                 "Paste the URL where I tell you.",
+                 "Paste the repository URL into the A2 form.",
                  "",
-                 "Marked pass / merit / redo."],
+                 "20 marks using the published rubric."],
                 kicker="WHAT YOU OWE ME")
-    notes(s, "The honesty sentence is the part that is actually useful. What went wrong for you tells me where "
-             "this session needs fixing, and being able to say plainly what broke and how you fixed it is a "
-             "professional skill this course keeps asking for.\n\nRedo is not a penalty. It means come to office "
-             "hours this week, because Week 3 assumes a working setup.\n\nTO TEACH: the exact repository name "
-             "matters — the grading tools pull repositories by name from a roster. State it and put it on the "
-             "board.")
+    notes(s, 'The honesty sentence is the part that is actually useful. A new reader should be able to open your files and reproduce the result. Test your README instructions before submitting.\n\nRedo is not a penalty. It means come to office hours this week, because Week 3 assumes a working setup.\n\nTO TEACH: the exact repository name matters — the grading tools pull repositories by name from a roster. State it and put it on the board.')
 
     s = s_prose(prs, "What makes a README worth reading", [
         "**It is the front door of your repository**",
         "It is the first thing a marker, a colleague or a future employer sees. An empty one says the work was "
         "not finished even when it was.",
         "**Four things, for A2**",
-        "Your name, student number and course code.",
-        "One engineering problem from your own discipline that you think data could help with. Real and yours.",
-        "One sentence on what data that would need: who measures it, how often, and whether anyone keeps it.",
-        "One sentence on what you had to fix today, or 'nothing' if it worked first time.",
-        "**What a good README is not**",
-        "Long. Six sentences is plenty for A2. By Week 13 yours will also say how to run the project and what "
-        "the results were, and it will still fit on one screen.",
-        "**Why the honesty sentence carries marks**",
-        "What went wrong for you tells me where this session needs fixing, and being able to say plainly what "
-        "broke and how you fixed it is a professional skill this course keeps asking for."],
+        "Your course code and program; keep personal identifiers in the submission form.",
+        'The exact notebook and CSV filenames in your repository.',
+        'How to open the notebook, upload the CSV and run cells from the top.',
+        'How to restart, Run all, save and download the finished notebook.',
+        "**Keep the README practical**",
+        'Keep it short, but include the file list and run instructions. A new reader should be able to repeat your steps.',
+        '**Why the run instructions matter**',
+        'A new reader should be able to open your files and reproduce the result. Test your README instructions before submitting.'],
         kicker="THE README")
     notes(s, "README files are written in markdown — the same format as the text cells you just used. A # makes "
              "a heading and ** makes bold.\n\nTO TEACH: show one good and one empty README on the projector. "
@@ -505,16 +477,15 @@ def week2(code):
     s = s_points(prs, "Before you leave the room",
                  [("This week's quiz — five minutes, and it counts for one per cent",
                    "A QR code goes up, you answer five questions on your phone, and you see your score "
-                   "immediately. One of the five asks you to read your own setup output, so it also tells "
-                   "me who is not ready before Week 3 starts depending on it."),
+                   "after submission. The questions check notebook state, version control and error diagnosis."),
                   ("Assignment A2 — due at the start of Week 3",
-                   "Your repository URL. Restart and Run All before you submit.")],
+                   "Upload the notebook and README, and provide the repository URL. Restart and Run All first.")],
                  kicker="QUIZ AND ASSIGNMENT", numbered=False)
     notes(s, "Answer the setup question honestly. 'I could not get that far' is worth more to me than a "
              "guess, and it is not the question that carries the mark.\n\nTO TEACH: read the setup question's "
              "responses first. Anyone answering 'I do not know what is wrong' or 'I could not get that far' "
              "is your office-hours list this week, and that list is the highest-return thirty minutes of the "
-             "semester. Question bank: setup/quiz_02_questions.md.")
+             "semester. Question bank: scripts/quiz_bank_weeks.py, Week 2.")
 
     # -------- REVISION
     s = s_segment(prs, 11, NSEG2, "Revision material", 5,

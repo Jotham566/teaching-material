@@ -1,0 +1,39 @@
+{
+  "id": "DA_PROJECT-2026.09-hybrid-r1",
+  "title": "Data analysis project",
+  "maximum": 58.0,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Question & dataset fit",
+      "maximum": 20.0,
+      "description": "A real engineering question is stated, and the chosen dataset can actually answer it. Provenance and licence stated. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c2",
+      "title": "Data quality work",
+      "maximum": 15.0,
+      "description": "Defects found and handled with written justification. A data quality statement is present. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c3",
+      "title": "Analysis & visualisation",
+      "maximum": 8.0,
+      "description": "Four or more charts, each answering a stated question. Correct chart types, labelled axes, findings in the captions. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c4",
+      "title": "Findings & interpretation",
+      "maximum": 10.0,
+      "description": "Conclusions supported by the analysis, stated in engineering terms, with limitations acknowledged. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    },
+    {
+      "id": "c5",
+      "title": "Individual contribution log",
+      "maximum": 5.0,
+      "description": "Present, specific, and consistent with the repository's commit history. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
+    }
+  ],
+  "assessment_maximum": 100,
+  "deterministic_maximum": 42
+}

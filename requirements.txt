@@ -1,13 +1,13 @@
-# Everything the build scripts import. Versions are the ones the current
-# decks and documents were generated with.
+# Pinned application dependencies for reproducible teaching builds and grading.
+# Run the repository checks after recreating the environment.
 #
-#   python3 -m venv .iuea-env
-#   source .iuea-env/bin/activate
+#   python3.12 -m venv .iuea-grader-env
+#   source .iuea-grader-env/bin/activate
 #   pip install -r requirements.txt
 #
-# Python 3.10 or newer. The notebook grader and the teaching-data generator
-# are standard library only, on purpose, so they run on a locked-down work
-# laptop with nothing installed.
+# Python 3.11 or newer. Instructor notebook grading also requires Docker.
+# The trusted evaluator uses pandas; student execution uses the pinned Docker image.
+# Artifact grading uses a local Ollama model and the document readers below.
 
 python-pptx==1.0.2
 python-docx==1.2.0
@@ -17,8 +17,7 @@ numpy==2.2.6
 matplotlib==3.10.9
 Pillow==12.3.0
 
-# Not pip-installable, and needed only for verification rather than for
-# building:
+# Additional verification tools, not required for normal teaching builds:
 #   LibreOffice  renders a deck or a document to PDF so it can be looked at,
 #                and recalculates a workbook so formula errors surface
 #   Poppler      pdftoppm and pdftotext, for turning those PDFs into images
@@ -26,3 +25,6 @@ Pillow==12.3.0
 #                INDEPENDENT decoder to check the QR encoder. Without it the
 #                self-test skips that section loudly, and a round trip
 #                through our own code proves nothing.
+
+pypdf==6.10.0
+nbformat==5.10.4

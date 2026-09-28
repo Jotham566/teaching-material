@@ -1,229 +1,46 @@
-# -*- coding: utf-8 -*-
-"""Platform architecture and benchmark note."""
-import sys
-import os as _os
-_HERE = _os.path.dirname(_os.path.abspath(__file__))
-_ROOT = _os.path.dirname(_HERE)
-sys.path.insert(0, _HERE)
-from docx.enum.text import WD_ALIGN_PARAGRAPH as AL
-from docxkit import *      # noqa
-from docxkit import _border
-
-OUT = _ROOT + "/IUEA_Teaching_Plan/IUEA_ML_Platform_Architecture_Note.docx"
-
-d = new_doc(margin_cm=2.3)
-header_footer(d, "IUEA Faculty of Engineering · CML3111 / CML3112 / CML3113 · Platform Architecture Note")
-first_page_different(d)
-
-spacer(d, 52)
-para(d, "INTERNATIONAL UNIVERSITY OF EAST AFRICA · FACULTY OF ENGINEERING",
-     size=10.5, bold=True, colour=MID, align=AL.CENTER, after=20)
-para(d, "One System, Not Five", size=26, bold=True, colour=NAVY, align=AL.CENTER, after=4)
-para(d, "Auto-grading architecture, benchmarked against Coursera, DeepLearning.AI and IBM",
-     size=13, colour=MID, align=AL.CENTER, after=18)
-p = para(d, "COLAB-FIRST  ·  NO SERVER  ·  FREE TOOLS ONLY", size=11, bold=True,
-         align=AL.CENTER, after=8, before=8)
-_border(p, "top", NAVY_H, 10)
-_border(p, "bottom", NAVY_H, 10)
-spacer(d, 18)
-para(d, "Companion to the Assessment Technology Build Plan · working code in grader/",
-     size=9.5, colour=GREY, align=AL.CENTER, after=3)
-para(d, "Version 1.0 · September 2026", size=9.5, italic=True, colour=GREY, align=AL.CENTER)
+"""Generate the operational architecture for the implemented local grader."""
+from pathlib import Path
+from docxkit import *
+ROOT=Path(__file__).resolve().parents[1]
+d=new_doc(margin_cm=2.2)
+header_footer(d,'IUEA · Assessment architecture · Lecturer only · September 2026')
+h1(d,'Assessment architecture')
+para(d,'Collection, automatic assessment and private grade import',size=15,colour=MID)
+para(d,'This describes the implemented system. Current passing calibrations and remaining release requirements are recorded in review/2026-09-14/REWORK_STATUS.md. A form existing, or a model being installed, does not make an assessment ready.')
+h2(d,'1. The complete submission path')
+table(d,['Stage','What happens'],[
+ ['Student work','Students use the issued Colab notebook or documented offline setup. Visible practice checks give feedback. Students submit the actual notebook and required report or slides.'],
+ ['Timed collection','Lecturer-owned Google Forms collect verified email, Student Registration Number and attachments. Shared opening and closing timestamps govern eligibility. The latest on-time response replaces the complete previous packet.'],
+ ['Local preparation','prepare_submissions.py matches registration number, cohort and verified email to the roster. It retains the audit trail, prepares eligible packets and reports missing submissions only for the assigned cohort.'],
+ ['Executed checks','Notebook and SQL work runs in restricted Docker containers without network access. Hidden checks remain separate from student execution. Time and resource limits prevent a single packet from occupying the batch indefinitely.'],
+ ['Local reasoning','Ollama runs on this Mac at loopback only, with cloud features disabled. A current passing known-answer calibration is required for each rubric, model and evaluator.'],
+ ['Private results','The combined workflow writes results, individual feedback and import-ready files. Import validates identities and marks before writing. Unresolved results remain blank.']],[25,75],font=10)
+h2(d,'Practice feedback is not a final mark')
+para(d,'A practice receipt or signed token is diagnostic only. Its key is available to students, so the receipt is not trusted as a mark. Final numerical marks come from the independently executed submission. Do not import practice scores, manually copy row-ordered marks, or substitute a sampled batch for the complete eligible set.')
 page_break(d)
-
-h1(d, "1. What was asked for")
-para(d, "A single system rather than a collection of scripts: end-of-session weekly quizzes reached by QR code and "
-        "auto-marked, notebooks that grade themselves the moment a student clicks submit, the two practical "
-        "tests marked automatically, and one gradebook that computes a correctly weighted final score. "
-        "Benchmarked, explicitly, against the way learning works on Coursera, DeepLearning.AI and IBM's courses.")
-para(d, "That is the right instinct. Five loosely-coupled scripts is more for one person to hold in their head "
-        "than one tool, and the student experience on those platforms is better than anything a set of "
-        "command-line utilities produces. This note sets out what those platforms actually do, what of it "
-        "transfers to a course with no server and no budget, and what the resulting single system is.")
-
-h1(d, "2. What Coursera and DeepLearning.AI actually do")
-para(d, "The Submit button in a DeepLearning.AI notebook is not a notebook feature. It is a client for a "
-        "grading service. The sequence is: the notebook file is packaged and sent to Coursera's backend; the "
-        "backend renames it to the filename the assignment expects; it mounts that file into a freshly started "
-        "Docker container built from an image the instructional team uploaded; the container runs the grader "
-        "and returns a score and feedback, which the platform writes into its own gradebook. Coursera publishes "
-        "a command-line tool whose entire job is uploading those grader containers.")
-para(d, "IBM's courses work the same way in principle, on their own hosted JupyterLab environment. Published "
-        "descriptions of comparable systems show the same shape: a submission queue, a horizontally scalable "
-        "container service, and each test executed inside a sandbox so that student code cannot damage the "
-        "platform or reach other students' work.")
-callout(d, "The consequence, stated plainly",
-        "Instant grading on click requires a server, a container runtime, a queue and a database. There is no "
-        "configuration of a notebook that produces it. What can be reproduced without a server is the "
-        "EXPERIENCE — instant, specific feedback and a single accumulating grade — but not the enforcement. "
-        "That distinction runs through every decision below.", MID_H, LIGHT_H)
-
-h1(d, "3. What was considered and rejected, with reasons")
-table(d, ["Option", "What it would give", "Why not"],
-      [["JupyterHub + nbgrader",
-        "The academic equivalent of Coursera: browser notebooks with no student installs, a Validate button, "
-        "fetch and submit, a real gradebook. Used by universities at this scale.",
-        "Needs a Linux server, which has been confirmed unavailable. Its own documentation also warns that "
-        "autograding runs student code unsandboxed and a capable student may read other submissions or alter "
-        "grades — unacceptable for the 35% sitting in the two tests."],
-       ["A custom web application",
-        "Full control, exactly the Coursera flow.",
-        "Weeks of work, a server, uptime during class, authentication, backups, and the security problem of "
-        "executing untrusted code. Building this while teaching nine hours a week and authoring eighteen test "
-        "datasets is how the semester fails."],
-       ["otter-grader",
-        "Excellent, generates the student notebook and the grader from one master file.",
-        "Its containerised batch mode needs Docker installed and an image pulled. Its local mode does not, but "
-        "then it offers little the purpose-built module here does not."],
-       ["Colab + in-notebook grader + signed token  (ADOPTED)",
-        "Instant specific feedback, no installs for students, one accumulating gradebook, works with zero "
-        "infrastructure.",
-        "Cannot be made tamper-proof. Accepted deliberately, and mitigated — see Section 6."]],
-      [22, 39, 39], bold_first=True)
-
+h1(d,'Evidence and release')
+h2(d,'2. How reasoning marks are controlled')
+para(d,'The grader extracts accessible text from supported DOCX, PDF and PPTX files in an isolated document container. For supported notebooks it reads only the designated student-written evidence cells. Prompts, starter answers and code comments do not supply explanation marks.')
+para(d,'Two evaluations must agree within the configured criterion tolerance. Positive marks require an exact excerpt from the submitted text. Invalid output, stale calibration or disagreement produces an exception with no final mark. Agreement alone is not a calibrated confidence probability or proof of correctness.')
+para(d,'Calibration is bound to the rubric, evaluator, source evidence, installed model digest and Ollama version. Keep failed reports as evidence. Do not lower authored expected marks just to make a model pass. Recheck after changes that invalidate those bindings.')
+h2(d,'3. Release and upload readiness are separate')
+para(d,'The live assignment system has 52 forms. Upload folders and verified email settings were checked. A separate release gate keeps draft assessments closed even during a scheduled window. Release requires checked student tasks, numerical reference checks, the current reasoning calibration where needed, and a complete-packet rehearsal.')
+para(d,'Week 2 has a verified whole-packet route: 14 executed marks plus 6 explanation marks. Later assessment coverage is reported individually in the status file. S13 currently has a 40/100 numerical component; S15 has a 20/100 reported-value component. Partial components are not final grades. The four independent-track dates remain unset.')
+para(d,'Text extraction cannot establish chart layout, an interactive Power BI filter, spoken delivery or repository history. These require their own verified evidence route. Major-project, exam and presentation criteria remain held where that route or calibration is incomplete.')
+h2(d,'4. Submission limits and exceptions')
+para(d,'The live upload template accepts up to ten files, each up to 10 MB. The assignment brief narrows the required formats and number of artifacts. Use accessible, selectable-text reports; image-only reports cannot be assessed through text extraction. The local parser also rejects unsupported formats, excessive text and oversized packets rather than silently truncating them.')
+para(d,'Keep every required attachment in the same response when resubmitting. A missing attachment leaves that learner pending while other complete packets proceed. Missing submissions, identity mismatches and technical failures are not automatically converted to zero. Resolve the underlying evidence or documented submission issue before a final mark is imported.')
 page_break(d)
-h1(d, "4. The system")
-para(d, "One Python module, `iuea_grader.py`, standard library only, no installation. It behaves identically in "
-        "Google Colab, in a local Jupyter notebook, in a plain script, and on an offline lab machine with no "
-        "network at all. Three calls are the entire student-facing surface.")
-table(d, ["The student runs", "What happens"],
-      [["g = Grader(\"W05\")", "Loads the assignment's visible test specification."],
-       ["g.check(\"q2\")", "Instant PASS or FAIL on one question, with a sentence that teaches the fix rather "
-                           "than saying 'incorrect'. Only visible tests ever run here."],
-       ["g.check_all()", "Every visible question, plus a progress line: 'you have passed 3 of 3 checks, 10 of "
-                         "10 visible marks'. Hidden marks are named but not revealed."],
-       ["g.submit(\"S24001\")", "Prints a ~100-character signed code containing the student id, assignment, "
-                                "visible scores, a hash of their answers, a timestamp and an HMAC signature. "
-                                "They paste it into a Google Form."]],
-      [26, 74], bold_first=True)
-spacer(d, 10)
-para(d, "On the lecturer's side there is one command. `batch_grade.py` takes the folder of submitted notebooks, "
-        "executes each from a clean state in a subprocess, grades against all tests including the hidden ones, "
-        "and writes one results CSV plus a feedback file per student. It separately ingests the token CSV "
-        "exported from the Form, verifies every signature, and flags any token whose answer-hash disagrees with "
-        "the notebook actually submitted. Measured: 196 notebooks in 84 seconds.")
-para(d, "The gradebook is a Google Sheet driven by an Apps Script that applies the current weights, the "
-        "best-ten-of-twelve weekly quiz rule and the best-eight-of-eleven challenge rule, flags missing work, and "
-        "produces a student-facing progress line. Its pure functions carry 73 unit tests, including one that "
-        "verifies a real token generated by the Python module.")
-
-h2(d, "One point of substance: the token is not the mark")
-para(d, "This is the design decision that makes a client-side system defensible. The submitted code is a "
-        "receipt, not a grade. What goes into the gradebook is the score `batch_grade.py` computes by running "
-        "the student's actual notebook against the hidden tests. The token's job is to give the student "
-        "certainty in the moment, to prove which version they intended to submit, and to let the lecturer spot "
-        "a mismatch. A forged token buys nothing unless a week is accepted with no notebook behind it.")
-
-h1(d, "5. Which industry patterns transferred, and which did not")
-table(d, ["Pattern", "Status here"],
-      [["Instant, specific feedback rather than a bare pass/fail",
-        "ADOPTED, and improved on. Published critiques of the Coursera experience note students often see only "
-        "whether a test passed. Every failure message here names the cause and the fix."],
-       ["Practice unlimited, graded attempts limited",
-        "ADOPTED. `check()` is unlimited; each weekly quiz is a single sitting with no resit, and the two "
-        "lowest of the twelve scores are dropped instead; the two tests are single-sitting."],
-       ["Validate before submit",
-        "ADOPTED. `check_all()` is the validate step, and it runs offline."],
-       ["An ungraded lab before every graded one",
-        "ADOPTED as a recommendation. DeepLearning.AI's strongest structural habit. Cheap to add: ship each "
-        "week's practical as an ungraded walkthrough plus a graded task."],
-       ["Visible cumulative progress",
-        "ADOPTED. The gradebook emails a standing line; the notebook prints one after check_all()."],
-       ["Sandboxed execution of student code",
-        "NOT POSSIBLE. Needs containers and therefore a server. `batch_grade.py` runs student code with the "
-        "lecturer's own permissions — grade on a machine that is not the only home of the gradebook."],
-       ["Server-side enforcement of the grade",
-        "NOT POSSIBLE, and the honest cost of the constraint. See Section 6."],
-       ["Short video then immediate practice",
-        "ADOPTED in the teaching design rather than the software. The Week 1–4 decks carry verified video links "
-        "with an explicit 'watch for' instruction, positioned before or after the session by intent."]],
-      [34, 66], bold_first=True)
-
-page_break(d)
-h1(d, "6. The integrity limit, stated without softening")
-para(d, "A student who wants to can forge a valid submission token. The signing key must be present in a file "
-        "the student is able to read, because the grader runs on their machine. No client-side design fixes "
-        "this; the only fix is a server.")
-para(d, "What the design buys instead is that forgery is not worth doing. Four things stack up:")
-table(d, ["Mitigation", "What it actually achieves"],
-      [["The notebook is the mark, not the token",
-        "A forged token inflates a receipt. The gradebook is written from the notebook. The two only diverge if "
-        "a week is accepted with no notebook."],
-       ["Sample re-grading (`--sample`)",
-        "Re-runs a random percentage of real notebooks and compares against token claims. Tested: it caught a "
-        "planted inflated token at 20% sampling on one seed and missed it on another — which is the honest "
-        "behaviour. Over eleven weeks, repeated forging is caught with probability around 0.91 at that rate."],
-       ["Weekly work is only 10% of the course",
-        "The maximum available by cheating the weekly mechanism is small."],
-       ["35% sits in two offline invigilated tests",
-        "Unaided capability is certified where integrity can actually be enforced. A student whose weekly "
-        "scores and test scores diverge sharply is visible in the gradebook by Week 7."]],
-      [30, 70], bold_first=True)
-spacer(d, 10)
-callout(d, "Say this to students in Week 1",
-        "The weekly checks and the weekly quizzes exist to tell you, and me, whether you are keeping up. They are "
-        "not what certifies you — the two offline tests do that. Stated openly, most students stop treating the "
-        "mechanism as something to beat. Concealing the limitation would be both dishonest and less effective.",
-        MID_H, LIGHT_H)
-
-h1(d, "7. Other limits worth knowing before you rely on it")
-table(d, ["Limit", "Consequence and response"],
-      [["Colab needs internet",
-        "The primary environment is unusable in an outage. The same module runs locally and offline, which is "
-        "why the local route and the lab machines are kept alive rather than retired."],
-       ["The per-cell timeout is Unix-only",
-        "On Windows a hanging notebook costs the whole per-notebook budget rather than one cell. Grade on macOS "
-        "or Linux."],
-       ["The answer-hash can flag an honest student",
-        "Someone who re-runs or edits after submitting will mismatch. Zero false positives across 189 "
-        "comparisons in testing, which is not a guarantee. Treat a mismatch as a question, not a finding."],
-       ["Nothing detects plagiarism",
-        "Near-identical notebooks will occur on shared wifi. The viva and the offline tests are the detection "
-        "mechanism; 'marked on what you can explain' is the sanction."],
-       ["Two files must be kept in step by hand",
-        "The visible spec students receive and the hidden spec you keep. A drift test exists; run it after every "
-        "spec edit."],
-       ["Untested on the real platforms",
-        "Two specific things could not be executed in the build environment: Colab's file-upload call, and Apps "
-        "Script's HMAC function (the equivalent JavaScript path is tested). Ten minutes each on the real thing "
-        "before Week 3."],
-       ["Grade bands are a placeholder",
-        "Must be set against IUEA regulations before any mark is published."]],
-      [28, 72], bold_first=True)
-
-h1(d, "8. If a server ever becomes available")
-para(d, "The architecture is deliberately layered so this is not a rewrite. Migrating to JupyterHub with "
-        "nbgrader would replace how assignments are distributed and collected, and would remove student "
-        "installs entirely — but the test specifications, the feedback text, the weights and the gradebook "
-        "logic all carry across. The right trigger to revisit it is a Linux machine on the campus LAN with "
-        "someone other than the lecturer able to keep it running.")
-para(d, "One caution for that day: nbgrader's own documentation warns that its autograding is unsandboxed. Even "
-        "with a hub, the two high-stakes tests should stay offline, collected, and graded locally. That is what "
-        "universities do with examinations, and it is what Coursera does with its own graded attempts.")
-
-h1(d, "9. What this supersedes")
-table(d, ["Old", "Now"],
-      [["autograde.py + a separate self-check path", "One module. `check()` for the student, `batch_grade.py` "
-                                                     "for the lecturer, one specification format."],
-       ["pull_submissions.sh over GitHub repositories", "Google Form upload plus the token CSV. GitHub remains "
-                                                        "taught and used for the project, but is no longer the "
-                                                        "grading pipeline."],
-       ["check_setup.py and the offline installer bundle", "Largely retired for students, who now use Colab. "
-                                                           "Still needed for lab machines and the offline tests."],
-       ["Five scripts and two READMEs", "grader/ with one README, one module, one batch command, one gradebook, "
-                                        "and a regression harness."]],
-      [40, 60], bold_first=True)
-spacer(d, 12)
-callout(d, "The honest summary",
-        "This reproduces the Coursera feel — instant, specific, encouraging feedback and one accumulating "
-        "grade — on no infrastructure and no budget. What it cannot reproduce is enforcement, because "
-        "enforcement is the part that costs money. The design responds by putting the low-stakes work where "
-        "tampering does not pay and the high-stakes work where tampering is not possible.",
-        NAVY_H, LIGHT_H)
-
-spacer(d, 10)
-para(d, "Architecture note version 1.0 · September 2026 · platform behaviour verified at that date and worth "
-        "re-checking each year.", size=9, italic=True, colour=GREY, align=AL.CENTER)
-
-d.save(OUT)
-print("saved", OUT)
+h1(d,'Running and maintaining the system')
+h2(d,'5. The lecturer workstation')
+para(d,'Use the pinned Python 3.12 environment .iuea-grader-env and the Docker images described in grader/README.md. The old Python 3.9 environment is retained. Start the local model with grader/start_local_model.command; it checks whether the service is already running.')
+para(d,'Run model inference serially on this 8 GB Mac. Queue work after teaching and retain resumable results. Model inference can take minutes per submission; the old notebook-only benchmark is not a forecast for reasoning or document grading. Verify free disk space, Docker readiness and model health before a batch.')
+para(d,'Use assessment_readiness.py to inspect calibration coverage, then grade_assessment.py for a supported complete notebook packet. S05 uses da_sql_grade.py. The exact commands, flags and import workflow live in grader/README.md so operational instructions have one maintained source.')
+h2(d,'6. Records and identity')
+para(d,'The official IUEA label is Student Registration Number. Store the full value, using a fictional illustration 99/TEST/000/DEMO-X, in the roster and STUDENT_ID. Replace slashes with underscores only in filenames. Internal CSV headers retain student_id for compatibility. Do not infer a programme from the registration suffix.')
+para(d,'Use the actual registration number, name, cohort and verified-account email roster before production import. The independent track uses its own DA learner IDs and separate 15/15/30/40 aggregation. Existing Week 1 earned marks remain protected. Faculty letter bands are withheld until the approved policy is supplied.')
+para(d,'Google Forms attachments are stored in the lecturer’s Google Drive before download. Only AI inference stays local. Keep lecturer guides, answer keys, hidden checks, rosters, model evidence excerpts and grade exports in restricted records locations. Distribute only intended student-facing materials. Feedback is generated privately; it is not automatically emailed or published.')
+h2(d,'7. Recovery and final rehearsal')
+para(d,'Retain original uploads and the response audit. Correct an input or configuration problem and rerun the affected packet; never alter a student answer to make it grade. An outage extension must be explicit and recorded, with an equivalent opportunity for affected students. A non-owner student-account rehearsal, production roster, actual DA dates and Faculty policy remain operational inputs.')
+para(d,'Generated from scripts/build_platform_docx.py. See REWORK_STATUS.md for dated evidence and unresolved work.',size=9,italic=True)
+d.save(ROOT/'IUEA_Teaching_Plan/IUEA_ML_Platform_Architecture_Note.docx')

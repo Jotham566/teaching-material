@@ -6,14 +6,17 @@
 Power BI Desktop is Windows only and free. If you are on a Mac, or on a
 laptop your employer has locked down, you work in the browser Service at
 <https://app.powerbi.com> instead. Both paths are written out below. The
-browser cannot do three things, and it is better to know now than at 20:40
-on session 14:
+browser route must be tested with your teaching account before class:
 
-1. **No full Power Query editor.** You get a reduced one. So on the browser
-   path, clean in pandas first and load a clean CSV. That is not a
-   consolation prize; it is what most working pipelines do anyway.
-2. **No local file as a refreshing source.** An uploaded file is a snapshot.
-3. **No SQLite connector.** Use the CSVs, not `riverside.db`.
+1. Web semantic-model editing now includes Power Query. It requires the
+   appropriate workspace permissions, model ownership for data changes,
+   and tenant settings. Confirm these with the actual student account.
+2. A local CSV upload is a snapshot. Refresh needs a supported source.
+3. Use the supplied CSVs for this lab rather than the SQLite database.
+
+If the web editor is unavailable, use a pre-provisioned Windows lab machine.
+Do not spend the session trying to obtain account permissions.
+Reference: https://learn.microsoft.com/en-us/power-bi/transform-model/service-edit-data-models
 
 ---
 
@@ -23,9 +26,14 @@ on session 14:
 `customers.csv`, `products.csv`, `reps.csv`, `orders.csv`,
 `order_items.csv`. Load each one, do not append them.
 
-**Browser.** Create, then upload the same five CSVs to your workspace.
+**Browser.** In the designated workspace, open the lecturer-provisioned
+semantic model and choose Open data model. Use Get data in that same model
+to add each of the five CSV tables. Use Transform data for Power Query.
+Confirm all five tables appear in ONE model before proceeding. Five separate
+CSV uploads that create five separate models do not satisfy this step.
+The lecturer rehearses this route with the student account before Session 14.
 
-Then, in Power Query (Desktop) or in pandas beforehand (browser):
+Then, in Power Query (Desktop or the enabled browser editor):
 
 - Promote the first row to headers, if it did not happen on its own.
 - Set `order_date` to Date, not Text. Check the earliest and latest values
@@ -42,8 +50,9 @@ rather than by hand in Excel.
 
 ## Part 2 — the model, which is where the marks are
 
-Model view. You want a star: `order_items` in the middle, everything else
-pointing at it.
+Model view. This model has a snowflake structure: orders connects customers
+and reps to order_items. Use single-direction filtering from each one side
+to its many side. Inspect the keys before creating relationships.
 
 | From | To | On | Cardinality |
 |---|---|---|---|
@@ -56,8 +65,8 @@ pointing at it.
 four by hand.** Auto-detect is right about most of them and wrong in a way
 you will not notice until a total is wrong.
 
-Then add a date table, because without one your months sort alphabetically
-and April comes first:
+Add a date table for consistent time filtering. Month names are text;
+sort them by the month number below to keep calendar order:
 
 ```
 Dates =
@@ -144,7 +153,7 @@ like "December is a third of the year's revenue in two weeks", if that is
 what you found. A title that states the finding does the reader's work for
 them, which is what they are paying for.
 
-### Homework: the map
+### Optional extension: the map
 Add **Uganda Healthsites** — <https://data.humdata.org/dataset/uganda-healthsites>,
 ODbL, about 7,969 facilities with coordinates — and put a map visual on it,
 coloured by facility type. Then write two sentences: one on what this file
@@ -155,6 +164,4 @@ publish anything derived from it, say where it came from.
 
 ## What to hand in
 
-The `.pbix` file, or a link to the published report, plus one page: the
-question, the answer with its number, how you know, and what would change
-your answer. Five minutes in front of the room in session 15.
+Read `../student_guides/DA/S15.md` for the full submission steps. Keep the `.pbix` or authorised report link as supporting project material. Upload a PPTX with narration notes and any separate DOCX/selectable-text PDF evidence through the S15 form; PBIX and ZIP are not accepted there. Include your question, numerical answer, supporting evidence, limitations and what would change your answer, plus all five plain-text S15CHECK contexts from `../assessment_banks/S15/NUMERICAL_EVIDENCE.md`. Prepare the five-minute presentation. This assessment remains closed until full grading validation and dates are published.

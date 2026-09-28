@@ -1,0 +1,25 @@
+{
+  "id": "S09-2026.09",
+  "title": "Data cleaning",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Cleaning log",
+      "maximum": 40.0,
+      "description": "Documents actual defects, handling and checks without destroying raw data."
+    },
+    {
+      "id": "c2",
+      "title": "Reconciliation",
+      "maximum": 40.0,
+      "description": "Pandas results reconcile to SQL with an explicit rounding tolerance."
+    },
+    {
+      "id": "c3",
+      "title": "Reproducibility",
+      "maximum": 20.0,
+      "description": "Runnable workflow produces the supplied output from raw inputs."
+    }
+  ]
+}

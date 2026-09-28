@@ -1,0 +1,44 @@
+HOLIDAY DATA AND AI CAMP — DECEMBER 2026
+
+Build practical data and AI foundations before university.
+For S.4–S.6 students and vacists. No coding experience needed. Each learner must have their own laptop.
+
+ONLY 15 PLACES • MAXIMUM 5 LEARNERS PER GROUP
+Choose one eight-week track:
+
+DATA ANALYSIS
+Turn raw data into clear findings. Learn to clean data, compare groups, explain charts, query databases and turn evidence into findings.
+Tools: Python, Jupyter, pandas, matplotlib and SQL.
+Your individual project: a Python analysis notebook, charts, saved SQL queries and a short report. Example: identify the best-selling products in sample sales data and explain the evidence.
+24 classes: three per week; other days for project practice.
+
+MACHINE LEARNING
+Build prediction models and learn how to test whether they work. Learn Python, explore data, compare models with a baseline and explain prediction errors.
+Tools: Python, Jupyter, pandas and scikit-learn.
+Your individual project: a Python model notebook, baseline comparison and test results. Example: estimate rent from sample housing data.
+24 classes plus four foundation labs: three classes weekly, with an extra lab in each of weeks 1–4. Other days for practice.
+
+AI LITERACY
+Near the end of the programme, learn how AI coding assistants can help with coding and debugging—and why their answers must be checked. Foundations and core exercises are completed without AI-generated solutions.
+
+WHAT STUDENTS LEAVE WITH
+Practical skills, an individual project they can explain, presentation experience at a parent/guardian showcase, and a completion certificate after meeting assessment and project requirements. Projects use synthetic sample data. This is a beginner programme, not a professional qualification.
+
+Build a foundation for university study in computing, engineering, business, economics, statistics and data science.
+
+YOUR MAIN TUTOR
+Jotham Martin Wambi — Data Scientist and ML/AI Engineer; AI & Machine Learning Lecturer at IUEA.
+Master’s, Yamaguchi University, Japan.
+Incoming PhD student in Applied Informatics, Osaka Metropolitan University, Japan (April 2027).
+https://www.linkedin.com/in/jothammartinwambi/
+
+WHOLE PROGRAMME FEES PER LEARNER
+Small group of exactly five: UGX 800,000 each.
+Private/semi-private, one or two learners: UGX 1,000,000 each.
+Groups of three or four: request a quote.
+
+RESERVE YOUR PLACE
+WhatsApp/Call: +256 750 990 718
+Start a WhatsApp enquiry: https://wa.me/256750990718
+Email: jothammartin.wambi@gmail.com
+Send the learner’s level and preferred track. Confirm dates, venue and booking terms before payment.

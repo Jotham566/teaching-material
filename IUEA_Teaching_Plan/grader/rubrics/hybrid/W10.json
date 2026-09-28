@@ -1,0 +1,42 @@
+{
+  "id": "W10-2026.09-hybrid-r2",
+  "title": "Validation and trust",
+  "maximum": 10.0,
+  "criteria": [
+    {
+      "id": "groups",
+      "parent_criterion": "c1",
+      "title": "Groups",
+      "maximum": 2,
+      "description": "Award 2 if the response explains that keeping each equipment ID in one partition prevents information from repeated equipment observations leaking across partitions. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "fit",
+      "parent_criterion": "c1",
+      "title": "Fit",
+      "maximum": 2,
+      "description": "Award 2 if the response fits preprocessing on training data only and keeps E6 out of fitting and model selection. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "scope",
+      "parent_criterion": "c2",
+      "title": "Scope",
+      "maximum": 3,
+      "description": "Award 3 if the response limits the supported claim to synthetic teaching evaluation rather than real equipment deployment. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "shift",
+      "parent_criterion": "c2",
+      "title": "Shift",
+      "maximum": 3,
+      "description": "Award 3 if the response explains that unseen equipment or higher ambient temperatures can change the load/target relationship or cause extrapolation errors. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    }
+  ],
+  "assessment_maximum": 20,
+  "deterministic_maximum": 10,
+  "scenario": "Equipment IDs repeat across operating observations. E1\u2013E4 are training, E5 validation and E6 untouched test. Features are load_pct and ambient_c. The deployment proposal concerns previously unseen equipment in a hotter environment. Explain leakage controls, the scope supported by synthetic data and a plausible failure under this shift."
+}

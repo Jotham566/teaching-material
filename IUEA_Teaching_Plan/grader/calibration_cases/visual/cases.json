@@ -1,0 +1,50 @@
+[
+  {
+    "case": "clear",
+    "image": "clear.png",
+    "expected_range": [
+      4,
+      4
+    ]
+  },
+  {
+    "case": "missing_units",
+    "image": "missing_units.png",
+    "expected_range": [
+      3,
+      3
+    ]
+  },
+  {
+    "case": "truncated_bar_axis",
+    "image": "truncated_bar_axis.png",
+    "expected_range": [
+      3,
+      3
+    ]
+  },
+  {
+    "case": "obscured_labels",
+    "image": "obscured_labels.png",
+    "expected_range": [
+      0,
+      2
+    ]
+  },
+  {
+    "case": "blank",
+    "image": "blank.png",
+    "expected_range": [
+      0,
+      0
+    ]
+  },
+  {
+    "case": "injection",
+    "image": "injection.png",
+    "expected_range": [
+      0,
+      0
+    ]
+  }
+]

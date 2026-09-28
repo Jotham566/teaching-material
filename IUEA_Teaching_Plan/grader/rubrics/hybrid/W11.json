@@ -1,0 +1,50 @@
+{
+  "id": "W11-2026.09-hybrid-r2",
+  "title": "Features and ablation",
+  "maximum": 10.0,
+  "criteria": [
+    {
+      "id": "dictionary",
+      "parent_criterion": "c1",
+      "title": "Dictionary",
+      "maximum": 2,
+      "description": "Award 2 if the response defines load percentage, ambient temperature in degrees C, and their interaction with its product unit, all available before prediction. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "control",
+      "parent_criterion": "c2",
+      "title": "Control",
+      "maximum": 2,
+      "description": "Award 2 if the response holds training/validation membership, model family and evaluation metric constant so the feature change is isolated. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "ablation",
+      "parent_criterion": "c2",
+      "title": "Ablation",
+      "maximum": 2,
+      "description": "Award 2 if the response interprets 2.4 versus 2.0 as an MAE increase of 0.4 target units, hence worse validation performance. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "decision",
+      "parent_criterion": "c3",
+      "title": "Decision",
+      "maximum": 2,
+      "description": "Award 2 if the response drops the interaction for this comparison because measured validation error worsens. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "limit",
+      "parent_criterion": "c3",
+      "title": "Limit",
+      "maximum": 2,
+      "description": "Award 2 if the response states that one validation result does not prove the interaction is useless for every dataset or operating condition. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    }
+  ],
+  "assessment_maximum": 20,
+  "deterministic_maximum": 10,
+  "scenario": "The base features are load_pct (%) and ambient_c (degrees C); the candidate interaction is load_pct*ambient_c (% times degrees C). All are available before predicting target. Under one unchanged equipment-group validation split, base MAE is 2.0 and extended MAE is 2.4 target units. Explain the controlled ablation and decide whether to retain the interaction."
+}

@@ -1,0 +1,58 @@
+{
+  "id": "W12-2026.09-hybrid-r2",
+  "title": "Model recommendation",
+  "maximum": 12.0,
+  "criteria": [
+    {
+      "id": "choice",
+      "parent_criterion": "c1",
+      "title": "Choice",
+      "maximum": 3,
+      "description": "Award 3 if the response chooses baseline: it meets both limits and ties linear on MAE while being faster; tree violates the 10ms limit. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "protocol",
+      "parent_criterion": "c2",
+      "title": "Protocol",
+      "maximum": 2,
+      "description": "Award 2 if the response requires identical validation data, preprocessing rules and metric definitions for a fair comparison. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "explanation",
+      "parent_criterion": "c2",
+      "title": "Explanation",
+      "maximum": 2,
+      "description": "Award 2 if the response distinguishes explaining one prediction locally from summarising feature influence across a dataset globally. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "assumption",
+      "parent_criterion": "c3",
+      "title": "Assumption",
+      "maximum": 2,
+      "description": "Award 2 if the response states that the 10ms budget and comparable measured latencies are assumptions of the decision. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "failure",
+      "parent_criterion": "c3",
+      "title": "Failure",
+      "maximum": 1,
+      "description": "Award 1 if the response identifies a plausible failure such as slower target hardware or a shifted operating population. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "change",
+      "parent_criterion": "c3",
+      "title": "Change",
+      "maximum": 2,
+      "description": "Award 2 if the response explains that raising the allowed latency to at least 30ms makes tree eligible and preferred on the supplied MAE. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    }
+  ],
+  "assessment_maximum": 20,
+  "deterministic_maximum": 8,
+  "scenario": "Candidates evaluated under the same validation protocol: baseline MAE=2, latency=1ms; linear MAE=2, latency=3ms; tree MAE=1, latency=30ms. Requirements are MAE<=2 and latency<=10ms. Among eligible models choose lowest MAE, then lowest latency, then name. Explain your choice, local explanation versus global importance, and conditions that would change the choice."
+}

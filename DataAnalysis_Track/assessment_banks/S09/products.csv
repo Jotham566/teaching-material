@@ -1,0 +1,121 @@
+product_id,product_name,category,pack_size,unit_cost_ugx,unit_price_ugx
+5000,Cooking oil item 001,Cooking oil,1 x 20L,19264.0,22400.0
+5001,Maize flour item 002,Maize flour,12 x 1,18868.0,21200.0
+5002,Rice item 003,Rice,6 x 1,30798.0,35400.0
+5003,Sugar item 004,Sugar,1 x 5kg,27540.0,30600.0
+5004,Soap and detergent item 005,Soap and detergent,12 x 1,9438.0,12100.0
+5005,Bottled water item 006,Bottled water,24 x 1,11070.0,13500.0
+5006,Tea and coffee item 007,Tea and coffee,1 x 5kg,15392.0,20800.0
+5007,Imported appliances item 008,Imported appliances,1 x 20L,120267.0,174300.0
+5008,Cooking oil item 009,Cooking oil,1 x 5kg,26058.0,30300.0
+5009,Maize flour item 010,Maize flour,24 x 1,19669.0,22100.0
+5010,Rice item 011,Rice,1 x 20L,12441.0,14300.0
+5011,Sugar item 012,Sugar,12 x 1,26370.0,29300.0
+5012,Soap and detergent item 013,Soap and detergent,1 x 5kg,6318.0,8100.0
+5013,Bottled water item 014,Bottled water,1 x 20L,7626.0,9300.0
+5014,Tea and coffee item 015,Tea and coffee,1 x 1,29230.0,39500.0
+5015,Imported appliances item 016,Imported appliances,1 x 1,454779.0,659100.0
+5016,Cooking oil item 017,Cooking oil,24 x 1,32594.0,37900.0
+5017,Maize flour item 018,Maize flour,1 x 1,21627.0,24300.0
+5018,Rice item 019,Rice,6 x 1,9483.0,10900.0
+5019,Sugar item 020,Sugar,6 x 1,20520.0,22800.0
+5020,Soap and detergent item 021,Soap and detergent,1 x 20L,7020.0,9000.0
+5021,Bottled water item 022,Bottled water,24 x 1,2378.0,2900.0
+5022,Tea and coffee item 023,Tea and coffee,12 x 1,17760.0,24000.0
+5023,Imported appliances item 024,Imported appliances,6 x 1,537510.0,779000.0
+5024,Cooking oil item 025,Cooking oil,12 x 1,8170.0,9500.0
+5025,Maize flour item 026,Maize flour,1 x 5kg,17266.0,19400.0
+5026,Rice item 027,Rice,1 x 1,13920.0,16000.0
+5027,Sugar item 028,Sugar,24 x 1,24750.0,27500.0
+5028,Soap and detergent item 029,Soap and detergent,6 x 1,9516.0,12200.0
+5029,Bottled water item 030,Bottled water,1 x 20L,3280.0,4000.0
+5030,Tea and coffee item 031,Tea and coffee,12 x 1,19314.0,26100.0
+5031,Imported appliances item 032,Imported appliances,6 x 1,272688.0,395200.0
+5032,Cooking oil item 033,Cooking oil,1 x 1,33024.0,38400.0
+5033,Maize flour item 034,Maize flour,1 x 20L,18067.0,20300.0
+5034,Rice item 035,Rice,1 x 20L,12354.0,14200.0
+5035,Sugar item 036,Sugar,12 x 1,9360.0,10400.0
+5036,Soap and detergent item 037,Soap and detergent,24 x 1,7722.0,9900.0
+5037,Bottled water item 038,Bottled water,6 x 1,4182.0,5100.0
+5038,Tea and coffee item 039,Tea and coffee,24 x 1,12950.0,17500.0
+5039,Imported appliances item 040,Imported appliances,24 x 1,392058.0,568200.0
+5040,Cooking oil item 041,Cooking oil,1 x 5kg,16684.0,19400.0
+5041,Maize flour item 042,Maize flour,24 x 1,16554.0,18600.0
+5042,Rice item 043,Rice,1 x 20L,9222.0,10600.0
+5043,Sugar item 044,Sugar,24 x 1,23220.0,25800.0
+5044,Soap and detergent item 045,Soap and detergent,24 x 1,12324.0,15800.0
+5045,Bottled water item 046,Bottled water,1 x 5kg,2870.0,3500.0
+5046,Tea and coffee item 047,Tea and coffee,24 x 1,24938.0,33700.0
+5047,Imported appliances item 048,Imported appliances,1 x 1,535785.0,776500.0
+5048,Cooking oil item 049,Cooking oil,6 x 1,24596.0,28600.0
+5049,Maize flour item 050,Maize flour,1 x 5kg,22873.0,25700.0
+5050,Rice item 051,Rice,1 x 5kg,12963.0,14900.0
+5051,Sugar item 052,Sugar,1 x 1,7920.0,8800.0
+5052,Soap and detergent item 053,Soap and detergent,12 x 1,3198.0,4100.0
+5053,Bottled water item 054,Bottled water,1 x 5kg,10742.0,13100.0
+5054,Tea and coffee item 055,Tea and coffee,12 x 1,17094.0,23100.0
+5055,Imported appliances item 056,Imported appliances,24 x 1,149385.0,216500.0
+5056,Cooking oil item 057,Cooking oil,1 x 5kg,21242.0,24700.0
+5057,Maize flour item 058,Maize flour,1 x 20L,8277.0,9300.0
+5058,Rice item 059,Rice,6 x 1,29232.0,33600.0
+5059,Sugar item 060,Sugar,1 x 5kg,10890.0,12100.0
+5060,Soap and detergent item 061,Soap and detergent,1 x 1,6552.0,8400.0
+5061,Bottled water item 062,Bottled water,1 x 1,10496.0,12800.0
+5062,Tea and coffee item 063,Tea and coffee,1 x 20L,13172.0,17800.0
+5063,Imported appliances item 064,Imported appliances,1 x 20L,280623.0,406700.0
+5064,Cooking oil item 065,Cooking oil,1 x 5kg,10062.0,11700.0
+5065,Maize flour item 066,Maize flour,6 x 1,21004.0,23600.0
+5066,Rice item 067,Rice,1 x 20L,16182.0,18600.0
+5067,Sugar item 068,Sugar,24 x 1,9900.0,11000.0
+5068,Soap and detergent item 069,Soap and detergent,1 x 1,8970.0,11500.0
+5069,Bottled water item 070,Bottled water,24 x 1,1640.0,2000.0
+5070,Tea and coffee item 071,Tea and coffee,6 x 1,11174.0,15100.0
+5071,Imported appliances item 072,Imported appliances,24 x 1,168153.0,243700.0
+5072,Cooking oil item 073,Cooking oil,24 x 1,27864.0,32400.0
+5073,Maize flour item 074,Maize flour,1 x 5kg,18957.0,21300.0
+5074,Rice item 075,Rice,12 x 1,7917.0,9100.0
+5075,Sugar item 076,Sugar,6 x 1,16650.0,18500.0
+5076,Soap and detergent item 077,Soap and detergent,12 x 1,4602.0,5900.0
+5077,Bottled water item 078,Bottled water,1 x 1,4592.0,5600.0
+5078,Tea and coffee item 079,Tea and coffee,1 x 1,10582.0,14300.0
+5079,Imported appliances item 080,Imported appliances,1 x 1,419520.0,608000.0
+5080,Cooking oil item 081,Cooking oil,1 x 1,10062.0,11700.0
+5081,Maize flour item 082,Maize flour,12 x 1,9790.0,11000.0
+5082,Rice item 083,Rice,6 x 1,17487.0,20100.0
+5083,Sugar item 084,Sugar,1 x 20L,21960.0,24400.0
+5084,Soap and detergent item 085,Soap and detergent,1 x 20L,9750.0,12500.0
+5085,Bottled water item 086,Bottled water,1 x 1,6068.0,7400.0
+5086,Tea and coffee item 087,Tea and coffee,6 x 1,17760.0,24000.0
+5087,Imported appliances item 088,Imported appliances,6 x 1,523710.0,759000.0
+5088,Cooking oil item 089,Cooking oil,12 x 1,28552.0,33200.0
+5089,Maize flour item 090,Maize flour,1 x 5kg,10413.0,11700.0
+5090,Rice item 091,Rice,1 x 5kg,11223.0,12900.0
+5091,Sugar item 092,Sugar,6 x 1,8640.0,9600.0
+5092,Soap and detergent item 093,Soap and detergent,12 x 1,6318.0,8100.0
+5093,Bottled water item 094,Bottled water,1 x 1,1394.0,1700.0
+5094,Tea and coffee item 095,Tea and coffee,1 x 20L,33226.0,44900.0
+5095,Imported appliances item 096,Imported appliances,1 x 5kg,642459.0,931100.0
+5096,Cooking oil item 097,Cooking oil,1 x 20L,15394.0,17900.0
+5097,Maize flour item 098,Maize flour,12 x 1,11926.0,13400.0
+5098,Rice item 099,Rice,1 x 20L,21663.0,24900.0
+5099,Sugar item 100,Sugar,1 x 20L,13770.0,15300.0
+5100,Soap and detergent item 101,Soap and detergent,1 x 5kg,11466.0,14700.0
+5101,Bottled water item 102,Bottled water,6 x 1,9266.0,11300.0
+5102,Tea and coffee item 103,Tea and coffee,24 x 1,28268.0,38200.0
+5103,Imported appliances item 104,Imported appliances,12 x 1,370185.0,536500.0
+5104,Cooking oil item 105,Cooking oil,1 x 5kg,17544.0,20400.0
+5105,Maize flour item 106,Maize flour,24 x 1,12727.0,14300.0
+5106,Rice item 107,Rice,1 x 5kg,6699.0,7700.0
+5107,Sugar item 108,Sugar,12 x 1,8910.0,9900.0
+5108,Soap and detergent item 109,Soap and detergent,6 x 1,14352.0,18400.0
+5109,Bottled water item 110,Bottled water,1 x 20L,1804.0,2200.0
+5110,Tea and coffee item 111,Tea and coffee,1 x 5kg,27528.0,37200.0
+5111,Imported appliances item 112,Imported appliances,12 x 1,320298.0,464200.0
+5112,Cooking oil item 113,Cooking oil,6 x 1,11524.0,13400.0
+5113,Maize flour item 114,Maize flour,24 x 1,4806.0,5400.0
+5114,Rice item 115,Rice,1 x 1,11745.0,13500.0
+5115,Sugar item 116,Sugar,24 x 1,9720.0,10800.0
+5116,Soap and detergent item 117,Soap and detergent,6 x 1,5382.0,6900.0
+5117,Bottled water item 118,Bottled water,24 x 1,8036.0,9800.0
+5118,Tea and coffee item 119,Tea and coffee,6 x 1,28786.0,38900.0
+5119,Imported appliances item 120,Imported appliances,1 x 20L,652395.0,945500.0

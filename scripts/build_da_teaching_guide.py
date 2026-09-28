@@ -71,7 +71,7 @@ para(d, "LECTURER ONLY", size=10, bold=True, colour=MID, align=AL.CENTER,
      after=14)
 para(d, "Data Analysis Track: Stage Directions", size=22, bold=True,
      colour=NAVY, align=AL.CENTER, after=4)
-para(d, "Twelve sessions · what to do, in order, on each slide", size=12,
+para(d, "Fifteen sessions · what to do, in order, on each slide", size=12,
      colour=MID, align=AL.CENTER, after=18)
 
 callout(d, "What this is, and what the decks already say",

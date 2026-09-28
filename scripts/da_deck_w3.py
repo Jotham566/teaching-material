@@ -116,15 +116,15 @@ DECKS[7] = dict(
             "Six commands. The two-minute version of this is what separates "
             "an analyst from somebody who trusts a file."),
 
-    splits=[("Tonight's file will not open in Excel",
+    splits=[("A large workbook to inspect with pandas",
              "Online Retail II",
              "A real transactional file from the UCI repository. CC BY 4.0, "
              "no account needed.\n\n"
              "1,067,371 rows and 8 columns, December 2009 to December "
              "2011.\n\n"
-             "Excel stops at 1,048,576 rows. This file has more than that, "
-             "which means tonight is the first time the new tool does "
-             "something the old one cannot.",
+             "A worksheet has a row limit. This workbook spans sheets; "
+             "inspect all sheets before combining them. pandas makes "
+             "the preparation repeatable.",
              "Produce the one-page profile",
              ["Shape, and one sentence on what one row is.",
               "",

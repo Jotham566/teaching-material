@@ -1,0 +1,49 @@
+{
+  "id": "W06-2026.09-hybrid-r7",
+  "title": "Cleaning and quality",
+  "maximum": 8.0,
+  "criteria": [
+    {
+      "id": "duplicates",
+      "parent_criterion": "c1",
+      "title": "Duplicates",
+      "maximum": 1,
+      "description": "Score this independently. Award 1 if the submission explicitly explains that retaining one record per repeated record_id prevents a repeated upload from counting the same observation twice. Merely reporting that a duplicate was removed is not a justification. Otherwise award zero. Cite one short exact sentence supporting this item.",
+      "binary": true
+    },
+    {
+      "id": "invalid",
+      "parent_criterion": "c1",
+      "title": "Invalid",
+      "maximum": 1,
+      "description": "Score this independently. Award 1 if the submission justifies excluding a missing target or a physically invalid load rather than inventing or clipping an unsupported value. Otherwise award zero. Cite one short exact sentence supporting this item.",
+      "binary": true
+    },
+    {
+      "id": "impute",
+      "parent_criterion": "c1",
+      "title": "Impute",
+      "maximum": 1,
+      "description": "Score this independently. Award 1 if the submission justifies median imputation of missing ambient temperature while retaining the original raw data. Otherwise award zero. Cite one short exact sentence supporting this item.",
+      "binary": true
+    },
+    {
+      "id": "limitations",
+      "parent_criterion": "c3",
+      "title": "Limitations",
+      "maximum": 2.5,
+      "description": "Score this independently. Award 2.5 if the submission identifies at least one meaningful limitation: synthetic data, small sample, repeated equipment observations or imputation uncertainty. Otherwise award zero. Cite one short exact sentence supporting this item.",
+      "binary": true
+    },
+    {
+      "id": "use",
+      "parent_criterion": "c3",
+      "title": "Use",
+      "maximum": 2.5,
+      "description": "Score this independently. Award 2.5 if the submission restricts use to teaching/practice, or explains that deployment requires representative measured data. Equivalent wording is valid. Otherwise award zero. Cite one short exact sentence supporting this item.",
+      "binary": true
+    }
+  ],
+  "assessment_maximum": 20,
+  "deterministic_maximum": 12
+}

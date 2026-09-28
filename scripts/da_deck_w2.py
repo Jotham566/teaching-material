@@ -110,7 +110,7 @@ DECKS[4] = dict(
            "loud. Most SQL errors say what is wrong if you read them."),
           ],
 
-    worked=("Why you must never average an average",
+    worked=("When averaging averages gives a wrong result",
             "Four regions, four average order values. The national average "
             "is not the average of those four, and the gap is not small.",
             ["Compute the average order value per region. Four numbers, all "
@@ -121,8 +121,7 @@ DECKS[4] = dict(
              "They differ, because the regions have different numbers of "
              "orders. The simple average treats a region with 400 orders "
              "and one with 1,900 as equally important.",
-             "The rule: sum the top, sum the bottom, then divide. Never "
-             "average an average unless the groups are the same size."],
+             'Combined mean: total sum divided by total count.'],
             "Delivered revenue is <<rev_delivered>> over <<delivered>> "
             "delivered orders, so the average delivered order is about "
             "<<aov>>."),
@@ -304,12 +303,12 @@ DECKS[5] = dict(
              "And one sentence of judgement",
              ["Which rep would you talk to first, and why?",
               "",
-              "That sentence is the assessed part. A query with no "
-              "conclusion is not an analysis: somebody still has to do the "
-              "thinking you were asked to do.",
+              "Put your judgement in a SQL comment for class discussion. "
+              "The automatic mark checks the query: 25 points each for "
+              "grain, gross, returned and net amounts.",
               "",
-              "Marked against the answer key tonight, so you leave knowing "
-              "whether it was right."],
+              "Submit one .sql file. Amounts allow 1 UGX rounding tolerance; "
+              "extra or missing rows reduce credit."],
              "CHECKPOINT 1 · 15% OF THE MARK")],
 
     check=(["An INNER JOIN and a LEFT JOIN return the same row count. What "

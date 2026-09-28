@@ -6,6 +6,7 @@ _HERE = _os.path.dirname(_os.path.abspath(__file__))
 _ROOT = _os.path.dirname(_HERE)
 sys.path.insert(0, _HERE)
 from pptxkit import *   # noqa
+from weekly_submission_slide import add_weekly_submission
 from build_week1 import CO, FIG, OUTDIR, FOOT, qrp
 from week_content import W8, W9, W10
 
@@ -40,21 +41,21 @@ def week7(code):
 
     s = s_points(prs, "What this test is",
                  [("An unfamiliar dataset from your own discipline",
-                   "You have not seen it. There is no past paper and nothing to memorise. It is a real "
-                   "engineering dataset with real defects in it."),
-                  ("Two hours at a computer, then twenty-five minutes on paper",
+                   "You have not seen it. There is no past paper and nothing to memorise. It is a synthetic "
+                   "engineering dataset with deliberately planted defects."),
+                  ("Two hours practical, then twenty-five minutes typed reasoning",
                    "The practical part produces a notebook. The written part asks you about your own "
-                   "submission, with the computer closed."),
+                   "submission, offline with code execution prohibited."),
                   ("Offline, with no AI assistance",
                    "No internet, no assistant. You have Python, pandas, matplotlib, seaborn and an offline "
                    "copy of their documentation."),
-                  ("Marked on your reasoning more than your result",
+                  ("Your decisions need justification",
                    "Thirty-five of the hundred marks are for justifying decisions. A defensible choice you can "
                    "explain beats a lucky one you cannot.")],
                  kicker="AT A GLANCE", numbered=False)
-    notes(s, "The fourth point is the one to take seriously when you prepare. Two students can clean the same "
-             "column differently and both score full marks, provided each says why. A student who fixes it "
-             "correctly and writes nothing scores about half.\n\nThe offline condition is why the AI rule is "
+    notes(s, "The fourth point is the one to take seriously when you prepare. The checked interfaces have explicit rules that every submission must satisfy. "
+             "Where the investigation leaves a decision open, accept different defensible choices supported by evidence. "
+             "A correct interface without written justification earns only its executed-check marks.\n\nThe offline condition is why the AI rule is "
              "enforceable rather than a request. Coursework is where you learn to work with an assistant; this "
              "test certifies what you can do unaided.")
 
@@ -93,13 +94,12 @@ def week7(code):
              "confirmed with the Faculty before the day.")
 
     s = s_split(prs, "Part A — the practical, two hours", "The six tasks, in this order",
-                "1. Load the file and profile it. Report its shape, the type of every column, and what it "
-                "appears to be a record of.\n\n"
-                "2. Find its defects. Handle each one, and write ONE sentence justifying each decision.\n\n"
-                "3. Answer the three stated engineering questions, with evidence and correct units.\n\n"
-                "4. Produce three charts. Caption each with the question it answers.\n\n"
-                "5. List five findings, each supported by a number from the data.\n\n"
-                "6. Make one engineering recommendation, and state what further data you would need.",
+                "1. Load and profile: shape, column types, and one sentence describing each record.\n\n"
+                "2. Find defects. Handle each and justify the decision.\n\n"
+                "3. Answer the three engineering questions with numbers and units.\n\n"
+                "4. Create three charts. Caption each with its question.\n\n"
+                "5. Give five findings supported by data.\n\n"
+                "6. Recommend an action and name the further data needed.",
                 "What you hand in",
                 ["One notebook.", "",
                  "It must run top to bottom",
@@ -112,7 +112,7 @@ def week7(code):
                  "",
                  "Save it with the outputs",
                  "visible.", "",
-                 "Then the Part B booklet."],
+                 "Then type Part B in the\nwritten-evidence cell."],
                 kicker="PART A")
     notes(s, "Do the tasks in this order. Task 2 has to precede tasks 3 to 5, because answers computed on "
              "uncleaned data are wrong and you will have to redo them.\n\nTask 6 is where most of the "
@@ -137,14 +137,13 @@ def week7(code):
              "reproduce.\n\nIf you are behind at 1:40, write the findings anyway with whatever evidence you "
              "have. Twenty marks for findings beats a third chart worth part of twenty.")
 
-    s = s_split(prs, "Part B — written reasoning, twenty-five minutes", "Four questions about YOUR submission",
-                "The computer is closed. You have your own notebook printed or on screen, read-only, and a "
-                "paper booklet.\n\n"
-                "1. Why did you handle that defect the way you did, and what would the alternative have "
-                "changed?\n\n"
+    s = s_split(prs, "Part B — explain your decisions", "Four questions about your work",
+                "Keep your completed practical visible. Type answers in the written-evidence cell; "
+                "do not execute code, use AI, or access the internet.\n\n"
+                "1. Why that cleaning decision? What would an alternative change?\n\n"
                 "2. What does one of your charts NOT show?\n\n"
-                "3. What would change your recommendation?\n\n"
-                "4. What data is missing that you would want before acting on this?",
+                "3. What would change your decision?\n\n"
+                "4. What further data is needed before acting?",
                 "Why Part B exists",
                 ["It is very hard to write",
                  "a good answer about work",
@@ -158,12 +157,12 @@ def week7(code):
                  "section.",
                  "",
                  "Write in sentences.",
-                 "Bullet points score less",
-                 "because they hide the",
-                 "reasoning."],
+                 "Sentences or clear bullets",
+                 "are both acceptable.",
+                 "Explain the reasoning."],
                 kicker="PART B")
     notes(s, "Part B is worth a substantial share of the interpretation marks and it is where the difference "
-             "between a pass and a merit usually shows. Question 2 is the one students find hardest: every "
+             "between a supported and unsupported conclusion shows. Question 2 is the one students find hardest: every "
              "chart hides something, and naming what yours hides is a mark of understanding rather than a "
              "confession.\n\nAcceptable answers to question 4 include 'the shift log', 'the calibration "
              "record', 'the instrument specification' — anything specific. 'More data' scores nothing.")
@@ -349,7 +348,7 @@ def week8(code):
              "something to everybody.")
 
     s = s_figure(prs, "How today runs", F("clock_w8.png"),
-                 "Ten segments. The hands-on block in the middle is where you build a working model for the "
+                 "Eleven timeline blocks. The hands-on block in the middle is where you build a working model for the "
                  "first time.", kicker="HOW TODAY RUNS")
     notes(s, "Ten blocks across three hours. The first four build up what a model is and how it gets "
              "scored, the hands-on block is where you type a working model end to end, and the last four "
@@ -576,29 +575,12 @@ def week8(code):
              "Week 11.\n\nTO TEACH: run a visible leaderboard on MAE in " + w["unit"] + ". Pre-compute the "
              "baseline so nobody spends the segment on it.")
 
-    s = s_split(prs, "Before Week 9", "Assignment A7 — due at the start of Week 9",
-                "A regression notebook on " + w["file"] + " containing:\n\n"
-                "the train/test split with a fixed random_state · the fitted model · MAE and R-squared on the "
-                "test rows · a predicted-against-actual plot · a residual plot\n\n"
-                "Plus the baseline comparison, the error stated in " + w["unit"] + ", and three sentences on "
-                "whether an engineer should act on this model.\n\n"
-                "Restart and Run All before you submit.",
-                "Also this week",
-                ["The Data Analysis Project",
-                 "is due today. Repository,",
-                 "cleaned data, four charts,",
-                 "one page of findings.",
-                 "",
-                 "Worth 10 per cent.",
-                 "",
-                 "Next week the Engineering",
-                 "ML Project is set — the",
-                 "25 per cent one that runs",
-                 "to Week 15."],
-                kicker="ASSIGNMENT")
-    notes(s, "The three sentences about acting on the model carry as much weight as the notebook. A student "
-             "who reports 'MAE 4.8 " + w["unit"] + ", which is larger than the tolerance this decision needs, "
-             "so I would not act on it' has understood the week.")
+    s = s_points(prs, "Before Week 9", [
+        ("Weekly W08 submission", "Complete the issued cohort task bank: regression and error functions plus the model-comparison explanation. The final submission slide links the form and deadline."),
+        ("Project development", "Keep the regression plots and baseline comparison from today's practice in your project repository. They support your later project report."),
+        ("Data Analysis Project", "Follow its separate published brief, submission window and release status. This project contributes 10 per cent."),
+        ("Next week", "The Engineering ML Project begins and contributes 25 per cent.")], kicker="ASSIGNMENTS")
+    notes(s, "Use the issued W08 bank for the weekly mark. Broader project work has its own rubric and submission packet.")
 
     s = s_summary(prs, [
         "A model is a rule with adjustable numbers. Fitting chooses those numbers from examples; prediction "
@@ -607,7 +589,7 @@ def week8(code):
         "fit' a definition two engineers can both check.",
         "Fit on the training rows and score on the test rows. A score on data the model was fitted to only "
         "tells you how well it memorised those rows.",
-        "Split first, then do everything else. Any preparation done before the split leaks information.",
+        "Split before learning preprocessing parameters. Fixed, predeclared unit conversions do not learn from held-out rows.",
         "MAE is the average miss in real units. RMSE punishes large misses. R-squared compares against "
         "predicting the mean and has no units.",
         "Quote the error in " + w["unit"] + " and then ask whether it is inside the tolerance the decision "
@@ -715,6 +697,7 @@ def week8(code):
     notes(s, "Next week the two kinds of mistake stop being symmetrical. A false alarm and a missed failure "
              "cost very different amounts, and that asymmetry decides which model you choose.")
 
+    add_weekly_submission(prs, "W08", code)
     prs.save(os.path.join(OUTDIR, f"{code}_Week08_{c['short']}.pptx"))
     return len(prs.slides._sldIdLst)
 
@@ -748,9 +731,9 @@ def week9(code):
              "than any algorithm does.")
 
     s = s_figure(prs, "How today runs", F("clock_w9.png"),
-                 "Ten segments. The challenge at the end is the most important twenty minutes of the week.",
+                 "Eleven timeline blocks. The challenge at the end is the most important twenty minutes of the week.",
                  kicker="HOW TODAY RUNS")
-    notes(s, "Ten segments. The first half introduces classification and three models that do it; the "
+    notes(s, "Eleven timeline blocks. The first half introduces classification and three models that do it; the "
              "second half is about reading the four numbers that tell you whether a classifier is any "
              "use.\n\nThe last twenty minutes carry the most weight. A classifier scoring 97 per cent "
              "accuracy can be worth nothing at all, and the challenge at the end is where that becomes "
@@ -1136,6 +1119,7 @@ def week9(code):
              "week gets tested properly, including the possibility that your own model has been cheating "
              "without your knowledge.")
 
+    add_weekly_submission(prs, "W09", code)
     prs.save(os.path.join(OUTDIR, f"{code}_Week09_{c['short']}.pptx"))
     return len(prs.slides._sldIdLst)
 
@@ -1168,9 +1152,9 @@ def week10(code):
              "will save you more embarrassment than any other habit in this course.")
 
     s = s_figure(prs, "How today runs", F("clock_w10.png"),
-                 "Nine segments, and the last two are the ones that matter most.",
+                 "Ten timeline blocks, and the last two are the ones that matter most.",
                  kicker="HOW TODAY RUNS")
-    notes(s, "Nine segments. The first five cover the three ways a model goes wrong and the two techniques "
+    notes(s, "Ten timeline blocks. The first five cover the three ways a model goes wrong and the two techniques "
              "that catch them; the last two are about data leakage, which is the failure that produces "
              "excellent scores and worthless models.\n\nThis is the session that decides whether your "
              "project result can be believed. Every number you have quoted since Week 8 rests on the "
@@ -1537,6 +1521,7 @@ def week10(code):
     notes(s, "Next week is the one where a domain engineer beats a better programmer, and you get to measure "
              "that rather than assert it.")
 
+    add_weekly_submission(prs, "W10", code)
     prs.save(os.path.join(OUTDIR, f"{code}_Week10_{c['short']}.pptx"))
     return len(prs.slides._sldIdLst)
 

@@ -48,7 +48,7 @@ W3 = {
              '        return "monitor"\n'
              '    else:\n'
              '        return "no action"'),
-   dec_note="The thresholds come from a durability code. No data is needed to write this rule, which puts "
+   dec_note="These thresholds are fictional teaching assumptions; use the applicable project specification in real practice. No data is needed to write this rule, which puts "
             "it in the left-hand column of the Week 1 diagram.",
    callex="slab_volume(6, 4, 0.25)",
    unit_trap="millimetres and metres"),
@@ -148,30 +148,26 @@ W4 = {
    rows=300,
    story="One inspector's defect ratings run systematically about one grade harsher than everyone else's, on "
          "the same structures. Nobody will ever tell them that.",
-   herrings="Two red herrings: one structure has genuinely severe cracking for a real reason (it is the oldest "
-            "span), and crack widths look worse in the wet-season months because they were measured after rain.",
+   herrings="Compare span, crack width and inspector ratings before suggesting a cause. The fixture supports associations only.",
    report="min, max and mean crack width per structure; the count of readings above the 0.30 mm action limit; "
           "and the number of rows that had to be skipped because a field was blank"),
  "CML3113": dict(
    file="drill_shift_log.csv",
-   cols="hole_id, depth_m, rate_of_penetration, bit_type, operator_id, downtime_min, downtime_reason",
+   cols="hole_id, depth_m, rate_of_penetration, bit_type, operator_id, downtime_min, downtime_reason, shift",
    col="rate_of_penetration", limit="8.0", unit="m/h",
    rows=300,
    story="One bit type performs clearly worse — but only on the night shift. Both facts are in the file and "
          "neither is in any single column.",
-   herrings="Two red herrings: total downtime is highest for the deepest holes, which is expected rather than "
-            "interesting, and one operator has very few rows because they only started last month.",
+   herrings="Compare bit type within each shift. Check the number of readings behind each group mean.",
    report="mean rate of penetration per bit type; total downtime per reason code; and the number of rows "
           "skipped because a field was blank"),
  "CML3111": dict(
    file="motor_test_bench.csv",
-   cols="motor_id, supply_v, current_a, rpm, winding_temp_c, vibration_rms, pass_fail",
+   cols="motor_id, supply_v, current_a, rpm, winding_temp_c, vibration_rms, pass_fail, test_date, ambient_temp_c",
    col="winding_temp_c", limit="130.0", unit="degrees C",
    rows=300,
-   story="One motor runs hot, but only at low supply voltage — so at nominal voltage it passes every time and "
-         "the pass/fail flag never caught it.",
-   herrings="Two red herrings: vibration is higher across the board on one test day (the bench was not bolted "
-            "down), and one motor has a single wild current reading that is a logging error.",
+   story="One motor runs hot only at low supply voltage. Compare temperature and voltage together before interpreting the status flag.",
+   herrings="Compare temperature by motor and voltage. Check the available values before attributing a difference to ambient conditions.",
    report="mean winding temperature rise per motor; the count of readings above the 130 degree alarm limit; and "
           "the number of rows skipped because a field was blank"),
 }
@@ -329,7 +325,7 @@ W11 = {
    ordinal_eg="fire resistance ratings REI 30, REI 60 and REI 120, where the label is itself a "
               "number of minutes, so the spacing between the classes is known rather than assumed, in "
               "minutes",
-   standard="the 0.30 mm crack-width action limit, and the maximum water/cement ratio the durability code "
+   standard="the hypothetical 0.30 mm teaching threshold, and an explicitly supplied water/cement limit. A real durability standard "
             "sets for each exposure class",
    five=[("water/cement ratio",
           "water divided by cement. Abrams' law. In the ablation table it is second only to curing "
@@ -348,9 +344,7 @@ W11 = {
    nohelp="water content on its own, once the water/cement ratio is in the model. The ratio has already taken "
           "almost everything the raw water column was carrying, so dropping it moves the MAE by under "
           "0.1 MPa, and slightly downwards.",
-   adv_result="The feature teams normally win by 3 to 5 MPa of MAE using linear regression alone, while the "
-              "raw-column teams reach for a random forest and still come second. Water/cement ratio is doing "
-              "all of it."),
+   adv_result="Compare measured held-out results on the same split. Feature engineering may improve or worsen the score; report the observed difference and retain a feature only with evidence."),
 
  "CML3113": dict(
    metric="MAE in percentage points of silica",
@@ -384,9 +378,7 @@ W11 = {
           "feed quality expressed as one number, which is what the metallurgist actually reasons about.")],
    nohelp="the record index. It rises steadily with time and appears associated with almost every column, and "
           "it is a row number. Dropping it changes the MAE by about 0.01 percentage points.",
-   adv_result="The feature teams normally win by 0.3 to 0.5 percentage points of silica using linear "
-              "regression, while the raw-column teams get most of the way there with a forest and cannot say "
-              "which reading drove any prediction."),
+   adv_result="Compare measured held-out results on the same split. Feature engineering may improve or worsen the score; report the observed difference and retain a feature only with evidence."),
 
  "CML3111": dict(
    metric="recall on the failure class",
@@ -422,9 +414,7 @@ W11 = {
    nohelp="the machine identifier, one-hot encoded. It gives the model a way to memorise individual machines "
           "and tells you nothing about a machine you have not met. Recall on the failure class moves by about "
           "one percentage point when you drop it.",
-   adv_result="The feature teams normally win 8 to 12 points of recall on the failure class using logistic "
-              "regression, while the raw-column teams reach for a forest and come close on accuracy and well "
-              "short on recall."),
+   adv_result="Compare measured held-out results on the same split. Feature engineering may improve or worsen the score; report the observed difference and retain a feature only with evidence."),
 }
 
 # ---------------------------------------------------------------- Week 12 comparison challenge
@@ -485,7 +475,7 @@ W12 = {
          'costs a gearbox and a week of production."',
    constraint="A false alarm costs four hours. A missed failure costs a gearbox and a week.",
    dataset="a machine sensor dataset from a line you have not seen, about 10,000 machine-hours",
-   target="whether a machine fails within the next shift",
+   target="whether the current synthetic record is labelled as a machine failure",
    metric_note="Work out what one false alarm and one missed failure each cost, in hours, before you choose a "
                "metric. The cost ratio here is roughly one to forty, and that ratio is what picks your "
                "metric and your threshold.",
@@ -562,8 +552,8 @@ W13 = {
            "A chart titled 'output' with no units on either axis.",
            "random_state left unset, so the reported recall moves by three points between runs.",
            "Forty commented-out lines kept in case they are needed again."],
-   readme=["A maintenance team wants to know which machine needs attention before the next shift.",
-           "10,000 machine-hours from the AI4I 2020 Predictive Maintenance dataset.",
+   readme=["A teaching classifier distinguishes current failure labels; these data do not establish next-shift forecasting.",
+           "10,000 synthetic records from AI4I 2020; the failure label describes the current datapoint.",
            "Five sensor columns, five engineered features, a Pipeline with a scaler and logistic regression.",
            "Recall 0.78 on the failure class at a threshold of 0.22, precision 0.31, 5-fold cross-validated.",
            "Failures are 3.4 per cent of the rows, so accuracy says nothing here and the threshold carries "
@@ -577,11 +567,9 @@ W13 = {
 # ---------------------------------------------------------------- Weeks 8-10
 W8 = {
  "CML3112": dict(
-   tgt="28-day compressive strength", tgtcol="strength", unit="MPa", file="concrete_strength.csv",
+   tgt="compressive strength at the recorded curing age", tgtcol="strength", unit="MPa", file="concrete_strength.csv",
    feats='["cement", "water", "age"]',
-   good="A cylinder test is repeatable to roughly 2 MPa between specimens of the same mix. A model that "
-        "predicts to plus or minus 5 MPa is therefore about two and a half times as uncertain as the "
-        "test it replaces.",
+   good="Report MAE on held-out cases in MPa. MAE is an average absolute error, not a prediction interval or a substitute for a material acceptance test.",
    act="Would you pour on the strength of it? No. Would you use it to rank six candidate mixes before "
        "casting any of them? That is a much easier yes, and it is where a model like this earns its keep.",
    addfeat="the water-to-cement ratio", dropfeat="curing age"),

@@ -1,0 +1,31 @@
+{
+  "id": "DEMO-2026.09",
+  "title": "Presentation and individual reflection",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Presentation evidence",
+      "maximum": 35.0,
+      "description": "Slides and narration notes explain the question, method, evidence and limitations for an engineering audience. The local text grader does not assess visual styling or spoken delivery."
+    },
+    {
+      "id": "c2",
+      "title": "Individual written defence",
+      "maximum": 40.0,
+      "description": "Two typed answers about the student's own repository identify specific cells/results and explain the decisions. Credit is based on the submitted evidence; live questioning is formative."
+    },
+    {
+      "id": "c3",
+      "title": "Reflection",
+      "maximum": 20.0,
+      "description": "500 words. Specific about what changed since Week 1, what remains difficult, and two concrete Semester 2 goals. Generic reflection scores low."
+    },
+    {
+      "id": "c4",
+      "title": "AI-use declaration",
+      "maximum": 5.0,
+      "description": "Present, complete and plausible against the repository history."
+    }
+  ]
+}

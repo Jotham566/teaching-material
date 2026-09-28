@@ -6,6 +6,7 @@ _HERE = _os.path.dirname(_os.path.abspath(__file__))
 _ROOT = _os.path.dirname(_HERE)
 sys.path.insert(0, _HERE)
 from pptxkit import *   # noqa
+from weekly_submission_slide import add_weekly_submission
 from build_week1 import CO, FIG, OUTDIR, FOOT, qrp
 from week_content import W4, W5, W6
 
@@ -789,9 +790,8 @@ def week5(code):
         "**3 · What is the licence?**",
         "You must be allowed to use it, and you must attribute it. CC BY 4.0 means use it and cite it. No "
         "stated licence means assume you may not.",
-        "**4 · What is missing, and is it missing at random?**",
-        "A column that is blank for the first two years because the sensor was installed later is not missing "
-        "at random, and averaging it will mislead you.",
+        "**4 · What is missing, and why?**",
+        "A sensor installed later leaves a dated gap. Investigate how collection changed before treating the observed period as representative of the whole record.",
         "**5 · Can it actually answer my question?**",
         "The question nobody asks. If you want to predict failures and the file contains no failures, no "
         "amount of technique will help.",
@@ -991,8 +991,8 @@ def week6(code):
              "defect, in time to stop it reaching your conclusion. Practical Test 1 is next week, and its "
              "format and rubric are published today so that you can prepare against them.\n\n"
              + ("TO TEACH — THIS COHORT: open with the 30-minute Week 5 consolidation, because this cohort "
-                "lost Week 5 to Independence Day. Budget it in and cut the chart demonstration "
-                "accordingly. Check who actually worked through the asynchronous package before you go on. "
+                "lost Week 5 to Independence Day. This replaces the 15-minute recall; use 10 rather than 25 "
+                "minutes for the chart demonstration. Keep the full practical and break. Check completion of the asynchronous package. "
                 "Publish the Test 1 format and rubric today."
                 if code in FRIDAY else
                 "TO TEACH — THIS COHORT: no consolidation needed for this cohort — you taught Week 5 normally. "
@@ -1002,7 +1002,7 @@ def week6(code):
         "Profile a dataset for missing values, duplicates, impossible values, wrong types and outliers.",
         "Recognise a sentinel value standing in for missing data, and say why it is worse than a blank.",
         "Choose a handling strategy for each defect and justify it in one sentence.",
-        "Say whether data is missing at random, and what difference that makes.",
+        "Explain a plausible missingness mechanism and why a pattern alone cannot establish it.",
         "Produce histograms, box plots, scatter plots, line charts and a correlation heatmap, correctly "
         "labelled with units.",
         "Use a chart to find a defect rather than to present a result.",
@@ -1011,12 +1011,11 @@ def week6(code):
     notes(s, "Objective 7 has no lookup answer, and that is the point. Two of the five cases in today's "
              "challenge are genuinely arguable.\n\nTO TEACH: read them out, return at the end.")
 
-    s = s_segment(prs, 1, N, "Where we got to", 15,
+    s = s_segment(prs, 1, N, "Where we got to", 30 if code in FRIDAY else 15,
                   "You can load a table and interrogate it. Today: what to do when the table is wrong.")
-    notes(s, "Fifteen minutes of recall. You can load a table and interrogate it; today is about what to do "
-             "when the table itself is wrong.\n\nTO TEACH: for the Friday cohorts this segment is the Week 5 "
-             "consolidation and needs the full fifteen minutes. Run the four commands — shape, head, info, "
-             "describe — live on the anchor dataset and take questions.")
+    notes(s, "You can load a table and interrogate it; today concerns a table that is wrong.\n\nTO TEACH: "
+             + ("Use 30 minutes for Week 5 consolidation and 10 minutes for the later chart demonstration. " if code in FRIDAY else "Use 15 minutes for recall and 25 minutes for the chart demonstration. ")
+             + "Run shape, head, info and describe on the anchor dataset. The total remains three hours.")
 
     s = s_segment(prs, 2, N, "Real data is broken, and the break is informative", 15,
                   "Not a warning — a description. Every dataset you will ever be handed has defects in it.")
@@ -1064,19 +1063,15 @@ def week6(code):
              "inconsistency is the one that most often survives into a published result.\n\nTO TEACH: read them "
              "out and ask which they have personally seen on placement or in a laboratory. Several will have.")
 
-    s = s_define(prs, "Missing, and missing at random",
-                 "A value is MISSING when it was never recorded. It is MISSING AT RANDOM when whether it is "
-                 "absent has nothing to do with what its value would have been — and NOT at random when it does.",
-                 "A sensor added two years into a five-year record leaves the first two years blank. That is "
-                 "not random: the blanks correspond exactly to a period with different instrumentation.",
+    s = s_define(prs, "Missingness: the pattern and the cause",
+                 "MCAR: missingness is unrelated to measured or missing values. MAR: after accounting for observed data, "
+                 "it does not depend on the missing value. MNAR: dependence on that missing value remains.",
+                 "A sensor installed later creates a dated block of blanks. That pattern alone does not establish MNAR; investigate the collection process.",
                  "Zero. A blank means we do not know; a zero means we measured nothing. Treating one as the "
                  "other is the most common way to corrupt an analysis.")
-    notes(s, "This distinction decides what you are allowed to do. If values are missing at random you can "
-             "often drop or impute them without much harm. If they are not, dropping them removes a specific "
-             "part of your data and biases everything that follows.\n\nThe honest position is frequently 'I "
-             "cannot tell from the data alone, and here is what I would need to know'. That is a real answer "
-             "and it earns marks in this course.\n\nTO TEACH: the missingness map in the next segment makes "
-             "this visible rather than theoretical.")
+    notes(s, "A missingness map shows where values are absent, not why. MAR is an assumption, not something the map proves. "
+             "Deletion and imputation both need justification and sensitivity checks.\n\nTO TEACH: ask what a technician's log could reveal. "
+             "Source: National Research Council, Drawing Inferences from Incomplete Data, https://www.ncbi.nlm.nih.gov/books/NBK209900/.")
 
     s = s_worked(prs, "Profiling a dataset in four commands",
                  "The routine to run on every dataset you are ever handed, before you answer a single "
@@ -1118,9 +1113,9 @@ def week6(code):
              "readings. Check before you delete.\n\nTO TEACH: the last caution is worth saying. Blindly "
              "dropping duplicates is itself a defect.")
 
-    s = s_segment(prs, 4, N, "Charts that find problems", 25,
+    s = s_segment(prs, 4, N, "Charts that find problems", 10 if code in FRIDAY else 25,
                   "Every chart today answers a question about whether the data can be trusted.")
-    notes(s, "Twenty-five minutes of charts, and every one of them answers a question about whether the data "
+    notes(s, ("Ten minutes using the prepared chart examples. " if code in FRIDAY else "Twenty-five minutes of charts. ")+"Every chart answers a question about whether the data "
              "can be trusted. The standing rule from here on: a chart exists to answer a stated question. It "
              "becomes a marking criterion in the Data Analysis Project and in both practical tests.\n\nTO "
              "TEACH: state the rule and then enforce it all semester.")
@@ -1130,9 +1125,8 @@ def week6(code):
                  "not scattered randomly, it is structured — which tells you something happened to the "
                  "instrumentation partway through.",
                  kicker="FINDING DEFECTS")
-    notes(s, "A missingness map takes one line and answers the question that describe() cannot: is the "
-             "missingness structured? Scattered blanks are usually harmless. A block of blanks is a story.\n\n"
-             "This is exactly the 'missing at random' distinction from the previous slide, made visible.\n\n"
+    notes(s, "A missingness map locates gaps by row and variable. A block suggests questions about timing or equipment; "
+             "scattered gaps are not automatically harmless. Investigate the recording process before choosing a treatment.\n\n"
              "TO TEACH: run it on the damaged dataset live. The pattern will be obvious and the room will see "
              "it before you explain it, which is the ideal.")
 
@@ -1199,9 +1193,9 @@ def week6(code):
         "**Why it is a table and not prose**",
         "Because a reader needs to check your decisions one at a time, and because you will find eight to "
         "twelve defects and prose about twelve things is unreadable.",
-        "**The 'why' column is the marked one**",
+        "**The 'why' column makes the decision reviewable**",
         "'Dropped 41 duplicate rows because they were an exact re-export and keeping them would weight the "
-        "mean towards one day's readings' earns full marks. 'Dropped duplicates' earns about half.",
+        "mean towards one day's readings' explains a decision. 'Dropped duplicates' does not explain why.",
         "**Then a five-line data quality statement**",
         "How much data you started with, how much you used, what you removed and why, and one sentence on how "
         "much confidence the conclusion deserves as a result.",
@@ -1212,7 +1206,7 @@ def week6(code):
     notes(s, "The defect register is the same artefact professional analysts produce, usually called a data "
              "preparation log. The contrast in the third point is the one to study: 'Dropped 41 duplicate rows "
              "because they were an exact re-export and keeping them would weight the mean towards one day's "
-             "readings' earns full marks, and 'Dropped duplicates' earns about half. The difference is one "
+             "readings' explains a decision, while 'Dropped duplicates' omits its reason. The difference is one "
              "clause of causal reasoning.\n\nTO TEACH: put a blank register template on the board or hand it "
              "out. Students fill in a structure far more readily than they invent one.")
 
@@ -1228,14 +1222,14 @@ def week6(code):
                 "CORE: find and handle the six planted defects, with justifications.\n"
                 "STRETCH: quantify how much the headline answer changes under two different cleaning "
                 "strategies.",
-                "What is marked",
-                ["The justification carries the marks.",
+                "Practice feedback",
+                ["Explain each cleaning decision.",
                  "",
-                 "An unjustified correct fix scores",
-                 "about half. A justified decision",
-                 "you can defend scores full marks",
-                 "even where another engineer would",
-                 "have chosen differently.",
+                 "Compare defensible alternatives.",
+                 "Explain how each affects the",
+                 "conclusion. For the graded W06",
+                 "submission, follow the issued",
+                 "bank and its required interfaces.",
                  "",
                  "Deliverables:",
                  "  a cleaning notebook",
@@ -1243,12 +1237,7 @@ def week6(code):
                  "  a five-line data quality",
                  "  statement"],
                 kicker="PRACTICAL — 35 MINUTES")
-    notes(s, "The marking emphasis here is deliberate. There is often no single right way to handle a defect, "
-             "so a decision you can defend earns full marks even where another engineer would have chosen "
-             "differently, and a correct fix with no justification earns about half. The stretch tier is the "
-             "most valuable part if you get that far: showing that the conclusion depends on which cleaning "
-             "strategy you chose is a genuinely mature result.\n\nTO TEACH: state the marking emphasis out "
-             "loud. Circulate and ask 'why did you choose that?' and nothing else.")
+    notes(s, "This clinic is formative practice. Compare the consequences of defensible cleaning choices. The graded W06 bank specifies its own functions and written evidence.\n\nTO TEACH: circulate and ask students why they chose each action.")
 
     s = s_segment(prs, 7, N, "Error, or reality?", 15,
                   "The judgement that cannot be automated, and the reason a trained engineer is still needed.")
@@ -1328,12 +1317,11 @@ def week6(code):
         "to handle it.",
         "A zero or a -999 standing in for missing data is worse than a blank, because pandas will include it "
         "in every calculation.",
-        "Whether data is missing at random decides what you are allowed to do about it. A missingness map "
-        "makes that visible in one line.",
-        "A column that should be numeric but shows dtype 'object' has text in it somewhere.",
+        "A missingness map shows gaps; collection knowledge and explicit assumptions guide their treatment.",
+        "Inspect values and types in an object column before deciding how to convert it.",
         "A box plot tells you where the data is and flags extremes. A histogram tells you what shape it has. "
         "You need both.",
-        "Whiskers reach the last real data point inside 1.5 times the IQR. They do not sit at 1.5 IQR.",
+        "Whiskers reach the extreme observed values between Q1 minus 1.5 IQR and Q3 plus 1.5 IQR.",
         "An extreme value is not automatically an error. Physically impossible means error; implausible needs "
         "domain knowledge; and 'I cannot tell without the shift log' is a legitimate answer.",
         "Every chart answers a stated question, and the caption says what the answer was."])
@@ -1364,9 +1352,7 @@ def week6(code):
          "the mean down — and the more of them there are, the further wrong you are. Convert them to proper "
          "missing values, then recompute and compare."),
         ("Dropping 30 per cent of rows?",
-         "Are they missing at random? If the blanks correspond to a period, a unit or a condition, you have "
-         "just deleted a specific part of your data and everything downstream is biased. Check the missingness "
-         "pattern before you drop anything."),
+         "Which observations would deletion remove, and could that change the answer? Check patterns and collection records; justify the assumption and compare defensible alternatives."),
         ("No outliers but two peaks?",
          "Two populations have probably been mixed — two materials, two machines, two operating regimes, or "
          "two shifts. That is often the most interesting finding in the file, and a box plot would never have "
@@ -1388,9 +1374,8 @@ def week6(code):
         ("Missing value (NaN)", "A value that was never recorded. pandas excludes NaN from most calculations."),
         ("Sentinel value", "An impossible number used to mean missing, such as -999 or 0. Included in "
                            "calculations, so silently corrupting."),
-        ("Missing at random", "Whether a value is absent has nothing to do with what it would have been."),
-        ("Missing not at random", "The absence is structured — a period, a unit, a condition. Dropping these "
-                                  "rows biases everything."),
+        ("MCAR / MAR", "MCAR: independent of measured and missing values. MAR: independent of missing values after conditioning on observed data."),
+        ("Missing not at random", "Missingness still depends on the unseen value after accounting for observed information."),
         ("Imputation", "Filling a missing value with an estimate — the mean, the median, the previous value. "
                        "Every method assumes something."),
         ("Duplicate", "The same record recorded twice, usually from an export run twice."),
@@ -1418,7 +1403,7 @@ def week6(code):
         "Look at the minimum and maximum of every column. -999, 0, 9999 in a column that cannot hold them are "
         "missing values in disguise.",
         "**See the missingness pattern**",
-        "Plot it. Scattered is usually harmless; a block is a story.",
+        "Plot the gaps, then investigate their cause. Appearance alone does not establish the mechanism.",
         "**Handle, then justify**",
         "One sentence per decision. What you did, and why. The justification is what is marked.",
         "**Charts that find problems**",
@@ -1426,7 +1411,7 @@ def week6(code):
         "**Caption with the finding**",
         "A caption that states the finding: '" + c["finding"] + "'.",
         "**Report what you dropped**",
-        "How many rows, what proportion, and whether they were missing at random.",
+        "How many rows, what proportion, and what assumptions justified the handling decision.",
         "**When you cannot tell**",
         "Say so, and say exactly what you would need in order to know. That is a result."],
         kicker="CHEAT SHEET — KEEP THIS SLIDE")
@@ -1450,6 +1435,7 @@ def week6(code):
              "Redoing the Data Clinic on a different dataset is better preparation than rereading notes.\n\nTO "
              "TEACH: end by restating the test format and the rubric weighting one final time.")
 
+    add_weekly_submission(prs, "W06", code)
     prs.save(os.path.join(OUTDIR, f"{code}_Week06_{c['short']}.pptx"))
     return len(prs.slides._sldIdLst)
 

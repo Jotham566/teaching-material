@@ -1,0 +1,25 @@
+{
+  "id": "W04-2026.09",
+  "title": "Reading report",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Results",
+      "maximum": 10.0,
+      "description": "Reading report supplies correct, reproducible summaries with units and boundary rules."
+    },
+    {
+      "id": "c2",
+      "title": "Interpretation",
+      "maximum": 6.0,
+      "description": "Explains one supported finding and its engineering relevance without claiming causation."
+    },
+    {
+      "id": "c3",
+      "title": "Reproducibility",
+      "maximum": 4.0,
+      "description": "Input source and run instructions make the result reproducible."
+    }
+  ]
+}

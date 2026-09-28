@@ -1,0 +1,25 @@
+{
+  "id": "W08-2026.09",
+  "title": "Regression and baseline",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Evaluation",
+      "maximum": 10.0,
+      "description": "Same held-out cases compare regression against a baseline, with error in physical units."
+    },
+    {
+      "id": "c2",
+      "title": "Decision",
+      "maximum": 6.0,
+      "description": "Recommendation follows the evidence and acknowledges model limitations."
+    },
+    {
+      "id": "c3",
+      "title": "Reproducibility",
+      "maximum": 4.0,
+      "description": "Data, split and run instructions are specified."
+    }
+  ]
+}

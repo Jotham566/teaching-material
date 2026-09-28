@@ -1,0 +1,31 @@
+{
+  "id": "S05-2026.09",
+  "title": "SQL analysis",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Rep/month grain",
+      "maximum": 25.0,
+      "description": "Correct delivered-order rep/month keys with no duplicates; extra or missing rows reduce credit."
+    },
+    {
+      "id": "c2",
+      "title": "Gross amount",
+      "maximum": 25.0,
+      "description": "Gross amounts match the executed reference within 1 UGX after rounding."
+    },
+    {
+      "id": "c3",
+      "title": "Returned amount",
+      "maximum": 25.0,
+      "description": "Returned amounts match the executed reference within 1 UGX after rounding."
+    },
+    {
+      "id": "c4",
+      "title": "Net amount",
+      "maximum": 25.0,
+      "description": "Net amounts match the executed reference within 1 UGX after rounding."
+    }
+  ]
+}

@@ -160,7 +160,7 @@ with window functions, and they are a session's worth of new ideas eight days
 after your first SELECT. Export this result and rank it in the spreadsheet,
 where you are already fluent.
 
-Build it in steps, as three CTEs. A CTE is just a named query you can use
+Build it in three steps, using two CTEs and a final SELECT. A CTE is just a named query you can use
 like a table, and three short named steps are readable by somebody who did
 not write them, which nested subqueries are not.
 
@@ -175,6 +175,7 @@ WITH lines AS (
     JOIN orders o ON o.order_id = oi.order_id
     WHERE o.status = 'Delivered'
       AND o.order_date >= '2025-01-01'
+      AND o.order_date < '2026-01-01'
 ),
 net AS (
     -- step 2: subtract what came back. LEFT JOIN, because most lines have
@@ -186,10 +187,14 @@ net AS (
                * (1 - oi.discount)) AS returned_ugx
     FROM lines l
     JOIN order_items oi ON oi.line_no = l.line_no
-    LEFT JOIN returns rt ON rt.line_no = l.line_no
+    LEFT JOIN (
+        -- Combine repeat return events first, so each sales line stays once.
+        SELECT line_no, SUM(quantity_returned) AS quantity_returned
+        FROM returns GROUP BY line_no
+    ) rt ON rt.line_no = l.line_no
     GROUP BY l.rep_id, l.month
 )
--- step 3: name the reps, rank them inside their region, run the total
+-- step 3: name the reps and show each monthly net amount
 SELECT r.region,
        r.rep_name,
        n.month,
@@ -209,9 +214,12 @@ before returns are taken off:
 Total value of everything returned, across both years: **{returns_value}**.
 
 ### What to hand in
-The query, and one sentence naming which rep you would talk to first and
-why. The sentence is the assessed part. A query with no conclusion is not an
-analysis.
+Submit one `.sql` file. The automatic mark is 25 points each for the correct
+rep/month grain, gross amount, returned amount and net amount. Use the six
+output columns shown above, with no duplicate rep/month keys. Amounts are
+checked within 1 UGX after rounding; extra or missing rows reduce credit.
+Add a SQL comment naming which rep you would talk to first and why. Discuss
+that judgement in class; it is not a separately marked prose submission.
 
 ---
 
@@ -220,7 +228,7 @@ analysis.
 Do these three after it works. Each takes one minute and each teaches
 something that will otherwise cost you a day.
 
-1. **Change the `LEFT JOIN returns` to `JOIN`.** Revenue collapses, because
+1. **Change the `LEFT JOIN` on the grouped returns to `JOIN`.** Revenue collapses, because
    now only the returned lines survive. Note the new number.
 2. **Remove `WHERE o.status = 'Delivered'`.** Revenue rises by
    {cancelled_gap}, all of it from orders nobody paid for.
@@ -491,14 +499,17 @@ PBI_LAB = """# Lab: Power BI — a model, three measures, one dashboard
 Power BI Desktop is Windows only and free. If you are on a Mac, or on a
 laptop your employer has locked down, you work in the browser Service at
 <https://app.powerbi.com> instead. Both paths are written out below. The
-browser cannot do three things, and it is better to know now than at 20:40
-on session 14:
+browser route must be tested with your teaching account before class:
 
-1. **No full Power Query editor.** You get a reduced one. So on the browser
-   path, clean in pandas first and load a clean CSV. That is not a
-   consolation prize; it is what most working pipelines do anyway.
-2. **No local file as a refreshing source.** An uploaded file is a snapshot.
-3. **No SQLite connector.** Use the CSVs, not `riverside.db`.
+1. Web semantic-model editing now includes Power Query. It requires the
+   appropriate workspace permissions, model ownership for data changes,
+   and tenant settings. Confirm these with the actual student account.
+2. A local CSV upload is a snapshot. Refresh needs a supported source.
+3. Use the supplied CSVs for this lab rather than the SQLite database.
+
+If the web editor is unavailable, use a pre-provisioned Windows lab machine.
+Do not spend the session trying to obtain account permissions.
+Reference: https://learn.microsoft.com/en-us/power-bi/transform-model/service-edit-data-models
 
 ---
 
@@ -508,9 +519,14 @@ on session 14:
 `customers.csv`, `products.csv`, `reps.csv`, `orders.csv`,
 `order_items.csv`. Load each one, do not append them.
 
-**Browser.** Create, then upload the same five CSVs to your workspace.
+**Browser.** In the designated workspace, open the lecturer-provisioned
+semantic model and choose Open data model. Use Get data in that same model
+to add each of the five CSV tables. Use Transform data for Power Query.
+Confirm all five tables appear in ONE model before proceeding. Five separate
+CSV uploads that create five separate models do not satisfy this step.
+The lecturer rehearses this route with the student account before Session 14.
 
-Then, in Power Query (Desktop) or in pandas beforehand (browser):
+Then, in Power Query (Desktop or the enabled browser editor):
 
 - Promote the first row to headers, if it did not happen on its own.
 - Set `order_date` to Date, not Text. Check the earliest and latest values
@@ -527,8 +543,9 @@ rather than by hand in Excel.
 
 ## Part 2 — the model, which is where the marks are
 
-Model view. You want a star: `order_items` in the middle, everything else
-pointing at it.
+Model view. This model has a snowflake structure: orders connects customers
+and reps to order_items. Use single-direction filtering from each one side
+to its many side. Inspect the keys before creating relationships.
 
 | From | To | On | Cardinality |
 |---|---|---|---|
@@ -541,8 +558,8 @@ pointing at it.
 four by hand.** Auto-detect is right about most of them and wrong in a way
 you will not notice until a total is wrong.
 
-Then add a date table, because without one your months sort alphabetically
-and April comes first:
+Add a date table for consistent time filtering. Month names are text;
+sort them by the month number below to keep calendar order:
 
 ```
 Dates =

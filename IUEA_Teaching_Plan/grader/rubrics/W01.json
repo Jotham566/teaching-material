@@ -1,0 +1,25 @@
+{
+  "id": "W01-2026.09",
+  "title": "Three problems one dataset",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Problem framing",
+      "maximum": 6.0,
+      "description": "Three specific engineering problems, each with a clear quantity/category and reason ML is or is not suitable."
+    },
+    {
+      "id": "c2",
+      "title": "Data and feasibility",
+      "maximum": 8.0,
+      "description": "For each problem, plausible features, a target where appropriate, data source and a stated limitation."
+    },
+    {
+      "id": "c3",
+      "title": "Judgement",
+      "maximum": 6.0,
+      "description": "A defensible choice of one dataset/problem and explanation of why the evidence could support the question."
+    }
+  ]
+}

@@ -14,7 +14,7 @@ the honest model. Per-student timers would only matter for an asynchronous
 quiz, and this one is not.
 
 This clock counts the five minutes students are given, which is when the
-quiz is meant to be taken. The form itself stays open for 48 hours after
+quiz is meant to be taken. The form itself stays open for 24 hours after
 that, so a failed network in Room 106 does not cost anybody a mark. Both
 numbers are stated on the form.
 
@@ -32,7 +32,7 @@ sys.path.insert(0, _HERE)
 OUT = _ROOT + "/IUEA_Teaching_Plan/quiz_timer.html"
 
 # The five minutes students are given, and what this clock counts. The form
-# then stays open for WINDOW_HOURS (48) so a failed network does not cost a
+# then stays open for WINDOW_HOURS (24) so a failed network does not cost a
 # mark. Keep in step with QUIZ_MIN in build_quiz_forms_gs.py and
 # QUIZ_MIN_ON_CLOCK in the Apps Script.
 WINDOW_MIN = 5
@@ -98,7 +98,7 @@ HTML = """<!DOCTYPE html>
     <button id="fsBtn">Full screen</button>
   </div>
   <div id="hint">Space start or pause &nbsp;·&nbsp; R reset &nbsp;·&nbsp;
-    F full screen &nbsp;·&nbsp; the form stays open 48 hours after this,
+    F full screen &nbsp;·&nbsp; the form closes 24 hours from lecturer activation,
     for a failed network rather than for extra thinking time</div>
 
 <script>
@@ -141,7 +141,7 @@ HTML = """<!DOCTYPE html>
     if (left <= 0) {
       clock.className = 'over done';
       msg.innerHTML = '<b>Time. Phones down.</b> If something went wrong ' +
-        'for you, the form is open for 48 hours.';
+        'for you, use the closing time announced by your lecturer.';
       if (!beeped.end) { beeped.end = 1; beep(880, 400);
         setTimeout(function(){ beep(660, 500); }, 450); }
       return;

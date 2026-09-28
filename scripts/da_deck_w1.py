@@ -46,8 +46,8 @@ DECKS[1] = dict(
                "accident. Tonight it gets a second name, RECORD, and that "
                "is most of what changes."),
               ("You already write code",
-               "=IF(B2>1000,\"large\",\"small\") is a function, two "
-               "arguments, a condition and a result. Session 6 puts the "
+               "=IF(B2>1000,\"large\",\"small\") is a function with three "
+               "arguments: a condition and two possible results. Session 6 puts the "
                "brackets somewhere else."),
               ("You already do joins",
                "VLOOKUP is a join. It has one behaviour that differs from a "
@@ -85,9 +85,7 @@ DECKS[1] = dict(
                "the grain."),
 
               ("Data type",
-               "What kind of value a column holds: whole number, decimal, "
-               "text, date, or true/false. A column has ONE type, all the "
-               "way down.",
+               'A column’s intended type: integer, decimal, text, date or Boolean. Check imported values.',
                "order_date is a date, so the database can sort it, subtract "
                "one from another and pull the month out. If it were text, "
                "\"2025-03-10\" and \"10/03/2025\" would be two unrelated "

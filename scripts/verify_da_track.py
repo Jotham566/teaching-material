@@ -480,8 +480,8 @@ if not any("never names" in f for f in FAIL):
 
 # the Power BI lab must carry the Mac path, which was an explicit requirement
 pbi = open(os.path.join(LABS, "lab_powerbi.md"), encoding="utf-8").read()
-if "app.powerbi.com" in pbi and "Mac" in pbi and "cannot do three things" in pbi:
-    ok("the Power BI lab gives the browser path and names what it cannot do")
+if all(term in pbi for term in ("app.powerbi.com","Mac","Power Query","permissions","Windows lab")):
+    ok("the Power BI lab gives the browser path, permission requirements and lab fallback")
 else:
     bad("the Power BI lab does not handle Mac participants")
 

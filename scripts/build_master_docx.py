@@ -33,7 +33,7 @@ para(d, "Companion documents", size=9.5, bold=True, colour=GREY, align=AL.CENTER
 para(d, "IUEA_ML_Semester1_Master_Teaching_Plan.xlsx — the week-by-week master grid", size=9.5, colour=GREY, align=AL.CENTER, after=2)
 para(d, "IUEA_ML_Assessment_Technology_Build_Plan.docx — the auto-grading system", size=9.5, colour=GREY, align=AL.CENTER, after=2)
 para(d, "IUEA_ML_Student_Setup_Guide.docx  ·  IUEA_ML_Week2_Lecturer_Runsheet.docx", size=9.5, colour=GREY, align=AL.CENTER, after=2)
-para(d, "assessment-tools/ and setup/ — working, tested code", size=9.5, colour=GREY, align=AL.CENTER, after=2)
+para(d, "grader/ and setup/ — implementation and student practicals", size=9.5, colour=GREY, align=AL.CENTER, after=2)
 para(d, "Three cohort syllabi — CML3111, CML3112, CML3113", size=9.5, colour=GREY, align=AL.CENTER, after=14)
 para(d, "Version 1.0  ·  drafted 1 September 2026  ·  for Faculty review",
      size=9.5, italic=True, colour=GREY, align=AL.CENTER)
@@ -41,7 +41,22 @@ page_break(d)
 
 # ---------------------------------------------------------------- contents
 h1(d, "Contents")
-toc(d)
+para(d, '1. Purpose and status', size=11, after=9)
+para(d, '2. The teaching assignment', size=11, after=9)
+para(d, '3. The Semester 1 calendar', size=11, after=9)
+para(d, '4. The pedagogical model', size=11, after=9)
+para(d, '5. The 70/30 architecture', size=11, after=9)
+para(d, '6. The shape of the semester', size=11, after=9)
+para(d, '7. Assessment design', size=11, after=9)
+para(d, '8. Making it markable: the auto-grading stack', size=11, after=9)
+para(d, '9. Managing a hundred-student cohort', size=11, after=9)
+para(d, '10. Tooling, and why each tool appears when it does', size=11, after=9)
+para(d, '11. Dataset strategy', size=11, after=9)
+para(d, '12. Risk register', size=11, after=9)
+para(d, '13. What to build next, and in what order', size=11, after=9)
+para(d, '14. The bridge to Semester 2', size=11, after=9)
+para(d, 'Appendix A · The fifteen weeks at a glance', size=11, after=9)
+para(d, 'Appendix B · The graduate profile ladder', size=11, after=9)
 page_break(d)
 
 # ================================================================ 1
@@ -74,14 +89,11 @@ para(d, "The first is test capacity. Cohort A is approximately one hundred stude
         "simultaneously, the tests require either two sittings with different datasets or a hybrid of personal "
         "laptops and laboratory machines. That is a timetabling and estates question, and it needs to be asked in "
         "Week 1 rather than Week 6.")
-para(d, "The second is the Week 5 public holiday, discussed in Section 3. The third is marking capacity, and the "
-        "arithmetic deserves to be stated plainly rather than glossed. Marked entirely by hand, this design comes "
-        "to about two hundred and forty-five hours a semester — roughly sixteen hours a week on top of nine hours "
-        "of teaching, which is not survivable. The auto-grading stack described in Section 8 takes that to about "
-        "one hundred and nineteen hours, roughly eight hours a week, and Section 8 sets out exactly where the "
-        "saving comes from. Eight hours a week is still worth quantifying in a Week 1 request rather than absorbing "
-        "silently in December. The fourth is the assessment model itself, which must be confirmed before Week 5 "
-        "because the first test falls in Week 7.")
+para(d, "The second is the Week 5 public holiday, discussed in Section 3. The third is marking capacity: "
+        "one lecturer cannot manually assess every submission. Deterministic checks handle code and numerical "
+        "work; a calibrated local model is intended to handle supported reasoning evidence. Real grading time "
+        "and exception rates must be measured in a pilot; no reduction in workload is yet a verified result. "
+        "The fourth is Faculty confirmation of the assessment model before the first test in Week 7.")
 
 # ================================================================ 2
 h1(d, "2. The teaching assignment")
@@ -245,15 +257,7 @@ para(d, "The semester opens without a computer. Week 1 is a paper-based session 
         "also see a finished student-level project, so the destination is concrete from the first hour, and they "
         "form the teams they will keep all semester. Nobody is blocked by a laptop on day one, which matters more "
         "than it sounds when a hundred students arrive with unknown hardware.")
-para(d, "Week 2 is the environment, and it is the highest-risk session of the semester for reasons that have "
-        "nothing to do with pedagogy. A hundred students installing Python, VS Code and several packages over a "
-        "shared connection will not work. The session is therefore designed offline-first: installers pre-staged "
-        "on USB drives and the local network share, laboratory machines pre-provisioned, Google Colab declared as "
-        "an official fallback, and six to eight of the stronger students recruited in advance as floor helpers. "
-        "Every tool is introduced by the problem it solves rather than by name, and the session closes with Break "
-        "and Fix — four deliberately broken environments that teams must diagnose. Meeting a module-not-found "
-        "error under controlled conditions in Week 2 is vastly preferable to meeting it for the first time in the "
-        "Week 14 test.")
+para(d, "Week 2 teaches Colab notebooks and GitHub version control through a small cohort-specific CSV practical. Students upload the supplied notebook and CSV, explore execution order, repair four faults and save a fresh-run notebook. A prepared local lab provides the connection fallback. A2 requires the notebook, README and repository URL; its form closes at the start of Week 3.")
 para(d, "Weeks 3 and 4 build Python on engineering formulas the students already know, so the syntax is carried "
         "by familiar content rather than by abstract exercises. Week 3 ends with the Wrong Answer Hunt: six "
         "functions that run cleanly and return wrong answers, through integer division, operator precedence, a "
@@ -289,7 +293,7 @@ para(d, "The first assessment week certifies data literacy, not modelling. Indiv
         "their own domain: profile it, find and handle its defects with a written justification for each, answer "
         "three stated engineering questions with evidence, produce three charts each captioned with the question "
         "it answers, list five findings, and make one recommendation. The written section then asks them about "
-        "their own submission, with no computer: why that cleaning decision, what the chart does not show, what "
+        "their own submission, typed offline without code execution: why that cleaning decision, what the chart does not show, what "
         "would change the conclusion, what data is missing.")
 para(d, "Three matched dataset variants are issued in a checkerboard seating pattern. The room runs offline, which "
         "removes both internet search and AI assistance, and — this matters — is actually enforceable, unlike a "
@@ -325,8 +329,8 @@ para(d, "Week 10 asks whether the model can be trusted, and it is the highest-va
 
 h2(d, "Block 4 · Weeks 11–12 · Practical judgement")
 para(d, "Week 11 is where domain knowledge formally enters the model. A feature is engineering knowledge written "
-        "in a form the model can use, and it is the one place where a domain engineer beats a better programmer. "
-        "Each cohort has one demonstration feature chosen because it visibly outperforms the raw columns: the "
+        "in a form the model can use, connecting domain understanding with programming. "
+        "Each cohort tests a proposed feature against raw inputs under the same validation protocol: the "
         "water-to-cement ratio for the civil and architecture cohort, a century-old piece of concrete technology; "
         "the reagent-to-feed ratio for mining and petroleum; and mechanical power from torque and angular velocity "
         "for the electrical, mechatronic and robotics cohort, which has the strongest physics-to-feature story of "
@@ -354,16 +358,15 @@ para(d, "Week 13 treats reproducibility as a professional obligation. A messy ex
 para(d, "Week 14 is the second practical test, this time end-to-end: frame the task, prepare the data, build at "
         "least two models inside a leak-proof pipeline, evaluate with a justified metric, report in operational "
         "units and state three limitations. Again individual, again offline, again three matched variants.")
-para(d, "Week 15 is Demo Day. The format scales by cohort size: a two-round fair with laptops and posters for the "
-        "large cohort, with six shortlisted plenary demonstrations, and full plenary presentation for the smaller "
-        "ones. While the fair runs, every student answers two unseen questions about their own repository, "
-        "recorded on a tally sheet — ninety seconds each, and the mechanism that makes a team mark individually "
-        "accountable. Recognition is awarded for Best Engineering Reasoning, Best Investigation and Most Honest "
+para(d, "Week 15 is Demo Day. Every cohort uses a two-round fair with laptops and posters, followed by three "
+        "selected demonstrations of at most six minutes each and two minutes for recognition. "
+        "Every student submits individual typed answers to two repository-specific questions with their "
+        "reflection. These provide evidence for local rubric assessment; brief live questioning is formative "
+        "sampling, since one lecturer cannot conduct a three-minute viva for every student during the fair. Recognition is awarded for Best Engineering Reasoning, Best Investigation and Most Honest "
         "Limitations. There is deliberately no prize for highest accuracy. The session closes by putting the Week "
         "1 promise back on the screen and asking the cohort whether it was kept.")
 
 # ================================================================ 7
-page_break(d)
 h1(d, "7. Assessment design")
 para(d, "Assessment is entirely practical and project-based. There is no traditional written machine learning "
         "examination, on the straightforward grounds that a written paper cannot distinguish a student who can "
@@ -378,11 +381,11 @@ table(d, ["Component", "When", "Mode", "Weight"],
        ["Data Analysis Project", "Launched W5, due W8", "Team, individual log", "10%"],
        ["Practical Test 1 — Data Investigation", "Week 7", "Individual, offline", "15%"],
        ["Practical Test 2 — End-to-End Engineering ML", "Week 14", "Individual, offline", "20%"],
-       ["Engineering ML Project", "Launched W9, due W15", "Team, viva-moderated", "25%"],
+       ["Engineering ML Project", "Launched W9, due W15", "Team + individual evidence", "25%"],
        ["Demonstration, viva and individual reflection", "Week 15", "Individual", "10%"],
        ["Individual share of the total mark", "", "", "65%"],
        ["Team share of the total mark", "", "", "35%"],
-       ["Machine-marked share of the total mark", "", "", "35%"]],
+       ["Automated assessment coverage", "", "", "Pilot pending"]],
       [44, 23, 20, 11], bold_first=True,
       shade_fn=lambda i, r: GREEN_H if i >= 7 else None)
 spacer(d, 12)
@@ -402,9 +405,7 @@ para(d, "Every teaching session closes with a five-minute quiz of five multiple-
         "QR code on the projector, taken on the students' own phones in the last five minutes, auto-marked, with "
         "the score and a teaching comment released the moment they submit. Twelve are graded, the best ten "
         "counting, at one per cent each: Weeks 1 to 6 and Weeks 8 to 13. Weeks 7 and 14 are the practical tests "
-        "and Week 15 is Demo Day, so those three weeks carry no quiz. The Week 2 quiz does a second job. One of "
-        "its five questions asks the student to read the output of their own environment setup, which tells the "
-        "lecturer who does not have a working environment before Week 3 starts depending on it.")
+        "and Week 15 is Demo Day, so those three weeks carry no quiz. The Week 2 proof-of-life submission separately verifies that each student can run and save the supplied notebook.")
 para(d, "The design constraint that matters is what the questions are allowed to be. A multiple-choice question "
         "cannot assess engineering reasoning, and a course that lets auto-marking spread unchecked ends up "
         "testing recall. So every quiz question shows the student code, an output, a chart or a table, and asks "
@@ -419,7 +420,7 @@ para(d, "Two features are worth noting because they follow from auto-marking rat
         "from an occasional gate into a weekly signal for the student and the lecturer alike. And there are no "
         "resits: only the best ten of the twelve count, so a student who misses two sessions, or a cohort that "
         "loses one to a network failure, is not penalised at all. A sitting lost to the network converts to a "
-        "48-hour asynchronous window, and the class is told so before they leave the room.")
+        "24-hour asynchronous window, and the class is told so before they leave the room.")
 para(d, "On integrity, the honest position is that a quiz taken on personal phones in one room can be colluded on, "
         "and no free tool prevents it. The design accepts this rather than pretending otherwise: each quiz "
         "is worth one per cent, three parallel versions are issued by seating column with question and "
@@ -452,11 +453,11 @@ para(d, "Six rubrics are published in full in the workbook and issued to student
         "so, should out-score a student who copies a public notebook to a better number. The project rubric "
         "allocates fifteen marks to problem definition, fifteen to data understanding, twenty to methodology, "
         "twenty to engineering reasoning, fifteen to validation, ten to communication and five to reproducibility.")
-callout(d, "The standing marker rule",
-        "A student is marked on what they can explain. If a submission contains work the student cannot account "
-        "for in the viva or in the written reasoning section, the mark is reduced to the portion they can explain. "
-        "This appears in the syllabus and is applied consistently. It is also what makes a permissive policy on AI "
-        "assistance workable without any surveillance.", MID_H, LIGHT_H)
+callout(d, "Apply the published criteria",
+        "Execution, evidence and explanation earn their specified marks. Missing justification affects the "
+        "relevant criterion; there is no unpublished whole-submission penalty based on a live answer. "
+        "Individual typed defence and reflection are separate from shared project marks. Live questioning "
+        "and peer comments are formative.", MID_H, LIGHT_H)
 
 h2(d, "The policy on AI coding assistants")
 para(d, "Banning these tools would be both unenforceable and professionally dishonest, since the students will use "
@@ -478,92 +479,19 @@ para(d, "The rungs are introduced in sequence rather than all at once: error exp
 page_break(d)
 h1(d, "8. Making it markable: the auto-grading stack")
 
-para(d, "A design of this kind is only honest if it can actually be marked by the person teaching it. This section "
-        "sets out the arithmetic and the five free tools that resolve it. The working code sits in the "
-        "assessment-tools folder beside this document and has been tested; the companion Assessment Technology "
-        "Build Plan covers installation, the weekly operating routine and the failure contingencies in detail.")
-
-h2(d, "The arithmetic, before and after")
-
-table(d, ["Item", "Volume", "Hours if all human", "Hours with the stack"],
-      [["Weekly practical challenges", "11 × ~195 = ~2,145 items", "107", "10"],
-       ["Weekly quizzes (new)", "12 × ~195 = ~2,340 sittings", "—", "0"],
-       ["Practical Test 1", "~195 scripts", "26", "16"],
-       ["Practical Test 2", "~195 scripts", "26", "16"],
-       ["Data Analysis Project", "43 teams", "18", "18"],
-       ["Engineering ML Project and 4 milestones", "43 teams", "43", "43"],
-       ["Demonstration, viva and reflection", "~195 students", "15", "15"],
-       ["Gradebook reconciliation", "3 cohorts", "10", "1"],
-       ["TOTAL PER SEMESTER", "126 hours saved", "246 h  (≈16 h/week)", "120 h  (≈8 h/week)"]],
-      [36, 24, 20, 20], bold_first=True,
-      shade_fn=lambda i, r: GREEN_H if i == 8 else None)
-spacer(d, 12)
-
-callout(d, "Where the saving actually comes from — and where it does not",
-        "The QR quizzes are not what fixes the workload. They cost nothing to mark, but marking them was never "
-        "the problem. The problem is roughly 2,145 weekly practical submissions, and it is the notebook "
-        "auto-grader that removes about 97 hours of it. What the quizzes do instead is different and also "
-        "valuable: instant feedback for the student, a weekly engagement signal across ~195 students that is "
-        "otherwise invisible, and the freedom to move assessment weight away from work that is expensive to mark. "
-        "Both are worth having. Only one of them solves the capacity problem.", MID_H, LIGHT_H)
-
-h2(d, "The five layers")
-
-para(d, "Layer A delivers the weekly quizzes through Google Forms in quiz mode, reached by a QR code on the "
-        "projector, with responses landing in a Google Sheet and the score released on submission. It is free on a "
-        "personal Google account. Two limits are worth knowing before building it: Forms has no native timer, so "
-        "the reliable free method is to open the form and switch off responses after five minutes; and Forms "
-        "cannot work offline at all, which is why the best-ten-of-twelve rule and the 48-hour asynchronous "
-        "fallback exist.")
-
-para(d, "Layer B is the notebook auto-grader, and it is the one that matters. It was written for this course in the "
-        "Python standard library alone — no Docker, no package installs, no server, no continuous-integration "
-        "minutes — because everything in this course has to survive an unreliable connection. It executes each "
-        "submission from a clean state, checks named variables against a test specification, and produces a CSV of "
-        "scores plus a per-student feedback file. It graded 195 notebooks in sixty-three seconds in testing. The "
-        "same specification ships to students with the hidden tests withheld, so they can self-check before "
-        "submitting and arrive at the deadline already knowing their notebook runs. That last detail changes "
-        "student behaviour more than the marking saving does.")
-
-para(d, "The obvious alternatives were considered and rejected on constraints rather than quality, and the reasons "
-        "should be stated precisely rather than as slogans. Otter-grader's containerised batch grading needs Docker "
-        "installed and an image pulled, though its local mode does not. Nbgrader needs no Docker and can be used "
-        "without JupyterHub, but its collect-and-distribute exchange — the part that would actually save the "
-        "handling time — assumes one. Neither is a criticism of the tool; both are dependencies that this course "
-        "cannot rely on over an unreliable connection in the week marks are due.")
-
-para(d, "Layer C extends the same grader to the two practical tests. Students record their Part A answers in a "
-        "structured dictionary inside the test notebook, which the grader marks offline after the sitting — forty "
-        "of the hundred marks on Test 1 and forty-five on Test 2. The cap is deliberate and should be defended: "
-        "the reasoning and justification marks stay human because they are the reason the tests exist at all. "
-        "Across the whole course, thirty-five per cent of the mark is machine-marked and sixty-five per cent is "
-        "not.")
-
-para(d, "Layer D is the gradebook — a Google Sheet with an Apps Script that computes the weighted total, applies "
-        "the best-eight-of-eleven and best-ten-of-twelve rules, flags missing submissions and emails each student "
-        "their current standing. One verified limit shapes how it is used: a free Gmail account can send to only "
-        "about a hundred recipients a day, so a mail-out to 195 students runs over two days, and the script is "
-        "written to checkpoint and resume. Layer E is a short script that pulls every student's repository for a "
-        "given week into one folder, which turns the weekly grading run into a single command and reuses the Git "
-        "workflow the course already teaches in Week 2.")
-
-h2(d, "What is deliberately not being built")
-para(d, "No custom web application, no self-hosted quiz server, no mobile app. Building software while teaching "
-        "nine hours a week and authoring eighteen test datasets is a reliable way to lose the semester. Everything "
-        "above is either an existing free tool or a short script that has already been written and tested.")
-para(d, "One gap should be stated rather than discovered: nothing in this stack detects plagiarism. With shared "
-        "accommodation and shared wifi, near-identical notebooks will occur, and only the viva and the two offline "
-        "tests will catch it. A student-facing progress dashboard would, incidentally, make an excellent Semester 2 "
-        "capstone project — a better use of it than lecturer time now.")
-
-callout(d, "One institutional consequence of having no LMS",
-        "Because IUEA has no institutional learning platform, quiz responses and the gradebook will live in "
-        "the lecturer's personal Google account. That raises real questions of ownership, continuity and data "
-        "protection for official marks, and it should be put to the Faculty in writing in Week 1. Two interim "
-        "measures are cheap and should happen regardless: export the responses and gradebook to the course share "
-        "as CSV at the end of every block, so the authoritative record is a file the university holds rather than "
-        "an account tied to one person; and collect the student number rather than personal email addresses. If an "
-        "LMS arrives later, Layers A and D move across without touching the rest.", "C55A11", AMBER_H)
+para(d, "The assessment workflow uses complete-cohort notebook execution, timed file uploads, local rubric assessment and ID-based grade imports. The operational implementation is in grader/. The companion Assessment Operations Plan gives setup and failure handling.")
+h2(d, "Workload evidence")
+from plan_content import MARKING_LOAD, TECH_STACK
+table(d, ["Item","Volume","Illustrative human hours","Automated workflow hours"],
+      [[r[0],r[1],str(r[3]),"Pilot pending" if r[4] is None else str(r[4])] for r in MARKING_LOAD],
+      [32,28,20,20],bold_first=True)
+para(d, "Before values are illustrative estimates. Measure model calibration, file retries and exception handling during the pilot; earlier fixed savings claims were unverified. The lecturer should not routinely read every submission.")
+h2(d, "Implemented components")
+for name,purpose,tool,cost,saving,limit in TECH_STACK:
+    h3(d,name)
+    para(d,purpose+" "+tool+". "+limit)
+callout(d,"Record ownership and continuity",
+        "Keep the roster and gradebook private. Export audit records and grades to an institution-controlled location after each block. Google sign-in email supports roster matching; local model input removes routine identifiers. No grading content is sent to an external AI provider.",MID_H,LIGHT_H)
 
 # ================================================================ 9
 h1(d, "9. Managing a hundred-student cohort")
@@ -577,16 +505,16 @@ para(d, "The second is two-tier practicals. Every lab has a core tier that every
         "tier for those who finish early, which means the fast students are extended rather than idle and the "
         "slower ones are not left behind by a single pace. The third is the floor-helper system: six to eight "
         "students identified early and recruited to help, briefed to ask questions rather than fix code. This is "
-        "scaffolding and recognition at the same time, and it is what makes the Week 2 install clinic survivable.")
+        "scaffolding and recognition at the same time, and it is what makes the Week 2 practical survivable.")
 para(d, "The fourth is individual accountability inside team work, which rests on the sixty-five per cent "
-        "individual mark, the contribution log cross-checked against repository commit history, and the two unseen viva "
-        "questions in Week 15. Together these mean that a student who contributed nothing cannot be carried, and "
-        "— equally important — a student who contributed a great deal is not penalised by a weak teammate.")
+        "individual mark, the contribution log with repository evidence, and two individual typed defence "
+        "answers in Week 15. Shared project and individual marks remain separate; a live response does not "
+        "silently rescale a team mark. The repository-history evidence route still requires validation.")
 para(d, "Two sessions need explicit crowd logistics rather than good intentions. The Week 13 studio requires a "
-        "published clinic booking sheet, because eighty-five minutes across twenty-two teams is under four "
+        "published clinic booking sheet, because ninety-five minutes across twenty-two teams is about four "
         "minutes each and an unmanaged queue wastes the session. The Week 15 demonstration requires a fair "
         "format with two rounds and a plenary shortlist, because the fair itself is a hundred and thirty "
-        "minutes with the viva sampling running inside it: twenty-two consecutive six-minute demonstrations "
+        "minutes with formative questioning running inside it: twenty-two consecutive six-minute demonstrations "
         "is a hundred and thirty-two minutes before a single question is asked, which leaves nothing for "
         "the plenary shortlist or the close. Running it as a fair also means every team "
         "presents four or five times to small groups rather than once to a room that has stopped listening.")
@@ -653,7 +581,7 @@ para(d, "Public datasets cannot do all of the teaching, however, and the registe
 # ================================================================ 11
 page_break(d)
 h1(d, "12. Risk register")
-para(d, "Fifteen risks are recorded in full in the workbook with owners and mitigations. The six that will most "
+para(d, "The risks are recorded in full in the workbook with owners and mitigations. The seven that will most "
         "likely determine whether the semester runs as designed are summarised here, and the first three require "
         "action inside the first fortnight.")
 table(d, ["ID", "Risk", "Mitigation"],
@@ -664,24 +592,24 @@ table(d, ["ID", "Risk", "Mitigation"],
               "sitting.",
         "Run the laptop-access survey in Week 1. Submit a written capacity request in Week 1. Plan two sittings "
         "with different variants. Confirm by Week 5."],
-       ["R3", "Bandwidth collapse when ~100 students install Python and packages simultaneously in Week 2.",
-        "Pre-stage all installers on USB and the local share. Declare Colab as the official fallback. "
+       ["R3", "Unreliable connectivity during Colab access and notebook uploads in Week 2.",
+        "Use the small Colab kit and retain cohort ZIPs on USB/local share. "
         "Pre-provision lab machines. Recruit 6–8 floor helpers."],
        ["R6", "Free-riding in team projects.",
-        "65% of the mark is individual. Rotating roles at every milestone. Contribution log checked against commit "
-        "history. Two unseen individual viva questions in Week 15."],
-       ["R8", "Marking load: ~246 hours a semester if marked entirely by hand, ~16 hours a week.",
-        "Largely mitigated by the auto-grading stack in Section 8 — down to ~120 hours, ~8 h/week, for a one-off "
-        "authoring cost of ~30 hours that is reusable in later years. Still quantify the residual and request "
-        "support in Week 1."],
+        "Retain individual marks and rotating roles. Require contribution evidence and submitted individual typed "
+        "defence answers in Week 15. Live questioning is formative; repository evidence checks remain a release requirement."],
+       ["R8", "Manual marking could exceed one lecturer's capacity; the workbook estimates are planning assumptions.",
+        "Use the stack in Section 8 and measure calibration and exception handling during the pilot. Earlier fixed "
+        "savings and authoring-cost estimates were unverified. Request support for measured access and exception-handling needs."],
        ["R13", "Google Forms cannot work offline. A network or power failure during a quiz costs that sitting "
                "for a whole cohort.",
-        "Best 10 of 12 count, so two lost quizzes cost a student nothing — this is the main reason that rule "
-        "exists. A lost sitting also converts to a 48-hour asynchronous window, announced before the class "
-        "leaves. Keep a printed copy in the room as a third fallback. Never reschedule into the following week."],
-       ["R15", "Assessment records will live in a personal Google account, because there is no institutional LMS.",
-        "Get a written Faculty position in Week 1. Export responses and the gradebook to the course share as CSV "
-        "at the end of every block; collect student numbers rather than personal email addresses."]],
+        "Best 10 of 12 does not replace a fair attempt opportunity. Announce and configure an equivalent "
+        "replacement window after an outage; retain the change reason and do not silently assign a zero. "
+        "Printed questions support practice while verified collection is restored."],
+       ["R15", "The current records are in a lecturer-owned Google account; confirm Faculty-approved arrangements.",
+        "Confirm restricted records access and continuity with the Faculty. Collect registration numbers, verified "
+        "email and required files. Uploads are in Google Drive; AI grading is local after download. Export records "
+        "only to an approved restricted records location."]],
       [5, 40, 55], bold_first=True)
 
 # ================================================================ 12
@@ -691,8 +619,7 @@ para(d, "With the architecture agreed, materials can be produced against it. The
         "block teaching. It assumes the 70/30 design is exploited — one preparation re-skinned three times.")
 table(d, ["#", "Deliverable", "Needed by", "Note"],
       [["1", "Student Setup Guide, Week 2 Lecturer Runsheet and the setup/ toolkit — DONE", "Before Week 2",
-        "Written and tested. Remaining lecturer actions: fix the Python minor version, download the five "
-        "installers by hand, build and check the bundle, and run the Windows .bat once on real Windows."],
+        "Use the generated cohort ZIPs. Rehearse sign-in, CSV upload, saving and timed submission. Check the prepared lab fallback."],
        ["2", "Three cohort syllabi (drafted — see companion documents)", "Week 1",
         "Issued to students in the first session."],
        ["2b", "Gradebook installed; the Quiz 1 and Quiz 2 banks authored and built in Forms with their QR codes",
@@ -703,7 +630,7 @@ table(d, ["#", "Deliverable", "Needed by", "Note"],
         "Author them in pairs, one or two weeks before each is sat. The Build Plan gives the schedule."],
        ["3", "Lesson plans and slides, Weeks 1–4", "Week 1", "Four sessions is enough of a lead to start teaching."],
        ["4", "Week 4 Investigation Lab files (three, one per cohort)", "Week 4",
-        "Must be authored. One planted finding, two red herrings each."],
+        "Generated fictional cohort logs, four deterministic summaries and a formative interpretation task."],
        ["5", "Weeks 5–6 notebooks and the damaged datasets", "Week 5",
         "Includes subsetting the flotation and well-log data."],
        ["6", "Practical Test 1: nine dataset variants (three per cohort), mark schemes, offline bundle, "
@@ -746,11 +673,10 @@ para(d, "The Semester 2 calendar should be built from the university schedule on
         "to its detailed design.")
 
 # ================================================================ Appendices
-page_break(d)
 h1(d, "Appendix A · The fifteen weeks at a glance")
 table(d, ["Wk", "Block", "Topic", "Under-guided segment", "Quiz", "Milestone"],
       [["1", "Orientation", "The engineering problem that needs data", "Problem Hunt", "Quiz 1", "Teams formed"],
-       ["2", "Orientation", "The development environment", "Break and Fix", "Quiz 2 · setup check",
+       ["2", "Orientation", "The development environment", "Break and Fix", "Quiz 2 · A2 proof",
         "Team repo created"],
        ["3", "Orientation", "Python as an engineering calculator", "Wrong Answer Hunt", "Quiz 3",
         "Function library"],

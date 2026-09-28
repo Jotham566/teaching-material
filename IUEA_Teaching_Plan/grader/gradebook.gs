@@ -54,13 +54,12 @@ var QUIZ_COUNT = 12;           // Weeks 1-6 and 8-13
 var QUIZ_BEST = 10;            // the two lowest are dropped; there are no resits
 var QUIZ_MAX = 5;              // marks per quiz, one per question
 
-var CHALLENGE_COUNT = 11;      // W03..W13, one per teaching week that has one
+var CHALLENGE_COUNT = 11;      // Weeks 1–6 and 8–12, A1–A11
 var CHALLENGE_BEST = 8;
 var CHALLENGE_MAX = 20;        // marks per weekly challenge
 
 // Which assignment id maps to which challenge column. Edit this, not the code.
-var CHALLENGE_IDS = ["W03", "W04", "W05", "W06", "W08", "W09", "W10", "W11",
-                     "W12", "W13", "W14"];
+var CHALLENGE_IDS = ["W01", "W02", "W03", "W04", "W05", "W06", "W08", "W09", "W10", "W11", "W12"];
 
 // Must match SIGNING_KEY in iuea_grader.py, byte for byte.
 var SIGNING_KEY = "IUEA-CML31xx-2026S1-change-me";
@@ -72,6 +71,7 @@ var SIG_BYTES = 10;
 var GRADE_BANDS = [
   [80, "A"], [70, "B+"], [60, "B"], [50, "C"], [45, "D"], [0, "F"]
 ];
+var GRADE_BANDS_VERIFIED = false;
 
 var GRADER_SHEET = "Grades";
 var LOG_SHEET = "Token log";
@@ -103,6 +103,7 @@ function bestNOf_(scores, n) {
  * a student who skips three challenges is not penalised, one who skips six is.
  */
 function bestOfComponent_(scores, best, perItemMax, weight) {
+  scores.forEach(function (v) { validateMark_(v, perItemMax); });
   var b = bestNOf_(scores, best);
   var denom = best * perItemMax;
   var fraction = denom > 0 ? b.total / denom : 0;
@@ -117,7 +118,15 @@ function bestOfComponent_(scores, best, perItemMax, weight) {
 }
 
 /** A straight percentage component, e.g. a test marked out of 100. */
+function validateMark_(mark, maximum) {
+  if (mark === "" || mark === null || mark === undefined) { return; }
+  if (typeof mark === "boolean" || !isFinite(Number(mark)) || Number(mark) < 0 || Number(mark) > maximum) {
+    throw new Error("Invalid mark " + mark + "; expected 0 to " + maximum);
+  }
+}
+
 function percentComponent_(mark, outOf, weight) {
+  validateMark_(mark, outOf || 100);
   if (mark === "" || mark === null || mark === undefined || isNaN(Number(mark))) {
     return { weighted: 0, outOf: weight, missing: true, raw: null };
   }
@@ -418,13 +427,14 @@ function ingestTokenText_(csvText, assignment, key) {
 
 /**
  * Header name to zero-based column index. Spaces and underscores are ignored
- * and case does not matter, so "student_id", "Student ID" and "studentid" all
+ * and case does not matter, so "student_id", "Student Registration Number" and "studentid" all
  * find the same column. This is deliberate: the header row gets retyped every
  * year and a hard-coded column letter breaks silently.
  */
 function columnIndexByHeader_(headers, name) {
   function norm(x) {
-    return String(x).toLowerCase().replace(/[\s_]+/g, "");
+    var value=String(x).toLowerCase().replace(/[\s_]+/g, "");
+    return ['studentregistrationnumber','registrationnumber','yourregistrationnumber'].indexOf(value)>=0 ? 'studentid' : value;
   }
   var want = norm(name);
   for (var i = 0; i < headers.length; i++) {
@@ -448,10 +458,14 @@ function onOpen() {
     .addToUi();
 }
 
-function readGradesSheet_() {
-  var sh = SpreadsheetApp.getActive().getSheetByName(GRADER_SHEET);
+function readGradesSheet_(spreadsheet) {
+  var sh = (spreadsheet||SpreadsheetApp.getActive()).getSheetByName(GRADER_SHEET);
   if (!sh) { throw new Error("No sheet called '" + GRADER_SHEET + "'."); }
   var values = sh.getDataRange().getValues();
+  var required = ["student_id"].concat(CHALLENGE_IDS);
+  for (var q = 1; q <= QUIZ_COUNT; q++) { required.push("Q" + q); }
+  var missing = required.filter(function (h) { return columnIndexByHeader_(values[0], h) < 0; });
+  if (missing.length) { throw new Error("Grades sheet missing columns: " + missing.join(", ")); }
   return { sheet: sh, headers: values[0], rows: values.slice(1) };
 }
 
@@ -495,7 +509,7 @@ function recomputeAll() {
     var res = computeFinal_(rec);
     var line = g.rows[r].slice();
     line[iFinal] = res.final;
-    if (iBand >= 0) { line[iBand] = res.band; }
+    if (iBand >= 0) { line[iBand] = GRADE_BANDS_VERIFIED ? res.band : 'Awaiting Faculty bands'; }
     if (iMiss >= 0) { line[iMiss] = res.missing.join("; "); }
     if (iDone >= 0) { line[iDone] = res.components.challenges.submitted; }
     out.push(line);
@@ -549,15 +563,11 @@ function sheetToCsvText_(values) {
  * Pasting 195 rows into an Apps Script prompt box does not work in practice,
  * which is why there is no paste option.
  */
-function readTokenCsvText_() {
+function readTokenCsvText_(assignment) {
   var ss = SpreadsheetApp.getActive();
-  var sheets = ss.getSheets();
-  for (var i = 0; i < sheets.length; i++) {
-    var name = sheets[i].getName();
-    if (name.indexOf("Form responses") === 0 || name === "Responses") {
-      return { text: sheetToCsvText_(sheets[i].getDataRange().getValues()),
-               source: "sheet '" + name + "'" };
-    }
+  var sh = ss.getSheetByName("Responses_" + assignment);
+  if (sh) {
+    return { text: sheetToCsvText_(sh.getDataRange().getValues()), source: sh.getName() };
   }
   var fname = SpreadsheetApp.getUi()
     .prompt("No linked Form responses sheet found.\n\n" +
@@ -577,62 +587,15 @@ function ingestTokenCsv() {
   var a = ui.prompt("Which assignment? e.g. W05").getResponseText();
   if (!a) { return; }
   a = a.trim().toUpperCase();
-  var src = readTokenCsvText_();
+  var src = readTokenCsvText_(a);
   if (!src) { return; }
 
   var res = ingestTokenText_(src.text, a, SIGNING_KEY);
-  var g = readGradesSheet_();
-  var iSid = columnIndexByHeader_(g.headers, "student_id");
-  var iCol = columnIndexByHeader_(g.headers, a);
-  if (iSid < 0) { throw new Error("No 'student_id' column."); }
-  if (iCol < 0) { throw new Error("No column headed '" + a + "'."); }
-
-  var rowOf = {};
-  for (var r = 0; r < g.rows.length; r++) {
-    var sid = String(g.rows[r][iSid]).trim().toUpperCase();
-    if (sid) { rowOf[sid] = r + 2; }
-  }
-  // Build the whole column in memory, then write it once. One setValue per
-  // student is 189 round trips and will hit the six-minute cap.
-  var column = [];
-  for (var r2 = 0; r2 < g.rows.length; r2++) {
-    column.push([g.rows[r2][iCol]]);
-  }
-  var written = 0, unknown = [];
-  for (var i = 0; i < res.verified.length; i++) {
-    var v = res.verified[i];
-    var row = rowOf[String(v.studentId).toUpperCase()];
-    if (!row) { unknown.push(v.studentId); continue; }
-    column[row - 2] = [v.claimedTotal];
-    written++;
-  }
-  if (column.length) {
-    g.sheet.getRange(2, iCol + 1, column.length, 1).setValues(column);
-  }
-
-  var log = SpreadsheetApp.getActive().getSheetByName(LOG_SHEET) ||
-            SpreadsheetApp.getActive().insertSheet(LOG_SHEET);
-  var logRows = [[new Date(), a, "verified", res.verified.length, "written",
-                  written, "rejected", res.rejected.length,
-                  "not on the roster", unknown.join(" ")]];
-  for (var j = 0; j < res.rejected.length; j++) {
-    var x = res.rejected[j];
-    logRows.push([new Date(), a, "REJECTED", "form row " + x.row,
-                  x.studentId || "", x.reason, x.token || "", "", "", ""]);
-  }
-  for (var m = 0; m < logRows.length; m++) {
-    while (logRows[m].length < 10) { logRows[m].push(""); }
-  }
-  log.getRange(log.getLastRow() + 1, 1, logRows.length, 10)
-     .setValues(logRows);
-  ui.alert("Assignment " + a + "  (from " + src.source + ")\n\n" +
-           "codes verified: " + res.verified.length + "\n" +
-           "written to the sheet: " + written + "\n" +
-           "rejected: " + res.rejected.length + "\n" +
-           "not on the roster: " + unknown.length + "\n\n" +
-           "Details are in the '" + LOG_SHEET + "' sheet. These are " +
-           "provisional visible-test marks. Overwrite them with the " +
-           "batch_grade.py totals once you have run it.");
+  var ss = SpreadsheetApp.getActive();
+  var practice = ss.getSheetByName("Practice receipts") || ss.insertSheet("Practice receipts");
+  if (!practice.getLastRow()) { practice.appendRow(["assignment", "student_id", "claimed_visible", "verified_at"]); }
+  res.verified.forEach(function(v) { practice.appendRow([a,v.studentId,v.claimedTotal,new Date()]); });
+  ui.alert("Verified " + res.verified.length + " practice receipts. Final grade columns were not changed. Import instructor-side grading results for marks.");
 }
 
 function showProgress() {
@@ -740,8 +703,9 @@ function runUnitTests_() {
   // ---- percentComponent_ ----
   near("test1 at 60/100 -> 9 of 15", percentComponent_(60, 100, 15).weighted, 9);
   ok("blank test flagged missing", percentComponent_("", 100, 15).missing);
-  ok("text in a test cell flagged missing",
-     percentComponent_("absent", 100, 15).missing);
+  var rejectedText=false;
+  try{percentComponent_("absent",100,15);}catch(e){rejectedText=true;}
+  ok("text in a test cell is rejected",rejectedText);
   near("blank test scores 0", percentComponent_("", 100, 15).weighted, 0);
 
   // ---- computeFinal_ ----
@@ -879,6 +843,7 @@ function runUnitTests_() {
   eq("header lookup exact", columnIndexByHeader_(H, "W05"), 4);
   eq("header lookup ignores case", columnIndexByHeader_(H, "final %"), 5);
   eq("header lookup ignores spaces", columnIndexByHeader_(H, "student id"), 0);
+  eq("header lookup registration number", columnIndexByHeader_(H, "Student Registration Number"), 0);
   eq("header lookup misses cleanly", columnIndexByHeader_(H, "W99"), -1);
 
   console.log("");
@@ -890,4 +855,95 @@ function runUnitTests_() {
 if (typeof module !== "undefined" && typeof process !== "undefined" &&
     process.argv && process.argv.indexOf("--test") >= 0) {
   process.exit(runUnitTests_() === 0 ? 0 : 1);
+}
+
+/** Import lecturer-side results by roster ID, atomically after validation.
+ * CSV must contain student_id,status plus score,maximum (artifact grader)
+ * or notebook_total,max_total (isolated notebook grader). No token-only rows.
+ */
+function importMarkedResults(fileId, columnName, spreadsheet) {
+  var allowed=CHALLENGE_IDS.concat(['Data Analysis Project','Practical Test 1','Practical Test 2','ML Project','Demo']);
+  if (allowed.indexOf(columnName)<0) { throw new Error('Unknown assessment column'); }
+  var rows=Utilities.parseCsv(DriveApp.getFileById(fileId).getBlob().getDataAsString());
+  var h=rows.shift(), index=function(name){return h.indexOf(name);};
+  var sid=index('student_id'), status=index('status');
+  var score=index('score')<0?index('notebook_total'):index('score');
+  var maximum=index('maximum')<0?index('max_total'):index('maximum');
+  if ([sid,status,score,maximum].some(function(i){return i<0;})) { throw new Error('Invalid result CSV schema'); }
+  var g=readGradesSheet_(spreadsheet), target=columnIndexByHeader_(g.headers,columnName), rosterId=columnIndexByHeader_(g.headers,'student_id');
+  if(target<0){throw new Error('Missing target grade column');}
+  var rowOf={}, seen={}, marks=g.rows.map(function(r,i){
+    var id=String(r[rosterId]).trim().toUpperCase();
+    if(id&&rowOf[id]!==undefined){throw new Error('Duplicate roster ID '+id);}
+    if(id){rowOf[id]=i;}return [r[target]];
+  });
+  var expected=CHALLENGE_IDS.indexOf(columnName)>=0?20:100;
+  rows.filter(function(r){return r.join('').trim();}).forEach(function(r){
+    var id=String(r[sid]).trim().toUpperCase();
+    if(seen[id]){throw new Error('Duplicate result '+id);}seen[id]=true;
+    if(rowOf[id]===undefined){throw new Error('Result not on roster '+id);}
+    if(['OK','ERRORS','AUTO_SCORED'].indexOf(r[status])<0){throw new Error('Unresolved result '+id+': '+r[status]);}
+    if(r[score]===''||Number(r[maximum])!==expected){throw new Error('Missing mark or maximum mismatch '+id);}
+    validateMark_(r[score],expected);
+    if(columnName==='W01' && marks[rowOf[id]][0]!=='' && marks[rowOf[id]][0]!==null){return;}
+    marks[rowOf[id]]=[Number(r[score])];
+  });
+  if(marks.length){g.sheet.getRange(2,target+1,marks.length,1).setValues(marks);}
+}
+
+/** Configure existing quiz IDs using an exported JSON object.
+ * Keys: cohort|teachingWeek. Values: {formId, closeAt}. Never rebuild Forms.
+ */
+function configureQuizImports(sourcesJson) {
+  var sources=JSON.parse(sourcesJson);
+  Object.keys(sources).forEach(function(k){if(!sources[k].formId){throw new Error('Missing form ID '+k);} if(!sources[k].closeAt||!isFinite(Date.parse(sources[k].closeAt))){throw new Error('A valid quiz deadline is required '+k);}});
+  PropertiesService.getScriptProperties().setProperty('QUIZ_IMPORT_SOURCES',JSON.stringify(sources));
+}
+function importQuizScores(spreadsheet) {
+  var sources=JSON.parse(PropertiesService.getScriptProperties().getProperty('QUIZ_IMPORT_SOURCES')||'{}');
+  if(!Object.keys(sources).length){throw new Error('Configure quiz import source IDs first.');}
+  var g=readGradesSheet_(spreadsheet), sidCol=columnIndexByHeader_(g.headers,'student_id'), cohortCol=columnIndexByHeader_(g.headers,'cohort');
+  var emailCol=columnIndexByHeader_(g.headers,'email'), roster={};
+  if(sidCol<0||cohortCol<0||emailCol<0){throw new Error('Quiz imports require registration number, cohort and verified-account email columns.');}
+  g.rows.forEach(function(r,i){var id=String(r[sidCol]).trim().toUpperCase();if(id){if(roster[id]!==undefined){throw new Error('Duplicate roster ID');}roster[id]=i;}});
+  var weeks=[1,2,3,4,5,6,8,9,10,11,12,13], pending=[];
+  Object.keys(sources).forEach(function(key){
+    if(!sources[key].closeAt||!isFinite(Date.parse(sources[key].closeAt))){throw new Error('A valid quiz deadline is required '+key);}
+    var parts=key.split('|'), week=Number(parts[1]), qi=weeks.indexOf(week)+1;
+    if(qi===0){throw new Error('Unknown quiz week '+key);}
+    var col=columnIndexByHeader_(g.headers,'Q'+qi), data=g.rows.map(function(r){return [r[col]];}), latest={};
+    if(col<0){throw new Error('Missing quiz destination column Q'+qi);}
+    FormApp.openById(sources[key].formId).getResponses().forEach(function(response){
+      var at=response.getTimestamp().getTime();
+      if(at>Date.parse(sources[key].closeAt)){return;}
+      var id='';response.getItemResponses().forEach(function(ir){
+        if(/student.*(number|id)|registration/i.test(ir.getItem().getTitle())){id=String(ir.getResponse()).trim().toUpperCase();}
+      });
+      if(roster[id]===undefined){throw new Error('Unknown quiz respondent '+id);}
+      var r=g.rows[roster[id]];
+      if(String(r[cohortCol]).trim()!==parts[0]){throw new Error('Quiz cohort mismatch '+id);}
+      var email=response.getRespondentEmail();
+      if(!r[emailCol]||!email||String(r[emailCol]).trim().toLowerCase()!==String(email).trim().toLowerCase()){throw new Error('Missing or mismatched verified email '+id);}
+      var total=0,count=0;response.getGradableItemResponses().forEach(function(ir){
+        if(ir.getItem().getType()!==FormApp.ItemType.MULTIPLE_CHOICE){return;}
+        if(ir.getItem().asMultipleChoiceItem().getPoints()!==1){throw new Error('Quiz question must be worth one mark');}
+        var v=ir.getScore();if(v!==0&&v!==1){throw new Error('Ungraded or invalid quiz item '+id);}total+=v;count++;
+      });
+      if(count!==5){throw new Error('Expected five graded quiz questions '+id);}
+      validateMark_(total,5);
+      if(!latest[id]||at>latest[id].at){latest[id]={at:at,score:total};}
+    });
+    Object.keys(latest).forEach(function(id){
+      var existing=g.rows[roster[id]][col];
+      if(week===1&&existing!==''&&existing!==null&&Number(existing)!==latest[id].score){throw new Error('Existing Week 1 quiz mark is protected '+id);}
+      data[roster[id]]=[latest[id].score];
+    });
+    pending.push({col:col,data:data});
+  });
+  // Merge cohort-specific updates to the same quiz column before writing.
+  var merged={};pending.forEach(function(p){
+    if(!merged[p.col]){merged[p.col]=g.rows.map(function(r){return [r[p.col]];});}
+    p.data.forEach(function(v,i){if(v[0]!==g.rows[i][p.col]){merged[p.col][i]=v;}});
+  });
+  Object.keys(merged).forEach(function(col){if(g.rows.length){g.sheet.getRange(2,Number(col)+1,g.rows.length,1).setValues(merged[col]);}});
 }

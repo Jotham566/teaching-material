@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const deadline=Date.parse('2026-09-22T11:00:00+03:00');let now=deadline-1000,accepting=false,deleted=[];
+const cfg={formId:'test',openAt:'2026-09-15T03:31:20.401Z',closeAt:'2026-09-22T11:00:00+03:00'};
+const ctx={Date:class extends Date{static now(){return now;}},PropertiesService:{getScriptProperties:()=>({getProperty:()=>JSON.stringify(cfg)})},FormApp:{openById:id=>{assert.equal(id,'test');return {isAcceptingResponses:()=>accepting,setAcceptingResponses:v=>accepting=v};}},ScriptApp:{getProjectTriggers:()=>['syncWeek1CatchupCML3112','syncSubmissions'].map(name=>({getHandlerFunction:()=>name})),deleteTrigger:t=>deleted.push(t.getHandlerFunction())}};
+vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/week1_catchup.gs','utf8'),ctx);
+ctx.syncWeek1CatchupCML3112();assert.equal(accepting,true);assert.equal(deleted.length,0);
+now=deadline;ctx.syncWeek1CatchupCML3112();assert.equal(accepting,true);
+now=deadline+1;ctx.syncWeek1CatchupCML3112();assert.equal(accepting,false);assert.deepEqual(deleted,['syncWeek1CatchupCML3112']);
+now=Date.parse(cfg.openAt)-1;ctx.syncWeek1CatchupCML3112();assert.equal(accepting,false);
+console.log('Catch-up quiz respects the absolute window and removes only its own expiry trigger.');

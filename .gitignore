@@ -1,7 +1,8 @@
 # ---------------------------------------------------------------- environment
-# The virtualenv lives inside the project and is 172 MB. Recreate it with
-# python3 -m venv .iuea-env, then pip install -r requirements.txt
+# Local environments are private and regenerable. Use Python 3.11+; see
+# README.md for the current .iuea-grader-env setup and pinned requirements.
 .iuea-env/
+.iuea-grader-env/
 .venv/
 venv/
 env/
@@ -58,3 +59,19 @@ review/*/evidence/
 #   qr/*.png                             the quiz QR codes
 # They are all regenerable from scripts/, but they are also the product, and
 # somebody cloning this repo should be able to walk into a room and teach.
+
+# Local repository backup, render evidence and temporary artifact builds
+.git.old/
+review/**
+!review/2026-09-14/
+!review/2026-09-14/REVIEW.md
+!review/2026-09-14/CODEBASE_MAP.md
+**/.build/
+node_modules/
+*.inspect.ndjson
+.env
+.env.*
+!.env.example
+
+# Lecturer-only hidden assessment checks are kept locally, not on public GitHub
+IUEA_Teaching_Plan/grader/specs/hidden/

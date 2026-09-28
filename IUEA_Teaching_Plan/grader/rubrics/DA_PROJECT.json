@@ -1,0 +1,37 @@
+{
+  "id": "DA_PROJECT-2026.09",
+  "title": "Data analysis project",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Question & dataset fit",
+      "maximum": 20.0,
+      "description": "A real engineering question is stated, and the chosen dataset can actually answer it. Provenance and licence stated."
+    },
+    {
+      "id": "c2",
+      "title": "Data quality work",
+      "maximum": 25.0,
+      "description": "Defects found and handled with written justification. A data quality statement is present."
+    },
+    {
+      "id": "c3",
+      "title": "Analysis & visualisation",
+      "maximum": 30.0,
+      "description": "Four or more charts, each answering a stated question. Correct chart types, labelled axes, findings in the captions."
+    },
+    {
+      "id": "c4",
+      "title": "Findings & interpretation",
+      "maximum": 20.0,
+      "description": "Conclusions supported by the analysis, stated in engineering terms, with limitations acknowledged."
+    },
+    {
+      "id": "c5",
+      "title": "Individual contribution log",
+      "maximum": 5.0,
+      "description": "Present, specific, and consistent with the repository's commit history."
+    }
+  ]
+}

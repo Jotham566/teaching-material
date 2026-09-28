@@ -1,0 +1,15 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const ctx={console};vm.createContext(ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/create_quiz_forms.gs','utf8'),ctx);
+const writes=[];
+ctx.QUIZ_DATA={CML3111:{weeks:[{week:2,questions:[{},{},{},{n:4,title:'Git status',fbCorrect:'Stage first',fbWrong:'Stage first; no unstaged commit'}]}]}};
+ctx.loadLinks_=()=>({'CML3111|2':{formId:'existing-form'}});
+ctx.Logger={log:()=>{}};
+const item={getTitle:()=> '4. Git status',setFeedbackForCorrect:v=>writes.push(v),setFeedbackForIncorrect:v=>writes.push(v)};
+ctx.FormApp={ItemType:{MULTIPLE_CHOICE:'MC'},openById:id=>({getItems:()=>[{}, {}, {}, {asMultipleChoiceItem:()=>item}, {}]}),createFeedback:()=>({setText:text=>({build:()=>text})})};
+ctx.repairWeek2FeedbackOnly();
+assert.deepStrictEqual(writes,['Stage first','Stage first; no unstaged commit']);
+item.getTitle=()=> 'Unexpected question';
+assert.throws(()=>ctx.repairWeek2FeedbackOnly());
+assert.equal(writes.length,2);
+console.log('Week 2 feedback repair changes feedback only and rejects unexpected questions');

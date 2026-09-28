@@ -1,0 +1,25 @@
+{
+  "id": "W10-2026.09",
+  "title": "Validation and trust",
+  "maximum": 20,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Validation",
+      "maximum": 10.0,
+      "description": "Split and preprocessing avoid identified leakage; test data are not used for fitting or model selection."
+    },
+    {
+      "id": "c2",
+      "title": "Conditions of use",
+      "maximum": 6.0,
+      "description": "Names supported use conditions and plausible failure under distribution change."
+    },
+    {
+      "id": "c3",
+      "title": "Evidence",
+      "maximum": 4.0,
+      "description": "Baseline and evaluation are reproducible and comparisons use the same cases."
+    }
+  ]
+}

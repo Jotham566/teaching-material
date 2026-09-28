@@ -1,0 +1,50 @@
+{
+  "id": "W09-2026.09-hybrid-r2",
+  "title": "Classification and cost",
+  "maximum": 11.0,
+  "criteria": [
+    {
+      "id": "costs",
+      "parent_criterion": "c2",
+      "title": "Costs",
+      "maximum": 3,
+      "description": "Award 3 if the response correctly explains that A costs 8 and B costs 6 under cost=5*FN+FP. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "tradeoff",
+      "parent_criterion": "c2",
+      "title": "Tradeoff",
+      "maximum": 2,
+      "description": "Award 2 if the response explains that B catches the missed warning but adds three false alarms, so lower accuracy need not mean greater cost. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "choice",
+      "parent_criterion": "c2",
+      "title": "Choice",
+      "maximum": 2,
+      "description": "Award 2 if the response chooses B because its total assumed cost is lower, rather than because accuracy alone is higher. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "deployment",
+      "parent_criterion": "c3",
+      "title": "Deployment",
+      "maximum": 2,
+      "description": "Award 2 if the response requires checking the assumed costs or representative real warning data before deployment. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    },
+    {
+      "id": "reproduce",
+      "parent_criterion": "c3",
+      "title": "Reproduce",
+      "maximum": 2,
+      "description": "Award 2 if the response specifies retaining the actual/predicted labels and rerunning the confusion-matrix calculation with the stated cost rule. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.",
+      "binary": true
+    }
+  ],
+  "assessment_maximum": 20,
+  "deterministic_maximum": 9,
+  "scenario": "There are 100 validation observations: 10 actual warnings and 90 non-warnings. Model A has TP=9, FN=1, FP=3, TN=87; B has TP=10, FN=0, FP=6, TN=84. A missed warning costs 5 teaching cost units and a false alarm costs 1. Choose A or B and justify the trade-off. These are assumed costs, not approved operating limits."
+}

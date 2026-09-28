@@ -1,0 +1,31 @@
+{
+  "id": "S13-2026.09",
+  "title": "Business investigation",
+  "maximum": 100,
+  "criteria": [
+    {
+      "id": "c1",
+      "title": "Question",
+      "maximum": 20.0,
+      "description": "Specific business question and appropriate population/period."
+    },
+    {
+      "id": "c2",
+      "title": "Analysis",
+      "maximum": 40.0,
+      "description": "Correct grain, denominator, comparisons and reproducible evidence."
+    },
+    {
+      "id": "c3",
+      "title": "Judgement",
+      "maximum": 25.0,
+      "description": "Finding and recommendation distinguish evidence from causation."
+    },
+    {
+      "id": "c4",
+      "title": "Communication",
+      "maximum": 15.0,
+      "description": "Chart and narrative make the answer clear."
+    }
+  ]
+}

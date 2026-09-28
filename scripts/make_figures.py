@@ -2042,7 +2042,7 @@ WEEK_SEGS = {
      ("Judging a\ndataset", 20, "#5E8C7F"), ("PRACTICAL: Twelve\nQuestions", 25, ORANGE),
      ("CHALLENGE: Ten\nQuestions", 10, ORANGE), ("Project brief\n+ close", 5, INK), ("QUIZ\n5 questions", 5, "#5E8C7F")],
  7: [("Setup, seating,\nrules read out", 15, "#B9C8D8"), ("PART A — the practical\non an unseen dataset", 120, ORANGE),
-     ("PART B — written\nreasoning, no computer", 25, "#4A6B84"), ("Collect and\ncheck", 20, INK)],
+     ("PART B — typed\nreasoning, no code", 25, "#4A6B84"), ("Collect and\ncheck", 20, INK)],
  8: [("Where we\ngot to", 10, "#B9C8D8"), ("Today's\nquestion", 10, "#8FA6BC"),
      ("From a line by eye\nto least squares", 25, "#4A6B84"), ("Train and\ntest", 25, TEAL),
      ("Break", 10, "#DCE4EC"), ("HANDS-ON: your\nfirst model", 30, ORANGE),
@@ -2078,12 +2078,12 @@ WEEK_SEGS = {
       ("Test 2\nbriefing", 5, INK), ("QUIZ\n5 questions", 5, "#5E8C7F")],
  14: [("Setup, seating,\nrules read out", 15, "#B9C8D8"),
       ("PART A — end-to-end ML on an unseen dataset", 120, ORANGE),
-      ("PART B — written\nreasoning, no computer", 25, "#4A6B84"), ("Collect and\ncheck", 20, INK)],
+      ("PART B — typed\nreasoning, no code", 25, "#4A6B84"), ("Collect and\ncheck", 20, INK)],
  # The viva is sampled while the fair is running, so it is inside the fair
  # block rather than beside it. Counting it separately made the day 210
  # minutes long while every slide said the viva happens during the fair.
  15: [("Running order\nand rules", 10, "#B9C8D8"),
-      ("DEMO FAIR — two rounds, with individual viva sampling inside it", 130, ORANGE),
+      ("DEMO FAIR — two rounds, with formative feedback", 130, ORANGE),
       ("Shortlisted\ndemos", 20, "#4A6B84"),
       ("Recognition, feedback\nand reflection", 20, INK)],
  6: [("Where we got to\n(+ W5 catch-up)", 15, "#B9C8D8"), ("Real data\nis broken", 15, "#8FA6BC"),
@@ -2108,9 +2108,9 @@ def fig_clock_week(wk):
         ax.text(x + mins / 2, 1.02 if i % 2 == 0 else 0.62, lab, ha="center", va="top",
                 fontsize=7.6, color=INK, linespacing=1.3)
         x += mins
-    ax.text(0, 2.28, f"Three hours, {len(segs)} segments \u2014 the same shape every week",
+    ax.text(0, 2.28, f"Three hours, {len(segs)} segments \u2014 scheduled teaching and practice",
             fontsize=12.5, fontweight="bold", color=INK)
-    ax.text(0, 2.02, "Numbers are minutes. Nothing here is a lecture longer than 35 minutes.",
+    ax.text(0, 2.02, ("Numbers are minutes. Practical work and reasoning are timed separately." if wk in (7, 14) else "Numbers are minutes. Nothing here is a lecture longer than 35 minutes."),
             fontsize=10, color=MUTED, style="italic")
     return save(fig, f"clock_w{wk}.png")
 
@@ -3624,7 +3624,7 @@ def fig_imbalance_trap():
 # ===============================================================================
 # WEEK 10 — CAN I TRUST THIS MODEL?
 # ===============================================================================
-AGE_ILLUS = ("Worked example from civil engineering: 28-day strength against curing age, shaped like the "
+AGE_ILLUS = ("Synthetic civil-engineering example: strength at the recorded curing age, illustrating the relationship in the "
              "UCI Concrete Compressive Strength dataset.")
 
 
@@ -3667,7 +3667,7 @@ def fig_overfit_curve():
     ax.plot(degs, trn, color=STEEL2, lw=3.0, marker="o", ms=7, zorder=4,
             label="TRAINING error — on the rows it was fitted to")
     ax.plot(degs, tst, color=ORANGE, lw=3.0, marker="o", ms=7, zorder=4,
-            label="TEST error — on rows it has never seen")
+            label="VALIDATION error — held-out rows used to choose")
     ax.scatter([best], [tst.min()], s=260, marker="*", color=INK, zorder=6)
     ax.annotate(f"degree {best}\n{tst.min():.2f} MPa",
                 xy=(best, tst.min()), xytext=(best + 1.5, 6.3), fontsize=9.8,
@@ -3694,7 +3694,7 @@ def fig_overfit_curve():
              wrapped(AGE_ILLUS + f" Fitted on {len(tr)} rows and scored on the same "
                                  f"{len(te)} held-out rows at every degree. Both curves "
                                  f"are computed at draw time; the star is the smallest "
-                                 f"test RMSE, found not chosen."),
+                                 f"validation RMSE. Final testing requires separate untouched rows."),
              fontsize=8.8, color=MUTED, style="italic", va="bottom", linespacing=1.6)
     fig.subplots_adjust(left=0.062, right=0.988, top=0.885, bottom=0.265)
     return save(fig, "overfit_curve.png", pad=0.10)
@@ -3719,20 +3719,20 @@ def fig_fit_three_panel():
         ax.scatter(age[tr], y[tr], s=42, color=INK, zorder=4,
                    label=f"train ({len(tr)} rows) — the model saw these")
         ax.scatter(age[te], y[te], s=52, facecolor=PAPER, edgecolor=INK, lw=1.8,
-                   zorder=5, label=f"test ({len(te)} rows) — it did not")
+                   zorder=5, label=f"validation ({len(te)} rows) — used to choose")
         ax.set_xlim(age.min() - 4, age.max() + 4)
         ax.set_ylim(ylo, yhi)
         ax.set_xlabel("Curing age (days)", fontsize=10.5)
         ax.set_title(f"{name}  ·  degree {d}", fontsize=11.8, fontweight="bold",
                      color=col, loc="left", pad=10)
         ax.text(0.035, 0.965,
-                f"train RMSE  {rtr:.2f} MPa\ntest  RMSE  {rte:.2f} MPa",
+                f"train RMSE  {rtr:.2f} MPa\nvalid RMSE  {rte:.2f} MPa",
                 transform=ax.transAxes, fontsize=10.0, fontweight="bold",
                 color=INK if d == best else (INK if d == 1 else ORANGE),
                 va="top", ha="left", linespacing=1.7, zorder=6,
                 bbox=dict(boxstyle="round,pad=0.30", fc=PAPER, ec=col, lw=1.4))
         _grid(ax)
-    axes[0].set_ylabel("28-day compressive strength (MPa)", fontsize=10.5)
+    axes[0].set_ylabel("Strength at recorded curing age (MPa)", fontsize=10.5)
     axes[0].text(0.965, 0.045, "a straight line cannot bend,\nso it is wrong at "
                                "both ends",
                  transform=axes[0].transAxes, fontsize=8.8, color=INK2,

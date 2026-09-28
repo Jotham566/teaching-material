@@ -138,7 +138,7 @@ var PROP_CLOSE_AT = 'IUEA_CLOSE_AT';
 // five minutes you give the room. That is when the quiz is taken.
 //
 // WINDOW_HOURS is how long the form keeps accepting answers afterwards. It
-// is 48 hours, and the reason is Room 106: about a hundred students on one
+// is 24 hours, and the reason is Room 106: about a hundred students on one
 // set of access points, and a network that fails at some point over twelve
 // sittings. A five-minute hard close means a network fault costs a student
 // a mark they had earned. One response per Google account is already
@@ -148,7 +148,7 @@ var PROP_CLOSE_AT = 'IUEA_CLOSE_AT';
 // exists so a broken phone or a dead network does not cost you the mark.
 // It is not an invitation to do it on Thursday.
 var QUIZ_MIN_ON_CLOCK = 5;
-var WINDOW_HOURS = 48;
+var WINDOW_HOURS = 24;
 
 // ONE SUBMISSION PER STUDENT.
 //
@@ -175,7 +175,7 @@ var LIMIT_ONE_RESPONSE = true;
 // already exist.
 // IDENTITY: BOTH, and here is why that is free.
 //
-// The signed-in Google address is exact and cannot be mistyped, and it is
+// With Verified collection selected in Forms Settings, the signed-in address is
 // what enforces one attempt. The registration number is what the gradebook
 // already keys on, so having students type it removes the need for a roster
 // mapping addresses to numbers.
@@ -190,7 +190,7 @@ var ASK_REGISTRATION_NUMBER = true;
 
 // Called a registration number, never a student number: students read
 // "student number" as a phone number. The help text says so outright.
-var ID_QUESTION_TITLE = 'Your registration number';
+var ID_QUESTION_TITLE = 'Student Registration Number';
 var ID_QUESTION_HELP =
   'The registration number on your student card, the one the university '
   + 'identifies you by. NOT your phone number. Type it exactly as it '
@@ -199,7 +199,7 @@ var ID_QUESTION_HELP =
 
 // Titles this field has been given before, so an existing form can be
 // found and renamed rather than ending up with two identity questions.
-var ID_QUESTION_OLD_TITLES = ['Your student number', 'Your registration number'];
+var ID_QUESTION_OLD_TITLES = ['Your student number', 'Your registration number', 'Student Registration Number'];
 
 // What a student reads on the page immediately after submitting. This is
 // the only text Forms lets you control there, and it is where to point them
@@ -258,7 +258,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3112 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -396,7 +396,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3112 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -499,8 +499,8 @@ var QUIZ_DATA = {
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Git reports a tracked file as modified and a file it has never seen as untracked. Committing now would save the notebook edit and leave the data file behind entirely.",
-            "fbWrong": "THE ANSWER: The notebook is tracked and edited; the CSV was never added. Git reports a tracked file as modified and a file it has never seen as untracked. Committing now would save the notebook edit and leave the data file behind entirely.\n\nWhy the others are wrong. \u201cThe repository is broken and needs to be created again\u201d \u2014 This is the ordinary output of a healthy repository with work in progress. It is the state you should expect to see most of the time.  \u201cBoth files will be saved by the next commit\u201d \u2014 Neither will. The notebook change is unstaged and the CSV is untracked, so a bare commit captures nothing from this list.  \u201cThe notebook has been committed and the CSV has been deleted\u201d \u2014 A committed file with no further edits does not appear in this output at all, and a deletion is reported as deleted."
+            "fbCorrect": "Correct. Git reports a tracked file as modified and a file it has never seen as untracked. Stage the notebook edit with git add before committing. A bare commit saves neither file here.",
+            "fbWrong": "THE ANSWER: The notebook is tracked and edited; the CSV was never added. Git reports a tracked file as modified and a file it has never seen as untracked. Stage the notebook edit with git add before committing. A bare commit saves neither file here.\n\nWhy the others are wrong. \u201cThe repository is broken and needs to be created again\u201d \u2014 This is the ordinary output of a healthy repository with work in progress. It is the state you should expect to see most of the time.  \u201cBoth files will be saved by the next commit\u201d \u2014 Neither will. The notebook change is unstaged and the CSV is untracked, so a bare commit captures nothing from this list.  \u201cThe notebook has been committed and the CSV has been deleted\u201d \u2014 A committed file with no further edits does not appear in this output at all, and a deletion is reported as deleted."
           },
           {
             "n": 5,
@@ -534,7 +534,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3112 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -672,7 +672,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3112 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -810,7 +810,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3112 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -948,7 +948,7 @@ var QUIZ_DATA = {
         "week": 6,
         "number": 6,
         "title": "CML3112 \u00b7 Weekly Quiz 6 \u2014 Dirty data, and seeing it",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1086,7 +1086,7 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3112 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1224,7 +1224,7 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3112 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1362,7 +1362,7 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3112 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1500,7 +1500,7 @@ var QUIZ_DATA = {
         "week": 11,
         "number": 10,
         "title": "CML3112 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1638,7 +1638,7 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3112 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1747,7 +1747,7 @@ var QUIZ_DATA = {
           {
             "n": 5,
             "kind": "judgement",
-            "title": "The quality manager points at one batch and asks: read me the reason your model rejected batch 812. You chose the forest. What is the honest position?",
+            "title": "The quality manager points at one batch and asks: show the exact, directly readable decision rule that rejected batch 812; post-hoc attributions do not meet this audit requirement. You chose the forest. What is the honest position?",
             "help": "",
             "choices": [
               {
@@ -1763,12 +1763,12 @@ var QUIZ_DATA = {
                 "correct": false
               },
               {
-                "text": "Say plainly that this model cannot give a per-case reason, and that the constraint therefore rules it out despite the score",
+                "text": "Recommend a readable-rule model that meets the stated acceptance requirement",
                 "correct": true
               }
             ],
             "fbCorrect": "Correct. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.",
-            "fbWrong": "THE ANSWER: Say plainly that this model cannot give a per-case reason, and that the constraint therefore rules it out despite the score. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked.  \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest is still an ensemble of trees and remains unreadable case by case. This concedes accuracy without gaining explainability."
+            "fbWrong": "THE ANSWER: Recommend a readable-rule model that meets the stated acceptance requirement. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked.  \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest still does not meet this stated requirement for a directly readable rule. This concedes accuracy without gaining explainability."
           }
         ]
       },
@@ -1776,7 +1776,7 @@ var QUIZ_DATA = {
         "week": 13,
         "number": 12,
         "title": "CML3112 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1922,7 +1922,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3113 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2060,7 +2060,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3113 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2163,8 +2163,8 @@ var QUIZ_DATA = {
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Git reports a tracked file as modified and a file it has never seen as untracked. Committing now would save the notebook edit and leave the data file behind entirely.",
-            "fbWrong": "THE ANSWER: The notebook is tracked and edited; the CSV was never added. Git reports a tracked file as modified and a file it has never seen as untracked. Committing now would save the notebook edit and leave the data file behind entirely.\n\nWhy the others are wrong. \u201cThe repository is broken and needs to be created again\u201d \u2014 This is the ordinary output of a healthy repository with work in progress. It is the state you should expect to see most of the time.  \u201cThe notebook has been committed and the CSV has been deleted\u201d \u2014 A committed file with no further edits does not appear in this output at all, and a deletion is reported as deleted.  \u201cBoth files will be saved by the next commit\u201d \u2014 Neither will. The notebook change is unstaged and the CSV is untracked, so a bare commit captures nothing from this list."
+            "fbCorrect": "Correct. Git reports a tracked file as modified and a file it has never seen as untracked. Stage the notebook edit with git add before committing. A bare commit saves neither file here.",
+            "fbWrong": "THE ANSWER: The notebook is tracked and edited; the CSV was never added. Git reports a tracked file as modified and a file it has never seen as untracked. Stage the notebook edit with git add before committing. A bare commit saves neither file here.\n\nWhy the others are wrong. \u201cThe repository is broken and needs to be created again\u201d \u2014 This is the ordinary output of a healthy repository with work in progress. It is the state you should expect to see most of the time.  \u201cThe notebook has been committed and the CSV has been deleted\u201d \u2014 A committed file with no further edits does not appear in this output at all, and a deletion is reported as deleted.  \u201cBoth files will be saved by the next commit\u201d \u2014 Neither will. The notebook change is unstaged and the CSV is untracked, so a bare commit captures nothing from this list."
           },
           {
             "n": 5,
@@ -2198,7 +2198,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3113 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2336,7 +2336,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3113 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2474,7 +2474,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3113 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2612,7 +2612,7 @@ var QUIZ_DATA = {
         "week": 6,
         "number": 6,
         "title": "CML3113 \u00b7 Weekly Quiz 6 \u2014 Dirty data, and seeing it",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2750,7 +2750,7 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3113 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2888,7 +2888,7 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3113 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3026,7 +3026,7 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3113 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3164,7 +3164,7 @@ var QUIZ_DATA = {
         "week": 11,
         "number": 10,
         "title": "CML3113 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3302,7 +3302,7 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3113 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3411,7 +3411,7 @@ var QUIZ_DATA = {
           {
             "n": 5,
             "kind": "judgement",
-            "title": "The metallurgist asks: your model says lower the amina flow, by how much, and where does that number come from? You chose the forest. What is the honest position?",
+            "title": "The metallurgist asks: your model says lower the amina flow. Our acceptance requirement is an exact, directly readable rule; post-hoc attribution is insufficient. Can this model meet it? You chose the forest. What is the honest position?",
             "help": "",
             "choices": [
               {
@@ -3427,12 +3427,12 @@ var QUIZ_DATA = {
                 "correct": false
               },
               {
-                "text": "Say plainly that this model cannot give a per-case reason, and that the constraint therefore rules it out despite the score",
+                "text": "Recommend a readable-rule model that meets the stated acceptance requirement",
                 "correct": true
               }
             ],
             "fbCorrect": "Correct. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.",
-            "fbWrong": "THE ANSWER: Say plainly that this model cannot give a per-case reason, and that the constraint therefore rules it out despite the score. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest is still an ensemble of trees and remains unreadable case by case. This concedes accuracy without gaining explainability.  \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked."
+            "fbWrong": "THE ANSWER: Recommend a readable-rule model that meets the stated acceptance requirement. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest still does not meet this stated requirement for a directly readable rule. This concedes accuracy without gaining explainability.  \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked."
           }
         ]
       },
@@ -3440,7 +3440,7 @@ var QUIZ_DATA = {
         "week": 13,
         "number": 12,
         "title": "CML3113 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3586,7 +3586,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3111 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3724,7 +3724,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3111 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3827,8 +3827,8 @@ var QUIZ_DATA = {
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Git reports a tracked file as modified and a file it has never seen as untracked. Committing now would save the notebook edit and leave the data file behind entirely.",
-            "fbWrong": "THE ANSWER: The notebook is tracked and edited; the CSV was never added. Git reports a tracked file as modified and a file it has never seen as untracked. Committing now would save the notebook edit and leave the data file behind entirely.\n\nWhy the others are wrong. \u201cBoth files will be saved by the next commit\u201d \u2014 Neither will. The notebook change is unstaged and the CSV is untracked, so a bare commit captures nothing from this list.  \u201cThe notebook has been committed and the CSV has been deleted\u201d \u2014 A committed file with no further edits does not appear in this output at all, and a deletion is reported as deleted.  \u201cThe repository is broken and needs to be created again\u201d \u2014 This is the ordinary output of a healthy repository with work in progress. It is the state you should expect to see most of the time."
+            "fbCorrect": "Correct. Git reports a tracked file as modified and a file it has never seen as untracked. Stage the notebook edit with git add before committing. A bare commit saves neither file here.",
+            "fbWrong": "THE ANSWER: The notebook is tracked and edited; the CSV was never added. Git reports a tracked file as modified and a file it has never seen as untracked. Stage the notebook edit with git add before committing. A bare commit saves neither file here.\n\nWhy the others are wrong. \u201cBoth files will be saved by the next commit\u201d \u2014 Neither will. The notebook change is unstaged and the CSV is untracked, so a bare commit captures nothing from this list.  \u201cThe notebook has been committed and the CSV has been deleted\u201d \u2014 A committed file with no further edits does not appear in this output at all, and a deletion is reported as deleted.  \u201cThe repository is broken and needs to be created again\u201d \u2014 This is the ordinary output of a healthy repository with work in progress. It is the state you should expect to see most of the time."
           },
           {
             "n": 5,
@@ -3862,7 +3862,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3111 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4000,7 +4000,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3111 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4138,7 +4138,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3111 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4276,7 +4276,7 @@ var QUIZ_DATA = {
         "week": 6,
         "number": 6,
         "title": "CML3111 \u00b7 Weekly Quiz 6 \u2014 Dirty data, and seeing it",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4414,7 +4414,7 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3111 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4552,7 +4552,7 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3111 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4690,7 +4690,7 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3111 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4828,7 +4828,7 @@ var QUIZ_DATA = {
         "week": 11,
         "number": 10,
         "title": "CML3111 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4966,7 +4966,7 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3111 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -5075,7 +5075,7 @@ var QUIZ_DATA = {
           {
             "n": 5,
             "kind": "judgement",
-            "title": "The planner asks: your model called a stop on machine 14 this morning, why that machine and why today? You chose the forest. What is the honest position?",
+            "title": "The planner asks: your model called a stop on machine 14 this morning, why that machine and why today? The acceptance requirement is an exact, directly readable rule; post-hoc attribution is insufficient. You chose the forest. What is the honest position?",
             "help": "",
             "choices": [
               {
@@ -5083,7 +5083,7 @@ var QUIZ_DATA = {
                 "correct": false
               },
               {
-                "text": "Say plainly that this model cannot give a per-case reason, and that the constraint therefore rules it out despite the score",
+                "text": "Recommend a readable-rule model that meets the stated acceptance requirement",
                 "correct": true
               },
               {
@@ -5096,7 +5096,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Correct. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.",
-            "fbWrong": "THE ANSWER: Say plainly that this model cannot give a per-case reason, and that the constraint therefore rules it out despite the score. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest is still an ensemble of trees and remains unreadable case by case. This concedes accuracy without gaining explainability.  \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer."
+            "fbWrong": "THE ANSWER: Recommend a readable-rule model that meets the stated acceptance requirement. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest still does not meet this stated requirement for a directly readable rule. This concedes accuracy without gaining explainability.  \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer."
           }
         ]
       },
@@ -5104,7 +5104,7 @@ var QUIZ_DATA = {
         "week": 13,
         "number": 12,
         "title": "CML3111 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 48 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -5377,7 +5377,8 @@ function createAllForms(onlyCode) {
         var form = newQuizForm_(wk.title);
         form.setDescription(wk.intro);
         form.setIsQuiz(true);
-        form.setCollectEmail(COLLECT_EMAIL);
+        // Preserve the Verified collection mode selected in the Forms UI.
+        if (form.collectsEmail() !== COLLECT_EMAIL) { form.setCollectEmail(COLLECT_EMAIL); }
         form.setProgressBar(false);
         try { form.setConfirmationMessage(CONFIRMATION); } catch (e) {}
         form.setAllowResponseEdits(false);
@@ -5819,8 +5820,28 @@ function applyResponseLimits() {
  * mismatch is reported and skipped rather than guessed at, because writing
  * question 3's feedback onto question 4 would be worse than doing nothing.
  */
+function repairWeek2FeedbackOnly() {
+  var links=loadLinks_();
+  Object.keys(QUIZ_DATA).forEach(function(code){
+    var record=links[code+'|2']; if(!record){return;}
+    var week=QUIZ_DATA[code].weeks.filter(function(w){return w.week===2;})[0];
+    var q=week.questions[3], form=FormApp.openById(record.formId);
+    var items=form.getItems(FormApp.ItemType.MULTIPLE_CHOICE);
+    if(items.length!==5){throw new Error('Unexpected Week 2 question count '+code);}
+    var item=items[3].asMultipleChoiceItem();
+    if(item.getTitle()!==q.n+'. '+q.title){throw new Error('Unexpected Week 2 Q4 title '+code);}
+    // Feedback only: no changes to choices, answer keys, scores or responses.
+    item.setFeedbackForCorrect(FormApp.createFeedback().setText(q.fbCorrect).build());
+    item.setFeedbackForIncorrect(FormApp.createFeedback().setText(q.fbWrong).build());
+    Logger.log(code+' W2 Q4 feedback repaired; responses and marks unchanged.');
+  });
+}
+
 function updateFeedbackAndIntro() {
   RUN_START = new Date().getTime();
+  var updateProps=PropertiesService.getScriptProperties();
+  var updateVersion='2026-09-14-r2';
+  var updated=JSON.parse(updateProps.getProperty('FEEDBACK_UPDATE_'+updateVersion)||'{}');
   var links = loadLinks_();
   if (!Object.keys(links).length) {
     Logger.log('No forms recorded yet. Run createAllForms() first.');
@@ -5832,6 +5853,8 @@ function updateFeedbackAndIntro() {
     var weeks = QUIZ_DATA[code].weeks;
     for (var i = 0; i < weeks.length; i++) {
       var wk = weeks[i];
+      var updateKey=code+'|'+wk.week;
+      if(updated[updateKey]){continue;}
       var L = links[code + '|' + wk.week];
       if (!L) { continue; }
 
@@ -5839,8 +5862,7 @@ function updateFeedbackAndIntro() {
         Logger.log('');
         Logger.log('Stopped before the six-minute limit. Run '
                    + 'updateFeedbackAndIntro() again to carry on; forms '
-                   + 'already updated are simply rewritten with the same '
-                   + 'text.');
+                   + 'already updated are skipped using saved progress.');
         Logger.log('so far: ' + forms + ' forms, ' + qs + ' questions, '
                    + intros + ' descriptions');
         return;
@@ -5854,6 +5876,12 @@ function updateFeedbackAndIntro() {
         continue;
       }
 
+      if (wk.week === 1 || form.getResponses().length > 0) {
+        Logger.log('Preserved completed form ' + code + ' W' + wk.week);
+        updated[updateKey]=true;updateProps.setProperty('FEEDBACK_UPDATE_'+updateVersion,JSON.stringify(updated));
+        continue;
+      }
+      if(form.isAcceptingResponses()){Logger.log('Close unattempted form before updating '+updateKey);continue;}
       try {
         form.setDescription(wk.intro);
         intros++;
@@ -5881,13 +5909,13 @@ function updateFeedbackAndIntro() {
         var q = wk.questions[j];
         var mc = items[j].asMultipleChoiceItem();
         var expect = q.n + '. ' + q.title;
-        if (mc.getTitle() !== expect) {
-          Logger.log('  ' + code + ' W' + wk.week + ' Q' + q.n
-                     + ': title on the form does not match the bank, so the '
-                     + 'feedback was NOT changed. A rebuild is the safe fix.');
-          mismatch++;
-          continue;
+        var existing = mc.getChoices().map(function (c) { return c.getValue(); });
+        var desired = q.choices.map(function (c) { return typeof c === 'string' ? c : c.text; });
+        if (JSON.stringify(existing) !== JSON.stringify(desired)) {
+          mc.setChoices(q.choices.map(function(c){return mc.createChoice(c.text,c.correct);}));
         }
+        mc.setTitle(expect);
+        mc.setHelpText(q.help || '');
         if (q.fbCorrect) {
           mc.setFeedbackForCorrect(
             FormApp.createFeedback().setText(q.fbCorrect).build());
@@ -5900,6 +5928,7 @@ function updateFeedbackAndIntro() {
         qs++;
       }
       forms++;
+      if(wrote===wk.questions.length){updated[updateKey]=true;updateProps.setProperty('FEEDBACK_UPDATE_'+updateVersion,JSON.stringify(updated));}
       Logger.log('  ' + code + ' W' + wk.week + ': ' + wrote
                  + ' questions updated');
     }
@@ -5960,7 +5989,7 @@ function showScores(week, code) {
   }
   Logger.log('');
 
-  // A 48-hour window buys resilience and costs information: you can no
+  // A 24-hour window buys resilience and costs information: you can no
   // longer assume a submission happened in the room. The opening time is
   // recorded when the quiz is opened, so say which is which.
   var openedAt = Number(L.openedAt || 0);
@@ -6401,7 +6430,8 @@ function applyIdentityFields() {
     try { if (form.getResponses().length) { withResp++; } } catch (e) {}
 
     try {
-      form.setCollectEmail(COLLECT_EMAIL);
+      // Preserve the Verified collection mode selected in the Forms UI.
+        if (form.collectsEmail() !== COLLECT_EMAIL) { form.setCollectEmail(COLLECT_EMAIL); }
       emailed++;
 
       if (!ASK_REGISTRATION_NUMBER) { continue; }
@@ -6450,9 +6480,10 @@ function applyIdentityFields() {
                + 'which for your own test rows does not matter.');
   }
   Logger.log('');
-  Logger.log('You now have both keys on every response: the address is '
-             + 'exact and cannot be mistyped, and the registration number '
-             + 'is what the gradebook joins on. No roster needed.');
+  Logger.log('In Forms Settings, select Verified email collection, immediate '
+             + 'grade release, Point values and Missed questions. Apps Script '
+             + 'cannot confirm those UI settings. The gradebook requires a roster '
+             + 'mapping Student Registration Number to cohort and Google email.');
 }
 
 // ==========================================================================
@@ -6729,7 +6760,7 @@ function rebuildAllForms() {
   Logger.log('  trashed ' + trashedSheets + ' spreadsheets');
 
   // 3. forget the old link map, or createAllForms will skip everything
-  p.deleteProperty(PROP_LINKS);
+  saveLinks_({});
   p.deleteProperty(PROP_ARMED);
   p.deleteProperty(PROP_ARMED_HARD);
 
@@ -6782,13 +6813,21 @@ function responseSpreadsheet_(code, fold) {
 }
 
 function loadLinks_() {
-  var raw = PropertiesService.getScriptProperties().getProperty(PROP_LINKS);
-  return raw ? JSON.parse(raw) : {};
+  var properties=PropertiesService.getScriptProperties().getProperties();
+  var links=properties[PROP_LINKS]?JSON.parse(properties[PROP_LINKS]):{};
+  Object.keys(properties).forEach(function(k){
+    if(k.indexOf(PROP_LINKS+':')===0){links[k.slice(PROP_LINKS.length+1)]=JSON.parse(properties[k]);}
+  });
+  return links;
 }
 
 function saveLinks_(links) {
-  PropertiesService.getScriptProperties()
-    .setProperty(PROP_LINKS, JSON.stringify(links));
+  var props=PropertiesService.getScriptProperties(),values={};
+  Object.keys(links).forEach(function(k){values[PROP_LINKS+':'+k]=JSON.stringify(links[k]);});
+  props.setProperties(values,false);
+  Object.keys(props.getProperties()).forEach(function(k){
+    if(k===PROP_LINKS||(k.indexOf(PROP_LINKS+':')===0&&!links[k.slice(PROP_LINKS.length+1)])){props.deleteProperty(k);}
+  });
 }
 
 function writeLinksSheet_(links) {
@@ -6916,8 +6955,8 @@ function openQuizFor(week, code) {
 // --------------------------------------------------------------------------
 // Pending closes.
 //
-// With a 48-hour window the three cohorts overlap: CML3113 opens at 08:00
-// on Friday and CML3111 three hours later, and both stay open into Sunday.
+// With a 24-hour window the three cohorts overlap: CML3113 opens at 08:00
+// on Friday and CML3111 three hours later, and both stay open into Saturday.
 // The old code held ONE pending form in a property and cleared the trigger
 // on every open, so opening the second quiz silently orphaned the first
 // one's close and left it accepting answers indefinitely.
@@ -6964,9 +7003,9 @@ function removePending_(formId) {
 /**
  * One trigger for however many quizzes are open. Its granularity follows
  * the nearest deadline: minute-by-minute only when something is about to
- * close, hourly otherwise. A 48-hour window polled every minute would be
- * 2,880 executions against a consumer account's daily runtime quota, and
- * landing within an hour of a two-day deadline is plenty.
+ * close, hourly otherwise. A 24-hour window polled every minute would be
+ * 1,440 executions against a consumer account's daily runtime quota, and
+ * landing within an hour of a one-day deadline is plenty.
  */
 function ensureCloseTrigger_() {
   var map = loadPending_();
@@ -7021,13 +7060,14 @@ function autoCloseQuiz() {
                  + Utilities.formatDate(new Date(),
                      Session.getScriptTimeZone(), 'EEE d MMM HH:mm'));
       closed++;
+      delete map[id];
     } catch (e) {
       Logger.log('auto-close FAILED for ' + (entry.key || id) + ': '
                  + e.message);
       Logger.log('Close it by hand with the close_W1_CML3112 style wrapper, '
                  + 'or closeEverything().');
     }
-    delete map[id];
+    // Failed closures remain pending and are retried.
   }
 
   savePending_(map);

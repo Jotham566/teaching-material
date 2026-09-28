@@ -242,7 +242,11 @@ def notes_context(deck_name):
 def notes(slide, text):
     """Split on the TO TEACH marker. Student explanation goes on the slide;
     lecturer stage directions are held for the teaching guide."""
-    _CTX["slide"] += 1
+    # Slides without notes (and repeated/out-of-order notes calls) must not
+    # shift the lecturer guide away from the actual presentation position.
+    slides = slide.part.package.main_document_part.presentation.slides
+    _CTX["slide"] = next(i for i, candidate in enumerate(slides, 1)
+                         if candidate.slide_id == slide.slide_id)
     student, lect = text, ""
     # Match ANY "TO TEACH" variant. A marker that fails to match publishes an
     # answer key to students, so this is deliberately permissive.
@@ -507,23 +511,30 @@ def s_livecode(prs, title, where, code, mistake, kicker="LIVE CODING"):
 def s_challenge(prs, title, brief, questions, kicker="CHALLENGE"):
     s = _blank(prs)
     y = s_head(s, title, kicker)
-    # brief card sized from its own text (~104 chars per line at 15pt)
-    blines = sum(max(1, int(len(ln) / 104.0 + 0.999)) for ln in brief.split("\n"))
-    bh = 0.46 + blines * 0.30
-    card(s, M, y, W - 2 * M, bh, fill=STEEL)
-    tb(s, M + 0.32, y + 0.22, W - 2 * M - 0.64, bh - 0.4, brief, size=15, colour=INK, line=1.25)
-    ty = y + bh + 0.34
-    tb(s, M, ty, W - 2 * M, 0.34, "Work these questions in order:", size=14, bold=True,
-       colour=ORANGE)
-    ty += 0.46
-    cw = (W - 2 * M - 0.4) / 2
+    width = W - 2 * M
+    bh = theight(brief, width - 0.64, 15, 1.25) + 0.52
+    card(s, M, y, width, bh, fill=STEEL)
+    tb(s, M + 0.32, y + 0.22, width - 0.64, bh - 0.40,
+       brief, size=15, colour=INK, line=1.25)
+    ty = y + bh + 0.30
+    cw = (width - 0.4) / 2
     half = (len(questions) + 1) // 2
-    for col, qs in enumerate((questions[:half], questions[half:])):
-        x = M + col * (cw + 0.4)
+    groups = (questions[:half], questions[half:])
+    needed = max(sum(theight(q, cw, 13, 1.15)+0.18 for q in qs) for qs in groups) if questions else 0
+    if ty + needed + 0.52 > H - 0.25:
+        # Keep the readable brief intact and put tasks on a continuation.
+        s = _blank(prs)
+        ty = s_head(s, title + " continued", kicker)
+    tb(s, M, ty, width, 0.34, "Work these questions in order", size=14,
+       bold=True, colour=ORANGE)
+    ty += 0.52
+    for col, qs in enumerate(groups):
         yy = ty
         for q in qs:
-            tb(s, x, yy, cw, 0.4, "→  " + q, size=13, colour=C(0x33, 0x46, 0x57), line=1.15)
-            yy += 0.46
+            h = theight(q, cw, 13, 1.15) + 0.08
+            tb(s, M + col*(cw+0.4), yy, cw, h, q, size=13,
+               colour=C(0x33, 0x46, 0x57), line=1.15)
+            yy += h + 0.10
     return s
 
 
@@ -724,9 +735,9 @@ def s_quiz(prs, week, topic, integrative=False, qr_path=None):
     # every rule is on the form itself, in the HOW THIS WORKS block, where a
     # student reads it at their own pace with the thing in front of them. The
     # slide only has to carry what has to be said out loud.
-    rows = ["Scan the code. First box is your registration number, off your card.",
+    rows = ['Enter your own Student Registration Number exactly as recorded.',
             "One attempt, from the Google account you are signed in to.",
-            "Open for 48 hours if the network fails, then it closes itself.",
+            'Open for 24 hours from lecturer activation, then it closes.',
             "One per cent each. Tap View score and read the feedback.",
             "Twelve this semester, best ten count. No resits."]
     if integrative:
@@ -1025,44 +1036,35 @@ def s_answers(prs, pairs, kicker="ANSWERS", title="How did you do?"):
     return s
 
 
-def s_glossary(prs, terms, page=None, kicker="GLOSSARY — KEEP THIS SLIDE"):
-    """Adaptive: tries 2 columns, then tighter, then 3 columns, so a long
-    glossary shrinks to fit instead of running off the bottom of the slide."""
-    s = _blank(prs)
-    title = "Every word we used today" + (f" ({page})" if page and "1 of 1" not in str(page) else "")
-    y = s_head(s, title, kicker)
-    avail = H - y - 0.30
-
-    def layout(ncol, tsz, dsz, gap, lead, cpi):
-        cw = (W - 2 * M - 0.5 * (ncol - 1)) / ncol
-        per = (len(terms) + ncol - 1) // ncol
-        worst = 0.0
-        for c in range(ncol):
-            h = 0.0
-            for t, d in terms[c * per:(c + 1) * per]:
-                lines = max(1, int(len(d) / (cw * cpi) + 0.999))
-                h += gap + lines * lead
-            worst = max(worst, h)
-        return cw, per, worst
-
-    for ncol, tsz, dsz, gap, lead, cpi in (
-            (2, 13.5, 12.0, 0.34, 0.215, 13.8),
-            (2, 12.5, 11.0, 0.28, 0.195, 15.2),
-            (2, 11.5, 10.0, 0.24, 0.175, 16.8),
-            (3, 11.5, 10.0, 0.24, 0.175, 11.0)):
-        cw, per, need = layout(ncol, tsz, dsz, gap, lead, cpi)
-        if need <= avail:
-            break
-
-    for c in range(ncol):
-        x = M + c * (cw + 0.5)
-        ty = y
-        for t, d in terms[c * per:(c + 1) * per]:
-            lines = max(1, int(len(d) / (cw * cpi) + 0.999))
-            tb(s, x, ty, cw, gap * 0.75, t, size=tsz, bold=True, colour=ORANGE)
-            tb(s, x, ty + gap * 0.72, cw, lines * lead + 0.05, d, size=dsz,
-               colour=C(0x33, 0x46, 0x57), line=1.12)
-            ty += gap + lines * lead
+def s_glossary(prs, terms, page=None, kicker="GLOSSARY"):
+    """Fill columns by measured height, adding pages before text reaches the footer."""
+    cw = (W-2*M-0.5)/2
+    top = (1.04 if kicker else 0.62) + 0.52 + 0.53
+    available = H - 0.55 - top
+    pages = [[[], []]]
+    col, used = 0, 0.0
+    for term, definition in terms:
+        th = theight(term,cw,13,1.15)+0.06
+        dh = theight(definition,cw,12,1.18)+0.10
+        height = th+dh+0.14
+        if height > available:
+            raise ValueError("Glossary definition needs editing: " + term)
+        if used+height > available:
+            if col == 0: col = 1
+            else: pages.append([[], []]); col = 0
+            used = 0.0
+        pages[-1][col].append((term,definition,th,dh))
+        used += height
+    for index, columns in enumerate(pages):
+        s = _blank(prs)
+        suffix = f" ({index+1} of {len(pages)})" if len(pages)>1 else (f" ({page})" if page else "")
+        y = s_head(s, "Every word we used today"+suffix, kicker)
+        for col, entries in enumerate(columns):
+            ty = y
+            for term, definition, th, dh in entries:
+                tb(s,M+col*(cw+0.5),ty,cw,th,term,size=13,bold=True,colour=ORANGE,line=1.15)
+                tb(s,M+col*(cw+0.5),ty+th,cw,dh,definition,size=12,colour=INK,line=1.18)
+                ty += th+dh+0.14
     return s
 
 

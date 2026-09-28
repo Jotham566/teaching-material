@@ -1,0 +1,92 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const ctx={console};vm.createContext(ctx);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/gradebook.gs','utf8'),ctx);
+assert.deepStrictEqual(Array.from(ctx.CHALLENGE_IDS),['W01','W02','W03','W04','W05','W06','W08','W09','W10','W11','W12']);
+for(const v of [-1,500,Infinity,'bad',true])assert.throws(()=>ctx.bestOfComponent_([v],10,5,10));
+assert.equal(ctx.bestOfComponent_([5,5,5,5,5,5,5,5,5,5,5,5],10,5,10).weighted,10);
+assert.equal(ctx.bestOfComponent_([0,'',null],10,5,10).submitted,1);
+const forms={console};vm.createContext(forms);
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/submission_forms.gs','utf8'),forms);
+assert.equal(forms.submissionStatus_('2026-09-22T11:00:00+03:00','2026-09-15T11:00:00+03:00','2026-09-22T11:00:00+03:00'),'ON_TIME');
+assert.equal(forms.submissionStatus_('2026-09-22T11:00:01+03:00','2026-09-15T11:00:00+03:00','2026-09-22T11:00:00+03:00'),'LATE');
+assert.equal(forms.submissionStatus_('2026-09-22T11:00:00+03:00',null,null),'UNSCHEDULED');
+assert.equal(forms.ASSESSMENTS.length,52);
+assert.equal(forms.ASSESSMENTS.filter(a=>a.preserve_existing).length,3);
+console.log('Assessment registry, range validation and deadline tests passed');
+let properties={};
+forms.PropertiesService={getScriptProperties:()=>({
+ getProperties:()=>({...properties}),
+ getProperty:k=>properties[k],
+ setProperty:(k,v)=>{assert(Buffer.byteLength(v)<9000);properties[k]=v;},
+ setProperties:(values)=>{for(const [k,v] of Object.entries(values)){assert(Buffer.byteLength(v)<9000);properties[k]=v;}}
+})};
+let registry={};
+for(const a of forms.ASSESSMENTS)registry[a.key]={formId:'x'.repeat(100),url:'https://example.test/'+ 'y'.repeat(200),ready:true};
+forms.saveSubmissionState_(registry);
+assert.equal(Object.keys(forms.submissionState_()).length,52);
+let writes=[];
+const audit={getDataRange:()=>({getValues:()=>[['response_id']]}),appendRow:r=>writes.push(r)};
+forms.submissionBook_=()=>({getSheetByName:()=>audit});
+forms.LockService={getScriptLock:()=>({tryLock:()=>true,releaseLock:()=>{}})};
+properties={};
+let shouldFail=true,closed=false;
+forms.FormApp={openById:()=>({isAcceptingResponses:()=>!closed,setAcceptingResponses:()=>{if(shouldFail)throw new Error('Transient closure failure');closed=true;},getResponses:()=>[]})};
+forms.saveSubmissionState_({'CML3112|W02':{ready:true,formId:'form',openAt:'2020-01-01T00:00:00Z',closeAt:'2020-01-02T00:00:00Z'}});
+forms.syncSubmissions();
+assert(forms.submissionState_()['CML3112|W02'].error);
+assert(!forms.submissionState_()['CML3112|W02'].closedScanned);
+shouldFail=false;forms.syncSubmissions();
+assert(forms.submissionState_()['CML3112|W02'].closedScanned);
+assert(!forms.submissionState_()['CML3112|W02'].error);
+console.log('52-form storage and retry-after-closure-failure tests passed');
+let quizConfig='';
+ctx.PropertiesService={getScriptProperties:()=>({setProperty:(k,v)=>{quizConfig=v;}})};
+assert.throws(()=>ctx.configureQuizImports(JSON.stringify({'CML3112|2':{formId:'form'}})));
+assert.throws(()=>ctx.configureQuizImports(JSON.stringify({'CML3112|2':{formId:'form',closeAt:'bad'}})));
+ctx.configureQuizImports(JSON.stringify({'CML3112|2':{formId:'form',closeAt:'2026-09-17T11:00:00+03:00'}}));
+assert(JSON.parse(quizConfig)['CML3112|2'].closeAt);
+console.log('Quiz imports require an explicit valid deadline');
+
+assert.equal(forms.submissionDestinationId_({getDestinationId:()=>{throw new Error('The form currently has no response destination.');}}),null);
+assert.equal(forms.submissionDestinationId_({getDestinationId:()=> 'existing-sheet'}),'existing-sheet');
+assert.throws(()=>forms.submissionDestinationId_({getDestinationId:()=>{throw new Error('Permission denied');}}));
+console.log('New-form destination detection preserves existing destinations and real errors');
+let formItems=['Upload','student_id','team_id','repository_url','submission_notes'].map((name,i)=>({name,getTitle(){return this.name;},setTitle(v){this.name=v;},getType:()=>i===0?'FILE_UPLOAD':'TEXT',getIndex(){return formItems.indexOf(this);}}));
+const demoForm={getItems:()=>formItems.slice(),moveItem:(from,to)=>formItems.splice(to,0,formItems.splice(from,1)[0])};
+forms.polishSubmissionForm_(demoForm);forms.polishSubmissionForm_(demoForm);
+assert.deepStrictEqual(formItems.map(x=>x.name),['Student Registration Number','Team ID','Repository URL','Submission notes','Upload your assessment files']);
+assert.equal(forms.submissionFieldKey_('Student ID'),'student_id');
+console.log('Readable labels and upload-last ordering are idempotent and preserve field identity');
+properties={};
+let acceptingNow=false;
+forms.FormApp={openById:()=>({isAcceptingResponses:()=>acceptingNow,setAcceptingResponses:v=>{acceptingNow=v;},getResponses:()=>[]})};
+forms.saveSubmissionState_({'CML3112|W02':{ready:true,formId:'form',openAt:'2020-01-01T00:00:00Z',closeAt:'2099-01-01T00:00:00Z'}});
+forms.syncSubmissions();assert.equal(acceptingNow,false);
+let verifiedState=forms.submissionState_();verifiedState['CML3112|W02'].uploadReady=true;forms.saveSubmissionState_(verifiedState);
+forms.syncSubmissions();assert.equal(acceptingNow,true);
+console.log('Unverified upload forms stay closed; verified forms open within their window');
+
+assert.equal(forms.submissionFieldKey_('Student Registration Number'),'student_id');
+assert.equal(forms.submissionAssessmentReleased_('CML3112|W06',{}),false);
+assert.equal(forms.submissionAssessmentReleased_('DA|S09',{}),false);
+assert.equal(forms.submissionAssessmentReleased_('DA|S05',{}),true);
+assert.equal(forms.submissionAssessmentReleased_('CML3112|W02',{assessmentReleased:false}),false);
+assert.equal(forms.submissionAssessmentReleased_('CML3112|W06',{assessmentReleased:true}),false);
+assert.equal(forms.submissionAssessmentReleased_('CML3112|W06',{assessmentReleased:true,releaseEvidence:'Validated current rubric and reference checks: evidence/file.json'}),true);
+properties={};acceptingNow=true;
+forms.saveSubmissionState_({'CML3112|W06':{ready:true,uploadReady:true,formId:'form',openAt:'2020-01-01T00:00:00Z',closeAt:'2099-01-01T00:00:00Z'}});
+forms.syncSubmissions();assert.equal(acceptingNow,false);
+console.log('Draft assessments stay closed despite verified uploads and an active window; release needs explicit evidence');
+
+const collection={collectionOnly:true,collectionEvidence:'Instructor authorized missed Week 1 collection; grading held.'};
+assert.equal(forms.submissionCatchupCollectionAllowed_('CML3112|W01',collection),true);
+assert.equal(forms.submissionAssessmentReleased_('CML3112|W01',collection),false);
+assert.equal(forms.submissionCatchupCollectionAllowed_('CML3112|W06',collection),false);
+assert.equal(forms.submissionCatchupCollectionAllowed_('CML3112|W01',{collectionOnly:true}),false);
+properties={};acceptingNow=false;
+forms.saveSubmissionState_({'CML3112|W01':{...collection,ready:true,uploadReady:true,formId:'form',openAt:'2020-01-01T00:00:00Z',closeAt:'2099-01-01T00:00:00Z',assessmentReleased:false}});
+forms.syncSubmissions();assert.equal(acceptingNow,true);
+let catchupState=forms.submissionState_();catchupState['CML3112|W01'].closeAt='2020-01-02T00:00:00Z';forms.saveSubmissionState_(catchupState);
+forms.syncSubmissions();assert.equal(acceptingNow,false);
+assert.equal(forms.submissionState_()['CML3112|W01'].closedScanned,true);
+console.log('Authorized Week 1 collection keeps grading held, rejects other assessments and closes after expiry');

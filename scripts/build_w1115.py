@@ -7,6 +7,7 @@ _HERE = _os.path.dirname(_os.path.abspath(__file__))
 _ROOT = _os.path.dirname(_HERE)
 sys.path.insert(0, _HERE)
 from pptxkit import *   # noqa
+from weekly_submission_slide import add_weekly_submission
 from build_week1 import CO, FIG, OUTDIR, FOOT, qrp
 from week_content import W11, W12, W13
 
@@ -75,7 +76,7 @@ def week11(code):
              "quietly is the thing that costs marks.\n\nTO TEACH: read them out, return at the end.")
 
     s = s_figure(prs, "How today runs", F("clock_w11.png"),
-                 "Nine segments. The Feature Workshop and the Domain Advantage challenge take an hour between "
+                 "Ten timeline blocks. The Feature Workshop and the Domain Advantage challenge take 55 minutes between "
                  "them, and both of them are you working.",
                  kicker="HOW TODAY RUNS")
     notes(s, "Two long working blocks today: thirty minutes of Feature Workshop and thirty minutes of "
@@ -584,19 +585,17 @@ def week11(code):
                    "properly evaluated model inside a Pipeline. Graded milestone within the project's 25 per "
                    "cent. Your individual contribution log has to be in the repository, and it is read "
                    "against the commit history."),
-                  ("Assignment A10 — the feature dictionary and ablation table for your own project",
+                  ("Project practice — feature dictionary and ablation table",
                    "Five features minimum, each with a physical reason and a measured effect in your own "
                    "metric. Include at least one feature that did not help, with the number that shows it."),
                   ("Practical Test 2 specification is published today",
                    "Individual, offline, on a laboratory machine with no internet and no AI assistants. Two "
                    "hours of practical plus twenty-five minutes of written reasoning, worth 20 per cent. "
-                   "Week 14. The rubric is in the specification, and 45 of the 100 marks come from a "
-                   "structured answers cell.")],
+                   "Week 14. The specification maps 30 marks to executed functions and 70 to rubric evidence.")],
                  kicker="MILESTONE, ASSIGNMENT AND TEST 2", numbered=False)
     notes(s, "Read the Test 2 specification this week rather than in Week 13. The part worth noticing now is "
-             "that 45 of the 100 marks come from a structured answers cell you fill in during the test, so "
-             "the marks for framing, metric choice and limits are collected from a form rather than from your "
-             "prose. Practise filling one in during the Week 13 studio.\n\nOn A10: a feature dictionary is "
+             "that 30 marks come from executed numerical checks. Explain framing, metric choice and limits "
+             "in the written-evidence cell. Practise the published interfaces during the Week 13 studio.\n\nFor project practice: a feature dictionary is "
              "one row per column with its name, what it is made of, its unit, and the physical reason. "
              "Another engineer should be able to rebuild your feature set from it without asking you "
              "anything.\n\nTO TEACH: put the PM2 slot times on the board now.")
@@ -731,6 +730,7 @@ def week11(code):
              "models under a fixed protocol and defend the choice to another team.\n\nTO TEACH: close on the "
              "domain advantage result the room generated, using their own numbers rather than the figure's.")
 
+    add_weekly_submission(prs, "W11", code)
     prs.save(os.path.join(OUTDIR, f"{code}_Week11_{c['short']}.pptx"))
     return len(prs.slides._sldIdLst)
 
@@ -751,7 +751,7 @@ def week12(code):
              "models under one protocol, and write a recommendation. Then another team attacks it. This is "
              "the closest rehearsal you get for Practical Test 2 in two weeks.\n\nTO TEACH: pre-run the four "
              "candidate models on the challenge dataset and confirm that no single model trivially dominates "
-             "and that the work fits 90 minutes. Print the client briefs, the question-bank cards, the "
+             "and that the work fits 100 minutes. Print the client briefs, the question-bank cards, the "
              "recommendation template and the protocol poster. Brief any assistants: questions only, no "
              "answers, for the whole challenge.")
 
@@ -770,7 +770,7 @@ def week12(code):
 
     s = s_figure(prs, "How today runs", F("clock_w12.png"),
                  "Eight blocks, and the shape is different this week. Thirty-five minutes of teaching, then "
-                 "ninety minutes of your own work with no answers from me, a defence round, and the "
+                 "a 100-minute work block (70 minutes of project practice and 30 for the individual W12 bank), a defence round, and the "
                  "weekly quiz at the end.",
                  kicker="HOW TODAY RUNS")
     notes(s, "Notice the shape. The teaching is compressed into the first thirty-five minutes because you "
@@ -782,7 +782,7 @@ def week12(code):
     s = s_segment(prs, 1, N, "Where we got to", 10,
                   "You can build features and measure what they were worth. Today you choose between models.")
     notes(s, "Ten minutes of recall. You can evaluate a model honestly and you can improve what it is fed. "
-             "The remaining question is which model, and why that one.\n\nTO TEACH: collect A10. The quiz "
+             "The remaining question is which model, and why that one.\n\nTO TEACH: remind students to upload the issued W11 notebook. The quiz "
              "closes this session, so say when it will run.")
 
     s = s_check(prs, [
@@ -830,20 +830,11 @@ def week12(code):
              "use one, on top of the leakage argument from Week 10.\n\nTO TEACH: write the four constants on "
              "the board and leave them there through the challenge. Teams will refer to them.")
 
-    s = s_define(prs, "Comparison protocol, and a real difference",
-                 "A COMPARISON PROTOCOL fixes the split, the folds, the preprocessing and the metric, so the "
-                 "only thing varying between runs is the model. A difference between two scores is REAL when "
-                 "it is larger than the spread across folds.",
-                 "Model A scores 0.82 and model B scores 0.84, and each model's five folds are spread over "
-                 "0.06. The two cannot be separated on this data, and the honest report says so.",
-                 "A leaderboard. A leaderboard ranks numbers. Without a protocol it ranks the accidents of "
-                 "the splits as well as the models, and there is no way to tell the two apart.")
-    notes(s, "This definition of a real difference is the most useful thing in the session. Report every "
-             "score as a mean with its standard deviation across folds, and when two intervals overlap "
-             "heavily, say the two models cannot be separated.\n\nWhat you do then is an engineering "
-             "decision, and it is where the other four criteria come in. If two models are equally accurate "
-             "and one of them can be read aloud to a client, the choice is already made.\n\nTO TEACH: this "
-             "slide is what stops the challenge becoming a score chase. Emphasise it before you release them.")
+    s = s_define(prs, "Comparison protocol and uncertainty",
+                 "A comparison protocol fixes splits, folds, preprocessing rules and metrics. Fold spread describes sensitivity to the split; it is not a significance test.",
+                 "A scores 0.82 and B scores 0.84 with substantial fold variation. Report the paired fold results and practical importance before claiming a reliable improvement.",
+                 "A leaderboard without a shared protocol can rank differences in data partitions instead of model quality.")
+    notes(s, "Mean plus or minus a fold standard deviation is not a confidence interval. Overlapping ranges neither prove equality nor establish significance. Cross-validation results are correlated because training sets overlap.\n\nTO TEACH: keep the beginner task on cautious interpretation and engineering constraints. Reference: https://scikit-learn.org/1.5/auto_examples/model_selection/plot_grid_search_stats.html")
 
     s = s_prose(prs, "Five things that decide the choice besides accuracy", [
         "**1 · How much of it you can explain**",
@@ -894,7 +885,7 @@ def week12(code):
         "become the deciding ones?"],
         title="Two minutes: check the protocol before you use it",
         foot="Answers next slide. You need all three during the challenge.")
-    notes(s, "Three questions to confirm you can run a fair comparison before you are given 90 minutes to do "
+    notes(s, "Three questions to confirm you can run a fair comparison before you are given 100 minutes to do "
              "it unsupervised. Question A is the one to be able to recite.\n\nTO TEACH: pulse check before "
              "the tuning demonstration. If question A is weak, put the four constants back on the board.")
 
@@ -1014,18 +1005,18 @@ def week12(code):
              "is not the lesson this week.")
 
     s = s_break(prs, 10)
-    notes(s, "Ten minutes. The challenge after the break runs for ninety minutes without a "
+    notes(s, "Ten minutes. The challenge after the break runs for one hundred minutes without a "
              "second break, so use this one.\n\nTO TEACH: take it. Distribute the client briefs and the "
              "recommendation template during the break so the challenge starts on time.")
 
     # -------- 4
-    s = s_segment(prs, 4, N, "Engineering AI Challenge: choose a model and defend it", 90,
+    s = s_segment(prs, 4, N, "Engineering practice and the W12 submission", 100,
                   "An unfamiliar dataset, a client with a real constraint, and no answers from me for the "
                   "next hour and three quarters.")
     notes(s, "Ninety minutes. You get an unfamiliar dataset and a brief from a client, and you "
              "produce a results table for at least four models under one protocol plus a one-page "
              "recommendation. No help, no worked example, and no method suggested.\n\nTO TEACH: circulate with "
-             "the question-bank cards and answer nothing for the full 90 minutes. Give time calls at 60, 30 "
+             "the question-bank cards during 70 minutes of project practice. Reserve the final 30 minutes for each student to complete the issued W12 notebook and written evidence. Give time calls at 60, 30 "
              "and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked "
              "which four things they are holding constant, and nothing else.")
 
@@ -1052,7 +1043,7 @@ def week12(code):
     notes(s, "The six questions on the slide are the ones you will be marked against, so work them in order. "
              "Question 1 comes before any modelling: write the protocol down, then run the four candidates "
              "through it.\n\nQuestion 3 is where most teams lose marks. Report every score as a mean with its "
-             "spread across folds, and if the top two overlap, say they cannot be separated and let the "
+             "spread across folds, avoid treating overlap as a significance test, and consider the "
              "constraint decide.\n\nAI assistants are permitted here and every use goes in the log. Your "
              "recommendation gets defended out loud in the next segment, which is what makes the logging "
              "honest.\n\nTO TEACH: what is in the challenge dataset and the intended reading — " +
@@ -1080,13 +1071,13 @@ def week12(code):
                  "",
                  "5  Your AI-use log.",
                  "",
-                 "One page. Graded in session."],
-                kicker="DELIVERABLE — A11")
+                 "One page. Formative practice."],
+                kicker="PROJECT PRACTICE")
     notes(s, "One page means one page. A supervising engineer reads the first paragraph and the table, and "
              "everything else has to earn its space.\n\nItem 4 is the one that separates a merit from a pass. "
              "'This recommendation holds while the feed comes from the same source; if the source changes, "
              "refit and recheck the metric' is a sentence a real engineer writes and a student usually "
-             "leaves out.\n\nA11 is graded in session and it is the last of the eleven practical challenges."
+             "leaves out.\n\nThis recommendation is formative project practice. Submit the issued W12 notebook for the weekly grade."
              "\n\nTO TEACH: collect the pages at the end of the defence round, after teams have had the "
              "chance to annotate them with what they conceded.")
 
@@ -1167,7 +1158,7 @@ def week12(code):
     notes(s, "The reason conceding is marked is that it is the professional behaviour. In a design review the "
              "engineer who says 'you are right, I checked the wrong thing, here is what I will do' is worth "
              "more than the one who defends a mistake fluently.\n\nWrite the concession down before you leave "
-             "the room. It goes on your recommendation as an annotation, and it is read as part of A11.\n\nTO "
+             "the room. It goes on your recommendation as an annotation, and it supports the project recommendation.\n\nTO "
              "TEACH: mark the challenges as you circulate. Naming one team's challenge as the best of the "
              "session raises the standard immediately.")
 
@@ -1201,12 +1192,12 @@ def week12(code):
                    "under one protocol, and a justified selection. Graded milestone within the project's 25 "
                    "per cent. State the four things you held constant and the seed you used."),
                   ("This week's quiz — five minutes, and two questions come from earlier weeks",
-                   "Whether a difference between two models is real given the fold spread, and which model "
+                   "How cautiously to interpret model differences given fold variation, and which model "
                    "a stated constraint selects. From this week on, two of the five are drawn from Weeks 1 "
                    "to 10, so nothing is ever finished with."),
-                  ("A11 is graded in session and it is the last practical challenge",
-                   "Your one-page recommendation, annotated with what you conceded in the defence round. "
-                   "Hand it in before you leave.")],
+                  ("W12 is the final graded weekly practical",
+                   "Complete the issued W12 notebook and its written-evidence cell. "
+                   "Upload it using the final slide link by the published deadline.")],
                  kicker="MILESTONE AND QUIZ", numbered=False)
     notes(s, "The quiz has nothing to memorise. The questions show a comparison table or a snippet of a "
              "pipeline and ask what is wrong with it, so working through today's protocol carefully was the "
@@ -1221,7 +1212,7 @@ def week12(code):
         "constant and only the model changes.",
         "A leaderboard without a protocol ranks the accidents of the splits alongside the models, and you "
         "cannot tell them apart.",
-        "A difference between two scores is real only when it is larger than the spread across folds. Report "
+        "Fold spread describes variability, not statistical significance. Report "
         "the mean and the spread every time.",
         "A parameter is found by fitting. A hyperparameter is chosen before fitting, and a search is how you "
         "choose it.",
@@ -1284,8 +1275,8 @@ def week12(code):
         ("Nested search", "The hyperparameter search running inside cross-validation."),
         ("GridSearchCV", "scikit-learn's grid search with cross-validation built in."),
         ("step__argument", "The double-underscore naming that reaches an argument inside a Pipeline step."),
-        ("Fold-to-fold spread", "The standard deviation of the score across folds. It sets the resolution."),
-        ("Real difference", "A gap larger than the fold-to-fold spread."),
+        ("Fold-to-fold spread", "The standard deviation of fold scores; describes split sensitivity, not a confidence interval."),
+        ("Reliable improvement", "Requires evidence beyond a ranking or overlapping fold ranges."),
         ("Interpretability", "How much of the model's decision you can explain. Often a requirement."),
         ("Inference cost", "What it costs to produce one prediction in service."),
         ("Data hunger", "How many rows a method needs before it beats a simpler one."),
@@ -1311,8 +1302,8 @@ def week12(code):
         "model · settings · cross-validated mean · spread across folds · held-out score. Every row, same "
         "protocol.",
         "**Then ask whether the difference is real**",
-        "Gap larger than the spread means a difference. Otherwise the two cannot be separated, and something "
-        "else has to decide.",
+        "Inspect paired fold differences and practical importance; fold spread alone cannot prove superiority. Engineering constraints "
+        "also guide the decision.",
         "**Five criteria besides accuracy**",
         "Explainability · training and inference cost · data hunger · failure behaviour · who maintains it.",
         "**The recommendation**",
@@ -1325,7 +1316,7 @@ def week12(code):
              "carries 20 of the 100 marks and the first two lines of this sheet are most of it.")
 
     s = s_quiz(prs, 12,
-               "Whether a difference between two models is real given the fold spread, and which model a stated "
+               "How cautiously to interpret model differences given fold variation, and which model a stated "
                         "constraint selects.", integrative=True, qr_path=qrp(code, 12))
     notes(s, "The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
 
@@ -1340,6 +1331,7 @@ def week12(code):
              "peer review, plus the Practical Test 2 briefing.\n\nTO TEACH: name the best challenge raised in "
              "the defence round and say why it was good. Thirty seconds, and it sets the standard for Week 15.")
 
+    add_weekly_submission(prs, "W12", code)
     prs.save(os.path.join(OUTDIR, f"{code}_Week12_{c['short']}.pptx"))
     return len(prs.slides._sldIdLst)
 
@@ -1352,7 +1344,7 @@ def week13(code):
     notes_context(f"{code} Week 13")
     N = 7
     teams = TEAMS[code]
-    slot = max(4, 85 // teams)
+    slot = max(4, 95 // teams)
 
     s = s_title(prs, code, "Work somebody else\ncan actually run",
                 "Repository structure, README, environment capture and peer review",
@@ -1361,7 +1353,7 @@ def week13(code):
              "minutes in which you build while I run clinic slots, then a peer review round in which you "
              "review another team's repository against the project rubric. Practical Test 2 is briefed at the "
              "end.\n\nTO TEACH: BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about " +
-             str(teams) + " teams, so 100 minutes gives roughly " + str(slot) + " minutes each. Publish the "
+             str(teams) + " teams, so 95 minutes gives roughly " + str(slot) + " minutes each. Publish the "
              "slot times before you start and use a printed checklist so each slot is diagnostic rather than "
              "conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, "
              "with permission. Print the peer review forms and the repository checklist.")
@@ -1380,10 +1372,10 @@ def week13(code):
              "own.\n\nTO TEACH: read them out, return at the end.")
 
     s = s_figure(prs, "How today runs", F("clock_w13.png"),
-                 "Eight blocks. The studio is eighty-five minutes of your own build with clinic slots "
+                 "Eight blocks. The studio is ninety-five minutes of your own build with clinic slots "
                  "running alongside, so check when your slot is before the break.",
                  kicker="HOW TODAY RUNS")
-    notes(s, "The studio runs for eighty-five minutes and your clinic slot is about " + str(slot) + " "
+    notes(s, "The studio runs for ninety-five minutes and your clinic slot is about " + str(slot) + " "
              "minutes of it. Teams not in a slot are building or peer-reviewing, so nobody is waiting.\n\n"
              "Come to your slot with the repository checklist already filled in. A slot spent finding out "
              "what is missing is a slot wasted; a slot spent on the two things you could not fix yourself is "
@@ -1393,7 +1385,7 @@ def week13(code):
     s = s_segment(prs, 1, N, "Where we got to", 10,
                   "You can choose a model and defend the choice. Today: making the work checkable.")
     notes(s, "Ten minutes of recall. You have a model you can defend. What you may not have is work anybody "
-             "else could run.\n\nTO TEACH: collect A11 annotations if they were not handed in last week. "
+             "else could run.\n\nTO TEACH: review the formative recommendation annotations.  "
              "Reteach anything last week's quiz showed the room got wrong — five minutes, from the "
              "responses-by-question view.")
 
@@ -1638,12 +1630,12 @@ def week13(code):
              "consistent, because half a repository using each is worse than either.")
 
     s = s_break(prs, 10, after="Studio time is next: have your repository open.")
-    notes(s, "Ten minutes. The studio afterwards runs for eighty-five minutes, so check your clinic slot time "
+    notes(s, "Ten minutes. The studio afterwards runs for ninety-five minutes, so check your clinic slot time "
              "before you go.\n\nTO TEACH: take it. Put the booking sheet and the slot times up during the "
              "break.")
 
     # -------- 4
-    s = s_segment(prs, 4, N, "Studio", 100,
+    s = s_segment(prs, 4, N, "Studio", 95,
                   "You build. I run clinic slots. Nobody waits, because teams outside a slot are building or "
                   "reviewing.")
     notes(s, "Eighty-five minutes of build time with clinic slots running alongside. Your slot is about " +
@@ -1652,7 +1644,7 @@ def week13(code):
              str(teams) + " teams and " + str(slot) + " minutes each, a slot that becomes a conversation "
              "costs another team its slot. Set a timer.")
 
-    s = s_split(prs, "Studio: what to build in the next hundred minutes", "The target",
+    s = s_split(prs, "Studio: what to build in the next ninety-five minutes", "The target",
                 "A repository at " + w["repo"] + " that passes Restart and Run All on a machine that has "
                 "never seen it.\n\n"
                 "A README answering the five questions, in half a page.\n\n"
@@ -1802,7 +1794,7 @@ def week13(code):
                    "Individual and offline, on a laboratory machine with no internet and no AI assistants. "
                    "Two hours of practical plus twenty-five minutes of written reasoning, worth 20 per cent. "
                    "You get an unfamiliar dataset from your own discipline. The full briefing deck is issued "
-                   "with this one, and 45 of the 100 marks come from a structured answers cell."),
+                   "with this one: 30 marks use executed checks and 70 use rubric evidence."),
                   ("The last quiz of the semester — five minutes, and it closes today",
                    "Reproducibility, with two of the five drawn from earlier weeks. Worth one per cent, and "
                    "your best ten of twelve count, so this is the last score you can bank."),
@@ -1814,7 +1806,7 @@ def week13(code):
                  kicker="TEST 2, THE LAST QUIZ AND WEEK 15", numbered=False)
     notes(s, "The most useful preparation for Test 2 next week is the studio you just ran. Practise "
              "Restart and Run All, practise writing a five-question README quickly, and practise filling in "
-             "a structured answers cell, because 45 of the 100 marks come from one.\n\nOn Week 15: the "
+             "the checked functions and the written-evidence cell.\n\nOn Week 15: the "
              "two-page brief and the one-page poster are the least practised things you will hand in all "
              "semester, and there is no session between the test and Demo Day. Draft both this week.\n\nTO "
              "TEACH: run the quiz now. Say clearly that it is the last of the twelve and that the best ten "
@@ -1978,16 +1970,15 @@ def week14(code):
                    "judgement rather than your memory of parameter names."),
                   ("Two hours of practical, then twenty-five minutes of writing",
                    "Part A is an end-to-end piece of work on a dataset from your own discipline that you have "
-                   "never seen. Part B is four written questions with no computer, and it is collected "
-                   "separately."),
+                   "never seen. Part B is four typed offline questions with code execution prohibited."),
                   ("Worth 20 per cent of the semester mark",
                    "Only the ML project carries more. Weeks 8 to 13 are what is examined, and there are no "
                    "new concepts in it.")],
                  kicker="THE FORMAT", numbered=False)
     notes(s, "The offline bundle including the scikit-learn documentation is deliberate. You are not being "
              "tested on whether you remember that the argument is called min_samples_leaf; you are being "
-             "tested on whether you know why you would change it.\n\nThe two parts are collected separately "
-             "and marked separately. Part B carries the reasoning marks and it has no computer, so a strong "
+             "tested on whether you know why you would change it.\n\nKeep the completed Part A snapshot before Part B starts. "
+             "Part B carries the reasoning marks and code execution is prohibited, so a strong "
              "Part A with an empty Part B loses a large amount.")
 
     s = s_figure(prs, "How the session runs", F("clock_w14.png"),
@@ -2018,8 +2009,8 @@ def week14(code):
         "**Your work is individual**",
         "This is not a team assessment. Two scripts that share a distinctive error are both investigated.",
         "**Submission**",
-        "Save into the drop folder named for your seat, with your student number in the filename. Part B is "
-        "handed in on paper."],
+        "Save into the drop folder named for your seat, with your Student Registration Number in the filename, using underscores for slashes. "
+        "Type Part B in the written-evidence cell; the invigilator records collection time."],
         kicker="READ THIS BEFORE THE DAY")
     notes(s, "Paper notes are permitted deliberately. The cheat-sheet slides from Weeks 8 to 13 were written "
              "to be printed and used, and bringing them is the intended behaviour rather than a "
@@ -2055,7 +2046,7 @@ def week14(code):
              "why the suggested plan later in this deck puts it before the last of the modelling.")
 
     s = s_prose(prs, "Part B — the four written questions", [
-        "**No computer, twenty-five minutes, on paper**",
+        "**Twenty-five minutes, typed offline; no code execution**",
         "You answer about the work you have just done. The questions are the same for every variant.",
         "**1 · Why this metric?**",
         "Name the metric you used and the engineering consequence that chose it. Say what a different metric "
@@ -2063,7 +2054,7 @@ def week14(code):
         "**2 · Where could this pipeline leak?**",
         "Name the most likely leak in your own workflow, say which of the four kinds it is, and say how you "
         "ruled it out.",
-        "**3 · What would change your recommendation?**",
+        "**3 · What would change your decision?**",
         "A change in the data, the plant or the conditions of use. Be specific about the change and about "
         "what you would do.",
         "**4 · Would you deploy this, and what would you require first?**",
@@ -2106,80 +2097,42 @@ def week14(code):
              "cost you nothing if you did Week 13 properly: relative paths, a named seed, and Restart and Run "
              "All before you submit.")
 
-    s = s_prose(prs, "Where the marks come from", [
-        "**45 of the 100 marks are read from a structured answers cell**",
-        "One cell at the bottom of your notebook, filled in as you go. It is read by a script, so the keys "
-        "have to be exactly as given.",
-        "**Which marks those are**",
-        "Task framing, the metric you named, your reported scores and spreads, the seed, the row counts you "
-        "dropped, and your three limitations as short strings.",
-        "**Why it works this way**",
-        "So that your framing, your metric choice and your limits are collected from a form rather than "
-        "hunted for in forty cells. It also means they are marked the same way for everybody.",
-        "**The other 55 marks are marked by me**",
-        "Your justifications, your pipeline, your charts, your interpretation, and Part B. Those need reading "
-        "and they get read.",
-        "**Fill the cell in as you go, never at the end**",
-        "A candidate who leaves it until the last ten minutes loses marks they had already earned. Put the "
-        "cell in place at minute five and add to it.",
-        "**A structural check runs first**",
-        "It confirms the notebook runs top to bottom, that the required sections are present and that nothing "
-        "tried to reach the network. Failing it costs code clarity marks."],
-        kicker="HOW IT IS MARKED")
-    notes(s, "The single most valuable habit for this test is filling in the answers cell as you go. Those 45 "
-             "marks are the easiest in the paper and they are the ones most often lost, because candidates "
-             "leave the cell blank while they chase a better score and then run out of time.\n\nThe keys have "
-             "to be exactly as given, because a script reads them. A misspelled key returns nothing for that "
-             "line.\n\nTO TEACH: put the answers cell in the task sheet as copyable text, and say at the "
-             "30-minute call that the cell should already have entries in it.")
+    s = s_points(prs, "How your work is assessed", [
+        ("30 marks: executed numerical checks", "Your split, model predictions and error calculations are checked on unseen inputs. The task sheet gives exact interfaces and mark allocations."),
+        ("70 marks: rubric evidence", "Explain framing, preparation, evaluation, interpretation and reproducibility. Include Part B in the written-evidence cell. Every award must cite submitted evidence."),
+        ("Original criterion totals are preserved", "The component map in your task sheet shows which marks belong to each published criterion. A numerical score alone is not the final test mark."),
+        ("Keep a complete, readable submission", "Save the notebook, outputs and your own explanations. The invigilator records collection time. Missing or unreadable evidence cannot earn an invented mark.")],
+        kicker="HOW IT IS MARKED", numbered=False)
+    notes(s, "The numerical component has reference checks. Release this task only after the remaining rubric has passed local known-answer calibration. Unresolved marks remain blank; never infer successful code execution from prose.")
 
-    s = s_split(prs, "The structured answers cell", "How it works",
-                "It is a Python dictionary in the last cell of your notebook. You fill it in as you go.\n\n"
-                "Keep the keys exactly as printed on your task sheet. A script reads them, so a misspelled "
-                "key scores nothing for that line.\n\n"
-                "Values are numbers or short strings. No prose, no explanation — your explanations belong in "
-                "the markdown cells and in Part B.\n\n"
-                "Put the cell in place in the first five minutes, then add to it as each part is done.",
-                "The keys",
-                # Sixteen one-key rows needed 12.5pt to fit the panel, which is
-                # the smallest text in the deck for the least subtle content on
-                # the slide. Grouped four to a row it sets at a readable size and
-                # still names all fourteen keys. The exact dict, with its ... and
-                # its commas, is printed on the task sheet.
-                ['ANSWERS = {',
-                 '  task, target, target_unit',
-                 '  metric, metric_reason, seed',
-                 '  rows_in, rows_used, rows_dropped',
-                 '  models, cv_mean, cv_spread',
-                 '  holdout, limitations',
-                 '}',
-                 'Fourteen keys. Strings and numbers only.'],
-                kicker="45 OF THE 100 MARKS")
-    notes(s, "The exact keys are printed on your task sheet on the day, and they will match this list. "
-             "Practise filling one in on your project notebook this week, because the habit of writing to it "
-             "while you work is what protects those marks.\n\nOn 'metric_reason': a short string is enough. "
-             "'false negative costs a gearbox' scores; 'best metric' does not.\n\nOn 'limitations': three "
-             "short strings, each naming something specific about your own data. Generic statements about "
-             "machine learning score nothing.\n\nTO TEACH: publish the exact key list with the specification "
-             "so nobody meets it for the first time in the room.")
+    s = s_split(prs, "The checked function interfaces", "Implement these in your notebook",
+                "group_split(records): return the specified equipment-group partitions.\n\n"
+                "predict_regression(training_records, feature_records): return baseline, linear and tree predictions.\n\n"
+                "regression_errors(actual, predicted): return MAE and RMSE.\n\n"
+                "Use the exact public contract in the task sheet. Your code is checked on data with the same schema.",
+                "Your written evidence", [
+                 "Use the markdown cell headed ## My written evidence.",
+                 "Explain your own decisions, units, limitations and recommendation.",
+                 "Type Part B there without executing code.",
+                 "Task prompts and code comments do not count as reasoning answers."],
+                kicker="IMPLEMENTATION AND EXPLANATION")
+    notes(s, "The old self-reported ANSWERS dictionary is no longer an authoritative mark source. Functions are executed in isolation; explanations are assessed separately. Publish the exact task interfaces before the test.")
 
     s = s_prose(prs, "How to spend the two hours", [
         "**0:00 to 0:15 · read, profile, and write the framing**",
-        "Read the brief twice. shape, head, info, describe, duplicated. Fill in task, target, target_unit and "
-        "rows_in.",
+        "Read the brief twice. shape, head, info, describe, duplicated. Record the task, target, unit and initial row count.",
         "**0:15 to 0:40 · clean, with a sentence per decision**",
-        "One markdown line per defect: what, where, cause, action, why. Fill in rows_used and rows_dropped.",
+        "One markdown line per defect: what, where, cause, action, why. Record retained and dropped row counts.",
         "**0:40 to 0:50 · fix the protocol and name the metric**",
         "Split with a named seed, write the four constants down, and write metric and metric_reason before "
         "you fit anything.",
         "**0:50 to 1:25 · build two models inside a Pipeline**",
-        "The simple one first, and get it fully working before you add the second. Fill in models, cv_mean "
-        "and cv_spread.",
+        "The simple one first, and get it fully working before you add the second. Record models, validation errors and uncertainty.",
         "**1:25 to 1:45 · write the limitations and the interpretation**",
         "Do this before any further modelling. It carries 20 marks and it is what candidates run out of time "
         "for.",
         "**1:45 to 2:00 · charts, captions, Restart and Run All, submit**",
-        "Two or three charts, each captioned with its finding. Then restart, run all, check the answers cell, "
+        "Two or three charts, each captioned with its finding. Then restart, run all, check the written evidence, "
         "and save."],
         kicker="A SUGGESTED PLAN")
     notes(s, "This plan is a suggestion and it is the one that has worked. The important feature is that the "
@@ -2200,7 +2153,7 @@ def week14(code):
         "**You cannot get the second model to work**",
         "Submit one model that works, properly evaluated, and say in your notebook what the second was and "
         "why it failed. Partial marks for the protocol are available; a broken second model earns none.",
-        "**You realise at 1:30 that your target was wrong**",
+        "**You chose the wrong target**",
         "Say so in a markdown cell, state what the correct target is, and carry on with what you have. "
         "Diagnosing your own error in writing recovers a real part of the framing marks.",
         "**You run out of time on Part A**",
@@ -2363,7 +2316,7 @@ def week14(code):
         "**Captions state findings**",
         "Not the axes. A number in every caption.",
         "**Last fifteen minutes**",
-        "Restart and Run All · check the answers cell · save into the drop folder · then Part B."],
+        "Restart and Run All · check the written evidence · save into the drop folder · then Part B."],
         kicker="CHEAT SHEET — PRINT THIS")
     notes(s, "Print this slide and bring it. Paper notes are permitted, and the two lines that will earn you "
              "the most are the protocol line and the 1:25 line.")
@@ -2377,8 +2330,8 @@ def week14(code):
     notes(s, "The best preparation available to you is to redo a past practical on a different dataset, under "
              "the clock, with the answers cell open beside you. Two hours of that is worth more than a week "
              "of rereading.\n\nAfter the test, Week 15 is Demo Day. Your repository, two-page brief, poster, "
-             "AI-use declaration, contribution log and 500-word reflection are all due at the start of that "
-             "session, and there is no teaching session in between, so draft the brief and the poster this "
+             "AI-use declaration and contribution log are due at the start of that "
+             "session; the individual defence and reflection are uploaded by its end. Draft the brief and poster this "
              "week.\n\nTO TEACH: on the day, confirm the Week 15 demo running order before dismissal.")
 
     prs.save(os.path.join(OUTDIR, f"{code}_Week14_{c['short']}.pptx"))
@@ -2398,14 +2351,11 @@ def week15(code):
     s = s_title(prs, code, "Demo Day",
                 "The demo fair, the individual viva, and what you can say now that you could not in September",
                 "WEEK 15  ·  " + DATE[15][code], SLOTS[code] + "  ·  " + FOOT)
-    notes(s, "The last session. Your deliverables are due at the start of it, the demo fair runs for one "
-             "hundred minutes, every student answers two unseen questions about their own repository, and the "
-             "session closes with the three recognitions and your reflection.\n\nInvited Faculty staff and, "
-             "where possible, a practising engineer from outside will be circulating as assessors.\n\nTO "
-             "TEACH: invite Faculty staff and one external practising engineer — it raises the standard of "
-             "every submission more than any amount of exhortation. Book a fair layout with tables round the "
-             "perimeter and power at every station. Print the assessor packs, the peer assessment forms, the "
-             "viva tally sheets and the three certificates.")
+    notes(s, "Project deliverables are due at the start; individual typed defence answers and reflection are "
+             "uploaded by the end. The fair runs for 130 minutes. Live questions and peer comments are formative. "
+             "Invited Faculty staff or practising engineers may offer feedback where available.\n\nTO TEACH: "
+             "prepare the digital submission link and the two written defence prompts, the fair layout, "
+             "power at each station, peer feedback sheets and the three recognition certificates.")
 
     s = s_points(prs, "How today runs",
                  [("First ten minutes — running order and rules",
@@ -2414,35 +2364,32 @@ def week15(code):
                   ("The demo fair — two rounds, a hundred and thirty minutes",
                    "You present at your station with a laptop and your one-page poster. Assessors circulate. "
                    "Every team presents to at least four peer assessors across the two rounds." +
-                   (" With about " + str(teams) + " teams, this cohort runs as a fair plus a plenary "
-                    "shortlist of six rather than " + str(teams) + " presentations in a row." if big else
-                    " With about " + str(teams) + " teams, every team also gets a plenary slot.")),
-                  ("Then the viva, the shortlist and the reflection",
-                   "Thirty minutes of individual viva sampling runs alongside the fair. Twenty minutes of "
-                   "shortlisted demos and the recognitions. Twenty minutes of feedback, the Semester 2 "
-                   "preview, and your reflection handed in.")],
+                   " The plenary selects three teams for at most six minutes each, within a twenty-minute block."),
+                  ("Live feedback, the shortlist and the reflection",
+                   "Formative questions run alongside the fair. Twenty minutes cover the three "
+                   "shortlisted demos and recognitions. The final twenty minutes cover feedback, Semester 2 "
+                   "preview and uploading the complete individual defence and reflection packet.")],
                  kicker="THE RUNNING ORDER", numbered=False)
     notes(s, "The fair format exists because " + str(teams) + " consecutive presentations would take longer "
              "than the session and hold everybody's attention for none of it. At a station you present four "
              "or five times to small groups, which is better practice and a great deal less "
-             "frightening.\n\nThe viva runs alongside the fair rather than after it, so you may be asked your "
-             "two questions at any point during the hundred minutes.\n\nTO TEACH: allocate stations before "
+             "frightening.\n\nLive questions during the fair offer feedback. Every learner submits the two "
+             "typed answers specified in the brief; live sampling is not a mark source.\n\nTO TEACH: allocate stations before "
              "the room fills. Post the running order on the wall.")
 
     s = s_figure(prs, "How today runs", F("clock_w15.png"),
-                 "Four blocks and no break. The fair runs for a hundred and thirty minutes and the viva "
-                 "sampling happens inside it, so keep your station staffed while your teammates circulate.",
+                 "Four blocks and no break. The fair runs for a hundred and thirty minutes with formative "
+                 "questioning inside it, so keep your station staffed while your teammates circulate.",
                  kicker="THE THREE HOURS")
     notes(s, "There is no break in this session, so bring water. Your team needs at least one person at the "
              "station at all times, which means rotating through the two rounds so everybody gets to see "
              "other teams' work.\n\nDeciding that rotation before you arrive saves you ten "
              "minutes.\n\nTO TEACH: give time calls at the halfway point of each round so teams rotate. "
-             "Without a call, one student presents for the whole hundred minutes.")
+             "Without a call, one student may present for the whole fair.")
 
-    s = s_prose(prs, "Due at the start of this session", [
+    s = s_prose(prs, "Project first; individual evidence by the end", [
         "**1 · The repository URL**",
-        "It must pass Restart and Run All from a clean clone. This is the submission surface, so a "
-        "repository nobody can run cannot be marked for what it does.",
+        "Include it with the required uploaded project files. Check a clean run before submitting; a link alone does not supply the assessed files.",
         "**2 · A two-page engineering brief**",
         "What problem, what data, what you did, what you found, what you recommend, and what the limitations "
         "are. Written for an engineer rather than for a marker.",
@@ -2453,17 +2400,16 @@ def week15(code):
         "What you asked, what came back, and what you did to check it. In the README as well as in the "
         "submission.",
         "**5 · Your individual contribution log**",
-        "Per member, checkable against the commit history. This is how a team mark becomes an individual one.",
+        "Per member, with specific commits and changes. Shared project marks and individual defence marks remain separate.",
         "**6 · A 500-word individual reflection**",
-        "Handed in at the end of the session. The prompt is later in this deck."],
+        "Upload it with your two typed defence answers by the end of the session. The prompt is later in this deck."],
         kicker="SIX DELIVERABLES")
-    notes(s, "Item 1 is the gate. A repository that fails on a clean clone cannot be marked for its "
-             "methodology, its validation or its reasoning, which is 55 of the 100 project marks. Test it on "
-             "a machine that is not yours before you come.\n\nItem 2 is a different document from your "
+    notes(s, "Test a clean run before the session. A failed run is handled through the published criteria; "
+             "there is no additional blanket 55-mark penalty. Item 2 is a different document from your "
              "README. The README tells a reviewer how to run your work; the brief tells an engineer what you "
              "found and what to do about it. Two pages means two pages.\n\nItem 5 is what protects you. If "
              "your teammates did less than you, the log and the commit history are the evidence.\n\nTO TEACH: "
-             "collect items 1 to 5 at the door. Item 6 comes in at the end.")
+             "check receipt of the uploaded project packet at the start. The complete individual DEMO packet is due by the end.")
 
     s = s_prose(prs, "The demo fair, two rounds", [
         "**Your station**",
@@ -2538,50 +2484,40 @@ def week15(code):
              "assessor packs carry this rubric. Brief invited staff to ask about reasoning and limits rather "
              "than about scores.")
 
-    s = s_prose(prs, "Peer assessment — how to mark another team", [
+    s = s_prose(prs, "Peer feedback — help another team improve", [
         "**You assess at least four teams**",
-        "One form each, filled in at their station. Your marks are advisory and I moderate them, so they are "
-        "never used raw.",
-        "**Mark against the rubric on the form**",
+        "One feedback sheet each, filled in at their station. Peer comments support improvement; they do not become assessment marks.",
+        "**Use the rubric to organise your feedback**",
         "The same seven criteria the assessors use. A team that made a different defensible choice from yours "
         "has not made an error.",
-        "**Justify every mark you award**",
-        "One line per criterion, naming what you saw. A mark with no justification is discarded.",
-        "**Ask one question before you mark**",
+        "**Support every comment with evidence**",
+        "Name what you saw and one useful improvement. Avoid unsupported praise or criticism.",
+        "**Ask one question before commenting**",
         "'What would change your recommendation?' is the most useful single question, and the answer tells "
         "you most of what you need for the reasoning criterion.",
-        "**Marking generously helps nobody**",
-        "A form where every team scores 95 carries no information and is dropped. Use the range.",
+        "**Be specific and constructive**",
+        "Identify one strength and one limitation, and explain why each matters to the engineering question.",
         "**And expect to learn from it**",
         "Most students find a defect in their own project while assessing somebody else's. That is the "
         "intended outcome, the same as in Week 13."],
         kicker="PEER ASSESSMENT")
-    notes(s, "Peer assessment is advisory and moderated, which means your marks inform the decision and do "
-             "not set it. What is marked is the quality of your justifications, so one specific line per "
-             "criterion is worth more than a number.\n\nThe suggested question is worth using every time. A "
+    notes(s, "Peer feedback is formative. Neither the peer comments nor the quality of a peer's feedback adds "
+             "an unpublished mark. One specific observation is more useful than a score. The suggested question is useful. A "
              "team that cannot say what would change its recommendation has usually not thought about the "
-             "conditions of use, and that is visible in one answer.\n\nTO TEACH: collect the forms. Moderate "
-             "before combining, and never use peer marks raw.")
+             "conditions of use.\n\nTO TEACH: return comments to the presenting teams for reflection; do not combine peer scores into grades.")
 
-    s = s_prose(prs, "The individual viva", [
-        "**Two questions, ninety seconds each, about your own repository**",
-        "Asked at your station at some point during the fair. You will not know in advance which two you "
-        "get.",
-        "**Every student is asked, and it is recorded on a tally sheet**",
-        "This is the mechanism that turns a team mark into an individual one. Sixty-five per cent of your "
-        "semester mark is individual, and this is part of it.",
-        "**The questions are about your repository rather than about the topic**",
-        "Nobody will ask you to define cross-validation. You will be asked what your own notebook does at a "
-        "particular point, and why.",
-        "**No tools, no notes, no help from your team**",
-        "You may open your own repository and point at it. That is encouraged.",
-        "**Which is why the AI-use declaration matters**",
-        "Anything in your repository that nobody on the team can explain is exactly where these questions "
-        "land.",
-        "**And why the contribution log matters**",
-        "You are asked about the part you did. A log that matches the commit history means the questions you "
-        "get are the ones you can answer."],
-        kicker="THE MECHANISM THAT MAKES IT INDIVIDUAL")
+    s = s_prose(prs, "The individual project defence", [
+        "**Two typed answers about your own repository**",
+        "Submit them with your individual reflection through the assessment form. Identify the notebook cell or result that supports each answer.",
+        "**Every student supplies individual evidence**",
+        "Explain the part you contributed and one technical decision. The rubric assesses your submitted evidence using the local grading system.",
+        "**Live questions support feedback**",
+        "The lecturer may sample questions during the fair. These conversations are formative; the submitted evidence provides a consistent basis for assessment.",
+        "**Use concrete evidence and disclose AI assistance**",
+        "State what you did, what changed, and what the result shows. Do not replace an explanation with a repository link.",
+        "**Include your contribution log**",
+        "Refer to relevant commits and describe your contribution in your own words."],
+        kicker="INDIVIDUAL ACCOUNTABILITY")
     notes(s, "Read your own repository the night before. Not to memorise it — to be able to find things in it "
              "and say why each decision was taken. The two questions you get will be about the work you "
              "logged as yours.\n\nA useful preparation: sit with your teammates and ask each other the ten "
@@ -2601,30 +2537,30 @@ def week15(code):
         "Which part of this repository did you write, and which part did you review?",
         "Name one thing your team disagreed about and how you settled it.",
         "What would you do differently if you started this project again on Monday?"],
-        kicker="THE VIVA BANK", title="Ten of the twenty questions you could be asked",
-        foot="You get two of these, or two like them, at your station. Practise them on each other.")
+        kicker="PRACTISE YOUR DEFENCE", title="Ten questions to practise with your repository",
+        foot="Live questions are formative. Submit the two typed answers specified in your assessment brief.")
     notes(s, "These ten are published so that you can practise, and the bank has twenty in it. Every one of "
              "them is answerable from your own repository with the notebook open, and none of them requires "
              "you to remember a definition.\n\nQuestions C, I and J are the ones students expect least and "
              "find easiest once they think about it. A feature that did nothing, a disagreement you settled, "
              "and something you would change are all evidence that real work happened.\n\nTO TEACH: the "
-             "shape of a full-mark answer to each:\n\nA · After any exploration and before any fitting or "
-             "scaling; earlier and the preprocessing sees the test rows.\nB · Names a feature and cites the "
+             "shape of a useful answer to each:\n\nA · Split before fitting preprocessing or models. Keep the held-out "
+             "test data out of feature selection and model-selection decisions.\nB · Names a feature and cites the "
              "ablation table, with the change and the spread.\nC · Names a feature, gives the measured "
              "change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or "
              "consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or "
              "admits it was not measured.\nF · Names one of the four kinds and the specific check made — "
              "usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a "
-             "straight line; trees return the nearest leaf and give no warning. Credit any answer that "
+             "straight line; trees follow their split rules to a terminal leaf and give no automatic warning. Look for an answer that "
              "notices there is no warning.\nH · Must match the contribution log and the commit history.\n"
              "I · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific "
-             "change with a reason. 'Work harder' scores nothing.\n\nTally two per student. Do not let "
-             "teammates answer for each other.")
+             "change with a reason. 'Work harder' lacks a concrete action.\n\nSample live discussion for feedback; "
+             "every student supplies their own typed defence in the submitted packet.")
 
     s = s_prose(prs, "When you do not know the answer", [
         "**Say so, and say what you would need**",
         "'I did not measure that. I would run it across three seeds and report the spread.' That is a good "
-        "answer and it scores.",
+        "honest starting point; a proposed check does not replace a measurement the rubric requires.",
         "**Point at the notebook**",
         "You are allowed to open your own repository. Finding the cell and reading it is better than "
         "guessing from memory.",
@@ -2718,7 +2654,7 @@ def week15(code):
              "data scientist, MLOps and AI agents, and any of the four is a reasonable next step.")
 
     s = s_prose(prs, "The 500-word reflection", [
-        "**Handed in at the end of this session**",
+        "**Upload through the DEMO form by the end of this session**",
         "Individual, 500 words, and it counts within the demo, viva and reflection component.",
         "**1 · What you could not do in September, and can do now**",
         "Be specific and name the thing. One paragraph.",
@@ -2738,8 +2674,9 @@ def week15(code):
              "with a specific correction is evidence that you were paying attention to your own work, which "
              "is most of what reflective practice means.\n\nParagraph 5 is used. The two goals you write "
              "shape the Semester 2 opening weeks, which are designed as review through application rather "
-             "than as re-teaching.\n\nTO TEACH: hand out the prompt on paper and collect the reflections "
-             "before anybody leaves. Paper gets a full return; a form does not.")
+             "than as re-teaching.\n\nTO TEACH: display the DEMO link and confirm each student uploads the complete "
+             "individual packet before leaving. Use accessible DOCX or PDF for the reflection and typed defence. "
+             "An outage requires a recorded equivalent submission opportunity; paper is not the default grading route.")
 
     s = s_prose(prs, "Semester 2, and the holiday", [
         "**Semester 2 opens with review through application**",

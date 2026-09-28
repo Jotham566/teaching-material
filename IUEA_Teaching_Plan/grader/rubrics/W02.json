@@ -1,0 +1,49 @@
+{
+  "id": "W02-2026.09-r3",
+  "title": "Proof of life",
+  "maximum": 6,
+  "criteria": [
+    {
+      "id": "state",
+      "title": "Current value",
+      "maximum": 1,
+      "description": "Award 1 if the student explains that each execution adds five to the value left by the previous execution (or accurately gives 17, 22, 27 after initialization at 12). Equivalent wording is valid. Otherwise 0.",
+      "binary": true
+    },
+    {
+      "id": "restart",
+      "title": "Restart",
+      "maximum": 1,
+      "description": "Award 1 if the student explains that restarting clears stored variable/kernel state. Equivalent wording is valid. Otherwise 0.",
+      "binary": true
+    },
+    {
+      "id": "run_all",
+      "title": "Run All",
+      "maximum": 1,
+      "description": "Award 1 if the student explains that running all cells from the top initializes 12 before adding five and yields 17. Equivalent wording is valid. Otherwise 0.",
+      "binary": true
+    },
+    {
+      "id": "files",
+      "title": "Repository context and files",
+      "maximum": 1,
+      "description": "Award 1 if the README identifies the engineering/program context and names the notebook and CSV. Otherwise 0.",
+      "binary": true
+    },
+    {
+      "id": "run",
+      "title": "Run instructions",
+      "maximum": 1,
+      "description": "Award 1 if the README describes uploading/opening required files and executing the notebook from the top or using Restart and Run All. Otherwise 0.",
+      "binary": true
+    },
+    {
+      "id": "save",
+      "title": "Save and version",
+      "maximum": 1,
+      "description": "Award 1 if the README gives a meaningful instruction to save/download the notebook or stage and commit changed files. Otherwise 0.",
+      "binary": true
+    }
+  ]
+}

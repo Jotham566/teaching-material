@@ -171,23 +171,20 @@ ASSESS = [
  ["Weekly quizzes", "End of every teaching session: Weeks 1–6 and 8–13", "Individual", "10%",
   "A five-minute quiz of five multiple-choice questions on your phone, reached by a QR code, in the last five "
   "minutes of the session. Auto-marked: you see your score and feedback immediately. Twelve quizzes, 1% each, and "
-  "your best ten count. There are no resits; the two dropped scores cover a missed week."],
+  "your best ten count. A shared 24-hour window supports access recovery; documented outages are handled explicitly."],
  ["Practical challenges and assignments", "Weekly, Weeks 1–12", "Individual", "10%",
-  "Best 8 of 11. Notebooks and one-pagers pushed to your repository. Auto-marked — you can check your own work "
-  "against the visible tests before you submit."],
+  "Best 8 of 11. Upload the required notebook and report through the assignment form. Visible checks provide practice feedback; final marks use the submitted files."],
  ["Data Analysis Project", "Set Week 5, due Week 8", "Team of 4–5", "10%",
   "Cleaned dataset, question-driven analysis, four or more charts, one page of findings. An individual "
   "contribution log is required."],
  ["Practical Test 1 — Data Investigation", "Week 7", "Individual, offline", "15%",
-  "Two hours practical plus twenty-five minutes written. An unfamiliar dataset. 40 of the 100 marks are "
-  "auto-marked from a structured answers cell; the other 60 are marked by your lecturer."],
+  "Two hours practical plus twenty-five minutes typed reasoning, within the three-hour sitting. The issued brief defines executed checks and written/visual evidence. The complete grading route must be validated before release."],
  ["Practical Test 2 — End-to-End ML", "Week 14", "Individual, offline", "20%",
-  "Two hours practical plus twenty-five minutes written. An unfamiliar dataset. 45 of the 100 marks are "
-  "auto-marked; the other 55 are marked by your lecturer."],
+  "Two hours practical plus twenty-five minutes typed reasoning, within the three-hour sitting. An unfamiliar dataset, executed checks and evidence-based local assessment. No code execution during the written part."],
  ["Engineering ML Project", "Set Week 9, due Week 15", "Team of 4–5", "25%",
   "Repository, two-page engineering brief, poster. Four graded milestones in Weeks 10, 11, 12 and 13."],
  ["Demonstration, viva and reflection", "Week 15", "Individual", "10%",
-  "Six-minute demonstration, two unseen questions on your own work, 500-word reflection."],
+  "Presentation with narration notes, two individual typed defence answers and a 500-word reflection uploaded by the end of the session. Live questions are formative."],
 ]
 
 PROJ_RUBRIC = [
@@ -324,7 +321,7 @@ def build(key):
             "with it, so there is nothing to be gained from memorising definitions the night before. Second, there "
             "are no resits. Only your best ten of the twelve count, so two of them can go badly for any reason at "
             "all, and that is what covers illness, travel and a bad day. Third, if the room network fails, that "
-            "week's quiz becomes a 48-hour asynchronous window and you will be told so before you leave the room.")
+            "week's quiz becomes a 24-hour asynchronous window and you will be told so before you leave the room.")
     para(d, "They exist for two reasons, and it is fair to state both. They give you feedback in minutes instead of "
             "weeks, which is the single biggest complaint students have about any course. And they let a class of "
             "this size be assessed continuously by one lecturer, which would otherwise be impossible — the "
@@ -346,10 +343,9 @@ def build(key):
             "— data analyst, machine learning engineer, domain engineer, documentation lead, presenter — rotate at "
             "every milestone, so you will not do the same job twice. Each team keeps a contribution log in its "
             "repository, and it is checked against the commit history.")
-    para(d, "In Week 15 every student individually answers two unseen questions about their own team's repository. "
-            "This is how a team mark becomes an individual one. If you have not engaged with a part of your team's "
-            "work, that will be visible, and the reverse is also true: a strong contributor is not dragged down by "
-            "a weak teammate.")
+    para(d, "In Week 15 every student submits two individual typed defence answers about their own contribution "
+            "and a technical decision, citing specific repository cells or results. The individual defence and "
+            "reflection mark is separate from shared project marks. Live questions and peer comments provide formative feedback.")
 
     # ---------------- 5 AI policy
     page_break(d)
@@ -374,13 +370,12 @@ def build(key):
     spacer(d, 10)
     para(d, "The rules are simple and they are applied consistently. In all coursework, AI assistance is permitted "
             "and must be declared: a short log of the tool, what you asked, and what you changed. In both practical "
-            "tests, AI assistance is not available, because the tests run offline with no network access. And in all "
-            "circumstances, you are marked on what you can explain. If your submission contains work you cannot "
-            "account for, your mark is reduced to the part you can account for.")
+            "tests, AI assistance is prohibited. The invigilated lab and approved-materials rules enforce that "
+            "condition; being offline alone does not prevent a local assistant. Marks follow the published "
+            "criteria for execution, evidence and explanation. There is no additional blanket penalty based on a live question.")
     para(d, "The weekly quizzes are the one place where the rule is different, and it is worth being direct "
             "about why. They are taken on your own phone, so nothing stops you looking something up or asking a "
-            "neighbour. Three versions are in circulation in the room and the questions require you to read a code "
-            "snippet rather than recall a fact, so it is harder than it looks. The real answer is that each "
+            "neighbour. Each cohort has its own version, and the questions ask you to interpret code or a scenario. Each "
             "quiz is worth one per cent and it exists to tell you, and me, whether you have kept "
             "up. Thirty-five per cent of your mark sits in the two offline tests. If your quiz scores are "
             "strong and your test scores are not, the quizzes were not doing you any good, and we should talk "
@@ -388,8 +383,8 @@ def build(key):
     callout(d, "Why the tests are offline",
             "Coursework is where you learn to work with these tools and must defend the result. The tests certify "
             "what you can do unaided. Both are worth knowing about you, and they cannot be measured in the same "
-            "room. Running the tests offline is also simply enforceable, which a rule against using an assistant on "
-            "a networked machine is not.", MID_H, LIGHT_H)
+            "conditions. Follow the invigilated test brief and its approved-materials rules, including the prohibition "
+            "on local as well as online AI assistance.", MID_H, LIGHT_H)
 
     h2(d, "Academic integrity")
     para(d, "Copying another student's submission, or a public notebook, and presenting it as your own is plagiarism "

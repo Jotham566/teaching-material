@@ -1,14 +1,16 @@
 # Teaching material
 
-Two courses and the build engine that generates them. Every deck, document,
-workbook, figure and dataset in this repository is produced by a script in
-`scripts/`, and every number in them is computed rather than typed.
+Two courses and the build engine that generates them. The course builders in `scripts/` generate the teaching artifacts. Numerical examples have executable checks; fictional datasets and teaching assumptions are labelled.
+
+Current readiness and remaining deployment work: [rework status](review/2026-09-14/REWORK_STATUS.md).
+
+**Teaching materials:** use the updated PowerPoints in [decks](IUEA_Teaching_Plan/decks/README.md). CML3111/CML3113 are revised from Week 2 and CML3112 from Week 3. Open Presenter View for the worked explanations and teaching prompts. Use the [lecturer guide](IUEA_Teaching_Plan/Beginner_Lecturer_Guide.md) and matching student ZIP. Practice notebooks are separate from graded submissions. The HTML lesson route has been retired. Rebuild with `scripts/build_decks.py`; build practice notebooks with `scripts/build_beginner_pathway.py --verify`, then student ZIPs with `scripts/build_student_packages.py --beginner-update`.
 
 | | **IUEA machine learning** | **Data Analysis track** |
 |---|---|---|
 | Who | Year 3 engineering undergraduates, IUEA | Adults in work, confident in a spreadsheet, no code |
 | Shape | 15 weeks, 3 cohorts, 45 contact hours each | 5 weeks, 15 sessions, 45 hours |
-| Decks | 45 (15 weeks x 3 cohorts), 1,488 slides | 15, 351 slides |
+| Decks | 45 (15 weeks x 3 cohorts), 1,569 slides | 15, 356 slides |
 | Codes | CML3111, CML3112, CML3113 | — |
 | Where | `IUEA_Teaching_Plan/` | `DataAnalysis_Track/` |
 
@@ -59,30 +61,42 @@ review/2026-09-14/           an independent review of the whole pack
 
 ## Setting up
 
+This Mac has a Python 3.12 environment with the pinned dependencies installed:
+
 ```bash
-python3 -m venv .iuea-env
-source .iuea-env/bin/activate
-pip install -r requirements.txt
+source .iuea-grader-env/bin/activate
+python --version
 ```
 
-Python 3.10 or newer. LibreOffice and Poppler are needed only to render a
-deck and look at it, which the verification steps do. The notebook grader and
-the teaching-data generator are standard library only, on purpose, so they
-run on a locked-down work laptop.
+Use it for the build and grading commands below. The older `.iuea-env` uses
+Python 3.9 and is retained separately; it is not the supported grading environment.
+To recreate the environment on another machine, use a Python 3.11-or-newer
+interpreter, for example:
+
+```bash
+python3.12 -m venv .iuea-grader-env
+source .iuea-grader-env/bin/activate
+python -m pip install -r requirements.txt
+```
+
+LibreOffice and Poppler render documents and decks for visual review. Instructor
+notebook grading requires Docker and the pinned grading image. Local report/slide
+grading uses Ollama with cloud access disabled. See
+[assessment operations](IUEA_Teaching_Plan/grader/README.md) for timed submission
+forms, complete-cohort grading and gradebook imports.
 
 ## Rebuilding
 
-**IUEA course**, from `scripts/`:
+**IUEA PowerPoint teaching edition**, from the repository root:
 
 ```bash
-python3 make_figures.py            # figure library -> ../figs/
-python3 build_decks.py             # runs the five deck builders: 45 decks
-python3 attach_qr.py               # live QR codes into the 36 quiz decks
-python3 build_teaching_guide.py    # reads the builders' lecturer notes
-python3 build_master_docx.py build_syllabi.py     # ... and the other docs
-python3 build_quiz_forms_gs.py     # -> grader/create_quiz_forms.gs
-python3 build_quizops_docx.py
+python3 scripts/build_decks.py
+python3 scripts/build_beginner_pathway.py --verify
+python3 scripts/build_student_packages.py --beginner-update
+python3 scripts/build_beginner_lecturer_docx.py
 ```
+
+Use the bundled Python runtime for Word generation. `build_decks.py` locates the bundled Artifact Tool runtime and preserves the four completed teaching decks. It creates QR images and hyperlinks within the revised decks using the existing link registry, so do not run the legacy QR insertion or legacy weekly deck builders afterwards. The older `pptxkit` builders and their notes belong to the previous teaching edition.
 
 **Data Analysis track**: see `DataAnalysis_Track/README.md`, which has its
 own ordered list. Start with `data/build_teaching_data.py`, because
@@ -90,9 +104,7 @@ everything downstream reads the answer key it writes.
 
 ## Verifying
 
-Nothing ships unless these are green. They do more than lint: they execute
-every SQL and pandas snippet that appears on a slide or in a handout against
-the real data, and trace every currency figure back to a computed value.
+Run the relevant validators before release. They check quiz arithmetic, selected SQL/pandas examples, dataset-derived claims, QR links and slide structure. Read their coverage and inspect rendered layouts; passing validators does not certify all teaching or assessment behaviour.
 
 ```bash
 python3 scripts/verify_quiz_arithmetic.py        # re-runs every quiz snippet
@@ -104,10 +116,10 @@ python3 scripts/validation/claim_check.py
 python3 scripts/validation/segref_check.py
 python3 scripts/qrgen_selftest.py                # needs OpenCV for the part
                                                  # that actually proves it
-python3 scripts/attach_qr.py --check             # 36 live QR codes
+python3 scripts/verify_beginner_pathway.py      # revised PPTX and student packages
 ```
 
-## Three things worth knowing before you change anything
+## Legacy deck implementation notes
 
 **Slide type sizes come from a ramp, not from the numbers in the code.**
 `pptxkit._scaled()` lifts text of 13pt and below by 1.32 and tapers to no
@@ -136,11 +148,13 @@ twelve live decks with an older implementation, and a Power BI average that
 divided delivered revenue by all orders and read 19% low in silence. Both now
 have a verifier check so they cannot return.
 
-Its remaining findings are open, and they are about assessment rather than
-teaching material: the gradebook selects the wrong challenge weeks,
-instructor-side notebook evaluation can be manipulated by notebook code, and
-Week 2 has conflicting delivery instructions. Read that file before relying
-on automated marking.
+The follow-up [rework status](review/2026-09-14/REWORK_STATUS.md) records the
+current fixes and remaining work. Challenge-week aggregation, isolated
+notebook execution and Week 2 delivery instructions have been corrected.
+Week 2 has a calibrated local grader; later assessments require their own
+validation before release. The original review describes the pre-change state.
 
 The review's evidence folder is not committed. It is 18 MB of extracted deck
 text and tool output, all of it regenerable from this repository.
+
+For weekly delivery, use [Before each class](IUEA_Teaching_Plan/Before_Each_Class_Checklist.md). [Today’s CML3112 student links](IUEA_Teaching_Plan/Week2_CML3112_Student_Links.md) include the authorized Week 1 catch-up window.

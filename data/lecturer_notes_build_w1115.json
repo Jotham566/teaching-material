@@ -147,7 +147,7 @@
   "deck": "CML3112 Week 11",
   "slide": 32,
   "title": "CHALLENGE",
-  "text": "expected outcome — The feature teams normally win by 3 to 5 MPa of MAE using linear regression alone, while the raw-column teams reach for a random forest and still come second. Water/cement ratio is doing all of it.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
+  "text": "expected outcome — Compare measured held-out results on the same split. Feature engineering may improve or worsen the score; report the observed difference and retain a feature only with evidence.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
  },
  {
   "deck": "CML3112 Week 11",
@@ -169,21 +169,27 @@
  },
  {
   "deck": "CML3112 Week 11",
-  "slide": 40,
+  "slide": 42,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 11",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3112 Week 11",
-  "slide": 41,
+  "slide": 43,
   "title": "THE ONE THING TO REMEMBER",
   "text": "close on the domain advantage result the room generated, using their own numbers rather than the figure's."
+ },
+ {
+  "deck": "CML3112 Week 11",
+  "slide": 44,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3112 Week 12",
   "slide": 1,
   "title": "WEEK 12  ·  Tue 24 November 2026",
-  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 90 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
+  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 100 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
  },
  {
   "deck": "CML3112 Week 12",
@@ -201,7 +207,7 @@
   "deck": "CML3112 Week 12",
   "slide": 4,
   "title": "SEGMENT 1",
-  "text": "collect A10. The quiz closes this session, so say when it will run."
+  "text": "remind students to upload the issued W11 notebook. The quiz closes this session, so say when it will run."
  },
  {
   "deck": "CML3112 Week 12",
@@ -225,7 +231,7 @@
   "deck": "CML3112 Week 12",
   "slide": 9,
   "title": "DEFINITION",
-  "text": "this slide is what stops the challenge becoming a score chase. Emphasise it before you release them."
+  "text": "keep the beginner task on cautious interpretation and engineering constraints. Reference: https://scikit-learn.org/1.5/auto_examples/model_selection/plot_grid_search_stats.html"
  },
  {
   "deck": "CML3112 Week 12",
@@ -279,7 +285,7 @@
   "deck": "CML3112 Week 12",
   "slide": 20,
   "title": "SEGMENT 4",
-  "text": "circulate with the question-bank cards and answer nothing for the full 90 minutes. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
+  "text": "circulate with the question-bank cards during 70 minutes of project practice. Reserve the final 30 minutes for each student to complete the issued W12 notebook and written evidence. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
  },
  {
   "deck": "CML3112 Week 12",
@@ -296,7 +302,7 @@
  {
   "deck": "CML3112 Week 12",
   "slide": 23,
-  "title": "DELIVERABLE — A11",
+  "title": "PROJECT PRACTICE",
   "text": "collect the pages at the end of the defence round, after teams have had the chance to annotate them with what they conceded."
  },
  {
@@ -349,21 +355,27 @@
  },
  {
   "deck": "CML3112 Week 12",
-  "slide": 36,
+  "slide": 38,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 12",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3112 Week 12",
-  "slide": 37,
+  "slide": 39,
   "title": "THE ONE THING TO REMEMBER",
   "text": "name the best challenge raised in the defence round and say why it was good. Thirty seconds, and it sets the standard for Week 15."
+ },
+ {
+  "deck": "CML3112 Week 12",
+  "slide": 40,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3112 Week 13",
   "slide": 1,
   "title": "Repository structure, README, environment capture and peer review",
-  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 22 teams, so 100 minutes gives roughly 4 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
+  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 22 teams, so 95 minutes gives roughly 4 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
  },
  {
   "deck": "CML3112 Week 13",
@@ -381,7 +393,7 @@
   "deck": "CML3112 Week 13",
   "slide": 4,
   "title": "SEGMENT 1",
-  "text": "collect A11 annotations if they were not handed in last week. Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
+  "text": "review the formative recommendation annotations.  Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
  },
  {
   "deck": "CML3112 Week 13",
@@ -505,13 +517,13 @@
  },
  {
   "deck": "CML3112 Week 13",
-  "slide": 34,
+  "slide": 36,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 13",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3112 Week 13",
-  "slide": 35,
+  "slide": 37,
   "title": "THE ONE THING TO REMEMBER",
   "text": "end by confirming the test room, the sitting time and what to bring. Do not let anyone leave uncertain about where to be."
  },
@@ -535,18 +547,6 @@
  },
  {
   "deck": "CML3112 Week 14",
-  "slide": 8,
-  "title": "HOW IT IS MARKED",
-  "text": "put the answers cell in the task sheet as copyable text, and say at the 30-minute call that the cell should already have entries in it."
- },
- {
-  "deck": "CML3112 Week 14",
-  "slide": 9,
-  "title": "45 OF THE 100 MARKS",
-  "text": "publish the exact key list with the specification so nobody meets it for the first time in the room."
- },
- {
-  "deck": "CML3112 Week 14",
   "slide": 11,
   "title": "CONTINGENCY",
   "text": "read the machine-fault item aloud and mean it. Candidates who lose ten minutes and say nothing until the end cannot be compensated fairly."
@@ -559,7 +559,7 @@
  },
  {
   "deck": "CML3112 Week 14",
-  "slide": 19,
+  "slide": 21,
   "title": "THE ONE THING TO REMEMBER",
   "text": "on the day, confirm the Week 15 demo running order before dismissal."
  },
@@ -567,7 +567,7 @@
   "deck": "CML3112 Week 15",
   "slide": 1,
   "title": "WEEK 15  ·  Tue 15 December 2026",
-  "text": "invite Faculty staff and one external practising engineer — it raises the standard of every submission more than any amount of exhortation. Book a fair layout with tables round the perimeter and power at every station. Print the assessor packs, the peer assessment forms, the viva tally sheets and the three certificates."
+  "text": "prepare the digital submission link and the two written defence prompts, the fair layout, power at each station, peer feedback sheets and the three recognition certificates."
  },
  {
   "deck": "CML3112 Week 15",
@@ -579,13 +579,13 @@
   "deck": "CML3112 Week 15",
   "slide": 3,
   "title": "THE THREE HOURS",
-  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student presents for the whole hundred minutes."
+  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student may present for the whole fair."
  },
  {
   "deck": "CML3112 Week 15",
   "slide": 4,
   "title": "SIX DELIVERABLES",
-  "text": "collect items 1 to 5 at the door. Item 6 comes in at the end."
+  "text": "check receipt of the uploaded project packet at the start. The complete individual DEMO packet is due by the end."
  },
  {
   "deck": "CML3112 Week 15",
@@ -603,13 +603,13 @@
   "deck": "CML3112 Week 15",
   "slide": 8,
   "title": "PEER ASSESSMENT",
-  "text": "collect the forms. Moderate before combining, and never use peer marks raw."
+  "text": "return comments to the presenting teams for reflection; do not combine peer scores into grades."
  },
  {
   "deck": "CML3112 Week 15",
   "slide": 10,
-  "title": "THE VIVA BANK",
-  "text": "the shape of a full-mark answer to each:\n\nA · After any exploration and before any fitting or scaling; earlier and the preprocessing sees the test rows.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees return the nearest leaf and give no warning. Credit any answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' scores nothing.\n\nTally two per student. Do not let teammates answer for each other."
+  "title": "PRACTISE YOUR DEFENCE",
+  "text": "the shape of a useful answer to each:\n\nA · Split before fitting preprocessing or models. Keep the held-out test data out of feature selection and model-selection decisions.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees follow their split rules to a terminal leaf and give no automatic warning. Look for an answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' lacks a concrete action.\n\nSample live discussion for feedback; every student supplies their own typed defence in the submitted packet."
  },
  {
   "deck": "CML3112 Week 15",
@@ -639,7 +639,7 @@
   "deck": "CML3112 Week 15",
   "slide": 18,
   "title": "THE LAST DELIVERABLE",
-  "text": "hand out the prompt on paper and collect the reflections before anybody leaves. Paper gets a full return; a form does not."
+  "text": "display the DEMO link and confirm each student uploads the complete individual packet before leaving. Use accessible DOCX or PDF for the reflection and typed defence. An outage requires a recorded equivalent submission opportunity; paper is not the default grading route."
  },
  {
   "deck": "CML3112 Week 15",
@@ -807,7 +807,7 @@
   "deck": "CML3113 Week 11",
   "slide": 32,
   "title": "CHALLENGE",
-  "text": "expected outcome — The feature teams normally win by 0.3 to 0.5 percentage points of silica using linear regression, while the raw-column teams get most of the way there with a forest and cannot say which reading drove any prediction.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
+  "text": "expected outcome — Compare measured held-out results on the same split. Feature engineering may improve or worsen the score; report the observed difference and retain a feature only with evidence.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
  },
  {
   "deck": "CML3113 Week 11",
@@ -829,21 +829,27 @@
  },
  {
   "deck": "CML3113 Week 11",
-  "slide": 40,
+  "slide": 42,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 11",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3113 Week 11",
-  "slide": 41,
+  "slide": 43,
   "title": "THE ONE THING TO REMEMBER",
   "text": "close on the domain advantage result the room generated, using their own numbers rather than the figure's."
+ },
+ {
+  "deck": "CML3113 Week 11",
+  "slide": 44,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3113 Week 12",
   "slide": 1,
   "title": "WEEK 12  ·  Fri 27 November 2026",
-  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 90 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
+  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 100 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
  },
  {
   "deck": "CML3113 Week 12",
@@ -861,7 +867,7 @@
   "deck": "CML3113 Week 12",
   "slide": 4,
   "title": "SEGMENT 1",
-  "text": "collect A10. The quiz closes this session, so say when it will run."
+  "text": "remind students to upload the issued W11 notebook. The quiz closes this session, so say when it will run."
  },
  {
   "deck": "CML3113 Week 12",
@@ -885,7 +891,7 @@
   "deck": "CML3113 Week 12",
   "slide": 9,
   "title": "DEFINITION",
-  "text": "this slide is what stops the challenge becoming a score chase. Emphasise it before you release them."
+  "text": "keep the beginner task on cautious interpretation and engineering constraints. Reference: https://scikit-learn.org/1.5/auto_examples/model_selection/plot_grid_search_stats.html"
  },
  {
   "deck": "CML3113 Week 12",
@@ -939,7 +945,7 @@
   "deck": "CML3113 Week 12",
   "slide": 20,
   "title": "SEGMENT 4",
-  "text": "circulate with the question-bank cards and answer nothing for the full 90 minutes. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
+  "text": "circulate with the question-bank cards during 70 minutes of project practice. Reserve the final 30 minutes for each student to complete the issued W12 notebook and written evidence. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
  },
  {
   "deck": "CML3113 Week 12",
@@ -956,7 +962,7 @@
  {
   "deck": "CML3113 Week 12",
   "slide": 23,
-  "title": "DELIVERABLE — A11",
+  "title": "PROJECT PRACTICE",
   "text": "collect the pages at the end of the defence round, after teams have had the chance to annotate them with what they conceded."
  },
  {
@@ -1009,21 +1015,27 @@
  },
  {
   "deck": "CML3113 Week 12",
-  "slide": 36,
+  "slide": 38,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 12",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3113 Week 12",
-  "slide": 37,
+  "slide": 39,
   "title": "THE ONE THING TO REMEMBER",
   "text": "name the best challenge raised in the defence round and say why it was good. Thirty seconds, and it sets the standard for Week 15."
+ },
+ {
+  "deck": "CML3113 Week 12",
+  "slide": 40,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3113 Week 13",
   "slide": 1,
   "title": "Repository structure, README, environment capture and peer review",
-  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 10 teams, so 100 minutes gives roughly 8 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
+  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 10 teams, so 95 minutes gives roughly 9 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
  },
  {
   "deck": "CML3113 Week 13",
@@ -1041,7 +1053,7 @@
   "deck": "CML3113 Week 13",
   "slide": 4,
   "title": "SEGMENT 1",
-  "text": "collect A11 annotations if they were not handed in last week. Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
+  "text": "review the formative recommendation annotations.  Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
  },
  {
   "deck": "CML3113 Week 13",
@@ -1107,7 +1119,7 @@
   "deck": "CML3113 Week 13",
   "slide": 20,
   "title": "SEGMENT 4",
-  "text": "keep to the booking sheet and use the printed checklist in every slot. With 10 teams and 8 minutes each, a slot that becomes a conversation costs another team its slot. Set a timer."
+  "text": "keep to the booking sheet and use the printed checklist in every slot. With 10 teams and 9 minutes each, a slot that becomes a conversation costs another team its slot. Set a timer."
  },
  {
   "deck": "CML3113 Week 13",
@@ -1165,13 +1177,13 @@
  },
  {
   "deck": "CML3113 Week 13",
-  "slide": 34,
+  "slide": 36,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 13",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3113 Week 13",
-  "slide": 35,
+  "slide": 37,
   "title": "THE ONE THING TO REMEMBER",
   "text": "end by confirming the test room, the sitting time and what to bring. Do not let anyone leave uncertain about where to be."
  },
@@ -1195,18 +1207,6 @@
  },
  {
   "deck": "CML3113 Week 14",
-  "slide": 8,
-  "title": "HOW IT IS MARKED",
-  "text": "put the answers cell in the task sheet as copyable text, and say at the 30-minute call that the cell should already have entries in it."
- },
- {
-  "deck": "CML3113 Week 14",
-  "slide": 9,
-  "title": "45 OF THE 100 MARKS",
-  "text": "publish the exact key list with the specification so nobody meets it for the first time in the room."
- },
- {
-  "deck": "CML3113 Week 14",
   "slide": 11,
   "title": "CONTINGENCY",
   "text": "read the machine-fault item aloud and mean it. Candidates who lose ten minutes and say nothing until the end cannot be compensated fairly."
@@ -1219,7 +1219,7 @@
  },
  {
   "deck": "CML3113 Week 14",
-  "slide": 19,
+  "slide": 21,
   "title": "THE ONE THING TO REMEMBER",
   "text": "on the day, confirm the Week 15 demo running order before dismissal."
  },
@@ -1227,7 +1227,7 @@
   "deck": "CML3113 Week 15",
   "slide": 1,
   "title": "WEEK 15  ·  Fri 18 December 2026",
-  "text": "invite Faculty staff and one external practising engineer — it raises the standard of every submission more than any amount of exhortation. Book a fair layout with tables round the perimeter and power at every station. Print the assessor packs, the peer assessment forms, the viva tally sheets and the three certificates."
+  "text": "prepare the digital submission link and the two written defence prompts, the fair layout, power at each station, peer feedback sheets and the three recognition certificates."
  },
  {
   "deck": "CML3113 Week 15",
@@ -1239,13 +1239,13 @@
   "deck": "CML3113 Week 15",
   "slide": 3,
   "title": "THE THREE HOURS",
-  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student presents for the whole hundred minutes."
+  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student may present for the whole fair."
  },
  {
   "deck": "CML3113 Week 15",
   "slide": 4,
   "title": "SIX DELIVERABLES",
-  "text": "collect items 1 to 5 at the door. Item 6 comes in at the end."
+  "text": "check receipt of the uploaded project packet at the start. The complete individual DEMO packet is due by the end."
  },
  {
   "deck": "CML3113 Week 15",
@@ -1263,13 +1263,13 @@
   "deck": "CML3113 Week 15",
   "slide": 8,
   "title": "PEER ASSESSMENT",
-  "text": "collect the forms. Moderate before combining, and never use peer marks raw."
+  "text": "return comments to the presenting teams for reflection; do not combine peer scores into grades."
  },
  {
   "deck": "CML3113 Week 15",
   "slide": 10,
-  "title": "THE VIVA BANK",
-  "text": "the shape of a full-mark answer to each:\n\nA · After any exploration and before any fitting or scaling; earlier and the preprocessing sees the test rows.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees return the nearest leaf and give no warning. Credit any answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' scores nothing.\n\nTally two per student. Do not let teammates answer for each other."
+  "title": "PRACTISE YOUR DEFENCE",
+  "text": "the shape of a useful answer to each:\n\nA · Split before fitting preprocessing or models. Keep the held-out test data out of feature selection and model-selection decisions.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees follow their split rules to a terminal leaf and give no automatic warning. Look for an answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' lacks a concrete action.\n\nSample live discussion for feedback; every student supplies their own typed defence in the submitted packet."
  },
  {
   "deck": "CML3113 Week 15",
@@ -1299,7 +1299,7 @@
   "deck": "CML3113 Week 15",
   "slide": 18,
   "title": "THE LAST DELIVERABLE",
-  "text": "hand out the prompt on paper and collect the reflections before anybody leaves. Paper gets a full return; a form does not."
+  "text": "display the DEMO link and confirm each student uploads the complete individual packet before leaving. Use accessible DOCX or PDF for the reflection and typed defence. An outage requires a recorded equivalent submission opportunity; paper is not the default grading route."
  },
  {
   "deck": "CML3113 Week 15",
@@ -1467,7 +1467,7 @@
   "deck": "CML3111 Week 11",
   "slide": 32,
   "title": "CHALLENGE",
-  "text": "expected outcome — The feature teams normally win 8 to 12 points of recall on the failure class using logistic regression, while the raw-column teams reach for a forest and come close on accuracy and well short on recall.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
+  "text": "expected outcome — Compare measured held-out results on the same split. Feature engineering may improve or worsen the score; report the observed difference and retain a feature only with evidence.\n\nMake both sides report before you comment. If the raw-column side wins, that is a real result and worth discussing honestly; ask what feature would have been needed. Do not rig it."
  },
  {
   "deck": "CML3111 Week 11",
@@ -1489,21 +1489,27 @@
  },
  {
   "deck": "CML3111 Week 11",
-  "slide": 40,
+  "slide": 42,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 11",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3111 Week 11",
-  "slide": 41,
+  "slide": 43,
   "title": "THE ONE THING TO REMEMBER",
   "text": "close on the domain advantage result the room generated, using their own numbers rather than the figure's."
+ },
+ {
+  "deck": "CML3111 Week 11",
+  "slide": 44,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3111 Week 12",
   "slide": 1,
   "title": "WEEK 12  ·  Fri 27 November 2026",
-  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 90 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
+  "text": "pre-run the four candidate models on the challenge dataset and confirm that no single model trivially dominates and that the work fits 100 minutes. Print the client briefs, the question-bank cards, the recommendation template and the protocol poster. Brief any assistants: questions only, no answers, for the whole challenge."
  },
  {
   "deck": "CML3111 Week 12",
@@ -1521,7 +1527,7 @@
   "deck": "CML3111 Week 12",
   "slide": 4,
   "title": "SEGMENT 1",
-  "text": "collect A10. The quiz closes this session, so say when it will run."
+  "text": "remind students to upload the issued W11 notebook. The quiz closes this session, so say when it will run."
  },
  {
   "deck": "CML3111 Week 12",
@@ -1545,7 +1551,7 @@
   "deck": "CML3111 Week 12",
   "slide": 9,
   "title": "DEFINITION",
-  "text": "this slide is what stops the challenge becoming a score chase. Emphasise it before you release them."
+  "text": "keep the beginner task on cautious interpretation and engineering constraints. Reference: https://scikit-learn.org/1.5/auto_examples/model_selection/plot_grid_search_stats.html"
  },
  {
   "deck": "CML3111 Week 12",
@@ -1599,7 +1605,7 @@
   "deck": "CML3111 Week 12",
   "slide": 20,
   "title": "SEGMENT 4",
-  "text": "circulate with the question-bank cards and answer nothing for the full 90 minutes. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
+  "text": "circulate with the question-bank cards during 70 minutes of project practice. Reserve the final 30 minutes for each student to complete the issued W12 notebook and written evidence. Give time calls at 60, 30 and 10 minutes remaining. Teams that have not fixed a protocol by minute 20 should be asked which four things they are holding constant, and nothing else."
  },
  {
   "deck": "CML3111 Week 12",
@@ -1616,7 +1622,7 @@
  {
   "deck": "CML3111 Week 12",
   "slide": 23,
-  "title": "DELIVERABLE — A11",
+  "title": "PROJECT PRACTICE",
   "text": "collect the pages at the end of the defence round, after teams have had the chance to annotate them with what they conceded."
  },
  {
@@ -1669,21 +1675,27 @@
  },
  {
   "deck": "CML3111 Week 12",
-  "slide": 36,
+  "slide": 38,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 12",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3111 Week 12",
-  "slide": 37,
+  "slide": 39,
   "title": "THE ONE THING TO REMEMBER",
   "text": "name the best challenge raised in the defence round and say why it was good. Thirty seconds, and it sets the standard for Week 15."
+ },
+ {
+  "deck": "CML3111 Week 12",
+  "slide": 40,
+  "title": "ASSESSMENT BRIEF",
+  "text": "use the final minutes already allocated to assignment instructions; confirm the cohort link and deadline. Keep private marking guidance out of student materials."
  },
  {
   "deck": "CML3111 Week 13",
   "slide": 1,
   "title": "Repository structure, README, environment capture and peer review",
-  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 11 teams, so 100 minutes gives roughly 7 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
+  "text": "BUILD THE CLINIC BOOKING SHEET BEFORE THE SESSION. This cohort has about 11 teams, so 95 minutes gives roughly 8 minutes each. Publish the slot times before you start and use a printed checklist so each slot is diagnostic rather than conversational. Prepare the messy-to-clean refactor using a real anonymised student notebook, with permission. Print the peer review forms and the repository checklist."
  },
  {
   "deck": "CML3111 Week 13",
@@ -1701,7 +1713,7 @@
   "deck": "CML3111 Week 13",
   "slide": 4,
   "title": "SEGMENT 1",
-  "text": "collect A11 annotations if they were not handed in last week. Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
+  "text": "review the formative recommendation annotations.  Reteach anything last week's quiz showed the room got wrong — five minutes, from the responses-by-question view."
  },
  {
   "deck": "CML3111 Week 13",
@@ -1767,7 +1779,7 @@
   "deck": "CML3111 Week 13",
   "slide": 20,
   "title": "SEGMENT 4",
-  "text": "keep to the booking sheet and use the printed checklist in every slot. With 11 teams and 7 minutes each, a slot that becomes a conversation costs another team its slot. Set a timer."
+  "text": "keep to the booking sheet and use the printed checklist in every slot. With 11 teams and 8 minutes each, a slot that becomes a conversation costs another team its slot. Set a timer."
  },
  {
   "deck": "CML3111 Week 13",
@@ -1825,13 +1837,13 @@
  },
  {
   "deck": "CML3111 Week 13",
-  "slide": 34,
+  "slide": 36,
   "title": "END-OF-SESSION QUIZ  ·  WEEK 13",
   "text": "open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach."
  },
  {
   "deck": "CML3111 Week 13",
-  "slide": 35,
+  "slide": 37,
   "title": "THE ONE THING TO REMEMBER",
   "text": "end by confirming the test room, the sitting time and what to bring. Do not let anyone leave uncertain about where to be."
  },
@@ -1855,18 +1867,6 @@
  },
  {
   "deck": "CML3111 Week 14",
-  "slide": 8,
-  "title": "HOW IT IS MARKED",
-  "text": "put the answers cell in the task sheet as copyable text, and say at the 30-minute call that the cell should already have entries in it."
- },
- {
-  "deck": "CML3111 Week 14",
-  "slide": 9,
-  "title": "45 OF THE 100 MARKS",
-  "text": "publish the exact key list with the specification so nobody meets it for the first time in the room."
- },
- {
-  "deck": "CML3111 Week 14",
   "slide": 11,
   "title": "CONTINGENCY",
   "text": "read the machine-fault item aloud and mean it. Candidates who lose ten minutes and say nothing until the end cannot be compensated fairly."
@@ -1879,7 +1879,7 @@
  },
  {
   "deck": "CML3111 Week 14",
-  "slide": 19,
+  "slide": 21,
   "title": "THE ONE THING TO REMEMBER",
   "text": "on the day, confirm the Week 15 demo running order before dismissal."
  },
@@ -1887,7 +1887,7 @@
   "deck": "CML3111 Week 15",
   "slide": 1,
   "title": "WEEK 15  ·  Fri 18 December 2026",
-  "text": "invite Faculty staff and one external practising engineer — it raises the standard of every submission more than any amount of exhortation. Book a fair layout with tables round the perimeter and power at every station. Print the assessor packs, the peer assessment forms, the viva tally sheets and the three certificates."
+  "text": "prepare the digital submission link and the two written defence prompts, the fair layout, power at each station, peer feedback sheets and the three recognition certificates."
  },
  {
   "deck": "CML3111 Week 15",
@@ -1899,13 +1899,13 @@
   "deck": "CML3111 Week 15",
   "slide": 3,
   "title": "THE THREE HOURS",
-  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student presents for the whole hundred minutes."
+  "text": "give time calls at the halfway point of each round so teams rotate. Without a call, one student may present for the whole fair."
  },
  {
   "deck": "CML3111 Week 15",
   "slide": 4,
   "title": "SIX DELIVERABLES",
-  "text": "collect items 1 to 5 at the door. Item 6 comes in at the end."
+  "text": "check receipt of the uploaded project packet at the start. The complete individual DEMO packet is due by the end."
  },
  {
   "deck": "CML3111 Week 15",
@@ -1923,13 +1923,13 @@
   "deck": "CML3111 Week 15",
   "slide": 8,
   "title": "PEER ASSESSMENT",
-  "text": "collect the forms. Moderate before combining, and never use peer marks raw."
+  "text": "return comments to the presenting teams for reflection; do not combine peer scores into grades."
  },
  {
   "deck": "CML3111 Week 15",
   "slide": 10,
-  "title": "THE VIVA BANK",
-  "text": "the shape of a full-mark answer to each:\n\nA · After any exploration and before any fitting or scaling; earlier and the preprocessing sees the test rows.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees return the nearest leaf and give no warning. Credit any answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' scores nothing.\n\nTally two per student. Do not let teammates answer for each other."
+  "title": "PRACTISE YOUR DEFENCE",
+  "text": "the shape of a useful answer to each:\n\nA · Split before fitting preprocessing or models. Keep the held-out test data out of feature selection and model-selection decisions.\nB · Names a feature and cites the ablation table, with the change and the spread.\nC · Names a feature, gives the measured change, and says it was smaller than the fold spread.\nD · Names the metric AND a cost or consequence in the discipline's own units.\nE · Quotes the standard deviation across folds, or admits it was not measured.\nF · Names one of the four kinds and the specific check made — usually the Pipeline, or the timing question on a column.\nG · Linear models extrapolate a straight line; trees follow their split rules to a terminal leaf and give no automatic warning. Look for an answer that notices there is no warning.\nH · Must match the contribution log and the commit history.\nI · Any specific disagreement with a resolution. Vagueness scores poorly.\nJ · A specific change with a reason. 'Work harder' lacks a concrete action.\n\nSample live discussion for feedback; every student supplies their own typed defence in the submitted packet."
  },
  {
   "deck": "CML3111 Week 15",
@@ -1959,7 +1959,7 @@
   "deck": "CML3111 Week 15",
   "slide": 18,
   "title": "THE LAST DELIVERABLE",
-  "text": "hand out the prompt on paper and collect the reflections before anybody leaves. Paper gets a full return; a form does not."
+  "text": "display the DEMO link and confirm each student uploads the complete individual packet before leaving. Use accessible DOCX or PDF for the reflection and typed defence. An outage requires a recorded equivalent submission opportunity; paper is not the default grading route."
  },
  {
   "deck": "CML3111 Week 15",

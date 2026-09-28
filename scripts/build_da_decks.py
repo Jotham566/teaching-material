@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Render the twelve Data Analysis session decks.
+"""Render the fifteen Data Analysis session decks.
 
 Content lives in da_deck_w1.py through da_deck_w4.py; the session spine
 (titles, outcomes, the trap) comes from da_content.py; every number comes
@@ -144,10 +144,10 @@ def s_da_trap(prs, trap, session):
     _bg(s, prs, INK2)
     tb(s, M, 1.05, W - 2 * M, 0.34, "THE MISTAKE THIS SESSION PREVENTS",
        size=13, bold=True, colour=ORANGE)
-    h = theight(trap, W - 2 * M, 26, 1.14)
+    h = theight(trap, W - 2 * M, 26, 1.14) + 0.55
     tb(s, M, 1.75, W - 2 * M, h + 0.1, trap, size=26, bold=True,
        colour=PAPER, line=1.14)
-    tb(s, M, 1.95 + h, W - 2 * M, 0.5,
+    tb(s, M, 2.15 + h, W - 2 * M, 0.5,
        "It is in tonight's lab on purpose.", size=15,
        colour=C(0xB8, 0xC9, 0xD8))
     tb(s, M, H - 0.85, W - 2 * M, 0.4,
@@ -271,7 +271,7 @@ def build_session(ss):
              "that they cannot do at 18:00, and keep it to one sentence.")
 
     s = s_da_map(prs, ss["n"])
-    notes(s, "Tonight is session {} of twelve.".format(ss["n"]))
+    notes(s, "Tonight is session {} of fifteen.".format(ss["n"]))
 
     # The words come before the technique, every session. This is the one
     # change that matters most for a room starting from scratch.
@@ -295,8 +295,8 @@ def build_session(ss):
                      "answer it yet.")
 
     # ---------------------------------------------------------- block one
-    s = s_divider(prs, "BLOCK ONE · 50 MINUTES", c.get(
-        "b1_title", "The first half"), ss["b1"][:220])
+    s = s_divider(prs, ("BLOCK ONE · 30 MINUTES" if ss["n"] == 15 else "BLOCK ONE · 50 MINUTES"), c.get(
+        "b1_title", "The first half"), ss["b1"].split(". ")[0] + ".")
 
     for title, items, kicker in c.get("points", []):
         s = s_points(prs, title, items, kicker=kicker)
@@ -317,8 +317,9 @@ def build_session(ss):
              label="Figure: " + ftitle)
 
     code = c.get("code", [])
-    first = code[:1] if len(code) > 1 else code
-    rest = code[1:] if len(code) > 1 else []
+    split_at = 3 if ss["n"] == 15 else 1
+    first = code[:split_at]
+    rest = code[split_at:]
     for title, where, block, mistake in first:
         s = s_livecode(prs, title, where, block, mistake)
         note(s, "TO TEACH: type it, do not paste it. Then break it exactly "
@@ -331,8 +332,8 @@ def build_session(ss):
              "class and the second half needs them awake.")
 
     # ---------------------------------------------------------- block two
-    s = s_divider(prs, "BLOCK TWO · 45 MINUTES",
-                  c.get("b2_title", "The second half"), ss["b2"][:220])
+    s = s_divider(prs, ("BLOCK TWO · 20 MINUTES" if ss["n"] == 15 else "BLOCK TWO · 45 MINUTES"),
+                  c.get("b2_title", "The second half"), ss["b2"].split(". ")[0] + ".")
 
     for title, where, block, mistake in rest:
         s = s_livecode(prs, title, where, block, mistake)
@@ -397,6 +398,13 @@ def build_session(ss):
     s = s_challenge(prs, title, brief, questions, kicker="LAB · 50 MINUTES")
     notes(s, brief + " TO TEACH: circulate. Anything asked twice gets "
                      "answered to the whole room.")
+    if ss['n']==15:
+        s=s_break(prs,10,after='Selected demonstrations follow; keep your submitted slides ready.')
+        s=s_divider(prs,'DEMONSTRATIONS · 40 MINUTES','Eight short demonstrations',
+                    'Five minutes each. Start with the decision, show the supporting evidence, and name one limitation.')
+        notes(s,'Every learner submits the same presentation evidence for grading. Selected live demonstrations carry no extra marks. TO TEACH: select eight contrasting examples in advance and keep each slot to five minutes.')
+        s=s_divider(prs,'APPLICATION PLANNING · 20 MINUTES','Use the work beyond tonight',
+                    'Choose one portfolio improvement and one concrete next step for a client or job application.')
 
     s = s_summary(prs, ss["outcomes"],
                   kicker="TONIGHT IN THREE LINES",
@@ -438,7 +446,7 @@ if __name__ == "__main__":
                  "# stale: delete it.\n")
         for name in written:
             fh.write(name + "\n")
-    stale = sorted(set(f for f in os.listdir(OUT) if f.endswith(".pptx"))
+    stale = sorted(set(f for f in os.listdir(OUT) if f.endswith(".pptx") and not f.startswith("~$"))
                    - set(written))
     if stale:
         print("\n*** {} STALE DECK(S) from an earlier build. Delete them:"
