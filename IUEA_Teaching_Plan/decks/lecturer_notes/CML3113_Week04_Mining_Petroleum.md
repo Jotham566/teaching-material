@@ -1,9 +1,19 @@
 # CML3113 Week04 Mining Petroleum
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
 
 ## Slide 1 — Lists loops and reading a table
 
+PURPOSE
+Lists loops and reading a table
+
+CONNECT
+Build on the preceding week. Explain why this example is needed before running it.
+
+EXPLAIN
+Mining and Petroleum Engineering
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Lists loops and reading a table
 
@@ -22,8 +32,26 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 Today’s learning. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Today’s learning.
+
 ## Slide 2 — Today’s learning
 
+PURPOSE
+Today’s learning
+
+CONNECT
+Build on Lists loops and reading a table. Explain why this example is needed before running it.
+
+EXPLAIN
+Read lists and dictionary fields.
+
+Trace a loop, read CSV rows and calculate summaries.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Today’s learning
 
@@ -45,8 +73,24 @@ Show the file in the runtime folder and compare its exact filename, case and col
 NEXT
 Recall and a first attempt. Move on after a learner can explain the current example or required action.
 
-## Slide 3 — Recall and a first attempt
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Connection to the previous lesson.
+
+## Slide 3 — Connection to the previous lesson
+
+PURPOSE
+Connection to the previous lesson
+
+CONNECT
+Build on Today’s learning. Explain why this example is needed before running it.
+
+EXPLAIN
+Week 3 introduced values, function inputs and results, conditions and list positions. Now we repeat a calculation across records, then organise those records by keys.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Recall and a first attempt
 
@@ -54,7 +98,6 @@ CONNECT
 Build on the preceding slide: Today’s learning.
 
 LECTURER CUE
-Allow two minutes for everyone to try. Ask pairs to compare. If many cannot begin, show the first step and repeat with changed values. Checkpoint for today: Students trace the running total without executing and identify the numeric field in the real CSV. Revisit a three-item list if either step fails.
 
 EXPLAIN IN ORDINARY WORDS
 Name the positive class first. Actual is what happened; predicted is the model decision. Precision asks how many predicted positives were right. Recall asks how many actual positives were found.
@@ -68,8 +111,24 @@ Draw actual/predicted headings. Place one case at a time before calculating a fr
 NEXT
 The engineering context. Move on after a learner can explain the current example or required action.
 
-## Slide 4 — The engineering context
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Why this week’s tools are needed.
+
+## Slide 4 — Why this week’s tools are needed
+
+PURPOSE
+Why this week’s tools are needed
+
+CONNECT
+Build on Connection to the previous lesson. Explain why this example is needed before running it.
+
+EXPLAIN
+Sensor readings arrive as records in a CSV file. We first learn the Python collections and loops needed to read those records and summarise them.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The engineering context
 
@@ -91,8 +150,24 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 List and index. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+List and index.
+
 ## Slide 5 — List and index
 
+PURPOSE
+List and index
+
+CONNECT
+Build on Why this week’s tools are needed. Explain why this example is needed before running it.
+
+EXPLAIN
+List and index: A list holds values in order: [2, 4, 6]. Square brackets select a position. readings[0] selects the first item, 2.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 List and index
 
@@ -114,8 +189,28 @@ List and index: A list holds values in order: [2, 4, 6]. Square brackets select 
 NEXT
 A list position starts at zero. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A list position starts at zero.
+
 ## Slide 6 — A list position starts at zero
 
+PURPOSE
+A list position starts at zero
+
+CONNECT
+Build on List and index. Explain why this example is needed before running it.
+
+EXPLAIN
+In [2, 4, 6], position 0 holds 2.
+
+Position 1 holds 4. Position 2 holds 6.
+
+There is no position 3 in this three-item list.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A list position starts at zero
 
@@ -137,8 +232,25 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 Read list operations. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Read list operations.
+
 ## Slide 7 — Read list operations
 
+PURPOSE
+Read list operations
+
+CONNECT
+Build on A list position starts at zero. Explain why this example is needed before running it.
+
+EXPLAIN
+append and len: readings.append(8) adds 8 to the end of the list. len(readings) counts its items. The dot selects an operation belonging to that object; parentheses call it.
+Slice: readings[1:3] selects positions 1 and 2. The stop position 3 is excluded. A slice produces a new list; it does not remove items from the original.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Read list operations
 
@@ -161,8 +273,24 @@ Slice: readings[1:3] selects positions 1 and 2. The stop position 3 is excluded.
 NEXT
 A list stores items in order. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A list stores items in order.
+
 ## Slide 8 — A list stores items in order
 
+PURPOSE
+A list stores items in order
+
+CONNECT
+Build on Read list operations. Explain why this example is needed before running it.
+
+EXPLAIN
+[] builds a list. Positions start at zero. The slice stops before position 3.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A list stores items in order
 
@@ -190,8 +318,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Loop and iteration. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Loop and iteration.
+
 ## Slide 9 — Loop and iteration
 
+PURPOSE
+Loop and iteration
+
+CONNECT
+Build on A list stores items in order. Explain why this example is needed before running it.
+
+EXPLAIN
+Loop and iteration: A for loop runs its indented body once per item. Each pass is one iteration.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Loop and iteration
 
@@ -213,8 +357,24 @@ Loop and iteration: A for loop runs its indented body once per item. Each pass i
 NEXT
 Accumulator. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Accumulator.
+
 ## Slide 10 — Accumulator
 
+PURPOSE
+Accumulator
+
+CONNECT
+Build on Loop and iteration. Explain why this example is needed before running it.
+
+EXPLAIN
+Accumulator: A running total. Set it to zero before the loop, add inside the loop, and read the final total afterward.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Accumulator
 
@@ -236,8 +396,28 @@ Accumulator: A running total. Set it to zero before the loop, add inside the loo
 NEXT
 A loop repeats an indented block. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A loop repeats an indented block.
+
 ## Slide 11 — A loop repeats an indented block
 
+PURPOSE
+A loop repeats an indented block
+
+CONNECT
+Build on Accumulator. Explain why this example is needed before running it.
+
+EXPLAIN
+for reading in readings: takes one item at a time.
+
+The colon starts the block. Four spaces show which lines repeat.
+
+A running total must start at zero before the loop.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A loop repeats an indented block
 
@@ -259,8 +439,28 @@ Use a trace table with current item and total. Resetting total inside the loop l
 NEXT
 A mean uses a total and a count. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A mean uses a total and a count.
+
 ## Slide 12 — A mean uses a total and a count
 
+PURPOSE
+A mean uses a total and a count
+
+CONNECT
+Build on A loop repeats an indented block. Explain why this example is needed before running it.
+
+EXPLAIN
+Start the total at 0. Add 2, then 4, then 6.
+
+The final total is 12. The count is 3.
+
+12 / 3 gives the mean 4. An empty list needs a separate rule.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A mean uses a total and a count
 
@@ -282,8 +482,24 @@ Recover each group total as mean times count, add totals, then divide by all obs
 NEXT
 A loop changes the running total. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A loop changes the running total.
+
 ## Slide 13 — A loop changes the running total
 
+PURPOSE
+A loop changes the running total
+
+CONNECT
+Build on A mean uses a total and a count. Explain why this example is needed before running it.
+
+EXPLAIN
+This illustration uses six separate readings. Next we trace the smaller list [2, 4, 6] using the same running-total rule.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A loop changes the running total
 
@@ -306,8 +522,24 @@ Use a trace table with current item and total. Resetting total inside the loop l
 NEXT
 Tracing the loop. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Tracing the loop.
+
 ## Slide 14 — Tracing the loop
 
+PURPOSE
+Tracing the loop
+
+CONNECT
+Build on A loop changes the running total. Explain why this example is needed before running it.
+
+EXPLAIN
+There are three readings.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Tracing the loop
 
@@ -332,8 +564,24 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 Worked example. Move on after a learner can explain the current example or required action.
 
-## Slide 15 — Worked example
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Worked example.
+
+## Slide 15 — Lists loops and records in Python
+
+PURPOSE
+Lists loops and records in Python
+
+CONNECT
+Build on Tracing the loop. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Worked example
 
@@ -369,8 +617,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Expected output. Move on after a learner can explain the current example or required action.
 
-## Slide 16 — Expected output
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Expected output.
+
+## Slide 16 — Lists loops and records results
+
+PURPOSE
+Lists loops and records results
+
+CONNECT
+Build on Lists loops and records in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+4.0
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Expected output
 
@@ -383,81 +647,266 @@ Compare the actual output character by character with this practice result. If i
 NEXT
 Dictionary. Move on after a learner can explain the current example or required action.
 
-## Slide 17 — Dictionary
-
-TEACHING PURPOSE
-Dictionary
-
-CONNECT
-Build on the preceding slide: Expected output.
-
-EXPLAIN IN ORDINARY WORDS
-A dictionary pairs a key with a value. For {"unit":"A", "reading":4}, record["reading"] looks up the key and gives 4. The key is not a list position.
-
-CHECK AND EXPECTED ANSWER
-What happens if the key is spelled "Reading" instead? It is a different key; direct lookup can raise KeyError.
-
-IF LEARNERS ARE STUCK
-Point to each key and its value. Read the colon as associates-with, then do one exact lookup.
-
-POINT TO THE DEFINITION
-Dictionary: A collection of named values such as {"temperature_c": 25}. Access the value with row["temperature_c"].
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Read dictionary operations. Move on after a learner can explain the current example or required action.
+Built-in summaries of a list.
 
-## Slide 18 — Read dictionary operations
+## Slide 17 — Built-in summaries of a list
 
-TEACHING PURPOSE
-Read dictionary operations
-
-CONNECT
-Build on the preceding slide: Dictionary.
-
-EXPLAIN IN ORDINARY WORDS
-A dictionary pairs a key with a value. For {"unit":"A", "reading":4}, record["reading"] looks up the key and gives 4. The key is not a list position.
-
-CHECK AND EXPECTED ANSWER
-What happens if the key is spelled "Reading" instead? It is a different key; direct lookup can raise KeyError.
-
-IF LEARNERS ARE STUCK
-Point to each key and its value. Read the colon as associates-with, then do one exact lookup.
-
-POINT TO THE DEFINITION
-Key and lookup: A key is the name used to find a value. record["reading"] looks up that key. record.get("missing", 0) returns 0 if the key is absent.
-items and paired names: record.items() supplies key/value pairs. for key, value in ... puts each pair into two names, then runs the indented block once for that pair.
-
-NEXT
-Dictionary lookups and list slices. Move on after a learner can explain the current example or required action.
-
-## Slide 19 — Dictionary lookups and list slices
-
-TEACHING PURPOSE
-Dictionary lookups and list slices
+PURPOSE
+Built-in summaries of a list
 
 CONNECT
-Build on the preceding slide: Read dictionary operations.
+Build on Lists loops and records results. Explain why this example is needed before running it.
 
-LECTURER CUE
-Read one row at a time and use a changed value. This is a syntax reference for the worked examples.
+EXPLAIN
+Output: 12, 3, 2, 6. sum totals; len counts; min and max select the smallest and largest.
 
-EXPLAIN IN ORDINARY WORDS
-A dictionary pairs a key with a value. For {"unit":"A", "reading":4}, record["reading"] looks up the key and gives 4. The key is not a list position.
+LECTURER DETAIL
+Output: 12, 3, 2, 6. sum totals; len counts; min and max select the smallest and largest.
 
-CHECK AND EXPECTED ANSWER
-What happens if the key is spelled "Reading" instead? It is a different key; direct lookup can raise KeyError.
+readings = [2, 4, 6]
+print(sum(readings))
+print(len(readings))
+print(min(readings))
+print(max(readings))
 
-IF LEARNERS ARE STUCK
-Point to each key and its value. Read the colon as associates-with, then do one exact lookup.
-
-READ THE VISUAL
-Start with the title and labels. Read one row or mark aloud, including its unit. Let a learner read a second one before discussing the pattern. Do not infer a numerical value from an unlabelled drawing.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-A position and a key find different things. Move on after a learner can explain the current example or required action.
+A dictionary is a record with named fields.
 
-## Slide 20 — A position and a key find different things
+## Slide 18 — A dictionary is a record with named fields
 
+PURPOSE
+A dictionary is a record with named fields
+
+CONNECT
+Build on Built-in summaries of a list. Explain why this example is needed before running it.
+
+EXPLAIN
+record = {"unit": "A", "reading": 4} stores two key–value pairs. Keys name fields; values hold the information.
+
+Braces enclose the dictionary. A colon separates each key from its value and a comma separates pairs. Each key is unique.
+
+record["reading"] returns 4. Unlike a list position, "reading" names the field we want.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Reading and updating a dictionary.
+
+## Slide 19 — Reading and updating a dictionary
+
+PURPOSE
+Reading and updating a dictionary
+
+CONNECT
+Build on A dictionary is a record with named fields. Explain why this example is needed before running it.
+
+EXPLAIN
+Output: 4, then 6, then 0. get uses the fallback only when that key is absent.
+
+LECTURER DETAIL
+Output: 4, then 6, then 0. get uses the fallback only when that key is absent.
+
+record = {"unit": "A", "reading": 4}
+print(record["reading"])
+record["reading"] = 6
+print(record["reading"])
+print(record.get("missing", 0))
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Tuples and unpacking.
+
+## Slide 20 — Tuples and unpacking
+
+PURPOSE
+Tuples and unpacking
+
+CONNECT
+Build on Reading and updating a dictionary. Explain why this example is needed before running it.
+
+EXPLAIN
+A tuple stores items in order. point = (2, 3) stores two coordinates; point[0] is 2. You cannot reassign point[0].
+
+x, y = point gives the first item to x and the second to y. This is unpacking; the number of names must match the number of items.
+
+A tuple prevents replacing its positions. It does not freeze the contents of a mutable object stored inside it.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Unpacking a pair.
+
+## Slide 21 — Unpacking a pair
+
+PURPOSE
+Unpacking a pair
+
+CONNECT
+Build on Tuples and unpacking. Explain why this example is needed before running it.
+
+EXPLAIN
+Output: 2, then 3.
+
+LECTURER DETAIL
+Output: 2, then 3.
+
+point = (2, 3)
+x, y = point
+print(x)
+print(y)
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A set remembers distinct items.
+
+## Slide 22 — A set remembers distinct items
+
+PURPOSE
+A set remembers distinct items
+
+CONNECT
+Build on Unpacking a pair. Explain why this example is needed before running it.
+
+EXPLAIN
+A set is useful when the question is “Have we seen this ID?” It keeps one instance of each distinct item.
+
+seen = set() creates an empty set. seen.add("A") adds an item. "A" in seen asks whether it is present.
+
+Do not use a set when position or repeated readings matter. Sets cannot be indexed. {} creates an empty dictionary, not an empty set.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Set membership and repeated IDs.
+
+## Slide 23 — Set membership and repeated IDs
+
+PURPOSE
+Set membership and repeated IDs
+
+CONNECT
+Build on A set remembers distinct items. Explain why this example is needed before running it.
+
+EXPLAIN
+Output: 1, True, False. Adding the same ID twice keeps one distinct ID.
+
+LECTURER DETAIL
+Output: 1, True, False. Adding the same ID twice keeps one distinct ID.
+
+seen = set()
+seen.add("A")
+seen.add("A")
+print(len(seen))
+print("A" in seen)
+print("B" in seen)
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+How the four collections differ.
+
+## Slide 24 — How the four collections differ
+
+PURPOSE
+How the four collections differ
+
+CONNECT
+Build on Set membership and repeated IDs. Explain why this example is needed before running it.
+
+EXPLAIN
+Choose by the question: ordered readings, named fields, fixed positions, or distinct IDs.
+
+LECTURER DETAIL
+Choose by the question: ordered readings, named fields, fixed positions, or distinct IDs.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Dictionary items and two loop names.
+
+## Slide 25 — Dictionary items and two loop names
+
+PURPOSE
+Dictionary items and two loop names
+
+CONNECT
+Build on How the four collections differ. Explain why this example is needed before running it.
+
+EXPLAIN
+record.items() provides each key with its value as a pair. The loop unpacks each pair into the names key and value.
+
+for key, value in record.items(): repeats the indented body for each field. Use .items() when both the label and its value are needed.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Looping through named fields.
+
+## Slide 26 — Looping through named fields
+
+PURPOSE
+Looping through named fields
+
+CONNECT
+Build on Dictionary items and two loop names. Explain why this example is needed before running it.
+
+EXPLAIN
+Output: unit A, then reading 6. The dictionary preserves insertion order.
+
+LECTURER DETAIL
+Output: unit A, then reading 6. The dictionary preserves insertion order.
+
+record = {"unit": "A", "reading": 6}
+for key, value in record.items():
+    print(key, value)
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A position and a key find different things.
+
+## Slide 27 — A position and a key find different things
+
+PURPOSE
+A position and a key find different things
+
+CONNECT
+Build on Looping through named fields. Explain why this example is needed before running it.
+
+EXPLAIN
+Both examples return 4. Explain how each lookup finds it.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A position and a key find different things
 
@@ -479,63 +928,24 @@ Trace one call: bind input names, run the indented body, reach return, then put 
 NEXT
 A dictionary gives each value a key. Move on after a learner can explain the current example or required action.
 
-## Slide 21 — A dictionary gives each value a key
-
-TEACHING PURPOSE
-A dictionary gives each value a key
-
-CONNECT
-Build on the preceding slide: A position and a key find different things.
-
-LECTURER CUE
-Read each symbol before running. Ask everyone to predict. Expected output: 4, then 0, then unit A and reading 6. Dictionaries preserve insertion order, but access by key is the important distinction. An unknown key with [] raises KeyError.
-
-EXPLAIN IN ORDINARY WORDS
-A dictionary pairs a key with a value. For {"unit":"A", "reading":4}, record["reading"] looks up the key and gives 4. The key is not a list position.
-
-CHECK AND EXPECTED ANSWER
-What happens if the key is spelled "Reading" instead? It is a different key; direct lookup can raise KeyError.
-
-IF LEARNERS ARE STUCK
-Point to each key and its value. Read the colon as associates-with, then do one exact lookup.
-
-WALK THROUGH THIS CODE
-for takes the next item. The indented block repeats.
-print displays a value below the cell.
-Square brackets create a list or select an item.
-Read the displayed lines in order, with the preceding code block if this example continues. Ask for the next value before running. The complete matching example is in guided_practice.ipynb; do not type a fragment into a new empty notebook.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Three ways to collect values. Move on after a learner can explain the current example or required action.
+CSV and header.
 
-## Slide 22 — Three ways to collect values
+## Slide 28 — CSV and header
 
-TEACHING PURPOSE
-Three ways to collect values
+PURPOSE
+CSV and header
 
 CONNECT
-Build on the preceding slide: A dictionary gives each value a key.
+Build on A position and a key find different things. Explain why this example is needed before running it.
 
-LECTURER CUE
-A dictionary uses key: value pairs, such as {"reading": 4}.
+EXPLAIN
+CSV and header: CSV means comma-separated values. One line usually represents one record; a header names the columns. CSV numbers arrive as text and may need float conversion.
 
-EXPLAIN IN ORDINARY WORDS
-A dictionary pairs a key with a value. For {"unit":"A", "reading":4}, record["reading"] looks up the key and gives 4. The key is not a list position.
-
-CHECK AND EXPECTED ANSWER
-What happens if the key is spelled "Reading" instead? It is a different key; direct lookup can raise KeyError.
-
-IF LEARNERS ARE STUCK
-Point to each key and its value. Read the colon as associates-with, then do one exact lookup.
-
-READ THE VISUAL
-Start with the title and labels. Read one row or mark aloud, including its unit. Let a learner read a second one before discussing the pattern. Do not infer a numerical value from an unlabelled drawing.
-
-NEXT
-CSV and header. Move on after a learner can explain the current example or required action.
-
-## Slide 23 — CSV and header
-
+LECTURER DETAIL
 TEACHING PURPOSE
 CSV and header
 
@@ -557,8 +967,30 @@ CSV and header: CSV means comma-separated values. One line usually represents on
 NEXT
 One record at a time. Move on after a learner can explain the current example or required action.
 
-## Slide 24 — One record at a time
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+One record at a time.
+
+## Slide 29 — One record at a time
+
+PURPOSE
+One record at a time
+
+CONNECT
+Build on CSV and header. Explain why this example is needed before running it.
+
+EXPLAIN
+A CSV is a text table with a header row.
+
+DictReader uses that header for dictionary keys.
+
+CSV cells begin as text, even when they look numeric.
+
+float("2.5") converts text into the number 2.5.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 One record at a time
 
@@ -577,8 +1009,24 @@ Show the file in the runtime folder and compare its exact filename, case and col
 NEXT
 A CSV file has a header and text values. Move on after a learner can explain the current example or required action.
 
-## Slide 25 — A CSV file has a header and text values
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A CSV file has a header and text values.
+
+## Slide 30 — A CSV file has a header and text values
+
+PURPOSE
+A CSV file has a header and text values
+
+CONNECT
+Build on One record at a time. Explain why this example is needed before running it.
+
+EXPLAIN
+An empty field is empty text. Check the task’s rule before converting it.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A CSV file has a header and text values
 
@@ -603,8 +1051,28 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 A CSV row becomes a dictionary. Move on after a learner can explain the current example or required action.
 
-## Slide 26 — A CSV row becomes a dictionary
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A CSV row becomes a dictionary.
+
+## Slide 31 — A CSV row becomes a dictionary
+
+PURPOSE
+A CSV row becomes a dictionary
+
+CONNECT
+Build on A CSV file has a header and text values. Explain why this example is needed before running it.
+
+EXPLAIN
+The header gives field names, such as unit and reading.
+
+csv.DictReader returns one dictionary for each data row.
+
+The value "2.5" starts as text. float("2.5") makes the number 2.5.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A CSV row becomes a dictionary
 
@@ -626,8 +1094,24 @@ Show the file in the runtime folder and compare its exact filename, case and col
 NEXT
 with and import. Move on after a learner can explain the current example or required action.
 
-## Slide 27 — with and import
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+with and import.
+
+## Slide 32 — with and import
+
+PURPOSE
+with and import
+
+CONNECT
+Build on A CSV row becomes a dictionary. Explain why this example is needed before running it.
+
+EXPLAIN
+with and import: import makes library tools available. with open(...) opens a file for a block and closes it afterward. A filename must match an existing file in the working folder.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 with and import
 
@@ -640,8 +1124,28 @@ with and import: import makes library tools available. with open(...) opens a fi
 NEXT
 Your cohort data. Move on after a learner can explain the current example or required action.
 
-## Slide 28 — Your cohort data
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Your cohort data.
+
+## Slide 33 — Your cohort data
+
+PURPOSE
+Your cohort data
+
+CONNECT
+Build on with and import. Explain why this example is needed before running it.
+
+EXPLAIN
+drill_shift_log.csv
+
+Summarise rate_of_penetration (m/hour); group by bit_type.
+
+Read the issued task’s blank-value and threshold rules before calculating.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Your cohort data
 
@@ -660,8 +1164,28 @@ Mark three scores below, at and above the boundary. Do not promise the score is 
 NEXT
 Read the supplied CSV in four steps. Move on after a learner can explain the current example or required action.
 
-## Slide 29 — Read the supplied CSV in four steps
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Read the supplied CSV in four steps.
+
+## Slide 34 — Read the supplied CSV in four steps
+
+PURPOSE
+Read the supplied CSV in four steps
+
+CONNECT
+Build on Your cohort data. Explain why this example is needed before running it.
+
+EXPLAIN
+Place drill_shift_log.csv beside the notebook, or upload it in Colab’s Files panel.
+
+import csv loads the CSV tools. newline="" lets the reader handle line endings. DictReader uses the header as dictionary keys.
+
+list(...) collects the rows while the file is open. We inspect the first row and the count; the later assignment calculations are your work.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Read the supplied CSV in four steps
 
@@ -680,8 +1204,24 @@ Show the file in the runtime folder and compare its exact filename, case and col
 NEXT
 Open a real CSV and inspect its first row. Move on after a learner can explain the current example or required action.
 
-## Slide 30 — Open a real CSV and inspect its first row
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Open a real CSV and inspect its first row.
+
+## Slide 35 — Open a real CSV and inspect its first row
+
+PURPOSE
+Open a real CSV and inspect its first row
+
+CONNECT
+Build on Read the supplied CSV in four steps. Explain why this example is needed before running it.
+
+EXPLAIN
+Read the actual keys and text values. Check the uploaded filename if Python reports FileNotFoundError.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Open a real CSV and inspect its first row
 
@@ -716,8 +1256,50 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 A record and a growing list. Move on after a learner can explain the current example or required action.
 
-## Slide 31 — A record and a growing list
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A list of dictionaries.
+
+## Slide 36 — A list of dictionaries
+
+PURPOSE
+A list of dictionaries
+
+CONNECT
+Build on Open a real CSV and inspect its first row. Explain why this example is needed before running it.
+
+EXPLAIN
+A record holds named fields for one observation. A list of records holds several observations in order.
+
+records[0] selects the first dictionary. records[0]["reading"] then selects that dictionary’s reading field.
+
+for row in records takes one dictionary at a time. row["reading"] retrieves that observation’s field; float converts numeric text when needed.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A record and a growing list.
+
+## Slide 37 — A record and a growing list
+
+PURPOSE
+A record and a growing list
+
+CONNECT
+Build on A list of dictionaries. Explain why this example is needed before running it.
+
+EXPLAIN
+Braces pair a key with its value. append adds one value to the end of a list.
+
+The same pattern works after reading a CSV row.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A record and a growing list
 
@@ -739,8 +1321,24 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 A record and a growing list in Python. Move on after a learner can explain the current example or required action.
 
-## Slide 32 — A record and a growing list in Python
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A record and a growing list in Python.
+
+## Slide 38 — A record and a growing list in Python
+
+PURPOSE
+A record and a growing list in Python
+
+CONNECT
+Build on A record and a growing list. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A record and a growing list in Python
 
@@ -776,8 +1374,26 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Skip a blank before converting text. Move on after a learner can explain the current example or required action.
 
-## Slide 33 — Skip a blank before converting text
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Skip a blank before converting text.
+
+## Slide 39 — Skip a blank before converting text
+
+PURPOSE
+Skip a blank before converting text
+
+CONNECT
+Build on A record and a growing list in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+An empty text field is "". The comparison != means “not equal to”. Only convert a value after the blank check passes.
+
+In this example, values records valid numbers only. Its length is the valid count; the group summaries must use the same valid-record policy.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Skip a blank before converting text
 
@@ -796,8 +1412,24 @@ Use three rows: a recorded zero, a recorded positive value and a blank. Explain 
 NEXT
 Collect only the recorded numbers. Move on after a learner can explain the current example or required action.
 
-## Slide 34 — Collect only the recorded numbers
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Collect only the recorded numbers.
+
+## Slide 40 — Collect only the recorded numbers
+
+PURPOSE
+Collect only the recorded numbers
+
+CONNECT
+Build on Skip a blank before converting text. Explain why this example is needed before running it.
+
+EXPLAIN
+Expected: 2 [2.5, 3.5]. A blank is missing, not a recorded zero.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Collect only the recorded numbers
 
@@ -833,8 +1465,30 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Summaries for separate groups. Move on after a learner can explain the current example or required action.
 
-## Slide 35 — Summaries for separate groups
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Summaries for separate groups.
+
+## Slide 41 — Summaries for separate groups
+
+PURPOSE
+Summaries for separate groups
+
+CONNECT
+Build on Collect only the recorded numbers. Explain why this example is needed before running it.
+
+EXPLAIN
+A dictionary can hold one running total for each group.
+
+An absent key needs an initial zero.
+
+Then add the reading to that group.
+
+To calculate group means, keep a matching count and divide each group total by its own count.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Summaries for separate groups
 
@@ -856,8 +1510,24 @@ Recover each group total as mean times count, add totals, then divide by all obs
 NEXT
 Summaries for separate groups in Python (1/2). Move on after a learner can explain the current example or required action.
 
-## Slide 36 — Summaries for separate groups in Python (1/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Summaries for separate groups in Python (1/2).
+
+## Slide 42 — Summaries for separate groups in Python (1/2)
+
+PURPOSE
+Summaries for separate groups in Python (1/2)
+
+CONNECT
+Build on Summaries for separate groups. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Summaries for separate groups in Python (1/2)
 
@@ -888,8 +1558,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Summaries for separate groups in Python (2/2). Move on after a learner can explain the current example or required action.
 
-## Slide 37 — Summaries for separate groups in Python (2/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Summaries for separate groups in Python (2/2).
+
+## Slide 43 — Summaries for separate groups in Python (2/2)
+
+PURPOSE
+Summaries for separate groups in Python (2/2)
+
+CONNECT
+Build on Summaries for separate groups in Python (1/2). Explain why this example is needed before running it.
+
+EXPLAIN
+Continue the SAME cell; keep indentation. Run after all parts are entered.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Summaries for separate groups in Python (2/2)
 
@@ -927,8 +1613,26 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 A group mean needs its own count. Move on after a learner can explain the current example or required action.
 
-## Slide 38 — A group mean needs its own count
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A group mean needs its own count.
+
+## Slide 44 — A group mean needs its own count
+
+PURPOSE
+A group mean needs its own count
+
+CONNECT
+Build on Summaries for separate groups in Python (2/2). Explain why this example is needed before running it.
+
+EXPLAIN
+The preceding loop calculated a total for each group. Count records in those same groups, then divide each group total by its own count.
+
+items() supplies the group name and its total together. We use small invented records, not the assignment’s answers.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A group mean needs its own count
 
@@ -947,8 +1651,24 @@ Recover each group total as mean times count, add totals, then divide by all obs
 NEXT
 From group totals to group means. Move on after a learner can explain the current example or required action.
 
-## Slide 39 — From group totals to group means
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+From group totals to group means.
+
+## Slide 45 — From group totals to group means
+
+PURPOSE
+From group totals to group means
+
+CONNECT
+Build on A group mean needs its own count. Explain why this example is needed before running it.
+
+EXPLAIN
+Expected: A has mean 3.0 and B has mean 9.0. Each group uses its own denominator.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 From group totals to group means
 
@@ -986,8 +1706,26 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 When numeric text cannot be converted. Move on after a learner can explain the current example or required action.
 
-## Slide 40 — When numeric text cannot be converted
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+When numeric text cannot be converted.
+
+## Slide 46 — When numeric text cannot be converted
+
+PURPOSE
+When numeric text cannot be converted
+
+CONNECT
+Build on From group totals to group means. Explain why this example is needed before running it.
+
+EXPLAIN
+float("bad") raises ValueError: the text does not represent a number. An exception interrupts ordinary execution.
+
+try contains the operation that might fail. except ValueError runs only for that named failure. Indentation shows the two blocks.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 When numeric text cannot be converted
 
@@ -1006,8 +1744,24 @@ Outside an assessment restriction, restart and run from the top after loading da
 NEXT
 Catch one expected conversion failure. Move on after a learner can explain the current example or required action.
 
-## Slide 41 — Catch one expected conversion failure
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Catch one expected conversion failure.
+
+## Slide 47 — Catch one expected conversion failure
+
+PURPOSE
+Catch one expected conversion failure
+
+CONNECT
+Build on When numeric text cannot be converted. Explain why this example is needed before running it.
+
+EXPLAIN
+Expected: None. The assignment specifies which invalid records to skip; do not invent a replacement number.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Catch one expected conversion failure
 
@@ -1043,55 +1797,26 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 You are the loop. Move on after a learner can explain the current example or required action.
 
-## Slide 42 — You are the loop
-
-TEACHING PURPOSE
-You are the loop
-
-CONNECT
-Build on the preceding slide: Catch one expected conversion failure.
-
-LECTURER CUE
-Do this before revealing the discussion slide. One learner moves or writes the items, the other checks. Swap roles. Every student explains one step. Expected: The new total is 20 and count is 4, so the mean is 5. Resetting the total inside the loop loses earlier additions.
-Wait for an individual prediction before inviting pair discussion. Give a first-step hint if needed.
-
-EXPLAIN IN ORDINARY WORDS
-A loop repeats its indented instructions for each item. A running total must be initialised before the loop and updated inside it.
-
-CHECK AND EXPECTED ANSWER
-For values 2,4,6 and total initially 0, what are the successive totals? 2,6,12.
-
-IF LEARNERS ARE STUCK
-Use a trace table with current item and total. Resetting total inside the loop loses earlier additions.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-What the activity shows. Move on after a learner can explain the current example or required action.
+Revision example and answer.
 
-## Slide 43 — What the activity shows
+## Slide 48 — Revision example and answer
 
-TEACHING PURPOSE
-What the activity shows
+PURPOSE
+Revision example and answer
 
 CONNECT
-Build on the preceding slide: You are the loop.
+Build on Catch one expected conversion failure. Explain why this example is needed before running it.
 
-LECTURER CUE
-Ask which step produced this answer. Return to the concrete action if a learner cannot explain it. This is practice feedback, never a quiz key.
+EXPLAIN
+Example: Add 8 to the list. Trace the new total and count before running. What happens if total = 0 is moved inside the loop?
 
-EXPLAIN IN ORDINARY WORDS
-A loop repeats its indented instructions for each item. A running total must be initialised before the loop and updated inside it.
+Answer: Total 20, count 4, mean 5.0. Resetting inside the loop discards previous additions and leaves only the last value in total.
 
-CHECK AND EXPECTED ANSWER
-For values 2,4,6 and total initially 0, what are the successive totals? 2,6,12.
-
-IF LEARNERS ARE STUCK
-Use a trace table with current item and total. Resetting total inside the loop loses earlier additions.
-
-NEXT
-Your turn. Move on after a learner can explain the current example or required action.
-
-## Slide 44 — Your turn
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Your turn
 
@@ -1121,31 +1846,30 @@ Let learners attempt first; use this to explain the reasoning, not just reveal t
 NEXT
 Practice discussion. Move on after a learner can explain the current example or required action.
 
-## Slide 45 — Practice discussion
-
-TEACHING PURPOSE
-Practice discussion
-
-CONNECT
-Build on the preceding slide: Your turn.
-
-LECTURER CUE
-Ask how the result was obtained. Reteach the smallest missing step instead of giving a longer lecture.
-
-EXPLAIN IN ORDINARY WORDS
-A loop repeats its indented instructions for each item. A running total must be initialised before the loop and updated inside it.
-
-CHECK AND EXPECTED ANSWER
-For values 2,4,6 and total initially 0, what are the successive totals? 2,6,12.
-
-IF LEARNERS ARE STUCK
-Use a trace table with current item and total. Resetting total inside the loop loses earlier additions.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Preparing for the assignment. Move on after a learner can explain the current example or required action.
+Preparing for the assignment.
 
-## Slide 46 — Preparing for the assignment
+## Slide 49 — Preparing for the assignment
 
+PURPOSE
+Preparing for the assignment
+
+CONNECT
+Build on Revision example and answer. Explain why this example is needed before running it.
+
+EXPLAIN
+Open the issued W04 notebook and its cohort CSV.
+
+Compute the requested valid_count, mean_reading, above_limit and group_means using the exact names in the notebook.
+
+First identify the correct field and its unit.
+
+Keep the CSV beside the notebook locally or upload it into the Colab runtime.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparing for the assignment
 
@@ -1170,8 +1894,24 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Preparing for the assignment continued. Move on after a learner can explain the current example or required action.
 
-## Slide 47 — Preparing for the assignment continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Preparing for the assignment continued.
+
+## Slide 50 — Preparing for the assignment continued
+
+PURPOSE
+Preparing for the assignment continued
+
+CONNECT
+Build on Preparing for the assignment. Explain why this example is needed before running it.
+
+EXPLAIN
+The written interpretation is practice.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparing for the assignment continued
 
@@ -1187,8 +1927,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Counting every record honestly. Move on after a learner can explain the current example or required action.
 
-## Slide 48 — Counting every record honestly
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Counting every record honestly.
+
+## Slide 51 — Counting every record honestly
+
+PURPOSE
+Counting every record honestly
+
+CONNECT
+Build on Preparing for the assignment continued. Explain why this example is needed before running it.
+
+EXPLAIN
+DictReader already consumes the header; skipping its first yielded row skips real data.
+
+A string such as "unknown" cannot be converted to float.
+
+Catch the expected conversion error, count and record it, then continue under a stated policy.
+
+Inspect whether skipped rows share a source before reporting a mean.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Counting every record honestly
 
@@ -1210,8 +1972,24 @@ Show the file in the runtime folder and compare its exact filename, case and col
 NEXT
 Counting every record honestly continued. Move on after a learner can explain the current example or required action.
 
-## Slide 49 — Counting every record honestly continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Counting every record honestly continued.
+
+## Slide 52 — Counting every record honestly continued
+
+PURPOSE
+Counting every record honestly continued
+
+CONNECT
+Build on Counting every record honestly. Explain why this example is needed before running it.
+
+EXPLAIN
+A sample summary describes observed records, not every possible operating condition.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Counting every record honestly continued
 
@@ -1233,8 +2011,30 @@ Try one value below, at and above the boundary before running the code.
 NEXT
 Your issued assignment. Move on after a learner can explain the current example or required action.
 
-## Slide 50 — Your issued assignment
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Your issued assignment.
+
+## Slide 53 — Your issued assignment
+
+PURPOSE
+Your issued assignment
+
+CONNECT
+Build on Counting every record honestly continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Open W04_student.ipynb.
+
+Read every task and its input units before coding.
+
+Keep the required function names and returned outputs.
+
+Run the supplied visible checks, then restart and run all.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Your issued assignment
 
@@ -1272,8 +2072,26 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 valid_count (5 marks). Move on after a learner can explain the current example or required action.
 
-## Slide 51 — valid_count (5 marks)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+valid_count (5 marks).
+
+## Slide 54 — valid_count (5 marks)
+
+PURPOSE
+valid_count (5 marks)
+
+CONNECT
+Build on Your issued assignment. Explain why this example is needed before running it.
+
+EXPLAIN
+Store an integer count of rows whose rate_of_penetration field is nonblank.
+
+Skip blank readings before numeric conversion.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 valid_count (5 marks)
 
@@ -1308,8 +2126,28 @@ Write numerator and denominator in words before putting numbers into the fractio
 NEXT
 mean_reading (5 marks). Move on after a learner can explain the current example or required action.
 
-## Slide 52 — mean_reading (5 marks)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+mean_reading (5 marks).
+
+## Slide 55 — mean_reading (5 marks)
+
+PURPOSE
+mean_reading (5 marks)
+
+CONNECT
+Build on valid_count (5 marks). Explain why this example is needed before running it.
+
+EXPLAIN
+Store the arithmetic mean of the nonblank rate_of_penetration values as a number.
+
+Add the valid readings and divide by their count.
+
+Keep full precision.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 mean_reading (5 marks)
 
@@ -1344,8 +2182,26 @@ Draw actual/predicted headings. Place one case at a time before calculating a fr
 NEXT
 above_limit (5 marks). Move on after a learner can explain the current example or required action.
 
-## Slide 53 — above_limit (5 marks)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+above_limit (5 marks).
+
+## Slide 56 — above_limit (5 marks)
+
+PURPOSE
+above_limit (5 marks)
+
+CONNECT
+Build on mean_reading (5 marks). Explain why this example is needed before running it.
+
+EXPLAIN
+Store an integer count of valid rate_of_penetration readings strictly greater than 8.0.
+
+A reading equal to the threshold is not counted.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 above_limit (5 marks)
 
@@ -1380,8 +2236,28 @@ Mark three scores below, at and above the boundary. Do not promise the score is 
 NEXT
 group_means (5 marks). Move on after a learner can explain the current example or required action.
 
-## Slide 54 — group_means (5 marks)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+group_means (5 marks).
+
+## Slide 57 — group_means (5 marks)
+
+PURPOSE
+group_means (5 marks)
+
+CONNECT
+Build on above_limit (5 marks). Explain why this example is needed before running it.
+
+EXPLAIN
+Store a dictionary whose keys are the bit_type labels and whose values are the mean valid rate_of_penetration readings within each group.
+
+Divide each group total by its own valid count.
+
+Keep full precision.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 group_means (5 marks)
 
@@ -1416,8 +2292,30 @@ Draw actual/predicted headings. Place one case at a time before calculating a fr
 NEXT
 Week 4 rules. Move on after a learner can explain the current example or required action.
 
-## Slide 55 — Week 4 rules
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 4 rules.
+
+## Slide 58 — Week 4 rules
+
+PURPOSE
+Week 4 rules
+
+CONNECT
+Build on group_means (5 marks). Explain why this example is needed before running it.
+
+EXPLAIN
+Fictional teaching data.
+
+300 records.
+
+Three blank rate_of_penetration values must be skipped in numerical summaries.
+
+Threshold 8.0 is a teaching assumption.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 4 rules
 
@@ -1441,8 +2339,30 @@ Mark three scores below, at and above the boundary. Do not promise the score is 
 NEXT
 Week 4 rules continued. Move on after a learner can explain the current example or required action.
 
-## Slide 56 — Week 4 rules continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 4 rules continued.
+
+## Slide 59 — Week 4 rules continued
+
+PURPOSE
+Week 4 rules continued
+
+CONNECT
+Build on Week 4 rules. Explain why this example is needed before running it.
+
+EXPLAIN
+Compute valid_count, mean_reading, above_limit (strictly greater than 8.0) and group_means keyed by bit_type.
+
+Use standard-library csv and collections.
+
+Save a copy using your Student Registration Number with / replaced by _, followed by _W04.ipynb.
+
+STUDENT_ID in the starter code means Student Registration Number.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 4 rules continued
 
@@ -1466,8 +2386,30 @@ Show the file in the runtime folder and compare its exact filename, case and col
 NEXT
 Week 4 rules continued. Move on after a learner can explain the current example or required action.
 
-## Slide 57 — Week 4 rules continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 4 rules continued.
+
+## Slide 60 — Week 4 rules continued
+
+PURPOSE
+Week 4 rules continued
+
+CONNECT
+Build on Week 4 rules continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Four checks carry five marks each.
+
+Explain the interesting pattern separately as formative practice.
+
+For beginner step-by-step help, open ASSIGNMENT_INSTRUCTIONS.txt and STUDENT_HOW_TO.md in this folder.
+
+The first names your required files and hand-in checklist; the second explains accounts, Colab, saving and uploads.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 4 rules continued
 
@@ -1482,8 +2424,30 @@ Compute valid_count, mean_reading, above_limit (strictly greater than 8.0) and g
 NEXT
 Reading report submission. Move on after a learner can explain the current example or required action.
 
-## Slide 58 — Reading report submission
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading report submission.
+
+## Slide 61 — Reading report submission
+
+PURPOSE
+Reading report submission
+
+CONNECT
+Build on Week 4 rules continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Opens: 02 Oct 2026, 08:00 Kampala
+
+Deadline: 09 Oct 2026, 08:00 Kampala
+
+Use your full Student Registration Number in the form.
+
+Keep the submitted files and confirmation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reading report submission
 
@@ -1499,8 +2463,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Week 4 quiz. Move on after a learner can explain the current example or required action.
 
-## Slide 59 — Week 4 quiz
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 4 quiz.
+
+## Slide 62 — Week 4 quiz
+
+PURPOSE
+Week 4 quiz
+
+CONNECT
+Build on Reading report submission. Explain why this example is needed before running it.
+
+EXPLAIN
+Answer individually after the lecturer activates the quiz.
+
+Available for 24 hours from activation.
+
+Use your Student Registration Number and registered account.
+
+The lecturer will confirm the exact closing time.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 4 quiz
 
@@ -1516,8 +2502,26 @@ Opening the student link does not activate the quiz. In Quiz Controls run the ma
 NEXT
 Before you leave. Move on after a learner can explain the current example or required action.
 
-## Slide 60 — Before you leave
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Before you leave.
+
+## Slide 63 — Revision and submission checklist
+
+PURPOSE
+Revision and submission checklist
+
+CONNECT
+Build on Week 4 quiz. Explain why this example is needed before running it.
+
+EXPLAIN
+You can show how the total and count change for each record.
+
+Save your work and check the required submission files.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Before you leave
 
@@ -1536,3 +2540,8 @@ Does a difference between two groups prove one caused the other? No. Other diffe
 IF LEARNERS ARE STUCK
 Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+independent revision and the issued task.

@@ -182,8 +182,13 @@ def make_deck(code,w):
  apply_reviewed_notes(slides,filename)
  return dict(cohort=code,week=w,filename=filename,slides=slides,assessment_ids=[a['id'] for a in weekly],quiz_url=q)
 
-decks=[make_deck(c,w) for c in COHORTS for w in WEEKS if not(c=='CML3112' and w==2)]
+from iuea_foundations_revision import revise
+# Week 2 is already taught: preserve its published content during this revision.
+existing=json.loads((ROOT/'data/iuea_deck_content.json').read_text())
+decks=[next(d for d in existing if d['cohort']==c and d['week']==w) if w==2 else revise(make_deck(c,w)) for c in COHORTS for w in WEEKS if not(c=='CML3112' and w==2)]
+(ROOT/'data/iuea_deck_content.json').write_text(json.dumps(decks,indent=2)+'\n')
 (REVIEW/'deck-content.json').write_text(json.dumps(decks,indent=2)+'\n')
 print(f'Prepared {len(decks)} decks, {sum(len(d["slides"]) for d in decks)} slides')
 
+(ROOT/'review/2026-09-16/sequential').mkdir(parents=True,exist_ok=True)
 (ROOT/'review/2026-09-16/sequential/sequence-audit.json').write_text(json.dumps(AUDIT,indent=2)+'\n')

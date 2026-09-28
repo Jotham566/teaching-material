@@ -1,5 +1,7 @@
 # Lecturer notes and presentation review
 
+**29 September 2026:** Week 3–15 companions and embedded notes match the revised foundation sequence. Use these companions for current slide numbers. Earlier semester guides may retain historical slide references. [CML3112 continuation at Week 3 slide 13](../CML3112_Week3_Continuation.md).
+
 Open the PowerPoint and use Presenter View to see notes privately. In normal editing view, open the Notes pane beneath the slide. Share the slide display with students, not your lecturer screen.
 
 Each slide has a purpose and transition. Where relevant, notes add an everyday explanation, a check with an expected answer, a recovery example, code cues, and submission instructions. The checks in these notes are teaching examples, not extra assessed tasks.

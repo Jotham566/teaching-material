@@ -6,7 +6,11 @@ Updated 15 September 2026. Times are Kampala (UTC+03:00). This is a lecturer che
 
 **After the completed CML3112 Week 2 class:** teach from the matching updated [PowerPoint](decks/README.md) and use [the lecturer guide](Beginner_Lecturer_Guide.md). This applies to CML3111/CML3113 from Week 2 and CML3112 from Week 3. Presenter View contains the explanation prompts. The earlier “today” section below records the completed CML3112 Week 2 class. The final slides contain the cohort assignment and quiz links.
 
-## Remaining Week 2 classes
+## Current CML3112 continuation
+
+Resume the revised Week 3 deck at slide 13. Slides 1–12 cover the already taught values, variables and basic syntax. Use [the continuation notes](CML3112_Week3_Continuation.md). A3 still closes on 29 September 2026 at 11:00 Kampala; the continuation does not extend that deadline. Students were instructed to read the final slides and complete it. CML3111 and CML3113 start Week 3 at slide 1.
+
+## Remaining Week 2 classes (historical checklist)
 
 Use the updated [two-page checklist](IUEA_ML_Quick_Class_Checklist.docx). Make all FOUR tasks explicit: A1 upload and Quiz 1 from Week 1, plus A2 upload and Quiz 2 from Week 2. A1 is a separate report; A2 is the main notebook and the student’s own README together.
 

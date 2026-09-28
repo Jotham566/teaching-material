@@ -1,5 +1,8 @@
 # Curriculum benchmark and teaching map
 
+**Teaching-mode update, 29 September 2026:** The Week 3–15 PowerPoints supersede the earlier live pair/activity approach described below. Use direct lecturer demonstrations and individual revision with worked answers. Collections are introduced in Week 3 before indexing and developed in Week 4 before record processing. See the current slide-by-slide lecturer companions for the authoritative sequence.
+
+
 Reviewed and revised 16 September 2026. Teach with the PowerPoints in `decks/`. The notebook supports practice; the issued assignment remains the graded submission.
 
 ## What the benchmark means for our learners

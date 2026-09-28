@@ -1,9 +1,19 @@
 # CML3111 Week11 Engineering
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
 
 ## Slide 1 — Creating and testing a useful feature
 
+PURPOSE
+Creating and testing a useful feature
+
+CONNECT
+Build on the preceding week. Explain why this example is needed before running it.
+
+EXPLAIN
+Communications, Electrical, Mechatronics and Robotics Engineering
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Creating and testing a useful feature
 
@@ -22,8 +32,26 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 Today’s learning. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Today’s learning.
+
 ## Slide 2 — Today’s learning
 
+PURPOSE
+Today’s learning
+
+CONNECT
+Build on Creating and testing a useful feature. Explain why this example is needed before running it.
+
+EXPLAIN
+Create a feature from available measurements.
+
+Compare models with one controlled change.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Today’s learning
 
@@ -45,8 +73,24 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 Recall and a first attempt. Move on after a learner can explain the current example or required action.
 
-## Slide 3 — Recall and a first attempt
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Connection to the previous lesson.
+
+## Slide 3 — Connection to the previous lesson
+
+PURPOSE
+Connection to the previous lesson
+
+CONNECT
+Build on Today’s learning. Explain why this example is needed before running it.
+
+EXPLAIN
+We already keep evaluation data separate. Now we change one input representation while keeping the comparison protocol fixed.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Recall and a first attempt
 
@@ -54,7 +98,6 @@ CONNECT
 Build on the preceding slide: Today’s learning.
 
 LECTURER CUE
-Allow two minutes for everyone to try. Ask pairs to compare. If many cannot begin, show the first step and repeat with changed values. Checkpoint for today: Students explain why the largest-looking feature or the most complex model need not improve predictions.
 
 EXPLAIN IN ORDINARY WORDS
 Name the positive class first. Actual is what happened; predicted is the model decision. Precision asks how many predicted positives were right. Recall asks how many actual positives were found.
@@ -68,8 +111,24 @@ Draw actual/predicted headings. Place one case at a time before calculating a fr
 NEXT
 The engineering context. Move on after a learner can explain the current example or required action.
 
-## Slide 4 — The engineering context
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Why this week’s tools are needed.
+
+## Slide 4 — Why this week’s tools are needed
+
+PURPOSE
+Why this week’s tools are needed
+
+CONNECT
+Build on Connection to the previous lesson. Explain why this example is needed before running it.
+
+EXPLAIN
+A calculated input may help a model. We compare the original and extended inputs on the same observations, then decide whether the evidence supports the extra feature.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The engineering context
 
@@ -91,8 +150,30 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 A feature has a meaning. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A feature has a meaning.
+
 ## Slide 5 — A feature has a meaning
 
+PURPOSE
+A feature has a meaning
+
+CONNECT
+Build on Why this week’s tools are needed. Explain why this example is needed before running it.
+
+EXPLAIN
+A feature is an input available at prediction time.
+
+An interaction multiplies two inputs to express a joint pattern.
+
+A better validation score can still reflect leakage.
+
+Compare the same observations and explain the physical meaning.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A feature has a meaning
 
@@ -111,8 +192,25 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 6 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Derived feature and Ratio and interaction.
+
+## Slide 6 — Derived feature and Ratio and interaction
+
+PURPOSE
+Derived feature and Ratio and interaction
+
+CONNECT
+Build on A feature has a meaning. Explain why this example is needed before running it.
+
+EXPLAIN
+Derived feature: A new input calculated from existing inputs. Its definition and unit must be stated.
+Ratio and interaction: A ratio divides quantities; an interaction multiplies them. Both need a domain explanation and a unit check.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -135,8 +233,28 @@ Ratio and interaction: A ratio divides quantities; an interaction multiplies the
 NEXT
 Read the physical example across programmes. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Read the physical example across programmes.
+
 ## Slide 7 — Read the physical example across programmes
 
+PURPOSE
+Read the physical example across programmes
+
+CONNECT
+Build on Derived feature and Ratio and interaction. Explain why this example is needed before running it.
+
+EXPLAIN
+Current I is the flow of electric charge, measured in amperes (A). Resistance R opposes that flow, measured in ohms.
+
+Power P is energy transferred per second, measured in watts (W). Resistive heating follows P = I²R in this example.
+
+I² means I × I. With I = 2 A and R = 3 ohms, P = 2 × 2 × 3 = 12 W. This relationship motivates a feature; evaluation still tests whether it helps.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Read the physical example across programmes
 
@@ -155,8 +273,24 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 A physical relationship can form a feature. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A physical relationship can form a feature.
+
 ## Slide 8 — A physical relationship can form a feature
 
+PURPOSE
+A physical relationship can form a feature
+
+CONNECT
+Build on Read the physical example across programmes. Explain why this example is needed before running it.
+
+EXPLAIN
+Explain each quantity and the unit of the result.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A physical relationship can form a feature
 
@@ -178,8 +312,24 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 An interaction uses two known inputs. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+An interaction uses two known inputs.
+
 ## Slide 9 — An interaction uses two known inputs
 
+PURPOSE
+An interaction uses two known inputs
+
+CONNECT
+Build on A physical relationship can form a feature. Explain why this example is needed before running it.
+
+EXPLAIN
+A derived input must be available when predicting. A useful physical relationship still needs validation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 An interaction uses two known inputs
 
@@ -204,8 +354,28 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 A percentage and its fraction. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A percentage and its fraction.
+
 ## Slide 10 — A percentage and its fraction
 
+PURPOSE
+A percentage and its fraction
+
+CONNECT
+Build on An interaction uses two known inputs. Explain why this example is needed before running it.
+
+EXPLAIN
+40% means 40 out of 100.
+
+40 / 100 gives 0.4.
+
+This changes the representation. It adds no new observation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A percentage and its fraction
 
@@ -227,8 +397,28 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 A combined input needs a reason. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A combined input needs a reason.
+
 ## Slide 11 — A combined input needs a reason
 
+PURPOSE
+A combined input needs a reason
+
+CONNECT
+Build on A percentage and its fraction. Explain why this example is needed before running it.
+
+EXPLAIN
+An interaction multiplies two inputs.
+
+It may help a simple model represent a joint pattern.
+
+An interaction with degrees Celsius is an empirical feature, not automatically a physical law.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A combined input needs a reason
 
@@ -250,8 +440,25 @@ State when each input becomes available, write its unit, then compare the same r
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 12 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Ablation and Improvement.
+
+## Slide 12 — Ablation and Improvement
+
+PURPOSE
+Ablation and Improvement
+
+CONNECT
+Build on A combined input needs a reason. Explain why this example is needed before running it.
+
+EXPLAIN
+Ablation: Compare a model with and without a feature while keeping the data partitions, model family and metric fixed.
+Improvement: For an error metric, baseline error minus new error. A negative result means the added feature worsened validation error in that comparison.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -274,8 +481,28 @@ Improvement: For an error metric, baseline error minus new error. A negative res
 NEXT
 One change makes a comparison interpretable. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+One change makes a comparison interpretable.
+
 ## Slide 13 — One change makes a comparison interpretable
 
+PURPOSE
+One change makes a comparison interpretable
+
+CONNECT
+Build on Ablation and Improvement. Explain why this example is needed before running it.
+
+EXPLAIN
+Base MAE is 3.0. Extended MAE is 2.5.
+
+Improvement = base error minus extended error = 0.5.
+
+Keep the training rows, validation rows, model family and metric fixed.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 One change makes a comparison interpretable
 
@@ -297,8 +524,24 @@ Try one value below, at and above the boundary before running the code.
 NEXT
 Worked example. Move on after a learner can explain the current example or required action.
 
-## Slide 14 — Worked example
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Worked example.
+
+## Slide 14 — Feature comparisons in Python
+
+PURPOSE
+Feature comparisons in Python
+
+CONNECT
+Build on One change makes a comparison interpretable. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Worked example
 
@@ -335,8 +578,25 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Expected output. Move on after a learner can explain the current example or required action.
 
-## Slide 15 — Expected output
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Expected output.
+
+## Slide 15 — Feature comparisons results
+
+PURPOSE
+Feature comparisons results
+
+CONNECT
+Build on Feature comparisons in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+0.4 1000
+0.5
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Expected output
 
@@ -349,8 +609,28 @@ Compare the actual output character by character with this practice result. If i
 NEXT
 Read the two-model experiment. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Read the two-model experiment.
+
 ## Slide 16 — Read the two-model experiment
 
+PURPOSE
+Read the two-model experiment
+
+CONNECT
+Build on Feature comparisons results. Explain why this example is needed before running it.
+
+EXPLAIN
+Each row contains a pair of inputs. for a, b in rows assigns the first entry to a and the second to b, then repeats the block.
+
+with_interaction returns a new table containing a, b and a × b. Both models keep the same training and validation rows.
+
+fit returns the fitted model object, so creating and fitting can appear in one expression. round(value, 6) rounds a displayed number to six decimal places.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Read the two-model experiment
 
@@ -369,8 +649,30 @@ State when each input becomes available, write its unit, then compare the same r
 NEXT
 Two models under one protocol. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Two models under one protocol.
+
 ## Slide 17 — Two models under one protocol
 
+PURPOSE
+Two models under one protocol
+
+CONNECT
+Build on Read the two-model experiment. Explain why this example is needed before running it.
+
+EXPLAIN
+Run this complete practice experiment in a fresh session.
+
+Both models use the same rows and targets; the second receives one additional input.
+
+Read every column before fitting.
+
+This invented experiment illustrates procedure, not a measured engineering benefit.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Two models under one protocol
 
@@ -392,8 +694,24 @@ Work one order line by hand, then two lines. Name the numerator and denominator 
 NEXT
 Two models under one protocol in Python (1/3). Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Two models under one protocol in Python (1/3).
+
 ## Slide 18 — Two models under one protocol in Python (1/3)
 
+PURPOSE
+Two models under one protocol in Python (1/3)
+
+CONNECT
+Build on Two models under one protocol. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Two models under one protocol in Python (1/3)
 
@@ -443,8 +761,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Two models under one protocol in Python (2/3). Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Two models under one protocol in Python (2/3).
+
 ## Slide 19 — Two models under one protocol in Python (2/3)
 
+PURPOSE
+Two models under one protocol in Python (2/3)
+
+CONNECT
+Build on Two models under one protocol in Python (1/3). Explain why this example is needed before running it.
+
+EXPLAIN
+Continue the SAME cell; keep indentation. Run after all parts are entered.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Two models under one protocol in Python (2/3)
 
@@ -494,8 +828,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Two models under one protocol in Python (3/3). Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Two models under one protocol in Python (3/3).
+
 ## Slide 20 — Two models under one protocol in Python (3/3)
 
+PURPOSE
+Two models under one protocol in Python (3/3)
+
+CONNECT
+Build on Two models under one protocol in Python (2/3). Explain why this example is needed before running it.
+
+EXPLAIN
+Continue the SAME cell; keep indentation. Run after all parts are entered.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Two models under one protocol in Python (3/3)
 
@@ -545,8 +895,25 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 21 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Encoding and Scaling.
+
+## Slide 21 — Encoding and Scaling
+
+PURPOSE
+Encoding and Scaling
+
+CONNECT
+Build on Two models under one protocol in Python (3/3). Explain why this example is needed before running it.
+
+EXPLAIN
+Encoding: Representing a category numerically. One-hot uses separate indicator columns. Arbitrary integer labels can falsely suggest an order.
+Scaling: Changing the numerical scale of features. Fit learned scaling on training data only. It matters for distance-based models but is not required by ordinary decision trees.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -569,55 +936,26 @@ Scaling: Changing the numerical scale of features. Fit learned scaling on traini
 NEXT
 You are the feature reviewer. Move on after a learner can explain the current example or required action.
 
-## Slide 22 — You are the feature reviewer
-
-TEACHING PURPOSE
-You are the feature reviewer
-
-CONNECT
-Build on the preceding slide: Words we will use.
-
-LECTURER CUE
-Do this before revealing the discussion slide. One learner moves or writes the items, the other checks. Swap roles. Every student explains one step. Expected: Improvement changes from +0.5 to -0.4. The second comparison does not support retaining the feature.
-Wait for an individual prediction before inviting pair discussion. Give a first-step hint if needed.
-
-EXPLAIN IN ORDINARY WORDS
-A feature is information supplied to a model. An interaction combines inputs, for example area times thickness gives volume. Ablation compares a model with and without a feature using the same evaluation protocol.
-
-CHECK AND EXPECTED ANSWER
-Does a lower validation error prove the feature is physically causal? No. It supports prediction under this comparison, subject to leakage and data limitations.
-
-IF LEARNERS ARE STUCK
-State when each input becomes available, write its unit, then compare the same rows and metric.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-What the activity shows. Move on after a learner can explain the current example or required action.
+Revision example and answer.
 
-## Slide 23 — What the activity shows
+## Slide 22 — Revision example and answer
 
-TEACHING PURPOSE
-What the activity shows
+PURPOSE
+Revision example and answer
 
 CONNECT
-Build on the preceding slide: You are the feature reviewer.
+Build on Encoding and Scaling. Explain why this example is needed before running it.
 
-LECTURER CUE
-Ask which step produced this answer. Return to the concrete action if a learner cannot explain it. This is practice feedback, never a quiz key.
+EXPLAIN
+Example: If the extended error becomes 3.4, calculate improvement and decide whether this evidence supports retaining the feature.
 
-EXPLAIN IN ORDINARY WORDS
-A condition is a True/False question. Python executes the matching indented branch. = assigns; == compares. >= includes the boundary, while > excludes it.
+Answer: Improvement is -0.4. This validation comparison does not support retaining it. One split is limited evidence; the final test remains untouched.
 
-CHECK AND EXPECTED ANSWER
-With value 30, is value >= 30 true? Yes. Is value > 30 true? No.
-
-IF LEARNERS ARE STUCK
-Try one value below, at and above the boundary before running the code.
-
-NEXT
-Your turn. Move on after a learner can explain the current example or required action.
-
-## Slide 24 — Your turn
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Your turn
 
@@ -647,31 +985,30 @@ Let learners attempt first; use this to explain the reasoning, not just reveal t
 NEXT
 Practice discussion. Move on after a learner can explain the current example or required action.
 
-## Slide 25 — Practice discussion
-
-TEACHING PURPOSE
-Practice discussion
-
-CONNECT
-Build on the preceding slide: Your turn.
-
-LECTURER CUE
-Ask how the result was obtained. Reteach the smallest missing step instead of giving a longer lecture.
-
-EXPLAIN IN ORDINARY WORDS
-A condition is a True/False question. Python executes the matching indented branch. = assigns; == compares. >= includes the boundary, while > excludes it.
-
-CHECK AND EXPECTED ANSWER
-With value 30, is value >= 30 true? Yes. Is value > 30 true? No.
-
-IF LEARNERS ARE STUCK
-Try one value below, at and above the boundary before running the code.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Preparing for the assignment. Move on after a learner can explain the current example or required action.
+Preparing for the assignment.
 
-## Slide 26 — Preparing for the assignment
+## Slide 23 — Preparing for the assignment
 
+PURPOSE
+Preparing for the assignment
+
+CONNECT
+Build on Revision example and answer. Explain why this example is needed before running it.
+
+EXPLAIN
+W11 names four output features and a two-model ablation.
+
+Explain output order, preservation of input rows, full precision and training-only fitting.
+
+Use the supplied written scenario for the interpretation requested there.
+
+Do not substitute this practice example’s result.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparing for the assignment
 
@@ -696,8 +1033,28 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Features without misleading evaluation. Move on after a learner can explain the current example or required action.
 
-## Slide 27 — Features without misleading evaluation
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Features without misleading evaluation.
+
+## Slide 24 — Features without misleading evaluation
+
+PURPOSE
+Features without misleading evaluation
+
+CONNECT
+Build on Preparing for the assignment. Explain why this example is needed before running it.
+
+EXPLAIN
+Rescaling an input usually does not change the partitions available to an ordinary decision tree.
+
+An identifier or a future-known field can create an apparent improvement without useful predictive information.
+
+Dividing by zero can produce infinity or an error; decide what the denominator means before replacing it.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Features without misleading evaluation
 
@@ -719,8 +1076,24 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 Features without misleading evaluation continued. Move on after a learner can explain the current example or required action.
 
-## Slide 28 — Features without misleading evaluation continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Features without misleading evaluation continued.
+
+## Slide 25 — Features without misleading evaluation continued
+
+PURPOSE
+Features without misleading evaluation continued
+
+CONNECT
+Build on Features without misleading evaluation. Explain why this example is needed before running it.
+
+EXPLAIN
+Read ablation differences using the same error definition, and explain features using domain knowledge.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Features without misleading evaluation continued
 
@@ -742,8 +1115,30 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 Your issued task. Move on after a learner can explain the current example or required action.
 
-## Slide 29 — Your issued task
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Your issued task.
+
+## Slide 26 — Your issued task
+
+PURPOSE
+Your issued task
+
+CONNECT
+Build on Features without misleading evaluation continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Investigate motor winding temperature.
+
+Target units: deg C.
+
+These are synthetic teaching records, not measurements suitable for deployment.
+
+Each record is one operating observation; equipment_id repeats across observations.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Your issued task
 
@@ -768,8 +1163,26 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 make_features(feature_records). Move on after a learner can explain the current example or required action.
 
-## Slide 30 — make_features(feature_records)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+make_features(feature_records).
+
+## Slide 27 — make_features(feature_records)
+
+PURPOSE
+make_features(feature_records)
+
+CONNECT
+Build on Your issued task. Explain why this example is needed before running it.
+
+EXPLAIN
+Return one feature row per input, in order: [load_pct, ambient_c, load_pct/100, load_pct*ambient_c].
+
+Use inputs available at prediction time only.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 make_features(feature_records)
 
@@ -791,8 +1204,30 @@ State when each input becomes available, write its unit, then compare the same r
 NEXT
 ablation_metrics(training_records, validation_records). Move on after a learner can explain the current example or required action.
 
-## Slide 31 — ablation_metrics(training_records, validation_records)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+ablation_metrics(training_records, validation_records).
+
+## Slide 28 — ablation_metrics(training_records, validation_records)
+
+PURPOSE
+ablation_metrics(training_records, validation_records)
+
+CONNECT
+Build on make_features(feature_records). Explain why this example is needed before running it.
+
+EXPLAIN
+Fit two sklearn LinearRegression models on the same training records: base features [load_pct, ambient_c] and extended features adding load_pct*ambient_c.
+
+Evaluate both on the same validation records.
+
+Return base_mae, extended_mae and improvement=base_mae-extended_mae, without rounding.
+
+Inputs are complete; never fit on validation targets.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 ablation_metrics(training_records, validation_records)
 
@@ -814,8 +1249,30 @@ State when each input becomes available, write its unit, then compare the same r
 NEXT
 Written evidence. Move on after a learner can explain the current example or required action.
 
-## Slide 32 — Written evidence
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Written evidence.
+
+## Slide 29 — Written evidence
+
+PURPOSE
+Written evidence
+
+CONNECT
+Build on ablation_metrics(training_records, validation_records). Explain why this example is needed before running it.
+
+EXPLAIN
+Use the cell headed “My written evidence”.
+
+Explain the supplied scenario in your own words.
+
+State target units, reasons and limitations.
+
+Submit one complete notebook containing code and written evidence.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Written evidence
 
@@ -840,8 +1297,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Features and ablation submission. Move on after a learner can explain the current example or required action.
 
-## Slide 33 — Features and ablation submission
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Features and ablation submission.
+
+## Slide 30 — Features and ablation submission
+
+PURPOSE
+Features and ablation submission
+
+CONNECT
+Build on Written evidence. Explain why this example is needed before running it.
+
+EXPLAIN
+Opens: 20 Nov 2026, 11:00 Kampala
+
+Deadline: 27 Nov 2026, 11:00 Kampala
+
+Use your full Student Registration Number in the form.
+
+Keep the submitted files and confirmation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Features and ablation submission
 
@@ -866,8 +1345,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Project preparation. Move on after a learner can explain the current example or required action.
 
-## Slide 34 — Project preparation
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Project preparation.
+
+## Slide 31 — Project preparation
+
+PURPOSE
+Project preparation
+
+CONNECT
+Build on Features and ablation submission. Explain why this example is needed before running it.
+
+EXPLAIN
+Use the published machine learning project brief.
+
+Build the evidence gradually in your project notebook.
+
+Keep raw data, labelled charts, run instructions and individual contributions.
+
+Published deadline: 18 Dec 2026, 11:00 Kampala
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Project preparation
 
@@ -892,8 +1393,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Week 11 quiz. Move on after a learner can explain the current example or required action.
 
-## Slide 35 — Week 11 quiz
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 11 quiz.
+
+## Slide 32 — Week 11 quiz
+
+PURPOSE
+Week 11 quiz
+
+CONNECT
+Build on Project preparation. Explain why this example is needed before running it.
+
+EXPLAIN
+Answer individually after the lecturer activates the quiz.
+
+Available for 24 hours from activation.
+
+Use your Student Registration Number and registered account.
+
+The lecturer will confirm the exact closing time.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 11 quiz
 
@@ -909,8 +1432,26 @@ Opening the student link does not activate the quiz. In Quiz Controls run the ma
 NEXT
 Before you leave. Move on after a learner can explain the current example or required action.
 
-## Slide 36 — Before you leave
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Before you leave.
+
+## Slide 33 — Revision and submission checklist
+
+PURPOSE
+Revision and submission checklist
+
+CONNECT
+Build on Week 11 quiz. Explain why this example is needed before running it.
+
+EXPLAIN
+You can state the new feature’s meaning and calculate an improvement correctly.
+
+Save your work and check the required submission files.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Before you leave
 
@@ -929,3 +1470,8 @@ Predicting concrete strength: regression. Predicting pass/fail: classification. 
 IF LEARNERS ARE STUCK
 Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+independent revision and the issued task.

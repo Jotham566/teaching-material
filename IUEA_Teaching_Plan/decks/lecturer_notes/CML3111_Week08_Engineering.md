@@ -1,9 +1,19 @@
 # CML3111 Week08 Engineering
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
 
 ## Slide 1 — A first prediction model
 
+PURPOSE
+A first prediction model
+
+CONNECT
+Build on the preceding week. Explain why this example is needed before running it.
+
+EXPLAIN
+Communications, Electrical, Mechatronics and Robotics Engineering
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A first prediction model
 
@@ -13,8 +23,26 @@ Use PowerPoint Presenter View for these notes. Teach one example, pause for ever
 NEXT
 Today’s learning. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Today’s learning.
+
 ## Slide 2 — Today’s learning
 
+PURPOSE
+Today’s learning
+
+CONNECT
+Build on A first prediction model. Explain why this example is needed before running it.
+
+EXPLAIN
+Identify prediction inputs and a measured target.
+
+Fit a simple model and compare prediction errors.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Today’s learning
 
@@ -36,8 +64,24 @@ Work one order line by hand, then two lines. Name the numerator and denominator 
 NEXT
 Recall and a first attempt. Move on after a learner can explain the current example or required action.
 
-## Slide 3 — Recall and a first attempt
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Connection to the previous lesson.
+
+## Slide 3 — Connection to the previous lesson
+
+PURPOSE
+Connection to the previous lesson
+
+CONNECT
+Build on Today’s learning. Explain why this example is needed before running it.
+
+EXPLAIN
+Weeks 3–6 supplied Python, tables, cleaning and charts. We now use paired inputs and known answers to fit a prediction rule.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Recall and a first attempt
 
@@ -45,7 +89,6 @@ CONNECT
 Build on the preceding slide: Today’s learning.
 
 LECTURER CUE
-Allow two minutes for everyone to try. Ask pairs to compare. If many cannot begin, show the first step and repeat with changed values. Checkpoint for today: Students identify the target, explain why it is absent from prediction inputs and calculate one absolute error.
 
 EXPLAIN IN ORDINARY WORDS
 Name the positive class first. Actual is what happened; predicted is the model decision. Precision asks how many predicted positives were right. Recall asks how many actual positives were found.
@@ -59,8 +102,24 @@ Draw actual/predicted headings. Place one case at a time before calculating a fr
 NEXT
 The engineering context. Move on after a learner can explain the current example or required action.
 
-## Slide 4 — The engineering context
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Why this week’s tools are needed.
+
+## Slide 4 — Why this week’s tools are needed
+
+PURPOSE
+Why this week’s tools are needed
+
+CONNECT
+Build on Connection to the previous lesson. Explain why this example is needed before running it.
+
+EXPLAIN
+A regression model predicts a numerical engineering target from measurements available beforehand. The small invented data explain the code; they do not establish real-world accuracy.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The engineering context
 
@@ -82,8 +141,30 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 A numerical prediction. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A numerical prediction.
+
 ## Slide 5 — A numerical prediction
 
+PURPOSE
+A numerical prediction
+
+CONNECT
+Build on Why this week’s tools are needed. Explain why this example is needed before running it.
+
+EXPLAIN
+Regression predicts a number, such as cooling load in kW.
+
+A feature is information available when predicting.
+
+The target is the measured answer used during training.
+
+Classification, next week, predicts a category.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A numerical prediction
 
@@ -102,8 +183,25 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 6 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Feature and target and Training validation and test.
+
+## Slide 6 — Feature and target and Training validation and test
+
+PURPOSE
+Feature and target and Training validation and test
+
+CONNECT
+Build on A numerical prediction. Explain why this example is needed before running it.
+
+EXPLAIN
+Feature and target: Features are inputs available when making a prediction. The target is the quantity we want to predict.
+Training validation and test: Training fits the model. Validation helps choose it. The final test estimates performance after choices are fixed. Repeated equipment must stay in the same partition when assessing unseen equipment.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -126,8 +224,24 @@ Training validation and test: Training fits the model. Validation helps choose i
 NEXT
 Baseline. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Baseline.
+
 ## Slide 7 — Baseline
 
+PURPOSE
+Baseline
+
+CONNECT
+Build on Feature and target and Training validation and test. Explain why this example is needed before running it.
+
+EXPLAIN
+Baseline: A simple reference prediction. A training-mean baseline predicts the same training mean for every new example.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Baseline
 
@@ -149,8 +263,24 @@ Baseline: A simple reference prediction. A training-mean baseline predicts the s
 NEXT
 Linear model and tree. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Linear model and tree.
+
 ## Slide 8 — Linear model and tree
 
+PURPOSE
+Linear model and tree
+
+CONNECT
+Build on Baseline. Explain why this example is needed before running it.
+
+EXPLAIN
+Linear model and tree: A linear model combines inputs with learned weights. A regression tree asks feature-threshold questions and predicts a value at each leaf.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Linear model and tree
 
@@ -172,8 +302,28 @@ Linear model and tree: A linear model combines inputs with learned weights. A re
 NEXT
 What learning means in this example. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+What learning means in this example.
+
 ## Slide 9 — What learning means in this example
 
+PURPOSE
+What learning means in this example
+
+CONNECT
+Build on Linear model and tree. Explain why this example is needed before running it.
+
+EXPLAIN
+Training supplies inputs and their known answers.
+
+The model uses those examples to choose its internal numbers.
+
+Prediction applies the fitted model to inputs whose answer we want to estimate.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 What learning means in this example
 
@@ -186,8 +336,24 @@ Use the small invented table below solely to see fit and predict. Real training 
 NEXT
 Training observations. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Training observations.
+
 ## Slide 10 — Training observations
 
+PURPOSE
+Training observations
+
+CONNECT
+Build on What learning means in this example. Explain why this example is needed before running it.
+
+EXPLAIN
+Invented numbers for learning.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Training observations
 
@@ -212,8 +378,28 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 A fitted line is a numerical rule. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A fitted line is a numerical rule.
+
 ## Slide 11 — A fitted line is a numerical rule
 
+PURPOSE
+A fitted line is a numerical rule
+
+CONNECT
+Build on Training observations. Explain why this example is needed before running it.
+
+EXPLAIN
+For these invented observations, target = 2 × input + 10 matches all four points. 2 is the slope; 10 is the intercept, the value at input zero.
+
+A prediction error is the difference between a prediction and the measured answer. A vertical gap in the picture shows that error.
+
+Fitting chooses the slope and intercept to minimise summed squared errors. Squaring means multiplying an error by itself; a small training error still needs an unseen-data check.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A fitted line is a numerical rule
 
@@ -232,8 +418,24 @@ Point to inputs, training answers, fit, then new inputs. Keep each input row pai
 NEXT
 Fitting a line to observations. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Fitting a line to observations.
+
 ## Slide 12 — Fitting a line to observations
 
+PURPOSE
+Fitting a line to observations
+
+CONNECT
+Build on A fitted line is a numerical rule. Explain why this example is needed before running it.
+
+EXPLAIN
+The fitted line minimises the sum of squared vertical errors.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Fitting a line to observations
 
@@ -256,8 +458,28 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 Rows must stay paired with their answers. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Rows must stay paired with their answers.
+
 ## Slide 13 — Rows must stay paired with their answers
 
+PURPOSE
+Rows must stay paired with their answers
+
+CONNECT
+Build on Fitting a line to observations. Explain why this example is needed before running it.
+
+EXPLAIN
+Each inner list in X_train is one observation.
+
+y_train contains one target value for each row, in the same order.
+
+Changing the order of only one list attaches answers to the wrong observations.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Rows must stay paired with their answers
 
@@ -279,8 +501,49 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 Rows and arrays before model code. Move on after a learner can explain the current example or required action.
 
-## Slide 14 — Rows and arrays before model code
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A matrix is a rectangular table of numbers.
+
+## Slide 14 — A matrix is a rectangular table of numbers
+
+PURPOSE
+A matrix is a rectangular table of numbers
+
+CONNECT
+Build on Rows must stay paired with their answers. Explain why this example is needed before running it.
+
+EXPLAIN
+A matrix has rows and columns. For modelling, one row is one observation and each column is one input feature.
+
+[[1, 20], [2, 22]] has two rows and two columns. The outer list contains rows; each inner list contains that row’s features.
+
+X is a conventional name for this input table. y holds one known target per row. These names have no special power in Python.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Rows and arrays before model code.
+
+## Slide 15 — Rows and arrays before model code
+
+PURPOSE
+Rows and arrays before model code
+
+CONNECT
+Build on A matrix is a rectangular table of numbers. Explain why this example is needed before running it.
+
+EXPLAIN
+Nested lists: [[1], [2], [3]] has three inner lists: three rows with one feature each. [12, 14, 16] has one target per row in the same order.
+NumPy and array: NumPy is a numerical library; np is its short imported name. np.array(...) builds an array. shape reports its dimensions. np.nan represents a missing numerical value.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Rows and arrays before model code
 
@@ -303,8 +566,24 @@ NumPy and array: NumPy is a numerical library; np is its short imported name. np
 NEXT
 Reading NumPy results. Move on after a learner can explain the current example or required action.
 
-## Slide 15 — Reading NumPy results
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading NumPy results.
+
+## Slide 16 — Reading NumPy results
+
+PURPOSE
+Reading NumPy results
+
+CONNECT
+Build on Rows and arrays before model code. Explain why this example is needed before running it.
+
+EXPLAIN
+Use rounded values only for a labelled display. Keep full precision when the assignment requires it.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reading NumPy results
 
@@ -329,8 +608,24 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 Rows, columns and named options. Move on after a learner can explain the current example or required action.
 
-## Slide 16 — Rows, columns and named options
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Rows, columns and named options.
+
+## Slide 17 — Rows, columns and named options
+
+PURPOSE
+Rows, columns and named options
+
+CONNECT
+Build on Reading NumPy results. Explain why this example is needed before running it.
+
+EXPLAIN
+X has three rows and one feature column. y has three target values.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Rows, columns and named options
 
@@ -358,8 +653,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 fit and predict. Move on after a learner can explain the current example or required action.
 
-## Slide 17 — fit and predict
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+fit and predict.
+
+## Slide 18 — fit and predict
+
+PURPOSE
+fit and predict
+
+CONNECT
+Build on Rows, columns and named options. Explain why this example is needed before running it.
+
+EXPLAIN
+fit and predict: fit learns from training inputs and targets. predict uses the fitted rule on new inputs without receiving their true targets.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 fit and predict
 
@@ -381,8 +692,25 @@ fit and predict: fit learns from training inputs and targets. predict uses the f
 NEXT
 A model object keeps learned information. Move on after a learner can explain the current example or required action.
 
-## Slide 18 — A model object keeps learned information
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A model object keeps learned information.
+
+## Slide 19 — A model object keeps learned information
+
+PURPOSE
+A model object keeps learned information
+
+CONNECT
+Build on fit and predict. Explain why this example is needed before running it.
+
+EXPLAIN
+Object and method: LinearRegression() creates a model object. A method is an operation on that object. model.fit(...) stores learned information; model.predict(...) uses it.
+Options: An argument such as strategy="mean" names an option. A random seed fixes the starting state of random choices; it does not prove that a model is accurate.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A model object keeps learned information
 
@@ -405,8 +733,24 @@ Options: An argument such as strategy="mean" names an option. A random seed fixe
 NEXT
 An object remembers its fitted state. Move on after a learner can explain the current example or required action.
 
-## Slide 19 — An object remembers its fitted state
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+An object remembers its fitted state.
+
+## Slide 20 — An object remembers its fitted state
+
+PURPOSE
+An object remembers its fitted state
+
+CONNECT
+Build on A model object keeps learned information. Explain why this example is needed before running it.
+
+EXPLAIN
+An object holds state and has methods. A method is a function used through that object.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 An object remembers its fitted state
 
@@ -431,8 +775,28 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 Creating, fitting and predicting. Move on after a learner can explain the current example or required action.
 
-## Slide 20 — Creating, fitting and predicting
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Creating, fitting and predicting.
+
+## Slide 21 — Creating, fitting and predicting
+
+PURPOSE
+Creating, fitting and predicting
+
+CONNECT
+Build on An object remembers its fitted state. Explain why this example is needed before running it.
+
+EXPLAIN
+LinearRegression() creates a model that has not learned yet.
+
+fit(X_train, y_train) learns from paired training examples.
+
+predict(new_inputs) returns estimates. The actual targets are absent from new_inputs.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Creating, fitting and predicting
 
@@ -454,8 +818,48 @@ Point to inputs, training answers, fit, then new inputs. Keep each input row pai
 NEXT
 Worked example. Move on after a learner can explain the current example or required action.
 
-## Slide 21 — Worked example
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Where the modelling tools come from.
+
+## Slide 22 — Where the modelling tools come from
+
+PURPOSE
+Where the modelling tools come from
+
+CONNECT
+Build on Creating, fitting and predicting. Explain why this example is needed before running it.
+
+EXPLAIN
+scikit-learn is an installed machine-learning library. Its Python import name is sklearn. linear_model is the part containing LinearRegression.
+
+from sklearn.linear_model import LinearRegression makes that model class available. LinearRegression() creates an individual model object.
+
+In Colab this library is normally available. If an import fails, use the course setup instructions and retry the import before running model code.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Worked example.
+
+## Slide 23 — Regression models and errors in Python
+
+PURPOSE
+Regression models and errors in Python
+
+CONNECT
+Build on Where the modelling tools come from. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Worked example
 
@@ -489,8 +893,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Worked example continued. Move on after a learner can explain the current example or required action.
 
-## Slide 22 — Worked example continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Worked example continued.
+
+## Slide 24 — Regression models and errors in Python continued
+
+PURPOSE
+Regression models and errors in Python continued
+
+CONNECT
+Build on Regression models and errors in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Worked example continued
 
@@ -521,8 +941,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Worked example continued. Move on after a learner can explain the current example or required action.
 
-## Slide 23 — Worked example continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Worked example continued.
+
+## Slide 25 — Regression models and errors in Python continued
+
+PURPOSE
+Regression models and errors in Python continued
+
+CONNECT
+Build on Regression models and errors in Python continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Worked example continued
 
@@ -554,8 +990,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Expected output. Move on after a learner can explain the current example or required action.
 
-## Slide 24 — Expected output
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Expected output.
+
+## Slide 26 — Regression models and errors results
+
+PURPOSE
+Regression models and errors results
+
+CONNECT
+Build on Regression models and errors in Python continued. Explain why this example is needed before running it.
+
+EXPLAIN
+[15.0]
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Expected output
 
@@ -568,8 +1020,28 @@ Compare the actual output character by character with this practice result. If i
 NEXT
 The mean baseline. Move on after a learner can explain the current example or required action.
 
-## Slide 25 — The mean baseline
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+The mean baseline.
+
+## Slide 27 — The mean baseline
+
+PURPOSE
+The mean baseline
+
+CONNECT
+Build on Regression models and errors results. Explain why this example is needed before running it.
+
+EXPLAIN
+Use the same training data.
+
+This baseline learns their mean, 15, and predicts it for every input.
+
+It gives a simple comparison before claiming the line helps.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The mean baseline
 
@@ -591,8 +1063,24 @@ Use training targets 2,4,6: the mean baseline predicts 4 for every new row, what
 NEXT
 The mean baseline in Python. Move on after a learner can explain the current example or required action.
 
-## Slide 26 — The mean baseline in Python
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+The mean baseline in Python.
+
+## Slide 28 — The mean baseline in Python
+
+PURPOSE
+The mean baseline in Python
+
+CONNECT
+Build on The mean baseline. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The mean baseline in Python
 
@@ -626,8 +1114,28 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 A small regression tree. Move on after a learner can explain the current example or required action.
 
-## Slide 27 — A small regression tree
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A small regression tree.
+
+## Slide 29 — A small regression tree
+
+PURPOSE
+A small regression tree
+
+CONNECT
+Build on The mean baseline in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+A tree learns threshold questions from the training inputs.
+
+Each final group, or leaf, predicts a target value.
+
+This tree returns 14 for input 2.5 in this toy example. max_depth limits the number of successive decisions. random_state fixes the random seed.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A small regression tree
 
@@ -649,8 +1157,24 @@ Point to inputs, training answers, fit, then new inputs. Keep each input row pai
 NEXT
 A small regression tree in Python. Move on after a learner can explain the current example or required action.
 
-## Slide 28 — A small regression tree in Python
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A small regression tree in Python.
+
+## Slide 30 — A small regression tree in Python
+
+PURPOSE
+A small regression tree in Python
+
+CONNECT
+Build on A small regression tree. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A small regression tree in Python
 
@@ -684,8 +1208,25 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Reuse the same preparation on new inputs. Move on after a learner can explain the current example or required action.
 
-## Slide 29 — Reuse the same preparation on new inputs
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reuse the same preparation on new inputs.
+
+## Slide 31 — Reuse the same preparation on new inputs
+
+PURPOSE
+Reuse the same preparation on new inputs
+
+CONNECT
+Build on A small regression tree in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+Imputer: An imputer fills missing feature values using a stated rule. Fit learns the replacement from training observations only. Prediction reuses that stored replacement.
+Pipeline: A pipeline connects preprocessing and a model. make_pipeline creates that connection. Its fit learns both stages on training data; predict applies them to new features.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reuse the same preparation on new inputs
 
@@ -708,8 +1249,28 @@ Pipeline: A pipeline connects preprocessing and a model. make_pipeline creates t
 NEXT
 Preprocessing learned from training only. Move on after a learner can explain the current example or required action.
 
-## Slide 30 — Preprocessing learned from training only
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Preprocessing learned from training only.
+
+## Slide 32 — Preprocessing learned from training only
+
+PURPOSE
+Preprocessing learned from training only
+
+CONNECT
+Build on Reuse the same preparation on new inputs. Explain why this example is needed before running it.
+
+EXPLAIN
+SimpleImputer learns one median for each training column. make_pipeline connects this step to the model. fit learns both steps using only the training examples. predict reuses them on new inputs.
+
+No target is supplied to predict.
+
+The two inputs here are invented practice measurements.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preprocessing learned from training only
 
@@ -731,8 +1292,24 @@ Use three envelopes. Keep the final-test envelope closed while selecting feature
 NEXT
 Preprocessing learned from training only in Python (1/2). Move on after a learner can explain the current example or required action.
 
-## Slide 31 — Preprocessing learned from training only in Python (1/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Preprocessing learned from training only in Python (1/2).
+
+## Slide 33 — Preprocessing learned from training only in Python (1/2)
+
+PURPOSE
+Preprocessing learned from training only in Python (1/2)
+
+CONNECT
+Build on Preprocessing learned from training only. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preprocessing learned from training only in Python (1/2)
 
@@ -773,8 +1350,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Preprocessing learned from training only in Python (2/2). Move on after a learner can explain the current example or required action.
 
-## Slide 32 — Preprocessing learned from training only in Python (2/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Preprocessing learned from training only in Python (2/2).
+
+## Slide 34 — Preprocessing learned from training only in Python (2/2)
+
+PURPOSE
+Preprocessing learned from training only in Python (2/2)
+
+CONNECT
+Build on Preprocessing learned from training only in Python (1/2). Explain why this example is needed before running it.
+
+EXPLAIN
+Continue the SAME cell; keep indentation. Run after all parts are entered.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preprocessing learned from training only in Python (2/2)
 
@@ -815,8 +1408,28 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Reading records into a feature table. Move on after a learner can explain the current example or required action.
 
-## Slide 33 — Reading records into a feature table
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading records into a feature table.
+
+## Slide 35 — Reading records into a feature table
+
+PURPOSE
+Reading records into a feature table
+
+CONNECT
+Build on Preprocessing learned from training only in Python (2/2). Explain why this example is needed before running it.
+
+EXPLAIN
+Each inner list is one row, in the same order as the input records.
+
+The target list uses that same row order.
+
+The feature table has no answer column.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reading records into a feature table
 
@@ -838,8 +1451,24 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 Reading records into a feature table in Python. Move on after a learner can explain the current example or required action.
 
-## Slide 34 — Reading records into a feature table in Python
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading records into a feature table in Python.
+
+## Slide 36 — Reading records into a feature table in Python
+
+PURPOSE
+Reading records into a feature table in Python
+
+CONNECT
+Build on Reading records into a feature table. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reading records into a feature table in Python
 
@@ -878,8 +1507,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 MAE and RMSE. Move on after a learner can explain the current example or required action.
 
-## Slide 35 — MAE and RMSE
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+MAE and RMSE.
+
+## Slide 37 — MAE and RMSE
+
+PURPOSE
+MAE and RMSE
+
+CONNECT
+Build on Reading records into a feature table in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+MAE and RMSE: MAE averages absolute prediction errors. RMSE squares errors, averages them and takes the square root. Both use target units. RMSE is more sensitive to large errors.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 MAE and RMSE
 
@@ -901,8 +1546,24 @@ MAE and RMSE: MAE averages absolute prediction errors. RMSE squares errors, aver
 NEXT
 A prediction error in ordinary numbers. Move on after a learner can explain the current example or required action.
 
-## Slide 36 — A prediction error in ordinary numbers
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A prediction error in ordinary numbers.
+
+## Slide 38 — A prediction error in ordinary numbers
+
+PURPOSE
+A prediction error in ordinary numbers
+
+CONNECT
+Build on MAE and RMSE. Explain why this example is needed before running it.
+
+EXPLAIN
+MAE = (2 + 4) / 2 = 3, in the target’s unit. Compare a model against a training-only baseline.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A prediction error in ordinary numbers
 
@@ -927,8 +1588,25 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 The operations in the error calculation. Move on after a learner can explain the current example or required action.
 
-## Slide 37 — The operations in the error calculation
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+The operations in the error calculation.
+
+## Slide 39 — The operations in the error calculation
+
+PURPOSE
+The operations in the error calculation
+
+CONNECT
+Build on A prediction error in ordinary numbers. Explain why this example is needed before running it.
+
+EXPLAIN
+zip and paired names: zip(actual, predicted) pairs values at matching positions. for truth, guess in ... assigns each pair to two names. Here both lists must have the same nonzero length.
+Square and square root: difference ** 2 squares an error. sqrt reverses a square for nonnegative numbers: sqrt(9) is 3. from math import sqrt makes this tool available.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The operations in the error calculation
 
@@ -951,8 +1629,28 @@ Square and square root: difference ** 2 squares an error. sqrt reverses a square
 NEXT
 Two error measures. Move on after a learner can explain the current example or required action.
 
-## Slide 38 — Two error measures
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Two error measures.
+
+## Slide 40 — Two error measures
+
+PURPOSE
+Two error measures
+
+CONNECT
+Build on The operations in the error calculation. Explain why this example is needed before running it.
+
+EXPLAIN
+zip pairs corresponding values. abs measures error size.
+
+Squaring emphasises large errors; taking the square root returns to the original unit.
+
+These functions assume equal-length, nonempty paired observations.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Two error measures
 
@@ -974,8 +1672,24 @@ Calculate one pair by hand first. For signed percentage error follow the precise
 NEXT
 Two error measures in Python (1/2). Move on after a learner can explain the current example or required action.
 
-## Slide 39 — Two error measures in Python (1/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Two error measures in Python (1/2).
+
+## Slide 41 — Two error measures in Python (1/2)
+
+PURPOSE
+Two error measures in Python (1/2)
+
+CONNECT
+Build on Two error measures. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Two error measures in Python (1/2)
 
@@ -1016,8 +1730,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Two error measures in Python (2/2). Move on after a learner can explain the current example or required action.
 
-## Slide 40 — Two error measures in Python (2/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Two error measures in Python (2/2).
+
+## Slide 42 — Two error measures in Python (2/2)
+
+PURPOSE
+Two error measures in Python (2/2)
+
+CONNECT
+Build on Two error measures in Python (1/2). Explain why this example is needed before running it.
+
+EXPLAIN
+Continue the SAME cell; keep indentation. Run after all parts are entered.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Two error measures in Python (2/2)
 
@@ -1056,8 +1786,28 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 R² compares against a mean prediction. Move on after a learner can explain the current example or required action.
 
-## Slide 41 — R² compares against a mean prediction
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+R² compares against a mean prediction.
+
+## Slide 43 — R² compares against a mean prediction
+
+PURPOSE
+R² compares against a mean prediction
+
+CONNECT
+Build on Two error measures in Python (2/2). Explain why this example is needed before running it.
+
+EXPLAIN
+R² compares squared errors with predicting the mean of the evaluated targets. It is a score, not “percentage accuracy”.
+
+1 means perfect predictions on those observations. 0 matches that mean-prediction reference; a negative score can be worse.
+
+Use the same evaluation observations and report the specified error metric with its units. Constant targets need special handling; this score alone does not prove usefulness.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 R² compares against a mean prediction
 
@@ -1076,46 +1826,26 @@ Compare errors against a mean predictor on the same evaluation rows. MAE remains
 NEXT
 You are a prediction rule. Move on after a learner can explain the current example or required action.
 
-## Slide 42 — You are a prediction rule
-
-TEACHING PURPOSE
-You are a prediction rule
-
-CONNECT
-Build on the preceding slide: R² compares against a mean prediction.
-
-LECTURER CUE
-Do this before revealing the discussion slide. One learner moves or writes the items, the other checks. Swap roles. Every student explains one step. Expected: Prediction is 16. The absolute error is 2 target units. A single result does not show that the model is useful in general.
-Wait for an individual prediction before inviting pair discussion. Give a first-step hint if needed.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-What the activity shows. Move on after a learner can explain the current example or required action.
+Revision example and answer.
 
-## Slide 43 — What the activity shows
+## Slide 44 — Revision example and answer
 
-TEACHING PURPOSE
-What the activity shows
+PURPOSE
+Revision example and answer
 
 CONNECT
-Build on the preceding slide: You are a prediction rule.
+Build on R² compares against a mean prediction. Explain why this example is needed before running it.
 
-LECTURER CUE
-Ask which step produced this answer. Return to the concrete action if a learner cannot explain it. This is practice feedback, never a quiz key.
+EXPLAIN
+Example: On paper compare actual [10, 20] with predictions [12, 16]. Find MAE and RMSE. Is MAE a plus/minus guarantee for each prediction?
 
-EXPLAIN IN ORDINARY WORDS
-Read each quantity and unit before using a formula. Python calculates numbers but does not enforce physical units. Parentheses specify which operation happens first.
+Answer: Absolute errors are 2 and 4: MAE 3. Squared errors 4 and 16: RMSE sqrt(10), about 3.162. MAE is an average, not an individual error bound.
 
-CHECK AND EXPECTED ANSWER
-What is 5 m times 3 m? 15 square metres. What is 7/2 in Python? 3.5; 7//2 is 3.
-
-IF LEARNERS ARE STUCK
-Write the formula and units on paper, substitute small values, then translate it to Python. Check zero denominators and the issued sign convention.
-
-NEXT
-Your turn. Move on after a learner can explain the current example or required action.
-
-## Slide 44 — Your turn
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Your turn
 
@@ -1145,73 +1875,30 @@ Let learners attempt first; use this to explain the reasoning, not just reveal t
 NEXT
 Practice discussion. Move on after a learner can explain the current example or required action.
 
-## Slide 45 — Practice discussion
-
-TEACHING PURPOSE
-Practice discussion
-
-CONNECT
-Build on the preceding slide: Your turn.
-
-LECTURER CUE
-Ask how the result was obtained. Reteach the smallest missing step instead of giving a longer lecture.
-
-EXPLAIN IN ORDINARY WORDS
-An error compares prediction with measured truth. Absolute error ignores direction. MAE averages absolute errors; RMSE squares, averages, then takes a square root. Both use the target unit.
-
-CHECK AND EXPECTED ANSWER
-Actual [4,8], predicted [5,6]: prediction-minus-actual errors [1,-2], MAE=1.5, RMSE=sqrt(2.5), about 1.58.
-
-IF LEARNERS ARE STUCK
-Calculate one pair by hand first. For signed percentage error follow the precise sign convention in the issued task.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Short explainer and discussion. Move on after a learner can explain the current example or required action.
+Preparing for the assignment.
 
-## Slide 46 — Short explainer and discussion
+## Slide 45 — Preparing for the assignment
 
-TEACHING PURPOSE
-Short explainer and discussion
-
-CONNECT
-Build on the preceding slide: Practice discussion.
-
-LECTURER CUE
-Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.
-After viewing: Draw an actual value and a prediction, then identify their difference.
-Preview before class and stop after the selected short excerpt. If playback fails, teach the worked example. Video is optional. Source: https://www.youtube.com/watch?v=aFDOzpTeg0s
-
-EXPLAIN IN ORDINARY WORDS
-Creating a model chooses the kind of rule. fit learns from training inputs and known answers. predict applies the fitted rule to new inputs without receiving their answers.
-
-CHECK AND EXPECTED ANSWER
-Does creating a model object train it? No. It must be fitted before prediction.
-
-IF LEARNERS ARE STUCK
-Point to inputs, training answers, fit, then new inputs. Keep each input row paired with its own target.
-
-VIDEO ROUTINE
-Preview the exact link and stated excerpt before class. State the viewing question first, pause after the example, and ask a learner to explain it. If access fails, use the adjacent worked example and discussion rather than spend class time troubleshooting streaming.
-
-NEXT
-After the video. Move on after a learner can explain the current example or required action.
-
-## Slide 47 — After the video
-
-TEACHING PURPOSE
-After the video
+PURPOSE
+Preparing for the assignment
 
 CONNECT
-Build on the preceding slide: Short explainer and discussion.
+Build on Revision example and answer. Explain why this example is needed before running it.
 
-DELIVER THIS SLIDE
-Read the stated purpose, then point to the named example or action on the slide. Ask learners to describe what they will do before moving on. For a break slide, announce the return time; for a section divider, name the next concrete task.
+EXPLAIN
+W08 asks for baseline, linear and depth-4 tree prediction lists plus error metrics.
 
-NEXT
-Preparing for the assignment. Move on after a learner can explain the current example or required action.
+Fit missing-value replacement on training data.
 
-## Slide 48 — Preparing for the assignment
+A Pipeline joins preprocessing to the model.
 
+Only load_pct and ambient_c are predictors.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparing for the assignment
 
@@ -1236,8 +1923,28 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Preparing for the assignment continued. Move on after a learner can explain the current example or required action.
 
-## Slide 49 — Preparing for the assignment continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Preparing for the assignment continued.
+
+## Slide 46 — Preparing for the assignment continued
+
+PURPOSE
+Preparing for the assignment continued
+
+CONNECT
+Build on Preparing for the assignment. Explain why this example is needed before running it.
+
+EXPLAIN
+Keep observations from the same equipment in one partition.
+
+The written comparison supplies scenario values.
+
+Distinguish them from your own measured results.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparing for the assignment continued
 
@@ -1262,8 +1969,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Reading model outputs. Move on after a learner can explain the current example or required action.
 
-## Slide 50 — Reading model outputs
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading model outputs.
+
+## Slide 47 — Reading model outputs
+
+PURPOSE
+Reading model outputs
+
+CONNECT
+Build on Preparing for the assignment continued. Explain why this example is needed before running it.
+
+EXPLAIN
+A score on training rows describes training fit.
+
+A feature table must preserve the training column names, order and units during prediction.
+
+A one-dimensional list may have the wrong shape for a model expecting rows and columns.
+
+A predicted-versus-actual plot uses the diagonal as perfect agreement; a pattern is not proof of causation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reading model outputs
 
@@ -1285,8 +2014,26 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 Reading model outputs continued. Move on after a learner can explain the current example or required action.
 
-## Slide 51 — Reading model outputs continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading model outputs continued.
+
+## Slide 48 — Reading model outputs continued
+
+PURPOSE
+Reading model outputs continued
+
+CONNECT
+Build on Reading model outputs. Explain why this example is needed before running it.
+
+EXPLAIN
+Judge MAE against the baseline and the decision’s acceptable error.
+
+R² is not an accuracy percentage.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reading model outputs continued
 
@@ -1308,8 +2055,30 @@ Calculate one pair by hand first. For signed percentage error follow the precise
 NEXT
 Your issued task. Move on after a learner can explain the current example or required action.
 
-## Slide 52 — Your issued task
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Your issued task.
+
+## Slide 49 — Your issued task
+
+PURPOSE
+Your issued task
+
+CONNECT
+Build on Reading model outputs continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Investigate motor winding temperature.
+
+Target units: deg C.
+
+These are synthetic teaching records, not measurements suitable for deployment.
+
+Each record is one operating observation; equipment_id repeats across observations.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Your issued task
 
@@ -1334,8 +2103,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 predict_regression(training_records, feature_records). Move on after a learner can explain the current example or required action.
 
-## Slide 53 — predict_regression(training_records, feature_records)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+predict_regression(training_records, feature_records).
+
+## Slide 50 — predict_regression(training_records, feature_records)
+
+PURPOSE
+predict_regression(training_records, feature_records)
+
+CONNECT
+Build on Your issued task. Explain why this example is needed before running it.
+
+EXPLAIN
+Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only.
+
+Return three prediction lists under baseline, linear and tree.
+
+Feature records have no target.
+
+Fit preprocessing only on training data.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 predict_regression(training_records, feature_records)
 
@@ -1357,8 +2148,24 @@ Describe the engineering decision in everyday language, then label one row, an i
 NEXT
 regression_errors(actual, predicted). Move on after a learner can explain the current example or required action.
 
-## Slide 54 — regression_errors(actual, predicted)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+regression_errors(actual, predicted).
+
+## Slide 51 — regression_errors(actual, predicted)
+
+PURPOSE
+regression_errors(actual, predicted)
+
+CONNECT
+Build on predict_regression(training_records, feature_records). Explain why this example is needed before running it.
+
+EXPLAIN
+Return mae and rmse, calculated over the same paired observations, with full precision.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 regression_errors(actual, predicted)
 
@@ -1380,8 +2187,30 @@ Calculate one pair by hand first. For signed percentage error follow the precise
 NEXT
 Written evidence. Move on after a learner can explain the current example or required action.
 
-## Slide 55 — Written evidence
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Written evidence.
+
+## Slide 52 — Written evidence
+
+PURPOSE
+Written evidence
+
+CONNECT
+Build on regression_errors(actual, predicted). Explain why this example is needed before running it.
+
+EXPLAIN
+Use the cell headed “My written evidence”.
+
+Explain the supplied scenario in your own words.
+
+State target units, reasons and limitations.
+
+Submit one complete notebook containing code and written evidence.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Written evidence
 
@@ -1406,8 +2235,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Regression and baseline submission. Move on after a learner can explain the current example or required action.
 
-## Slide 56 — Regression and baseline submission
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Regression and baseline submission.
+
+## Slide 53 — Regression and baseline submission
+
+PURPOSE
+Regression and baseline submission
+
+CONNECT
+Build on Written evidence. Explain why this example is needed before running it.
+
+EXPLAIN
+Opens: 30 Oct 2026, 11:00 Kampala
+
+Deadline: 06 Nov 2026, 11:00 Kampala
+
+Use your full Student Registration Number in the form.
+
+Keep the submitted files and confirmation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Regression and baseline submission
 
@@ -1432,8 +2283,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Data analysis project. Move on after a learner can explain the current example or required action.
 
-## Slide 57 — Data analysis project
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data analysis project.
+
+## Slide 54 — Data analysis project
+
+PURPOSE
+Data analysis project
+
+CONNECT
+Build on Regression and baseline submission. Explain why this example is needed before running it.
+
+EXPLAIN
+Write your own explanation in the markdown cell headed `## My written evidence`.
+
+Keep that heading.
+
+Task prompts and code comments are excluded from reasoning marks.
+
+Complete every original rubric criterion below, not just the checked functions.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data analysis project
 
@@ -1462,8 +2335,30 @@ For the DA_PROJECT or ML_PROJECT, submit the completed project .ipynb together w
 NEXT
 Data analysis project continued. Move on after a learner can explain the current example or required action.
 
-## Slide 58 — Data analysis project continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data analysis project continued.
+
+## Slide 55 — Data analysis project continued
+
+PURPOSE
+Data analysis project continued
+
+CONNECT
+Build on Data analysis project. Explain why this example is needed before running it.
+
+EXPLAIN
+Include profiling, justified cleaning, question-led charts and your engineering recommendation where required.
+
+Keep raw data.
+
+State units and distinguish correlation from causation.
+
+Charts must be actual labelled figures in the notebook, not claims that charts exist.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data analysis project continued
 
@@ -1492,8 +2387,30 @@ For the DA_PROJECT or ML_PROJECT, submit the completed project .ipynb together w
 NEXT
 Data analysis project continued. Move on after a learner can explain the current example or required action.
 
-## Slide 59 — Data analysis project continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data analysis project continued.
+
+## Slide 56 — Data analysis project continued
+
+PURPOSE
+Data analysis project continued
+
+CONNECT
+Build on Data analysis project continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Include captions and a separate readable DOCX/PDF report.
+
+Question & dataset fit (20.0 total): A real engineering question is stated, and the chosen dataset can actually answer it.
+
+Provenance and licence stated.
+
+Data quality work (25.0 total): Defects found and handled with written justification.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data analysis project continued
 
@@ -1522,8 +2439,30 @@ For the DA_PROJECT or ML_PROJECT, submit the completed project .ipynb together w
 NEXT
 Data analysis project continued. Move on after a learner can explain the current example or required action.
 
-## Slide 60 — Data analysis project continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data analysis project continued.
+
+## Slide 57 — Data analysis project continued
+
+PURPOSE
+Data analysis project continued
+
+CONNECT
+Build on Data analysis project continued. Explain why this example is needed before running it.
+
+EXPLAIN
+A data quality statement is present.
+
+Analysis & visualisation (30.0 total): Four or more charts, each answering a stated question.
+
+Correct chart types, labelled axes, findings in the captions.
+
+Findings & interpretation (20.0 total): Conclusions supported by the analysis, stated in engineering terms, with limitations acknowledged.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data analysis project continued
 
@@ -1552,8 +2491,24 @@ For the DA_PROJECT or ML_PROJECT, submit the completed project .ipynb together w
 NEXT
 Data analysis project continued. Move on after a learner can explain the current example or required action.
 
-## Slide 61 — Data analysis project continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data analysis project continued.
+
+## Slide 58 — Data analysis project continued
+
+PURPOSE
+Data analysis project continued
+
+CONNECT
+Build on Data analysis project continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Individual contribution log (5.0 total): Present, specific, and consistent with the repository's commit history.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data analysis project continued
 
@@ -1571,7 +2526,6 @@ CHECK AND EXPECTED ANSWER
 Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
 
 IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
 
 ASSIGNMENT HANDOVER
 Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
@@ -1582,8 +2536,30 @@ For the DA_PROJECT or ML_PROJECT, submit the completed project .ipynb together w
 NEXT
 Data analysis project submission. Move on after a learner can explain the current example or required action.
 
-## Slide 62 — Data analysis project submission
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data analysis project submission.
+
+## Slide 59 — Data analysis project submission
+
+PURPOSE
+Data analysis project submission
+
+CONNECT
+Build on Data analysis project continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Opens: 09 Oct 2026, 11:00 Kampala
+
+Deadline: 30 Oct 2026, 11:00 Kampala
+
+Use your full Student Registration Number in the form.
+
+Keep the submitted files and confirmation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data analysis project submission
 
@@ -1602,8 +2578,30 @@ For the DA_PROJECT or ML_PROJECT, submit the completed project .ipynb together w
 NEXT
 Week 8 quiz. Move on after a learner can explain the current example or required action.
 
-## Slide 63 — Week 8 quiz
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 8 quiz.
+
+## Slide 60 — Week 8 quiz
+
+PURPOSE
+Week 8 quiz
+
+CONNECT
+Build on Data analysis project submission. Explain why this example is needed before running it.
+
+EXPLAIN
+Answer individually after the lecturer activates the quiz.
+
+Available for 24 hours from activation.
+
+Use your Student Registration Number and registered account.
+
+The lecturer will confirm the exact closing time.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 8 quiz
 
@@ -1619,8 +2617,26 @@ Opening the student link does not activate the quiz. In Quiz Controls run the ma
 NEXT
 Before you leave. Move on after a learner can explain the current example or required action.
 
-## Slide 64 — Before you leave
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Before you leave.
+
+## Slide 61 — Revision and submission checklist
+
+PURPOSE
+Revision and submission checklist
+
+CONNECT
+Build on Week 8 quiz. Explain why this example is needed before running it.
+
+EXPLAIN
+You can calculate one error and explain why evaluation needs unseen observations.
+
+Save your work and check the required submission files.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Before you leave
 
@@ -1639,3 +2655,59 @@ Does a difference between two groups prove one caused the other? No. Other diffe
 IF LEARNERS ARE STUCK
 Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Optional revision video.
+
+## Slide 62 — Optional revision video
+
+PURPOSE
+Optional revision video
+
+CONNECT
+Build on Revision and submission checklist. Explain why this example is needed before running it.
+
+EXPLAIN
+For revision after class.
+
+StatQuest with Josh Starmer
+The Essence of Linear Regression!!!
+
+Opening up to 04:00, optional preview-selected excerpt
+
+Listening question: How can a fitted line turn an input into a numerical prediction?
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Short explainer and discussion
+
+CONNECT
+Build on the preceding slide: Practice discussion.
+
+LECTURER CUE
+Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.
+After viewing: Draw an actual value and a prediction, then identify their difference.
+Preview before class and stop after the selected short excerpt. If playback fails, teach the worked example. Video is optional. Source: https://www.youtube.com/watch?v=aFDOzpTeg0s
+
+EXPLAIN IN ORDINARY WORDS
+Creating a model chooses the kind of rule. fit learns from training inputs and known answers. predict applies the fitted rule to new inputs without receiving their answers.
+
+CHECK AND EXPECTED ANSWER
+Does creating a model object train it? No. It must be fitted before prediction.
+
+IF LEARNERS ARE STUCK
+Point to inputs, training answers, fit, then new inputs. Keep each input row paired with its own target.
+
+VIDEO ROUTINE
+Preview the exact link and stated excerpt before class. State the viewing question first, pause after the example, and ask a learner to explain it. If access fails, use the adjacent worked example and discussion rather than spend class time troubleshooting streaming.
+
+NEXT
+After the video. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+independent revision and the issued task.

@@ -1,9 +1,19 @@
 # CML3112 Week14 Design Infrastructure
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
 
 ## Slide 1 — Preparing for Practical Test 2
 
+PURPOSE
+Preparing for Practical Test 2
+
+CONNECT
+Build on the preceding week. Explain why this example is needed before running it.
+
+EXPLAIN
+Civil Engineering and Architecture
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparing for Practical Test 2
 
@@ -16,8 +26,26 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Today’s learning. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Today’s learning.
+
 ## Slide 2 — Today’s learning
 
+PURPOSE
+Today’s learning
+
+CONNECT
+Build on Preparing for Practical Test 2. Explain why this example is needed before running it.
+
+EXPLAIN
+Rehearse previously taught modelling decisions.
+
+Practise saving the complete test notebook offline.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Today’s learning
 
@@ -42,8 +70,24 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Recall and a first attempt. Move on after a learner can explain the current example or required action.
 
-## Slide 3 — Recall and a first attempt
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Connection to the previous lesson.
+
+## Slide 3 — Connection to the previous lesson
+
+PURPOSE
+Connection to the previous lesson
+
+CONNECT
+Build on Today’s learning. Explain why this example is needed before running it.
+
+EXPLAIN
+Can you name the target, fit only on training records and explain how you would keep the test untouched?
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Recall and a first attempt
 
@@ -68,8 +112,28 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Preparation happens before the test. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Preparation happens before the test.
+
 ## Slide 4 — Preparation happens before the test
 
+PURPOSE
+Preparation happens before the test
+
+CONNECT
+Build on Connection to the previous lesson. Explain why this example is needed before running it.
+
+EXPLAIN
+Practise the already taught error calculations and data-splitting rules.
+
+Use separate practice values.
+
+The timed session follows the issued test instructions.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparation happens before the test
 
@@ -94,8 +158,28 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Rehearse the offline save procedure. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Rehearse the offline save procedure.
+
 ## Slide 5 — Rehearse the offline save procedure
 
+PURPOSE
+Rehearse the offline save procedure
+
+CONNECT
+Build on Preparation happens before the test. Explain why this example is needed before running it.
+
+EXPLAIN
+Save your notebook on the prepared lab computer.
+
+Type Part B under My written evidence in the notebook.
+
+Locate and reopen the complete notebook without internet.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Rehearse the offline save procedure
 
@@ -120,8 +204,28 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 A result needs an explanation. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A result needs an explanation.
+
 ## Slide 6 — A result needs an explanation
 
+PURPOSE
+A result needs an explanation
+
+CONNECT
+Build on Rehearse the offline save procedure. Explain why this example is needed before running it.
+
+EXPLAIN
+Name the target and its unit or class.
+
+Explain which data fitted preprocessing and which data evaluated the model.
+
+A high score alone does not establish a useful engineering model.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A result needs an explanation
 
@@ -146,8 +250,24 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practice before test day. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Practice before test day.
+
 ## Slide 7 — Practice before test day
 
+PURPOSE
+Practice before test day
+
+CONNECT
+Build on A result needs an explanation. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practice before test day
 
@@ -178,60 +298,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Rehearsal before Practical Test 2. Move on after a learner can explain the current example or required action.
 
-## Slide 8 — Rehearsal before Practical Test 2
-
-TEACHING PURPOSE
-Rehearsal before Practical Test 2
-
-CONNECT
-Build on the preceding slide: Practice before test day.
-
-LECTURER CUE
-Read the specific public requirement shown on this slide. Explain the input, output and evidence before independent work; do not work the assessed answer for the class.
-
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
-
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-TEST COLLECTION RULE
-This deck is for rehearsal before the timed assessment. Preserve the invigilated timetable and Part A snapshot. During Part B, type answers in the notebook cell headed ## My written evidence without executing code. Collect one complete .ipynb offline; later Google upload only transports the collected work. Do not require internet or AI during the test.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-What the activity shows. Move on after a learner can explain the current example or required action.
+Test session.
 
-## Slide 9 — What the activity shows
+## Slide 8 — Test session
 
-TEACHING PURPOSE
-What the activity shows
+PURPOSE
+Test session
 
 CONNECT
-Build on the preceding slide: Rehearsal before Practical Test 2.
+Build on Practice before test day. Explain why this example is needed before running it.
 
-LECTURER CUE
-Read the specific public requirement shown on this slide. Explain the input, output and evidence before independent work; do not work the assessed answer for the class.
+EXPLAIN
+00–15 minutes: briefing and file check.
 
-EXPLAIN IN ORDINARY WORDS
-An error compares prediction with measured truth. Absolute error ignores direction. MAE averages absolute errors; RMSE squares, averages, then takes a square root. Both use the target unit.
+15–135 minutes: individual practical work.
 
-CHECK AND EXPECTED ANSWER
-Actual [4,8], predicted [5,6]: prediction-minus-actual errors [1,-2], MAE=1.5, RMSE=sqrt(2.5), about 1.58.
+135–160 minutes: typed offline reasoning, with code execution prohibited.
 
-IF LEARNERS ARE STUCK
-Calculate one pair by hand first. For signed percentage error follow the precise sign convention in the issued task.
+160–180 minutes: save and hand in through invigilated offline collection.
 
-TEST COLLECTION RULE
-This deck is for rehearsal before the timed assessment. Preserve the invigilated timetable and Part A snapshot. During Part B, type answers in the notebook cell headed ## My written evidence without executing code. Collect one complete .ipynb offline; later Google upload only transports the collected work. Do not require internet or AI during the test.
-
-NEXT
-Test session. Move on after a learner can explain the current example or required action.
-
-## Slide 10 — Test session
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Test session
 
@@ -259,8 +349,24 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Preparation checkpoint. Move on after a learner can explain the current example or required action.
 
-## Slide 11 — Preparation checkpoint
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Preparation checkpoint.
+
+## Slide 9 — Preparation checkpoint
+
+PURPOSE
+Preparation checkpoint
+
+CONNECT
+Build on Test session. Explain why this example is needed before running it.
+
+EXPLAIN
+Each learner can save and reopen the complete notebook in the offline setting.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparation checkpoint
 
@@ -276,8 +382,26 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Your evidence. Move on after a learner can explain the current example or required action.
 
-## Slide 12 — Your evidence
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Your evidence.
+
+## Slide 10 — Your evidence
+
+PURPOSE
+Your evidence
+
+CONNECT
+Build on Preparation checkpoint. Explain why this example is needed before running it.
+
+EXPLAIN
+Use TEST2’s official brief, interfaces, time allocation, permitted resources and packet requirements.
+
+Follow the test instructions issued by your lecturer.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Your evidence
 
@@ -305,8 +429,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2. Move on after a learner can explain the current example or required action.
 
-## Slide 13 — Practical Test 2
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Practical Test 2.
+
+## Slide 11 — Practical Test 2
+
+PURPOSE
+Practical Test 2
+
+CONNECT
+Build on Your evidence. Explain why this example is needed before running it.
+
+EXPLAIN
+Write your own explanation in the markdown cell headed `## My written evidence`.
+
+Keep that heading.
+
+Task prompts and code comments are excluded from reasoning marks.
+
+Complete every original rubric criterion below, not just the checked functions.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2
 
@@ -331,8 +477,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2 continued. Move on after a learner can explain the current example or required action.
 
-## Slide 14 — Practical Test 2 continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Practical Test 2 continued.
+
+## Slide 12 — Practical Test 2 continued
+
+PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on Practical Test 2. Explain why this example is needed before running it.
+
+EXPLAIN
+Include profiling, justified cleaning, question-led charts and your engineering recommendation where required.
+
+Keep raw data.
+
+State units and distinguish correlation from causation.
+
+Charts must be actual labelled figures in the notebook, not claims that charts exist.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2 continued
 
@@ -357,60 +525,126 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2 continued. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Practical Test 2 continued.
+
+## Slide 13 — Practical Test 2 continued
+
+PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Include captions and readable written evidence in the notebook.
+
+Task framing (10.0 total): The ML task is correctly identified, the target named, and regression vs classification correctly chosen and justified.
+
+Data preparation & leakage control (20.0 total): Cleaning and encoding appropriate.
+
+Split made before any fitting.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on the preceding slide: Practical Test 2 continued.
+
+LECTURER CUE
+Read the specific public requirement shown on this slide. Explain the input, output and evidence before independent work; do not work the assessed answer for the class.
+
+EXPLAIN IN ORDINARY WORDS
+Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
+
+CHECK AND EXPECTED ANSWER
+May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
+
+IF LEARNERS ARE STUCK
+Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
+
+TEST COLLECTION RULE
+This deck is for rehearsal before the timed assessment. Preserve the invigilated timetable and Part A snapshot. During Part B, type answers in the notebook cell headed ## My written evidence without executing code. Collect one complete .ipynb offline; later Google upload only transports the collected work. Do not require internet or AI during the test.
+
+NEXT
+Practical Test 2 continued. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Practical Test 2 continued.
+
+## Slide 14 — Practical Test 2 continued
+
+PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Pipeline used.
+
+No leakage present - a leak found by the marker caps this criterion at zero.
+
+Modelling protocol (20.0 total): At least two models built and compared under identical conditions.
+
+Baseline included.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on the preceding slide: Practical Test 2 continued.
+
+LECTURER CUE
+Read the specific public requirement shown on this slide. Explain the input, output and evidence before independent work; do not work the assessed answer for the class.
+
+EXPLAIN IN ORDINARY WORDS
+Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
+
+CHECK AND EXPECTED ANSWER
+May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
+
+IF LEARNERS ARE STUCK
+Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
+
+TEST COLLECTION RULE
+This deck is for rehearsal before the timed assessment. Preserve the invigilated timetable and Part A snapshot. During Part B, type answers in the notebook cell headed ## My written evidence without executing code. Collect one complete .ipynb offline; later Google upload only transports the collected work. Do not require internet or AI during the test.
+
+NEXT
+Practical Test 2 continued. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Practical Test 2 continued.
+
 ## Slide 15 — Practical Test 2 continued
 
-TEACHING PURPOSE
+PURPOSE
 Practical Test 2 continued
 
 CONNECT
-Build on the preceding slide: Practical Test 2 continued.
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
 
-LECTURER CUE
-Read the specific public requirement shown on this slide. Explain the input, output and evidence before independent work; do not work the assessed answer for the class.
+EXPLAIN
+Hyperparameters handled sensibly.
 
-EXPLAIN IN ORDINARY WORDS
-Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
+Evaluation & metric justification (20.0 total): Correct metrics computed.
 
-CHECK AND EXPECTED ANSWER
-May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
+Metric choice defended against the cost of error.
 
-IF LEARNERS ARE STUCK
-Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
+Cross-validation reported with a spread, not a single number.
 
-TEST COLLECTION RULE
-This deck is for rehearsal before the timed assessment. Preserve the invigilated timetable and Part A snapshot. During Part B, type answers in the notebook cell headed ## My written evidence without executing code. Collect one complete .ipynb offline; later Google upload only transports the collected work. Do not require internet or AI during the test.
-
-NEXT
-Practical Test 2 continued. Move on after a learner can explain the current example or required action.
-
-## Slide 16 — Practical Test 2 continued
-
-TEACHING PURPOSE
-Practical Test 2 continued
-
-CONNECT
-Build on the preceding slide: Practical Test 2 continued.
-
-LECTURER CUE
-Read the specific public requirement shown on this slide. Explain the input, output and evidence before independent work; do not work the assessed answer for the class.
-
-EXPLAIN IN ORDINARY WORDS
-Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
-
-CHECK AND EXPECTED ANSWER
-May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
-
-IF LEARNERS ARE STUCK
-Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
-
-TEST COLLECTION RULE
-This deck is for rehearsal before the timed assessment. Preserve the invigilated timetable and Part A snapshot. During Part B, type answers in the notebook cell headed ## My written evidence without executing code. Collect one complete .ipynb offline; later Google upload only transports the collected work. Do not require internet or AI during the test.
-
-NEXT
-Practical Test 2 continued. Move on after a learner can explain the current example or required action.
-
-## Slide 17 — Practical Test 2 continued
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2 continued
 
@@ -435,8 +669,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2 continued. Move on after a learner can explain the current example or required action.
 
-## Slide 18 — Practical Test 2 continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Practical Test 2 continued.
+
+## Slide 16 — Practical Test 2 continued
+
+PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Engineering interpretation & limits (20.0 total): The result is stated in physical or operational units.
+
+Three genuine limitations given.
+
+A clear position on whether it should be deployed.
+
+Code clarity (10.0 total): Runs top to bottom.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2 continued
 
@@ -461,8 +717,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2 continued. Move on after a learner can explain the current example or required action.
 
-## Slide 19 — Practical Test 2 continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Practical Test 2 continued.
+
+## Slide 17 — Practical Test 2 continued
+
+PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Readable.
+
+Commented where the intent is not obvious.
+
+Execution requirement for c2: Data-preparation credit requires the published leakage-safe split check to pass.
+
+If this check fails, written marks in that criterion are zero; other criteria remain independently scored.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2 continued
 
@@ -487,8 +765,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2 continued. Move on after a learner can explain the current example or required action.
 
-## Slide 20 — Practical Test 2 continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Practical Test 2 continued.
+
+## Slide 18 — Practical Test 2 continued
+
+PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Timing and Part B
+
+15 minutes setup, 120 minutes practical, 25 minutes typed offline reasoning with code execution prohibited, 20 minutes collection.
+
+No internet, messaging or AI.
+
+Answer: Why your main cleaning/model choice?
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2 continued
 
@@ -513,8 +813,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2 continued. Move on after a learner can explain the current example or required action.
 
-## Slide 21 — Practical Test 2 continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Practical Test 2 continued.
+
+## Slide 19 — Practical Test 2 continued
+
+PURPOSE
+Practical Test 2 continued
+
+CONNECT
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
+
+EXPLAIN
+What can your chart/metric not establish?
+
+What evidence would change your recommendation?
+
+What further data is required?
+
+Invigilated offline collection is authoritative; Google upload is a later transport step and must not impose an internet requirement during the test.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2 continued
 
@@ -539,8 +861,30 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Practical Test 2 submission. Move on after a learner can explain the current example or required action.
 
-## Slide 22 — Practical Test 2 submission
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Practical Test 2 submission.
+
+## Slide 20 — Practical Test 2 submission
+
+PURPOSE
+Practical Test 2 submission
+
+CONNECT
+Build on Practical Test 2 continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Offline invigilated collection is authoritative.
+
+Google upload is a later transport step.
+
+Save one notebook with Part B under My written evidence.
+
+No internet, messaging or AI during the test.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Practical Test 2 submission
 
@@ -568,8 +912,26 @@ This deck is for rehearsal before the timed assessment. Preserve the invigilated
 NEXT
 Before you leave. Move on after a learner can explain the current example or required action.
 
-## Slide 23 — Before you leave
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Before you leave.
+
+## Slide 21 — Revision and submission checklist
+
+PURPOSE
+Revision and submission checklist
+
+CONNECT
+Build on Practical Test 2 submission. Explain why this example is needed before running it.
+
+EXPLAIN
+You can explain training-only preprocessing and locate your saved evidence.
+
+Save your work and check the required submission files.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Before you leave
 
@@ -591,3 +953,8 @@ Use three envelopes. Keep the final-test envelope closed while selecting feature
 TEST COLLECTION RULE
 This deck is for rehearsal before the timed assessment. Preserve the invigilated timetable and Part A snapshot. During Part B, type answers in the notebook cell headed ## My written evidence without executing code. Collect one complete .ipynb offline; later Google upload only transports the collected work. Do not require internet or AI during the test.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+independent revision and the issued task.

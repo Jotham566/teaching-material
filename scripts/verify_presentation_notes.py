@@ -1,4 +1,8 @@
-"""Verify installed slide-to-note relationships, note contents and publication hashes."""
+"""Historical September 21 edition verifier.
+
+For the current Week 3–15 edition run scripts/verify_iuea_foundations.py.
+This historical audit deliberately retains its original hash assertions.
+"""
 import hashlib,json,posixpath,zipfile,xml.etree.ElementTree as E
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];R=ROOT/'review/2026-09-21/presentation-notes'

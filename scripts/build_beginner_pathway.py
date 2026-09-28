@@ -8,7 +8,7 @@ from pathlib import Path
 import json,sys,subprocess
 ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';OUT=BASE/'guided_practice'
 REVIEW=ROOT/'review/2026-09-15/ppt-revision'
-decks=json.loads((REVIEW/'deck-content.json').read_text());checks=[];count=0
+decks=json.loads((ROOT/'data/iuea_deck_content.json').read_text());checks=[];count=0
 for deck in decks:
  week=deck['week'];cohort=deck['cohort']
  if week not in (3,4,5,6,8,9,10,11,12):continue

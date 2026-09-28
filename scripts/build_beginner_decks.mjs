@@ -8,10 +8,10 @@ process.env.RUNTIME_NODE_MODULES=runtime;
 const {Presentation,PresentationFile,FileBlob}=await import(pathToFileURL(path.join(runtime,'@oai/artifact-tool/dist/artifact_tool.mjs')).href).catch(async()=>{
  const {createRequire}=await import('node:module');return createRequire(path.join(runtime,'package.json'))('@oai/artifact-tool');
 });
-const skill='/Users/jothamwambi/.codex/plugins/cache/openai-primary-runtime/presentations/26.909.61513/skills/presentations';
+const skill='/Users/jothamwambi/.codex/plugins/cache/openai-primary-runtime/presentations/26.927.11222/skills/presentations';
 const {finalizePresentation}=await import(pathToFileURL(path.join(skill,'container_tools/artifact_tool_utils.mjs')).href);
 const review=path.join(root,'review/2026-09-15/ppt-revision');
-const decks=JSON.parse(await fs.readFile(path.join(review,'deck-content.json'),'utf8'));
+const decks=JSON.parse(await fs.readFile(path.join(root,'data/iuea_deck_content.json'),'utf8'));
 const selected=process.argv.slice(2);const edition=process.env.PPT_EDITION||('build-'+Date.now());
 const ink='#1C3144',orange='#E4572E',muted='#6B7A8A',teal='#2E7D6F';
 function panel(slide,left,top,width,height,fill){return slide.shapes.add({geometry:'rect',position:{left,top,width,height},fill,line:{fill:'none',width:0}});}
@@ -105,13 +105,13 @@ for(const deck of decks){
    header('TRY IT TOGETHER   '+s.duration.toUpperCase());
    rowList(paragraphs,65,190,1140,420);
    panel(slide,0,621,1279.968,49,'#E5F1EE');
-   bodyText('One partner acts. One partner checks. Then swap roles.',65,628,1135,38,24,teal,true);
+   bodyText('Follow the worked example and explain the result.',65,628,1135,38,24,teal,true);
   }else if(k==='question'||k==='exit'){
    header(k==='exit'?'INDIVIDUAL EXIT CHECK':'PREDICT BEFORE RUNNING');
    bodyText(k==='exit'?'EXPLAIN IT':'YOUR TURN',65,170,300,52,26,orange,true);
    const size=(s.body||'').length>290?31:38;
    bodyText(s.body,65,241,1135,325,size,'#FFFFFF');
-   bodyText(k==='exit'?'Point to your evidence. Save your work.':'Think alone first. Then compare your reasoning with a partner.',65,608,1135,57,24,'#BBCDD9');
+   bodyText(k==='exit'?'Point to your evidence. Save your work.':'Read the question, then follow the lecturer’s worked explanation.',65,608,1135,57,24,'#BBCDD9');
   }else if(k==='debrief'||k==='output'){
    header(k==='output'?'CHECK THE OUTPUT':'DISCUSS THE REASONING');
    panel(slide,62,184,1156,370,'#E5F1EE');

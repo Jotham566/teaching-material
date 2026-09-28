@@ -1,18 +1,18 @@
 # Teaching from Week 2 onward
 
-Updated 16 September 2026, after the CML3112 Week 2 class. CML3112 Week 2 and all Week 1 teaching records remain unchanged.
+Updated 29 September 2026. Week 3–15 decks and their slide-by-slide lecturer companions now follow the revised foundations sequence. For CML3112, resume Week 3 at slide 13 after the twelve already taught slides. See [the continuation notes](CML3112_Week3_Continuation.md).
 
 Open the matching PowerPoint in **decks/** and teach in Slide Show. Use Presenter View for the detailed explanation prompts in speaker notes. Use the cohort student ZIP for practice and the issued assignment. The HTML lesson route is retired. The issued brief remains authoritative for graded outputs.
 
-The redesigned slides include annotated code, larger pictures, plain-language concept panels and five-minute pair activities. Use the activity within the existing guided-practice time. Ask students to predict first, then reveal the discussion slide and connect the action back to the code. The activity is ungraded; it creates no extra upload or marking. For Weeks 7 and 14, complete rehearsal before the timed test.
+The slides use illustrated concepts, annotated code and worked examples with answers. Explain them directly; no live pair or role-play activities are required. Students can repeat the examples individually after class using the matching guided notebook. Videos are optional revision. For Weeks 7 and 14, complete rehearsal before the timed test.
 
 The [curriculum benchmark and teaching map](Curriculum_Benchmark_and_Teaching_Map.md) records the research, prerequisite sequence and weekly activities. Definitions and syntax references can be revisited as needed; do not rush through every slide at the same pace.
 
 ## A routine that makes understanding visible
 
-Explain the physical example first. Define a new word at its first use, point to the relevant screen item and say each code symbol aloud. Demonstrate one small case, let pairs predict a changed case, and then ask every learner to try independently. Do not ask only “understood?” or rely on the quickest hands.
+Explain the physical example first. Define a new word at its first use, point to the relevant screen item and say each code symbol aloud. Demonstrate one small case, explain a changed case, and leave the matching individual practice for revision. Do not ask only “understood?” or rely on the quickest hands.
 
-Use a hint ladder: (1) restate the input and expected output, (2) trace a smaller example, (3) supply the first step, (4) model an analogous solution and have the learner retry. Rotate who types in pairs. Each learner saves and submits their own work. These are ungraded checks, not extra manual marking.
+Use a hint ladder: (1) restate the input and expected output, (2) trace a smaller example, (3) supply the first step, (4) model an analogous solution and have the learner retry. Use lecturer-led demonstrations in class. Each learner saves and submits their own work. These are ungraded checks, not extra manual marking.
 
 If many learners cannot pass the checkpoint, use the independent-practice recovery time to reteach and defer stretch material. Record the skill to revisit next week. Do not silently reduce published assessment requirements or release an unvalidated assessment.
 
@@ -23,25 +23,25 @@ If many learners cannot pass the checkpoint, use the independent-practice recove
 | 00–15 | Recall and access check |
 | 15–30 | Explain the physical question and new words |
 | 30–50 | Teacher models one small example, including a short optional clip |
-| 50–80 | Class works an analogous example together |
+| 50–80 | Lecturer demonstrates and traces an analogous example |
 | 80–90 | Break |
-| 90–125 | Supported practice with a hint ladder |
+| 90–125 | Remaining prerequisite explanations and worked examples |
 | 125–140 | Bridge from practice to the issued task interfaces |
-| 140–165 | Individual attempt with feedback and recovery time |
-| 165–170 | Weekly quiz after sign-in |
+| 140–165 | Worked revision answers and clarification |
+| 165–170 | Explain quiz access and its 24-hour availability window |
 | 170–180 | Save, explain requirements and confirm the deadline |
 
 Weeks 7 and 14 use their existing examination timetable; their opening preparation slides are for use before the test, not replacement exam content. Week 15 uses the published demo timetable. Week 13 prioritises studio work and the final weekly quiz. Friday Week 5 has no normal class; announce a supported replacement and retain Week 6 consolidation.
 
 ## Follow the prerequisite sequence
 
-Teach in the revised slide order. The guided notebook now follows that same order and identifies the corresponding slide. New terms come before worked use; pair and individual attempts follow the demonstration. Continue a multi-part code example in the same cell and run it only when complete. Keep time for practice rather than treating every slide as a separate lecture.
+Teach in the revised slide order. The guided notebook now follows that same order and identifies the corresponding slide. New terms come before worked use; worked answers follow the explanation; students repeat examples independently after class. Continue a multi-part code example in the same cell and run it only when complete. Keep time for practice rather than treating every slide as a separate lecture.
 
 All 48 IUEA assignment forms now require freeform Student Registration Number text. Students enter their own number exactly as on their record; no pattern is enforced. Existing links and deadlines remain valid. Roster and registered-email matching still apply in grading.
 
 ## Video routine
 
-Preview the clip, load it before class, state one listening question, play at most about four minutes and pause for discussion. Use captions where available. Allow a student to answer in ordinary language before introducing terminology. Teach the local example if access fails. Watching long tutorials at home is optional, not assumed prior learning.
+Videos are optional after-class revision; preview the recommended excerpt before sharing it. If time permits in class, play a short excerpt with its listening question. Use captions where available. Allow a student to answer in ordinary language before introducing terminology. Teach the local example if access fails. Watching long tutorials at home is optional, not assumed prior learning.
 
 The supplied GitHub video is 19:53 and uses GitHub Desktop. Use 00:00–02:10 and 03:35–06:08 for the idea of source control. Its originally shared 02:47 start skips that foundation. Keep the browser workflow as the course default.
 
@@ -219,7 +219,7 @@ Linked by the official StatQuest video index. Full audiovisual preview and excer
 
 **Core:** Trace whole-group membership, identify one future-information leak and explain training-only preprocessing.
 
-**Checkpoint:** Students explain why E6 cannot be used to choose a feature or tune the tree. If they cannot, return to the paper partitions.
+**Checkpoint:** Students explain why E6 cannot be used to choose a feature or tune the tree. If they cannot, revisit the illustrated train/validation/test split.
 
 **Worked explanation:** Write equipment letters on paper cards and distribute whole groups to train, validation and test. Explain why two observations of the same machine can share information. Fit a missing-value replacement on training values [20, 22, 24]: the median is 22. A new hotter observation must not change that fitted median. Show a counterexample: if every input contains a field called final_inspection_result recorded after the outcome, an excellent score can be meaningless for earlier prediction.
 
@@ -279,9 +279,9 @@ Linked by the official StatQuest video index. Full audiovisual preview and excer
 
 ## Week 13 Making the project understandable and runnable
 
-**Core:** Fresh run, clear README, data provenance, contribution evidence and one useful peer review.
+**Core:** Fresh run, clear README, data provenance, contribution evidence and an independent run check.
 
-**Checkpoint:** A partner can locate the input data and follow the run order without hints.
+**Checkpoint:** A fresh run following the written instructions locates the data and reproduces the result.
 
 **Worked explanation:** Demonstrate a clean run from a fresh session with the actual files. If a variable exists only from an earlier manual cell run, fix the run order. Explain every dependency and test a relative path. Include data-access instructions if the data cannot be redistributed. Model actionable feedback: “Step 2 names data.csv, but the supplied file is readings.csv; please make them match.”
 

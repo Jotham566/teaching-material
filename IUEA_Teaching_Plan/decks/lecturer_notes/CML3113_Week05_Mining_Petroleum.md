@@ -1,9 +1,19 @@
 # CML3113 Week05 Mining Petroleum
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
 
 ## Slide 1 — Using pandas to answer table questions
 
+PURPOSE
+Using pandas to answer table questions
+
+CONNECT
+Build on the preceding week. Explain why this example is needed before running it.
+
+EXPLAIN
+Mining and Petroleum Engineering
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Using pandas to answer table questions
 
@@ -22,8 +32,26 @@ Use head, shape and dtypes to locate the table, count rows/columns and inspect s
 NEXT
 Today’s learning. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Today’s learning.
+
 ## Slide 2 — Today’s learning
 
+PURPOSE
+Today’s learning
+
+CONNECT
+Build on Using pandas to answer table questions. Explain why this example is needed before running it.
+
+EXPLAIN
+Read a labelled table and select rows.
+
+Calculate column summaries and grouped totals.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Today’s learning
 
@@ -45,8 +73,24 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 Recall and a first attempt. Move on after a learner can explain the current example or required action.
 
-## Slide 3 — Recall and a first attempt
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Connection to the previous lesson.
+
+## Slide 3 — Connection to the previous lesson
+
+PURPOSE
+Connection to the previous lesson
+
+CONNECT
+Build on Today’s learning. Explain why this example is needed before running it.
+
+EXPLAIN
+Week 4 used lists, dictionaries, loops and CSV rows. pandas keeps these same records in a labelled table and provides operations that work across its columns.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Recall and a first attempt
 
@@ -54,7 +98,6 @@ CONNECT
 Build on the preceding slide: Today’s learning.
 
 LECTURER CUE
-Allow two minutes for everyone to try. Ask pairs to compare. If many cannot begin, show the first step and repeat with changed values. Checkpoint for today: Each student predicts a filter and explains what one group total means before running it.
 
 EXPLAIN IN ORDINARY WORDS
 Name the positive class first. Actual is what happened; predicted is the model decision. Precision asks how many predicted positives were right. Recall asks how many actual positives were found.
@@ -68,8 +111,24 @@ Draw actual/predicted headings. Place one case at a time before calculating a fr
 NEXT
 The engineering context. Move on after a learner can explain the current example or required action.
 
-## Slide 4 — The engineering context
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Why this week’s tools are needed.
+
+## Slide 4 — Why this week’s tools are needed
+
+PURPOSE
+Why this week’s tools are needed
+
+CONNECT
+Build on Connection to the previous lesson. Explain why this example is needed before running it.
+
+EXPLAIN
+The supplied campus_energy.csv records campus electricity use. We practise pandas on four invented rows first, then inspect the supplied file and its units.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The engineering context
 
@@ -91,8 +150,32 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 Rows columns and units. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Rows columns and units.
+
 ## Slide 5 — Rows columns and units
 
+PURPOSE
+Rows columns and units
+
+CONNECT
+Build on Why this week’s tools are needed. Explain why this example is needed before running it.
+
+EXPLAIN
+A row describes one observation. A column describes one field.
+
+A DataFrame is pandas’ labelled table.
+
+A Series is one labelled column.
+
+kWh measures energy. kW measures power.
+
+A data type (dtype) describes the kind of values in a column, such as whole numbers, decimals or text.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Rows columns and units
 
@@ -114,8 +197,28 @@ An object dtype alone does not prove that a column contains bad numeric values; 
 NEXT
 A table keeps related observations together. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A table keeps related observations together.
+
 ## Slide 6 — A table keeps related observations together
 
+PURPOSE
+A table keeps related observations together
+
+CONNECT
+Build on Rows columns and units. Explain why this example is needed before running it.
+
+EXPLAIN
+Our four rows record building A twice and building B twice.
+
+Each row contains the building label and an energy reading.
+
+kWh is energy. kW is power. The units describe different quantities.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A table keeps related observations together
 
@@ -137,8 +240,24 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 Our small energy table. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Our small energy table.
+
 ## Slide 7 — Our small energy table
 
+PURPOSE
+Our small energy table
+
+CONNECT
+Build on A table keeps related observations together. Explain why this example is needed before running it.
+
+EXPLAIN
+The four observations total 18 kWh.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Our small energy table
 
@@ -163,8 +282,25 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 8 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Library and pandas and DataFrame.
+
+## Slide 8 — Library and pandas and DataFrame
+
+PURPOSE
+Library and pandas and DataFrame
+
+CONNECT
+Build on Our small energy table. Explain why this example is needed before running it.
+
+EXPLAIN
+Library and pandas: A library is reusable code. pandas provides tools for data tables. import pandas as pd makes pd a short name for that library.
+DataFrame: A table with named columns and indexed rows. df is just the variable name we choose for this table.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -187,31 +323,24 @@ DataFrame: A table with named columns and indexed rows. df is just the variable 
 NEXT
 A DataFrame is a labelled table. Move on after a learner can explain the current example or required action.
 
-## Slide 9 — A DataFrame is a labelled table
-
-TEACHING PURPOSE
-A DataFrame is a labelled table
-
-CONNECT
-Build on the preceding slide: Words we will use.
-
-LECTURER CUE
-Explain dictionary braces, column labels in quotes and lists of values before constructing the DataFrame. In class, read the issued campus_energy.csv with pd.read_csv after this tiny example.
-
-EXPLAIN IN ORDINARY WORDS
-A DataFrame is a labelled table. A Series is a single labelled sequence, often one column. A dtype describes stored values, but the import may infer something unsuitable.
-
-CHECK AND EXPECTED ANSWER
-Does a price that looks numeric prove the column is numeric? No. Inspect its dtype and troublesome values before conversion.
-
-IF LEARNERS ARE STUCK
-Use head, shape and dtypes to locate the table, count rows/columns and inspect storage. Check units and missing values before calculating.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-A labelled table in Python. Move on after a learner can explain the current example or required action.
+A labelled table in Python.
 
-## Slide 10 — A labelled table in Python
+## Slide 9 — A labelled table in Python
 
+PURPOSE
+A labelled table in Python
+
+CONNECT
+Build on Library and pandas and DataFrame. Explain why this example is needed before running it.
+
+EXPLAIN
+The illustration uses machinery records. The same row, column and index structure applies to our building-energy table.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A labelled table in Python
 
@@ -234,8 +363,25 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 11 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Series and Method and attribute.
+
+## Slide 10 — Series and Method and attribute
+
+PURPOSE
+Series and Method and attribute
+
+CONNECT
+Build on A labelled table in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+Series: One labelled column. df["kwh"] selects the column named kwh.
+Method and attribute: A method performs an operation, as in df.head(). An attribute provides a stored property, as in df.shape. Parentheses call an operation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -258,8 +404,28 @@ Method and attribute: A method performs an operation, as in df.head(). An attrib
 NEXT
 Reading pandas syntax. Move on after a learner can explain the current example or required action.
 
-## Slide 12 — Reading pandas syntax
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading pandas syntax.
+
+## Slide 11 — Reading pandas syntax
+
+PURPOSE
+Reading pandas syntax
+
+CONNECT
+Build on Series and Method and attribute. Explain why this example is needed before running it.
+
+EXPLAIN
+import pandas as pd loads the library and gives it a short name.
+
+pd.read_csv("file.csv") calls a function. The quoted text is the file path.
+
+df["kwh"] selects a column. df["kwh"].mean() calls a method on that column.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Reading pandas syntax
 
@@ -281,8 +447,24 @@ Use head, shape and dtypes to locate the table, count rows/columns and inspect s
 NEXT
 Build the table before asking questions. Move on after a learner can explain the current example or required action.
 
-## Slide 13 — Build the table before asking questions
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Build the table before asking questions.
+
+## Slide 12 — Build the table before asking questions
+
+PURPOSE
+Build the table before asking questions
+
+CONNECT
+Build on Reading pandas syntax. Explain why this example is needed before running it.
+
+EXPLAIN
+Each dictionary key becomes a column name. Equal-length lists supply its rows.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Build the table before asking questions
 
@@ -316,8 +498,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Select a column and calculate its mean. Move on after a learner can explain the current example or required action.
 
-## Slide 14 — Select a column and calculate its mean
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Select a column and calculate its mean.
+
+## Slide 13 — Select a column and calculate its mean
+
+PURPOSE
+Select a column and calculate its mean
+
+CONNECT
+Build on Build the table before asking questions. Explain why this example is needed before running it.
+
+EXPLAIN
+The four numbers are 2, 4, 5 and 7. Their mean is 18 / 4 = 4.5 kWh.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Select a column and calculate its mean
 
@@ -348,8 +546,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Mask and filter. Move on after a learner can explain the current example or required action.
 
-## Slide 15 — Mask and filter
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Mask and filter.
+
+## Slide 14 — Mask and filter
+
+PURPOSE
+Mask and filter
+
+CONNECT
+Build on Select a column and calculate its mean. Explain why this example is needed before running it.
+
+EXPLAIN
+Mask and filter: A comparison produces True/False for each row. df[mask] keeps the True rows.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Mask and filter
 
@@ -371,8 +585,24 @@ Mask and filter: A comparison produces True/False for each row. df[mask] keeps t
 NEXT
 A comparison creates a Boolean mask. Move on after a learner can explain the current example or required action.
 
-## Slide 16 — A comparison creates a Boolean mask
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A comparison creates a Boolean mask.
+
+## Slide 15 — A comparison creates a Boolean mask
+
+PURPOSE
+A comparison creates a Boolean mask
+
+CONNECT
+Build on Mask and filter. Explain why this example is needed before running it.
+
+EXPLAIN
+The illustration filters torque readings. Our next example applies the same True/False selection to kWh values.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A comparison creates a Boolean mask
 
@@ -395,8 +625,24 @@ Try one value below, at and above the boundary before running the code.
 NEXT
 Keep rows where the comparison is true. Move on after a learner can explain the current example or required action.
 
-## Slide 17 — Keep rows where the comparison is true
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Keep rows where the comparison is true.
+
+## Slide 16 — Keep rows where the comparison is true
+
+PURPOSE
+Keep rows where the comparison is true
+
+CONNECT
+Build on A comparison creates a Boolean mask. Explain why this example is needed before running it.
+
+EXPLAIN
+The mask is False, False, True, True. The selected rows contain 5 and 7 kWh.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Keep rows where the comparison is true
 
@@ -429,8 +675,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 groupby and aggregation. Move on after a learner can explain the current example or required action.
 
-## Slide 18 — groupby and aggregation
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+groupby and aggregation.
+
+## Slide 17 — groupby and aggregation
+
+PURPOSE
+groupby and aggregation
+
+CONNECT
+Build on Keep rows where the comparison is true. Explain why this example is needed before running it.
+
+EXPLAIN
+groupby and aggregation: groupby collects rows with the same label. An aggregation such as sum or mean returns a summary for each group.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 groupby and aggregation
 
@@ -452,57 +714,24 @@ groupby and aggregation: groupby collects rows with the same label. An aggregati
 NEXT
 Selection and grouping answer different questions. Move on after a learner can explain the current example or required action.
 
-## Slide 19 — Selection and grouping answer different questions
-
-TEACHING PURPOSE
-Selection and grouping answer different questions
-
-CONNECT
-Build on the preceding slide: groupby and aggregation.
-
-LECTURER CUE
-Run the column selection, comparison and filtered table in separate cells. Then group rows by building and add energy within each group.
-
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
-
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-A chained expression is several small steps. Move on after a learner can explain the current example or required action.
+Calculate one total for each building.
 
-## Slide 20 — A chained expression is several small steps
+## Slide 18 — Calculate one total for each building
 
-TEACHING PURPOSE
-A chained expression is several small steps
+PURPOSE
+Calculate one total for each building
 
 CONNECT
-Build on the preceding slide: Selection and grouping answer different questions.
+Build on groupby and aggregation. Explain why this example is needed before running it.
 
-LECTURER CUE
-Read one row at a time and use a changed value. This is a syntax reference for the worked examples.
+EXPLAIN
+Expected: A totals 6 kWh; B totals 12 kWh.
 
-EXPLAIN IN ORDINARY WORDS
-Grouping puts rows sharing a key into buckets, then computes a result for each bucket. WHERE filters rows before SQL grouping; HAVING filters grouped results.
-
-CHECK AND EXPECTED ANSWER
-Which condition keeps only groups with more than five rows? HAVING COUNT(*) > 5.
-
-IF LEARNERS ARE STUCK
-Draw two buckets and count by hand. Name the intended output grain before writing the aggregation.
-
-READ THE VISUAL
-Start with the title and labels. Read one row or mark aloud, including its unit. Let a learner read a second one before discussing the pattern. Do not infer a numerical value from an unlabelled drawing.
-
-NEXT
-Calculate one total for each building. Move on after a learner can explain the current example or required action.
-
-## Slide 21 — Calculate one total for each building
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Calculate one total for each building
 
@@ -532,8 +761,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Expected output. Move on after a learner can explain the current example or required action.
 
-## Slide 22 — Expected output
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Expected output.
+
+## Slide 19 — pandas tables and summaries results
+
+PURPOSE
+pandas tables and summaries results
+
+CONNECT
+Build on Calculate one total for each building. Explain why this example is needed before running it.
+
+EXPLAIN
+Mean 4.5. The filter keeps B rows with 5 and 7. Group totals: A = 6, B = 12 kWh.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Expected output
 
@@ -546,8 +791,48 @@ Compare the actual output character by character with this practice result. If i
 NEXT
 Unique labels and the largest group. Move on after a learner can explain the current example or required action.
 
-## Slide 23 — Unique labels and the largest group
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Reading a chain one operation at a time.
+
+## Slide 20 — Reading a chain one operation at a time
+
+PURPOSE
+Reading a chain one operation at a time
+
+CONNECT
+Build on pandas tables and summaries results. Explain why this example is needed before running it.
+
+EXPLAIN
+df.groupby("building") groups rows by their building labels. ["kwh"] selects the energy values within each group. .sum() totals them.
+
+Store this result in totals. totals.idxmax() returns the label with the largest total. These are consecutive operations on the result of the previous step.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Unique labels and the largest group.
+
+## Slide 21 — Unique labels and the largest group
+
+PURPOSE
+Unique labels and the largest group
+
+CONNECT
+Build on Reading a chain one operation at a time. Explain why this example is needed before running it.
+
+EXPLAIN
+nunique counts distinct labels, not rows. idxmax returns the label of the largest total.
+
+Here there is no tie.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Unique labels and the largest group
 
@@ -569,8 +854,24 @@ Trace one call: bind input names, run the indented body, reach return, then put 
 NEXT
 Unique labels and the largest group in Python. Move on after a learner can explain the current example or required action.
 
-## Slide 24 — Unique labels and the largest group in Python
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Unique labels and the largest group in Python.
+
+## Slide 22 — Unique labels and the largest group in Python
+
+PURPOSE
+Unique labels and the largest group in Python
+
+CONNECT
+Build on Unique labels and the largest group. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Unique labels and the largest group in Python
 
@@ -603,8 +904,26 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Create a column from two existing columns. Move on after a learner can explain the current example or required action.
 
-## Slide 25 — Create a column from two existing columns
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Create a column from two existing columns.
+
+## Slide 23 — Create a column from two existing columns
+
+PURPOSE
+Create a column from two existing columns
+
+CONNECT
+Build on Unique labels and the largest group in Python. Explain why this example is needed before running it.
+
+EXPLAIN
+A new column can store a calculation for every row. Division pairs the values in matching rows.
+
+For this invented table all energy values are positive. UGX is Uganda shillings. Cost divided by energy has units UGX/kWh.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Create a column from two existing columns
 
@@ -623,8 +942,24 @@ Write the formula and units on paper, substitute small values, then translate it
 NEXT
 An energy rate is cost divided by energy. Move on after a learner can explain the current example or required action.
 
-## Slide 26 — An energy rate is cost divided by energy
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+An energy rate is cost divided by energy.
+
+## Slide 24 — An energy rate is cost divided by energy
+
+PURPOSE
+An energy rate is cost divided by energy
+
+CONNECT
+Build on Create a column from two existing columns. Explain why this example is needed before running it.
+
+EXPLAIN
+Expected rates: 500, 600, 700 and 800 UGX/kWh. Keep units in column names.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 An energy rate is cost divided by energy
 
@@ -657,8 +992,28 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Load the assignment table before analysing it. Move on after a learner can explain the current example or required action.
 
-## Slide 27 — Load the assignment table before analysing it
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Load the assignment table before analysing it.
+
+## Slide 25 — Load the assignment table before analysing it
+
+PURPOSE
+Load the assignment table before analysing it
+
+CONNECT
+Build on An energy rate is cost divided by energy. Explain why this example is needed before running it.
+
+EXPLAIN
+Upload campus_energy.csv to the current runtime first. read_csv reads it into a new DataFrame.
+
+head() displays the first five rows; shape gives row and column counts; dtypes shows column data types.
+
+We call this issued_table to keep it separate from the invented four-row df used above.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Load the assignment table before analysing it
 
@@ -680,8 +1035,24 @@ An object dtype alone does not prove that a column contains bad numeric values; 
 NEXT
 Inspect the supplied energy file. Move on after a learner can explain the current example or required action.
 
-## Slide 28 — Inspect the supplied energy file
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Inspect the supplied energy file.
+
+## Slide 26 — Inspect the supplied energy file
+
+PURPOSE
+Inspect the supplied energy file
+
+CONNECT
+Build on Load the assignment table before analysing it. Explain why this example is needed before running it.
+
+EXPLAIN
+Check column names, data types and units before attempting the six issued tasks.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Inspect the supplied energy file
 
@@ -717,46 +1088,26 @@ An object dtype alone does not prove that a column contains bad numeric values; 
 NEXT
 You are groupby. Move on after a learner can explain the current example or required action.
 
-## Slide 29 — You are groupby
-
-TEACHING PURPOSE
-You are groupby
-
-CONNECT
-Build on the preceding slide: Inspect the supplied energy file.
-
-LECTURER CUE
-Do this before revealing the discussion slide. One learner moves or writes the items, the other checks. Swap roles. Every student explains one step. Expected: A totals 6 kWh. B totals 12 kWh. B is largest and there are 2 distinct buildings.
-Wait for an individual prediction before inviting pair discussion. Give a first-step hint if needed.
-
-EXPLAIN IN ORDINARY WORDS
-Grouping puts rows sharing a key into buckets, then computes a result for each bucket. WHERE filters rows before SQL grouping; HAVING filters grouped results.
-
-CHECK AND EXPECTED ANSWER
-Which condition keeps only groups with more than five rows? HAVING COUNT(*) > 5.
-
-IF LEARNERS ARE STUCK
-Draw two buckets and count by hand. Name the intended output grain before writing the aggregation.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-What the activity shows. Move on after a learner can explain the current example or required action.
+Revision example and answer.
 
-## Slide 30 — What the activity shows
+## Slide 27 — Revision example and answer
 
-TEACHING PURPOSE
-What the activity shows
+PURPOSE
+Revision example and answer
 
 CONNECT
-Build on the preceding slide: You are groupby.
+Build on Inspect the supplied energy file. Explain why this example is needed before running it.
 
-LECTURER CUE
-Ask which step produced this answer. Return to the concrete action if a learner cannot explain it. This is practice feedback, never a quiz key.
+EXPLAIN
+Example: Use > 5 instead. Predict the surviving rows. Which building has the largest total?
 
-NEXT
-Your turn. Move on after a learner can explain the current example or required action.
+Answer: Only the row with 7 survives. Building B has the larger total, 12 kWh.
 
-## Slide 31 — Your turn
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Your turn
 
@@ -777,22 +1128,30 @@ Let learners attempt first; use this to explain the reasoning, not just reveal t
 NEXT
 Practice discussion. Move on after a learner can explain the current example or required action.
 
-## Slide 32 — Practice discussion
-
-TEACHING PURPOSE
-Practice discussion
-
-CONNECT
-Build on the preceding slide: Your turn.
-
-LECTURER CUE
-Ask how the result was obtained. Reteach the smallest missing step instead of giving a longer lecture.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Preparing for the assignment. Move on after a learner can explain the current example or required action.
+Preparing for the assignment.
 
-## Slide 33 — Preparing for the assignment
+## Slide 28 — Preparing for the assignment
 
+PURPOSE
+Preparing for the assignment
+
+CONNECT
+Build on Revision example and answer. Explain why this example is needed before running it.
+
+EXPLAIN
+A5 uses the supplied fictional campus_energy.csv, not a live Kaggle download.
+
+The six tasks use read_csv, nunique, division of columns, a > filter, mean and grouped totals. idxmax returns the label of the largest value.
+
+A mean of individual rates gives each observation equal weight.
+
+Total cost divided by total energy weights by energy.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preparing for the assignment
 
@@ -817,8 +1176,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Data types and filters. Move on after a learner can explain the current example or required action.
 
-## Slide 34 — Data types and filters
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data types and filters.
+
+## Slide 29 — Data types and filters
+
+PURPOSE
+Data types and filters
+
+CONNECT
+Build on Preparing for the assignment. Explain why this example is needed before running it.
+
+EXPLAIN
+A Boolean mask is a list-like column of True/False values. len(mask) counts all rows; mask.sum() counts True entries.
+
+Strings sort as text, so "9" can rank above "100".
+
+Inspect numeric types before taking maxima.
+
+KeyError often means the column name does not match; check spelling, case and spaces. shape is (rows, columns).
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data types and filters
 
@@ -840,8 +1221,24 @@ Draw three numbered boxes starting at zero. Keep the position separate from the 
 NEXT
 Data types and filters continued. Move on after a learner can explain the current example or required action.
 
-## Slide 35 — Data types and filters continued
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Data types and filters continued.
+
+## Slide 30 — Data types and filters continued
+
+PURPOSE
+Data types and filters continued
+
+CONNECT
+Build on Data types and filters. Explain why this example is needed before running it.
+
+EXPLAIN
+Read provenance and units before trusting a dataset.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Data types and filters continued
 
@@ -863,8 +1260,30 @@ Use three rows: a recorded zero, a recorded positive value and a blank. Explain 
 NEXT
 Your issued assignment. Move on after a learner can explain the current example or required action.
 
-## Slide 36 — Your issued assignment
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Your issued assignment.
+
+## Slide 31 — Your issued assignment
+
+PURPOSE
+Your issued assignment
+
+CONNECT
+Build on Data types and filters continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Open W05_student.ipynb.
+
+Read every task and its input units before coding.
+
+Keep the required function names and returned outputs.
+
+Run the supplied visible checks, then restart and run all.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Your issued assignment
 
@@ -903,8 +1322,24 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 q1: 3 marks. Move on after a learner can explain the current example or required action.
 
-## Slide 37 — q1: 3 marks
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+q1: 3 marks.
+
+## Slide 32 — q1: 3 marks
+
+PURPOSE
+q1: 3 marks
+
+CONNECT
+Build on Your issued assignment. Explain why this example is needed before running it.
+
+EXPLAIN
+Load campus_energy.csv into a DataFrame called df.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 q1: 3 marks
 
@@ -926,8 +1361,24 @@ Use head, shape and dtypes to locate the table, count rows/columns and inspect s
 NEXT
 q2: 3 marks. Move on after a learner can explain the current example or required action.
 
-## Slide 38 — q2: 3 marks
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+q2: 3 marks.
+
+## Slide 33 — q2: 3 marks
+
+PURPOSE
+q2: 3 marks
+
+CONNECT
+Build on q1: 3 marks. Explain why this example is needed before running it.
+
+EXPLAIN
+Set n_meters to the number of distinct meters in the file.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 q2: 3 marks
 
@@ -949,8 +1400,24 @@ Write the formula and units on paper, substitute small values, then translate it
 NEXT
 q3: 4 marks. Move on after a learner can explain the current example or required action.
 
-## Slide 39 — q3: 4 marks
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+q3: 4 marks.
+
+## Slide 34 — q3: 4 marks
+
+PURPOSE
+q3: 4 marks
+
+CONNECT
+Build on q2: 3 marks. Explain why this example is needed before running it.
+
+EXPLAIN
+Add a column cost_per_kwh to df, equal to cost_ugx / kwh.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 q3: 4 marks
 
@@ -972,8 +1439,26 @@ Write the formula and units on paper, substitute small values, then translate it
 NEXT
 q4: 4 marks. Move on after a learner can explain the current example or required action.
 
-## Slide 40 — q4: 4 marks
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+q4: 4 marks.
+
+## Slide 35 — q4: 4 marks
+
+PURPOSE
+q4: 4 marks
+
+CONNECT
+Build on q3: 4 marks. Explain why this example is needed before running it.
+
+EXPLAIN
+Set high_use to the rows of df where kwh is greater than 5000.
+
+Do this after q3 so the derived column comes along.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 q4: 4 marks
 
@@ -995,8 +1480,24 @@ Write the formula and units on paper, substitute small values, then translate it
 NEXT
 q5: 3 marks. Move on after a learner can explain the current example or required action.
 
-## Slide 41 — q5: 3 marks
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+q5: 3 marks.
+
+## Slide 36 — q5: 3 marks
+
+PURPOSE
+q5: 3 marks
+
+CONNECT
+Build on q4: 4 marks. Explain why this example is needed before running it.
+
+EXPLAIN
+Set mean_cost_per_kwh to the mean of the cost_per_kwh column.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 q5: 3 marks
 
@@ -1018,8 +1519,24 @@ Write the formula and units on paper, substitute small values, then translate it
 NEXT
 q6: 3 marks. Move on after a learner can explain the current example or required action.
 
-## Slide 42 — q6: 3 marks
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+q6: 3 marks.
+
+## Slide 37 — q6: 3 marks
+
+PURPOSE
+q6: 3 marks
+
+CONNECT
+Build on q5: 3 marks. Explain why this example is needed before running it.
+
+EXPLAIN
+Set peak_building to the name of the building with the highest total kwh.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 q6: 3 marks
 
@@ -1041,8 +1558,30 @@ Write the formula and units on paper, substitute small values, then translate it
 NEXT
 Pandas investigation submission. Move on after a learner can explain the current example or required action.
 
-## Slide 43 — Pandas investigation submission
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Pandas investigation submission.
+
+## Slide 38 — Pandas investigation submission
+
+PURPOSE
+Pandas investigation submission
+
+CONNECT
+Build on q6: 3 marks. Explain why this example is needed before running it.
+
+EXPLAIN
+Opens: 07 Oct 2026, 08:00 Kampala
+
+Deadline: 16 Oct 2026, 08:00 Kampala
+
+Use your full Student Registration Number in the form.
+
+Keep the submitted files and confirmation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Pandas investigation submission
 
@@ -1067,8 +1606,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Project preparation. Move on after a learner can explain the current example or required action.
 
-## Slide 44 — Project preparation
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Project preparation.
+
+## Slide 39 — Project preparation
+
+PURPOSE
+Project preparation
+
+CONNECT
+Build on Pandas investigation submission. Explain why this example is needed before running it.
+
+EXPLAIN
+Use the published data analysis project brief.
+
+Build the evidence gradually in your project notebook.
+
+Keep raw data, labelled charts, run instructions and individual contributions.
+
+Published deadline: 30 Oct 2026, 08:00 Kampala
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Project preparation
 
@@ -1093,8 +1654,30 @@ Open the matching public student guide and show the exact starter filename, requ
 NEXT
 Week 5 quiz. Move on after a learner can explain the current example or required action.
 
-## Slide 45 — Week 5 quiz
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 5 quiz.
+
+## Slide 40 — Week 5 quiz
+
+PURPOSE
+Week 5 quiz
+
+CONNECT
+Build on Project preparation. Explain why this example is needed before running it.
+
+EXPLAIN
+Answer individually after the lecturer activates the quiz.
+
+Available for 24 hours from activation.
+
+Use your Student Registration Number and registered account.
+
+The lecturer will confirm the exact closing time.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 5 quiz
 
@@ -1110,8 +1693,28 @@ Opening the student link does not activate the quiz. In Quiz Controls run the ma
 NEXT
 Week 5 support. Move on after a learner can explain the current example or required action.
 
-## Slide 46 — Week 5 support
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Week 5 support.
+
+## Slide 41 — Week 5 support
+
+PURPOSE
+Week 5 support
+
+CONNECT
+Build on Week 5 quiz. Explain why this example is needed before running it.
+
+EXPLAIN
+Friday 9 October has no normal class.
+
+The lecturer will announce a supported replacement session or recording with a clinic.
+
+Week 6 starts with 30 minutes of consolidation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Week 5 support
 
@@ -1124,8 +1727,26 @@ Confirm the actual Faculty-approved make-up or clinic arrangement. Do not assume
 NEXT
 Before you leave. Move on after a learner can explain the current example or required action.
 
-## Slide 47 — Before you leave
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Before you leave.
+
+## Slide 42 — Revision and submission checklist
+
+PURPOSE
+Revision and submission checklist
+
+CONNECT
+Build on Week 5 support. Explain why this example is needed before running it.
+
+EXPLAIN
+You can explain which observations a filter keeps and what a grouped total means.
+
+Save your work and check the required submission files.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Before you leave
 
@@ -1144,3 +1765,8 @@ Does a difference between two groups prove one caused the other? No. Other diffe
 IF LEARNERS ARE STUCK
 Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+independent revision and the issued task.

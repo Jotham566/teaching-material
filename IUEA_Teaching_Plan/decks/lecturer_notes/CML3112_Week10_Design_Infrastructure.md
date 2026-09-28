@@ -1,9 +1,19 @@
 # CML3112 Week10 Design Infrastructure
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
 
 ## Slide 1 — Honest validation and leakage
 
+PURPOSE
+Honest validation and leakage
+
+CONNECT
+Build on the preceding week. Explain why this example is needed before running it.
+
+EXPLAIN
+Civil Engineering and Architecture
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Honest validation and leakage
 
@@ -22,8 +32,26 @@ Use three envelopes. Keep the final-test envelope closed while selecting feature
 NEXT
 Today’s learning. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Today’s learning.
+
 ## Slide 2 — Today’s learning
 
+PURPOSE
+Today’s learning
+
+CONNECT
+Build on Honest validation and leakage. Explain why this example is needed before running it.
+
+EXPLAIN
+Keep related equipment records together.
+
+Separate training, validation and final testing.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Today’s learning
 
@@ -45,8 +73,24 @@ Use three envelopes. Keep the final-test envelope closed while selecting feature
 NEXT
 Recall and a first attempt. Move on after a learner can explain the current example or required action.
 
-## Slide 3 — Recall and a first attempt
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Connection to the previous lesson.
+
+## Slide 3 — Connection to the previous lesson
+
+PURPOSE
+Connection to the previous lesson
+
+CONNECT
+Build on Today’s learning. Explain why this example is needed before running it.
+
+EXPLAIN
+We have compared predictions with known answers. Now we control which observations may influence training, choices and the final evaluation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Recall and a first attempt
 
@@ -54,7 +98,6 @@ CONNECT
 Build on the preceding slide: Today’s learning.
 
 LECTURER CUE
-Allow two minutes for everyone to try. Ask pairs to compare. If many cannot begin, show the first step and repeat with changed values. Checkpoint for today: Students explain why E6 cannot be used to choose a feature or tune the tree. If they cannot, return to the paper partitions.
 
 EXPLAIN IN ORDINARY WORDS
 Name the positive class first. Actual is what happened; predicted is the model decision. Precision asks how many predicted positives were right. Recall asks how many actual positives were found.
@@ -68,8 +111,24 @@ Draw actual/predicted headings. Place one case at a time before calculating a fr
 NEXT
 The engineering context. Move on after a learner can explain the current example or required action.
 
-## Slide 4 — The engineering context
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Why this week’s tools are needed.
+
+## Slide 4 — Why this week’s tools are needed
+
+PURPOSE
+Why this week’s tools are needed
+
+CONNECT
+Build on Connection to the previous lesson. Explain why this example is needed before running it.
+
+EXPLAIN
+We want evidence about new equipment or future observations. The way we separate data must match that use before any model or preprocessing learns from it.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 The engineering context
 
@@ -91,8 +150,30 @@ Work one order line by hand, then two lines. Name the numerator and denominator 
 NEXT
 Training validation and final test. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Training validation and final test.
+
 ## Slide 5 — Training validation and final test
 
+PURPOSE
+Training validation and final test
+
+CONNECT
+Build on Why this week’s tools are needed. Explain why this example is needed before running it.
+
+EXPLAIN
+Training data fit the model and preprocessing.
+
+Validation data guide feature and model choices.
+
+The final test evaluates choices after they are fixed.
+
+A fresh test is needed if its answers influenced further choices.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Training validation and final test
 
@@ -111,8 +192,24 @@ Use three envelopes. Keep the final-test envelope closed while selecting feature
 NEXT
 Three sets have different jobs. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Three sets have different jobs.
+
 ## Slide 6 — Three sets have different jobs
 
+PURPOSE
+Three sets have different jobs
+
+CONNECT
+Build on Training validation and final test. Explain why this example is needed before running it.
+
+EXPLAIN
+Which set must stay sealed until choices are fixed?
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Three sets have different jobs
 
@@ -134,8 +231,25 @@ Use three envelopes. Keep the final-test envelope closed while selecting feature
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 7 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Generalisation and Overfitting and underfitting.
+
+## Slide 7 — Generalisation and Overfitting and underfitting
+
+PURPOSE
+Generalisation and Overfitting and underfitting
+
+CONNECT
+Build on Three sets have different jobs. Explain why this example is needed before running it.
+
+EXPLAIN
+Generalisation: Performance on new cases from the intended setting, not merely on records already used.
+Overfitting and underfitting: Overfitting captures training-specific detail that fails to transfer. Underfitting misses useful patterns. Score gaps are clues, not a complete diagnosis.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -149,8 +263,25 @@ Overfitting and underfitting: Overfitting captures training-specific detail that
 NEXT
 Words we will use. Move on after a learner can explain the current example or required action.
 
-## Slide 8 — Words we will use
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Leakage and Group split.
+
+## Slide 8 — Leakage and Group split
+
+PURPOSE
+Leakage and Group split
+
+CONNECT
+Build on Generalisation and Overfitting and underfitting. Explain why this example is needed before running it.
+
+EXPLAIN
+Leakage: Information enters model development that would not legitimately be available, such as the answer or information from evaluation rows.
+Group split: Keep all observations from the same equipment in one partition when the goal is prediction for unseen equipment.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Words we will use
 
@@ -173,8 +304,28 @@ Group split: Keep all observations from the same equipment in one partition when
 NEXT
 Repeated equipment needs group separation. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Repeated equipment needs group separation.
+
 ## Slide 9 — Repeated equipment needs group separation
 
+PURPOSE
+Repeated equipment needs group separation
+
+CONNECT
+Build on Leakage and Group split. Explain why this example is needed before running it.
+
+EXPLAIN
+Readings from the same equipment can share patterns.
+
+Putting that equipment in both training and validation can make evaluation too easy.
+
+For a new-equipment question, keep every row for an equipment ID in one partition.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Repeated equipment needs group separation
 
@@ -196,8 +347,24 @@ Ask for the population, time period, number and comparison. Then ask what additi
 NEXT
 Keeping equipment groups together. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Keeping equipment groups together.
+
 ## Slide 10 — Keeping equipment groups together
 
+PURPOSE
+Keeping equipment groups together
+
+CONNECT
+Build on Repeated equipment needs group separation. Explain why this example is needed before running it.
+
+EXPLAIN
+This toy split explains group separation.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Keeping equipment groups together
 
@@ -222,8 +389,24 @@ Start with the title and labels. Read one row or mark aloud, including its unit.
 NEXT
 Worked example (1/2). Move on after a learner can explain the current example or required action.
 
-## Slide 11 — Worked example (1/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Worked example (1/2).
+
+## Slide 11 — Validation and leakage in Python (1/2)
+
+PURPOSE
+Validation and leakage in Python (1/2)
+
+CONNECT
+Build on Keeping equipment groups together. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Worked example (1/2)
 
@@ -264,8 +447,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Worked example (2/2). Move on after a learner can explain the current example or required action.
 
-## Slide 12 — Worked example (2/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Worked example (2/2).
+
+## Slide 12 — Validation and leakage in Python (2/2)
+
+PURPOSE
+Validation and leakage in Python (2/2)
+
+CONNECT
+Build on Validation and leakage in Python (1/2). Explain why this example is needed before running it.
+
+EXPLAIN
+Continue the SAME cell; keep indentation. Run after all parts are entered.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Worked example (2/2)
 
@@ -306,8 +505,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Expected output. Move on after a learner can explain the current example or required action.
 
-## Slide 13 — Expected output
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Expected output.
+
+## Slide 13 — Validation and leakage results
+
+PURPOSE
+Validation and leakage results
+
+CONNECT
+Build on Validation and leakage in Python (2/2). Explain why this example is needed before running it.
+
+EXPLAIN
+[1, 2] [3]
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Expected output
 
@@ -320,8 +535,24 @@ Compare the actual output character by character with this practice result. If i
 NEXT
 Preprocessing and pipeline. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Preprocessing and pipeline.
+
 ## Slide 14 — Preprocessing and pipeline
 
+PURPOSE
+Preprocessing and pipeline
+
+CONNECT
+Build on Validation and leakage results. Explain why this example is needed before running it.
+
+EXPLAIN
+Preprocessing and pipeline: Preprocessing changes inputs, for example filling missing values. A pipeline fits these steps on training data and applies the same fitted changes to new inputs.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Preprocessing and pipeline
 
@@ -343,8 +574,28 @@ Preprocessing and pipeline: Preprocessing changes inputs, for example filling mi
 NEXT
 A learned cleaning value comes from training. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+A learned cleaning value comes from training.
+
 ## Slide 15 — A learned cleaning value comes from training
 
+PURPOSE
+A learned cleaning value comes from training
+
+CONNECT
+Build on Preprocessing and pipeline. Explain why this example is needed before running it.
+
+EXPLAIN
+The training readings are 20, 22 and 24. Their median is 22.
+
+A missing validation value receives the already learned 22.
+
+A new validation reading of 40 must not change the fitted median.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A learned cleaning value comes from training
 
@@ -366,31 +617,24 @@ Keep raw data, record counts before and after each action, then explain any rema
 NEXT
 A training-only fill value. Move on after a learner can explain the current example or required action.
 
-## Slide 16 — A training-only fill value
-
-TEACHING PURPOSE
-A training-only fill value
-
-CONNECT
-Build on the preceding slide: A learned cleaning value comes from training.
-
-LECTURER CUE
-The median is learned from training observations. Adding a new validation observation must not change it. A real modelling pipeline follows this same rule for each learned step.
-
-EXPLAIN IN ORDINARY WORDS
-Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
-
-CHECK AND EXPECTED ANSWER
-May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
-
-IF LEARNERS ARE STUCK
-Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-A training-only fill value in Python (1/2). Move on after a learner can explain the current example or required action.
+A training-only fill value in Python (1/2).
 
-## Slide 17 — A training-only fill value in Python (1/2)
+## Slide 16 — A training-only fill value in Python (1/2)
 
+PURPOSE
+A training-only fill value in Python (1/2)
+
+CONNECT
+Build on A learned cleaning value comes from training. Explain why this example is needed before running it.
+
+EXPLAIN
+Read top to bottom. Run the complete example in the matching practice notebook.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A training-only fill value in Python (1/2)
 
@@ -431,8 +675,24 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 A training-only fill value in Python (2/2). Move on after a learner can explain the current example or required action.
 
-## Slide 18 — A training-only fill value in Python (2/2)
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+A training-only fill value in Python (2/2).
+
+## Slide 17 — A training-only fill value in Python (2/2)
+
+PURPOSE
+A training-only fill value in Python (2/2)
+
+CONNECT
+Build on A training-only fill value in Python (1/2). Explain why this example is needed before running it.
+
+EXPLAIN
+Continue the SAME cell; keep indentation. Run after all parts are entered.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 A training-only fill value in Python (2/2)
 
@@ -473,8 +733,28 @@ Read the displayed lines in order, with the preceding code block if this example
 NEXT
 Leakage gives away information from the future. Move on after a learner can explain the current example or required action.
 
-## Slide 19 — Leakage gives away information from the future
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
+NEXT
+Leakage gives away information from the future.
+
+## Slide 18 — Leakage gives away information from the future
+
+PURPOSE
+Leakage gives away information from the future
+
+CONNECT
+Build on A training-only fill value in Python (2/2). Explain why this example is needed before running it.
+
+EXPLAIN
+Suppose we predict a fault before an inspection.
+
+final_inspection_result exists only after the inspection.
+
+Using it as an input would answer a different, easier question than the one we intended.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Leakage gives away information from the future
 
@@ -496,8 +776,48 @@ Use three envelopes. Keep the final-test envelope closed while selecting feature
 NEXT
 Cross-validation. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Parameters hyperparameters and a fold.
+
+## Slide 19 — Parameters hyperparameters and a fold
+
+PURPOSE
+Parameters hyperparameters and a fold
+
+CONNECT
+Build on Leakage gives away information from the future. Explain why this example is needed before running it.
+
+EXPLAIN
+A parameter is learned during fitting, such as a line’s slope. A hyperparameter is a setting chosen around fitting, such as a tree’s max_depth.
+
+A fold is one part of the development data used for a validation turn. Refit the entire preprocessing and model on the other parts for that turn.
+
+Compare candidate settings using validation evidence. Keep the final test outside that selection process.
+
+LECTURER DETAIL
+
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Cross-validation.
+
 ## Slide 20 — Cross-validation
 
+PURPOSE
+Cross-validation
+
+CONNECT
+Build on Parameters hyperparameters and a fold. Explain why this example is needed before running it.
+
+EXPLAIN
+Cross-validation: Repeat fitting and validation on several partitions of the training/development data. Respect groups or time order. Keep the final test outside tuning.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Cross-validation
 
@@ -519,8 +839,28 @@ Cross-validation: Repeat fitting and validation on several partitions of the tra
 NEXT
 What standard deviation tells us. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+What standard deviation tells us.
+
 ## Slide 21 — What standard deviation tells us
 
+PURPOSE
+What standard deviation tells us
+
+CONNECT
+Build on Cross-validation. Explain why this example is needed before running it.
+
+EXPLAIN
+Scores 3, 4 and 5 have mean 4. Their deviations are -1, 0 and 1.
+
+For these three fold scores, population SD = sqrt((1 + 0 + 1) / 3), about 0.82.
+
+SD describes spread around the mean in the score’s units. The next illustration uses this same population convention; it is not a confidence interval.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 What standard deviation tells us
 
@@ -542,8 +882,24 @@ Draw three small partitions and label who learns and who is evaluated. Fold spre
 NEXT
 Each fold takes a turn at validation. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Each fold takes a turn at validation.
+
 ## Slide 22 — Each fold takes a turn at validation
 
+PURPOSE
+Each fold takes a turn at validation
+
+CONNECT
+Build on What standard deviation tells us. Explain why this example is needed before running it.
+
+EXPLAIN
+Illustrated spread: population SD 0.39 MPa, not a confidence interval.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Each fold takes a turn at validation
 
@@ -557,8 +913,25 @@ Source: existing course illustration figs/kfold.png. These are illustrative exam
 NEXT
 Choose a split that matches future use. Move on after a learner can explain the current example or required action.
 
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Choose a split that matches future use.
+
 ## Slide 23 — Choose a split that matches future use
 
+PURPOSE
+Choose a split that matches future use
+
+CONNECT
+Build on Each fold takes a turn at validation. Explain why this example is needed before running it.
+
+EXPLAIN
+Equipment or time: For unseen equipment, keep each equipment ID together. For future-time prediction, train on earlier observations and evaluate on later ones.
+Scaler and split tool: A scaler learns how to rescale features; fit it on training data. GroupShuffleSplit is a library tool for group separation. Our assignment instead uses its fixed published equipment lists.
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Choose a split that matches future use
 
@@ -581,55 +954,26 @@ Scaler and split tool: A scaler learns how to rescale features; fit it on traini
 NEXT
 You are the data splitter. Move on after a learner can explain the current example or required action.
 
-## Slide 24 — You are the data splitter
-
-TEACHING PURPOSE
-You are the data splitter
-
-CONNECT
-Build on the preceding slide: Choose a split that matches future use.
-
-LECTURER CUE
-Do this before revealing the discussion slide. One learner moves or writes the items, the other checks. Swap roles. Every student explains one step. Expected: No. Keep A1 and A2 together for this question. This tiny activity illustrates separation, not sufficient evaluation sample size.
-Wait for an individual prediction before inviting pair discussion. Give a first-step hint if needed.
-
-EXPLAIN IN ORDINARY WORDS
-Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
-
-CHECK AND EXPECTED ANSWER
-May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
-
-IF LEARNERS ARE STUCK
-Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-What the activity shows. Move on after a learner can explain the current example or required action.
+Revision example and answer.
 
-## Slide 25 — What the activity shows
+## Slide 24 — Revision example and answer
 
-TEACHING PURPOSE
-What the activity shows
+PURPOSE
+Revision example and answer
 
 CONNECT
-Build on the preceding slide: You are the data splitter.
+Build on Choose a split that matches future use. Explain why this example is needed before running it.
 
-LECTURER CUE
-Ask which step produced this answer. Return to the concrete action if a learner cannot explain it. This is practice feedback, never a quiz key.
+EXPLAIN
+Example: A second observation from B arrives. Where does it go? Why not put it into training just to balance row counts?
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Answer: It stays with B in validation. Mixing a source across partitions can give an overly optimistic estimate for unseen equipment.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-Your turn. Move on after a learner can explain the current example or required action.
-
-## Slide 26 — Your turn
-
+LECTURER DETAIL
 TEACHING PURPOSE
 Your turn
 
@@ -659,22 +1003,463 @@ Let learners attempt first; use this to explain the reasoning, not just reveal t
 NEXT
 Practice discussion. Move on after a learner can explain the current example or required action.
 
-## Slide 27 — Practice discussion
-
-TEACHING PURPOSE
-Practice discussion
-
-CONNECT
-Build on the preceding slide: Your turn.
-
-LECTURER CUE
-Ask how the result was obtained. Reteach the smallest missing step instead of giving a longer lecture.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Short explainer and discussion. Move on after a learner can explain the current example or required action.
+Preparing for the assignment.
 
-## Slide 28 — Short explainer and discussion
+## Slide 25 — Preparing for the assignment
 
+PURPOSE
+Preparing for the assignment
+
+CONNECT
+Build on Revision example and answer. Explain why this example is needed before running it.
+
+EXPLAIN
+W10 specifies E1–E4 train, E5 validation, E6 test and preserves input order.
+
+Use the assigned equipment_id field and record_id outputs.
+
+Reuse the W08 fitting pattern.
+
+Explain that GroupShuffleSplit and time-based splitting solve different deployment questions; use the rule in the issued task.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Preparing for the assignment
+
+CONNECT
+Build on the preceding slide: After the video.
+
+LECTURER CUE
+W10 specifies E1–E4 train, E5 validation, E6 test and preserves input order. Use the assigned equipment_id field and record_id outputs. Reuse the W08 fitting pattern. Explain that GroupShuffleSplit and time-based splitting solve different deployment questions; use the rule in the issued task.
+
+EXPLAIN IN ORDINARY WORDS
+An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+
+CHECK AND EXPECTED ANSWER
+Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
+
+IF LEARNERS ARE STUCK
+Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
+
+ASSIGNMENT HANDOVER
+Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
+
+NEXT
+Interpreting validation results. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Interpreting validation results.
+
+## Slide 26 — Interpreting validation results
+
+PURPOSE
+Interpreting validation results
+
+CONNECT
+Build on Preparing for the assignment. Explain why this example is needed before running it.
+
+EXPLAIN
+Fit an imputer or scaler only on training data; putting it in a Pipeline helps enforce that during cross-validation.
+
+A low training error and high validation error suggest overfitting, but data shift or leakage can also matter.
+
+Missing predictor values need a stated treatment.
+
+Report fold scores and their variation, not just the best fold.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Interpreting validation results
+
+CONNECT
+Build on the preceding slide: Preparing for the assignment.
+
+LECTURER CUE
+Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
+
+EXPLAIN IN ORDINARY WORDS
+Cross-validation repeats training and validation on different partitions. Each fold gets a newly fitted model and preprocessing. Variation across fold scores shows sensitivity to the partition.
+
+CHECK AND EXPECTED ANSWER
+May preprocessing learn from all rows before the folds? No, that would give each validation fold information from outside its training portion.
+
+IF LEARNERS ARE STUCK
+Draw three small partitions and label who learns and who is evaluated. Fold spread is not automatically a confidence interval.
+
+NEXT
+Interpreting validation results continued. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Interpreting validation results continued.
+
+## Slide 27 — Interpreting validation results continued
+
+PURPOSE
+Interpreting validation results continued
+
+CONNECT
+Build on Interpreting validation results. Explain why this example is needed before running it.
+
+EXPLAIN
+Group related observations together when the deployment goal is new equipment.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Interpreting validation results continued
+
+CONNECT
+Build on the preceding slide: Interpreting validation results.
+
+LECTURER CUE
+Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
+
+EXPLAIN IN ORDINARY WORDS
+An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+
+CHECK AND EXPECTED ANSWER
+Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
+
+IF LEARNERS ARE STUCK
+Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
+
+NEXT
+Your issued task. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Your issued task.
+
+## Slide 28 — Your issued task
+
+PURPOSE
+Your issued task
+
+CONNECT
+Build on Interpreting validation results continued. Explain why this example is needed before running it.
+
+EXPLAIN
+Investigate building cooling load.
+
+Target units: kW.
+
+These are synthetic teaching records, not measurements suitable for deployment.
+
+Each record is one operating observation; equipment_id repeats across observations.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Your issued task
+
+CONNECT
+Build on the preceding slide: Interpreting validation results continued.
+
+LECTURER CUE
+Investigate building cooling load. Target units: kW. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
+
+EXPLAIN IN ORDINARY WORDS
+Read each quantity and unit before using a formula. Python calculates numbers but does not enforce physical units. Parentheses specify which operation happens first.
+
+CHECK AND EXPECTED ANSWER
+What is 5 m times 3 m? 15 square metres. What is 7/2 in Python? 3.5; 7//2 is 3.
+
+IF LEARNERS ARE STUCK
+Write the formula and units on paper, substitute small values, then translate it to Python. Check zero denominators and the issued sign convention.
+
+ASSIGNMENT HANDOVER
+Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
+
+NEXT
+group_split(records). Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+group_split(records).
+
+## Slide 29 — group_split(records)
+
+PURPOSE
+group_split(records)
+
+CONNECT
+Build on Your issued task. Explain why this example is needed before running it.
+
+EXPLAIN
+Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test.
+
+Return train, validation and test lists of record_id in input order.
+
+Do not use target values to choose membership.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+group_split(records)
+
+CONNECT
+Build on the preceding slide: Your issued task.
+
+LECTURER CUE
+Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W10/CML3112/A/TASKS.md
+
+EXPLAIN IN ORDINARY WORDS
+Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
+
+CHECK AND EXPECTED ANSWER
+May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
+
+IF LEARNERS ARE STUCK
+Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
+
+NEXT
+predict_regression(training_records, feature_records). Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+predict_regression(training_records, feature_records).
+
+## Slide 30 — predict_regression(training_records, feature_records)
+
+PURPOSE
+predict_regression(training_records, feature_records)
+
+CONNECT
+Build on group_split(records). Explain why this example is needed before running it.
+
+EXPLAIN
+Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only.
+
+Return three prediction lists under baseline, linear and tree.
+
+Feature records have no target.
+
+Fit preprocessing only on training data.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+predict_regression(training_records, feature_records)
+
+CONNECT
+Build on the preceding slide: group_split(records).
+
+LECTURER CUE
+Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W10/CML3112/A/TASKS.md
+
+EXPLAIN IN ORDINARY WORDS
+A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+
+CHECK AND EXPECTED ANSWER
+Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
+
+IF LEARNERS ARE STUCK
+Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
+
+NEXT
+Written evidence. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Written evidence.
+
+## Slide 31 — Written evidence
+
+PURPOSE
+Written evidence
+
+CONNECT
+Build on predict_regression(training_records, feature_records). Explain why this example is needed before running it.
+
+EXPLAIN
+Use the cell headed “My written evidence”.
+
+Explain the supplied scenario in your own words.
+
+State target units, reasons and limitations.
+
+Submit one complete notebook containing code and written evidence.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Written evidence
+
+CONNECT
+Build on the preceding slide: predict_regression(training_records, feature_records).
+
+LECTURER CUE
+Published criterion weights and exact requirements remain in TASKS.md. Broader project exercises are formative and do not add weekly marks. Local automated reasoning assessment remains subject to its release checks.
+
+EXPLAIN IN ORDINARY WORDS
+An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+
+CHECK AND EXPECTED ANSWER
+Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
+
+IF LEARNERS ARE STUCK
+Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
+
+ASSIGNMENT HANDOVER
+Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
+
+NEXT
+Validation and trust submission. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Validation and trust submission.
+
+## Slide 32 — Validation and trust submission
+
+PURPOSE
+Validation and trust submission
+
+CONNECT
+Build on Written evidence. Explain why this example is needed before running it.
+
+EXPLAIN
+Opens: 10 Nov 2026, 11:00 Kampala
+
+Deadline: 17 Nov 2026, 11:00 Kampala
+
+Use your full Student Registration Number in the form.
+
+Keep the submitted files and confirmation.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Validation and trust submission
+
+CONNECT
+Build on the preceding slide: Written evidence.
+
+LECTURER CUE
+The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
+
+ASSIGNMENT HANDOVER
+Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
+
+NEXT
+Week 10 quiz. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Week 10 quiz.
+
+## Slide 33 — Week 10 quiz
+
+PURPOSE
+Week 10 quiz
+
+CONNECT
+Build on Validation and trust submission. Explain why this example is needed before running it.
+
+EXPLAIN
+Answer individually after the lecturer activates the quiz.
+
+Available for 24 hours from activation.
+
+Use your Student Registration Number and registered account.
+
+The lecturer will confirm the exact closing time.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Week 10 quiz
+
+CONNECT
+Build on the preceding slide: Validation and trust submission.
+
+LECTURER CUE
+Activate the matching open_W10_CML3112 function in Quiz Controls, then confirm the 24-hour close time. Opening this slide or clicking its link does not activate the form. The 24 hours is the availability window. Keep existing quiz scoring and form rules. Do not show private answer keys.
+
+QUIZ OPERATION
+Opening the student link does not activate the quiz. In Quiz Controls run the matching open_W<week>_<cohort> function once when ready. Announce the logged closing time: 24 hours after activation. Five minutes describes expected answering time, not the availability window. Quiz 1 and Quiz 2 require separate activation when collecting catch-up work.
+
+NEXT
+Before you leave. Move on after a learner can explain the current example or required action.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Before you leave.
+
+## Slide 34 — Revision and submission checklist
+
+PURPOSE
+Revision and submission checklist
+
+CONNECT
+Build on Week 10 quiz. Explain why this example is needed before running it.
+
+EXPLAIN
+You can identify which records may influence preprocessing and model selection.
+
+Save your work and check the required submission files.
+
+LECTURER DETAIL
+TEACHING PURPOSE
+Before you leave
+
+CONNECT
+Build on the preceding slide: Week 10 quiz.
+
+LECTURER CUE
+Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
+
+EXPLAIN IN ORDINARY WORDS
+First remove models that fail the stated error or speed limits. Then apply the stated ranking and tie-break rules to eligible models. The smallest error alone need not decide.
+
+CHECK AND EXPECTED ANSWER
+If a model has the lowest error but exceeds the maximum latency, is it eligible? No.
+
+IF LEARNERS ARE STUCK
+Write an eligibility column and a separate ranking column. Check the exact boundary rule before sorting.
+
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
+
+NEXT
+Optional revision video.
+
+## Slide 35 — Optional revision video
+
+PURPOSE
+Optional revision video
+
+CONNECT
+Build on Revision and submission checklist. Explain why this example is needed before running it.
+
+EXPLAIN
+For revision after class.
+
+StatQuest with Josh Starmer
+Machine Learning Fundamentals Cross Validation
+
+Opening up to 04:00, optional preview-selected excerpt
+
+Listening question: Why evaluate using observations not used to fit that particular model?
+
+LECTURER DETAIL
 TEACHING PURPOSE
 Short explainer and discussion
 
@@ -701,247 +1486,8 @@ Preview the exact link and stated excerpt before class. State the viewing questi
 NEXT
 After the video. Move on after a learner can explain the current example or required action.
 
-## Slide 29 — After the video
-
-TEACHING PURPOSE
-After the video
-
-CONNECT
-Build on the preceding slide: Short explainer and discussion.
-
-EXPLAIN IN ORDINARY WORDS
-Cross-validation repeats training and validation on different partitions. Each fold gets a newly fitted model and preprocessing. Variation across fold scores shows sensitivity to the partition.
-
-CHECK AND EXPECTED ANSWER
-May preprocessing learn from all rows before the folds? No, that would give each validation fold information from outside its training portion.
-
-IF LEARNERS ARE STUCK
-Draw three small partitions and label who learns and who is evaluated. Fold spread is not automatically a confidence interval.
+TEACHING MODE
+Demonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.
 
 NEXT
-Preparing for the assignment. Move on after a learner can explain the current example or required action.
-
-## Slide 30 — Preparing for the assignment
-
-TEACHING PURPOSE
-Preparing for the assignment
-
-CONNECT
-Build on the preceding slide: After the video.
-
-LECTURER CUE
-W10 specifies E1–E4 train, E5 validation, E6 test and preserves input order. Use the assigned equipment_id field and record_id outputs. Reuse the W08 fitting pattern. Explain that GroupShuffleSplit and time-based splitting solve different deployment questions; use the rule in the issued task.
-
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
-
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
-NEXT
-Interpreting validation results. Move on after a learner can explain the current example or required action.
-
-## Slide 31 — Interpreting validation results
-
-TEACHING PURPOSE
-Interpreting validation results
-
-CONNECT
-Build on the preceding slide: Preparing for the assignment.
-
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-EXPLAIN IN ORDINARY WORDS
-Cross-validation repeats training and validation on different partitions. Each fold gets a newly fitted model and preprocessing. Variation across fold scores shows sensitivity to the partition.
-
-CHECK AND EXPECTED ANSWER
-May preprocessing learn from all rows before the folds? No, that would give each validation fold information from outside its training portion.
-
-IF LEARNERS ARE STUCK
-Draw three small partitions and label who learns and who is evaluated. Fold spread is not automatically a confidence interval.
-
-NEXT
-Interpreting validation results continued. Move on after a learner can explain the current example or required action.
-
-## Slide 32 — Interpreting validation results continued
-
-TEACHING PURPOSE
-Interpreting validation results continued
-
-CONNECT
-Build on the preceding slide: Interpreting validation results.
-
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
-
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-Your issued task. Move on after a learner can explain the current example or required action.
-
-## Slide 33 — Your issued task
-
-TEACHING PURPOSE
-Your issued task
-
-CONNECT
-Build on the preceding slide: Interpreting validation results continued.
-
-LECTURER CUE
-Investigate building cooling load. Target units: kW. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
-
-EXPLAIN IN ORDINARY WORDS
-Read each quantity and unit before using a formula. Python calculates numbers but does not enforce physical units. Parentheses specify which operation happens first.
-
-CHECK AND EXPECTED ANSWER
-What is 5 m times 3 m? 15 square metres. What is 7/2 in Python? 3.5; 7//2 is 3.
-
-IF LEARNERS ARE STUCK
-Write the formula and units on paper, substitute small values, then translate it to Python. Check zero denominators and the issued sign convention.
-
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
-NEXT
-group_split(records). Move on after a learner can explain the current example or required action.
-
-## Slide 34 — group_split(records)
-
-TEACHING PURPOSE
-group_split(records)
-
-CONNECT
-Build on the preceding slide: Your issued task.
-
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W10/CML3112/A/TASKS.md
-
-EXPLAIN IN ORDINARY WORDS
-Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
-
-CHECK AND EXPECTED ANSWER
-May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
-
-IF LEARNERS ARE STUCK
-Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
-
-NEXT
-predict_regression(training_records, feature_records). Move on after a learner can explain the current example or required action.
-
-## Slide 35 — predict_regression(training_records, feature_records)
-
-TEACHING PURPOSE
-predict_regression(training_records, feature_records)
-
-CONNECT
-Build on the preceding slide: group_split(records).
-
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W10/CML3112/A/TASKS.md
-
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
-
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Written evidence. Move on after a learner can explain the current example or required action.
-
-## Slide 36 — Written evidence
-
-TEACHING PURPOSE
-Written evidence
-
-CONNECT
-Build on the preceding slide: predict_regression(training_records, feature_records).
-
-LECTURER CUE
-Published criterion weights and exact requirements remain in TASKS.md. Broader project exercises are formative and do not add weekly marks. Local automated reasoning assessment remains subject to its release checks.
-
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
-
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
-NEXT
-Validation and trust submission. Move on after a learner can explain the current example or required action.
-
-## Slide 37 — Validation and trust submission
-
-TEACHING PURPOSE
-Validation and trust submission
-
-CONNECT
-Build on the preceding slide: Written evidence.
-
-LECTURER CUE
-The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
-
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
-NEXT
-Week 10 quiz. Move on after a learner can explain the current example or required action.
-
-## Slide 38 — Week 10 quiz
-
-TEACHING PURPOSE
-Week 10 quiz
-
-CONNECT
-Build on the preceding slide: Validation and trust submission.
-
-LECTURER CUE
-Activate the matching open_W10_CML3112 function in Quiz Controls, then confirm the 24-hour close time. Opening this slide or clicking its link does not activate the form. The 24 hours is the availability window. Keep existing quiz scoring and form rules. Do not show private answer keys.
-
-QUIZ OPERATION
-Opening the student link does not activate the quiz. In Quiz Controls run the matching open_W<week>_<cohort> function once when ready. Announce the logged closing time: 24 hours after activation. Five minutes describes expected answering time, not the availability window. Quiz 1 and Quiz 2 require separate activation when collecting catch-up work.
-
-NEXT
-Before you leave. Move on after a learner can explain the current example or required action.
-
-## Slide 39 — Before you leave
-
-TEACHING PURPOSE
-Before you leave
-
-CONNECT
-Build on the preceding slide: Week 10 quiz.
-
-LECTURER CUE
-Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
-
-EXPLAIN IN ORDINARY WORDS
-First remove models that fail the stated error or speed limits. Then apply the stated ranking and tie-break rules to eligible models. The smallest error alone need not decide.
-
-CHECK AND EXPECTED ANSWER
-If a model has the lowest error but exceeds the maximum latency, is it eligible? No.
-
-IF LEARNERS ARE STUCK
-Write an eligibility column and a separate ranking column. Check the exact boundary rule before sorting.
-
+independent revision and the issued task.

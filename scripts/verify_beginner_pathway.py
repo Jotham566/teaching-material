@@ -1,4 +1,7 @@
-"""Check learner navigation and that the new packages preserve assessment contracts."""
+"""Historical September 15 package audit.
+
+For the current edition run scripts/verify_iuea_foundations.py.
+"""
 from pathlib import Path
 from html.parser import HTMLParser
 import json, zipfile, hashlib
