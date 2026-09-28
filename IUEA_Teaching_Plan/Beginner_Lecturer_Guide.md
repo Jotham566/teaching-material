@@ -1,3 +1,5 @@
+> **Current foundation sequence:** Week 3 now teaches arithmetic and comparisons individually, then traces if/else/elif before functions and list examples. Week 4 teaches for/while, range and loop controls before records. Use the current PowerPoint and slide companion; allow another session when needed rather than skipping an unexplained prerequisite. CML3112’s revised route is in [Week 3 continuation](CML3112_Week3_Continuation.md).
+
 # Teaching from Week 2 onward
 
 Updated 29 September 2026. Week 3–15 decks and their slide-by-slide lecturer companions now follow the revised foundations sequence. For CML3112, resume Week 3 at slide 13 after the twelve already taught slides. See [the continuation notes](CML3112_Week3_Continuation.md).

@@ -3,351 +3,351 @@
     "cohort": "CML3112",
     "week": 3,
     "filename": "CML3112_Week03_Design_Infrastructure.pptx",
-    "slides": 59,
-    "sha256": "d082b113399b737c658483f74f63ae3e7eda10471be3d01a319c979b853cb51a",
-    "edition": "foundations-final2-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final2-20260929/CML3112_Week03_Design_Infrastructure/render"
+    "slides": 89,
+    "sha256": "66e5c58c9f1ca423d198e2ee2855d73cd1225c9c730db6d338d82a873f0da988",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3112_Week03_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 4,
     "filename": "CML3112_Week04_Design_Infrastructure.pptx",
-    "slides": 63,
-    "sha256": "b917eef231f37e8bbb3f2e205932d3ab80fe8450ba40233d8bb0162e41490d22",
-    "edition": "foundations-final2-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final2-20260929/CML3112_Week04_Design_Infrastructure/render"
+    "slides": 85,
+    "sha256": "dd0e4fdcedbc58bf5e2506028ff294de3802f3e393f842feb261aa7e923a49ac",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3112_Week04_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 5,
     "filename": "CML3112_Week05_Design_Infrastructure.pptx",
-    "slides": 41,
-    "sha256": "06f384715fa40dd4fd21e667b2384957d8862f01adf6cdc4075f528a30f9ea95",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week05_Design_Infrastructure/render"
+    "slides": 44,
+    "sha256": "215814d59fc506c5d882ec95d70bd87503e27e5898c70ba9010b0d64cc91f575",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3112_Week05_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 6,
     "filename": "CML3112_Week06_Design_Infrastructure.pptx",
-    "slides": 49,
-    "sha256": "ff672d43ec85da8bc8a2b9b6b89026a877600e96b6d1f0bdcb7e7bc6755a2846",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week06_Design_Infrastructure/render"
+    "slides": 54,
+    "sha256": "786bc3718f91a8591d886c737f773a700a2b5670c7976a978e5cbcc960668b68",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3112_Week06_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 7,
     "filename": "CML3112_Week07_Design_Infrastructure.pptx",
     "slides": 20,
-    "sha256": "194d4e1eaf0151fecc9eeba105aac2fa403e1f216dc47202bc6238c01c1434a6",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week07_Design_Infrastructure/render"
+    "sha256": "a656ca725a1127b801fb4d930bf8bb23d6ffb47df281245e559618633d147964",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3112_Week07_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 8,
     "filename": "CML3112_Week08_Design_Infrastructure.pptx",
-    "slides": 62,
-    "sha256": "4d4d23a5fd183576ebaa8cdb2bd1a7f5b448f685e1f023e2e15eb768bdef9950",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week08_Design_Infrastructure/render"
+    "slides": 69,
+    "sha256": "7c3b7bacb26d0fb49e7d8836fc39f84a8cc445cb5eb3998d838dec64215ebc8c",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3112_Week08_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 9,
     "filename": "CML3112_Week09_Design_Infrastructure.pptx",
-    "slides": 39,
-    "sha256": "639145895794023d48c5bab4c7410e5a5cb20e6f0204ed504ece18c1e4c99666",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week09_Design_Infrastructure/render"
+    "slides": 41,
+    "sha256": "6628efabdcacdcfb4fb2c8ce7fa04de676dc2b61c5998c3d674010d9f98c5d4c",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3112_Week09_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 10,
     "filename": "CML3112_Week10_Design_Infrastructure.pptx",
-    "slides": 35,
-    "sha256": "fe4b7ccfa3a9f01f5041e0a2898005cfdd601c9f4726c9efd7d285cb6f73d516",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week10_Design_Infrastructure/render"
+    "slides": 36,
+    "sha256": "1b2e64a4c675bf517454c672d9cb27dcd0cf3493b303a3442be561382b76e387",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3112_Week10_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 11,
     "filename": "CML3112_Week11_Design_Infrastructure.pptx",
-    "slides": 33,
-    "sha256": "e786cd5b0cd8469aeef4e3424c84604ca9d354fb333da7a7716fdad3880d2a3b",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week11_Design_Infrastructure/render"
+    "slides": 35,
+    "sha256": "dffbb4123f8d5769a6a6d798cdc26ee530169d062c2bebce6bee0df3693de78f",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3112_Week11_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 12,
     "filename": "CML3112_Week12_Design_Infrastructure.pptx",
-    "slides": 34,
-    "sha256": "07b1c7c1f6860d65753219cf7734300ea8c3047f542c03cffc0be4cbc737442b",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week12_Design_Infrastructure/render"
+    "slides": 36,
+    "sha256": "0c330f71437cd7e2e8bde8eeee6aec17098ea95f88df3f5d2db518d31ec3e446",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3112_Week12_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 13,
     "filename": "CML3112_Week13_Design_Infrastructure.pptx",
     "slides": 25,
-    "sha256": "85c5621628fdfdcb3f498d06ca7e559cc6eaad2b11103a997cc877471e0ba04f",
-    "edition": "foundations-final3-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final3-20260929/CML3112_Week13_Design_Infrastructure/render"
+    "sha256": "f70220076458084952282cfa829a36a031affa33b7bf5819bea0445c8636d9b3",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3112_Week13_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 14,
     "filename": "CML3112_Week14_Design_Infrastructure.pptx",
     "slides": 21,
-    "sha256": "ad1140d6b291877005fb7daad5d30a68b686fe5c655aeb482ab2a138010f9e06",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week14_Design_Infrastructure/render"
+    "sha256": "6712902dbab47e90694fd5a502101622e70fe316353505a889be067fb5d2df0f",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3112_Week14_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3112",
     "week": 15,
     "filename": "CML3112_Week15_Design_Infrastructure.pptx",
     "slides": 24,
-    "sha256": "63a980128a46e86d77bb7c1f54adfc9f7cbd650920db5c353e9cab5f3be80f62",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3112_Week15_Design_Infrastructure/render"
+    "sha256": "4bbf9c6dddd79a344a2a471801624f721ae306c5ebd5f9bac005f5436e22c2ee",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3112_Week15_Design_Infrastructure/render"
   },
   {
     "cohort": "CML3113",
     "week": 3,
     "filename": "CML3113_Week03_Mining_Petroleum.pptx",
-    "slides": 59,
-    "sha256": "7dd5898f51cb7c4effb7171d0c8beb9faeac02dad9ce3d122dd4d35f6bbe04c1",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week03_Mining_Petroleum/render"
+    "slides": 89,
+    "sha256": "cf51f68ea011c65b66c9241fdd189356d7716b37c13ebfa87074104f62331f77",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3113_Week03_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 4,
     "filename": "CML3113_Week04_Mining_Petroleum.pptx",
-    "slides": 63,
-    "sha256": "d067b51f4d1a7fd3e981a8f946ce6713da2557dcaa5ebf576124e8c72ee1219e",
-    "edition": "foundations-final2-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final2-20260929/CML3113_Week04_Mining_Petroleum/render"
+    "slides": 85,
+    "sha256": "f574e1dc021bb0eb86d7fde8bac2f7f47047b0968dfcf7adb61606376fa39dd1",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3113_Week04_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 5,
     "filename": "CML3113_Week05_Mining_Petroleum.pptx",
-    "slides": 42,
-    "sha256": "daf0690df48a760217717d6059265ba44fa65bdd316c65117a58dc865364a9ea",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week05_Mining_Petroleum/render"
+    "slides": 45,
+    "sha256": "490585019cfbf8cdbc29d43cff051a6f2d50ae40de2fe411460c4a07a28dd199",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3113_Week05_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 6,
     "filename": "CML3113_Week06_Mining_Petroleum.pptx",
-    "slides": 49,
-    "sha256": "e32710548bb5acb681584cb03fba636a0a23259fa3b3a2bb4db87e830dab0f01",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week06_Mining_Petroleum/render"
+    "slides": 54,
+    "sha256": "9ce6c0befff7fa4deba71ec303922de18aaa0fa26a08cdacec12e7f70356b9a3",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3113_Week06_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 7,
     "filename": "CML3113_Week07_Mining_Petroleum.pptx",
     "slides": 20,
-    "sha256": "aeee4966d4b073a33dcf3cc74254e6253833afb86eaacb04bdbe0625d6e27905",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week07_Mining_Petroleum/render"
+    "sha256": "14029c3ccbd2f10093154339e63ed9d8513bfb569faf5b3559bc36305f4708a2",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3113_Week07_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 8,
     "filename": "CML3113_Week08_Mining_Petroleum.pptx",
-    "slides": 62,
-    "sha256": "93e2ff7f18702253fa6618df3d44bb7a21efe0f7550cfbb4584e3a17c69e4399",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week08_Mining_Petroleum/render"
+    "slides": 69,
+    "sha256": "68f539cdad74a7b7125e6d0816dbda80456fa62c093a5e67478d27d253241f3b",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3113_Week08_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 9,
     "filename": "CML3113_Week09_Mining_Petroleum.pptx",
-    "slides": 39,
-    "sha256": "08966553a991be265d7d3f45df737a9f4e993a5ad113f82182d77480e4f65f77",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week09_Mining_Petroleum/render"
+    "slides": 41,
+    "sha256": "88bb96f597afc23707050e15610132c5c1d4fb094325de30aef629644091c656",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3113_Week09_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 10,
     "filename": "CML3113_Week10_Mining_Petroleum.pptx",
-    "slides": 35,
-    "sha256": "cd213773ca1041e6277b6cb33c6da9d2730871b9a5135ec6771beaa9acff5092",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week10_Mining_Petroleum/render"
+    "slides": 36,
+    "sha256": "ca39d0846adb40d5686aeff9af5537111542943012572955b90c9893964d2123",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3113_Week10_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 11,
     "filename": "CML3113_Week11_Mining_Petroleum.pptx",
-    "slides": 33,
-    "sha256": "bb88bf9d523476e2f2958d8c583df0e57390550720bd85d1b94ed763865126bb",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week11_Mining_Petroleum/render"
+    "slides": 35,
+    "sha256": "be6a691ffbf5581a5ed60cd355666dc606b59d636e430f6c72027a9d329d4808",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3113_Week11_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 12,
     "filename": "CML3113_Week12_Mining_Petroleum.pptx",
-    "slides": 34,
-    "sha256": "a7ed75399a1a1bdf6c455a3cd6601770ae61f85e9f95466246220790f11ed3f4",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week12_Mining_Petroleum/render"
+    "slides": 36,
+    "sha256": "593c16b3e3ed17be84bf7114ddb27f2fc3a811a778e6e04becf1a8babd104a68",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3113_Week12_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 13,
     "filename": "CML3113_Week13_Mining_Petroleum.pptx",
     "slides": 25,
-    "sha256": "1e3f087a8272b0e7c156c09256aab04d2024f94b970068f1efc5a470d0c7a734",
-    "edition": "foundations-final3-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final3-20260929/CML3113_Week13_Mining_Petroleum/render"
+    "sha256": "8c6ac39125752420a72df9cacd609f4b801a9031ca9b3a7cec79af24d46166cd",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3113_Week13_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 14,
     "filename": "CML3113_Week14_Mining_Petroleum.pptx",
     "slides": 21,
-    "sha256": "af19102819f193323bcb0acc06af5a2e0b00165b16b897845e3740da074728f6",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week14_Mining_Petroleum/render"
+    "sha256": "ec6611d79547e9fd86841bec50fe503eaa140d56a49a73ab81889fedacac5b96",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3113_Week14_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3113",
     "week": 15,
     "filename": "CML3113_Week15_Mining_Petroleum.pptx",
     "slides": 24,
-    "sha256": "2439825a8f67045ce7497fdc90cb6854639ba51cc640336a55edc6ac3e0f8c1a",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3113_Week15_Mining_Petroleum/render"
+    "sha256": "fcc90f2187513e15c7e94b4be9a0230ab3b9053d5bc24cd8e11742105ef968a9",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3113_Week15_Mining_Petroleum/render"
   },
   {
     "cohort": "CML3111",
     "week": 3,
     "filename": "CML3111_Week03_Engineering.pptx",
-    "slides": 59,
-    "sha256": "6c5ad4fcb97f611040b3d851d4a9ddb75d78944f8c04c8cf64a2f46268a7c0c0",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week03_Engineering/render"
+    "slides": 89,
+    "sha256": "c3e7803e31e17fb05ee6fdbb565cfd9b3efe74084f03e5a56fa4dc648ed52652",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3111_Week03_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 4,
     "filename": "CML3111_Week04_Engineering.pptx",
-    "slides": 63,
-    "sha256": "4119dc3895245c2541bb3aa4ee80c613034715bcb8f2d74b045ce198d771a060",
-    "edition": "foundations-final2-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final2-20260929/CML3111_Week04_Engineering/render"
+    "slides": 85,
+    "sha256": "14ee438fb089685017f3a2169a3f5d016a2deb0c743c95cc0a8755f6c1860c6c",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3111_Week04_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 5,
     "filename": "CML3111_Week05_Engineering.pptx",
-    "slides": 42,
-    "sha256": "f603ee750344896ed492f54305abb5df261a2776ccf5da0a5dd4e8bbdd1dd7f2",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week05_Engineering/render"
+    "slides": 45,
+    "sha256": "c47131a37f122fe73b495bf633e46af51f472efbe2f78a7a6c3ac8cc2c21c5db",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3111_Week05_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 6,
     "filename": "CML3111_Week06_Engineering.pptx",
-    "slides": 49,
-    "sha256": "f8ada92c04ec9ffd9c6f7066cdaaa5e945b9f1562f8429b256a1c1e3ed0c4f51",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week06_Engineering/render"
+    "slides": 54,
+    "sha256": "033ffb5a3f057aa502e299ca82450f5860249c669102fb29310e829eb17c21ae",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3111_Week06_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 7,
     "filename": "CML3111_Week07_Engineering.pptx",
     "slides": 20,
-    "sha256": "ff89155536ef16f02ae48ab233fbc2d19731f819f097e3f0d7ca84db3a621456",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week07_Engineering/render"
+    "sha256": "1727a5b456f19b821f9767cf482a20d6c44e975b32c71d8cbb2672260fa02c01",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3111_Week07_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 8,
     "filename": "CML3111_Week08_Engineering.pptx",
-    "slides": 62,
-    "sha256": "2b36475217a33c0c12abdd4012e052d9e6bb1b24f4e97530b5e07232483f623a",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week08_Engineering/render"
+    "slides": 69,
+    "sha256": "dfcad0998832904815b60100d74200d7963e38b3e3ce0f1a2e5539897b3b3273",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3111_Week08_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 9,
     "filename": "CML3111_Week09_Engineering.pptx",
-    "slides": 39,
-    "sha256": "1bfb27e7780e9e9196573e2213b31f3405d9de53d765d7e1baf81de411ea8d10",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week09_Engineering/render"
+    "slides": 41,
+    "sha256": "9e5f6e185104262632ab800cb69889fcba48dbc4e6d5df49991ea594541da806",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3111_Week09_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 10,
     "filename": "CML3111_Week10_Engineering.pptx",
-    "slides": 35,
-    "sha256": "4b4002fe7c0c53830f0c745553beeb12ef9a436fd304c8e5c55d9d82859dc119",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week10_Engineering/render"
+    "slides": 36,
+    "sha256": "93cc2d030db62ac361006e4f90a65a801410d0160ea784224d367e7634f33570",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3111_Week10_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 11,
     "filename": "CML3111_Week11_Engineering.pptx",
-    "slides": 33,
-    "sha256": "60b27c5be0ade4fb6bcbf560438fa093f40ff2ac22f874cc58a5556b876cce80",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week11_Engineering/render"
+    "slides": 35,
+    "sha256": "cbc998ed16eadc5e9043f070e445b68407f97ea2db78459ea790a2a08b2fbaa0",
+    "edition": "explicit-foundations-final-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-final-20260929/CML3111_Week11_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 12,
     "filename": "CML3111_Week12_Engineering.pptx",
-    "slides": 34,
-    "sha256": "d4d6accdb330cf98d7a01abe364403ae908a3c85ab7763597bedfbb0158b48aa",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week12_Engineering/render"
+    "slides": 36,
+    "sha256": "05e39ffe52516cebc3767fbcabffb111eac4ce6485eab1b2565c89a2cb1b399d",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3111_Week12_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 13,
     "filename": "CML3111_Week13_Engineering.pptx",
     "slides": 25,
-    "sha256": "ef1c48abe7f0fb045597cb369b6ef31c7b1ba7843fcff36ba51943d25ffebb78",
-    "edition": "foundations-final3-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final3-20260929/CML3111_Week13_Engineering/render"
+    "sha256": "62105055e60a446e0d1ba5f9da697b3776b83cf4b81884ef06766b79888a157c",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3111_Week13_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 14,
     "filename": "CML3111_Week14_Engineering.pptx",
     "slides": 21,
-    "sha256": "587ac12b597f92e278d279bd34afe9a962890f3c83ae865c7c7728a3a91c96be",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week14_Engineering/render"
+    "sha256": "409c0575c03277e7411f9d3b8dcdf0f0c0b9fc4b193418eed7c994e950a808b7",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3111_Week14_Engineering/render"
   },
   {
     "cohort": "CML3111",
     "week": 15,
     "filename": "CML3111_Week15_Engineering.pptx",
     "slides": 24,
-    "sha256": "2aebf624e2ba6dd2783a0b2fa5b67cc4ecc6f1c043c9539a58d9d40b63a99fb3",
-    "edition": "foundations-final-20260929",
-    "render": "review/2026-09-15/ppt-revision/build/foundations-final-20260929/CML3111_Week15_Engineering/render"
+    "sha256": "fd48d4f339195ffe5526790b5d8047569f361c10094116b963168cdd1b718054",
+    "edition": "explicit-foundations-20260929",
+    "render": "review/2026-09-15/ppt-revision/build/explicit-foundations-20260929/CML3111_Week15_Engineering/render"
   }
 ]

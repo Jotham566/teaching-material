@@ -1230,4 +1230,3 @@ Does editing a cell update a value already stored in memory? No; the cell must r
 
 IF LEARNERS ARE STUCK
 Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-

@@ -9,19 +9,27 @@ Use **CML3112_Week03_Design_Infrastructure.pptx**, starting at **slide 13**. Sli
 - A3 remains due **29 September 2026 at 11:00 Kampala**. Students were told to read the final slides and complete it. Continuing the lesson does not reopen or extend the form.
 - Keep Quiz 3 on its existing schedule; this material update does not reactivate it. A quiz availability window remains 24 hours from activation.
 
-## Suggested 90-minute demonstration route
+## Teaching route for the expanded foundation sequence
 
-This is a pacing guide, not a requirement to rush. Show the complete example before advancing. No live partner tasks are required.
+These slide ranges refer to the explicit-foundations edition. Resume at slide 13. Each small step has its own slide so that students can revise it without guessing. Do not treat the increased slide count as a reason to move faster.
 
-| Time | Slides | Lecturer explanation |
-|---|---|---|
-| 5 min | 13–14 | Recall the previous output: 7.0 and float. Explain parentheses and operation order. |
-| 10 min | 15–18 | Name length, width, area and their units. Trace the calculation and explain the last line of an error message. |
-| 15 min | 19–23 | Read each comparison aloud. Trace only the selected branch. Explain colon, indentation and elif before using them. |
-| 25 min | 24–33 | Separate defining from calling. Point to the parameter, supplied argument, returned result and printed output. Demonstrate the zero-input guard. |
-| 20 min | 34–43 | Explain the four collection types. Trace positions 0, 1 and 2. Explain abs, max and index before comparing errors. |
-| 10 min | 44–49 | Demonstrate the revision answer. Connect units and percentage error to the published task without issuing a new assignment. |
-| 5 min | 50–58 | Use the final assignment slides only to clarify previously issued requirements. A3 still closes 29 September at 11:00 Kampala. Do not announce an extension. |
+| Slides | Explain and demonstrate |
+|---|---|
+| 13–14 | Recall values and names; distinguish a typed instruction from its output. |
+| 15–27 | All seven arithmetic operators, signs, powers, remainder, operation order, updates and numeric text. Run each tiny example and read the output. |
+| 28–31 | Connect the already explained operations to the cohort formula and show how to read an error. |
+| 32–44 | Boolean values and all six comparisons; trace if, if/else and if/elif/else on both matching and nonmatching values. Explain every colon and indentation level. |
+| 45–48 | and, or and not; trace a range check and explain why a zero guard precedes division. |
+| 49–62 | Define and call a function. Trace parameter values, return, named arguments, None and both paths through the zero guard. |
+| 63–73 | Introduce collections and list positions; distinguish len from an index and a function from a method; then compare signed errors. |
+| 74–79 | Read the worked revision answer and connect units to the issued assignment. |
+| 80–89 | Previously issued task requirements, submission and quiz references, and optional revision video. |
+
+**Pacing:** reserve roughly 35 minutes for arithmetic, 40 for conditions, 30 for functions and 25 for collections, plus a break and transitions. These are estimates, not a deadline to finish the deck. If time runs out, record the exact slide and continue the explanation next class; do not move an unexplained syntax topic into assessed practice.
+
+**Already issued A3:** students were told to read the final slides and complete it. The deadline remains 29 September 2026 at 11:00 Kampala. This teaching revision does not change the issued assignment, marks or submission window. Use its final slides to clarify existing requirements, not to announce a new assignment or extension.
+
+**Loops follow in Week 4:** for and while each receive a definition, complete example and trace table before record processing. Week 4 also demonstrates range, counters, continue, break and nested indentation. They are not prerequisites for the no-loop A3 examples.
 
 ## Explanations to keep ready
 

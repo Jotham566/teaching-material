@@ -1036,4 +1036,3 @@ Build on the preceding slide: Five questions,.
 
 LECTURER CUE
 Everything you saw go wrong today has gone wrong for every engineer in this building, and it will keep happening for the rest of your career. What changes is how long it takes you to read the message and carry on. Next week is Python as an engineering calculator, built on formulas from your own programme.
-

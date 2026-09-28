@@ -8,7 +8,7 @@ def text(xml):return '\n'.join(''.join(t.text or '' for t in p.iter(A+'t')) for 
 manifest=[]
 for d in D:
  if d['week']<3:continue
- edition='foundations-final3-20260929' if d['week']==13 else 'foundations-final2-20260929' if d['week'] in (4,13) or (d['cohort']=='CML3112' and d['week']==3) else 'foundations-final-20260929'
+ edition='explicit-foundations-final-20260929' if d['week'] in (3,4,6,8,9,11) else 'explicit-foundations-20260929'
  final=R/'final'/edition/d['filename'];build=R/'build'/edition/Path(d['filename']).stem
  receipt=json.loads((build/'validation.json').read_text())
  assert receipt['finalSha256']==hashlib.sha256(final.read_bytes()).hexdigest()
@@ -24,7 +24,7 @@ for d in D:
  shutil.copy2(final,BASE/'decks'/d['filename'])
  notes=['# '+d['filename'].replace('_',' ').replace('.pptx',''),'','Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.','']
  for i,s in enumerate(d['slides'],1):notes+=['## Slide '+str(i)+' — '+s['title'],'',s['notes'],'']
- (BASE/'decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')).write_text('\n'.join(notes))
+ (BASE/'decks/lecturer_notes'/Path(d['filename']).with_suffix('.md')).write_text('\n'.join(notes).rstrip()+'\n')
  manifest.append({'cohort':d['cohort'],'week':d['week'],'filename':d['filename'],'slides':len(d['slides']),'sha256':receipt['finalSha256'],'edition':edition,'render':str((build/'render').relative_to(ROOT))})
 (ROOT/'data/iuea_foundations_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('Published',len(manifest),'validated decks and lecturer companions')

@@ -134,6 +134,8 @@ def revise(deck):
    if x['title']=='A category can become indicator columns':x['caption']='An encoder converts category labels to numeric columns. Fit it on training data. Each indicator is 1 when that category applies, otherwise 0.'
  # Videos are optional revision, after all taught material and submission directions.
  new+=videos
+ from iuea_explicit_foundations import expand
+ new=expand(new,w,cohort)
  for i,s in enumerate(new):
   s['sequence_number']=i+1
   title=s['title']
@@ -153,10 +155,25 @@ def revise(deck):
   prior=new[i-1]['title'] if i else 'the preceding week'
   following=new[i+1]['title'] if i+1<len(new) else 'independent revision and the issued task'
   evidence=s.get('caption') or s.get('body') or '\n'.join(c['term']+': '+c['meaning'] for c in s.get('concepts',[]))
-  original=s.get('notes','').replace('using peer feedback', 'using a fresh run')
-  # Remove inherited live pair/group instructions from notes as well as slides.
-  original='\n'.join(line for line in original.splitlines() if not re.search(r'partner|ask pairs|exchange your|form groups|scraps of paper|make.*cards|swap roles',line,re.I))
-  s['notes']=f"PURPOSE\n{ s['title'] }\n\nCONNECT\nBuild on {prior}. Explain why this example is needed before running it.\n\nEXPLAIN\n{evidence}\n\nLECTURER DETAIL\n{original}\n\nTEACHING MODE\nDemonstrate the example directly. Explain each new name, symbol and output. Use the revision example for an individual check after class; no live partner activity is required.\n\nNEXT\n{following}."
+  original=s.get('notes','')
+  # Old keyword-matched explanations sometimes described another topic. Keep only
+  # a specific lecturer cue and references, not old connect/next/check blocks.
+  cue=re.search(r'LECTURER CUE\n(.*?)(?=\n\n[A-Z][A-Z ]+\n|$)',original,re.S)
+  cue=cue.group(1).strip() if cue else ''
+  cue='\n'.join(line for line in cue.splitlines() if not re.search(r'partner|ask pairs|exchange your|form groups|make.*cards|swap roles',line,re.I))
+  detail=[]
+  if s.get('body'):detail.append(s['body'])
+  for c in s.get('concepts',[]):detail.append(c['term']+': '+c['meaning'])
+  if s.get('table'):
+   detail+=[' | '.join(str(v) for v in row) for row in s['table']]
+  if s.get('code'):detail.append('Read the code in this order:\n'+s['code'])
+  detail+=s.get('explain',[])
+  if s.get('caption'):detail.append(s['caption'])
+  if s.get('expected_stdout'):detail.append('Expected printed output:\n'+s['expected_stdout'].rstrip())
+  if s.get('foundation_expansion'):detail.append(original)
+  explanation='\n\n'.join(detail) or evidence
+  references='\n'.join(line for line in original.splitlines() if line.startswith(('https://','Source:','Reference:')))
+  s['notes']=f"PURPOSE\n{s['title']}\n\nCONNECT\nPrevious slide: {prior}.\n\nEXPLAIN\n{explanation}\n\nLECTURER CUE\n{cue or 'Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.'}\n\nTEACHING MODE\nDemonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.\n\nNEXT\n{following}.\n\nREFERENCES\n{references}"
   s.pop('_original_slide',None)
  d['slides']=new
  return d
