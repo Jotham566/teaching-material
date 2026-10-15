@@ -1,160 +1,146 @@
 # CML3113 Week06 Mining Petroleum
 
-Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — Cleaning data and explaining changes
 
-PURPOSE
 Cleaning data and explaining changes
+CML3113, Week 6, slide 1
 
-CONNECT
-Previous slide: the preceding week.
+Explanation to give
+Inspect quality before interpreting a chart. Preserve raw records and justify each removal or estimated value.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A blank is not a measured zero. With observed values 20 and 24, median filling would insert an estimate of 22, which must be recorded as estimated.
+
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+
+On this slide
 Mining and Petroleum Engineering
 
-LECTURER CUE
-Use PowerPoint Presenter View for these notes. Teach one example, pause for every learner to predict, then work an analogous example together. The practice notebook is a learning aid, not an extra graded upload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Today’s learning.
-
-REFERENCES
-
+Continue to
+Today’s learning
 
 ## Slide 2 — Today’s learning
 
-PURPOSE
 Today’s learning
+CML3113, Week 6, slide 2
 
-CONNECT
-Previous slide: Cleaning data and explaining changes.
+Explanation to give
+Inspect quality before interpreting a chart. Preserve raw records and justify each removal or estimated value.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A blank is not a measured zero. With observed values 20 and 24, median filling would insert an estimate of 22, which must be recorded as estimated.
+
+Misconception to address
+At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+
+On this slide
 Recognise missing values and repeated records.
 
 Make a working copy and record each cleaning action.
 
-LECTURER CUE
-Ask learners to explain this goal in ordinary language. The first successful attempt matters more than covering optional extensions. Defer: MCAR/MAR/MNAR names, five chart families and six unaided defect hunts are reference. Teach missingness causes in everyday language first.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Connection to the previous lesson.
-
-REFERENCES
-
+Continue to
+Connection to the previous lesson
 
 ## Slide 3 — Connection to the previous lesson
 
-PURPOSE
 Connection to the previous lesson
+CML3113, Week 6, slide 3
 
-CONNECT
-Previous slide: Today’s learning.
+Explanation to give
+Inspect quality before interpreting a chart. Preserve raw records and justify each removal or estimated value.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A blank is not a measured zero. With observed values 20 and 24, median filling would insert an estimate of 22, which must be recorded as estimated.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 Week 5 selected and summarised columns. Before trusting those summaries, inspect missing values, repeated observations and measurement units.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Why this week’s tools are needed.
-
-REFERENCES
-
+Continue to
+Why this week’s tools are needed
 
 ## Slide 4 — Why this week’s tools are needed
 
-PURPOSE
 Why this week’s tools are needed
+CML3113, Week 6, slide 4
 
-CONNECT
-Previous slide: Connection to the previous lesson.
+Explanation to give
+Inspect quality before interpreting a chart. Preserve raw records and justify each removal or estimated value.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A blank is not a measured zero. With observed values 20 and 24, median filling would insert an estimate of 22, which must be recorded as estimated.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 A repeated record or a missing measurement can change a summary. We keep the original records, apply the stated cleaning rules and explain each change before plotting.
 
-LECTURER CUE
-A pump team records temperature to investigate operation. Mining students can relate this to a dewatering pump; petroleum students to a transfer pump. These are teaching examples, not operating limits.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Raw data and Missing value.
-
-REFERENCES
-
+Continue to
+Raw data and Missing value
 
 ## Slide 5 — Raw data and Missing value
 
-PURPOSE
 Raw data and Missing value
+CML3113, Week 6, slide 5
 
-CONNECT
-Previous slide: Why this week’s tools are needed.
+Explanation to give
+Raw data is the original record of what was received. Work on a copy and record changes. Missing means unrecorded; zero may be a valid reading. An unusual value is a reason to investigate, not automatic permission to delete.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A temperature sensor can genuinely report zero degrees. A blank temperature conveys no reading. Treating both as zero would change the mean and disguise missingness.
+
+Misconception to address
+A negative value can be physically valid in some units and impossible in others. Use the stated measurement and instrument context.
+
+On this slide
 Raw data: The original supplied records. Keep these unchanged so another person can check your decisions.
-
 Missing value: A value that was not recorded, represented here by None in Python records. Missing does not automatically mean zero.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Record and equipment ID and Median and imputation.
-
-REFERENCES
-
+Continue to
+Record and equipment ID and Median and imputation
 
 ## Slide 6 — Record and equipment ID and Median and imputation
 
-PURPOSE
 Record and equipment ID and Median and imputation
+CML3113, Week 6, slide 6
 
-CONNECT
-Previous slide: Raw data and Missing value.
+Explanation to give
+Sort the observed numbers to find the median. For an odd count use the middle number; for an even count average the two middle numbers. Imputation inserts an estimate for a missing value and should be recorded as an estimate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For 2, 4 and 90, the median is 4 while the mean is 32. For 2, 4, 6 and 8, the median is (4 + 6) / 2 = 5.
+
+Misconception to address
+Do not put a missing marker into the arithmetic. A median can be less affected by an extreme reading but does not reconstruct the lost truth.
+
+On this slide
 Record and equipment ID: A record ID identifies an observation. An equipment ID identifies the source and may repeat legitimately. Remove repeated observations only under the stated rule.
-
 Median and imputation: The median is the middle sorted value, or the mean of the two middle values. Imputation fills a missing value using an explicit rule and introduces uncertainty.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-An unusual value needs a reason.
-
-REFERENCES
-
+Continue to
+An unusual value needs a reason
 
 ## Slide 7 — An unusual value needs a reason
 
-PURPOSE
 An unusual value needs a reason
+CML3113, Week 6, slide 7
 
-CONNECT
-Previous slide: Record and equipment ID and Median and imputation.
+Explanation to give
+Raw data is the original record of what was received. Work on a copy and record changes. Missing means unrecorded; zero may be a valid reading. An unusual value is a reason to investigate, not automatic permission to delete.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A temperature sensor can genuinely report zero degrees. A blank temperature conveys no reading. Treating both as zero would change the mean and disguise missingness.
+
+Misconception to address
+A negative value can be physically valid in some units and impossible in others. Use the stated measurement and instrument context.
+
+On this slide
 A missing reading has no recorded value.
 
 Zero is a recorded value and may be physically meaningful.
@@ -163,118 +149,103 @@ A large or negative value needs instrument and unit context.
 
 Preserve the raw data and record every cleaning decision.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Find the median by sorting the readings.
-
-REFERENCES
-
+Continue to
+Find the median by sorting the readings
 
 ## Slide 8 — Find the median by sorting the readings
 
-PURPOSE
 Find the median by sorting the readings
+CML3113, Week 6, slide 8
 
-CONNECT
-Previous slide: An unusual value needs a reason.
+Explanation to give
+Sort the observed numbers to find the median. For an odd count use the middle number; for an even count average the two middle numbers. Imputation inserts an estimate for a missing value and should be recorded as an estimate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For 2, 4 and 90, the median is 4 while the mean is 32. For 2, 4, 6 and 8, the median is (4 + 6) / 2 = 5.
+
+Misconception to address
+Do not put a missing marker into the arithmetic. A median can be less affected by an extreme reading but does not reconstruct the lost truth.
+
+On this slide
 The median is a middle value after ordering the numbers from smallest to largest. In [2, 4, 30], the middle item is 4.
 
 With an even number of readings, average the two middle values. [20, 22, 24, 80] has middle values 22 and 24, so the median is 23.
 
 None is missing information in our list, not a number to sort. Collect only recorded values before calculating this median.
 
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Mean, median and unusual readings.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Mean, median and unusual readings
 
 ## Slide 9 — Mean, median and unusual readings
 
-PURPOSE
 Mean, median and unusual readings
+CML3113, Week 6, slide 9
 
-CONNECT
-Previous slide: Find the median by sorting the readings.
+Explanation to give
+Sort the observed numbers to find the median. For an odd count use the middle number; for an even count average the two middle numbers. Imputation inserts an estimate for a missing value and should be recorded as an estimate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For 2, 4 and 90, the median is 4 while the mean is 32. For 2, 4, 6 and 8, the median is (4 + 6) / 2 = 5.
+
+Misconception to address
+Do not put a missing marker into the arithmetic. A median can be less affected by an extreme reading but does not reconstruct the lost truth.
+
+On this slide
 Readings | Mean | Median
-
 2, 4, 6 | 4 | 4
-
 2, 4, 30 | 12 | 4
-
 The mean uses every value. The median is the middle sorted value. A large value needs context.
 
-LECTURER CUE
-The mean uses every value. The median is the middle sorted value. A large value needs context.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Testing for None and importing one tool.
-
-REFERENCES
-
+Continue to
+Testing for None and importing one tool
 
 ## Slide 10 — Testing for None and importing one tool
 
-PURPOSE
 Testing for None and importing one tool
+CML3113, Week 6, slide 10
 
-CONNECT
-Previous slide: Mean, median and unusual readings.
+Explanation to give
+Read “is None” as a check for Python's designated missing-result value in these records. It is different from asking whether the number equals zero or whether a string is empty.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For values [0, None, 4], testing value is not None retains 0 and 4. Testing merely if value would discard the valid zero too.
+
+Misconception to address
+A CSV blank is initially "", not None. The loader must convert it deliberately if the later function expects None.
+
+On this slide
 value is None asks whether value is the special None object. value is not None is the opposite question. Use these tests for Python None.
 
 This differs from ==, which compares values. Do not use is to compare ordinary numeric measurements.
 
 from statistics import median loads just the median function. statistics is a standard Python module; median is the callable tool used below.
 
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Filling a gap adds an estimate.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Filling a gap adds an estimate
 
 ## Slide 11 — Filling a gap adds an estimate
 
-PURPOSE
 Filling a gap adds an estimate
+CML3113, Week 6, slide 11
 
-CONNECT
-Previous slide: Testing for None and importing one tool.
+Explanation to give
+Sort the observed numbers to find the median. For an odd count use the middle number; for an even count average the two middle numbers. Imputation inserts an estimate for a missing value and should be recorded as an estimate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For 2, 4 and 90, the median is 4 while the mean is 32. For 2, 4, 6 and 8, the median is (4 + 6) / 2 = 5.
+
+Misconception to address
+Do not put a missing marker into the arithmetic. A median can be less affected by an extreme reading but does not reconstruct the lost truth.
+
+On this slide
 The valid readings, sorted, are 20, 22, 24 and 80.
 
 The two middle values are 22 and 24. Their mean is 23.
@@ -283,825 +254,705 @@ Using 23 for a blank is a declared cleaning rule. It does not recover the lost m
 
 In Python, value is None tests for a missing marker. is not None tests that it is not that marker.
 
-LECTURER CUE
-Use the example below to sort four valid readings. The median is (22 + 24) / 2 = 23. Filling a blank with 23 is a stated teaching rule, not a recovered measurement.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example (1/2).
-
-REFERENCES
-
+Continue to
+Cleaning decisions and charts in Python (1/2)
 
 ## Slide 12 — Cleaning decisions and charts in Python (1/2)
 
-PURPOSE
 Cleaning decisions and charts in Python (1/2)
+CML3113, Week 6, slide 12
 
-CONNECT
-Previous slide: Filling a gap adds an estimate.
+Explanation to give
+Explain why cleaning precedes the chart. A repeated observation can count twice; a missing value should not silently become a measured zero. Every change needs an explicit rule and a retained original.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Compare the raw record count with the cleaned count, then show which fields were estimated. A chart caption should say whether it uses observed values, filled values or both.
+
+Misconception to address
+Do not choose a cleaning rule merely because it makes the chart smoother. The rule must follow the task and the measurement context.
+
+Read the displayed code line by line
 from statistics import median
+Bring the named tool from this library into the current Python session.
+
 raw = [20, None, 22, 24, 80]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 known = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 for value in raw:
-    if value is not None:
-        known.append(value)
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+if value is not None:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+known.append(value)
+Evaluate the argument and add it as one new item at the end of this list.
+
 fill = median(known)
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 cleaned = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
 
-import loads a library. from selects a tool from it.
-
-for takes the next item. The indented block repeats.
-
-if tests a condition. The chosen indented block runs.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-Use the example below to sort four valid readings. The median is (22 + 24) / 2 = 23. Filling a blank with 23 is a stated teaching rule, not a recovered measurement. Model a defect register: observation, evidence, decision, affected count, limitation. Work one repeated record and one missing value together. Draw a scatter plot from four pairs on the board. A pattern can motivate investigation without proving that one variable causes the other.
-
-Complete practice code:
-from statistics import median
-raw = [20, None, 22, 24, 80]
-known = []
-for value in raw:
-    if value is not None:
-        known.append(value)
-fill = median(known)
-cleaned = []
-for value in raw:
-    if value is None:
-        cleaned.append(fill)
-    else:
-        cleaned.append(value)
-print(fill)
-print(raw)
-print(cleaned)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example (2/2).
-
-REFERENCES
-
+Continue to
+Cleaning decisions and charts in Python (2/2)
 
 ## Slide 13 — Cleaning decisions and charts in Python (2/2)
 
-PURPOSE
 Cleaning decisions and charts in Python (2/2)
+CML3113, Week 6, slide 13
 
-CONNECT
-Previous slide: Cleaning decisions and charts in Python (1/2).
+Explanation to give
+Explain why cleaning precedes the chart. A repeated observation can count twice; a missing value should not silently become a measured zero. Every change needs an explicit rule and a retained original.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Compare the raw record count with the cleaned count, then show which fields were estimated. A chart caption should say whether it uses observed values, filled values or both.
+
+Misconception to address
+Do not choose a cleaning rule merely because it makes the chart smoother. The rule must follow the task and the measurement context.
+
+Read the displayed code line by line
 for value in raw:
-    if value is None:
-        cleaned.append(fill)
-    else:
-        cleaned.append(value)
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+if value is None:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+cleaned.append(fill)
+Evaluate the argument and add it as one new item at the end of this list.
+
+else:
+Use this remaining path when the matching earlier condition did not succeed.
+
+cleaned.append(value)
+Evaluate the argument and add it as one new item at the end of this list.
+
 print(fill)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+
 print(raw)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+
 print(cleaned)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-for takes the next item. The indented block repeats.
-
-if tests a condition. The chosen indented block runs.
-
-print displays a value below the cell.
-
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-Use the example below to sort four valid readings. The median is (22 + 24) / 2 = 23. Filling a blank with 23 is a stated teaching rule, not a recovered measurement. Model a defect register: observation, evidence, decision, affected count, limitation. Work one repeated record and one missing value together. Draw a scatter plot from four pairs on the board. A pattern can motivate investigation without proving that one variable causes the other.
-
-Complete practice code:
-from statistics import median
-raw = [20, None, 22, 24, 80]
-known = []
-for value in raw:
-    if value is not None:
-        known.append(value)
-fill = median(known)
-cleaned = []
-for value in raw:
-    if value is None:
-        cleaned.append(fill)
-    else:
-        cleaned.append(value)
-print(fill)
-print(raw)
-print(cleaned)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Expected output.
-
-REFERENCES
-
+Continue to
+Cleaning decisions and charts results
 
 ## Slide 14 — Cleaning decisions and charts results
 
-PURPOSE
 Cleaning decisions and charts results
+CML3113, Week 6, slide 14
 
-CONNECT
-Previous slide: Cleaning decisions and charts in Python (2/2).
+Explanation to give
+Explain why cleaning precedes the chart. A repeated observation can count twice; a missing value should not silently become a measured zero. Every change needs an explicit rule and a retained original.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare the raw record count with the cleaned count, then show which fields were estimated. A chart caption should say whether it uses observed values, filled values or both.
+
+Misconception to address
+Do not choose a cleaning rule merely because it makes the chart smoother. The rule must follow the task and the measurement context.
+
+On this slide
 23.0
 [20, None, 22, 24, 80]
 [20, 23.0, 22, 24, 80]
 
-LECTURER CUE
-Compare the actual output character by character with this practice result. If it differs, read the first error and check the input, units, names and execution order. Do not copy this practice output into a graded answer.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Copy a record and remember an ID.
-
-REFERENCES
-
+Continue to
+Copy a record and remember an ID
 
 ## Slide 15 — Copy a record and remember an ID
 
-PURPOSE
 Copy a record and remember an ID
+CML3113, Week 6, slide 15
 
-CONNECT
-Previous slide: Cleaning decisions and charts results.
+Explanation to give
+A record ID identifies a particular observation. Equipment ID identifies the source and may repeat legitimately. Keep a set of observation IDs already retained and copy records before altering fields.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For record IDs A, B, B, retain the first A and first B under a first-occurrence rule. Two different records from the same meter remain different observations.
+
+Misconception to address
+Do not deduplicate by equipment ID unless instructed. row.copy() protects top-level scalar fields but is only a shallow copy if nested mutable objects exist.
+
+On this slide
 dict(row): For our flat records, dict(row) makes a separate dictionary with the same fields. Changing a number in the copy leaves the original record unchanged.
-
 set, in, add and continue: set() starts an empty collection of unique items. in checks membership; add remembers an item. continue skips the rest of the current loop pass.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A working copy preserves the original.
-
-REFERENCES
-
+Continue to
+A working copy preserves the original
 
 ## Slide 16 — A working copy preserves the original
 
-PURPOSE
 A working copy preserves the original
+CML3113, Week 6, slide 16
 
-CONNECT
-Previous slide: Copy a record and remember an ID.
+Explanation to give
+A record ID identifies a particular observation. Equipment ID identifies the source and may repeat legitimately. Keep a set of observation IDs already retained and copy records before altering fields.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For record IDs A, B, B, retain the first A and first B under a first-occurrence rule. Two different records from the same meter remain different observations.
+
+Misconception to address
+Do not deduplicate by equipment ID unless instructed. row.copy() protects top-level scalar fields but is only a shallow copy if nested mutable objects exist.
+
+On this slide
 In this separate four-record example, remove one repeated C record and fill B with (20 + 24) / 2 = 22.
 
-LECTURER CUE
-Ask students to describe what they see before introducing terminology. Generated conceptual teaching illustration. The working-copy rule is a toy activity, not the exact assessed cleaning policy. Source: figs/experiential/ASSET_SOURCES.md.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Copies and duplicate checks.
-
-REFERENCES
-
+Continue to
+Copies and duplicate checks
 
 ## Slide 17 — Copies and duplicate checks
 
-PURPOSE
 Copies and duplicate checks
+CML3113, Week 6, slide 17
 
-CONNECT
-Previous slide: A working copy preserves the original.
+Explanation to give
+A record ID identifies a particular observation. Equipment ID identifies the source and may repeat legitimately. Keep a set of observation IDs already retained and copy records before altering fields.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+For record IDs A, B, B, retain the first A and first B under a first-occurrence rule. Two different records from the same meter remain different observations.
+
+Misconception to address
+Do not deduplicate by equipment ID unless instructed. row.copy() protects top-level scalar fields but is only a shallow copy if nested mutable objects exist.
+
+Read the displayed code line by line
 row = {"id": "A", "reading": 4}
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 copy = dict(row)
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 copy["reading"] = 5
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 seen = set()
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 seen.add(row["id"])
+Remember this item in the set. Adding the same item again does not create a duplicate.
+
 print(row["reading"])
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+
 print("A" in seen)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-print displays a value below the cell.
-
-Square brackets create a list or select an item.
-
-Braces hold dictionary key: value pairs here.
-
+Result / continuity
 dict(row) makes a shallow copy. A set keeps unique IDs.
 
-LECTURER CUE
-Read each symbol before running. Ask everyone to predict. Expected output: 4 then True. The example has only scalar fields. A shallow copy does not independently copy nested lists.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Trace the duplicate-record decision.
-
-REFERENCES
-
+Continue to
+Trace the duplicate-record decision
 
 ## Slide 18 — Trace the duplicate-record decision
 
-PURPOSE
 Trace the duplicate-record decision
+CML3113, Week 6, slide 18
 
-CONNECT
-Previous slide: Copies and duplicate checks.
+Explanation to give
+A record ID identifies a particular observation. Equipment ID identifies the source and may repeat legitimately. Keep a set of observation IDs already retained and copy records before altering fields.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For record IDs A, B, B, retain the first A and first B under a first-occurrence rule. Two different records from the same meter remain different observations.
+
+Misconception to address
+Do not deduplicate by equipment ID unless instructed. row.copy() protects top-level scalar fields but is only a shallow copy if nested mutable objects exist.
+
+On this slide
 Record ID | Already in seen? | Action
-
 1, first record | No | Remember 1; keep a copy
-
 1, repeated record | Yes | continue; skip this copy
-
 2, next record | No | Remember 2; keep a copy
-
 This example removes repeated record IDs, not every observation from repeated equipment.
 
-Read the rows in order. This example removes repeated record IDs, not every observation from repeated equipment.
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Following a cleaning loop.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Following a cleaning loop
 
 ## Slide 19 — Following a cleaning loop
 
-PURPOSE
 Following a cleaning loop
+CML3113, Week 6, slide 19
 
-CONNECT
-Previous slide: Trace the duplicate-record decision.
+Explanation to give
+A record ID identifies a particular observation. Equipment ID identifies the source and may repeat legitimately. Keep a set of observation IDs already retained and copy records before altering fields.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For record IDs A, B, B, retain the first A and first B under a first-occurrence rule. Two different records from the same meter remain different observations.
+
+Misconception to address
+Do not deduplicate by equipment ID unless instructed. row.copy() protects top-level scalar fields but is only a shallow copy if nested mutable objects exist.
+
+On this slide
 Expression | Meaning
-
 seen = set() | Start an empty collection of IDs
-
 record_id in seen | Has this ID already been recorded?
-
 continue | Skip the remaining lines for this item
-
 value is None | Check for Python’s no-value marker
-
 An empty string "" and None are different values. Parse CSV fields according to the issued rule.
 
-LECTURER CUE
-Read one row at a time and use a changed value. This is a syntax reference for the worked examples.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Copying records and recognising repeats in Python (1/2).
-
-REFERENCES
-
+Continue to
+Copying records and recognising repeats in Python (1/2)
 
 ## Slide 20 — Copying records and recognising repeats in Python (1/2)
 
-PURPOSE
 Copying records and recognising repeats in Python (1/2)
+CML3113, Week 6, slide 20
 
-CONNECT
-Previous slide: Following a cleaning loop.
+Explanation to give
+A record ID identifies a particular observation. Equipment ID identifies the source and may repeat legitimately. Keep a set of observation IDs already retained and copy records before altering fields.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+For record IDs A, B, B, retain the first A and first B under a first-occurrence rule. Two different records from the same meter remain different observations.
+
+Misconception to address
+Do not deduplicate by equipment ID unless instructed. row.copy() protects top-level scalar fields but is only a shallow copy if nested mutable objects exist.
+
+Read the displayed code line by line
 raw_records = [{"id": 1, "equipment": "A", "value": 10},
-               {"id": 1, "equipment": "A", "value": 10},
-               {"id": 2, "equipment": "A", "value": 12}]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
+{"id": 1, "equipment": "A", "value": 10},
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
+{"id": 2, "equipment": "A", "value": 12}]
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
 seen = set()
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 kept = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
 
-Square brackets create a list or select an item.
-
-Braces hold dictionary key: value pairs here.
-
-= assigns the value on the right to the name on the left.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-set() creates a collection of already-seen identifiers. in checks membership. continue skips the rest of that iteration. dict(row) copies a record so later edits do not change the original. Different record IDs from the same equipment remain legitimate observations.
-
-Complete practice code:
-raw_records = [{"id": 1, "equipment": "A", "value": 10},
-               {"id": 1, "equipment": "A", "value": 10},
-               {"id": 2, "equipment": "A", "value": 12}]
-seen = set()
-kept = []
-for row in raw_records:
-    if row["id"] in seen:
-        continue
-    seen.add(row["id"])
-    kept.append(dict(row))
-print(len(raw_records), len(kept))
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Copying records and recognising repeats in Python (2/2).
-
-REFERENCES
-
+Continue to
+Copying records and recognising repeats in Python (2/2)
 
 ## Slide 21 — Copying records and recognising repeats in Python (2/2)
 
-PURPOSE
 Copying records and recognising repeats in Python (2/2)
+CML3113, Week 6, slide 21
 
-CONNECT
-Previous slide: Copying records and recognising repeats in Python (1/2).
+Explanation to give
+A record ID identifies a particular observation. Equipment ID identifies the source and may repeat legitimately. Keep a set of observation IDs already retained and copy records before altering fields.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+For record IDs A, B, B, retain the first A and first B under a first-occurrence rule. Two different records from the same meter remain different observations.
+
+Misconception to address
+Do not deduplicate by equipment ID unless instructed. row.copy() protects top-level scalar fields but is only a shallow copy if nested mutable objects exist.
+
+Read the displayed code line by line
 for row in raw_records:
-    if row["id"] in seen:
-        continue
-    seen.add(row["id"])
-    kept.append(dict(row))
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+if row["id"] in seen:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+continue
+Skip the rest of this iteration and proceed to the next item.
+
+seen.add(row["id"])
+Remember this item in the set. Adding the same item again does not create a duplicate.
+
+kept.append(dict(row))
+Evaluate the argument and add it as one new item at the end of this list.
+
 print(len(raw_records), len(kept))
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-for takes the next item. The indented block repeats.
-
-if tests a condition. The chosen indented block runs.
-
-print displays a value below the cell.
-
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-set() creates a collection of already-seen identifiers. in checks membership. continue skips the rest of that iteration. dict(row) copies a record so later edits do not change the original. Different record IDs from the same equipment remain legitimate observations.
-
-Complete practice code:
-raw_records = [{"id": 1, "equipment": "A", "value": 10},
-               {"id": 1, "equipment": "A", "value": 10},
-               {"id": 2, "equipment": "A", "value": 12}]
-seen = set()
-kept = []
-for row in raw_records:
-    if row["id"] in seen:
-        continue
-    seen.add(row["id"])
-    kept.append(dict(row))
-print(len(raw_records), len(kept))
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Summaries returned as a dictionary.
-
-REFERENCES
-
+Continue to
+Summaries returned as a dictionary
 
 ## Slide 22 — Summaries returned as a dictionary
 
-PURPOSE
 Summaries returned as a dictionary
+CML3113, Week 6, slide 22
 
-CONNECT
-Previous slide: Copying records and recognising repeats in Python (2/2).
+Explanation to give
+A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
 
-EXPLAIN
+Worked illustration / lecturer answer
+records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
+
+Misconception to address
+Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
+
+On this slide
 This example expects a nonempty list.
 
 It calculates a count and mean, then returns a dictionary with named outputs.
 
 Use the exact keys specified by the issued task when adapting this pattern.
 
-LECTURER CUE
-This example expects a nonempty list. It calculates a count and mean, then returns a dictionary with named outputs. Use the exact keys specified by the issued task when adapting this pattern.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Summaries returned as a dictionary in Python.
-
-REFERENCES
-
+Continue to
+Summaries returned as a dictionary in Python
 
 ## Slide 23 — Summaries returned as a dictionary in Python
 
-PURPOSE
 Summaries returned as a dictionary in Python
+CML3113, Week 6, slide 23
 
-CONNECT
-Previous slide: Summaries returned as a dictionary.
+Explanation to give
+A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
+
+Misconception to address
+Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
+
+Read the displayed code line by line
 def describe(values):
-    count = len(values)
-    mean = sum(values) / count
-    return {"count": count, "mean": mean}
+Store these instructions under this function name. Names in parentheses are its inputs; the body waits until a call.
+
+count = len(values)
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
+mean = sum(values) / count
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
+return {"count": count, "mean": mean}
+Evaluate this result and send it to the caller, ending this function call.
 
 print(describe([10, 12]))
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-def names the function. Inputs go inside parentheses.
-
-return sends the result back to the caller.
-
-print displays a value below the cell.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-This example expects a nonempty list. It calculates a count and mean, then returns a dictionary with named outputs. Use the exact keys specified by the issued task when adapting this pattern.
-
-Complete practice code:
-def describe(values):
-    count = len(values)
-    mean = sum(values) / count
-    return {"count": count, "mean": mean}
-
-print(describe([10, 12]))
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Reading a blank field.
-
-REFERENCES
-
+Continue to
+Reading a blank field
 
 ## Slide 24 — Reading a blank field
 
-PURPOSE
 Reading a blank field
+CML3113, Week 6, slide 24
 
-CONNECT
-Previous slide: Summaries returned as a dictionary in Python.
+Explanation to give
+Inspect a field before converting it. A blank string represents no recorded number here. Converting that blank with float raises ValueError, so handle the missing case explicitly.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For text values ["2", "", "4"], skip the blank and convert the other two to 2.0 and 4.0. Their mean is 3.0 using count 2, not count 3.
+
+Misconception to address
+Do not convert blank to zero merely to silence an error. Zero is a measurement. Catch only the expected conversion failure so unrelated coding errors remain visible.
+
+On this slide
 CSV values start as text.
 
 The if/else below stores None for a blank.
 
 Otherwise float converts the text into a number.
 
-LECTURER CUE
-CSV values start as text. The if/else below stores None for a blank. Otherwise float converts the text into a number.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Reading a blank field in Python.
-
-REFERENCES
-
+Continue to
+Reading a blank field in Python
 
 ## Slide 25 — Reading a blank field in Python
 
-PURPOSE
 Reading a blank field in Python
+CML3113, Week 6, slide 25
 
-CONNECT
-Previous slide: Reading a blank field.
+Explanation to give
+Inspect a field before converting it. A blank string represents no recorded number here. Converting that blank with float raises ValueError, so handle the missing case explicitly.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+For text values ["2", "", "4"], skip the blank and convert the other two to 2.0 and 4.0. Their mean is 3.0 using count 2, not count 3.
+
+Misconception to address
+Do not convert blank to zero merely to silence an error. Zero is a measurement. Catch only the expected conversion failure so unrelated coding errors remain visible.
+
+Read the displayed code line by line
 text_values = ["20", "", "24"]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 parsed = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 for text in text_values:
-    if text == "":
-        parsed.append(None)
-    else:
-        parsed.append(float(text))
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+if text == "":
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+parsed.append(None)
+Evaluate the argument and add it as one new item at the end of this list.
+
+else:
+Use this remaining path when the matching earlier condition did not succeed.
+
+parsed.append(float(text))
+Evaluate the argument and add it as one new item at the end of this list.
+
 print(parsed)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-for takes the next item. The indented block repeats.
-
-if tests a condition. The chosen indented block runs.
-
-float converts numeric text into a decimal number.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-CSV values start as text. The if/else below stores None for a blank. Otherwise float converts the text into a number.
-
-Complete practice code:
-text_values = ["20", "", "24"]
-parsed = []
-for text in text_values:
-    if text == "":
-        parsed.append(None)
-    else:
-        parsed.append(float(text))
-print(parsed)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Audit.
-
-REFERENCES
-
+Continue to
+Audit
 
 ## Slide 26 — Audit
 
-PURPOSE
 Audit
+CML3113, Week 6, slide 26
 
-CONNECT
-Previous slide: Reading a blank field in Python.
+Explanation to give
+An audit describes the difference between the received data and the retained data. State what was counted and why a record was removed or a field filled. Return named counts so another reader can verify the accounting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If 5 raw records become 4 after one duplicate removal, raw_count is 5 and cleaned_count is 4. A filled field changes a value but does not by itself remove a record.
+
+Misconception to address
+Several defect counts can overlap on the same record. Do not add them as if they were mutually exclusive removals unless your counting rule guarantees that.
+
+On this slide
 Audit: A count and explanation of what changed, why it changed and how many records remain.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Every cleaning change needs a record.
-
-REFERENCES
-
+Continue to
+Every cleaning change needs a record
 
 ## Slide 27 — Every cleaning change needs a record
 
-PURPOSE
 Every cleaning change needs a record
+CML3113, Week 6, slide 27
 
-CONNECT
-Previous slide: Audit.
+Explanation to give
+An audit describes the difference between the received data and the retained data. State what was counted and why a record was removed or a field filled. Return named counts so another reader can verify the accounting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If 5 raw records become 4 after one duplicate removal, raw_count is 5 and cleaned_count is 4. A filled field changes a value but does not by itself remove a record.
+
+Misconception to address
+Several defect counts can overlap on the same record. Do not add them as if they were mutually exclusive removals unless your counting rule guarantees that.
+
+On this slide
 A duplicate record ID suggests a repeated observation.
 
 Two different observations from the same equipment can both be valid.
 
 Record the evidence, action, number of affected rows and limitation.
 
-LECTURER CUE
-Model a defect register: observation, evidence, decision, affected count, limitation. Work one repeated record and one missing value together.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Chart axes.
-
-REFERENCES
-
+Continue to
+Chart axes
 
 ## Slide 28 — Chart axes
 
-PURPOSE
 Chart axes
+CML3113, Week 6, slide 28
 
-CONNECT
-Previous slide: Every cleaning change needs a record.
+Explanation to give
+Explain a scatter point as a pair of measurements from one observation. The horizontal coordinate comes from the x variable, the vertical coordinate from y. Name units before describing a pattern.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A point at (20, 8) on a temperature-versus-load plot means that observation had 20 degrees and load 8 in the labelled unit. It does not show the eighth observation at time 20.
+
+Misconception to address
+Association in a plot does not establish causation. fig is the complete Figure; ax is its plotting area. Return the Figure when the assignment requires it.
+
+On this slide
 Chart axes: A chart maps values to positions. Read the horizontal variable, vertical variable and their units before interpreting a pattern.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A scatter plot pairs two measurements.
-
-REFERENCES
-
+Continue to
+A scatter plot pairs two measurements
 
 ## Slide 29 — A scatter plot pairs two measurements
 
-PURPOSE
 A scatter plot pairs two measurements
+CML3113, Week 6, slide 29
 
-CONNECT
-Previous slide: Chart axes.
+Explanation to give
+Explain a scatter point as a pair of measurements from one observation. The horizontal coordinate comes from the x variable, the vertical coordinate from y. Name units before describing a pattern.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A point at (20, 8) on a temperature-versus-load plot means that observation had 20 degrees and load 8 in the labelled unit. It does not show the eighth observation at time 20.
+
+Misconception to address
+Association in a plot does not establish causation. fig is the complete Figure; ax is its plotting area. Return the Figure when the assignment requires it.
+
+On this slide
 The horizontal axis gives the input value.
 
 The vertical axis gives the corresponding reading.
 
 One point represents one observation. A pattern alone does not prove causation.
 
-LECTURER CUE
-Draw a scatter plot from four pairs on the board. A pattern can motivate investigation without proving that one variable causes the other.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Choose a chart after naming the question.
-
-REFERENCES
-
+Continue to
+Choose a chart after naming the question
 
 ## Slide 30 — Choose a chart after naming the question
 
-PURPOSE
 Choose a chart after naming the question
+CML3113, Week 6, slide 30
 
-CONNECT
-Previous slide: A scatter plot pairs two measurements.
+Explanation to give
+Choose the chart from the question. A bar chart compares named categories; a histogram counts numerical observations in intervals; a scatter plot compares paired numbers. Explain what one mark means.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use bars for mean energy by building, a histogram for the distribution of individual energy readings, and scatter for energy against temperature. A histogram bar's height counts observations in a bin.
+
+Misconception to address
+Histogram bins are numerical intervals, not separate named buildings. Changing bin widths can change the visible pattern, so state the choice and inspect the data too.
+
+On this slide
 Scatter and bar: A scatter plot places one point for each paired measurement. A bar chart compares values across named groups. Label both axes and their units.
-
 Histogram and bins: A histogram counts observations in numerical intervals called bins. The horizontal axis is the measurement; the vertical axis is a count. Bin edges affect its appearance.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Choosing a chart for the question.
-
-REFERENCES
-
+Continue to
+Choosing a chart for the question
 
 ## Slide 31 — Choosing a chart for the question
 
-PURPOSE
 Choosing a chart for the question
+CML3113, Week 6, slide 31
 
-CONNECT
-Previous slide: Choose a chart after naming the question.
+Explanation to give
+Choose the chart from the question. A bar chart compares named categories; a histogram counts numerical observations in intervals; a scatter plot compares paired numbers. Explain what one mark means.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use bars for mean energy by building, a histogram for the distribution of individual energy readings, and scatter for energy against temperature. A histogram bar's height counts observations in a bin.
+
+Misconception to address
+Histogram bins are numerical intervals, not separate named buildings. Changing bin widths can change the visible pattern, so state the choice and inspect the data too.
+
+On this slide
 This week uses histograms, scatter plots and bar charts. The other chart types are reference examples.
 
-LECTURER CUE
-Name the question answered by each chart. Correlation does not establish causation. A bar chart usually needs a zero baseline.
-Source: existing course illustration figs/chart_chooser.png. These are illustrative examples, not this cohort’s assessed results.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A chart with labelled axes.
-
-REFERENCES
-Source: existing course illustration figs/chart_chooser.png. These are illustrative examples, not this cohort’s assessed results.
+Continue to
+A chart with labelled axes
 
 ## Slide 32 — A chart with labelled axes
 
-PURPOSE
 A chart with labelled axes
+CML3113, Week 6, slide 32
 
-CONNECT
-Previous slide: Choosing a chart for the question.
+Explanation to give
+Explain a scatter point as a pair of measurements from one observation. The horizontal coordinate comes from the x variable, the vertical coordinate from y. Name units before describing a pattern.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A point at (20, 8) on a temperature-versus-load plot means that observation had 20 degrees and load 8 in the labelled unit. It does not show the eighth observation at time 20.
+
+Misconception to address
+Association in a plot does not establish causation. fig is the complete Figure; ax is its plotting area. Return the Figure when the assignment requires it.
+
+On this slide
 matplotlib is a plotting library. plt is the short name we give its pyplot module.
 
 fig, ax = plt.subplots() returns two objects: fig is the whole figure; ax is its plotting area. scatter places the paired measurements as points.
 
 ax.set_xlabel(...) labels the horizontal axis. set_ylabel labels the vertical axis. Keep fig when the task asks you to return a Figure object.
 
-LECTURER CUE
-matplotlib draws charts. subplots creates a Figure, the whole page, and Axes, the plotting area. scatter pairs each input with its corresponding reading. The horizontal axis is the input and the vertical axis is the reading. A pattern alone does not prove causation. In the test, return Figure objects as the brief specifies.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A chart with labelled axes in Python.
-
-REFERENCES
-
+Continue to
+A chart with labelled axes in Python
 
 ## Slide 33 — A chart with labelled axes in Python
 
-PURPOSE
 A chart with labelled axes in Python
+CML3113, Week 6, slide 33
 
-CONNECT
-Previous slide: A chart with labelled axes.
+Explanation to give
+Explain a scatter point as a pair of measurements from one observation. The horizontal coordinate comes from the x variable, the vertical coordinate from y. Name units before describing a pattern.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+A point at (20, 8) on a temperature-versus-load plot means that observation had 20 degrees and load 8 in the labelled unit. It does not show the eighth observation at time 20.
+
+Misconception to address
+Association in a plot does not establish causation. fig is the complete Figure; ax is its plotting area. Return the Figure when the assignment requires it.
+
+Read the displayed code line by line
 import matplotlib.pyplot as plt
+Load this library. An alias after as is the shorter name used below.
+
 inputs = [1, 2, 3, 4]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 readings = [12, 14, 13, 18]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 fig, ax = plt.subplots()
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 ax.scatter(inputs, readings)
+Plot one point for each aligned x/y pair.
+
 ax.set_xlabel("Input (teaching units)")
+Label the horizontal axis with the named quantity and unit.
+
 ax.set_ylabel("Reading (teaching units)")
+Label the vertical axis with the named quantity and unit.
+
 ax.set_title("Four invented observations")
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
 plt.show()
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
 
-import loads a library. from selects a tool from it.
-
-Square brackets create a list or select an item.
-
-= assigns the value on the right to the name on the left.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-matplotlib draws charts. subplots creates a Figure, the whole page, and Axes, the plotting area. scatter pairs each input with its corresponding reading. The horizontal axis is the input and the vertical axis is the reading. A pattern alone does not prove causation. In the test, return Figure objects as the brief specifies.
-
-Complete practice code:
-import matplotlib.pyplot as plt
-inputs = [1, 2, 3, 4]
-readings = [12, 14, 13, 18]
-fig, ax = plt.subplots()
-ax.scatter(inputs, readings)
-ax.set_xlabel("Input (teaching units)")
-ax.set_ylabel("Reading (teaching units)")
-ax.set_title("Four invented observations")
-plt.show()
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A bar chart and a histogram count different things.
-
-REFERENCES
-
+Continue to
+A bar chart and a histogram count different things
 
 ## Slide 34 — A bar chart and a histogram count different things
 
-PURPOSE
 A bar chart and a histogram count different things
+CML3113, Week 6, slide 34
 
-CONNECT
-Previous slide: A chart with labelled axes in Python.
+Explanation to give
+Choose the chart from the question. A bar chart compares named categories; a histogram counts numerical observations in intervals; a scatter plot compares paired numbers. Explain what one mark means.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use bars for mean energy by building, a histogram for the distribution of individual energy readings, and scatter for energy against temperature. A histogram bar's height counts observations in a bin.
+
+Misconception to address
+Histogram bins are numerical intervals, not separate named buildings. Changing bin widths can change the visible pattern, so state the choice and inspect the data too.
+
+On this slide
 A bar chart has named groups. bar(["A", "B"], [13, 16]) makes one bar for each supplied group value.
 
 A histogram divides a numeric range into intervals called bins. hist(readings, bins=2) counts readings in two intervals.
 
 With [12, 14, 13, 18], the intervals run from 12 to 15 and 15 to 18. Counts are 3 and 1; the final interval includes the last endpoint.
 
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Comparing groups and a distribution.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Comparing groups and a distribution
 
 ## Slide 35 — Comparing groups and a distribution
 
-PURPOSE
 Comparing groups and a distribution
+CML3113, Week 6, slide 35
 
-CONNECT
-Previous slide: A bar chart and a histogram count different things.
+Explanation to give
+Choose the chart from the question. A bar chart compares named categories; a histogram counts numerical observations in intervals; a scatter plot compares paired numbers. Explain what one mark means.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use bars for mean energy by building, a histogram for the distribution of individual energy readings, and scatter for energy against temperature. A histogram bar's height counts observations in a bin.
+
+Misconception to address
+Histogram bins are numerical intervals, not separate named buildings. Changing bin widths can change the visible pattern, so state the choice and inspect the data too.
+
+On this slide
 bar compares one value for each named group. hist counts observations in value intervals called bins.
 
 Read the bar labels and both axes.
@@ -1110,216 +961,185 @@ This practice uses two bins; follow the exact bin rule in the test brief.
 
 Save and keep the Figure objects when a task asks for them.
 
-LECTURER CUE
-bar compares one value for each named group. hist counts observations in value intervals called bins. Read the bar labels and both axes. This practice uses two bins; follow the exact bin rule in the test brief. Save and keep the Figure objects when a task asks for them.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Comparing groups and a distribution in Python (1/2).
-
-REFERENCES
-
+Continue to
+Comparing groups and a distribution in Python (1/2)
 
 ## Slide 36 — Comparing groups and a distribution in Python (1/2)
 
-PURPOSE
 Comparing groups and a distribution in Python (1/2)
+CML3113, Week 6, slide 36
 
-CONNECT
-Previous slide: Comparing groups and a distribution.
+Explanation to give
+Choose the chart from the question. A bar chart compares named categories; a histogram counts numerical observations in intervals; a scatter plot compares paired numbers. Explain what one mark means.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Use bars for mean energy by building, a histogram for the distribution of individual energy readings, and scatter for energy against temperature. A histogram bar's height counts observations in a bin.
+
+Misconception to address
+Histogram bins are numerical intervals, not separate named buildings. Changing bin widths can change the visible pattern, so state the choice and inspect the data too.
+
+Read the displayed code line by line
 bar_fig, bar_ax = plt.subplots()
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 bar_ax.bar(["A", "B"], [13, 16])
+Draw one bar for each named category with the supplied height.
+
 bar_ax.set_xlabel("Group")
+Label the horizontal axis with the named quantity and unit.
+
 bar_ax.set_ylabel("Mean reading (teaching units)")
+Label the vertical axis with the named quantity and unit.
+
 bar_ax.set_title("Two invented group means")
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
 hist_fig, hist_ax = plt.subplots()
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 hist_ax.hist(readings, bins=2)
+Count numerical observations into intervals and display those counts.
+
 hist_ax.set_xlabel("Reading (teaching units)")
+Label the horizontal axis with the named quantity and unit.
+
 hist_ax.set_ylabel("Count of observations")
+Label the vertical axis with the named quantity and unit.
 
-Square brackets create a list or select an item.
-
-= assigns the value on the right to the name on the left.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-bar compares one value for each named group. hist counts observations in value intervals called bins. Read the bar labels and both axes. This practice uses two bins; follow the exact bin rule in the test brief. Save and keep the Figure objects when a task asks for them.
-
-Complete practice code:
-bar_fig, bar_ax = plt.subplots()
-bar_ax.bar(["A", "B"], [13, 16])
-bar_ax.set_xlabel("Group")
-bar_ax.set_ylabel("Mean reading (teaching units)")
-bar_ax.set_title("Two invented group means")
-hist_fig, hist_ax = plt.subplots()
-hist_ax.hist(readings, bins=2)
-hist_ax.set_xlabel("Reading (teaching units)")
-hist_ax.set_ylabel("Count of observations")
-hist_ax.set_title("Distribution of four observations")
-plt.show()
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Comparing groups and a distribution in Python (2/2).
-
-REFERENCES
-
+Continue to
+Comparing groups and a distribution in Python (2/2)
 
 ## Slide 37 — Comparing groups and a distribution in Python (2/2)
 
-PURPOSE
 Comparing groups and a distribution in Python (2/2)
+CML3113, Week 6, slide 37
 
-CONNECT
-Previous slide: Comparing groups and a distribution in Python (1/2).
+Explanation to give
+Choose the chart from the question. A bar chart compares named categories; a histogram counts numerical observations in intervals; a scatter plot compares paired numbers. Explain what one mark means.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Use bars for mean energy by building, a histogram for the distribution of individual energy readings, and scatter for energy against temperature. A histogram bar's height counts observations in a bin.
+
+Misconception to address
+Histogram bins are numerical intervals, not separate named buildings. Changing bin widths can change the visible pattern, so state the choice and inspect the data too.
+
+Read the displayed code line by line
 hist_ax.set_title("Distribution of four observations")
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
 plt.show()
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
 
-Read the inputs and identify the operation.
-
-Predict the result before running this cell.
-
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-bar compares one value for each named group. hist counts observations in value intervals called bins. Read the bar labels and both axes. This practice uses two bins; follow the exact bin rule in the test brief. Save and keep the Figure objects when a task asks for them.
-
-Complete practice code:
-bar_fig, bar_ax = plt.subplots()
-bar_ax.bar(["A", "B"], [13, 16])
-bar_ax.set_xlabel("Group")
-bar_ax.set_ylabel("Mean reading (teaching units)")
-bar_ax.set_title("Two invented group means")
-hist_fig, hist_ax = plt.subplots()
-hist_ax.hist(readings, bins=2)
-hist_ax.set_xlabel("Reading (teaching units)")
-hist_ax.set_ylabel("Count of observations")
-hist_ax.set_title("Distribution of four observations")
-plt.show()
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Revision example and answer.
-
-REFERENCES
-
+Continue to
+Revision example and answer
 
 ## Slide 38 — Revision example and answer
 
-PURPOSE
 Revision example and answer
+CML3113, Week 6, slide 38
 
-CONNECT
-Previous slide: Comparing groups and a distribution in Python (2/2).
+Explanation to give
+Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
 
-EXPLAIN
+Worked illustration / lecturer answer
 Example: Explain why 80 was retained. Replace 24 with 26, predict the new fill value, and check that cleaning still leaves raw unchanged.
 
 Answer: An unusual value alone does not prove an error. The task did not authorize deleting 80. With 26 replacing 24, the middle known values are 22 and 26, so the new fill is 24. The raw list still contains None.
 
-LECTURER CUE
-Give silent thinking time, then let pairs discuss. Rotate who types. This is practice, not a graded quiz. Expected response: An unusual value alone does not prove an error. The task did not authorize deleting 80. With 26 replacing 24, the middle known values are 22 and 26, so the new fill is 24. The raw list still contains None.
+Misconception to address
+Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
 
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Read a list comprehension after the full loop.
-
-REFERENCES
-
+Continue to
+Read a list comprehension after the full loop
 
 ## Slide 39 — Read a list comprehension after the full loop
 
-PURPOSE
 Read a list comprehension after the full loop
+CML3113, Week 6, slide 39
 
-CONNECT
-Previous slide: Revision example and answer.
+Explanation to give
+A comprehension is a compact way to construct a list. First show the equivalent full loop so the learner can identify the expression, the iteration and any condition.
 
-EXPLAIN
+Worked illustration / lecturer answer
+squares = [x * x for x in [2, 3]] means initialise an empty list, take 2 then 3, and append each square. The result is [4, 9].
+
+Misconception to address
+This syntax is optional for these beginner tasks. A clear full loop is acceptable when it returns the required result.
+
+On this slide
 A list comprehension builds a new list using an expression for each visited item. [value * 2 for value in readings] doubles each reading.
 
 Its first part says what to store; its for part says which items supply value. [2, 4, 6] becomes [4, 8, 12].
 
 This compact spelling is optional. Use the expanded loop already taught when that is easier to explain.
 
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A compact loop is optional.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+A compact loop is optional
 
 ## Slide 40 — A compact loop is optional
 
-PURPOSE
 A compact loop is optional
+CML3113, Week 6, slide 40
 
-CONNECT
-Previous slide: Read a list comprehension after the full loop.
+Explanation to give
+A comprehension is a compact way to construct a list. First show the equivalent full loop so the learner can identify the expression, the iteration and any condition.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+squares = [x * x for x in [2, 3]] means initialise an empty list, take 2 then 3, and append each square. The result is [4, 9].
+
+Misconception to address
+This syntax is optional for these beginner tasks. A clear full loop is acceptable when it returns the required result.
+
+Read the displayed code line by line
 readings = [2, 4, 6]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 doubled = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 for value in readings:
-    doubled.append(value * 2)
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+doubled.append(value * 2)
+Evaluate the argument and add it as one new item at the end of this list.
+
 print(doubled)
-# Same operation in compact form:
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+
 print([value * 2 for value in readings])
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-for takes the next item. The indented block repeats.
-
-print displays a value below the cell.
-
-append adds one item to the end of a list.
-
+Result / continuity
 A list comprehension makes the same list. Learn the ordinary loop first.
 
-LECTURER CUE
-Read each symbol before running. Ask everyone to predict. Expected output: [4, 8, 12] twice
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment
 
 ## Slide 41 — Preparing for the assignment
 
-PURPOSE
 Preparing for the assignment
+CML3113, Week 6, slide 41
 
-CONNECT
-Previous slide: A compact loop is optional.
+Explanation to give
+Describe the received table before changing it: its rows, columns, units and defects. Then explain each cleaning rule and preserve the original data.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A duplicate record ID and repeated equipment ID are different situations. Removing the former under a stated rule may be correct while removing the latter could discard legitimate observations.
+
+Misconception to address
+A correct output without a justification may not satisfy the reasoning criterion. Use the task’s exact rules rather than choosing whichever cleaning makes results look attractive.
+
+On this slide
 W06 uses a list of record dictionaries.
 
 Show one record and one field lookup before the function interfaces.
@@ -1328,54 +1148,48 @@ Parse CSV blank numeric cells as None. dict(row) copies a record. append adds an
 
 The task brief specifies the cleaning order and returned outputs.
 
-LECTURER CUE
-W06 uses a list of record dictionaries. Show one record and one field lookup before the function interfaces. Parse CSV blank numeric cells as None. Model copying with dict(row) and list.append. Walk through the published cleaning order before students write clean_records, summarize_records and audit_cleaning. Teach set membership for duplicate IDs and grouped accumulation. Explain that written evidence belongs in My written evidence, not in code comments.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment continued.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment continued
 
 ## Slide 42 — Preparing for the assignment continued
 
-PURPOSE
 Preparing for the assignment continued
+CML3113, Week 6, slide 42
 
-CONNECT
-Previous slide: Preparing for the assignment.
+Explanation to give
+Keep related equipment observations together so the validation really represents equipment the model has not seen.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The written question may supply a comparison scenario. Label those numbers as supplied scenario evidence; do not claim they came from a run of your own notebook.
+
+Misconception to address
+A supplied scenario and an observed experimental result have different provenance. Both can be interpreted, but should not be confused.
+
+On this slide
 A set records IDs already seen.
 
 Group summaries collect readings with the same equipment ID.
 
-Explain that written evidence belongs in My written evidence, not in code comments.
+Write your explanations in the My written evidence section.
 
-LECTURER CUE
-W06 uses a list of record dictionaries. Show one record and one field lookup before the function interfaces. Parse CSV blank numeric cells as None. Model copying with dict(row) and list.append. Walk through the published cleaning order before students write clean_records, summarize_records and audit_cleaning. Teach set membership for duplicate IDs and grouped accumulation. Explain that written evidence belongs in My written evidence, not in code comments.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Cleaning choices and charts.
-
-REFERENCES
-
+Continue to
+Cleaning choices and charts
 
 ## Slide 43 — Cleaning choices and charts
 
-PURPOSE
 Cleaning choices and charts
+CML3113, Week 6, slide 43
 
-CONNECT
-Previous slide: Preparing for the assignment continued.
+Explanation to give
+Explain why cleaning precedes the chart. A repeated observation can count twice; a missing value should not silently become a measured zero. Every change needs an explicit rule and a retained original.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare the raw record count with the cleaned count, then show which fields were estimated. A chart caption should say whether it uses observed values, filled values or both.
+
+Misconception to address
+Do not choose a cleaning rule merely because it makes the chart smoother. The rule must follow the task and the measurement context.
+
+On this slide
 Filling blanks with zero changes the mean and may be unjustified.
 
 Dropping every row with any blank can remove valid observations.
@@ -1384,52 +1198,46 @@ A failed numeric conversion identifies a problematic value to inspect rather tha
 
 A histogram describes one distribution; a scatter plot shows paired values; a grouped chart compares groups.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Cleaning choices and charts continued.
-
-REFERENCES
-
+Continue to
+Cleaning choices and charts continued
 
 ## Slide 44 — Cleaning choices and charts continued
 
-PURPOSE
 Cleaning choices and charts continued
+CML3113, Week 6, slide 44
 
-CONNECT
-Previous slide: Cleaning choices and charts.
+Explanation to give
+Explain why cleaning precedes the chart. A repeated observation can count twice; a missing value should not silently become a measured zero. Every change needs an explicit rule and a retained original.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare the raw record count with the cleaned count, then show which fields were estimated. A chart caption should say whether it uses observed values, filled values or both.
+
+Misconception to address
+Do not choose a cleaning rule merely because it makes the chart smoother. The rule must follow the task and the measurement context.
+
+On this slide
 Read both axes and units.
 
 A plausible extreme needs investigation before deletion.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Your issued task.
-
-REFERENCES
-
+Continue to
+Your issued task
 
 ## Slide 45 — Your issued task
 
-PURPOSE
 Your issued task
+CML3113, Week 6, slide 45
 
-CONNECT
-Previous slide: Cleaning choices and charts continued.
+Explanation to give
+Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain record_id as the identifier of an observation, load_pct as load expressed in percent and ambient_c as temperature in degrees Celsius. The target records the known answer in training data.
+
+Misconception to address
+These are synthetic examples for learning. They do not establish a calibrated physical relationship or justify operation of real equipment.
+
+On this slide
 Investigate crusher energy demand.
 
 Target units: kWh/t.
@@ -1438,79 +1246,70 @@ These are synthetic teaching records, not measurements suitable for deployment.
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-LECTURER CUE
-Investigate crusher energy demand. Target units: kWh/t. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-clean_records(records).
-
-REFERENCES
-
+Continue to
+clean_records(records)
 
 ## Slide 46 — clean_records(records)
 
-PURPOSE
 clean_records(records)
+CML3113, Week 6, slide 46
 
-CONNECT
-Previous slide: Your issued task.
+Explanation to give
+Follow the stated cleaning order and record-ID policy on copied records. Preserve the caller’s input and keep legitimate repeated equipment observations.
 
-EXPLAIN
+Worked illustration / lecturer answer
+An estimated replacement belongs only in the specified field. A row dropped earlier must not influence a later training or cleaning statistic.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 Return copied records in original order: remove repeated record_id after its first occurrence, drop rows with missing target or load_pct outside 0–100 inclusive, then fill missing ambient_c with the median of retained non-missing ambient_c values.
 
 Preserve raw input.
 
 No other changes.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W06/CML3113/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-summarize_records(clean_records).
-
-REFERENCES
-
+Continue to
+summarize_records(clean_records)
 
 ## Slide 47 — summarize_records(clean_records)
 
-PURPOSE
 summarize_records(clean_records)
+CML3113, Week 6, slide 47
 
-CONNECT
-Previous slide: clean_records(records).
+Explanation to give
+Produce a dictionary from each group label to its own mean, using each group’s valid count.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Group A with readings 2 and 4 has mean 3. Group B with a single 9 has mean 9. Dividing both by the overall count would be wrong.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 Return count, mean, minimum, maximum of target and group_means by equipment_id.
 
 Retain full precision.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W06/CML3113/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-audit_cleaning(raw_records, cleaned_records).
-
-REFERENCES
-
+Continue to
+audit_cleaning(raw_records, cleaned_records)
 
 ## Slide 48 — audit_cleaning(raw_records, cleaned_records)
 
-PURPOSE
 audit_cleaning(raw_records, cleaned_records)
+CML3113, Week 6, slide 48
 
-CONNECT
-Previous slide: summarize_records(clean_records).
+Explanation to give
+Inspect the two lists actually passed in. Report their counts and any specified defects still present after cleaning; do not assume the cleaned input is flawless.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If an independently supplied cleaned list still contains one repeated record ID, the audit must report that remaining defect rather than return zero by assumption.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 Return raw_count and cleaned_count; duplicate_ids is the number of cleaned records beyond the first occurrence of each record_id; missing_targets counts None targets; invalid_loads counts cleaned load_pct outside 0–100 inclusive.
 
 Report the actual supplied data, which may still contain defects.
@@ -1519,27 +1318,24 @@ Do not change either input.
 
 All five values are integer counts.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W06/CML3113/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Written evidence.
-
-REFERENCES
-
+Continue to
+Written evidence
 
 ## Slide 49 — Written evidence
 
-PURPOSE
 Written evidence
+CML3113, Week 6, slide 49
 
-CONNECT
-Previous slide: audit_cleaning(raw_records, cleaned_records).
+Explanation to give
+Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+
+Misconception to address
+Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+
+On this slide
 Use the cell headed “My written evidence”.
 
 Explain the supplied scenario in your own words.
@@ -1548,27 +1344,24 @@ State target units, reasons and limitations.
 
 Submit one complete notebook containing code and written evidence.
 
-LECTURER CUE
-Published criterion weights and exact requirements remain in TASKS.md. Broader project exercises are formative and do not add weekly marks. Local automated reasoning assessment remains subject to its release checks.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Cleaning and quality submission.
-
-REFERENCES
-
+Continue to
+Cleaning and quality submission
 
 ## Slide 50 — Cleaning and quality submission
 
-PURPOSE
 Cleaning and quality submission
+CML3113, Week 6, slide 50
 
-CONNECT
-Previous slide: Written evidence.
+Explanation to give
+This slide hands over CML3113 W06. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The recorded cutoff for this form is 2026-10-23T08:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+
+Misconception to address
+Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+
+On this slide
 Opens: 16 Oct 2026, 08:00 Kampala
 
 Deadline: 23 Oct 2026, 08:00 Kampala
@@ -1577,27 +1370,24 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-LECTURER CUE
-The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Project preparation.
-
-REFERENCES
-
+Continue to
+Project preparation
 
 ## Slide 51 — Project preparation
 
-PURPOSE
 Project preparation
+CML3113, Week 6, slide 51
 
-CONNECT
-Previous slide: Cleaning and quality submission.
+Explanation to give
+Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Name a file, function or chart and the decision behind it. Match that entry to meaningful repository history. Disclose AI assistance according to the assessment policy.
+
+Misconception to address
+Many commits do not necessarily mean substantial work, and a seed does not establish accuracy. Both are supporting evidence, not replacements for the analysis.
+
+On this slide
 Use the published data analysis project brief.
 
 Build the evidence gradually in your project notebook.
@@ -1606,81 +1396,72 @@ Keep raw data, labelled charts, run instructions and individual contributions.
 
 Published deadline: 30 Oct 2026, 08:00 Kampala
 
-LECTURER CUE
-Explain the released brief now. Confirm its grading-release checks before assigning it. Avoid treating weekly practice as a substitute for the project evidence. The project brief remains authoritative.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Week 6 quiz.
-
-REFERENCES
-
+Continue to
+Week 6 quiz
 
 ## Slide 52 — Week 6 quiz
 
-PURPOSE
 Week 6 quiz
+CML3113, Week 6, slide 52
 
-CONNECT
-Previous slide: Project preparation.
+Explanation to give
+This is the CML3113 Week 6 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W6_CML3113 when ready and read the logged closing time.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+
+Misconception to address
+Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+
+On this slide
 Answer individually after the lecturer activates the quiz.
 
 Available for 24 hours from activation.
 
 Use your Student Registration Number and registered account.
 
-The lecturer will confirm the exact closing time.
+Check the announced quiz closing time.
 
-LECTURER CUE
-Activate the matching open_W6_CML3113 function in Quiz Controls, then confirm the 24-hour close time. Opening this slide or clicking its link does not activate the form. The 24 hours is the availability window. Keep existing quiz scoring and form rules. Do not show private answer keys.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Before you leave.
-
-REFERENCES
-
+Continue to
+Revision and submission checklist
 
 ## Slide 53 — Revision and submission checklist
 
-PURPOSE
 Revision and submission checklist
+CML3113, Week 6, slide 53
 
-CONNECT
-Previous slide: Week 6 quiz.
+Explanation to give
+Inspect quality before interpreting a chart. Preserve raw records and justify each removal or estimated value.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A blank is not a measured zero. With observed values 20 and 24, median filling would insert an estimate of 22, which must be recorded as estimated.
+
+Misconception to address
+Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+
+On this slide
 You can justify a change, show its effect and identify an estimated value.
 
 Save your work and check the required submission files.
 
-LECTURER CUE
-Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Optional revision video.
-
-REFERENCES
-
+Continue to
+Optional revision video
 
 ## Slide 54 — Optional revision video
 
-PURPOSE
 Optional revision video
+CML3113, Week 6, slide 54
 
-CONNECT
-Previous slide: Revision and submission checklist.
+Explanation to give
+Give the viewing question before playing the excerpt: What does the box show, and does a point outside it prove an error?
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
+
+Misconception to address
+The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
+
+On this slide
 For revision after class.
 
 StatQuest with Josh Starmer
@@ -1690,15 +1471,5 @@ Opening up to 04:00, optional preview-selected excerpt
 
 Listening question: What does the box show, and does a point outside it prove an error?
 
-LECTURER CUE
-Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required; do not make viewing compulsory.
-After viewing: Explain why an unusual temperature needs investigation before deletion.
-Preview before class and stop after the selected short excerpt. If playback fails, teach the worked example. Video is optional. Source: https://www.youtube.com/watch?v=fHLhBnmwUM0
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-independent revision and the issued task.
-
-REFERENCES
+Reference / existing resource
+https://www.youtube.com/watch?v=fHLhBnmwUM0

@@ -1,13 +1,13 @@
-# CML3112 Week 3 continuation
+# CML3112 Week 3 continuation — completed 29 September
 
-Use **CML3112_Week03_Design_Infrastructure.pptx**, starting at **slide 13**. Slides 1–12 contain the already taught material. CML3111 and CML3113 start their Week 3 decks at slide 1.
+**Status:** CML3112 completed all Week 3 content on 29 September. The next lesson is Week 4. The route below records the completed continuation and remains useful for revision; do not resume it as unfinished teaching. CML3111 and CML3113 have not covered Week 3 and start at slide 1. See [current teaching progress](Teaching_Progress.md).
 
 ## Before the class
 
 - Open Presenter View and the matching slide-by-slide lecturer companion.
 - Open the refreshed CML3112_W03_student.zip and guided_practice.ipynb. The guided notebook is for demonstrations and revision, not submission.
-- A3 remains due **29 September 2026 at 11:00 Kampala**. Students were told to read the final slides and complete it. Continuing the lesson does not reopen or extend the form.
-- Keep Quiz 3 on its existing schedule; this material update does not reactivate it. A quiz availability window remains 24 hours from activation.
+- **29 September live update:** the lecturer requested A3 to reopen. Its new closing time is **30 September 2026 at 11:27:44 Kampala**. This supersedes the original deadline printed in the deck.
+- Quiz 3 and Quiz 4 were activated on 29 September for 24 hours. See [the current student links and deadlines](CML3112_Sept29_Student_Links.md).
 
 ## Teaching route for the expanded foundation sequence
 
@@ -27,7 +27,7 @@ These slide ranges refer to the explicit-foundations edition. Resume at slide 13
 
 **Pacing:** reserve roughly 35 minutes for arithmetic, 40 for conditions, 30 for functions and 25 for collections, plus a break and transitions. These are estimates, not a deadline to finish the deck. If time runs out, record the exact slide and continue the explanation next class; do not move an unexplained syntax topic into assessed practice.
 
-**Already issued A3:** students were told to read the final slides and complete it. The deadline remains 29 September 2026 at 11:00 Kampala. This teaching revision does not change the issued assignment, marks or submission window. Use its final slides to clarify existing requirements, not to announce a new assignment or extension.
+**Already issued A3:** its task and marks are unchanged. Announce the separately authorized reopening deadline above; the older deadline in the slides has been superseded.
 
 **Loops follow in Week 4:** for and while each receive a definition, complete example and trace table before record processing. Week 4 also demonstrates range, counters, continue, break and nested indentation. They are not prerequisites for the no-loop A3 examples.
 

@@ -19,3 +19,19 @@ def apply_reviewed_notes(slides,filename):
    if isinstance(s.get(k),str):s[k]=correct(s[k],filename)
   if signature(s)!=a['signature']:raise ValueError(f'Review lecturer notes after content change: {filename} slide {i}')
   s['notes']=a['notes']
+
+def apply_slide_specific_notes(decks):
+ """Apply the final slide-specific edition after all sequence transformations.
+
+ A changed slide must be reviewed instead of inheriting notes for another topic.
+ """
+ path=ROOT/'data/slide_specific_lecturer_notes.json'
+ if not path.exists():return
+ approved=json.loads(path.read_text())
+ for deck in decks:
+  rows=approved.get(deck['filename'])
+  if rows is None:continue
+  if len(rows)!=len(deck['slides']):raise ValueError('Review slide-specific notes after slide-count change: '+deck['filename'])
+  for i,(slide,row) in enumerate(zip(deck['slides'],rows),1):
+   if signature(slide)!=row['signature']:raise ValueError(f'Review slide-specific notes after content change: {deck["filename"]} slide {i}')
+   slide['notes']=row['notes']

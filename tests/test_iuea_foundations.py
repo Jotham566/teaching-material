@@ -40,5 +40,5 @@ class FoundationsTests(unittest.TestCase):
   for d in relevant:
    for i,s in enumerate(d['slides'],1):
     self.assertEqual(s['sequence_number'],i)
-    self.assertIn('EXPLAIN',s['notes'])
+    self.assertIn('Explanation to give',s['notes'])
 if __name__=='__main__':unittest.main()

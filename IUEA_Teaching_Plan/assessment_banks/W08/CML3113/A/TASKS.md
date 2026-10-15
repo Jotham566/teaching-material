@@ -1,43 +1,52 @@
-# CML3113 W08: Regression and baseline — variant A
+# CML3113 A7 — task reference
 
-Investigate crusher energy demand. Target units: kWh/t. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
+These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
 
-Use your Student Registration Number in STUDENT_ID, including slashes. In filenames only replace slashes with underscores. Set COHORT to CML3113.
+## Your data
 
-Numeric fields are numbers (missing values become None); parse CSV blanks accordingly. The public function interfaces below let the isolated grader evaluate your implementation on unseen records. The unseen records use the same schema and published rules. Implement the functions in the submitted notebook; do not hardcode the supplied answers. The numerical component does not prove the quality of the full investigation.
+Investigate crusher energy demand; target unit: **kWh/t**. These are synthetic teaching data. Each row is an operating observation; equipment_id identifies equipment and can repeat.
 
-Published total: 20 marks. Deterministic component: 10. Written/evidence component: 10.0. Original criterion totals are preserved.
+A record is a dictionary of column names and values. A list of records holds several rows. record_id identifies a row; load_pct is load as a percentage; ambient_c is temperature in degrees C; target is the quantity to predict. Numeric CSV blanks become None. Keep the original data. Your functions are checked on other records following the same published rules.
 
-## Engineering questions
 
-Which model improves on the training-mean baseline on a fixed validation set? Express the error in target units. What limits this comparison?
+### `predict_regression(training_records, feature_records)` — 7 marks
 
-## Required interfaces
+- Use load_pct and ambient_c as the two input features. Feature records do not contain target.
+- Fit preprocessing on training_records only.
+- Fit a baseline that predicts the mean training target.
+- Fit linear regression and a decision tree with max_depth=4 and random_state=17.
+- Predict for feature_records using all three models.
+- Return a dictionary with baseline, linear and tree; each value is a prediction list in feature_records order.
 
-## Supplied reasoning scenario
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
+
+
+### `regression_errors(actual, predicted)` — 3 marks
+
+- Return mae and rmse, calculated over the same paired observations, with full precision.
+- Return a dictionary with mae and rmse. MAE is the mean absolute error; RMSE is the square root of the mean squared error. Match actual and predicted by position.
+
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
+
+
+
+## Written questions
+
+**Supplied scenario (use for the written questions):**
 
 On one fixed equipment-group validation set, the training-mean baseline has MAE 8.0, linear regression 2.1 and the depth-4 tree 3.4, all in the assigned target unit. The data are synthetic. Recommend a model for further evaluation, explain limits and specify reproducible data/run instructions.
 
-Interpret these supplied values for the written marks; they are not claims about results you measured. Your implementation is checked independently.
+Write your answers in the notebook’s **My written evidence** cell. Keep that heading. Use these numbers to organise your answers.
 
-- predict_regression(training_records, feature_records) — 7 marks within c1. Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only. Return three prediction lists under baseline, linear and tree. Feature records have no target. Fit preprocessing only on training data.
+1. **3 marks:** Which candidate would you recommend for further evaluation, using the supplied MAE comparison? Explain why.
 
-- regression_errors(actual, predicted) — 3 marks within c1. Return mae and rmse, calculated over the same paired observations, with full precision.
+2. **3 marks:** What can these synthetic validation results tell you—and what can they not establish about real equipment?
 
-## Full investigation and evidence
+3. **2 marks:** Name the input file, cohort identifier and target unit someone needs to reproduce the work.
 
-Write your own explanation in the markdown cell headed `## My written evidence`. Keep that heading. Task prompts and code comments are excluded from reasoning marks. Complete the required functions and interpret the supplied scenario where provided. Broader project exercises and extra charts are formative practice; they do not add marks to this weekly submission. State units and limitations.
+4. **2 marks:** Describe the run order, group split and preprocessing rules needed to reproduce a fair comparison.
 
-## Written assessment criteria
 
-- Choice (3 marks): The response recommends linear regression as the preferred candidate for further evaluation in the supplied validation comparison. Referring to the supplied table as the reason is sufficient; it need not repeat the numbers. Do not award credit if it recommends another model or gives a contradictory justification, such as preferring a larger MAE.
+## Submit
 
-- Limits (3 marks): Award 3 if the response explicitly cautions that synthetic validation results cannot establish safety or generalisation on real equipment. A claim that synthetic measurements prove real-world safety is incorrect and earns zero; merely mentioning synthetic data without this limitation also earns zero. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
-
-- Data (2 marks): Award 2 if the response specifies that reproduction requires engineering_data.csv, the assigned cohort identifier and the target unit. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
-
-- Protocol (2 marks): Award 2 if the response specifies a clean top-to-bottom run with a fixed group split and training-only preprocessing. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
-
-## Submission
-
-Submit exactly one complete notebook through the cohort form. Keep a downloaded copy. The form link and Kampala deadline are in the student package and final teaching slide.
+ONE completed assignment notebook (.ipynb).

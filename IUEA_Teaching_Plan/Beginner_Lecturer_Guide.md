@@ -2,7 +2,7 @@
 
 # Teaching from Week 2 onward
 
-Updated 29 September 2026. Week 3–15 decks and their slide-by-slide lecturer companions now follow the revised foundations sequence. For CML3112, resume Week 3 at slide 13 after the twelve already taught slides. See [the continuation notes](CML3112_Week3_Continuation.md).
+Updated 29 September 2026. Week 3–15 decks and their slide-by-slide lecturer companions now follow the revised foundations sequence. CML3112 completed all Week 3 content on 29 September and moves to Week 4. CML3111 and CML3113 have not covered Week 3 and start at slide 1. See [current teaching progress](Teaching_Progress.md).
 
 Open the matching PowerPoint in **decks/** and teach in Slide Show. Use Presenter View for the detailed explanation prompts in speaker notes. Use the cohort student ZIP for practice and the issued assignment. The HTML lesson route is retired. The issued brief remains authoritative for graded outputs.
 

@@ -1,160 +1,146 @@
 # CML3113 Week13 Mining Petroleum
 
-Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — Making the project understandable and runnable
 
-PURPOSE
 Making the project understandable and runnable
+CML3113, Week 13, slide 1
 
-CONNECT
-Previous slide: the preceding week.
+Explanation to give
+The handover should reproduce the result using the files and instructions alone. Saved output is insufficient evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the stated data and follow the README literally. A mismatch between a documented filename and the actual file is a handover defect to fix.
+
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+
+On this slide
 Mining and Petroleum Engineering
 
-LECTURER CUE
-Use PowerPoint Presenter View for these notes. Teach one example, pause for every learner to predict, then work an analogous example together. The practice notebook is a learning aid, not an extra graded upload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Today’s learning.
-
-REFERENCES
-
+Continue to
+Today’s learning
 
 ## Slide 2 — Today’s learning
 
-PURPOSE
 Today’s learning
+CML3113, Week 13, slide 2
 
-CONNECT
-Previous slide: Making the project understandable and runnable.
+Explanation to give
+The handover should reproduce the result using the files and instructions alone. Saved output is insufficient evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the stated data and follow the README literally. A mismatch between a documented filename and the actual file is a handover defect to fix.
+
+Misconception to address
+At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+
+On this slide
 Run the project from a fresh session.
 
 Repair unclear run instructions using a fresh run.
 
-LECTURER CUE
-Ask learners to explain this goal in ordinary language. The first successful attempt matters more than covering optional extensions. Defer: Package refactoring, complex repository layout and extra tooling are optional. Keep a working simple notebook.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Connection to the previous lesson.
-
-REFERENCES
-
+Continue to
+Connection to the previous lesson
 
 ## Slide 3 — Connection to the previous lesson
 
-PURPOSE
 Connection to the previous lesson
+CML3113, Week 13, slide 3
 
-CONNECT
-Previous slide: Today’s learning.
+Explanation to give
+The handover should reproduce the result using the files and instructions alone. Saved output is insufficient evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the stated data and follow the README literally. A mismatch between a documented filename and the actual file is a handover defect to fix.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 The models and charts already exist. The remaining task is to make the evidence understandable and runnable from the supplied files.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Why this week’s tools are needed.
-
-REFERENCES
-
+Continue to
+Why this week’s tools are needed
 
 ## Slide 4 — Why this week’s tools are needed
 
-PURPOSE
 Why this week’s tools are needed
+CML3113, Week 13, slide 4
 
-CONNECT
-Previous slide: Connection to the previous lesson.
+Explanation to give
+The handover should reproduce the result using the files and instructions alone. Saved output is insufficient evidence.
 
-EXPLAIN
-A project is ready for handover when its files and written instructions reproduce its results in a fresh session. Today we check that evidence ourselves.
+Worked illustration / lecturer answer
+Restart, load the stated data and follow the README literally. A mismatch between a documented filename and the actual file is a handover defect to fix.
 
-LECTURER CUE
-A pump team records temperature to investigate operation. Mining students can relate this to a dewatering pump; petroleum students to a transfer pump. These are teaching examples, not operating limits.
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
 
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
+On this slide
+A project is ready for handover when its files and written instructions reproduce its results in a fresh session. Check each claim against the results in your notebook.
 
-NEXT
-Reproducibility and Dependency.
-
-REFERENCES
-
+Continue to
+Reproducibility and Dependency
 
 ## Slide 5 — Reproducibility and Dependency
 
-PURPOSE
 Reproducibility and Dependency
+CML3113, Week 13, slide 5
 
-CONNECT
-Previous slide: Why this week’s tools are needed.
+Explanation to give
+A reproducible handover gives another person enough files and instructions to obtain the reported result from a fresh environment. Saved outputs can survive even when the code no longer produces them.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the documented data and run from the first cell. If a later cell relies on a deleted variable, the clean run reveals the missing step. Record the required Python libraries and versions.
+
+Misconception to address
+Restarting the runtime clears variables; it does not necessarily restore deleted data files. Re-upload or locate the documented inputs before the fresh run.
+
+On this slide
 Reproducibility: Another person can use the stated data, environment and steps to check the result. Terminology varies; state the operational test.
-
 Dependency: A package your code needs. Record versions actually used, rather than guessing them.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Relative path and README.
-
-REFERENCES
-
+Continue to
+Relative path and README
 
 ## Slide 6 — Relative path and README
 
-PURPOSE
 Relative path and README
+CML3113, Week 13, slide 6
 
-CONNECT
-Previous slide: Reproducibility and Dependency.
+Explanation to give
+A path identifies where a file is found. A relative path starts from the current working directory. Explain each folder component and the final filename.
 
-EXPLAIN
+Worked illustration / lecturer answer
+data/readings.csv means the readings.csv file inside a data folder under the current working directory. A path from your own Downloads folder will usually fail on another person's machine.
+
+Misconception to address
+The working directory is not automatically the notebook's own folder in every tool. Check it and organise the project rather than hard-coding a personal absolute path.
+
+On this slide
 Relative path: A location interpreted from the current working folder. It is not always relative to the notebook file itself.
-
 README: The project’s instructions: question, files, data source, environment, run order, results and limitations.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A useful README.
-
-REFERENCES
-
+Continue to
+A useful README
 
 ## Slide 7 — A useful README
 
-PURPOSE
 A useful README
+CML3113, Week 13, slide 7
 
-CONNECT
-Previous slide: Relative path and README.
+Explanation to give
+Treat the README as instructions for someone opening the project for the first time. Name the files, setup requirements, entry notebook and exact order needed to reproduce the result.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Replace “run the analysis” with “Open analysis.ipynb, place readings.csv in data/, restart the runtime and run all cells.” A useful repair comment names the failed step and the corrected filename.
+
+Misconception to address
+A repository URL proves a location exists, not that the work runs or was submitted. Contribution claims should point to specific work, not only a count of commits.
+
+On this slide
 State the engineering question and target unit.
 
 List the supplied data and required software versions.
@@ -163,315 +149,265 @@ Give the order for running the notebook from a fresh session.
 
 State limitations and each member’s contribution.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Someone else needs to reproduce the result.
-
-REFERENCES
-
+Continue to
+Someone else needs to reproduce the result
 
 ## Slide 8 — Someone else needs to reproduce the result
 
-PURPOSE
 Someone else needs to reproduce the result
+CML3113, Week 13, slide 8
 
-CONNECT
-Previous slide: A useful README.
+Explanation to give
+Describe a handover as a reproducibility test carried out with only the delivered files and written directions. The person checking it should not need your memory of previous actions.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Close the runtime, start fresh and follow the README literally. If it names data.csv while the folder contains readings.csv, repair the instructions and repeat the check.
+
+Misconception to address
+A screenshot of a successful old output is not proof that today's package works from a clean start.
+
+On this slide
 Which instructions would a new user need?
 
-LECTURER CUE
-Ask students to describe what they see before introducing terminology. Generated conceptual teaching illustration.  Source: figs/experiential/ASSET_SOURCES.md.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A reproducible notebook starts fresh.
-
-REFERENCES
-
+Continue to
+A reproducible notebook starts fresh
 
 ## Slide 9 — A reproducible notebook starts fresh
 
-PURPOSE
 A reproducible notebook starts fresh
+CML3113, Week 13, slide 9
 
-CONNECT
-Previous slide: Someone else needs to reproduce the result.
+Explanation to give
+A reproducible handover gives another person enough files and instructions to obtain the reported result from a fresh environment. Saved outputs can survive even when the code no longer produces them.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the documented data and run from the first cell. If a later cell relies on a deleted variable, the clean run reveals the missing step. Record the required Python libraries and versions.
+
+Misconception to address
+Restarting the runtime clears variables; it does not necessarily restore deleted data files. Re-upload or locate the documented inputs before the fresh run.
+
+On this slide
 The saved outputs must agree with a fresh run in the stated order.
 
-LECTURER CUE
-Demonstrate restarting, uploading the issued data, and running all. The same result also depends on data, package versions and any random seeds.
-Source: existing course illustration figs/execution_trap.png. These are illustrative examples, not this cohort’s assessed results.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Saved outputs can hide missing steps.
-
-REFERENCES
-Source: existing course illustration figs/execution_trap.png. These are illustrative examples, not this cohort’s assessed results.
+Continue to
+Saved outputs can hide missing steps
 
 ## Slide 10 — Saved outputs can hide missing steps
 
-PURPOSE
 Saved outputs can hide missing steps
+CML3113, Week 13, slide 10
 
-CONNECT
-Previous slide: A reproducible notebook starts fresh.
+Explanation to give
+A reproducible handover gives another person enough files and instructions to obtain the reported result from a fresh environment. Saved outputs can survive even when the code no longer produces them.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the documented data and run from the first cell. If a later cell relies on a deleted variable, the clean run reveals the missing step. Record the required Python libraries and versions.
+
+Misconception to address
+Restarting the runtime clears variables; it does not necessarily restore deleted data files. Re-upload or locate the documented inputs before the fresh run.
+
+On this slide
 A notebook can display an old answer after its inputs have changed.
 
 A fresh session begins without the old variables.
 
 Restarting and running all tests whether the stated order creates the result.
 
-LECTURER CUE
-Demonstrate a clean run from a fresh session with the actual files. If a variable exists only from an earlier manual cell run, fix the run order.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A path names where a file is found.
-
-REFERENCES
-
+Continue to
+A path names where a file is found
 
 ## Slide 11 — A path names where a file is found
 
-PURPOSE
 A path names where a file is found
+CML3113, Week 13, slide 11
 
-CONNECT
-Previous slide: Saved outputs can hide missing steps.
+Explanation to give
+A path identifies where a file is found. A relative path starts from the current working directory. Explain each folder component and the final filename.
 
-EXPLAIN
+Worked illustration / lecturer answer
+data/readings.csv means the readings.csv file inside a data folder under the current working directory. A path from your own Downloads folder will usually fail on another person's machine.
+
+Misconception to address
+The working directory is not automatically the notebook's own folder in every tool. Check it and organise the project rather than hard-coding a personal absolute path.
+
+On this slide
 A relative path is interpreted from the current working folder.
 
 Package versions describe the software used to run the code.
 
 The README must give both run instructions and data-access instructions.
 
-LECTURER CUE
-Explain every dependency and test a relative path. Include data-access instructions if the data cannot be redistributed.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Read the path example.
-
-REFERENCES
-
+Continue to
+Read the path example
 
 ## Slide 12 — Read the path example
 
-PURPOSE
 Read the path example
+CML3113, Week 13, slide 12
 
-CONNECT
-Previous slide: A path names where a file is found.
+Explanation to give
+A path identifies where a file is found. A relative path starts from the current working directory. Explain each folder component and the final filename.
 
-EXPLAIN
+Worked illustration / lecturer answer
+data/readings.csv means the readings.csv file inside a data folder under the current working directory. A path from your own Downloads folder will usually fail on another person's machine.
+
+Misconception to address
+The working directory is not automatically the notebook's own folder in every tool. Check it and organise the project rather than hard-coding a personal absolute path.
+
+On this slide
 Path and cwd: Path is a tool imported from Python’s pathlib module. Path.cwd() returns the folder where Python is currently running.
-
 name: The .name property gives the last folder component as text. It depends on your runtime. A different folder name is expected on another computer.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example.
-
-REFERENCES
-
+Continue to
+Project handover in Python
 
 ## Slide 13 — Project handover in Python
 
-PURPOSE
 Project handover in Python
+CML3113, Week 13, slide 13
 
-CONNECT
-Previous slide: Read the path example.
+Explanation to give
+A reproducible handover gives another person enough files and instructions to obtain the reported result from a fresh environment. Saved outputs can survive even when the code no longer produces them.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Restart, load the documented data and run from the first cell. If a later cell relies on a deleted variable, the clean run reveals the missing step. Record the required Python libraries and versions.
+
+Misconception to address
+Restarting the runtime clears variables; it does not necessarily restore deleted data files. Re-upload or locate the documented inputs before the fresh run.
+
+Read the displayed code line by line
 from pathlib import Path
+Bring the named tool from this library into the current Python session.
+
 print(Path.cwd().name)
-# The name depends on the folder where Python is running.
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-import loads a library. from selects a tool from it.
-
-print displays a value below the cell.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-Demonstrate a clean run from a fresh session with the actual files. If a variable exists only from an earlier manual cell run, fix the run order. Explain every dependency and test a relative path. Include data-access instructions if the data cannot be redistributed. Model actionable feedback: “Step 2 names data.csv, but the supplied file is readings.csv; please make them match.”
-
-Complete practice code:
-from pathlib import Path
-print(Path.cwd().name)
-# The name depends on the folder where Python is running.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Expected output.
-
-REFERENCES
-
+Continue to
+Project handover results
 
 ## Slide 14 — Project handover results
 
-PURPOSE
 Project handover results
+CML3113, Week 13, slide 14
 
-CONNECT
-Previous slide: Project handover in Python.
+Explanation to give
+A reproducible handover gives another person enough files and instructions to obtain the reported result from a fresh environment. Saved outputs can survive even when the code no longer produces them.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the documented data and run from the first cell. If a later cell relies on a deleted variable, the clean run reveals the missing step. Record the required Python libraries and versions.
+
+Misconception to address
+Restarting the runtime clears variables; it does not necessarily restore deleted data files. Re-upload or locate the documented inputs before the fresh run.
+
+On this slide
 Your current working folder name; it is environment-dependent.
 
-LECTURER CUE
-Compare the actual output character by character with this practice result. If it differs, read the first error and check the input, units, names and execution order. Do not copy this practice output into a graded answer.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Tell another person what the project needs.
-
-REFERENCES
-
+Continue to
+Tell another person what the project needs
 
 ## Slide 15 — Tell another person what the project needs
 
-PURPOSE
 Tell another person what the project needs
+CML3113, Week 13, slide 15
 
-CONNECT
-Previous slide: Project handover results.
+Explanation to give
+Treat the README as instructions for someone opening the project for the first time. Name the files, setup requirements, entry notebook and exact order needed to reproduce the result.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Replace “run the analysis” with “Open analysis.ipynb, place readings.csv in data/, restart the runtime and run all cells.” A useful repair comment names the failed step and the corrected filename.
+
+Misconception to address
+A repository URL proves a location exists, not that the work runs or was submitted. Contribution claims should point to specific work, not only a count of commits.
+
+On this slide
 requirements.txt and versions: This text file lists required Python packages and their versions. Record the versions used in the working environment; test them with the supplied run instructions.
-
 Data source, permission and seed: Name the data source and any licence or permission for reuse. Record random seeds used in modelling. A seed supports repeatability; it does not repair data leakage.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Run checks and contribution evidence.
-
-REFERENCES
-
+Continue to
+Run checks and contribution evidence
 
 ## Slide 16 — Run checks and contribution evidence
 
-PURPOSE
 Run checks and contribution evidence
+CML3113, Week 13, slide 16
 
-CONNECT
-Previous slide: Tell another person what the project needs.
+Explanation to give
+Treat the README as instructions for someone opening the project for the first time. Name the files, setup requirements, entry notebook and exact order needed to reproduce the result.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Replace “run the analysis” with “Open analysis.ipynb, place readings.csv in data/, restart the runtime and run all cells.” A useful repair comment names the failed step and the corrected filename.
+
+Misconception to address
+A repository URL proves a location exists, not that the work runs or was submitted. Contribution claims should point to specific work, not only a count of commits.
+
+On this slide
 Independent run check: Restart the session and follow your written instructions without relying on earlier variables. Record the first failure and its repair.
-
 Contribution evidence: A record of each person’s work, tied to files, commits or explanations. It does not require making a private repository public.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Useful feedback identifies an exact repair.
-
-REFERENCES
-
+Continue to
+Useful feedback identifies an exact repair
 
 ## Slide 17 — Useful feedback identifies an exact repair
 
-PURPOSE
 Useful feedback identifies an exact repair
+CML3113, Week 13, slide 17
 
-CONNECT
-Previous slide: Run checks and contribution evidence.
+Explanation to give
+Treat the README as instructions for someone opening the project for the first time. Name the files, setup requirements, entry notebook and exact order needed to reproduce the result.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Replace “run the analysis” with “Open analysis.ipynb, place readings.csv in data/, restart the runtime and run all cells.” A useful repair comment names the failed step and the corrected filename.
+
+Misconception to address
+A repository URL proves a location exists, not that the work runs or was submitted. Contribution claims should point to specific work, not only a count of commits.
+
+On this slide
 Vague feedback: "It does not work."
 
 Useful feedback: "Step 2 names data.csv, but the supplied file is readings.csv."
 
 The repair is to make the instructions and actual filename agree.
 
-LECTURER CUE
-Model actionable feedback: “Step 2 names data.csv, but the supplied file is readings.csv; please make them match.”
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Revision example and answer.
-
-REFERENCES
-
+Continue to
+Revision example and answer
 
 ## Slide 18 — Revision example and answer
 
-PURPOSE
 Revision example and answer
+CML3113, Week 13, slide 18
 
-CONNECT
-Previous slide: Useful feedback identifies an exact repair.
+Explanation to give
+Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
 
-EXPLAIN
+Worked illustration / lecturer answer
 Check: restart the notebook runtime and follow your README exactly, without using remembered variables.
 
 If Step 2 names data.csv but the file is readings.csv, correct the filename in the instructions. Run again from the beginning and record the successful result.
 
-LECTURER CUE
-Give silent thinking time, then let pairs discuss. Rotate who types. This is practice, not a graded quiz. Expected response: Revise that step and repeat. A claim that the notebook runs is supported by a fresh run, not by saved outputs alone.
+Misconception to address
+Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
 
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment
 
 ## Slide 19 — Preparing for the assignment
 
-PURPOSE
 Preparing for the assignment
+CML3113, Week 13, slide 19
 
-CONNECT
-Previous slide: Revision example and answer.
+Explanation to give
+Week 13 adds no new weekly assignment notebook. Use the time to make the existing project reproducible and prepare for the offline test.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Open the project README, restart and follow its steps. Then rehearse locating and reopening the complete test notebook on the prepared offline computer.
+
+Misconception to address
+Quiz 13 is a separate activity when activated. Do not invent an A13 upload or require students to submit an extra weekly report.
+
+On this slide
 No new weekly assignment.
 
 Continue the official project deliverables and Week 13 quiz.
@@ -480,27 +416,24 @@ Rehearse offline TEST2 saving and the published function interfaces before Week 
 
 Do not add an extra upload.
 
-LECTURER CUE
-No new weekly assignment. Continue the official project deliverables and Week 13 quiz. Rehearse offline TEST2 saving and the published function interfaces before Week 14. Do not add an extra upload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A reproducible handover.
-
-REFERENCES
-
+Continue to
+A reproducible handover
 
 ## Slide 20 — A reproducible handover
 
-PURPOSE
 A reproducible handover
+CML3113, Week 13, slide 20
 
-CONNECT
-Previous slide: Preparing for the assignment.
+Explanation to give
+A reproducible handover gives another person enough files and instructions to obtain the reported result from a fresh environment. Saved outputs can survive even when the code no longer produces them.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the documented data and run from the first cell. If a later cell relies on a deleted variable, the clean run reveals the missing step. Record the required Python libraries and versions.
+
+Misconception to address
+Restarting the runtime clears variables; it does not necessarily restore deleted data files. Re-upload or locate the documented inputs before the fresh run.
+
+On this slide
 An absolute path from your own computer will usually fail elsewhere.
 
 A relative path starts from the current working folder.
@@ -509,50 +442,44 @@ Record dependencies and actual versions, and fix randomness where appropriate; i
 
 Captions should state a supported finding and its scope.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A reproducible handover continued.
-
-REFERENCES
-
+Continue to
+A reproducible handover continued
 
 ## Slide 21 — A reproducible handover continued
 
-PURPOSE
 A reproducible handover continued
+CML3113, Week 13, slide 21
 
-CONNECT
-Previous slide: A reproducible handover.
+Explanation to give
+A reproducible handover gives another person enough files and instructions to obtain the reported result from a fresh environment. Saved outputs can survive even when the code no longer produces them.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the documented data and run from the first cell. If a later cell relies on a deleted variable, the clean run reveals the missing step. Record the required Python libraries and versions.
+
+Misconception to address
+Restarting the runtime clears variables; it does not necessarily restore deleted data files. Re-upload or locate the documented inputs before the fresh run.
+
+On this slide
 Remove conflicting cell assignments and verify a fresh run before submission.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Project preparation.
-
-REFERENCES
-
+Continue to
+Project preparation
 
 ## Slide 22 — Project preparation
 
-PURPOSE
 Project preparation
+CML3113, Week 13, slide 22
 
-CONNECT
-Previous slide: A reproducible handover continued.
+Explanation to give
+Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Name a file, function or chart and the decision behind it. Match that entry to meaningful repository history. Disclose AI assistance according to the assessment policy.
+
+Misconception to address
+Many commits do not necessarily mean substantial work, and a seed does not establish accuracy. Both are supporting evidence, not replacements for the analysis.
+
+On this slide
 Use the published machine learning project brief.
 
 Build the evidence gradually in your project notebook.
@@ -561,81 +488,72 @@ Keep raw data, labelled charts, run instructions and individual contributions.
 
 Published deadline: 18 Dec 2026, 08:00 Kampala
 
-LECTURER CUE
-Explain the released brief now. Confirm its grading-release checks before assigning it. Avoid treating weekly practice as a substitute for the project evidence. The project brief remains authoritative.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Week 13 quiz.
-
-REFERENCES
-
+Continue to
+Week 13 quiz
 
 ## Slide 23 — Week 13 quiz
 
-PURPOSE
 Week 13 quiz
+CML3113, Week 13, slide 23
 
-CONNECT
-Previous slide: Project preparation.
+Explanation to give
+This is the CML3113 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3113 when ready and read the logged closing time.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+
+Misconception to address
+Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+
+On this slide
 Answer individually after the lecturer activates the quiz.
 
 Available for 24 hours from activation.
 
 Use your Student Registration Number and registered account.
 
-The lecturer will confirm the exact closing time.
+Check the announced quiz closing time.
 
-LECTURER CUE
-Activate the matching open_W13_CML3113 function in Quiz Controls, then confirm the 24-hour close time. Opening this slide or clicking its link does not activate the form. The 24 hours is the availability window. Keep existing quiz scoring and form rules. Do not show private answer keys.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Before you leave.
-
-REFERENCES
-
+Continue to
+Revision and submission checklist
 
 ## Slide 24 — Revision and submission checklist
 
-PURPOSE
 Revision and submission checklist
+CML3113, Week 13, slide 24
 
-CONNECT
-Previous slide: Week 13 quiz.
+Explanation to give
+The handover should reproduce the result using the files and instructions alone. Saved output is insufficient evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Restart, load the stated data and follow the README literally. A mismatch between a documented filename and the actual file is a handover defect to fix.
+
+Misconception to address
+Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+
+On this slide
 Another learner can follow your README and reproduce the stated result.
 
 Save your work and check the required submission files.
 
-LECTURER CUE
-Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Optional revision video.
-
-REFERENCES
-
+Continue to
+Optional revision video
 
 ## Slide 25 — Optional revision video
 
-PURPOSE
 Optional revision video
+CML3113, Week 13, slide 25
 
-CONNECT
-Previous slide: Revision and submission checklist.
+Explanation to give
+Give the viewing question before playing the excerpt: Why keep history, and what is a repository?
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
+
+Misconception to address
+The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
+
+On this slide
 For revision after class.
 
 CodeWithChris
@@ -645,15 +563,5 @@ GitHub Tutorial for Beginners (2025)
 
 Listening question: Why keep history, and what is a repository?
 
-LECTURER CUE
-Title, channel, 19:53 runtime and chapter boundaries checked on the video page on 15 September 2026. Desktop installation is optional. The originally shared t=167 link starts at installation.
-After viewing: Explain the difference between saving a file and recording a commit. Then make one browser-based commit.
-Preview before class and stop after the selected short excerpt. If playback fails, teach the worked example. Video is optional. Source: https://www.youtube.com/watch?v=v5gnvDUWqFM
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-independent revision and the issued task.
-
-REFERENCES
+Reference / existing resource
+https://www.youtube.com/watch?v=v5gnvDUWqFM

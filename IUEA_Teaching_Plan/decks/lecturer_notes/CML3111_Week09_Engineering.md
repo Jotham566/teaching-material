@@ -1,110 +1,104 @@
 # CML3111 Week09 Engineering
 
-Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — Classification and the cost of mistakes
 
-PURPOSE
 Classification and the cost of mistakes
+CML3111, Week 9, slide 1
 
-CONNECT
-Previous slide: the preceding week.
+Explanation to give
+Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+
+On this slide
 Communications, Electrical, Mechatronics and Robotics Engineering
 
-LECTURER CUE
-Use PowerPoint Presenter View for these notes. Teach one example, pause for every learner to predict, then work an analogous example together. The practice notebook is a learning aid, not an extra graded upload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Today’s learning.
-
-REFERENCES
-
+Continue to
+Today’s learning
 
 ## Slide 2 — Today’s learning
 
-PURPOSE
 Today’s learning
+CML3111, Week 9, slide 2
 
-CONNECT
-Previous slide: Classification and the cost of mistakes.
+Explanation to give
+Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+
+Misconception to address
+At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+
+On this slide
 Distinguish an actual label from a predicted label.
 
 Count prediction outcomes and explain their costs.
 
-LECTURER CUE
-Ask learners to explain this goal in ordinary language. The first successful attempt matters more than covering optional extensions. Defer: Three independently built classifiers, ROC/AUC and full threshold curves are extension after the basic matrix is secure.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Connection to the previous lesson.
-
-REFERENCES
-
+Continue to
+Connection to the previous lesson
 
 ## Slide 3 — Connection to the previous lesson
 
-PURPOSE
 Connection to the previous lesson
+CML3111, Week 9, slide 3
 
-CONNECT
-Previous slide: Today’s learning.
+Explanation to give
+Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 Week 8 predicted a number. This week predicts a category and counts the different kinds of correct and incorrect result.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Why this week’s tools are needed.
-
-REFERENCES
-
+Continue to
+Why this week’s tools are needed
 
 ## Slide 4 — Why this week’s tools are needed
 
-PURPOSE
 Why this week’s tools are needed
+CML3111, Week 9, slide 4
 
-CONNECT
-Previous slide: Connection to the previous lesson.
+Explanation to give
+Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 A warning system predicts a category. We compare each prediction with its recorded answer, then count false alarms and missed warnings using an explicit cost rule.
 
-LECTURER CUE
-A team records device temperature to investigate cooling. Use a communications cabinet, an electrical enclosure or a robot controller as the physical example. No specialist hardware knowledge is assumed.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-The positive class.
-
-REFERENCES
-
+Continue to
+The positive class
 
 ## Slide 5 — The positive class
 
-PURPOSE
 The positive class
+CML3111, Week 9, slide 5
 
-CONNECT
-Previous slide: Why this week’s tools are needed.
+Explanation to give
+First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+
+Misconception to address
+Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
+
+On this slide
 In this example, 1 means a warning is needed.
 
 0 means a warning is not needed.
@@ -113,179 +107,153 @@ Actual is the reference label. Predicted is the model’s label.
 
 A false negative misses a real warning.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Class and positive label / TP and TN.
-
-REFERENCES
-
+Continue to
+Class and positive label / TP and TN
 
 ## Slide 6 — Class and positive label / TP and TN
 
-PURPOSE
 Class and positive label / TP and TN
+CML3111, Week 9, slide 6
 
-CONNECT
-Previous slide: The positive class.
+Explanation to give
+First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+
+Misconception to address
+Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
+
+On this slide
 Class and positive label: A class is a category. Here 1 means warning and 0 means no warning. Positive means the named class, not good news.
-
 TP and TN: True positive is a correctly flagged warning. True negative is a correctly unflagged non-warning.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-FP and FN.
-
-REFERENCES
-
+Continue to
+FP and FN
 
 ## Slide 7 — FP and FN
 
-PURPOSE
 FP and FN
+CML3111, Week 9, slide 7
 
-CONNECT
-Previous slide: Class and positive label / TP and TN.
+Explanation to give
+First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+
+Misconception to address
+Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
+
+On this slide
 FP and FN: False positive is a false alarm. False negative is a missed warning.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Actual and predicted describe different things.
-
-REFERENCES
-
+Continue to
+Actual and predicted describe different things
 
 ## Slide 8 — Actual and predicted describe different things
 
-PURPOSE
 Actual and predicted describe different things
+CML3111, Week 9, slide 8
 
-CONNECT
-Previous slide: FP and FN.
+Explanation to give
+First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+
+Misconception to address
+Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
+
+On this slide
 Actual is the recorded reference answer.
 
 Predicted is the answer produced by our model.
 
 A correct prediction matches the reference. Class 1 means warning in this example.
 
-LECTURER CUE
-Place four paper observations in a table of actual label and predicted label. Classify each before showing the four-cell matrix. State which axis is actual and which is predicted.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Every paired result belongs in one cell.
-
-REFERENCES
-
+Continue to
+Every paired result belongs in one cell
 
 ## Slide 9 — Every paired result belongs in one cell
 
-PURPOSE
 Every paired result belongs in one cell
+CML3111, Week 9, slide 9
 
-CONNECT
-Previous slide: Actual and predicted describe different things.
+Explanation to give
+First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+
+Misconception to address
+Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
+
+On this slide
 Read actual first, then predicted. Explain the missed warning.
 
-LECTURER CUE
-Ask students to describe what they see before introducing terminology. Generated conceptual teaching illustration.  Source: figs/experiential/ASSET_SOURCES.md.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-The four kinds of result.
-
-REFERENCES
-
+Continue to
+The four kinds of result
 
 ## Slide 10 — The four kinds of result
 
-PURPOSE
 The four kinds of result
+CML3111, Week 9, slide 10
 
-CONNECT
-Previous slide: Every paired result belongs in one cell.
+Explanation to give
+First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+
+Misconception to address
+Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
+
+On this slide
 Actual / Predicted | Warning 1 | No warning 0
-
 Warning 1 | TP = 1 | FN = 1
-
 No warning 0 | FP = 1 | TN = 1
-
 Rows are actual and columns are predicted.
 
-LECTURER CUE
-Rows are actual and columns are predicted. Read each paired observation into exactly one cell. Precision = 1/2. Recall = 1/2. Cost = 5 × FN + FP = 6 under this invented cost rule.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Precision / Recall.
-
-REFERENCES
-
+Continue to
+Precision / Recall
 
 ## Slide 11 — Precision / Recall
 
-PURPOSE
 Precision / Recall
+CML3111, Week 9, slide 11
 
-CONNECT
-Previous slide: The four kinds of result.
+Explanation to give
+Use two different denominators. Precision looks only at issued warnings. Recall looks only at real cases that needed a warning. Say the population in the denominator before calculating.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If TP=3, FP=1 and FN=2, precision is 3/(3+1)=0.75 and recall is 3/(3+2)=0.60. One asks whether warnings are reliable; the other asks whether true problems were found.
+
+Misconception to address
+The denominators are not interchangeable. Follow the published convention when a denominator is zero and explain why that case arises.
+
+On this slide
 Precision: Of all predicted warnings, the fraction that were actual warnings: TP / (TP + FP).
-
 Recall: Of all actual warnings, the fraction detected: TP / (TP + FN).
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Precision and recall.
-
-REFERENCES
-
+Continue to
+Precision and recall
 
 ## Slide 12 — Precision and recall
 
-PURPOSE
 Precision and recall
+CML3111, Week 9, slide 12
 
-CONNECT
-Previous slide: Precision / Recall.
+Explanation to give
+Use two different denominators. Precision looks only at issued warnings. Recall looks only at real cases that needed a warning. Say the population in the denominator before calculating.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If TP=3, FP=1 and FN=2, precision is 3/(3+1)=0.75 and recall is 3/(3+2)=0.60. One asks whether warnings are reliable; the other asks whether true problems were found.
+
+Misconception to address
+The denominators are not interchangeable. Follow the published convention when a denominator is zero and explain why that case arises.
+
+On this slide
 Precision asks: of the warnings raised, how many were correct?
 
 Recall asks: of the real warnings, how many did we detect?
@@ -294,574 +262,465 @@ A zero denominator needs an explicit rule.
 
 Use the rule in your task brief when implementing the function.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Probability and a decision threshold.
-
-REFERENCES
-
+Continue to
+Probability and a decision threshold
 
 ## Slide 13 — Probability and a decision threshold
 
-PURPOSE
 Probability and a decision threshold
+CML3111, Week 9, slide 13
 
-CONNECT
-Previous slide: Precision and recall.
+Explanation to give
+A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
 
-EXPLAIN
+Worked illustration / lecturer answer
+At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+
+Misconception to address
+A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+
+On this slide
 Probability: A probability is between 0 and 1. Multiply by 100 for percent: 0.7 is 70%. A model’s probability is an estimate that needs checking.
-
 Threshold: A threshold turns a score into a decision. For a rule score >= 0.5, a score of 0.7 gives class 1. Use validation data to choose the threshold.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Apply one stated decision threshold.
-
-REFERENCES
-
+Continue to
+Apply one stated decision threshold
 
 ## Slide 14 — Apply one stated decision threshold
 
-PURPOSE
 Apply one stated decision threshold
+CML3111, Week 9, slide 14
 
-CONNECT
-Previous slide: Probability and a decision threshold.
+Explanation to give
+A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
 
-EXPLAIN
+Worked illustration / lecturer answer
+At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+
+Misconception to address
+A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+
+On this slide
 Estimated positive probability | At least 0.5? | Decision
-
 0.20 | No | Class 0
-
 0.50 | Yes | Class 1
-
 0.80 | Yes | Class 1
-
 0.5 means 50%. This rule includes equality. A probability is an estimate, not a promise that one case is correct.
 
-Read the rows in order. 0.5 means 50%. This rule includes equality. A probability is an estimate, not a promise that one case is correct.
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A category decision can use a probability.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+A category decision can use a probability
 
 ## Slide 15 — A category decision can use a probability
 
-PURPOSE
 A category decision can use a probability
+CML3111, Week 9, slide 15
 
-CONNECT
-Previous slide: Apply one stated decision threshold.
+Explanation to give
+A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
 
-EXPLAIN
+Worked illustration / lecturer answer
+At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+
+Misconception to address
+A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+
+On this slide
 A classifier may estimate the probability of class 1.
 
 A threshold converts that estimate into warning or no warning.
 
 Logistic regression is a classification model. Its probability estimates still need evaluation.
 
-LECTURER CUE
-Only after the count exercise, show a classifier fit/predict demonstration. Logistic regression predicts a category despite its name. Probability estimates need not be well calibrated.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Threshold and cost.
-
-REFERENCES
-
+Continue to
+Threshold and cost
 
 ## Slide 16 — Threshold and cost
 
-PURPOSE
 Threshold and cost
+CML3111, Week 9, slide 16
 
-CONNECT
-Previous slide: A category decision can use a probability.
+Explanation to give
+A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
 
-EXPLAIN
+Worked illustration / lecturer answer
+At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+
+Misconception to address
+A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+
+On this slide
 Threshold and cost: A threshold converts a score to a decision. A cost rule states how much each type of mistake matters. Lower thresholds usually increase recall; precision need not decrease at every step.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-State the cost rule before calculating.
-
-REFERENCES
-
+Continue to
+State the cost rule before calculating
 
 ## Slide 17 — State the cost rule before calculating
 
-PURPOSE
 State the cost rule before calculating
+CML3111, Week 9, slide 17
 
-CONNECT
-Previous slide: Threshold and cost.
+Explanation to give
+A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
 
-EXPLAIN
+Worked illustration / lecturer answer
+At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+
+Misconception to address
+A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+
+On this slide
 A cost rule assigns a penalty to each kind of mistake. In this teaching example, a missed warning costs 5 units and a false alarm costs 1 unit.
 
 Total cost = 5 × FN + FP. One missed warning and one false alarm therefore cost 6 units.
 
 These are invented teaching penalties. Use the published assignment cost rule and explain whose consequences it represents.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Counting syntax in the example.
-
-REFERENCES
-
+Continue to
+Counting syntax in the example
 
 ## Slide 18 — Counting syntax in the example
 
-PURPOSE
 Counting syntax in the example
+CML3111, Week 9, slide 18
 
-CONNECT
-Previous slide: State the cost rule before calculating.
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+On this slide
 Code | Equivalent idea
-
 tp = tn = fp = fn = 0 | Set each of four counts to zero
-
 tp += 1 | tp = tp + 1
-
 zip(actual, predicted) | Pair items in the same positions
-
 elif condition: | Try this branch if earlier ones failed
-
 Our paired lists must have matching lengths. zip alone stops at the shorter list.
 
-LECTURER CUE
-Read one row at a time and use a changed value. This is a syntax reference for the worked examples.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example.
-
-REFERENCES
-
+Continue to
+Classification outcomes in Python
 
 ## Slide 19 — Classification outcomes in Python
 
-PURPOSE
 Classification outcomes in Python
+CML3111, Week 9, slide 19
 
-CONNECT
-Previous slide: Counting syntax in the example.
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+Read the displayed code line by line
 actual = [1, 1, 0, 0]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 predicted = [1, 0, 1, 0]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 for truth, guess in zip(actual, predicted):
-    print(truth, guess)
-# Count the four categories on paper before calculating.
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+print(truth, guess)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+
 tp, fn, fp, tn = 1, 1, 1, 1
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 print(tp / (tp + fp))
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+
 print(tp / (tp + fn))
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+
 print(5 * fn + fp)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-for takes the next item. The indented block repeats.
-
-zip pairs items at matching positions in these equal-length lists.
-
-print displays a value below the cell.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-Place four paper observations in a table of actual label and predicted label. Classify each before showing the four-cell matrix. State which axis is actual and which is predicted. Use counts before fractions. The denominator of precision is predicted positives; the denominator of recall is actual positives. Explain what happens if either denominator is zero. Only after the count exercise, show a classifier fit/predict demonstration. Logistic regression predicts a category despite its name. Probability estimates need not be well calibrated.
-
-Complete practice code:
-actual = [1, 1, 0, 0]
-predicted = [1, 0, 1, 0]
-for truth, guess in zip(actual, predicted):
-    print(truth, guess)
-# Count the four categories on paper before calculating.
-tp, fn, fp, tn = 1, 1, 1, 1
-print(tp / (tp + fp))
-print(tp / (tp + fn))
-print(5 * fn + fp)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Expected output.
-
-REFERENCES
-
+Continue to
+Classification outcomes results
 
 ## Slide 20 — Classification outcomes results
 
-PURPOSE
 Classification outcomes results
+CML3111, Week 9, slide 20
 
-CONNECT
-Previous slide: Classification outcomes in Python.
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+On this slide
 Four paired rows, then precision 0.5, recall 0.5 and teaching cost 6.
 
-LECTURER CUE
-Compare the actual output character by character with this practice result. If it differs, read the first error and check the input, units, names and execution order. Do not copy this practice output into a graded answer.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Trace the four counters.
-
-REFERENCES
-
+Continue to
+Trace the four counters
 
 ## Slide 21 — Trace the four counters
 
-PURPOSE
 Trace the four counters
+CML3111, Week 9, slide 21
 
-CONNECT
-Previous slide: Classification outcomes results.
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+On this slide
 Actual, predicted | Chosen counter | Counts: TP TN FP FN
-
 1, 1 | TP increases | 1 0 0 0
-
 1, 0 | FN increases | 1 0 0 1
-
 0, 1 | FP increases | 1 0 1 1
-
 0, 0 | TN increases | 1 1 1 1
-
 All counts start at zero. Each observation follows exactly one if/elif/else branch.
 
-Read the rows in order. All counts start at zero. Each observation follows exactly one if/elif/else branch.
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Counting arbitrary paired observations.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Counting arbitrary paired observations
 
 ## Slide 22 — Counting arbitrary paired observations
 
-PURPOSE
 Counting arbitrary paired observations
+CML3111, Week 9, slide 22
 
-CONNECT
-Previous slide: Trace the four counters.
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+On this slide
 Start every counter at zero before the loop. == compares labels. and means both comparisons must be true. elif checks another condition only when earlier ones were false.
 
 tp = tn = fp = fn = 0 sets all four counters to zero. tp += 1 is shorthand for tp = tp + 1.
 
-LECTURER CUE
-Start every counter at zero before the loop. == compares labels. and means both comparisons must be true. elif checks another condition only when earlier ones were false.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Counting arbitrary paired observations in Python (1/3).
-
-REFERENCES
-
+Continue to
+Counting arbitrary paired observations in Python (1/3)
 
 ## Slide 23 — Counting arbitrary paired observations in Python (1/3)
 
-PURPOSE
 Counting arbitrary paired observations in Python (1/3)
+CML3111, Week 9, slide 23
 
-CONNECT
-Previous slide: Counting arbitrary paired observations.
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+Read the displayed code line by line
 tp = tn = fp = fn = 0
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
 
-= assigns the value on the right to the name on the left.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-Start every counter at zero before the loop. == compares labels. and means both comparisons must be true. elif checks another condition only when earlier ones were false.
-
-Complete practice code:
-tp = tn = fp = fn = 0
-for truth, guess in zip(actual, predicted):
-    if truth == 1 and guess == 1:
-        tp += 1
-    elif truth == 0 and guess == 0:
-        tn += 1
-    elif truth == 0 and guess == 1:
-        fp += 1
-    else:
-        fn += 1
-print(tp, tn, fp, fn)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Counting arbitrary paired observations in Python (2/3).
-
-REFERENCES
-
+Continue to
+Counting arbitrary paired observations in Python (2/3)
 
 ## Slide 24 — Counting arbitrary paired observations in Python (2/3)
 
-PURPOSE
 Counting arbitrary paired observations in Python (2/3)
+CML3111, Week 9, slide 24
 
-CONNECT
-Previous slide: Counting arbitrary paired observations in Python (1/3).
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+Read the displayed code line by line
 for truth, guess in zip(actual, predicted):
-    if truth == 1 and guess == 1:
-        tp += 1
-    elif truth == 0 and guess == 0:
-        tn += 1
-    elif truth == 0 and guess == 1:
-        fp += 1
-    else:
-        fn += 1
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
 
-for takes the next item. The indented block repeats.
+if truth == 1 and guess == 1:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
 
-if tests a condition. The chosen indented block runs.
+tp += 1
+Add the right-hand amount to the current stored value, then keep the updated value.
 
-zip pairs items at matching positions in these equal-length lists.
+elif truth == 0 and guess == 0:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
 
+tn += 1
+Add the right-hand amount to the current stored value, then keep the updated value.
+
+elif truth == 0 and guess == 1:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+fp += 1
+Add the right-hand amount to the current stored value, then keep the updated value.
+
+else:
+Use this remaining path when the matching earlier condition did not succeed.
+
+fn += 1
+Add the right-hand amount to the current stored value, then keep the updated value.
+
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-Start every counter at zero before the loop. == compares labels. and means both comparisons must be true. elif checks another condition only when earlier ones were false.
-
-Complete practice code:
-tp = tn = fp = fn = 0
-for truth, guess in zip(actual, predicted):
-    if truth == 1 and guess == 1:
-        tp += 1
-    elif truth == 0 and guess == 0:
-        tn += 1
-    elif truth == 0 and guess == 1:
-        fp += 1
-    else:
-        fn += 1
-print(tp, tn, fp, fn)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Counting arbitrary paired observations in Python (3/3).
-
-REFERENCES
-
+Continue to
+Counting arbitrary paired observations in Python (3/3)
 
 ## Slide 25 — Counting arbitrary paired observations in Python (3/3)
 
-PURPOSE
 Counting arbitrary paired observations in Python (3/3)
+CML3111, Week 9, slide 25
 
-CONNECT
-Previous slide: Counting arbitrary paired observations in Python (2/3).
+Explanation to give
+Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+
+Misconception to address
+If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+
+Read the displayed code line by line
 print(tp, tn, fp, fn)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-print displays a value below the cell.
-
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-Start every counter at zero before the loop. == compares labels. and means both comparisons must be true. elif checks another condition only when earlier ones were false.
-
-Complete practice code:
-tp = tn = fp = fn = 0
-for truth, guess in zip(actual, predicted):
-    if truth == 1 and guess == 1:
-        tp += 1
-    elif truth == 0 and guess == 0:
-        tn += 1
-    elif truth == 0 and guess == 1:
-        fp += 1
-    else:
-        fn += 1
-print(tp, tn, fp, fn)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Represent a category with indicators.
-
-REFERENCES
-
+Continue to
+Represent a category with indicators
 
 ## Slide 26 — Represent a category with indicators
 
-PURPOSE
 Represent a category with indicators
+CML3111, Week 9, slide 26
 
-CONNECT
-Previous slide: Counting arbitrary paired observations in Python (3/3).
+Explanation to give
+One-hot encoding gives each category its own indicator column. A row has a 1 in the column matching its category and 0 in the others.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For categories A and B, an A row becomes [1,0] and a B row becomes [0,1]. Assigning A=1 and B=2 could accidentally suggest a meaningful numerical distance or order.
+
+Misconception to address
+Fit the encoder on training data and define how to handle categories not seen during training. Do not invent an ordinal meaning for names.
+
+On this slide
 Category: A category is a label such as steel or timber. Its name does not imply a numerical size or rank.
-
 One-hot indicator: Create a column for each category. Its entry is 1 when the row has that category and 0 otherwise. Learn the allowed categories from training data.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A category can become indicator columns.
-
-REFERENCES
-
+Continue to
+A category can become indicator columns
 
 ## Slide 27 — A category can become indicator columns
 
-PURPOSE
 A category can become indicator columns
+CML3111, Week 9, slide 27
 
-CONNECT
-Previous slide: Represent a category with indicators.
+Explanation to give
+One-hot encoding gives each category its own indicator column. A row has a 1 in the column matching its category and 0 in the others.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For categories A and B, an A row becomes [1,0] and a B row becomes [0,1]. Assigning A=1 and B=2 could accidentally suggest a meaningful numerical distance or order.
+
+Misconception to address
+Fit the encoder on training data and define how to handle categories not seen during training. Do not invent an ordinal meaning for names.
+
+On this slide
 Material | is_steel | is_timber
-
 steel | 1 | 0
-
 timber | 0 | 1
-
 An encoder converts category labels to numeric columns. Fit it on training data. Each indicator is 1 when that category applies, otherwise 0.
 
-LECTURER CUE
-An indicator is 1 when its category applies and 0 otherwise. Fit the encoder on training data.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Accuracy can hide missed warnings.
-
-REFERENCES
-
+Continue to
+Accuracy can hide missed warnings
 
 ## Slide 28 — Accuracy can hide missed warnings
 
-PURPOSE
 Accuracy can hide missed warnings
+CML3111, Week 9, slide 28
 
-CONNECT
-Previous slide: A category can become indicator columns.
+Explanation to give
+Accuracy counts all correct classifications together. In an imbalanced dataset, correct majority-class answers can dominate the score while the minority class is consistently missed.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With 95 normal cases and 5 genuine faults, always predicting normal gives 95% accuracy but detects zero faults. Fault recall is zero.
+
+Misconception to address
+A high headline accuracy alone is insufficient for a warning system. Report the confusion counts and the relevant costs.
+
+On this slide
 Accuracy = number of correct labels / number of labels. It counts correct warnings and correct non-warnings together.
 
 If 90 of 100 cases need no warning, predicting no warning every time gives 90% accuracy. It detects none of the 10 real warnings: recall is 0.
 
 Always inspect the actual/predicted counts and relevant costs before calling a classifier useful.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Revision example and answer.
-
-REFERENCES
-
+Continue to
+Revision example and answer
 
 ## Slide 29 — Revision example and answer
 
-PURPOSE
 Revision example and answer
+CML3111, Week 9, slide 29
 
-CONNECT
-Previous slide: Accuracy can hide missed warnings.
+Explanation to give
+Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
 
-EXPLAIN
+Worked illustration / lecturer answer
 Example: Change the second prediction to 1. Count again. Does this improve both recall and the assumed cost?
 
 Answer: TP=2, FN=0, FP=1, TN=1. Precision 2/3, recall 1, cost 1. This particular change improves recall and cost.
 
-LECTURER CUE
-Give silent thinking time, then let pairs discuss. Rotate who types. This is practice, not a graded quiz. Expected response: TP=2, FN=0, FP=1, TN=1. Precision 2/3, recall 1, cost 1. This particular change improves recall and cost.
+Misconception to address
+Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
 
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment
 
 ## Slide 30 — Preparing for the assignment
 
-PURPOSE
 Preparing for the assignment
+CML3111, Week 9, slide 30
 
-CONNECT
-Previous slide: Revision example and answer.
+Explanation to give
+Read the metric with its unit and evaluation population. Explain why that error measure matches the cost of a wrong decision in the stated engineering setting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+MAE 3 kW describes an average absolute error on named observations; it does not guarantee every prediction lies within 3 kW. Report baseline comparison and the evaluation protocol.
+
+Misconception to address
+Avoid a deployment claim based only on a score. State genuine limitations involving data coverage, measurement quality or future operating conditions.
+
+On this slide
 Implement classification_metrics on arbitrary paired binary labels, not only the example.
 
 Use the published zero-denominator convention.
@@ -870,50 +729,44 @@ Read the supplied W09 comparison separately.
 
 Teacher-written cost assumptions are not approved operating limits.
 
-LECTURER CUE
-Implement classification_metrics on arbitrary paired binary labels, not only the example. Use the published zero-denominator convention. Read the supplied W09 comparison separately. Teacher-written cost assumptions are not approved operating limits. All claimed benefits require real-world evaluation.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment continued.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment continued
 
 ## Slide 31 — Preparing for the assignment continued
 
-PURPOSE
 Preparing for the assignment continued
+CML3111, Week 9, slide 31
 
-CONNECT
-Previous slide: Preparing for the assignment.
+Explanation to give
+The warning labels and costs belong to this teaching scenario. Name what positive means before discussing benefit or harm.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compute the confusion counts from aligned actual/predicted labels, then apply the published cost weights. A false alarm and a missed warning can have different costs.
+
+Misconception to address
+These illustrative costs are not approved operational thresholds. Claimed benefits need evaluation on relevant real observations before use in engineering decisions.
+
+On this slide
 All claimed benefits require real-world evaluation.
 
-LECTURER CUE
-Implement classification_metrics on arbitrary paired binary labels, not only the example. Use the published zero-denominator convention. Read the supplied W09 comparison separately. Teacher-written cost assumptions are not approved operating limits. All claimed benefits require real-world evaluation.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Category predictions and operating thresholds.
-
-REFERENCES
-
+Continue to
+Category predictions and operating thresholds
 
 ## Slide 32 — Category predictions and operating thresholds
 
-PURPOSE
 Category predictions and operating thresholds
+CML3111, Week 9, slide 32
 
-CONNECT
-Previous slide: Preparing for the assignment continued.
+Explanation to give
+A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
 
-EXPLAIN
+Worked illustration / lecturer answer
+At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+
+Misconception to address
+A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+
+On this slide
 A majority-only classifier can achieve high accuracy while missing the rare class.
 
 Name the positive class and both confusion-matrix axes.
@@ -922,50 +775,44 @@ A model expecting numeric features cannot directly use raw category strings; use
 
 Compare threshold choices on validation data.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Category predictions and operating thresholds continued.
-
-REFERENCES
-
+Continue to
+Category predictions and operating thresholds continued
 
 ## Slide 33 — Category predictions and operating thresholds continued
 
-PURPOSE
 Category predictions and operating thresholds continued
+CML3111, Week 9, slide 33
 
-CONNECT
-Previous slide: Category predictions and operating thresholds.
+Explanation to give
+A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
 
-EXPLAIN
+Worked illustration / lecturer answer
+At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+
+Misconception to address
+A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+
+On this slide
 Reducing the threshold adds flagged cases and cannot reduce recall on fixed scored observations, but precision can move either way.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Your issued task.
-
-REFERENCES
-
+Continue to
+Your issued task
 
 ## Slide 34 — Your issued task
 
-PURPOSE
 Your issued task
+CML3111, Week 9, slide 34
 
-CONNECT
-Previous slide: Category predictions and operating thresholds continued.
+Explanation to give
+The warning labels and costs belong to this teaching scenario. Name what positive means before discussing benefit or harm.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compute the confusion counts from aligned actual/predicted labels, then apply the published cost weights. A false alarm and a missed warning can have different costs.
+
+Misconception to address
+These illustrative costs are not approved operational thresholds. Claimed benefits need evaluation on relevant real observations before use in engineering decisions.
+
+On this slide
 Use classification_case.csv.
 
 Positive means a synthetic warning condition.
@@ -974,73 +821,64 @@ Compute the confusion matrix, precision, recall and cost.
 
 Explain the 5:1 missed-warning/false-alarm cost assumption and why accuracy alone is insufficient.
 
-LECTURER CUE
-Use classification_case.csv. Positive means a synthetic warning condition. Compute the confusion matrix, precision, recall and cost. Explain the 5:1 missed-warning/false-alarm cost assumption and why accuracy alone is insufficient. These costs are teaching assumptions, not approved operating limits.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Your issued task continued.
-
-REFERENCES
-
+Continue to
+Your issued task continued
 
 ## Slide 35 — Your issued task continued
 
-PURPOSE
 Your issued task continued
+CML3111, Week 9, slide 35
 
-CONNECT
-Previous slide: Your issued task.
+Explanation to give
+The warning labels and costs belong to this teaching scenario. Name what positive means before discussing benefit or harm.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compute the confusion counts from aligned actual/predicted labels, then apply the published cost weights. A false alarm and a missed warning can have different costs.
+
+Misconception to address
+These illustrative costs are not approved operational thresholds. Claimed benefits need evaluation on relevant real observations before use in engineering decisions.
+
+On this slide
 These costs are teaching assumptions, not approved operating limits.
 
-LECTURER CUE
-Use classification_case.csv. Positive means a synthetic warning condition. Compute the confusion matrix, precision, recall and cost. Explain the 5:1 missed-warning/false-alarm cost assumption and why accuracy alone is insufficient. These costs are teaching assumptions, not approved operating limits.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-classification_metrics(actual, predicted).
-
-REFERENCES
-
+Continue to
+classification_metrics(actual, predicted)
 
 ## Slide 36 — classification_metrics(actual, predicted)
 
-PURPOSE
 classification_metrics(actual, predicted)
+CML3111, Week 9, slide 36
 
-CONNECT
-Previous slide: Your issued task continued.
+Explanation to give
+Count the four mutually exclusive actual/predicted cases, then calculate the specified fractions and cost from those counts.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Verify TP+TN+FP+FN equals the number of paired observations. Read the cost weights and zero-denominator convention from the issued brief.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 For binary labels return tp, tn, fp, fn, precision, recall and cost=5*fn+fp; use zero for an undefined precision/recall denominator.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W09/CML3111/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Written evidence.
-
-REFERENCES
-
+Continue to
+Written evidence
 
 ## Slide 37 — Written evidence
 
-PURPOSE
 Written evidence
+CML3111, Week 9, slide 37
 
-CONNECT
-Previous slide: classification_metrics(actual, predicted).
+Explanation to give
+Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+
+Misconception to address
+Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+
+On this slide
 Use the cell headed “My written evidence”.
 
 Explain the supplied scenario in your own words.
@@ -1049,27 +887,24 @@ State target units, reasons and limitations.
 
 Submit one complete notebook containing code and written evidence.
 
-LECTURER CUE
-Published criterion weights and exact requirements remain in TASKS.md. Broader project exercises are formative and do not add weekly marks. Local automated reasoning assessment remains subject to its release checks.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Classification and cost submission.
-
-REFERENCES
-
+Continue to
+Classification and cost submission
 
 ## Slide 38 — Classification and cost submission
 
-PURPOSE
 Classification and cost submission
+CML3111, Week 9, slide 38
 
-CONNECT
-Previous slide: Written evidence.
+Explanation to give
+This slide hands over CML3111 W09. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The recorded cutoff for this form is 2026-11-13T11:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+
+Misconception to address
+Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+
+On this slide
 Opens: 06 Nov 2026, 11:00 Kampala
 
 Deadline: 13 Nov 2026, 11:00 Kampala
@@ -1078,81 +913,72 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-LECTURER CUE
-The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Week 9 quiz.
-
-REFERENCES
-
+Continue to
+Week 9 quiz
 
 ## Slide 39 — Week 9 quiz
 
-PURPOSE
 Week 9 quiz
+CML3111, Week 9, slide 39
 
-CONNECT
-Previous slide: Classification and cost submission.
+Explanation to give
+This is the CML3111 Week 9 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W9_CML3111 when ready and read the logged closing time.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+
+Misconception to address
+Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+
+On this slide
 Answer individually after the lecturer activates the quiz.
 
 Available for 24 hours from activation.
 
 Use your Student Registration Number and registered account.
 
-The lecturer will confirm the exact closing time.
+Check the announced quiz closing time.
 
-LECTURER CUE
-Activate the matching open_W9_CML3111 function in Quiz Controls, then confirm the 24-hour close time. Opening this slide or clicking its link does not activate the form. The 24 hours is the availability window. Keep existing quiz scoring and form rules. Do not show private answer keys.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Before you leave.
-
-REFERENCES
-
+Continue to
+Revision and submission checklist
 
 ## Slide 40 — Revision and submission checklist
 
-PURPOSE
 Revision and submission checklist
+CML3111, Week 9, slide 40
 
-CONNECT
-Previous slide: Week 9 quiz.
+Explanation to give
+Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+
+Misconception to address
+Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+
+On this slide
 You can identify a false negative and explain precision and recall with counts.
 
 Save your work and check the required submission files.
 
-LECTURER CUE
-Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Optional revision video.
-
-REFERENCES
-
+Continue to
+Optional revision video
 
 ## Slide 41 — Optional revision video
 
-PURPOSE
 Optional revision video
+CML3111, Week 9, slide 41
 
-CONNECT
-Previous slide: Revision and submission checklist.
+Explanation to give
+Give the viewing question before playing the excerpt: Which observations are correctly or incorrectly classified?
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
+
+Misconception to address
+The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
+
+On this slide
 For revision after class.
 
 StatQuest with Josh Starmer
@@ -1162,15 +988,5 @@ Opening up to 04:00, optional preview-selected excerpt
 
 Listening question: Which observations are correctly or incorrectly classified?
 
-LECTURER CUE
-Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.
-After viewing: Translate the medical example to warning/no-warning and label the axes.
-Preview before class and stop after the selected short excerpt. If playback fails, teach the worked example. Video is optional. Source: https://www.youtube.com/watch?v=Kdsp6soqA7o
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-independent revision and the issued task.
-
-REFERENCES
+Reference / existing resource
+https://www.youtube.com/watch?v=Kdsp6soqA7o

@@ -11,23 +11,21 @@ for week in (3,5):
  spec=ig.load_spec(aid,str(specfile),include_hidden=False)
  for code in ('CML3111','CML3112','CML3113'):
   dest=BASE/'practicals'/aid/code;dest.mkdir(parents=True,exist_ok=True)
-  shutil.copy2(GRADER/'iuea_grader.py',dest/'iuea_grader.py');shutil.copy2(specfile,dest/specfile.name)
   if week==5:shutil.copy2(GRADER/'data/campus_energy.csv',dest/'campus_energy.csv')
   cells=[('markdown',f'# {aid}: {spec.TITLE}\n{code}. Complete each named output. Save as STUDENT_ID_{aid}.ipynb.'),
-         ('code',f'STUDENT_ID="YOUR_ID"\nCOHORT="{code}"\nfrom iuea_grader import Grader\ng=Grader("{aid}",cohort=COHORT,spec_path="spec_{aid}.py",namespace=globals())\n')]
+         ('code',f'STUDENT_ID="YOUR_ID"\nCOHORT="{code}"\n')]
   for qid,q in ig.resolve_questions(spec,code):
    cells.append(('markdown',f'## {qid}: {q["marks"]} marks\n{q.get("prompt","")}'))
    if week==3 and qid=='q5':
     cells.append(('markdown','You may compare these six readings directly; a loop is not required this week.'))
     cells.append(('code','READINGS = [98.5, 103.2, 99.0, 111.4, 94.8, 100.6]\n'))
    cells.append(('code','# Your answer here\n'))
-   if q.get('visible',True):cells.append(('code',f'g.check("{qid}")\n'))
-  cells.append(('markdown','Restart and Run All, then save your named notebook. Practice check results are feedback; the submitted notebook is graded independently.'))
+  cells.append(('markdown','Restart and Run All, then save your named notebook. Your uploaded notebook is marked automatically after submission.'))
   (dest/(aid+'_student.ipynb')).write_text(json.dumps(notebook(cells),indent=2)+'\n')
-  intro='Upload the notebook and companion Python files into the same Colab runtime. '
+  intro='Open the notebook in Colab. No grading scripts are needed. '
   if week==5:
    intro+='Upload campus_energy.csv too. This is a fictional 24-row teaching dataset, not measured campus consumption. Complete the six tasks for 20 marks. '
   else:intro+='Complete the five tasks for 20 marks. '
-  (dest/'README.md').write_text(f'# {code} {aid}\n\n'+intro+'The notebook states every task and mark. Visible checks give practice feedback; hidden checks assess the declared tasks after submission. Restart and Run All, save STUDENT_ID_'+aid+'.ipynb, and upload it through your cohort assignment form.\n')
+  (dest/'README.md').write_text(f'# {code} {aid}\n\n'+intro+'The notebook states every task and mark. Your uploaded notebook is marked automatically after submission. Restart and Run All, save STUDENT_ID_'+aid+'.ipynb, and upload it through your cohort assignment form.\n')
 
-print('Built six practical templates with matching public checks')
+print('Built six practical templates; grading tools stay with the lecturer')

@@ -1,6 +1,19 @@
 # Assignment instructions index
 
-Read the matching guide before starting. The lecturer releases assignments on their published schedule.
+Open the assignment notebook first. Its opening checklist and task cells contain the required work. The guides below are reference copies, not extra homework.
+
+## Current teaching position
+
+CML3112 completed Week 3 on 29 September; Week 4 is next. CML3111 and CML3113 have not covered Week 3.
+
+- [CML3112 Week 4 student ZIP](student_packages/CML3112_W04_student.zip)
+- [CML3111 Week 3 student ZIP](student_packages/CML3111_W03_student.zip)
+- [CML3113 Week 3 student ZIP](student_packages/CML3113_W03_student.zip)
+- [CML3112 A3 clarified instructions](student_guides/CML3112/W03.md)
+
+Students already working should keep their answers. They do not need to restart or resubmit because the wording changed. These instructions do not open a form or change a deadline.
+
+## Reference guides
 
 - [CML3112|W01](student_guides/CML3112/W01.md)
 - [CML3112|W02](student_guides/CML3112/W02.md)
@@ -50,7 +63,3 @@ Read the matching guide before starting. The lecturer releases assignments on th
 - [CML3111|TEST2](student_guides/CML3111/TEST2.md)
 - [CML3111|ML_PROJECT](student_guides/CML3111/ML_PROJECT.md)
 - [CML3111|DEMO](student_guides/CML3111/DEMO.md)
-- [DA|S05](../DataAnalysis_Track/student_guides/DA/S05.md)
-- [DA|S09](../DataAnalysis_Track/student_guides/DA/S09.md)
-- [DA|S13](../DataAnalysis_Track/student_guides/DA/S13.md)
-- [DA|S15](../DataAnalysis_Track/student_guides/DA/S15.md)

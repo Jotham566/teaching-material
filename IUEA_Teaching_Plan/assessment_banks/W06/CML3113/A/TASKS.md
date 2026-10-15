@@ -1,41 +1,63 @@
-# CML3113 W06: Cleaning and quality — variant A
+# CML3113 A6 — task reference
 
-Investigate crusher energy demand. Target units: kWh/t. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
+These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
 
-Use your Student Registration Number in STUDENT_ID, including slashes. In filenames only replace slashes with underscores. Set COHORT to CML3113.
+## Your data
 
-Numeric fields are numbers (missing values become None); parse CSV blanks accordingly. The public function interfaces below let the isolated grader evaluate your implementation on unseen records. The unseen records use the same schema and published rules. Implement the functions in the submitted notebook; do not hardcode the supplied answers. The numerical component does not prove the quality of the full investigation.
+Investigate crusher energy demand; target unit: **kWh/t**. These are synthetic teaching data. Each row is an operating observation; equipment_id identifies equipment and can repeat.
 
-Published total: 20 marks. Deterministic component: 12. Written/evidence component: 8.0. Original criterion totals are preserved.
+A record is a dictionary of column names and values. A list of records holds several rows. record_id identifies a row; load_pct is load as a percentage; ambient_c is temperature in degrees C; target is the quantity to predict. Numeric CSV blanks become None. Keep the original data. Your functions are checked on other records following the same published rules.
 
-## Engineering questions
 
-What is the cleaned mean target in its unit? Which equipment group has the highest mean, and what is the gap to the lowest? What load/target pattern is visible, and why does it not establish causation?
+### `clean_records(records)` — 5 marks
 
-## Required interfaces
+- Return a list of copied records, keeping their original order. Do not change the raw input.
+- Keep only the first occurrence of each record_id.
+- Drop a record if target is missing or load_pct is outside 0–100 inclusive.
+- Using the remaining records, find the median of the non-missing ambient_c values. Use it to fill missing ambient_c.
+- Make no other changes.
 
-- clean_records(records) — 5 marks within c1. Return copied records in original order: remove repeated record_id after its first occurrence, drop rows with missing target or load_pct outside 0–100 inclusive, then fill missing ambient_c with the median of retained non-missing ambient_c values. Preserve raw input. No other changes.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- summarize_records(clean_records) — 5 marks within c2. Return count, mean, minimum, maximum of target and group_means by equipment_id. Retain full precision.
 
-- audit_cleaning(raw_records, cleaned_records) — 2 marks within c2. Return raw_count and cleaned_count; duplicate_ids is the number of cleaned records beyond the first occurrence of each record_id; missing_targets counts None targets; invalid_loads counts cleaned load_pct outside 0–100 inclusive. Report the actual supplied data, which may still contain defects. Do not change either input. All five values are integer counts.
+### `summarize_records(clean_records)` — 5 marks
 
-## Full investigation and evidence
+- Return count, mean, minimum, maximum of target and group_means by equipment_id.
+- Retain full precision.
+- Return a dictionary with exactly count, mean, minimum, maximum and group_means. group_means is a dictionary from equipment ID to its mean target.
 
-Write your own explanation in the markdown cell headed `## My written evidence`. Keep that heading. Task prompts and code comments are excluded from reasoning marks. Complete the required functions and interpret the supplied scenario where provided. Broader project exercises and extra charts are formative practice; they do not add marks to this weekly submission. State units and limitations.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-## Written assessment criteria
 
-- Duplicates (1 marks): Score this independently. Award 1 if the submission explicitly explains that retaining one record per repeated record_id prevents a repeated upload from counting the same observation twice. Merely reporting that a duplicate was removed is not a justification. Otherwise award zero. Cite one short exact sentence supporting this item.
+### `audit_cleaning(raw_records, cleaned_records)` — 2 marks
 
-- Invalid (1 marks): Score this independently. Award 1 if the submission justifies excluding a missing target or a physically invalid load rather than inventing or clipping an unsupported value. Otherwise award zero. Cite one short exact sentence supporting this item.
+- Return integer counts describing the two lists you receive; do not change either list.
+- raw_count: number of records in raw_records. cleaned_count: number in cleaned_records.
+- duplicate_ids: number of cleaned records beyond the first occurrence of each record_id.
+- missing_targets: number of cleaned records with target=None.
+- invalid_loads: number of cleaned records with load_pct outside 0–100 inclusive.
+- Count any defects still present in the supplied cleaned_records; do not assume they are all zero.
+- Return a dictionary with exactly raw_count, cleaned_count, duplicate_ids, missing_targets and invalid_loads.
 
-- Impute (1 marks): Score this independently. Award 1 if the submission justifies median imputation of missing ambient temperature while retaining the original raw data. Otherwise award zero. Cite one short exact sentence supporting this item.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- Limitations (2.5 marks): Score this independently. Award 2.5 if the submission identifies at least one meaningful limitation: synthetic data, small sample, repeated equipment observations or imputation uncertainty. Otherwise award zero. Cite one short exact sentence supporting this item.
 
-- Use (2.5 marks): Score this independently. Award 2.5 if the submission restricts use to teaching/practice, or explains that deployment requires representative measured data. Equivalent wording is valid. Otherwise award zero. Cite one short exact sentence supporting this item.
 
-## Submission
+## Written questions
 
-Submit exactly one complete notebook through the cohort form. Keep a downloaded copy. The form link and Kampala deadline are in the student package and final teaching slide.
+Write your answers in the notebook’s **My written evidence** cell. Keep that heading. Use these numbers to organise your answers.
+
+1. **1 mark:** Why should a repeated record_id be kept only once? Explain the effect on counting observations.
+
+2. **1 mark:** Why exclude a missing target or an invalid load rather than inventing or clipping a value?
+
+3. **1 mark:** Why use the median for missing ambient temperature, and why keep the raw data?
+
+4. **2.5 marks:** Explain one meaningful limitation of the data or cleaning decisions.
+
+5. **2.5 marks:** What use is justified by these teaching data? What would be needed before real deployment?
+
+
+## Submit
+
+ONE completed assignment notebook (.ipynb).

@@ -1,0 +1,272 @@
+[
+  {
+    "filename": "CML3111_Week01_Engineering.pptx",
+    "slides": 57,
+    "sha256": "fe050a59a5df71ad12fe4356f61a77eaf44d6ea3925d4bf591e1700f25b2cb17",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week02_Engineering.pptx",
+    "slides": 44,
+    "sha256": "4e7223ef8572946fde23df4274a77c2cc5c4e5a6eebea897813191d882990cba",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week03_Engineering.pptx",
+    "slides": 89,
+    "sha256": "f84ff69023df17d58b916cfd33f8a7fdc6fc0873324cdd1084f453bb5a29dfdd",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week04_Engineering.pptx",
+    "slides": 85,
+    "sha256": "29fb2b365363f35240d9c474ed405855faf4fe100f486ef12fa9cfb485d2c283",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week05_Engineering.pptx",
+    "slides": 45,
+    "sha256": "c276e2132ea0595d6d73476423dd8acf239e0b63f8d83d59733d55d0e958b980",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week06_Engineering.pptx",
+    "slides": 54,
+    "sha256": "a83f8e3d1d4f0560cbf0d9563722f6dc96cdfcf0d874af1180a7adc9e503117c",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week07_Engineering.pptx",
+    "slides": 20,
+    "sha256": "0db765e508afc67386c32cf12a6572175a69ed05f38e35647d6fbbaa5e5f8b24",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week08_Engineering.pptx",
+    "slides": 69,
+    "sha256": "31084ab340855e7b50051ef706defdf244db435f707fe490e10c0af31a12df86",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week09_Engineering.pptx",
+    "slides": 41,
+    "sha256": "9816618ba75f12ee1db5f406fb8da30c844a21482aa6b794fc9eb2fa83c93af4",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week10_Engineering.pptx",
+    "slides": 36,
+    "sha256": "c93464fd3f7c49df591b635e8ee43c18c2f18d931f3e063de92319c1f12d14f7",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week11_Engineering.pptx",
+    "slides": 35,
+    "sha256": "dbd8e91fcdaab37cebc5e1d0247dd012b69170549fa3e034c02eeed432c3f273",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week12_Engineering.pptx",
+    "slides": 36,
+    "sha256": "e0528db52504c6fd9009b908e8a2068b1fae91f0d921430c18828a72ec048df3",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week13_Engineering.pptx",
+    "slides": 25,
+    "sha256": "0157d0c552d87dbc0485b0dff4630610f6132aa7c099625a92b4d1e1046c9483",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week14_Engineering.pptx",
+    "slides": 21,
+    "sha256": "afafb622f2ab9ad2bbfbc8efb7e599763c3d2833282b704cb1e86b8129896127",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3111_Week15_Engineering.pptx",
+    "slides": 24,
+    "sha256": "5c0687fdf0985e23ea971253a8efa93af6132c41fcbf25e4dff806ecf7424781",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week01_Design_Infrastructure.pptx",
+    "slides": 57,
+    "sha256": "0d05246f16aab15f125bc1895dbd8a39dff167260d819c5625a72205ea683104",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week02_Design_Infrastructure.pptx",
+    "slides": 44,
+    "sha256": "32968e267a3faac3d55bcd599878e365ad8bb3b9be78090b190a77055f0c8510",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week03_Design_Infrastructure.pptx",
+    "slides": 89,
+    "sha256": "7edf4f5fd28ffc9de3a1832fa170bd3a711930957db49aafe445ea26b322e18c",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week04_Design_Infrastructure.pptx",
+    "slides": 85,
+    "sha256": "579a755c180c7960f0755cc4fcb73ae7d9a9f54d59d7287ff030ba4e12e25b9a",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week05_Design_Infrastructure.pptx",
+    "slides": 44,
+    "sha256": "5354239497d86d3e1435a910ea9e9369c9f2e06e1ad89851ed1ac129a632357e",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week06_Design_Infrastructure.pptx",
+    "slides": 54,
+    "sha256": "9d2e99ae08f40e800f6d9b69e27221519673b8db35ad052fe250c162bbb5125c",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week07_Design_Infrastructure.pptx",
+    "slides": 20,
+    "sha256": "7428dbfb88f035715a897cd50f0658f639b16bdf9e162f831a262faa1e507ea6",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week08_Design_Infrastructure.pptx",
+    "slides": 69,
+    "sha256": "b60d8a54eba8a12b40085734b118534e63302cd57326dfd5338b960e6b81114b",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week09_Design_Infrastructure.pptx",
+    "slides": 41,
+    "sha256": "0abe478fcf70c903f9b1cdf885e54a288a89aa386168c3cb79611ded2434549a",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week10_Design_Infrastructure.pptx",
+    "slides": 36,
+    "sha256": "a446aa76c0f202277f7791189eb731eee94bcbbbd1af5651d2ef0548d604196d",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week11_Design_Infrastructure.pptx",
+    "slides": 35,
+    "sha256": "ccb49e961ac329de8583b5122b9cb991a6dc6b3bdcf3b49626ef0204c9e8a64f",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week12_Design_Infrastructure.pptx",
+    "slides": 36,
+    "sha256": "99de09ed08389128b642ca62843a37bfb37e2d0e4e84683892d7dd90e7bfb8bc",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week13_Design_Infrastructure.pptx",
+    "slides": 25,
+    "sha256": "1ad2e1259028d6154e2e294ef26091d6a01c3d7bc204c8a8afa2430d67ff08f4",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week14_Design_Infrastructure.pptx",
+    "slides": 21,
+    "sha256": "d44f65469aabfc0fd4d3a3f041a63be37438b5c33babec32d7dfbd487689dba1",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3112_Week15_Design_Infrastructure.pptx",
+    "slides": 24,
+    "sha256": "0680795973c1c3f6aa1eb75f74ae931a4553122b573ea78674e15c72cbab3e7d",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week01_Mining_Petroleum.pptx",
+    "slides": 57,
+    "sha256": "8027eb2a2f41d41ff1474b04b985dcdadcd21835b86563ff16fcf00206361721",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week02_Mining_Petroleum.pptx",
+    "slides": 44,
+    "sha256": "0cdfb30c851174a623a781a1f1436611ad3a93e895cc5681c50a91df753cb118",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week03_Mining_Petroleum.pptx",
+    "slides": 89,
+    "sha256": "31908464f9e962ea925f23997efa7bfa990a6c0a8e7b8e6297d50d924914099c",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week04_Mining_Petroleum.pptx",
+    "slides": 85,
+    "sha256": "775c1b82ee1edb693258bff7de0c2514de9a47823ee791f9b98ab5587a2930bd",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week05_Mining_Petroleum.pptx",
+    "slides": 45,
+    "sha256": "be53a96bbf95183b5257dbb70bb55495df36d693b615a5420615938a3ec05d2b",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week06_Mining_Petroleum.pptx",
+    "slides": 54,
+    "sha256": "2096c807b24ab011c26a27236f4c458c201cfbc3197a74911fb464750f0f7c33",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week07_Mining_Petroleum.pptx",
+    "slides": 20,
+    "sha256": "ded8c38126521e1a61cb27d8a861d6c22afc9f516033f3b79d056312f188ae62",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week08_Mining_Petroleum.pptx",
+    "slides": 69,
+    "sha256": "9435dc3a8770d5530307659b11cc111c387f6f4c4b4c3e2726ce12d0d260ddc1",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week09_Mining_Petroleum.pptx",
+    "slides": 41,
+    "sha256": "4d7a3eec25dc1aa97e8dbaf9a84ba038036dbe84aff996c635a8aa0d6dc79933",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week10_Mining_Petroleum.pptx",
+    "slides": 36,
+    "sha256": "56a43a1fbfce000c86dbd8c7b19274f4adc55e9660d2b39327ab33c5ec084627",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week11_Mining_Petroleum.pptx",
+    "slides": 35,
+    "sha256": "0aeb341e29431f23a023ac6df63e2f487346150677817714b8a3c9c0be59d6eb",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week12_Mining_Petroleum.pptx",
+    "slides": 36,
+    "sha256": "374845e298cde0d2643daab0b4993e42c6b5f813dbe2124ed6f44221e616493c",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week13_Mining_Petroleum.pptx",
+    "slides": 25,
+    "sha256": "fea5382b0859aef14b0a5e9b1397e8427d4cdddb9adc4f91e03b729132510ef3",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week14_Mining_Petroleum.pptx",
+    "slides": 21,
+    "sha256": "646b8488ccc821355d4261881946f53f7ace72af913a4cd25a42b70e1d25aa9a",
+    "notes_only": false
+  },
+  {
+    "filename": "CML3113_Week15_Mining_Petroleum.pptx",
+    "slides": 24,
+    "sha256": "ceb7018f4159f12cb51a62f31c71c18d59b2432c01661bd93ab3d3c62f968e66",
+    "notes_only": false
+  }
+]

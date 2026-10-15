@@ -1,43 +1,64 @@
-# CML3111 ML_PROJECT: Engineering ML project — variant A
+# CML3111 ML_PROJECT — task reference
 
-Investigate motor winding temperature. Target units: deg C. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
+These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
 
-Use your Student Registration Number in STUDENT_ID, including slashes. In filenames only replace slashes with underscores. Set COHORT to CML3111.
+## Your data
 
-Numeric fields are numbers (missing values become None); parse CSV blanks accordingly. The public function interfaces below let the isolated grader evaluate your implementation on unseen records. The unseen records use the same schema and published rules. Implement the functions in the submitted notebook; do not hardcode the supplied answers. The numerical component does not prove the quality of the full investigation.
+Investigate motor winding temperature; target unit: **deg C**. These are synthetic teaching data. Each row is an operating observation; equipment_id identifies equipment and can repeat.
 
-Published total: 100 marks. Deterministic component: 20. Written/evidence component: 80.0. Original criterion totals are preserved.
+A record is a dictionary of column names and values. A list of records holds several rows. record_id identifies a row; load_pct is load as a percentage; ambient_c is temperature in degrees C; target is the quantity to predict. Numeric CSV blanks become None. Keep the original data. Your functions are checked on other records following the same published rules.
 
-## Engineering questions
 
-Frame an engineering prediction decision. Compare a baseline and two fitted models under a fixed protocol, document prediction-time features, quantify held-out errors and state conditions of use.
+### `predict_regression(training_records, feature_records)` — 10 marks
 
-## Required interfaces
+- Use load_pct and ambient_c as the two input features. Feature records do not contain target.
+- Fit preprocessing on training_records only.
+- Fit a baseline that predicts the mean training target.
+- Fit linear regression and a decision tree with max_depth=4 and random_state=17.
+- Predict for feature_records using all three models.
+- Return a dictionary with baseline, linear and tree; each value is a prediction list in feature_records order.
 
-- predict_regression(training_records, feature_records) — 10 marks within c3. Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only. Return three prediction lists under baseline, linear and tree. Feature records have no target. Fit preprocessing only on training data.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- group_split(records) — 5 marks within c5. Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test. Return train, validation and test lists of record_id in input order. Do not use target values to choose membership.
 
-- regression_errors(actual, predicted) — 5 marks within c5. Return mae and rmse, calculated over the same paired observations, with full precision.
+### `group_split(records)` — 5 marks
 
-## Full investigation and evidence
+- Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test.
+- Return train, validation and test lists of record_id in input order.
+- Do not use target values to choose membership.
+- Return a dictionary with train, validation and test. Each value is a list of record_id values.
 
-Write your own explanation in the markdown cell headed `## My written evidence`. Keep that heading. Task prompts and code comments are excluded from reasoning marks. Complete every original rubric criterion below, not just the checked functions. Include profiling, justified cleaning, question-led charts and your engineering recommendation where required. Keep raw data. State units and distinguish correlation from causation. Charts must be actual labelled figures in the notebook, not claims that charts exist. Include concise captions and an accessible report.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- Problem definition (15.0 total): The engineering problem is real, specific and bounded. The ML task is correctly derived from it. The target variable is justified, not merely available.
 
-- Data understanding (15.0 total): Provenance, licence and collection method stated. Defects found and handled with justification. Limitations of the data acknowledged before any modelling.
+### `regression_errors(actual, predicted)` — 5 marks
 
-- Methodology (20.0 total): Appropriate models chosen and compared under one protocol. Pipeline used. Hyperparameters handled sensibly. Choices explained rather than defaulted to.
+- Return mae and rmse, calculated over the same paired observations, with full precision.
+- Return a dictionary with mae and rmse. MAE is the mean absolute error; RMSE is the square root of the mean squared error. Match actual and predicted by position.
 
-- Engineering reasoning (20.0 total): Domain knowledge visibly enters the work through features, banding, metric choice or interpretation. The result is discussed as engineering, not as a score.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- Validation (15.0 total): Correct train/test discipline, cross-validation with a reported spread, leakage explicitly checked and ruled out, metric justified against the cost of error.
 
-- Communication (10.0 total): The 2-page brief is readable by a non-specialist engineer. Charts answer questions and are captioned with findings. Uncertainty and limitations stated honestly.
 
-- Reproducibility & documentation (5.0 total): Repository runs from a clean clone. README complete. requirements.txt present. Seeds set. AI use declared. Contribution log present.
+## Report checklist
 
-## Submission
+Put the complete written evidence in your report, with relevant notebook results and chart captions.
 
-Submit one completed notebook and one complete DOCX or selectable-text PDF report together. Include the repository URL, run instructions and required contribution/declaration evidence in the report. Keep repository supporting files, but a URL alone does not supply assessable evidence. Read ASSIGNMENT_INSTRUCTIONS.txt for the full start, check and hand-in steps. Keep local copies. The lecturer must validate grading and release this assessment before issuing it.
+1. **Problem definition (15 written marks):** The engineering problem is real, specific and bounded. The ML task is correctly derived from it. The target variable is justified, not merely available.
+
+2. **Data understanding (15 written marks):** Provenance, licence and collection method stated. Defects found and handled with justification. Limitations of the data acknowledged before any modelling.
+
+3. **Methodology (10 written marks):** Appropriate models chosen and compared under one protocol. Pipeline used. Hyperparameters handled sensibly. Choices explained rather than defaulted to.
+
+4. **Engineering reasoning (20 written marks):** Domain knowledge visibly enters the work through features, banding, metric choice or interpretation. The result is discussed as engineering, not as a score.
+
+5. **Validation (5 written marks):** Correct train/test discipline, cross-validation with a reported spread, leakage explicitly checked and ruled out, metric justified against the cost of error.
+
+6. **Communication (10 written marks):** The 2-page brief is readable by a non-specialist engineer. Charts answer questions and are captioned with findings. Uncertainty and limitations stated honestly.
+
+7. **Reproducibility & documentation (5 written marks):** Repository runs from a clean clone. README complete. requirements.txt present. Seeds set. AI use declared. Contribution log present.
+
+
+## Submit
+
+TWO files together: your completed notebook (.ipynb) AND one complete report (DOCX or selectable-text PDF).

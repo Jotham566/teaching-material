@@ -1,243 +1,221 @@
 # CML3112 Week15 Design Infrastructure
 
-Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — Presenting the project and individual contribution
 
-PURPOSE
 Presenting the project and individual contribution
+CML3112, Week 15, slide 1
 
-CONNECT
-Previous slide: the preceding week.
+Explanation to give
+Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A claim should point to a named plot or result, its target unit, the evaluated sample and the decision it supports. “Our model is good” supplies none of these.
+
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+
+On this slide
 Civil Engineering and Architecture
 
-LECTURER CUE
-Use PowerPoint Presenter View for these notes. Teach one example, pause for every learner to predict, then work an analogous example together. The practice notebook is a learning aid, not an extra graded upload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Today’s learning.
-
-REFERENCES
-
+Continue to
+Today’s learning
 
 ## Slide 2 — Today’s learning
 
-PURPOSE
 Today’s learning
+CML3112, Week 15, slide 2
 
-CONNECT
-Previous slide: Presenting the project and individual contribution.
+Explanation to give
+Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A claim should point to a named plot or result, its target unit, the evaluated sample and the decision it supports. “Our model is good” supplies none of these.
+
+Misconception to address
+At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+
+On this slide
 Explain your question and one supported finding.
 
 State a limitation and your individual contribution.
 
-LECTURER CUE
-Ask learners to explain this goal in ordinary language. The first successful attempt matters more than covering optional extensions. Defer: New models and a last-minute redesign are unnecessary. Fix broken run instructions first.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Connection to the previous lesson.
-
-REFERENCES
-
+Continue to
+Connection to the previous lesson
 
 ## Slide 3 — Connection to the previous lesson
 
-PURPOSE
 Connection to the previous lesson
+CML3112, Week 15, slide 3
 
-CONNECT
-Previous slide: Today’s learning.
+Explanation to give
+Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A claim should point to a named plot or result, its target unit, the evaluated sample and the decision it supports. “Our model is good” supplies none of these.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 What question did your team investigate, and what result can you support with evidence?
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A presentation connects a claim to evidence.
-
-REFERENCES
-
+Continue to
+A presentation connects a claim to evidence
 
 ## Slide 4 — A presentation connects a claim to evidence
 
-PURPOSE
 A presentation connects a claim to evidence
+CML3112, Week 15, slide 4
 
-CONNECT
-Previous slide: Connection to the previous lesson.
+Explanation to give
+Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
-EXPLAIN
+Worked illustration / lecturer answer
+“On this held-out sample, MAE was 3 kW” states a result. “The sample contains only one site” limits the claim. Neither statement alone justifies deployment at every site.
+
+Misconception to address
+A polished chart cannot replace a defined target, correct units or an honest description of the evaluation sample.
+
+On this slide
 Finding and limitation: A finding states what the evidence shows. A limitation states where that evidence is incomplete or may not apply. Point to the relevant chart, metric or record.
-
 Defence and reflection: A defence explains why you made a choice. A reflection explains what you learned and would improve. Describe your own contribution with specific evidence.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A six-minute presentation.
-
-REFERENCES
-
+Continue to
+A six-minute presentation
 
 ## Slide 5 — A six-minute presentation
 
-PURPOSE
 A six-minute presentation
+CML3112, Week 15, slide 5
 
-CONNECT
-Previous slide: A presentation connects a claim to evidence.
+Explanation to give
+Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
-EXPLAIN
+Worked illustration / lecturer answer
+“On this held-out sample, MAE was 3 kW” states a result. “The sample contains only one site” limits the claim. Neither statement alone justifies deployment at every site.
+
+Misconception to address
+A polished chart cannot replace a defined target, correct units or an honest description of the evaluation sample.
+
+On this slide
 Minutes 1–2: explain the question and data.
 
 Minutes 3–4: show the method and one supported result.
 
 Minutes 5–6: explain limitations, contributions and a next step.
 
-LECTURER CUE
-Model a six-minute presentation: one minute for the problem, one for the data, two for the method and result, one for limitations and one for contribution and next step.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Make the evidence readable.
-
-REFERENCES
-
+Continue to
+Make the evidence readable
 
 ## Slide 6 — Make the evidence readable
 
-PURPOSE
 Make the evidence readable
+CML3112, Week 15, slide 6
 
-CONNECT
-Previous slide: A six-minute presentation.
+Explanation to give
+Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
-EXPLAIN
+Worked illustration / lecturer answer
+“On this held-out sample, MAE was 3 kW” states a result. “The sample contains only one site” limits the claim. Neither statement alone justifies deployment at every site.
+
+Misconception to address
+A polished chart cannot replace a defined target, correct units or an honest description of the evaluation sample.
+
+On this slide
 Name the chart axes and their units.
 
 State the measured evaluation result and how you obtained it.
 
 Point to the particular table, plot or calculation that supports your claim.
 
-LECTURER CUE
-Explain each chart’s axes and unit before stating its finding. Use the actual measured validation results and state how they were obtained.
+Continue to
+Limitations of the results
 
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
+## Slide 7 — Limitations of the results
 
-NEXT
-Explain the limits honestly.
+Limitations of the results
+CML3112, Week 15, slide 7
 
-REFERENCES
+Explanation to give
+Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
+Worked illustration / lecturer answer
+“On this held-out sample, MAE was 3 kW” states a result. “The sample contains only one site” limits the claim. Neither statement alone justifies deployment at every site.
 
-## Slide 7 — Explain the limits honestly
+Misconception to address
+A polished chart cannot replace a defined target, correct units or an honest description of the evaluation sample.
 
-PURPOSE
-Explain the limits honestly
-
-CONNECT
-Previous slide: Make the evidence readable.
-
-EXPLAIN
+On this slide
 State what your investigation can support.
 
 If an answer is unknown, say what evidence would resolve it.
 
 Teaching data alone do not establish readiness for real operation.
 
-LECTURER CUE
-Practise saying “I do not know yet” followed by the evidence needed to resolve the question. Do not claim deployment readiness from a teaching dataset.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparation checkpoint.
-
-REFERENCES
-
+Continue to
+Preparation checkpoint
 
 ## Slide 8 — Preparation checkpoint
 
-PURPOSE
 Preparation checkpoint
+CML3112, Week 15, slide 8
 
-CONNECT
-Previous slide: Explain the limits honestly.
+Explanation to give
+Each learner should be able to explain one decision they personally worked on and point to its evidence in the project.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Ask for the relevant cell, chart or contribution entry, then a reason for that choice and a limitation. This connects authorship to understanding.
+
+Misconception to address
+Live discussion is formative. Collect the individual written evidence required by DEMO so the automatic assessment has the explanation in an accessible form.
+
+On this slide
 Each student can explain one decision they personally worked on and point to its evidence.
 
-LECTURER CUE
-Each student can explain one decision they personally worked on and point to its evidence.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Your evidence.
-
-REFERENCES
-
+Continue to
+Your evidence
 
 ## Slide 9 — Your evidence
 
-PURPOSE
 Your evidence
+CML3112, Week 15, slide 9
 
-CONNECT
-Previous slide: Preparation checkpoint.
+Explanation to give
+The team project and the individual DEMO evidence have separate purposes. Each learner submits their own explanation of decisions and reflection on learning.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A defence points to specific cells or results in the project. A reflection describes changed understanding, remaining difficulties and the required Semester 2 goals.
+
+Misconception to address
+Do not submit one generic team reflection for everybody. Follow the DEMO guide’s presentation and written-document requirements.
+
+On this slide
 Use the published project and DEMO requirements.
 
 Each individual submits their own typed defence and reflection through the designated route.
 
 Submit your own written defence and reflection as instructed.
 
-LECTURER CUE
-Use the published project and DEMO requirements. Each individual submits their own typed defence and reflection through the designated route. Live questioning and peer comments support learning; they are not a new manual marking workload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project.
-
-REFERENCES
-
+Continue to
+Engineering ML project
 
 ## Slide 10 — Engineering ML project
 
-PURPOSE
 Engineering ML project
+CML3112, Week 15, slide 10
 
-CONNECT
-Previous slide: Your evidence.
+Explanation to give
+Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+
+Misconception to address
+Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+
+On this slide
 Write your own explanation in the markdown cell headed `## My written evidence`.
 
 Keep that heading.
@@ -246,28 +224,24 @@ Task prompts and code comments are excluded from reasoning marks.
 
 Complete every original rubric criterion below, not just the checked functions.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project continued.
-
-REFERENCES
-
+Continue to
+Engineering ML project continued
 
 ## Slide 11 — Engineering ML project continued
 
-PURPOSE
 Engineering ML project continued
+CML3112, Week 15, slide 11
 
-CONNECT
-Previous slide: Engineering ML project.
+Explanation to give
+A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful caption names the group or sample, the observed difference and the relevant unit. A limitation states what the plotted observations cannot establish, such as causation or performance at a new site.
+
+Misconception to address
+Text claiming “a chart was made” is not the required chart. Check the exact number and kinds required on this slide and in the assessment guide.
+
+On this slide
 Include profiling, justified cleaning, question-led charts and your engineering recommendation where required.
 
 Keep raw data.
@@ -276,28 +250,24 @@ State units and distinguish correlation from causation.
 
 Charts must be actual labelled figures in the notebook, not claims that charts exist.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project continued.
-
-REFERENCES
-
+Continue to
+Engineering ML project continued
 
 ## Slide 12 — Engineering ML project continued
 
-PURPOSE
 Engineering ML project continued
+CML3112, Week 15, slide 12
 
-CONNECT
-Previous slide: Engineering ML project continued.
+Explanation to give
+Bound the proposed engineering problem: identify the decision, intended users, operating setting and quantity or class to predict. Explain why the target supports that decision.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A target should be chosen because knowing it helps the decision, not merely because it is a convenient numeric column in the file.
+
+Misconception to address
+A broad theme such as “AI for buildings” does not yet specify a model task. The project report must make the target and intended use explicit.
+
+On this slide
 Include captions and a separate readable DOCX/PDF report.
 
 Problem definition (15.0 total): The engineering problem is real, specific and bounded.
@@ -306,28 +276,24 @@ The ML task is correctly derived from it.
 
 The target variable is justified, not merely available.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project continued.
-
-REFERENCES
-
+Continue to
+Engineering ML project continued
 
 ## Slide 13 — Engineering ML project continued
 
-PURPOSE
 Engineering ML project continued
+CML3112, Week 15, slide 13
 
-CONNECT
-Previous slide: Engineering ML project continued.
+Explanation to give
+Problem framing begins with a bounded engineering decision and a defined target. Provenance explains where observations came from; a licence states what reuse is allowed.
 
-EXPLAIN
+Worked illustration / lecturer answer
+State the population, measurement period, units and who collected the data. Explain how those observations could answer the chosen question rather than merely describing an interesting file.
+
+Misconception to address
+Synthetic teaching data must be labelled as synthetic. A plausible story does not establish that a dataset contains the information or permissions the proposed project needs.
+
+On this slide
 Data understanding (15.0 total): Provenance, licence and collection method stated.
 
 Defects found and handled with justification.
@@ -336,28 +302,24 @@ Limitations of the data acknowledged before any modelling.
 
 Methodology (20.0 total): Appropriate models chosen and compared under one protocol.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project continued.
-
-REFERENCES
-
+Continue to
+Engineering ML project continued
 
 ## Slide 14 — Engineering ML project continued
 
-PURPOSE
 Engineering ML project continued
+CML3112, Week 15, slide 14
 
-CONNECT
-Previous slide: Engineering ML project continued.
+Explanation to give
+Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare models on identical held-out observations with the same metric and preprocessing rules. Each cross-validation training fold learns its own preparation values.
+
+Misconception to address
+A written claim of no leakage must agree with the executable split and fitting code. Follow the published execution requirement for any criterion linked to the split check.
+
+On this slide
 Pipeline used.
 
 Hyperparameters handled sensibly.
@@ -366,114 +328,98 @@ Choices explained rather than defaulted to.
 
 Engineering reasoning (20.0 total): Domain knowledge visibly enters the work through features, banding, metric choice or interpretation.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project continued.
-
-REFERENCES
-
+Continue to
+Engineering ML project continued
 
 ## Slide 15 — Engineering ML project continued
 
-PURPOSE
 Engineering ML project continued
+CML3112, Week 15, slide 15
 
-CONNECT
-Previous slide: Engineering ML project continued.
+Explanation to give
+Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare models on identical held-out observations with the same metric and preprocessing rules. Each cross-validation training fold learns its own preparation values.
+
+Misconception to address
+A written claim of no leakage must agree with the executable split and fitting code. Follow the published execution requirement for any criterion linked to the split check.
+
+On this slide
 The result is discussed as engineering, not as a score.
 
 Validation (15.0 total): Correct train/test discipline, cross-validation with a reported spread, leakage explicitly checked and ruled out, metric justified against the cost of error.
 
 Communication (10.0 total): The 2-page brief is readable by a non-specialist engineer.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project continued.
-
-REFERENCES
-
+Continue to
+Engineering ML project continued
 
 ## Slide 16 — Engineering ML project continued
 
-PURPOSE
 Engineering ML project continued
+CML3112, Week 15, slide 16
 
-CONNECT
-Previous slide: Engineering ML project continued.
+Explanation to give
+A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful caption names the group or sample, the observed difference and the relevant unit. A limitation states what the plotted observations cannot establish, such as causation or performance at a new site.
+
+Misconception to address
+Text claiming “a chart was made” is not the required chart. Check the exact number and kinds required on this slide and in the assessment guide.
+
+On this slide
 Charts answer questions and are captioned with findings.
 
-Uncertainty and limitations stated honestly.
+State uncertainty and limitations.
 
 Reproducibility & documentation (5.0 total): Repository runs from a clean clone.
 
 README complete. requirements.txt present.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project continued.
-
-REFERENCES
-
+Continue to
+Engineering ML project continued
 
 ## Slide 17 — Engineering ML project continued
 
-PURPOSE
 Engineering ML project continued
+CML3112, Week 15, slide 17
 
-CONNECT
-Previous slide: Engineering ML project continued.
+Explanation to give
+Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Name a file, function or chart and the decision behind it. Match that entry to meaningful repository history. Disclose AI assistance according to the assessment policy.
+
+Misconception to address
+Many commits do not necessarily mean substantial work, and a seed does not establish accuracy. Both are supporting evidence, not replacements for the analysis.
+
+On this slide
 Seeds set.
 
 AI use declared.
 
 Contribution log present.
 
-LECTURER CUE
-# CML3112 ML_PROJECT: Engineering ML project — variant A
-Full assessment requirements belong in the current public task guide; explain only the criterion or task shown on this slide.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Engineering ML project submission.
-
-REFERENCES
-
+Continue to
+Engineering ML project submission
 
 ## Slide 18 — Engineering ML project submission
 
-PURPOSE
 Engineering ML project submission
+CML3112, Week 15, slide 18
 
-CONNECT
-Previous slide: Engineering ML project continued.
+Explanation to give
+This slide hands over CML3112 ML_PROJECT. Show the exact form title before uploading. The required packet is the completed project notebook together with one readable DOCX or selectable-text PDF report.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The recorded cutoff for this form is 2026-12-15T11:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+
+Misconception to address
+Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+
+On this slide
 Opens: 24 Nov 2026, 11:00 Kampala
 
 Deadline: 15 Dec 2026, 11:00 Kampala
@@ -482,127 +428,112 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-LECTURER CUE
-The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Presentation evidence (35 marks).
-
-REFERENCES
-
+Continue to
+Presentation evidence (35 marks)
 
 ## Slide 19 — Presentation evidence (35 marks)
 
-PURPOSE
 Presentation evidence (35 marks)
+CML3112, Week 15, slide 19
 
-CONNECT
-Previous slide: Engineering ML project submission.
+Explanation to give
+Speaker notes contain the explanation behind each presentation slide. They should connect the question, method, evidence and limitations so the submitted file remains understandable without a live talk.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For a results chart, notes identify the sample, target unit, metric and interpretation. The written evidence can then be assessed even when the speaker is absent.
+
+Misconception to address
+The local text-based grader does not assess visual polish or spoken delivery. Make required reasoning accessible as actual text rather than only screenshots.
+
+On this slide
 Slides and narration notes explain the question, method, evidence and limitations for an engineering audience.
 
 The local text grader does not assess visual styling or spoken delivery.
 
-LECTURER CUE
-Published DEMO criterion. Check the assessment grading-release status before issuing. Live questioning is formative. Source: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/IUEA_Teaching_Plan/grader/rubrics/DEMO.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Individual written defence (40 marks).
-
-REFERENCES
-
+Continue to
+Individual written defence (40 marks)
 
 ## Slide 20 — Individual written defence (40 marks)
 
-PURPOSE
 Individual written defence (40 marks)
+CML3112, Week 15, slide 20
 
-CONNECT
-Previous slide: Presentation evidence (35 marks).
+Explanation to give
+A defence explains the reasoning behind a decision the learner actually made. Ask for a named cell, result or chart so the explanation can be checked against the project.
 
-EXPLAIN
+Worked illustration / lecturer answer
+“I used a group split because the same equipment appears repeatedly; this cell lists disjoint equipment IDs” links a choice, reason and evidence.
+
+Misconception to address
+A general definition of group splitting is not evidence that this project used it. Each student's explanation must match their own contribution.
+
+On this slide
 Two typed answers about the student's own repository identify specific cells/results and explain the decisions.
 
 Credit is based on the submitted evidence; live questioning is formative.
 
-LECTURER CUE
-Published DEMO criterion. Check the assessment grading-release status before issuing. Live questioning is formative. Source: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/IUEA_Teaching_Plan/grader/rubrics/DEMO.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Reflection (20 marks).
-
-REFERENCES
-
+Continue to
+Reflection (20 marks)
 
 ## Slide 21 — Reflection (20 marks)
 
-PURPOSE
 Reflection (20 marks)
+CML3112, Week 15, slide 21
 
-CONNECT
-Previous slide: Individual written defence (40 marks).
+Explanation to give
+Reflection should compare the learner's earlier understanding with what they can now demonstrate, then specify an achievable next step.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A concrete reflection describes an execution-order mistake, how a clean run revealed it, and how the learner now checks notebooks. A goal might be to practise grouped validation on a second dataset.
+
+Misconception to address
+“I learned a lot about AI” provides little evidence. Keep the published 500-word requirement and the two Semester 2 goals.
+
+On this slide
 500 words.
 
 Specific about what changed since Week 1, what remains difficult, and two concrete Semester 2 goals.
 
 Generic reflection scores low.
 
-LECTURER CUE
-Published DEMO criterion. Check the assessment grading-release status before issuing. Live questioning is formative. Source: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/IUEA_Teaching_Plan/grader/rubrics/DEMO.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-AI-use declaration (5 marks).
-
-REFERENCES
-
+Continue to
+AI-use declaration (5 marks)
 
 ## Slide 22 — AI-use declaration (5 marks)
 
-PURPOSE
 AI-use declaration (5 marks)
+CML3112, Week 15, slide 22
 
-CONNECT
-Previous slide: Reflection (20 marks).
+Explanation to give
+Explain that disclosure records what help was used, where and how the learner checked it. It does not remove responsibility for the submitted work or override an assessment's restrictions.
 
-EXPLAIN
+Worked illustration / lecturer answer
+An informative declaration names the tool, the task for which it helped, the affected file or section and the verification performed. If no AI was used, state that directly.
+
+Misconception to address
+Do not imply AI is permitted in an offline test. Follow the policy for the particular assessment, and require the learner to explain their own work.
+
+On this slide
 Present, complete and plausible against the repository history.
 
-LECTURER CUE
-Published DEMO criterion. Check the assessment grading-release status before issuing. Live questioning is formative. Source: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/IUEA_Teaching_Plan/grader/rubrics/DEMO.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Presentation and individual reflection submission.
-
-REFERENCES
-
+Continue to
+Presentation and individual reflection submission
 
 ## Slide 23 — Presentation and individual reflection submission
 
-PURPOSE
 Presentation and individual reflection submission
+CML3112, Week 15, slide 23
 
-CONNECT
-Previous slide: AI-use declaration (5 marks).
+Explanation to give
+This slide hands over CML3112 DEMO. Show the exact form title before uploading. The required packet is the presentation with narration notes and the required written defence/reflection document, as listed in the DEMO guide.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The recorded cutoff for this form is 2026-12-15T14:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+
+Misconception to address
+Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+
+On this slide
 Opens: 24 Nov 2026, 11:00 Kampala
 
 Deadline: 15 Dec 2026, 14:00 Kampala
@@ -611,38 +542,24 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-LECTURER CUE
-The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Before you leave.
-
-REFERENCES
-
+Continue to
+Revision and submission checklist
 
 ## Slide 24 — Revision and submission checklist
 
-PURPOSE
 Revision and submission checklist
+CML3112, Week 15, slide 24
 
-CONNECT
-Previous slide: Presentation and individual reflection submission.
+Explanation to give
+Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A claim should point to a named plot or result, its target unit, the evaluated sample and the decision it supports. “Our model is good” supplies none of these.
+
+Misconception to address
+Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+
+On this slide
 You can point to the evidence behind one decision you personally worked on.
 
 Save your work and check the required submission files.
-
-LECTURER CUE
-Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-independent revision and the issued task.
-
-REFERENCES

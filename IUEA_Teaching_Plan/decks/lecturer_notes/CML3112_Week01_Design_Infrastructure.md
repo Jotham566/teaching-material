@@ -1,514 +1,441 @@
 # CML3112 Week01 Design Infrastructure
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — AI, machine learning
 
-TEACHING PURPOSE
 AI, machine learning
+CML3112, Week 1, slide 1
 
-LECTURER CUE
-Today runs entirely on paper. You will not touch a computer, so nothing you do this session depends on owning a laptop or having a connection. By the end you will have answered a real engineering question from twelve rows of a real dataset with a pencil, and measured how wrong you were.
+Explanation to give
+Start with an engineering decision, then introduce learning from examples. No code is needed today.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Worked illustration / lecturer answer
+A numerical quantity such as days until servicing is a regression target. A label such as service due is a classification target.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
 
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Jotham Martin Wambi. Move on after a learner can explain the current example or required action.
+Continue to
+Jotham Martin Wambi
 
 ## Slide 2 — Jotham Martin Wambi
 
-TEACHING PURPOSE
 Jotham Martin Wambi
+CML3112, Week 1, slide 2
 
-CONNECT
-Build on the preceding slide: AI, machine learning.
+Explanation to give
+Introduce your applied data and teaching work briefly, then link it to what beginners will learn in this course.
 
-LECTURER CUE
-A short introduction, and there is a reason for it beyond courtesy.
-First, so that you know what you can ask me for. The work on the right is where my experience actually is: sensor data and predictive maintenance, language models over documents, and getting models into something a colleague can use. If your project heads in one of those directions I can help you in detail. If it heads somewhere I know less well, I will tell you that rather than guess.
-Second, because of the route rather than the titles. I read economics and information technology as undergraduate degrees, and my first seven years of work were in banking, tax and product management, none of which involved building a model. Nobody starts where this field expects them to start, and the engineering degree you are already halfway through is a better foundation for machine learning than most computing degrees, for reasons we come to in the roadmap segment.
-Third, so the claims in this course are checkable. Where I tell you a technique behaves a certain way, it is usually because I have watched it fail somewhere first.
-The contact details are real. Use them.
+Worked illustration / lecturer answer
+Use the formally accurate affiliation: incoming PhD student in Applied Informatics, Osaka Metropolitan University, Japan, April 2027 intake. The acceptance precedes enrolment. The master’s institution is Yamaguchi University, Japan.
 
-EXPLAIN IN ORDINARY WORDS
-A condition is a True/False question. Python executes the matching indented branch. = assigns; == compares. >= includes the boundary, while > excludes it.
+Misconception to address
+The older visible “PhD student” wording predates the clarified enrolment status. Do not describe yourself as already enrolled for the December 2026 period.
 
-CHECK AND EXPECTED ANSWER
-With value 30, is value >= 30 true? Yes. Is value > 30 true? No.
-
-IF LEARNERS ARE STUCK
-Try one value below, at and above the boundary before running the code.
-
-NEXT
-By the end of today you can…. Move on after a learner can explain the current example or required action.
+Continue to
+By the end of today you can…
 
 ## Slide 3 — By the end of today you can…
 
-TEACHING PURPOSE
 By the end of today you can…
+CML3112, Week 1, slide 3
 
-CONNECT
-Build on the preceding slide: Jotham Martin Wambi.
+Explanation to give
+Start with an engineering decision, then introduce learning from examples. No code is needed today.
 
-LECTURER CUE
-Seven objectives, and they are the whole session. Nothing is hidden behind them and there is no reading list you are expected to have done. Mark yourself against each one at the end of the session; whatever you cannot claim is what to revise before Week 2.
+Worked illustration / lecturer answer
+A numerical quantity such as days until servicing is a regression target. A label such as service due is a classification target.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+Use the outcomes listed on this slide to check understanding through the small examples, rather than asking only whether everybody understands.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-How every session this semester is shaped. Move on after a learner can explain the current example or required action.
+Continue to
+How every session this semester is shaped
 
 ## Slide 4 — How every session this semester is shaped
 
-TEACHING PURPOSE
 How every session this semester is shaped
+CML3112, Week 1, slide 4
 
-CONNECT
-Build on the preceding slide: By the end of today you can….
+Explanation to give
+Orient students to this particular lesson: explain what they will see demonstrated, which file they will use and what they must retain for revision. Keep the transition short enough to preserve explanation time.
 
-LECTURER CUE
-Every session this semester has the same shape: eleven segments across three hours, with no block of talking longer than 25 minutes and roughly half the time spent working rather than listening. That is why attendance matters more here than on a lecture course — the practical and challenge segments cannot be read off a deck afterwards. There is a 10-minute break at the midpoint.
+Worked illustration / lecturer answer
+Open the next worked example on the projector and name its input and intended result. Demonstrate it yourself before asking students to interpret a result. Use remaining summary and glossary pages for independent revision.
 
-NEXT
-Where this semester goes. Move on after a learner can explain the current example or required action.
+Misconception to address
+The historical slide's timed group activity is not a requirement to stop for partner work. Use a lecturer-led walkthrough in the current limited class time.
+
+Continue to
+Where this semester goes
 
 ## Slide 5 — Where this semester goes
 
-TEACHING PURPOSE
 Where this semester goes
+CML3112, Week 1, slide 5
 
-CONNECT
-Build on the preceding slide: How every session this semester is shaped.
+Explanation to give
+Explain the sequence as increasing independence: first run and understand code, then inspect data, then build and evaluate a modest predictor, and finally communicate its limits.
 
-LECTURER CUE
-Fifteen weeks. Weeks 7 and 14 are practical tests where you are given data you have never seen and asked what you make of it, and the project runs from Week 9 to the last session. There is nothing to memorise in this course, which surprises most students who arrive expecting to revise definitions.
+Worked illustration / lecturer answer
+A learner should eventually be able to say what each input represents, reproduce the result from the files and defend why the chosen evaluation matches the intended use.
 
-NEXT
-What you will be able to say by December. Move on after a learner can explain the current example or required action.
+Misconception to address
+The roadmap is not a promise of professional mastery of every listed field in one semester. Point to the current week's small, observable goal.
+
+Continue to
+What you will be able to say by December
 
 ## Slide 6 — What you will be able to say by December
 
-TEACHING PURPOSE
 What you will be able to say by December
+CML3112, Week 1, slide 6
 
-CONNECT
-Build on the preceding slide: Where this semester goes.
+Explanation to give
+Explain the sequence as increasing independence: first run and understand code, then inspect data, then build and evaluate a modest predictor, and finally communicate its limits.
 
-LECTURER CUE
-Six steps, from knowing what a dataset is to saying 'here is a model I built and here is how I know it works'. Most of you cannot do step two today and all of you can reach step six by December. The students who get there are the ones who do the weekly deliverable every week, and the difference is visible by about Week 6.
+Worked illustration / lecturer answer
+A learner should eventually be able to say what each input represents, reproduce the result from the files and defend why the chosen evaluation matches the intended use.
 
-NEXT
-Welcome, and how this course works. Move on after a learner can explain the current example or required action.
+Misconception to address
+The roadmap is not a promise of professional mastery of every listed field in one semester. Point to the current week's small, observable goal.
+
+Continue to
+Welcome, and how this course works
 
 ## Slide 7 — Welcome, and how this course works
 
-TEACHING PURPOSE
 Welcome, and how this course works
+CML3112, Week 1, slide 7
 
-CONNECT
-Build on the preceding slide: What you will be able to say by December.
+Explanation to give
+Distinguish individual evidence from team project work. Students must understand their own submissions, keep identifiable contributions and read the published rubric before beginning.
 
-LECTURER CUE
-Fifteen minutes on how the course works: the promise, the assessment, and what is expected on both sides. Everything after this segment is engineering.
+Worked illustration / lecturer answer
+For a shared project, a useful contribution entry names the cleaned file, chart or evaluation cell the learner produced and the decision they explained. A weekly notebook is submitted through its own assessment form.
 
-NEXT
-How you are assessed. Move on after a learner can explain the current example or required action.
+Misconception to address
+Do not infer contribution only from the number of commits. Verify the substance of the work. The practical tests include typed reasoning even though there is no traditional written examination.
+
+Continue to
+How you are assessed
 
 ## Slide 8 — How you are assessed
 
-TEACHING PURPOSE
 How you are assessed
+CML3112, Week 1, slide 8
 
-CONNECT
-Build on the preceding slide: Welcome, and how this course works.
+Explanation to give
+Distinguish individual evidence from team project work. Students must understand their own submissions, keep identifiable contributions and read the published rubric before beginning.
 
-LECTURER CUE
-Two details the figure does not carry. Every teaching session ends with a five-minute quiz of five questions, taken on your phone by QR code, auto-marked, and you have your score before you leave the room. There are twelve of them and the best ten count, one per cent each, so missing two costs you nothing and there are no resits to arrange. The two practical tests run offline on lab machines with no internet and no AI assistants. AI tools are permitted and taught in the coursework provided you declare what you used, because the mark follows what you can explain.
+Worked illustration / lecturer answer
+For a shared project, a useful contribution entry names the cleaned file, chart or evaluation cell the learner produced and the decision they explained. A weekly notebook is submitted through its own assessment form.
 
-NEXT
-What I expect, and what you can expect back. Move on after a learner can explain the current example or required action.
+Misconception to address
+Do not infer contribution only from the number of commits. Verify the substance of the work. The practical tests include typed reasoning even though there is no traditional written examination.
+
+Continue to
+What I expect, and what you can expect back
 
 ## Slide 9 — What I expect, and what you can expect back
 
-TEACHING PURPOSE
 What I expect, and what you can expect back
+CML3112, Week 1, slide 9
 
-CONNECT
-Build on the preceding slide: How you are assessed.
+Explanation to give
+Distinguish individual evidence from team project work. Students must understand their own submissions, keep identifiable contributions and read the published rubric before beginning.
 
-LECTURER CUE
-The 'ask well' item is the one that changes how much you get out of the semester. Bring the error message, what you already tried, and what you expected to happen; assembling those three things solves the problem outright often enough to be worth the effort every time. If you are stuck for more than five minutes in a practical, put your hand up rather than sitting quietly.
+Worked illustration / lecturer answer
+For a shared project, a useful contribution entry names the cleaned file, chart or evaluation cell the learner produced and the decision they explained. A weekly notebook is submitted through its own assessment form.
 
-NEXT
-The whole field, start to finish. Move on after a learner can explain the current example or required action.
+Misconception to address
+Do not infer contribution only from the number of commits. Verify the substance of the work. The practical tests include typed reasoning even though there is no traditional written examination.
 
-## Slide 10 — The whole field, start to finish
+Continue to
+Machine learning topics
 
-TEACHING PURPOSE
-The whole field, start to finish
+## Slide 10 — Machine learning topics
 
-CONNECT
-Build on the preceding slide: What I expect, and what you can expect back.
+Machine learning topics
+CML3112, Week 1, slide 10
 
-LECTURER CUE
-This segment hands you the map of the field before any of it is taught, so that every later week has somewhere to sit rather than arriving from nowhere. The structure follows the public roadmap.sh Machine Learning roadmap, which is the map the profession itself uses, so you can check this course against something written outside this room.
+Explanation to give
+Use the terminology to locate the course, not as vocabulary to memorise immediately. AI is the broad field; machine learning develops predictive rules from examples; deep learning is a family of machine-learning methods using neural networks.
 
-NEXT
-The machine learning roadmap. Move on after a learner can explain the current example or required action.
+Worked illustration / lecturer answer
+A fixed threshold alarm follows an explicitly supplied rule. A fault classifier fitted from labelled historical readings learns a rule from data. Both may support an engineering system, but only the second learns from examples.
+
+Misconception to address
+The boundaries of AI are not perfectly sharp. Avoid claiming every automated action learns. Advanced roadmap topics are context, not prerequisites students must master today.
+
+Continue to
+The machine learning roadmap
 
 ## Slide 11 — The machine learning roadmap
 
-TEACHING PURPOSE
 The machine learning roadmap
+CML3112, Week 1, slide 11
 
-CONNECT
-Build on the preceding slide: The whole field, start to finish.
+Explanation to give
+Use the terminology to locate the course, not as vocabulary to memorise immediately. AI is the broad field; machine learning develops predictive rules from examples; deep learning is a family of machine-learning methods using neural networks.
 
-LECTURER CUE
-Fifteen stages, from Python to transformers. By December you will have covered stages 1 to 9. Most of the individual terms on the figure mean nothing to you today and that is expected — what to take from it is the shape of the field and where this course stops. The interactive version is at roadmap.sh/machine-learning, and it is worth an evening of clicking around.
+Worked illustration / lecturer answer
+A fixed threshold alarm follows an explicitly supplied rule. A fault classifier fitted from labelled historical readings learns a rule from data. Both may support an engineering system, but only the second learns from examples.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+The boundaries of AI are not perfectly sharp. Avoid claiming every automated action learns. Advanced roadmap topics are context, not prerequisites students must master today.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
+Continue to
+Mathematics and programming foundations
 
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
+## Slide 12 — Mathematics and programming foundations
 
-NEXT
-Stage 2 is the one that matters to you. Move on after a learner can explain the current example or required action.
+Mathematics and programming foundations
+CML3112, Week 1, slide 12
 
-## Slide 12 — Stage 2 is the one that matters to you
+Explanation to give
+Acknowledge previous engineering mathematics without assuming every student recalls it. Explain each mathematical operation at the point it is used and connect it to a physical quantity.
 
-TEACHING PURPOSE
-Stage 2 is the one that matters to you
+Worked illustration / lecturer answer
+Before a mean calculation, show total divided by count on three readings. Before a matrix appears, draw rows and columns. Before a percentage, show the fraction and multiplication by 100.
 
-CONNECT
-Build on the preceding slide: The machine learning roadmap.
+Misconception to address
+Do not tell struggling beginners that the programming is easy or that they should already know the prerequisites. Use their engineering context as a bridge and supply the missing explanation.
 
-LECTURER CUE
-The mathematics stage — calculus, linear algebra, statistics, probability — is the one most people entering this field find hardest, and you did it in Years 1 and 2. What you are missing is stages 1 and 3, Python and the data libraries, which Weeks 2 to 6 cover in five weeks of work. The expensive prerequisite is already behind you.
+Continue to
+Topics covered in this course
 
-EXPLAIN IN ORDINARY WORDS
-A probability-like score and a class decision are different outputs. A threshold turns a score into an action. Lowering a warning threshold usually raises both detections and false alarms.
+## Slide 13 — Topics covered in this course
 
-CHECK AND EXPECTED ANSWER
-At a rule of score >= 0.5, what happens at 0.5? It is positive. With > 0.5 it would not be.
+Topics covered in this course
+CML3112, Week 1, slide 13
 
-IF LEARNERS ARE STUCK
-Mark three scores below, at and above the boundary. Do not promise the score is well calibrated without checking.
+Explanation to give
+Use the terminology to locate the course, not as vocabulary to memorise immediately. AI is the broad field; machine learning develops predictive rules from examples; deep learning is a family of machine-learning methods using neural networks.
 
-NEXT
-Where this course sits, honestly. Move on after a learner can explain the current example or required action.
+Worked illustration / lecturer answer
+A fixed threshold alarm follows an explicitly supplied rule. A fault classifier fitted from labelled historical readings learns a rule from data. Both may support an engineering system, but only the second learns from examples.
 
-## Slide 13 — Where this course sits, honestly
+Misconception to address
+The boundaries of AI are not perfectly sharp. Avoid claiming every automated action learns. Advanced roadmap topics are context, not prerequisites students must master today.
 
-TEACHING PURPOSE
-Where this course sits, honestly
-
-CONNECT
-Build on the preceding slide: Stage 2 is the one that matters to you.
-
-LECTURER CUE
-The grey stages sit outside this course: reinforcement learning, full MLOps and most of the advanced language-model material. If you want to go after them later, roadmap.sh publishes separate roadmaps for the AI engineer, the data scientist, MLOps and AI agents, and any of the four is a reasonable next step after December.
-
-NEXT
-Four jobs this field splits into. Move on after a learner can explain the current example or required action.
+Continue to
+Four jobs this field splits into
 
 ## Slide 14 — Four jobs this field splits into
 
-TEACHING PURPOSE
 Four jobs this field splits into
+CML3112, Week 1, slide 14
 
-CONNECT
-Build on the preceding slide: Where this course sits, honestly.
+Explanation to give
+Explain the sequence as increasing independence: first run and understand code, then inspect data, then build and evaluate a modest predictor, and finally communicate its limits.
 
-LECTURER CUE
-Four different roadmaps and four different careers. This course points at the first one, applied inside your own engineering discipline. A computer science graduate will beat you at general machine learning, and that contest is avoidable: a civil engineer who can model concrete strength, or a mining engineer who can predict concentrate quality, is competing in a much smaller field.
+Worked illustration / lecturer answer
+A learner should eventually be able to say what each input represents, reproduce the result from the files and defend why the chosen evaluation matches the intended use.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+The roadmap is not a promise of professional mastery of every listed field in one semester. Point to the current week's small, observable goal.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
+Continue to
+Machine learning in engineering
 
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
+## Slide 15 — Machine learning in engineering
 
-NEXT
-What this course is actually about. Move on after a learner can explain the current example or required action.
+Machine learning in engineering
+CML3112, Week 1, slide 15
 
-## Slide 15 — What this course is actually about
+Explanation to give
+Orient students to this particular lesson: explain what they will see demonstrated, which file they will use and what they must retain for revision. Keep the transition short enough to preserve explanation time.
 
-TEACHING PURPOSE
-What this course is actually about
+Worked illustration / lecturer answer
+Open the next worked example on the projector and name its input and intended result. Demonstrate it yourself before asking students to interpret a result. Use remaining summary and glossary pages for independent revision.
 
-CONNECT
-Build on the preceding slide: Four jobs this field splits into.
+Misconception to address
+The historical slide's timed group activity is not a requirement to stop for partner work. Use a lecturer-led walkthrough in the current limited class time.
 
-LECTURER CUE
-Three words — artificial intelligence, machine learning, data science — get used interchangeably in job adverts, papers and vendor brochures. Fifteen minutes here is what lets you read those documents without being misled by them.
-
-NEXT
-The words, and how they nest. Move on after a learner can explain the current example or required action.
+Continue to
+The words, and how they nest
 
 ## Slide 16 — The words, and how they nest
 
-TEACHING PURPOSE
 The words, and how they nest
+CML3112, Week 1, slide 16
 
-CONNECT
-Build on the preceding slide: What this course is actually about.
+Explanation to give
+Use the terminology to locate the course, not as vocabulary to memorise immediately. AI is the broad field; machine learning develops predictive rules from examples; deep learning is a family of machine-learning methods using neural networks.
 
-LECTURER CUE
-Each term is contained by the one before it. Data science is the odd one out: it overlaps all of them and is contained by none, because it is the craft of getting an answer out of data at all — finding it, cleaning it, questioning it, presenting it. Most of your semester goes into the data science ring, and the modelling turns out to be the small part.
+Worked illustration / lecturer answer
+A fixed threshold alarm follows an explicitly supplied rule. A fault classifier fitted from labelled historical readings learns a rule from data. Both may support an engineering system, but only the second learns from examples.
 
-EXPLAIN IN ORDINARY WORDS
-A cleaning decision needs evidence, a stated rule and a before/after check. Similar rows may be genuine repeated events. Reconciliation compares totals built under the same definitions.
+Misconception to address
+The boundaries of AI are not perfectly sharp. Avoid claiming every automated action learns. Advanced roadmap topics are context, not prerequisites students must master today.
 
-CHECK AND EXPECTED ANSWER
-May we delete every repeated amount? No. Check the row identifier and the table grain first.
-
-IF LEARNERS ARE STUCK
-Keep raw data, record counts before and after each action, then explain any remaining difference instead of forcing totals to agree.
-
-NEXT
-Artificial intelligence. Move on after a learner can explain the current example or required action.
+Continue to
+Artificial intelligence
 
 ## Slide 17 — Artificial intelligence
 
-TEACHING PURPOSE
 Artificial intelligence
+CML3112, Week 1, slide 17
 
-CONNECT
-Build on the preceding slide: The words, and how they nest.
+Explanation to give
+Use the terminology to locate the course, not as vocabulary to memorise immediately. AI is the broad field; machine learning develops predictive rules from examples; deep learning is a family of machine-learning methods using neural networks.
 
-LECTURER CUE
-A thermostat follows one fixed rule and has no capacity to do better, which puts it outside the definition. A spam filter that improves as it sees more mail sits inside it. Whether any of this is 'really' intelligent is a genuine open question in the field; here the word is a label for an area of work.
+Worked illustration / lecturer answer
+A fixed threshold alarm follows an explicitly supplied rule. A fault classifier fitted from labelled historical readings learns a rule from data. Both may support an engineering system, but only the second learns from examples.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+The boundaries of AI are not perfectly sharp. Avoid claiming every automated action learns. Advanced roadmap topics are context, not prerequisites students must master today.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Machine learning. Move on after a learner can explain the current example or required action.
+Continue to
+Machine learning
 
 ## Slide 18 — Machine learning
 
-TEACHING PURPOSE
 Machine learning
+CML3112, Week 1, slide 18
 
-CONNECT
-Build on the preceding slide: Artificial intelligence.
+Explanation to give
+Contrast who supplies the decision rule. In conventional programming, the developer writes the rule. In supervised learning, the training examples contain inputs and known answers from which a fitting procedure estimates a rule.
 
-LECTURER CUE
-This is the definition the rest of the course rests on. Note the last step of the example: the computer infers a relationship and you then decide whether to trust it. That step is the easy one to skip, and Weeks 10 to 14 are entirely about it.
+Worked illustration / lecturer answer
+If a verified formula calculates area from length and width, use it. If many interacting readings affect an outcome and suitable labelled examples exist, a learned predictor may be worth evaluating.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+The computer does not infer a trustworthy rule merely because data exists. Independent evaluation and domain checks still decide whether to use it.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Data science. Move on after a learner can explain the current example or required action.
+Continue to
+Data science
 
 ## Slide 19 — Data science
 
-TEACHING PURPOSE
 Data science
+CML3112, Week 1, slide 19
 
-CONNECT
-Build on the preceding slide: Machine learning.
+Explanation to give
+Data science includes finding and examining data, correcting documented defects, analysing patterns and communicating justified conclusions. A prediction model is one possible tool within that work.
 
-LECTURER CUE
-In industry the split is roughly eighty per cent getting data into a usable state and twenty per cent modelling. An engineer with clean data beats a better algorithm with dirty data. The missing-assay example on this slide is a real Week 6 exercise: you will be handed records with a large part of one column absent and asked whether they are missing at random and what that does to your conclusion.
+Worked illustration / lecturer answer
+Before predicting energy use, check whether meter readings use the same unit and time interval. Discovering that half the readings are missing is already a meaningful data finding.
 
-EXPLAIN IN ORDINARY WORDS
-Missing means not recorded, not automatically zero. Decide why it is missing and document the rule. Fitted fill values must come from training data when evaluating a model.
+Misconception to address
+A project can answer a useful question without machine learning. Do not insert a model when a well-supported descriptive analysis answers the question.
 
-CHECK AND EXPECTED ANSWER
-Is an unrecorded energy reading evidence of zero consumption? No.
-
-IF LEARNERS ARE STUCK
-Use three rows: a recorded zero, a recorded positive value and a blank. Explain their different meanings before cleaning.
-
-NEXT
-Two ways to make a computer decide. Move on after a learner can explain the current example or required action.
+Continue to
+Two ways to make a computer decide
 
 ## Slide 20 — Two ways to make a computer decide
 
-TEACHING PURPOSE
 Two ways to make a computer decide
+CML3112, Week 1, slide 20
 
-CONNECT
-Build on the preceding slide: Data science.
+Explanation to give
+Contrast who supplies the decision rule. In conventional programming, the developer writes the rule. In supervised learning, the training examples contain inputs and known answers from which a fitting procedure estimates a rule.
 
-LECTURER CUE
-The core teaching segment of the session: the difference between writing a rule and inferring one from examples, plus the vocabulary for talking about a table of data. Everything from Week 5 onwards assumes both.
+Worked illustration / lecturer answer
+If a verified formula calculates area from length and width, use it. If many interacting readings affect an outcome and suitable labelled examples exist, a learned predictor may be worth evaluating.
 
-NEXT
-"Can we estimate the 28-day compressive strength of a concrete mix without casting and crushing another cylinder?". Move on after a learner can explain the current example or required action.
+Misconception to address
+The computer does not infer a trustworthy rule merely because data exists. Independent evaluation and domain checks still decide whether to use it.
+
+Continue to
+"Can we estimate the 28-day compressive strength of a concrete mix without casting and crushing another cylinder?"
 
 ## Slide 21 — "Can we estimate the 28-day compressive strength of a concrete mix without casting and crushing another cylinder?"
 
-TEACHING PURPOSE
 "Can we estimate the 28-day compressive strength of a concrete mix without casting and crushing another cylinder?"
+CML3112, Week 1, slide 21
 
-CONNECT
-Build on the preceding slide: Two ways to make a computer decide.
+Explanation to give
+Start from a decision somebody needs to make. Name the answer required, the information available beforehand, where examples could come from and what a mistake would cost.
 
-LECTURER CUE
-Sit with the question before any answer arrives. Two honest first reactions are 'you cannot' and 'there must be a formula somewhere', and both are useful. The hands-on prediction exercise shows what a third answer looks like.
+Worked illustration / lecturer answer
+“Predict energy consumption for next week to plan a budget” names a target, horizon and decision. “Use AI in buildings” is too broad to determine data or success criteria.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+A proposed dataset is not automatically appropriate because its title sounds relevant. Check what one row means and when its fields become available.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-Traditional programming, and machine learning. Move on after a learner can explain the current example or required action.
+Continue to
+Traditional programming, and machine learning
 
 ## Slide 22 — Traditional programming, and machine learning
 
-TEACHING PURPOSE
 Traditional programming, and machine learning
+CML3112, Week 1, slide 22
 
-CONNECT
-Build on the preceding slide: "Can we estimate the 28-day compressive strength of a concrete mix without casting and crushing another cylinder?".
+Explanation to give
+Contrast who supplies the decision rule. In conventional programming, the developer writes the rule. In supervised learning, the training examples contain inputs and known answers from which a fitting procedure estimates a rule.
 
-LECTURER CUE
-A worked case from your own discipline: IF the crack is wider than 0.30 mm THEN flag it for repair — A code of practice gives you the threshold. You do not need data to write that rule. That belongs firmly in the left-hand column. The right-hand column earns its place when there is no threshold in any code of practice and no formula to look up, and you have examples of past cases instead. Neither column is better; the useful question is whether you already know the rule for the problem in front of you.
+Worked illustration / lecturer answer
+If a verified formula calculates area from length and width, use it. If many interacting readings affect an outcome and suitable labelled examples exist, a learned predictor may be worth evaluating.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+The computer does not infer a trustworthy rule merely because data exists. Independent evaluation and domain checks still decide whether to use it.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-When to write the rule, and when to learn it from data. Move on after a learner can explain the current example or required action.
+Continue to
+When to write the rule, and when to learn it from data
 
 ## Slide 23 — When to write the rule, and when to learn it from data
 
-TEACHING PURPOSE
 When to write the rule, and when to learn it from data
+CML3112, Week 1, slide 23
 
-CONNECT
-Build on the preceding slide: Traditional programming, and machine learning.
+Explanation to give
+Contrast who supplies the decision rule. In conventional programming, the developer writes the rule. In supervised learning, the training examples contain inputs and known answers from which a fitting procedure estimates a rule.
 
-LECTURER CUE
-Most of engineering stays in the left-hand column and that is the correct place for it. The third item on the left is the one that decides real projects: a model whose decision cannot be explained line by line often cannot be used at all, whatever its accuracy on test data. That constraint returns in Week 12.
+Worked illustration / lecturer answer
+If a verified formula calculates area from length and width, use it. If many interacting readings affect an outcome and suitable labelled examples exist, a learned predictor may be worth evaluating.
 
-EXPLAIN IN ORDINARY WORDS
-A value is a piece of information. A variable is a name referring to a value. In length_m = 5, Python evaluates the right side and binds that result to the name on the left.
+Misconception to address
+The computer does not infer a trustworthy rule merely because data exists. Independent evaluation and domain checks still decide whether to use it.
 
-CHECK AND EXPECTED ANSWER
-After x=3 then x=5, what does print(x) display? 5. The earlier value is not added automatically.
+Continue to
+Data, features and targets
 
-IF LEARNERS ARE STUCK
-Write the name on a card and the current value beside it. Distinguish number 3 from quoted text "3".
+## Slide 24 — Data, features and targets
 
-NEXT
-What we actually mean by 'data'. Move on after a learner can explain the current example or required action.
+Data, features and targets
+CML3112, Week 1, slide 24
 
-## Slide 24 — What we actually mean by 'data'
+Explanation to give
+A feature is information available when making a prediction. The target is the answer recorded for training examples. One observation pairs its features with its own target.
 
-TEACHING PURPOSE
-What we actually mean by 'data'
+Worked illustration / lecturer answer
+To predict tomorrow's cooling load, today's available weather information may be a feature. Tomorrow's measured cooling load becomes a target later. It cannot also be an input available now.
 
-CONNECT
-Build on the preceding slide: When to write the rule, and when to learn it from data.
+Misconception to address
+Information recorded after the decision can leak the answer. An identifier or row number is not automatically a meaningful predictor.
 
-LECTURER CUE
-This is the picture to fix in your head, because every dataset you meet this semester has this shape. One row is one example. The feature columns hold what you know beforehand and the target column holds the thing you want to predict. Worth thinking about: the target of one problem can be a feature of another. Curing temperature is the target if you are studying an oven and a feature if you are predicting strength.
-
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
-
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Feature, and target. Move on after a learner can explain the current example or required action.
+Continue to
+Feature, and target
 
 ## Slide 25 — Feature, and target
 
-TEACHING PURPOSE
 Feature, and target
+CML3112, Week 1, slide 25
 
-CONNECT
-Build on the preceding slide: What we actually mean by 'data'.
+Explanation to give
+A feature is information available when making a prediction. The target is the answer recorded for training examples. One observation pairs its features with its own target.
 
-LECTURER CUE
-The 'association is not a cause' line is the seed of correlation versus causation, which arrives properly in Week 8. One error to start watching for now: including a column that is only known after the target is known. That is data leakage, it is the most destructive mistake in applied machine learning, and Week 10 is a full session on it.
+Worked illustration / lecturer answer
+To predict tomorrow's cooling load, today's available weather information may be a feature. Tomorrow's measured cooling load becomes a target later. It cannot also be an input available now.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+Information recorded after the decision can leak the answer. An identifier or row number is not automatically a meaningful predictor.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Can you answer these?. Move on after a learner can explain the current example or required action.
+Continue to
+Can you answer these?
 
 ## Slide 26 — Can you answer these?
 
-TEACHING PURPOSE
 Can you answer these?
+CML3112, Week 1, slide 26
 
-CONNECT
-Build on the preceding slide: Feature, and target.
+Explanation to give
+Explain each answer in relation to the question rather than giving only its letter or label.
 
-LECTURER CUE
-Write something for each of the three before you turn to the answers. Question B is deliberately hard for Week 1 — noticing that the repair column can only be filled in after the failure has happened is enough at this stage, even if you cannot yet name what is wrong with using it.
-
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
-
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-DISCUSSION KEY FOR THIS SLIDE
+Worked illustration / lecturer answer
 ANSWERS
 How did you do?
 A
@@ -516,239 +443,201 @@ Feature or target?
 The target. It is the thing you want to predict. Everything measured beforehand is a feature.
 B
 The repair column?
-No. You only know what repair was done AFTER the failure, so it cannot help you predict the failure. Include it and your model will look brilliant in testing and be useless in service. This is called data leakage and we spend a whole session on it in Week 10.
+No. The repair is recorded after the failure, so it is unavailable at prediction time. Including it would give misleading test results. This is data leakage.
 C
 A rule you already know?
 Anything with a formula or a code threshold: For a simply supported beam under a uniform load, the bending moment has an exact formula. Use it. If a validated equation exists, use the equation.
-Let learners attempt first; use this to explain the reasoning, not just reveal the answer.
 
-NEXT
-How did you do?. Move on after a learner can explain the current example or required action.
+Misconception to address
+Use a short lecturer-led walkthrough or individual thought time. Do not require partner work to unlock the explanation.
+
+Continue to
+How did you do?
 
 ## Slide 27 — How did you do?
 
-TEACHING PURPOSE
 How did you do?
+CML3112, Week 1, slide 27
 
-CONNECT
-Build on the preceding slide: Can you answer these?.
+Explanation to give
+For each answer on this slide, identify the deciding feature of the question: timing of the input, kind of target, run order or operation requested.
 
-LECTURER CUE
-Getting B wrong is normal; professional teams ship this bug regularly and only find it when the model reaches service. The name for it is data leakage. The timing test in answer B — could I know this column before the outcome? — is the one habit to carry out of this slide.
+Worked illustration / lecturer answer
+Feature or target?
+The target. It is the thing you want to predict. Everything measured beforehand is a feature.
+The repair column?
+No. The repair is recorded after the failure, so it is unavailable at prediction time. Including it would give misleading test results. This is data leakage.
+A rule you already know?
+Anything with a formula or a code threshold: For a simply supported beam under a uniform load, the bending moment has an exact formula. Use it. If a validated equation exists, use the equation.
 
-EXPLAIN IN ORDINARY WORDS
-Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
+Misconception to address
+If a student gives a different engineering example, check its reasoning and timing rather than requiring identical wording to the printed example.
 
-CHECK AND EXPECTED ANSWER
-May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
-
-IF LEARNERS ARE STUCK
-Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
-
-NEXT
-Hands on: predict case 13. Move on after a learner can explain the current example or required action.
+Continue to
+Hands on: predict case 13
 
 ## Slide 28 — Hands on: predict case 13
 
-TEACHING PURPOSE
 Hands on: predict case 13
+CML3112, Week 1, slide 28
 
-CONNECT
-Build on the preceding slide: How did you do?.
+Explanation to give
+Explain this as a small manual demonstration of learning from examples. Use known rows to propose a rule, write a prediction before revealing the held-out answer, then measure the difference honestly.
 
-LECTURER CUE
-Teams of four or five, formed now and kept for the rest of the semester. You are about to do machine learning by hand, on paper, before anybody writes a line of code.
+Worked illustration / lecturer answer
+Locate cases with nearby feature values and compare their outcomes. Explain why a between-neighbours estimate is plausible and what it ignores. Use the actual handout's values rather than inventing the hidden case result.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+One held-out case illustrates evaluation but is insufficient evidence of general reliability. Do not revise a prediction after seeing the answer and describe it as the original estimate.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Your task. Move on after a learner can explain the current example or required action.
+Continue to
+Your task
 
 ## Slide 29 — Your task
 
-TEACHING PURPOSE
 Your task
+CML3112, Week 1, slide 29
 
-CONNECT
-Build on the preceding slide: Hands on: predict case 13.
+Explanation to give
+Explain this as a small manual demonstration of learning from examples. Use known rows to propose a rule, write a prediction before revealing the held-out answer, then measure the difference honestly.
 
-LECTURER CUE
-The number your team predicts matters far less than the sentence saying how you got it, so write the reasoning down. The next three slides give names to whatever method you used, and that only works if you can still see what you did. If you are stuck, start with one question: which single column seems to move with the outcome, and why that one?
+Worked illustration / lecturer answer
+Locate cases with nearby feature values and compare their outcomes. Explain why a between-neighbours estimate is plausible and what it ignores. Use the actual handout's values rather than inventing the hidden case result.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+One held-out case illustrates evaluation but is insufficient evidence of general reliability. Do not revise a prediction after seeing the answer and describe it as the original estimate.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Reading the pattern from twelve cases. Move on after a learner can explain the current example or required action.
+Continue to
+Reading the pattern from twelve cases
 
 ## Slide 30 — Reading the pattern from twelve cases
 
-TEACHING PURPOSE
 Reading the pattern from twelve cases
+CML3112, Week 1, slide 30
 
-CONNECT
-Build on the preceding slide: Your task.
+Explanation to give
+Explain this as a small manual demonstration of learning from examples. Use known rows to propose a rule, write a prediction before revealing the held-out answer, then measure the difference honestly.
 
-LECTURER CUE
-There is no single right method, and this is one line of thinking that works. Step five is what separates an engineer from a calculator: how confident am I, and what would change my mind? The two practical tests, in Weeks 7 and 14, assess that step far more heavily than the arithmetic.
+Worked illustration / lecturer answer
+Locate cases with nearby feature values and compare their outcomes. Explain why a between-neighbours estimate is plausible and what it ignores. Use the actual handout's values rather than inventing the hidden case result.
 
-NEXT
-The answer, and your error. Move on after a learner can explain the current example or required action.
+Misconception to address
+One held-out case illustrates evaluation but is insufficient evidence of general reliability. Do not revise a prediction after seeing the answer and describe it as the original estimate.
+
+Continue to
+The answer, and your error
 
 ## Slide 31 — The answer, and your error
 
-TEACHING PURPOSE
 The answer, and your error
+CML3112, Week 1, slide 31
 
-CONNECT
-Build on the preceding slide: Reading the pattern from twelve cases.
+Explanation to give
+Explain this as a small manual demonstration of learning from examples. Use known rows to propose a rule, write a prediction before revealing the held-out answer, then measure the difference honestly.
 
-LECTURER CUE
-The spread of team answers is the teaching point. Several different reasonable methods produced several different numbers, so being reasonable is not enough on its own — you need a way to measure which method is better. One case cannot tell you that, which is what Week 8 sets up.
+Worked illustration / lecturer answer
+Locate cases with nearby feature values and compare their outcomes. Explain why a between-neighbours estimate is plausible and what it ignores. Use the actual handout's values rather than inventing the hidden case result.
 
-NEXT
-You just did every step of a machine learning project. Move on after a learner can explain the current example or required action.
+Misconception to address
+One held-out case illustrates evaluation but is insufficient evidence of general reliability. Do not revise a prediction after seeing the answer and describe it as the original estimate.
 
-## Slide 32 — You just did every step of a machine learning project
+Continue to
+Steps in a prediction task
 
-TEACHING PURPOSE
-You just did every step of a machine learning project
+## Slide 32 — Steps in a prediction task
 
-CONNECT
-Build on the preceding slide: The answer, and your error.
+Steps in a prediction task
+CML3112, Week 1, slide 32
 
-LECTURER CUE
-The syllabus for the rest of the semester is largely a set of names for what you just did with a pencil. The fourth pair is the one to dwell on: you predicted a case that was not in front of you when you formed the rule. That is generalisation, and everything in Week 10 follows from it.
+Explanation to give
+Translate each action into its technical name only after describing the action. Reading records is exploration, forming a relationship is fitting, applying it to a new case is prediction and comparing against truth is evaluation.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Worked illustration / lecturer answer
+In the paper example, the twelve labelled rows teach the provisional rule. The held-out case checks that rule. Later Python code makes these same actions repeatable on more records.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
+Misconception to address
+Finding a pattern in the training examples is not the final success criterion. Keep asking how the rule behaves on unseen, relevant observations.
 
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Break. Move on after a learner can explain the current example or required action.
+Continue to
+Break
 
 ## Slide 33 — Break
 
-TEACHING PURPOSE
 Break
+CML3112, Week 1, slide 33
 
-CONNECT
-Build on the preceding slide: You just did every step of a machine learning project.
+Explanation to give
+Announce the actual return time based on the clock now, rather than leaving “ten minutes” ambiguous.
 
-LECTURER CUE
-Ten minutes. The challenge segment after the break is the longest single working block of the session, so use the time.
+Worked illustration / lecturer answer
+Save the current notebook before the break. On return, continue at the next topic named in the deck.
 
-NEXT
-Two kinds of question. Move on after a learner can explain the current example or required action.
+Misconception to address
+No new assessment or group task is assigned by this divider.
+
+Continue to
+Two kinds of question
 
 ## Slide 34 — Two kinds of question
 
-TEACHING PURPOSE
 Two kinds of question
+CML3112, Week 1, slide 34
 
-CONNECT
-Build on the preceding slide: Break.
+Explanation to give
+This divider introduces Regression and classification. Classify the task by the answer the system must produce. Regression predicts a quantity with a meaningful numerical scale. Classification predicts a category, even if the labels are encoded as numbers.
 
-LECTURER CUE
-A short segment carrying one distinction that decides which method you reach for all semester. It needs to be automatic by Week 8, when you start fitting models to both kinds of problem.
+Worked illustration / lecturer answer
+Predicting days until servicing is regression. Predicting whether servicing is due is classification. A code of 0 for normal and 1 for warning still represents categories.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+Keep this transition brief. The detailed demonstration follows; do not add another activity before students have seen it.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-Regression and classification. Move on after a learner can explain the current example or required action.
+Continue to
+Regression and classification
 
 ## Slide 35 — Regression and classification
 
-TEACHING PURPOSE
 Regression and classification
+CML3112, Week 1, slide 35
 
-CONNECT
-Build on the preceding slide: Two kinds of question.
+Explanation to give
+Classify the task by the answer the system must produce. Regression predicts a quantity with a meaningful numerical scale. Classification predicts a category, even if the labels are encoded as numbers.
 
-LECTURER CUE
-The point that is easy to miss: the SAME dataset can pose either question. Take the target on the left and band it — strength class: below 25 MPa, 25 to 40, above 40 — and the regression problem has become a classification problem. Banding is an engineering decision with consequences, because it throws away the distance between two values inside the same band, and it comes back in Week 9 when you start choosing how to measure performance.
+Worked illustration / lecturer answer
+Predicting days until servicing is regression. Predicting whether servicing is due is classification. A code of 0 for normal and 1 for warning still represents categories.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+Do not choose regression just because the dataset contains numbers. Name the target and explain what a prediction means.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Regression, and classification. Move on after a learner can explain the current example or required action.
+Continue to
+Regression, and classification
 
 ## Slide 36 — Regression, and classification
 
-TEACHING PURPOSE
 Regression, and classification
+CML3112, Week 1, slide 36
 
-CONNECT
-Build on the preceding slide: Regression and classification.
+Explanation to give
+Classify the task by the answer the system must produce. Regression predicts a quantity with a meaningful numerical scale. Classification predicts a category, even if the labels are encoded as numbers.
 
-LECTURER CUE
-Carry the test as a habit: what would the answer look like written down? A quantity with a unit means regression. A word or a label means classification. That question resolves almost every case you will meet, and it is faster than trying to remember the definitions.
+Worked illustration / lecturer answer
+Predicting days until servicing is regression. Predicting whether servicing is due is classification. A code of 0 for normal and 1 for warning still represents categories.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+Do not choose regression just because the dataset contains numbers. Name the target and explain what a prediction means.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Can you answer these?. Move on after a learner can explain the current example or required action.
+Continue to
+Can you answer these?
 
 ## Slide 37 — Can you answer these?
 
-TEACHING PURPOSE
 Can you answer these?
+CML3112, Week 1, slide 37
 
-CONNECT
-Build on the preceding slide: Regression, and classification.
+Explanation to give
+Explain each answer in relation to the question rather than giving only its letter or label.
 
-LECTURER CUE
-Question C is the interesting one. It is still classification, with five categories rather than two. Multi-class problems are harder to evaluate because one accuracy figure hides which classes you are getting wrong, and that is a Week 9 topic.
-
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
-
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-DISCUSSION KEY FOR THIS SLIDE
+Worked illustration / lecturer answer
 ANSWERS
 How did you do?
 A
@@ -760,304 +649,240 @@ Classification. Two categories, so it is called binary classification.
 C
 Which of five fault types?
 Still classification, but multi-class rather than binary. It is harder: with five classes there are far more ways to be wrong, and a single accuracy figure hides which ones you get wrong. Week 9.
-Let learners attempt first; use this to explain the reasoning, not just reveal the answer.
 
-NEXT
-How did you do?. Move on after a learner can explain the current example or required action.
+Misconception to address
+Use a short lecturer-led walkthrough or individual thought time. Do not require partner work to unlock the explanation.
+
+Continue to
+How did you do?
 
 ## Slide 38 — How did you do?
 
-TEACHING PURPOSE
 How did you do?
+CML3112, Week 1, slide 38
 
-CONNECT
-Build on the preceding slide: Can you answer these?.
+Explanation to give
+For each answer on this slide, identify the deciding feature of the question: timing of the input, kind of target, run order or operation requested.
 
-LECTURER CUE
-You now have vocabulary you can use immediately: binary classification for two categories, multi-class for three or more. The distinction starts to matter as soon as you begin measuring performance in Week 9, because the same accuracy figure means different things in the two cases.
+Worked illustration / lecturer answer
+Days until replacement?
+Regression. The answer is a number with a unit — days.
+Pass or fail?
+Classification. Two categories, so it is called binary classification.
+Which of five fault types?
+Still classification, but multi-class rather than binary. It is harder: with five classes there are far more ways to be wrong, and a single accuracy figure hides which ones you get wrong. Week 9.
 
-EXPLAIN IN ORDINARY WORDS
-Read each quantity and unit before using a formula. Python calculates numbers but does not enforce physical units. Parentheses specify which operation happens first.
+Misconception to address
+If a student gives a different engineering example, check its reasoning and timing rather than requiring identical wording to the printed example.
 
-CHECK AND EXPECTED ANSWER
-What is 5 m times 3 m? 15 square metres. What is 7/2 in Python? 3.5; 7//2 is 3.
-
-IF LEARNERS ARE STUCK
-Write the formula and units on paper, substitute small values, then translate it to Python. Check zero denominators and the issued sign convention.
-
-NEXT
-What machine learning cannot do. Move on after a learner can explain the current example or required action.
+Continue to
+What machine learning cannot do
 
 ## Slide 39 — What machine learning cannot do
 
-TEACHING PURPOSE
 What machine learning cannot do
+CML3112, Week 1, slide 39
 
-CONNECT
-Build on the preceding slide: How did you do?.
+Explanation to give
+This divider introduces Four limits, and none of them go away. Review whether usable observations exist, whether inputs contain predictive information, whether a validated rule already solves the problem and whether future conditions resemble the data.
 
-LECTURER CUE
-Four honest limits, so that you can recognise in advance when data will not help. This is also your protection against being sold a technique that cannot work on the problem you have.
+Worked illustration / lecturer answer
+Changing an equipment supplier may alter measurement behaviour and invalidate an older fitted relationship. A model trained only at one site needs evidence before use at another.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+Keep this transition brief. The detailed demonstration follows; do not add another activity before students have seen it.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Four limits, and none of them go away. Move on after a learner can explain the current example or required action.
+Continue to
+Four limits, and none of them go away
 
 ## Slide 40 — Four limits, and none of them go away
 
-TEACHING PURPOSE
 Four limits, and none of them go away
+CML3112, Week 1, slide 40
 
-CONNECT
-Build on the preceding slide: What machine learning cannot do.
+Explanation to give
+Review whether usable observations exist, whether inputs contain predictive information, whether a validated rule already solves the problem and whether future conditions resemble the data.
 
-LECTURER CUE
-The caption is the sentence to remember. A machine learning method will always return an answer and will never tell you that the question was unanswerable. Judging that is your job, and it is the reason a trained engineer is still needed after the code runs.
+Worked illustration / lecturer answer
+Changing an equipment supplier may alter measurement behaviour and invalidate an older fitted relationship. A model trained only at one site needs evidence before use at another.
 
-EXPLAIN IN ORDINARY WORDS
-Missing means not recorded, not automatically zero. Decide why it is missing and document the rule. Fitted fill values must come from training data when evaluating a model.
+Misconception to address
+Models can fail, abstain or be designed to flag uncertainty; avoid the absolute claim that they always return an answer and never signal a problem. The engineer still evaluates suitability.
 
-CHECK AND EXPECTED ANSWER
-Is an unrecorded energy reading evidence of zero consumption? No.
-
-IF LEARNERS ARE STUCK
-Use three rows: a recorded zero, a recorded positive value and a blank. Explain their different meanings before cleaning.
-
-NEXT
-The same four limits, in your own discipline. Move on after a learner can explain the current example or required action.
+Continue to
+The same four limits, in your own discipline
 
 ## Slide 41 — The same four limits, in your own discipline
 
-TEACHING PURPOSE
 The same four limits, in your own discipline
+CML3112, Week 1, slide 41
 
-CONNECT
-Build on the preceding slide: Four limits, and none of them go away.
+Explanation to give
+Review whether usable observations exist, whether inputs contain predictive information, whether a validated rule already solves the problem and whether future conditions resemble the data.
 
-LECTURER CUE
-Every project in Week 9 has to survive these four questions before it is approved. A team that cannot answer them has picked a technique and gone looking for somewhere to use it, which is the most common way a student project fails.
+Worked illustration / lecturer answer
+Changing an equipment supplier may alter measurement behaviour and invalidate an older fitted relationship. A model trained only at one site needs evidence before use at another.
 
-EXPLAIN IN ORDINARY WORDS
-A function is a named set of instructions. def defines it; a call runs it with inputs. Parameters are input names, arguments are supplied values, and return sends the result back.
+Misconception to address
+Models can fail, abstain or be designed to flag uncertainty; avoid the absolute claim that they always return an answer and never signal a problem. The engineer still evaluates suitability.
 
-CHECK AND EXPECTED ANSWER
-Does print(8) return the number 8 to the caller? No; it displays 8 and returns None. A function needing a numeric result should return it.
-
-IF LEARNERS ARE STUCK
-Trace one call: bind input names, run the indented body, reach return, then put the returned result back into the calling expression.
-
-NEXT
-Challenge: the Problem Hunt. Move on after a learner can explain the current example or required action.
+Continue to
+Challenge: the Problem Hunt
 
 ## Slide 42 — Challenge: the Problem Hunt
 
-TEACHING PURPOSE
 Challenge: the Problem Hunt
+CML3112, Week 1, slide 42
 
-CONNECT
-Build on the preceding slide: The same four limits, in your own discipline.
+Explanation to give
+Start from a decision somebody needs to make. Name the answer required, the information available beforehand, where examples could come from and what a mistake would cost.
 
-LECTURER CUE
-In this segment you get a problem and no method, and the questions you are asked will not be answered for you. Proceeding without instructions is the skill being practised, and roughly one segment of every session this semester works this way.
+Worked illustration / lecturer answer
+“Predict energy consumption for next week to plan a budget” names a target, horizon and decision. “Use AI in buildings” is too broad to determine data or success criteria.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+A proposed dataset is not automatically appropriate because its title sounds relevant. Check what one row means and when its fields become available.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-Problem Hunt. Move on after a learner can explain the current example or required action.
+Continue to
+Problem Hunt
 
 ## Slide 43 — Problem Hunt
 
-TEACHING PURPOSE
 Problem Hunt
+CML3112, Week 1, slide 43
 
-CONNECT
-Build on the preceding slide: Challenge: the Problem Hunt.
+Explanation to give
+Start from a decision somebody needs to make. Name the answer required, the information available beforehand, where examples could come from and what a mistake would cost.
 
-LECTURER CUE
-The rejections carry more weight than the acceptances. A team that can say clearly why something is NOT a machine learning problem has understood the session, and the six questions on the slide are the ones to argue each placement against. Keep your sheet: the class list of problems built in this segment is what teams draw on when they choose projects in Week 9.
+Worked illustration / lecturer answer
+“Predict energy consumption for next week to plan a budget” names a target, horizon and decision. “Use AI in buildings” is too broad to determine data or success criteria.
 
-EXPLAIN IN ORDINARY WORDS
-A list keeps items in order. Python positions start at zero. In [2,4,6], position 0 contains 2 and position 2 contains 6. A slice excludes its stop position.
+Misconception to address
+A proposed dataset is not automatically appropriate because its title sounds relevant. Check what one row means and when its fields become available.
 
-CHECK AND EXPECTED ANSWER
-What is [2,4,6][1]? 4. Is there a position 3? No.
-
-IF LEARNERS ARE STUCK
-Draw three numbered boxes starting at zero. Keep the position separate from the value stored in it.
-
-NEXT
-How your team works, all semester. Move on after a learner can explain the current example or required action.
+Continue to
+How your team works, all semester
 
 ## Slide 44 — How your team works, all semester
 
-TEACHING PURPOSE
 How your team works, all semester
+CML3112, Week 1, slide 44
 
-CONNECT
-Build on the preceding slide: Problem Hunt.
+Explanation to give
+Distinguish individual evidence from team project work. Students must understand their own submissions, keep identifiable contributions and read the published rubric before beginning.
 
-LECTURER CUE
-Sign the team charter before you leave: names, contact details, a weekly meeting slot, and what you will do if somebody stops contributing. Agreeing that in Week 1 is far easier than agreeing it in November, and the charter is the document your contribution log gets read against.
+Worked illustration / lecturer answer
+For a shared project, a useful contribution entry names the cleaned file, chart or evaluation cell the learner produced and the decision they explained. A weekly notebook is submitted through its own assessment form.
 
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
+Misconception to address
+Do not infer contribution only from the number of commits. Verify the substance of the work. The practical tests include typed reasoning even though there is no traditional written examination.
 
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
-
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
-
-NEXT
-Gallery walk, and what you owe me. Move on after a learner can explain the current example or required action.
+Continue to
+Gallery walk, and what you owe me
 
 ## Slide 45 — Gallery walk, and what you owe me
 
-TEACHING PURPOSE
 Gallery walk, and what you owe me
+CML3112, Week 1, slide 45
 
-CONNECT
-Build on the preceding slide: How your team works, all semester.
+Explanation to give
+Use this handover to state A1 clearly: three candidate problems and one justified selection, written as a short report.
 
-LECTURER CUE
-Gallery walk: your team visits two other teams' boards and writes one question on each sheet. Questions only, no verdicts. This is the first peer review of the semester, and in Week 13 peer review is graded.
+Worked illustration / lecturer answer
+Each problem identifies its inputs, target, possible data source and limitation. Submit one DOCX or selectable-text PDF through the A1 form. Account setup prepares for Week 2 and is separate from the report.
 
-NEXT
-Before Week 2. Move on after a learner can explain the current example or required action.
+Misconception to address
+Read the live deadline, including any catch-up extension. The historical gallery walk is optional; explain one sample problem directly when class time is limited.
+
+Continue to
+Before Week 2
 
 ## Slide 46 — Before Week 2
 
-TEACHING PURPOSE
 Before Week 2
+CML3112, Week 1, slide 46
 
-CONNECT
-Build on the preceding slide: Gallery walk, and what you owe me.
+Explanation to give
+Use this handover to state A1 clearly: three candidate problems and one justified selection, written as a short report.
 
-LECTURER CUE
-The 'not solvable' item is the most valuable part of A1, because it forces you to use the four limits rather than remember them. Take the instruction not to install anything seriously: the course runs in Google Colab, and a Python installation you set up at home creates a problem that cannot be diagnosed in class.
+Worked illustration / lecturer answer
+Each problem identifies its inputs, target, possible data source and limitation. Submit one DOCX or selectable-text PDF through the A1 form. Account setup prepares for Week 2 and is separate from the report.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+Read the live deadline, including any catch-up extension. The historical gallery walk is optional; explain one sample problem directly when class time is limited.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
-A1 CATCH-UP
-The original Week 1 schedule has been superseded for catch-up collection. Use the current cohort A1 form deadline, aligned with its Week 2 assignment upload. Quiz 1 is separate and gets 24 hours from its own activation.
-
-NEXT
-Watch this before Week 2. Move on after a learner can explain the current example or required action.
+Continue to
+Watch this before Week 2
 
 ## Slide 47 — Watch this before Week 2
 
-TEACHING PURPOSE
 Watch this before Week 2
+CML3112, Week 1, slide 47
 
-CONNECT
-Build on the preceding slide: Before Week 2.
+Explanation to give
+Give the viewing question before playing the excerpt: Explain the distinction or mechanism named on this video slide using one example from today.
 
-LECTURER CUE
-Watch for where he draws the boundaries between the four terms, and whether they match the nested diagram from today. If they differ, raise it next week — the field genuinely does not fully agree on this. Two optional extras: StatQuest, 'A Gentle Introduction to Machine Learning', https://www.youtube.com/watch?v=Gv9_4yMHFhI, whose author Josh Starmer is the spine of Weeks 8 to 12; and if you have ninety seconds only, Fireship, 'Machine Learning Explained in 100 Seconds', https://www.youtube.com/watch?v=PeMlggyqz0Y
+Worked illustration / lecturer answer
+Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
+Reference / existing resource
+https://www.youtube.com/watch?v=Gv9_4yMHFhI,
+https://www.youtube.com/watch?v=PeMlggyqz0Y
 
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-VIDEO ROUTINE
-Preview the exact link and stated excerpt before class. State the viewing question first, pause after the example, and ask a learner to explain it. If access fails, use the adjacent worked example and discussion rather than spend class time troubleshooting streaming.
-
-NEXT
-Revision material. Move on after a learner can explain the current example or required action.
+Continue to
+Revision material
 
 ## Slide 48 — Revision material
 
-TEACHING PURPOSE
 Revision material
+CML3112, Week 1, slide 48
 
-CONNECT
-Build on the preceding slide: Watch this before Week 2.
+Explanation to give
+Orient students to this particular lesson: explain what they will see demonstrated, which file they will use and what they must retain for revision. Keep the transition short enough to preserve explanation time.
 
-LECTURER CUE
-Everything from here on is revision material rather than presented content: a summary, a self-test with worked answers, an eighteen-term glossary and a one-page reference sheet. It is written to be studied from in your own time.
+Worked illustration / lecturer answer
+Open the next worked example on the projector and name its input and intended result. Demonstrate it yourself before asking students to interpret a result. Use remaining summary and glossary pages for independent revision.
 
-NEXT
-What you should take away. Move on after a learner can explain the current example or required action.
+Misconception to address
+The historical slide's timed group activity is not a requirement to stop for partner work. Use a lecturer-led walkthrough in the current limited class time.
+
+Continue to
+What you should take away
 
 ## Slide 49 — What you should take away
 
-TEACHING PURPOSE
 What you should take away
+CML3112, Week 1, slide 49
 
-CONNECT
-Build on the preceding slide: Revision material.
+Explanation to give
+Start with an engineering decision, then introduce learning from examples. No code is needed today.
 
-LECTURER CUE
-Seven statements covering the whole session. If any of them reads as new to you, go back to the slide it came from before Week 2 rather than after it.
+Worked illustration / lecturer answer
+A numerical quantity such as days until servicing is a regression target. A label such as service due is a classification target.
 
-EXPLAIN IN ORDINARY WORDS
-Missing means not recorded, not automatically zero. Decide why it is missing and document the rule. Fitted fill values must come from training data when evaluating a model.
+Misconception to address
+Use the outcomes listed on this slide to check understanding through the small examples, rather than asking only whether everybody understands.
 
-CHECK AND EXPECTED ANSWER
-Is an unrecorded energy reading evidence of zero consumption? No.
-
-IF LEARNERS ARE STUCK
-Use three rows: a recorded zero, a recorded positive value and a blank. Explain their different meanings before cleaning.
-
-NEXT
-Self-test — try these before you look. Move on after a learner can explain the current example or required action.
+Continue to
+Self-test — try these before you look
 
 ## Slide 50 — Self-test — try these before you look
 
-TEACHING PURPOSE
 Self-test — try these before you look
+CML3112, Week 1, slide 50
 
-CONNECT
-Build on the preceding slide: What you should take away.
+Explanation to give
+Explain each answer in relation to the question rather than giving only its letter or label.
 
-LECTURER CUE
-Optional revision, best attempted with a pencil before you look at the next slide. Question D is a Week 10 idea planted early: anything that notices the circularity of testing a model on cases it has already seen is a good answer at this stage.
-
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
-
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-DISCUSSION KEY FOR THIS SLIDE
+Worked illustration / lecturer answer
 ANSWERS
 How did you do?
 A
 Three questions before agreeing to 'use AI'?
-What exactly are we predicting? What data exists, who measured it, and is it kept? And would a rule or an equation we already have do this better? If any of those has no answer, stop.
+What value do you want to predict? Which recorded data can help? Is an established equation suitable? Resolve these questions before choosing a model.
 B
 Features and target in a repair table?
 The target is whatever you want to predict — say time to next failure. Features are everything known BEFORE that: operating hours, load, temperature. The test is timing: anything only known afterwards cannot be a feature.
@@ -1066,167 +891,150 @@ One of each from your discipline?
 Regression: any quantity with a unit — 28-day compressive strength in MPa. Classification: strength class: below 25 MPa, 25 to 40, above 40.
 D
 Why is a good fit on seen data not evidence?
-Because the model could simply have memorised those cases. The only honest test is performance on examples it has never seen — exactly what you did with case 13. This is the whole subject of Week 10.
+A model may memorise its training examples. Evaluate it on separate examples to check whether it predicts new cases well.
 E
 What else before acting?
 How large the error is in engineering terms and whether that is tolerable; what it costs when the model is wrong; and whether today's conditions still resemble the data it learned from.
-Let learners attempt first; use this to explain the reasoning, not just reveal the answer.
 
-NEXT
-How did you do?. Move on after a learner can explain the current example or required action.
+Misconception to address
+Use a short lecturer-led walkthrough or individual thought time. Do not require partner work to unlock the explanation.
+
+Continue to
+How did you do?
 
 ## Slide 51 — How did you do?
 
-TEACHING PURPOSE
 How did you do?
+CML3112, Week 1, slide 51
 
-CONNECT
-Build on the preceding slide: Self-test — try these before you look.
+Explanation to give
+For each answer on this slide, identify the deciding feature of the question: timing of the input, kind of target, run order or operation requested.
 
-LECTURER CUE
-Answer D is the most important idea in the course. A model can simply memorise the cases it was shown, so good performance on those cases is no evidence of anything. The only honest test is data the model has never seen, which is exactly what case 13 was for you.
+Worked illustration / lecturer answer
+Three questions before agreeing to 'use AI'?
+What value do you want to predict? Which recorded data can help? Is an established equation suitable? Resolve these questions before choosing a model.
+Features and target in a repair table?
+The target is whatever you want to predict — say time to next failure. Features are everything known BEFORE that: operating hours, load, temperature. The test is timing: anything only known afterwards cannot be a feature.
+One of each from your discipline?
+Regression: any quantity with a unit — 28-day compressive strength in MPa. Classification: strength class: below 25 MPa, 25 to 40, above 40.
+Why is a good fit on seen data not evidence?
+A model may memorise its training examples. Evaluate it on separate examples to check whether it predicts new cases well.
+What else before acting?
+How large the error is in engineering terms and whether that is tolerable; what it costs when the model is wrong; and whether today's conditions still resemble the data it learned from.
 
-EXPLAIN IN ORDINARY WORDS
-A condition is a True/False question. Python executes the matching indented branch. = assigns; == compares. >= includes the boundary, while > excludes it.
+Misconception to address
+If a student gives a different engineering example, check its reasoning and timing rather than requiring identical wording to the printed example.
 
-CHECK AND EXPECTED ANSWER
-With value 30, is value >= 30 true? Yes. Is value > 30 true? No.
-
-IF LEARNERS ARE STUCK
-Try one value below, at and above the boundary before running the code.
-
-NEXT
-Every word we used today (1 of 3). Move on after a learner can explain the current example or required action.
+Continue to
+Every word we used today (1 of 3)
 
 ## Slide 52 — Every word we used today (1 of 3)
 
-TEACHING PURPOSE
 Every word we used today (1 of 3)
+CML3112, Week 1, slide 52
 
-CONNECT
-Build on the preceding slide: How did you do?.
+Explanation to give
+Use the terminology to locate the course, not as vocabulary to memorise immediately. AI is the broad field; machine learning develops predictive rules from examples; deep learning is a family of machine-learning methods using neural networks.
 
-EXPLAIN IN ORDINARY WORDS
-A cleaning decision needs evidence, a stated rule and a before/after check. Similar rows may be genuine repeated events. Reconciliation compares totals built under the same definitions.
+Contrast who supplies the decision rule. In conventional programming, the developer writes the rule. In supervised learning, the training examples contain inputs and known answers from which a fitting procedure estimates a rule.
 
-CHECK AND EXPECTED ANSWER
-May we delete every repeated amount? No. Check the row identifier and the table grain first.
+Data science includes finding and examining data, correcting documented defects, analysing patterns and communicating justified conclusions. A prediction model is one possible tool within that work.
 
-IF LEARNERS ARE STUCK
-Keep raw data, record counts before and after each action, then explain any remaining difference instead of forcing totals to agree.
+Worked illustration / lecturer answer
+A fixed threshold alarm follows an explicitly supplied rule. A fault classifier fitted from labelled historical readings learns a rule from data. Both may support an engineering system, but only the second learns from examples.
 
-NEXT
-Every word we used today (2 of 3). Move on after a learner can explain the current example or required action.
+If a verified formula calculates area from length and width, use it. If many interacting readings affect an outcome and suitable labelled examples exist, a learned predictor may be worth evaluating.
+
+Before predicting energy use, check whether meter readings use the same unit and time interval. Discovering that half the readings are missing is already a meaningful data finding.
+
+Misconception to address
+Use this page for revision. Connect each word to the concrete example just taught; do not introduce all the definitions as new material in one block.
+
+Continue to
+Every word we used today (2 of 3)
 
 ## Slide 53 — Every word we used today (2 of 3)
 
-TEACHING PURPOSE
 Every word we used today (2 of 3)
+CML3112, Week 1, slide 53
 
-CONNECT
-Build on the preceding slide: Every word we used today (1 of 3).
+Explanation to give
+while tests a condition before each iteration. Unlike for over a fixed list, it needs a route that eventually makes the condition False. Trace both the test and the state update.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Worked illustration / lecturer answer
+With count = 0 and while count < 3, print then increment yields 0, 1 and 2. The next test sees count 3 and stops before printing it.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
+Misconception to address
+Use this page for revision. Connect each word to the concrete example just taught; do not introduce all the definitions as new material in one block.
 
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-NEXT
-Every word we used today (3 of 3). Move on after a learner can explain the current example or required action.
+Continue to
+Every word we used today (3 of 3)
 
 ## Slide 54 — Every word we used today (3 of 3)
 
-TEACHING PURPOSE
 Every word we used today (3 of 3)
+CML3112, Week 1, slide 54
 
-CONNECT
-Build on the preceding slide: Every word we used today (2 of 3).
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-LECTURER CUE
-Eighteen terms. If you can define all eighteen by Week 3 you are ahead of the schedule, and these exact words appear in the weekly quizzes. The last two entries, generalisation and association versus cause, are forward references; they are printed here so the words are familiar when they arrive properly in Weeks 8 and 10.
+Generalisation means working on relevant observations not used to learn the model. Overfitting captures training-specific detail; underfitting misses useful structure even in training.
 
-EXPLAIN IN ORDINARY WORDS
-Training fits rules. Validation helps choose among rules. The final test estimates performance after choices are fixed. Information that would be unavailable at the real prediction time must stay out of the inputs.
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
 
-CHECK AND EXPECTED ANSWER
-May two readings of the same machine appear on both sides when evaluating new machines? No; split by machine. For forecasting, train on the past and evaluate later time.
+A very deep tree may memorise noisy training readings. A constant baseline may miss a clear trend. Compare training and validation errors to diagnose these possibilities.
 
-IF LEARNERS ARE STUCK
-Use three envelopes. Keep the final-test envelope closed while selecting features or settings.
+Misconception to address
+Use this page for revision. Connect each word to the concrete example just taught; do not introduce all the definitions as new material in one block.
 
-NEXT
-Eight questions to ask about any data problem. Move on after a learner can explain the current example or required action.
+Continue to
+Eight questions to ask about any data problem
 
 ## Slide 55 — Eight questions to ask about any data problem
 
-TEACHING PURPOSE
 Eight questions to ask about any data problem
+CML3112, Week 1, slide 55
 
-CONNECT
-Build on the preceding slide: Every word we used today (3 of 3).
+Explanation to give
+Start from a decision somebody needs to make. Name the answer required, the information available beforehand, where examples could come from and what a mistake would cost.
 
-LECTURER CUE
-These eight questions are the spine of the whole course. Every project milestone from Week 9 onwards is assessed against some subset of them, and this is the page worth having in front of you in the Week 14 practical test.
+Worked illustration / lecturer answer
+“Predict energy consumption for next week to plan a budget” names a target, horizon and decision. “Use AI in buildings” is too broad to determine data or success criteria.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+A proposed dataset is not automatically appropriate because its title sounds relevant. Check what one row means and when its fields become available.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-Five questions,. Move on after a learner can explain the current example or required action.
+Continue to
+Five questions,
 
 ## Slide 56 — Five questions,
 
-TEACHING PURPOSE
 Five questions,
+CML3112, Week 1, slide 56
 
-CONNECT
-Build on the preceding slide: Eight questions to ask about any data problem.
+Explanation to give
+This is the CML3112 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3112 when ready and read the logged closing time.
 
-LECTURER CUE
-The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.
-Nothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.
+Worked illustration / lecturer answer
+Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-QUIZ OPERATION
-Opening the student link does not activate the quiz. In Quiz Controls run the matching open_W<week>_<cohort> function once when ready. Announce the logged closing time: 24 hours after activation. Five minutes describes expected answering time, not the availability window. Quiz 1 and Quiz 2 require separate activation when collecting catch-up work.
-
-NEXT
-You have already done. Move on after a learner can explain the current example or required action.
+Continue to
+You have already done
 
 ## Slide 57 — You have already done
 
-TEACHING PURPOSE
 You have already done
+CML3112, Week 1, slide 57
 
-CONNECT
-Build on the preceding slide: Five questions,.
+Explanation to give
+Translate each action into its technical name only after describing the action. Reading records is exploration, forming a relationship is fitting, applying it to a new case is prediction and comparing against truth is evaluation.
 
-LECTURER CUE
-Before next week: A1 due at the start of the session, a GitHub account and a Google account created, the video watched, and nothing installed. Week 2 needs a browser and nothing else.
+Worked illustration / lecturer answer
+In the paper example, the twelve labelled rows teach the provisional rule. The held-out case checks that rule. Later Python code makes these same actions repeatable on more records.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
-
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Misconception to address
+Finding a pattern in the training examples is not the final success criterion. Keep asking how the rule behaves on unseen, relevant observations.

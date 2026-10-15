@@ -6,9 +6,13 @@ Updated 15 September 2026. Times are Kampala (UTC+03:00). This is a lecturer che
 
 **After the completed CML3112 Week 2 class:** teach from the matching updated [PowerPoint](decks/README.md) and use [the lecturer guide](Beginner_Lecturer_Guide.md). This applies to CML3111/CML3113 from Week 2 and CML3112 from Week 3. Presenter View contains the explanation prompts. The earlier “today” section below records the completed CML3112 Week 2 class. The final slides contain the cohort assignment and quiz links.
 
-## Current CML3112 continuation
+## Current teaching position — 29 September
 
-Resume the revised Week 3 deck at slide 13. Slides 1–12 cover the already taught values, variables and basic syntax. Use [the continuation notes](CML3112_Week3_Continuation.md). A3 still closes on 29 September 2026 at 11:00 Kampala; the continuation does not extend that deadline. Students were instructed to read the final slides and complete it. CML3111 and CML3113 start Week 3 at slide 1.
+**CML3112 has completed all Week 3 content. Its next lesson is Week 4.** CML3111 and CML3113 have not yet covered Week 3 and should start that deck at slide 1. See [teaching progress and the one-minute assignment briefing](Teaching_Progress.md).
+
+**Approved A3 extension:** CML3113 now closes on 9 October at 08:00; CML3111 on 9 October at 11:00 Kampala.
+
+For each assignment, use the short instructions inside the assignment notebook. Show the exact upload count and current live deadline. Students need not restart existing work after this wording update. [Current CML3112 student links and deadlines](CML3112_Sept29_Student_Links.md) remain unchanged.
 
 ## Remaining Week 2 classes (historical checklist)
 

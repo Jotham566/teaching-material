@@ -55,7 +55,7 @@
       "ipynb"
     ],
     "opens_at": "2026-09-22T10:55:00+03:00",
-    "closes_at": "2026-09-29T11:00:00+03:00",
+    "closes_at": "2026-09-30T08:27:44.528Z",
     "delivery_note": "",
     "preserve_existing": false,
     "grading": "notebook"
@@ -382,7 +382,7 @@
       "ipynb"
     ],
     "opens_at": "2026-09-25T08:00:00+03:00",
-    "closes_at": "2026-10-02T08:00:00+03:00",
+    "closes_at": "2026-10-09T08:00:00+03:00",
     "delivery_note": "",
     "preserve_existing": false,
     "grading": "notebook"
@@ -709,7 +709,7 @@
       "ipynb"
     ],
     "opens_at": "2026-09-25T11:00:00+03:00",
-    "closes_at": "2026-10-02T11:00:00+03:00",
+    "closes_at": "2026-10-09T11:00:00+03:00",
     "delivery_note": "",
     "preserve_existing": false,
     "grading": "notebook"

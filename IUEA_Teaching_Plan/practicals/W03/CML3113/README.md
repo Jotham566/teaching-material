@@ -1,5 +1,7 @@
-# CML3113 W03
+# CML3113 A3 — Engineering functions
 
-Upload the notebook and companion Python files into the same Colab runtime. Complete the five tasks for 20 marks. The notebook states every task and mark. Visible checks give practice feedback; hidden checks assess the declared tasks after submission. Restart and Run All, save STUDENT_ID_W03.ipynb, and upload it through your cohort assignment form.
+Open **W03_student.ipynb**. Its opening instructions and task cells contain all required work.
 
-For beginner step-by-step help, open ASSIGNMENT_INSTRUCTIONS.txt and STUDENT_HOW_TO.md in this folder. The first names your required files and hand-in checklist; the second explains accounts, Colab, saving and uploads.
+Submit ONE completed assignment notebook (.ipynb).
+
+ASSIGNMENT_INSTRUCTIONS.txt is a separate copy of the notebook instructions. STUDENT_HOW_TO.md is optional setup/file help. guided_practice.ipynb is ungraded practice.

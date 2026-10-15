@@ -29,34 +29,37 @@
     "formId": "1U_wdHF0yS0OhZ15BGfsKYvwbDYv3Tcn2t4xyUhujAkA",
     "ready": true,
     "openAt": "2026-09-22T10:55:00+03:00",
-    "closeAt": "2026-09-29T11:00:00+03:00",
+    "closeAt": "2026-09-30T08:27:44.528Z",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSfK1T6vYI-m-ZaYLisO8AjovzezCEuc5lU9dvCed5P91w_zpA/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:28.092Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:28.092Z",
+    "closedScanned": false
   },
   "CML3112|W04": {
     "formId": "1bhXySZsXyDtY559pMoXjVPJKhyqCRH-3AdzchiLRPS4",
     "ready": true,
     "openAt": "2026-09-29T11:00:00+03:00",
-    "closeAt": "2026-10-06T11:00:00+03:00",
+    "closeAt": "2026-10-13T11:00:00+03:00",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSeZymY0jwFhuwihprLiqEaq2DqmLZD3nIYht1IkN4OcPGeTFg/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:28.150Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:28.150Z",
+    "closedScanned": false
   },
   "CML3112|W05": {
     "formId": "14bWCrZEhwtNB-xfguVj1LRzH-JyeYwsMGxU3mk5Mq-o",
     "ready": true,
-    "openAt": "2026-10-06T11:00:00+03:00",
-    "closeAt": "2026-10-13T11:00:00+03:00",
+    "openAt": "2026-10-13T18:00:00+03:00",
+    "closeAt": "2026-10-20T18:00:00+03:00",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSeP_Eykf3YDYN_6sbB5to0B3LX14fsujEVPhsp8UezRZXTNGw/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:28.203Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:28.203Z",
+    "closedScanned": false
   },
   "CML3112|W06": {
     "formId": "1y7vheH4d-3rfd-jUp29IuexxPGEPH6ac-AyTDyN-4E8",
@@ -205,36 +208,39 @@
     "formId": "1O7mwe8UTNtp6TdrlCeqkdCUvYy20NEaC9zhGrxo7FO8",
     "ready": true,
     "openAt": "2026-09-21T10:25:33.406Z",
-    "closeAt": "2026-09-27T08:05:46.219Z",
+    "closeAt": "2026-10-09T10:48:04.590Z",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSeE677AvoxTAOJSdCV5bVYWu34RHPg5tsOLqUVS1E7EVI8sYg/viewform",
     "polished": true,
     "uploadReady": true,
     "uploadVerifiedAt": "2026-09-14T14:12:29.149Z",
     "collectionOnly": true,
-    "collectionEvidence": "Instructor request 21 September 2026: collect missed A1 during Week 2 with the Week 2 upload deadline; preserve marks and keep new written grading held."
+    "collectionEvidence": "Instructor request 21 September 2026: collect missed A1 during Week 2 with the Week 2 upload deadline; preserve marks and keep new written grading held.",
+    "closedScanned": false
   },
   "CML3111|W02": {
     "formId": "1PI5bHw_EYKfWC3gqNBPgKlr0O-HRaH5geVth2129YTA",
     "ready": true,
     "openAt": "2026-09-18T11:00:00+03:00",
-    "closeAt": "2026-09-27T08:05:46.219Z",
+    "closeAt": "2026-10-09T10:48:04.590Z",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSfjyYUtobO5sgIWH30AidQu7Sx8bcmH6lSbtHQv-9SISaEDqA/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:29.205Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:29.205Z",
+    "closedScanned": false
   },
   "CML3111|W03": {
     "formId": "1cvla6n57BsuOgrxHWoi-yy69amk4gOK02K8KF-lmeBE",
     "ready": true,
     "openAt": "2026-09-25T11:00:00+03:00",
-    "closeAt": "2026-10-02T11:00:00+03:00",
+    "closeAt": "2026-10-09T11:00:00+03:00",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSfKemYzDIRelE0iDCo_KsJvzw0jyw--Fy8lyJHvm-XpNoEQkQ/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:29.282Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:29.282Z",
+    "closedScanned": false
   },
   "CML3111|W04": {
     "formId": "1Q-7wWGpDO5CRdbGW5hYyJfQvy5-uYVn6I8nGNERaHbM",
@@ -250,13 +256,14 @@
   "CML3111|W05": {
     "formId": "1OdjZAp0Isii1mQvaUnpWLKqSZXCkz-7Te-fVqIijUZM",
     "ready": true,
-    "openAt": "2026-10-07T11:00:00+03:00",
+    "openAt": "2026-10-07T08:30:00+03:00",
     "closeAt": "2026-10-16T11:00:00+03:00",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSea9Y9pC-JeaVEPpu4prViKZaOHF8cmPczko8iGDiPmr73I2A/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:29.404Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:29.404Z",
+    "closedScanned": false
   },
   "CML3111|W06": {
     "formId": "1WiggA2PcS7PvS94zPkUYfwFs-SYjRJ85uUWtC5q1i_o",
@@ -416,47 +423,51 @@
     "formId": "15x_XFyCSdvYhXxgOLPR-tHrpJd6AyepsWIwpQWie4L4",
     "ready": true,
     "openAt": "2026-09-21T10:25:40.556Z",
-    "closeAt": "2026-09-27T08:05:46.219Z",
+    "closeAt": "2026-10-09T18:30:35.815Z",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSc7TlczqFeKIMIT4fVxzIp5iZqi07l4b1tGOavTzBN5-nna4A/viewform",
     "polished": true,
     "uploadReady": true,
     "uploadVerifiedAt": "2026-09-14T14:12:30.252Z",
     "collectionOnly": true,
-    "collectionEvidence": "Instructor request 21 September 2026: collect missed A1 during Week 2 with the Week 2 upload deadline; preserve marks and keep new written grading held."
+    "collectionEvidence": "Instructor request 21 September 2026: collect missed A1 during Week 2 with the Week 2 upload deadline; preserve marks and keep new written grading held.",
+    "closedScanned": false
   },
   "CML3113|W02": {
     "formId": "1FIl97PkaqalPrLDvh-SJpnEedUBnywL66P_WfPGhFxg",
     "ready": true,
     "openAt": "2026-09-18T08:00:00+03:00",
-    "closeAt": "2026-09-27T08:05:46.219Z",
+    "closeAt": "2026-10-03T08:23:31.649Z",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSf5sCKyFfSZ0Xxo8bU_bQCVYDZ5ESgeGf3logWsIfJ9y5PUIg/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:30.312Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:30.312Z",
+    "closedScanned": false
   },
   "CML3113|W03": {
     "formId": "1ltfORJLu_qZyk8mDudUXSW47_9Ol5mVIWqX0FOxY88s",
     "ready": true,
     "openAt": "2026-09-25T08:00:00+03:00",
-    "closeAt": "2026-10-02T08:00:00+03:00",
+    "closeAt": "2026-10-09T08:00:00+03:00",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSfd3oHKoR26Uc9BSQ5WEQosAD4ZnrRHT4JZRQmLrslca35tlA/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:30.372Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:30.372Z",
+    "closedScanned": false
   },
   "CML3113|W04": {
     "formId": "1DNc-pd0-rNfJ3U7zPcBRWf8BdtOB-bBcofck6MbLoj0",
     "ready": true,
-    "openAt": "2026-10-02T08:00:00+03:00",
-    "closeAt": "2026-10-09T08:00:00+03:00",
+    "openAt": "2026-10-15T12:00:00+03:00",
+    "closeAt": "2026-10-22T12:00:00+03:00",
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSenqAHKxNgzxWHIR41scC7h5WAxcs8D9wOyXYjIQ_ulbGpPCw/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:30.429Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:30.429Z",
+    "closedScanned": false
   },
   "CML3113|W05": {
     "formId": "10sDMiTwecjBeletyU_YacFNcVj87S0AE4VZ1HivEQes",

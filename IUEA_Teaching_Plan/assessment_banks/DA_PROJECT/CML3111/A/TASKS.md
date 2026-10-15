@@ -1,41 +1,69 @@
-# CML3111 DA_PROJECT: Data analysis project — variant A
+# CML3111 DA_PROJECT — task reference
 
-Investigate motor winding temperature. Target units: deg C. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
+These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
 
-Use your Student Registration Number in STUDENT_ID, including slashes. In filenames only replace slashes with underscores. Set COHORT to CML3111.
+## Your data
 
-Numeric fields are numbers (missing values become None); parse CSV blanks accordingly. The public function interfaces below let the isolated grader evaluate your implementation on unseen records. The unseen records use the same schema and published rules. Implement the functions in the submitted notebook; do not hardcode the supplied answers. The numerical component does not prove the quality of the full investigation.
+Investigate motor winding temperature; target unit: **deg C**. These are synthetic teaching data. Each row is an operating observation; equipment_id identifies equipment and can repeat.
 
-Published total: 100 marks. Deterministic component: 42. Written/evidence component: 58.0. Original criterion totals are preserved.
+A record is a dictionary of column names and values. A list of records holds several rows. record_id identifies a row; load_pct is load as a percentage; ambient_c is temperature in degrees C; target is the quantity to predict. Numeric CSV blanks become None. Keep the original data. Your functions are checked on other records following the same published rules.
 
-## Engineering questions
 
-What is the cleaned mean target in its unit? Which equipment group has the highest mean, and what is the gap to the lowest? What load/target pattern is visible, and why does it not establish causation?
+### `clean_records(records)` — 10 marks
 
-## Required interfaces
+- Return a list of copied records, keeping their original order. Do not change the raw input.
+- Keep only the first occurrence of each record_id.
+- Drop a record if target is missing or load_pct is outside 0–100 inclusive.
+- Using the remaining records, find the median of the non-missing ambient_c values. Use it to fill missing ambient_c.
+- Make no other changes.
 
-- clean_records(records) — 10 marks within c2. Return copied records in original order: remove repeated record_id after its first occurrence, drop rows with missing target or load_pct outside 0–100 inclusive, then fill missing ambient_c with the median of retained non-missing ambient_c values. Preserve raw input. No other changes.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- summarize_records(clean_records) — 10 marks within c3. Return count, mean, minimum, maximum of target and group_means by equipment_id. Retain full precision.
 
-- build_charts(clean_records) — 12 marks within c3. Return all four figures described by the charts contract, including record_id vs target. These must be actual matplotlib Figure objects, not metadata dictionaries.
+### `summarize_records(clean_records)` — 10 marks
 
-- five_findings(clean_records) — 10 marks within c4. Return a dict with count, mean, minimum, maximum and group_gap (highest minus lowest equipment mean). Each value is a dict with value and unit; count uses observations and other values use the cohort target unit. These numerical findings are checked independently of the narrative.
+- Return count, mean, minimum, maximum of target and group_means by equipment_id.
+- Retain full precision.
+- Return a dictionary with exactly count, mean, minimum, maximum and group_means. group_means is a dictionary from equipment ID to its mean target.
 
-## Full investigation and evidence
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-Write your own explanation in the markdown cell headed `## My written evidence`. Keep that heading. Task prompts and code comments are excluded from reasoning marks. Complete every original rubric criterion below, not just the checked functions. Include profiling, justified cleaning, question-led charts and your engineering recommendation where required. Keep raw data. State units and distinguish correlation from causation. Charts must be actual labelled figures in the notebook, not claims that charts exist. Include concise captions and an accessible report.
 
-- Question & dataset fit (20.0 total): A real engineering question is stated, and the chosen dataset can actually answer it. Provenance and licence stated.
+### `build_charts(clean_records)` — 12 marks
 
-- Data quality work (25.0 total): Defects found and handled with written justification. A data quality statement is present.
+- Return at least three actual matplotlib Figure objects: scatter load_pct vs target; bar of mean target by equipment_id in alphabetical order; target histogram with ten equal bins from minimum to maximum.
+- Add chart titles and axis labels, including target units.
+- A fourth figure, when required, plots record_id vs target in input order.
+- Return all four figures as a list of actual matplotlib Figure objects.
 
-- Analysis & visualisation (30.0 total): Four or more charts, each answering a stated question. Correct chart types, labelled axes, findings in the captions.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- Findings & interpretation (20.0 total): Conclusions supported by the analysis, stated in engineering terms, with limitations acknowledged.
 
-- Individual contribution log (5.0 total): Present, specific, and consistent with the repository's commit history.
+### `five_findings(clean_records)` — 10 marks
 
-## Submission
+- Return a dict with count, mean, minimum, maximum and group_gap (highest minus lowest equipment mean).
+- Each value is a dict with value and unit; count uses observations and other values use the cohort target unit.
+- These numerical findings are checked independently of the narrative.
 
-Submit one completed notebook and one complete DOCX or selectable-text PDF report together. Include the repository URL, run instructions and required contribution/declaration evidence in the report. Keep repository supporting files, but a URL alone does not supply assessable evidence. Read ASSIGNMENT_INSTRUCTIONS.txt for the full start, check and hand-in steps. Keep local copies. The lecturer must validate grading and release this assessment before issuing it.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
+
+
+
+## Report checklist
+
+Put the complete written evidence in your report, with relevant notebook results and chart captions.
+
+1. **Question & dataset fit (20 written marks):** A real engineering question is stated, and the chosen dataset can actually answer it. Provenance and licence stated.
+
+2. **Data quality work (15 written marks):** Defects found and handled with written justification. A data quality statement is present.
+
+3. **Analysis & visualisation (8 written marks):** Four or more charts, each answering a stated question. Correct chart types, labelled axes, findings in the captions.
+
+4. **Findings & interpretation (10 written marks):** Conclusions supported by the analysis, stated in engineering terms, with limitations acknowledged.
+
+5. **Individual contribution log (5 written marks):** Present, specific, and consistent with the repository's commit history.
+
+
+## Submit
+
+TWO files together: your completed notebook (.ipynb) AND one complete report (DOCX or selectable-text PDF).

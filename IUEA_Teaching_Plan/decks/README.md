@@ -1,10 +1,10 @@
 # Current teaching sequence
 
-The explicit-foundations revision expands operators, decisions and loops into definitions, demonstrations and traces before combined examples. Use the current slide numbers in the matching lecturer companions. CML3112 still resumes Week 3 at slide 13; later slide numbers have changed.
+The explicit-foundations revision expands operators, decisions and loops into definitions, demonstrations and traces before combined examples. Use the current slide numbers in the matching lecturer companions. CML3112 completed Week 3 on 29 September and moves to Week 4. CML3111 and CML3113 start Week 3 at slide 1.
 
 # PowerPoint teaching decks
 
-**29 September revision:** Weeks 3–15 teach prerequisites before examples and use lecturer demonstrations with individual revision. CML3112 resumes Week 3 at slide 13; the A3 deadline remains 29 September at 11:00. [Continuation guidance](../CML3112_Week3_Continuation.md). The slide-by-slide Markdown companions and embedded notes match this edition.
+**29 September revision:** Weeks 3–15 teach prerequisites before examples and use lecturer demonstrations with individual revision. See [current teaching progress](../Teaching_Progress.md) and [current CML3112 deadlines](../CML3112_Sept29_Student_Links.md); the separately authorized A3 reopening supersedes the older deadline printed in the deck. The slide-by-slide Markdown companions and embedded notes match this edition.
 
 Teach directly from the PowerPoints below. Open Presenter View for the teaching prompts and practice explanations. All decks include reviewed lecturer notes; completed lessons retain their existing visual design.
 

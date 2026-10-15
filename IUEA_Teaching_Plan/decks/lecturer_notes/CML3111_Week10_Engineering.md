@@ -1,110 +1,104 @@
 # CML3111 Week10 Engineering
 
-Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — Honest validation and leakage
 
-PURPOSE
 Honest validation and leakage
+CML3111, Week 10, slide 1
 
-CONNECT
-Previous slide: the preceding week.
+Explanation to give
+Connect evaluation to intended use. Decide how to hold out observations before fitting either preprocessing or the model.
 
-EXPLAIN
+Worked illustration / lecturer answer
+When testing new equipment, all observations from equipment A stay in one partition. Training must not learn its missing-value replacements from held-out equipment.
+
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+
+On this slide
 Communications, Electrical, Mechatronics and Robotics Engineering
 
-LECTURER CUE
-Use PowerPoint Presenter View for these notes. Teach one example, pause for every learner to predict, then work an analogous example together. The practice notebook is a learning aid, not an extra graded upload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Today’s learning.
-
-REFERENCES
-
+Continue to
+Today’s learning
 
 ## Slide 2 — Today’s learning
 
-PURPOSE
 Today’s learning
+CML3111, Week 10, slide 2
 
-CONNECT
-Previous slide: Honest validation and leakage.
+Explanation to give
+Connect evaluation to intended use. Decide how to hold out observations before fitting either preprocessing or the model.
 
-EXPLAIN
+Worked illustration / lecturer answer
+When testing new equipment, all observations from equipment A stay in one partition. Training must not learn its missing-value replacements from held-out equipment.
+
+Misconception to address
+At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+
+On this slide
 Keep related equipment records together.
 
 Separate training, validation and final testing.
 
-LECTURER CUE
-Ask learners to explain this goal in ordinary language. The first successful attempt matters more than covering optional extensions. Defer: Multiple adversarial notebooks, elaborate validation curves and several cross-validation variants are extensions after the core split is understood.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Connection to the previous lesson.
-
-REFERENCES
-
+Continue to
+Connection to the previous lesson
 
 ## Slide 3 — Connection to the previous lesson
 
-PURPOSE
 Connection to the previous lesson
+CML3111, Week 10, slide 3
 
-CONNECT
-Previous slide: Today’s learning.
+Explanation to give
+Connect evaluation to intended use. Decide how to hold out observations before fitting either preprocessing or the model.
 
-EXPLAIN
+Worked illustration / lecturer answer
+When testing new equipment, all observations from equipment A stay in one partition. Training must not learn its missing-value replacements from held-out equipment.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 We have compared predictions with known answers. Now we control which observations may influence training, choices and the final evaluation.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Why this week’s tools are needed.
-
-REFERENCES
-
+Continue to
+Why this week’s tools are needed
 
 ## Slide 4 — Why this week’s tools are needed
 
-PURPOSE
 Why this week’s tools are needed
+CML3111, Week 10, slide 4
 
-CONNECT
-Previous slide: Connection to the previous lesson.
+Explanation to give
+Connect evaluation to intended use. Decide how to hold out observations before fitting either preprocessing or the model.
 
-EXPLAIN
+Worked illustration / lecturer answer
+When testing new equipment, all observations from equipment A stay in one partition. Training must not learn its missing-value replacements from held-out equipment.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 We want evidence about new equipment or future observations. The way we separate data must match that use before any model or preprocessing learns from it.
 
-LECTURER CUE
-A team records device temperature to investigate cooling. Use a communications cabinet, an electrical enclosure or a robot controller as the physical example. No specialist hardware knowledge is assumed.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Training validation and final test.
-
-REFERENCES
-
+Continue to
+Training validation and final test
 
 ## Slide 5 — Training validation and final test
 
-PURPOSE
 Training validation and final test
+CML3111, Week 10, slide 5
 
-CONNECT
-Previous slide: Why this week’s tools are needed.
+Explanation to give
+Training observations teach the model. Validation observations help choose among models and settings. The final test is reserved for evaluating the chosen method after those choices are fixed.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare two models using the same validation observations, choose a method, then evaluate it once on the held-out test. Imagine the test as a sealed examination paper.
+
+Misconception to address
+Repeatedly checking the test while selecting features or settings makes it part of the selection process, so it no longer gives an independent final check.
+
+On this slide
 Training data fit the model and preprocessing.
 
 Validation data guide feature and model choices.
@@ -113,671 +107,554 @@ The final test evaluates choices after they are fixed.
 
 A fresh test is needed if its answers influenced further choices.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Three sets have different jobs.
-
-REFERENCES
-
+Continue to
+Three sets have different jobs
 
 ## Slide 6 — Three sets have different jobs
 
-PURPOSE
 Three sets have different jobs
+CML3111, Week 10, slide 6
 
-CONNECT
-Previous slide: Training validation and final test.
+Explanation to give
+Training observations teach the model. Validation observations help choose among models and settings. The final test is reserved for evaluating the chosen method after those choices are fixed.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare two models using the same validation observations, choose a method, then evaluate it once on the held-out test. Imagine the test as a sealed examination paper.
+
+Misconception to address
+Repeatedly checking the test while selecting features or settings makes it part of the selection process, so it no longer gives an independent final check.
+
+On this slide
 Which set must stay sealed until choices are fixed?
 
-LECTURER CUE
-Ask students to describe what they see before introducing terminology. Generated conceptual teaching illustration.  Source: figs/experiential/ASSET_SOURCES.md.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Generalisation and Overfitting and underfitting.
-
-REFERENCES
-
+Continue to
+Generalisation and Overfitting and underfitting
 
 ## Slide 7 — Generalisation and Overfitting and underfitting
 
-PURPOSE
 Generalisation and Overfitting and underfitting
+CML3111, Week 10, slide 7
 
-CONNECT
-Previous slide: Three sets have different jobs.
+Explanation to give
+Generalisation means working on relevant observations not used to learn the model. Overfitting captures training-specific detail; underfitting misses useful structure even in training.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A very deep tree may memorise noisy training readings. A constant baseline may miss a clear trend. Compare training and validation errors to diagnose these possibilities.
+
+Misconception to address
+A gap between errors is evidence to investigate, not proof of one cause. Check whether the evaluation data actually represents future use.
+
+On this slide
 Generalisation: Performance on new cases from the intended setting, not merely on records already used.
-
 Overfitting and underfitting: Overfitting captures training-specific detail that fails to transfer. Underfitting misses useful patterns. Score gaps are clues, not a complete diagnosis.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Leakage and Group split.
-
-REFERENCES
-
+Continue to
+Leakage and Group split
 
 ## Slide 8 — Leakage and Group split
 
-PURPOSE
 Leakage and Group split
+CML3111, Week 10, slide 8
 
-CONNECT
-Previous slide: Generalisation and Overfitting and underfitting.
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
+
+Misconception to address
+Different record IDs do not guarantee independent equipment. For forecasting, chronology may be the key constraint instead; choose the split to match the stated use.
+
+On this slide
 Leakage: Information enters model development that would not legitimately be available, such as the answer or information from evaluation rows.
-
 Group split: Keep all observations from the same equipment in one partition when the goal is prediction for unseen equipment.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Repeated equipment needs group separation.
-
-REFERENCES
-
+Continue to
+Repeated equipment needs group separation
 
 ## Slide 9 — Repeated equipment needs group separation
 
-PURPOSE
 Repeated equipment needs group separation
+CML3111, Week 10, slide 9
 
-CONNECT
-Previous slide: Leakage and Group split.
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
+
+Misconception to address
+Different record IDs do not guarantee independent equipment. For forecasting, chronology may be the key constraint instead; choose the split to match the stated use.
+
+On this slide
 Readings from the same equipment can share patterns.
 
 Putting that equipment in both training and validation can make evaluation too easy.
 
 For a new-equipment question, keep every row for an equipment ID in one partition.
 
-LECTURER CUE
-Write equipment letters on paper cards and distribute whole groups to train, validation and test. Explain why two observations of the same machine can share information.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Keeping equipment groups together.
-
-REFERENCES
-
+Continue to
+Keeping equipment groups together
 
 ## Slide 10 — Keeping equipment groups together
 
-PURPOSE
 Keeping equipment groups together
+CML3111, Week 10, slide 10
 
-CONNECT
-Previous slide: Repeated equipment needs group separation.
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
+
+Misconception to address
+Different record IDs do not guarantee independent equipment. For forecasting, chronology may be the key constraint instead; choose the split to match the stated use.
+
+On this slide
 Observation | Equipment | Partition
-
 1 | A | Training
-
 2 | A | Training
-
 3 | B | Validation
+This small example separates equipment groups.
 
-This toy split explains group separation.
-
-LECTURER CUE
-This toy split explains group separation. It does not establish a representative evaluation with only two pieces of equipment.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example (1/2).
-
-REFERENCES
-
+Continue to
+Validation and leakage in Python (1/2)
 
 ## Slide 11 — Validation and leakage in Python (1/2)
 
-PURPOSE
 Validation and leakage in Python (1/2)
+CML3111, Week 10, slide 11
 
-CONNECT
-Previous slide: Keeping equipment groups together.
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
+
+Misconception to address
+Different record IDs do not guarantee independent equipment. For forecasting, chronology may be the key constraint instead; choose the split to match the stated use.
+
+Read the displayed code line by line
 records = [{"id": 1, "equipment": "A"},
-           {"id": 2, "equipment": "A"},
-           {"id": 3, "equipment": "B"}]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
+{"id": 2, "equipment": "A"},
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
+{"id": 3, "equipment": "B"}]
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
 train = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 validation = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
 
-Square brackets create a list or select an item.
-
-Braces hold dictionary key: value pairs here.
-
-= assigns the value on the right to the name on the left.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-Write equipment letters on paper cards and distribute whole groups to train, validation and test. Explain why two observations of the same machine can share information. Fit a missing-value replacement on training values [20, 22, 24]: the median is 22. A new hotter observation must not change that fitted median. Show a counterexample: if every input contains a field called final_inspection_result recorded after the outcome, an excellent score can be meaningless for earlier prediction.
-
-Complete practice code:
-records = [{"id": 1, "equipment": "A"},
-           {"id": 2, "equipment": "A"},
-           {"id": 3, "equipment": "B"}]
-train = []
-validation = []
-for row in records:
-    if row["equipment"] == "A":
-        train.append(row["id"])
-    else:
-        validation.append(row["id"])
-print(train, validation)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example (2/2).
-
-REFERENCES
-
+Continue to
+Validation and leakage in Python (2/2)
 
 ## Slide 12 — Validation and leakage in Python (2/2)
 
-PURPOSE
 Validation and leakage in Python (2/2)
+CML3111, Week 10, slide 12
 
-CONNECT
-Previous slide: Validation and leakage in Python (1/2).
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
+
+Misconception to address
+Different record IDs do not guarantee independent equipment. For forecasting, chronology may be the key constraint instead; choose the split to match the stated use.
+
+Read the displayed code line by line
 for row in records:
-    if row["equipment"] == "A":
-        train.append(row["id"])
-    else:
-        validation.append(row["id"])
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+if row["equipment"] == "A":
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+train.append(row["id"])
+Evaluate the argument and add it as one new item at the end of this list.
+
+else:
+Use this remaining path when the matching earlier condition did not succeed.
+
+validation.append(row["id"])
+Evaluate the argument and add it as one new item at the end of this list.
+
 print(train, validation)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-for takes the next item. The indented block repeats.
-
-if tests a condition. The chosen indented block runs.
-
-print displays a value below the cell.
-
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-Write equipment letters on paper cards and distribute whole groups to train, validation and test. Explain why two observations of the same machine can share information. Fit a missing-value replacement on training values [20, 22, 24]: the median is 22. A new hotter observation must not change that fitted median. Show a counterexample: if every input contains a field called final_inspection_result recorded after the outcome, an excellent score can be meaningless for earlier prediction.
-
-Complete practice code:
-records = [{"id": 1, "equipment": "A"},
-           {"id": 2, "equipment": "A"},
-           {"id": 3, "equipment": "B"}]
-train = []
-validation = []
-for row in records:
-    if row["equipment"] == "A":
-        train.append(row["id"])
-    else:
-        validation.append(row["id"])
-print(train, validation)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Expected output.
-
-REFERENCES
-
+Continue to
+Validation and leakage results
 
 ## Slide 13 — Validation and leakage results
 
-PURPOSE
 Validation and leakage results
+CML3111, Week 10, slide 13
 
-CONNECT
-Previous slide: Validation and leakage in Python (2/2).
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
+
+Misconception to address
+Different record IDs do not guarantee independent equipment. For forecasting, chronology may be the key constraint instead; choose the split to match the stated use.
+
+On this slide
 [1, 2] [3]
 
-LECTURER CUE
-Compare the actual output character by character with this practice result. If it differs, read the first error and check the input, units, names and execution order. Do not copy this practice output into a graded answer.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preprocessing and pipeline.
-
-REFERENCES
-
+Continue to
+Preprocessing and pipeline
 
 ## Slide 14 — Preprocessing and pipeline
 
-PURPOSE
 Preprocessing and pipeline
+CML3111, Week 10, slide 14
 
-CONNECT
-Previous slide: Validation and leakage results.
+Explanation to give
+A pipeline keeps preparation and prediction in one ordered procedure. Fit learns preparation values from training data and then fits the model. Prediction reuses those saved values.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For training feature values 20, 22, missing and 24, the learned median is 22. A missing value in a new observation also receives 22, without recalculating from the new observations.
+
+Misconception to address
+Filling all records before splitting leaks information. A pipeline avoids that only when its fit receives the correct training subset.
+
+On this slide
 Preprocessing and pipeline: Preprocessing changes inputs, for example filling missing values. A pipeline fits these steps on training data and applies the same fitted changes to new inputs.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A learned cleaning value comes from training.
-
-REFERENCES
-
+Continue to
+A learned cleaning value comes from training
 
 ## Slide 15 — A learned cleaning value comes from training
 
-PURPOSE
 A learned cleaning value comes from training
+CML3111, Week 10, slide 15
 
-CONNECT
-Previous slide: Preprocessing and pipeline.
+Explanation to give
+A pipeline keeps preparation and prediction in one ordered procedure. Fit learns preparation values from training data and then fits the model. Prediction reuses those saved values.
 
-EXPLAIN
+Worked illustration / lecturer answer
+For training feature values 20, 22, missing and 24, the learned median is 22. A missing value in a new observation also receives 22, without recalculating from the new observations.
+
+Misconception to address
+Filling all records before splitting leaks information. A pipeline avoids that only when its fit receives the correct training subset.
+
+On this slide
 The training readings are 20, 22 and 24. Their median is 22.
 
 A missing validation value receives the already learned 22.
 
 A new validation reading of 40 must not change the fitted median.
 
-LECTURER CUE
-Fit a missing-value replacement on training values [20, 22, 24]: the median is 22. A new hotter observation must not change that fitted median.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A training-only fill value in Python (1/2).
-
-REFERENCES
-
+Continue to
+A training-only fill value in Python (1/2)
 
 ## Slide 16 — A training-only fill value in Python (1/2)
 
-PURPOSE
 A training-only fill value in Python (1/2)
+CML3111, Week 10, slide 16
 
-CONNECT
-Previous slide: A learned cleaning value comes from training.
+Explanation to give
+A pipeline keeps preparation and prediction in one ordered procedure. Fit learns preparation values from training data and then fits the model. Prediction reuses those saved values.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+For training feature values 20, 22, missing and 24, the learned median is 22. A missing value in a new observation also receives 22, without recalculating from the new observations.
+
+Misconception to address
+Filling all records before splitting leaks information. A pipeline avoids that only when its fit receives the correct training subset.
+
+Read the displayed code line by line
 from statistics import median
+Bring the named tool from this library into the current Python session.
+
 training_values = [20, 22, 24]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 validation_values = [None, 40]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 training_median = median(training_values)
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 filled_validation = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
 
-import loads a library. from selects a tool from it.
-
-Square brackets create a list or select an item.
-
-= assigns the value on the right to the name on the left.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-The median is learned from training observations. Adding a new validation observation must not change it. A real modelling pipeline follows this same rule for each learned step.
-
-Complete practice code:
-from statistics import median
-training_values = [20, 22, 24]
-validation_values = [None, 40]
-training_median = median(training_values)
-filled_validation = []
-for value in validation_values:
-    if value is None:
-        filled_validation.append(training_median)
-    else:
-        filled_validation.append(value)
-print(training_median, filled_validation)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A training-only fill value in Python (2/2).
-
-REFERENCES
-
+Continue to
+A training-only fill value in Python (2/2)
 
 ## Slide 17 — A training-only fill value in Python (2/2)
 
-PURPOSE
 A training-only fill value in Python (2/2)
+CML3111, Week 10, slide 17
 
-CONNECT
-Previous slide: A training-only fill value in Python (1/2).
+Explanation to give
+A pipeline keeps preparation and prediction in one ordered procedure. Fit learns preparation values from training data and then fits the model. Prediction reuses those saved values.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+For training feature values 20, 22, missing and 24, the learned median is 22. A missing value in a new observation also receives 22, without recalculating from the new observations.
+
+Misconception to address
+Filling all records before splitting leaks information. A pipeline avoids that only when its fit receives the correct training subset.
+
+Read the displayed code line by line
 for value in validation_values:
-    if value is None:
-        filled_validation.append(training_median)
-    else:
-        filled_validation.append(value)
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+if value is None:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+filled_validation.append(training_median)
+Evaluate the argument and add it as one new item at the end of this list.
+
+else:
+Use this remaining path when the matching earlier condition did not succeed.
+
+filled_validation.append(value)
+Evaluate the argument and add it as one new item at the end of this list.
+
 print(training_median, filled_validation)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-for takes the next item. The indented block repeats.
-
-if tests a condition. The chosen indented block runs.
-
-print displays a value below the cell.
-
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-The median is learned from training observations. Adding a new validation observation must not change it. A real modelling pipeline follows this same rule for each learned step.
-
-Complete practice code:
-from statistics import median
-training_values = [20, 22, 24]
-validation_values = [None, 40]
-training_median = median(training_values)
-filled_validation = []
-for value in validation_values:
-    if value is None:
-        filled_validation.append(training_median)
-    else:
-        filled_validation.append(value)
-print(training_median, filled_validation)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Leakage gives away information from the future.
-
-REFERENCES
-
+Continue to
+Leakage gives away information from the future
 
 ## Slide 18 — Leakage gives away information from the future
 
-PURPOSE
 Leakage gives away information from the future
+CML3111, Week 10, slide 18
 
-CONNECT
-Previous slide: A training-only fill value in Python (2/2).
+Explanation to give
+If the intended use is new equipment, keep all observations from each equipment ID together in one partition. Otherwise near-related records can make evaluation look easier than deployment.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Equipment A recorded on Monday and Tuesday belongs in one partition under a group split. Splitting those two rows across train and validation lets the model see the same equipment on both sides.
+
+Misconception to address
+Different record IDs do not guarantee independent equipment. For forecasting, chronology may be the key constraint instead; choose the split to match the stated use.
+
+On this slide
 Suppose we predict a fault before an inspection.
 
 final_inspection_result exists only after the inspection.
 
 Using it as an input would answer a different, easier question than the one we intended.
 
-LECTURER CUE
-Show a counterexample: if every input contains a field called final_inspection_result recorded after the outcome, an excellent score can be meaningless for earlier prediction.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Parameters hyperparameters and a fold.
-
-REFERENCES
-
+Continue to
+Parameters hyperparameters and a fold
 
 ## Slide 19 — Parameters hyperparameters and a fold
 
-PURPOSE
 Parameters hyperparameters and a fold
+CML3111, Week 10, slide 19
 
-CONNECT
-Previous slide: Leakage gives away information from the future.
+Explanation to give
+A parameter is learned during fit. A hyperparameter is chosen as a setting. Cross-validation repeats fitting with different held-out portions of the development data to assess choices more steadily.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If validation errors are 2, 3 and 4, the mean is 3. Their spread indicates sensitivity to the held-out portion. A standard deviation describes that spread; it is not automatically a confidence interval.
+
+Misconception to address
+Fit preprocessing separately within each training fold. Keep groups or time order intact where required. The final test remains separate from tuning.
+
+On this slide
 A parameter is learned during fitting, such as a line’s slope. A hyperparameter is a setting chosen around fitting, such as a tree’s max_depth.
 
 A fold is one part of the development data used for a validation turn. Refit the entire preprocessing and model on the other parts for that turn.
 
 Compare candidate settings using validation evidence. Keep the final test outside that selection process.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Cross-validation.
-
-REFERENCES
-
+Continue to
+Cross-validation
 
 ## Slide 20 — Cross-validation
 
-PURPOSE
 Cross-validation
+CML3111, Week 10, slide 20
 
-CONNECT
-Previous slide: Parameters hyperparameters and a fold.
+Explanation to give
+A parameter is learned during fit. A hyperparameter is chosen as a setting. Cross-validation repeats fitting with different held-out portions of the development data to assess choices more steadily.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If validation errors are 2, 3 and 4, the mean is 3. Their spread indicates sensitivity to the held-out portion. A standard deviation describes that spread; it is not automatically a confidence interval.
+
+Misconception to address
+Fit preprocessing separately within each training fold. Keep groups or time order intact where required. The final test remains separate from tuning.
+
+On this slide
 Cross-validation: Repeat fitting and validation on several partitions of the training/development data. Respect groups or time order. Keep the final test outside tuning.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-What standard deviation tells us.
-
-REFERENCES
-
+Continue to
+What standard deviation tells us
 
 ## Slide 21 — What standard deviation tells us
 
-PURPOSE
 What standard deviation tells us
+CML3111, Week 10, slide 21
 
-CONNECT
-Previous slide: Cross-validation.
+Explanation to give
+A parameter is learned during fit. A hyperparameter is chosen as a setting. Cross-validation repeats fitting with different held-out portions of the development data to assess choices more steadily.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If validation errors are 2, 3 and 4, the mean is 3. Their spread indicates sensitivity to the held-out portion. A standard deviation describes that spread; it is not automatically a confidence interval.
+
+Misconception to address
+Fit preprocessing separately within each training fold. Keep groups or time order intact where required. The final test remains separate from tuning.
+
+On this slide
 Scores 3, 4 and 5 have mean 4. Their deviations are -1, 0 and 1.
 
 For these three fold scores, population SD = sqrt((1 + 0 + 1) / 3), about 0.82.
 
 SD describes spread around the mean in the score’s units. The next illustration uses this same population convention; it is not a confidence interval.
 
-LECTURER CUE
-Square each deviation, average all three, then take the square root. Here we describe the full displayed set. A sample SD would instead divide by n - 1; do not mix conventions.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Trace three validation turns.
-
-REFERENCES
-
+Continue to
+Trace three validation turns
 
 ## Slide 22 — Trace three validation turns
 
-PURPOSE
 Trace three validation turns
+CML3111, Week 10, slide 22
 
-CONNECT
-Previous slide: What standard deviation tells us.
+Explanation to give
+A parameter is learned during fit. A hyperparameter is chosen as a setting. Cross-validation repeats fitting with different held-out portions of the development data to assess choices more steadily.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If validation errors are 2, 3 and 4, the mean is 3. Their spread indicates sensitivity to the held-out portion. A standard deviation describes that spread; it is not automatically a confidence interval.
+
+Misconception to address
+Fit preprocessing separately within each training fold. Keep groups or time order intact where required. The final test remains separate from tuning.
+
+On this slide
 Turn | Fit using | Validate using
-
 1 | Parts B and C | Part A
-
 2 | Parts A and C | Part B
-
 3 | Parts A and B | Part C
-
 Refit preprocessing in every turn. The separate final test is not A, B or C.
 
-Read the rows in order. Refit preprocessing in every turn. The separate final test is not A, B or C.
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Each fold takes a turn at validation.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Each fold takes a turn at validation
 
 ## Slide 23 — Each fold takes a turn at validation
 
-PURPOSE
 Each fold takes a turn at validation
+CML3111, Week 10, slide 23
 
-CONNECT
-Previous slide: Trace three validation turns.
+Explanation to give
+A parameter is learned during fit. A hyperparameter is chosen as a setting. Cross-validation repeats fitting with different held-out portions of the development data to assess choices more steadily.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If validation errors are 2, 3 and 4, the mean is 3. Their spread indicates sensitivity to the held-out portion. A standard deviation describes that spread; it is not automatically a confidence interval.
+
+Misconception to address
+Fit preprocessing separately within each training fold. Keep groups or time order intact where required. The final test remains separate from tuning.
+
+On this slide
 Illustrated spread: population SD 0.39 MPa, not a confidence interval.
 
-LECTURER CUE
-The illustrated mean is about 4.30 MPa and population standard deviation about 0.39 MPa. This is fold variation, not a confidence interval. Keep equipment groups together. Keep a separate final test outside model selection.
-Source: existing course illustration figs/kfold.png. These are illustrative examples, not this cohort’s assessed results.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Choose a split that matches future use.
-
-REFERENCES
-Source: existing course illustration figs/kfold.png. These are illustrative examples, not this cohort’s assessed results.
+Continue to
+Choose a split that matches future use
 
 ## Slide 24 — Choose a split that matches future use
 
-PURPOSE
 Choose a split that matches future use
+CML3111, Week 10, slide 24
 
-CONNECT
-Previous slide: Each fold takes a turn at validation.
+Explanation to give
+A parameter is learned during fit. A hyperparameter is chosen as a setting. Cross-validation repeats fitting with different held-out portions of the development data to assess choices more steadily.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If validation errors are 2, 3 and 4, the mean is 3. Their spread indicates sensitivity to the held-out portion. A standard deviation describes that spread; it is not automatically a confidence interval.
+
+Misconception to address
+Fit preprocessing separately within each training fold. Keep groups or time order intact where required. The final test remains separate from tuning.
+
+On this slide
 Equipment or time: For unseen equipment, keep each equipment ID together. For future-time prediction, train on earlier observations and evaluate on later ones.
-
 Scaler and split tool: A scaler learns how to rescale features; fit it on training data. GroupShuffleSplit is a library tool for group separation. Our assignment instead uses its fixed published equipment lists.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Revision example and answer.
-
-REFERENCES
-
+Continue to
+Revision example and answer
 
 ## Slide 25 — Revision example and answer
 
-PURPOSE
 Revision example and answer
+CML3111, Week 10, slide 25
 
-CONNECT
-Previous slide: Choose a split that matches future use.
+Explanation to give
+Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
 
-EXPLAIN
+Worked illustration / lecturer answer
 Example: A second observation from B arrives. Where does it go? Why not put it into training just to balance row counts?
 
 Answer: It stays with B in validation. Mixing a source across partitions can give an overly optimistic estimate for unseen equipment.
 
-LECTURER CUE
-Give silent thinking time, then let pairs discuss. Rotate who types. This is practice, not a graded quiz. Expected response: It stays with B in validation. Mixing a source across partitions can give an overly optimistic estimate for unseen equipment.
+Misconception to address
+Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
 
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment
 
 ## Slide 26 — Preparing for the assignment
 
-PURPOSE
 Preparing for the assignment
+CML3111, Week 10, slide 26
 
-CONNECT
-Previous slide: Revision example and answer.
+Explanation to give
+Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Compare models on identical held-out observations with the same metric and preprocessing rules. Each cross-validation training fold learns its own preparation values.
+
+Misconception to address
+A written claim of no leakage must agree with the executable split and fitting code. Follow the published execution requirement for any criterion linked to the split check.
+
+On this slide
 W10 specifies E1–E4 train, E5 validation, E6 test and preserves input order.
 
 Use the assigned equipment_id field and record_id outputs.
 
 Reuse the W08 fitting pattern.
 
-Explain that GroupShuffleSplit and time-based splitting solve different deployment questions; use the rule in the issued task.
+GroupShuffleSplit separates equipment groups. A time-based split separates earlier and later records. Follow the split required by your task.
 
-LECTURER CUE
-W10 specifies E1–E4 train, E5 validation, E6 test and preserves input order. Use the assigned equipment_id field and record_id outputs. Reuse the W08 fitting pattern. Explain that GroupShuffleSplit and time-based splitting solve different deployment questions; use the rule in the issued task.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Interpreting validation results.
-
-REFERENCES
-
+Continue to
+Interpreting validation results
 
 ## Slide 27 — Interpreting validation results
 
-PURPOSE
 Interpreting validation results
+CML3111, Week 10, slide 27
 
-CONNECT
-Previous slide: Preparing for the assignment.
+Explanation to give
+Explain what population the validation result represents. A model evaluated on unseen equipment supports a different claim from one evaluated on new readings from already-seen equipment.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If group splitting increases error compared with a row shuffle, the earlier score may have benefited from seeing related equipment. Report both the protocol and the error rather than concealing the harder result.
+
+Misconception to address
+A fixed random seed makes the split repeatable, not necessarily representative. Examine group coverage and future operating conditions.
+
+On this slide
 Fit an imputer or scaler only on training data; putting it in a Pipeline helps enforce that during cross-validation.
 
 A low training error and high validation error suggest overfitting, but data shift or leakage can also matter.
@@ -786,50 +663,44 @@ Missing predictor values need a stated treatment.
 
 Report fold scores and their variation, not just the best fold.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Interpreting validation results continued.
-
-REFERENCES
-
+Continue to
+Interpreting validation results continued
 
 ## Slide 28 — Interpreting validation results continued
 
-PURPOSE
 Interpreting validation results continued
+CML3111, Week 10, slide 28
 
-CONNECT
-Previous slide: Interpreting validation results.
+Explanation to give
+Explain what population the validation result represents. A model evaluated on unseen equipment supports a different claim from one evaluated on new readings from already-seen equipment.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If group splitting increases error compared with a row shuffle, the earlier score may have benefited from seeing related equipment. Report both the protocol and the error rather than concealing the harder result.
+
+Misconception to address
+A fixed random seed makes the split repeatable, not necessarily representative. Examine group coverage and future operating conditions.
+
+On this slide
 Group related observations together when the deployment goal is new equipment.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Your issued task.
-
-REFERENCES
-
+Continue to
+Your issued task
 
 ## Slide 29 — Your issued task
 
-PURPOSE
 Your issued task
+CML3111, Week 10, slide 29
 
-CONNECT
-Previous slide: Interpreting validation results continued.
+Explanation to give
+Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain record_id as the identifier of an observation, load_pct as load expressed in percent and ambient_c as temperature in degrees Celsius. The target records the known answer in training data.
+
+Misconception to address
+These are synthetic examples for learning. They do not establish a calibrated physical relationship or justify operation of real equipment.
+
+On this slide
 Investigate motor winding temperature.
 
 Target units: deg C.
@@ -838,54 +709,48 @@ These are synthetic teaching records, not measurements suitable for deployment.
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-LECTURER CUE
-Investigate motor winding temperature. Target units: deg C. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-group_split(records).
-
-REFERENCES
-
+Continue to
+group_split(records)
 
 ## Slide 30 — group_split(records)
 
-PURPOSE
 group_split(records)
+CML3111, Week 10, slide 30
 
-CONNECT
-Previous slide: Your issued task.
+Explanation to give
+Choose groups using the task’s deterministic rule, then return record IDs in the required train, validation and test lists.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Check that each equipment ID appears in only one partition and that every record is accounted for. A random row split does not satisfy this interface.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test.
 
 Return train, validation and test lists of record_id in input order.
 
 Do not use target values to choose membership.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W10/CML3111/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-predict_regression(training_records, feature_records).
-
-REFERENCES
-
+Continue to
+predict_regression(training_records, feature_records)
 
 ## Slide 31 — predict_regression(training_records, feature_records)
 
-PURPOSE
 predict_regression(training_records, feature_records)
+CML3111, Week 10, slide 31
 
-CONNECT
-Previous slide: group_split(records).
+Explanation to give
+Build feature rows using only the specified input fields and preserve their order. Fit preprocessing and the three requested models using training records only.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The returned dictionary contains baseline, linear and tree, each with one prediction per feature record. A feature record deliberately contains no target answer.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only.
 
 Return three prediction lists under baseline, linear and tree.
@@ -894,27 +759,24 @@ Feature records have no target.
 
 Fit preprocessing only on training data.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W10/CML3111/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Written evidence.
-
-REFERENCES
-
+Continue to
+Written evidence
 
 ## Slide 32 — Written evidence
 
-PURPOSE
 Written evidence
+CML3111, Week 10, slide 32
 
-CONNECT
-Previous slide: predict_regression(training_records, feature_records).
+Explanation to give
+Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+
+Misconception to address
+Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+
+On this slide
 Use the cell headed “My written evidence”.
 
 Explain the supplied scenario in your own words.
@@ -923,27 +785,24 @@ State target units, reasons and limitations.
 
 Submit one complete notebook containing code and written evidence.
 
-LECTURER CUE
-Published criterion weights and exact requirements remain in TASKS.md. Broader project exercises are formative and do not add weekly marks. Local automated reasoning assessment remains subject to its release checks.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Validation and trust submission.
-
-REFERENCES
-
+Continue to
+Validation and trust submission
 
 ## Slide 33 — Validation and trust submission
 
-PURPOSE
 Validation and trust submission
+CML3111, Week 10, slide 33
 
-CONNECT
-Previous slide: Written evidence.
+Explanation to give
+This slide hands over CML3111 W10. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The recorded cutoff for this form is 2026-11-20T11:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+
+Misconception to address
+Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+
+On this slide
 Opens: 13 Nov 2026, 11:00 Kampala
 
 Deadline: 20 Nov 2026, 11:00 Kampala
@@ -952,81 +811,72 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-LECTURER CUE
-The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Week 10 quiz.
-
-REFERENCES
-
+Continue to
+Week 10 quiz
 
 ## Slide 34 — Week 10 quiz
 
-PURPOSE
 Week 10 quiz
+CML3111, Week 10, slide 34
 
-CONNECT
-Previous slide: Validation and trust submission.
+Explanation to give
+This is the CML3111 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3111 when ready and read the logged closing time.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+
+Misconception to address
+Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+
+On this slide
 Answer individually after the lecturer activates the quiz.
 
 Available for 24 hours from activation.
 
 Use your Student Registration Number and registered account.
 
-The lecturer will confirm the exact closing time.
+Check the announced quiz closing time.
 
-LECTURER CUE
-Activate the matching open_W10_CML3111 function in Quiz Controls, then confirm the 24-hour close time. Opening this slide or clicking its link does not activate the form. The 24 hours is the availability window. Keep existing quiz scoring and form rules. Do not show private answer keys.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Before you leave.
-
-REFERENCES
-
+Continue to
+Revision and submission checklist
 
 ## Slide 35 — Revision and submission checklist
 
-PURPOSE
 Revision and submission checklist
+CML3111, Week 10, slide 35
 
-CONNECT
-Previous slide: Week 10 quiz.
+Explanation to give
+Connect evaluation to intended use. Decide how to hold out observations before fitting either preprocessing or the model.
 
-EXPLAIN
+Worked illustration / lecturer answer
+When testing new equipment, all observations from equipment A stay in one partition. Training must not learn its missing-value replacements from held-out equipment.
+
+Misconception to address
+Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+
+On this slide
 You can identify which records may influence preprocessing and model selection.
 
 Save your work and check the required submission files.
 
-LECTURER CUE
-Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Optional revision video.
-
-REFERENCES
-
+Continue to
+Optional revision video
 
 ## Slide 36 — Optional revision video
 
-PURPOSE
 Optional revision video
+CML3111, Week 10, slide 36
 
-CONNECT
-Previous slide: Revision and submission checklist.
+Explanation to give
+Give the viewing question before playing the excerpt: Why evaluate using observations not used to fit that particular model?
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
+
+Misconception to address
+The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
+
+On this slide
 For revision after class.
 
 StatQuest with Josh Starmer
@@ -1036,15 +886,5 @@ Opening up to 04:00, optional preview-selected excerpt
 
 Listening question: Why evaluate using observations not used to fit that particular model?
 
-LECTURER CUE
-Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.
-After viewing: Explain why our repeated equipment IDs require grouped partitions rather than ordinary random folds.
-Preview before class and stop after the selected short excerpt. If playback fails, teach the worked example. Video is optional. Source: https://www.youtube.com/watch?v=fSytzGwwBVw
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-independent revision and the issued task.
-
-REFERENCES
+Reference / existing resource
+https://www.youtube.com/watch?v=fSytzGwwBVw

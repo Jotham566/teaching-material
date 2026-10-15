@@ -1,1038 +1,763 @@
 # CML3112 Week02 Design Infrastructure
 
-Private lecturer companion. These same notes are embedded in the PowerPoint. Use Presenter View; keep the student display on slides only.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — Where the work
 
-TEACHING PURPOSE
 Where the work
+CML3112, Week 2, slide 1
 
-LECTURER CUE
-Today you stop reading about this and start doing it. By the end of the session you will have run your own code, seen its output, and put it somewhere a marker can find it.
-You need three things: a browser, a Google account and a GitHub account. You do not need to install anything at all — that is deliberate.
+Explanation to give
+Today the learner creates, runs, saves and submits a notebook. Separate those actions so a successful run is not mistaken for a saved or submitted file.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Worked illustration / lecturer answer
+The runtime remembers readings = 12. One update adding 5 gives 17; repeating only that update gives 22. A fresh run starts at 12 again.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
 
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-By the end of today you can…. Move on after a learner can explain the current example or required action.
+Continue to
+By the end of today you can…
 
 ## Slide 2 — By the end of today you can…
 
-TEACHING PURPOSE
 By the end of today you can…
+CML3112, Week 2, slide 2
 
-CONNECT
-Build on the preceding slide: Where the work.
+Explanation to give
+Today the learner creates, runs, saves and submits a notebook. Separate those actions so a successful run is not mistaken for a saved or submitted file.
 
-LECTURER CUE
-Seven objectives, and the fourth is the one that will save you the most time all semester.
+Worked illustration / lecturer answer
+The runtime remembers readings = 12. One update adding 5 gives 17; repeating only that update gives 22. A fresh run starts at 12 again.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+Use the outcomes listed on this slide to check understanding through the small examples, rather than asking only whether everybody understands.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-How today runs. Move on after a learner can explain the current example or required action.
+Continue to
+How today runs
 
 ## Slide 3 — How today runs
 
-TEACHING PURPOSE
 How today runs
+CML3112, Week 2, slide 3
 
-CONNECT
-Build on the preceding slide: By the end of today you can….
+Explanation to give
+Orient students to this particular lesson: explain what they will see demonstrated, which file they will use and what they must retain for revision. Keep the transition short enough to preserve explanation time.
 
-LECTURER CUE
-The same eleven-segment shape as Week 1, with more keyboard time than any session so far. The break falls at the midpoint, straight after the execution-trap segment.
+Worked illustration / lecturer answer
+Open the next worked example on the projector and name its input and intended result. Demonstrate it yourself before asking students to interpret a result. Use remaining summary and glossary pages for independent revision.
 
-NEXT
-Where we got to, and where we are going. Move on after a learner can explain the current example or required action.
+Misconception to address
+The historical slide's timed group activity is not a requirement to stop for partner work. Use a lecturer-led walkthrough in the current limited class time.
 
-## Slide 4 — Where we got to, and where we are going
+Continue to
+Previous lesson and today’s topics
 
-TEACHING PURPOSE
-Where we got to, and where we are going
+## Slide 4 — Previous lesson and today’s topics
 
-CONNECT
-Build on the preceding slide: How today runs.
+Previous lesson and today’s topics
+CML3112, Week 2, slide 4
 
-LECTURER CUE
-Ten minutes of recall before any new material. A2 is due at the start of Week 3, and by the end of today most of it is already built.
+Explanation to give
+Today the learner creates, runs, saves and submits a notebook. Separate those actions so a successful run is not mistaken for a saved or submitted file.
 
-NEXT
-Two minutes: what stuck from Week 1?. Move on after a learner can explain the current example or required action.
+Worked illustration / lecturer answer
+The runtime remembers readings = 12. One update adding 5 gives 17; repeating only that update gives 22. A fresh run starts at 12 again.
+
+Misconception to address
+Use the outcomes listed on this slide to check understanding through the small examples, rather than asking only whether everybody understands.
+
+Continue to
+Two minutes: what stuck from Week 1?
 
 ## Slide 5 — Two minutes: what stuck from Week 1?
 
-TEACHING PURPOSE
 Two minutes: what stuck from Week 1?
+CML3112, Week 2, slide 5
 
-CONNECT
-Build on the preceding slide: Where we got to, and where we are going.
+Explanation to give
+Recall features as information known beforehand and target as the answer to predict. Days until servicing is a quantity, so regression. A fixed verified formula may make ML unnecessary. Use the following answer slide to explain why, without requiring partner discussion.
 
-LECTURER CUE
-These three answers are the vocabulary the rest of the semester assumes. If you cannot answer them, the Week 1 deck's glossary slide has all of it in one place.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A feature is an input available when predicting. The target is the answer to learn from. Regression predicts a number; classification predicts a category. Learning patterns does not by itself establish cause.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Predicting concrete strength: regression. Predicting pass/fail: classification. Is a later test result available before that test? No.
-
-IF LEARNERS ARE STUCK
-Describe the engineering decision in everyday language, then label one row, an input and its answer. Compare with a rule you could write directly.
-
-DISCUSSION KEY FOR THIS SLIDE
-ANSWERS
+Continue to
 How did you do?
-A
-The input columns, and the value?
-The columns you were given are the FEATURES. The value you predicted is the TARGET. One row with both is one EXAMPLE.
-B
-Days until servicing?
-Regression — the answer is a number with a unit. If it were 'service due or not' it would be classification.
-C
-One of the four limits?
-No data · no signal · physics is simply better · the future stopped resembling the past. Any one of those.
-Let learners attempt first; use this to explain the reasoning, not just reveal the answer.
-
-NEXT
-How did you do?. Move on after a learner can explain the current example or required action.
 
 ## Slide 6 — How did you do?
 
-TEACHING PURPOSE
 How did you do?
+CML3112, Week 2, slide 6
 
-CONNECT
-Build on the preceding slide: Two minutes: what stuck from Week 1?.
+Explanation to give
+For each answer on this slide, identify the deciding feature of the question: timing of the input, kind of target, run order or operation requested.
 
-LECTURER CUE
-Features, target, example: those three words are the vocabulary every later week assumes. If the first question was hard, the Week 1 deck's data-table figure and glossary slide have all of it in one place, and half an hour on them this evening is worth more than anything else you could revise.
+Worked illustration / lecturer answer
+The input columns, and the value?
+The columns you were given are the FEATURES. The value you predicted is the TARGET. One row with both is one EXAMPLE.
+Days until servicing?
+Regression — the answer is a number with a unit. If it were 'service due or not' it would be classification.
+One of the four limits?
+Missing data, weak patterns, a better physical model or changed operating conditions.
 
-EXPLAIN IN ORDINARY WORDS
-Read each quantity and unit before using a formula. Python calculates numbers but does not enforce physical units. Parentheses specify which operation happens first.
+Misconception to address
+If a student gives a different engineering example, check its reasoning and timing rather than requiring identical wording to the printed example.
 
-CHECK AND EXPECTED ANSWER
-What is 5 m times 3 m? 15 square metres. What is 7/2 in Python? 3.5; 7//2 is 3.
-
-IF LEARNERS ARE STUCK
-Write the formula and units on paper, substitute small values, then translate it to Python. Check zero denominators and the issued sign convention.
-
-NEXT
-Four questions, four tools. Move on after a learner can explain the current example or required action.
+Continue to
+Four questions, four tools
 
 ## Slide 7 — Four questions, four tools
 
-TEACHING PURPOSE
 Four questions, four tools
+CML3112, Week 2, slide 7
 
-CONNECT
-Build on the preceding slide: How did you do?.
+Explanation to give
+Give each tool one job: Python expresses instructions, a notebook combines code and explanations, Colab runs the notebook in a browser, and Git/GitHub records and hosts project versions.
 
-LECTURER CUE
-Each of today's four tools answers a different question, and the question is the part to remember. Meeting ten libraries in three weeks and retaining none is the standard way an introductory data course fails; knowing which question each tool answers is what stops it happening to you.
+Worked illustration / lecturer answer
+A saved .ipynb can move between notebook environments. Moving the document does not necessarily move the running session or its uploaded CSV.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+Do not imply students must master all tools at once or that no other tool can ever be needed. Demonstrate the browser workflow used for this assessment.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-The four questions. Move on after a learner can explain the current example or required action.
+Continue to
+The four questions
 
 ## Slide 8 — The four questions
 
-TEACHING PURPOSE
 The four questions
+CML3112, Week 2, slide 8
 
-CONNECT
-Build on the preceding slide: Four questions, four tools.
+Explanation to give
+Give each tool one job: Python expresses instructions, a notebook combines code and explanations, Colab runs the notebook in a browser, and Git/GitHub records and hosts project versions.
 
-LECTURER CUE
-Read it as four questions rather than four products. The question is the durable part — the tool that answers it will change during your career, and the question will not.
+Worked illustration / lecturer answer
+A saved .ipynb can move between notebook environments. Moving the document does not necessarily move the running session or its uploaded CSV.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+Do not imply students must master all tools at once or that no other tool can ever be needed. Demonstrate the browser workflow used for this assessment.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
-
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
-
-NEXT
-Google Colab. Move on after a learner can explain the current example or required action.
+Continue to
+Google Colab
 
 ## Slide 9 — Google Colab
 
-TEACHING PURPOSE
 Google Colab
+CML3112, Week 2, slide 9
 
-CONNECT
-Build on the preceding slide: The four questions.
+Explanation to give
+Demonstrate the file-opening path slowly: sign in, open Colab, choose the notebook upload option and select the extracted .ipynb file. Connecting starts a remote Python runtime.
 
-LECTURER CUE
-The reason this course uses Colab is bandwidth and time. A hundred students installing Python, an editor and five libraries over one campus connection does not work; it has to be attempted to be believed.
-The honest limitation: Colab needs an internet connection. That is why the two practical tests in Weeks 7 and 14 are sat offline on lab machines instead, and why the Setup Guide still exists for anyone who wants a local installation.
+Worked illustration / lecturer answer
+Open proof_of_life.ipynb, identify a code cell and run it with Shift+Enter. Show the result underneath. Upload its CSV separately through the runtime Files panel before reading it.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+Saving the notebook to Drive and uploading data to a temporary runtime are separate actions. If the runtime is replaced, the data file may need uploading again.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Your first notebook. Move on after a learner can explain the current example or required action.
+Continue to
+Your first notebook
 
 ## Slide 10 — Your first notebook
 
-TEACHING PURPOSE
 Your first notebook
+CML3112, Week 2, slide 10
 
-CONNECT
-Build on the preceding slide: Google Colab.
+Explanation to give
+Demonstrate the file-opening path slowly: sign in, open Colab, choose the notebook upload option and select the extracted .ipynb file. Connecting starts a remote Python runtime.
 
-LECTURER CUE
-Thirty minutes with your hands on the keyboard. Open a browser now — this segment does not work as something you watch.
+Worked illustration / lecturer answer
+Open proof_of_life.ipynb, identify a code cell and run it with Shift+Enter. Show the result underneath. Upload its CSV separately through the runtime Files panel before reading it.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+Saving the notebook to Drive and uploading data to a temporary runtime are separate actions. If the runtime is replaced, the data file may need uploading again.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Three cells. Move on after a learner can explain the current example or required action.
+Continue to
+Three cells
 
 ## Slide 11 — Three cells
 
-TEACHING PURPOSE
 Three cells
+CML3112, Week 2, slide 11
 
-CONNECT
-Build on the preceding slide: Your first notebook.
+Explanation to give
+Read the three cells separately. Cell 1 prints the cohort greeting and 4. Cell 2 assigns readings = 12 and the f-string inserts 12 into the text. Repeating only cell 3 gives 17,22,27. Repeating cells 2 and 3 resets to 12 and ends at 17. Braces inside an f-string request the current value; they are not printed literally.
 
-LECTURER CUE
-Three cells, and each teaches one thing. Cell 1: code runs and produces output underneath it. Cell 2: a name can hold a value, and that value survives into the next cell. Cell 3: running the same cell twice is not the same as running it once.
-The f in front of a string is what lets you put a variable inside the text — anything in {curly braces} is replaced by that variable's value.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-The three things that go wrong in the first ten minutes. Move on after a learner can explain the current example or required action.
+Continue to
+The three things that go wrong in the first ten minutes
 
 ## Slide 12 — The three things that go wrong in the first ten minutes
 
-TEACHING PURPOSE
 The three things that go wrong in the first ten minutes
+CML3112, Week 2, slide 12
 
-CONNECT
-Build on the preceding slide: Three cells.
+Explanation to give
+Teach a diagnosis sequence: read the final error line, locate the indicated instruction, compare the expected input with what actually exists, and fix the first cause. Explain the error type rather than treating all red output alike.
 
-LECTURER CUE
-Every item on this slide came from a real beginner making that mistake in a real first session. Shift-and-Enter alone accounts for a large share of the first ten minutes. Keep the slide in view while you work rather than reading it once, because it answers most of what goes wrong before you have to ask anybody.
+Worked illustration / lecturer answer
+NameError often means a misspelled or not-yet-created name. FileNotFoundError means the named path was not found. TypeError can result from adding text and a number. A wrong answer can occur with no exception at all.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The highlighted line is where Python noticed a problem, not always its original cause. Do not install an unrelated package when the exercise deliberately names a nonexistent module.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Markdown cell. Move on after a learner can explain the current example or required action.
+Continue to
+Markdown cell
 
 ## Slide 13 — Markdown cell
 
-TEACHING PURPOSE
 Markdown cell
+CML3112, Week 2, slide 13
 
-CONNECT
-Build on the preceding slide: The three things that go wrong in the first ten minutes.
+Explanation to give
+Explain the notebook as a document containing executable instructions and readable explanations. The code cell holds Python; the text cell explains the reasoning. Output sits below the code that produced it.
 
-LECTURER CUE
-This is what makes a notebook better than a script for data work: the reasoning lives beside the calculation instead of in a separate report nobody updates.
-In Colab, press the + Text button instead of + Code. A # at the start of a line makes it a heading; ** around words makes them bold.
-From Week 5 your submitted notebooks are marked partly on whether a reader can follow them, so this is not optional polish.
+Worked illustration / lecturer answer
+In one code cell, print(2 + 2) displays 4 below it. In a text cell, write “I added two counts.” Running that text cell formats the explanation rather than calculating a result.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+A cell's location is document order, while its execution counter reflects when it last ran. Saved output may come from an earlier version of the code.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Thirty seconds: check you are with me. Move on after a learner can explain the current example or required action.
+Continue to
+Thirty seconds: check you are with me
 
 ## Slide 14 — Thirty seconds: check you are with me
 
-TEACHING PURPOSE
 Thirty seconds: check you are with me
+CML3112, Week 2, slide 14
 
-CONNECT
-Build on the preceding slide: Markdown cell.
+Explanation to give
+Enter creates a new line; Shift+Enter executes. hello appears below its code cell. Values 17 and 27 can both result from the shown update if it has run different numbers of times. The difference exposes shared runtime state, not different arithmetic.
 
-LECTURER CUE
-Three quick questions to confirm you are still with the session. Question C is the interesting one: two people running identical code and getting different numbers is a real property of notebooks, and the execution-order block explains why.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-DISCUSSION KEY FOR THIS SLIDE
-ANSWERS
+Continue to
 How did you do?
-A
-Enter did nothing?
-Enter adds a new line inside the cell. Shift and Enter together runs it. This catches almost everybody once.
-B
-Where does 'hello' appear?
-Directly underneath that cell, in the output area. Not in a separate window — a notebook keeps the code and its output together, which is the whole point of it.
-C
-27 versus 17 — who is wrong?
-Neither. They have run the cell a different number of times. That is not a difference of opinion, it is a property of how notebooks work — and it is the subject of the execution-order block.
-Let learners attempt first; use this to explain the reasoning, not just reveal the answer.
-
-NEXT
-How did you do?. Move on after a learner can explain the current example or required action.
 
 ## Slide 15 — How did you do?
 
-TEACHING PURPOSE
 How did you do?
+CML3112, Week 2, slide 15
 
-CONNECT
-Build on the preceding slide: Thirty seconds: check you are with me.
+Explanation to give
+For each answer on this slide, identify the deciding feature of the question: timing of the input, kind of target, run order or operation requested.
 
-LECTURER CUE
-Answer C sets up the next segment. Two notebooks holding identical code can hold different values, because the kernel remembers how many times each cell has been run and the screen does not show you that history. Neither person is wrong; the notebook is simply not telling you everything it knows.
+Worked illustration / lecturer answer
+Enter did nothing?
+Enter adds a new line inside a cell. Shift + Enter runs the cell.
+Where does 'hello' appear?
+The output appears directly below the cell that produced it.
+27 versus 17 — who is wrong?
+Neither. They have run the cell a different number of times. That is not a difference of opinion, it is a property of how notebooks work — and it is the subject of the execution-order block.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+If a student gives a different engineering example, check its reasoning and timing rather than requiring identical wording to the printed example.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
+Continue to
+Notebook cells and execution
 
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+## Slide 16 — Notebook cells and execution
 
-NEXT
-What a notebook actually is. Move on after a learner can explain the current example or required action.
+Notebook cells and execution
+CML3112, Week 2, slide 16
 
-## Slide 16 — What a notebook actually is
+Explanation to give
+This divider introduces The anatomy of a notebook. Explain the notebook as a document containing executable instructions and readable explanations. The code cell holds Python; the text cell explains the reasoning. Output sits below the code that produced it.
 
-TEACHING PURPOSE
-What a notebook actually is
+Worked illustration / lecturer answer
+In one code cell, print(2 + 2) displays 4 below it. In a text cell, write “I added two counts.” Running that text cell formats the explanation rather than calculating a result.
 
-CONNECT
-Build on the preceding slide: How did you do?.
+Misconception to address
+Keep this transition brief. The detailed demonstration follows; do not add another activity before students have seen it.
 
-LECTURER CUE
-Twenty minutes away from the keyboard, and the only concept block in the session. The execution-order block depends on it, because the execution trap only makes sense once you know what the kernel is holding on your behalf.
-
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
-
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-The anatomy of a notebook. Move on after a learner can explain the current example or required action.
+Continue to
+The anatomy of a notebook
 
 ## Slide 17 — The anatomy of a notebook
 
-TEACHING PURPOSE
 The anatomy of a notebook
+CML3112, Week 2, slide 17
 
-CONNECT
-Build on the preceding slide: What a notebook actually is.
+Explanation to give
+Explain the notebook as a document containing executable instructions and readable explanations. The code cell holds Python; the text cell explains the reasoning. Output sits below the code that produced it.
 
-LECTURER CUE
-The kernel is the part worth understanding properly. It is a single Python session sitting behind the whole notebook, so a variable made in cell 2 is available in cell 7 because both cells are talking to that one session. The cells themselves have no connection to each other.
-This is also why a notebook can lie to you. The kernel remembers everything you have run in the order you ran it, and that order need not match the order the cells appear on screen.
+Worked illustration / lecturer answer
+In one code cell, print(2 + 2) displays 4 below it. In a text cell, write “I added two counts.” Running that text cell formats the explanation rather than calculating a result.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+A cell's location is document order, while its execution counter reflects when it last ran. Saved output may come from an earlier version of the code.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Cell, kernel, and the execution counter. Move on after a learner can explain the current example or required action.
+Continue to
+Cell, kernel, and the execution counter
 
 ## Slide 18 — Cell, kernel, and the execution counter
 
-TEACHING PURPOSE
 Cell, kernel, and the execution counter
+CML3112, Week 2, slide 18
 
-CONNECT
-Build on the preceding slide: The anatomy of a notebook.
+Explanation to give
+Explain the notebook as a document containing executable instructions and readable explanations. The code cell holds Python; the text cell explains the reasoning. Output sits below the code that produced it.
 
-LECTURER CUE
-Watch the execution counter. It is the single most useful diagnostic in a notebook and almost no beginner looks at it.
-A notebook where the counters run 1, 2, 3, 4 top to bottom is a notebook you can trust. Anything else needs checking.
+Worked illustration / lecturer answer
+In one code cell, print(2 + 2) displays 4 below it. In a text cell, write “I added two counts.” Running that text cell formats the explanation rather than calculating a result.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+A cell's location is document order, while its execution counter reflects when it last ran. Saved output may come from an earlier version of the code.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-The trap, and the habit that saves you. Move on after a learner can explain the current example or required action.
+Continue to
+The trap, and the habit that saves you
 
 ## Slide 19 — The trap, and the habit that saves you
 
-TEACHING PURPOSE
 The trap, and the habit that saves you
+CML3112, Week 2, slide 19
 
-CONNECT
-Build on the preceding slide: Cell, kernel, and the execution counter.
+Explanation to give
+Describe the runtime as a temporary shared workspace containing names and their current values. All code cells use that same workspace. Running a cell updates it; merely editing a cell does not.
 
-LECTURER CUE
-Twenty minutes on the most common way a notebook produces a confident wrong answer, and on the one menu item that prevents it. If you take a single habit out of Week 2, take this one.
+Worked illustration / lecturer answer
+Run readings = 12 once. Running readings = readings + 5 gives 17, then 22, then 27 on successive executions. Restart and run from the top resets to 12 and ends at 17.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+If the initialisation and update are in one cell, running the whole cell repeatedly gives 17 each time. Put them in separate cells when demonstrating repeated updates.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-The same cell, run three times. Move on after a learner can explain the current example or required action.
+Continue to
+The same cell, run three times
 
 ## Slide 20 — The same cell, run three times
 
-TEACHING PURPOSE
 The same cell, run three times
+CML3112, Week 2, slide 20
 
-CONNECT
-Build on the preceding slide: The trap, and the habit that saves you.
+Explanation to give
+Describe the runtime as a temporary shared workspace containing names and their current values. All code cells use that same workspace. Running a cell updates it; merely editing a cell does not.
 
-LECTURER CUE
-This is why `readings = readings + 5` behaves the way it does: the right-hand side is worked out first, using whatever is currently in readings, and the result is then put back into readings. Run it three times and you have added fifteen.
-The habit: **Restart and Run All** before you believe any answer. It clears the kernel and runs every cell from the top in order, which is exactly what your marker's machine will do.
-From Week 5 your submitted work is graded by a program that does precisely this from a clean start. If your notebook only works in the order you happened to click, it does not work.
+Worked illustration / lecturer answer
+Run readings = 12 once. Running readings = readings + 5 gives 17, then 22, then 27 on successive executions. Restart and run from the top resets to 12 and ends at 17.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+If the initialisation and update are in one cell, running the whole cell repeatedly gives 17 each time. Put them in separate cells when demonstrating repeated updates.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Can you answer these?. Move on after a learner can explain the current example or required action.
+Continue to
+Can you answer these?
 
 ## Slide 21 — Can you answer these?
 
-TEACHING PURPOSE
 Can you answer these?
+CML3112, Week 2, slide 21
 
-CONNECT
-Build on the preceding slide: The same cell, run three times.
+Explanation to give
+Counters [4],[1],[5],[2] show nonsequential execution, but do not alone prove an incorrect answer. Restart and run in the written order to check. Failure after a restart may reveal a stale variable, missing input file or missing setup; diagnose the actual first exception.
 
-LECTURER CUE
-Question B is the one to take slowly. It is the realisation that 'it worked' can be an illusion produced by execution order, and that restarting is what turns the claim into evidence.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-DISCUSSION KEY FOR THIS SLIDE
-ANSWERS
+Continue to
 How did you do?
-A
-Counters [4], [1], [5], [2]?
-They were run out of order, so the kernel's memory does not match what the notebook looks like. Do not trust the final answer until you have restarted and run all.
-B
-It fails after restarting?
-Cell 6 was depending on something created by a cell that has since been changed or deleted — or on a cell further down that you happened to run earlier. It never actually worked from a clean start; the kernel was just still holding the leftovers.
-C
-Why restart rather than re-run one cell?
-Because re-running one cell keeps everything else the kernel is holding, including things that no longer exist anywhere in your code. Only a restart proves the notebook can produce its results from nothing but itself — which is what reproducibility means.
-Let learners attempt first; use this to explain the reasoning, not just reveal the answer.
-
-NEXT
-How did you do?. Move on after a learner can explain the current example or required action.
 
 ## Slide 22 — How did you do?
 
-TEACHING PURPOSE
 How did you do?
+CML3112, Week 2, slide 22
 
-CONNECT
-Build on the preceding slide: Can you answer these?.
+Explanation to give
+For each answer on this slide, identify the deciding feature of the question: timing of the input, kind of target, run order or operation requested.
 
-LECTURER CUE
-Answer B describes the most common way submitted work loses marks: the notebook ran for you and then failed for the marker. Every automated grader and every colleague runs code from a clean start, which is the whole reason the restart habit is asked for here.
+Worked illustration / lecturer answer
+Counters [4], [1], [5], [2]?
+They were run out of order, so the kernel's memory does not match what the notebook looks like. Do not trust the final answer until you have restarted and run all.
+It fails after restarting?
+Cell 6 may need a value from an earlier cell, a deleted cell or a cell run out of order. Restart and run all cells to locate the first failure.
+Why restart rather than re-run one cell?
+Because re-running one cell keeps everything else the kernel is holding, including things that no longer exist anywhere in your code. Only a restart proves the notebook can produce its results from nothing but itself — which is what reproducibility means.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+If a student gives a different engineering example, check its reasoning and timing rather than requiring identical wording to the printed example.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Diagnosing a notebook from its counters. Move on after a learner can explain the current example or required action.
+Continue to
+Diagnosing a notebook from its counters
 
 ## Slide 23 — Diagnosing a notebook from its counters
 
-TEACHING PURPOSE
 Diagnosing a notebook from its counters
+CML3112, Week 2, slide 23
 
-CONNECT
-Build on the preceding slide: How did you do?.
+Explanation to give
+Counters [2],[7],[3] reveal execution order, not a complete history. A blank counter usually means a cell has not executed in the current session or its execution information was cleared. It does not establish that every later result is wrong. Restart, load the required data and run all to test the dependency chain.
 
-LECTURER CUE
-This is the diagnostic routine to use for the rest of your degree. Counters out of order, or a blank counter, mean the notebook and the kernel disagree, and the kernel is what actually ran.
-Step 4 is the question that matters. A result you cannot reproduce from a clean start is indistinguishable from a coincidence, which is why reproducibility gets treated as an engineering requirement in this course.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Break. Move on after a learner can explain the current example or required action.
+Continue to
+Break
 
 ## Slide 24 — Break
 
-TEACHING PURPOSE
 Break
+CML3112, Week 2, slide 24
 
-CONNECT
-Build on the preceding slide: Diagnosing a notebook from its counters.
+Explanation to give
+Announce the actual return time based on the clock now, rather than leaving “ten minutes” ambiguous.
 
-LECTURER CUE
-Ten minutes. Git comes after the break and it needs you awake.
+Worked illustration / lecturer answer
+Save the current notebook before the break. On return, continue at the next topic named in the deck.
 
-NEXT
-What version control gives you. Move on after a learner can explain the current example or required action.
+Misconception to address
+No new assessment or group task is assigned by this divider.
+
+Continue to
+What version control gives you
 
 ## Slide 25 — What version control gives you
 
-TEACHING PURPOSE
 What version control gives you
+CML3112, Week 2, slide 25
 
-CONNECT
-Build on the preceding slide: Break.
+Explanation to give
+Distinguish saving the working file, recording a version and submitting an assignment. Git records chosen changes in commits; GitHub hosts a repository. A commit message should describe the change.
 
-LECTURER CUE
-Twenty-five minutes on what Git records that a copied folder does not. The commands come later; this segment is about the problem they solve, because Git treated as ceremony never gets used voluntarily.
+Worked illustration / lecturer answer
+For today's browser route, download the notebook from Colab, create a private GitHub repository, upload the notebook and CSV, commit them, then edit and commit your own README. The A2 form receives the notebook and README plus the repository URL.
 
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
+Misconception to address
+git commands belong in a terminal, not a Python cell. The web interface handles the remote commit directly. A repository upload does not replace the assignment form.
 
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
+Continue to
+Tracking changes with Git
 
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
+## Slide 26 — Tracking changes with Git
 
-NEXT
-The problem Git actually solves. Move on after a learner can explain the current example or required action.
+Tracking changes with Git
+CML3112, Week 2, slide 26
 
-## Slide 26 — The problem Git actually solves
+Explanation to give
+Distinguish saving the working file, recording a version and submitting an assignment. Git records chosen changes in commits; GitHub hosts a repository. A commit message should describe the change.
 
-TEACHING PURPOSE
-The problem Git actually solves
+Worked illustration / lecturer answer
+For today's browser route, download the notebook from Colab, create a private GitHub repository, upload the notebook and CSV, commit them, then edit and commit your own README. The A2 form receives the notebook and README plus the repository URL.
 
-CONNECT
-Build on the preceding slide: What version control gives you.
+Misconception to address
+git commands belong in a terminal, not a Python cell. The web interface handles the remote commit directly. A repository upload does not replace the assignment form.
 
-LECTURER CUE
-The 'final_v3_REAL_final' folder is a problem everybody recognises, and Git is the tool built for it. The assessment consequence is the part to take seriously: your commit history is the evidence of which part of a team project you did, and sixty-five per cent of your mark is individual.
-
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
-
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
-
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
-
-NEXT
-The four places your work can be. Move on after a learner can explain the current example or required action.
+Continue to
+The four places your work can be
 
 ## Slide 27 — The four places your work can be
 
-TEACHING PURPOSE
 The four places your work can be
+CML3112, Week 2, slide 27
 
-CONNECT
-Build on the preceding slide: The problem Git actually solves.
+Explanation to give
+Distinguish saving the working file, recording a version and submitting an assignment. Git records chosen changes in commits; GitHub hosts a repository. A commit message should describe the change.
 
-LECTURER CUE
-Most Git confusion comes from not knowing which of these four places a file is in. The diagram is worth photographing.
-The staging area feels like a pointless extra step until the first time you want to commit two of the five files you changed. That is what it is for.
+Worked illustration / lecturer answer
+For today's browser route, download the notebook from Colab, create a private GitHub repository, upload the notebook and CSV, commit them, then edit and commit your own README. The A2 form receives the notebook and README plus the repository URL.
 
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
+Misconception to address
+git commands belong in a terminal, not a Python cell. The web interface handles the remote commit directly. A repository upload does not replace the assignment form.
 
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
-
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
-
-NEXT
-Repository, commit, and push. Move on after a learner can explain the current example or required action.
+Continue to
+Repository, commit, and push
 
 ## Slide 28 — Repository, commit, and push
 
-TEACHING PURPOSE
 Repository, commit, and push
+CML3112, Week 2, slide 28
 
-CONNECT
-Build on the preceding slide: The four places your work can be.
+Explanation to give
+Distinguish saving the working file, recording a version and submitting an assignment. Git records chosen changes in commits; GitHub hosts a repository. A commit message should describe the change.
 
-LECTURER CUE
-Commit messages matter more than beginners expect. 'update', 'fix' and 'stuff' are worthless in November. A message should say what changed and, where it is not obvious, why.
+Worked illustration / lecturer answer
+For today's browser route, download the notebook from Colab, create a private GitHub repository, upload the notebook and CSV, commit them, then edit and commit your own README. The A2 form receives the notebook and README plus the repository URL.
 
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
+Misconception to address
+git commands belong in a terminal, not a Python cell. The web interface handles the remote commit directly. A repository upload does not replace the assignment form.
 
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
-
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
-
-NEXT
-Doing it: repository, commit, push. Move on after a learner can explain the current example or required action.
+Continue to
+Doing it: repository, commit, push
 
 ## Slide 29 — Doing it: repository, commit, push
 
-TEACHING PURPOSE
 Doing it: repository, commit, push
+CML3112, Week 2, slide 29
 
-CONNECT
-Build on the preceding slide: Repository, commit, and push.
+Explanation to give
+Distinguish saving the working file, recording a version and submitting an assignment. Git records chosen changes in commits; GitHub hosts a repository. A commit message should describe the change.
 
-LECTURER CUE
-Twenty-five minutes with the whole room in step. You leave this segment with a live GitHub URL, and submit that URL together with the notebook and README.md for A2.
+Worked illustration / lecturer answer
+For today's browser route, download the notebook from Colab, create a private GitHub repository, upload the notebook and CSV, commit them, then edit and commit your own README. The A2 form receives the notebook and README plus the repository URL.
 
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
+Misconception to address
+git commands belong in a terminal, not a Python cell. The web interface handles the remote commit directly. A repository upload does not replace the assignment form.
 
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
-
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
-
-NEXT
-From Colab to GitHub. Move on after a learner can explain the current example or required action.
+Continue to
+From Colab to GitHub
 
 ## Slide 30 — From Colab to GitHub
 
-TEACHING PURPOSE
 From Colab to GitHub
+CML3112, Week 2, slide 30
 
-CONNECT
-Build on the preceding slide: Doing it: repository, commit, push.
+Explanation to give
+Distinguish saving the working file, recording a version and submitting an assignment. Git records chosen changes in commits; GitHub hosts a repository. A commit message should describe the change.
 
-LECTURER CUE
-Use the browser route in STUDENT_HOW_TO.md: download the completed notebook from Colab; create a private GitHub repository with a README; choose Add file, Upload files; add the notebook and supplied CSV; commit the changes. Edit and commit your own README. The displayed Git commands are optional reference for a local terminal, not instructions to type into a Python cell.
+Worked illustration / lecturer answer
+For today's browser route, download the notebook from Colab, create a private GitHub repository, upload the notebook and CSV, commit them, then edit and commit your own README. The A2 form receives the notebook and README plus the repository URL.
 
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
+Misconception to address
+git commands belong in a terminal, not a Python cell. The web interface handles the remote commit directly. A repository upload does not replace the assignment form.
 
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
-
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
-
-NEXT
-Assignment A2 — Proof of Life. Move on after a learner can explain the current example or required action.
+Continue to
+Assignment A2 — Proof of Life
 
 ## Slide 31 — Assignment A2 — Proof of Life
 
-TEACHING PURPOSE
 Assignment A2 — Proof of Life
+CML3112, Week 2, slide 31
 
-CONNECT
-Build on the preceding slide: From Colab to GitHub.
+Explanation to give
+A2 requires the completed main notebook and the student’s own README.md, with a repository URL in the form. Keep the CSV in the runtime/repository. The current guide is authoritative about the required execution-order explanation; repair exercises are practice. Read the live form cutoff rather than the old “start of Week 3” label.
 
-LECTURER CUE
-A2 is marked out of 20: identity 2, proof_sum 4, fresh-run readings 4, correct CSV records 4, execution-order explanation 3, README 3. Keep My explanation: in the notebook text cell. Submit exactly the completed renamed notebook and your own README.md together, plus the repository URL in its form field. The CSV stays in the runtime and repository. Use the current cohort form deadline; do not promise an automatic redo or extra attempt. A1, Quiz 1, A2 and Quiz 2 are separate tasks.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A CSV is a text table. The header supplies column names. With csv.DictReader, values start as text, even if they look like numbers. A path tells Python where the file is.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Can "2.5" from csv.DictReader be added as a number without conversion? No; convert valid numeric text first.
-
-IF LEARNERS ARE STUCK
-Show the file in the runtime folder and compare its exact filename, case and column headers. Upload data again after a fresh Colab runtime.
-
-NEXT
-What makes a README worth reading. Move on after a learner can explain the current example or required action.
+Continue to
+What makes a README worth reading
 
 ## Slide 32 — What makes a README worth reading
 
-TEACHING PURPOSE
 What makes a README worth reading
+CML3112, Week 2, slide 32
 
-CONNECT
-Build on the preceding slide: Assignment A2 — Proof of Life.
+Explanation to give
+Treat the README as instructions for someone opening the project for the first time. Name the files, setup requirements, entry notebook and exact order needed to reproduce the result.
 
-LECTURER CUE
-The README is required now. Include the programme, exact file list, instructions to open the notebook, upload the CSV, restart and run from the top, then save/download. Demonstrate editing README.md on GitHub and downloading the raw file. Ask a partner to follow the instructions literally. Do not submit the instruction README supplied in the ZIP.
+Worked illustration / lecturer answer
+Replace “run the analysis” with “Open analysis.ipynb, place readings.csv in data/, restart the runtime and run all cells.” A useful repair comment names the failed step and the corrected filename.
 
-EXPLAIN IN ORDINARY WORDS
-A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
+Misconception to address
+A repository URL proves a location exists, not that the work runs or was submitted. Contribution claims should point to specific work, not only a count of commits.
 
-CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
-
-IF LEARNERS ARE STUCK
-Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.
-
-NEXT
-Break and Fix. Move on after a learner can explain the current example or required action.
+Continue to
+Break and Fix
 
 ## Slide 33 — Break and Fix
 
-TEACHING PURPOSE
 Break and Fix
+CML3112, Week 2, slide 33
 
-CONNECT
-Build on the preceding slide: What makes a README worth reading.
+Explanation to give
+Teach a diagnosis sequence: read the final error line, locate the indicated instruction, compare the expected input with what actually exists, and fix the first cause. Explain the error type rather than treating all red output alike.
 
-LECTURER CUE
-Guide repairs 01–04 in class, one at a time. 01: identify the deliberately unavailable module and remove the unused import; do not install the made-up package. 02: compare the required and actual Python versions. 03: locate the CSV and correct its path. 04: trace 12, then 17, then the unwanted reset to 12. Remove the reset; restart and Run all for 17. Ask learners to state the cause before showing a repair. These notebooks and hello_engineering.py are practice only; return to proof_of_life.ipynb for the assessed work.
+Worked illustration / lecturer answer
+NameError often means a misspelled or not-yet-created name. FileNotFoundError means the named path was not found. TypeError can result from adding text and a number. A wrong answer can occur with no exception at all.
 
-EXPLAIN IN ORDINARY WORDS
-A module supplies Python tools; import asks Python to load it. A version identifies a software release. A path identifies a file. A state error happens when stored values differ from what we expected.
+Misconception to address
+The highlighted line is where Python noticed a problem, not always its original cause. Do not install an unrelated package when the exercise deliberately names a nonexistent module.
 
-CHECK AND EXPECTED ANSWER
-Notebook 04 starts at 12, adds 5 to get 17, then resets to 12. Why does it print 12? The final assignment overwrites 17.
-
-IF LEARNERS ARE STUCK
-01: the named module is deliberately unavailable; remove the unused import instead of trying to install a made-up package. 02: the exercise asserts Python 2 but the course uses Python 3; inspect sys.version_info and correct that deliberate mismatch. 03: upload the issued CSV and replace the nonexistent folder path with its real filename. 04: remove the unwanted reset, restart and run all for 17; repeat only the increment to see 22, then 27.
-
-NEXT
-Before you leave the room. Move on after a learner can explain the current example or required action.
+Continue to
+Before you leave the room
 
 ## Slide 34 — Before you leave the room
 
-TEACHING PURPOSE
 Before you leave the room
+CML3112, Week 2, slide 34
 
-CONNECT
-Build on the preceding slide: Break and Fix.
+Explanation to give
+There are separate submission actions: activate the Week 2 quiz for a 24-hour window, and use the A2 form for the completed notebook plus README. Five minutes is expected quiz effort, not a five-minute opening. Where catching up, A1 and Quiz 1 have separate links.
 
-LECTURER CUE
-Answer the setup question honestly. 'I could not get that far' is worth more to me than a guess, and it is not the question that carries the mark.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
-NEXT
-Revision material. Move on after a learner can explain the current example or required action.
+Continue to
+Revision material
 
 ## Slide 35 — Revision material
 
-TEACHING PURPOSE
 Revision material
+CML3112, Week 2, slide 35
 
-CONNECT
-Build on the preceding slide: Before you leave the room.
+Explanation to give
+Orient students to this particular lesson: explain what they will see demonstrated, which file they will use and what they must retain for revision. Keep the transition short enough to preserve explanation time.
 
-LECTURER CUE
-Everything past this slide is revision material: a summary, a self-test with worked answers, an eighteen-term glossary and a one-page command reference. It is written to be studied from during the week.
+Worked illustration / lecturer answer
+Open the next worked example on the projector and name its input and intended result. Demonstrate it yourself before asking students to interpret a result. Use remaining summary and glossary pages for independent revision.
 
-NEXT
-What you should take away. Move on after a learner can explain the current example or required action.
+Misconception to address
+The historical slide's timed group activity is not a requirement to stop for partner work. Use a lecturer-led walkthrough in the current limited class time.
+
+Continue to
+What you should take away
 
 ## Slide 36 — What you should take away
 
-TEACHING PURPOSE
 What you should take away
+CML3112, Week 2, slide 36
 
-CONNECT
-Build on the preceding slide: Revision material.
+Explanation to give
+Today the learner creates, runs, saves and submits a notebook. Separate those actions so a successful run is not mistaken for a saved or submitted file.
 
-LECTURER CUE
-Seven statements covering the whole session. The fourth and the seventh are the two that carry into every later week: Restart and Run All as the only honest test, and the broken notebook that never announces itself.
+Worked illustration / lecturer answer
+The runtime remembers readings = 12. One update adding 5 gives 17; repeating only that update gives 22. A fresh run starts at 12 again.
 
-EXPLAIN IN ORDINARY WORDS
-A value is a piece of information. A variable is a name referring to a value. In length_m = 5, Python evaluates the right side and binds that result to the name on the left.
+Misconception to address
+Use the outcomes listed on this slide to check understanding through the small examples, rather than asking only whether everybody understands.
 
-CHECK AND EXPECTED ANSWER
-After x=3 then x=5, what does print(x) display? 5. The earlier value is not added automatically.
-
-IF LEARNERS ARE STUCK
-Write the name on a card and the current value beside it. Distinguish number 3 from quoted text "3".
-
-NEXT
-Self-test — write something for each before you look. Move on after a learner can explain the current example or required action.
+Continue to
+Self-test — write something for each before you look
 
 ## Slide 37 — Self-test — write something for each before you look
 
-TEACHING PURPOSE
 Self-test — write something for each before you look
+CML3112, Week 2, slide 37
 
-CONNECT
-Build on the preceding slide: What you should take away.
+Explanation to give
+A: restart and run with required data available, then diagnose the first error. B: counters record actual execution sequence. C: git add naming two files stages those two, not all five. D: GitHub records project history; the current course collects graded files through the assignment form. E: Tests 1 and 2 use the prepared offline environment with invigilated collection.
 
-LECTURER CUE
-Question E is worth thinking about properly. It is the trade-off at the centre of how this course is set up.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-DISCUSSION KEY FOR THIS SLIDE
-ANSWERS
+Continue to
 How did you do?
-A
-'It worked yesterday'?
-Restart and Run All. Almost always the kernel was holding something from a cell that has since changed or been deleted, so it never really worked from a clean start.
-B
-What the counter tells you?
-The order in which cells were actually executed. Position on the page is only a layout — the counter is what the kernel actually did, and the two can disagree.
-C
-Recording two of five files?
-git add, naming just those two files rather than using a dot. They move into the staging area, and only staged files go into the next commit.
-D
-Why GitHub rather than email?
-Because it records who did what and when, which is how a team mark becomes an individual one; because the grading tools collect work from repositories automatically; and because it is what every engineering employer expects you to have used.
-E
-Colab needs internet — so how are the tests run?
-Offline, on laboratory machines with a local Python installation and no network. That is deliberate: it makes the no-AI-assistance rule actually enforceable rather than a request, and it certifies what you can do unaided. It is also why the Student Setup Guide still exists.
-Let learners attempt first; use this to explain the reasoning, not just reveal the answer.
-
-NEXT
-How did you do?. Move on after a learner can explain the current example or required action.
 
 ## Slide 38 — How did you do?
 
-TEACHING PURPOSE
 How did you do?
+CML3112, Week 2, slide 38
 
-CONNECT
-Build on the preceding slide: Self-test — write something for each before you look.
+Explanation to give
+Clarify the old GitHub wording: repositories preserve work and contribution history, but the current grader receives uploaded assessment files. Students still need the appropriate submission form. A notebook that fails after restarting may lack variables, files or setup; do not assert stale memory is the only possible cause.
 
-LECTURER CUE
-Answer E is the trade-off at the centre of how this course is set up. Colab removes every installation problem and needs a connection to work; the offline lab machines make the no-AI rule in the two tests enforceable rather than a request. Both compromises are deliberate, and they are why the Student Setup Guide still exists for anyone who wants a local installation.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Every word we used today (1 of 3). Move on after a learner can explain the current example or required action.
+Continue to
+Every word we used today (1 of 3)
 
 ## Slide 39 — Every word we used today (1 of 3)
 
-TEACHING PURPOSE
 Every word we used today (1 of 3)
+CML3112, Week 2, slide 39
 
-CONNECT
-Build on the preceding slide: How did you do?.
+Explanation to give
+Demonstrate the file-opening path slowly: sign in, open Colab, choose the notebook upload option and select the extracted .ipynb file. Connecting starts a remote Python runtime.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Worked illustration / lecturer answer
+Open proof_of_life.ipynb, identify a code cell and run it with Shift+Enter. Show the result underneath. Upload its CSV separately through the runtime Files panel before reading it.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
+Misconception to address
+Use this page for revision. Connect each word to the concrete example just taught; do not introduce all the definitions as new material in one block.
 
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Every word we used today (2 of 3). Move on after a learner can explain the current example or required action.
+Continue to
+Every word we used today (2 of 3)
 
 ## Slide 40 — Every word we used today (2 of 3)
 
-TEACHING PURPOSE
 Every word we used today (2 of 3)
+CML3112, Week 2, slide 40
 
-CONNECT
-Build on the preceding slide: Every word we used today (1 of 3).
+Explanation to give
+Explain assignment as evaluating the right side and attaching the name on the left to that result. The name can later refer to a different value. Read the equals sign as “assign”, rather than as a mathematical claim that lasts forever.
 
-EXPLAIN IN ORDINARY WORDS
-A value is a piece of information. A variable is a name referring to a value. In length_m = 5, Python evaluates the right side and binds that result to the name on the left.
+Worked illustration / lecturer answer
+length_m = 4 makes length_m refer to 4. length_m = 6 replaces that association. Printing length_m now displays 6; the name does not remember a history of both values.
 
-CHECK AND EXPECTED ANSWER
-After x=3 then x=5, what does print(x) display? 5. The earlier value is not added automatically.
+Misconception to address
+Use this page for revision. Connect each word to the concrete example just taught; do not introduce all the definitions as new material in one block.
 
-IF LEARNERS ARE STUCK
-Write the name on a card and the current value beside it. Distinguish number 3 from quoted text "3".
-
-NEXT
-Every word we used today (3 of 3). Move on after a learner can explain the current example or required action.
+Continue to
+Every word we used today (3 of 3)
 
 ## Slide 41 — Every word we used today (3 of 3)
 
-TEACHING PURPOSE
 Every word we used today (3 of 3)
+CML3112, Week 2, slide 41
 
-CONNECT
-Build on the preceding slide: Every word we used today (2 of 3).
+Explanation to give
+Treat the README as instructions for someone opening the project for the first time. Name the files, setup requirements, entry notebook and exact order needed to reproduce the result.
 
-LECTURER CUE
-Eighteen terms, and all of them are used every week from now on. If you can define them all by Week 4 you are in good shape — several appear in the weekly quizzes.
+Worked illustration / lecturer answer
+Replace “run the analysis” with “Open analysis.ipynb, place readings.csv in data/, restart the runtime and run all cells.” A useful repair comment names the failed step and the corrected filename.
 
-EXPLAIN IN ORDINARY WORDS
-A list keeps items in order. Python positions start at zero. In [2,4,6], position 0 contains 2 and position 2 contains 6. A slice excludes its stop position.
+Misconception to address
+Use this page for revision. Connect each word to the concrete example just taught; do not introduce all the definitions as new material in one block.
 
-CHECK AND EXPECTED ANSWER
-What is [2,4,6][1]? 4. Is there a position 3? No.
-
-IF LEARNERS ARE STUCK
-Draw three numbered boxes starting at zero. Keep the position separate from the value stored in it.
-
-NEXT
-One-page reference — the commands and the habits. Move on after a learner can explain the current example or required action.
+Continue to
+One-page reference — the commands and the habits
 
 ## Slide 42 — One-page reference — the commands and the habits
 
-TEACHING PURPOSE
 One-page reference — the commands and the habits
+CML3112, Week 2, slide 42
 
-CONNECT
-Build on the preceding slide: Every word we used today (3 of 3).
+Explanation to give
+Use this as a reference, not a command drill. Today’s browser GitHub route does not require the terminal commands. Before submission, load the correct data, restart, run all and save. For an error, read its type and the indicated operation, then describe what was expected and what happened.
 
-LECTURER CUE
-Photograph this slide. It answers most of what comes up in Weeks 3 to 6, and the four Git commands on it are the same four you will still be using on the project in Week 13.
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-EXPLAIN IN ORDINARY WORDS
-A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.
 
-CHECK AND EXPECTED ANSWER
-Does editing a cell update a value already stored in memory? No; the cell must run.
-
-IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
-
-NEXT
-Five questions,. Move on after a learner can explain the current example or required action.
+Continue to
+Five questions,
 
 ## Slide 43 — Five questions,
 
-TEACHING PURPOSE
 Five questions,
+CML3112, Week 2, slide 43
 
-CONNECT
-Build on the preceding slide: One-page reference — the commands and the habits.
+Explanation to give
+This is the CML3112 Week 2 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W2_CML3112 when ready and read the logged closing time.
 
-LECTURER CUE
-The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.
-Nothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.
+Worked illustration / lecturer answer
+Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
 
-EXPLAIN IN ORDINARY WORDS
-An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
+Misconception to address
+Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
 
-CHECK AND EXPECTED ANSWER
-Does a difference between two groups prove one caused the other? No. Other differences or selection may explain it.
+Continue to
+Error messages provide clues
 
-IF LEARNERS ARE STUCK
-Ask for the population, time period, number and comparison. Then ask what additional evidence could change the recommendation.
+## Slide 44 — Error messages provide clues
 
-QUIZ OPERATION
-Opening the student link does not activate the quiz. In Quiz Controls run the matching open_W<week>_<cohort> function once when ready. Announce the logged closing time: 24 hours after activation. Five minutes describes expected answering time, not the availability window. Quiz 1 and Quiz 2 require separate activation when collecting catch-up work.
+Error messages provide clues
+CML3112, Week 2, slide 44
 
-NEXT
-Every error today told you. Move on after a learner can explain the current example or required action.
+Explanation to give
+Close with a precise correction: some wrong results produce no exception, so reading errors is only part of checking work. Verify run order, the input file, units and whether the result is plausible. Next week explains the Python values and operators used in the first notebook.
 
-## Slide 44 — Every error today told you
+Worked illustration / lecturer answer
+Point to the particular code cell or answer on this slide while explaining the reasoning.
 
-TEACHING PURPOSE
-Every error today told you
-
-CONNECT
-Build on the preceding slide: Five questions,.
-
-LECTURER CUE
-Everything you saw go wrong today has gone wrong for every engineer in this building, and it will keep happening for the rest of your career. What changes is how long it takes you to read the message and carry on. Next week is Python as an engineering calculator, built on formulas from your own programme.
+Misconception to address
+The current assignment guide and live form take precedence over historical logistics printed in this deck.

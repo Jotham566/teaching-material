@@ -1,33 +1,36 @@
 # CML3111 A2 — Proof of life
 
-## Start here
+**Submit:** TWO files together: your completed notebook (.ipynb) AND your own README.md.
 
-Use your own Student Registration Number exactly as on your university record. Sign in to upload with the Google account registered with the lecturer. If you need account or file help, read STUDENT_HOW_TO.md supplied with the student materials. A repository is a folder of saved project files; an upload form is where you hand in assessed work. Saving to a repository does not submit an assignment.
+**Deadline:** 27 September 2026, 11:05 Kampala. The live form shows any later change.
 
-Before class, complete sections 1–2 of STUDENT_HOW_TO.md: Google and GitHub sign-in, download and extract the cohort ZIP. In class, follow sections 3–8.
+## 1. Start
 
-## Do the work
+Open **proof_of_life.ipynb** in Colab. Upload **motor_test_bench.csv** to its Files sidebar. Use the Week 2 file with four data rows.
 
-1. Open proof_of_life.ipynb in Colab using File > Open notebook > Upload, and save your own copy in Drive. Upload motor_test_bench.csv through the Files sidebar. This Week 2 CSV has four data rows.
-2. Enter your Student Registration Number in STUDENT_ID, keeping quotes and slashes. Keep COHORT="CML3111". Run the cells as taught, repeat the increment cell and write your own explanation after the existing My explanation: prefix in its text cell; keep that prefix.
-3. Open repairs 01–04 when the lecturer directs you; return to proof_of_life.ipynb afterwards. The repairs and hello_engineering.py are practice, not uploads.
-4. Restart the session and Run all. Check proof_sum is 4, readings is 17 and rows holds the four supplied CSV records. Download the completed notebook as your own registration number with slashes replaced by underscores, followed by _W02.ipynb.
-5. On GitHub create a private repository with Add README enabled. Use Add file > Upload files to upload the downloaded notebook and motor_test_bench.csv; Commit changes to save them.
-6. Edit the repository README.md. In your own words include your programme, exact file list and step-by-step run instructions. Commit the edit and download the raw README.md file. See sections 6–7 of STUDENT_HOW_TO.md for each click. Do not submit the instruction README from the ZIP.
+## 2. Complete these steps
 
-## Check and submit
+1. Enter your own Student Registration Number in STUDENT_ID; keep COHORT="CML3111".
+2. Complete and run the main notebook. Write your execution-order explanation after **My explanation:**.
+3. Restart and run all cells. Check proof_sum = 4, readings = 17 and rows contains the four CSV records.
+4. Save your notebook and the CSV in your own private GitHub repository. Write your own README.md: programme, file list and how to run the notebook.
 
-Upload exactly TWO files together: your completed renamed notebook and your own README.md. Paste the repository URL into the form. The CSV stays in your repository/runtime; do not upload it to the form. A URL alone is not the submission. Check both filenames, click Submit and keep confirmation.
+**Marks (20):** identity 2; proof_sum 4; readings 4; CSV records 4; explanation 3; README 3.
 
-Marks out of 20: notebook identity 2, proof_sum 4, fresh-run readings 4, correct CSV records 4, your execution-order explanation 3, your README 3.
+**Practice only:** repair notebooks 01–04 and hello_engineering.py. Do not upload them. The supplied instruction README is not your own README.
 
-A1, Quiz 1, A2 and Quiz 2 are four separate tasks. Each quiz closes 24 hours after its own lecturer activation; assignment deadlines are separate. See WEEK1_CATCHUP.txt.
+## 3. Hand in
 
-## How to hand in
+Open your cohort’s form below. Enter your Student Registration Number. Choose **Add file → Upload**, attach the required file(s), then press **Submit**. Keep the confirmation.
 
-Open the correct cohort/assessment form below and read its current deadline. Fill the required identity fields; leave Team ID blank for individual work. Choose Add file > Upload and select the complete required file set. Wait for the filenames to appear, then click Submit. Keep the confirmation page and local copies. Each file must be at most 10 MB. If replacing work before the deadline, send the complete set again; the latest on-time response replaces the earlier response. If the form is closed or upload fails, keep your files and contact the lecturer; do not use a different assignment form.
+For individual work, leave Team ID blank. Each file must be at most 10 MB. A replacement before the deadline must contain the complete file set again.
 
-Student submission link: https://docs.google.com/forms/d/e/1FAIpQLSfjyYUtobO5sgIWH30AidQu7Sx8bcmH6lSbtHQv-9SISaEDqA/viewform
+**Do not submit:** the ZIP, guided_practice.ipynb, raw CSVs or helper scripts.
 
-Published closing time (UTC+03:00 is Kampala): 2026-09-25T11:00:00+03:00. Read the live form for any announced revision.
+Paste your repository URL in the form as well; the URL does not replace the two files.
 
+**Submission link:** https://docs.google.com/forms/d/e/1FAIpQLSfjyYUtobO5sgIWH30AidQu7Sx8bcmH6lSbtHQv-9SISaEDqA/viewform
+
+## Help only if needed
+
+Need help opening, saving or uploading? Use STUDENT_HOW_TO.md only for the step you are stuck on. It is a reference, not extra homework.

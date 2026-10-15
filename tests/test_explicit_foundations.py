@@ -37,6 +37,9 @@ class ExplicitFoundationsTests(unittest.TestCase):
    if d['week']<3:continue
    for s in d['slides']:
     self.assertNotIn('LECTURER DETAIL',s['notes'])
-    self.assertEqual(s['notes'].count('\nNEXT\n'),1)
+    # The last slide has no next-slide pointer. Other slides use a named
+    # transition rather than the former generic NEXT template.
+    self.assertLessEqual(s['notes'].count('\nContinue to\n'),1)
+    self.assertIn('Explanation to give',s['notes'])
     if s['title']=='Reading NumPy results':self.assertNotIn('false negative',s['notes'])
 if __name__=='__main__':unittest.main()

@@ -1,47 +1,70 @@
-# CML3111 TEST2: Practical Test 2 — variant B
+# CML3111 TEST2 — task reference
 
-Investigate motor winding temperature. Target units: deg C. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
+These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
 
-Use your Student Registration Number in STUDENT_ID, including slashes. In filenames only replace slashes with underscores. Set COHORT to CML3111.
+## Your data
 
-Numeric fields are numbers (missing values become None); parse CSV blanks accordingly. The public function interfaces below let the isolated grader evaluate your implementation on unseen records. The unseen records use the same schema and published rules. Implement the functions in the submitted notebook; do not hardcode the supplied answers. The numerical component does not prove the quality of the full investigation.
+Investigate motor winding temperature; target unit: **deg C**. These are synthetic teaching data. Each row is an operating observation; equipment_id identifies equipment and can repeat.
 
-Published total: 100 marks. Deterministic component: 30. Written/evidence component: 70.0. Original criterion totals are preserved.
+A record is a dictionary of column names and values. A list of records holds several rows. record_id identifies a row; load_pct is load as a percentage; ambient_c is temperature in degrees C; target is the quantity to predict. Numeric CSV blanks become None. Keep the original data. Your functions are checked on other records following the same published rules.
 
-## Engineering questions
 
-Frame the prediction decision, justify group separation and preprocessing, compare a baseline with two fitted models, report errors in target units and state deployment limitations.
+### `group_split(records)` — 10 marks
 
-## Required interfaces
+- Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test.
+- Return train, validation and test lists of record_id in input order.
+- Do not use target values to choose membership.
+- Return a dictionary with train, validation and test. Each value is a list of record_id values.
 
-- group_split(records) — 10 marks within c2. Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test. Return train, validation and test lists of record_id in input order. Do not use target values to choose membership.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- predict_regression(training_records, feature_records) — 10 marks within c3. Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only. Return three prediction lists under baseline, linear and tree. Feature records have no target. Fit preprocessing only on training data.
 
-- regression_errors(actual, predicted) — 10 marks within c4. Return mae and rmse, calculated over the same paired observations, with full precision.
+### `predict_regression(training_records, feature_records)` — 10 marks
 
-## Full investigation and evidence
+- Use load_pct and ambient_c as the two input features. Feature records do not contain target.
+- Fit preprocessing on training_records only.
+- Fit a baseline that predicts the mean training target.
+- Fit linear regression and a decision tree with max_depth=4 and random_state=17.
+- Predict for feature_records using all three models.
+- Return a dictionary with baseline, linear and tree; each value is a prediction list in feature_records order.
 
-Write your own explanation in the markdown cell headed `## My written evidence`. Keep that heading. Task prompts and code comments are excluded from reasoning marks. Complete every original rubric criterion below, not just the checked functions. Include profiling, justified cleaning, question-led charts and your engineering recommendation where required. Keep raw data. State units and distinguish correlation from causation. Charts must be actual labelled figures in the notebook, not claims that charts exist. Include concise captions and an accessible report.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- Task framing (10.0 total): The ML task is correctly identified, the target named, and regression vs classification correctly chosen and justified.
 
-- Data preparation & leakage control (20.0 total): Cleaning and encoding appropriate. Split made before any fitting. Pipeline used. No leakage present - a leak found by the marker caps this criterion at zero.
+### `regression_errors(actual, predicted)` — 10 marks
 
-- Modelling protocol (20.0 total): At least two models built and compared under identical conditions. Baseline included. Hyperparameters handled sensibly.
+- Return mae and rmse, calculated over the same paired observations, with full precision.
+- Return a dictionary with mae and rmse. MAE is the mean absolute error; RMSE is the square root of the mean squared error. Match actual and predicted by position.
 
-- Evaluation & metric justification (20.0 total): Correct metrics computed. Metric choice defended against the cost of error. Cross-validation reported with a spread, not a single number.
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
 
-- Engineering interpretation & limits (20.0 total): The result is stated in physical or operational units. Three genuine limitations given. A clear position on whether it should be deployed.
 
-- Code clarity (10.0 total): Runs top to bottom. Readable. Commented where the intent is not obvious.
 
-Execution requirement for c2: Data-preparation credit requires the published leakage-safe split check to pass. If this check fails, written marks in that criterion are zero; other criteria remain independently scored.
+## Written questions
 
-## Timing and Part B
+Write your answers in the notebook’s **My written evidence** cell. Keep that heading. Use these numbers to organise your answers.
 
-15 minutes setup, 120 minutes practical, 25 minutes typed offline reasoning with code execution prohibited, 20 minutes collection. No internet, messaging or AI. Answer: Why your main cleaning/model choice? What can your chart/metric not establish? What evidence would change your recommendation? What further data is required? Invigilated offline collection is authoritative; Google upload is a later transport step and must not impose an internet requirement during the test.
+1. **Task framing (10 written marks):** The ML task is correctly identified, the target named, and regression vs classification correctly chosen and justified.
 
-## Submission
+2. **Data preparation & leakage control (10 written marks):** Cleaning and encoding appropriate. Split made before any fitting. Pipeline used. No leakage present - a leak found by the marker caps this criterion at zero.
 
-Submit exactly one complete .ipynb containing practical code, chart outputs, written evidence and typed Part B answers. Write Part B under a Part B subheading in the existing text cell beginning ## My written evidence, keeping that exact heading; do not execute code during the reasoning period. The invigilator collects the notebook offline; any later form upload transports that collected work. Do not attach a separate report to the notebook-only test form. Read ASSIGNMENT_INSTRUCTIONS.txt for the full start, check and hand-in steps. Keep local copies. The lecturer must validate grading and release this assessment before issuing it.
+3. **Modelling protocol (10 written marks):** At least two models built and compared under identical conditions. Baseline included. Hyperparameters handled sensibly.
+
+4. **Evaluation & metric justification (10 written marks):** Correct metrics computed. Metric choice defended against the cost of error. Cross-validation reported with a spread, not a single number.
+
+5. **Engineering interpretation & limits (20 written marks):** The result is stated in physical or operational units. Three genuine limitations given. A clear position on whether it should be deployed.
+
+6. **Code clarity (10 written marks):** Runs top to bottom. Readable. Commented where the intent is not obvious.
+
+**Data-preparation marking rule:** the required leakage-safe group split must pass for written data-preparation marks. Other criteria are marked separately.
+
+### Part B — invigilator-controlled timing
+
+15 minutes setup; 120 minutes practical; 25 minutes typed offline reasoning with no code execution; 20 minutes collection. No internet, messaging or AI.
+
+Under a Part B subheading answer: Why your main cleaning/model choice? What can your chart/metric not establish? What evidence would change your recommendation? What further data is required?
+
+
+## Submit
+
+ONE completed assignment notebook (.ipynb).

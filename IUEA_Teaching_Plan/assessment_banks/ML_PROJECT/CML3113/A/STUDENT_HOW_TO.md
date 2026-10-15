@@ -1,6 +1,15 @@
 # Student setup and assignment guide
 
-For CML3111, CML3112 and CML3113. Start here even if you have never written code. This guide explains the tools and the submission process; your assignment notebook contains the questions.
+For CML3111, CML3112 and CML3113. **Help reference: read only the section you need.** Your assignment notebook contains the required work. This guide is not another assignment.
+
+- Account help: section 1 (GitHub is needed for A2 and repository-based projects, not A1).
+- Extract the ZIP: section 2.
+- Open/run a notebook: sections 3–4.
+- Save/download: section 5; use your current assignment week in the filename.
+- A2 GitHub and README help: sections 6–7.
+- Upload: section 8; use the file count stated by your assignment.
+
+The examples in sections 5–8 use A2. Later assignments have their own notebook name and upload requirements.
 
 ## 1 Prepare your accounts before class
 
@@ -32,7 +41,7 @@ A notebook (.ipynb) contains text and code in separate blocks called cells. A CS
 
 1. Go to https://colab.research.google.com. Choose File > Open notebook, then Upload. Choose proof_of_life.ipynb for A2. In later weeks choose the assignment notebook named in ASSIGNMENT_INSTRUCTIONS.txt.
 2. Use File > Save a copy in Drive to keep your own editable working copy. This saves a notebook to your Google Drive; it does not submit the assignment.
-3. Click Connect if needed. Select the folder icon in the left sidebar to open Files. Click its Upload button and choose the CSV from the SAME extracted weekly folder. For weeks with helper .py files, upload those too. A helper is supplied code the notebook imports; do not edit it.
+3. Click Connect if needed. Select the folder icon in the left sidebar to open Files. Click its Upload button and choose the CSV from the SAME extracted weekly folder. No grading scripts are needed in the current student packages.
 4. Check the exact filenames appear in Files, including their extensions. Uploading a CSV through File > Open notebook is the wrong route: that dialog is for .ipynb files.
 5. Find STUDENT_ID in the first code cell. Replace only YOUR_ID, keeping the quotation marks, with your own Student Registration Number exactly as on your university record. Keep any slashes here. Check COHORT matches your course code.
 
@@ -131,7 +140,7 @@ For later report assignments, use the required headings in their brief. Explain 
 ## 12 If something goes wrong
 
 - FileNotFoundError: check Files contains the exact CSV name from this week's folder, including capitals. Upload it again after a disconnected or deleted runtime. Do not use a different week's dataset to make the error disappear.
-- No module named iuea_grader or spec_W03: upload the supplied helper .py files through Files, then rerun the notebook from the top. Do not search for an unrelated package to install.
+- If an older Week 3 or Week 5 notebook asks for iuea_grader or spec_W03/spec_W05: keep your answers. Ask the lecturer for the updated notebook, or remove only the supplied grader import, g=Grader(...) line and g.check(...) cells. Keep STUDENT_ID, COHORT and every answer cell. Already submitted notebooks remain valid.
 - NameError: a value may not yet have been defined. Read earlier cells and run in order. SyntaxError: check spelling, quotes, brackets, colons and indentation against the taught example.
 - You cannot upload: check the Google account, file types and file size. The form allows up to 10 MB per file. A2 needs .ipynb and .md; a screenshot or Drive shortcut is not either file.
 - The form is closed: reread the published window, keep your work and notify the lecturer promptly with the cohort, assignment and error. An upload problem does not automatically extend a deadline. Never put work in a different assignment form.

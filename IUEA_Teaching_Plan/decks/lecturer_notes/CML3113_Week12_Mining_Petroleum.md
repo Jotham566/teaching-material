@@ -1,160 +1,146 @@
 # CML3113 Week12 Mining Petroleum
 
-Lecturer companion to the revised PowerPoint. Slide numbers match this edition. Explain the worked examples directly; revision checks are for individual study.
+Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
 
 ## Slide 1 — Choosing and explaining a model
 
-PURPOSE
 Choosing and explaining a model
+CML3113, Week 12, slide 1
 
-CONNECT
-Previous slide: the preceding week.
+Explanation to give
+A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+
+Misconception to address
+Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+
+On this slide
 Mining and Petroleum Engineering
 
-LECTURER CUE
-Use PowerPoint Presenter View for these notes. Teach one example, pause for every learner to predict, then work an analogous example together. The practice notebook is a learning aid, not an extra graded upload.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Today’s learning.
-
-REFERENCES
-
+Continue to
+Today’s learning
 
 ## Slide 2 — Today’s learning
 
-PURPOSE
 Today’s learning
+CML3113, Week 12, slide 2
 
-CONNECT
-Previous slide: Choosing and explaining a model.
+Explanation to give
+A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+
+Misconception to address
+At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+
+On this slide
 Check model requirements before ranking candidates.
 
 Apply the tie-break rule and explain the choice.
 
-LECTURER CUE
-Ask learners to explain this goal in ordinary language. The first successful attempt matters more than covering optional extensions. Defer: A large grid search, four new model implementations and an adversarial defence are optional practice. They must not crowd out the core decision process.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Connection to the previous lesson.
-
-REFERENCES
-
+Continue to
+Connection to the previous lesson
 
 ## Slide 3 — Connection to the previous lesson
 
-PURPOSE
 Connection to the previous lesson
+CML3113, Week 12, slide 3
 
-CONNECT
-Previous slide: Today’s learning.
+Explanation to give
+A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 We already calculate validation errors. Now we combine those errors with a practical constraint and an explicit tie-break rule.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Why this week’s tools are needed.
-
-REFERENCES
-
+Continue to
+Why this week’s tools are needed
 
 ## Slide 4 — Why this week’s tools are needed
 
-PURPOSE
 Why this week’s tools are needed
+CML3113, Week 12, slide 4
 
-CONNECT
-Previous slide: Connection to the previous lesson.
+Explanation to give
+A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+
+Misconception to address
+Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+
+On this slide
 The lowest prediction error may come from a model that is too slow for the stated task. We apply the published constraints before ranking eligible models.
 
-LECTURER CUE
-A pump team records temperature to investigate operation. Mining students can relate this to a dewatering pump; petroleum students to a transfer pump. These are teaching examples, not operating limits.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Constraint and Latency.
-
-REFERENCES
-
+Continue to
+Constraint and Latency
 
 ## Slide 5 — Constraint and Latency
 
-PURPOSE
 Constraint and Latency
+CML3113, Week 12, slide 5
 
-CONNECT
-Previous slide: Why this week’s tools are needed.
+Explanation to give
+Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+
+Misconception to address
+Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+
+On this slide
 Constraint: A condition a candidate must satisfy, such as MAE at most 3 and latency at most 10 ms.
-
 Latency: Time taken to produce a prediction under stated measurement conditions. Hardware and measurement method matter.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Tie-break and Hyperparameter.
-
-REFERENCES
-
+Continue to
+Tie-break and Hyperparameter
 
 ## Slide 6 — Tie-break and Hyperparameter
 
-PURPOSE
 Tie-break and Hyperparameter
+CML3113, Week 12, slide 6
 
-CONNECT
-Previous slide: Constraint and Latency.
+Explanation to give
+A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+
+Misconception to address
+sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+
+On this slide
 Tie-break: A published rule for choosing between candidates that tie on the main criterion.
-
 Hyperparameter: A setting chosen before fitting, such as tree depth. Tune using validation or cross-validation, not the final test.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Error and practical constraints.
-
-REFERENCES
-
+Continue to
+Error and practical constraints
 
 ## Slide 7 — Error and practical constraints
 
-PURPOSE
 Error and practical constraints
+CML3113, Week 12, slide 7
 
-CONNECT
-Previous slide: Tie-break and Hyperparameter.
+Explanation to give
+Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+
+Misconception to address
+Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+
+On this slide
 A smaller error can require more computation.
 
 A candidate must meet every stated requirement.
@@ -163,337 +149,289 @@ Compare eligible models on the same validation observations.
 
 Follow the published tie-break rule when scores tie.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A model comparison needs a fair test.
-
-REFERENCES
-
+Continue to
+A model comparison needs a fair test
 
 ## Slide 8 — A model comparison needs a fair test
 
-PURPOSE
 A model comparison needs a fair test
+CML3113, Week 12, slide 8
 
-CONNECT
-Previous slide: Error and practical constraints.
+Explanation to give
+An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
 
-EXPLAIN
+Worked illustration / lecturer answer
+If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+
+Misconception to address
+Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+
+On this slide
 Use the same validation observations for every candidate.
 
 Fit preprocessing on training data only.
 
 Choose the error measure and practical requirements before inspecting results.
 
-LECTURER CUE
-A tree asks successive questions. A forest combines many trees. More complexity does not guarantee better validation performance. The task’s tie-break rule remains authoritative.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Eligibility comes before ranking.
-
-REFERENCES
-
+Continue to
+Eligibility comes before ranking
 
 ## Slide 9 — Eligibility comes before ranking
 
-PURPOSE
 Eligibility comes before ranking
+CML3113, Week 12, slide 9
 
-CONNECT
-Previous slide: A model comparison needs a fair test.
+Explanation to give
+Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+
+Misconception to address
+Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+
+On this slide
 First check every stated requirement for each candidate.
 
 Reject a candidate that fails even one requirement.
 
 Rank the eligible candidates using the published tie-break rule.
 
-LECTURER CUE
-Cross out ineligible candidates before ranking errors. Then apply the tie-break rule, rather than choosing the most sophisticated model.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A constrained model choice.
-
-REFERENCES
-
+Continue to
+A constrained model choice
 
 ## Slide 10 — A constrained model choice
 
-PURPOSE
 A constrained model choice
+CML3113, Week 12, slide 10
 
-CONNECT
-Previous slide: Eligibility comes before ranking.
+Explanation to give
+Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+
+Misconception to address
+Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+
+On this slide
 Candidate | Validation error | Time (ms)
-
 simple | 3 | 2
-
 complex | 1 | 20
-
 Invented requirements: error at most 3 and time at most 10 ms.
 
-LECTURER CUE
-Invented requirements: error at most 3 and time at most 10 ms. Only simple is eligible. No result here is a measured engineering benchmark.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Candidate records and eligibility.
-
-REFERENCES
-
+Continue to
+Candidate records and eligibility
 
 ## Slide 11 — Candidate records and eligibility
 
-PURPOSE
 Candidate records and eligibility
+CML3113, Week 12, slide 11
 
-CONNECT
-Previous slide: A constrained model choice.
+Explanation to give
+Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
 
-EXPLAIN
+Worked illustration / lecturer answer
+With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+
+Misconception to address
+Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+
+On this slide
 A candidate is one model under consideration. Its dictionary records a name, a validation error and measured run time.
 
 An eligible candidate meets every published constraint. Build a list of eligible records first. If the list is empty, use the task’s specified no-candidate result.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example (1/2).
-
-REFERENCES
-
+Continue to
+Model selection in Python (1/2)
 
 ## Slide 12 — Model selection in Python (1/2)
 
-PURPOSE
 Model selection in Python (1/2)
+CML3113, Week 12, slide 12
 
-CONNECT
-Previous slide: Candidate records and eligibility.
+Explanation to give
+First filter candidates using the published eligibility limits. Rank the survivors with the stated error, speed and tie-break order. If none qualify, return the required no-selection result.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+A model with lower MAE but excessive prediction time is ineligible when latency is a hard constraint. Test a candidate exactly on each limit to check inclusive comparisons.
+
+Misconception to address
+Do not rank before enforcing constraints or silently relax a limit to produce a winner.
+
+Read the displayed code line by line
 candidates = [{"name": "simple", "error": 3, "ms": 2},
-              {"name": "complex", "error": 1, "ms": 20}]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
+{"name": "complex", "error": 1, "ms": 20}]
+This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+
 eligible = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 for item in candidates:
-    if item["error"] <= 3 and item["ms"] <= 10:
-        eligible.append(item)
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+
+if item["error"] <= 3 and item["ms"] <= 10:
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+eligible.append(item)
+Evaluate the argument and add it as one new item at the end of this list.
+
 names = []
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 for item in eligible:
-    names.append(item["name"])
+Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
 
-for takes the next item. The indented block repeats.
+names.append(item["name"])
+Evaluate the argument and add it as one new item at the end of this list.
 
-if tests a condition. The chosen indented block runs.
-
-append adds one item to the end of a list.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-Cross out ineligible candidates before ranking errors. Then apply the tie-break rule, rather than choosing the most sophisticated model. Demonstrate dictionary field access and ordered comparisons before asking learners to implement selection. A sorted list key can be a tuple: first metric, then speed, then name. Write a short recommendation: question, fair comparison, chosen candidate, reason, limitation and what new evidence could change the choice.
-
-Complete practice code:
-candidates = [{"name": "simple", "error": 3, "ms": 2},
-              {"name": "complex", "error": 1, "ms": 20}]
-eligible = []
-for item in candidates:
-    if item["error"] <= 3 and item["ms"] <= 10:
-        eligible.append(item)
-print([item["name"] for item in eligible])
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Worked example (2/2).
-
-REFERENCES
-
+Continue to
+Model selection in Python (2/2)
 
 ## Slide 13 — Model selection in Python (2/2)
 
-PURPOSE
 Model selection in Python (2/2)
+CML3113, Week 12, slide 13
 
-CONNECT
-Previous slide: Model selection in Python (1/2).
+Explanation to give
+First filter candidates using the published eligibility limits. Rank the survivors with the stated error, speed and tie-break order. If none qualify, return the required no-selection result.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+A model with lower MAE but excessive prediction time is ineligible when latency is a hard constraint. Test a candidate exactly on each limit to check inclusive comparisons.
+
+Misconception to address
+Do not rank before enforcing constraints or silently relax a limit to produce a winner.
+
+Read the displayed code line by line
 print(names)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-print displays a value below the cell.
-
+Result / continuity
 Continue the SAME cell; keep indentation. Run after all parts are entered.
 
-LECTURER CUE
-Cross out ineligible candidates before ranking errors. Then apply the tie-break rule, rather than choosing the most sophisticated model. Demonstrate dictionary field access and ordered comparisons before asking learners to implement selection. A sorted list key can be a tuple: first metric, then speed, then name. Write a short recommendation: question, fair comparison, chosen candidate, reason, limitation and what new evidence could change the choice.
-
-Complete practice code:
-candidates = [{"name": "simple", "error": 3, "ms": 2},
-              {"name": "complex", "error": 1, "ms": 20}]
-eligible = []
-for item in candidates:
-    if item["error"] <= 3 and item["ms"] <= 10:
-        eligible.append(item)
-print([item["name"] for item in eligible])
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Expected output.
-
-REFERENCES
-
+Continue to
+Model selection results
 
 ## Slide 14 — Model selection results
 
-PURPOSE
 Model selection results
+CML3113, Week 12, slide 14
 
-CONNECT
-Previous slide: Model selection in Python (2/2).
+Explanation to give
+First filter candidates using the published eligibility limits. Rank the survivors with the stated error, speed and tie-break order. If none qualify, return the required no-selection result.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A model with lower MAE but excessive prediction time is ineligible when latency is a hard constraint. Test a candidate exactly on each limit to check inclusive comparisons.
+
+Misconception to address
+Do not rank before enforcing constraints or silently relax a limit to produce a winner.
+
+On this slide
 ['simple']
 
-LECTURER CUE
-Compare the actual output character by character with this practice result. If it differs, read the first error and check the input, units, names and execution order. Do not copy this practice output into a graded answer.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A tuple supplies an ordered ranking key.
-
-REFERENCES
-
+Continue to
+A tuple supplies an ordered ranking key
 
 ## Slide 15 — A tuple supplies an ordered ranking key
 
-PURPOSE
 A tuple supplies an ordered ranking key
+CML3113, Week 12, slide 15
 
-CONNECT
-Previous slide: Model selection results.
+Explanation to give
+A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+
+Misconception to address
+sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+
+On this slide
 A tuple holds several values in order, such as (error, time, name).
 
 Python compares the first values. A tie moves the comparison to the second.
 
 If those also tie, the third value decides.
 
-LECTURER CUE
-Demonstrate dictionary field access and ordered comparisons before asking learners to implement selection. A sorted list key can be a tuple: first metric, then speed, then name.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Trace a tuple ranking key.
-
-REFERENCES
-
+Continue to
+Trace a tuple ranking key
 
 ## Slide 16 — Trace a tuple ranking key
 
-PURPOSE
 Trace a tuple ranking key
+CML3113, Week 12, slide 16
 
-CONNECT
-Previous slide: A tuple supplies an ordered ranking key.
+Explanation to give
+A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+
+Misconception to address
+sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+
+On this slide
 Candidate | Key: error, ms, name | Position
-
 beta | (2, 5, "beta") | 1: lower error
-
 alpha | (3, 1, "alpha") | 2: tie on error; faster
-
 gamma | (3, 2, "gamma") | 3: same error; slower
-
 Only eligible candidates reach ranking. If error and time tie, compare the names alphabetically.
 
-Read the rows in order. Only eligible candidates reach ranking. If error and time tie, compare the names alphabetically.
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Pass a function as the sorting key.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Pass a function as the sorting key
 
 ## Slide 17 — Pass a function as the sorting key
 
-PURPOSE
 Pass a function as the sorting key
+CML3113, Week 12, slide 17
 
-CONNECT
-Previous slide: Trace a tuple ranking key.
+Explanation to give
+A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+
+Misconception to address
+sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+
+On this slide
 sorted returns a new list in order. In sorted(eligible, key=rank), rank is the function itself, passed without calling it.
 
 sorted calls rank(item) for each candidate and compares the returned tuples. Writing rank() here would call it immediately without its required input.
 
 The original eligible list is unchanged. Check len(ordered) before using ordered[0], because an empty list has no first position.
 
+Reference / existing resource
+https://docs.python.org/3/tutorial/introduction.html
+https://docs.python.org/3/tutorial/controlflow.html;
 
-
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
-
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Sorting with a tie-break rule.
-
-REFERENCES
-Reference: https://docs.python.org/3/tutorial/introduction.html and https://docs.python.org/3/tutorial/controlflow.html; original teaching examples.
+Continue to
+Sorting with a tie-break rule
 
 ## Slide 18 — Sorting with a tie-break rule
 
-PURPOSE
 Sorting with a tie-break rule
+CML3113, Week 12, slide 18
 
-CONNECT
-Previous slide: Pass a function as the sorting key.
+Explanation to give
+A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+
+Misconception to address
+sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+
+On this slide
 A tuple is an ordered group of values.
 
 Python compares the first item, then the second when tied, then the third.
@@ -502,188 +440,158 @@ The key function gives sorted the tuple for each candidate.
 
 Guard an empty list before selecting position zero.
 
-LECTURER CUE
-A tuple is an ordered group of values. Python compares the first item, then the second when tied, then the third. The key function gives sorted the tuple for each candidate. Guard an empty list before selecting position zero.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Sorting with a named function.
-
-REFERENCES
-
+Continue to
+Sorting with a named function
 
 ## Slide 19 — Sorting with a named function
 
-PURPOSE
 Sorting with a named function
+CML3113, Week 12, slide 19
 
-CONNECT
-Previous slide: Sorting with a tie-break rule.
+Explanation to give
+A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+
+Misconception to address
+sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+
+On this slide
 Expression | Meaning
-
 key=rank | Use rank to build each comparison key
-
 sorted(eligible, key=rank) | Return a newly ordered list
-
 ordered[0] | Select its first item
-
 len(ordered) == 0 | Check for no eligible candidate
-
 Check for an empty list before accessing position zero.
 
-LECTURER CUE
-Read one row at a time and use a changed value. This is a syntax reference for the worked examples.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Sorting with a tie-break rule in Python.
-
-REFERENCES
-
+Continue to
+Sorting with a tie-break rule in Python
 
 ## Slide 20 — Sorting with a tie-break rule in Python
 
-PURPOSE
 Sorting with a tie-break rule in Python
+CML3113, Week 12, slide 20
 
-CONNECT
-Previous slide: Sorting with a named function.
+Explanation to give
+A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
 
-EXPLAIN
-Read the code in this order:
+Worked illustration / lecturer answer
+Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+
+Misconception to address
+sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+
+Read the displayed code line by line
 def rank(item):
-    return (item["error"], item["ms"], item["name"])
+Store these instructions under this function name. Names in parentheses are its inputs; the body waits until a call.
+
+return (item["error"], item["ms"], item["name"])
+Evaluate this result and send it to the caller, ending this function call.
 
 ordered = sorted(eligible, key=rank)
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 if len(ordered) == 0:
-    winner = None
+Evaluate this yes/no condition. Execute its indented body only on the matching path.
+
+winner = None
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 else:
-    winner = ordered[0]["name"]
+Use this remaining path when the matching earlier condition did not succeed.
+
+winner = ordered[0]["name"]
+Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+
 print(winner)
+Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-def names the function. Inputs go inside parentheses.
-
-if tests a condition. The chosen indented block runs.
-
-return sends the result back to the caller.
-
+Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-LECTURER CUE
-A tuple is an ordered group of values. Python compares the first item, then the second when tied, then the third. The key function gives sorted the tuple for each candidate. Guard an empty list before selecting position zero.
-
-Complete practice code:
-def rank(item):
-    return (item["error"], item["ms"], item["name"])
-
-ordered = sorted(eligible, key=rank)
-if len(ordered) == 0:
-    winner = None
-else:
-    winner = ordered[0]["name"]
-print(winner)
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Local explanation and Conditions of use.
-
-REFERENCES
-
+Continue to
+Local explanation and Conditions of use
 
 ## Slide 21 — Local explanation and Conditions of use
 
-PURPOSE
 Local explanation and Conditions of use
+CML3113, Week 12, slide 21
 
-CONNECT
-Previous slide: Sorting with a tie-break rule in Python.
+Explanation to give
+Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
+
+Misconception to address
+Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
+
+On this slide
 Local explanation: Why a model made one particular prediction. This is different from global importance, which summarises behaviour over many cases.
-
 Conditions of use: The cases and operating circumstances for which the available evidence supports considering the model.
 
-LECTURER CUE
-Explain the definitions before running or tracing the example. Point to the line or table row that produces each result.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-A recommendation needs evidence.
-
-REFERENCES
-
+Continue to
+A recommendation needs evidence
 
 ## Slide 22 — A recommendation needs evidence
 
-PURPOSE
 A recommendation needs evidence
+CML3113, Week 12, slide 22
 
-CONNECT
-Previous slide: Local explanation and Conditions of use.
+Explanation to give
+Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
+
+Misconception to address
+Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
+
+On this slide
 State the question and the chosen candidate.
 
 Give the evaluation result and the constraint it satisfies.
 
 State a limitation and the evidence that could change the recommendation.
 
-LECTURER CUE
-Write a short recommendation: question, fair comparison, chosen candidate, reason, limitation and what new evidence could change the choice.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Revision example and answer.
-
-REFERENCES
-
+Continue to
+Revision example and answer
 
 ## Slide 23 — Revision example and answer
 
-PURPOSE
 Revision example and answer
+CML3113, Week 12, slide 23
 
-CONNECT
-Previous slide: A recommendation needs evidence.
+Explanation to give
+Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
 
-EXPLAIN
+Worked illustration / lecturer answer
 Example: A third model has error 3 and latency 1 ms. Under lowest error then lowest latency, which eligible model wins?
 
 Answer: The third model. Both eligible models have error 3, but 1 ms is faster than 2 ms.
 
-LECTURER CUE
-Give silent thinking time, then let pairs discuss. Rotate who types. This is practice, not a graded quiz. Expected response: The third model. Both eligible models have error 3, but 1 ms is faster than 2 ms.
+Misconception to address
+Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
 
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment
 
 ## Slide 24 — Preparing for the assignment
 
-PURPOSE
 Preparing for the assignment
+CML3113, Week 12, slide 24
 
-CONNECT
-Previous slide: Revision example and answer.
+Explanation to give
+For W12, read the candidate fields exactly: name, validation_mae and latency_ms. Enforce both inclusive limits before ranking by error, latency and alphabetical name.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A candidate exactly at both limits is eligible. If the eligible list is empty, return None. The simpler error/ms names on practice slides must be adapted to the assignment’s published field names.
+
+Misconception to address
+A sensible general recommendation does not replace the exact graded return interface. Keep the function contract and the wider project discussion distinct.
+
+On this slide
 W12 uses fields name, validation_mae and latency_ms.
 
 Meet both inclusive constraints, then rank by error, latency and alphabetical name.
@@ -692,50 +600,44 @@ Return None if no candidate qualifies.
 
 Complete the error function and interpret the separately supplied scenario.
 
-LECTURER CUE
-W12 uses fields name, validation_mae and latency_ms. Meet both inclusive constraints, then rank by error, latency and alphabetical name. Return None if no candidate qualifies. Complete the error function and interpret the separately supplied scenario. Keep project comparisons and graded interfaces distinct.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Preparing for the assignment continued.
-
-REFERENCES
-
+Continue to
+Preparing for the assignment continued
 
 ## Slide 25 — Preparing for the assignment continued
 
-PURPOSE
 Preparing for the assignment continued
+CML3113, Week 12, slide 25
 
-CONNECT
-Previous slide: Preparing for the assignment.
+Explanation to give
+For W12, read the candidate fields exactly: name, validation_mae and latency_ms. Enforce both inclusive limits before ranking by error, latency and alphabetical name.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A candidate exactly at both limits is eligible. If the eligible list is empty, return None. The simpler error/ms names on practice slides must be adapted to the assignment’s published field names.
+
+Misconception to address
+A sensible general recommendation does not replace the exact graded return interface. Keep the function contract and the wider project discussion distinct.
+
+On this slide
 Keep project comparisons and graded interfaces distinct.
 
-LECTURER CUE
-W12 uses fields name, validation_mae and latency_ms. Meet both inclusive constraints, then rank by error, latency and alphabetical name. Return None if no candidate qualifies. Complete the error function and interpret the separately supplied scenario. Keep project comparisons and graded interfaces distinct.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Fair comparison and explanation.
-
-REFERENCES
-
+Continue to
+Fair comparison and explanation
 
 ## Slide 26 — Fair comparison and explanation
 
-PURPOSE
 Fair comparison and explanation
+CML3113, Week 12, slide 26
 
-CONNECT
-Previous slide: Preparing for the assignment continued.
+Explanation to give
+Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
+
+Misconception to address
+Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
+
+On this slide
 Compare the same metric on the same validation cases with the same preprocessing rules.
 
 A small difference needs context, including variation across splits.
@@ -744,50 +646,44 @@ Code run out of order can overwrite the variable holding a model; restart and ru
 
 A local explanation addresses one prediction; global importance summarises many.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Fair comparison and explanation continued.
-
-REFERENCES
-
+Continue to
+Fair comparison and explanation continued
 
 ## Slide 27 — Fair comparison and explanation continued
 
-PURPOSE
 Fair comparison and explanation continued
+CML3113, Week 12, slide 27
 
-CONNECT
-Previous slide: Fair comparison and explanation.
+Explanation to give
+Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
+
+Misconception to address
+Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
+
+On this slide
 A post-hoc explanation of a complex model is not its directly readable internal rule.
 
-LECTURER CUE
-Teach these concepts before the weekly quiz. Use changed numbers for practice. This slide supplies concepts, not the quiz key.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Your issued task.
-
-REFERENCES
-
+Continue to
+Your issued task
 
 ## Slide 28 — Your issued task
 
-PURPOSE
 Your issued task
+CML3113, Week 12, slide 28
 
-CONNECT
-Previous slide: Fair comparison and explanation continued.
+Explanation to give
+Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain record_id as the identifier of an observation, load_pct as load expressed in percent and ambient_c as temperature in degrees Celsius. The target records the known answer in training data.
+
+Misconception to address
+These are synthetic examples for learning. They do not establish a calibrated physical relationship or justify operation of real equipment.
+
+On this slide
 Investigate crusher energy demand.
 
 Target units: kWh/t.
@@ -796,27 +692,24 @@ These are synthetic teaching records, not measurements suitable for deployment.
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-LECTURER CUE
-Investigate crusher energy demand. Target units: kWh/t. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-select_model(candidates, max_mae, max_ms).
-
-REFERENCES
-
+Continue to
+select_model(candidates, max_mae, max_ms)
 
 ## Slide 29 — select_model(candidates, max_mae, max_ms)
 
-PURPOSE
 select_model(candidates, max_mae, max_ms)
+CML3113, Week 12, slide 29
 
-CONNECT
-Previous slide: Your issued task.
+Explanation to give
+Filter by both published limits, then apply the full tie-break rule. Return the requested model identifier or the specified no-candidate result.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Check an exactly-on-limit candidate, a tied pair and an empty eligible list. These are ordinary contract cases rather than optional extensions.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 Candidates have name, validation_mae and latency_ms.
 
 Keep those meeting both inclusive constraints; select smallest validation_mae, then latency_ms, then name alphabetically.
@@ -825,50 +718,44 @@ Return the selected name or None.
 
 Never use test scores for selection.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W12/CML3113/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-regression_errors(actual, predicted).
-
-REFERENCES
-
+Continue to
+regression_errors(actual, predicted)
 
 ## Slide 30 — regression_errors(actual, predicted)
 
-PURPOSE
 regression_errors(actual, predicted)
+CML3113, Week 12, slide 30
 
-CONNECT
-Previous slide: select_model(candidates, max_mae, max_ms).
+Explanation to give
+Pair actual and predicted values by position. Return mae and rmse with full numerical precision.
 
-EXPLAIN
+Worked illustration / lecturer answer
+On separate teaching pairs with errors 2 and 4, MAE is 3 and RMSE is sqrt(10). Rounding is for a labelled display, not for the returned metric.
+
+Misconception to address
+Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+
+On this slide
 Return mae and rmse, calculated over the same paired observations, with full precision.
 
-LECTURER CUE
-Public task contract. Explain input and output types before independent work. Source: IUEA_Teaching_Plan/assessment_banks/W12/CML3113/A/TASKS.md
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Written evidence.
-
-REFERENCES
-
+Continue to
+Written evidence
 
 ## Slide 31 — Written evidence
 
-PURPOSE
 Written evidence
+CML3113, Week 12, slide 31
 
-CONNECT
-Previous slide: regression_errors(actual, predicted).
+Explanation to give
+Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+
+Misconception to address
+Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+
+On this slide
 Use the cell headed “My written evidence”.
 
 Explain the supplied scenario in your own words.
@@ -877,27 +764,24 @@ State target units, reasons and limitations.
 
 Submit one complete notebook containing code and written evidence.
 
-LECTURER CUE
-Published criterion weights and exact requirements remain in TASKS.md. Broader project exercises are formative and do not add weekly marks. Local automated reasoning assessment remains subject to its release checks.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Model recommendation submission.
-
-REFERENCES
-
+Continue to
+Model recommendation submission
 
 ## Slide 32 — Model recommendation submission
 
-PURPOSE
 Model recommendation submission
+CML3113, Week 12, slide 32
 
-CONNECT
-Previous slide: Written evidence.
+Explanation to give
+This slide hands over CML3113 W12. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
 
-EXPLAIN
+Worked illustration / lecturer answer
+The recorded cutoff for this form is 2026-11-27T11:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+
+Misconception to address
+Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+
+On this slide
 Opens: 27 Nov 2026, 08:00 Kampala
 
 Deadline: 27 Nov 2026, 11:00 Kampala
@@ -906,27 +790,24 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-LECTURER CUE
-The form link is cohort-specific. Recheck the live form and release status before class. These scheduled assignment dates are separate from the quiz activation window. The issued brief defines the required files, even if the form accepts additional formats. Source: data/submission_links.json
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Project preparation.
-
-REFERENCES
-
+Continue to
+Project preparation
 
 ## Slide 33 — Project preparation
 
-PURPOSE
 Project preparation
+CML3113, Week 12, slide 33
 
-CONNECT
-Previous slide: Model recommendation submission.
+Explanation to give
+Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Name a file, function or chart and the decision behind it. Match that entry to meaningful repository history. Disclose AI assistance according to the assessment policy.
+
+Misconception to address
+Many commits do not necessarily mean substantial work, and a seed does not establish accuracy. Both are supporting evidence, not replacements for the analysis.
+
+On this slide
 Use the published machine learning project brief.
 
 Build the evidence gradually in your project notebook.
@@ -935,81 +816,72 @@ Keep raw data, labelled charts, run instructions and individual contributions.
 
 Published deadline: 18 Dec 2026, 08:00 Kampala
 
-LECTURER CUE
-Explain the released brief now. Confirm its grading-release checks before assigning it. Avoid treating weekly practice as a substitute for the project evidence. The project brief remains authoritative.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Week 12 quiz.
-
-REFERENCES
-
+Continue to
+Week 12 quiz
 
 ## Slide 34 — Week 12 quiz
 
-PURPOSE
 Week 12 quiz
+CML3113, Week 12, slide 34
 
-CONNECT
-Previous slide: Project preparation.
+Explanation to give
+This is the CML3113 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3113 when ready and read the logged closing time.
 
-EXPLAIN
+Worked illustration / lecturer answer
+Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+
+Misconception to address
+Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+
+On this slide
 Answer individually after the lecturer activates the quiz.
 
 Available for 24 hours from activation.
 
 Use your Student Registration Number and registered account.
 
-The lecturer will confirm the exact closing time.
+Check the announced quiz closing time.
 
-LECTURER CUE
-Activate the matching open_W12_CML3113 function in Quiz Controls, then confirm the 24-hour close time. Opening this slide or clicking its link does not activate the form. The 24 hours is the availability window. Keep existing quiz scoring and form rules. Do not show private answer keys.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Before you leave.
-
-REFERENCES
-
+Continue to
+Revision and submission checklist
 
 ## Slide 35 — Revision and submission checklist
 
-PURPOSE
 Revision and submission checklist
+CML3113, Week 12, slide 35
 
-CONNECT
-Previous slide: Week 12 quiz.
+Explanation to give
+A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
 
-EXPLAIN
+Worked illustration / lecturer answer
+A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+
+Misconception to address
+Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+
+On this slide
 You can justify a valid candidate with evidence and a stated limitation.
 
 Save your work and check the required submission files.
 
-LECTURER CUE
-Ask every learner for an individual response. Record one misconception to revisit at the start of the next class. If a deadline changed, announce the exact Kampala date and update the source registry before rebuilding slides.
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-Optional revision video.
-
-REFERENCES
-
+Continue to
+Optional revision video
 
 ## Slide 36 — Optional revision video
 
-PURPOSE
 Optional revision video
+CML3113, Week 12, slide 36
 
-CONNECT
-Previous slide: Revision and submission checklist.
+Explanation to give
+Give the viewing question before playing the excerpt: Why evaluate using observations not used to fit that particular model?
 
-EXPLAIN
+Worked illustration / lecturer answer
+Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
+
+Misconception to address
+The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
+
+On this slide
 For revision after class.
 
 StatQuest with Josh Starmer
@@ -1019,15 +891,5 @@ Opening up to 04:00, optional preview-selected excerpt
 
 Listening question: Why evaluate using observations not used to fit that particular model?
 
-LECTURER CUE
-Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.
-After viewing: Explain why our repeated equipment IDs require grouped partitions rather than ordinary random folds.
-Preview before class and stop after the selected short excerpt. If playback fails, teach the worked example. Video is optional. Source: https://www.youtube.com/watch?v=fSytzGwwBVw
-
-TEACHING MODE
-Demonstrate first. Read each new symbol aloud, trace the values and compare the shown output. Learners repeat worked examples individually after class.
-
-NEXT
-independent revision and the issued task.
-
-REFERENCES
+Reference / existing resource
+https://www.youtube.com/watch?v=fSytzGwwBVw

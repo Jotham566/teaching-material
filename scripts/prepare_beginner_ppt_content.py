@@ -186,6 +186,10 @@ from iuea_foundations_revision import revise
 # Week 2 is already taught: preserve its published content during this revision.
 existing=json.loads((ROOT/'data/iuea_deck_content.json').read_text())
 decks=[next(d for d in existing if d['cohort']==c and d['week']==w) if w==2 else revise(make_deck(c,w)) for c in COHORTS for w in WEEKS if not(c=='CML3112' and w==2)]
+from reviewed_notes_overlay import apply_slide_specific_notes
+from plain_language_slides import apply_plain_language
+decks = apply_plain_language(decks)
+apply_slide_specific_notes(decks)
 (ROOT/'data/iuea_deck_content.json').write_text(json.dumps(decks,indent=2)+'\n')
 (REVIEW/'deck-content.json').write_text(json.dumps(decks,indent=2)+'\n')
 print(f'Prepared {len(decks)} decks, {sum(len(d["slides"]) for d in decks)} slides')

@@ -1,43 +1,42 @@
-# CML3113 W09: Classification and cost — variant A
+# CML3113 A8 — task reference
 
-Investigate crusher energy demand. Target units: kWh/t. These are synthetic teaching records, not measurements suitable for deployment. Each record is one operating observation; equipment_id repeats across observations.
+These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
 
-Use your Student Registration Number in STUDENT_ID, including slashes. In filenames only replace slashes with underscores. Set COHORT to CML3113.
+## Your data
 
-Numeric fields are numbers (missing values become None); parse CSV blanks accordingly. The public function interfaces below let the isolated grader evaluate your implementation on unseen records. The unseen records use the same schema and published rules. Implement the functions in the submitted notebook; do not hardcode the supplied answers. The numerical component does not prove the quality of the full investigation.
+Investigate crusher energy demand; target unit: **kWh/t**. These are synthetic teaching data. Each row is an operating observation; equipment_id identifies equipment and can repeat.
 
-Published total: 20 marks. Deterministic component: 9. Written/evidence component: 11.0. Original criterion totals are preserved.
+A record is a dictionary of column names and values. A list of records holds several rows. record_id identifies a row; load_pct is load as a percentage; ambient_c is temperature in degrees C; target is the quantity to predict. Numeric CSV blanks become None. Keep the original data. Your functions are checked on other records following the same published rules.
 
-## Engineering questions
 
-Use classification_case.csv. Positive means a synthetic warning condition. Compute the confusion matrix, precision, recall and cost. Explain the 5:1 missed-warning/false-alarm cost assumption and why accuracy alone is insufficient. These costs are teaching assumptions, not approved operating limits.
+### `classification_metrics(actual, predicted)` — 9 marks
 
-## Required interfaces
+- For binary labels return tp, tn, fp, fn, precision, recall and cost=5*fn+fp; use zero for an undefined precision/recall denominator.
+- Return a dictionary with tp, tn, fp, fn, precision, recall and cost. 1 means warning and 0 means no warning; actual is the true label and predicted is the model label.
 
-## Supplied reasoning scenario
+Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
+
+
+
+## Written questions
+
+**Supplied scenario (use for the written questions):**
 
 There are 100 validation observations: 10 actual warnings and 90 non-warnings. Model A has TP=9, FN=1, FP=3, TN=87; B has TP=10, FN=0, FP=6, TN=84. A missed warning costs 5 teaching cost units and a false alarm costs 1. Choose A or B and justify the trade-off. These are assumed costs, not approved operating limits.
 
-Interpret these supplied values for the written marks; they are not claims about results you measured. Your implementation is checked independently.
+Write your answers in the notebook’s **My written evidence** cell. Keep that heading. Use these numbers to organise your answers.
 
-- classification_metrics(actual, predicted) — 9 marks within c1. For binary labels return tp, tn, fp, fn, precision, recall and cost=5*fn+fp; use zero for an undefined precision/recall denominator.
+1. **3 marks:** Calculate the total assumed cost for A and for B using 5 × FN + FP.
 
-## Full investigation and evidence
+2. **2 marks:** Compare missed warnings and false alarms. Explain why accuracy alone may be misleading.
 
-Write your own explanation in the markdown cell headed `## My written evidence`. Keep that heading. Task prompts and code comments are excluded from reasoning marks. Complete the required functions and interpret the supplied scenario where provided. Broader project exercises and extra charts are formative practice; they do not add marks to this weekly submission. State units and limitations.
+3. **2 marks:** Choose a model using the assumed total cost and justify your choice.
 
-## Written assessment criteria
+4. **2 marks:** What costs or real warning data need checking before deployment?
 
-- Costs (3 marks): Award 3 if the response correctly explains that A costs 8 and B costs 6 under cost=5*FN+FP. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
+5. **2 marks:** Which labels and calculation rules must be saved so someone can reproduce your result?
 
-- Tradeoff (2 marks): Award 2 if the response explains that B catches the missed warning but adds three false alarms, so lower accuracy need not mean greater cost. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
 
-- Choice (2 marks): Award 2 if the response chooses B because its total assumed cost is lower, rather than because accuracy alone is higher. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
+## Submit
 
-- Deployment (2 marks): Award 2 if the response requires checking the assumed costs or representative real warning data before deployment. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
-
-- Reproduce (2 marks): Award 2 if the response specifies retaining the actual/predicted labels and rerunning the confusion-matrix calculation with the stated cost rule. Otherwise award zero. Score this criterion independently using the supplied scenario and a short exact quotation.
-
-## Submission
-
-Submit exactly one complete notebook through the cohort form. Keep a downloaded copy. The form link and Kampala deadline are in the student package and final teaching slide.
+ONE completed assignment notebook (.ipynb).

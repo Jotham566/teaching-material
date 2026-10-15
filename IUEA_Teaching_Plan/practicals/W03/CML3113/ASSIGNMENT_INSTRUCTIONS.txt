@@ -1,31 +1,42 @@
 # CML3113 A3 — Engineering functions
 
-## Start here
+**Submit:** ONE completed assignment notebook (.ipynb).
 
-Use your own Student Registration Number exactly as on your university record. Sign in to upload with the Google account registered with the lecturer. If you need account or file help, read STUDENT_HOW_TO.md supplied with the student materials. A repository is a folder of saved project files; an upload form is where you hand in assessed work. Saving to a repository does not submit an assignment.
+**Deadline:** 09 October 2026, 08:00 Kampala. The live form shows any later change.
 
-Open W03_student.ipynb as the assignment notebook. Keep these input/helper files in its runtime folder: iuea_grader.py, spec_W03.py. In Colab use File > Open notebook > Upload for .ipynb; use the Files sidebar Upload button for data and .py helpers. Save your own notebook copy in Drive. Keep the issued raw files unchanged.
+## 1. Start
 
-## Do the work
+Open **W03_student.ipynb**.
 
-1. Read the task text above each answer cell before editing. Complete the supplied notebook rather than starting an unrelated notebook.
-2. Replace YOUR_ID in STUDENT_ID with your own identity, keeping the quotes. Check COHORT. Keep every required variable/function name unchanged.
-3. Write code in the answer cells. A function must return the requested result; printing a result alone does not return it. Follow the specified input types, output types, units and missing-value rules.
-4. Run cells from top to bottom. A blank answer can fail a visible check or raise NotImplementedError until you complete it. Read the first error and fix its cause. Never change helper files or tests to force a pass.
-5. Where present, double-click the text cell headed My written evidence and write your own explanations, keeping that heading. Read every written criterion; copied task instructions or code comments do not replace your reasoning.
-6. Restart the session and Run all. Upload missing input files again if the temporary runtime has lost them. Inspect the results, download the finished .ipynb and reopen it to check that you saved the final version.
+In Colab: File → Open notebook → Upload. Add any supplied CSV files through the Files sidebar. Save your own copy in Drive.
 
-Read README.md and each notebook question in order. The mark allocations in the notebook sum to 20. 
+No grading scripts are needed. Complete every task; your uploaded notebook is marked automatically after submission.
 
-## Check and submit
+## 2. Work down the notebook
 
-Submit exactly ONE completed .ipynb notebook containing code, outputs and the required written evidence. Use your own identity in the filename, with slashes changed to underscores for IUEA, followed by _W03.ipynb. Do not submit the literal name STUDENT_ID. Do not upload guided_practice.ipynb, helper files, the ZIP or raw data unless the brief specifically requests them.
+1. Set STUDENT_ID to your own Student Registration Number, keeping quotes and slashes. Keep COHORT="CML3113".
+2. Answer each numbered task immediately below its prompt. Keep the required names exactly as shown.
 
-## How to hand in
+3. Complete every task. The marks beside the tasks total **20**. No separate report or written-evidence section is required.
 
-Open the correct cohort/assessment form below and read its current deadline. Fill the required identity fields; leave Team ID blank for individual work. Choose Add file > Upload and select the complete required file set. Wait for the filenames to appear, then click Submit. Keep the confirmation page and local copies. Each file must be at most 10 MB. If replacing work before the deadline, send the complete set again; the latest on-time response replaces the earlier response. If the form is closed or upload fails, keep your files and contact the lecturer; do not use a different assignment form.
+The Repository URL field is optional for this assignment; a GitHub repository is not required.
 
-Student submission link: https://docs.google.com/forms/d/e/1FAIpQLSfd3oHKoR26Uc9BSQ5WEQosAD4ZnrRHT4JZRQmLrslca35tlA/viewform
+Five tasks: weight, signed percent error, your cohort formula, efficiency and the largest error. Formulas and units are beside each question. A loop is not required.
 
-Published closing time (UTC+03:00 is Kampala): 2026-10-02T08:00:00+03:00. Read the live form for any announced revision.
+## 3. Check and save
 
+Restart and run all cells from the top. Fix errors, then download/save the completed notebook. For the filename only, replace slashes in your registration number with underscores and add _W03.ipynb.
+
+## 4. Hand in
+
+Open your cohort’s form below. Enter your Student Registration Number. Choose **Add file → Upload**, attach the required file(s), then press **Submit**. Keep the confirmation.
+
+For individual work, leave Team ID blank. Each file must be at most 10 MB. A replacement before the deadline must contain the complete file set again.
+
+**Do not submit:** the ZIP, guided_practice.ipynb, raw CSVs or helper scripts.
+
+**Submission link:** https://docs.google.com/forms/d/e/1FAIpQLSfd3oHKoR26Uc9BSQ5WEQosAD4ZnrRHT4JZRQmLrslca35tlA/viewform
+
+## Help only if needed
+
+Need help opening, saving or uploading? Use STUDENT_HOW_TO.md only for the step you are stuck on. It is a reference, not extra homework.

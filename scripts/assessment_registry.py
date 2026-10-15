@@ -35,6 +35,8 @@ def records():
         if code=='CML3112':
             # Five-minute opening buffer for the authorized 22 September class.
             next(r for r in rows if r['key']=='CML3112|W03')['opens_at']='2026-09-22T10:55:00+03:00'
+            # Lecturer-authorized 29 September reopening; keep earlier submissions valid.
+            next(r for r in rows if r['key']=='CML3112|W03')['closes_at']='2026-09-30T08:27:44.528Z'
             # Explicit instructor catch-up request; earned Week 1 marks stay protected.
             rows[-len(CHALLENGE_WEEKS)]['opens_at']='2026-09-15T03:31:20.401Z'
             rows[-len(CHALLENGE_WEEKS)]['closes_at']=slot(code,3).isoformat()
@@ -45,6 +47,8 @@ def records():
                 if r['key'] in ('CML3112|W01','CML3112|W02'):
                     r['closes_at']='2026-09-23T13:02:48.578Z'
         if code in ('CML3111','CML3113'):
+            # Week 3 not yet taught: lecturer approved a one-week A3 extension on 29 September.
+            next(r for r in rows if r['key']==code+'|W03')['closes_at']=slot(code,5).isoformat()
             catchup_open={'CML3111':'2026-09-21T10:25:33.406Z','CML3113':'2026-09-21T10:25:40.556Z'}
             rows[-len(CHALLENGE_WEEKS)]['opens_at']=catchup_open[code]
             rows[-len(CHALLENGE_WEEKS)]['closes_at']=slot(code,3).isoformat()

@@ -1,56 +1,10 @@
-WEEK 2 — START HERE (YOUR_COHORT)
+YOUR_COHORT — WEEK 2
 
-BEFORE CLASS
-Open ASSIGNMENT_INSTRUCTIONS.txt for your cohort’s task checklist.
-New to accounts or files? Read sections 1–2 of STUDENT_HOW_TO.md first.
-Use its later numbered steps as you work; a printable DOCX is also included.
-Download and extract this ZIP. Keep all the files together. Have your Google
-and GitHub accounts ready. You do not need to complete the notebooks before
-class. Do not upload the ZIP itself to Colab or to the assignment form.
+1. Extract the ZIP and keep its files together.
+2. Open proof_of_life.ipynb. Its opening instructions contain the A2 task and exact file list.
+3. For class practice, open repairs 01–04 only when directed. hello_engineering.py is optional practice.
+4. Submit two files: your completed main notebook AND your own README.md. See SUBMIT_HERE.txt for the form.
 
-IN CLASS — FOLLOW THIS ORDER
-1. Open proof_of_life.ipynb in Google Colab. This is your MAIN notebook.
-   Upload the supplied CSV through Colab's Files sidebar. Follow the lecturer
-   as you run cells, enter your own Student Registration Number and investigate
-   what happens when a cell runs more than once.
-2. When the lecturer starts the repair activity, open the numbered notebooks
-   one at a time: 01, then 02, then 03, then 04. These are PRACTICE exercises.
-   They deliberately contain errors or incorrect behaviour. Predict what is
-   wrong, run, diagnose and repair each one. The lecturer demonstrates 01;
-   you attempt 02 and 03 with support; discuss 04 together. Keep your copies.
-3. Return to proof_of_life.ipynb. Finish your own execution-order explanation.
-   Restart and Run All. Re-upload the CSV if Colab has removed it.
-4. Save/download your completed main notebook. Replace STUDENT_ID in the
-   filename STUDENT_ID_W02.ipynb with your own Student Registration Number,
-   changing slashes to underscores in the FILENAME only.
-5. Write your own README.md: state your programme, list your repository files
-   and explain how someone else can run your notebook. The supplied README
-   files are instructions, not your completed written submission.
+STUDENT_HOW_TO.md is optional help for accounts, Colab, GitHub, saving or uploads. ASSIGNMENT_INSTRUCTIONS.txt repeats the notebook's instructions; it is not extra work.
 
-WHAT EACH FILE IS FOR
-proof_of_life.ipynb       Main notebook: complete, rename and submit this.
-01_missing_module.ipynb   Practice: diagnose an unavailable module.
-02_wrong_runtime.ipynb    Practice: diagnose a Python-version mismatch.
-03_wrong_path.ipynb       Practice: diagnose a missing/wrong file path.
-04_hidden_state.ipynb     Practice: diagnose variable state/execution order.
-The .csv file            Data for the main notebook and file-path practice.
-hello_engineering.py      Supporting Python example, not a required upload.
-README/course_README     Instructions to read, not completed student work.
-The setup guide          Reference help; you need not read it all before class.
-A2_assignment_brief.md    Full assignment requirements and marks.
-SUBMIT_HERE.txt           Your cohort's assignment link and deadline.
-
-WHAT TO SUBMIT FOR WEEK 2
-Upload TWO files together in ONE response:
-  - Your completed STUDENT_ID_W02.ipynb (from proof_of_life.ipynb).
-  - Your own README.md.
-Also enter your repository URL in the form. Your repository contains the
-completed notebook, supplied CSV and your README.
-
-Do not attach the four numbered practice notebooks, the ZIP, the setup guide
-or the CSV to this assignment response. Keep the practice notebooks as your
-learning evidence; they are not four extra graded submissions.
-
-Submit by your cohort's deadline in SUBMIT_HERE.txt (the start of Week 3).
-Keep the confirmation and local copies. A replacement response must contain
-both required files again. Week 1 catch-up is a separate task and form.
+A1 and the quizzes are separate tasks. See WEEK1_CATCHUP.txt for their links and read the current form deadlines.
