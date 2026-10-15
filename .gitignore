@@ -75,3 +75,8 @@ node_modules/
 
 # Lecturer-only hidden assessment checks are kept locally, not on public GitHub
 IUEA_Teaching_Plan/grader/specs/hidden/
+
+# Local document previews and downloaded build dependencies
+Professional_AI_Training/**/.qa/
+Professional_AI_Training/**/.local/
+Professional_AI_Training/**/.deps/

@@ -2,6 +2,8 @@
 
 Two courses and the build engine that generates them. The course builders in `scripts/` generate the teaching artifacts. Numerical examples have executable checks; fictional datasets and teaching assumptions are labelled.
 
+Additional programmes: [School Track camp marketing](Schools_ML_Track/camp_2026/marketing/README.md) and [professional AI training](Professional_AI_Training/README.md).
+
 Current readiness and remaining deployment work: [rework status](review/2026-09-14/REWORK_STATUS.md).
 
 **Teaching materials:** use the updated PowerPoints in [decks](IUEA_Teaching_Plan/decks/README.md). CML3111/CML3113 are revised from Week 2 and CML3112 from Week 3. Open Presenter View for the worked explanations and teaching prompts. Use the [lecturer guide](IUEA_Teaching_Plan/Beginner_Lecturer_Guide.md) and matching student ZIP. Practice notebooks are separate from graded submissions. The HTML lesson route has been retired. Rebuild with `scripts/build_decks.py`; build practice notebooks with `scripts/build_beginner_pathway.py --verify`, then student ZIPs with `scripts/build_student_packages.py --beginner-update`.
