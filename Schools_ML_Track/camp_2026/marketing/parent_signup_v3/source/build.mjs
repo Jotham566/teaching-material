@@ -1,0 +1,21 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const require=createRequire(path.join(process.env.RUNTIME_NODE_MODULES,'package.json'));
+const {PresentationFile,FileBlob}=await import(require.resolve('@oai/artifact-tool'));
+const SK='/Users/jothamwambi/.codex/plugins/cache/openai-primary-runtime/presentations/26.1007.11041/skills/presentations';
+const {finalizePresentation}=await import(`${SK}/container_tools/artifact_tool_utils.mjs`);
+const p=await PresentationFile.importPptx(await FileBlob.load(`${root}/source/User_Edited_Carousel.pptx`));
+const snapshot=await p.inspect({kind:'textbox',search:'FOR PARENTS',maxChars:3000});
+const records=snapshot.ndjson.split('\n').filter(Boolean).map(x=>JSON.parse(x));
+const targets=records.filter(x=>x.text==='FOR PARENTS'&&x.slideIndex===0);
+if(targets.length!==1)throw new Error('Expected one FOR PARENTS label on opening slide.');
+p.resolve(targets[0].id).text.replace('FOR PARENTS','');
+const candidate=`${root}/.build/candidate.pptx`,final=`${root}/output/Parent_Signup_Carousel_Editable.pptx`;
+await (await PresentationFile.exportPptx(p)).save(candidate);
+await finalizePresentation({workspaceDir:root,candidatePath:candidate,finalPath:final,pythonExecutable:'/Users/jothamwambi/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3',integrityValidatorPath:`${SK}/container_tools/inspect_presentation_package_integrity.py`,layoutValidatorPath:`${SK}/container_tools/inspect_presentation_layout_geometry.py`,layoutArgs:['--expected-slide-size-emu','10287000,12858750','--validate-heading-fit'],explicitTotalSlideCount:7,fontPolicy:{basis:'design',families:['Arial']},verifyArtifactToolImport:true,receiptPath:`${root}/.build/validation.json`});
+const f=await PresentationFile.importPptx(await FileBlob.load(final));
+for(let i=0;i<f.slides.items.length;i++){const png=await f.export({slide:f.slides.items[i],format:'png',scale:1});await fs.writeFile(`${root}/output/carousel/${String(i+1).padStart(2,'0')}.png`,new Uint8Array(await png.arrayBuffer()));}
+console.log('Updated deck and seven PNGs exported.');

@@ -1,0 +1,18 @@
+Screenshot captured 8 October 2026 from the published scikit-learn example:
+https://scikit-learn.org/stable/auto_examples/neighbors/plot_classification.html
+Original chart opened in browser and captured without modifying chart content:
+https://scikit-learn.org/stable/_images/sphx_glr_plot_classification_001.png
+The source page screenshot is retained in assets/project-page-screenshot.png.
+Copyright scikit-learn developers. BSD-3-Clause license retained in assets/SCIKIT-LEARN-LICENSE.txt.
+
+The example trains nearest-neighbour classifiers with different neighbour-weighting settings on two Iris measurements: sepal length and sepal width. It displays the original observations and prediction regions. It should not be described as an image-recognition model or as a camp learner's project.
+Dataset: https://archive.ics.uci.edu/dataset/53/iris
+
+Educational framing informed by:
+https://www.unesco.org/en/articles/ai-competency-framework-students
+https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html
+
+Tutor credentials, fee, duration, group sizes, total capacity and intended audience supplied by the user. No new credential or affiliation invented. No photo used.
+Reused icons originate from the earlier marketing assets. Font Awesome and Tabler license files retained.
+
+Additional logistics supplied by the user in this turn: 3 learning days weekly, 2 physical at The National ICT Innovation Hub, Nakawa, and 1 virtual. Other days for project work. Windows or Mac laptop required. Start date TBD. Exact session times not supplied.

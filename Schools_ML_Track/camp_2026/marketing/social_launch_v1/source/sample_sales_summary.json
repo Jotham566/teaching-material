@@ -1,0 +1,14 @@
+{
+  "Notebook": {
+    "units": 20,
+    "revenue_ugx": 60000
+  },
+  "Pen": {
+    "units": 40,
+    "revenue_ugx": 40000
+  },
+  "Juice": {
+    "units": 20,
+    "revenue_ugx": 40000
+  }
+}

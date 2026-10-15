@@ -1,0 +1,1 @@
+Payment details supplied directly by Jotham Martin Wambi on 5 October 2026. Programme fee: UGX 1,000,000 per learner. Native editable text and shapes match the navy/teal School Track flyer. Provider names are text labels, not official logos.

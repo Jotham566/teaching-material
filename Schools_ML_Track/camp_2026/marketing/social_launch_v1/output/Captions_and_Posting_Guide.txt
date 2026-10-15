@@ -1,0 +1,72 @@
+SCHOOL TRACK: FIRST SOCIAL CAMPAIGN
+
+POST 1: PARENT EDUCATION CAROUSEL
+Upload carousel/01.png through carousel/06.png in that order.
+Format: 1080 x 1350 portrait. All six cards belong to one post.
+
+CAPTION
+AI can produce an answer. Can your child explain how they reached it?
+
+This holiday, give your learner space to practise asking good questions, checking evidence, exploring data and explaining their findings.
+
+Our December Holiday Data & AI Camp introduces practical Data Analysis and Machine Learning through guided project work. For S.4, S.5 and S.6 students and school leavers. No coding experience needed.
+
+8 weeks. Maximum 5 learners per group.
+UGX 1,000,000 per learner.
+
+Students can register themselves, or a parent/guardian can register one or more learners.
+Register: https://forms.gle/n8XLwbK1QxcUsRnx5
+Calls and WhatsApp: +256 750 990 718
+
+#DataLiteracy #AILiteracy #HolidayLearning #Uganda
+
+Research behind the educational message: UNESCO's AI competency framework for students and the OECD Digital Education Outlook 2026. These organisations do not endorse this camp.
+https://www.unesco.org/en/articles/ai-competency-framework-students
+https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html
+
+ACCESSIBILITY / ALT TEXT
+1. AI can produce an answer. Can your child explain it? Four habits to practise before university.
+2. Ask good questions. Example: which products sold the most in a small shop this week?
+3. Check the evidence. Look at sources, dates and missing records.
+4. Understand the data. A chart can show which items sell most; explain the comparison.
+5. Test the result. Try data a model has not seen and discuss its mistakes.
+6. December 2026 Holiday Data and AI Camp registration details. S.4, S.5, S.6 and school leavers. Eight weeks; up to five learners per group; UGX 1,000,000 per learner. Registration URL and enquiry number above.
+
+POST 2: SALES DATA DEMONSTRATION
+Upload Sales_Data_Demo_40s.mp4 as a Reel or Status video. It is a caption-led, silent video, ready to share without audio. An optional narration script is below. The five demo PNGs also work as a separate carousel.
+
+CAPTION
+Which product sold the most? Which brought in the most money?
+
+They can have different answers. In this fictional shop example, pens sell the most units, while notebooks generate the most revenue.
+
+Watch how cleaning product names and comparing the numbers helps us explain the result. Revenue is money from sales; profit also depends on costs.
+
+This is a demonstration using invented sample data, not a learner testimonial or a real business report.
+
+Your learner can explore data analysis and machine learning this December. For S.4, S.5, S.6 students and school leavers. No coding experience needed.
+Register: https://forms.gle/n8XLwbK1QxcUsRnx5
+Calls and WhatsApp: +256 750 990 718
+
+#DataAnalysis #LearnPython #HolidayLearning #Uganda
+
+OPTIONAL NARRATION: 40 SECONDS
+0–8 seconds: Which product sold the most? And which brought in the most money? Let's explore a fictional shop's data.
+8–16 seconds: First, clean the product names. Remove extra spaces and standardise them, so the same item is counted together.
+16–23 seconds: Pens lead by quantity: forty sold, compared with twenty notebooks and twenty juice cartons.
+23–31 seconds: But notebooks earn the most revenue: twenty times three thousand shillings makes sixty thousand. Revenue is not profit.
+31–40 seconds: Explore data and build practical projects this December. For S.4 to S.6 students and school leavers. Register through the link.
+
+SHARING NOTES
+Publish the parent carousel first, then the demo two or three days later. This is a suggested sequence, not a scheduled automation.
+Place the form link in the caption wherever links are supported; for Instagram use the profile link or a Story link sticker.
+The QR code links to registration. It is not a payment QR code.
+Use the existing main flyer for full programme details and the separate payment flyer for payment instructions.
+No posts have been published or messages sent.
+
+EDITING
+Parent_AI_Carousel_Editable.pptx: six editable cards.
+Sales_Data_Demo_Editable.pptx: five editable scenes, including the native revenue chart.
+source/build.mjs regenerates PNGs and PPTX files using the Codex bundled artifact runtime. The finalizer requires a fresh destination name on a rebuild.
+source/analyse_sample.py reproduces the fictional sales totals from the supplied CSV example.
+source/make_video.sh renders the 40-second video from the demo PNGs using ffmpeg.
