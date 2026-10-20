@@ -1,8 +1,6 @@
-# CML3111 Week02 Engineering
+# CML3111 Week 2
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Running and saving your first notebook
+## Slide 1: Running and saving your first notebook
 
 Running and saving your first notebook
 CML3111, Week 2, slide 1
@@ -22,7 +20,7 @@ Communications, Electrical, Mechatronics and Robotics Engineering
 Continue to
 Today’s learning
 
-## Slide 2 — Today’s learning
+## Slide 2: Today’s learning
 
 Today’s learning
 CML3111, Week 2, slide 2
@@ -44,7 +42,7 @@ Restart, save and reopen your main notebook.
 Continue to
 Week 2 includes your Week 1 catch-up
 
-## Slide 3 — Week 2 includes your Week 1 catch-up
+## Slide 3: Week 2 includes your Week 1 catch-up
 
 Week 2 includes your Week 1 catch-up
 CML3111, Week 2, slide 3
@@ -68,7 +66,7 @@ Also complete today’s A2 notebook and README, and take Quiz 2 when activated. 
 Continue to
 Recall and a first attempt
 
-## Slide 4 — Recall and a first attempt
+## Slide 4: Recall and a first attempt
 
 Recall and a first attempt
 CML3111, Week 2, slide 4
@@ -88,7 +86,7 @@ A desk is 1.2 metres long. The number is 1.2 and the unit is metres. What other 
 Continue to
 The engineering context
 
-## Slide 5 — The engineering context
+## Slide 5: The engineering context
 
 The engineering context
 CML3111, Week 2, slide 5
@@ -112,7 +110,7 @@ No specialist hardware knowledge is assumed.
 Continue to
 Measurements become observations
 
-## Slide 6 — Measurements become observations
+## Slide 6: Measurements become observations
 
 Measurements become observations
 CML3111, Week 2, slide 6
@@ -132,7 +130,7 @@ Which object was measured? Which quantity was recorded?
 Continue to
 Words we will use
 
-## Slide 7 — Words we will use
+## Slide 7: Words we will use
 
 Words we will use
 CML3111, Week 2, slide 7
@@ -153,7 +151,7 @@ Folder: A container that helps you keep related files together. Extracting a ZIP
 Continue to
 The files in your ZIP
 
-## Slide 8 — The files in your ZIP
+## Slide 8: The files in your ZIP
 
 The files in your ZIP
 CML3111, Week 2, slide 8
@@ -179,7 +177,7 @@ Return to proof_of_life.ipynb to finish the assignment.
 Continue to
 A script and a notebook
 
-## Slide 9 — A script and a notebook
+## Slide 9: A script and a notebook
 
 A script and a notebook
 CML3111, Week 2, slide 9
@@ -205,7 +203,7 @@ The script is an optional comparison, not an extra upload.
 Continue to
 Opening the main notebook
 
-## Slide 10 — Opening the main notebook
+## Slide 10: Opening the main notebook
 
 Opening the main notebook
 CML3111, Week 2, slide 10
@@ -229,7 +227,7 @@ Wait for the notebook page. Find one text block and one code block before clicki
 Continue to
 Words we will use
 
-## Slide 11 — Words we will use
+## Slide 11: Words we will use
 
 Words we will use
 CML3111, Week 2, slide 11
@@ -250,7 +248,7 @@ Cell and output: A cell is one notebook block. A code cell runs instructions; a 
 Continue to
 A notebook has two kinds of cell
 
-## Slide 12 — A notebook has two kinds of cell
+## Slide 12: A notebook has two kinds of cell
 
 A notebook has two kinds of cell
 CML3111, Week 2, slide 12
@@ -274,7 +272,7 @@ The output appears below the code cell that produced it.
 Continue to
 Cells share one Python session
 
-## Slide 13 — Cells share one Python session
+## Slide 13: Cells share one Python session
 
 Cells share one Python session
 CML3111, Week 2, slide 13
@@ -294,7 +292,7 @@ A code cell runs instructions. A text cell explains them.
 Continue to
 Start with numbers and values
 
-## Slide 14 — Start with numbers and values
+## Slide 14: Start with numbers and values
 
 Start with numbers and values
 CML3111, Week 2, slide 14
@@ -315,7 +313,7 @@ Value and unit: A value is one piece of information. The number 2.5 is a value. 
 Continue to
 Give a value a name
 
-## Slide 15 — Give a value a name
+## Slide 15: Give a value a name
 
 Give a value a name
 CML3111, Week 2, slide 15
@@ -336,7 +334,7 @@ Assignment: Read = as “assign”, not “is equal to”. Python calculates the
 Continue to
 Four symbols in our first program
 
-## Slide 16 — Four symbols in our first program
+## Slide 16: Four symbols in our first program
 
 Four symbols in our first program
 CML3111, Week 2, slide 16
@@ -360,7 +358,7 @@ On this slide
 Continue to
 The session remembers earlier values
 
-## Slide 17 — The session remembers earlier values
+## Slide 17: The session remembers earlier values
 
 The session remembers earlier values
 CML3111, Week 2, slide 17
@@ -384,7 +382,7 @@ Running only the second cell again adds another 5.
 Continue to
 Worked example
 
-## Slide 18 — Worked example
+## Slide 18: Worked example
 
 Worked example
 CML3111, Week 2, slide 18
@@ -414,7 +412,10 @@ Read the code, then predict its output before running it.
 Continue to
 Expected output
 
-## Slide 19 — Expected output
+Result from the supplied example
+17
+
+## Slide 19: Expected output
 
 Expected output
 CML3111, Week 2, slide 19
@@ -431,7 +432,7 @@ Trace the operation that changes the value rather than accepting a memorised out
 Continue to
 Runtime
 
-## Slide 20 — Runtime
+## Slide 20: Runtime
 
 Runtime
 CML3111, Week 2, slide 20
@@ -451,7 +452,7 @@ Runtime: The running Python session and its current memory. Restarting clears va
 Continue to
 Execution order changes the result
 
-## Slide 21 — Execution order changes the result
+## Slide 21: Execution order changes the result
 
 Execution order changes the result
 CML3111, Week 2, slide 21
@@ -471,7 +472,7 @@ Restart, then run all cells in order before submission.
 Continue to
 Tracing stored values
 
-## Slide 22 — Tracing stored values
+## Slide 22: Tracing stored values
 
 Tracing stored values
 CML3111, Week 2, slide 22
@@ -495,7 +496,7 @@ Repeat only that addition once. What value remains?
 Continue to
 What the activity shows
 
-## Slide 23 — What the activity shows
+## Slide 23: What the activity shows
 
 What the activity shows
 CML3111, Week 2, slide 23
@@ -515,7 +516,7 @@ On this slide
 Continue to
 Your turn
 
-## Slide 24 — Your turn
+## Slide 24: Your turn
 
 Your turn
 CML3111, Week 2, slide 24
@@ -535,7 +536,7 @@ Restart, run the first cell once, and run the second cell twice. Write down the 
 Continue to
 Practice discussion
 
-## Slide 25 — Practice discussion
+## Slide 25: Practice discussion
 
 Practice discussion
 CML3111, Week 2, slide 25
@@ -552,7 +553,7 @@ Trace the operation that changes the value rather than accepting a memorised out
 Continue to
 Save a copy you can find again
 
-## Slide 26 — Save a copy you can find again
+## Slide 26: Save a copy you can find again
 
 Save a copy you can find again
 CML3111, Week 2, slide 26
@@ -576,7 +577,7 @@ Restart the session, upload the supplied CSV again if needed, and Run all. Save 
 Continue to
 The words in the repair exercises
 
-## Slide 27 — The words in the repair exercises
+## Slide 27: The words in the repair exercises
 
 The words in the repair exercises
 CML3111, Week 2, slide 27
@@ -597,7 +598,7 @@ Path and working folder: A path tells Python where a file is. A bare filename is
 Continue to
 Your cohort data
 
-## Slide 28 — Your cohort data
+## Slide 28: Your cohort data
 
 Your cohort data
 CML3111, Week 2, slide 28
@@ -621,7 +622,11 @@ Keep the data file beside the notebook or upload it into the current Colab runti
 Continue to
 The four repair exercises
 
-## Slide 29 — The four repair exercises
+## Slide 29: The supplied CSV-reading cell
+
+The intended result is four data rows; the header is not counted. If the file is missing, use Colab’s Files panel to upload this week’s CSV. Do not substitute the larger Week 4 file that shares its filename. This is a setup check, not a requirement to invent file-reading code before learning it.
+
+## Slide 30: The four repair exercises
 
 The four repair exercises
 CML3111, Week 2, slide 29
@@ -647,7 +652,7 @@ Trace the values and remove the unwanted reset.
 Continue to
 Repository and commit
 
-## Slide 30 — Repository and commit
+## Slide 31: Repository and commit
 
 Repository and commit
 CML3111, Week 2, slide 30
@@ -667,7 +672,7 @@ Repository and commit: A repository stores a project and its recorded changes. A
 Continue to
 Record a change in your repository
 
-## Slide 31 — Record a change in your repository
+## Slide 32: Record a change in your repository
 
 Record a change in your repository
 CML3111, Week 2, slide 31
@@ -693,7 +698,7 @@ Open the file list to confirm the files arrived. Copy the repository page URL fo
 Continue to
 Short explainer and discussion
 
-## Slide 32 — Short explainer and discussion
+## Slide 33: Short explainer and discussion
 
 Short explainer and discussion
 CML3111, Week 2, slide 32
@@ -721,7 +726,7 @@ https://www.youtube.com/watch?v=v5gnvDUWqFM
 Continue to
 After the video
 
-## Slide 33 — After the video
+## Slide 34: After the video
 
 After the video
 CML3111, Week 2, slide 33
@@ -741,7 +746,7 @@ Explain the difference between saving a file and recording a commit. Then make o
 Continue to
 Preparing for the assignment
 
-## Slide 34 — Preparing for the assignment
+## Slide 35: Preparing for the assignment
 
 Preparing for the assignment
 CML3111, Week 2, slide 34
@@ -767,7 +772,7 @@ Submit the completed main notebook and your own README.md together, plus the rep
 Continue to
 Preparing for the assignment continued
 
-## Slide 35 — Preparing for the assignment continued
+## Slide 36: Preparing for the assignment continued
 
 Preparing for the assignment continued
 CML3111, Week 2, slide 35
@@ -787,7 +792,7 @@ Repairs 01–04 and hello_engineering.py are practice, not extra submissions.
 Continue to
 Execution order and saved changes
 
-## Slide 36 — Execution order and saved changes
+## Slide 37: Execution order and saved changes
 
 Execution order and saved changes
 CML3111, Week 2, slide 36
@@ -813,7 +818,7 @@ A commit is a recorded change.
 Continue to
 Execution order and saved changes continued
 
-## Slide 37 — Execution order and saved changes continued
+## Slide 38: Execution order and saved changes continued
 
 Execution order and saved changes continued
 CML3111, Week 2, slide 37
@@ -833,7 +838,7 @@ In terminal reference material, git status describes local changes; it does not 
 Continue to
 A1 — what to write and submit
 
-## Slide 38 — A1 — what to write and submit
+## Slide 39: A1 — what to write and submit
 
 A1 — what to write and submit
 CML3111, Week 2, slide 38
@@ -857,7 +862,7 @@ Write one complete report in DOCX or selectable-text PDF. PPTX with narration no
 Continue to
 Week 1 Assignment A1 catch-up upload
 
-## Slide 39 — Week 1 Assignment A1 catch-up upload
+## Slide 40: Week 1 Assignment A1 catch-up upload
 
 Week 1 Assignment A1 catch-up upload
 CML3111, Week 2, slide 39
@@ -881,7 +886,7 @@ Enter your own Student Registration Number; the required field accepts any forma
 Continue to
 Week 1 Quiz 1 catch-up
 
-## Slide 40 — Week 1 Quiz 1 catch-up
+## Slide 41: Week 1 Quiz 1 catch-up
 
 Week 1 Quiz 1 catch-up
 CML3111, Week 2, slide 40
@@ -907,7 +912,7 @@ Press Submit and keep your confirmation.
 Continue to
 Week 2 assignment
 
-## Slide 41 — Week 2 assignment
+## Slide 42: Week 2 assignment
 
 Week 2 assignment
 CML3111, Week 2, slide 41
@@ -933,7 +938,7 @@ Upload the renamed notebook and README, not the ZIP or 01–04 repair notebooks.
 Continue to
 Proof of life submission
 
-## Slide 42 — Proof of life submission
+## Slide 43: Proof of life submission
 
 Proof of life submission
 CML3111, Week 2, slide 42
@@ -959,7 +964,7 @@ Keep the submitted files and confirmation.
 Continue to
 Week 2 quiz
 
-## Slide 43 — Week 2 quiz
+## Slide 44: Week 2 quiz
 
 Week 2 quiz
 CML3111, Week 2, slide 43
@@ -985,7 +990,7 @@ Check the announced quiz closing time.
 Continue to
 Before you leave
 
-## Slide 44 — Before you leave
+## Slide 45: Before you leave
 
 Before you leave
 CML3111, Week 2, slide 44

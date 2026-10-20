@@ -9,6 +9,11 @@ beginner_update='--beginner-update' in sys.argv
 count=0
 for code in ('CML3111','CML3112','CML3113'):
     for week in (2,3,4,5,6,8,9,10,11,12):
+        if week==6 and code in ('CML3112','CML3113'):
+            # Waived assessment: the practice-only package is built by this helper.
+            continue
+        if '--later-only' in sys.argv and week<6:continue
+        if '--csv-only' in sys.argv and week<4:continue
         if beginner_update and week==2 and code=='CML3112':continue
         source=BASE/'setup'/code if week==2 else BASE/'practicals'/f'W{week:02}'/code if week<=5 else BASE/'assessment_banks'/f'W{week:02}'/code/'A'
         if not source.exists():raise FileNotFoundError(source)
@@ -48,6 +53,8 @@ for code in ('CML3111','CML3112','CML3113'):
             if entry:
                 z.writestr('SUBMIT_HERE.txt',f"{code} — Week {week} assignment submission\n\n{entry['url']}\n\nOpens: {entry['openAt']}\nCloses: {entry['closeAt']}\nTimes include the Uganda UTC+03:00 offset.\n\nEnter your own Student Registration Number exactly as on your university record in the form and notebook STUDENT_ID value. The assignment form accepts any registration-number format and the field remains required. In filenames only, replace slashes with underscores. Sign in with the Google account registered on your class roster. Upload the files required in the assignment brief. Keep your submission confirmation. If you resubmit before the deadline, include the complete set of files again; the latest on-time submission replaces the earlier packet.\n")
         count+=1
+import subprocess
+subprocess.run([sys.executable,str(ROOT/'scripts/apply_practical_revision_waivers.py')],check=True)
 print(f'Built {count} student-only practical packages')
 if beginner_update or '--iuea-only' in sys.argv:sys.exit(0)
 # Independent checkpoint: include only the issued dataset and blank notebook.

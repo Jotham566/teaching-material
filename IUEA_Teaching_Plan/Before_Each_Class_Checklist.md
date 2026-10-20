@@ -1,3 +1,7 @@
+## Current exception: CML3112 and CML3113 practical revision
+
+A6 and Quiz 6 are not assigned. Do not activate their forms or QR codes. Use the revised Week 6 slides, practice-only ZIP and Week 7 Test 1 revision PDF with its matching practice CSV. Save practice in Drive; no upload is due. Confirm the later test date separately. CML3111 remains unchanged. See [revision plan](Practical_Revision_Week6_Waiver.md).
+
 # Before each class — IUEA, starting Week 2
 
 For the concise printable version, use [the two-page Word checklist](IUEA_ML_Quick_Class_Checklist.docx).

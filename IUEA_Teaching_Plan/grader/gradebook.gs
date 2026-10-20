@@ -142,10 +142,20 @@ function round2_(x) { return Math.round(x * 100) / 100; }
  * row: { quizzes: [], challenges: [], dataProject, test1, test2,
  *        mlProject, demo }  - marks out of 100 for the four big components.
  */
+/** A6/Q6 are not assigned to these cohorts. Keep the same drop allowance. */
+function courseworkPolicy_(cohort) {
+  var waived = ['CML3112','CML3113'].indexOf(String(cohort||'').trim().toUpperCase()) >= 0;
+  return {waived:waived,quizBest:QUIZ_BEST-(waived?1:0),challengeBest:CHALLENGE_BEST-(waived?1:0),
+          quizCount:QUIZ_COUNT-(waived?1:0),challengeCount:CHALLENGE_COUNT-(waived?1:0)};
+}
+function assignedScores_(scores, policy) {
+  return (scores||[]).filter(function(v,i){return !policy.waived || i!==5;});
+}
 function computeFinal_(row) {
-  var cp = bestOfComponent_(row.quizzes || [], QUIZ_BEST,
+  var policy=courseworkPolicy_(row.cohort);
+  var cp = bestOfComponent_(assignedScores_(row.quizzes,policy), policy.quizBest,
                             QUIZ_MAX, WEIGHTS.quizzes);
-  var ch = bestOfComponent_(row.challenges || [], CHALLENGE_BEST,
+  var ch = bestOfComponent_(assignedScores_(row.challenges,policy), policy.challengeBest,
                             CHALLENGE_MAX, WEIGHTS.challenges);
   var dp = percentComponent_(row.dataProject, 100, WEIGHTS.dataProject);
   var t1 = percentComponent_(row.test1, 100, WEIGHTS.test1);
@@ -159,12 +169,12 @@ function computeFinal_(row) {
   if (t2.missing) { missing.push("Practical Test 2"); }
   if (pr.missing) { missing.push("ML Project"); }
   if (dm.missing) { missing.push("Demo/viva"); }
-  if (cp.submitted < QUIZ_BEST) {
-    missing.push("quizzes: " + cp.submitted + " of " + QUIZ_BEST +
+  if (cp.submitted < policy.quizBest) {
+    missing.push("quizzes: " + cp.submitted + " of " + policy.quizBest +
                  " that count");
   }
-  if (ch.submitted < CHALLENGE_BEST) {
-    missing.push("challenges: " + ch.submitted + " of " + CHALLENGE_BEST +
+  if (ch.submitted < policy.challengeBest) {
+    missing.push("challenges: " + ch.submitted + " of " + policy.challengeBest +
                  " that count");
   }
 
@@ -195,24 +205,26 @@ function weightTotal_() {
 
 /** The student-facing progress line. */
 function progressSummary_(row) {
+  var policy=courseworkPolicy_(row.cohort);
   var res = computeFinal_(row);
   var ch = res.components.challenges;
   var cp = res.components.quizzes;
   var lines = [];
-  lines.push("You have completed " + ch.submitted + " of " + CHALLENGE_COUNT +
-             " weekly challenges. The best " + CHALLENGE_BEST + " count.");
-  if (ch.submitted < CHALLENGE_BEST) {
-    lines.push("You need " + (CHALLENGE_BEST - ch.submitted) + " more before " +
+  lines.push("You have completed " + ch.submitted + " of " + policy.challengeCount +
+             " weekly challenges. The best " + policy.challengeBest + " count.");
+  if (ch.submitted < policy.challengeBest) {
+    lines.push("You need " + (policy.challengeBest - ch.submitted) + " more before " +
                "this part of your mark stops being capped.");
   } else {
     lines.push("You have enough for this part of your mark to count in full.");
   }
-  lines.push("You have sat " + cp.submitted + " of " + QUIZ_COUNT +
-             " weekly quizzes. The best " + QUIZ_BEST + " count.");
+  lines.push("You have sat " + cp.submitted + " of " + policy.quizCount +
+             " weekly quizzes. The best " + policy.quizBest + " count.");
   lines.push("Marks banked so far: " + res.final + " of 100.");
   if (res.missing.length) {
     lines.push("Not yet recorded: " + res.missing.join("; ") + ".");
   }
+  if(policy.waived)lines.push("A6 and Quiz 6: not assigned; excluded from totals and missing work.");
   return lines.join("\n");
 }
 

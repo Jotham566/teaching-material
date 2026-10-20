@@ -1,17 +1,13 @@
-# CML3112 Week12 Design Infrastructure
+# CML3112 Week 12
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Choosing and explaining a model
+## Slide 1: Choosing and explaining a model
 
 Choosing and explaining a model
-CML3112, Week 12, slide 1
-
 Explanation to give
 A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
 
 Worked illustration / lecturer answer
-A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidate_models.
 
 Misconception to address
 Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
@@ -19,661 +15,636 @@ Use this as an orientation to the lesson. Terms and syntax will be unpacked on t
 On this slide
 Civil Engineering and Architecture
 
-Continue to
-Today’s learning
+## Slide 2: Today’s learning
 
-## Slide 2 — Today’s learning
+Core practice precedes the assessment brief. Give the class one consistent data-handling approach: pandas for tables, scikit-learn for models, matplotlib for figures.
 
-Today’s learning
-CML3112, Week 12, slide 2
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
+## Slide 3: The supplied file
 
-Worked illustration / lecturer answer
-A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+Uploading a notebook does not upload its modelling_data. Check the exact filename and column headings. Each cohort has its own data, so numerical results can differ.
 
-Misconception to address
-At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-On this slide
-Check model requirements before ranking candidates.
+## Slide 4: Operations for the next example
 
-Apply the tie-break rule and explain the choice.
+Import and short names
+import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
 
-Continue to
-Connection to the previous lesson
+Reading a CSV
+pd.read_csv("practice_filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
 
-## Slide 3 — Connection to the previous lesson
+Counting dimensions
+equipment_data.shape gives (number of rows, number of columns). shape is a property, so it has no parentheses.
 
-Connection to the previous lesson
-CML3112, Week 12, slide 3
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
+## Slide 5: Operations for the next example
 
-Worked illustration / lecturer answer
-A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+Column data types
+equipment_data.dtypes reports each column’s stored type. int64 means integers, float64 means decimal numbers, and object often contains text. Numeric blanks commonly appear as NaN.
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+A preview of rows
+equipment_data.head() returns the first five rows. It leaves the table unchanged. A preview is not the entire dataset.
 
-On this slide
-We already calculate validation errors. Now we combine those errors with a practical constraint and an explicit tie-break rule.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-Why this week’s tools are needed
+## Slide 6: Reading the code syntax
 
-## Slide 4 — Why this week’s tools are needed
+= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
+Explain these operations before running the following example.
 
-Why this week’s tools are needed
-CML3112, Week 12, slide 4
+## Slide 7: Loading the supplied observations
 
-Explanation to give
-A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
+= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
 
-Worked illustration / lecturer answer
-A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+Step-by-step explanation
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+import pandas as pd
+Load the named tools. Importing a model class does not train a model.
 
-On this slide
-The lowest prediction error may come from a model that is too slow for the stated task. We apply the published constraints before ranking eligible models.
+raw_data = pd.read_csv('engineering_data.csv')
+raw_data stores original CSV table; keep it unchanged so the analysis can be checked.
 
-Continue to
-Constraint and Latency
+print(raw_data.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 5 — Constraint and Latency
+print(raw_data.shape)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Constraint and Latency
-CML3112, Week 12, slide 5
+print(raw_data.dtypes)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Explanation to give
-Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
+Verified result with the supplied CSV
+record_id equipment_id  load_pct  ambient_c  target
+0          1           E1     59.15      31.71  52.547
+1          2           E2     77.46      29.97  58.691
+2          3           E3     69.60      19.87  47.895
+3          4           E4     75.98      22.29     NaN
+4          5           E5     57.62      23.40  45.609
+(91, 5)
+record_id         int64
+equipment_id     object
+load_pct        float64
+ambient_c       float64
+target          float64
+dtype: object
 
-Worked illustration / lecturer answer
-With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Misconception to address
-Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+## Slide 8: Rows used for modelling
 
-On this slide
-Constraint: A condition a candidate must satisfy, such as MAE at most 3 and latency at most 10 ms.
-Latency: Time taken to produce a prediction under stated measurement conditions. Hardware and measurement method matter.
+This follows the issued data rules. Filtering observed targets is different from estimating missing targets. Deduplicate before filtering, so an invalid first occurrence is not replaced by its later duplicate.
 
-Continue to
-Tie-break and Hyperparameter
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-## Slide 6 — Tie-break and Hyperparameter
+## Slide 9: Operations for the next example
 
-Tie-break and Hyperparameter
-CML3112, Week 12, slide 6
+Reading chained operations
+Read a chain from left to right. In equipment_data["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s result.
 
-Explanation to give
-A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
+A separate working table
+equipment_data.copy() creates a working copy. Assigning columns on this copy preserves the source table, so you can compare before and after.
 
-Worked illustration / lecturer answer
-Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+Finding recorded cells
+notna() returns True where a value is present. Use it to retain observations with a recorded target before modelling.
 
-Misconception to address
-sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-On this slide
-Tie-break: A published rule for choosing between candidates that tie on the main criterion.
-Hyperparameter: A setting chosen before fitting, such as tree depth. Tune using validation or cross-validation, not the final test.
+## Slide 10: Operations for the next example
 
-Continue to
-Error and practical constraints
+An inclusive range
+series.between(0, 100) is True for values from 0 through 100, including both limits. The resulting mask helps select valid rows.
 
-## Slide 7 — Error and practical constraints
+Selecting columns
+equipment_data["column"] returns one labelled column, a Series. equipment_data[["a", "b"]] returns a DataFrame containing those named columns in that order.
 
-Error and practical constraints
-CML3112, Week 12, slide 7
+Selecting rows with a mask
+A column comparison produces one True or False per row. equipment_data[mask] keeps the True rows. & combines masks: both conditions must hold. Parenthesise each comparison.
 
-Explanation to give
-Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Worked illustration / lecturer answer
-With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+## Slide 11: Operations for the next example
 
-Misconception to address
-Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+Keeping the first observation
+equipment_data.drop_duplicates("record_id") returns rows with the first occurrence of each ID, preserving their order. It does not overwrite the source unless you assign the result.
 
-On this slide
-A smaller error can require more computation.
+Membership in a group list
+series.isin(["E1", "E2"]) returns True for entries matching either listed label. equipment_data[that_mask] keeps all observations belonging to those groups.
 
-A candidate must meet every stated requirement.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Compare eligible models on the same validation observations.
+## Slide 12: Prepare valid observations
 
-Follow the published tie-break rule when scores tie.
+First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
 
-Continue to
-A model comparison needs a fair test
+## Slide 13: Preparing the supplied modelling rows — step 1
 
-## Slide 8 — A model comparison needs a fair test
+First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
 
-A model comparison needs a fair test
-CML3112, Week 12, slide 8
+Step-by-step explanation
 
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
+modelling_data = raw_data.drop_duplicates('record_id').copy()
+modelling_data stores copied observations after duplicate and validity checks.
 
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+target_is_recorded = modelling_data['target'].notna()
+target_is_recorded stores the result of the displayed expression.
 
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+load_is_valid = modelling_data['load_pct'].between(0, 100)
+load_is_valid stores the result of the displayed expression.
 
-On this slide
-Use the same validation observations for every candidate.
+rows_to_keep = target_is_recorded & load_is_valid
+rows_to_keep stores the result of the displayed expression.
 
-Fit preprocessing on training data only.
+print(target_is_recorded.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Choose the error measure and practical requirements before inspecting results.
+print(load_is_valid.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Continue to
-Eligibility comes before ranking
+modelling_data = modelling_data[rows_to_keep].copy()
+modelling_data stores copied observations after duplicate and validity checks.
 
-## Slide 9 — Eligibility comes before ranking
+print(len(raw_data), len(modelling_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Eligibility comes before ranking
-CML3112, Week 12, slide 9
+Verified result with the supplied CSV
+0     True
+1     True
+2     True
+3    False
+4     True
+Name: target, dtype: bool
+0    True
+1    True
+2    True
+3    True
+4    True
+Name: load_pct, dtype: bool
+91 88
 
-Explanation to give
-Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Worked illustration / lecturer answer
-With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+## Slide 14: Choose groups before choosing rows
 
-Misconception to address
-Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
 
-On this slide
-First check every stated requirement for each candidate.
+## Slide 15: Preparing the supplied modelling rows — step 2
 
-Reject a candidate that fails even one requirement.
+isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
 
-Rank the eligible candidates using the published tie-break rule.
+Step-by-step explanation
 
-Continue to
-A constrained model choice
+is_training_equipment = modelling_data['equipment_id'].isin(['E1', 'E2', 'E3', 'E4'])
+is_training_equipment stores the result of the displayed expression.
 
-## Slide 10 — A constrained model choice
+is_validation_equipment = modelling_data['equipment_id'].isin(['E5'])
+is_validation_equipment stores the result of the displayed expression.
 
-A constrained model choice
-CML3112, Week 12, slide 10
+is_test_equipment = modelling_data['equipment_id'].isin(['E6'])
+is_test_equipment stores the result of the displayed expression.
 
-Explanation to give
-Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Worked illustration / lecturer answer
-With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Misconception to address
-Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+## Slide 16: Preparing the supplied modelling rows — step 3
 
-On this slide
-Candidate | Validation error | Time (ms)
-simple | 3 | 2
-complex | 1 | 20
-Invented requirements: error at most 3 and time at most 10 ms.
+training_data: rows used to learn model settings; only these rows may determine imputation values.
 
-Continue to
-Candidate records and eligibility
+validation_data: separate rows used to compare models without fitting on them.
 
-## Slide 11 — Candidate records and eligibility
+## Slide 17: Preparing the supplied modelling rows — step 3
 
-Candidate records and eligibility
-CML3112, Week 12, slide 11
+training_data: rows used to learn model settings; only these rows may determine imputation values.
 
-Explanation to give
-Separate eligibility from ranking. A model that violates a required error or latency limit cannot win merely because another score is attractive. Latency is time per prediction in the stated measurement setting.
+validation_data: separate rows used to compare models without fitting on them.
 
-Worked illustration / lecturer answer
-With limits MAE <= 5 and latency <= 10 ms, a candidate at MAE 4 and 12 ms fails eligibility. A candidate at MAE 5 and 10 ms passes inclusive limits.
+Step-by-step explanation
 
-Misconception to address
-Establish units and whether boundaries are inclusive. An error of 4 is not comparable across different target units or evaluation samples.
+training_data = modelling_data[is_training_equipment].copy()
+training_data stores rows used to learn model settings; only these rows may determine imputation values.
 
-On this slide
-A candidate is one model under consideration. Its dictionary records a name, a validation error and measured run time.
+validation_data = modelling_data[is_validation_equipment].copy()
+validation_data stores separate rows used to compare models without fitting on them.
 
-An eligible candidate meets every published constraint. Build a list of eligible records first. If the list is empty, use the task’s specified no-candidate result.
+test_data = modelling_data[is_test_equipment].copy()
+test_data stores held-out rows kept aside until the final evaluation.
 
-Continue to
-Model selection in Python (1/2)
+feature_columns = ['load_pct', 'ambient_c']
+feature_columns stores the list of input column names supplied to the model.
 
-## Slide 12 — Model selection in Python (1/2)
+print(len(training_data), len(validation_data), len(test_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Model selection in Python (1/2)
-CML3112, Week 12, slide 12
+Verified result with the supplied CSV
+58 15 15
 
-Explanation to give
-First filter candidates using the published eligibility limits. Rank the survivors with the stated error, speed and tie-break order. If none qualify, return the required no-selection result.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Worked illustration / lecturer answer
-A model with lower MAE but excessive prediction time is ineligible when latency is a hard constraint. Test a candidate exactly on each limit to check inclusive comparisons.
+## Slide 18: Training a model with missing inputs
 
-Misconception to address
-Do not rank before enforcing constraints or silently relax a limit to produce a winner.
+A model object exists before training. X is two-dimensional and y is one-dimensional. Select inputs in the same order during prediction. A validation target must never enter fit.
 
-Read the displayed code line by line
-candidates = [{"name": "simple", "error": 3, "ms": 2},
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-{"name": "complex", "error": 1, "ms": 20}]
-This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+## Slide 19: Operations for the next example
 
-eligible = []
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Returning plain values
+series.tolist() or array.tolist() returns a Python list of values, without pandas row labels. Preserve their order when pairing actual values and validation_predictions.
 
-for item in candidates:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+Rounded display
+series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
 
-if item["error"] <= 3 and item["ms"] <= 10:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-eligible.append(item)
-Evaluate the argument and add it as one new item at the end of this list.
+## Slide 20: A sequence of model steps / Filling model inputs
 
-names = []
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+make_pipeline(imputer, estimator) links preprocessing and prediction. fit learns the imputer and estimator on training rows. predict applies the learned steps to new rows in the same order.
 
-for item in eligible:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+SimpleImputer(strategy="median") learns a median for each input column during fit. It uses those training medians to fill gaps later. Never learn replacement values from validation or test rows.
+Explain these operations before running the following example.
 
-names.append(item["name"])
-Evaluate the argument and add it as one new item at the end of this list.
+## Slide 21: Creating linear regression / Learning from training examples
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+LinearRegression() creates an unfitted model. It will learn coefficients and an intercept from training examples. Creating it alone does not train it or make predictions.
 
-Continue to
-Model selection in Python (2/2)
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+Explain these operations before running the following example.
 
-## Slide 13 — Model selection in Python (2/2)
+## Slide 22: Predicting new targets / Selecting a short preview
 
-Model selection in Python (2/2)
-CML3112, Week 12, slide 13
+model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
 
-Explanation to give
-First filter candidates using the published eligibility limits. Rank the survivors with the stated error, speed and tie-break order. If none qualify, return the required no-selection result.
+values[:5] selects positions 0 through 4, or fewer if the sequence is shorter. The stop position is excluded. This preview does not change the full array stored in the variable.
+Explain these operations before running the following example.
 
-Worked illustration / lecturer answer
-A model with lower MAE but excessive prediction time is ineligible when latency is a hard constraint. Test a candidate exactly on each limit to check inclusive comparisons.
+## Slide 23: Standard names for model inputs
 
-Misconception to address
-Do not rank before enforcing constraints or silently relax a limit to produce a winner.
+These are common machine-learning conventions. Some tutorials write train_x and train_y instead. The names are chosen by the programmer, not special Python keywords. Keep training_data as the full table; selecting X_train must exclude target. Rows in X and y must stay paired. fit uses training pairs; predict receives only X_valid. Compare predictions with y_valid afterwards.
 
-Read the displayed code line by line
-print(names)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+## Slide 24: Separate inputs from answers
 
-Result / continuity
-Continue the SAME cell; keep indentation. Run after all parts are entered.
+X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
 
-Continue to
-Model selection results
+## Slide 25: Training and predicting on the supplied data — step 1
 
-## Slide 14 — Model selection results
+X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
 
-Model selection results
-CML3112, Week 12, slide 14
+Step-by-step explanation
 
-Explanation to give
-First filter candidates using the published eligibility limits. Rank the survivors with the stated error, speed and tie-break order. If none qualify, return the required no-selection result.
+X_train = training_data[feature_columns]
+X_train stores training input columns, excluding the target.
 
-Worked illustration / lecturer answer
-A model with lower MAE but excessive prediction time is ineligible when latency is a hard constraint. Test a candidate exactly on each limit to check inclusive comparisons.
+y_train = training_data['target']
+y_train stores observed training targets in matching row order.
 
-Misconception to address
-Do not rank before enforcing constraints or silently relax a limit to produce a winner.
+X_valid = validation_data[feature_columns]
+X_valid stores validation input columns in training-column order.
 
-On this slide
-['simple']
+y_valid = validation_data['target']
+y_valid stores observed validation targets, used only for evaluation.
 
-Continue to
-A tuple supplies an ordered ranking key
+from sklearn.impute import SimpleImputer
+Load the named tools. Importing a model class does not train a model.
 
-## Slide 15 — A tuple supplies an ordered ranking key
+from sklearn.pipeline import make_pipeline
+Load the named tools. Importing a model class does not train a model.
 
-A tuple supplies an ordered ranking key
-CML3112, Week 12, slide 15
+from sklearn.linear_model import LinearRegression
+Load the named tools. Importing a model class does not train a model.
 
-Explanation to give
-A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Worked illustration / lecturer answer
-Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Misconception to address
-sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+## Slide 26: Create, then train, then predict
 
-On this slide
-A tuple holds several values in order, such as (error, time, name).
+Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
 
-Python compares the first values. A tie moves the comparison to the second.
+## Slide 27: Training and predicting on the supplied data — step 2
 
-If those also tie, the third value decides.
+Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
 
-Continue to
-Trace a tuple ranking key
+Step-by-step explanation
 
-## Slide 16 — Trace a tuple ranking key
+linear_model = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
+linear_model stores the linear regression estimator or imputation-and-regression pipeline.
 
-Trace a tuple ranking key
-CML3112, Week 12, slide 16
+linear_model.fit(X_train, y_train)
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-Explanation to give
-A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
+validation_predictions = linear_model.predict(X_valid)
+validation_predictions stores one predicted target for each validation row, in the same order.
 
-Worked illustration / lecturer answer
-Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+print(validation_predictions[:5].round(3).tolist())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Misconception to address
-sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+Verified result with the supplied CSV
+[44.91, 38.847, 54.982, 34.035, 39.662]
 
-On this slide
-Candidate | Key: error, ms, name | Position
-beta | (2, 5, "beta") | 1: lower error
-alpha | (3, 1, "alpha") | 2: tie on error; faster
-gamma | (3, 2, "gamma") | 3: same error; slower
-Only eligible candidates reach ranking. If error and time tie, compare the names alphabetically.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+## Slide 28: Matching actual values and predictions
 
-Continue to
-Pass a function as the sorting key
+RMSE reacts more strongly to large baseline_errors. Neither metric is a maximum guaranteed error. Pair by row order before calculation. R² is a separate regression measure and can be negative.
 
-## Slide 17 — Pass a function as the sorting key
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Pass a function as the sorting key
-CML3112, Week 12, slide 17
+## Slide 29: Operations for the next example
 
-Explanation to give
-A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
+Adding or replacing a column
+equipment_data["name"] = values assigns that column. An array follows row order. A Series aligns by row label, so keep labels paired with the intended observations.
 
-Worked illustration / lecturer answer
-Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+Column arithmetic
+Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
 
-Misconception to address
-sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+Mean of recorded values
+series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
 
-On this slide
-sorted returns a new list in order. In sorted(eligible, key=rank), rank is the function itself, passed without calling it.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-sorted calls rank(item) for each candidate and compares the returned tuples. Writing rank() here would call it immediately without its required input.
+## Slide 30: Operations for the next example
 
-The original eligible list is unchanged. Check len(ordered) before using ordered[0], because an empty list has no first position.
+Magnitude of each error
+series.abs() makes negative values positive while leaving nonnegative values unchanged. Averaging these magnitudes gives mean absolute error.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-Sorting with a tie-break rule
+## Slide 31: Squared error and square root
 
-## Slide 18 — Sorting with a tie-break rule
+error ** 2 squares each error. After averaging, ** 0.5 takes the square root. This gives root mean squared error, which penalises large errors more strongly than mean absolute error.
+Explain these operations before running the following example.
 
-Sorting with a tie-break rule
-CML3112, Week 12, slide 18
+## Slide 32: Line up observations and predictions
 
-Explanation to give
-A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
+Copy record IDs and observed targets from validation rows. Add predictions in that same order. Each row now pairs one observation with its own predicted value.
 
-Worked illustration / lecturer answer
-Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+## Slide 33: Errors from the supplied validation observations — step 1
 
-Misconception to address
-sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+Copy record IDs and observed targets from validation rows. Add predictions in that same order. Each row now pairs one observation with its own predicted value.
 
-On this slide
-A tuple is an ordered group of values.
+Step-by-step explanation
 
-Python compares the first item, then the second when tied, then the third.
+validation_results = validation_data[['record_id', 'target']].copy()
+validation_results stores actual and predicted targets paired with each record ID.
 
-The key function gives sorted the tuple for each candidate.
+validation_results['predicted'] = validation_predictions
+validation_results stores actual and predicted targets paired with each record ID.
 
-Guard an empty list before selecting position zero.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Continue to
-Sorting with a named function
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-## Slide 19 — Sorting with a named function
+## Slide 34: Measure how far predictions missed
 
-Sorting with a named function
-CML3112, Week 12, slide 19
+Subtract predicted from observed values. Positive errors mean underprediction; negative errors mean overprediction. abs removes signs for MAE. Squaring before averaging and taking a square root gives RMSE.
 
-Explanation to give
-A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
+## Slide 35: Errors from the supplied validation observations — step 2
 
-Worked illustration / lecturer answer
-Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+Subtract predicted from observed values. Positive errors mean underprediction; negative errors mean overprediction. abs removes signs for MAE. Squaring before averaging and taking a square root gives RMSE.
 
-Misconception to address
-sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+Step-by-step explanation
 
-On this slide
-Expression | Meaning
-key=rank | Use rank to build each comparison key
-sorted(eligible, key=rank) | Return a newly ordered list
-ordered[0] | Select its first item
-len(ordered) == 0 | Check for no eligible candidate
-Check for an empty list before accessing position zero.
+prediction_errors = validation_results['target'] - validation_results['predicted']
+prediction_errors stores actual targets minus predictions; signs indicate under- or over-prediction.
 
-Continue to
-Sorting with a tie-break rule in Python
+mae = prediction_errors.abs().mean()
+mae stores mean absolute error in the target unit.
 
-## Slide 20 — Sorting with a tie-break rule in Python
+rmse = (prediction_errors ** 2).mean() ** 0.5
+rmse stores root mean squared error in the target unit.
 
-Sorting with a tie-break rule in Python
-CML3112, Week 12, slide 20
+print(validation_results.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Explanation to give
-A ranking key states the priorities in order. Python compares tuples by the first element, then the second only on a tie, and so on. A key function returns that tuple for one candidate.
+print(round(float(mae), 4), round(float(rmse), 4))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Worked illustration / lecturer answer
-Keys (3,8,"A") and (3,6,"B") tie on error 3, so latency 6 wins. A third label component makes a remaining exact tie deterministic.
+Verified result with the supplied CSV
+record_id  target  predicted
+4           5  45.609  44.910430
+10         11  36.634  38.847011
+16         17  54.564  54.981598
+22         23  33.523  34.035272
+28         29  39.277  39.661642
+0.7427 0.8835
 
-Misconception to address
-sorted returns a new ordered list. It does not select only eligible candidates unless filtering happened first. Follow the published priority order.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Read the displayed code line by line
-def rank(item):
-Store these instructions under this function name. Names in parentheses are its inputs; the body waits until a call.
+## Slide 36: Candidate evidence and latency
 
-return (item["error"], item["ms"], item["name"])
-Evaluate this result and send it to the caller, ending this function call.
+perf_counter reads a high-resolution clock. Elapsed seconds times 1000 gives milliseconds. This classroom timing is a demonstration, not a production benchmark.
 
-ordered = sorted(eligible, key=rank)
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-if len(ordered) == 0:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
+## Slide 37: Operations for the next example
 
-winner = None
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+A table from Python values
+pd.DataFrame(records) builds a table from row dictionaries. With a dictionary of column lists, keys become column names and each list supplies that column’s values.
 
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+
+## Slide 38: Measuring elapsed time
+
+perf_counter() reads a high-resolution clock in seconds. Subtract the earlier reading from the later one, then multiply by 1000 for milliseconds. One measured run is an illustration, not a reliable performance benchmark.
+Explain these operations before running the following example.
+
+## Slide 39: Time prediction, not training
+
+perf_counter reads seconds from a high-resolution clock. Read it immediately before and after predict. Convert elapsed seconds to milliseconds and divide by row count. One timing is illustrative: repeated measurements are needed for a reliable speed claim.
+
+## Slide 40: A measured candidate from the supplied validation data — step 1
+
+perf_counter reads seconds from a high-resolution clock. Read it immediately before and after predict. Convert elapsed seconds to milliseconds and divide by row count. One timing is illustrative: repeated measurements are needed for a reliable speed claim.
+
+Step-by-step explanation
+
+from time import perf_counter
+Load the named tools. Importing a model class does not train a model.
+
+prediction_start_time = perf_counter()
+prediction_start_time stores timer reading immediately before predicting the batch.
+
+linear_model.predict(X_valid)
+model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
+
+prediction_time_ms = (perf_counter() - prediction_start_time) * 1000 / len(validation_data)
+prediction_time_ms stores measured batch time in milliseconds divided by validation-row count.
+
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 41: A measured candidate from the supplied validation data — step 2
+
+candidate_models: table of model names, measured validation errors and prediction times.
+
+## Slide 42: A measured candidate from the supplied validation data — step 2
+
+candidate_models: table of model names, measured validation errors and prediction times.
+
+Step-by-step explanation
+
+candidate_models = pd.DataFrame({'name': ['linear'], 'validation_mae': [float(mae)], 'latency_ms': [prediction_time_ms]})
+candidate_models stores table of model names, measured validation errors and prediction times.
+
+print(candidate_models)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+Verified result with the supplied CSV
+name  validation_mae  latency_ms
+0  linear        0.742677    0.022022
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 43: Constraints and tie-breaks
+
+These limits illustrate a decision rule, not an engineering safety standard. The assessment passes its own candidates and limits, which the function must use.
+
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+
+## Slide 44: Operations for the next example
+
+Checking for no rows
+equipment_data.empty is True when the filtered table has no entries. Check it before attempting to select a first row. empty is a property, without parentheses.
+
+Sorting by several columns
+equipment_data.sort_values(["validation_mae", "latency_ms", "name"]) sorts ascending by error first. Equal errors use latency, then alphabetical name as tie-breaks.
+
+Selecting by row position
+equipment_data.iloc[0] selects the first row by its position, not its label. ["name"] then selects that row’s name field. An empty table has no row at position zero.
+
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+
+## Slide 45: Checking a condition before calculating
+
+if condition: runs its indented statements only when the condition is True. else: handles the other case. Check for a nonzero denominator before division, and for a nonempty table before selecting its first row.
+Explain these operations before running the following example.
+
+## Slide 46: Selection from the measured candidate table — step 1
+
+if condition: runs its indented statements only when the condition is True. else: handles the other case. Check for a nonzero denominator before division, and for a nonempty table before selecting its first row.
+
+Step-by-step explanation
+
+error_is_acceptable = candidate_models['validation_mae'] <= 10
+error_is_acceptable stores the result of the displayed expression.
+
+time_is_acceptable = candidate_models['latency_ms'] <= 10
+time_is_acceptable stores the result of the displayed expression.
+
+model_is_eligible = error_is_acceptable & time_is_acceptable
+model_is_eligible stores the result of the displayed expression.
+
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 47: Apply both model-selection rules
+
+A candidate must satisfy both the error limit and the time limit. Compare each column with its limit first, then combine the True/False answers with &. Filtering can return no rows.
+
+## Slide 48: Selection from the measured candidate table — step 2
+
+A candidate must satisfy both the error limit and the time limit. Compare each column with its limit first, then combine the True/False answers with &. Filtering can return no rows.
+
+Step-by-step explanation
+
+eligible_models = candidate_models[model_is_eligible]
+eligible_models stores candidates satisfying both stated limits.
+
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 49: Choose only if an eligible model exists
+
+sort_values orders by error, then time, then name. empty answers whether no rows remain. Check it before iloc[0], which requests the first row by position. Return None when no candidate qualifies.
+
+## Slide 50: Selection from the measured candidate table — step 3
+
+sort_values orders by error, then time, then name. empty answers whether no rows remain. Check it before iloc[0], which requests the first row by position. Return None when no candidate qualifies.
+
+Step-by-step explanation
+
+ranked_models = eligible_models.sort_values(['validation_mae', 'latency_ms', 'name'])
+ranked_models stores eligible candidates sorted by error, time and name, in that order.
+
+if ranked_models.empty:
+    selected_model_name = None
 else:
-Use this remaining path when the matching earlier condition did not succeed.
+    selected_model_name = ranked_models.iloc[0]['name']
+Check the condition first, then run only the matching branch. This avoids invalid division or selecting a row that does not exist.
 
-winner = ordered[0]["name"]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+print(selected_model_name)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-print(winner)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Verified result with the supplied CSV
+linear
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Continue to
-Local explanation and Conditions of use
+## Slide 51: Interpreting the recommendation
 
-## Slide 21 — Local explanation and Conditions of use
+One candidate demonstrates eligibility, not superiority over untested alternatives. A local explanation does not establish causation.
 
-Local explanation and Conditions of use
-CML3112, Week 12, slide 21
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
+## Slide 52: Pandas inside the required function
 
-Worked illustration / lecturer answer
-A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
+Keep the original function names and return types. Do not read a fixed CSV inside the assessed function: hidden tests supply different equipment_records. The separate calling cell reads the CSV.
 
-Misconception to address
-Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-On this slide
-Local explanation: Why a model made one particular prediction. This is different from global importance, which summarises behaviour over many cases.
-Conditions of use: The cases and operating circumstances for which the available evidence supports considering the model.
+## Slide 53: Operations for the next example
 
-Continue to
-A recommendation needs evidence
+Returning a dictionary
+series.to_dict() maps Series labels to values. equipment_data.to_dict("records") instead returns a list of row dictionaries. Choose the form required by the assignment.
 
-## Slide 22 — A recommendation needs evidence
+Grouping rows
+equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
 
-A recommendation needs evidence
-CML3112, Week 12, slide 22
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
+## Slide 54: Defining and calling a function
 
-Worked illustration / lecturer answer
-A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
+def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+Explain these operations before running the following example.
 
-Misconception to address
-Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
+## Slide 55: A function called with the supplied records
 
-On this slide
-State the question and the chosen candidate.
+def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
 
-Give the evaluation result and the constraint it satisfies.
+Step-by-step explanation
 
-State a limitation and the evidence that could change the recommendation.
+def mean_load_by_equipment(equipment_records):
+    equipment_data = pd.DataFrame(equipment_records)
+    mean_load_by_equipment_group = equipment_data.groupby('equipment_id')['load_pct'].mean()
+    return mean_load_by_equipment_group.to_dict()
+Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
 
-Continue to
-Revision example and answer
+equipment_records = raw_data.to_dict('records')
+equipment_records stores the input list of row dictionaries supplied to the function.
 
-## Slide 23 — Revision example and answer
+print(mean_load_by_equipment(equipment_records))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Revision example and answer
-CML3112, Week 12, slide 23
+Verified result with the supplied CSV
+{'E1': 54.9475, 'E2': 61.326, 'E3': 53.46933333333333, 'E4': 66.854, 'E5': 48.10133333333333, 'E6': 51.54}
 
-Explanation to give
-Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Worked illustration / lecturer answer
-Example: A third model has error 3 and latency 1 ms. Under lowest error then lowest latency, which eligible model wins?
-
-Answer: The third model. Both eligible models have error 3, but 1 ms is faster than 2 ms.
-
-Misconception to address
-Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
-
-Continue to
-Preparing for the assignment
-
-## Slide 24 — Preparing for the assignment
-
-Preparing for the assignment
-CML3112, Week 12, slide 24
-
-Explanation to give
-For W12, read the candidate fields exactly: name, validation_mae and latency_ms. Enforce both inclusive limits before ranking by error, latency and alphabetical name.
-
-Worked illustration / lecturer answer
-A candidate exactly at both limits is eligible. If the eligible list is empty, return None. The simpler error/ms names on practice slides must be adapted to the assignment’s published field names.
-
-Misconception to address
-A sensible general recommendation does not replace the exact graded return interface. Keep the function contract and the wider project discussion distinct.
-
-On this slide
-W12 uses fields name, validation_mae and latency_ms.
-
-Meet both inclusive constraints, then rank by error, latency and alphabetical name.
-
-Return None if no candidate qualifies.
-
-Complete the error function and interpret the separately supplied scenario.
-
-Continue to
-Preparing for the assignment continued
-
-## Slide 25 — Preparing for the assignment continued
-
-Preparing for the assignment continued
-CML3112, Week 12, slide 25
-
-Explanation to give
-For W12, read the candidate fields exactly: name, validation_mae and latency_ms. Enforce both inclusive limits before ranking by error, latency and alphabetical name.
-
-Worked illustration / lecturer answer
-A candidate exactly at both limits is eligible. If the eligible list is empty, return None. The simpler error/ms names on practice slides must be adapted to the assignment’s published field names.
-
-Misconception to address
-A sensible general recommendation does not replace the exact graded return interface. Keep the function contract and the wider project discussion distinct.
-
-On this slide
-Keep project comparisons and graded interfaces distinct.
-
-Continue to
-Fair comparison and explanation
-
-## Slide 26 — Fair comparison and explanation
-
-Fair comparison and explanation
-CML3112, Week 12, slide 26
-
-Explanation to give
-Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
-
-Worked illustration / lecturer answer
-A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
-
-Misconception to address
-Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
-
-On this slide
-Compare the same metric on the same validation cases with the same preprocessing rules.
-
-A small difference needs context, including variation across splits.
-
-Code run out of order can overwrite the variable holding a model; restart and run from the top.
-
-A local explanation addresses one prediction; global importance summarises many.
-
-Continue to
-Fair comparison and explanation continued
-
-## Slide 27 — Fair comparison and explanation continued
-
-Fair comparison and explanation continued
-CML3112, Week 12, slide 27
-
-Explanation to give
-Connect a model recommendation to the observed evaluation and the intended operating conditions. A local explanation describes one prediction; it does not prove a universal causal rule.
-
-Worked illustration / lecturer answer
-A useful statement is “This model met the stated error and latency limits on held-out equipment; validate it on the intended site before operational use.” Point to the comparison table supporting each part.
-
-Misconception to address
-Feature importance or one prediction explanation cannot establish that changing the feature would cause the predicted effect.
-
-On this slide
-A post-hoc explanation of a complex model is not its directly readable internal rule.
-
-Continue to
-Your issued task
-
-## Slide 28 — Your issued task
+## Slide 56: Your issued task
 
 Your issued task
-CML3112, Week 12, slide 28
-
 Explanation to give
 Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
 
@@ -692,24 +663,10 @@ These are synthetic teaching records, not measurements suitable for deployment.
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-Continue to
-select_model(candidates, max_mae, max_ms)
+## Slide 57: select_model(candidates, max_mae, max_ms)
 
-## Slide 29 — select_model(candidates, max_mae, max_ms)
+Required interface: select_model(candidates, max_mae, max_ms)
 
-select_model(candidates, max_mae, max_ms)
-CML3112, Week 12, slide 29
-
-Explanation to give
-Filter by both published limits, then apply the full tie-break rule. Return the requested model identifier or the specified no-candidate result.
-
-Worked illustration / lecturer answer
-Check an exactly-on-limit candidate, a tied pair and an empty eligible list. These are ordinary contract cases rather than optional extensions.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Candidates have name, validation_mae and latency_ms.
 
 Keep those meeting both inclusive constraints; select smallest validation_mae, then latency_ms, then name alphabetically.
@@ -718,34 +675,19 @@ Return the selected name or None.
 
 Never use test scores for selection.
 
-Continue to
-regression_errors(actual, predicted)
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-## Slide 30 — regression_errors(actual, predicted)
+## Slide 58: regression_errors(actual, predicted)
 
-regression_errors(actual, predicted)
-CML3112, Week 12, slide 30
+Required interface: regression_errors(actual, predicted)
 
-Explanation to give
-Pair actual and predicted values by position. Return mae and rmse with full numerical precision.
-
-Worked illustration / lecturer answer
-On separate teaching pairs with errors 2 and 4, MAE is 3 and RMSE is sqrt(10). Rounding is for a labelled display, not for the returned metric.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Return mae and rmse, calculated over the same paired observations, with full precision.
 
-Continue to
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+
+## Slide 59: Written evidence
+
 Written evidence
-
-## Slide 31 — Written evidence
-
-Written evidence
-CML3112, Week 12, slide 31
-
 Explanation to give
 Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
@@ -764,14 +706,9 @@ State target units, reasons and limitations.
 
 Submit one complete notebook containing code and written evidence.
 
-Continue to
-Model recommendation submission
-
-## Slide 32 — Model recommendation submission
+## Slide 60: Model recommendation submission
 
 Model recommendation submission
-CML3112, Week 12, slide 32
-
 Explanation to give
 This slide hands over CML3112 W12. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
 
@@ -790,14 +727,9 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-Continue to
-Project preparation
-
-## Slide 33 — Project preparation
+## Slide 61: Project preparation
 
 Project preparation
-CML3112, Week 12, slide 33
-
 Explanation to give
 Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
 
@@ -816,14 +748,9 @@ Keep raw data, labelled charts, run instructions and individual contributions.
 
 Published deadline: 15 Dec 2026, 11:00 Kampala
 
-Continue to
-Week 12 quiz
-
-## Slide 34 — Week 12 quiz
+## Slide 62: Week 12 quiz
 
 Week 12 quiz
-CML3112, Week 12, slide 34
-
 Explanation to give
 This is the CML3112 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3112 when ready and read the logged closing time.
 
@@ -842,19 +769,14 @@ Use your Student Registration Number and registered account.
 
 Check the announced quiz closing time.
 
-Continue to
-Revision and submission checklist
-
-## Slide 35 — Revision and submission checklist
+## Slide 63: Revision and submission checklist
 
 Revision and submission checklist
-CML3112, Week 12, slide 35
-
 Explanation to give
 A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
 
 Worked illustration / lecturer answer
-A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidates.
+A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidate_models.
 
 Misconception to address
 Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
@@ -864,14 +786,9 @@ You can justify a valid candidate with evidence and a stated limitation.
 
 Save your work and check the required submission files.
 
-Continue to
-Optional revision video
-
-## Slide 36 — Optional revision video
+## Slide 64: Optional revision video
 
 Optional revision video
-CML3112, Week 12, slide 36
-
 Explanation to give
 Give the viewing question before playing the excerpt: Why evaluate using observations not used to fit that particular model?
 

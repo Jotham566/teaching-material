@@ -28,3 +28,7 @@ Pillow==12.3.0
 
 pypdf==6.10.0
 nbformat==5.10.4
+
+black==26.10.1
+
+scikit-learn==1.9.1

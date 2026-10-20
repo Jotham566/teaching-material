@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-19",
+  "cohorts": [
+    "CML3112",
+    "CML3113"
+  ],
+  "assignment": "W06",
+  "quiz": 6,
+  "status": "NOT_ASSIGNED",
+  "quiz_best": 9,
+  "quiz_available": 11,
+  "assignment_best": 7,
+  "assignment_available": 10,
+  "reason": "Practical revision before Test 1",
+  "preserve_submissions": true
+}

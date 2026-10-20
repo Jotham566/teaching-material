@@ -80,3 +80,14 @@ IUEA_Teaching_Plan/grader/specs/hidden/
 Professional_AI_Training/**/.qa/
 Professional_AI_Training/**/.local/
 Professional_AI_Training/**/.deps/
+
+# Private test marks, identity ledger and student submission snapshots
+IUEA_Teaching_Plan/test_operations/grading_output/
+
+# Local gateway credentials and development cache
+.dev.vars
+.dev.vars.*
+.wrangler/
+
+# Local older lecture copy; guided_practice.ipynb is the maintained version.
+IUEA_Teaching_Plan/guided_practice/CML3111/W06/CML3111-Week6-guided_practice.ipynb

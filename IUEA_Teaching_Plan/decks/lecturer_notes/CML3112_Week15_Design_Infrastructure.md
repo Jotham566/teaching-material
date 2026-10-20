@@ -1,12 +1,8 @@
-# CML3112 Week15 Design Infrastructure
+# CML3112 Week 15
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Presenting the project and individual contribution
+## Slide 1: Presenting the project and individual contribution
 
 Presenting the project and individual contribution
-CML3112, Week 15, slide 1
-
 Explanation to give
 Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 
@@ -19,14 +15,9 @@ Use this as an orientation to the lesson. Terms and syntax will be unpacked on t
 On this slide
 Civil Engineering and Architecture
 
-Continue to
-Today’s learning
-
-## Slide 2 — Today’s learning
+## Slide 2: Today’s learning
 
 Today’s learning
-CML3112, Week 15, slide 2
-
 Explanation to give
 Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 
@@ -41,14 +32,9 @@ Explain your question and one supported finding.
 
 State a limitation and your individual contribution.
 
-Continue to
-Connection to the previous lesson
-
-## Slide 3 — Connection to the previous lesson
+## Slide 3: Connection to the previous lesson
 
 Connection to the previous lesson
-CML3112, Week 15, slide 3
-
 Explanation to give
 Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 
@@ -61,14 +47,15 @@ Connect this to the previous result named on this slide. Demonstrate the first s
 On this slide
 What question did your team investigate, and what result can you support with evidence?
 
-Continue to
+## Slide 4: The continuing pandas workflow
+
+This is revision, not a new test requirement. Lists can name columns or hold returned predictions, but students do not need to rebuild table operations with manual CSV loops. Existing function signatures, marks and allowed-resource rules stay unchanged.
+
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+
+## Slide 5: A presentation connects a claim to evidence
+
 A presentation connects a claim to evidence
-
-## Slide 4 — A presentation connects a claim to evidence
-
-A presentation connects a claim to evidence
-CML3112, Week 15, slide 4
-
 Explanation to give
 Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
@@ -82,14 +69,9 @@ On this slide
 Finding and limitation: A finding states what the evidence shows. A limitation states where that evidence is incomplete or may not apply. Point to the relevant chart, metric or record.
 Defence and reflection: A defence explains why you made a choice. A reflection explains what you learned and would improve. Describe your own contribution with specific evidence.
 
-Continue to
-A six-minute presentation
-
-## Slide 5 — A six-minute presentation
+## Slide 6: A six-minute presentation
 
 A six-minute presentation
-CML3112, Week 15, slide 5
-
 Explanation to give
 Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
@@ -106,14 +88,9 @@ Minutes 3–4: show the method and one supported result.
 
 Minutes 5–6: explain limitations, contributions and a next step.
 
-Continue to
-Make the evidence readable
-
-## Slide 6 — Make the evidence readable
+## Slide 7: Make the evidence readable
 
 Make the evidence readable
-CML3112, Week 15, slide 6
-
 Explanation to give
 Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
@@ -130,14 +107,9 @@ State the measured evaluation result and how you obtained it.
 
 Point to the particular table, plot or calculation that supports your claim.
 
-Continue to
-Limitations of the results
-
-## Slide 7 — Limitations of the results
+## Slide 8: Limitations of the results
 
 Limitations of the results
-CML3112, Week 15, slide 7
-
 Explanation to give
 Explain the chain from engineering question to measured evidence to a bounded recommendation. A finding states what was observed; a limitation identifies where that evidence may not apply.
 
@@ -154,14 +126,9 @@ If an answer is unknown, say what evidence would resolve it.
 
 Teaching data alone do not establish readiness for real operation.
 
-Continue to
-Preparation checkpoint
-
-## Slide 8 — Preparation checkpoint
+## Slide 9: Preparation checkpoint
 
 Preparation checkpoint
-CML3112, Week 15, slide 8
-
 Explanation to give
 Each learner should be able to explain one decision they personally worked on and point to its evidence in the project.
 
@@ -174,14 +141,9 @@ Live discussion is formative. Collect the individual written evidence required b
 On this slide
 Each student can explain one decision they personally worked on and point to its evidence.
 
-Continue to
-Your evidence
-
-## Slide 9 — Your evidence
+## Slide 10: Your evidence
 
 Your evidence
-CML3112, Week 15, slide 9
-
 Explanation to give
 The team project and the individual DEMO evidence have separate purposes. Each learner submits their own explanation of decisions and reflection on learning.
 
@@ -198,14 +160,9 @@ Each individual submits their own typed defence and reflection through the desig
 
 Submit your own written defence and reflection as instructed.
 
-Continue to
-Engineering ML project
-
-## Slide 10 — Engineering ML project
+## Slide 11: Engineering ML project
 
 Engineering ML project
-CML3112, Week 15, slide 10
-
 Explanation to give
 Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
@@ -224,14 +181,9 @@ Task prompts and code comments are excluded from reasoning marks.
 
 Complete every original rubric criterion below, not just the checked functions.
 
-Continue to
-Engineering ML project continued
-
-## Slide 11 — Engineering ML project continued
+## Slide 12: Engineering ML project continued
 
 Engineering ML project continued
-CML3112, Week 15, slide 11
-
 Explanation to give
 A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
 
@@ -250,14 +202,9 @@ State units and distinguish correlation from causation.
 
 Charts must be actual labelled figures in the notebook, not claims that charts exist.
 
-Continue to
-Engineering ML project continued
-
-## Slide 12 — Engineering ML project continued
+## Slide 13: Engineering ML project continued
 
 Engineering ML project continued
-CML3112, Week 15, slide 12
-
 Explanation to give
 Bound the proposed engineering problem: identify the decision, intended users, operating setting and quantity or class to predict. Explain why the target supports that decision.
 
@@ -276,14 +223,9 @@ The ML task is correctly derived from it.
 
 The target variable is justified, not merely available.
 
-Continue to
-Engineering ML project continued
-
-## Slide 13 — Engineering ML project continued
+## Slide 14: Engineering ML project continued
 
 Engineering ML project continued
-CML3112, Week 15, slide 13
-
 Explanation to give
 Problem framing begins with a bounded engineering decision and a defined target. Provenance explains where observations came from; a licence states what reuse is allowed.
 
@@ -302,14 +244,9 @@ Limitations of the data acknowledged before any modelling.
 
 Methodology (20.0 total): Appropriate models chosen and compared under one protocol.
 
-Continue to
-Engineering ML project continued
-
-## Slide 14 — Engineering ML project continued
+## Slide 15: Engineering ML project continued
 
 Engineering ML project continued
-CML3112, Week 15, slide 14
-
 Explanation to give
 Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
 
@@ -328,14 +265,9 @@ Choices explained rather than defaulted to.
 
 Engineering reasoning (20.0 total): Domain knowledge visibly enters the work through features, banding, metric choice or interpretation.
 
-Continue to
-Engineering ML project continued
-
-## Slide 15 — Engineering ML project continued
+## Slide 16: Engineering ML project continued
 
 Engineering ML project continued
-CML3112, Week 15, slide 15
-
 Explanation to give
 Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
 
@@ -352,14 +284,9 @@ Validation (15.0 total): Correct train/test discipline, cross-validation with a 
 
 Communication (10.0 total): The 2-page brief is readable by a non-specialist engineer.
 
-Continue to
-Engineering ML project continued
-
-## Slide 16 — Engineering ML project continued
+## Slide 17: Engineering ML project continued
 
 Engineering ML project continued
-CML3112, Week 15, slide 16
-
 Explanation to give
 A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
 
@@ -378,14 +305,9 @@ Reproducibility & documentation (5.0 total): Repository runs from a clean clone.
 
 README complete. requirements.txt present.
 
-Continue to
-Engineering ML project continued
-
-## Slide 17 — Engineering ML project continued
+## Slide 18: Engineering ML project continued
 
 Engineering ML project continued
-CML3112, Week 15, slide 17
-
 Explanation to give
 Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
 
@@ -402,14 +324,9 @@ AI use declared.
 
 Contribution log present.
 
-Continue to
-Engineering ML project submission
-
-## Slide 18 — Engineering ML project submission
+## Slide 19: Engineering ML project submission
 
 Engineering ML project submission
-CML3112, Week 15, slide 18
-
 Explanation to give
 This slide hands over CML3112 ML_PROJECT. Show the exact form title before uploading. The required packet is the completed project notebook together with one readable DOCX or selectable-text PDF report.
 
@@ -428,14 +345,9 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-Continue to
-Presentation evidence (35 marks)
-
-## Slide 19 — Presentation evidence (35 marks)
+## Slide 20: Presentation evidence (35 marks)
 
 Presentation evidence (35 marks)
-CML3112, Week 15, slide 19
-
 Explanation to give
 Speaker notes contain the explanation behind each presentation slide. They should connect the question, method, evidence and limitations so the submitted file remains understandable without a live talk.
 
@@ -450,14 +362,9 @@ Slides and narration notes explain the question, method, evidence and limitation
 
 The local text grader does not assess visual styling or spoken delivery.
 
-Continue to
-Individual written defence (40 marks)
-
-## Slide 20 — Individual written defence (40 marks)
+## Slide 21: Individual written defence (40 marks)
 
 Individual written defence (40 marks)
-CML3112, Week 15, slide 20
-
 Explanation to give
 A defence explains the reasoning behind a decision the learner actually made. Ask for a named cell, result or chart so the explanation can be checked against the project.
 
@@ -472,14 +379,9 @@ Two typed answers about the student's own repository identify specific cells/res
 
 Credit is based on the submitted evidence; live questioning is formative.
 
-Continue to
-Reflection (20 marks)
-
-## Slide 21 — Reflection (20 marks)
+## Slide 22: Reflection (20 marks)
 
 Reflection (20 marks)
-CML3112, Week 15, slide 21
-
 Explanation to give
 Reflection should compare the learner's earlier understanding with what they can now demonstrate, then specify an achievable next step.
 
@@ -496,14 +398,9 @@ Specific about what changed since Week 1, what remains difficult, and two concre
 
 Generic reflection scores low.
 
-Continue to
-AI-use declaration (5 marks)
-
-## Slide 22 — AI-use declaration (5 marks)
+## Slide 23: AI-use declaration (5 marks)
 
 AI-use declaration (5 marks)
-CML3112, Week 15, slide 22
-
 Explanation to give
 Explain that disclosure records what help was used, where and how the learner checked it. It does not remove responsibility for the submitted work or override an assessment's restrictions.
 
@@ -511,19 +408,14 @@ Worked illustration / lecturer answer
 An informative declaration names the tool, the task for which it helped, the affected file or section and the verification performed. If no AI was used, state that directly.
 
 Misconception to address
-Do not imply AI is permitted in an offline test. Follow the policy for the particular assessment, and require the learner to explain their own work.
+Do not imply AI is permitted in an independent test_data. Follow the policy for the particular assessment, and require the learner to explain their own work.
 
 On this slide
 Present, complete and plausible against the repository history.
 
-Continue to
-Presentation and individual reflection submission
-
-## Slide 23 — Presentation and individual reflection submission
+## Slide 24: Presentation and individual reflection submission
 
 Presentation and individual reflection submission
-CML3112, Week 15, slide 23
-
 Explanation to give
 This slide hands over CML3112 DEMO. Show the exact form title before uploading. The required packet is the presentation with narration notes and the required written defence/reflection document, as listed in the DEMO guide.
 
@@ -542,14 +434,9 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-Continue to
-Revision and submission checklist
-
-## Slide 24 — Revision and submission checklist
+## Slide 25: Revision and submission checklist
 
 Revision and submission checklist
-CML3112, Week 15, slide 24
-
 Explanation to give
 Explain a supported finding, its limitation and the individual work behind it. The team project and each learner’s defence are distinct evidence.
 

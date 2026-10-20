@@ -34,3 +34,8 @@ For individual work, leave Team ID blank. Each file must be at most 10 MB. A rep
 ## Help only if needed
 
 Need help opening, saving or uploading? Use STUDENT_HOW_TO.md only for the step you are stuck on. It is a reference, not extra homework.
+
+<!-- PANDAS_WORKFLOW_20261015 -->
+## Pandas workflow
+
+Run the supplied pandas loading cell first. Analyse tables with pandas inside the required functions; return the exact list or dictionary requested. Where supplied, use records_from_table when a return needs Python None values. Correct existing loop-based solutions remain accepted.

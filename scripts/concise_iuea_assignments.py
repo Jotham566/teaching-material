@@ -70,6 +70,9 @@ def help_line(aid):
 
 def instructions(row,folder,links):
     aid,code=row['id'],row['cohort']
+    if aid in ('TEST1','TEST2'):
+        from build_colab_exams import brief
+        return brief(code,aid,links.get(row['key'],{}).get('url',''))
     lines=[f"# {code} {row['label']} — {row['title']}",f"**Submit:** {upload_list(row)}",f"**Deadline:** {deadline(row,links)}",'## 1. Start']
     if aid=='W01':
         lines+=['Open a blank Word or Google Docs document. No Python, Colab or GitHub is needed. Add your name, Student Registration Number and cohort.',
@@ -198,6 +201,7 @@ def early_prompts(code):
 def apply_to_folder(row,folder,guide):
     """Idempotent markdown-only notebook changes; never reset work or outputs."""
     aid=row['id'];code=row['cohort']
+    if aid in ('TEST1','TEST2'):return  # Owned by build_colab_exams.py
     if not folder.exists():return
     for name in ('ASSIGNMENT_INSTRUCTIONS.md','ASSIGNMENT_INSTRUCTIONS.txt'):(folder/name).write_text(guide)
     (folder/'STUDENT_HOW_TO.md').write_text((BASE/'setup/STUDENT_HOW_TO.md').read_text())
@@ -242,6 +246,9 @@ def apply_to_folder(row,folder,guide):
 
 def form_brief(row,folder):
     aid=row['id']
+    if aid in ('TEST1','TEST2'):
+        from build_colab_exams import brief
+        return brief(row['cohort'],aid)
     lines=[f'{row["cohort"]} {row["label"]} — {row["title"]}', 'WHAT TO UPLOAD',upload_list(row),'WHERE TO DO THE WORK']
     if aid=='W01':lines+=['Your report needs four sections: Problem 1, Problem 2, Problem 3, and My selected problem and dataset. For each problem explain the decision, possible inputs/target, data source, limitation and whether ML helps. Justify your selection. No coding or GitHub is required.']
     elif aid=='DEMO':lines+=['Use the issued presentation/defence prompts. Put narration in slide notes. The document must include both defence answers, the 500-word reflection and AI-use declaration.']

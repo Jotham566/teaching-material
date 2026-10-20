@@ -82,7 +82,7 @@ def execute(request):
             finally:
                 signal.alarm(0)
         return {'cells_total': total, 'cells_ok': ok, 'cell_errors': errors,
-                'declared_sid': str(ns.get('STUDENT_ID', ''))[:40], 'cohort': str(ns.get('COHORT', ''))[:30]}
+                'declared_sid': str(ns.get('STUDENT_ID', ''))[:512], 'cohort': str(ns.get('COHORT', ''))[:30]}
     if request['op'] == 'get':
         return encode(ns.get(request['name'], '__MISSING__'))
     if request['op'] == 'call':

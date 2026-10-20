@@ -1,492 +1,369 @@
-# CML3112 Week07 Design Infrastructure
+# CML3112 Week 7
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
+## Slide 1: Preparing for Practical Test 1
 
-## Slide 1 — Preparing for Practical Test 1
+A6 and Quiz 6 are waived for this cohort. This is ungraded practical revision. No assignment upload or quiz response is required. Previous submissions remain on record but do not count towards coursework marks.
+A6 and Quiz 6 are waived for this cohort. This is ungraded practical revision. No assignment upload or quiz response is required. Previous submissions remain on record but do not count towards coursework marks.
+Send this deck and CML3112_Test1_practice.csv together several days before Test 1. The CSV contains synthetic practice readings. All worked data examples use this file. Practice is ungraded. The later test-day section uses different files from the timed portal.
 
-Preparing for Practical Test 1
-CML3112, Week 7, slide 1
+## Slide 2: Your revision files
 
-Explanation to give
-This is preparation for Test 1. Rehearse opening and saving offline before the assessed period. During the test, follow the issued invigilation rules.
+Share the CSV as a separate attachment beside the PPTX. Students do not need an assessment packet or grader. The practice CSV is intentionally small so they can check every calculation by hand.
 
-Worked illustration / lecturer answer
-The published schedule has 15 minutes of setup, 120 of practical work, 25 of typed reasoning without code execution and 20 of collection.
+## Slide 3: Practice and test-day files
 
-Misconception to address
-Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+The clearly named practice file avoids confusing it with engineering_data.csv. Portal timing applies to test downloads, not the practice attachment. The repository remains public by the lecturer’s decision, so portal timing is not a claim that public repository files are private.
 
-On this slide
-Civil Engineering and Architecture
+## Slide 4: A new practice notebook in Colab
 
-Continue to
-Today’s learning
+A notebook holds code cells and output. Later cells use names created by earlier cells. Confirm the name and saved status. Students do not need a test notebook for this revision.
 
-## Slide 2 — Today’s learning
+## Slide 5: Uploading your practice CSV
 
-Today’s learning
-CML3112, Week 7, slide 2
+The Files panel uploads to the temporary session, not into the notebook itself. A FileNotFoundError usually means the file was not uploaded, its filename differs, or the session reset. Do not upload the PPTX into Colab. Avoid a duplicate download name ending in (1).
 
-Explanation to give
-This is preparation for Test 1. Rehearse opening and saving offline before the assessed period. During the test, follow the issued invigilation rules.
+## Slide 6: What each column means
 
-Worked illustration / lecturer answer
-The published schedule has 15 minutes of setup, 120 of practical work, 25 of typed reasoning without code execution and 20 of collection.
+These are synthetic teaching values, not measurements from an operating site. A row contains one measurement and its associated input conditions. target is a column name, not a unit. M1 and M2 are invented equipment identifiers. read_csv displays missing numeric values as NaN.
 
-Misconception to address
-At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+## Slide 7: Reading a CSV with pandas
 
-On this slide
-Rehearse saving and reopening the required files.
+A DataFrame is a table with named columns. The equals sign assigns a result to a name. CSV means comma-separated values. Python is case-sensitive, including the filename.
 
-Check the published test rules before the session.
+## Slide 8: Loading the supplied practice file
 
-Continue to
-Connection to the previous lesson
+Line 1 imports pandas. Line 2 stores the exact filename. Line 3 reads it into source. The last two lines show the table and its row count. No test data is involved.
 
-## Slide 3 — Connection to the previous lesson
+Result from the supplied example
+reading machine  load  target  ambient
+0        1      M1    20    10.0     20.0
+1        2      M1    40    20.0      NaN
+2        3      M2    60    30.0     30.0
+3        4      M2    80    40.0     40.0
+4        1      M1    20    10.0     20.0
+5        5      M2    50     NaN     90.0
+6        6      M2   120    90.0    100.0
+7
 
-Connection to the previous lesson
-CML3112, Week 7, slide 3
+## Slide 9: The practice cleaning rules
 
-Explanation to give
-This is preparation for Test 1. Rehearse opening and saving offline before the assessed period. During the test, follow the issued invigilation rules.
+The file has seven rows: readings 1, 2, 3, 4, a repeated 1, reading 5 with no target, and reading 6 with load 120. The four retained readings have targets 10, 20, 30 and 40. These practice rules are explicit; students must read the actual test rules on test day.
 
-Worked illustration / lecturer answer
-The published schedule has 15 minutes of setup, 120 of practical work, 25 of typed reasoning without code execution and 20 of collection.
+## Slide 10: Removing duplicates and missing targets
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+The list ["target"] identifies the column to inspect for missing values. Do not remove a row just because ambient is missing: its replacement comes later. The duplicate reading 1 repeats the first row.
 
-On this slide
-Can you open the provided notebook and data on the prepared lab computer without internet?
+## Slide 11: The first two cleaning steps
 
-Continue to
-Rehearse before test day
+First, seven rows become six after dropping the repeated reading 1. Then six become five after removing reading 5. source still has seven rows. raw is a new working table.
 
-## Slide 4 — Rehearse before test day
+Result from the supplied example
+6
+5
 
-Rehearse before test day
-CML3112, Week 7, slide 4
+## Slide 12: Selecting a valid load range
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+Both limits are included by default. A missing load would also fail this check. The row labels can have gaps after filtering; they are not the reading identifiers.
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+## Slide 13: Keeping the valid loads
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+Line 1 checks load for each remaining row. Line 2 retains the True rows, leaving four records. Line 3 displays their targets. All later summaries and charts use these four records.
 
-On this slide
-Use the separate practice notebook before the timed session.
+Result from the supplied example
+[10.0, 20.0, 30.0, 40.0]
 
-Open the supplied data and run a familiar calculation.
+## Slide 14: The median and missing ambient values
 
-The test packet and permitted resources are issued by the lecturer.
+The original rejected rows include high ambient values. Using them would change the replacement. The retained reading 2 has no ambient value, so it receives 30. Assign the filled Series back to the ambient column.
 
-Continue to
-Save the complete notebook
+## Slide 15: Filling the missing ambient value
 
-## Slide 5 — Save the complete notebook
+The median is 30. Reading 2 receives 30. The final ambient values in row order are 20, 30, 30, 40. source remains available with all seven original rows.
 
-Save the complete notebook
-CML3112, Week 7, slide 5
+Result from the supplied example
+30.0
+[20.0, 30.0, 30.0, 40.0]
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+## Slide 16: Selecting, averaging and grouping
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+Explain the whole-table mean by hand first: (10 + 20 + 30 + 40) / 4 = 25. For M1, (10 + 20) / 2 = 15. For M2, (30 + 40) / 2 = 35. A group mean is a separate calculation for each label.
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+## Slide 17: Overall mean and machine means
 
-On this slide
-Type Part B under My written evidence in the notebook.
+Line 1 averages all four targets. Line 2 groups rows by machine, selects target and averages within each group. Lines 3 and 4 display the results. The calculation does not change raw.
 
-Locate the complete notebook in the designated local folder.
+Result from the supplied example
+25.0
+machine
+M1    15.0
+M2    35.0
+Name: target, dtype: float64
 
-Reopen it to check that code and written answers were saved.
+## Slide 18: Practice: calculate a changed mean
 
-Continue to
-Follow the published test procedure
+The task is a hand calculation, avoiding hidden changes to the data used by subsequent examples. M1 contains 10 and 20. M2 would contain 30 and 60.
 
-## Slide 6 — Follow the published test procedure
+## Slide 19: Practice answer
 
-Follow the published test procedure
-CML3112, Week 7, slide 6
+Only M2 contains the changed reading. This is a hypothetical calculation. The subsequent chart still uses the four original retained targets.
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+## Slide 20: Charts and numerical findings
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+A scatter point combines values from the same row. Four points are enough to rehearse the commands, but too few to justify a general engineering conclusion. Revise the other chart types from earlier lessons as well. The test specifies which charts it requires.
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+## Slide 21: A labelled practice chart
 
-On this slide
-Read the briefing before starting assessed work.
+Read the coordinates of the first and last points. Target increases as load increases in this invented example. Do not claim this proves that load caused the increase. Reuse the original raw table, not dirty or clean.
 
-Use only the resources permitted for that part of the test.
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Report a technical failure to the invigilator immediately.
+## Slide 22: Histograms and group-mean bars
 
-Continue to
-Practice before test day
+A histogram groups numeric values into intervals, whereas a bar chart groups by categories. Use the same cleaned four-row table. The following histogram has two bins: 0 to below 25, and 25 to 50 including the final edge.
 
-## Slide 7 — Practice before test day
+## Slide 23: A target histogram
 
-Practice before test day
-CML3112, Week 7, slide 7
+Targets 10 and 20 fall in the first bin. Targets 30 and 40 fall in the second. There are four readings in total. show displays and finishes the chart in Colab.
 
-Explanation to give
-Rehearse this small calculation before the assessed session. The list has three values, so len returns 3. Add 3+5+7 to obtain 15, then divide by 3.
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Worked illustration / lecturer answer
-The displayed output is 3 followed by 5.0. Explain why the mean is a floating-point result even though the inputs are integers.
+## Slide 24: Bar labels and heights
 
-Misconception to address
-This is a preparation example, not a test answer. During Part B of the actual test, code execution is prohibited.
+Recall the earlier groupby calculation. A Series has an index and values. Here the index is the machine name rather than a numeric row label.
 
-Read the displayed code line by line
-values = [3, 5, 7]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+## Slide 25: Machine-mean bars
 
-print(len(values))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+M1 averages readings 1 and 2, giving 15. M2 averages readings 3 and 4, giving 35. These synthetic means describe this small sample and do not establish causation.
 
-print(sum(values) / len(values))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+## Slide 26: Functions and returned answers
 
-Continue to
-Test session
+The automated grader calls functions with other records. A pasted fixed answer can match a displayed example and still fail for another input. print displays a value but does not replace return. The following practice function is unrelated to the assessed function names.
 
-## Slide 8 — Test session
+## Slide 27: A practice function
 
-Test session
-CML3112, Week 7, slide 8
+The argument values receives a column from the practice CSV. pd.Series represents it as one labelled column. mean calculates its average. float converts the result to a Python decimal number. return sends it back to the caller. The first call averages targets 10, 20, 30, 40. The second averages loads 20, 40, 60, 80. print displays each returned result.
 
-Explanation to give
-This is preparation for Test 1. Rehearse opening and saving offline before the assessed period. During the test, follow the issued invigilation rules.
+Result from the supplied example
+25.0
+50.0
 
-Worked illustration / lecturer answer
-The published schedule has 15 minutes of setup, 120 of practical work, 25 of typed reasoning without code execution and 20 of collection.
+## Slide 28: Practice columns and test columns
 
-Misconception to address
-At the Part A boundary, follow the official snapshot procedure. During the 25-minute Part B period, students type reasoning but must not execute code. Do not change the published timing during an explanation.
+The practice CSV stays unchanged. Read each pair aloud. A record identifier labels an observation; it is not a timestamp. The test notebook explains its column names before the tasks. The next examples use practice names only.
 
-On this slide
-00–15 minutes: briefing and file check.
+## Slide 29: Tables and lists of records
 
-15–135 minutes: individual practical work.
+Use the retained raw table from the earlier practice cleaning. Each dictionary has reading, machine, load, target and ambient keys. The list preserves row order. These retained rows have no missing values. The supplied test helper also handles missing values when converting the original input.
 
-135–160 minutes: typed offline reasoning, with code execution prohibited.
+## Slide 30: The retained rows as records
 
-160–180 minutes: save and hand in through invigilated offline collection.
+First, convert the four cleaned rows into a list. The first dictionary describes M1 at load 20 with target 10 and ambient 20. The integer row labels of the DataFrame are not a column in these dictionaries. Rebuilding a DataFrame gives the same four measurements.
 
-Continue to
-Preparation checkpoint
+Result from the supplied example
+{'reading': 1, 'machine': 'M1', 'load': 20, 'target': 10.0, 'ambient': 20.0}
+4
 
-## Slide 9 — Preparation checkpoint
+## Slide 31: Missing values during conversion
 
-Preparation checkpoint
-CML3112, Week 7, slide 9
+Explain these as steps inside a provided helper. astype(object) changes the storage type, not the measured quantities. Missing numeric CSV cells are normally NaN; the function interface uses None. The next practice helper mirrors this supplied convenience.
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+## Slide 32: A helper for the original CSV
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+The helper accepts any table. It uses that argument instead of a global variable. The return statement gives a list back to the caller. original_records still contains the duplicate, the missing target and the invalid load.
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+Result from the supplied example
+7
 
-On this slide
-Every learner completes the offline save-and-reopen rehearsal.
+## Slide 33: A cleaning function follows the same steps
 
-Escalate lab-access failures before the test.
+This combines already practised operations. Students should explain the input, each row removal, the replacement median and the return type. No marks depend on memorising the four practice target values.
 
-Continue to
-Your evidence
+## Slide 34: The complete practice cleaning function
 
-## Slide 10 — Your evidence
+Trace seven input rows to six after removing the repeated reading, five after dropping the missing target, and four after checking load. The retained known ambient values are 20, 30 and 40. Their median is 30. Returning through as_records preserves the column names and row order.
 
-Your evidence
-CML3112, Week 7, slide 10
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+## Slide 35: Calling the cleaning function
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+The function call returns a new list assigned to cleaned_records. The second retained record originally had missing ambient. The two successive bracket operations first choose a record, then its ambient field.
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+Result from the supplied example
+7
+4
+30.0
 
-On this slide
-Use the official TEST1 brief, interfaces and rubric.
+## Slide 36: Summary values inside a dictionary
 
-The assessed period has 120 practical minutes and 25 typed reasoning minutes.
+Here the targets are 10, 20, 30, 40. Count is 4, mean 25, minimum 10 and maximum 40. group_means maps M1 to 15 and M2 to 35. Unlike to_dict("records") on a DataFrame, to_dict() on a Series produces one mapping.
 
-Your lecturer will issue the test packet and collection instructions.
+## Slide 37: A summary function
 
-Continue to
-Practical Test 1
+Each quoted key names one output. Colons connect keys to values. Commas separate entries. float converts a pandas numerical result into a Python decimal number. A multiline dictionary may continue until its closing brace. Keep full numerical precision.
 
-## Slide 11 — Practical Test 1
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Practical Test 1
-CML3112, Week 7, slide 11
+## Slide 38: Reading the returned summary
 
-Explanation to give
-Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
+First call the function with the retained records. Then retrieve results from its returned dictionary. Printed results help you check your work, but the grader receives the returned dictionary itself.
 
-Worked illustration / lecturer answer
-A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+Result from the supplied example
+4 25.0
+10.0 40.0
+{'M1': 15.0, 'M2': 35.0}
 
-Misconception to address
-Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+## Slide 39: A Figure is an object you can return
 
-On this slide
-Write your own explanation in the markdown cell headed `## My written evidence`.
+Displaying a chart is different from returning a chart. The test asks for actual Figure objects in a list, in scatter, bar, histogram order. Students should not return filenames, screenshots or dictionaries describing charts.
 
-Keep that heading.
+## Slide 40: A function returning a scatter Figure
 
-Task prompts and code comments are excluded from reasoning marks.
+The input table contains cleaned rows. The scatter combines load and target from each row. All chart labels belong to ax. The return statement returns fig, not ax. This function does not modify the input.
 
-Complete every original rubric criterion below, not just the checked functions.
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Continue to
-Practical Test 1 continued
+## Slide 41: Alphabetical order for group means
 
-## Slide 12 — Practical Test 1 continued
+The index of the grouped Series is its machine labels. Sorting by index sorts those labels, not the mean values. Sorting heights independently would attach the wrong value to a machine.
 
-Practical Test 1 continued
-CML3112, Week 7, slide 12
+## Slide 42: A function returning ordered bars
 
-Explanation to give
-A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
+Compute the means first, then put their labels in alphabetical order. Pass labels and corresponding means to bar. Return the Figure object. With more groups, the same function still calculates all group means.
 
-Worked illustration / lecturer answer
-A useful caption names the group or sample, the observed difference and the relevant unit. A limitation states what the plotted observations cannot establish, such as causation or performance at a new site.
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Misconception to address
-Text claiming “a chart was made” is not the required chart. Check the exact number and kinds required on this slide and in the assessment guide.
+## Slide 43: Ten histogram bins
 
-On this slide
-Include profiling, justified cleaning, question-led charts and your engineering recommendation where required.
+Ten bins means ten intervals, not ten readings. The first bin starts at 10 and the last ends at 40. The rightmost edge is included. There are only four readings, so many bins are empty. Do not reuse the earlier fixed boundaries [0, 25, 50] for the test.
 
-Keep raw data.
+## Slide 44: A function returning a ten-bin histogram
 
-State units and distinguish correlation from causation.
+A histogram Figure contains rectangular bars, including bars with zero height. The heights sum to the number of records. The unit belongs on the target axis; the other axis counts observations.
 
-Charts must be actual labelled figures in the notebook, not claims that charts exist.
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Continue to
-Practical Test 1 continued
+## Slide 45: Returning the three Figures in order
 
-## Slide 13 — Practical Test 1 continued
+The square brackets form a list of the three returned objects. A helper must be defined before this function is called. The actual test requires a build_charts function; helpers are allowed. The chart list is the returned answer, while show displays it for inspection.
 
-Practical Test 1 continued
-CML3112, Week 7, slide 13
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-Explanation to give
-Describe the received table before changing it: its rows, columns, units and defects. Then explain each cleaning rule and preserve the original data.
+## Slide 46: The gap between group means
 
-Worked illustration / lecturer answer
-A duplicate record ID and repeated equipment ID are different situations. Removing the former under a stated rule may be correct while removing the latter could discard legitimate observations.
+Emphasise the difference between a group mean and an individual record. Use group means for group_gap. Its unit is the target unit. The observed gap does not establish why the equipment differs.
 
-Misconception to address
-A correct output without a justification may not satisfy the reasoning criterion. Use the task’s exact rules rather than choosing whichever cleaning makes results look attractive.
+## Slide 47: Calculating the group gap
 
-On this slide
-Include captions and readable written evidence in the notebook.
+The means Series contains 15 and 35. Taking their maximum and minimum produces a gap of 20. This is an observed difference in these synthetic data, not a recommendation to replace equipment.
 
-Loading & profiling (15.0 total): Data loaded correctly; shape, types and summary produced; the dataset is described accurately in the student's own words.
+Result from the supplied example
+20.0
 
-Cleaning decisions & justification (20.0 total): Defects found.
+## Slide 48: A finding contains a value and a unit
 
-Each handling decision stated AND justified.
+A nested dictionary is a dictionary containing another dictionary. Keys value and unit are literal names required by the test. Correct unit spellings such as °C, deg C and degrees C are equivalent. A quantity measured in kWh/t cannot be labelled kW.
 
-Continue to
-Practical Test 1 continued
+## Slide 49: A helper for a value with its unit
 
-## Slide 14 — Practical Test 1 continued
+The first argument is the number. The second is its unit string. The helper constructs the inner dictionary. The next function uses it to give every finding an explicit unit.
 
-Practical Test 1 continued
-CML3112, Week 7, slide 14
+Result from the supplied example
+25.0 kW
 
-Explanation to give
-A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
+## Slide 50: Returning the five practice findings
 
-Worked illustration / lecturer answer
-A useful caption names the group or sample, the observed difference and the relevant unit. A limitation states what the plotted observations cannot establish, such as causation or performance at a new site.
+Reuse the summary calculation to avoid inconsistent values. pd.Series turns the group_means dictionary into a Series whose index is the machine labels. Calculate the gap on that Series. The returned outer dictionary has five exact keys. Each entry is an inner dictionary returned by with_unit.
 
-Misconception to address
-Text claiming “a chart was made” is not the required chart. Check the exact number and kinds required on this slide and in the assessment guide.
+Result from the supplied example
+Values are stored for the next step; this cell does not print a result.
 
-On this slide
-Marks are for the justification - an unjustified correct fix scores roughly half.
+## Slide 51: Checking the returned findings
 
-Visualisation (20.0 total): Three charts, each captioned with the question it answers.
+count returns {value: 4, unit: observations}. mean returns {value: 25.0, unit: the cohort target unit}. group_gap returns value 20 with that same target unit. To get just the gap number, use findings["group_gap"]["value"].
 
-Correct chart type.
+Result from the supplied example
+{'value': 4, 'unit': 'observations'}
+{'value': 25.0, 'unit': 'kW'}
+{'value': 20.0, 'unit': 'kW'}
 
-Axes labelled with units.
+## Slide 52: Practice: another input to your functions
 
-Continue to
-Practical Test 1 continued
+[:2] is a slice taking positions 0 and 1. Demonstrate calls revision_clean(original_records[:2]), then pass that result to each later function. There is no assessment submission for this practice.
 
-## Slide 15 — Practical Test 1 continued
+## Slide 53: Practice answer
 
-Practical Test 1 continued
-CML3112, Week 7, slide 15
+[:2] is a slice taking positions 0 and 1. Demonstrate calls revision_clean(original_records[:2]), then pass that result to each later function. There is no assessment submission for this practice.
 
-Explanation to give
-Explain the decision, the evidence supporting it and what would change that decision. The reader should be able to find the result cited in the notebook.
+## Slide 54: What a filled value can and cannot tell us
 
-Worked illustration / lecturer answer
-For example, a model may justify further testing at a second site while not yet justifying deployment. Name the missing operating range or equipment group that the next data collection should cover.
+Ask which ambient reading was actually missing: reading 2. Filling it with 30 does not prove that the true temperature was 30. Keeping source lets us distinguish recorded and estimated values.
 
-Misconception to address
-During test Part B, type the explanation offline without executing code. Save it in the collected notebook; later upload must not extend the assessed work period.
+## Slide 55: An identifier is not a clock
 
-On this slide
-No decoration without purpose.
+Reading 4 is not evidence of hour 4. An ID can be assigned during collection or import without representing time. Likewise, M2 having a higher sample mean does not prove it is faulty. Do not infer causes or safety decisions from this teaching dataset.
 
-Findings (20.0 total): Five findings, supported by evidence from the data, stated with correct magnitudes and units.
+## Slide 56: Test 1 revision checklist
 
-A wrong number loses the mark even if the method was right.
+Practice outputs: four rows, overall target mean 25, machine means 15 and 35, ambient median 30. The test supplies its own function names, return formats and rules. Do not hard-code these practice values.
 
-Engineering interpretation (15.0 total): One recommendation that an engineer could act on, plus a clear statement of what further data would be needed.
+## Slide 57: Recording interpretation answers
 
-Continue to
-Practical Test 1 continued
+DECISIONS is a Python dictionary in the notebook. Its keys identify questions and its string values hold selected option letters. Use the labels printed in that question. A choice label is unrelated to file allocation. No student should select a paper version or edit the internal allocation cell.
 
-## Slide 16 — Practical Test 1 continued
+## Slide 58: A dictionary entry for a practice question
 
-Practical Test 1 continued
-CML3112, Week 7, slide 16
+This is a syntax demonstration, not an assessed answer. Explain the braces, quoted key, colon and quoted value. In the actual test, edit the existing question keys instead of replacing them with practice. Students must choose their own option by reading the question.
 
-Explanation to give
-Reproducibility means a clean run using the delivered files, documented dependencies and stated instructions produces the reported results.
+Result from the supplied example
+B
 
-Worked illustration / lecturer answer
-Use an actual fresh-runtime check. Correct a path or missing setup step that the check reveals, then save the successful notebook and instructions.
+## Slide 59: Test-day instructions
 
-Misconception to address
-Saved figures can remain visible after code breaks. Their presence alone is not a successful rerun.
+Pause at this boundary when reviewing in advance. The remaining slides are procedural instructions, not additional practice tasks. No practice file should be submitted to the test form.
 
-On this slide
-Clarity & reproducibility (10.0 total): Notebook runs top to bottom.
+## Slide 60: Your test files on test day
 
-Logical order.
+The page assigns files automatically. Students do not choose a version. Re-entering the same registration number and Google email retrieves the same allocation. The page can be opened in advance, but downloads are available only during the authorised test window. A phone scan is useful for opening the page, but students must download and use both files on their laptop. Students never choose a test version.
 
-Markdown explains intent.
+## Slide 61: Opening the notebook and CSV
 
-No dead code.
+A notebook upload does not include its data. Show the folder icon, then Upload. Wait until engineering_data.csv appears. Do not upload a ZIP. The portal prefills the identity cell; students check it and run it before later cells. The final submission cell contains an internal allocation code and is collapsed for clarity. Keep it unchanged.
 
-Continue to
-Practical Test 1 continued
+## Slide 62: One notebook contains all answers
 
-## Slide 17 — Practical Test 1 continued
+A function is a named block of code. The grader calls that function with different records, so it must calculate from its argument. DECISIONS is a dictionary pairing each question identifier with one option letter. Use a non-assessed demonstration such as {"practice": "B"}. No separate report or prose answer section is required.
 
-Practical Test 1 continued
-CML3112, Week 7, slide 17
+## Slide 63: How the 100 marks are allocated
 
-Explanation to give
-This is preparation for Test 1. Rehearse opening and saving offline before the assessed period. During the test, follow the issued invigilation rules.
+Explain that all marks come from the published checks. Correct code on unseen inputs earns coding marks. Each of the six interpretation choices earns 5 marks. Test 1 contributes 15 points and Test 2 contributes 20 points to the semester total. For example, 80/100 in Test 1 contributes 12 semester points. Partial marks are available for independently checked outputs; charts and cleaning each have a complete contract.
 
-Worked illustration / lecturer answer
-The published schedule has 15 minutes of setup, 120 of practical work, 25 of typed reasoning without code execution and 20 of collection.
+## Slide 64: Order of work
 
-Misconception to address
-At the Part A boundary, follow the official snapshot procedure. During the 25-minute Part B period, students type reasoning but must not execute code. Do not change the published timing during an explanation.
+Test 1: duplicate removal keeps the first occurrence. Exclude a missing target or invalid load. Only then calculate the retained ambient median. Test 2: row filters are supplied, but missing ambient values remain. A pipeline learns the median from the training partition and reuses it for validation. Fitting a median on all rows leaks evaluation information. Do not reveal assessed option answers during the test.
 
-On this slide
-Timing and Part B
+## Slide 65: The three-hour session
 
-15 minutes setup, 120 minutes practical, 25 minutes typed offline reasoning with code execution prohibited, 20 minutes collection.
+Announce the actual start and close time displayed by the form. These periods total 180 minutes. Code execution is allowed during checking. Report internet or runtime problems immediately. Record incidents with the affected learner and time. Do not silently treat a failed upload as a submitted test.
 
-No internet, messaging or AI.
+## Slide 66: Before submitting
 
-Answer: Why your main cleaning/model choice?
+A fresh session has no variables from earlier runs. This exposes cells that depend on stale values or an incorrect order. The supplied CSV example cell calls the implemented functions. The final submission cell creates a button. Clicking it prepares a separate snapshot of the current notebook in Drive; later edits to the working notebook do not change that snapshot. Students must open the generated form link and press Submit. The button alone is not a completed submission.
 
-Continue to
-Practical Test 1 continued
+## Slide 67: Submission and confirmation
 
-## Slide 18 — Practical Test 1 continued
+Demonstrate the final button using a rehearsal notebook. The button privately shares a saved snapshot with the lecturer and fills the form fields. Tick the form’s email confirmation box before pressing Submit. Do not type snapshot IDs manually. The form records the verified Google email; it must be the same account that owns the snapshot. A new attempt requires clicking the notebook button again and submitting its new form link. The latest on-time attempt is considered; technical or identity errors remain pending. Earlier attempts are retained.
 
-Practical Test 1 continued
-CML3112, Week 7, slide 18
+## Slide 68: How grading works
 
-Explanation to give
-A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
-
-Worked illustration / lecturer answer
-A useful caption names the group or sample, the observed difference and the relevant unit. A limitation states what the plotted observations cannot establish, such as causation or performance at a new site.
-
-Misconception to address
-Text claiming “a chart was made” is not the required chart. Check the exact number and kinds required on this slide and in the assessment guide.
-
-On this slide
-What can your chart/metric not establish?
-
-What evidence would change your recommendation?
-
-What further data is required?
-
-Invigilated offline collection is authoritative; Google upload is a later transport step and must not impose an internet requirement during the test.
-
-Continue to
-Practical Test 1 submission
-
-## Slide 19 — Practical Test 1 submission
-
-Practical Test 1 submission
-CML3112, Week 7, slide 19
-
-Explanation to give
-This slide hands over CML3112 TEST1. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
-
-Worked illustration / lecturer answer
-For TEST1/TEST2, save Part B under My written evidence. Collect the complete notebook offline under invigilation; the later form upload only transports that collected version.
-
-Misconception to address
-Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
-
-On this slide
-Offline invigilated collection is authoritative.
-
-Google upload is a later transport step.
-
-Save one notebook with Part B under My written evidence.
-
-No internet, messaging or AI during the test.
-
-Continue to
-Revision and submission checklist
-
-## Slide 20 — Revision and submission checklist
-
-Revision and submission checklist
-CML3112, Week 7, slide 20
-
-Explanation to give
-This is preparation for Test 1. Rehearse opening and saving offline before the assessed period. During the test, follow the issued invigilation rules.
-
-Worked illustration / lecturer answer
-The published schedule has 15 minutes of setup, 120 of practical work, 25 of typed reasoning without code execution and 20 of collection.
-
-Misconception to address
-Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
-
-On this slide
-You can reopen your notebook and find code and typed reasoning without help.
-
-Save your work and check the required submission files.
+Grades are calculated in a batch on the lecturer’s Mac after the test. The Mac can be off during submission. Google Forms and Drive collect the snapshots. Before admitting students, rehearse the entry page, two downloads, notebook button and form confirmation. After the test, export the batch and run Grade_Tests.command with Docker running. A receipt is not a grade. A genuine zero is distinct from pending or infrastructure failure. The attendee register is built from submissions; without an enrolled roster it cannot identify absentees.

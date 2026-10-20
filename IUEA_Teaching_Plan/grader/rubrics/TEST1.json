@@ -1,43 +1,38 @@
 {
-  "id": "TEST1-2026.09",
-  "title": "Practical Test 1",
+  "id": "TEST1-2026.10-colab-v1",
+  "title": "Practical TEST1",
   "maximum": 100,
+  "grading": "deterministic",
   "criteria": [
     {
-      "id": "c1",
-      "title": "Loading & profiling",
-      "maximum": 15.0,
-      "description": "Data loaded correctly; shape, types and summary produced; the dataset is described accurately in the student's own words."
+      "id": "q1",
+      "title": "Cleaning",
+      "maximum": 20,
+      "description": "Return copied records in original order: remove repeated record_id after its first occurrence, drop rows with missing target or load_pct outside 0\u2013100 inclusive, then fill missing ambient_c with the median of retained non-missing ambient_c values. Preserve raw input. No other changes."
     },
     {
-      "id": "c2",
-      "title": "Cleaning decisions & justification",
-      "maximum": 20.0,
-      "description": "Defects found. Each handling decision stated AND justified. Marks are for the justification - an unjustified correct fix scores roughly half."
+      "id": "q2",
+      "title": "Summary statistics",
+      "maximum": 15,
+      "description": "Return count, mean, minimum, maximum of target and group_means by equipment_id. Retain full precision."
     },
     {
-      "id": "c3",
-      "title": "Visualisation",
-      "maximum": 20.0,
-      "description": "Three charts, each captioned with the question it answers. Correct chart type. Axes labelled with units. No decoration without purpose."
+      "id": "q3",
+      "title": "Three labelled charts",
+      "maximum": 15,
+      "description": "Return at least three actual matplotlib Figure objects: scatter load_pct vs target; bar of mean target by equipment_id in alphabetical order; target histogram with ten equal bins from minimum to maximum. Add chart titles and axis labels, including target units. A fourth figure, when required, plots record_id vs target in input order."
     },
     {
-      "id": "c4",
-      "title": "Findings",
-      "maximum": 20.0,
-      "description": "Five findings, supported by evidence from the data, stated with correct magnitudes and units. A wrong number loses the mark even if the method was right."
+      "id": "q4",
+      "title": "Five numerical findings",
+      "maximum": 20,
+      "description": "Return a dict with count, mean, minimum, maximum and group_gap (highest minus lowest equipment mean). Each value is a dict with value and unit; count uses observations and other values use the cohort target unit. These numerical findings are checked independently of the narrative."
     },
     {
-      "id": "c5",
-      "title": "Engineering interpretation",
-      "maximum": 15.0,
-      "description": "One recommendation that an engineer could act on, plus a clear statement of what further data would be needed."
-    },
-    {
-      "id": "c6",
-      "title": "Clarity & reproducibility",
-      "maximum": 10.0,
-      "description": "Notebook runs top to bottom. Logical order. Markdown explains intent. No dead code."
+      "id": "q5",
+      "title": "Structured interpretation",
+      "maximum": 30,
+      "description": "Six scenario choices in DECISIONS; 5 marks for each correct choice."
     }
   ]
 }

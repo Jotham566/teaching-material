@@ -1,74 +1,17 @@
-# CML3112 TEST1 — task reference
+# CML3112 TEST1 — Colab practical test
 
-These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
+**Submit one notebook snapshot:** your completed `TEST1_student.ipynb`. Total: **100 marks**. Individual work.
 
-## Your data
+1. Open your lecturer’s test entry link or scan its QR code. Enter your full name, Google email and Student Registration Number. Download the notebook and CSV shown on your page. On your laptop, open Colab → **File → Open notebook → Upload** and select the notebook. Save your own copy in Drive.
+2. In Colab's **Files** sidebar, upload your downloaded `engineering_data.csv`. Do not rename it. Enter your name, email and Student Registration Number in the identity cell. Keep the supplied course, test and internal allocation settings unchanged.
+3. Work from top to bottom. Write each function beneath its question. Use pandas. The notebook explains the columns, return formats and marks. Answer the six interpretation questions by putting A, B or C in `DECISIONS`.
+4. Restart the session and run all cells. If Colab asks for the CSV again, upload the same file. Fix errors and save. Run the final submission cell.
+5. Click **Submit test** at the bottom of the notebook. Authorize your own Google account if asked. The button saves a snapshot and prepares a form link. Open that link using the same account, check your details, tick the email confirmation box and press **Submit** on the form. Keep the confirmation. The notebook button alone is not a completed submission. No manual download or file upload is needed. Keep the snapshot in Drive until grades are released.
 
-Investigate building cooling load; target unit: **kW**. These are synthetic teaching data. Each row is an operating observation; equipment_id identifies equipment and can repeat.
+**Timing:** 15 minutes setup, 120 minutes coding, 25 minutes interpretation and checking, 20 minutes final save and submission (180 minutes total). The invigilator announces the exact start and deadline. Report connection problems immediately.
 
-A record is a dictionary of column names and values. A list of records holds several rows. record_id identifies a row; load_pct is load as a percentage; ambient_c is temperature in degrees C; target is the quantity to predict. Numeric CSV blanks become None. Keep the original data. Your functions are checked on other records following the same published rules.
+**Rules:** Colab and the submission form are permitted. No AI-generated solutions, messaging, collaboration or copied answers. Follow the invigilator's rules for other resources. The lecturer's isolated grader reruns your code on unseen data; stored outputs and claimed marks are not trusted. Partial credit is available for independent checked outputs. An error in one task does not automatically zero the entire test.
 
+**Do not submit:** ZIP, CSV, PDF, screenshots or grading scripts. No separate written report. A replacement before the deadline must contain the complete notebook. The latest on-time submission is reviewed for marking; earlier attempts remain in the audit log. If that attempt has a technical or identity problem, its mark stays pending until resolved.
 
-### `summarize_records(clean_records)` — 10 marks
-
-- Return count, mean, minimum, maximum of target and group_means by equipment_id.
-- Retain full precision.
-- Return a dictionary with exactly count, mean, minimum, maximum and group_means. group_means is a dictionary from equipment ID to its mean target.
-
-Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
-
-
-### `clean_records(records)` — 10 marks
-
-- Return a list of copied records, keeping their original order. Do not change the raw input.
-- Keep only the first occurrence of each record_id.
-- Drop a record if target is missing or load_pct is outside 0–100 inclusive.
-- Using the remaining records, find the median of the non-missing ambient_c values. Use it to fill missing ambient_c.
-- Make no other changes.
-
-Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
-
-
-### `build_charts(clean_records)` — 12 marks
-
-- Return at least three actual matplotlib Figure objects: scatter load_pct vs target; bar of mean target by equipment_id in alphabetical order; target histogram with ten equal bins from minimum to maximum.
-- Add chart titles and axis labels, including target units.
-- A fourth figure, when required, plots record_id vs target in input order.
-
-Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
-
-
-### `five_findings(clean_records)` — 20 marks
-
-- Return a dict with count, mean, minimum, maximum and group_gap (highest minus lowest equipment mean).
-- Each value is a dict with value and unit; count uses observations and other values use the cohort target unit.
-- These numerical findings are checked independently of the narrative.
-
-Write your function in the matching answer cell in the notebook. Return the requested value; printing alone is not enough.
-
-
-
-## Written questions
-
-Write your answers in the notebook’s **My written evidence** cell. Keep that heading. Use these numbers to organise your answers.
-
-1. **Loading & profiling (5 written marks):** Data loaded correctly; shape, types and summary produced; the dataset is described accurately in the student's own words.
-
-2. **Cleaning decisions & justification (10 written marks):** Defects found. Each handling decision stated AND justified. Marks are for the justification - an unjustified correct fix scores roughly half.
-
-3. **Visualisation (8 written marks):** Three charts, each captioned with the question it answers. Correct chart type. Axes labelled with units. No decoration without purpose.
-
-4. **Engineering interpretation (15 written marks):** One recommendation that an engineer could act on, plus a clear statement of what further data would be needed.
-
-5. **Clarity & reproducibility (10 written marks):** Notebook runs top to bottom. Logical order. Markdown explains intent. No dead code.
-
-### Part B — invigilator-controlled timing
-
-15 minutes setup; 120 minutes practical; 25 minutes typed offline reasoning with no code execution; 20 minutes collection. No internet, messaging or AI.
-
-Under a Part B subheading answer: Why your main cleaning/model choice? What can your chart/metric not establish? What evidence would change your recommendation? What further data is required?
-
-
-## Submit
-
-ONE completed assignment notebook (.ipynb).
+**Submission:** use the generated link from the notebook’s Submit test button. A general form link will not contain your prepared snapshot.

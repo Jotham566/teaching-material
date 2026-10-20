@@ -1,39 +1,9 @@
 {
-  "id": "TEST1-2026.09-hybrid-r1",
-  "title": "Practical Test 1",
-  "maximum": 48.0,
-  "criteria": [
-    {
-      "id": "c1",
-      "title": "Loading & profiling",
-      "maximum": 5.0,
-      "description": "Data loaded correctly; shape, types and summary produced; the dataset is described accurately in the student's own words. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c2",
-      "title": "Cleaning decisions & justification",
-      "maximum": 10.0,
-      "description": "Defects found. Each handling decision stated AND justified. Marks are for the justification - an unjustified correct fix scores roughly half. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c3",
-      "title": "Visualisation",
-      "maximum": 8.0,
-      "description": "Three charts, each captioned with the question it answers. Correct chart type. Axes labelled with units. No decoration without purpose. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c5",
-      "title": "Engineering interpretation",
-      "maximum": 15.0,
-      "description": "One recommendation that an engineer could act on, plus a clear statement of what further data would be needed. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c6",
-      "title": "Clarity & reproducibility",
-      "maximum": 10.0,
-      "description": "Notebook runs top to bottom. Logical order. Markdown explains intent. No dead code. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    }
-  ],
+  "id": "TEST1-2026.10-colab-v1",
+  "title": "No AI grading component",
+  "maximum": 0,
   "assessment_maximum": 100,
-  "deterministic_maximum": 52
+  "deterministic_maximum": 100,
+  "criteria": [],
+  "note": "This test is marked entirely by the deterministic Colab exam grader."
 }

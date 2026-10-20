@@ -8,7 +8,9 @@ process.env.RUNTIME_NODE_MODULES=runtime;
 const {Presentation,PresentationFile,FileBlob}=await import(pathToFileURL(path.join(runtime,'@oai/artifact-tool/dist/artifact_tool.mjs')).href).catch(async()=>{
  const {createRequire}=await import('node:module');return createRequire(path.join(runtime,'package.json'))('@oai/artifact-tool');
 });
-const skill='/Users/jothamwambi/.codex/plugins/cache/openai-primary-runtime/presentations/26.927.11222/skills/presentations';
+const skillRoot='/Users/jothamwambi/.codex/plugins/cache/openai-primary-runtime/presentations';
+const skillVersion=(await fs.readdir(skillRoot)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).at(-1);
+const skill=path.join(skillRoot,skillVersion,'skills/presentations');
 const {finalizePresentation}=await import(pathToFileURL(path.join(skill,'container_tools/artifact_tool_utils.mjs')).href);
 const review=path.join(root,'review/2026-09-15/ppt-revision');
 const decks=JSON.parse(await fs.readFile(path.join(root,'data/iuea_deck_content.json'),'utf8'));
@@ -65,7 +67,7 @@ for(const deck of decks){
    const maxLen=Math.max(...s.code.split('\n').map(x=>x.length));
    const split=maxLen<=44;
    const width=split?766:1135;
-   const size=Math.min(29,(width-75)/(Math.max(maxLen,1)*0.62));
+   const size=Math.min(29,s.code_size||29,(width-75)/(Math.max(maxLen,1)*0.62));
    if(size<22)throw Error('Code line too long '+deck.filename+' '+idx+' '+maxLen);
    panel(slide,55,178,width,358,ink);
    const codebox=textbox(slide,s.code,72,196,width-32,330,size,'Courier New','#F4F7FA');
@@ -125,24 +127,32 @@ for(const deck of decks){
    bodyText(s.body,87,272,498,310,30);
    bodyText('HOW YOU WILL SHOW IT',652,210,540,40,22,teal,true);
    bodyText(s.check,652,272,535,310,30);
-  }else if(k==='link'){
+  }else if(k==='link'||k==='test_entry'){
    const quiz=/quiz/i.test(s.title);const video=s.label.includes('video');
-   header(quiz?'QUIZ ACCESS':video?'WATCH, THEN EXPLAIN':'ASSIGNMENT SUBMISSION');
+   header(k==='test_entry'?'TEST ACCESS':quiz?'QUIZ ACCESS':video?'WATCH, THEN EXPLAIN':'ASSIGNMENT SUBMISSION');
    const qr=s.qr&&await fs.readFile(path.join(root,s.qr)).catch(()=>null);
    rowList(paragraphs,62,181,qr?840:1150,335);
    if(qr){
-    slide.images.add({blob:new Uint8Array(qr),contentType:'image/png',alt:'Quiz QR code for '+deck.cohort+' week '+deck.week,fit:'contain',position:{left:959,top:220,width:230,height:230}});
-    bodyText('24 HOURS',970,462,230,40,28,orange,true);
+    slide.images.add({blob:new Uint8Array(qr),contentType:'image/png',alt:(k==='test_entry'?'Test entry QR code for ':'Quiz QR code for ')+deck.cohort+' week '+deck.week,fit:'contain',position:{left:959,top:220,width:230,height:230}});
+    bodyText(k==='test_entry'?'TEST FILES':'24 HOURS',970,462,230,40,28,orange,true);
    }
    panel(slide,62,540,1156,69,'#E5F1EE');
    const link=textbox(slide,s.label,84,553,1110,48,30,'Calibri',teal,true);link.text.get(s.label).link={uri:s.url,isExternal:true};
-   textbox(slide,s.url,72,627,1120,32,17,'Calibri',muted);
+   if(k==='test_entry'){
+    textbox(slide,'Direct URL (click or copy into your laptop browser):',72,617,1120,26,17,'Calibri',muted);
+    const direct=textbox(slide,s.url,72,646,1140,34,14,'Calibri',teal);
+    direct.text.get(s.url).link={uri:s.url,isExternal:true};
+   }else textbox(slide,s.url,72,627,1120,32,17,'Calibri',muted);
   }else if(k==='contract'){
    header('YOUR REQUIRED TASK');
    panel(slide,62,184,1156,406,'#EEF3F6');
    bodyText(s.body,88,212,1100,356,(s.body||'').length>340?29:32);
    panel(slide,62,612,1156,53,'#E5F1EE');
    bodyText('Keep the exact names and outputs. Check types, units and the issued brief.',78,620,1124,39,24,teal,true);
+  }else if(s.operation_prerequisite && paragraphs.length===1){
+   header('ONE IDEA AT A TIME');
+   panel(slide,62,184,1156,438,'#EEF3F6');
+   bodyText(s.body,100,235,1075,330,34);
   }else if(k==='steps'){
    header('WHAT TO DO');
    rowList(paragraphs,62,187,1150,449);

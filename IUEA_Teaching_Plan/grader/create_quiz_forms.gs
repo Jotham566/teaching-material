@@ -258,7 +258,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3112 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -396,7 +396,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3112 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -534,7 +534,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3112 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -672,7 +672,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3112 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -810,7 +810,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3112 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -948,137 +948,137 @@ var QUIZ_DATA = {
         "week": 6,
         "number": 6,
         "title": "CML3112 \u00b7 Weekly Quiz 6 \u2014 Dirty data, and seeing it",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "NOT ASSIGNED: Quiz 6 is waived for practical revision. No submission or mark is required.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "The mean below is lower than every real reading in the list. What went wrong?",
-            "help": "# the survey tool writes 0 when the area field is left blank\nfloor_area = [120, 0, 95, 110]\nprint(f\"mean {sum(floor_area) / len(floor_area):.2f} m2\")\nmean 81.25 m2",
+            "kind": "interpretation",
+            "title": "Which entry does the missing-value check identify?",
+            "help": "s = pd.Series([0, None, 4])\nprint(s.isna().tolist())",
             "choices": [
               {
-                "text": "The division should exclude the last value",
+                "text": "No entries",
                 "correct": false
               },
               {
-                "text": "The list is too short for a mean to be meaningful",
+                "text": "Zero and the middle entry",
                 "correct": false
               },
               {
-                "text": "One entry is a zero standing in for a missing area",
+                "text": "Only the middle entry",
                 "correct": true
               },
               {
-                "text": "A floor area of zero is possible for an unbuilt unit",
+                "text": "Every entry",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A zero-coded gap is the most dangerous kind, because zero is a legal number and nothing looks wrong. The mean of the three real areas is 108.33 m2. Convert these zeros to missing values first.",
-            "fbWrong": "THE ANSWER: One entry is a zero standing in for a missing area. A zero-coded gap is the most dangerous kind, because zero is a legal number and nothing looks wrong. The mean of the three real areas is 108.33 m2. Convert these zeros to missing values first.\n\nWhy the others are wrong. \u201cThe division should exclude the last value\u201d \u2014 The position of the offending entry is incidental. Treating a placeholder as data is the fault.  \u201cThe list is too short for a mean to be meaningful\u201d \u2014 Three real values give a usable mean. A fourth entry that is not a measurement is what moved it.  \u201cA floor area of zero is possible for an unbuilt unit\u201d \u2014 The comment settles it: this tool writes 0 for a blank field, so this zero records an absence of data rather than an absence of floor. Without that comment the option would be arguable, which is why a column like this needs its coding documented before you touch it."
+            "fbCorrect": "Zero is a recorded number. isna recognises the missing middle entry.",
+            "fbWrong": "THE ANSWER: Only the middle entry. Zero is a recorded number. isna recognises the missing middle entry.\n\nWhy the others are wrong. \u201cNo entries\u201d \u2014 pandas recognises the missing marker even if the numeric Series stores it as NaN.  \u201cZero and the middle entry\u201d \u2014 Zero is not automatically missing.  \u201cEvery entry\u201d \u2014 The first and last entries are recorded numbers."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This runs with no error and no warning. What has it done to your data?",
-            "help": "# one strength was typed as \"32.5 MPa\" instead of 32.5\ndf[\"strength\"] = pd.to_numeric(df[\"strength\"],\n                                 errors=\"coerce\")\nprint(df[\"strength\"].mean())",
+            "title": "What is wrong with this duplicate rule?",
+            "help": "Rows are separate observations. Equipment E1 has several valid readings.\nclean = df.drop_duplicates(\"equipment_id\")",
             "choices": [
               {
-                "text": "It replaced the unreadable value with the column mean",
+                "text": "It sorts by target",
                 "correct": false
               },
               {
-                "text": "It stripped the unit and kept the number",
+                "text": "It keeps every observation",
                 "correct": false
               },
               {
-                "text": "It raised the error but carried on to the next row",
+                "text": "It fills missing values",
                 "correct": false
               },
               {
-                "text": "It turned every unreadable value into a missing value, and the mean then quietly skipped those rows",
+                "text": "It removes distinct observations from the same equipment",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Coercing is often the right move and it is never free: it converts a loud failure into a silent one. Count the missing values it created and report that count, otherwise your mean covers fewer rows than you believe.",
-            "fbWrong": "THE ANSWER: It turned every unreadable value into a missing value, and the mean then quietly skipped those rows. Coercing is often the right move and it is never free: it converts a loud failure into a silent one. Count the missing values it created and report that count, otherwise your mean covers fewer rows than you believe.\n\nWhy the others are wrong. \u201cIt replaced the unreadable value with the column mean\u201d \u2014 No substitution happens. Filling gaps is a separate decision you have to make deliberately, and doing it before a split leaks information, as Week 10 shows.  \u201cIt stripped the unit and kept the number\u201d \u2014 Nothing here parses units. A value with a unit attached is unreadable as a number and becomes missing.  \u201cIt raised the error but carried on to the next row\u201d \u2014 That is what errors=\"raise\" would do, minus the carrying on. Coercing suppresses the error entirely."
+            "fbCorrect": "Deduplicate observation IDs under the stated policy, not a source ID that can repeat.",
+            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy, not a source ID that can repeat.\n\nWhy the others are wrong. \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets.  \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "You convert the column without coercing and get this. What is the useful thing about this message?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-6-2b3c4d>\", line 1, in <module>\n    df[\"strength\"] = pd.to_numeric(df[\"strength\"])\nValueError: Unable to parse string \"32.5 MPa\" at position 417",
+            "title": "Why does this conversion fail?",
+            "help": "pd.to_numeric(pd.Series([\"20\", \"24 C\", \"26\"]))\nValueError: Unable to parse string \"24 C\" at position 1",
             "choices": [
               {
-                "text": "It means the column is the wrong data type for pandas",
+                "text": "pandas cannot convert numeric text",
                 "correct": false
               },
               {
-                "text": "It proves the column cannot be converted",
+                "text": "The values must be rounded",
                 "correct": false
               },
               {
-                "text": "It should be suppressed so the analysis can continue",
+                "text": "The whole dataset must be deleted",
                 "correct": false
               },
               {
-                "text": "It names the offending value and the row it sits in, so you can look at it and decide what it should be",
+                "text": "The second value contains a unit suffix",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. This is more useful than a silent conversion, because it hands you the exact value and position. Look at row 417, decide whether to repair the entry or drop it, and write down which you chose.",
-            "fbWrong": "THE ANSWER: It names the offending value and the row it sits in, so you can look at it and decide what it should be. This is more useful than a silent conversion, because it hands you the exact value and position. Look at row 417, decide whether to repair the entry or drop it, and write down which you chose.\n\nWhy the others are wrong. \u201cIt means the column is the wrong data type for pandas\u201d \u2014 The column is text because of this value. Conversion is the cure and the message is telling you what stands in the way.  \u201cIt proves the column cannot be converted\u201d \u2014 It proves one value cannot. Fix or remove that value and the column converts.  \u201cIt should be suppressed so the analysis can continue\u201d \u2014 Suppressing it is available and it costs you the position and the value. Read the message first, then decide."
+            "fbCorrect": "The value and its position identify what needs inspection before repair.",
+            "fbWrong": "THE ANSWER: The second value contains a unit suffix. The value and its position identify what needs inspection before repair.\n\nWhy the others are wrong. \u201cpandas cannot convert numeric text\u201d \u2014 It converts strings such as \"20\".  \u201cThe values must be rounded\u201d \u2014 Rounding cannot remove a text unit suffix.  \u201cThe whole dataset must be deleted\u201d \u2014 Inspect the problematic value; the error does not justify deleting all data."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Read the question you set yourself against the chart you produced. Does the chart answer it?",
-            "help": "question:  Does mean strength differ between mixes\n           with and without fly ash?\n\nchart:     one histogram\n           x = compressive strength (MPa)\n           y = number of mixes\n           all 1,030 mixes, no grouping applied",
+            "title": "What does this fill operation do?",
+            "help": "s = pd.Series([20, None, 24, 80])\nfilled = s.fillna(s.median())",
             "choices": [
               {
-                "text": "Yes, because the shape of the distribution reveals the two groups",
+                "text": "It replaces 80 with 24",
                 "correct": false
               },
               {
-                "text": "No, because a histogram is never the right chart",
+                "text": "It fills the gap with zero",
                 "correct": false
               },
               {
-                "text": "No, because the two groups are mixed together in one distribution and cannot be compared",
+                "text": "It inserts 24 for the missing entry and retains 80",
                 "correct": true
               },
               {
-                "text": "Yes, provided the sample is large enough",
+                "text": "It recovers the true missing measurement",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The question asks for a comparison, so the chart has to separate the groups: two distributions side by side, or a mean for each with its spread. A single pooled histogram cannot show a difference between halves it never divided.",
-            "fbWrong": "THE ANSWER: No, because the two groups are mixed together in one distribution and cannot be compared. The question asks for a comparison, so the chart has to separate the groups: two distributions side by side, or a mean for each with its spread. A single pooled histogram cannot show a difference between halves it never divided.\n\nWhy the others are wrong. \u201cYes, because the shape of the distribution reveals the two groups\u201d \u2014 Two clear humps would hint at something and would not tell you which group each hump belongs to. A distribution with one hump can still hide a real difference between the groups.  \u201cNo, because a histogram is never the right chart\u201d \u2014 A histogram is a good way to show one distribution. The fault is the missing split rather than the choice of chart type.  \u201cYes, provided the sample is large enough\u201d \u2014 Sample size cannot rescue a chart that never made the comparison. Twenty thousand pooled records answer the question no better than two hundred."
+            "fbCorrect": "The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.",
+            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero.  \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate, not a recovered observation."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "You find a 28-day compressive strength of 91 MPa in a file where most mixes sit between 20 and 50 MPa. What do you do with it?",
-            "help": "",
+            "title": "Which output answers the question?",
+            "help": "Question: Do mean target values differ by equipment?",
             "choices": [
               {
-                "text": "Replace it with the mean of the column",
+                "text": "A chart with no labels",
                 "correct": false
               },
               {
-                "text": "Keep it and check the mix design",
+                "text": "A labelled chart of groupby(\"equipment_id\")[\"target\"].mean()",
                 "correct": true
               },
               {
-                "text": "Cap it at the highest ordinary value so it stops distorting the mean",
+                "text": "The total row count alone",
                 "correct": false
               },
               {
-                "text": "Delete it, because it is far outside the normal range",
+                "text": "One histogram of all targets",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. 91 MPa is unusual and entirely possible for a high-performance mix. Verify it against the mix design and the test record, and keep it. An extreme value is a question to answer rather than a row to delete.",
-            "fbWrong": "THE ANSWER: Keep it and check the mix design. 91 MPa is unusual and entirely possible for a high-performance mix. Verify it against the mix design and the test record, and keep it. An extreme value is a question to answer rather than a row to delete.\n\nWhy the others are wrong. \u201cReplace it with the mean of the column\u201d \u2014 That substitutes an invented average for a real result and makes the data look tidier than the world it came from.  \u201cCap it at the highest ordinary value so it stops distorting the mean\u201d \u2014 Capping fabricates a measurement that was never taken and hides the very behaviour you might be trying to predict.  \u201cDelete it, because it is far outside the normal range\u201d \u2014 Distance from the mean is not evidence of error. Deleting real high-strength mixes teaches your model that such mixes do not exist."
+            "fbCorrect": "Grouped means compare the requested equipment groups.",
+            "fbWrong": "THE ANSWER: A labelled chart of groupby(\"equipment_id\")[\"target\"].mean(). Grouped means compare the requested equipment groups.\n\nWhy the others are wrong. \u201cA chart with no labels\u201d \u2014 Without groups and units, the comparison cannot be interpreted.  \u201cThe total row count alone\u201d \u2014 A count does not compare target means.  \u201cOne histogram of all targets\u201d \u2014 A pooled histogram describes a distribution without comparing group means."
           }
         ]
       },
@@ -1086,137 +1086,137 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3112 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate reports this as the accuracy of the model. What does the number actually describe?",
-            "help": "model.fit(X, y)\nprint(model.score(X, y))\n0.91",
+            "kind": "interpretation",
+            "title": "What shape does X need here?",
+            "help": "features = [\"load_pct\", \"ambient_c\"]\nX = train[features]\ny = train[\"target\"]",
             "choices": [
               {
-                "text": "How well the model reproduces the rows it was fitted on, which tells you nothing about a new case",
+                "text": "One row per training observation and two feature columns",
                 "correct": true
               },
               {
-                "text": "Nothing useful, because score() is the wrong function",
+                "text": "One unrelated row for each target",
                 "correct": false
               },
               {
-                "text": "How well the model will do on new data, give or take a little",
+                "text": "Two rows regardless of dataset size",
                 "correct": false
               },
               {
-                "text": "The proportion of the data used for training",
+                "text": "A column containing the target only",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The same rows appear in fit and in score, so the model is being marked on the answers it was shown. Hold rows back with train_test_split and score on those.",
-            "fbWrong": "THE ANSWER: How well the model reproduces the rows it was fitted on, which tells you nothing about a new case. The same rows appear in fit and in score, so the model is being marked on the answers it was shown. Hold rows back with train_test_split and score on those.\n\nWhy the others are wrong. \u201cNothing useful, because score() is the wrong function\u201d \u2014 score() is the right function used on the wrong rows. Give it held-out data and the number becomes meaningful.  \u201cHow well the model will do on new data, give or take a little\u201d \u2014 There is no basis for that reading. A model with enough freedom can score near one on its training rows and fail completely on anything new, which is the whole subject of Week 10.  \u201cThe proportion of the data used for training\u201d \u2014 score() returns a measure of fit. The train and test proportions are whatever you chose when you split, and here nothing was split."
+            "fbCorrect": "The two named features form a table; y has a target for each same row.",
+            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count, not the observation count.  \u201cA column containing the target only\u201d \u2014 The target is y, not a predictor."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This predicts a plausible-looking value and raises no error, and the value is wrong. Why?",
-            "help": "feats = [\"cement\", \"water\", \"age\"]\nmodel.fit(df[feats], df[\"strength\"])\n\n# a new mix: 380 kg/m3 cement, 190 kg/m3 water, 28 days\nprint(model.predict([[190, 380, 28]]))",
+            "title": "Why should prediction use new[features]?",
+            "help": "model.fit(train[features], train[\"target\"])",
             "choices": [
               {
-                "text": "The new values should have been scaled first",
+                "text": "It trains the model again",
                 "correct": false
               },
               {
-                "text": "The model was fitted on too few features to predict anything",
+                "text": "It guarantees accurate predictions",
                 "correct": false
               },
               {
-                "text": "predict() needs a two-dimensional input",
+                "text": "It supplies the new true target",
                 "correct": false
               },
               {
-                "text": "The values were supplied in a different order from the fitted columns",
+                "text": "It keeps the same feature names and order as training",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. A fitted model knows only that its first input is whatever its first training column was. Swap two and it happily applies the wrong coefficient to each. Build the row as a frame with named columns and this class of error disappears.",
-            "fbWrong": "THE ANSWER: The values were supplied in a different order from the fitted columns. A fitted model knows only that its first input is whatever its first training column was. Swap two and it happily applies the wrong coefficient to each. Build the row as a frame with named columns and this class of error disappears.\n\nWhy the others are wrong. \u201cThe new values should have been scaled first\u201d \u2014 Scaling would matter for some model types and it would not repair a swap. Scaled or raw, the values are in the wrong positions.  \u201cThe model was fitted on too few features to predict anything\u201d \u2014 Three or four features is enough to produce a prediction. The count is fine and the order is not.  \u201cpredict() needs a two-dimensional input\u201d \u2014 It does, and it was given one. The doubled brackets are correct here."
+            "fbCorrect": "Names and order preserve the meaning of each model input.",
+            "fbWrong": "THE ANSWER: It keeps the same feature names and order as training. Names and order preserve the meaning of each model input.\n\nWhy the others are wrong. \u201cIt trains the model again\u201d \u2014 predict uses the fitted model; it does not fit it.  \u201cIt guarantees accurate predictions\u201d \u2014 Consistent inputs are necessary but do not guarantee accuracy.  \u201cIt supplies the new true target\u201d \u2014 Feature inputs must not contain the answer."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What is the most likely cause?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-9-5e6f7a>\", line 1, in <module>\n    model.fit(X, y)\nValueError: Found input variables with inconsistent numbers\nof samples: [824, 1030]",
+            "title": "What should you check first?",
+            "help": "model.fit(X, y)\nValueError: Found input variables with inconsistent numbers of samples",
             "choices": [
               {
-                "text": "The features were filtered or had rows dropped and the target was not, so the two no longer line up",
+                "text": "Whether X and y were selected from the same rows",
                 "correct": true
               },
               {
-                "text": "There are too few rows to fit a model",
+                "text": "Round all columns",
                 "correct": false
               },
               {
-                "text": "The features and the target need to be the same data type",
+                "text": "Delete target values at random",
                 "correct": false
               },
               {
-                "text": "The target column contains missing values",
+                "text": "Increase tree depth",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Dropping missing values from the feature frame without applying the same selection to the target is the usual cause. Filter the frame first and take X and y from the filtered frame so they can never drift apart.",
-            "fbWrong": "THE ANSWER: The features were filtered or had rows dropped and the target was not, so the two no longer line up. Dropping missing values from the feature frame without applying the same selection to the target is the usual cause. Filter the frame first and take X and y from the filtered frame so they can never drift apart.\n\nWhy the others are wrong. \u201cThere are too few rows to fit a model\u201d \u2014 Both counts here are ample. The problem is that they are not equal.  \u201cThe features and the target need to be the same data type\u201d \u2014 They routinely differ, and that is fine. The error counts rows and says nothing about types.  \u201cThe target column contains missing values\u201d \u2014 Missing values in the target give a different complaint about NaN. This message is purely about the row counts disagreeing."
+            "fbCorrect": "Separate filtering can leave different observation counts or mismatched rows.",
+            "fbWrong": "THE ANSWER: Whether X and y were selected from the same rows. Separate filtering can leave different observation counts or mismatched rows.\n\nWhy the others are wrong. \u201cRound all columns\u201d \u2014 Rounding does not change the number of observations.  \u201cDelete target values at random\u201d \u2014 This breaks pairing and loses valid data.  \u201cIncrease tree depth\u201d \u2014 Model complexity does not repair mismatched inputs."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "A teammate shows you this plot and this conclusion. How should you read it?",
-            "help": "plot:        y = residual (actual - predicted), MPa\n             x = ACTUAL 28-day strength, MPa\n             a clear upward slope, left to right\n\nconclusion:  \"the model under-predicts strong mixes\"",
+            "title": "What are MAE and RMSE?",
+            "help": "actual = [10, 20]\npredicted = [12, 16]",
             "choices": [
               {
-                "text": "A slope in the residuals always means the model is broken",
+                "text": "Both are percentages",
                 "correct": false
               },
               {
-                "text": "The slope appears by construction; plot residuals against the predicted value",
+                "text": "MAE 3; RMSE approximately 3.1623",
                 "correct": true
               },
               {
-                "text": "The residuals should have been squared before plotting",
+                "text": "Both are 6",
                 "correct": false
               },
               {
-                "text": "The conclusion is right, and the model needs an extra feature to fix it",
+                "text": "MAE -1; RMSE 1",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and this catches almost everybody once. The actual value equals the prediction plus the residual, so the residual is built into the quantity on the horizontal axis and rises with it. Against the predicted value the slope disappears and any real pattern becomes visible.",
-            "fbWrong": "THE ANSWER: The slope appears by construction; plot residuals against the predicted value. This catches almost everybody once. The actual value equals the prediction plus the residual, so the residual is built into the quantity on the horizontal axis and rises with it. Against the predicted value the slope disappears and any real pattern becomes visible.\n\nWhy the others are wrong. \u201cA slope in the residuals always means the model is broken\u201d \u2014 A slope against the predicted value would be worth investigating. A slope against the actual value is arithmetic rather than a finding.  \u201cThe residuals should have been squared before plotting\u201d \u2014 Squaring throws away the sign, which is the most useful part of a residual. The pairing of axes is what is wrong here.  \u201cThe conclusion is right, and the model needs an extra feature to fix it\u201d \u2014 The conclusion may happen to be true and this plot cannot establish it. Redraw against the predicted value before changing the model."
+            "fbCorrect": "Absolute errors are 2 and 4; squared errors are 4 and 16.",
+            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are percentages\u201d \u2014 These errors use the target unit.  \u201cBoth are 6\u201d \u2014 Six is the total absolute error, not its mean.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Your model reaches a mean absolute error of 4.2 MPa. The client asks whether that is good. What do you need before you can answer?",
-            "help": "",
+            "title": "Where should the imputer learn its median?",
+            "help": "Training, validation and final-test partitions are already separate.",
             "choices": [
               {
-                "text": "Nothing further; 4.2 MPa is a small number",
+                "text": "Each new prediction row independently",
                 "correct": false
               },
               {
-                "text": "The error of predicting the mean, and the cylinder test's own repeatability",
+                "text": "Training features only",
                 "correct": true
               },
               {
-                "text": "A larger dataset",
+                "text": "Validation targets",
                 "correct": false
               },
               {
-                "text": "A second model to compare it against",
+                "text": "The combined file",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Both comparisons are needed. Predicting the mean is the score to beat, and a cylinder test repeats to about 2 MPa between specimens, so 4.2 MPa is roughly twice as uncertain as the measurement it stands in for. That is the sentence the client actually needs.",
-            "fbWrong": "THE ANSWER: The error of predicting the mean, and the cylinder test's own repeatability. Both comparisons are needed. Predicting the mean is the score to beat, and a cylinder test repeats to about 2 MPa between specimens, so 4.2 MPa is roughly twice as uncertain as the measurement it stands in for. That is the sentence the client actually needs.\n\nWhy the others are wrong. \u201cNothing further; 4.2 MPa is a small number\u201d \u2014 Small against what? A number with no reference is not yet a result.  \u201cA larger dataset\u201d \u2014 More data may lower the error and does not tell you whether the current figure is useful. That judgement needs a reference point.  \u201cA second model to compare it against\u201d \u2014 Two models with no baseline tell you which is better and leave you unable to say whether either is worth having."
+            "fbCorrect": "The fitted fill must be reused on evaluation data without learning from them.",
+            "fbWrong": "THE ANSWER: Training features only. The fitted fill must be reused on evaluation data without learning from them.\n\nWhy the others are wrong. \u201cEach new prediction row independently\u201d \u2014 This changes preprocessing at prediction time.  \u201cValidation targets\u201d \u2014 Targets cannot supply predictor fill values.  \u201cThe combined file\u201d \u2014 That uses evaluation information in preprocessing."
           }
         ]
       },
@@ -1224,137 +1224,137 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3112 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate is pleased with this result. What has the model actually learned?",
-            "help": "accuracy                     0.966\npours predicted to fail          0\n\n# in this register 3.4 in 100 pours fail specification",
+            "kind": "interpretation",
+            "title": "How many false negatives are present?",
+            "help": "actual    = [1, 1, 0, 0]\npredicted = [1, 0, 1, 0]",
             "choices": [
               {
-                "text": "A genuinely strong rule, since 96.6 per cent is a high score",
+                "text": "2",
                 "correct": false
               },
               {
-                "text": "That more features are needed to raise accuracy",
+                "text": "4",
                 "correct": false
               },
               {
-                "text": "To answer with the majority class every time, which scores the majority-class share and finds nothing",
+                "text": "1",
                 "correct": true
               },
               {
-                "text": "That the two classes are equally easy to separate",
+                "text": "0",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Since 96.6 in 100 cases are negative, always saying negative scores 0.966. The model has found the base rate and no signal. Recall on the class you care about is zero, and that is the number to report.",
-            "fbWrong": "THE ANSWER: To answer with the majority class every time, which scores the majority-class share and finds nothing. Since 96.6 in 100 cases are negative, always saying negative scores 0.966. The model has found the base rate and no signal. Recall on the class you care about is zero, and that is the number to report.\n\nWhy the others are wrong. \u201cA genuinely strong rule, since 96.6 per cent is a high score\u201d \u2014 The score is exactly what you get for free by ignoring the data. A rule that never fires cannot be strong at the job it was built for.  \u201cThat more features are needed to raise accuracy\u201d \u2014 Accuracy is already near its ceiling and is the wrong instrument. Change the metric before changing the model.  \u201cThat the two classes are equally easy to separate\u201d \u2014 It never attempted the separation. It predicted one class throughout."
+            "fbCorrect": "Only the second row needs a warning but receives none.",
+            "fbWrong": "THE ANSWER: 1. Only the second row needs a warning but receives none.\n\nWhy the others are wrong. \u201c2\u201d \u2014 There are two errors, but only one is a false negative.  \u201c4\u201d \u2014 Every row is not an error.  \u201c0\u201d \u2014 The second row is a missed warning."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This model was tested against a precast yard's quality register of ten thousand pours. Read the confusion matrix. Which statement does it support?",
-            "help": "                      pred: meets    pred: fails\nactual: meets                9620             36\nactual: fails                 310             34\n\n10,000 pours in total; accuracy 0.965",
+            "title": "Why is high accuracy insufficient here?",
+            "help": "Only 2% of observations need a warning. A model always predicts 0.",
             "choices": [
               {
-                "text": "Accuracy of 0.965 shows it is fit for use",
+                "text": "The dataset has no positive observations",
                 "correct": false
               },
               {
-                "text": "Its main weakness is false alarms",
+                "text": "It detects all warnings",
                 "correct": false
               },
               {
-                "text": "It is well balanced between the two kinds of error",
+                "text": "It must have perfect recall",
                 "correct": false
               },
               {
-                "text": "It misses about nine in ten of the cases it exists to catch",
+                "text": "It misses every actual warning",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Recall on the class of interest is 34 out of 344, which is 0.099. The high accuracy comes almost entirely from the 9,620 easy negatives. This is the number the matrix exists to expose.",
-            "fbWrong": "THE ANSWER: It misses about nine in ten of the cases it exists to catch. Recall on the class of interest is 34 out of 344, which is 0.099. The high accuracy comes almost entirely from the 9,620 easy negatives. This is the number the matrix exists to expose.\n\nWhy the others are wrong. \u201cAccuracy of 0.965 shows it is fit for use\u201d \u2014 Predicting the majority class throughout would score 0.966, which is higher. Accuracy cannot see this failure.  \u201cIts main weakness is false alarms\u201d \u2014 There are only 36 false alarms against 310 misses. The costly error here is the one being made nearly ten times as often.  \u201cIt is well balanced between the two kinds of error\u201d \u2014 310 against 36 is close to a nine-to-one imbalance in the errors."
+            "fbCorrect": "Predicting the majority can give 98% accuracy while recall is zero.",
+            "fbWrong": "THE ANSWER: It misses every actual warning. Predicting the majority can give 98% accuracy while recall is zero.\n\nWhy the others are wrong. \u201cThe dataset has no positive observations\u201d \u2014 Two percent are positives.  \u201cIt detects all warnings\u201d \u2014 It predicts no warnings at all.  \u201cIt must have perfect recall\u201d \u2014 Recall counts detected positives, not correct negatives."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What does this tell you to change?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-11-8b9c0d>\", line 1, in <module>\n    print(recall_score(y_test, pred))\nValueError: Target is multiclass but average='binary'.\nPlease choose another average setting, one of [None, 'micro', 'macro', 'weighted'].",
+            "title": "How should this assignment avoid the error?",
+            "help": "precision = tp / (tp + fp)\nZeroDivisionError: division by zero",
             "choices": [
               {
-                "text": "The test set is too small for recall to be defined",
+                "text": "Use the target unit as denominator",
                 "correct": false
               },
               {
-                "text": "The target has more than two classes, so you must say how recall should be combined across them",
+                "text": "Return 0 when tp + fp is zero, as specified",
                 "correct": true
               },
               {
-                "text": "Recall cannot be computed for more than two classes",
+                "text": "Delete the entire dataset",
                 "correct": false
               },
               {
-                "text": "The predictions are the wrong data type",
+                "text": "Invent one true positive",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and the choice matters. average=None gives you recall per class, which is usually what you want, because a single combined figure can hide a class the model never predicts.",
-            "fbWrong": "THE ANSWER: The target has more than two classes, so you must say how recall should be combined across them. The choice matters. average=None gives you recall per class, which is usually what you want, because a single combined figure can hide a class the model never predicts.\n\nWhy the others are wrong. \u201cThe test set is too small for recall to be defined\u201d \u2014 Size is not mentioned and is not the issue. The class count is.  \u201cRecall cannot be computed for more than two classes\u201d \u2014 It can, once you state how to aggregate it. The error offers you the options.  \u201cThe predictions are the wrong data type\u201d \u2014 The types are acceptable. The message is about the number of classes in the target."
+            "fbCorrect": "The published convention handles the no-predicted-warning case.",
+            "fbWrong": "THE ANSWER: Return 0 when tp + fp is zero, as specified. The published convention handles the no-predicted-warning case.\n\nWhy the others are wrong. \u201cUse the target unit as denominator\u201d \u2014 Units are not observation counts.  \u201cDelete the entire dataset\u201d \u2014 A zero denominator needs a convention, not deletion.  \u201cInvent one true positive\u201d \u2014 That changes the evidence."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "You lower the decision threshold from 0.5 to 0.2 and re-score the same model on the same test set. What has changed?",
-            "help": "threshold 0.5   recall 0.099   false alarms  36\nthreshold 0.2   recall 0.439   false alarms 290",
+            "title": "What is the cost under this rule?",
+            "help": "Missed warning costs 5; false alarm costs 1.\nfn = 2; fp = 3",
             "choices": [
               {
-                "text": "The result is invalid because the threshold should stay at 0.5",
+                "text": "6",
                 "correct": false
               },
               {
-                "text": "The model has been improved by better tuning",
+                "text": "5",
                 "correct": false
               },
               {
-                "text": "The model now overfits, because recall rose sharply",
+                "text": "25",
                 "correct": false
               },
               {
-                "text": "Nothing about the model; you moved along its trade-off, buying recall by accepting eight times as many false alarms",
+                "text": "13",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. The model and its scores are untouched: only the cut-off you apply to them changed. Which threshold is right depends on what a false alarm costs against a miss, and that is a question about the work rather than the model.",
-            "fbWrong": "THE ANSWER: Nothing about the model; you moved along its trade-off, buying recall by accepting eight times as many false alarms. The model and its scores are untouched: only the cut-off you apply to them changed. Which threshold is right depends on what a false alarm costs against a miss, and that is a question about the work rather than the model.\n\nWhy the others are wrong. \u201cThe result is invalid because the threshold should stay at 0.5\u201d \u2014 0.5 is a default rather than a rule. On a problem where a miss costs far more than a false alarm, moving it is exactly the right thing to do.  \u201cThe model has been improved by better tuning\u201d \u2014 No retraining took place. The same probabilities are being cut in a different place.  \u201cThe model now overfits, because recall rose sharply\u201d \u2014 Overfitting is about the gap between training and unseen data. This is one model on one test set at two thresholds."
+            "fbCorrect": "5 times 2 plus 3 is 13.",
+            "fbWrong": "THE ANSWER: 13. 5 times 2 plus 3 is 13.\n\nWhy the others are wrong. \u201c6\u201d \u2014 Multiplying the two counts is not the stated rule.  \u201c5\u201d \u2014 This ignores the supplied error counts.  \u201c25\u201d \u2014 The costs are not both five."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Accepting a substandard pour means it goes into the structure and somebody finds out later. Rejecting a sound pour costs one panel and some programme. Which metric should govern your model, and why?",
-            "help": "",
+            "title": "What can lowering the threshold change?",
+            "help": "Probabilities stay fixed; threshold falls from 0.5 to 0.3.",
             "choices": [
               {
-                "text": "Whichever metric gives the highest number, so the result reads well",
+                "text": "It changes the actual labels",
                 "correct": false
               },
               {
-                "text": "Recall on the class you cannot afford to miss, with the false-alarm rate beside it",
+                "text": "More observations can be classified as warnings",
                 "correct": true
               },
               {
-                "text": "Precision, because false alarms annoy the operators",
+                "text": "It guarantees fewer false alarms",
                 "correct": false
               },
               {
-                "text": "Accuracy, because it summarises overall performance",
+                "text": "It retrains the model automatically",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The expensive error is the miss, so recall is the quantity to drive up. Quoting the false-alarm rate beside it keeps you honest, because recall can always be bought and somebody has to pay for it.",
-            "fbWrong": "THE ANSWER: Recall on the class you cannot afford to miss, with the false-alarm rate beside it. The expensive error is the miss, so recall is the quantity to drive up. Quoting the false-alarm rate beside it keeps you honest, because recall can always be bought and somebody has to pay for it.\n\nWhy the others are wrong. \u201cWhichever metric gives the highest number, so the result reads well\u201d \u2014 Choosing a metric to flatter the model is how a system that misses nine failures in ten gets signed off.  \u201cPrecision, because false alarms annoy the operators\u201d \u2014 Precision alone rewards a model that fires only when certain, which is a model that misses most of the cases. It belongs in the report next to recall rather than in charge of it.  \u201cAccuracy, because it summarises overall performance\u201d \u2014 At a base rate near 3 per cent, accuracy is dominated by easy negatives and a useless model scores 0.966. It cannot see the error that matters here."
+            "fbCorrect": "The decision rule changes; actual labels are needed to assess its errors.",
+            "fbWrong": "THE ANSWER: More observations can be classified as warnings. The decision rule changes; actual labels are needed to assess its errors.\n\nWhy the others are wrong. \u201cIt changes the actual labels\u201d \u2014 The reference outcomes stay fixed.  \u201cIt guarantees fewer false alarms\u201d \u2014 Raising more warnings can increase false alarms.  \u201cIt retrains the model automatically\u201d \u2014 Thresholding does not fit model parameters."
           }
         ]
       },
@@ -1362,137 +1362,137 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3112 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "This reports a good test score. Why can that score not be trusted?",
-            "help": "scaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)     # whole file\n\nX_tr, X_te, y_tr, y_te = train_test_split(X_scaled, y)\nmodel.fit(X_tr, y_tr)\nprint(model.score(X_te, y_te))",
+            "kind": "interpretation",
+            "title": "Why keep an equipment ID in only one partition?",
+            "help": "The intended deployment is on previously unseen equipment.",
             "choices": [
               {
-                "text": "The split should come before the features are selected",
+                "text": "To delete repeated valid observations",
                 "correct": false
               },
               {
-                "text": "StandardScaler is the wrong scaler for this data",
+                "text": "To make every partition equally large",
                 "correct": false
               },
               {
-                "text": "Nothing is wrong; scaling does not use the target",
+                "text": "To use the target as a group label",
                 "correct": false
               },
               {
-                "text": "The scaler was fitted on the whole file, so the test rows helped set the scaling",
+                "text": "To avoid evaluating on equipment patterns already seen in training",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. The test rows are supposed to stand in for cases you have never seen, and here they helped set the scaling. Put the scaler in a Pipeline and fit it after the split, so it only ever sees training rows.",
-            "fbWrong": "THE ANSWER: The scaler was fitted on the whole file, so the test rows helped set the scaling. The test rows are supposed to stand in for cases you have never seen, and here they helped set the scaling. Put the scaler in a Pipeline and fit it after the split, so it only ever sees training rows.\n\nWhy the others are wrong. \u201cThe split should come before the features are selected\u201d \u2014 Selecting which columns to use is fine either side. Measuring something from the data is what has to wait until after the split.  \u201cStandardScaler is the wrong scaler for this data\u201d \u2014 The choice of scaler is a separate question. Any scaler fitted before the split leaks in the same way.  \u201cNothing is wrong; scaling does not use the target\u201d \u2014 Leakage does not require the target. Borrowing the test rows' mean and spread means the test set is no longer a clean estimate, and how far the number is distorted is not something you can work out from the outside, which is the real cost."
+            "fbCorrect": "Repeated observations from one source can make evaluation too optimistic.",
+            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts.  \u201cTo use the target as a group label\u201d \u2014 Equipment identity, not the answer, defines this split."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "Which of the three error stories does this pattern match?",
-            "help": "training score   0.98\ntest score       0.61",
+            "title": "What is wrong with this preparation?",
+            "help": "median = all_rows[\"ambient_c\"].median()\n# split into training and validation afterwards",
             "choices": [
               {
-                "text": "The two scores are measuring different quantities",
+                "text": "It guarantees underfitting",
                 "correct": false
               },
               {
-                "text": "The model has memorised its training rows and does not generalise",
+                "text": "It uses validation information when learning a fill value",
                 "correct": true
               },
               {
-                "text": "Information has leaked from the test set into training",
+                "text": "pandas cannot calculate medians",
                 "correct": false
               },
               {
-                "text": "The model is too simple to capture the pattern",
+                "text": "A median is never allowed",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A high training score with a much lower test score is the signature of a model with too much freedom for the data. Simplify it, constrain it, or get more rows.",
-            "fbWrong": "THE ANSWER: The model has memorised its training rows and does not generalise. A high training score with a much lower test score is the signature of a model with too much freedom for the data. Simplify it, constrain it, or get more rows.\n\nWhy the others are wrong. \u201cThe two scores are measuring different quantities\u201d \u2014 Both are the same measure on different rows. That is what makes the comparison meaningful.  \u201cInformation has leaked from the test set into training\u201d \u2014 Leakage usually makes both scores look good, since the model has effectively seen the answers. A large gap points the other way.  \u201cThe model is too simple to capture the pattern\u201d \u2014 A model that is too simple scores poorly on both, because it cannot even fit the rows it was given. Here it fits them almost perfectly."
+            "fbCorrect": "Split first and fit preprocessing on training only.",
+            "fbWrong": "THE ANSWER: It uses validation information when learning a fill value. Split first and fit preprocessing on training only.\n\nWhy the others are wrong. \u201cIt guarantees underfitting\u201d \u2014 The direct problem is information leakage.  \u201cpandas cannot calculate medians\u201d \u2014 It can; the problem is which rows it uses.  \u201cA median is never allowed\u201d \u2014 Training-only median imputation is allowed when justified."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "A teammate has already tried to deal with the gaps, in the cell shown above the traceback. Read both, then say what you would change.",
-            "help": "imp = SimpleImputer(strategy=\"mean\")\nX[[\"slump\"]] = imp.fit_transform(X[[\"slump\"]])\n\nX_tr, X_te, y_tr, y_te = train_test_split(X, y)\npipe = Pipeline([(\"model\", Ridge())])\npipe.fit(X_tr, y_tr)\n\nTraceback (most recent call last):\n  File \"<ipython-input-13-1a2b3c>\", line 6, in <module>\n    pipe.fit(X_tr, y_tr)\nValueError: Input X contains NaN.",
+            "title": "Why might prediction still fail with missing inputs?",
+            "help": "A pipeline contains only a regression model.\nValueError: Input X contains NaN.",
             "choices": [
               {
-                "text": "Drop the rows that still contain gaps",
+                "text": "The warning should be ignored",
                 "correct": false
               },
               {
-                "text": "Impute the remaining columns the same way, before the split",
+                "text": "The final-test target must be added to X",
                 "correct": false
               },
               {
-                "text": "Replace the remaining gaps with zero so the model can fit",
+                "text": "All values should become zero",
                 "correct": false
               },
               {
-                "text": "Move the imputer inside the Pipeline, and cover every column",
+                "text": "The pipeline needs appropriate missing-feature preparation",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct on both counts. Only one column was imputed, so the gaps in the others are still there, which is why the error still fires. And fitting it on the whole frame before the split measures the test rows, which is the leak from question one wearing different clothes. Inside the pipeline both problems go away at once.",
-            "fbWrong": "THE ANSWER: Move the imputer inside the Pipeline, and cover every column. Correct on both counts. Only one column was imputed, so the gaps in the others are still there, which is why the error still fires. And fitting it on the whole frame before the split measures the test rows, which is the leak from question one wearing different clothes. Inside the pipeline both problems go away at once.\n\nWhy the others are wrong. \u201cDrop the rows that still contain gaps\u201d \u2014 It would run, and it discards data and can bias what is left if the gaps cluster in one source, which Week 4 showed they often do.  \u201cImpute the remaining columns the same way, before the split\u201d \u2014 That silences the error and keeps the leak. Every value the imputer learns before the split has been measured partly from the test rows.  \u201cReplace the remaining gaps with zero so the model can fit\u201d \u2014 Zero is a real value on these columns, so this quietly invents low readings. Week 6 covers the damage that does."
+            "fbCorrect": "Include the trained imputer before the model and fit it on training data.",
+            "fbWrong": "THE ANSWER: The pipeline needs appropriate missing-feature preparation. Include the trained imputer before the model and fit it on training data.\n\nWhy the others are wrong. \u201cThe warning should be ignored\u201d \u2014 Ignoring an error does not supply usable inputs.  \u201cThe final-test target must be added to X\u201d \u2014 That would leak the answer.  \u201cAll values should become zero\u201d \u2014 Zero filling needs a justified policy and may distort data."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "You run five-fold cross-validation and get these scores. What should you report, and what should you look at?",
-            "help": "fold scores: 0.71, 0.68, 0.74, 0.52, 0.70\nmean 0.67",
+            "title": "What does this output show?",
+            "help": "Training median = 22.\nValidation values [None, 40] become [22, 40].",
             "choices": [
               {
-                "text": "Nothing yet; five folds is too few to report",
+                "text": "Every value was changed",
                 "correct": false
               },
               {
-                "text": "The mean alone, since averaging is the purpose of cross-validation",
+                "text": "The validation median was fitted",
                 "correct": false
               },
               {
-                "text": "The mean with its spread, and look into the 0.52 fold",
+                "text": "The training fill was reused on validation",
                 "correct": true
               },
               {
-                "text": "The best fold, since it shows what the model can achieve",
+                "text": "The missing measurement was recovered",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Four folds sit close together and one sits well below, which suggests that fold contains something the others do not. Group structure in the rows is the usual explanation, and it is the subject of the next question.",
-            "fbWrong": "THE ANSWER: The mean with its spread, and look into the 0.52 fold. Four folds sit close together and one sits well below, which suggests that fold contains something the others do not. Group structure in the rows is the usual explanation, and it is the subject of the next question.\n\nWhy the others are wrong. \u201cNothing yet; five folds is too few to report\u201d \u2014 Five folds is a standard choice and perfectly reportable. The spread is part of the report rather than a reason to withhold it.  \u201cThe mean alone, since averaging is the purpose of cross-validation\u201d \u2014 A bare mean hides the thing worth knowing. Reporting 0.67 with no spread conceals a fold that scored 0.52 and the reason behind it.  \u201cThe best fold, since it shows what the model can achieve\u201d \u2014 Quoting the best fold is selecting the most flattering result from your own experiment."
+            "fbCorrect": "Validation 40 did not determine a separate fill.",
+            "fbWrong": "THE ANSWER: The training fill was reused on validation. Validation 40 did not determine a separate fill.\n\nWhy the others are wrong. \u201cEvery value was changed\u201d \u2014 The recorded 40 remains unchanged.  \u201cThe validation median was fitted\u201d \u2014 The given rule uses the training median.  \u201cThe missing measurement was recovered\u201d \u2014 It is an estimate."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "You discover that several specimens from the same mix batch are split across your training and test sets. Specimens from one batch are near-copies of each other. What should you do?",
-            "help": "",
+            "title": "What should be reported for several validation folds?",
+            "help": "Errors vary noticeably across folds.",
             "choices": [
               {
-                "text": "Increase the size of the test set",
+                "text": "A claim of guaranteed future performance",
                 "correct": false
               },
               {
-                "text": "Split by batch, so every specimen from one batch sits entirely in training or entirely in test",
+                "text": "The mean, variation and any important differences between folds",
                 "correct": true
               },
               {
-                "text": "Leave it, because a random split is unbiased by definition",
+                "text": "Only the best fold",
                 "correct": false
               },
               {
-                "text": "Remove the duplicate-looking specimens",
+                "text": "Only the training score",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Otherwise the model can recognise a batch it has already been trained on, and your test score measures recall of batches rather than prediction of strength. GroupShuffleSplit and GroupKFold exist for this.",
-            "fbWrong": "THE ANSWER: Split by batch, so every specimen from one batch sits entirely in training or entirely in test. Otherwise the model can recognise a batch it has already been trained on, and your test score measures recall of batches rather than prediction of strength. GroupShuffleSplit and GroupKFold exist for this.\n\nWhy the others are wrong. \u201cIncrease the size of the test set\u201d \u2014 A larger test set built the same way carries the same flaw at greater scale.  \u201cLeave it, because a random split is unbiased by definition\u201d \u2014 Random assignment of rows is unbiased about rows and blind to the fact that these rows come in near-identical families.  \u201cRemove the duplicate-looking specimens\u201d \u2014 They are genuine separate tests rather than duplicates, and discarding them throws away real information about within-batch variation."
+            "fbCorrect": "The best fold alone hides unstable performance.",
+            "fbWrong": "THE ANSWER: The mean, variation and any important differences between folds. The best fold alone hides unstable performance.\n\nWhy the others are wrong. \u201cA claim of guaranteed future performance\u201d \u2014 Finite validation evidence cannot guarantee future errors.  \u201cOnly the best fold\u201d \u2014 This cherry-picks the evaluation.  \u201cOnly the training score\u201d \u2014 That does not describe held-out folds."
           }
         ]
       },
@@ -1500,137 +1500,137 @@ var QUIZ_DATA = {
         "week": 11,
         "number": 10,
         "title": "CML3112 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate adds a scaler expecting an improvement and the score does not budge. Why not?",
-            "help": "before:  DecisionTreeRegressor(random_state=0)\n                                                MAE 5.1\nafter:   Pipeline([(\"scale\", StandardScaler()),\n                   (\"model\", DecisionTreeRegressor(\n                                 random_state=0))])\n                                                MAE 5.1",
+            "kind": "interpretation",
+            "title": "Which values are produced?",
+            "help": "load_pct = 40; ambient_c = 25\nload_fraction = load_pct / 100\ninteraction = load_pct * ambient_c",
             "choices": [
               {
-                "text": "The tree needs a greater depth before scaling helps",
+                "text": "0.4 and 65",
                 "correct": false
               },
               {
-                "text": "The scaler was placed after the model in the pipeline",
+                "text": "40 and 65",
                 "correct": false
               },
               {
-                "text": "A tree splits on the order of the values, and scaling preserves that order",
+                "text": "0.4 and 1000",
                 "correct": true
               },
               {
-                "text": "The features were already on the same scale",
+                "text": "4000 and 1.6",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Rescaling moves the numbers and leaves their ranking untouched, and a threshold split only cares about ranking. Scaling earns its keep for models that measure distances or fit coefficients.",
-            "fbWrong": "THE ANSWER: A tree splits on the order of the values, and scaling preserves that order. Rescaling moves the numbers and leaves their ranking untouched, and a threshold split only cares about ranking. Scaling earns its keep for models that measure distances or fit coefficients.\n\nWhy the others are wrong. \u201cThe tree needs a greater depth before scaling helps\u201d \u2014 Depth changes how the tree fits and never makes it sensitive to a monotonic rescaling.  \u201cThe scaler was placed after the model in the pipeline\u201d \u2014 It is first, which is the correct position. The order in the pipeline is not the issue.  \u201cThe features were already on the same scale\u201d \u2014 Even if they were, that would not be the reason. A tree is unaffected by this kind of rescaling whatever the starting scales happen to be."
+            "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
+            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c0.4 and 65\u201d \u2014 An interaction here is a product, not a sum.  \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "The score on your own test split improves after this change, and the model is worse. What has happened?",
-            "help": "print(df.shape)\n(1030, 10)\n\nprint(df[\"batch_id\"].nunique())\n240\n\nX = pd.get_dummies(df, columns=[\"batch_id\"])\nprint(X.shape)\n(1030, 249)",
+            "title": "Why is this feature invalid for prediction?",
+            "help": "new_feature = future_target / load_pct",
             "choices": [
               {
-                "text": "It added one column per identifier, so the model can now recognise individual units",
+                "text": "It uses the answer that is unavailable at prediction time",
                 "correct": true
               },
               {
-                "text": "The identifiers should have been numbered 1 to 847 instead",
+                "text": "pandas cannot divide columns",
                 "correct": false
               },
               {
-                "text": "get_dummies should have been given the whole frame",
+                "text": "It has a short name",
                 "correct": false
               },
               {
-                "text": "It made the frame too wide for the model to fit",
+                "text": "Ratios are always invalid",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. An identifier expanded this way hands the model a lookup table for the units in your file. It scores well wherever the same units appear on both sides of the split and carries nothing to a new one. Drop the identifier and keep the columns that describe the thing.",
-            "fbWrong": "THE ANSWER: It added one column per identifier, so the model can now recognise individual units. An identifier expanded this way hands the model a lookup table for the units in your file. It scores well wherever the same units appear on both sides of the split and carries nothing to a new one. Drop the identifier and keep the columns that describe the thing.\n\nWhy the others are wrong. \u201cThe identifiers should have been numbered 1 to 847 instead\u201d \u2014 That is worse: it tells a straight-line model that unit 800 is a hundred times unit 8. Neither encoding rescues a column that is only a label.  \u201cget_dummies should have been given the whole frame\u201d \u2014 It was given the whole frame with one column named for expansion, which is the normal usage. The choice of column is the fault.  \u201cIt made the frame too wide for the model to fit\u201d \u2014 A few hundred columns is unremarkable and fits without complaint. The problem is what those columns mean."
+            "fbCorrect": "A predictor must be obtainable before the target is known.",
+            "fbWrong": "THE ANSWER: It uses the answer that is unavailable at prediction time. A predictor must be obtainable before the target is known.\n\nWhy the others are wrong. \u201cpandas cannot divide columns\u201d \u2014 It can perform column arithmetic.  \u201cIt has a short name\u201d \u2014 Naming is not the leakage issue.  \u201cRatios are always invalid\u201d \u2014 Ratios of available inputs can be useful."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What has happened, and what is the catch in the obvious fix?",
-            "help": "enc = OneHotEncoder(drop=\"first\")\n# ... fitted on exposure_class values XC1, XC3, XD2, XS1\n\nTraceback (most recent call last):\n  File \"<ipython-input-15-6d7e8f>\", line 1, in <module>\n    pipe.predict(new_rows)\nValueError: Found unknown categories ['XS3'] in column 0\nduring transform",
+            "title": "What does this error suggest?",
+            "help": "valid[\"interaction\"]\nKeyError: 'interaction'",
             "choices": [
               {
-                "text": "The category column should be dropped from the model",
+                "text": "Round the validation data",
                 "correct": false
               },
               {
-                "text": "Refitting the encoder on the new rows as well will fix it properly",
+                "text": "The model has too many rows",
                 "correct": false
               },
               {
-                "text": "Adding handle_unknown=\"ignore\" solves it cleanly, with no side effect worth worrying about",
+                "text": "Fit on validation targets",
                 "correct": false
               },
               {
-                "text": "handle_unknown=\"ignore\" clears it, and with drop=\"first\" an unseen category then encodes as the dropped one",
+                "text": "The column has not been created under that name in valid",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct, and the second half is the part almost nobody is told. An ignored unknown category is encoded as all zeros, which is exactly how the dropped reference category is encoded, so every new category silently becomes the baseline. Choose one of the two options deliberately and count how often an unknown value arrives.",
-            "fbWrong": "THE ANSWER: handle_unknown=\"ignore\" clears it, and with drop=\"first\" an unseen category then encodes as the dropped one. The second half is the part almost nobody is told. An ignored unknown category is encoded as all zeros, which is exactly how the dropped reference category is encoded, so every new category silently becomes the baseline. Choose one of the two options deliberately and count how often an unknown value arrives.\n\nWhy the others are wrong. \u201cThe category column should be dropped from the model\u201d \u2014 It may be carrying real signal. The task is to encode it so it survives a value you have not seen before.  \u201cRefitting the encoder on the new rows as well will fix it properly\u201d \u2014 Fitting anything on rows you are about to predict is the leakage pattern from Week 10. It also cannot work in service, where the new value arrives after the model is deployed.  \u201cAdding handle_unknown=\"ignore\" solves it cleanly, with no side effect worth worrying about\u201d \u2014 It does clear the error. The side effect is that the unknown category is encoded as all zeros, and because drop=\"first\" is set, that is the same encoding as the dropped category."
+            "fbCorrect": "Apply the same named feature preparation to training and validation.",
+            "fbWrong": "THE ANSWER: The column has not been created under that name in valid. Apply the same named feature preparation to training and validation.\n\nWhy the others are wrong. \u201cRound the validation data\u201d \u2014 Rounding does not create the column.  \u201cThe model has too many rows\u201d \u2014 This error concerns a missing key or label.  \u201cFit on validation targets\u201d \u2014 That leaks evaluation answers."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Each row removes one feature and refits. Which feature has earned its place least?",
-            "help": "features                        MAE (MPa)\nall five                              3.9\nminus water/cement ratio              6.8\nminus curing age                      7.4\nminus total binder                    4.0\nminus superplasticiser                4.1\nminus fly ash                         4.6",
+            "title": "What is the improvement?",
+            "help": "base_mae = 3.0; extended_mae = 2.5\nimprovement = base_mae - extended_mae",
             "choices": [
               {
-                "text": "Total binder, because removing it moves the error by 0.1 MPa",
+                "text": "0.5 in the target unit",
                 "correct": true
               },
               {
-                "text": "Curing age, because it has the largest error when removed",
+                "text": "0.5 percent in every case",
                 "correct": false
               },
               {
-                "text": "None of them; every feature earns its place",
+                "text": "A guarantee every prediction improved",
                 "correct": false
               },
               {
-                "text": "Water/cement ratio, because 6.8 is a poor result",
+                "text": "-0.5",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Curing age and the water/cement ratio each cost you around 3 MPa when removed, and total binder costs 0.1 MPa. It is very likely saying the same thing as the cement column already in the model.",
-            "fbWrong": "THE ANSWER: Total binder, because removing it moves the error by 0.1 MPa. Curing age and the water/cement ratio each cost you around 3 MPa when removed, and total binder costs 0.1 MPa. It is very likely saying the same thing as the cement column already in the model.\n\nWhy the others are wrong. \u201cCuring age, because it has the largest error when removed\u201d \u2014 That reading is inverted. A large error without a feature means the model badly needs it.  \u201cNone of them; every feature earns its place\u201d \u2014 A feature whose removal changes the error by 0.1 MPa is carrying almost nothing the others do not already carry.  \u201cWater/cement ratio, because 6.8 is a poor result\u201d \u2014 6.8 is the error you suffer without it, which is why it belongs in the model."
+            "fbCorrect": "The extended model reduces mean absolute error by 0.5.",
+            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit, not an automatic percentage.  \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Two teams reach almost the same error. One uses a random forest on the raw columns; the other uses linear regression on the water/cement ratio and four other engineered features. Every rejection has to be explained in writing to a paying client. Which do you recommend?",
-            "help": "",
+            "title": "What makes the comparison meaningful?",
+            "help": "Compare base features with base features plus an interaction.",
             "choices": [
               {
-                "text": "Either, since the error is what matters",
+                "text": "Use final-test scores to keep trying features",
                 "correct": false
               },
               {
-                "text": "The random forest, because ensembles generalise better in general",
+                "text": "Choose a different easy validation set",
                 "correct": false
               },
               {
-                "text": "The engineered features with the simpler model, whose reasoning can be read off and defended",
+                "text": "Use the same training and validation rows and model protocol",
                 "correct": true
               },
               {
-                "text": "The random forest, and add an importance chart to explain it",
+                "text": "Always prefer the larger feature set",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. On equal performance the stated constraint decides it, and a coefficient on a quantity with physical meaning is something you can put in front of the person who has to sign. The engineering went into the features rather than the algorithm.",
-            "fbWrong": "THE ANSWER: The engineered features with the simpler model, whose reasoning can be read off and defended. On equal performance the stated constraint decides it, and a coefficient on a quantity with physical meaning is something you can put in front of the person who has to sign. The engineering went into the features rather than the algorithm.\n\nWhy the others are wrong. \u201cEither, since the error is what matters\u201d \u2014 The error was stated as a condition to meet rather than the only criterion. Explainability was given as a requirement.  \u201cThe random forest, because ensembles generalise better in general\u201d \u2014 It may well generalise better on some problems, and here the two are level while only one of them satisfies the constraint you were given.  \u201cThe random forest, and add an importance chart to explain it\u201d \u2014 Feature importance tells you which columns the model leaned on overall. It does not tell the client why this particular case was rejected, which is the question they will ask."
+            "fbCorrect": "Changing only the feature set makes the difference interpretable.",
+            "fbWrong": "THE ANSWER: Use the same training and validation rows and model protocol. Changing only the feature set makes the difference interpretable.\n\nWhy the others are wrong. \u201cUse final-test scores to keep trying features\u201d \u2014 That turns the final test into selection data.  \u201cChoose a different easy validation set\u201d \u2014 That confounds the comparison.  \u201cAlways prefer the larger feature set\u201d \u2014 More features can fail to improve generalisation."
           }
         ]
       },
@@ -1638,137 +1638,137 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3112 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate concludes the forest is the better model. What does this table actually support?",
-            "help": "fold                  1      2      3      4      5   mean\nrandom forest      0.78   0.70   0.76   0.71   0.75   0.74\nlogistic reg.      0.75   0.73   0.72   0.68   0.72   0.72\ndifference        +0.03  -0.03  +0.04  +0.03  +0.03",
+            "kind": "interpretation",
+            "title": "Which candidate meets both constraints?",
+            "help": "Limits: MAE <= 3 and latency <= 10 ms.\nsimple: MAE 3, latency 2\ncomplex: MAE 1, latency 20",
             "choices": [
               {
-                "text": "The forest is better, since it has the stronger mean",
+                "text": "complex",
                 "correct": false
               },
               {
-                "text": "Very little: the difference changes sign between folds, so on this evidence the two cannot be separated",
+                "text": "simple",
                 "correct": true
               },
               {
-                "text": "The forest is better, because it wins the majority of folds",
+                "text": "Both",
                 "correct": false
               },
               {
-                "text": "The comparison is invalid because the models share folds",
+                "text": "Neither",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and reading the per-fold differences is what settles it. The sign of the difference flips from fold to fold, so the mean gap of 0.02 is not a consistent advantage. Report them as level on this data and let the stated constraints decide. Note what makes this readable at all: both models were scored on the SAME five folds, so the differences can be paired up.",
-            "fbWrong": "THE ANSWER: Very little: the difference changes sign between folds, so on this evidence the two cannot be separated. Reading the per-fold differences is what settles it. The sign of the difference flips from fold to fold, so the mean gap of 0.02 is not a consistent advantage. Report them as level on this data and let the stated constraints decide. Note what makes this readable at all: both models were scored on the SAME five folds, so the differences can be paired up.\n\nWhy the others are wrong. \u201cThe forest is better, since it has the stronger mean\u201d \u2014 A mean hides the fold-by-fold picture. Here the sign of the difference flips, which is the pattern of two models that are level rather than one that is ahead.  \u201cThe forest is better, because it wins the majority of folds\u201d \u2014 Winning more folds than it loses is worth noticing and is weak evidence at this margin, because the fold it loses it loses by as much as the others are won. With only five folds this pattern arises easily between two models of equal ability.  \u201cThe comparison is invalid because the models share folds\u201d \u2014 Sharing folds is what makes the comparison valid. Scoring each model on its own random split is the mistake, and it is the subject of the next question."
+            "fbCorrect": "It satisfies both inclusive limits.",
+            "fbWrong": "THE ANSWER: simple. It satisfies both inclusive limits.\n\nWhy the others are wrong. \u201ccomplex\u201d \u2014 Its latency fails the requirement.  \u201cBoth\u201d \u2014 complex fails the latency limit.  \u201cNeither\u201d \u2014 simple meets the limits, including equality on MAE."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "Two models, two scores, no error anywhere. Why can these numbers not be compared?",
-            "help": "# model A\nX_tr, X_te, y_tr, y_te = train_test_split(X, y,\n                              random_state=1)\n# ... fit A ...      score 0.78\n\n# model B\nX_tr, X_te, y_tr, y_te = train_test_split(X, y,\n                              random_state=7)\n# ... fit B ...      score 0.81",
+            "title": "What is wrong with choosing the lowest error before filtering?",
+            "help": "One very accurate candidate exceeds the permitted latency.",
             "choices": [
               {
-                "text": "They were scored on different test sets, so the gap may be the split rather than the model",
+                "text": "The chosen candidate may be ineligible",
                 "correct": true
               },
               {
-                "text": "Model B had the advantage of a later random state",
+                "text": "Sorting cannot be used",
                 "correct": false
               },
               {
-                "text": "The scores need to be averaged together",
+                "text": "Latency and error must be added",
                 "correct": false
               },
               {
-                "text": "Nothing is wrong, since both used the same data file",
+                "text": "All constraints should be dropped",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Changing the seed changes the split, and split-to-split variation on this kind of data is often larger than the gap you are trying to measure. Score every model on identical folds, which is what cross_val_score with a fixed splitter gives you.",
-            "fbWrong": "THE ANSWER: They were scored on different test sets, so the gap may be the split rather than the model. Changing the seed changes the split, and split-to-split variation on this kind of data is often larger than the gap you are trying to measure. Score every model on identical folds, which is what cross_val_score with a fixed splitter gives you.\n\nWhy the others are wrong. \u201cModel B had the advantage of a later random state\u201d \u2014 The number in random_state is a label for a shuffle and carries no ordering. Seed 7 is not later or better than seed 1.  \u201cThe scores need to be averaged together\u201d \u2014 Averaging two figures measured on different test sets produces a number that describes neither model.  \u201cNothing is wrong, since both used the same data file\u201d \u2014 The same file cut two different ways gives two different test sets. The comparison needs the cuts to match."
+            "fbCorrect": "Check every constraint before ranking eligible candidates.",
+            "fbWrong": "THE ANSWER: The chosen candidate may be ineligible. Check every constraint before ranking eligible candidates.\n\nWhy the others are wrong. \u201cSorting cannot be used\u201d \u2014 Sorting is useful after eligibility filtering.  \u201cLatency and error must be added\u201d \u2014 They have different meanings and the policy does not add them.  \u201cAll constraints should be dropped\u201d \u2014 That changes the requirements."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "You have run this notebook for an hour and now get this. What is the most likely history behind it?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-31-9a8b7c>\", line 1, in <module>\n    print(forest.predict(X_te)[:5])\nNotFittedError: This RandomForestClassifier instance is not\nfitted yet. Call 'fit' with appropriate arguments before\nusing this estimator.",
+            "title": "What check prevents this error?",
+            "help": "winner = eligible.iloc[0][\"name\"]\nIndexError: single positional indexer is out-of-bounds",
             "choices": [
               {
-                "text": "The test features contain missing values",
+                "text": "Always pick the original first candidate",
                 "correct": false
               },
               {
-                "text": "The forest needs more trees before it can predict",
+                "text": "Delete the latency column",
                 "correct": false
               },
               {
-                "text": "The cell that creates the model was re-run after the one that fitted it",
+                "text": "Check eligible.empty and return None if no rows remain",
                 "correct": true
               },
               {
-                "text": "The model does not support predict on a test set",
+                "text": "Use iloc[1] instead",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and this is the Week 2 out-of-order trap arriving in a much more expensive place. Re-running the constructor throws away an hour of fitting. Restart and Run All is how you find out whether your notebook still tells a straight story.",
-            "fbWrong": "THE ANSWER: The cell that creates the model was re-run after the one that fitted it. This is the Week 2 out-of-order trap arriving in a much more expensive place. Re-running the constructor throws away an hour of fitting. Restart and Run All is how you find out whether your notebook still tells a straight story.\n\nWhy the others are wrong. \u201cThe test features contain missing values\u201d \u2014 That reports itself as an error about NaN, and it would only arise once the model was fitted.  \u201cThe forest needs more trees before it can predict\u201d \u2014 The number of trees is set at construction and any number can be fitted and used. This one was never fitted.  \u201cThe model does not support predict on a test set\u201d \u2014 It does. The message is specifically that this instance has never been fitted."
+            "fbCorrect": "There is no first row in an empty table.",
+            "fbWrong": "THE ANSWER: Check eligible.empty and return None if no rows remain. There is no first row in an empty table.\n\nWhy the others are wrong. \u201cAlways pick the original first candidate\u201d \u2014 That can choose an ineligible model.  \u201cDelete the latency column\u201d \u2014 Removing evidence does not satisfy the constraints.  \u201cUse iloc[1] instead\u201d \u2014 An empty table has no second row either."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Two outputs from the same forest. The quality manager needs to know why THIS batch was rejected. Which output answers that, and what does the other one tell you?",
-            "help": "A   feature_importances_ over the whole training set\n      w_c ratio        0.41\n      curing age       0.29\n      total binder     0.18\n      superplasticiser 0.12\n\nB   contribution to the prediction for batch 812\n      w_c ratio 0.61   pushed toward reject  +0.22\n      curing age 3 d   pushed toward reject  +0.15\n      total binder     pushed toward accept  -0.04",
+            "title": "Which name wins the published tie-break?",
+            "help": "Both candidates have MAE 2 and latency 3 ms.\nNames: beta, alpha\nSort by error, latency, then name.",
             "choices": [
               {
-                "text": "Both answer it equally well, since they rank the same features",
+                "text": "Whichever appeared last",
                 "correct": false
               },
               {
-                "text": "A answers it, because the highest-importance feature is the reason for any given decision",
+                "text": "beta",
                 "correct": false
               },
               {
-                "text": "B answers it, because it is specific to this case; A describes the model's average behaviour across all cases",
+                "text": "alpha",
                 "correct": true
               },
               {
-                "text": "Neither answers it, because a forest can never be explained at all",
+                "text": "None",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and the distinction is worth holding on to. A global importance chart says what the model relies on in general and can never say why one case came out as it did. A per-case breakdown is what a client's question actually needs.",
-            "fbWrong": "THE ANSWER: B answers it, because it is specific to this case; A describes the model's average behaviour across all cases. The distinction is worth holding on to. A global importance chart says what the model relies on in general and can never say why one case came out as it did. A per-case breakdown is what a client's question actually needs.\n\nWhy the others are wrong. \u201cBoth answer it equally well, since they rank the same features\u201d \u2014 They do not even rank them the same way, and more importantly they answer different questions. One is about the model, the other about a case.  \u201cA answers it, because the highest-importance feature is the reason for any given decision\u201d \u2014 That does not follow. The most important feature overall can be unremarkable in this particular case, and here B shows a different feature leading for batch-level reasons.  \u201cNeither answers it, because a forest can never be explained at all\u201d \u2014 Too pessimistic. Per-case attributions like B are exactly how you interrogate one prediction from an ensemble. The honest caveat is that they are estimates of the contribution rather than a rule you can read off."
+            "fbCorrect": "With equal numerical criteria, alphabetical name order decides.",
+            "fbWrong": "THE ANSWER: alpha. With equal numerical criteria, alphabetical name order decides.\n\nWhy the others are wrong. \u201cWhichever appeared last\u201d \u2014 Input order is not the stated tie-break.  \u201cbeta\u201d \u2014 That is not the alphabetical first name.  \u201cNone\u201d \u2014 Both are eligible and the tie-break resolves the choice."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "The quality manager points at one batch and asks: show the exact, directly readable decision rule that rejected batch 812; post-hoc attributions do not meet this audit requirement. You chose the forest. What is the honest position?",
-            "help": "",
+            "title": "Which data should guide model selection?",
+            "help": "The final test is reserved for the fixed choice.",
             "choices": [
               {
-                "text": "Show the feature importance chart as the explanation",
+                "text": "Final-test results after every trial",
                 "correct": false
               },
               {
-                "text": "Explain that the model is accurate and ask them to trust the result",
+                "text": "The nicest-looking training plot",
                 "correct": false
               },
               {
-                "text": "Offer to retrain the forest with fewer trees so it is simpler",
+                "text": "The largest number of parameters",
                 "correct": false
               },
               {
-                "text": "Recommend a readable-rule model that meets the stated acceptance requirement",
+                "text": "Validation results under a consistent protocol",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.",
-            "fbWrong": "THE ANSWER: Recommend a readable-rule model that meets the stated acceptance requirement. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked.  \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest still does not meet this stated requirement for a directly readable rule. This concedes accuracy without gaining explainability."
+            "fbCorrect": "The final test should remain independent of repeated choices.",
+            "fbWrong": "THE ANSWER: Validation results under a consistent protocol. The final test should remain independent of repeated choices.\n\nWhy the others are wrong. \u201cFinal-test results after every trial\u201d \u2014 Repeated selection on those results uses up the final test.  \u201cThe nicest-looking training plot\u201d \u2014 Appearance does not establish held-out performance.  \u201cThe largest number of parameters\u201d \u2014 Complexity alone does not establish quality."
           }
         ]
       },
@@ -1776,137 +1776,137 @@ var QUIZ_DATA = {
         "week": 13,
         "number": 12,
         "title": "CML3112 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "This runs perfectly on the machine it was written on. What is wrong with it?",
-            "help": "df = pd.read_csv(\n    \"C:/Users/Jotham/Desktop/concrete_final_v3.csv\")",
+            "kind": "interpretation",
+            "title": "Why use a relative CSV path?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")",
             "choices": [
               {
-                "text": "It names a location that exists on exactly one computer, so the notebook cannot run anywhere else",
+                "text": "It can work on another computer with the same project structure",
                 "correct": true
               },
               {
-                "text": "Backslashes should have been used for a Windows path",
+                "text": "It encrypts the data",
                 "correct": false
               },
               {
-                "text": "The file should be read with a different pandas function",
+                "text": "It downloads the file automatically",
                 "correct": false
               },
               {
-                "text": "Nothing, as long as you send the file with the notebook",
+                "text": "It makes raw data safe to overwrite",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Keep the data inside the project and read it by a relative path such as data/\u2026 so the notebook works for anyone who has the folder. The version marker in the file name is a second warning: it suggests there are other copies and no record of which is current.",
-            "fbWrong": "THE ANSWER: It names a location that exists on exactly one computer, so the notebook cannot run anywhere else. Keep the data inside the project and read it by a relative path such as data/\u2026 so the notebook works for anyone who has the folder. The version marker in the file name is a second warning: it suggests there are other copies and no record of which is current.\n\nWhy the others are wrong. \u201cBackslashes should have been used for a Windows path\u201d \u2014 Forward slashes work on Windows in Python and avoid the escape problems backslashes cause. This is the better of the two styles and the location is still wrong.  \u201cThe file should be read with a different pandas function\u201d \u2014 read_csv is the right function for a CSV. The path is the problem.  \u201cNothing, as long as you send the file with the notebook\u201d \u2014 The recipient would have to recreate your user name and your desktop for the path to resolve. A relative path inside the project removes the problem entirely."
+            "fbCorrect": "Document the working folder and include the expected data layout.",
+            "fbWrong": "THE ANSWER: It can work on another computer with the same project structure. Document the working folder and include the expected data layout.\n\nWhy the others are wrong. \u201cIt encrypts the data\u201d \u2014 Path choice does not provide encryption.  \u201cIt downloads the file automatically\u201d \u2014 A local relative path does not fetch missing files.  \u201cIt makes raw data safe to overwrite\u201d \u2014 Raw data should still be preserved."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "You run the same notebook twice, changing nothing, and get these two numbers. What is going on, and what should you do?",
-            "help": "run 1:   MAE 4.1 MPa\nrun 2:   MAE 4.6 MPa",
+            "title": "What is wrong with trusting a saved output?",
+            "help": "A notebook displays a chart but fails after Restart and Run All.",
             "choices": [
               {
-                "text": "The data file is being modified between runs",
+                "text": "The chart proves the current code works",
                 "correct": false
               },
               {
-                "text": "The second run is the more trustworthy of the two",
+                "text": "Restarting changes the dataset by itself",
                 "correct": false
               },
               {
-                "text": "The split and the model involve randomness that was never pinned down",
+                "text": "The visible output may come from an earlier session",
                 "correct": true
               },
               {
-                "text": "Report the average of the two runs",
+                "text": "Only the chart title matters",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Without a seed, the rows that land in the test set and the internal choices a forest makes change every run. Set random_state on the split and on the model, and write the number in the notebook so a reader can reproduce your figure exactly.",
-            "fbWrong": "THE ANSWER: The split and the model involve randomness that was never pinned down. Without a seed, the rows that land in the test set and the internal choices a forest makes change every run. Set random_state on the split and on the model, and write the number in the notebook so a reader can reproduce your figure exactly.\n\nWhy the others are wrong. \u201cThe data file is being modified between runs\u201d \u2014 Nothing here writes to the file. Unseeded randomness explains this without needing the data to change.  \u201cThe second run is the more trustworthy of the two\u201d \u2014 Neither is more trustworthy. That two runs differ by this much is itself the finding, and it says your single reported figure carries this much uncertainty.  \u201cReport the average of the two runs\u201d \u2014 An average of two arbitrary draws is still arbitrary. Seed the randomness, and if you want a figure with a spread, cross-validate deliberately."
+            "fbCorrect": "A fresh run checks whether the saved code and supplied files reproduce it.",
+            "fbWrong": "THE ANSWER: The visible output may come from an earlier session. A fresh run checks whether the saved code and supplied files reproduce it.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed.  \u201cRestarting changes the dataset by itself\u201d \u2014 The issue may be missing state or files, not a changed dataset.  \u201cOnly the chart title matters\u201d \u2014 Reproducibility needs executable steps and data."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "A classmate clones your repository and gets this on the first cell. What is the cause?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-1-3e4f5a>\", line 1, in <module>\n    df = pd.read_csv(\"concrete_strength.csv\")\nFileNotFoundError: [Errno 2] No such file or directory:\n'concrete_strength.csv'",
+            "title": "What should be checked first?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
             "choices": [
               {
-                "text": "The classmate is missing a package",
+                "text": "Rewrite the analysis using csv.DictReader",
                 "correct": false
               },
               {
-                "text": "The repository was cloned incorrectly",
+                "text": "Change the model hyperparameters",
                 "correct": false
               },
               {
-                "text": "The data file was never committed, or sits elsewhere",
+                "text": "The working folder, relative path and supplied filename",
                 "correct": true
               },
               {
-                "text": "The file name has the wrong extension",
+                "text": "Delete all other files",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and both halves are worth checking. Data is often left out of a repository deliberately because of size or licence, in which case the README has to say where to get it and where to put it. Otherwise the path needs to match the folder layout.",
-            "fbWrong": "THE ANSWER: The data file was never committed, or sits elsewhere. Both halves are worth checking. Data is often left out of a repository deliberately because of size or licence, in which case the README has to say where to get it and where to put it. Otherwise the path needs to match the folder layout.\n\nWhy the others are wrong. \u201cThe classmate is missing a package\u201d \u2014 A missing package reports itself as ModuleNotFoundError. This message is about a file.  \u201cThe repository was cloned incorrectly\u201d \u2014 A clone that failed would leave you with no notebook to run. The notebook arrived and its data did not.  \u201cThe file name has the wrong extension\u201d \u2014 The extension matches a CSV read. The file is simply not at that location."
+            "fbCorrect": "Confirm the file is present at the path used by the notebook.",
+            "fbWrong": "THE ANSWER: The working folder, relative path and supplied filename. Confirm the file is present at the path used by the notebook.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing libraries does not repair a missing file.  \u201cChange the model hyperparameters\u201d \u2014 Model settings do not affect file discovery.  \u201cDelete all other files\u201d \u2014 That does not create the required file."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Two captions for the same chart. Which one does the job a caption exists to do, and why?",
-            "help": "A:  Figure 3: strength against cement content.\n\nB:  Figure 3: strength rises with cement content and\n    flattens above 400 kg/m3, so going from 450 to\n    500 kg/m3 buys about 1 MPa.",
+            "title": "What does index=False do?",
+            "help": "clean.to_csv(\"cleaned_data.csv\", index=False)",
             "choices": [
               {
-                "text": "Neither; captions should give the data source instead",
+                "text": "It fills missing values",
                 "correct": false
               },
               {
-                "text": "A, because a caption should describe the chart and let the reader draw the conclusion",
+                "text": "It removes the first observation",
                 "correct": false
               },
               {
-                "text": "A, because B might be wrong and the caption would then be misleading",
+                "text": "It prevents saving",
                 "correct": false
               },
               {
-                "text": "B, because it states the finding and its size, so a reader who only reads the captions still learns the result",
+                "text": "It omits pandas row labels from the exported CSV columns",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. A caption is often the only part of your work that gets read. B carries the conclusion and the magnitude, which is what makes it useful and also what makes it checkable against the chart.",
-            "fbWrong": "THE ANSWER: B, because it states the finding and its size, so a reader who only reads the captions still learns the result. A caption is often the only part of your work that gets read. B carries the conclusion and the magnitude, which is what makes it useful and also what makes it checkable against the chart.\n\nWhy the others are wrong. \u201cNeither; captions should give the data source instead\u201d \u2014 The source belongs in the caption or nearby and does not replace the finding. B plus a source is the target.  \u201cA, because a caption should describe the chart and let the reader draw the conclusion\u201d \u2014 A describes the axes, which the axis labels already do. It leaves the reader to rediscover something you already know.  \u201cA, because B might be wrong and the caption would then be misleading\u201d \u2014 A claim you can check is a feature. If B is wrong the chart will show it, whereas A cannot be wrong because it says nothing."
+            "fbCorrect": "The data columns remain in the file.",
+            "fbWrong": "THE ANSWER: It omits pandas row labels from the exported CSV columns. The data columns remain in the file.\n\nWhy the others are wrong. \u201cIt fills missing values\u201d \u2014 Export options do not perform imputation.  \u201cIt removes the first observation\u201d \u2014 It controls row labels, not the first data row.  \u201cIt prevents saving\u201d \u2014 to_csv still writes the file."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Your notebook has three separate cells that each assign df, and nobody wrote down the order they should run in. Submission is tomorrow. What do you do?",
-            "help": "",
+            "title": "What belongs in a reproducible handover?",
+            "help": "Another person must run the work from a fresh session.",
             "choices": [
               {
-                "text": "Leave it, since you know the right order",
+                "text": "Only the final score",
                 "correct": false
               },
               {
-                "text": "Add a comment above each cell saying what order to run them in",
+                "text": "Only screenshots",
                 "correct": false
               },
               {
-                "text": "Restart and Run All, then fix whatever breaks until it runs clean from top to bottom",
+                "text": "Data paths, dependencies, run order, units and limitations",
                 "correct": true
               },
               {
-                "text": "Delete two of the three cells and hope the notebook still runs",
+                "text": "Private machine paths with no instructions",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and do it before you are tired. That single action converts a notebook that works on your screen into one that works from an empty memory, which is the only version anyone else can use. Consolidating the three assignments into one clear sequence is usually the fix.",
-            "fbWrong": "THE ANSWER: Restart and Run All, then fix whatever breaks until it runs clean from top to bottom. Do it before you are tired. That single action converts a notebook that works on your screen into one that works from an empty memory, which is the only version anyone else can use. Consolidating the three assignments into one clear sequence is usually the fix.\n\nWhy the others are wrong. \u201cLeave it, since you know the right order\u201d \u2014 That knowledge is not in the file, so it does not survive you. It also will not survive next week for you either.  \u201cAdd a comment above each cell saying what order to run them in\u201d \u2014 Instructions to run cells out of order are a description of the problem. Anyone who follows them slightly differently gets a different answer.  \u201cDelete two of the three cells and hope the notebook still runs\u201d \u2014 Each of them may be doing something needed. Running from a clean state tells you what is required rather than leaving you to guess."
+            "fbCorrect": "These explain what is needed and what the results support.",
+            "fbWrong": "THE ANSWER: Data paths, dependencies, run order, units and limitations. These explain what is needed and what the results support.\n\nWhy the others are wrong. \u201cOnly the final score\u201d \u2014 A score does not explain data, methods or limitations.  \u201cOnly screenshots\u201d \u2014 Screenshots cannot reproduce the calculations.  \u201cPrivate machine paths with no instructions\u201d \u2014 Those paths generally fail on another computer."
           }
         ]
       }
@@ -1922,7 +1922,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3113 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2060,7 +2060,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3113 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2198,7 +2198,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3113 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2336,7 +2336,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3113 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2474,7 +2474,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3113 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2612,137 +2612,137 @@ var QUIZ_DATA = {
         "week": 6,
         "number": 6,
         "title": "CML3113 \u00b7 Weekly Quiz 6 \u2014 Dirty data, and seeing it",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "NOT ASSIGNED: Quiz 6 is waived for practical revision. No submission or mark is required.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "The mean below is impossible. Read the values and say what went wrong.",
-            "help": "# the laboratory system writes -999 when no result came back\nsilica = [2.1, 2.4, -999, 2.8, 2.2]\nprint(f\"mean {sum(silica) / len(silica):.2f} % silica\")\nmean -197.90 % silica",
+            "kind": "interpretation",
+            "title": "Which entry does the missing-value check identify?",
+            "help": "s = pd.Series([0, None, 4])\nprint(s.isna().tolist())",
             "choices": [
               {
-                "text": "The list is too short for a mean to be meaningful",
+                "text": "Zero and the middle entry",
                 "correct": false
               },
               {
-                "text": "The division should exclude the last value",
+                "text": "No entries",
                 "correct": false
               },
               {
-                "text": "Silica cannot be negative, so the sensor is faulty",
+                "text": "Every entry",
                 "correct": false
               },
               {
-                "text": "One entry is a code standing in for a missing assay",
+                "text": "Only the middle entry",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. -999 is a marker meaning no result, and arithmetic has no way to know that. The mean of the four real assays is 2.38 per cent. Replace the code with a proper missing value before any arithmetic touches the column.",
-            "fbWrong": "THE ANSWER: One entry is a code standing in for a missing assay. -999 is a marker meaning no result, and arithmetic has no way to know that. The mean of the four real assays is 2.38 per cent. Replace the code with a proper missing value before any arithmetic touches the column.\n\nWhy the others are wrong. \u201cThe list is too short for a mean to be meaningful\u201d \u2014 Four real values give a perfectly usable mean. The arithmetic was poisoned by a fifth entry that is not a measurement at all.  \u201cThe division should exclude the last value\u201d \u2014 The problem is not which position is excluded. It is that a placeholder is being treated as data.  \u201cSilica cannot be negative, so the sensor is faulty\u201d \u2014 Silica certainly cannot be negative, and no sensor produced -999. It is a convention for absent data, which is why it is such a reliable trap."
+            "fbCorrect": "Zero is a recorded number. isna recognises the missing middle entry.",
+            "fbWrong": "THE ANSWER: Only the middle entry. Zero is a recorded number. isna recognises the missing middle entry.\n\nWhy the others are wrong. \u201cZero and the middle entry\u201d \u2014 Zero is not automatically missing.  \u201cNo entries\u201d \u2014 pandas recognises the missing marker even if the numeric Series stores it as NaN.  \u201cEvery entry\u201d \u2014 The first and last entries are recorded numbers."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This runs with no error and no warning. What has it done to your data?",
-            "help": "# one grade was typed as \"1.8 %\" instead of 1.8\ndf[\"iron_feed\"] = pd.to_numeric(df[\"iron_feed\"],\n                                  errors=\"coerce\")\nprint(df[\"iron_feed\"].mean())",
+            "title": "What is wrong with this duplicate rule?",
+            "help": "Rows are separate observations. Equipment E1 has several valid readings.\nclean = df.drop_duplicates(\"equipment_id\")",
             "choices": [
               {
-                "text": "It turned every unreadable value into a missing value, and the mean then quietly skipped those rows",
+                "text": "It removes distinct observations from the same equipment",
                 "correct": true
               },
               {
-                "text": "It stripped the unit and kept the number",
+                "text": "It keeps every observation",
                 "correct": false
               },
               {
-                "text": "It raised the error but carried on to the next row",
+                "text": "It fills missing values",
                 "correct": false
               },
               {
-                "text": "It replaced the unreadable value with the column mean",
+                "text": "It sorts by target",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Coercing is often the right move and it is never free: it converts a loud failure into a silent one. Count the missing values it created and report that count, otherwise your mean covers fewer rows than you believe.",
-            "fbWrong": "THE ANSWER: It turned every unreadable value into a missing value, and the mean then quietly skipped those rows. Coercing is often the right move and it is never free: it converts a loud failure into a silent one. Count the missing values it created and report that count, otherwise your mean covers fewer rows than you believe.\n\nWhy the others are wrong. \u201cIt stripped the unit and kept the number\u201d \u2014 Nothing here parses units. A value with a unit attached is unreadable as a number and becomes missing.  \u201cIt raised the error but carried on to the next row\u201d \u2014 That is what errors=\"raise\" would do, minus the carrying on. Coercing suppresses the error entirely.  \u201cIt replaced the unreadable value with the column mean\u201d \u2014 No substitution happens. Filling gaps is a separate decision you have to make deliberately, and doing it before a split leaks information, as Week 10 shows."
+            "fbCorrect": "Deduplicate observation IDs under the stated policy, not a source ID that can repeat.",
+            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy, not a source ID that can repeat.\n\nWhy the others are wrong. \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields.  \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "You convert the column without coercing and get this. What is the useful thing about this message?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-6-2b3c4d>\", line 1, in <module>\n    df[\"iron_feed\"] = pd.to_numeric(df[\"iron_feed\"])\nValueError: Unable to parse string \"1.8 %\" at position 417",
+            "title": "Why does this conversion fail?",
+            "help": "pd.to_numeric(pd.Series([\"20\", \"24 C\", \"26\"]))\nValueError: Unable to parse string \"24 C\" at position 1",
             "choices": [
               {
-                "text": "It names the offending value and the row it sits in, so you can look at it and decide what it should be",
+                "text": "The second value contains a unit suffix",
                 "correct": true
               },
               {
-                "text": "It proves the column cannot be converted",
+                "text": "The values must be rounded",
                 "correct": false
               },
               {
-                "text": "It means the column is the wrong data type for pandas",
+                "text": "pandas cannot convert numeric text",
                 "correct": false
               },
               {
-                "text": "It should be suppressed so the analysis can continue",
+                "text": "The whole dataset must be deleted",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. This is more useful than a silent conversion, because it hands you the exact value and position. Look at row 417, decide whether to repair the entry or drop it, and write down which you chose.",
-            "fbWrong": "THE ANSWER: It names the offending value and the row it sits in, so you can look at it and decide what it should be. This is more useful than a silent conversion, because it hands you the exact value and position. Look at row 417, decide whether to repair the entry or drop it, and write down which you chose.\n\nWhy the others are wrong. \u201cIt proves the column cannot be converted\u201d \u2014 It proves one value cannot. Fix or remove that value and the column converts.  \u201cIt means the column is the wrong data type for pandas\u201d \u2014 The column is text because of this value. Conversion is the cure and the message is telling you what stands in the way.  \u201cIt should be suppressed so the analysis can continue\u201d \u2014 Suppressing it is available and it costs you the position and the value. Read the message first, then decide."
+            "fbCorrect": "The value and its position identify what needs inspection before repair.",
+            "fbWrong": "THE ANSWER: The second value contains a unit suffix. The value and its position identify what needs inspection before repair.\n\nWhy the others are wrong. \u201cThe values must be rounded\u201d \u2014 Rounding cannot remove a text unit suffix.  \u201cpandas cannot convert numeric text\u201d \u2014 It converts strings such as \"20\".  \u201cThe whole dataset must be deleted\u201d \u2014 Inspect the problematic value; the error does not justify deleting all data."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Read the question you set yourself against the chart you produced. Does the chart answer it?",
-            "help": "question:  Does concentrate silica differ between\n           high and low iron feed grade?\n\nchart:     one histogram\n           x = concentrate silica (%)\n           y = number of records\n           all 20,000 records, no grouping applied",
+            "title": "What does this fill operation do?",
+            "help": "s = pd.Series([20, None, 24, 80])\nfilled = s.fillna(s.median())",
             "choices": [
               {
-                "text": "Yes, provided the sample is large enough",
+                "text": "It recovers the true missing measurement",
                 "correct": false
               },
               {
-                "text": "Yes, because the shape of the distribution reveals the two groups",
+                "text": "It replaces 80 with 24",
                 "correct": false
               },
               {
-                "text": "No, because the two groups are mixed together in one distribution and cannot be compared",
+                "text": "It inserts 24 for the missing entry and retains 80",
                 "correct": true
               },
               {
-                "text": "No, because a histogram is never the right chart",
+                "text": "It fills the gap with zero",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The question asks for a comparison, so the chart has to separate the groups: two distributions side by side, or a mean for each with its spread. A single pooled histogram cannot show a difference between halves it never divided.",
-            "fbWrong": "THE ANSWER: No, because the two groups are mixed together in one distribution and cannot be compared. The question asks for a comparison, so the chart has to separate the groups: two distributions side by side, or a mean for each with its spread. A single pooled histogram cannot show a difference between halves it never divided.\n\nWhy the others are wrong. \u201cYes, provided the sample is large enough\u201d \u2014 Sample size cannot rescue a chart that never made the comparison. Twenty thousand pooled records answer the question no better than two hundred.  \u201cYes, because the shape of the distribution reveals the two groups\u201d \u2014 Two clear humps would hint at something and would not tell you which group each hump belongs to. A distribution with one hump can still hide a real difference between the groups.  \u201cNo, because a histogram is never the right chart\u201d \u2014 A histogram is a good way to show one distribution. The fault is the missing split rather than the choice of chart type."
+            "fbCorrect": "The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.",
+            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate, not a recovered observation.  \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "You find a gold assay of 45 grams per tonne in a file where most assays sit between 0.5 and 3 grams per tonne. What do you do with it?",
-            "help": "",
+            "title": "Which output answers the question?",
+            "help": "Question: Do mean target values differ by equipment?",
             "choices": [
               {
-                "text": "Keep it and verify it against the assay record",
+                "text": "A labelled chart of groupby(\"equipment_id\")[\"target\"].mean()",
                 "correct": true
               },
               {
-                "text": "Replace it with the mean of the column",
+                "text": "A chart with no labels",
                 "correct": false
               },
               {
-                "text": "Cap it at the highest ordinary value so it stops distorting the mean",
+                "text": "The total row count alone",
                 "correct": false
               },
               {
-                "text": "Delete it, because it is far outside the normal range",
+                "text": "One histogram of all targets",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A 45 g/t intersection is exactly what a drilling programme exists to find. Confirm it in the laboratory register and keep it. Deleting it removes the discovery.",
-            "fbWrong": "THE ANSWER: Keep it and verify it against the assay record. A 45 g/t intersection is exactly what a drilling programme exists to find. Confirm it in the laboratory register and keep it. Deleting it removes the discovery.\n\nWhy the others are wrong. \u201cReplace it with the mean of the column\u201d \u2014 That erases a genuine high-grade result and replaces it with a number nobody measured.  \u201cCap it at the highest ordinary value so it stops distorting the mean\u201d \u2014 Capping a high-grade result understates the resource and would be indefensible in a technical report.  \u201cDelete it, because it is far outside the normal range\u201d \u2014 This is the single most expensive mistake available in this dataset. The outlier is the ore body."
+            "fbCorrect": "Grouped means compare the requested equipment groups.",
+            "fbWrong": "THE ANSWER: A labelled chart of groupby(\"equipment_id\")[\"target\"].mean(). Grouped means compare the requested equipment groups.\n\nWhy the others are wrong. \u201cA chart with no labels\u201d \u2014 Without groups and units, the comparison cannot be interpreted.  \u201cThe total row count alone\u201d \u2014 A count does not compare target means.  \u201cOne histogram of all targets\u201d \u2014 A pooled histogram describes a distribution without comparing group means."
           }
         ]
       },
@@ -2750,137 +2750,137 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3113 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate reports this as the accuracy of the model. What does the number actually describe?",
-            "help": "model.fit(X, y)\nprint(model.score(X, y))\n0.91",
+            "kind": "interpretation",
+            "title": "What shape does X need here?",
+            "help": "features = [\"load_pct\", \"ambient_c\"]\nX = train[features]\ny = train[\"target\"]",
             "choices": [
               {
-                "text": "How well the model will do on new data, give or take a little",
+                "text": "Two rows regardless of dataset size",
                 "correct": false
               },
               {
-                "text": "Nothing useful, because score() is the wrong function",
+                "text": "One unrelated row for each target",
                 "correct": false
               },
               {
-                "text": "The proportion of the data used for training",
+                "text": "A column containing the target only",
                 "correct": false
               },
               {
-                "text": "How well the model reproduces the rows it was fitted on, which tells you nothing about a new case",
+                "text": "One row per training observation and two feature columns",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. The same rows appear in fit and in score, so the model is being marked on the answers it was shown. Hold rows back with train_test_split and score on those.",
-            "fbWrong": "THE ANSWER: How well the model reproduces the rows it was fitted on, which tells you nothing about a new case. The same rows appear in fit and in score, so the model is being marked on the answers it was shown. Hold rows back with train_test_split and score on those.\n\nWhy the others are wrong. \u201cHow well the model will do on new data, give or take a little\u201d \u2014 There is no basis for that reading. A model with enough freedom can score near one on its training rows and fail completely on anything new, which is the whole subject of Week 10.  \u201cNothing useful, because score() is the wrong function\u201d \u2014 score() is the right function used on the wrong rows. Give it held-out data and the number becomes meaningful.  \u201cThe proportion of the data used for training\u201d \u2014 score() returns a measure of fit. The train and test proportions are whatever you chose when you split, and here nothing was split."
+            "fbCorrect": "The two named features form a table; y has a target for each same row.",
+            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count, not the observation count.  \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cA column containing the target only\u201d \u2014 The target is y, not a predictor."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This predicts a plausible-looking value and raises no error, and the value is wrong. Why?",
-            "help": "feats = [\"iron_feed\", \"starch_flow\", \"pulp_ph\"]\nmodel.fit(df[feats], df[\"silica_concentrate\"])\n\n# a new record: 56.3 % iron feed, 3180 g/min starch, pH 9.4\nprint(model.predict([[3180, 56.3, 9.4]]))",
+            "title": "Why should prediction use new[features]?",
+            "help": "model.fit(train[features], train[\"target\"])",
             "choices": [
               {
-                "text": "The model was fitted on too few features to predict anything",
+                "text": "It guarantees accurate predictions",
                 "correct": false
               },
               {
-                "text": "The new values should have been scaled first",
+                "text": "It trains the model again",
                 "correct": false
               },
               {
-                "text": "predict() needs a two-dimensional input",
+                "text": "It supplies the new true target",
                 "correct": false
               },
               {
-                "text": "The values were supplied in a different order from the fitted columns",
+                "text": "It keeps the same feature names and order as training",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. A fitted model knows only that its first input is whatever its first training column was. Swap two and it happily applies the wrong coefficient to each. Build the row as a frame with named columns and this class of error disappears.",
-            "fbWrong": "THE ANSWER: The values were supplied in a different order from the fitted columns. A fitted model knows only that its first input is whatever its first training column was. Swap two and it happily applies the wrong coefficient to each. Build the row as a frame with named columns and this class of error disappears.\n\nWhy the others are wrong. \u201cThe model was fitted on too few features to predict anything\u201d \u2014 Three or four features is enough to produce a prediction. The count is fine and the order is not.  \u201cThe new values should have been scaled first\u201d \u2014 Scaling would matter for some model types and it would not repair a swap. Scaled or raw, the values are in the wrong positions.  \u201cpredict() needs a two-dimensional input\u201d \u2014 It does, and it was given one. The doubled brackets are correct here."
+            "fbCorrect": "Names and order preserve the meaning of each model input.",
+            "fbWrong": "THE ANSWER: It keeps the same feature names and order as training. Names and order preserve the meaning of each model input.\n\nWhy the others are wrong. \u201cIt guarantees accurate predictions\u201d \u2014 Consistent inputs are necessary but do not guarantee accuracy.  \u201cIt trains the model again\u201d \u2014 predict uses the fitted model; it does not fit it.  \u201cIt supplies the new true target\u201d \u2014 Feature inputs must not contain the answer."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What is the most likely cause?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-9-5e6f7a>\", line 1, in <module>\n    model.fit(X, y)\nValueError: Found input variables with inconsistent numbers\nof samples: [16000, 20000]",
+            "title": "What should you check first?",
+            "help": "model.fit(X, y)\nValueError: Found input variables with inconsistent numbers of samples",
             "choices": [
               {
-                "text": "The features were filtered or had rows dropped and the target was not, so the two no longer line up",
+                "text": "Whether X and y were selected from the same rows",
                 "correct": true
               },
               {
-                "text": "The features and the target need to be the same data type",
+                "text": "Delete target values at random",
                 "correct": false
               },
               {
-                "text": "There are too few rows to fit a model",
+                "text": "Round all columns",
                 "correct": false
               },
               {
-                "text": "The target column contains missing values",
+                "text": "Increase tree depth",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Dropping missing values from the feature frame without applying the same selection to the target is the usual cause. Filter the frame first and take X and y from the filtered frame so they can never drift apart.",
-            "fbWrong": "THE ANSWER: The features were filtered or had rows dropped and the target was not, so the two no longer line up. Dropping missing values from the feature frame without applying the same selection to the target is the usual cause. Filter the frame first and take X and y from the filtered frame so they can never drift apart.\n\nWhy the others are wrong. \u201cThe features and the target need to be the same data type\u201d \u2014 They routinely differ, and that is fine. The error counts rows and says nothing about types.  \u201cThere are too few rows to fit a model\u201d \u2014 Both counts here are ample. The problem is that they are not equal.  \u201cThe target column contains missing values\u201d \u2014 Missing values in the target give a different complaint about NaN. This message is purely about the row counts disagreeing."
+            "fbCorrect": "Separate filtering can leave different observation counts or mismatched rows.",
+            "fbWrong": "THE ANSWER: Whether X and y were selected from the same rows. Separate filtering can leave different observation counts or mismatched rows.\n\nWhy the others are wrong. \u201cDelete target values at random\u201d \u2014 This breaks pairing and loses valid data.  \u201cRound all columns\u201d \u2014 Rounding does not change the number of observations.  \u201cIncrease tree depth\u201d \u2014 Model complexity does not repair mismatched inputs."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "A teammate shows you this plot and this conclusion. How should you read it?",
-            "help": "plot:        y = residual (actual - predicted), % silica\n             x = ACTUAL concentrate silica, %\n             a clear upward slope, left to right\n\nconclusion:  \"the model under-predicts high-silica\n             records\"",
+            "title": "What are MAE and RMSE?",
+            "help": "actual = [10, 20]\npredicted = [12, 16]",
             "choices": [
               {
-                "text": "The residuals should have been squared before plotting",
+                "text": "Both are 6",
                 "correct": false
               },
               {
-                "text": "The conclusion is right, and the model needs an extra feature to fix it",
+                "text": "MAE -1; RMSE 1",
                 "correct": false
               },
               {
-                "text": "The slope appears by construction; plot residuals against the predicted value",
+                "text": "MAE 3; RMSE approximately 3.1623",
                 "correct": true
               },
               {
-                "text": "A slope in the residuals always means the model is broken",
+                "text": "Both are percentages",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and this catches almost everybody once. The actual value equals the prediction plus the residual, so the residual is built into the quantity on the horizontal axis and rises with it. Against the predicted value the slope disappears and any real pattern becomes visible.",
-            "fbWrong": "THE ANSWER: The slope appears by construction; plot residuals against the predicted value. This catches almost everybody once. The actual value equals the prediction plus the residual, so the residual is built into the quantity on the horizontal axis and rises with it. Against the predicted value the slope disappears and any real pattern becomes visible.\n\nWhy the others are wrong. \u201cThe residuals should have been squared before plotting\u201d \u2014 Squaring throws away the sign, which is the most useful part of a residual. The pairing of axes is what is wrong here.  \u201cThe conclusion is right, and the model needs an extra feature to fix it\u201d \u2014 The conclusion may happen to be true and this plot cannot establish it. Redraw against the predicted value before changing the model.  \u201cA slope in the residuals always means the model is broken\u201d \u2014 A slope against the predicted value would be worth investigating. A slope against the actual value is arithmetic rather than a finding."
+            "fbCorrect": "Absolute errors are 2 and 4; squared errors are 4 and 16.",
+            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are 6\u201d \u2014 Six is the total absolute error, not its mean.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong.  \u201cBoth are percentages\u201d \u2014 These errors use the target unit."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Your model reaches a mean absolute error of 0.4 percentage points of silica. The client asks whether that is good. What do you need before you can answer?",
-            "help": "",
+            "title": "Where should the imputer learn its median?",
+            "help": "Training, validation and final-test partitions are already separate.",
             "choices": [
               {
-                "text": "Nothing further; 0.4 percentage points is a small number",
+                "text": "Each new prediction row independently",
                 "correct": false
               },
               {
-                "text": "The error of predicting the mean, and the assay's own repeatability",
+                "text": "Training features only",
                 "correct": true
               },
               {
-                "text": "A second model to compare it against",
+                "text": "The combined file",
                 "correct": false
               },
               {
-                "text": "A larger dataset",
+                "text": "Validation targets",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Both are needed. The assay repeats to about 0.1 percentage points, so 0.4 is around four times looser than the measurement it replaces, and predicting the mean gives you the floor. Those two numbers turn a metric into an answer.",
-            "fbWrong": "THE ANSWER: The error of predicting the mean, and the assay's own repeatability. Both are needed. The assay repeats to about 0.1 percentage points, so 0.4 is around four times looser than the measurement it replaces, and predicting the mean gives you the floor. Those two numbers turn a metric into an answer.\n\nWhy the others are wrong. \u201cNothing further; 0.4 percentage points is a small number\u201d \u2014 Small compared with what? Against a specification of 3 per cent it may matter a great deal.  \u201cA second model to compare it against\u201d \u2014 That ranks two options without telling you whether either beats doing nothing.  \u201cA larger dataset\u201d \u2014 More rows might help and cannot answer the question of whether 0.4 points is useful to a metallurgist."
+            "fbCorrect": "The fitted fill must be reused on evaluation data without learning from them.",
+            "fbWrong": "THE ANSWER: Training features only. The fitted fill must be reused on evaluation data without learning from them.\n\nWhy the others are wrong. \u201cEach new prediction row independently\u201d \u2014 This changes preprocessing at prediction time.  \u201cThe combined file\u201d \u2014 That uses evaluation information in preprocessing.  \u201cValidation targets\u201d \u2014 Targets cannot supply predictor fill values."
           }
         ]
       },
@@ -2888,137 +2888,137 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3113 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate is pleased with this result. What has the model actually learned?",
-            "help": "accuracy                     0.966\nsamples predicted as ore         0\n\n# in this register 3.4 in 100 samples are above cut-off",
+            "kind": "interpretation",
+            "title": "How many false negatives are present?",
+            "help": "actual    = [1, 1, 0, 0]\npredicted = [1, 0, 1, 0]",
             "choices": [
               {
-                "text": "That more features are needed to raise accuracy",
+                "text": "4",
                 "correct": false
               },
               {
-                "text": "A genuinely strong rule, since 96.6 per cent is a high score",
+                "text": "2",
                 "correct": false
               },
               {
-                "text": "To answer with the majority class every time, which scores the majority-class share and finds nothing",
+                "text": "1",
                 "correct": true
               },
               {
-                "text": "That the two classes are equally easy to separate",
+                "text": "0",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Since 96.6 in 100 cases are negative, always saying negative scores 0.966. The model has found the base rate and no signal. Recall on the class you care about is zero, and that is the number to report.",
-            "fbWrong": "THE ANSWER: To answer with the majority class every time, which scores the majority-class share and finds nothing. Since 96.6 in 100 cases are negative, always saying negative scores 0.966. The model has found the base rate and no signal. Recall on the class you care about is zero, and that is the number to report.\n\nWhy the others are wrong. \u201cThat more features are needed to raise accuracy\u201d \u2014 Accuracy is already near its ceiling and is the wrong instrument. Change the metric before changing the model.  \u201cA genuinely strong rule, since 96.6 per cent is a high score\u201d \u2014 The score is exactly what you get for free by ignoring the data. A rule that never fires cannot be strong at the job it was built for.  \u201cThat the two classes are equally easy to separate\u201d \u2014 It never attempted the separation. It predicted one class throughout."
+            "fbCorrect": "Only the second row needs a warning but receives none.",
+            "fbWrong": "THE ANSWER: 1. Only the second row needs a warning but receives none.\n\nWhy the others are wrong. \u201c4\u201d \u2014 Every row is not an error.  \u201c2\u201d \u2014 There are two errors, but only one is a false negative.  \u201c0\u201d \u2014 The second row is a missed warning."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This model was tested against a grade-control register of ten thousand samples. Read the confusion matrix. Which statement does it support?",
-            "help": "                      pred: waste    pred: ore\nactual: waste                9620             36\nactual: ore                   310             34\n\n10,000 samples in total; accuracy 0.965",
+            "title": "Why is high accuracy insufficient here?",
+            "help": "Only 2% of observations need a warning. A model always predicts 0.",
             "choices": [
               {
-                "text": "It misses about nine in ten of the cases it exists to catch",
+                "text": "It misses every actual warning",
                 "correct": true
               },
               {
-                "text": "Accuracy of 0.965 shows it is fit for use",
+                "text": "The dataset has no positive observations",
                 "correct": false
               },
               {
-                "text": "It is well balanced between the two kinds of error",
+                "text": "It must have perfect recall",
                 "correct": false
               },
               {
-                "text": "Its main weakness is false alarms",
+                "text": "It detects all warnings",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Recall on the class of interest is 34 out of 344, which is 0.099. The high accuracy comes almost entirely from the 9,620 easy negatives. This is the number the matrix exists to expose.",
-            "fbWrong": "THE ANSWER: It misses about nine in ten of the cases it exists to catch. Recall on the class of interest is 34 out of 344, which is 0.099. The high accuracy comes almost entirely from the 9,620 easy negatives. This is the number the matrix exists to expose.\n\nWhy the others are wrong. \u201cAccuracy of 0.965 shows it is fit for use\u201d \u2014 Predicting the majority class throughout would score 0.966, which is higher. Accuracy cannot see this failure.  \u201cIt is well balanced between the two kinds of error\u201d \u2014 310 against 36 is close to a nine-to-one imbalance in the errors.  \u201cIts main weakness is false alarms\u201d \u2014 There are only 36 false alarms against 310 misses. The costly error here is the one being made nearly ten times as often."
+            "fbCorrect": "Predicting the majority can give 98% accuracy while recall is zero.",
+            "fbWrong": "THE ANSWER: It misses every actual warning. Predicting the majority can give 98% accuracy while recall is zero.\n\nWhy the others are wrong. \u201cThe dataset has no positive observations\u201d \u2014 Two percent are positives.  \u201cIt must have perfect recall\u201d \u2014 Recall counts detected positives, not correct negatives.  \u201cIt detects all warnings\u201d \u2014 It predicts no warnings at all."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What does this tell you to change?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-11-8b9c0d>\", line 1, in <module>\n    print(recall_score(y_test, pred))\nValueError: Target is multiclass but average='binary'.\nPlease choose another average setting, one of [None, 'micro', 'macro', 'weighted'].",
+            "title": "How should this assignment avoid the error?",
+            "help": "precision = tp / (tp + fp)\nZeroDivisionError: division by zero",
             "choices": [
               {
-                "text": "The test set is too small for recall to be defined",
+                "text": "Use the target unit as denominator",
                 "correct": false
               },
               {
-                "text": "The target has more than two classes, so you must say how recall should be combined across them",
+                "text": "Return 0 when tp + fp is zero, as specified",
                 "correct": true
               },
               {
-                "text": "The predictions are the wrong data type",
+                "text": "Invent one true positive",
                 "correct": false
               },
               {
-                "text": "Recall cannot be computed for more than two classes",
+                "text": "Delete the entire dataset",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and the choice matters. average=None gives you recall per class, which is usually what you want, because a single combined figure can hide a class the model never predicts.",
-            "fbWrong": "THE ANSWER: The target has more than two classes, so you must say how recall should be combined across them. The choice matters. average=None gives you recall per class, which is usually what you want, because a single combined figure can hide a class the model never predicts.\n\nWhy the others are wrong. \u201cThe test set is too small for recall to be defined\u201d \u2014 Size is not mentioned and is not the issue. The class count is.  \u201cThe predictions are the wrong data type\u201d \u2014 The types are acceptable. The message is about the number of classes in the target.  \u201cRecall cannot be computed for more than two classes\u201d \u2014 It can, once you state how to aggregate it. The error offers you the options."
+            "fbCorrect": "The published convention handles the no-predicted-warning case.",
+            "fbWrong": "THE ANSWER: Return 0 when tp + fp is zero, as specified. The published convention handles the no-predicted-warning case.\n\nWhy the others are wrong. \u201cUse the target unit as denominator\u201d \u2014 Units are not observation counts.  \u201cInvent one true positive\u201d \u2014 That changes the evidence.  \u201cDelete the entire dataset\u201d \u2014 A zero denominator needs a convention, not deletion."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "You lower the decision threshold from 0.5 to 0.2 and re-score the same model on the same test set. What has changed?",
-            "help": "threshold 0.5   recall 0.099   false alarms  36\nthreshold 0.2   recall 0.439   false alarms 290",
+            "title": "What is the cost under this rule?",
+            "help": "Missed warning costs 5; false alarm costs 1.\nfn = 2; fp = 3",
             "choices": [
               {
-                "text": "The model has been improved by better tuning",
+                "text": "5",
                 "correct": false
               },
               {
-                "text": "The result is invalid because the threshold should stay at 0.5",
+                "text": "6",
                 "correct": false
               },
               {
-                "text": "Nothing about the model; you moved along its trade-off, buying recall by accepting eight times as many false alarms",
+                "text": "13",
                 "correct": true
               },
               {
-                "text": "The model now overfits, because recall rose sharply",
+                "text": "25",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The model and its scores are untouched: only the cut-off you apply to them changed. Which threshold is right depends on what a false alarm costs against a miss, and that is a question about the work rather than the model.",
-            "fbWrong": "THE ANSWER: Nothing about the model; you moved along its trade-off, buying recall by accepting eight times as many false alarms. The model and its scores are untouched: only the cut-off you apply to them changed. Which threshold is right depends on what a false alarm costs against a miss, and that is a question about the work rather than the model.\n\nWhy the others are wrong. \u201cThe model has been improved by better tuning\u201d \u2014 No retraining took place. The same probabilities are being cut in a different place.  \u201cThe result is invalid because the threshold should stay at 0.5\u201d \u2014 0.5 is a default rather than a rule. On a problem where a miss costs far more than a false alarm, moving it is exactly the right thing to do.  \u201cThe model now overfits, because recall rose sharply\u201d \u2014 Overfitting is about the gap between training and unseen data. This is one model on one test set at two thresholds."
+            "fbCorrect": "5 times 2 plus 3 is 13.",
+            "fbWrong": "THE ANSWER: 13. 5 times 2 plus 3 is 13.\n\nWhy the others are wrong. \u201c5\u201d \u2014 This ignores the supplied error counts.  \u201c6\u201d \u2014 Multiplying the two counts is not the stated rule.  \u201c25\u201d \u2014 The costs are not both five."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Sending ore to the waste dump throws away metal you have already paid to mine, and you never find out. Sending waste to the mill costs the processing of worthless rock. Which metric should govern your model, and why?",
-            "help": "",
+            "title": "What can lowering the threshold change?",
+            "help": "Probabilities stay fixed; threshold falls from 0.5 to 0.3.",
             "choices": [
               {
-                "text": "Whichever metric gives the highest number, so the result reads well",
+                "text": "It changes the actual labels",
                 "correct": false
               },
               {
-                "text": "Recall on the class you cannot afford to miss, with the false-alarm rate beside it",
+                "text": "More observations can be classified as warnings",
                 "correct": true
               },
               {
-                "text": "Accuracy, because it summarises overall performance",
+                "text": "It retrains the model automatically",
                 "correct": false
               },
               {
-                "text": "Precision, because false alarms annoy the operators",
+                "text": "It guarantees fewer false alarms",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The expensive error is the miss, so recall is the quantity to drive up. Quoting the false-alarm rate beside it keeps you honest, because recall can always be bought and somebody has to pay for it.",
-            "fbWrong": "THE ANSWER: Recall on the class you cannot afford to miss, with the false-alarm rate beside it. The expensive error is the miss, so recall is the quantity to drive up. Quoting the false-alarm rate beside it keeps you honest, because recall can always be bought and somebody has to pay for it.\n\nWhy the others are wrong. \u201cWhichever metric gives the highest number, so the result reads well\u201d \u2014 Choosing a metric to flatter the model is how a system that misses nine failures in ten gets signed off.  \u201cAccuracy, because it summarises overall performance\u201d \u2014 At a base rate near 3 per cent, accuracy is dominated by easy negatives and a useless model scores 0.966. It cannot see the error that matters here.  \u201cPrecision, because false alarms annoy the operators\u201d \u2014 Precision alone rewards a model that fires only when certain, which is a model that misses most of the cases. It belongs in the report next to recall rather than in charge of it."
+            "fbCorrect": "The decision rule changes; actual labels are needed to assess its errors.",
+            "fbWrong": "THE ANSWER: More observations can be classified as warnings. The decision rule changes; actual labels are needed to assess its errors.\n\nWhy the others are wrong. \u201cIt changes the actual labels\u201d \u2014 The reference outcomes stay fixed.  \u201cIt retrains the model automatically\u201d \u2014 Thresholding does not fit model parameters.  \u201cIt guarantees fewer false alarms\u201d \u2014 Raising more warnings can increase false alarms."
           }
         ]
       },
@@ -3026,137 +3026,137 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3113 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "This reports a good test score. Why can that score not be trusted?",
-            "help": "scaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)     # whole file\n\nX_tr, X_te, y_tr, y_te = train_test_split(X_scaled, y)\nmodel.fit(X_tr, y_tr)\nprint(model.score(X_te, y_te))",
+            "kind": "interpretation",
+            "title": "Why keep an equipment ID in only one partition?",
+            "help": "The intended deployment is on previously unseen equipment.",
             "choices": [
               {
-                "text": "Nothing is wrong; scaling does not use the target",
+                "text": "To use the target as a group label",
                 "correct": false
               },
               {
-                "text": "The scaler was fitted on the whole file, so the test rows helped set the scaling",
+                "text": "To avoid evaluating on equipment patterns already seen in training",
                 "correct": true
               },
               {
-                "text": "The split should come before the features are selected",
+                "text": "To delete repeated valid observations",
                 "correct": false
               },
               {
-                "text": "StandardScaler is the wrong scaler for this data",
+                "text": "To make every partition equally large",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The test rows are supposed to stand in for cases you have never seen, and here they helped set the scaling. Put the scaler in a Pipeline and fit it after the split, so it only ever sees training rows.",
-            "fbWrong": "THE ANSWER: The scaler was fitted on the whole file, so the test rows helped set the scaling. The test rows are supposed to stand in for cases you have never seen, and here they helped set the scaling. Put the scaler in a Pipeline and fit it after the split, so it only ever sees training rows.\n\nWhy the others are wrong. \u201cNothing is wrong; scaling does not use the target\u201d \u2014 Leakage does not require the target. Borrowing the test rows' mean and spread means the test set is no longer a clean estimate, and how far the number is distorted is not something you can work out from the outside, which is the real cost.  \u201cThe split should come before the features are selected\u201d \u2014 Selecting which columns to use is fine either side. Measuring something from the data is what has to wait until after the split.  \u201cStandardScaler is the wrong scaler for this data\u201d \u2014 The choice of scaler is a separate question. Any scaler fitted before the split leaks in the same way."
+            "fbCorrect": "Repeated observations from one source can make evaluation too optimistic.",
+            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo use the target as a group label\u201d \u2014 Equipment identity, not the answer, defines this split.  \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "Which of the three error stories does this pattern match?",
-            "help": "training score   0.98\ntest score       0.61",
+            "title": "What is wrong with this preparation?",
+            "help": "median = all_rows[\"ambient_c\"].median()\n# split into training and validation afterwards",
             "choices": [
               {
-                "text": "Information has leaked from the test set into training",
+                "text": "pandas cannot calculate medians",
                 "correct": false
               },
               {
-                "text": "The model has memorised its training rows and does not generalise",
+                "text": "It uses validation information when learning a fill value",
                 "correct": true
               },
               {
-                "text": "The two scores are measuring different quantities",
+                "text": "It guarantees underfitting",
                 "correct": false
               },
               {
-                "text": "The model is too simple to capture the pattern",
+                "text": "A median is never allowed",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A high training score with a much lower test score is the signature of a model with too much freedom for the data. Simplify it, constrain it, or get more rows.",
-            "fbWrong": "THE ANSWER: The model has memorised its training rows and does not generalise. A high training score with a much lower test score is the signature of a model with too much freedom for the data. Simplify it, constrain it, or get more rows.\n\nWhy the others are wrong. \u201cInformation has leaked from the test set into training\u201d \u2014 Leakage usually makes both scores look good, since the model has effectively seen the answers. A large gap points the other way.  \u201cThe two scores are measuring different quantities\u201d \u2014 Both are the same measure on different rows. That is what makes the comparison meaningful.  \u201cThe model is too simple to capture the pattern\u201d \u2014 A model that is too simple scores poorly on both, because it cannot even fit the rows it was given. Here it fits them almost perfectly."
+            "fbCorrect": "Split first and fit preprocessing on training only.",
+            "fbWrong": "THE ANSWER: It uses validation information when learning a fill value. Split first and fit preprocessing on training only.\n\nWhy the others are wrong. \u201cpandas cannot calculate medians\u201d \u2014 It can; the problem is which rows it uses.  \u201cIt guarantees underfitting\u201d \u2014 The direct problem is information leakage.  \u201cA median is never allowed\u201d \u2014 Training-only median imputation is allowed when justified."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "A teammate has already tried to deal with the gaps, in the cell shown above the traceback. Read both, then say what you would change.",
-            "help": "imp = SimpleImputer(strategy=\"mean\")\nX[[\"pulp_ph\"]] = imp.fit_transform(X[[\"pulp_ph\"]])\n\nX_tr, X_te, y_tr, y_te = train_test_split(X, y)\npipe = Pipeline([(\"model\", Ridge())])\npipe.fit(X_tr, y_tr)\n\nTraceback (most recent call last):\n  File \"<ipython-input-13-1a2b3c>\", line 6, in <module>\n    pipe.fit(X_tr, y_tr)\nValueError: Input X contains NaN.",
+            "title": "Why might prediction still fail with missing inputs?",
+            "help": "A pipeline contains only a regression model.\nValueError: Input X contains NaN.",
             "choices": [
               {
-                "text": "Impute the remaining columns the same way, before the split",
+                "text": "The final-test target must be added to X",
                 "correct": false
               },
               {
-                "text": "Replace the remaining gaps with zero so the model can fit",
+                "text": "All values should become zero",
                 "correct": false
               },
               {
-                "text": "Drop the rows that still contain gaps",
+                "text": "The warning should be ignored",
                 "correct": false
               },
               {
-                "text": "Move the imputer inside the Pipeline, and cover every column",
+                "text": "The pipeline needs appropriate missing-feature preparation",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct on both counts. Only one column was imputed, so the gaps in the others are still there, which is why the error still fires. And fitting it on the whole frame before the split measures the test rows, which is the leak from question one wearing different clothes. Inside the pipeline both problems go away at once.",
-            "fbWrong": "THE ANSWER: Move the imputer inside the Pipeline, and cover every column. Correct on both counts. Only one column was imputed, so the gaps in the others are still there, which is why the error still fires. And fitting it on the whole frame before the split measures the test rows, which is the leak from question one wearing different clothes. Inside the pipeline both problems go away at once.\n\nWhy the others are wrong. \u201cImpute the remaining columns the same way, before the split\u201d \u2014 That silences the error and keeps the leak. Every value the imputer learns before the split has been measured partly from the test rows.  \u201cReplace the remaining gaps with zero so the model can fit\u201d \u2014 Zero is a real value on these columns, so this quietly invents low readings. Week 6 covers the damage that does.  \u201cDrop the rows that still contain gaps\u201d \u2014 It would run, and it discards data and can bias what is left if the gaps cluster in one source, which Week 4 showed they often do."
+            "fbCorrect": "Include the trained imputer before the model and fit it on training data.",
+            "fbWrong": "THE ANSWER: The pipeline needs appropriate missing-feature preparation. Include the trained imputer before the model and fit it on training data.\n\nWhy the others are wrong. \u201cThe final-test target must be added to X\u201d \u2014 That would leak the answer.  \u201cAll values should become zero\u201d \u2014 Zero filling needs a justified policy and may distort data.  \u201cThe warning should be ignored\u201d \u2014 Ignoring an error does not supply usable inputs."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "You run five-fold cross-validation and get these scores. What should you report, and what should you look at?",
-            "help": "fold scores: 0.71, 0.68, 0.74, 0.52, 0.70\nmean 0.67",
+            "title": "What does this output show?",
+            "help": "Training median = 22.\nValidation values [None, 40] become [22, 40].",
             "choices": [
               {
-                "text": "The best fold, since it shows what the model can achieve",
+                "text": "The missing measurement was recovered",
                 "correct": false
               },
               {
-                "text": "Nothing yet; five folds is too few to report",
+                "text": "Every value was changed",
                 "correct": false
               },
               {
-                "text": "The mean with its spread, and look into the 0.52 fold",
+                "text": "The training fill was reused on validation",
                 "correct": true
               },
               {
-                "text": "The mean alone, since averaging is the purpose of cross-validation",
+                "text": "The validation median was fitted",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Four folds sit close together and one sits well below, which suggests that fold contains something the others do not. Group structure in the rows is the usual explanation, and it is the subject of the next question.",
-            "fbWrong": "THE ANSWER: The mean with its spread, and look into the 0.52 fold. Four folds sit close together and one sits well below, which suggests that fold contains something the others do not. Group structure in the rows is the usual explanation, and it is the subject of the next question.\n\nWhy the others are wrong. \u201cThe best fold, since it shows what the model can achieve\u201d \u2014 Quoting the best fold is selecting the most flattering result from your own experiment.  \u201cNothing yet; five folds is too few to report\u201d \u2014 Five folds is a standard choice and perfectly reportable. The spread is part of the report rather than a reason to withhold it.  \u201cThe mean alone, since averaging is the purpose of cross-validation\u201d \u2014 A bare mean hides the thing worth knowing. Reporting 0.67 with no spread conceals a fold that scored 0.52 and the reason behind it."
+            "fbCorrect": "Validation 40 did not determine a separate fill.",
+            "fbWrong": "THE ANSWER: The training fill was reused on validation. Validation 40 did not determine a separate fill.\n\nWhy the others are wrong. \u201cThe missing measurement was recovered\u201d \u2014 It is an estimate.  \u201cEvery value was changed\u201d \u2014 The recorded 40 remains unchanged.  \u201cThe validation median was fitted\u201d \u2014 The given rule uses the training median."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Working with the well-log dataset, you discover that samples from the same drill hole are split across your training and test sets. Samples from one hole are far more alike than samples from different holes. What should you do?",
-            "help": "",
+            "title": "What should be reported for several validation folds?",
+            "help": "Errors vary noticeably across folds.",
             "choices": [
               {
-                "text": "Split by hole, so every sample from one hole sits entirely in training or entirely in test",
+                "text": "The mean, variation and any important differences between folds",
                 "correct": true
               },
               {
-                "text": "Increase the size of the test set",
+                "text": "A claim of guaranteed future performance",
                 "correct": false
               },
               {
-                "text": "Remove the samples that look most similar",
+                "text": "Only the training score",
                 "correct": false
               },
               {
-                "text": "Leave it, because a random split is unbiased by definition",
+                "text": "Only the best fold",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A random split lets the model learn a hole and then be tested on the same hole, which flatters it badly. The question you actually face is prediction in a hole you have not drilled.",
-            "fbWrong": "THE ANSWER: Split by hole, so every sample from one hole sits entirely in training or entirely in test. A random split lets the model learn a hole and then be tested on the same hole, which flatters it badly. The question you actually face is prediction in a hole you have not drilled.\n\nWhy the others are wrong. \u201cIncrease the size of the test set\u201d \u2014 The same flaw simply appears in a bigger test set.  \u201cRemove the samples that look most similar\u201d \u2014 Those samples are real observations, and downhole similarity is a property of the ore body rather than an error.  \u201cLeave it, because a random split is unbiased by definition\u201d \u2014 It is unbiased with respect to rows and takes no account of the strong similarity within a hole."
+            "fbCorrect": "The best fold alone hides unstable performance.",
+            "fbWrong": "THE ANSWER: The mean, variation and any important differences between folds. The best fold alone hides unstable performance.\n\nWhy the others are wrong. \u201cA claim of guaranteed future performance\u201d \u2014 Finite validation evidence cannot guarantee future errors.  \u201cOnly the training score\u201d \u2014 That does not describe held-out folds.  \u201cOnly the best fold\u201d \u2014 This cherry-picks the evaluation."
           }
         ]
       },
@@ -3164,137 +3164,137 @@ var QUIZ_DATA = {
         "week": 11,
         "number": 10,
         "title": "CML3113 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate adds a scaler expecting an improvement and the score does not budge. Why not?",
-            "help": "before:  DecisionTreeRegressor(random_state=0)\n                                               MAE 0.42\nafter:   Pipeline([(\"scale\", StandardScaler()),\n                   (\"model\", DecisionTreeRegressor(\n                                 random_state=0))])\n                                               MAE 0.42",
+            "kind": "interpretation",
+            "title": "Which values are produced?",
+            "help": "load_pct = 40; ambient_c = 25\nload_fraction = load_pct / 100\ninteraction = load_pct * ambient_c",
             "choices": [
               {
-                "text": "The scaler was placed after the model in the pipeline",
+                "text": "40 and 65",
                 "correct": false
               },
               {
-                "text": "A tree splits on the order of the values, and scaling preserves that order",
+                "text": "0.4 and 1000",
                 "correct": true
               },
               {
-                "text": "The features were already on the same scale",
+                "text": "4000 and 1.6",
                 "correct": false
               },
               {
-                "text": "The tree needs a greater depth before scaling helps",
+                "text": "0.4 and 65",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Rescaling moves the numbers and leaves their ranking untouched, and a threshold split only cares about ranking. Scaling earns its keep for models that measure distances or fit coefficients.",
-            "fbWrong": "THE ANSWER: A tree splits on the order of the values, and scaling preserves that order. Rescaling moves the numbers and leaves their ranking untouched, and a threshold split only cares about ranking. Scaling earns its keep for models that measure distances or fit coefficients.\n\nWhy the others are wrong. \u201cThe scaler was placed after the model in the pipeline\u201d \u2014 It is first, which is the correct position. The order in the pipeline is not the issue.  \u201cThe features were already on the same scale\u201d \u2014 Even if they were, that would not be the reason. A tree is unaffected by this kind of rescaling whatever the starting scales happen to be.  \u201cThe tree needs a greater depth before scaling helps\u201d \u2014 Depth changes how the tree fits and never makes it sensitive to a monotonic rescaling."
+            "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
+            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product, not a sum."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "The score on your own test split improves after this change, and the model is worse. What has happened?",
-            "help": "print(df.shape)\n(20000, 24)\n\nprint(df[\"assay_batch_id\"].nunique())\n847\n\nX = pd.get_dummies(df, columns=[\"assay_batch_id\"])\nprint(X.shape)\n(20000, 870)",
+            "title": "Why is this feature invalid for prediction?",
+            "help": "new_feature = future_target / load_pct",
             "choices": [
               {
-                "text": "It added one column per identifier, so the model can now recognise individual units",
+                "text": "It uses the answer that is unavailable at prediction time",
                 "correct": true
               },
               {
-                "text": "get_dummies should have been given the whole frame",
+                "text": "It has a short name",
                 "correct": false
               },
               {
-                "text": "It made the frame too wide for the model to fit",
+                "text": "Ratios are always invalid",
                 "correct": false
               },
               {
-                "text": "The identifiers should have been numbered 1 to 847 instead",
+                "text": "pandas cannot divide columns",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. An identifier expanded this way hands the model a lookup table for the units in your file. It scores well wherever the same units appear on both sides of the split and carries nothing to a new one. Drop the identifier and keep the columns that describe the thing.",
-            "fbWrong": "THE ANSWER: It added one column per identifier, so the model can now recognise individual units. An identifier expanded this way hands the model a lookup table for the units in your file. It scores well wherever the same units appear on both sides of the split and carries nothing to a new one. Drop the identifier and keep the columns that describe the thing.\n\nWhy the others are wrong. \u201cget_dummies should have been given the whole frame\u201d \u2014 It was given the whole frame with one column named for expansion, which is the normal usage. The choice of column is the fault.  \u201cIt made the frame too wide for the model to fit\u201d \u2014 A few hundred columns is unremarkable and fits without complaint. The problem is what those columns mean.  \u201cThe identifiers should have been numbered 1 to 847 instead\u201d \u2014 That is worse: it tells a straight-line model that unit 800 is a hundred times unit 8. Neither encoding rescues a column that is only a label."
+            "fbCorrect": "A predictor must be obtainable before the target is known.",
+            "fbWrong": "THE ANSWER: It uses the answer that is unavailable at prediction time. A predictor must be obtainable before the target is known.\n\nWhy the others are wrong. \u201cIt has a short name\u201d \u2014 Naming is not the leakage issue.  \u201cRatios are always invalid\u201d \u2014 Ratios of available inputs can be useful.  \u201cpandas cannot divide columns\u201d \u2014 It can perform column arithmetic."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What has happened, and what is the catch in the obvious fix?",
-            "help": "enc = OneHotEncoder(drop=\"first\")\n# ... fitted on ore_source values pit 1, pit 3,\n#     stockpile, blend\n\nTraceback (most recent call last):\n  File \"<ipython-input-15-6d7e8f>\", line 1, in <module>\n    pipe.predict(new_rows)\nValueError: Found unknown categories ['pit 7'] in column 0\nduring transform",
+            "title": "What does this error suggest?",
+            "help": "valid[\"interaction\"]\nKeyError: 'interaction'",
             "choices": [
               {
-                "text": "The category column should be dropped from the model",
+                "text": "Round the validation data",
                 "correct": false
               },
               {
-                "text": "Refitting the encoder on the new rows as well will fix it properly",
+                "text": "The model has too many rows",
                 "correct": false
               },
               {
-                "text": "handle_unknown=\"ignore\" clears it, and with drop=\"first\" an unseen category then encodes as the dropped one",
+                "text": "The column has not been created under that name in valid",
                 "correct": true
               },
               {
-                "text": "Adding handle_unknown=\"ignore\" solves it cleanly, with no side effect worth worrying about",
+                "text": "Fit on validation targets",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and the second half is the part almost nobody is told. An ignored unknown category is encoded as all zeros, which is exactly how the dropped reference category is encoded, so every new category silently becomes the baseline. Choose one of the two options deliberately and count how often an unknown value arrives.",
-            "fbWrong": "THE ANSWER: handle_unknown=\"ignore\" clears it, and with drop=\"first\" an unseen category then encodes as the dropped one. The second half is the part almost nobody is told. An ignored unknown category is encoded as all zeros, which is exactly how the dropped reference category is encoded, so every new category silently becomes the baseline. Choose one of the two options deliberately and count how often an unknown value arrives.\n\nWhy the others are wrong. \u201cThe category column should be dropped from the model\u201d \u2014 It may be carrying real signal. The task is to encode it so it survives a value you have not seen before.  \u201cRefitting the encoder on the new rows as well will fix it properly\u201d \u2014 Fitting anything on rows you are about to predict is the leakage pattern from Week 10. It also cannot work in service, where the new value arrives after the model is deployed.  \u201cAdding handle_unknown=\"ignore\" solves it cleanly, with no side effect worth worrying about\u201d \u2014 It does clear the error. The side effect is that the unknown category is encoded as all zeros, and because drop=\"first\" is set, that is the same encoding as the dropped category."
+            "fbCorrect": "Apply the same named feature preparation to training and validation.",
+            "fbWrong": "THE ANSWER: The column has not been created under that name in valid. Apply the same named feature preparation to training and validation.\n\nWhy the others are wrong. \u201cRound the validation data\u201d \u2014 Rounding does not create the column.  \u201cThe model has too many rows\u201d \u2014 This error concerns a missing key or label.  \u201cFit on validation targets\u201d \u2014 That leaks evaluation answers."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Each row removes one feature and refits. Which feature has earned its place least?",
-            "help": "features                    MAE (pts silica)\nall five                                0.31\nminus starch dose per tonne             0.68\nminus iron feed grade                   0.74\nminus amina-to-starch ratio             0.32\nminus air flow                         0.39\nminus pulp density                     0.44",
+            "title": "What is the improvement?",
+            "help": "base_mae = 3.0; extended_mae = 2.5\nimprovement = base_mae - extended_mae",
             "choices": [
               {
-                "text": "None of them; every feature earns its place",
+                "text": "A guarantee every prediction improved",
                 "correct": false
               },
               {
-                "text": "Starch dose per tonne, because 0.68 is a poor result",
+                "text": "-0.5",
                 "correct": false
               },
               {
-                "text": "The amina-to-starch ratio, because removing it moves the error by 0.01 percentage points",
+                "text": "0.5 in the target unit",
                 "correct": true
               },
               {
-                "text": "Iron feed grade, because it has the largest error when removed",
+                "text": "0.5 percent in every case",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Iron feed grade and starch dose each cost you around 0.4 points when removed, and this one costs 0.01. It is close to redundant given the dose feature.",
-            "fbWrong": "THE ANSWER: The amina-to-starch ratio, because removing it moves the error by 0.01 percentage points. Iron feed grade and starch dose each cost you around 0.4 points when removed, and this one costs 0.01. It is close to redundant given the dose feature.\n\nWhy the others are wrong. \u201cNone of them; every feature earns its place\u201d \u2014 A change of 0.01 percentage points is well inside the noise you would see between folds.  \u201cStarch dose per tonne, because 0.68 is a poor result\u201d \u2014 0.68 is the error without it. That is the case for keeping it.  \u201cIron feed grade, because it has the largest error when removed\u201d \u2014 That is the reading reversed. The largest degradation marks the most valuable feature."
+            "fbCorrect": "The extended model reduces mean absolute error by 0.5.",
+            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction.  \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit, not an automatic percentage."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Two teams reach almost the same error. One uses a random forest on the raw columns; the other uses linear regression on reagent dose per tonne and four other engineered features. The operator has to see which reading drove the call. Which do you recommend?",
-            "help": "",
+            "title": "What makes the comparison meaningful?",
+            "help": "Compare base features with base features plus an interaction.",
             "choices": [
               {
-                "text": "The engineered features with the simpler model, whose reasoning can be read off and defended",
+                "text": "Use the same training and validation rows and model protocol",
                 "correct": true
               },
               {
-                "text": "Either, since the error is what matters",
+                "text": "Use final-test scores to keep trying features",
                 "correct": false
               },
               {
-                "text": "The random forest, because ensembles generalise better in general",
+                "text": "Choose a different easy validation set",
                 "correct": false
               },
               {
-                "text": "The random forest, and add an importance chart to explain it",
+                "text": "Always prefer the larger feature set",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. On equal performance the stated constraint decides it, and a coefficient on a quantity with physical meaning is something you can put in front of the person who has to sign. The engineering went into the features rather than the algorithm.",
-            "fbWrong": "THE ANSWER: The engineered features with the simpler model, whose reasoning can be read off and defended. On equal performance the stated constraint decides it, and a coefficient on a quantity with physical meaning is something you can put in front of the person who has to sign. The engineering went into the features rather than the algorithm.\n\nWhy the others are wrong. \u201cEither, since the error is what matters\u201d \u2014 The error was stated as a condition to meet rather than the only criterion. Explainability was given as a requirement.  \u201cThe random forest, because ensembles generalise better in general\u201d \u2014 It may well generalise better on some problems, and here the two are level while only one of them satisfies the constraint you were given.  \u201cThe random forest, and add an importance chart to explain it\u201d \u2014 Feature importance tells you which columns the model leaned on overall. It does not tell the client why this particular case was rejected, which is the question they will ask."
+            "fbCorrect": "Changing only the feature set makes the difference interpretable.",
+            "fbWrong": "THE ANSWER: Use the same training and validation rows and model protocol. Changing only the feature set makes the difference interpretable.\n\nWhy the others are wrong. \u201cUse final-test scores to keep trying features\u201d \u2014 That turns the final test into selection data.  \u201cChoose a different easy validation set\u201d \u2014 That confounds the comparison.  \u201cAlways prefer the larger feature set\u201d \u2014 More features can fail to improve generalisation."
           }
         ]
       },
@@ -3302,137 +3302,137 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3113 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate concludes the forest is the better model. What does this table actually support?",
-            "help": "fold                  1      2      3      4      5   mean\nrandom forest      0.28   0.36   0.29   0.34   0.28   0.31\nlinear reg.        0.31   0.33   0.36   0.32   0.33   0.33\ndifference        -0.03  +0.03  -0.07  +0.02  -0.05",
+            "kind": "interpretation",
+            "title": "Which candidate meets both constraints?",
+            "help": "Limits: MAE <= 3 and latency <= 10 ms.\nsimple: MAE 3, latency 2\ncomplex: MAE 1, latency 20",
             "choices": [
               {
-                "text": "The forest is better, because it wins the majority of folds",
+                "text": "Both",
                 "correct": false
               },
               {
-                "text": "The forest is better, since it has the stronger mean",
+                "text": "complex",
                 "correct": false
               },
               {
-                "text": "The comparison is invalid because the models share folds",
+                "text": "Neither",
                 "correct": false
               },
               {
-                "text": "Very little: the difference changes sign between folds, so on this evidence the two cannot be separated",
+                "text": "simple",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct, and reading the per-fold differences is what settles it. The sign of the difference flips from fold to fold, so the mean gap of 0.02 is not a consistent advantage. Report them as level on this data and let the stated constraints decide. Note what makes this readable at all: both models were scored on the SAME five folds, so the differences can be paired up.",
-            "fbWrong": "THE ANSWER: Very little: the difference changes sign between folds, so on this evidence the two cannot be separated. Reading the per-fold differences is what settles it. The sign of the difference flips from fold to fold, so the mean gap of 0.02 is not a consistent advantage. Report them as level on this data and let the stated constraints decide. Note what makes this readable at all: both models were scored on the SAME five folds, so the differences can be paired up.\n\nWhy the others are wrong. \u201cThe forest is better, because it wins the majority of folds\u201d \u2014 Winning more folds than it loses is worth noticing and is weak evidence at this margin, because the fold it loses it loses by as much as the others are won. With only five folds this pattern arises easily between two models of equal ability.  \u201cThe forest is better, since it has the stronger mean\u201d \u2014 A mean hides the fold-by-fold picture. Here the sign of the difference flips, which is the pattern of two models that are level rather than one that is ahead.  \u201cThe comparison is invalid because the models share folds\u201d \u2014 Sharing folds is what makes the comparison valid. Scoring each model on its own random split is the mistake, and it is the subject of the next question."
+            "fbCorrect": "It satisfies both inclusive limits.",
+            "fbWrong": "THE ANSWER: simple. It satisfies both inclusive limits.\n\nWhy the others are wrong. \u201cBoth\u201d \u2014 complex fails the latency limit.  \u201ccomplex\u201d \u2014 Its latency fails the requirement.  \u201cNeither\u201d \u2014 simple meets the limits, including equality on MAE."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "Two models, two scores, no error anywhere. Why can these numbers not be compared?",
-            "help": "# model A\nX_tr, X_te, y_tr, y_te = train_test_split(X, y,\n                              random_state=1)\n# ... fit A ...      score 0.78\n\n# model B\nX_tr, X_te, y_tr, y_te = train_test_split(X, y,\n                              random_state=7)\n# ... fit B ...      score 0.81",
+            "title": "What is wrong with choosing the lowest error before filtering?",
+            "help": "One very accurate candidate exceeds the permitted latency.",
             "choices": [
               {
-                "text": "The scores need to be averaged together",
+                "text": "Latency and error must be added",
                 "correct": false
               },
               {
-                "text": "They were scored on different test sets, so the gap may be the split rather than the model",
+                "text": "The chosen candidate may be ineligible",
                 "correct": true
               },
               {
-                "text": "Model B had the advantage of a later random state",
+                "text": "Sorting cannot be used",
                 "correct": false
               },
               {
-                "text": "Nothing is wrong, since both used the same data file",
+                "text": "All constraints should be dropped",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Changing the seed changes the split, and split-to-split variation on this kind of data is often larger than the gap you are trying to measure. Score every model on identical folds, which is what cross_val_score with a fixed splitter gives you.",
-            "fbWrong": "THE ANSWER: They were scored on different test sets, so the gap may be the split rather than the model. Changing the seed changes the split, and split-to-split variation on this kind of data is often larger than the gap you are trying to measure. Score every model on identical folds, which is what cross_val_score with a fixed splitter gives you.\n\nWhy the others are wrong. \u201cThe scores need to be averaged together\u201d \u2014 Averaging two figures measured on different test sets produces a number that describes neither model.  \u201cModel B had the advantage of a later random state\u201d \u2014 The number in random_state is a label for a shuffle and carries no ordering. Seed 7 is not later or better than seed 1.  \u201cNothing is wrong, since both used the same data file\u201d \u2014 The same file cut two different ways gives two different test sets. The comparison needs the cuts to match."
+            "fbCorrect": "Check every constraint before ranking eligible candidates.",
+            "fbWrong": "THE ANSWER: The chosen candidate may be ineligible. Check every constraint before ranking eligible candidates.\n\nWhy the others are wrong. \u201cLatency and error must be added\u201d \u2014 They have different meanings and the policy does not add them.  \u201cSorting cannot be used\u201d \u2014 Sorting is useful after eligibility filtering.  \u201cAll constraints should be dropped\u201d \u2014 That changes the requirements."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "You have run this notebook for an hour and now get this. What is the most likely history behind it?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-31-9a8b7c>\", line 1, in <module>\n    print(forest.predict(X_te)[:5])\nNotFittedError: This RandomForestRegressor instance is not\nfitted yet. Call 'fit' with appropriate arguments before\nusing this estimator.",
+            "title": "What check prevents this error?",
+            "help": "winner = eligible.iloc[0][\"name\"]\nIndexError: single positional indexer is out-of-bounds",
             "choices": [
               {
-                "text": "The cell that creates the model was re-run after the one that fitted it",
+                "text": "Check eligible.empty and return None if no rows remain",
                 "correct": true
               },
               {
-                "text": "The model does not support predict on a test set",
+                "text": "Use iloc[1] instead",
                 "correct": false
               },
               {
-                "text": "The test features contain missing values",
+                "text": "Always pick the original first candidate",
                 "correct": false
               },
               {
-                "text": "The forest needs more trees before it can predict",
+                "text": "Delete the latency column",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and this is the Week 2 out-of-order trap arriving in a much more expensive place. Re-running the constructor throws away an hour of fitting. Restart and Run All is how you find out whether your notebook still tells a straight story.",
-            "fbWrong": "THE ANSWER: The cell that creates the model was re-run after the one that fitted it. This is the Week 2 out-of-order trap arriving in a much more expensive place. Re-running the constructor throws away an hour of fitting. Restart and Run All is how you find out whether your notebook still tells a straight story.\n\nWhy the others are wrong. \u201cThe model does not support predict on a test set\u201d \u2014 It does. The message is specifically that this instance has never been fitted.  \u201cThe test features contain missing values\u201d \u2014 That reports itself as an error about NaN, and it would only arise once the model was fitted.  \u201cThe forest needs more trees before it can predict\u201d \u2014 The number of trees is set at construction and any number can be fitted and used. This one was never fitted."
+            "fbCorrect": "There is no first row in an empty table.",
+            "fbWrong": "THE ANSWER: Check eligible.empty and return None if no rows remain. There is no first row in an empty table.\n\nWhy the others are wrong. \u201cUse iloc[1] instead\u201d \u2014 An empty table has no second row either.  \u201cAlways pick the original first candidate\u201d \u2014 That can choose an ineligible model.  \u201cDelete the latency column\u201d \u2014 Removing evidence does not satisfy the constraints."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Two outputs from the same forest. The operator needs to know which reading drove THIS call. Which output answers that, and what does the other one tell you?",
-            "help": "A   feature_importances_ over the whole training set\n      starch dose      0.41\n      iron feed grade  0.29\n      pulp pH          0.18\n      air flow         0.12\n\nB   contribution to the prediction for record 14:20\n      starch dose low  pushed silica up      +0.22\n      iron feed 52 %   pushed silica up      +0.15\n      pulp pH 9.4      pushed silica down    -0.04",
+            "title": "Which name wins the published tie-break?",
+            "help": "Both candidates have MAE 2 and latency 3 ms.\nNames: beta, alpha\nSort by error, latency, then name.",
             "choices": [
               {
-                "text": "B answers it, because it is specific to this case; A describes the model's average behaviour across all cases",
+                "text": "alpha",
                 "correct": true
               },
               {
-                "text": "A answers it, because the highest-importance feature is the reason for any given decision",
+                "text": "beta",
                 "correct": false
               },
               {
-                "text": "Both answer it equally well, since they rank the same features",
+                "text": "Whichever appeared last",
                 "correct": false
               },
               {
-                "text": "Neither answers it, because a forest can never be explained at all",
+                "text": "None",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and the distinction is worth holding on to. A global importance chart says what the model relies on in general and can never say why one case came out as it did. A per-case breakdown is what a client's question actually needs.",
-            "fbWrong": "THE ANSWER: B answers it, because it is specific to this case; A describes the model's average behaviour across all cases. The distinction is worth holding on to. A global importance chart says what the model relies on in general and can never say why one case came out as it did. A per-case breakdown is what a client's question actually needs.\n\nWhy the others are wrong. \u201cA answers it, because the highest-importance feature is the reason for any given decision\u201d \u2014 That does not follow. The most important feature overall can be unremarkable in this particular case, and here B shows a different feature leading for batch-level reasons.  \u201cBoth answer it equally well, since they rank the same features\u201d \u2014 They do not even rank them the same way, and more importantly they answer different questions. One is about the model, the other about a case.  \u201cNeither answers it, because a forest can never be explained at all\u201d \u2014 Too pessimistic. Per-case attributions like B are exactly how you interrogate one prediction from an ensemble. The honest caveat is that they are estimates of the contribution rather than a rule you can read off."
+            "fbCorrect": "With equal numerical criteria, alphabetical name order decides.",
+            "fbWrong": "THE ANSWER: alpha. With equal numerical criteria, alphabetical name order decides.\n\nWhy the others are wrong. \u201cbeta\u201d \u2014 That is not the alphabetical first name.  \u201cWhichever appeared last\u201d \u2014 Input order is not the stated tie-break.  \u201cNone\u201d \u2014 Both are eligible and the tie-break resolves the choice."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "The metallurgist asks: your model says lower the amina flow. Our acceptance requirement is an exact, directly readable rule; post-hoc attribution is insufficient. Can this model meet it? You chose the forest. What is the honest position?",
-            "help": "",
+            "title": "Which data should guide model selection?",
+            "help": "The final test is reserved for the fixed choice.",
             "choices": [
               {
-                "text": "Explain that the model is accurate and ask them to trust the result",
+                "text": "The nicest-looking training plot",
                 "correct": false
               },
               {
-                "text": "Offer to retrain the forest with fewer trees so it is simpler",
+                "text": "The largest number of parameters",
                 "correct": false
               },
               {
-                "text": "Show the feature importance chart as the explanation",
+                "text": "Final-test results after every trial",
                 "correct": false
               },
               {
-                "text": "Recommend a readable-rule model that meets the stated acceptance requirement",
+                "text": "Validation results under a consistent protocol",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.",
-            "fbWrong": "THE ANSWER: Recommend a readable-rule model that meets the stated acceptance requirement. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest still does not meet this stated requirement for a directly readable rule. This concedes accuracy without gaining explainability.  \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked."
+            "fbCorrect": "The final test should remain independent of repeated choices.",
+            "fbWrong": "THE ANSWER: Validation results under a consistent protocol. The final test should remain independent of repeated choices.\n\nWhy the others are wrong. \u201cThe nicest-looking training plot\u201d \u2014 Appearance does not establish held-out performance.  \u201cThe largest number of parameters\u201d \u2014 Complexity alone does not establish quality.  \u201cFinal-test results after every trial\u201d \u2014 Repeated selection on those results uses up the final test."
           }
         ]
       },
@@ -3440,137 +3440,137 @@ var QUIZ_DATA = {
         "week": 13,
         "number": 12,
         "title": "CML3113 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "This runs perfectly on the machine it was written on. What is wrong with it?",
-            "help": "df = pd.read_csv(\n    \"C:/Users/Jotham/Desktop/flotation_final_v3.csv\")",
+            "kind": "interpretation",
+            "title": "Why use a relative CSV path?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")",
             "choices": [
               {
-                "text": "Nothing, as long as you send the file with the notebook",
+                "text": "It makes raw data safe to overwrite",
                 "correct": false
               },
               {
-                "text": "It names a location that exists on exactly one computer, so the notebook cannot run anywhere else",
+                "text": "It can work on another computer with the same project structure",
                 "correct": true
               },
               {
-                "text": "The file should be read with a different pandas function",
+                "text": "It downloads the file automatically",
                 "correct": false
               },
               {
-                "text": "Backslashes should have been used for a Windows path",
+                "text": "It encrypts the data",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Keep the data inside the project and read it by a relative path such as data/\u2026 so the notebook works for anyone who has the folder. The version marker in the file name is a second warning: it suggests there are other copies and no record of which is current.",
-            "fbWrong": "THE ANSWER: It names a location that exists on exactly one computer, so the notebook cannot run anywhere else. Keep the data inside the project and read it by a relative path such as data/\u2026 so the notebook works for anyone who has the folder. The version marker in the file name is a second warning: it suggests there are other copies and no record of which is current.\n\nWhy the others are wrong. \u201cNothing, as long as you send the file with the notebook\u201d \u2014 The recipient would have to recreate your user name and your desktop for the path to resolve. A relative path inside the project removes the problem entirely.  \u201cThe file should be read with a different pandas function\u201d \u2014 read_csv is the right function for a CSV. The path is the problem.  \u201cBackslashes should have been used for a Windows path\u201d \u2014 Forward slashes work on Windows in Python and avoid the escape problems backslashes cause. This is the better of the two styles and the location is still wrong."
+            "fbCorrect": "Document the working folder and include the expected data layout.",
+            "fbWrong": "THE ANSWER: It can work on another computer with the same project structure. Document the working folder and include the expected data layout.\n\nWhy the others are wrong. \u201cIt makes raw data safe to overwrite\u201d \u2014 Raw data should still be preserved.  \u201cIt downloads the file automatically\u201d \u2014 A local relative path does not fetch missing files.  \u201cIt encrypts the data\u201d \u2014 Path choice does not provide encryption."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "You run the same notebook twice, changing nothing, and get these two numbers. What is going on, and what should you do?",
-            "help": "run 1:   MAE 0.31 pts\nrun 2:   MAE 0.36 pts",
+            "title": "What is wrong with trusting a saved output?",
+            "help": "A notebook displays a chart but fails after Restart and Run All.",
             "choices": [
               {
-                "text": "The data file is being modified between runs",
+                "text": "The chart proves the current code works",
                 "correct": false
               },
               {
-                "text": "Report the average of the two runs",
+                "text": "Only the chart title matters",
                 "correct": false
               },
               {
-                "text": "The split and the model involve randomness that was never pinned down",
+                "text": "The visible output may come from an earlier session",
                 "correct": true
               },
               {
-                "text": "The second run is the more trustworthy of the two",
+                "text": "Restarting changes the dataset by itself",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Without a seed, the rows that land in the test set and the internal choices a forest makes change every run. Set random_state on the split and on the model, and write the number in the notebook so a reader can reproduce your figure exactly.",
-            "fbWrong": "THE ANSWER: The split and the model involve randomness that was never pinned down. Without a seed, the rows that land in the test set and the internal choices a forest makes change every run. Set random_state on the split and on the model, and write the number in the notebook so a reader can reproduce your figure exactly.\n\nWhy the others are wrong. \u201cThe data file is being modified between runs\u201d \u2014 Nothing here writes to the file. Unseeded randomness explains this without needing the data to change.  \u201cReport the average of the two runs\u201d \u2014 An average of two arbitrary draws is still arbitrary. Seed the randomness, and if you want a figure with a spread, cross-validate deliberately.  \u201cThe second run is the more trustworthy of the two\u201d \u2014 Neither is more trustworthy. That two runs differ by this much is itself the finding, and it says your single reported figure carries this much uncertainty."
+            "fbCorrect": "A fresh run checks whether the saved code and supplied files reproduce it.",
+            "fbWrong": "THE ANSWER: The visible output may come from an earlier session. A fresh run checks whether the saved code and supplied files reproduce it.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed.  \u201cOnly the chart title matters\u201d \u2014 Reproducibility needs executable steps and data.  \u201cRestarting changes the dataset by itself\u201d \u2014 The issue may be missing state or files, not a changed dataset."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "A classmate clones your repository and gets this on the first cell. What is the cause?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-1-3e4f5a>\", line 1, in <module>\n    df = pd.read_csv(\"flotation_subset.csv\")\nFileNotFoundError: [Errno 2] No such file or directory:\n'flotation_subset.csv'",
+            "title": "What should be checked first?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
             "choices": [
               {
-                "text": "The repository was cloned incorrectly",
+                "text": "Change the model hyperparameters",
                 "correct": false
               },
               {
-                "text": "The data file was never committed, or sits elsewhere",
+                "text": "The working folder, relative path and supplied filename",
                 "correct": true
               },
               {
-                "text": "The classmate is missing a package",
+                "text": "Rewrite the analysis using csv.DictReader",
                 "correct": false
               },
               {
-                "text": "The file name has the wrong extension",
+                "text": "Delete all other files",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and both halves are worth checking. Data is often left out of a repository deliberately because of size or licence, in which case the README has to say where to get it and where to put it. Otherwise the path needs to match the folder layout.",
-            "fbWrong": "THE ANSWER: The data file was never committed, or sits elsewhere. Both halves are worth checking. Data is often left out of a repository deliberately because of size or licence, in which case the README has to say where to get it and where to put it. Otherwise the path needs to match the folder layout.\n\nWhy the others are wrong. \u201cThe repository was cloned incorrectly\u201d \u2014 A clone that failed would leave you with no notebook to run. The notebook arrived and its data did not.  \u201cThe classmate is missing a package\u201d \u2014 A missing package reports itself as ModuleNotFoundError. This message is about a file.  \u201cThe file name has the wrong extension\u201d \u2014 The extension matches a CSV read. The file is simply not at that location."
+            "fbCorrect": "Confirm the file is present at the path used by the notebook.",
+            "fbWrong": "THE ANSWER: The working folder, relative path and supplied filename. Confirm the file is present at the path used by the notebook.\n\nWhy the others are wrong. \u201cChange the model hyperparameters\u201d \u2014 Model settings do not affect file discovery.  \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing libraries does not repair a missing file.  \u201cDelete all other files\u201d \u2014 That does not create the required file."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Two captions for the same chart. Which one does the job a caption exists to do, and why?",
-            "help": "A:  Figure 3: silica against starch flow.\n\nB:  Figure 3: concentrate silica falls as starch dose\n    rises to about 900 g per tonne of feed and flattens\n    after that.",
+            "title": "What does index=False do?",
+            "help": "clean.to_csv(\"cleaned_data.csv\", index=False)",
             "choices": [
               {
-                "text": "A, because a caption should describe the chart and let the reader draw the conclusion",
+                "text": "It removes the first observation",
                 "correct": false
               },
               {
-                "text": "A, because B might be wrong and the caption would then be misleading",
+                "text": "It prevents saving",
                 "correct": false
               },
               {
-                "text": "B, because it states the finding and its size, so a reader who only reads the captions still learns the result",
+                "text": "It omits pandas row labels from the exported CSV columns",
                 "correct": true
               },
               {
-                "text": "Neither; captions should give the data source instead",
+                "text": "It fills missing values",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A caption is often the only part of your work that gets read. B carries the conclusion and the magnitude, which is what makes it useful and also what makes it checkable against the chart.",
-            "fbWrong": "THE ANSWER: B, because it states the finding and its size, so a reader who only reads the captions still learns the result. A caption is often the only part of your work that gets read. B carries the conclusion and the magnitude, which is what makes it useful and also what makes it checkable against the chart.\n\nWhy the others are wrong. \u201cA, because a caption should describe the chart and let the reader draw the conclusion\u201d \u2014 A describes the axes, which the axis labels already do. It leaves the reader to rediscover something you already know.  \u201cA, because B might be wrong and the caption would then be misleading\u201d \u2014 A claim you can check is a feature. If B is wrong the chart will show it, whereas A cannot be wrong because it says nothing.  \u201cNeither; captions should give the data source instead\u201d \u2014 The source belongs in the caption or nearby and does not replace the finding. B plus a source is the target."
+            "fbCorrect": "The data columns remain in the file.",
+            "fbWrong": "THE ANSWER: It omits pandas row labels from the exported CSV columns. The data columns remain in the file.\n\nWhy the others are wrong. \u201cIt removes the first observation\u201d \u2014 It controls row labels, not the first data row.  \u201cIt prevents saving\u201d \u2014 to_csv still writes the file.  \u201cIt fills missing values\u201d \u2014 Export options do not perform imputation."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Your notebook has three separate cells that each assign df, and nobody wrote down the order they should run in. Submission is tomorrow. What do you do?",
-            "help": "",
+            "title": "What belongs in a reproducible handover?",
+            "help": "Another person must run the work from a fresh session.",
             "choices": [
               {
-                "text": "Leave it, since you know the right order",
+                "text": "Only the final score",
                 "correct": false
               },
               {
-                "text": "Restart and Run All, then fix whatever breaks until it runs clean from top to bottom",
+                "text": "Data paths, dependencies, run order, units and limitations",
                 "correct": true
               },
               {
-                "text": "Delete two of the three cells and hope the notebook still runs",
+                "text": "Private machine paths with no instructions",
                 "correct": false
               },
               {
-                "text": "Add a comment above each cell saying what order to run them in",
+                "text": "Only screenshots",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and do it before you are tired. That single action converts a notebook that works on your screen into one that works from an empty memory, which is the only version anyone else can use. Consolidating the three assignments into one clear sequence is usually the fix.",
-            "fbWrong": "THE ANSWER: Restart and Run All, then fix whatever breaks until it runs clean from top to bottom. Do it before you are tired. That single action converts a notebook that works on your screen into one that works from an empty memory, which is the only version anyone else can use. Consolidating the three assignments into one clear sequence is usually the fix.\n\nWhy the others are wrong. \u201cLeave it, since you know the right order\u201d \u2014 That knowledge is not in the file, so it does not survive you. It also will not survive next week for you either.  \u201cDelete two of the three cells and hope the notebook still runs\u201d \u2014 Each of them may be doing something needed. Running from a clean state tells you what is required rather than leaving you to guess.  \u201cAdd a comment above each cell saying what order to run them in\u201d \u2014 Instructions to run cells out of order are a description of the problem. Anyone who follows them slightly differently gets a different answer."
+            "fbCorrect": "These explain what is needed and what the results support.",
+            "fbWrong": "THE ANSWER: Data paths, dependencies, run order, units and limitations. These explain what is needed and what the results support.\n\nWhy the others are wrong. \u201cOnly the final score\u201d \u2014 A score does not explain data, methods or limitations.  \u201cPrivate machine paths with no instructions\u201d \u2014 Those paths generally fail on another computer.  \u201cOnly screenshots\u201d \u2014 Screenshots cannot reproduce the calculations."
           }
         ]
       }
@@ -4276,137 +4276,137 @@ var QUIZ_DATA = {
         "week": 6,
         "number": 6,
         "title": "CML3111 \u00b7 Weekly Quiz 6 \u2014 Dirty data, and seeing it",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "The mean below is lower than every real reading in the list. What went wrong?",
-            "help": "# the logger writes 0.0 when the accelerometer drops out\nvibration = [2.41, 0.0, 2.38, 2.44]\nprint(f\"mean {sum(vibration) / len(vibration):.4f} mm/s\")\nmean 1.8075 mm/s",
+            "kind": "interpretation",
+            "title": "Which entry does the missing-value check identify?",
+            "help": "s = pd.Series([0, None, 4])\nprint(s.isna().tolist())",
             "choices": [
               {
-                "text": "The division should exclude the last value",
+                "text": "No entries",
                 "correct": false
               },
               {
-                "text": "One entry is a sensor dropout recorded as zero",
+                "text": "Only the middle entry",
                 "correct": true
               },
               {
-                "text": "Zero vibration is possible when the machine is stopped",
+                "text": "Every entry",
                 "correct": false
               },
               {
-                "text": "The list is too short for a mean to be meaningful",
+                "text": "Zero and the middle entry",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A dropout written as 0.0 is indistinguishable from a real reading by arithmetic alone. The mean of the three real readings is 2.4100 mm/s. Convert dropouts to missing values before averaging.",
-            "fbWrong": "THE ANSWER: One entry is a sensor dropout recorded as zero. A dropout written as 0.0 is indistinguishable from a real reading by arithmetic alone. The mean of the three real readings is 2.4100 mm/s. Convert dropouts to missing values before averaging.\n\nWhy the others are wrong. \u201cThe division should exclude the last value\u201d \u2014 Which position is dropped is beside the point. A placeholder is being counted as a measurement.  \u201cZero vibration is possible when the machine is stopped\u201d \u2014 The comment settles it: this logger writes 0.0 for a dropout, so this reading records a lost signal rather than a still machine. Without that comment the option would be arguable, and a genuine zero from a stopped machine still has no place in an average of running vibration.  \u201cThe list is too short for a mean to be meaningful\u201d \u2014 Three real readings give a usable mean. The fourth entry is not a reading."
+            "fbCorrect": "Zero is a recorded number. isna recognises the missing middle entry.",
+            "fbWrong": "THE ANSWER: Only the middle entry. Zero is a recorded number. isna recognises the missing middle entry.\n\nWhy the others are wrong. \u201cNo entries\u201d \u2014 pandas recognises the missing marker even if the numeric Series stores it as NaN.  \u201cEvery entry\u201d \u2014 The first and last entries are recorded numbers.  \u201cZero and the middle entry\u201d \u2014 Zero is not automatically missing."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This runs with no error and no warning. What has it done to your data?",
-            "help": "# one current was typed as \"12.5 A\" instead of 12.5\ndf[\"current_a\"] = pd.to_numeric(df[\"current_a\"],\n                                  errors=\"coerce\")\nprint(df[\"current_a\"].mean())",
+            "title": "What is wrong with this duplicate rule?",
+            "help": "Rows are separate observations. Equipment E1 has several valid readings.\nclean = df.drop_duplicates(\"equipment_id\")",
             "choices": [
               {
-                "text": "It raised the error but carried on to the next row",
+                "text": "It fills missing values",
                 "correct": false
               },
               {
-                "text": "It turned every unreadable value into a missing value, and the mean then quietly skipped those rows",
+                "text": "It removes distinct observations from the same equipment",
                 "correct": true
               },
               {
-                "text": "It stripped the unit and kept the number",
+                "text": "It keeps every observation",
                 "correct": false
               },
               {
-                "text": "It replaced the unreadable value with the column mean",
+                "text": "It sorts by target",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Coercing is often the right move and it is never free: it converts a loud failure into a silent one. Count the missing values it created and report that count, otherwise your mean covers fewer rows than you believe.",
-            "fbWrong": "THE ANSWER: It turned every unreadable value into a missing value, and the mean then quietly skipped those rows. Coercing is often the right move and it is never free: it converts a loud failure into a silent one. Count the missing values it created and report that count, otherwise your mean covers fewer rows than you believe.\n\nWhy the others are wrong. \u201cIt raised the error but carried on to the next row\u201d \u2014 That is what errors=\"raise\" would do, minus the carrying on. Coercing suppresses the error entirely.  \u201cIt stripped the unit and kept the number\u201d \u2014 Nothing here parses units. A value with a unit attached is unreadable as a number and becomes missing.  \u201cIt replaced the unreadable value with the column mean\u201d \u2014 No substitution happens. Filling gaps is a separate decision you have to make deliberately, and doing it before a split leaks information, as Week 10 shows."
+            "fbCorrect": "Deduplicate observation IDs under the stated policy, not a source ID that can repeat.",
+            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy, not a source ID that can repeat.\n\nWhy the others are wrong. \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields.  \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "You convert the column without coercing and get this. What is the useful thing about this message?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-6-2b3c4d>\", line 1, in <module>\n    df[\"current_a\"] = pd.to_numeric(df[\"current_a\"])\nValueError: Unable to parse string \"12.5 A\" at position 417",
+            "title": "Why does this conversion fail?",
+            "help": "pd.to_numeric(pd.Series([\"20\", \"24 C\", \"26\"]))\nValueError: Unable to parse string \"24 C\" at position 1",
             "choices": [
               {
-                "text": "It should be suppressed so the analysis can continue",
+                "text": "The whole dataset must be deleted",
                 "correct": false
               },
               {
-                "text": "It means the column is the wrong data type for pandas",
+                "text": "pandas cannot convert numeric text",
                 "correct": false
               },
               {
-                "text": "It proves the column cannot be converted",
+                "text": "The values must be rounded",
                 "correct": false
               },
               {
-                "text": "It names the offending value and the row it sits in, so you can look at it and decide what it should be",
+                "text": "The second value contains a unit suffix",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. This is more useful than a silent conversion, because it hands you the exact value and position. Look at row 417, decide whether to repair the entry or drop it, and write down which you chose.",
-            "fbWrong": "THE ANSWER: It names the offending value and the row it sits in, so you can look at it and decide what it should be. This is more useful than a silent conversion, because it hands you the exact value and position. Look at row 417, decide whether to repair the entry or drop it, and write down which you chose.\n\nWhy the others are wrong. \u201cIt should be suppressed so the analysis can continue\u201d \u2014 Suppressing it is available and it costs you the position and the value. Read the message first, then decide.  \u201cIt means the column is the wrong data type for pandas\u201d \u2014 The column is text because of this value. Conversion is the cure and the message is telling you what stands in the way.  \u201cIt proves the column cannot be converted\u201d \u2014 It proves one value cannot. Fix or remove that value and the column converts."
+            "fbCorrect": "The value and its position identify what needs inspection before repair.",
+            "fbWrong": "THE ANSWER: The second value contains a unit suffix. The value and its position identify what needs inspection before repair.\n\nWhy the others are wrong. \u201cThe whole dataset must be deleted\u201d \u2014 Inspect the problematic value; the error does not justify deleting all data.  \u201cpandas cannot convert numeric text\u201d \u2014 It converts strings such as \"20\".  \u201cThe values must be rounded\u201d \u2014 Rounding cannot remove a text unit suffix."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Read the question you set yourself against the chart you produced. Does the chart answer it?",
-            "help": "question:  Does power output differ between the\n           coldest and the hottest hours?\n\nchart:     one histogram\n           x = net power output (MW)\n           y = number of hours\n           all 9,568 hours, no grouping applied",
+            "title": "What does this fill operation do?",
+            "help": "s = pd.Series([20, None, 24, 80])\nfilled = s.fillna(s.median())",
             "choices": [
               {
-                "text": "No, because a histogram is never the right chart",
+                "text": "It fills the gap with zero",
                 "correct": false
               },
               {
-                "text": "Yes, because the shape of the distribution reveals the two groups",
+                "text": "It replaces 80 with 24",
                 "correct": false
               },
               {
-                "text": "Yes, provided the sample is large enough",
+                "text": "It recovers the true missing measurement",
                 "correct": false
               },
               {
-                "text": "No, because the two groups are mixed together in one distribution and cannot be compared",
+                "text": "It inserts 24 for the missing entry and retains 80",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. The question asks for a comparison, so the chart has to separate the groups: two distributions side by side, or a mean for each with its spread. A single pooled histogram cannot show a difference between halves it never divided.",
-            "fbWrong": "THE ANSWER: No, because the two groups are mixed together in one distribution and cannot be compared. The question asks for a comparison, so the chart has to separate the groups: two distributions side by side, or a mean for each with its spread. A single pooled histogram cannot show a difference between halves it never divided.\n\nWhy the others are wrong. \u201cNo, because a histogram is never the right chart\u201d \u2014 A histogram is a good way to show one distribution. The fault is the missing split rather than the choice of chart type.  \u201cYes, because the shape of the distribution reveals the two groups\u201d \u2014 Two clear humps would hint at something and would not tell you which group each hump belongs to. A distribution with one hump can still hide a real difference between the groups.  \u201cYes, provided the sample is large enough\u201d \u2014 Sample size cannot rescue a chart that never made the comparison. Twenty thousand pooled records answer the question no better than two hundred."
+            "fbCorrect": "The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.",
+            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero.  \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate, not a recovered observation."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "You find a current reading six times the running current, lasting a fraction of a second at the moment a motor starts. What do you do with it?",
-            "help": "",
+            "title": "Which output answers the question?",
+            "help": "Question: Do mean target values differ by equipment?",
             "choices": [
               {
-                "text": "Keep it and label it as a start-up sample",
+                "text": "A labelled chart of groupby(\"equipment_id\")[\"target\"].mean()",
                 "correct": true
               },
               {
-                "text": "Replace it with the mean of the column",
+                "text": "A chart with no labels",
                 "correct": false
               },
               {
-                "text": "Cap it at the highest running value so it stops distorting the mean",
+                "text": "The total row count alone",
                 "correct": false
               },
               {
-                "text": "Delete it, because it is far outside the normal range",
+                "text": "One histogram of all targets",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Starting current runs six to eight times the running value and it is expected behaviour. Keep it, mark it as a start-up sample, and decide separately whether start-up hours belong in the analysis you are doing.",
-            "fbWrong": "THE ANSWER: Keep it and label it as a start-up sample. Starting current runs six to eight times the running value and it is expected behaviour. Keep it, mark it as a start-up sample, and decide separately whether start-up hours belong in the analysis you are doing.\n\nWhy the others are wrong. \u201cReplace it with the mean of the column\u201d \u2014 That substitutes an invented value for a correct measurement of a real phenomenon.  \u201cCap it at the highest running value so it stops distorting the mean\u201d \u2014 Capping invents a reading and removes the signature of an ordinary event.  \u201cDelete it, because it is far outside the normal range\u201d \u2014 Deleting inrush hides a normal operating state. A model that has never seen a start-up will treat every start-up as a fault."
+            "fbCorrect": "Grouped means compare the requested equipment groups.",
+            "fbWrong": "THE ANSWER: A labelled chart of groupby(\"equipment_id\")[\"target\"].mean(). Grouped means compare the requested equipment groups.\n\nWhy the others are wrong. \u201cA chart with no labels\u201d \u2014 Without groups and units, the comparison cannot be interpreted.  \u201cThe total row count alone\u201d \u2014 A count does not compare target means.  \u201cOne histogram of all targets\u201d \u2014 A pooled histogram describes a distribution without comparing group means."
           }
         ]
       },
@@ -4414,137 +4414,137 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3111 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate reports this as the accuracy of the model. What does the number actually describe?",
-            "help": "model.fit(X, y)\nprint(model.score(X, y))\n0.91",
+            "kind": "interpretation",
+            "title": "What shape does X need here?",
+            "help": "features = [\"load_pct\", \"ambient_c\"]\nX = train[features]\ny = train[\"target\"]",
             "choices": [
               {
-                "text": "How well the model will do on new data, give or take a little",
+                "text": "Two rows regardless of dataset size",
                 "correct": false
               },
               {
-                "text": "How well the model reproduces the rows it was fitted on, which tells you nothing about a new case",
+                "text": "One row per training observation and two feature columns",
                 "correct": true
               },
               {
-                "text": "Nothing useful, because score() is the wrong function",
+                "text": "One unrelated row for each target",
                 "correct": false
               },
               {
-                "text": "The proportion of the data used for training",
+                "text": "A column containing the target only",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The same rows appear in fit and in score, so the model is being marked on the answers it was shown. Hold rows back with train_test_split and score on those.",
-            "fbWrong": "THE ANSWER: How well the model reproduces the rows it was fitted on, which tells you nothing about a new case. The same rows appear in fit and in score, so the model is being marked on the answers it was shown. Hold rows back with train_test_split and score on those.\n\nWhy the others are wrong. \u201cHow well the model will do on new data, give or take a little\u201d \u2014 There is no basis for that reading. A model with enough freedom can score near one on its training rows and fail completely on anything new, which is the whole subject of Week 10.  \u201cNothing useful, because score() is the wrong function\u201d \u2014 score() is the right function used on the wrong rows. Give it held-out data and the number becomes meaningful.  \u201cThe proportion of the data used for training\u201d \u2014 score() returns a measure of fit. The train and test proportions are whatever you chose when you split, and here nothing was split."
+            "fbCorrect": "The two named features form a table; y has a target for each same row.",
+            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count, not the observation count.  \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cA column containing the target only\u201d \u2014 The target is y, not a predictor."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This predicts a plausible-looking value and raises no error, and the value is wrong. Why?",
-            "help": "feats = [\"AT\", \"V\", \"AP\", \"RH\"]\nmodel.fit(df[feats], df[\"output\"])\n\n# a new hour: 14.6 C, 41.7 cm Hg, 1019 mbar, 76 % humidity\nprint(model.predict([[41.7, 14.6, 1019, 76]]))",
+            "title": "Why should prediction use new[features]?",
+            "help": "model.fit(train[features], train[\"target\"])",
             "choices": [
               {
-                "text": "The new values should have been scaled first",
+                "text": "It trains the model again",
                 "correct": false
               },
               {
-                "text": "The model was fitted on too few features to predict anything",
+                "text": "It guarantees accurate predictions",
                 "correct": false
               },
               {
-                "text": "The values were supplied in a different order from the fitted columns",
+                "text": "It keeps the same feature names and order as training",
                 "correct": true
               },
               {
-                "text": "predict() needs a two-dimensional input",
+                "text": "It supplies the new true target",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A fitted model knows only that its first input is whatever its first training column was. Swap two and it happily applies the wrong coefficient to each. Build the row as a frame with named columns and this class of error disappears.",
-            "fbWrong": "THE ANSWER: The values were supplied in a different order from the fitted columns. A fitted model knows only that its first input is whatever its first training column was. Swap two and it happily applies the wrong coefficient to each. Build the row as a frame with named columns and this class of error disappears.\n\nWhy the others are wrong. \u201cThe new values should have been scaled first\u201d \u2014 Scaling would matter for some model types and it would not repair a swap. Scaled or raw, the values are in the wrong positions.  \u201cThe model was fitted on too few features to predict anything\u201d \u2014 Three or four features is enough to produce a prediction. The count is fine and the order is not.  \u201cpredict() needs a two-dimensional input\u201d \u2014 It does, and it was given one. The doubled brackets are correct here."
+            "fbCorrect": "Names and order preserve the meaning of each model input.",
+            "fbWrong": "THE ANSWER: It keeps the same feature names and order as training. Names and order preserve the meaning of each model input.\n\nWhy the others are wrong. \u201cIt trains the model again\u201d \u2014 predict uses the fitted model; it does not fit it.  \u201cIt guarantees accurate predictions\u201d \u2014 Consistent inputs are necessary but do not guarantee accuracy.  \u201cIt supplies the new true target\u201d \u2014 Feature inputs must not contain the answer."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What is the most likely cause?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-9-5e6f7a>\", line 1, in <module>\n    model.fit(X, y)\nValueError: Found input variables with inconsistent numbers\nof samples: [7654, 9568]",
+            "title": "What should you check first?",
+            "help": "model.fit(X, y)\nValueError: Found input variables with inconsistent numbers of samples",
             "choices": [
               {
-                "text": "The features and the target need to be the same data type",
+                "text": "Delete target values at random",
                 "correct": false
               },
               {
-                "text": "The target column contains missing values",
+                "text": "Increase tree depth",
                 "correct": false
               },
               {
-                "text": "There are too few rows to fit a model",
+                "text": "Round all columns",
                 "correct": false
               },
               {
-                "text": "The features were filtered or had rows dropped and the target was not, so the two no longer line up",
+                "text": "Whether X and y were selected from the same rows",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Dropping missing values from the feature frame without applying the same selection to the target is the usual cause. Filter the frame first and take X and y from the filtered frame so they can never drift apart.",
-            "fbWrong": "THE ANSWER: The features were filtered or had rows dropped and the target was not, so the two no longer line up. Dropping missing values from the feature frame without applying the same selection to the target is the usual cause. Filter the frame first and take X and y from the filtered frame so they can never drift apart.\n\nWhy the others are wrong. \u201cThe features and the target need to be the same data type\u201d \u2014 They routinely differ, and that is fine. The error counts rows and says nothing about types.  \u201cThe target column contains missing values\u201d \u2014 Missing values in the target give a different complaint about NaN. This message is purely about the row counts disagreeing.  \u201cThere are too few rows to fit a model\u201d \u2014 Both counts here are ample. The problem is that they are not equal."
+            "fbCorrect": "Separate filtering can leave different observation counts or mismatched rows.",
+            "fbWrong": "THE ANSWER: Whether X and y were selected from the same rows. Separate filtering can leave different observation counts or mismatched rows.\n\nWhy the others are wrong. \u201cDelete target values at random\u201d \u2014 This breaks pairing and loses valid data.  \u201cIncrease tree depth\u201d \u2014 Model complexity does not repair mismatched inputs.  \u201cRound all columns\u201d \u2014 Rounding does not change the number of observations."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "A teammate shows you this plot and this conclusion. How should you read it?",
-            "help": "plot:        y = residual (actual - predicted), MW\n             x = ACTUAL power output, MW\n             a clear upward slope, left to right\n\nconclusion:  \"the model under-predicts high-output\n             hours\"",
+            "title": "What are MAE and RMSE?",
+            "help": "actual = [10, 20]\npredicted = [12, 16]",
             "choices": [
               {
-                "text": "The residuals should have been squared before plotting",
+                "text": "Both are 6",
                 "correct": false
               },
               {
-                "text": "The conclusion is right, and the model needs an extra feature to fix it",
+                "text": "MAE -1; RMSE 1",
                 "correct": false
               },
               {
-                "text": "A slope in the residuals always means the model is broken",
+                "text": "Both are percentages",
                 "correct": false
               },
               {
-                "text": "The slope appears by construction; plot residuals against the predicted value",
+                "text": "MAE 3; RMSE approximately 3.1623",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct, and this catches almost everybody once. The actual value equals the prediction plus the residual, so the residual is built into the quantity on the horizontal axis and rises with it. Against the predicted value the slope disappears and any real pattern becomes visible.",
-            "fbWrong": "THE ANSWER: The slope appears by construction; plot residuals against the predicted value. This catches almost everybody once. The actual value equals the prediction plus the residual, so the residual is built into the quantity on the horizontal axis and rises with it. Against the predicted value the slope disappears and any real pattern becomes visible.\n\nWhy the others are wrong. \u201cThe residuals should have been squared before plotting\u201d \u2014 Squaring throws away the sign, which is the most useful part of a residual. The pairing of axes is what is wrong here.  \u201cThe conclusion is right, and the model needs an extra feature to fix it\u201d \u2014 The conclusion may happen to be true and this plot cannot establish it. Redraw against the predicted value before changing the model.  \u201cA slope in the residuals always means the model is broken\u201d \u2014 A slope against the predicted value would be worth investigating. A slope against the actual value is arithmetic rather than a finding."
+            "fbCorrect": "Absolute errors are 2 and 4; squared errors are 4 and 16.",
+            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are 6\u201d \u2014 Six is the total absolute error, not its mean.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong.  \u201cBoth are percentages\u201d \u2014 These errors use the target unit."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Your model reaches a root-mean-square error of 4.1 MW. The client asks whether that is good. What do you need before you can answer?",
-            "help": "",
+            "title": "Where should the imputer learn its median?",
+            "help": "Training, validation and final-test partitions are already separate.",
             "choices": [
               {
-                "text": "A larger dataset",
+                "text": "Validation targets",
                 "correct": false
               },
               {
-                "text": "A second model to compare it against",
+                "text": "The combined file",
                 "correct": false
               },
               {
-                "text": "The error of predicting the mean, and the published figures",
+                "text": "Training features only",
                 "correct": true
               },
               {
-                "text": "Nothing further; 4.1 MW is a small number",
+                "text": "Each new prediction row independently",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Published work on this dataset reaches roughly 3 to 4 MW, so 4.1 MW puts you at the edge of the literature rather than adrift. Predicting the mean gives you the floor. Together they let you say what the number means.",
-            "fbWrong": "THE ANSWER: The error of predicting the mean, and the published figures. Published work on this dataset reaches roughly 3 to 4 MW, so 4.1 MW puts you at the edge of the literature rather than adrift. Predicting the mean gives you the floor. Together they let you say what the number means.\n\nWhy the others are wrong. \u201cA larger dataset\u201d \u2014 The dataset is already nearly ten thousand hours. Size is not what is missing.  \u201cA second model to compare it against\u201d \u2014 That tells you which of two is better and not whether either is worth deploying.  \u201cNothing further; 4.1 MW is a small number\u201d \u2014 On a plant output of several hundred megawatts it sounds small, and the judgement still needs a stated reference."
+            "fbCorrect": "The fitted fill must be reused on evaluation data without learning from them.",
+            "fbWrong": "THE ANSWER: Training features only. The fitted fill must be reused on evaluation data without learning from them.\n\nWhy the others are wrong. \u201cValidation targets\u201d \u2014 Targets cannot supply predictor fill values.  \u201cThe combined file\u201d \u2014 That uses evaluation information in preprocessing.  \u201cEach new prediction row independently\u201d \u2014 This changes preprocessing at prediction time."
           }
         ]
       },
@@ -4552,137 +4552,137 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3111 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate is pleased with this result. What has the model actually learned?",
-            "help": "accuracy                     0.966\nhours predicted to fail          0\n\n# in this log 3.4 in 100 machine-hours end in a failure",
+            "kind": "interpretation",
+            "title": "How many false negatives are present?",
+            "help": "actual    = [1, 1, 0, 0]\npredicted = [1, 0, 1, 0]",
             "choices": [
               {
-                "text": "That more features are needed to raise accuracy",
+                "text": "4",
                 "correct": false
               },
               {
-                "text": "That the two classes are equally easy to separate",
+                "text": "0",
                 "correct": false
               },
               {
-                "text": "A genuinely strong rule, since 96.6 per cent is a high score",
+                "text": "2",
                 "correct": false
               },
               {
-                "text": "To answer with the majority class every time, which scores the majority-class share and finds nothing",
+                "text": "1",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Since 96.6 in 100 cases are negative, always saying negative scores 0.966. The model has found the base rate and no signal. Recall on the class you care about is zero, and that is the number to report.",
-            "fbWrong": "THE ANSWER: To answer with the majority class every time, which scores the majority-class share and finds nothing. Since 96.6 in 100 cases are negative, always saying negative scores 0.966. The model has found the base rate and no signal. Recall on the class you care about is zero, and that is the number to report.\n\nWhy the others are wrong. \u201cThat more features are needed to raise accuracy\u201d \u2014 Accuracy is already near its ceiling and is the wrong instrument. Change the metric before changing the model.  \u201cThat the two classes are equally easy to separate\u201d \u2014 It never attempted the separation. It predicted one class throughout.  \u201cA genuinely strong rule, since 96.6 per cent is a high score\u201d \u2014 The score is exactly what you get for free by ignoring the data. A rule that never fires cannot be strong at the job it was built for."
+            "fbCorrect": "Only the second row needs a warning but receives none.",
+            "fbWrong": "THE ANSWER: 1. Only the second row needs a warning but receives none.\n\nWhy the others are wrong. \u201c4\u201d \u2014 Every row is not an error.  \u201c0\u201d \u2014 The second row is a missed warning.  \u201c2\u201d \u2014 There are two errors, but only one is a false negative."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "This model was tested against a maintenance log of ten thousand machine-hours. Read the confusion matrix. Which statement does it support?",
-            "help": "                      pred: runs     pred: fails\nactual: runs                 9620             36\nactual: fails                 310             34\n\n10,000 machine-hours in total; accuracy 0.965",
+            "title": "Why is high accuracy insufficient here?",
+            "help": "Only 2% of observations need a warning. A model always predicts 0.",
             "choices": [
               {
-                "text": "Its main weakness is false alarms",
+                "text": "It detects all warnings",
                 "correct": false
               },
               {
-                "text": "It is well balanced between the two kinds of error",
+                "text": "It must have perfect recall",
                 "correct": false
               },
               {
-                "text": "Accuracy of 0.965 shows it is fit for use",
+                "text": "The dataset has no positive observations",
                 "correct": false
               },
               {
-                "text": "It misses about nine in ten of the cases it exists to catch",
+                "text": "It misses every actual warning",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Recall on the class of interest is 34 out of 344, which is 0.099. The high accuracy comes almost entirely from the 9,620 easy negatives. This is the number the matrix exists to expose.",
-            "fbWrong": "THE ANSWER: It misses about nine in ten of the cases it exists to catch. Recall on the class of interest is 34 out of 344, which is 0.099. The high accuracy comes almost entirely from the 9,620 easy negatives. This is the number the matrix exists to expose.\n\nWhy the others are wrong. \u201cIts main weakness is false alarms\u201d \u2014 There are only 36 false alarms against 310 misses. The costly error here is the one being made nearly ten times as often.  \u201cIt is well balanced between the two kinds of error\u201d \u2014 310 against 36 is close to a nine-to-one imbalance in the errors.  \u201cAccuracy of 0.965 shows it is fit for use\u201d \u2014 Predicting the majority class throughout would score 0.966, which is higher. Accuracy cannot see this failure."
+            "fbCorrect": "Predicting the majority can give 98% accuracy while recall is zero.",
+            "fbWrong": "THE ANSWER: It misses every actual warning. Predicting the majority can give 98% accuracy while recall is zero.\n\nWhy the others are wrong. \u201cIt detects all warnings\u201d \u2014 It predicts no warnings at all.  \u201cIt must have perfect recall\u201d \u2014 Recall counts detected positives, not correct negatives.  \u201cThe dataset has no positive observations\u201d \u2014 Two percent are positives."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What does this tell you to change?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-11-8b9c0d>\", line 1, in <module>\n    print(recall_score(y_test, pred))\nValueError: Target is multiclass but average='binary'.\nPlease choose another average setting, one of [None, 'micro', 'macro', 'weighted'].",
+            "title": "How should this assignment avoid the error?",
+            "help": "precision = tp / (tp + fp)\nZeroDivisionError: division by zero",
             "choices": [
               {
-                "text": "The predictions are the wrong data type",
+                "text": "Invent one true positive",
                 "correct": false
               },
               {
-                "text": "The target has more than two classes, so you must say how recall should be combined across them",
+                "text": "Return 0 when tp + fp is zero, as specified",
                 "correct": true
               },
               {
-                "text": "Recall cannot be computed for more than two classes",
+                "text": "Delete the entire dataset",
                 "correct": false
               },
               {
-                "text": "The test set is too small for recall to be defined",
+                "text": "Use the target unit as denominator",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and the choice matters. average=None gives you recall per class, which is usually what you want, because a single combined figure can hide a class the model never predicts.",
-            "fbWrong": "THE ANSWER: The target has more than two classes, so you must say how recall should be combined across them. The choice matters. average=None gives you recall per class, which is usually what you want, because a single combined figure can hide a class the model never predicts.\n\nWhy the others are wrong. \u201cThe predictions are the wrong data type\u201d \u2014 The types are acceptable. The message is about the number of classes in the target.  \u201cRecall cannot be computed for more than two classes\u201d \u2014 It can, once you state how to aggregate it. The error offers you the options.  \u201cThe test set is too small for recall to be defined\u201d \u2014 Size is not mentioned and is not the issue. The class count is."
+            "fbCorrect": "The published convention handles the no-predicted-warning case.",
+            "fbWrong": "THE ANSWER: Return 0 when tp + fp is zero, as specified. The published convention handles the no-predicted-warning case.\n\nWhy the others are wrong. \u201cInvent one true positive\u201d \u2014 That changes the evidence.  \u201cDelete the entire dataset\u201d \u2014 A zero denominator needs a convention, not deletion.  \u201cUse the target unit as denominator\u201d \u2014 Units are not observation counts."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "You lower the decision threshold from 0.5 to 0.2 and re-score the same model on the same test set. What has changed?",
-            "help": "threshold 0.5   recall 0.099   false alarms  36\nthreshold 0.2   recall 0.439   false alarms 290",
+            "title": "What is the cost under this rule?",
+            "help": "Missed warning costs 5; false alarm costs 1.\nfn = 2; fp = 3",
             "choices": [
               {
-                "text": "The result is invalid because the threshold should stay at 0.5",
+                "text": "6",
                 "correct": false
               },
               {
-                "text": "The model now overfits, because recall rose sharply",
+                "text": "25",
                 "correct": false
               },
               {
-                "text": "Nothing about the model; you moved along its trade-off, buying recall by accepting eight times as many false alarms",
+                "text": "13",
                 "correct": true
               },
               {
-                "text": "The model has been improved by better tuning",
+                "text": "5",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The model and its scores are untouched: only the cut-off you apply to them changed. Which threshold is right depends on what a false alarm costs against a miss, and that is a question about the work rather than the model.",
-            "fbWrong": "THE ANSWER: Nothing about the model; you moved along its trade-off, buying recall by accepting eight times as many false alarms. The model and its scores are untouched: only the cut-off you apply to them changed. Which threshold is right depends on what a false alarm costs against a miss, and that is a question about the work rather than the model.\n\nWhy the others are wrong. \u201cThe result is invalid because the threshold should stay at 0.5\u201d \u2014 0.5 is a default rather than a rule. On a problem where a miss costs far more than a false alarm, moving it is exactly the right thing to do.  \u201cThe model now overfits, because recall rose sharply\u201d \u2014 Overfitting is about the gap between training and unseen data. This is one model on one test set at two thresholds.  \u201cThe model has been improved by better tuning\u201d \u2014 No retraining took place. The same probabilities are being cut in a different place."
+            "fbCorrect": "5 times 2 plus 3 is 13.",
+            "fbWrong": "THE ANSWER: 13. 5 times 2 plus 3 is 13.\n\nWhy the others are wrong. \u201c6\u201d \u2014 Multiplying the two counts is not the stated rule.  \u201c25\u201d \u2014 The costs are not both five.  \u201c5\u201d \u2014 This ignores the supplied error counts."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "A false alarm costs a four-hour stop. A missed failure costs a gearbox and a week of production. Which metric should govern your model, and why?",
-            "help": "",
+            "title": "What can lowering the threshold change?",
+            "help": "Probabilities stay fixed; threshold falls from 0.5 to 0.3.",
             "choices": [
               {
-                "text": "Whichever metric gives the highest number, so the result reads well",
+                "text": "It changes the actual labels",
                 "correct": false
               },
               {
-                "text": "Recall on the class you cannot afford to miss, with the false-alarm rate beside it",
+                "text": "More observations can be classified as warnings",
                 "correct": true
               },
               {
-                "text": "Accuracy, because it summarises overall performance",
+                "text": "It retrains the model automatically",
                 "correct": false
               },
               {
-                "text": "Precision, because false alarms annoy the operators",
+                "text": "It guarantees fewer false alarms",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The expensive error is the miss, so recall is the quantity to drive up. Quoting the false-alarm rate beside it keeps you honest, because recall can always be bought and somebody has to pay for it.",
-            "fbWrong": "THE ANSWER: Recall on the class you cannot afford to miss, with the false-alarm rate beside it. The expensive error is the miss, so recall is the quantity to drive up. Quoting the false-alarm rate beside it keeps you honest, because recall can always be bought and somebody has to pay for it.\n\nWhy the others are wrong. \u201cWhichever metric gives the highest number, so the result reads well\u201d \u2014 Choosing a metric to flatter the model is how a system that misses nine failures in ten gets signed off.  \u201cAccuracy, because it summarises overall performance\u201d \u2014 At a base rate near 3 per cent, accuracy is dominated by easy negatives and a useless model scores 0.966. It cannot see the error that matters here.  \u201cPrecision, because false alarms annoy the operators\u201d \u2014 Precision alone rewards a model that fires only when certain, which is a model that misses most of the cases. It belongs in the report next to recall rather than in charge of it."
+            "fbCorrect": "The decision rule changes; actual labels are needed to assess its errors.",
+            "fbWrong": "THE ANSWER: More observations can be classified as warnings. The decision rule changes; actual labels are needed to assess its errors.\n\nWhy the others are wrong. \u201cIt changes the actual labels\u201d \u2014 The reference outcomes stay fixed.  \u201cIt retrains the model automatically\u201d \u2014 Thresholding does not fit model parameters.  \u201cIt guarantees fewer false alarms\u201d \u2014 Raising more warnings can increase false alarms."
           }
         ]
       },
@@ -4690,137 +4690,137 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3111 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "This reports a good test score. Why can that score not be trusted?",
-            "help": "scaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)     # whole file\n\nX_tr, X_te, y_tr, y_te = train_test_split(X_scaled, y)\nmodel.fit(X_tr, y_tr)\nprint(model.score(X_te, y_te))",
+            "kind": "interpretation",
+            "title": "Why keep an equipment ID in only one partition?",
+            "help": "The intended deployment is on previously unseen equipment.",
             "choices": [
               {
-                "text": "The scaler was fitted on the whole file, so the test rows helped set the scaling",
+                "text": "To avoid evaluating on equipment patterns already seen in training",
                 "correct": true
               },
               {
-                "text": "The split should come before the features are selected",
+                "text": "To delete repeated valid observations",
                 "correct": false
               },
               {
-                "text": "StandardScaler is the wrong scaler for this data",
+                "text": "To make every partition equally large",
                 "correct": false
               },
               {
-                "text": "Nothing is wrong; scaling does not use the target",
+                "text": "To use the target as a group label",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The test rows are supposed to stand in for cases you have never seen, and here they helped set the scaling. Put the scaler in a Pipeline and fit it after the split, so it only ever sees training rows.",
-            "fbWrong": "THE ANSWER: The scaler was fitted on the whole file, so the test rows helped set the scaling. The test rows are supposed to stand in for cases you have never seen, and here they helped set the scaling. Put the scaler in a Pipeline and fit it after the split, so it only ever sees training rows.\n\nWhy the others are wrong. \u201cThe split should come before the features are selected\u201d \u2014 Selecting which columns to use is fine either side. Measuring something from the data is what has to wait until after the split.  \u201cStandardScaler is the wrong scaler for this data\u201d \u2014 The choice of scaler is a separate question. Any scaler fitted before the split leaks in the same way.  \u201cNothing is wrong; scaling does not use the target\u201d \u2014 Leakage does not require the target. Borrowing the test rows' mean and spread means the test set is no longer a clean estimate, and how far the number is distorted is not something you can work out from the outside, which is the real cost."
+            "fbCorrect": "Repeated observations from one source can make evaluation too optimistic.",
+            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts.  \u201cTo use the target as a group label\u201d \u2014 Equipment identity, not the answer, defines this split."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "Which of the three error stories does this pattern match?",
-            "help": "training score   0.98\ntest score       0.61",
+            "title": "What is wrong with this preparation?",
+            "help": "median = all_rows[\"ambient_c\"].median()\n# split into training and validation afterwards",
             "choices": [
               {
-                "text": "The model has memorised its training rows and does not generalise",
+                "text": "It uses validation information when learning a fill value",
                 "correct": true
               },
               {
-                "text": "The two scores are measuring different quantities",
+                "text": "It guarantees underfitting",
                 "correct": false
               },
               {
-                "text": "Information has leaked from the test set into training",
+                "text": "pandas cannot calculate medians",
                 "correct": false
               },
               {
-                "text": "The model is too simple to capture the pattern",
+                "text": "A median is never allowed",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A high training score with a much lower test score is the signature of a model with too much freedom for the data. Simplify it, constrain it, or get more rows.",
-            "fbWrong": "THE ANSWER: The model has memorised its training rows and does not generalise. A high training score with a much lower test score is the signature of a model with too much freedom for the data. Simplify it, constrain it, or get more rows.\n\nWhy the others are wrong. \u201cThe two scores are measuring different quantities\u201d \u2014 Both are the same measure on different rows. That is what makes the comparison meaningful.  \u201cInformation has leaked from the test set into training\u201d \u2014 Leakage usually makes both scores look good, since the model has effectively seen the answers. A large gap points the other way.  \u201cThe model is too simple to capture the pattern\u201d \u2014 A model that is too simple scores poorly on both, because it cannot even fit the rows it was given. Here it fits them almost perfectly."
+            "fbCorrect": "Split first and fit preprocessing on training only.",
+            "fbWrong": "THE ANSWER: It uses validation information when learning a fill value. Split first and fit preprocessing on training only.\n\nWhy the others are wrong. \u201cIt guarantees underfitting\u201d \u2014 The direct problem is information leakage.  \u201cpandas cannot calculate medians\u201d \u2014 It can; the problem is which rows it uses.  \u201cA median is never allowed\u201d \u2014 Training-only median imputation is allowed when justified."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "A teammate has already tried to deal with the gaps, in the cell shown above the traceback. Read both, then say what you would change.",
-            "help": "imp = SimpleImputer(strategy=\"mean\")\nX[[\"RH\"]] = imp.fit_transform(X[[\"RH\"]])\n\nX_tr, X_te, y_tr, y_te = train_test_split(X, y)\npipe = Pipeline([(\"model\", Ridge())])\npipe.fit(X_tr, y_tr)\n\nTraceback (most recent call last):\n  File \"<ipython-input-13-1a2b3c>\", line 6, in <module>\n    pipe.fit(X_tr, y_tr)\nValueError: Input X contains NaN.",
+            "title": "Why might prediction still fail with missing inputs?",
+            "help": "A pipeline contains only a regression model.\nValueError: Input X contains NaN.",
             "choices": [
               {
-                "text": "Impute the remaining columns the same way, before the split",
+                "text": "The final-test target must be added to X",
                 "correct": false
               },
               {
-                "text": "Replace the remaining gaps with zero so the model can fit",
+                "text": "All values should become zero",
                 "correct": false
               },
               {
-                "text": "Move the imputer inside the Pipeline, and cover every column",
+                "text": "The pipeline needs appropriate missing-feature preparation",
                 "correct": true
               },
               {
-                "text": "Drop the rows that still contain gaps",
+                "text": "The warning should be ignored",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct on both counts. Only one column was imputed, so the gaps in the others are still there, which is why the error still fires. And fitting it on the whole frame before the split measures the test rows, which is the leak from question one wearing different clothes. Inside the pipeline both problems go away at once.",
-            "fbWrong": "THE ANSWER: Move the imputer inside the Pipeline, and cover every column. Correct on both counts. Only one column was imputed, so the gaps in the others are still there, which is why the error still fires. And fitting it on the whole frame before the split measures the test rows, which is the leak from question one wearing different clothes. Inside the pipeline both problems go away at once.\n\nWhy the others are wrong. \u201cImpute the remaining columns the same way, before the split\u201d \u2014 That silences the error and keeps the leak. Every value the imputer learns before the split has been measured partly from the test rows.  \u201cReplace the remaining gaps with zero so the model can fit\u201d \u2014 Zero is a real value on these columns, so this quietly invents low readings. Week 6 covers the damage that does.  \u201cDrop the rows that still contain gaps\u201d \u2014 It would run, and it discards data and can bias what is left if the gaps cluster in one source, which Week 4 showed they often do."
+            "fbCorrect": "Include the trained imputer before the model and fit it on training data.",
+            "fbWrong": "THE ANSWER: The pipeline needs appropriate missing-feature preparation. Include the trained imputer before the model and fit it on training data.\n\nWhy the others are wrong. \u201cThe final-test target must be added to X\u201d \u2014 That would leak the answer.  \u201cAll values should become zero\u201d \u2014 Zero filling needs a justified policy and may distort data.  \u201cThe warning should be ignored\u201d \u2014 Ignoring an error does not supply usable inputs."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "You run five-fold cross-validation and get these scores. What should you report, and what should you look at?",
-            "help": "fold scores: 0.71, 0.68, 0.74, 0.52, 0.70\nmean 0.67",
+            "title": "What does this output show?",
+            "help": "Training median = 22.\nValidation values [None, 40] become [22, 40].",
             "choices": [
               {
-                "text": "Nothing yet; five folds is too few to report",
+                "text": "Every value was changed",
                 "correct": false
               },
               {
-                "text": "The mean with its spread, and look into the 0.52 fold",
+                "text": "The training fill was reused on validation",
                 "correct": true
               },
               {
-                "text": "The mean alone, since averaging is the purpose of cross-validation",
+                "text": "The validation median was fitted",
                 "correct": false
               },
               {
-                "text": "The best fold, since it shows what the model can achieve",
+                "text": "The missing measurement was recovered",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Four folds sit close together and one sits well below, which suggests that fold contains something the others do not. Group structure in the rows is the usual explanation, and it is the subject of the next question.",
-            "fbWrong": "THE ANSWER: The mean with its spread, and look into the 0.52 fold. Four folds sit close together and one sits well below, which suggests that fold contains something the others do not. Group structure in the rows is the usual explanation, and it is the subject of the next question.\n\nWhy the others are wrong. \u201cNothing yet; five folds is too few to report\u201d \u2014 Five folds is a standard choice and perfectly reportable. The spread is part of the report rather than a reason to withhold it.  \u201cThe mean alone, since averaging is the purpose of cross-validation\u201d \u2014 A bare mean hides the thing worth knowing. Reporting 0.67 with no spread conceals a fold that scored 0.52 and the reason behind it.  \u201cThe best fold, since it shows what the model can achieve\u201d \u2014 Quoting the best fold is selecting the most flattering result from your own experiment."
+            "fbCorrect": "Validation 40 did not determine a separate fill.",
+            "fbWrong": "THE ANSWER: The training fill was reused on validation. Validation 40 did not determine a separate fill.\n\nWhy the others are wrong. \u201cEvery value was changed\u201d \u2014 The recorded 40 remains unchanged.  \u201cThe validation median was fitted\u201d \u2014 The given rule uses the training median.  \u201cThe missing measurement was recovered\u201d \u2014 It is an estimate."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "You discover that consecutive hours are split at random across your training and test sets, and that one hour is almost the same reading as the hour before it. What should you do?",
-            "help": "",
+            "title": "What should be reported for several validation folds?",
+            "help": "Errors vary noticeably across folds.",
             "choices": [
               {
-                "text": "Leave it, because a random split is unbiased by definition",
+                "text": "Only the best fold",
                 "correct": false
               },
               {
-                "text": "Split on time: train on an earlier stretch, test on a later one",
+                "text": "The mean, variation and any important differences between folds",
                 "correct": true
               },
               {
-                "text": "Remove the near-identical consecutive rows",
+                "text": "Only the training score",
                 "correct": false
               },
               {
-                "text": "Increase the size of the test set",
+                "text": "A claim of guaranteed future performance",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The structure here is time, so the split has to respect time. A random split puts the hour before and the hour after into training while testing on the hour between, which is close to handing over the answer. It also matches the real task, which is predicting forward rather than filling in gaps. TimeSeriesSplit does this.",
-            "fbWrong": "THE ANSWER: Split on time: train on an earlier stretch, test on a later one. The structure here is time, so the split has to respect time. A random split puts the hour before and the hour after into training while testing on the hour between, which is close to handing over the answer. It also matches the real task, which is predicting forward rather than filling in gaps. TimeSeriesSplit does this.\n\nWhy the others are wrong. \u201cLeave it, because a random split is unbiased by definition\u201d \u2014 Random over rows takes no account of the fact that consecutive hours are nearly the same reading. Unbiased selection of rows is not the same as an honest test.  \u201cRemove the near-identical consecutive rows\u201d \u2014 They are genuine samples of a continuing state, and thinning them changes what the model sees without fixing the fact that neighbouring hours straddle the split.  \u201cIncrease the size of the test set\u201d \u2014 A bigger test set assembled the same way is optimistic in the same way."
+            "fbCorrect": "The best fold alone hides unstable performance.",
+            "fbWrong": "THE ANSWER: The mean, variation and any important differences between folds. The best fold alone hides unstable performance.\n\nWhy the others are wrong. \u201cOnly the best fold\u201d \u2014 This cherry-picks the evaluation.  \u201cOnly the training score\u201d \u2014 That does not describe held-out folds.  \u201cA claim of guaranteed future performance\u201d \u2014 Finite validation evidence cannot guarantee future errors."
           }
         ]
       },
@@ -4828,137 +4828,137 @@ var QUIZ_DATA = {
         "week": 11,
         "number": 10,
         "title": "CML3111 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate adds a scaler expecting an improvement and the score does not budge. Why not?",
-            "help": "before:  DecisionTreeClassifier(random_state=0)\n                                             recall 0.61\nafter:   Pipeline([(\"scale\", StandardScaler()),\n                   (\"model\", DecisionTreeClassifier(\n                                 random_state=0))])\n                                             recall 0.61",
+            "kind": "interpretation",
+            "title": "Which values are produced?",
+            "help": "load_pct = 40; ambient_c = 25\nload_fraction = load_pct / 100\ninteraction = load_pct * ambient_c",
             "choices": [
               {
-                "text": "A tree splits on the order of the values, and scaling preserves that order",
+                "text": "0.4 and 1000",
                 "correct": true
               },
               {
-                "text": "The scaler was placed after the model in the pipeline",
+                "text": "40 and 65",
                 "correct": false
               },
               {
-                "text": "The tree needs a greater depth before scaling helps",
+                "text": "0.4 and 65",
                 "correct": false
               },
               {
-                "text": "The features were already on the same scale",
+                "text": "4000 and 1.6",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Rescaling moves the numbers and leaves their ranking untouched, and a threshold split only cares about ranking. Scaling earns its keep for models that measure distances or fit coefficients.",
-            "fbWrong": "THE ANSWER: A tree splits on the order of the values, and scaling preserves that order. Rescaling moves the numbers and leaves their ranking untouched, and a threshold split only cares about ranking. Scaling earns its keep for models that measure distances or fit coefficients.\n\nWhy the others are wrong. \u201cThe scaler was placed after the model in the pipeline\u201d \u2014 It is first, which is the correct position. The order in the pipeline is not the issue.  \u201cThe tree needs a greater depth before scaling helps\u201d \u2014 Depth changes how the tree fits and never makes it sensitive to a monotonic rescaling.  \u201cThe features were already on the same scale\u201d \u2014 Even if they were, that would not be the reason. A tree is unaffected by this kind of rescaling whatever the starting scales happen to be."
+            "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
+            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product, not a sum.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "The score on your own test split improves after this change, and the model is worse. What has happened?",
-            "help": "print(df.shape)\n(10000, 14)\n\nprint(df[\"product_id\"].nunique())\n847\n\nX = pd.get_dummies(df, columns=[\"product_id\"])\nprint(X.shape)\n(10000, 860)",
+            "title": "Why is this feature invalid for prediction?",
+            "help": "new_feature = future_target / load_pct",
             "choices": [
               {
-                "text": "It added one column per identifier, so the model can now recognise individual units",
+                "text": "It uses the answer that is unavailable at prediction time",
                 "correct": true
               },
               {
-                "text": "get_dummies should have been given the whole frame",
+                "text": "It has a short name",
                 "correct": false
               },
               {
-                "text": "It made the frame too wide for the model to fit",
+                "text": "Ratios are always invalid",
                 "correct": false
               },
               {
-                "text": "The identifiers should have been numbered 1 to 847 instead",
+                "text": "pandas cannot divide columns",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. An identifier expanded this way hands the model a lookup table for the units in your file. It scores well wherever the same units appear on both sides of the split and carries nothing to a new one. Drop the identifier and keep the columns that describe the thing.",
-            "fbWrong": "THE ANSWER: It added one column per identifier, so the model can now recognise individual units. An identifier expanded this way hands the model a lookup table for the units in your file. It scores well wherever the same units appear on both sides of the split and carries nothing to a new one. Drop the identifier and keep the columns that describe the thing.\n\nWhy the others are wrong. \u201cget_dummies should have been given the whole frame\u201d \u2014 It was given the whole frame with one column named for expansion, which is the normal usage. The choice of column is the fault.  \u201cIt made the frame too wide for the model to fit\u201d \u2014 A few hundred columns is unremarkable and fits without complaint. The problem is what those columns mean.  \u201cThe identifiers should have been numbered 1 to 847 instead\u201d \u2014 That is worse: it tells a straight-line model that unit 800 is a hundred times unit 8. Neither encoding rescues a column that is only a label."
+            "fbCorrect": "A predictor must be obtainable before the target is known.",
+            "fbWrong": "THE ANSWER: It uses the answer that is unavailable at prediction time. A predictor must be obtainable before the target is known.\n\nWhy the others are wrong. \u201cIt has a short name\u201d \u2014 Naming is not the leakage issue.  \u201cRatios are always invalid\u201d \u2014 Ratios of available inputs can be useful.  \u201cpandas cannot divide columns\u201d \u2014 It can perform column arithmetic."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What has happened, and what is the catch in the obvious fix?",
-            "help": "enc = OneHotEncoder(drop=\"first\")\n# ... fitted on product_type values L, M, H\n\nTraceback (most recent call last):\n  File \"<ipython-input-15-6d7e8f>\", line 1, in <module>\n    pipe.predict(new_rows)\nValueError: Found unknown categories ['X'] in column 0\nduring transform",
+            "title": "What does this error suggest?",
+            "help": "valid[\"interaction\"]\nKeyError: 'interaction'",
             "choices": [
               {
-                "text": "The category column should be dropped from the model",
+                "text": "Round the validation data",
                 "correct": false
               },
               {
-                "text": "Refitting the encoder on the new rows as well will fix it properly",
+                "text": "The model has too many rows",
                 "correct": false
               },
               {
-                "text": "handle_unknown=\"ignore\" clears it, and with drop=\"first\" an unseen category then encodes as the dropped one",
+                "text": "The column has not been created under that name in valid",
                 "correct": true
               },
               {
-                "text": "Adding handle_unknown=\"ignore\" solves it cleanly, with no side effect worth worrying about",
+                "text": "Fit on validation targets",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and the second half is the part almost nobody is told. An ignored unknown category is encoded as all zeros, which is exactly how the dropped reference category is encoded, so every new category silently becomes the baseline. Choose one of the two options deliberately and count how often an unknown value arrives.",
-            "fbWrong": "THE ANSWER: handle_unknown=\"ignore\" clears it, and with drop=\"first\" an unseen category then encodes as the dropped one. The second half is the part almost nobody is told. An ignored unknown category is encoded as all zeros, which is exactly how the dropped reference category is encoded, so every new category silently becomes the baseline. Choose one of the two options deliberately and count how often an unknown value arrives.\n\nWhy the others are wrong. \u201cThe category column should be dropped from the model\u201d \u2014 It may be carrying real signal. The task is to encode it so it survives a value you have not seen before.  \u201cRefitting the encoder on the new rows as well will fix it properly\u201d \u2014 Fitting anything on rows you are about to predict is the leakage pattern from Week 10. It also cannot work in service, where the new value arrives after the model is deployed.  \u201cAdding handle_unknown=\"ignore\" solves it cleanly, with no side effect worth worrying about\u201d \u2014 It does clear the error. The side effect is that the unknown category is encoded as all zeros, and because drop=\"first\" is set, that is the same encoding as the dropped category."
+            "fbCorrect": "Apply the same named feature preparation to training and validation.",
+            "fbWrong": "THE ANSWER: The column has not been created under that name in valid. Apply the same named feature preparation to training and validation.\n\nWhy the others are wrong. \u201cRound the validation data\u201d \u2014 Rounding does not create the column.  \u201cThe model has too many rows\u201d \u2014 This error concerns a missing key or label.  \u201cFit on validation targets\u201d \u2014 That leaks evaluation answers."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Each row removes one feature and refits. Which feature has earned its place least?",
-            "help": "features                   recall (failures)\nall five                                0.78\nminus mechanical power                  0.51\nminus temperature rise                  0.46\nminus tool wear                         0.77\nminus rotational speed                  0.72\nminus torque                            0.68",
+            "title": "What is the improvement?",
+            "help": "base_mae = 3.0; extended_mae = 2.5\nimprovement = base_mae - extended_mae",
             "choices": [
               {
-                "text": "Tool wear, because removing it moves recall by one percentage point",
+                "text": "0.5 in the target unit",
                 "correct": true
               },
               {
-                "text": "Temperature rise, because it has the lowest recall when removed",
+                "text": "0.5 percent in every case",
                 "correct": false
               },
               {
-                "text": "None of them; every feature earns its place",
+                "text": "A guarantee every prediction improved",
                 "correct": false
               },
               {
-                "text": "Mechanical power, because 0.51 is a poor result",
+                "text": "-0.5",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Mechanical power and temperature rise each cost you around 30 points of recall when removed, and tool wear costs one. On this evidence it is nearly redundant.",
-            "fbWrong": "THE ANSWER: Tool wear, because removing it moves recall by one percentage point. Mechanical power and temperature rise each cost you around 30 points of recall when removed, and tool wear costs one. On this evidence it is nearly redundant.\n\nWhy the others are wrong. \u201cTemperature rise, because it has the lowest recall when removed\u201d \u2014 Lowest recall without a feature means the model depends on it most. The reading is inverted.  \u201cNone of them; every feature earns its place\u201d \u2014 One point of recall is within the fold-to-fold spread you would expect.  \u201cMechanical power, because 0.51 is a poor result\u201d \u2014 0.51 is the recall you are left with when it is gone, which is the argument for keeping it."
+            "fbCorrect": "The extended model reduces mean absolute error by 0.5.",
+            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit, not an automatic percentage.  \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Two teams reach almost the same recall. One uses a random forest on the raw columns; the other uses logistic regression on mechanical power and four other engineered features. The maintenance planner has to justify every four-hour stop. Which do you recommend?",
-            "help": "",
+            "title": "What makes the comparison meaningful?",
+            "help": "Compare base features with base features plus an interaction.",
             "choices": [
               {
-                "text": "The engineered features with the simpler model, whose reasoning can be read off and defended",
+                "text": "Use the same training and validation rows and model protocol",
                 "correct": true
               },
               {
-                "text": "Either, since the error is what matters",
+                "text": "Use final-test scores to keep trying features",
                 "correct": false
               },
               {
-                "text": "The random forest, because ensembles generalise better in general",
+                "text": "Choose a different easy validation set",
                 "correct": false
               },
               {
-                "text": "The random forest, and add an importance chart to explain it",
+                "text": "Always prefer the larger feature set",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. On equal performance the stated constraint decides it, and a coefficient on a quantity with physical meaning is something you can put in front of the person who has to sign. The engineering went into the features rather than the algorithm.",
-            "fbWrong": "THE ANSWER: The engineered features with the simpler model, whose reasoning can be read off and defended. On equal performance the stated constraint decides it, and a coefficient on a quantity with physical meaning is something you can put in front of the person who has to sign. The engineering went into the features rather than the algorithm.\n\nWhy the others are wrong. \u201cEither, since the error is what matters\u201d \u2014 The error was stated as a condition to meet rather than the only criterion. Explainability was given as a requirement.  \u201cThe random forest, because ensembles generalise better in general\u201d \u2014 It may well generalise better on some problems, and here the two are level while only one of them satisfies the constraint you were given.  \u201cThe random forest, and add an importance chart to explain it\u201d \u2014 Feature importance tells you which columns the model leaned on overall. It does not tell the client why this particular case was rejected, which is the question they will ask."
+            "fbCorrect": "Changing only the feature set makes the difference interpretable.",
+            "fbWrong": "THE ANSWER: Use the same training and validation rows and model protocol. Changing only the feature set makes the difference interpretable.\n\nWhy the others are wrong. \u201cUse final-test scores to keep trying features\u201d \u2014 That turns the final test into selection data.  \u201cChoose a different easy validation set\u201d \u2014 That confounds the comparison.  \u201cAlways prefer the larger feature set\u201d \u2014 More features can fail to improve generalisation."
           }
         ]
       },
@@ -4966,137 +4966,137 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3111 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "A teammate concludes the forest is the better model. What does this table actually support?",
-            "help": "fold                  1      2      3      4      5   mean\nrandom forest      0.78   0.70   0.76   0.71   0.75   0.74\nlogistic reg.      0.75   0.73   0.72   0.68   0.72   0.72\ndifference        +0.03  -0.03  +0.04  +0.03  +0.03",
+            "kind": "interpretation",
+            "title": "Which candidate meets both constraints?",
+            "help": "Limits: MAE <= 3 and latency <= 10 ms.\nsimple: MAE 3, latency 2\ncomplex: MAE 1, latency 20",
             "choices": [
               {
-                "text": "The comparison is invalid because the models share folds",
+                "text": "Neither",
                 "correct": false
               },
               {
-                "text": "Very little: the difference changes sign between folds, so on this evidence the two cannot be separated",
+                "text": "simple",
                 "correct": true
               },
               {
-                "text": "The forest is better, because it wins the majority of folds",
+                "text": "Both",
                 "correct": false
               },
               {
-                "text": "The forest is better, since it has the stronger mean",
+                "text": "complex",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and reading the per-fold differences is what settles it. The sign of the difference flips from fold to fold, so the mean gap of 0.02 is not a consistent advantage. Report them as level on this data and let the stated constraints decide. Note what makes this readable at all: both models were scored on the SAME five folds, so the differences can be paired up.",
-            "fbWrong": "THE ANSWER: Very little: the difference changes sign between folds, so on this evidence the two cannot be separated. Reading the per-fold differences is what settles it. The sign of the difference flips from fold to fold, so the mean gap of 0.02 is not a consistent advantage. Report them as level on this data and let the stated constraints decide. Note what makes this readable at all: both models were scored on the SAME five folds, so the differences can be paired up.\n\nWhy the others are wrong. \u201cThe comparison is invalid because the models share folds\u201d \u2014 Sharing folds is what makes the comparison valid. Scoring each model on its own random split is the mistake, and it is the subject of the next question.  \u201cThe forest is better, because it wins the majority of folds\u201d \u2014 Winning more folds than it loses is worth noticing and is weak evidence at this margin, because the fold it loses it loses by as much as the others are won. With only five folds this pattern arises easily between two models of equal ability.  \u201cThe forest is better, since it has the stronger mean\u201d \u2014 A mean hides the fold-by-fold picture. Here the sign of the difference flips, which is the pattern of two models that are level rather than one that is ahead."
+            "fbCorrect": "It satisfies both inclusive limits.",
+            "fbWrong": "THE ANSWER: simple. It satisfies both inclusive limits.\n\nWhy the others are wrong. \u201cNeither\u201d \u2014 simple meets the limits, including equality on MAE.  \u201cBoth\u201d \u2014 complex fails the latency limit.  \u201ccomplex\u201d \u2014 Its latency fails the requirement."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "Two models, two scores, no error anywhere. Why can these numbers not be compared?",
-            "help": "# model A\nX_tr, X_te, y_tr, y_te = train_test_split(X, y,\n                              random_state=1)\n# ... fit A ...      score 0.78\n\n# model B\nX_tr, X_te, y_tr, y_te = train_test_split(X, y,\n                              random_state=7)\n# ... fit B ...      score 0.81",
+            "title": "What is wrong with choosing the lowest error before filtering?",
+            "help": "One very accurate candidate exceeds the permitted latency.",
             "choices": [
               {
-                "text": "Nothing is wrong, since both used the same data file",
+                "text": "All constraints should be dropped",
                 "correct": false
               },
               {
-                "text": "Model B had the advantage of a later random state",
+                "text": "Sorting cannot be used",
                 "correct": false
               },
               {
-                "text": "The scores need to be averaged together",
+                "text": "Latency and error must be added",
                 "correct": false
               },
               {
-                "text": "They were scored on different test sets, so the gap may be the split rather than the model",
+                "text": "The chosen candidate may be ineligible",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. Changing the seed changes the split, and split-to-split variation on this kind of data is often larger than the gap you are trying to measure. Score every model on identical folds, which is what cross_val_score with a fixed splitter gives you.",
-            "fbWrong": "THE ANSWER: They were scored on different test sets, so the gap may be the split rather than the model. Changing the seed changes the split, and split-to-split variation on this kind of data is often larger than the gap you are trying to measure. Score every model on identical folds, which is what cross_val_score with a fixed splitter gives you.\n\nWhy the others are wrong. \u201cNothing is wrong, since both used the same data file\u201d \u2014 The same file cut two different ways gives two different test sets. The comparison needs the cuts to match.  \u201cModel B had the advantage of a later random state\u201d \u2014 The number in random_state is a label for a shuffle and carries no ordering. Seed 7 is not later or better than seed 1.  \u201cThe scores need to be averaged together\u201d \u2014 Averaging two figures measured on different test sets produces a number that describes neither model."
+            "fbCorrect": "Check every constraint before ranking eligible candidates.",
+            "fbWrong": "THE ANSWER: The chosen candidate may be ineligible. Check every constraint before ranking eligible candidates.\n\nWhy the others are wrong. \u201cAll constraints should be dropped\u201d \u2014 That changes the requirements.  \u201cSorting cannot be used\u201d \u2014 Sorting is useful after eligibility filtering.  \u201cLatency and error must be added\u201d \u2014 They have different meanings and the policy does not add them."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "You have run this notebook for an hour and now get this. What is the most likely history behind it?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-31-9a8b7c>\", line 1, in <module>\n    print(forest.predict(X_te)[:5])\nNotFittedError: This RandomForestClassifier instance is not\nfitted yet. Call 'fit' with appropriate arguments before\nusing this estimator.",
+            "title": "What check prevents this error?",
+            "help": "winner = eligible.iloc[0][\"name\"]\nIndexError: single positional indexer is out-of-bounds",
             "choices": [
               {
-                "text": "The forest needs more trees before it can predict",
+                "text": "Delete the latency column",
                 "correct": false
               },
               {
-                "text": "The model does not support predict on a test set",
+                "text": "Use iloc[1] instead",
                 "correct": false
               },
               {
-                "text": "The cell that creates the model was re-run after the one that fitted it",
+                "text": "Check eligible.empty and return None if no rows remain",
                 "correct": true
               },
               {
-                "text": "The test features contain missing values",
+                "text": "Always pick the original first candidate",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and this is the Week 2 out-of-order trap arriving in a much more expensive place. Re-running the constructor throws away an hour of fitting. Restart and Run All is how you find out whether your notebook still tells a straight story.",
-            "fbWrong": "THE ANSWER: The cell that creates the model was re-run after the one that fitted it. This is the Week 2 out-of-order trap arriving in a much more expensive place. Re-running the constructor throws away an hour of fitting. Restart and Run All is how you find out whether your notebook still tells a straight story.\n\nWhy the others are wrong. \u201cThe forest needs more trees before it can predict\u201d \u2014 The number of trees is set at construction and any number can be fitted and used. This one was never fitted.  \u201cThe model does not support predict on a test set\u201d \u2014 It does. The message is specifically that this instance has never been fitted.  \u201cThe test features contain missing values\u201d \u2014 That reports itself as an error about NaN, and it would only arise once the model was fitted."
+            "fbCorrect": "There is no first row in an empty table.",
+            "fbWrong": "THE ANSWER: Check eligible.empty and return None if no rows remain. There is no first row in an empty table.\n\nWhy the others are wrong. \u201cDelete the latency column\u201d \u2014 Removing evidence does not satisfy the constraints.  \u201cUse iloc[1] instead\u201d \u2014 An empty table has no second row either.  \u201cAlways pick the original first candidate\u201d \u2014 That can choose an ineligible model."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Two outputs from the same forest. The planner needs to know why THIS machine was flagged today. Which output answers that, and what does the other one tell you?",
-            "help": "A   feature_importances_ over the whole training set\n      mechanical power 0.41\n      temp rise        0.29\n      tool wear        0.18\n      rot speed        0.12\n\nB   contribution to the prediction for machine 14\n      temp rise 96 K   pushed toward fail    +0.22\n      power 4.8 kW     pushed toward fail    +0.15\n      tool wear 40 min pushed toward normal  -0.04",
+            "title": "Which name wins the published tie-break?",
+            "help": "Both candidates have MAE 2 and latency 3 ms.\nNames: beta, alpha\nSort by error, latency, then name.",
             "choices": [
               {
-                "text": "A answers it, because the highest-importance feature is the reason for any given decision",
+                "text": "beta",
                 "correct": false
               },
               {
-                "text": "Both answer it equally well, since they rank the same features",
+                "text": "Whichever appeared last",
                 "correct": false
               },
               {
-                "text": "Neither answers it, because a forest can never be explained at all",
+                "text": "None",
                 "correct": false
               },
               {
-                "text": "B answers it, because it is specific to this case; A describes the model's average behaviour across all cases",
+                "text": "alpha",
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct, and the distinction is worth holding on to. A global importance chart says what the model relies on in general and can never say why one case came out as it did. A per-case breakdown is what a client's question actually needs.",
-            "fbWrong": "THE ANSWER: B answers it, because it is specific to this case; A describes the model's average behaviour across all cases. The distinction is worth holding on to. A global importance chart says what the model relies on in general and can never say why one case came out as it did. A per-case breakdown is what a client's question actually needs.\n\nWhy the others are wrong. \u201cA answers it, because the highest-importance feature is the reason for any given decision\u201d \u2014 That does not follow. The most important feature overall can be unremarkable in this particular case, and here B shows a different feature leading for batch-level reasons.  \u201cBoth answer it equally well, since they rank the same features\u201d \u2014 They do not even rank them the same way, and more importantly they answer different questions. One is about the model, the other about a case.  \u201cNeither answers it, because a forest can never be explained at all\u201d \u2014 Too pessimistic. Per-case attributions like B are exactly how you interrogate one prediction from an ensemble. The honest caveat is that they are estimates of the contribution rather than a rule you can read off."
+            "fbCorrect": "With equal numerical criteria, alphabetical name order decides.",
+            "fbWrong": "THE ANSWER: alpha. With equal numerical criteria, alphabetical name order decides.\n\nWhy the others are wrong. \u201cbeta\u201d \u2014 That is not the alphabetical first name.  \u201cWhichever appeared last\u201d \u2014 Input order is not the stated tie-break.  \u201cNone\u201d \u2014 Both are eligible and the tie-break resolves the choice."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "The planner asks: your model called a stop on machine 14 this morning, why that machine and why today? The acceptance requirement is an exact, directly readable rule; post-hoc attribution is insufficient. You chose the forest. What is the honest position?",
-            "help": "",
+            "title": "Which data should guide model selection?",
+            "help": "The final test is reserved for the fixed choice.",
             "choices": [
               {
-                "text": "Show the feature importance chart as the explanation",
+                "text": "Final-test results after every trial",
                 "correct": false
               },
               {
-                "text": "Recommend a readable-rule model that meets the stated acceptance requirement",
+                "text": "Validation results under a consistent protocol",
                 "correct": true
               },
               {
-                "text": "Offer to retrain the forest with fewer trees so it is simpler",
+                "text": "The largest number of parameters",
                 "correct": false
               },
               {
-                "text": "Explain that the model is accurate and ask them to trust the result",
+                "text": "The nicest-looking training plot",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.",
-            "fbWrong": "THE ANSWER: Recommend a readable-rule model that meets the stated acceptance requirement. The professional answer is to name the limitation and change the recommendation. A stated condition of acceptance that your chosen model cannot meet is a reason to change the model rather than to talk around it.\n\nWhy the others are wrong. \u201cShow the feature importance chart as the explanation\u201d \u2014 Importance describes the model's behaviour across the whole dataset. It cannot say why one case was decided as it was, which is the question you were asked.  \u201cOffer to retrain the forest with fewer trees so it is simpler\u201d \u2014 A smaller forest still does not meet this stated requirement for a directly readable rule. This concedes accuracy without gaining explainability.  \u201cExplain that the model is accurate and ask them to trust the result\u201d \u2014 They told you at the outset that they cannot act on an unexplained call. Asking for trust instead is not an answer."
+            "fbCorrect": "The final test should remain independent of repeated choices.",
+            "fbWrong": "THE ANSWER: Validation results under a consistent protocol. The final test should remain independent of repeated choices.\n\nWhy the others are wrong. \u201cFinal-test results after every trial\u201d \u2014 Repeated selection on those results uses up the final test.  \u201cThe largest number of parameters\u201d \u2014 Complexity alone does not establish quality.  \u201cThe nicest-looking training plot\u201d \u2014 Appearance does not establish held-out performance."
           }
         ]
       },
@@ -5104,137 +5104,137 @@ var QUIZ_DATA = {
         "week": 13,
         "number": 12,
         "title": "CML3111 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, worth 1% of your final mark.\n\u2022 Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
-            "kind": "diagnosis",
-            "title": "This runs perfectly on the machine it was written on. What is wrong with it?",
-            "help": "df = pd.read_csv(\n    \"C:/Users/Jotham/Desktop/motor_log_FINAL.csv\")",
+            "kind": "interpretation",
+            "title": "Why use a relative CSV path?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")",
             "choices": [
               {
-                "text": "It names a location that exists on exactly one computer, so the notebook cannot run anywhere else",
+                "text": "It can work on another computer with the same project structure",
                 "correct": true
               },
               {
-                "text": "Nothing, as long as you send the file with the notebook",
+                "text": "It makes raw data safe to overwrite",
                 "correct": false
               },
               {
-                "text": "Backslashes should have been used for a Windows path",
+                "text": "It encrypts the data",
                 "correct": false
               },
               {
-                "text": "The file should be read with a different pandas function",
+                "text": "It downloads the file automatically",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Keep the data inside the project and read it by a relative path such as data/\u2026 so the notebook works for anyone who has the folder. The version marker in the file name is a second warning: it suggests there are other copies and no record of which is current.",
-            "fbWrong": "THE ANSWER: It names a location that exists on exactly one computer, so the notebook cannot run anywhere else. Keep the data inside the project and read it by a relative path such as data/\u2026 so the notebook works for anyone who has the folder. The version marker in the file name is a second warning: it suggests there are other copies and no record of which is current.\n\nWhy the others are wrong. \u201cNothing, as long as you send the file with the notebook\u201d \u2014 The recipient would have to recreate your user name and your desktop for the path to resolve. A relative path inside the project removes the problem entirely.  \u201cBackslashes should have been used for a Windows path\u201d \u2014 Forward slashes work on Windows in Python and avoid the escape problems backslashes cause. This is the better of the two styles and the location is still wrong.  \u201cThe file should be read with a different pandas function\u201d \u2014 read_csv is the right function for a CSV. The path is the problem."
+            "fbCorrect": "Document the working folder and include the expected data layout.",
+            "fbWrong": "THE ANSWER: It can work on another computer with the same project structure. Document the working folder and include the expected data layout.\n\nWhy the others are wrong. \u201cIt makes raw data safe to overwrite\u201d \u2014 Raw data should still be preserved.  \u201cIt encrypts the data\u201d \u2014 Path choice does not provide encryption.  \u201cIt downloads the file automatically\u201d \u2014 A local relative path does not fetch missing files."
           },
           {
             "n": 2,
             "kind": "diagnosis",
-            "title": "You run the same notebook twice, changing nothing, and get these two numbers. What is going on, and what should you do?",
-            "help": "run 1:   recall 0.74\nrun 2:   recall 0.69",
+            "title": "What is wrong with trusting a saved output?",
+            "help": "A notebook displays a chart but fails after Restart and Run All.",
             "choices": [
               {
-                "text": "The second run is the more trustworthy of the two",
+                "text": "Restarting changes the dataset by itself",
                 "correct": false
               },
               {
-                "text": "The split and the model involve randomness that was never pinned down",
+                "text": "The visible output may come from an earlier session",
                 "correct": true
               },
               {
-                "text": "The data file is being modified between runs",
+                "text": "The chart proves the current code works",
                 "correct": false
               },
               {
-                "text": "Report the average of the two runs",
+                "text": "Only the chart title matters",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. Without a seed, the rows that land in the test set and the internal choices a forest makes change every run. Set random_state on the split and on the model, and write the number in the notebook so a reader can reproduce your figure exactly.",
-            "fbWrong": "THE ANSWER: The split and the model involve randomness that was never pinned down. Without a seed, the rows that land in the test set and the internal choices a forest makes change every run. Set random_state on the split and on the model, and write the number in the notebook so a reader can reproduce your figure exactly.\n\nWhy the others are wrong. \u201cThe second run is the more trustworthy of the two\u201d \u2014 Neither is more trustworthy. That two runs differ by this much is itself the finding, and it says your single reported figure carries this much uncertainty.  \u201cThe data file is being modified between runs\u201d \u2014 Nothing here writes to the file. Unseeded randomness explains this without needing the data to change.  \u201cReport the average of the two runs\u201d \u2014 An average of two arbitrary draws is still arbitrary. Seed the randomness, and if you want a figure with a spread, cross-validate deliberately."
+            "fbCorrect": "A fresh run checks whether the saved code and supplied files reproduce it.",
+            "fbWrong": "THE ANSWER: The visible output may come from an earlier session. A fresh run checks whether the saved code and supplied files reproduce it.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 The issue may be missing state or files, not a changed dataset.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed.  \u201cOnly the chart title matters\u201d \u2014 Reproducibility needs executable steps and data."
           },
           {
             "n": 3,
             "kind": "traceback",
-            "title": "A classmate clones your repository and gets this on the first cell. What is the cause?",
-            "help": "Traceback (most recent call last):\n  File \"<ipython-input-1-3e4f5a>\", line 1, in <module>\n    df = pd.read_csv(\"ai4i2020.csv\")\nFileNotFoundError: [Errno 2] No such file or directory:\n'ai4i2020.csv'",
+            "title": "What should be checked first?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
             "choices": [
               {
-                "text": "The data file was never committed, or sits elsewhere",
+                "text": "The working folder, relative path and supplied filename",
                 "correct": true
               },
               {
-                "text": "The repository was cloned incorrectly",
+                "text": "Change the model hyperparameters",
                 "correct": false
               },
               {
-                "text": "The classmate is missing a package",
+                "text": "Rewrite the analysis using csv.DictReader",
                 "correct": false
               },
               {
-                "text": "The file name has the wrong extension",
+                "text": "Delete all other files",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and both halves are worth checking. Data is often left out of a repository deliberately because of size or licence, in which case the README has to say where to get it and where to put it. Otherwise the path needs to match the folder layout.",
-            "fbWrong": "THE ANSWER: The data file was never committed, or sits elsewhere. Both halves are worth checking. Data is often left out of a repository deliberately because of size or licence, in which case the README has to say where to get it and where to put it. Otherwise the path needs to match the folder layout.\n\nWhy the others are wrong. \u201cThe repository was cloned incorrectly\u201d \u2014 A clone that failed would leave you with no notebook to run. The notebook arrived and its data did not.  \u201cThe classmate is missing a package\u201d \u2014 A missing package reports itself as ModuleNotFoundError. This message is about a file.  \u201cThe file name has the wrong extension\u201d \u2014 The extension matches a CSV read. The file is simply not at that location."
+            "fbCorrect": "Confirm the file is present at the path used by the notebook.",
+            "fbWrong": "THE ANSWER: The working folder, relative path and supplied filename. Confirm the file is present at the path used by the notebook.\n\nWhy the others are wrong. \u201cChange the model hyperparameters\u201d \u2014 Model settings do not affect file discovery.  \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing libraries does not repair a missing file.  \u201cDelete all other files\u201d \u2014 That does not create the required file."
           },
           {
             "n": 4,
             "kind": "interpretation",
-            "title": "Two captions for the same chart. Which one does the job a caption exists to do, and why?",
-            "help": "A:  Figure 3: failures against tool wear.\n\nB:  Figure 3: the failure rate rises sharply above 200\n    minutes of tool wear, from 2 per cent to 11 per cent.",
+            "title": "What does index=False do?",
+            "help": "clean.to_csv(\"cleaned_data.csv\", index=False)",
             "choices": [
               {
-                "text": "A, because a caption should describe the chart and let the reader draw the conclusion",
+                "text": "It removes the first observation",
                 "correct": false
               },
               {
-                "text": "Neither; captions should give the data source instead",
+                "text": "It fills missing values",
                 "correct": false
               },
               {
-                "text": "B, because it states the finding and its size, so a reader who only reads the captions still learns the result",
+                "text": "It omits pandas row labels from the exported CSV columns",
                 "correct": true
               },
               {
-                "text": "A, because B might be wrong and the caption would then be misleading",
+                "text": "It prevents saving",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. A caption is often the only part of your work that gets read. B carries the conclusion and the magnitude, which is what makes it useful and also what makes it checkable against the chart.",
-            "fbWrong": "THE ANSWER: B, because it states the finding and its size, so a reader who only reads the captions still learns the result. A caption is often the only part of your work that gets read. B carries the conclusion and the magnitude, which is what makes it useful and also what makes it checkable against the chart.\n\nWhy the others are wrong. \u201cA, because a caption should describe the chart and let the reader draw the conclusion\u201d \u2014 A describes the axes, which the axis labels already do. It leaves the reader to rediscover something you already know.  \u201cNeither; captions should give the data source instead\u201d \u2014 The source belongs in the caption or nearby and does not replace the finding. B plus a source is the target.  \u201cA, because B might be wrong and the caption would then be misleading\u201d \u2014 A claim you can check is a feature. If B is wrong the chart will show it, whereas A cannot be wrong because it says nothing."
+            "fbCorrect": "The data columns remain in the file.",
+            "fbWrong": "THE ANSWER: It omits pandas row labels from the exported CSV columns. The data columns remain in the file.\n\nWhy the others are wrong. \u201cIt removes the first observation\u201d \u2014 It controls row labels, not the first data row.  \u201cIt fills missing values\u201d \u2014 Export options do not perform imputation.  \u201cIt prevents saving\u201d \u2014 to_csv still writes the file."
           },
           {
             "n": 5,
             "kind": "judgement",
-            "title": "Your notebook has three separate cells that each assign df, and nobody wrote down the order they should run in. Submission is tomorrow. What do you do?",
-            "help": "",
+            "title": "What belongs in a reproducible handover?",
+            "help": "Another person must run the work from a fresh session.",
             "choices": [
               {
-                "text": "Add a comment above each cell saying what order to run them in",
+                "text": "Only screenshots",
                 "correct": false
               },
               {
-                "text": "Delete two of the three cells and hope the notebook still runs",
+                "text": "Private machine paths with no instructions",
                 "correct": false
               },
               {
-                "text": "Restart and Run All, then fix whatever breaks until it runs clean from top to bottom",
+                "text": "Data paths, dependencies, run order, units and limitations",
                 "correct": true
               },
               {
-                "text": "Leave it, since you know the right order",
+                "text": "Only the final score",
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct, and do it before you are tired. That single action converts a notebook that works on your screen into one that works from an empty memory, which is the only version anyone else can use. Consolidating the three assignments into one clear sequence is usually the fix.",
-            "fbWrong": "THE ANSWER: Restart and Run All, then fix whatever breaks until it runs clean from top to bottom. Do it before you are tired. That single action converts a notebook that works on your screen into one that works from an empty memory, which is the only version anyone else can use. Consolidating the three assignments into one clear sequence is usually the fix.\n\nWhy the others are wrong. \u201cAdd a comment above each cell saying what order to run them in\u201d \u2014 Instructions to run cells out of order are a description of the problem. Anyone who follows them slightly differently gets a different answer.  \u201cDelete two of the three cells and hope the notebook still runs\u201d \u2014 Each of them may be doing something needed. Running from a clean state tells you what is required rather than leaving you to guess.  \u201cLeave it, since you know the right order\u201d \u2014 That knowledge is not in the file, so it does not survive you. It also will not survive next week for you either."
+            "fbCorrect": "These explain what is needed and what the results support.",
+            "fbWrong": "THE ANSWER: Data paths, dependencies, run order, units and limitations. These explain what is needed and what the results support.\n\nWhy the others are wrong. \u201cOnly screenshots\u201d \u2014 Screenshots cannot reproduce the calculations.  \u201cPrivate machine paths with no instructions\u201d \u2014 Those paths generally fail on another computer.  \u201cOnly the final score\u201d \u2014 A score does not explain data, methods or limitations."
           }
         ]
       }
@@ -6897,6 +6897,8 @@ function clearCloseTriggers_() {
  * column in the response sheet, not the state of the form.
  */
 function openQuizFor(week, code) {
+  if(Number(week)===6 && ['CML3112','CML3113'].indexOf(code)>=0){throw new Error('Quiz 6 is waived for practical revision.');}
+
   if (week === undefined || code === undefined) {
     Logger.log('openQuizFor needs a week and a cohort, and the Run button '
                + 'cannot pass them.');

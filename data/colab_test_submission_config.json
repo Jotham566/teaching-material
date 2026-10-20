@@ -1,0 +1,77 @@
+{
+  "lecturer_email": "wirmbeesubs@gmail.com",
+  "forms": {
+    "CML3111|TEST1": {
+      "formId": "1eSmi7gXMMZ02XoIOO7D76GNUb08wf1vOVRpGLvxGVwU",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeZGkVmg9nruT5cBx4a2NGfjKOjWpykX7msNMrDk9lFVBFY6A/viewform",
+      "prefill": "https://docs.google.com/forms/d/e/1FAIpQLSeZGkVmg9nruT5cBx4a2NGfjKOjWpykX7msNMrDk9lFVBFY6A/viewform?usp=pp_url&entry.170208711=PLACEHOLDER_1785325830&entry.518887944=PLACEHOLDER_296233822&entry.927061616=PLACEHOLDER_213743888&entry.2013862452=PLACEHOLDER_799629438&entry.352254967=PLACEHOLDER_1002128144",
+      "items": {
+        "Full name": 1785325830,
+        "Student Registration Number": 296233822,
+        "Variant": 213743888,
+        "Snapshot file ID": 799629438,
+        "Snapshot SHA-256": 1002128144
+      }
+    },
+    "CML3111|TEST2": {
+      "formId": "1NM6_PRKm-HLRJfcntotsCd2OIBFbrNWpGl1nF6z1U6o",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfDKEvgYQCsTYyi_E3coGPMvoemnN-eMeozTt34DOFNxox9_w/viewform",
+      "prefill": "https://docs.google.com/forms/d/e/1FAIpQLSfDKEvgYQCsTYyi_E3coGPMvoemnN-eMeozTt34DOFNxox9_w/viewform?usp=pp_url&entry.896199108=PLACEHOLDER_1113033879&entry.1721668693=PLACEHOLDER_1307947885&entry.302339635=PLACEHOLDER_1095887672&entry.580293137=PLACEHOLDER_867785281&entry.1758830459=PLACEHOLDER_1732720318",
+      "items": {
+        "Full name": 1113033879,
+        "Student Registration Number": 1307947885,
+        "Variant": 1095887672,
+        "Snapshot file ID": 867785281,
+        "Snapshot SHA-256": 1732720318
+      }
+    },
+    "CML3112|TEST1": {
+      "formId": "1Ig5mXTj5FhLQRsR47q-ew3MVNi-0zTxF82bZEs1BhFc",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScigPkKbziFg4T-tgwBOQUVgsVyzgw2fFWnMmLaUq6dJElLyA/viewform",
+      "prefill": "https://docs.google.com/forms/d/e/1FAIpQLScigPkKbziFg4T-tgwBOQUVgsVyzgw2fFWnMmLaUq6dJElLyA/viewform?usp=pp_url&entry.750418605=PLACEHOLDER_803843481&entry.1792673085=PLACEHOLDER_1419122202&entry.1929575982=PLACEHOLDER_887539549&entry.849995366=PLACEHOLDER_941357989&entry.115339073=PLACEHOLDER_1045192824",
+      "items": {
+        "Full name": 803843481,
+        "Student Registration Number": 1419122202,
+        "Variant": 887539549,
+        "Snapshot file ID": 941357989,
+        "Snapshot SHA-256": 1045192824
+      }
+    },
+    "CML3112|TEST2": {
+      "formId": "1hzPXoZM9KiwvDrx2zQM2AmGh3JacP1kIzBnuAGxeT-E",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfwhOOjJfSLeBifD_2mNcmhpiEW1TjFDu5cbV7DPQYkQzgh6w/viewform",
+      "prefill": "https://docs.google.com/forms/d/e/1FAIpQLSfwhOOjJfSLeBifD_2mNcmhpiEW1TjFDu5cbV7DPQYkQzgh6w/viewform?usp=pp_url&entry.1287701187=PLACEHOLDER_1982744659&entry.227375369=PLACEHOLDER_58166863&entry.819155312=PLACEHOLDER_16982702&entry.238361032=PLACEHOLDER_2139788248&entry.27604422=PLACEHOLDER_2031850799",
+      "items": {
+        "Full name": 1982744659,
+        "Student Registration Number": 58166863,
+        "Variant": 16982702,
+        "Snapshot file ID": 2139788248,
+        "Snapshot SHA-256": 2031850799
+      }
+    },
+    "CML3113|TEST1": {
+      "formId": "1VfweTaM23MJkY713YzFyeJC2-WqgQLCKWY2CcQ_a_0Q",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSdbv-TvuRrbEMkAp4igqmWtSzpdt7jJ9HoSZxBYNF4cZ0VJNA/viewform",
+      "prefill": "https://docs.google.com/forms/d/e/1FAIpQLSdbv-TvuRrbEMkAp4igqmWtSzpdt7jJ9HoSZxBYNF4cZ0VJNA/viewform?usp=pp_url&entry.1472540657=PLACEHOLDER_315595670&entry.1839694419=PLACEHOLDER_1509301141&entry.2055717586=PLACEHOLDER_1934733154&entry.1752923730=PLACEHOLDER_709346774&entry.1589682263=PLACEHOLDER_1141667891",
+      "items": {
+        "Full name": 315595670,
+        "Student Registration Number": 1509301141,
+        "Variant": 1934733154,
+        "Snapshot file ID": 709346774,
+        "Snapshot SHA-256": 1141667891
+      }
+    },
+    "CML3113|TEST2": {
+      "formId": "1ztmwSJl5sSioo7exDdfu7A3RYaEUI9k4r-JmWb5CTyg",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSdQvgS9mt84jW5q_e9-s5WbQccMBWFE9zpszUp9nZ62qvrnnA/viewform",
+      "prefill": "https://docs.google.com/forms/d/e/1FAIpQLSdQvgS9mt84jW5q_e9-s5WbQccMBWFE9zpszUp9nZ62qvrnnA/viewform?usp=pp_url&entry.168712851=PLACEHOLDER_1782965697&entry.1953809783=PLACEHOLDER_72496957&entry.995567059=PLACEHOLDER_1040155434&entry.1235637237=PLACEHOLDER_1588978753&entry.601540010=PLACEHOLDER_942663843",
+      "items": {
+        "Full name": 1782965697,
+        "Student Registration Number": 72496957,
+        "Variant": 1040155434,
+        "Snapshot file ID": 1588978753,
+        "Snapshot SHA-256": 942663843
+      }
+    }
+  }
+}

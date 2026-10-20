@@ -1,8 +1,6 @@
-# CML3111 Week04 Engineering
+# CML3111 Week 4
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Lists loops and reading a table
+## Slide 1: Lists loops and reading a table
 
 Lists loops and reading a table
 CML3111, Week 4, slide 1
@@ -22,7 +20,7 @@ Communications, Electrical, Mechatronics and Robotics Engineering
 Continue to
 Today’s learning
 
-## Slide 2 — Today’s learning
+## Slide 2: Today’s learning
 
 Today’s learning
 CML3111, Week 4, slide 2
@@ -44,7 +42,7 @@ Trace a loop, read CSV rows and calculate summaries.
 Continue to
 Connection to the previous lesson
 
-## Slide 3 — Connection to the previous lesson
+## Slide 3: Connection to the previous lesson
 
 Connection to the previous lesson
 CML3111, Week 4, slide 3
@@ -64,7 +62,7 @@ Week 3 introduced values, function inputs and results, conditions and list posit
 Continue to
 Why this week’s tools are needed
 
-## Slide 4 — Why this week’s tools are needed
+## Slide 4: Why this week’s tools are needed
 
 Why this week’s tools are needed
 CML3111, Week 4, slide 4
@@ -84,7 +82,7 @@ Sensor readings arrive as records in a CSV file. We first learn the Python colle
 Continue to
 List and index
 
-## Slide 5 — List and index
+## Slide 5: List and index
 
 List and index
 CML3111, Week 4, slide 5
@@ -104,7 +102,7 @@ List and index: A list holds values in order: [2, 4, 6]. Square brackets select 
 Continue to
 A list position starts at zero
 
-## Slide 6 — A list position starts at zero
+## Slide 6: A list position starts at zero
 
 A list position starts at zero
 CML3111, Week 4, slide 6
@@ -128,7 +126,7 @@ There is no position 3 in this three-item list.
 Continue to
 Read list operations
 
-## Slide 7 — Read list operations
+## Slide 7: Read list operations
 
 Read list operations
 CML3111, Week 4, slide 7
@@ -149,7 +147,7 @@ Slice: readings[1:3] selects positions 1 and 2. The stop position 3 is excluded.
 Continue to
 A list stores items in order
 
-## Slide 8 — A list stores items in order
+## Slide 8: A list stores items in order
 
 A list stores items in order
 CML3111, Week 4, slide 8
@@ -185,7 +183,18 @@ Result / continuity
 Continue to
 Trace the list changes
 
-## Slide 9 — Trace the list changes
+Output from the supplied CSV (this cohort):
+2
+4
+[4, 6]
+
+
+Result from the supplied example
+2
+4
+[4, 6]
+
+## Slide 9: Trace the list changes
 
 Trace the list changes
 CML3111, Week 4, slide 9
@@ -214,7 +223,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 A loop repeats instructions
 
-## Slide 10 — A loop repeats instructions
+## Slide 10: A loop repeats instructions
 
 A loop repeats instructions
 CML3111, Week 4, slide 10
@@ -242,7 +251,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Read every part of a for header
 
-## Slide 11 — Read every part of a for header
+## Slide 11: Read every part of a for header
 
 Read every part of a for header
 CML3111, Week 4, slide 11
@@ -270,7 +279,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Visit each item without calculating
 
-## Slide 12 — Visit each item without calculating
+## Slide 12: Visit each item without calculating
 
 Visit each item without calculating
 CML3111, Week 4, slide 12
@@ -307,7 +316,20 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Trace the for loop item by item
 
-## Slide 13 — Trace the for loop item by item
+Output from the supplied CSV (this cohort):
+2
+4
+6
+finished
+
+
+Result from the supplied example
+2
+4
+6
+finished
+
+## Slide 13: Trace the for loop item by item
 
 Trace the for loop item by item
 CML3111, Week 4, slide 13
@@ -336,7 +358,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Updating a counter inside a loop
 
-## Slide 14 — Updating a counter inside a loop
+## Slide 14: Updating a counter inside a loop
 
 Updating a counter inside a loop
 CML3111, Week 4, slide 14
@@ -364,7 +386,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Count the visited items
 
-## Slide 15 — Count the visited items
+## Slide 15: Count the visited items
 
 Count the visited items
 CML3111, Week 4, slide 15
@@ -401,7 +423,14 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Accumulator
 
-## Slide 16 — Accumulator
+Output from the supplied CSV (this cohort):
+3
+
+
+Result from the supplied example
+3
+
+## Slide 16: Accumulator
 
 Accumulator
 CML3111, Week 4, slide 16
@@ -421,7 +450,7 @@ Accumulator: A running total. Set it to zero before the loop, add inside the loo
 Continue to
 A loop repeats an indented block
 
-## Slide 17 — A loop repeats an indented block
+## Slide 17: A loop repeats an indented block
 
 A loop repeats an indented block
 CML3111, Week 4, slide 17
@@ -445,7 +474,7 @@ A running total must start at zero before the loop.
 Continue to
 A mean uses a total and a count
 
-## Slide 18 — A mean uses a total and a count
+## Slide 18: A mean uses a total and a count
 
 A mean uses a total and a count
 CML3111, Week 4, slide 18
@@ -469,7 +498,7 @@ The final total is 12. The count is 3.
 Continue to
 A loop changes the running total
 
-## Slide 19 — A loop changes the running total
+## Slide 19: A loop changes the running total
 
 A loop changes the running total
 CML3111, Week 4, slide 19
@@ -489,7 +518,7 @@ This illustration uses six separate readings. Next we trace the smaller list [2,
 Continue to
 Tracing the loop
 
-## Slide 20 — Tracing the loop
+## Slide 20: Tracing the loop
 
 Tracing the loop
 CML3111, Week 4, slide 20
@@ -514,7 +543,7 @@ There are three readings.
 Continue to
 Lists loops and records in Python
 
-## Slide 21 — Lists loops and records in Python
+## Slide 21: Lists loops and records in Python
 
 Lists loops and records in Python
 CML3111, Week 4, slide 21
@@ -553,7 +582,14 @@ Read top to bottom. Run the complete example in the matching practice notebook.
 Continue to
 Lists loops and records results
 
-## Slide 22 — Lists loops and records results
+Output from the supplied CSV (this cohort):
+4.0
+
+
+Result from the supplied example
+4.0
+
+## Slide 22: Lists loops and records results
 
 Lists loops and records results
 CML3111, Week 4, slide 22
@@ -573,7 +609,7 @@ On this slide
 Continue to
 The built-in summary functions
 
-## Slide 23 — The built-in summary functions
+## Slide 23: The built-in summary functions
 
 The built-in summary functions
 CML3111, Week 4, slide 23
@@ -602,7 +638,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Built-in summaries of a list
 
-## Slide 24 — Built-in summaries of a list
+## Slide 24: Built-in summaries of a list
 
 Built-in summaries of a list
 CML3111, Week 4, slide 24
@@ -638,7 +674,20 @@ Output: 12, 3, 2, 6. sum totals; len counts; min and max select the smallest and
 Continue to
 A while loop checks before each repetition
 
-## Slide 25 — A while loop checks before each repetition
+Output from the supplied CSV (this cohort):
+12
+3
+2
+6
+
+
+Result from the supplied example
+12
+3
+2
+6
+
+## Slide 25: A while loop checks before each repetition
 
 A while loop checks before each repetition
 CML3111, Week 4, slide 25
@@ -666,7 +715,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 A while loop with a stopping condition
 
-## Slide 26 — A while loop with a stopping condition
+## Slide 26: A while loop with a stopping condition
 
 A while loop with a stopping condition
 CML3111, Week 4, slide 26
@@ -706,7 +755,20 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Trace the while condition and update
 
-## Slide 27 — Trace the while condition and update
+Output from the supplied CSV (this cohort):
+0
+1
+2
+finished
+
+
+Result from the supplied example
+0
+1
+2
+finished
+
+## Slide 27: Trace the while condition and update
 
 Trace the while condition and update
 CML3111, Week 4, slide 27
@@ -735,7 +797,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Preventing an endless loop
 
-## Slide 28 — Preventing an endless loop
+## Slide 28: Preventing an endless loop
 
 Preventing an endless loop
 CML3111, Week 4, slide 28
@@ -763,7 +825,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Choosing if for or while
 
-## Slide 29 — Choosing if for or while
+## Slide 29: Choosing if for or while
 
 Choosing if for or while
 CML3111, Week 4, slide 29
@@ -791,7 +853,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 range supplies a sequence of integers
 
-## Slide 30 — range supplies a sequence of integers
+## Slide 30: range supplies a sequence of integers
 
 range supplies a sequence of integers
 CML3111, Week 4, slide 30
@@ -819,7 +881,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Repeat with range
 
-## Slide 31 — Repeat with range
+## Slide 31: Repeat with range
 
 Repeat with range
 CML3111, Week 4, slide 31
@@ -850,7 +912,18 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 continue and break change a loop’s path
 
-## Slide 32 — continue and break change a loop’s path
+Output from the supplied CSV (this cohort):
+1
+2
+3
+
+
+Result from the supplied example
+1
+2
+3
+
+## Slide 32: continue and break change a loop’s path
 
 continue and break change a loop’s path
 CML3111, Week 4, slide 32
@@ -878,7 +951,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Skip one item using continue
 
-## Slide 33 — Skip one item using continue
+## Slide 33: Skip one item using continue
 
 Skip one item using continue
 CML3111, Week 4, slide 33
@@ -915,7 +988,16 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Stop at one item using break
 
-## Slide 34 — Stop at one item using break
+Output from the supplied CSV (this cohort):
+2
+6
+
+
+Result from the supplied example
+2
+6
+
+## Slide 34: Stop at one item using break
 
 Stop at one item using break
 CML3111, Week 4, slide 34
@@ -952,7 +1034,14 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Trace the two loop controls
 
-## Slide 35 — Trace the two loop controls
+Output from the supplied CSV (this cohort):
+2
+
+
+Result from the supplied example
+2
+
+## Slide 35: Trace the two loop controls
 
 Trace the two loop controls
 CML3111, Week 4, slide 35
@@ -980,7 +1069,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 A dictionary is a record with named fields
 
-## Slide 36 — A dictionary is a record with named fields
+## Slide 36: A dictionary is a record with named fields
 
 A dictionary is a record with named fields
 CML3111, Week 4, slide 36
@@ -1004,7 +1093,7 @@ record["reading"] returns 4. Unlike a list position, "reading" names the field w
 Continue to
 A missing dictionary key and get
 
-## Slide 37 — A missing dictionary key and get
+## Slide 37: A missing dictionary key and get
 
 A missing dictionary key and get
 CML3111, Week 4, slide 37
@@ -1032,7 +1121,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Reading and updating a dictionary
 
-## Slide 38 — Reading and updating a dictionary
+## Slide 38: Reading and updating a dictionary
 
 Reading and updating a dictionary
 CML3111, Week 4, slide 38
@@ -1068,7 +1157,18 @@ Output: 4, then 6, then 0. get uses the fallback only when that key is absent.
 Continue to
 Tuples and unpacking
 
-## Slide 39 — Tuples and unpacking
+Output from the supplied CSV (this cohort):
+4
+6
+0
+
+
+Result from the supplied example
+4
+6
+0
+
+## Slide 39: Tuples and unpacking
 
 Tuples and unpacking
 CML3111, Week 4, slide 39
@@ -1092,7 +1192,7 @@ A tuple prevents replacing its positions. It does not freeze the contents of a m
 Continue to
 Unpacking a pair
 
-## Slide 40 — Unpacking a pair
+## Slide 40: Unpacking a pair
 
 Unpacking a pair
 CML3111, Week 4, slide 40
@@ -1125,7 +1225,16 @@ Output: 2, then 3.
 Continue to
 A set remembers distinct items
 
-## Slide 41 — A set remembers distinct items
+Output from the supplied CSV (this cohort):
+2
+3
+
+
+Result from the supplied example
+2
+3
+
+## Slide 41: A set remembers distinct items
 
 A set remembers distinct items
 CML3111, Week 4, slide 41
@@ -1149,7 +1258,7 @@ Do not use a set when position or repeated readings matter. Sets cannot be index
 Continue to
 Set membership and repeated IDs
 
-## Slide 42 — Set membership and repeated IDs
+## Slide 42: Set membership and repeated IDs
 
 Set membership and repeated IDs
 CML3111, Week 4, slide 42
@@ -1188,7 +1297,18 @@ Output: 1, True, False. Adding the same ID twice keeps one distinct ID.
 Continue to
 How the four collections differ
 
-## Slide 43 — How the four collections differ
+Output from the supplied CSV (this cohort):
+1
+True
+False
+
+
+Result from the supplied example
+1
+True
+False
+
+## Slide 43: How the four collections differ
 
 How the four collections differ
 CML3111, Week 4, slide 43
@@ -1213,7 +1333,7 @@ Choose by the question: ordered readings, named fields, fixed positions, or dist
 Continue to
 Dictionary items and two loop names
 
-## Slide 44 — Dictionary items and two loop names
+## Slide 44: Dictionary items and two loop names
 
 Dictionary items and two loop names
 CML3111, Week 4, slide 44
@@ -1235,7 +1355,7 @@ for key, value in record.items(): repeats the indented body for each field. Use 
 Continue to
 Looping through named fields
 
-## Slide 45 — Looping through named fields
+## Slide 45: Looping through named fields
 
 Looping through named fields
 CML3111, Week 4, slide 45
@@ -1265,7 +1385,16 @@ Output: unit A, then reading 6. The dictionary preserves insertion order.
 Continue to
 A position and a key find different things
 
-## Slide 46 — A position and a key find different things
+Output from the supplied CSV (this cohort):
+unit A
+reading 6
+
+
+Result from the supplied example
+unit A
+reading 6
+
+## Slide 46: A position and a key find different things
 
 A position and a key find different things
 CML3111, Week 4, slide 46
@@ -1285,7 +1414,7 @@ Both examples return 4. Explain how each lookup finds it.
 Continue to
 CSV and header
 
-## Slide 47 — CSV and header
+## Slide 47: CSV and header
 
 CSV and header
 CML3111, Week 4, slide 47
@@ -1305,7 +1434,7 @@ CSV and header: CSV means comma-separated values. One line usually represents on
 Continue to
 One record at a time
 
-## Slide 48 — One record at a time
+## Slide 48: One record at a time
 
 One record at a time
 CML3111, Week 4, slide 48
@@ -1331,7 +1460,7 @@ float("2.5") converts text into the number 2.5.
 Continue to
 A CSV file has a header and text values
 
-## Slide 49 — A CSV file has a header and text values
+## Slide 49: A CSV file has a header and text values
 
 A CSV file has a header and text values
 CML3111, Week 4, slide 49
@@ -1355,7 +1484,7 @@ An empty field is empty text. Check the task’s rule before converting it.
 Continue to
 A CSV row becomes a dictionary
 
-## Slide 50 — A CSV row becomes a dictionary
+## Slide 50: A CSV row becomes a dictionary
 
 A CSV row becomes a dictionary
 CML3111, Week 4, slide 50
@@ -1379,7 +1508,7 @@ The value "2.5" starts as text. float("2.5") makes the number 2.5.
 Continue to
 with and import
 
-## Slide 51 — with and import
+## Slide 51: with and import
 
 with and import
 CML3111, Week 4, slide 51
@@ -1399,7 +1528,7 @@ with and import: import makes library tools available. with open(...) opens a fi
 Continue to
 Your cohort data
 
-## Slide 52 — Your cohort data
+## Slide 52: Your cohort data
 
 Your cohort data
 CML3111, Week 4, slide 52
@@ -1423,7 +1552,7 @@ Read the issued task’s blank-value and threshold rules before calculating.
 Continue to
 Read the supplied CSV in four steps
 
-## Slide 53 — Read the supplied CSV in four steps
+## Slide 53: Read the supplied CSV in four steps
 
 Read the supplied CSV in four steps
 CML3111, Week 4, slide 53
@@ -1447,7 +1576,7 @@ list(...) collects the rows while the file is open. We inspect the first row and
 Continue to
 What with open as source does
 
-## Slide 54 — What with open as source does
+## Slide 54: What with open as source does
 
 What with open as source does
 CML3111, Week 4, slide 54
@@ -1475,7 +1604,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Open a real CSV and inspect its first row
 
-## Slide 55 — Open a real CSV and inspect its first row
+## Slide 55: Open a real CSV and inspect its first row
 
 Open a real CSV and inspect its first row
 CML3111, Week 4, slide 55
@@ -1511,545 +1640,96 @@ Read the actual keys and text values. Check the uploaded filename if Python repo
 Continue to
 A list of dictionaries
 
-## Slide 56 — A list of dictionaries
+Output from the supplied CSV (this cohort):
+{'motor_id': 'M1', 'supply_v': '230', 'current_a': '5.41', 'rpm': '1400', 'winding_temp_c': '81.7', 'vibration_rms': '0.503', 'pass_fail': 'pass', 'test_date': '2026-03-01', 'ambient_temp_c': '25'}
+300
 
-A list of dictionaries
-CML3111, Week 4, slide 56
 
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
+Result from the supplied example
+{'motor_id': 'M1', 'supply_v': '230', 'current_a': '5.41', 'rpm': '1400', 'winding_temp_c': '81.7', 'vibration_rms': '0.503', 'pass_fail': 'pass', 'test_date': '2026-03-01', 'ambient_temp_c': '25'}
+300
 
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
+## Slide 56: Numbers read from CSV
 
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
+Use the real header shown in the previous example. The list rows already contains the supplied file records.
 
-On this slide
-A record holds named fields for one observation. A list of records holds several observations in order.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-records[0] selects the first dictionary. records[0]["reading"] then selects that dictionary’s reading field.
+## Slide 57: Recorded values from the supplied rows
 
-for row in records takes one dictionary at a time. row["reading"] retrieves that observation’s field; float converts numeric text when needed.
+Each retained number comes directly from a CSV row. [:5] previews up to five entries.
 
-Continue to
-A record and a growing list
-
-## Slide 57 — A record and a growing list
-
-A record and a growing list
-CML3111, Week 4, slide 57
-
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-On this slide
-Braces pair a key with its value. append adds one value to the end of a list.
-
-The same pattern works after reading a CSV row.
-
-Continue to
-A record and a growing list in Python
-
-## Slide 58 — A record and a growing list in Python
-
-A record and a growing list in Python
-CML3111, Week 4, slide 58
-
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-Read the displayed code line by line
-records = [{"sensor": "A", "reading": "2.5"},
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-{"sensor": "B", "reading": "3.5"}]
-This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
-
+Complete worked example:
 values = []
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+for row in rows:
+    text = row["winding_temp_c"]
+    if text != "":
+        values.append(float(text))
+print(len(values))
+print(values[:5])
 
-for row in records:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+Output from the supplied CSV (this cohort):
+297
+[81.7, 81.75, 84.17, 86.34, 82.43]
 
-values.append(float(row["reading"]))
-Evaluate the argument and add it as one new item at the end of this list.
 
-print(values)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Result from the supplied example
+297
+[81.7, 81.75, 84.17, 86.34, 82.43]
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+## Slide 58: One summary for each group
 
-Continue to
-Skip a blank before converting text
+Every retained row contributes once. Use the actual group and measurement names in this cohort’s CSV.
 
-## Slide 59 — Skip a blank before converting text
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Skip a blank before converting text
-CML3111, Week 4, slide 59
+## Slide 59: Grouped means from the supplied rows (1/2)
 
-Explanation to give
-Inspect a field before converting it. A blank string represents no recorded number here. Converting that blank with float raises ValueError, so handle the missing case explicitly.
+get(group, 0) returns the existing value or zero for a new group. The measurement and grouping labels match the supplied CSV.
 
-Worked illustration / lecturer answer
-For text values ["2", "", "4"], skip the blank and convert the other two to 2.0 and 4.0. Their mean is 3.0 using count 2, not count 3.
-
-Misconception to address
-Do not convert blank to zero merely to silence an error. Zero is a measurement. Catch only the expected conversion failure so unrelated coding errors remain visible.
-
-On this slide
-An empty text field is "". The comparison != means “not equal to”. Only convert a value after the blank check passes.
-
-In this example, values records valid numbers only. Its length is the valid count; the group summaries must use the same valid-record policy.
-
-Continue to
-Collect only the recorded numbers
-
-## Slide 60 — Collect only the recorded numbers
-
-Collect only the recorded numbers
-CML3111, Week 4, slide 60
-
-Explanation to give
-Inspect a field before converting it. A blank string represents no recorded number here. Converting that blank with float raises ValueError, so handle the missing case explicitly.
-
-Worked illustration / lecturer answer
-For text values ["2", "", "4"], skip the blank and convert the other two to 2.0 and 4.0. Their mean is 3.0 using count 2, not count 3.
-
-Misconception to address
-Do not convert blank to zero merely to silence an error. Zero is a measurement. Catch only the expected conversion failure so unrelated coding errors remain visible.
-
-Read the displayed code line by line
-text_values = ["2.5", "", "3.5"]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-values = []
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for text in text_values:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-if text != "":
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
-
-values.append(float(text))
-Evaluate the argument and add it as one new item at the end of this list.
-
-print(len(values), values)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
-Expected: 2 [2.5, 3.5]. A blank is missing, not a recorded zero.
-
-Continue to
-Membership in a dictionary
-
-## Slide 61 — Membership in a dictionary
-
-Membership in a dictionary
-CML3111, Week 4, slide 61
-
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-On this slide
-group in totals asks whether group is already a dictionary key. group not in totals asks whether that key is absent.
-
-Before adding to a new group, create its total with totals[group] = 0. Then add the current record’s reading.
-
-The outer for visits records. The inner if runs only for a new group. The addition after the if runs for every record.
-
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
-
-Continue to
-Summaries for separate groups
-
-## Slide 62 — Summaries for separate groups
-
-Summaries for separate groups
-CML3111, Week 4, slide 62
-
-Explanation to give
-Each group needs its own total and count. Identify the group label before updating its stored summary. A total divided by the overall count gives the wrong group mean.
-
-Worked illustration / lecturer answer
-Records A:2, A:4 and B:10 give A total 6 and count 2, so A mean 3. B total 10 and count 1 give mean 10.
-
-Misconception to address
-Start a new group's total and count once, when first encountered. Resetting them on every record loses earlier observations for that group.
-
-On this slide
-A dictionary can hold one running total for each group.
-
-An absent key needs an initial zero.
-
-Then add the reading to that group.
-
-To calculate group means, keep a matching count and divide each group total by its own count.
-
-Continue to
-Summaries for separate groups in Python (1/2)
-
-## Slide 63 — Summaries for separate groups in Python (1/2)
-
-Summaries for separate groups in Python (1/2)
-CML3111, Week 4, slide 63
-
-Explanation to give
-Each group needs its own total and count. Identify the group label before updating its stored summary. A total divided by the overall count gives the wrong group mean.
-
-Worked illustration / lecturer answer
-Records A:2, A:4 and B:10 give A total 6 and count 2, so A mean 3. B total 10 and count 1 give mean 10.
-
-Misconception to address
-Start a new group's total and count once, when first encountered. Resetting them on every record loses earlier observations for that group.
-
-Read the displayed code line by line
-records = [{"group": "A", "reading": 2},
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-{"group": "A", "reading": 4},
-This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
-
-{"group": "B", "reading": 9}]
-This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
-
+Complete worked example:
 totals = {}
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for row in records:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-group = row["group"]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-if group not in totals:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
-
-totals[group] = 0
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-totals[group] = totals[group] + row["reading"]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
-
-Continue to
-Summaries for separate groups in Python (2/2)
-
-## Slide 64 — Summaries for separate groups in Python (2/2)
-
-Summaries for separate groups in Python (2/2)
-CML3111, Week 4, slide 64
-
-Explanation to give
-Each group needs its own total and count. Identify the group label before updating its stored summary. A total divided by the overall count gives the wrong group mean.
-
-Worked illustration / lecturer answer
-Records A:2, A:4 and B:10 give A total 6 and count 2, so A mean 3. B total 10 and count 1 give mean 10.
-
-Misconception to address
-Start a new group's total and count once, when first encountered. Resetting them on every record loses earlier observations for that group.
-
-Read the displayed code line by line
-print(totals)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
-Continue the SAME cell; keep indentation. Run after all parts are entered.
-
-Continue to
-A group mean needs its own count
-
-## Slide 65 — A group mean needs its own count
-
-A group mean needs its own count
-CML3111, Week 4, slide 65
-
-Explanation to give
-Each group needs its own total and count. Identify the group label before updating its stored summary. A total divided by the overall count gives the wrong group mean.
-
-Worked illustration / lecturer answer
-Records A:2, A:4 and B:10 give A total 6 and count 2, so A mean 3. B total 10 and count 1 give mean 10.
-
-Misconception to address
-Start a new group's total and count once, when first encountered. Resetting them on every record loses earlier observations for that group.
-
-On this slide
-The preceding loop calculated a total for each group. Count records in those same groups, then divide each group total by its own count.
-
-items() supplies the group name and its total together. We use small invented records, not the assignment’s answers.
-
-Continue to
-From group totals to group means
-
-## Slide 66 — From group totals to group means
-
-From group totals to group means
-CML3111, Week 4, slide 66
-
-Explanation to give
-Each group needs its own total and count. Identify the group label before updating its stored summary. A total divided by the overall count gives the wrong group mean.
-
-Worked illustration / lecturer answer
-Records A:2, A:4 and B:10 give A total 6 and count 2, so A mean 3. B total 10 and count 1 give mean 10.
-
-Misconception to address
-Start a new group's total and count once, when first encountered. Resetting them on every record loses earlier observations for that group.
-
-Read the displayed code line by line
 counts = {}
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for row in records:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-group = row["group"]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-counts[group] = counts.get(group, 0) + 1
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
+for row in rows:
+    group = row["motor_id"]
+    if row["winding_temp_c"] != "":
+        value = float(row["winding_temp_c"])
+        totals[group] = totals.get(group, 0) + value
+        counts[group] = counts.get(group, 0) + 1
 means = {}
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for group, total in totals.items():
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-means[group] = total / counts[group]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
+for group in totals:
+    means[group] = totals[group] / counts[group]
 print(means)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-Result / continuity
-Expected: A has mean 3.0 and B has mean 9.0. Each group uses its own denominator.
+Output from the supplied CSV (this cohort):
+{'M1': 84.87526315789471, 'M2': 85.19885714285714, 'M3': 112.97368421052634, 'M4': 84.91842105263157, 'M5': 84.84891891891888, 'M6': 85.25189189189189, 'M7': 84.7543243243243, 'M8': 84.85756756756756}
 
-Continue to
-When numeric text cannot be converted
 
-## Slide 67 — When numeric text cannot be converted
+Result from the supplied example
+{'M1': 84.87526315789471, 'M2': 85.19885714285714, 'M3': 112.97368421052634, 'M4': 84.91842105263157, 'M5': 84.84891891891888, 'M6': 85.25189189189189, 'M7': 84.7543243243243, 'M8': 84.85756756756756}
 
-When numeric text cannot be converted
-CML3111, Week 4, slide 67
+## Slide 60: Grouped means from the supplied rows (2/2)
 
-Explanation to give
-Inspect a field before converting it. A blank string represents no recorded number here. Converting that blank with float raises ValueError, so handle the missing case explicitly.
+get(group, 0) returns the existing value or zero for a new group. The measurement and grouping labels match the supplied CSV.
 
-Worked illustration / lecturer answer
-For text values ["2", "", "4"], skip the blank and convert the other two to 2.0 and 4.0. Their mean is 3.0 using count 2, not count 3.
+Complete worked example:
+totals = {}
+counts = {}
+for row in rows:
+    group = row["motor_id"]
+    if row["winding_temp_c"] != "":
+        value = float(row["winding_temp_c"])
+        totals[group] = totals.get(group, 0) + value
+        counts[group] = counts.get(group, 0) + 1
+means = {}
+for group in totals:
+    means[group] = totals[group] / counts[group]
+print(means)
 
-Misconception to address
-Do not convert blank to zero merely to silence an error. Zero is a measurement. Catch only the expected conversion failure so unrelated coding errors remain visible.
+Result from the supplied example
+{'M1': 84.87526315789471, 'M2': 85.19885714285714, 'M3': 112.97368421052634, 'M4': 84.91842105263157, 'M5': 84.84891891891888, 'M6': 85.25189189189189, 'M7': 84.7543243243243, 'M8': 84.85756756756756}
 
-On this slide
-float("bad") raises ValueError: the text does not represent a number. An exception interrupts ordinary execution.
-
-try contains the operation that might fail. except ValueError runs only for that named failure. Indentation shows the two blocks.
-
-Continue to
-Catch one expected conversion failure
-
-## Slide 68 — Catch one expected conversion failure
-
-Catch one expected conversion failure
-CML3111, Week 4, slide 68
-
-Explanation to give
-Inspect a field before converting it. A blank string represents no recorded number here. Converting that blank with float raises ValueError, so handle the missing case explicitly.
-
-Worked illustration / lecturer answer
-For text values ["2", "", "4"], skip the blank and convert the other two to 2.0 and 4.0. Their mean is 3.0 using count 2, not count 3.
-
-Misconception to address
-Do not convert blank to zero merely to silence an error. Zero is a measurement. Catch only the expected conversion failure so unrelated coding errors remain visible.
-
-Read the displayed code line by line
-text = "bad"
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-try:
-Attempt the indented conversion while allowing the specified failure to be handled.
-
-reading = float(text)
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-except ValueError:
-Handle only the named exception from the preceding try block.
-
-reading = None
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(reading)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
-Expected: None. The assignment specifies which invalid records to skip; do not invent a replacement number.
-
-Continue to
-Trace conversion success and failure
-
-## Slide 69 — Trace conversion success and failure
-
-Trace conversion success and failure
-CML3111, Week 4, slide 69
-
-Explanation to give
-Inspect a field before converting it. A blank string represents no recorded number here. Converting that blank with float raises ValueError, so handle the missing case explicitly.
-
-Worked illustration / lecturer answer
-For text values ["2", "", "4"], skip the blank and convert the other two to 2.0 and 4.0. Their mean is 3.0 using count 2, not count 3.
-
-Misconception to address
-Do not convert blank to zero merely to silence an error. Zero is a measurement. Catch only the expected conversion failure so unrelated coding errors remain visible.
-
-On this slide
-Text supplied | try block | Result after except
-"2.5" | float succeeds; skip except | 2.5
-"bad" | float raises ValueError | None assigned by except
-Only the named conversion failure is handled. Do not use except: pass to hide unrelated errors.
-
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
-
-Continue to
-Revision example and answer
-
-## Slide 70 — Revision example and answer
-
-Revision example and answer
-CML3111, Week 4, slide 70
-
-Explanation to give
-Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
-
-Worked illustration / lecturer answer
-Example: Add 8 to the list. Trace the new total and count before running. What happens if total = 0 is moved inside the loop?
-
-Answer: Total 20, count 4, mean 5.0. Resetting inside the loop discards previous additions and leaves only the last value in total.
-
-Misconception to address
-Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
-
-Continue to
-Preparing for the assignment
-
-## Slide 71 — Preparing for the assignment
-
-Preparing for the assignment
-CML3111, Week 4, slide 71
-
-Explanation to give
-A4 uses the Week 4 300-row cohort CSV. The required outputs are valid_count, mean_reading, above_limit and group_means. Work only with the rows admitted by the published blank-reading rules.
-
-Worked illustration / lecturer answer
-Trace a smaller unrelated dataset first: A readings 2 and 4 yield A mean 3; B reading 9 yields B mean 9. Each group needs its own denominator.
-
-Misconception to address
-Despite “Reading report” in the title, A4 is one completed Python notebook, not a separate Word report. Do not use Week 2’s four-row CSV.
-
-On this slide
-Open the issued W04 notebook and its cohort CSV.
-
-Compute the requested valid_count, mean_reading, above_limit and group_means using the exact names in the notebook.
-
-First identify the correct field and its unit.
-
-Keep the CSV beside the notebook locally or upload it into the Colab runtime.
-
-Continue to
-Preparing for the assignment continued
-
-## Slide 72 — Preparing for the assignment continued
-
-Preparing for the assignment continued
-CML3111, Week 4, slide 72
-
-Explanation to give
-A4 uses the Week 4 300-row cohort CSV. The required outputs are valid_count, mean_reading, above_limit and group_means. Work only with the rows admitted by the published blank-reading rules.
-
-Worked illustration / lecturer answer
-Trace a smaller unrelated dataset first: A readings 2 and 4 yield A mean 3; B reading 9 yields B mean 9. Each group needs its own denominator.
-
-Misconception to address
-Despite “Reading report” in the title, A4 is one completed Python notebook, not a separate Word report. Do not use Week 2’s four-row CSV.
-
-On this slide
-The written interpretation is practice.
-
-Continue to
-Counting every record
-
-## Slide 73 — Counting every record
-
-Counting every record
-CML3111, Week 4, slide 73
-
-Explanation to give
-An audit describes the difference between the received data and the retained data. State what was counted and why a record was removed or a field filled. Return named counts so another reader can verify the accounting.
-
-Worked illustration / lecturer answer
-If 5 raw records become 4 after one duplicate removal, raw_count is 5 and cleaned_count is 4. A filled field changes a value but does not by itself remove a record.
-
-Misconception to address
-Several defect counts can overlap on the same record. Do not add them as if they were mutually exclusive removals unless your counting rule guarantees that.
-
-On this slide
-DictReader already consumes the header; skipping its first yielded row skips real data.
-
-A string such as "unknown" cannot be converted to float.
-
-Catch the expected conversion error, count and record it, then continue under a stated policy.
-
-Inspect whether skipped rows share a source before reporting a mean.
-
-Continue to
-Counting every record continued
-
-## Slide 74 — Counting every record continued
-
-Counting every record continued
-CML3111, Week 4, slide 74
-
-Explanation to give
-An audit describes the difference between the received data and the retained data. State what was counted and why a record was removed or a field filled. Return named counts so another reader can verify the accounting.
-
-Worked illustration / lecturer answer
-If 5 raw records become 4 after one duplicate removal, raw_count is 5 and cleaned_count is 4. A filled field changes a value but does not by itself remove a record.
-
-Misconception to address
-Several defect counts can overlap on the same record. Do not add them as if they were mutually exclusive removals unless your counting rule guarantees that.
-
-On this slide
-A sample summary describes observed records, not every possible operating condition.
-
-Continue to
-Your issued assignment
-
-## Slide 75 — Your issued assignment
+## Slide 61: Your issued assignment
 
 Your issued assignment
 CML3111, Week 4, slide 75
@@ -2075,7 +1755,7 @@ Restart and run all cells, then save the completed notebook.
 Continue to
 valid_count (5 marks)
 
-## Slide 76 — valid_count (5 marks)
+## Slide 62: valid_count (5 marks)
 
 valid_count (5 marks)
 CML3111, Week 4, slide 76
@@ -2097,7 +1777,7 @@ Skip blank readings before numeric conversion.
 Continue to
 mean_reading (5 marks)
 
-## Slide 77 — mean_reading (5 marks)
+## Slide 63: mean_reading (5 marks)
 
 mean_reading (5 marks)
 CML3111, Week 4, slide 77
@@ -2121,7 +1801,7 @@ Keep full precision.
 Continue to
 above_limit (5 marks)
 
-## Slide 78 — above_limit (5 marks)
+## Slide 64: above_limit (5 marks)
 
 above_limit (5 marks)
 CML3111, Week 4, slide 78
@@ -2143,7 +1823,7 @@ A reading equal to the threshold is not counted.
 Continue to
 group_means (5 marks)
 
-## Slide 79 — group_means (5 marks)
+## Slide 65: group_means (5 marks)
 
 group_means (5 marks)
 CML3111, Week 4, slide 79
@@ -2167,7 +1847,7 @@ Keep full precision.
 Continue to
 Week 4 rules
 
-## Slide 80 — Week 4 rules
+## Slide 66: Week 4 rules
 
 Week 4 rules
 CML3111, Week 4, slide 80
@@ -2193,7 +1873,7 @@ Threshold 130.0 is a teaching assumption.
 Continue to
 Week 4 rules continued
 
-## Slide 81 — Week 4 rules continued
+## Slide 67: Week 4 rules continued
 
 Week 4 rules continued
 CML3111, Week 4, slide 81
@@ -2219,7 +1899,7 @@ STUDENT_ID in the starter code means Student Registration Number.
 Continue to
 Week 4 rules continued
 
-## Slide 82 — Week 4 rules continued
+## Slide 68: Week 4 rules continued
 
 Week 4 rules continued
 CML3111, Week 4, slide 82
@@ -2245,7 +1925,7 @@ The first names your required files and hand-in checklist; the second explains a
 Continue to
 Reading report submission
 
-## Slide 83 — Reading report submission
+## Slide 69: Reading report submission
 
 Reading report submission
 CML3111, Week 4, slide 83
@@ -2271,7 +1951,7 @@ Keep the submitted files and confirmation.
 Continue to
 Week 4 quiz
 
-## Slide 84 — Week 4 quiz
+## Slide 70: Week 4 quiz
 
 Week 4 quiz
 CML3111, Week 4, slide 84
@@ -2297,7 +1977,7 @@ Check the announced quiz closing time.
 Continue to
 Revision and submission checklist
 
-## Slide 85 — Revision and submission checklist
+## Slide 71: Revision and submission checklist
 
 Revision and submission checklist
 CML3111, Week 4, slide 85

@@ -185,12 +185,33 @@ def make_deck(code,w):
 from iuea_foundations_revision import revise
 # Week 2 is already taught: preserve its published content during this revision.
 existing=json.loads((ROOT/'data/iuea_deck_content.json').read_text())
-decks=[next(d for d in existing if d['cohort']==c and d['week']==w) if w==2 else revise(make_deck(c,w)) for c in COHORTS for w in WEEKS if not(c=='CML3112' and w==2)]
+decks=[next(d for d in existing if d['cohort']==c and d['week']==w) if w in (2,6) else revise(make_deck(c,w)) for c in COHORTS for w in WEEKS]
 from reviewed_notes_overlay import apply_slide_specific_notes
 from plain_language_slides import apply_plain_language
 decks = apply_plain_language(decks)
 apply_slide_specific_notes(decks)
+from pandas_continuity import revise_decks
+decks = revise_decks(decks)
+from csv_examples import revise as bind_csv_examples
+decks = bind_csv_examples(decks)
+from pandas_explanations import revise as explain_pandas
+decks = explain_pandas(decks)
+from colab_exam_slides import revise as revise_colab_exams
+decks = revise_colab_exams(decks)
 (ROOT/'data/iuea_deck_content.json').write_text(json.dumps(decks,indent=2)+'\n')
+from descriptive_teaching_names import revise as revise_names
+from common_ml_conventions import apply as apply_conventional_names
+from verify_later_teaching import run as verify_later_examples
+revise_names()
+apply_conventional_names()
+from stepwise_teaching_expansion import apply as apply_stepwise_teaching
+apply_stepwise_teaching()
+import runpy
+runpy.run_path(str(ROOT/'scripts/finalize_stepwise_sources.py'),run_name='__main__')
+verify_later_examples()
+from refine_later_code_captions import apply as refine_code_captions
+refine_code_captions()
+decks=json.loads((ROOT/'data/iuea_deck_content.json').read_text())
 (REVIEW/'deck-content.json').write_text(json.dumps(decks,indent=2)+'\n')
 print(f'Prepared {len(decks)} decks, {sum(len(d["slides"]) for d in decks)} slides')
 

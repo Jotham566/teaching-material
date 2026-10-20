@@ -1,43 +1,32 @@
 {
-  "id": "TEST2-2026.09",
-  "title": "Practical Test 2",
+  "id": "TEST2-2026.10-colab-v1",
+  "title": "Practical TEST2",
   "maximum": 100,
+  "grading": "deterministic",
   "criteria": [
     {
-      "id": "c1",
-      "title": "Task framing",
-      "maximum": 10.0,
-      "description": "The ML task is correctly identified, the target named, and regression vs classification correctly chosen and justified."
+      "id": "q1",
+      "title": "Equipment-group split",
+      "maximum": 20,
+      "description": "Assign whole equipment groups: E1\u2013E4 to train, E5 to validation, E6 to test. Return train, validation and test lists of record_id in input order. Do not use target values to choose membership."
     },
     {
-      "id": "c2",
-      "title": "Data preparation & leakage control",
-      "maximum": 20.0,
-      "description": "Cleaning and encoding appropriate. Split made before any fitting. Pipeline used. No leakage present - a leak found by the marker caps this criterion at zero."
+      "id": "q2",
+      "title": "Baseline, linear and tree predictions",
+      "maximum": 30,
+      "description": "Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only. Return three prediction lists under baseline, linear and tree. Feature records have no target. Fit preprocessing only on training data."
     },
     {
-      "id": "c3",
-      "title": "Modelling protocol",
-      "maximum": 20.0,
-      "description": "At least two models built and compared under identical conditions. Baseline included. Hyperparameters handled sensibly."
+      "id": "q3",
+      "title": "MAE and RMSE",
+      "maximum": 20,
+      "description": "Return mae and rmse, calculated over the same paired observations, with full precision."
     },
     {
-      "id": "c4",
-      "title": "Evaluation & metric justification",
-      "maximum": 20.0,
-      "description": "Correct metrics computed. Metric choice defended against the cost of error. Cross-validation reported with a spread, not a single number."
-    },
-    {
-      "id": "c5",
-      "title": "Engineering interpretation & limits",
-      "maximum": 20.0,
-      "description": "The result is stated in physical or operational units. Three genuine limitations given. A clear position on whether it should be deployed."
-    },
-    {
-      "id": "c6",
-      "title": "Code clarity",
-      "maximum": 10.0,
-      "description": "Runs top to bottom. Readable. Commented where the intent is not obvious."
+      "id": "q4",
+      "title": "Structured interpretation",
+      "maximum": 30,
+      "description": "Six scenario choices in DECISIONS; 5 marks for each correct choice."
     }
   ]
 }

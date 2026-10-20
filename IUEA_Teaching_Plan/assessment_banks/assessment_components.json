@@ -109,54 +109,55 @@
   },
   "TEST1": {
     "maximum": 100,
-    "deterministic_maximum": 52,
-    "reasoning_maximum": 48.0,
-    "criterion_allocation": [
-      {
-        "task": "summary",
-        "marks": 10,
-        "criterion": "c1"
-      },
-      {
-        "task": "clean",
-        "marks": 10,
-        "criterion": "c2"
-      },
-      {
-        "task": "charts",
-        "marks": 12,
-        "criterion": "c3"
-      },
-      {
-        "task": "findings",
-        "marks": 20,
-        "criterion": "c4"
-      }
-    ],
-    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+    "deterministic_maximum": 100,
+    "reasoning_maximum": 0,
+    "version": "2026.10-colab-v1",
+    "parts": [
+      [
+        "clean",
+        20
+      ],
+      [
+        "summary",
+        15
+      ],
+      [
+        "charts",
+        15
+      ],
+      [
+        "findings",
+        20
+      ],
+      [
+        "decisions",
+        30
+      ]
+    ]
   },
   "TEST2": {
     "maximum": 100,
-    "deterministic_maximum": 30,
-    "reasoning_maximum": 70.0,
-    "criterion_allocation": [
-      {
-        "task": "split",
-        "marks": 10,
-        "criterion": "c2"
-      },
-      {
-        "task": "regression",
-        "marks": 10,
-        "criterion": "c3"
-      },
-      {
-        "task": "errors",
-        "marks": 10,
-        "criterion": "c4"
-      }
-    ],
-    "release_status": "DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue"
+    "deterministic_maximum": 100,
+    "reasoning_maximum": 0,
+    "version": "2026.10-colab-v1",
+    "parts": [
+      [
+        "split",
+        20
+      ],
+      [
+        "regression",
+        30
+      ],
+      [
+        "errors",
+        20
+      ],
+      [
+        "decisions",
+        30
+      ]
+    ]
   },
   "DA_PROJECT": {
     "maximum": 100,

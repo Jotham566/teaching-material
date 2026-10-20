@@ -1,0 +1,272 @@
+[
+  {
+    "cohort": "CML3112",
+    "week": 4,
+    "filename": "CML3112_Week04_Design_Infrastructure.pptx",
+    "slides": 71,
+    "sha256": "a877a064554c01c2706f31957fd3fef3067a19e3d2c5424459b76b723aabdd72",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week04_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 5,
+    "filename": "CML3112_Week05_Design_Infrastructure.pptx",
+    "slides": 24,
+    "sha256": "b2aa939b17141ff09341c19d3f3b12a99cbe357670e13ac62b88299330931697",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week05_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 6,
+    "filename": "CML3112_Week06_Design_Infrastructure.pptx",
+    "slides": 29,
+    "sha256": "7a4b65724344931eb65a3f0b8d02ee10e80b5cfee39f6ef84b35785ae9e02d1c",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week06_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 7,
+    "filename": "CML3112_Week07_Design_Infrastructure.pptx",
+    "slides": 21,
+    "sha256": "e0a51967b4aa47f0476b5841c449105e30a051f85f64ca38d472ffde1d7e4218",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week07_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 8,
+    "filename": "CML3112_Week08_Design_Infrastructure.pptx",
+    "slides": 30,
+    "sha256": "f3dc4daa0119d453164249203297502f453a80bfc93844da4e70f353d9da12c6",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week08_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 9,
+    "filename": "CML3112_Week09_Design_Infrastructure.pptx",
+    "slides": 20,
+    "sha256": "f4cbb13d7067df0b6771347eaf904db3800566123f066a1f99df0d6d8b4a41e3",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week09_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 10,
+    "filename": "CML3112_Week10_Design_Infrastructure.pptx",
+    "slides": 25,
+    "sha256": "8b0a3c9f4fc48b227630965d920359bde3fdaebabbcaf1056ba6cffe321d36d0",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week10_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 11,
+    "filename": "CML3112_Week11_Design_Infrastructure.pptx",
+    "slides": 22,
+    "sha256": "69202e34a4d66717ce630ec0398970de72e95014d8b2390a88b6e6246790aa3e",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week11_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "filename": "CML3112_Week12_Design_Infrastructure.pptx",
+    "slides": 26,
+    "sha256": "773a54d9e7bbdcb0b780e580297070e742a4c6217c1ad05a88f28d6b4e1d166c",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week12_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "filename": "CML3112_Week14_Design_Infrastructure.pptx",
+    "slides": 22,
+    "sha256": "2423d6efee27ca001dd25eed99449b16f9106d34622fe6a5b2aae4c731bd0b24",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3112_Week14_Design_Infrastructure/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 4,
+    "filename": "CML3113_Week04_Mining_Petroleum.pptx",
+    "slides": 71,
+    "sha256": "383bd5c3817e9bcc5e7ca6bf26ae9c0edaa50e2c6562df2df94d6c69953de449",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week04_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 5,
+    "filename": "CML3113_Week05_Mining_Petroleum.pptx",
+    "slides": 25,
+    "sha256": "86e9b42f258000637293a8033d6fe4c326c6c7b32dc5b36a0d7bdd51f8222c15",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week05_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 6,
+    "filename": "CML3113_Week06_Mining_Petroleum.pptx",
+    "slides": 29,
+    "sha256": "6687da3e5e7a43beebf1a651ea7c6d073cb0672ce7e70a0571f68918183fa037",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week06_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 7,
+    "filename": "CML3113_Week07_Mining_Petroleum.pptx",
+    "slides": 21,
+    "sha256": "79ee4ae9e91ef99b6d5fd74a89a28e4197c5b895f7d5f70223f3a5377a2e6d4b",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week07_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 8,
+    "filename": "CML3113_Week08_Mining_Petroleum.pptx",
+    "slides": 30,
+    "sha256": "c333c1036bbebda3c731f9507a03807ffc4978994441d4ea200292a6640f6f4d",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week08_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 9,
+    "filename": "CML3113_Week09_Mining_Petroleum.pptx",
+    "slides": 20,
+    "sha256": "54b9f31e34791d871e8ac282f6a35b363f3a45db5d9c5044f1d1be8d14d41901",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week09_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 10,
+    "filename": "CML3113_Week10_Mining_Petroleum.pptx",
+    "slides": 25,
+    "sha256": "5afc791b17821f449911ee9de14f275adc518e96612b5261700f93c5a932c757",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week10_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 11,
+    "filename": "CML3113_Week11_Mining_Petroleum.pptx",
+    "slides": 22,
+    "sha256": "2eb87c0afeeac992c150fe3fc5f084edf3d11045664c73d638bd0c07320f456a",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week11_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "filename": "CML3113_Week12_Mining_Petroleum.pptx",
+    "slides": 26,
+    "sha256": "c644af39357e7eb4cb26a84eb3c1da8a0dd374323bceb55319331615a4e05f7b",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week12_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "filename": "CML3113_Week14_Mining_Petroleum.pptx",
+    "slides": 22,
+    "sha256": "736d848242dd7698c1866243f44e878eaf5a452cf07c8e6122d94edf5397c9c9",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3113_Week14_Mining_Petroleum/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 4,
+    "filename": "CML3111_Week04_Engineering.pptx",
+    "slides": 71,
+    "sha256": "7c2d8a395ef7408a5bc6cf63ea67ffe86b177cd5d2fb3808b8c39fa9a2de25e4",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week04_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 5,
+    "filename": "CML3111_Week05_Engineering.pptx",
+    "slides": 25,
+    "sha256": "4f1140245fc447d0192d32307e4c0c10e7e1b35bce94d68463c480dc509cd302",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week05_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 6,
+    "filename": "CML3111_Week06_Engineering.pptx",
+    "slides": 29,
+    "sha256": "339b68f661a0be77a260afc542d835352aa84d899b805c6cc70a3daf08839ac1",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week06_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 7,
+    "filename": "CML3111_Week07_Engineering.pptx",
+    "slides": 21,
+    "sha256": "b6a641cfa23d762a9efe34cc5bf2459b989e6e07e6507e2136be0db6d4baa620",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week07_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 8,
+    "filename": "CML3111_Week08_Engineering.pptx",
+    "slides": 30,
+    "sha256": "3ab075ad3f6431c67dd94d480a0dc8c7bd8e777a9a54ec32ee3079df4c08512c",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week08_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 9,
+    "filename": "CML3111_Week09_Engineering.pptx",
+    "slides": 20,
+    "sha256": "c193fd921a1f3d2286da630c400a207aca26df0de63981992469e9e66eba9e67",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week09_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 10,
+    "filename": "CML3111_Week10_Engineering.pptx",
+    "slides": 25,
+    "sha256": "3ea33a8ce0b4db52f22c7bee4e63235210a677d821e5b227ec8e4468814bf866",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week10_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 11,
+    "filename": "CML3111_Week11_Engineering.pptx",
+    "slides": 22,
+    "sha256": "4022cffa7af5b3fa30b4731942679a612342f00482baeecf06f3e761851bd4b1",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week11_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "filename": "CML3111_Week12_Engineering.pptx",
+    "slides": 26,
+    "sha256": "ef294885531e95f319c64d2b8c11f28137e7ce4b1541007d02638fdcc427e864",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week12_Engineering/render"
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "filename": "CML3111_Week14_Engineering.pptx",
+    "slides": 22,
+    "sha256": "606afbb1a2a039e38e70767c4c5d28fd1aca7d8e6fff0bf46afeea848100d53b",
+    "edition": "csv-examples-20261015",
+    "render": "review/2026-09-15/ppt-revision/build/csv-examples-20261015/CML3111_Week14_Engineering/render"
+  }
+]

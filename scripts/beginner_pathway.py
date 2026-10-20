@@ -61,3 +61,19 @@ VIDEOS={
 'regression':dict(title='The Essence of Linear Regression!!!',author='StatQuest with Josh Starmer',url='https://www.youtube.com/watch?v=aFDOzpTeg0s',clip='Opening up to 04:00, optional preview-selected excerpt',focus='How can a fitted line turn an input into a numerical prediction?',after='Draw an actual value and a prediction, then identify their difference.',status='Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.'),
 'confusion':dict(title='Machine Learning Fundamentals The Confusion Matrix',author='StatQuest with Josh Starmer',url='https://www.youtube.com/watch?v=Kdsp6soqA7o',clip='Opening up to 04:00, optional preview-selected excerpt',focus='Which observations are correctly or incorrectly classified?',after='Translate the medical example to warning/no-warning and label the axes.',status='Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.'),
 'validation':dict(title='Machine Learning Fundamentals Cross Validation',author='StatQuest with Josh Starmer',url='https://www.youtube.com/watch?v=fSytzGwwBVw',clip='Opening up to 04:00, optional preview-selected excerpt',focus='Why evaluate using observations not used to fit that particular model?',after='Explain why our repeated equipment IDs require grouped partitions rather than ordinary random folds.',status='Linked by the official StatQuest video index. Full audiovisual preview and excerpt timing still required.')}
+
+# October 2026: pandas remains the table workflow after its Week 5 introduction.
+PANDAS_CORE={
+6:'Read the issued CSV with pandas. Inspect missing values and duplicates, preserve raw data, apply the stated cleaning order, summarise and label charts.',
+7:'Rehearse the offline pandas workflow and the issued function interfaces before test day. Preserve the published examination procedure.',
+8:'Select named feature columns and targets from DataFrames. Fit a mean baseline, linear model and tree with training-only preprocessing. Compare paired errors.',
+9:'Use pandas masks to count paired classification outcomes. Explain precision, recall, a threshold and the stated error costs.',
+10:'Filter equipment groups into separate DataFrames. Fit preprocessing only on training rows and interpret variation across validation folds.',
+11:'Create derived DataFrame columns. Compare base and extended features on the same validation observations.',
+12:'Filter candidate tables by both constraints, sort by the published tie-breaks and return the selected name or None.',
+13:'Reproduce the pandas notebook from a fresh session using documented data paths, dependencies and run order.',
+14:'Rehearse named-column model inputs, training-only pipelines and the issued return types before Practical Test 2.',
+15:'Present the reproducible pandas and modelling workflow, supported findings, limitations and individual contribution.'}
+for _week,_core in PANDAS_CORE.items():
+ WEEKS[_week]['core']=_core
+ WEEKS[_week]['bridge']='Use pandas inside the published functions. Keep their names, required return types and marks unchanged. The starter loader converts CSV data to the issued input records; students implement the analysis. Use the current slide-by-slide companion for worked explanations.'

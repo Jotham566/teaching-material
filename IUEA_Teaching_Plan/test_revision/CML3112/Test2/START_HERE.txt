@@ -1,0 +1,14 @@
+CML3112 — Test 2 revision (Week 14)
+
+1. Open the accompanying PDF and start at slide 1.
+2. Open colab.research.google.com. Sign in and choose New notebook.
+3. Rename the notebook Test revision. Click Connect.
+4. Click the folder icon on the left, then Upload. Select CML3112_Test2_practice.csv.
+5. Add code cells and run the worked examples in slide order.
+6. Try each practice question before reading the answer slide.
+7. Save your notebook in Drive. No practice submission is required.
+
+Keep the CSV filename unchanged. Upload it again if the Colab session resets.
+The slides explain the columns, cleaning rules and expected outputs.
+All data are invented for learning. These are not the assessment files.
+On test day, use the different notebook and engineering_data.csv issued by the timed portal.

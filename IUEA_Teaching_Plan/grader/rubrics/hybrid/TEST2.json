@@ -1,52 +1,9 @@
 {
-  "id": "TEST2-2026.09-hybrid-r1",
-  "title": "Practical Test 2",
-  "maximum": 70.0,
-  "criteria": [
-    {
-      "id": "c1",
-      "title": "Task framing",
-      "maximum": 10.0,
-      "description": "The ML task is correctly identified, the target named, and regression vs classification correctly chosen and justified. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c2",
-      "title": "Data preparation & leakage control",
-      "maximum": 10.0,
-      "description": "Cleaning and encoding appropriate. Split made before any fitting. Pipeline used. No leakage present - a leak found by the marker caps this criterion at zero. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c3",
-      "title": "Modelling protocol",
-      "maximum": 10.0,
-      "description": "At least two models built and compared under identical conditions. Baseline included. Hyperparameters handled sensibly. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c4",
-      "title": "Evaluation & metric justification",
-      "maximum": 10.0,
-      "description": "Correct metrics computed. Metric choice defended against the cost of error. Cross-validation reported with a spread, not a single number. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c5",
-      "title": "Engineering interpretation & limits",
-      "maximum": 20.0,
-      "description": "The result is stated in physical or operational units. Three genuine limitations given. A clear position on whether it should be deployed. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    },
-    {
-      "id": "c6",
-      "title": "Code clarity",
-      "maximum": 10.0,
-      "description": "Runs top to bottom. Readable. Commented where the intent is not obvious. Assess the written justification and interpretation for this criterion. Numerical checks are scored separately. Do not infer correct code execution from prose. Unverifiable visual, repository-history or model-fitting claims must be flagged as concerns, not awarded as established facts."
-    }
-  ],
+  "id": "TEST2-2026.10-colab-v1",
+  "title": "No AI grading component",
+  "maximum": 0,
   "assessment_maximum": 100,
-  "deterministic_maximum": 30,
-  "execution_gates": {
-    "c2": {
-      "field": "q1_marks",
-      "equals": 10,
-      "reason": "Data-preparation credit requires the published leakage-safe split check to pass."
-    }
-  }
+  "deterministic_maximum": 100,
+  "criteria": [],
+  "note": "This test is marked entirely by the deterministic Colab exam grader."
 }

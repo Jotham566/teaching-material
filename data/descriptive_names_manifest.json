@@ -1,0 +1,2177 @@
+[
+  {
+    "cohort": "CML3112",
+    "week": 8,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 8,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 8,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 8,
+    "title": "Baseline and tree on the same CSV rows",
+    "operations": [
+      "python_basics",
+      "DummyRegressor",
+      "make_pipeline",
+      "fit",
+      "select",
+      "SimpleImputer",
+      "DecisionTreeRegressor",
+      "tolist",
+      "round",
+      "python_slice",
+      "predict"
+    ],
+    "variables": [
+      "baseline_model",
+      "tree_model"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 8,
+    "title": "Errors from the supplied validation observations",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "python_power",
+      "copy",
+      "mean",
+      "round",
+      "head",
+      "abs"
+    ],
+    "variables": [
+      "validation_results",
+      "prediction_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 8,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 9,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 9,
+    "title": "Confusion counts from classification_case.csv",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "sum",
+      "mask"
+    ],
+    "variables": [
+      "actual_labels",
+      "predicted_labels",
+      "true_positive_count",
+      "false_negative_count",
+      "false_positive_count",
+      "true_negative_count"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 9,
+    "title": "Metrics from the supplied outcomes",
+    "operations": [
+      "python_basics",
+      "python_if",
+      "arithmetic",
+      "round"
+    ],
+    "variables": [
+      "precision",
+      "recall",
+      "total_error_cost"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 9,
+    "title": "Indicators from the supplied class labels",
+    "operations": [
+      "python_basics",
+      "get_dummies",
+      "select",
+      "tolist",
+      "head"
+    ],
+    "variables": [
+      "class_indicator_columns",
+      "actual_values",
+      "predicted_values"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 10,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 10,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 10,
+    "title": "Training median from the actual ambient readings",
+    "operations": [
+      "python_basics",
+      "median",
+      "fillna",
+      "round",
+      "select",
+      "sum",
+      "head",
+      "isna"
+    ],
+    "variables": [
+      "training_ambient_median",
+      "filled_validation_ambient"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 10,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 10,
+    "title": "Fold errors calculated from the supplied training rows",
+    "operations": [
+      "python_basics",
+      "GroupKFold",
+      "cross_val_score",
+      "select",
+      "Series",
+      "round",
+      "tolist",
+      "mean",
+      "std"
+    ],
+    "variables": [
+      "grouped_folds",
+      "negative_error_scores",
+      "fold_absolute_errors"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 10,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 11,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 11,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 11,
+    "title": "Features from the supplied load and ambient columns",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "select",
+      "arithmetic",
+      "copy",
+      "head"
+    ],
+    "variables": [
+      "training_features",
+      "validation_features",
+      "extended_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 11,
+    "title": "Paired ablation using the supplied CSV",
+    "operations": [
+      "python_basics",
+      "arithmetic",
+      "make_pipeline",
+      "mean_absolute_error",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "base_feature_columns",
+      "extended_feature_columns",
+      "base_pipeline",
+      "extended_pipeline",
+      "base_predictions",
+      "base_absolute_error",
+      "extended_predictions",
+      "extended_absolute_error"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 11,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "title": "Errors from the supplied validation observations",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "python_power",
+      "copy",
+      "mean",
+      "round",
+      "head",
+      "abs"
+    ],
+    "variables": [
+      "validation_results",
+      "prediction_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "title": "A measured candidate from the supplied validation data",
+    "operations": [
+      "python_basics",
+      "perf_counter",
+      "arithmetic",
+      "predict",
+      "select",
+      "DataFrame"
+    ],
+    "variables": [
+      "prediction_start_time",
+      "prediction_time_ms",
+      "candidate_models"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "title": "Selection from the measured candidate table",
+    "operations": [
+      "python_basics",
+      "python_if",
+      "select",
+      "empty",
+      "mask",
+      "sort_values",
+      "iloc"
+    ],
+    "variables": [
+      "eligible_models",
+      "ranked_models",
+      "selected_model_name"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 12,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "Loading the supplied practice file",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv"
+    ],
+    "variables": [
+      "practice_filename",
+      "practice_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "Keeping the source table",
+    "operations": [
+      "python_basics",
+      "copy",
+      "tolist",
+      "select"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "A small group split",
+    "operations": [
+      "python_basics",
+      "copy",
+      "select",
+      "tolist",
+      "loc",
+      "isin"
+    ],
+    "variables": [
+      "training_data",
+      "validation_data"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "Training-mean baseline",
+    "operations": [
+      "python_basics",
+      "python_repeat",
+      "mean",
+      "select"
+    ],
+    "variables": [
+      "training_target_mean",
+      "baseline_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "Calculating baseline errors",
+    "operations": [
+      "python_basics",
+      "arithmetic",
+      "python_power",
+      "reset_index",
+      "Series",
+      "mean",
+      "round",
+      "select",
+      "abs"
+    ],
+    "variables": [
+      "actual_values",
+      "predicted_values",
+      "baseline_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "A fitted linear model",
+    "operations": [
+      "python_basics",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "The model tools",
+    "operations": [
+      "python_basics"
+    ],
+    "variables": [
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "A linear pipeline",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "linear_pipeline",
+      "linear_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "A tree pipeline",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "DecisionTreeRegressor",
+      "fit",
+      "select",
+      "predict"
+    ],
+    "variables": [
+      "tree_model",
+      "tree_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "A practice function",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "Series",
+      "select",
+      "mean"
+    ],
+    "variables": [
+      "reading_values"
+    ]
+  },
+  {
+    "cohort": "CML3112",
+    "week": 14,
+    "title": "A dictionary entry for a practice question",
+    "operations": [
+      "python_basics",
+      "select"
+    ],
+    "variables": []
+  },
+  {
+    "cohort": "CML3113",
+    "week": 8,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 8,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 8,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 8,
+    "title": "Baseline and tree on the same CSV rows",
+    "operations": [
+      "python_basics",
+      "DummyRegressor",
+      "make_pipeline",
+      "fit",
+      "select",
+      "SimpleImputer",
+      "DecisionTreeRegressor",
+      "tolist",
+      "round",
+      "python_slice",
+      "predict"
+    ],
+    "variables": [
+      "baseline_model",
+      "tree_model"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 8,
+    "title": "Errors from the supplied validation observations",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "python_power",
+      "copy",
+      "mean",
+      "round",
+      "head",
+      "abs"
+    ],
+    "variables": [
+      "validation_results",
+      "prediction_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 8,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 9,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 9,
+    "title": "Confusion counts from classification_case.csv",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "sum",
+      "mask"
+    ],
+    "variables": [
+      "actual_labels",
+      "predicted_labels",
+      "true_positive_count",
+      "false_negative_count",
+      "false_positive_count",
+      "true_negative_count"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 9,
+    "title": "Metrics from the supplied outcomes",
+    "operations": [
+      "python_basics",
+      "python_if",
+      "arithmetic",
+      "round"
+    ],
+    "variables": [
+      "precision",
+      "recall",
+      "total_error_cost"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 9,
+    "title": "Indicators from the supplied class labels",
+    "operations": [
+      "python_basics",
+      "get_dummies",
+      "select",
+      "tolist",
+      "head"
+    ],
+    "variables": [
+      "class_indicator_columns",
+      "actual_values",
+      "predicted_values"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 10,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 10,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 10,
+    "title": "Training median from the actual ambient readings",
+    "operations": [
+      "python_basics",
+      "median",
+      "fillna",
+      "round",
+      "select",
+      "sum",
+      "head",
+      "isna"
+    ],
+    "variables": [
+      "training_ambient_median",
+      "filled_validation_ambient"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 10,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 10,
+    "title": "Fold errors calculated from the supplied training rows",
+    "operations": [
+      "python_basics",
+      "GroupKFold",
+      "cross_val_score",
+      "select",
+      "Series",
+      "round",
+      "tolist",
+      "mean",
+      "std"
+    ],
+    "variables": [
+      "grouped_folds",
+      "negative_error_scores",
+      "fold_absolute_errors"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 10,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 11,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 11,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 11,
+    "title": "Features from the supplied load and ambient columns",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "select",
+      "arithmetic",
+      "copy",
+      "head"
+    ],
+    "variables": [
+      "training_features",
+      "validation_features",
+      "extended_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 11,
+    "title": "Paired ablation using the supplied CSV",
+    "operations": [
+      "python_basics",
+      "arithmetic",
+      "make_pipeline",
+      "mean_absolute_error",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "base_feature_columns",
+      "extended_feature_columns",
+      "base_pipeline",
+      "extended_pipeline",
+      "base_predictions",
+      "base_absolute_error",
+      "extended_predictions",
+      "extended_absolute_error"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 11,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "title": "Errors from the supplied validation observations",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "python_power",
+      "copy",
+      "mean",
+      "round",
+      "head",
+      "abs"
+    ],
+    "variables": [
+      "validation_results",
+      "prediction_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "title": "A measured candidate from the supplied validation data",
+    "operations": [
+      "python_basics",
+      "perf_counter",
+      "arithmetic",
+      "predict",
+      "select",
+      "DataFrame"
+    ],
+    "variables": [
+      "prediction_start_time",
+      "prediction_time_ms",
+      "candidate_models"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "title": "Selection from the measured candidate table",
+    "operations": [
+      "python_basics",
+      "python_if",
+      "select",
+      "empty",
+      "mask",
+      "sort_values",
+      "iloc"
+    ],
+    "variables": [
+      "eligible_models",
+      "ranked_models",
+      "selected_model_name"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 12,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "Loading the supplied practice file",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv"
+    ],
+    "variables": [
+      "practice_filename",
+      "practice_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "Keeping the source table",
+    "operations": [
+      "python_basics",
+      "copy",
+      "tolist",
+      "select"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "A small group split",
+    "operations": [
+      "python_basics",
+      "copy",
+      "select",
+      "tolist",
+      "loc",
+      "isin"
+    ],
+    "variables": [
+      "training_data",
+      "validation_data"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "Training-mean baseline",
+    "operations": [
+      "python_basics",
+      "python_repeat",
+      "mean",
+      "select"
+    ],
+    "variables": [
+      "training_target_mean",
+      "baseline_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "Calculating baseline errors",
+    "operations": [
+      "python_basics",
+      "arithmetic",
+      "python_power",
+      "reset_index",
+      "Series",
+      "mean",
+      "round",
+      "select",
+      "abs"
+    ],
+    "variables": [
+      "actual_values",
+      "predicted_values",
+      "baseline_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "A fitted linear model",
+    "operations": [
+      "python_basics",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "The model tools",
+    "operations": [
+      "python_basics"
+    ],
+    "variables": [
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "A linear pipeline",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "linear_pipeline",
+      "linear_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "A tree pipeline",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "DecisionTreeRegressor",
+      "fit",
+      "select",
+      "predict"
+    ],
+    "variables": [
+      "tree_model",
+      "tree_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "A practice function",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "Series",
+      "select",
+      "mean"
+    ],
+    "variables": [
+      "reading_values"
+    ]
+  },
+  {
+    "cohort": "CML3113",
+    "week": 14,
+    "title": "A dictionary entry for a practice question",
+    "operations": [
+      "python_basics",
+      "select"
+    ],
+    "variables": []
+  },
+  {
+    "cohort": "CML3111",
+    "week": 8,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 8,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 8,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 8,
+    "title": "Baseline and tree on the same CSV rows",
+    "operations": [
+      "python_basics",
+      "DummyRegressor",
+      "make_pipeline",
+      "fit",
+      "select",
+      "SimpleImputer",
+      "DecisionTreeRegressor",
+      "tolist",
+      "round",
+      "python_slice",
+      "predict"
+    ],
+    "variables": [
+      "baseline_model",
+      "tree_model"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 8,
+    "title": "Errors from the supplied validation observations",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "python_power",
+      "copy",
+      "mean",
+      "round",
+      "head",
+      "abs"
+    ],
+    "variables": [
+      "validation_results",
+      "prediction_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 8,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 9,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 9,
+    "title": "Confusion counts from classification_case.csv",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "sum",
+      "mask"
+    ],
+    "variables": [
+      "actual_labels",
+      "predicted_labels",
+      "true_positive_count",
+      "false_negative_count",
+      "false_positive_count",
+      "true_negative_count"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 9,
+    "title": "Metrics from the supplied outcomes",
+    "operations": [
+      "python_basics",
+      "python_if",
+      "arithmetic",
+      "round"
+    ],
+    "variables": [
+      "precision",
+      "recall",
+      "total_error_cost"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 9,
+    "title": "Indicators from the supplied class labels",
+    "operations": [
+      "python_basics",
+      "get_dummies",
+      "select",
+      "tolist",
+      "head"
+    ],
+    "variables": [
+      "class_indicator_columns",
+      "actual_values",
+      "predicted_values"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 10,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 10,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 10,
+    "title": "Training median from the actual ambient readings",
+    "operations": [
+      "python_basics",
+      "median",
+      "fillna",
+      "round",
+      "select",
+      "sum",
+      "head",
+      "isna"
+    ],
+    "variables": [
+      "training_ambient_median",
+      "filled_validation_ambient"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 10,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 10,
+    "title": "Fold errors calculated from the supplied training rows",
+    "operations": [
+      "python_basics",
+      "GroupKFold",
+      "cross_val_score",
+      "select",
+      "Series",
+      "round",
+      "tolist",
+      "mean",
+      "std"
+    ],
+    "variables": [
+      "grouped_folds",
+      "negative_error_scores",
+      "fold_absolute_errors"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 10,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 11,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 11,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 11,
+    "title": "Features from the supplied load and ambient columns",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "select",
+      "arithmetic",
+      "copy",
+      "head"
+    ],
+    "variables": [
+      "training_features",
+      "validation_features",
+      "extended_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 11,
+    "title": "Paired ablation using the supplied CSV",
+    "operations": [
+      "python_basics",
+      "arithmetic",
+      "make_pipeline",
+      "mean_absolute_error",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "base_feature_columns",
+      "extended_feature_columns",
+      "base_pipeline",
+      "extended_pipeline",
+      "base_predictions",
+      "base_absolute_error",
+      "extended_predictions",
+      "extended_absolute_error"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 11,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "title": "Loading the supplied observations",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv",
+      "shape",
+      "dtypes",
+      "head"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "title": "Preparing the supplied modelling rows",
+    "operations": [
+      "python_basics",
+      "mask",
+      "copy",
+      "notna",
+      "between",
+      "select",
+      "drop_duplicates",
+      "isin"
+    ],
+    "variables": [
+      "modelling_data",
+      "valid_row_mask",
+      "training_data",
+      "validation_data",
+      "test_data",
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "title": "Training and predicting on the supplied data",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "tolist",
+      "round",
+      "python_slice"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "title": "Errors from the supplied validation observations",
+    "operations": [
+      "python_basics",
+      "select",
+      "arithmetic",
+      "python_power",
+      "copy",
+      "mean",
+      "round",
+      "head",
+      "abs"
+    ],
+    "variables": [
+      "validation_results",
+      "prediction_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "title": "A measured candidate from the supplied validation data",
+    "operations": [
+      "python_basics",
+      "perf_counter",
+      "arithmetic",
+      "predict",
+      "select",
+      "DataFrame"
+    ],
+    "variables": [
+      "prediction_start_time",
+      "prediction_time_ms",
+      "candidate_models"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "title": "Selection from the measured candidate table",
+    "operations": [
+      "python_basics",
+      "python_if",
+      "select",
+      "empty",
+      "mask",
+      "sort_values",
+      "iloc"
+    ],
+    "variables": [
+      "eligible_models",
+      "ranked_models",
+      "selected_model_name"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 12,
+    "title": "A function called with the supplied records",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "to_dict",
+      "DataFrame",
+      "mean",
+      "select",
+      "groupby"
+    ],
+    "variables": [
+      "equipment_records",
+      "equipment_data",
+      "mean_load_by_equipment_group"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "Loading the supplied practice file",
+    "operations": [
+      "python_basics",
+      "alias",
+      "read_csv"
+    ],
+    "variables": [
+      "practice_filename",
+      "practice_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "Keeping the source table",
+    "operations": [
+      "python_basics",
+      "copy",
+      "tolist",
+      "select"
+    ],
+    "variables": [
+      "raw_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "A small group split",
+    "operations": [
+      "python_basics",
+      "copy",
+      "select",
+      "tolist",
+      "loc",
+      "isin"
+    ],
+    "variables": [
+      "training_data",
+      "validation_data"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "Training-mean baseline",
+    "operations": [
+      "python_basics",
+      "python_repeat",
+      "mean",
+      "select"
+    ],
+    "variables": [
+      "training_target_mean",
+      "baseline_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "Calculating baseline errors",
+    "operations": [
+      "python_basics",
+      "arithmetic",
+      "python_power",
+      "reset_index",
+      "Series",
+      "mean",
+      "round",
+      "select",
+      "abs"
+    ],
+    "variables": [
+      "actual_values",
+      "predicted_values",
+      "baseline_errors",
+      "mean_absolute_error_value",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "A fitted linear model",
+    "operations": [
+      "python_basics",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "linear_model",
+      "validation_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "The model tools",
+    "operations": [
+      "python_basics"
+    ],
+    "variables": [
+      "feature_columns"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "A linear pipeline",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "LinearRegression",
+      "fit",
+      "select",
+      "predict",
+      "round"
+    ],
+    "variables": [
+      "linear_pipeline",
+      "linear_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "A tree pipeline",
+    "operations": [
+      "python_basics",
+      "make_pipeline",
+      "SimpleImputer",
+      "DecisionTreeRegressor",
+      "fit",
+      "select",
+      "predict"
+    ],
+    "variables": [
+      "tree_model",
+      "tree_predictions"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "A practice function",
+    "operations": [
+      "python_basics",
+      "python_function",
+      "Series",
+      "select",
+      "mean"
+    ],
+    "variables": [
+      "reading_values"
+    ]
+  },
+  {
+    "cohort": "CML3111",
+    "week": 14,
+    "title": "A dictionary entry for a practice question",
+    "operations": [
+      "python_basics",
+      "select"
+    ],
+    "variables": []
+  }
+]

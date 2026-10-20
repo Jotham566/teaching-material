@@ -3,7 +3,7 @@
 These assess declared outputs on unseen inputs, not claims in a report.
 The notebook is executed only by isolated_grading, never imported here.
 """
-import math,random,statistics,json,copy
+import math,random,statistics,json,copy,re,unicodedata
 from pathlib import Path
 
 DOMAINS={
@@ -50,6 +50,27 @@ def same(a,b):
     if isinstance(b,list):return isinstance(a,(list,tuple)) and len(a)==len(b) and all(same(x,y) for x,y in zip(a,b))
     if isinstance(b,(int,float)):return not isinstance(a,bool) and isinstance(a,(int,float)) and math.isfinite(a) and math.isclose(a,b,rel_tol=1e-6,abs_tol=1e-6)
     return a==b
+
+# Accept equivalent written units without changing numerical or dimensional checks.
+_UNIT_PATTERNS = {
+ 'deg C': r'(?:°\s*c|deg(?:ree)?s?\.?\s*c(?:elsius)?|celsius)',
+ 'kW': r'kw',
+ 'kWh/t': r'kwh\s*/\s*t',
+ 'observations': r'observations',
+}
+def unit_matches(actual, expected, label=False):
+    if not isinstance(actual, str): return False
+    text = unicodedata.normalize('NFKC', actual).strip().lower()
+    pattern = _UNIT_PATTERNS.get(expected)
+    if pattern is None: return text == expected.lower()
+    if label:
+        return re.search(r'(?<![\w/])' + pattern + r'(?![\w/])', text) is not None
+    return re.fullmatch(pattern, text) is not None
+
+def measurement_same(actual, expected):
+    return (isinstance(actual, dict) and actual.keys() == expected.keys()
+            and same(actual['value'], expected['value'])
+            and unit_matches(actual['unit'], expected['unit']))
 
 TASKS={
  'audit':('audit_cleaning(raw_records, cleaned_records)','Return raw_count and cleaned_count; duplicate_ids is the number of cleaned records beyond the first occurrence of each record_id; missing_targets counts None targets; invalid_loads counts cleaned load_pct outside 0–100 inclusive. Report the actual supplied data, which may still contain defects. Do not change either input. All five values are integer counts.'),
@@ -109,9 +130,9 @@ def check(ns,task):
                     axes=[f.get('plot_axes',[]) for f in out[:count]]
                     ok=all(len(a)==1 for a in axes)
                 if ok:
-                    axes=[a[0] for a in axes];unit=DOMAINS[cohort][1].lower()
+                    axes=[a[0] for a in axes];unit=DOMAINS[cohort][1]
                     ok=all(a['title'].strip() and a['xlabel'].strip() and a['ylabel'].strip() for a in axes)
-                    ok=ok and all(unit in (a['xlabel']+' '+a['ylabel']).lower() for a in axes)
+                    ok=ok and all(unit_matches(a['xlabel']+' '+a['ylabel'], unit, label=True) for a in axes)
                     expected=[[r['load_pct'],r['target']] for r in fixed]
                     ok=ok and any(same(points,expected) for points in axes[0]['scatter'])
                     groups=summary(fixed)['group_means'];bars=axes[1]['bars']
@@ -125,7 +146,8 @@ def check(ns,task):
             elif task=='findings':
                 values=summary(fixed);values['group_gap']=max(values['group_means'].values())-min(values['group_means'].values());del values['group_means']
                 expected={k:dict(value=v,unit='observations' if k=='count' else DOMAINS[cohort][1]) for k,v in values.items()}
-                ok=same(fn(fixed),expected)
+                actual=fn(fixed)
+                ok=isinstance(actual,dict) and actual.keys()==expected.keys() and all(measurement_same(actual[k],v) for k,v in expected.items())
             elif task=='errors':
                 a=[1,3,7];p=[2,3,5] if seed==71 else [1,3,7]
                 expected=dict(mae=sum(abs(x-y) for x,y in zip(a,p))/3,rmse=math.sqrt(sum((x-y)**2 for x,y in zip(a,p))/3))

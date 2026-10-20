@@ -1,12 +1,8 @@
-# CML3111 Week11 Engineering
+# CML3111 Week 11
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Creating and testing a useful feature
+## Slide 1: Creating and testing a useful feature
 
 Creating and testing a useful feature
-CML3111, Week 11, slide 1
-
 Explanation to give
 Explain why a calculated input may help and test the idea under an unchanged validation protocol.
 
@@ -19,149 +15,240 @@ Use this as an orientation to the lesson. Terms and syntax will be unpacked on t
 On this slide
 Communications, Electrical, Mechatronics and Robotics Engineering
 
-Continue to
-Today’s learning
+## Slide 2: Today’s learning
 
-## Slide 2 — Today’s learning
+Core practice precedes the assessment brief. Give the class one consistent data-handling approach: pandas for tables, scikit-learn for models, matplotlib for figures.
 
-Today’s learning
-CML3111, Week 11, slide 2
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-Explain why a calculated input may help and test the idea under an unchanged validation protocol.
+## Slide 3: The supplied file
 
-Worked illustration / lecturer answer
-If validation MAE falls from 5 to 4 after adding one feature, the reduction is 1 target unit, or 20%. A comparison on a different split cannot isolate that change.
+Uploading a notebook does not upload its modelling_data. Check the exact filename and column headings. Each cohort has its own data, so numerical results can differ.
 
-Misconception to address
-At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-On this slide
-Create a feature from available measurements.
+## Slide 4: Operations for the next example
 
-Compare models with one controlled change.
+Import and short names
+import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
 
-Continue to
-Connection to the previous lesson
+Reading a CSV
+pd.read_csv("practice_filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
 
-## Slide 3 — Connection to the previous lesson
+Counting dimensions
+equipment_data.shape gives (number of rows, number of columns). shape is a property, so it has no parentheses.
 
-Connection to the previous lesson
-CML3111, Week 11, slide 3
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-Explain why a calculated input may help and test the idea under an unchanged validation protocol.
+## Slide 5: Operations for the next example
 
-Worked illustration / lecturer answer
-If validation MAE falls from 5 to 4 after adding one feature, the reduction is 1 target unit, or 20%. A comparison on a different split cannot isolate that change.
+Column data types
+equipment_data.dtypes reports each column’s stored type. int64 means integers, float64 means decimal numbers, and object often contains text. Numeric blanks commonly appear as NaN.
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+A preview of rows
+equipment_data.head() returns the first five rows. It leaves the table unchanged. A preview is not the entire dataset.
 
-On this slide
-We already keep evaluation data separate. Now we change one input representation while keeping the comparison protocol fixed.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-Why this week’s tools are needed
+## Slide 6: Reading the code syntax
 
-## Slide 4 — Why this week’s tools are needed
+= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
+Explain these operations before running the following example.
 
-Why this week’s tools are needed
-CML3111, Week 11, slide 4
+## Slide 7: Loading the supplied observations
 
-Explanation to give
-Explain why a calculated input may help and test the idea under an unchanged validation protocol.
+= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
 
-Worked illustration / lecturer answer
-If validation MAE falls from 5 to 4 after adding one feature, the reduction is 1 target unit, or 20%. A comparison on a different split cannot isolate that change.
+Step-by-step explanation
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+import pandas as pd
+Load the named tools. Importing a model class does not train a model.
 
-On this slide
-A calculated input may help a model. We compare the original and extended inputs on the same observations, then decide whether the evidence supports the extra feature.
+raw_data = pd.read_csv('engineering_data.csv')
+raw_data stores original CSV table; keep it unchanged so the analysis can be checked.
 
-Continue to
-A feature has a meaning
+print(raw_data.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 5 — A feature has a meaning
+print(raw_data.shape)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-A feature has a meaning
-CML3111, Week 11, slide 5
+print(raw_data.dtypes)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
+Verified result with the supplied CSV
+record_id equipment_id  load_pct  ambient_c  target
+0          1           E1     59.15      31.71  76.847
+1          2           E2     77.46      29.97  87.047
+2          3           E3     69.60      19.87  71.256
+3          4           E4     75.98      22.29     NaN
+4          5           E5     57.62      23.40  67.034
+(91, 5)
+record_id         int64
+equipment_id     object
+load_pct        float64
+ambient_c       float64
+target          float64
+dtype: object
 
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
+## Slide 8: Rows used for modelling
 
-On this slide
-A feature is an input available at prediction time.
+This follows the issued data rules. Filtering observed targets is different from estimating missing targets. Deduplicate before filtering, so an invalid first occurrence is not replaced by its later duplicate.
 
-An interaction multiplies two inputs to express a joint pattern.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-A better validation score can still reflect leakage.
+## Slide 9: Operations for the next example
 
-Compare the same observations and explain the physical meaning.
+Reading chained operations
+Read a chain from left to right. In equipment_data["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s result.
 
-Continue to
-Derived feature and Ratio and interaction
+A separate working table
+equipment_data.copy() creates a working copy. Assigning columns on this copy preserves the source table, so you can compare before and after.
 
-## Slide 6 — Derived feature and Ratio and interaction
+Finding recorded cells
+notna() returns True where a value is present. Use it to retain observations with a recorded target before modelling.
 
-Derived feature and Ratio and interaction
-CML3111, Week 11, slide 6
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
+## Slide 10: Operations for the next example
 
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
+An inclusive range
+series.between(0, 100) is True for values from 0 through 100, including both limits. The resulting mask helps select valid rows.
 
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
+Selecting columns
+equipment_data["column"] returns one labelled column, a Series. equipment_data[["a", "b"]] returns a DataFrame containing those named columns in that order.
 
-On this slide
-Derived feature: A new input calculated from existing inputs. Its definition and unit must be stated.
-Ratio and interaction: A ratio divides quantities; an interaction multiplies them. Both need a domain explanation and a unit check.
+Selecting rows with a mask
+A column comparison produces one True or False per row. equipment_data[mask] keeps the True rows. & combines masks: both conditions must hold. Parenthesise each comparison.
 
-Continue to
-Read the physical example across programmes
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-## Slide 7 — Read the physical example across programmes
+## Slide 11: Operations for the next example
 
-Read the physical example across programmes
-CML3111, Week 11, slide 7
+Keeping the first observation
+equipment_data.drop_duplicates("record_id") returns rows with the first occurrence of each ID, preserving their order. It does not overwrite the source unless you assign the result.
 
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
+Membership in a group list
+series.isin(["E1", "E2"]) returns True for entries matching either listed label. equipment_data[that_mask] keeps all observations belonging to those groups.
 
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
+## Slide 12: Prepare valid observations
 
-On this slide
-Current I is the flow of electric charge, measured in amperes (A). Resistance R opposes that flow, measured in ohms.
+First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
 
-Power P is energy transferred per second, measured in watts (W). Resistive heating follows P = I²R in this example.
+## Slide 13: Preparing the supplied modelling rows — step 1
 
-I² means I × I. With I = 2 A and R = 3 ohms, P = 2 × 2 × 3 = 12 W. This relationship motivates a feature; evaluation still tests whether it helps.
+First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
 
-Continue to
+Step-by-step explanation
+
+modelling_data = raw_data.drop_duplicates('record_id').copy()
+modelling_data stores copied observations after duplicate and validity checks.
+
+target_is_recorded = modelling_data['target'].notna()
+target_is_recorded stores the result of the displayed expression.
+
+load_is_valid = modelling_data['load_pct'].between(0, 100)
+load_is_valid stores the result of the displayed expression.
+
+rows_to_keep = target_is_recorded & load_is_valid
+rows_to_keep stores the result of the displayed expression.
+
+print(target_is_recorded.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+print(load_is_valid.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+modelling_data = modelling_data[rows_to_keep].copy()
+modelling_data stores copied observations after duplicate and validity checks.
+
+print(len(raw_data), len(modelling_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+Verified result with the supplied CSV
+0     True
+1     True
+2     True
+3    False
+4     True
+Name: target, dtype: bool
+0    True
+1    True
+2    True
+3    True
+4    True
+Name: load_pct, dtype: bool
+91 88
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 14: Choose groups before choosing rows
+
+isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+
+## Slide 15: Preparing the supplied modelling rows — step 2
+
+isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+
+Step-by-step explanation
+
+is_training_equipment = modelling_data['equipment_id'].isin(['E1', 'E2', 'E3', 'E4'])
+is_training_equipment stores the result of the displayed expression.
+
+is_validation_equipment = modelling_data['equipment_id'].isin(['E5'])
+is_validation_equipment stores the result of the displayed expression.
+
+is_test_equipment = modelling_data['equipment_id'].isin(['E6'])
+is_test_equipment stores the result of the displayed expression.
+
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 16: Preparing the supplied modelling rows — step 3
+
+training_data: rows used to learn model settings; only these rows may determine imputation values.
+
+validation_data: separate rows used to compare models without fitting on them.
+
+## Slide 17: Preparing the supplied modelling rows — step 3
+
+training_data: rows used to learn model settings; only these rows may determine imputation values.
+
+validation_data: separate rows used to compare models without fitting on them.
+
+Step-by-step explanation
+
+training_data = modelling_data[is_training_equipment].copy()
+training_data stores rows used to learn model settings; only these rows may determine imputation values.
+
+validation_data = modelling_data[is_validation_equipment].copy()
+validation_data stores separate rows used to compare models without fitting on them.
+
+test_data = modelling_data[is_test_equipment].copy()
+test_data stores held-out rows kept aside until the final evaluation.
+
+feature_columns = ['load_pct', 'ambient_c']
+feature_columns stores the list of input column names supplied to the model.
+
+print(len(training_data), len(validation_data), len(test_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+Verified result with the supplied CSV
+58 15 15
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 18: A physical relationship can form a feature
+
 A physical relationship can form a feature
-
-## Slide 8 — A physical relationship can form a feature
-
-A physical relationship can form a feature
-CML3111, Week 11, slide 8
-
 Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
+A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a linear_model. An interaction allows one input's effect to depend on another.
 
 Worked illustration / lecturer answer
 For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
@@ -172,541 +259,339 @@ A plausible physical story does not guarantee an improvement. Do not use the tar
 On this slide
 Explain each quantity and the unit of the result.
 
-Continue to
-An interaction uses two known inputs
+## Slide 19: Derived features from existing inputs
 
-## Slide 9 — An interaction uses two known inputs
+An interaction has combined units. It is not a new measured physical quantity. Use information available at prediction time.
 
-An interaction uses two known inputs
-CML3111, Week 11, slide 9
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
+## Slide 20: Operations for the next example
 
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
+Adding or replacing a column
+equipment_data["name"] = values assigns that column. An array follows row order. A Series aligns by row label, so keep labels paired with the intended observations.
 
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
+Column arithmetic
+Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
 
-On this slide
-Current A | Resistance ohm | I squared × R W
-2 | 3 | 12
-4 | 3 | 48
-A derived input must be available when predicting. A useful physical relationship still needs validation.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-A percentage and its fraction
+## Slide 21: Defining and calling a function
 
-## Slide 10 — A percentage and its fraction
+def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+Explain these operations before running the following example.
 
-A percentage and its fraction
-CML3111, Week 11, slide 10
+## Slide 22: Features from the supplied load and ambient columns (1/2)
 
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
+def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
 
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
+Step-by-step explanation
 
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
+def add_features(equipment_data):
+    extended_data = equipment_data.copy()
+    extended_data['load_fraction'] = extended_data['load_pct'] / 100
+    extended_data['load_ambient'] = extended_data['load_pct'] * extended_data['ambient_c']
+    return extended_data
+Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
 
-On this slide
-40% means 40 out of 100.
+training_features = add_features(training_data)
+training_features stores training table containing the engineered feature columns.
 
-40 / 100 gives 0.4.
+validation_features = add_features(validation_data)
+validation_features stores validation table with the same feature calculations applied.
 
-This changes the representation. It adds no new observation.
+print(training_features[['load_pct', 'load_fraction', 'load_ambient']].head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Continue to
-A combined input needs a reason
+Verified result with the supplied CSV
+load_pct  load_fraction  load_ambient
+0     59.15         0.5915     1875.6465
+1     77.46         0.7746     2321.4762
+2     69.60         0.6960     1382.9520
+6     24.66         0.2466      784.4346
+7     72.92         0.7292     2005.3000
 
-## Slide 11 — A combined input needs a reason
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-A combined input needs a reason
-CML3111, Week 11, slide 11
+## Slide 23: Features from the supplied load and ambient columns (2/2)
 
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
+def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
 
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
+Step-by-step explanation
 
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
+def add_features(equipment_data):
+    extended_data = equipment_data.copy()
+    extended_data['load_fraction'] = extended_data['load_pct'] / 100
+    extended_data['load_ambient'] = extended_data['load_pct'] * extended_data['ambient_c']
+    return extended_data
+Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
 
-On this slide
-An interaction multiplies two inputs.
+training_features = add_features(training_data)
+training_features stores training table containing the engineered feature columns.
 
-It may help a simple model represent a joint pattern.
+validation_features = add_features(validation_data)
+validation_features stores validation table with the same feature calculations applied.
 
-An interaction with degrees Celsius is an empirical feature, not automatically a physical law.
+print(training_features[['load_pct', 'load_fraction', 'load_ambient']].head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Continue to
-Ablation and Improvement
+Verified result with the supplied CSV
+load_pct  load_fraction  load_ambient
+0     59.15         0.5915     1875.6465
+1     77.46         0.7746     2321.4762
+2     69.60         0.6960     1382.9520
+6     24.66         0.2466      784.4346
+7     72.92         0.7292     2005.3000
 
-## Slide 12 — Ablation and Improvement
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Ablation and Improvement
-CML3111, Week 11, slide 12
+## Slide 24: Ablation compares the same observations
 
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
+A positive improvement means lower error for the extended linear_model. The four-column make_features output also includes load_fraction, but the ablation comparison uses the three specified extended columns.
 
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+## Slide 25: Operations for the next example
 
-On this slide
-Ablation: Compare a model with and without a feature while keeping the data partitions, model family and metric fixed.
-Improvement: For an error metric, baseline error minus new error. A negative result means the added feature worsened validation error in that comparison.
+Rounded display
+series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
 
-Continue to
-One change makes a comparison interpretable
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-## Slide 13 — One change makes a comparison interpretable
+## Slide 26: A sequence of model steps / Comparing two prediction sets
 
-One change makes a comparison interpretable
-CML3111, Week 11, slide 13
+make_pipeline(imputer, estimator) links preprocessing and prediction. fit learns the imputer and estimator on training rows. predict applies the learned steps to new rows in the same order.
 
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
+mean_absolute_error(actual, predicted) averages the absolute differences of paired values. Lower is better. Both lists must have the same length and row order; the answer has the target’s unit.
+Explain these operations before running the following example.
 
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+## Slide 27: Filling model inputs / Creating linear regression
 
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+SimpleImputer(strategy="median") learns a median for each input column during fit. It uses those training medians to fill gaps later. Never learn replacement values from validation or test rows.
 
-On this slide
-Base MAE is 3.0. Extended MAE is 2.5.
+LinearRegression() creates an unfitted model. It will learn coefficients and an intercept from training examples. Creating it alone does not train it or make predictions.
+Explain these operations before running the following example.
 
-Improvement = base error minus extended error = 0.5.
+## Slide 28: Learning from training examples / Predicting new targets
 
-Keep the training rows, validation rows, model family and metric fixed.
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-Continue to
-Feature comparisons in Python
+model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
+Explain these operations before running the following example.
 
-## Slide 14 — Feature comparisons in Python
+## Slide 29: Change one feature set at a time
 
-Feature comparisons in Python
-CML3111, Week 11, slide 14
+The base inputs are load and ambient temperature. The extended inputs also include their product. Train separate pipelines on the same rows and compare on the same validation rows. This isolates the effect of adding the feature.
 
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
+## Slide 30: Paired ablation using the supplied CSV — step 1
 
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+The base inputs are load and ambient temperature. The extended inputs also include their product. Train separate pipelines on the same rows and compare on the same validation rows. This isolates the effect of adding the feature.
 
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+Step-by-step explanation
 
-Read the displayed code line by line
-load_pct = 40
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+from sklearn.impute import SimpleImputer
+Load the named tools. Importing a model class does not train a model.
 
-ambient_c = 25
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+from sklearn.pipeline import make_pipeline
+Load the named tools. Importing a model class does not train a model.
 
-load_fraction = load_pct / 100
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-interaction = load_pct * ambient_c
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(load_fraction, interaction)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-base_mae = 3.0
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-extended_mae = 2.5
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(base_mae - extended_mae)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
-
-Continue to
-Feature comparisons results
-
-## Slide 15 — Feature comparisons results
-
-Feature comparisons results
-CML3111, Week 11, slide 15
-
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
-
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
-
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
-
-On this slide
-0.4 1000
-0.5
-
-Continue to
-Read the two-model experiment
-
-## Slide 16 — Read the two-model experiment
-
-Read the two-model experiment
-CML3111, Week 11, slide 16
-
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
-
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
-
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
-
-On this slide
-Each row contains a pair of inputs. for a, b in rows assigns the first entry to a and the second to b, then repeats the block.
-
-with_interaction returns a new table containing a, b and a × b. Both models keep the same training and validation rows.
-
-Create the model first, then call fit on the next line. round(value, 6) rounds a displayed number to six decimal places; retain full precision for calculations.
-
-Continue to
-Trace the interaction-building function
-
-## Slide 17 — Trace the interaction-building function
-
-Trace the interaction-building function
-CML3111, Week 11, slide 17
-
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a model. An interaction allows one input's effect to depend on another.
-
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
-
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
-
-On this slide
-Each row contains two inputs. for a, b in rows: assigns them to a and b. [a, b, a * b] builds a new row with their product as a third input.
-
-For row [2, 3], append [2, 3, 6]. For row [4, 5], append [4, 5, 20]. The function returns the newly built list of rows.
-
-The same function must transform both training and validation inputs. It uses no target values to construct the new feature.
-
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
-
-Continue to
-Two models under one protocol
-
-## Slide 18 — Two models under one protocol
-
-Two models under one protocol
-CML3111, Week 11, slide 18
-
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
-
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
-
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
-
-On this slide
-Run this complete practice experiment in a fresh session.
-
-Both models use the same rows and targets; the second receives one additional input.
-
-Read every column before fitting.
-
-This invented experiment illustrates procedure, not a measured engineering benefit.
-
-Continue to
-Two models under one protocol in Python (1/3)
-
-## Slide 19 — Two models under one protocol in Python (1/3)
-
-Two models under one protocol in Python (1/3)
-CML3111, Week 11, slide 19
-
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
-
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
-
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
-
-Read the displayed code line by line
 from sklearn.linear_model import LinearRegression
-Bring the named tool from this library into the current Python session.
+Load the named tools. Importing a model class does not train a model.
 
 from sklearn.metrics import mean_absolute_error
-Bring the named tool from this library into the current Python session.
+Load the named tools. Importing a model class does not train a model.
 
-train = [[1, 2], [2, 3], [3, 2], [4, 4], [5, 3]]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+base_feature_columns = ['load_pct', 'ambient_c']
+base_feature_columns stores input columns for the simpler comparison pipeline.
 
-y = [3, 5, 5, 8, 8]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+extended_feature_columns = base_feature_columns + ['load_ambient']
+extended_feature_columns stores base columns plus the interaction feature being tested.
 
-validation = [[2, 2], [3, 3]]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-truth = [4, 6]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+## Slide 31: Fit both alternatives fairly
 
-Continue to
-Two models under one protocol in Python (2/3)
+Each pipeline learns its own training medians and regression settings. The base model sees only base columns; the extended model sees the additional feature. Neither uses validation targets while learning.
 
-## Slide 20 — Two models under one protocol in Python (2/3)
+## Slide 32: Paired ablation using the supplied CSV — step 2 (1/2)
 
-Two models under one protocol in Python (2/3)
-CML3111, Week 11, slide 20
+Each pipeline learns its own training medians and regression settings. The base model sees only base columns; the extended model sees the additional feature. Neither uses validation targets while learning.
 
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
+Step-by-step explanation
 
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+base_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
+base_pipeline stores imputer and regression model using only the base columns.
 
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+extended_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
+extended_pipeline stores a separate imputer and regression model using the extended columns.
 
-Read the displayed code line by line
-def with_interaction(rows):
-Store these instructions under this function name. Names in parentheses are its inputs; the body waits until a call.
+base_pipeline.fit(training_features[base_feature_columns], training_data['target'])
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-result = []
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+extended_pipeline.fit(training_features[extended_feature_columns], training_data['target'])
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-for a, b in rows:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-result.append([a, b, a * b])
-Evaluate the argument and add it as one new item at the end of this list.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-return result
-Evaluate this result and send it to the caller, ending this function call.
+## Slide 33: Paired ablation using the supplied CSV — step 2 (2/2)
 
-base = LinearRegression()
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Each pipeline learns its own training medians and regression settings. The base model sees only base columns; the extended model sees the additional feature. Neither uses validation targets while learning.
 
-base.fit(train, y)
-Learn from the supplied training rows and their aligned targets. This changes the fitted object’s state.
+Step-by-step explanation
 
-extended = LinearRegression()
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+base_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
+base_pipeline stores imputer and regression model using only the base columns.
 
-extended.fit(with_interaction(train), y)
-Learn from the supplied training rows and their aligned targets. This changes the fitted object’s state.
+extended_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
+extended_pipeline stores a separate imputer and regression model using the extended columns.
 
-base_predictions = base.predict(validation)
-Apply the already fitted rule to these input rows without passing their true targets.
+base_pipeline.fit(training_features[base_feature_columns], training_data['target'])
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-base_error = mean_absolute_error(truth, base_predictions)
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+extended_pipeline.fit(training_features[extended_feature_columns], training_data['target'])
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-Result / continuity
-Continue the SAME cell; keep indentation. Run after all parts are entered.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Continue to
-Two models under one protocol in Python (3/3)
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-## Slide 21 — Two models under one protocol in Python (3/3)
+## Slide 34: Compare errors on the same rows
 
-Two models under one protocol in Python (3/3)
-CML3111, Week 11, slide 21
+Predict both alternatives on matching validation rows. mean_absolute_error compares each prediction with its observed target. Base MAE minus extended MAE is positive when the extra feature helped on this validation set.
 
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
+## Slide 35: Paired ablation using the supplied CSV — step 3
 
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+Predict both alternatives on matching validation rows. mean_absolute_error compares each prediction with its observed target. Base MAE minus extended MAE is positive when the extra feature helped on this validation set.
 
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+Step-by-step explanation
 
-Read the displayed code line by line
-print(round(base_error, 6))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+base_predictions = base_pipeline.predict(validation_features[base_feature_columns])
+base_predictions stores validation predictions from the base pipeline.
 
-validation_features = with_interaction(validation)
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+base_absolute_error = mean_absolute_error(validation_data['target'], base_predictions)
+base_absolute_error stores validation mean absolute error for the base pipeline.
 
-extended_predictions = extended.predict(validation_features)
-Apply the already fitted rule to these input rows without passing their true targets.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-error = mean_absolute_error(truth, extended_predictions)
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-print(round(error, 6))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+## Slide 36: Paired ablation using the supplied CSV — step 4
 
-Result / continuity
-Continue the SAME cell; keep indentation. Run after all parts are entered.
+extended_predictions: validation predictions from the extended pipeline.
 
-Continue to
-Scaling changes units of comparison
+extended_absolute_error: validation mean absolute error for the extended pipeline.
 
-## Slide 22 — Scaling changes units of comparison
+## Slide 37: Paired ablation using the supplied CSV — step 4 (1/2)
 
-Scaling changes units of comparison
-CML3111, Week 11, slide 22
+extended_predictions: validation predictions from the extended pipeline.
 
-Explanation to give
-Scaling changes numerical ranges to make inputs comparable for algorithms that are sensitive to magnitude. Learn the scaling values from the training subset and apply the same transformation later.
+extended_absolute_error: validation mean absolute error for the extended pipeline.
 
-Worked illustration / lecturer answer
-Converting a length from metres to millimetres multiplies its numeric value by 1000 without changing the physical length. Standardisation uses training mean and standard deviation to express relative position.
+Step-by-step explanation
 
-Misconception to address
-Scaling is not evidence that all features are equally useful. Never learn the scaler separately on validation or test observations.
+extended_predictions = extended_pipeline.predict(validation_features[extended_feature_columns])
+extended_predictions stores validation predictions from the extended pipeline.
 
-On this slide
-A distance calculation can be dominated by a feature with larger numerical values. Scaling puts feature values on a chosen numerical scale.
+extended_absolute_error = mean_absolute_error(validation_data['target'], extended_predictions)
+extended_absolute_error stores validation mean absolute error for the extended pipeline.
 
-One example is (value - training_min) / (training_max - training_min). With training limits 10 and 30, value 20 becomes 10 / 20 = 0.5.
+print(round(base_absolute_error, 4), round(extended_absolute_error, 4))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Use the same learned limits for new observations. A zero training range needs a defined handling rule. New values outside the training range may scale outside 0 to 1.
+print(round(base_absolute_error - extended_absolute_error, 4))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+Verified result with the supplied CSV
+0.7775 0.7992
+-0.0217
 
-Continue to
-Encoding and Scaling
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-## Slide 23 — Encoding and Scaling
+## Slide 38: Paired ablation using the supplied CSV — step 4 (2/2)
 
-Encoding and Scaling
-CML3111, Week 11, slide 23
+extended_predictions: validation predictions from the extended pipeline.
 
-Explanation to give
-One-hot encoding gives each category its own indicator column. A row has a 1 in the column matching its category and 0 in the others.
+extended_absolute_error: validation mean absolute error for the extended pipeline.
 
-Worked illustration / lecturer answer
-For categories A and B, an A row becomes [1,0] and a B row becomes [0,1]. Assigning A=1 and B=2 could accidentally suggest a meaningful numerical distance or order.
+Step-by-step explanation
 
-Misconception to address
-Fit the encoder on training data and define how to handle categories not seen during training. Do not invent an ordinal meaning for names.
+extended_predictions = extended_pipeline.predict(validation_features[extended_feature_columns])
+extended_predictions stores validation predictions from the extended pipeline.
 
-On this slide
-Encoding: Representing a category numerically. One-hot uses separate indicator columns. Arbitrary integer labels can falsely suggest an order.
-Scaling: Changing the numerical scale of features. Fit learned scaling on training data only. It matters for distance-based models but is not required by ordinary decision trees.
+extended_absolute_error = mean_absolute_error(validation_data['target'], extended_predictions)
+extended_absolute_error stores validation mean absolute error for the extended pipeline.
 
-Continue to
-Revision example and answer
+print(round(base_absolute_error, 4), round(extended_absolute_error, 4))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 24 — Revision example and answer
+print(round(base_absolute_error - extended_absolute_error, 4))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Revision example and answer
-CML3111, Week 11, slide 24
+Verified result with the supplied CSV
+0.7775 0.7992
+-0.0217
 
-Explanation to give
-Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Worked illustration / lecturer answer
-Example: If the extended error becomes 3.4, calculate improvement and decide whether this evidence supports retaining the feature.
+## Slide 39: Pandas inside the required function
 
-Answer: Improvement is -0.4. This validation comparison does not support retaining it. One split is limited evidence; the final test remains untouched.
+Keep the original function names and return types. Do not read a fixed CSV inside the assessed function: hidden tests supply different equipment_records. The separate calling cell reads the CSV.
 
-Misconception to address
-Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-Preparing for the assignment
+## Slide 40: Operations for the next example
 
-## Slide 25 — Preparing for the assignment
+Returning a dictionary
+series.to_dict() maps Series labels to values. equipment_data.to_dict("records") instead returns a list of row dictionaries. Choose the form required by the assignment.
 
-Preparing for the assignment
-CML3111, Week 11, slide 25
+A table from Python values
+pd.DataFrame(records) builds a table from row dictionaries. With a dictionary of column lists, keys become column names and each list supplies that column’s values.
 
-Explanation to give
-Read the metric with its unit and evaluation population. Explain why that error measure matches the cost of a wrong decision in the stated engineering setting.
+Mean of recorded values
+series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
 
-Worked illustration / lecturer answer
-MAE 3 kW describes an average absolute error on named observations; it does not guarantee every prediction lies within 3 kW. Report baseline comparison and the evaluation protocol.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Misconception to address
-Avoid a deployment claim based only on a score. State genuine limitations involving data coverage, measurement quality or future operating conditions.
+## Slide 41: Operations for the next example
 
-On this slide
-W11 names four output features and a two-model ablation.
+Grouping rows
+equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
 
-Keep the original row order and full precision. Fit preprocessing on the training rows only.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Use the supplied written scenario for the interpretation requested there.
+## Slide 42: A function called with the supplied records
 
-Do not substitute this practice example’s result.
+Grouping rows: equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
 
-Continue to
-Features without misleading evaluation
+Step-by-step explanation
 
-## Slide 26 — Features without misleading evaluation
+def mean_load_by_equipment(equipment_records):
+    equipment_data = pd.DataFrame(equipment_records)
+    mean_load_by_equipment_group = equipment_data.groupby('equipment_id')['load_pct'].mean()
+    return mean_load_by_equipment_group.to_dict()
+Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
 
-Features without misleading evaluation
-CML3111, Week 11, slide 26
+equipment_records = raw_data.to_dict('records')
+equipment_records stores the input list of row dictionaries supplied to the function.
 
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
+print(mean_load_by_equipment(equipment_records))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
+Verified result with the supplied CSV
+{'E1': 54.9475, 'E2': 61.326, 'E3': 53.46933333333333, 'E4': 66.854, 'E5': 48.10133333333333, 'E6': 51.54}
 
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-On this slide
-Rescaling an input usually does not change the partitions available to an ordinary decision tree.
-
-An identifier or a future-known field can create an apparent improvement without useful predictive information.
-
-Dividing by zero can produce infinity or an error; decide what the denominator means before replacing it.
-
-Continue to
-Features without misleading evaluation continued
-
-## Slide 27 — Features without misleading evaluation continued
-
-Features without misleading evaluation continued
-CML3111, Week 11, slide 27
-
-Explanation to give
-An ablation comparison changes one feature or component while holding the evaluation protocol fixed. This helps attribute any observed difference to the change being tested.
-
-Worked illustration / lecturer answer
-If validation MAE drops from 5 to 4, the absolute reduction is 1 in the target unit and the relative reduction is 20%. If it rises, the extra feature has not helped under this protocol.
-
-Misconception to address
-Changing the split, model and feature at once makes attribution unclear. Use the same observations, metric and fitting rules for both variants.
-
-On this slide
-Read ablation differences using the same error definition, and explain features using domain knowledge.
-
-Continue to
-Your issued task
-
-## Slide 28 — Your issued task
+## Slide 43: Your issued task
 
 Your issued task
-CML3111, Week 11, slide 28
-
 Explanation to give
 Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
 
@@ -725,46 +610,20 @@ These are synthetic teaching records, not measurements suitable for deployment.
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-Continue to
-make_features(feature_records)
+## Slide 44: make_features(feature_records)
 
-## Slide 29 — make_features(feature_records)
+Required interface: make_features(feature_records)
 
-make_features(feature_records)
-CML3111, Week 11, slide 29
-
-Explanation to give
-Create the requested numeric feature rows in the same order as the input records. Use only information available at prediction time.
-
-Worked illustration / lecturer answer
-Distinguish load_pct from load_pct/100. The task’s named interaction uses its exact published formula; a mathematically related alternative would still violate the interface.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Return one feature row per input, in order: [load_pct, ambient_c, load_pct/100, load_pct*ambient_c].
 
 Use inputs available at prediction time only.
 
-Continue to
-ablation_metrics(training_records, validation_records)
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-## Slide 30 — ablation_metrics(training_records, validation_records)
+## Slide 45: ablation_metrics(training_records, validation_records)
 
-ablation_metrics(training_records, validation_records)
-CML3111, Week 11, slide 30
+Required interface: ablation_metrics(training_records, validation_records)
 
-Explanation to give
-Compare the original and extended feature sets with the same training and validation observations and the same model protocol.
-
-Worked illustration / lecturer answer
-Return the specified metrics and improvement calculation. A reduction from MAE 5 to 4 is improvement 1, not -1, when the contract defines before minus after.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Fit two sklearn LinearRegression models on the same training records: base features [load_pct, ambient_c] and extended features adding load_pct*ambient_c.
 
 Evaluate both on the same validation records.
@@ -773,14 +632,11 @@ Return base_mae, extended_mae and improvement=base_mae-extended_mae, without rou
 
 Inputs are complete; never fit on validation targets.
 
-Continue to
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+
+## Slide 46: Written evidence
+
 Written evidence
-
-## Slide 31 — Written evidence
-
-Written evidence
-CML3111, Week 11, slide 31
-
 Explanation to give
 Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
@@ -799,14 +655,9 @@ State target units, reasons and limitations.
 
 Submit one complete notebook containing code and written evidence.
 
-Continue to
-Features and ablation submission
-
-## Slide 32 — Features and ablation submission
+## Slide 47: Features and ablation submission
 
 Features and ablation submission
-CML3111, Week 11, slide 32
-
 Explanation to give
 This slide hands over CML3111 W11. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
 
@@ -825,14 +676,9 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-Continue to
-Project preparation
-
-## Slide 33 — Project preparation
+## Slide 48: Project preparation
 
 Project preparation
-CML3111, Week 11, slide 33
-
 Explanation to give
 Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
 
@@ -851,14 +697,9 @@ Keep raw data, labelled charts, run instructions and individual contributions.
 
 Published deadline: 18 Dec 2026, 11:00 Kampala
 
-Continue to
-Week 11 quiz
-
-## Slide 34 — Week 11 quiz
+## Slide 49: Week 11 quiz
 
 Week 11 quiz
-CML3111, Week 11, slide 34
-
 Explanation to give
 This is the CML3111 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3111 when ready and read the logged closing time.
 
@@ -877,14 +718,9 @@ Use your Student Registration Number and registered account.
 
 Check the announced quiz closing time.
 
-Continue to
-Revision and submission checklist
-
-## Slide 35 — Revision and submission checklist
+## Slide 50: Revision and submission checklist
 
 Revision and submission checklist
-CML3111, Week 11, slide 35
-
 Explanation to give
 Explain why a calculated input may help and test the idea under an unchanged validation protocol.
 

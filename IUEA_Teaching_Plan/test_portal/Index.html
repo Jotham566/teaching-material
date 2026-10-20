@@ -1,0 +1,36 @@
+<!doctype html><html><head><base target="_top"><meta charset="utf-8"><style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7fa;color:#172c40;font:17px/1.55 Arial,sans-serif}main{max-width:790px;margin:36px auto;padding:32px;background:white;border-radius:12px}h1{font-size:30px;line-height:1.2;margin:8px 0 16px}h2{font-size:22px;margin-top:28px}label{display:block;font-weight:bold;margin-top:16px}input{width:100%;padding:12px;border:1px solid #8194a6;border-radius:5px;font:inherit}button,.download{background:#126573;color:white;border:0;border-radius:5px;padding:12px 18px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block;margin:8px 6px 8px 0}button:disabled{opacity:.6;cursor:wait}.muted{color:#526577;font-size:15px}.error{color:#9f251e;font-weight:bold}li{margin:10px 0}.brand{font-size:14px;letter-spacing:1px;font-weight:bold;color:#526577}.download:focus,input:focus,button:focus{outline:3px solid #edab37;outline-offset:3px}[hidden]{display:none!important}@media(max-width:650px){main{margin:0;padding:22px;border-radius:0}h1{font-size:27px}.download{display:block;text-align:center}}
+</style></head><body><main>
+<div class="brand">IUEA • PRACTICAL TEST</div><h1 id="heading"></h1>
+<p>Get your test notebook and its data here. Use your own details and the same Google account throughout the test.</p>
+<form id="identity"><label for="name">Full name</label><input id="name" autocomplete="name" required maxlength="160">
+<label for="email">Google account email</label><input id="email" type="email" autocomplete="email" required maxlength="254"><div class="muted">Use this account in Colab and on the final submission form.</div>
+<label for="registration">Student Registration Number</label><input id="registration" required maxlength="160" autocomplete="off"><div class="muted">Enter your own number exactly as on your university record. Any format is accepted.</div>
+<button id="get" type="submit">Get my test files</button><p class="muted">Your email and registration number are recorded privately by your lecturer to assign and check your test files. Returning with the same details gives you the same files.</p></form>
+<p id="status" role="status" aria-live="polite"></p>
+<section id="files" hidden><h2>Your files are ready</h2><p id="deadline"></p><p>Download both files to your laptop. Keep them together; do not use another student’s CSV.</p>
+<a id="notebook" class="download">1  Download test notebook</a><a id="csv" class="download">2  Download CSV data</a>
+<h2>Open and complete your test</h2><ol>
+<li>Open <a href="https://colab.research.google.com/" target="_blank" rel="noopener">Google Colab</a> on your laptop. Sign in with the Google email you entered above.</li>
+<li>Choose <strong>File → Open notebook → Upload</strong>. Select the downloaded <strong id="notebookLabel"></strong>. Save a copy in Drive and work in that copy. Click <strong>Connect</strong> if shown.</li>
+<li>Click the <strong>folder icon</strong> on the left, then <strong>Upload</strong> (upward arrow). Choose <strong>engineering_data.csv</strong> and wait until it appears. Uploading the notebook does not upload the CSV.</li>
+<li>Check your name, email and Student Registration Number near the top. Run cells using the triangle beside each code cell. Read the questions and work from top to bottom. Keep supplied function names unchanged.</li></ol>
+<h2>Submit before the deadline</h2><ol>
+<li>Save, restart the session and run all cells. Upload the same CSV again if needed. Check your work. Submit completed work even if some tasks remain unfinished.</li>
+<li>Run the final submission cell. Select your own Google account and review the access prompt. Click <strong>Submit test</strong> and wait for its form link.</li>
+<li>Open that link using the same Google account. Check your details. Leave the automatically filled test allocation code and snapshot fields unchanged. Tick the email confirmation box and press <strong>Submit</strong>.</li>
+<li>Wait for the form confirmation. Keep the saved snapshot unchanged in Drive until marks are released.</li></ol>
+<p><strong>The notebook button alone does not finish submission. You must also submit the form.</strong></p>
+<p>No manual notebook download and re-upload is needed for submission. Tell the invigilator immediately if anything fails. Do not use AI-generated solutions, messaging or copied answers.</p>
+<a id="instructions" download="Test_instructions.txt">Download these test instructions</a>
+<p class="muted">If you scan the QR code on a phone, open this same page on your laptop and enter the same details. Downloads must be loaded in Colab on your laptop. Refreshing the page does not change your allocation.</p>
+</section></main><script>
+const testKey=<?!= JSON.stringify(testKey) ?>;
+document.getElementById('heading').textContent=testKey.replace('|TEST',' — Test ');
+let objectUrls=[];
+function download(id,text,type,name){const el=document.getElementById(id),url=URL.createObjectURL(new Blob([text],{type}));objectUrls.push(url);el.href=url;el.download=name;}
+document.getElementById('identity').addEventListener('submit',e=>{e.preventDefault();const button=document.getElementById('get'),status=document.getElementById('status');button.disabled=true;status.className='';status.textContent='Preparing your files…';document.getElementById('files').hidden=true;
+const input={test:testKey,name:document.getElementById('name').value,email:document.getElementById('email').value,registration:document.getElementById('registration').value};
+google.script.run.withSuccessHandler(result=>{objectUrls.forEach(URL.revokeObjectURL);objectUrls=[];download('notebook',result.notebook,'application/x-ipynb+json',result.notebookName);download('csv',result.csv,'text/csv',result.csvName);download('instructions',result.instructions,'text/plain','Test_instructions.txt');document.getElementById('notebookLabel').textContent=result.notebookName;document.getElementById('deadline').textContent='Submission closes: '+result.deadline;document.getElementById('files').hidden=false;status.textContent='Files ready. Download the notebook and CSV below.';button.disabled=false;document.getElementById('files').scrollIntoView({behavior:'smooth'});}).withFailureHandler(err=>{status.className='error';status.textContent=err.message||'Could not prepare files. Tell your lecturer.';button.disabled=false;}).requestTestFiles(input);
+});
+</script></body></html>

@@ -395,6 +395,9 @@ def options_for(q, code):
     return q.get("options_by", {}).get(code, q.get("options", []))
 
 
+from pandas_quiz_revision import apply as apply_pandas_revision
+apply_pandas_revision(QUIZ)
+
 if __name__ == "__main__":
     print(f"weeks with quizzes: {sorted(QUIZ)}")
     print(f"authored: {authored()}")

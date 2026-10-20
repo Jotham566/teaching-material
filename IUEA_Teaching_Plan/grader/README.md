@@ -236,3 +236,7 @@ Use the 30 IUEA ZIPs in `../student_packages/` and the S09 ZIP in `../../DataAna
 W08 uses the calibrated atomic criterion mode with local qwen3.5:4b; its full calibration has eleven cases. W06 and W10 also use qwen3.5:4b; W09/W11/W12 use the model recorded in their passing reports. Let the CLI select that model from the report. S09's successful quiet pilot scored 100/100 after an earlier timeout; run inference serially on this 8 GB Mac.
 
 The standard and atomic visual candidates both failed known-answer checks. Neither authorizes final visual-design marks. A document upload working correctly does not mean every criterion in that document can yet be assessed reliably. The remaining coverage is listed in `review/2026-09-14/REWORK_STATUS.md` at the project root.
+
+### A6 and Quiz 6 waiver — 19 October 2026
+
+CML3112 and CML3113: exclude W06 and Q6 from final marks and missing-work flags. The updated gradebook uses best 7 of 10 assignments and best 9 of 11 quizzes, preserving the normal drop allowance and 10% weight for each component. Raw submissions and marks are retained. CML3111 stays best 8 of 11 and best 10 of 12. See `../Practical_Revision_Week6_Waiver.md`. Use this updated `gradebook.gs` for any future gradebook installation. The current collection workbook holds responses and the waiver register; it does not have a `Grades` sheet.

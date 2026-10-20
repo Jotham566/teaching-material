@@ -1,12 +1,8 @@
-# CML3111 Week09 Engineering
+# CML3111 Week 9
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Classification and the cost of mistakes
+## Slide 1: Classification and the cost of mistakes
 
 Classification and the cost of mistakes
-CML3111, Week 9, slide 1
-
 Explanation to give
 Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
 
@@ -19,167 +15,84 @@ Use this as an orientation to the lesson. Terms and syntax will be unpacked on t
 On this slide
 Communications, Electrical, Mechatronics and Robotics Engineering
 
-Continue to
-Today’s learning
+## Slide 2: Today’s learning
 
-## Slide 2 — Today’s learning
+Core practice precedes the assessment brief. Give the class one consistent data-handling approach: pandas for tables, scikit-learn for models, matplotlib for figures.
 
-Today’s learning
-CML3111, Week 9, slide 2
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
+## Slide 3: The supplied file
 
-Worked illustration / lecturer answer
-Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+Uploading a notebook does not upload its modelling_data. Check the exact filename and column headings. Each cohort has its own data, so numerical results can differ.
 
-Misconception to address
-At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-On this slide
-Distinguish an actual label from a predicted label.
+## Slide 4: Operations for the next example
 
-Count prediction outcomes and explain their costs.
+Import and short names
+import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
 
-Continue to
-Connection to the previous lesson
+Reading a CSV
+pd.read_csv("practice_filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
 
-## Slide 3 — Connection to the previous lesson
+Counting dimensions
+equipment_data.shape gives (number of rows, number of columns). shape is a property, so it has no parentheses.
 
-Connection to the previous lesson
-CML3111, Week 9, slide 3
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
+## Slide 5: Operations for the next example
 
-Worked illustration / lecturer answer
-Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+Column data types
+equipment_data.dtypes reports each column’s stored type. int64 means integers, float64 means decimal numbers, and object often contains text. Numeric blanks commonly appear as NaN.
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+A preview of rows
+equipment_data.head() returns the first five rows. It leaves the table unchanged. A preview is not the entire dataset.
 
-On this slide
-Week 8 predicted a number. This week predicts a category and counts the different kinds of correct and incorrect result.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-Why this week’s tools are needed
+## Slide 6: Reading the code syntax
 
-## Slide 4 — Why this week’s tools are needed
+= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
+Explain these operations before running the following example.
 
-Why this week’s tools are needed
-CML3111, Week 9, slide 4
+## Slide 7: Loading the supplied observations
 
-Explanation to give
-Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
+= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
 
-Worked illustration / lecturer answer
-Actual 1 with predicted 0 is a false negative. If 1 means warning, this is a missed warning, not merely a wrong number.
+Step-by-step explanation
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+import pandas as pd
+Load the named tools. Importing a model class does not train a model.
 
-On this slide
-A warning system predicts a category. We compare each prediction with its recorded answer, then count false alarms and missed warnings using an explicit cost rule.
+raw_data = pd.read_csv('classification_case.csv')
+raw_data stores original CSV table; keep it unchanged so the analysis can be checked.
 
-Continue to
-The positive class
+print(raw_data.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 5 — The positive class
+print(raw_data.shape)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-The positive class
-CML3111, Week 9, slide 5
+print(raw_data.dtypes)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Explanation to give
-First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
+Verified result with the supplied CSV
+actual  predicted
+0       1          1
+1       0          0
+2       1          0
+3       1          1
+4       0          1
+(6, 2)
+actual       int64
+predicted    int64
+dtype: object
 
-Worked illustration / lecturer answer
-With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Misconception to address
-Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
-
-On this slide
-In this example, 1 means a warning is needed.
-
-0 means a warning is not needed.
-
-Actual is the reference label. Predicted is the model’s label.
-
-A false negative misses a real warning.
-
-Continue to
-Class and positive label / TP and TN
-
-## Slide 6 — Class and positive label / TP and TN
-
-Class and positive label / TP and TN
-CML3111, Week 9, slide 6
-
-Explanation to give
-First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
-
-Worked illustration / lecturer answer
-With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
-
-Misconception to address
-Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
-
-On this slide
-Class and positive label: A class is a category. Here 1 means warning and 0 means no warning. Positive means the named class, not good news.
-TP and TN: True positive is a correctly flagged warning. True negative is a correctly unflagged non-warning.
-
-Continue to
-FP and FN
-
-## Slide 7 — FP and FN
-
-FP and FN
-CML3111, Week 9, slide 7
-
-Explanation to give
-First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
-
-Worked illustration / lecturer answer
-With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
-
-Misconception to address
-Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
-
-On this slide
-FP and FN: False positive is a false alarm. False negative is a missed warning.
-
-Continue to
-Actual and predicted describe different things
-
-## Slide 8 — Actual and predicted describe different things
-
-Actual and predicted describe different things
-CML3111, Week 9, slide 8
-
-Explanation to give
-First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
-
-Worked illustration / lecturer answer
-With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
-
-Misconception to address
-Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
-
-On this slide
-Actual is the recorded reference answer.
-
-Predicted is the answer produced by our model.
-
-A correct prediction matches the reference. Class 1 means warning in this example.
-
-Continue to
-Every paired result belongs in one cell
-
-## Slide 9 — Every paired result belongs in one cell
+## Slide 8: Every paired result belongs in one cell
 
 Every paired result belongs in one cell
-CML3111, Week 9, slide 9
-
 Explanation to give
 First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
 
@@ -190,619 +103,361 @@ Misconception to address
 Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
 
 On this slide
-Read actual first, then predicted. Explain the missed warning.
+Read actual first, then predicted_values. Explain the missed warning.
 
-Continue to
-The four kinds of result
+## Slide 9: Counting the supplied paired labels
 
-## Slide 10 — The four kinds of result
+True positive: actual 1 and predicted 1. False negative: actual 1 and predicted 0. False positive: actual 0 and predicted 1. True negative: both 0. Keep the two columns paired.
 
-The four kinds of result
-CML3111, Week 9, slide 10
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-First name what 1 means. Read the actual label before the prediction. True/false refers to whether the prediction is correct; positive/negative refers to the predicted class.
+## Slide 10: Operations for the next example
 
-Worked illustration / lecturer answer
-With 1 meaning warning: actual 1, predicted 0 is a false negative, a missed warning. Actual 0, predicted 1 is a false positive, an unnecessary warning.
+Selecting columns
+equipment_data["column"] returns one labelled column, a Series. equipment_data[["a", "b"]] returns a DataFrame containing those named columns in that order.
 
-Misconception to address
-Positive does not mean good. A high count of correct normal cases can hide a dangerous number of missed warnings.
+Column arithmetic
+Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
 
-On this slide
-Actual / Predicted | Warning 1 | No warning 0
-Warning 1 | TP = 1 | FN = 1
-No warning 0 | FP = 1 | TN = 1
-Rows are actual and columns are predicted.
+Adding values and counting True
+series.sum() adds its values. For a Boolean mask, True counts as 1 and False as 0. equipment_data.isna().sum() therefore counts missing cells separately for each column.
 
-Continue to
-Precision / Recall
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-## Slide 11 — Precision / Recall
+## Slide 11: Selecting rows with a mask
 
-Precision / Recall
-CML3111, Week 9, slide 11
+A column comparison produces one True or False per row. table[mask] keeps the True rows. & combines masks: both conditions must hold. Parenthesise each comparison.
+Explain these operations before running the following example.
 
-Explanation to give
-Use two different denominators. Precision looks only at issued warnings. Recall looks only at real cases that needed a warning. Say the population in the denominator before calculating.
+## Slide 12: Keep observations and decisions paired
 
-Worked illustration / lecturer answer
-If TP=3, FP=1 and FN=2, precision is 3/(3+1)=0.75 and recall is 3/(3+2)=0.60. One asks whether warnings are reliable; the other asks whether true problems were found.
+actual contains the recorded class; predicted contains the model’s decision for the same row. Here 1 means positive and 0 negative. These are already-issued decisions; this exercise does not train a classifier.
 
-Misconception to address
-The denominators are not interchangeable. Follow the published convention when a denominator is zero and explain why that case arises.
+## Slide 13: Confusion counts from classification_case.csv — step 1
 
-On this slide
-Precision: Of all predicted warnings, the fraction that were actual warnings: TP / (TP + FP).
-Recall: Of all actual warnings, the fraction detected: TP / (TP + FN).
+actual contains the recorded class; predicted contains the model’s decision for the same row. Here 1 means positive and 0 negative. These are already-issued decisions; this exercise does not train a classifier.
 
-Continue to
-Precision and recall
+Step-by-step explanation
 
-## Slide 12 — Precision and recall
+actual_labels = raw_data['actual']
+actual_labels stores the recorded class of each observation: 1 means positive and 0 means negative.
 
-Precision and recall
-CML3111, Week 9, slide 12
+predicted_labels = raw_data['predicted']
+predicted_labels stores the model’s 0/1 class decisions in matching row order.
 
-Explanation to give
-Use two different denominators. Precision looks only at issued warnings. Recall looks only at real cases that needed a warning. Say the population in the denominator before calculating.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Worked illustration / lecturer answer
-If TP=3, FP=1 and FN=2, precision is 3/(3+1)=0.75 and recall is 3/(3+2)=0.60. One asks whether warnings are reliable; the other asks whether true problems were found.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Misconception to address
-The denominators are not interchangeable. Follow the published convention when a denominator is zero and explain why that case arises.
+## Slide 14: Turn each class label into a question
 
-On this slide
-Precision asks: of the warnings raised, how many were correct?
+actual == 1 asks whether the real class is positive; predicted == 1 asks whether the model predicted positive. Each comparison returns one True/False answer per row. Equality uses ==; assignment uses =.
 
-Recall asks: of the real warnings, how many did we detect?
+## Slide 15: Confusion counts from classification_case.csv — step 2
 
-A zero denominator needs an explicit rule.
+actual == 1 asks whether the real class is positive; predicted == 1 asks whether the model predicted positive. Each comparison returns one True/False answer per row. Equality uses ==; assignment uses =.
 
-Use the rule in your task brief when implementing the function.
+Step-by-step explanation
 
-Continue to
-Probability and a decision threshold
+actual_is_positive = actual_labels == 1
+actual_is_positive stores the result of the displayed expression.
 
-## Slide 13 — Probability and a decision threshold
+prediction_is_positive = predicted_labels == 1
+prediction_is_positive stores the result of the displayed expression.
 
-Probability and a decision threshold
-CML3111, Week 9, slide 13
+actual_is_negative = actual_labels == 0
+actual_is_negative stores the result of the displayed expression.
 
-Explanation to give
-A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
+prediction_is_negative = predicted_labels == 0
+prediction_is_negative stores the result of the displayed expression.
 
-Worked illustration / lecturer answer
-At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+print(actual_is_positive.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Misconception to address
-A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+print(prediction_is_positive.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-On this slide
-Probability: A probability is between 0 and 1. Multiply by 100 for percent: 0.7 is 70%. A model’s probability is an estimate that needs checking.
-Threshold: A threshold turns a score into a decision. For a rule score >= 0.5, a score of 0.7 gives class 1. Use validation data to choose the threshold.
+Verified result with the supplied CSV
+0     True
+1    False
+2     True
+3     True
+4    False
+Name: actual, dtype: bool
+0     True
+1    False
+2    False
+3     True
+4     True
+Name: predicted, dtype: bool
 
-Continue to
-Apply one stated decision threshold
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-## Slide 14 — Apply one stated decision threshold
+## Slide 16: Count one outcome at a time
 
-Apply one stated decision threshold
-CML3111, Week 9, slide 14
+A true positive has actual 1 AND predicted 1. Combine the two answer columns with &, then sum the True entries. The other three outcomes use their own pairs of actual and predicted labels.
 
-Explanation to give
-A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
+## Slide 17: Confusion counts from classification_case.csv — step 3
 
-Worked illustration / lecturer answer
-At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+A true positive has actual 1 AND predicted 1. Combine the two answer columns with &, then sum the True entries. The other three outcomes use their own pairs of actual and predicted labels.
 
-Misconception to address
-A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+Step-by-step explanation
 
-On this slide
-Estimated positive probability | At least 0.5? | Decision
-0.20 | No | Class 0
-0.50 | Yes | Class 1
-0.80 | Yes | Class 1
-0.5 means 50%. This rule includes equality. A probability is an estimate, not a promise that one case is correct.
+is_true_positive = actual_is_positive & prediction_is_positive
+is_true_positive stores the result of the displayed expression.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+true_positive_count = int(is_true_positive.sum())
+true_positive_count stores number of rows with actual 1 and predicted 1.
 
-Continue to
-A category decision can use a probability
+print('True positives:', true_positive_count)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 15 — A category decision can use a probability
+Verified result with the supplied CSV
+True positives: 3
 
-A category decision can use a probability
-CML3111, Week 9, slide 15
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Explanation to give
-A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
+## Slide 18: Confusion counts from classification_case.csv — step 4
 
-Worked illustration / lecturer answer
-At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+false_negative_count: number of missed positives: actual 1 but predicted 0.
 
-Misconception to address
-A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+false_positive_count: number of false alarms: actual 0 but predicted 1.
 
-On this slide
-A classifier may estimate the probability of class 1.
+## Slide 19: Confusion counts from classification_case.csv — step 4 (1/3)
 
-A threshold converts that estimate into warning or no warning.
+false_negative_count: number of missed positives: actual 1 but predicted 0.
 
-Logistic regression is a classification model. Its probability estimates still need evaluation.
+false_positive_count: number of false alarms: actual 0 but predicted 1.
 
-Continue to
-Threshold and cost
+Step-by-step explanation
 
-## Slide 16 — Threshold and cost
+false_negative_count = int((actual_is_positive & prediction_is_negative).sum())
+false_negative_count stores number of missed positives: actual 1 but predicted 0.
 
-Threshold and cost
-CML3111, Week 9, slide 16
+false_positive_count = int((actual_is_negative & prediction_is_positive).sum())
+false_positive_count stores number of false alarms: actual 0 but predicted 1.
 
-Explanation to give
-A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
+true_negative_count = int((actual_is_negative & prediction_is_negative).sum())
+true_negative_count stores number of rows with actual 0 and predicted 0.
 
-Worked illustration / lecturer answer
-At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+print(false_negative_count, false_positive_count, true_negative_count)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Misconception to address
-A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+print(true_positive_count + false_negative_count + false_positive_count + true_negative_count, len(raw_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-On this slide
-Threshold and cost: A threshold converts a score to a decision. A cost rule states how much each type of mistake matters. Lower thresholds usually increase recall; precision need not decrease at every step.
+Verified result with the supplied CSV
+1 1 1
+6 6
 
-Continue to
-State the cost rule before calculating
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-## Slide 17 — State the cost rule before calculating
+## Slide 20: Confusion counts from classification_case.csv — step 4 (2/3)
 
-State the cost rule before calculating
-CML3111, Week 9, slide 17
+false_negative_count: number of missed positives: actual 1 but predicted 0.
 
-Explanation to give
-A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
+false_positive_count: number of false alarms: actual 0 but predicted 1.
 
-Worked illustration / lecturer answer
-At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
+Step-by-step explanation
 
-Misconception to address
-A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
+false_negative_count = int((actual_is_positive & prediction_is_negative).sum())
+false_negative_count stores number of missed positives: actual 1 but predicted 0.
 
-On this slide
-A cost rule assigns a penalty to each kind of mistake. In this teaching example, a missed warning costs 5 units and a false alarm costs 1 unit.
+false_positive_count = int((actual_is_negative & prediction_is_positive).sum())
+false_positive_count stores number of false alarms: actual 0 but predicted 1.
 
-Total cost = 5 × FN + FP. One missed warning and one false alarm therefore cost 6 units.
+true_negative_count = int((actual_is_negative & prediction_is_negative).sum())
+true_negative_count stores number of rows with actual 0 and predicted 0.
 
-These are invented teaching penalties. Use the published assignment cost rule and explain whose consequences it represents.
+print(false_negative_count, false_positive_count, true_negative_count)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Continue to
-Counting syntax in the example
+print(true_positive_count + false_negative_count + false_positive_count + true_negative_count, len(raw_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 18 — Counting syntax in the example
+Verified result with the supplied CSV
+1 1 1
+6 6
 
-Counting syntax in the example
-CML3111, Week 9, slide 18
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
+## Slide 21: Confusion counts from classification_case.csv — step 4 (3/3)
 
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+false_negative_count: number of missed positives: actual 1 but predicted 0.
 
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+false_positive_count: number of false alarms: actual 0 but predicted 1.
 
-On this slide
-Code | Equivalent idea
-tp = tn = fp = fn = 0 | Set each of four counts to zero
-tp += 1 | tp = tp + 1
-zip(actual, predicted) | Pair items in the same positions
-elif condition: | Try this branch if earlier ones failed
-Our paired lists must have matching lengths. zip alone stops at the shorter list.
+Step-by-step explanation
 
-Continue to
-Classification outcomes in Python
+false_negative_count = int((actual_is_positive & prediction_is_negative).sum())
+false_negative_count stores number of missed positives: actual 1 but predicted 0.
 
-## Slide 19 — Classification outcomes in Python
+false_positive_count = int((actual_is_negative & prediction_is_positive).sum())
+false_positive_count stores number of false alarms: actual 0 but predicted 1.
 
-Classification outcomes in Python
-CML3111, Week 9, slide 19
+true_negative_count = int((actual_is_negative & prediction_is_negative).sum())
+true_negative_count stores number of rows with actual 0 and predicted 0.
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
+print(false_negative_count, false_positive_count, true_negative_count)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+print(true_positive_count + false_negative_count + false_positive_count + true_negative_count, len(raw_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+Verified result with the supplied CSV
+1 1 1
+6 6
 
-Read the displayed code line by line
-actual = [1, 1, 0, 0]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-predicted = [1, 0, 1, 0]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+## Slide 22: Precision recall and cost
 
-for truth, guess in zip(actual, predicted):
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+Precision asks how many warnings were correct. Recall asks how many real warning cases were found. Neither alone shows all mistakes. The cost is not an approved safety limit.
 
-print(truth, guess)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-tp, fn, fp, tn = 1, 1, 1, 1
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+## Slide 23: Operations for the next example
 
-print(tp / (tp + fp))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Rounded display
+series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
 
-print(tp / (tp + fn))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-print(5 * fn + fp)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+## Slide 24: Checking a condition before calculating
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+if condition: runs its indented statements only when the condition is True. else: handles the other case. Check for a nonzero denominator before division, and for a nonempty table before selecting its first row.
+Explain these operations before running the following example.
 
-Continue to
-Classification outcomes results
+## Slide 25: Precision: how trustworthy are positive predictions?
 
-## Slide 20 — Classification outcomes results
+The denominator is all predicted positives: true positives plus false positives. Divide correct positive predictions by that total. Check the denominator before dividing; this teaching example uses 0 when it is zero.
 
-Classification outcomes results
-CML3111, Week 9, slide 20
+## Slide 26: Metrics from the supplied outcomes — step 1
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
+The denominator is all predicted positives: true positives plus false positives. Divide correct positive predictions by that total. Check the denominator before dividing; this teaching example uses 0 when it is zero.
 
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+Step-by-step explanation
 
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+precision = 0.0
+precision stores fraction of positive predictions that are correct.
 
-On this slide
-Four paired rows, then precision 0.5, recall 0.5 and teaching cost 6.
+if true_positive_count + false_positive_count > 0:
+    precision = true_positive_count / (true_positive_count + false_positive_count)
+Check the condition first, then run only the matching branch. This avoids invalid division or selecting a row that does not exist.
 
-Continue to
-Trace the four counters
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-## Slide 21 — Trace the four counters
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Trace the four counters
-CML3111, Week 9, slide 21
+## Slide 27: Recall: how many real positives were found?
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
+The denominator is all actual positives: true positives plus false negatives. Divide detected positives by that total. Precision and recall answer different questions even when they happen to have the same value.
 
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+## Slide 28: Metrics from the supplied outcomes — step 2
 
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+The denominator is all actual positives: true positives plus false negatives. Divide detected positives by that total. Precision and recall answer different questions even when they happen to have the same value.
 
-On this slide
-Actual, predicted | Chosen counter | Counts: TP TN FP FN
-1, 1 | TP increases | 1 0 0 0
-1, 0 | FN increases | 1 0 0 1
-0, 1 | FP increases | 1 0 1 1
-0, 0 | TN increases | 1 1 1 1
-All counts start at zero. Each observation follows exactly one if/elif/else branch.
+Step-by-step explanation
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+recall = 0.0
+recall stores fraction of actual positives detected by the model.
 
-Continue to
-Counting arbitrary paired observations
+if true_positive_count + false_negative_count > 0:
+    recall = true_positive_count / (true_positive_count + false_negative_count)
+Check the condition first, then run only the matching branch. This avoids invalid division or selecting a row that does not exist.
 
-## Slide 22 — Counting arbitrary paired observations
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Counting arbitrary paired observations
-CML3111, Week 9, slide 22
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
+## Slide 29: Metrics from the supplied outcomes — step 3
 
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+total_error_cost: five penalty units per missed positive plus one per false alarm in this scenario.
 
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+## Slide 30: Metrics from the supplied outcomes — step 3
 
-On this slide
-Start every counter at zero before the loop. == compares labels. and means both comparisons must be true. elif checks another condition only when earlier ones were false.
+total_error_cost: five penalty units per missed positive plus one per false alarm in this scenario.
 
-tp = tn = fp = fn = 0 sets all four counters to zero. tp += 1 is shorthand for tp = tp + 1.
+Step-by-step explanation
 
-Continue to
-Counting arbitrary paired observations in Python (1/3)
+total_error_cost = 5 * false_negative_count + false_positive_count
+total_error_cost stores five penalty units per missed positive plus one per false alarm in this scenario.
 
-## Slide 23 — Counting arbitrary paired observations in Python (1/3)
+print(round(precision, 4), round(recall, 4), total_error_cost)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Counting arbitrary paired observations in Python (1/3)
-CML3111, Week 9, slide 23
+Verified result with the supplied CSV
+0.75 0.75 6
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+## Slide 31: Probabilities and thresholds
 
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+A threshold at 0.5 labels probabilities at least 0.5 as positive. Do not treat existing 0/1 labels as original probability estimates. Threshold selection requires held-out probability validation_predictions.
 
-Read the displayed code line by line
-tp = tn = fp = fn = 0
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+## Slide 32: Category indicators
 
-Continue to
-Counting arbitrary paired observations in Python (2/3)
+This is a representation demonstration. Do not use predicted labels as model input features to predict those same labels. A multiclass metric needs a stated policy for every class.
 
-## Slide 24 — Counting arbitrary paired observations in Python (2/3)
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Counting arbitrary paired observations in Python (2/3)
-CML3111, Week 9, slide 24
+## Slide 33: Operations for the next example
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
+Reading chained operations
+Read a chain from left to right. In equipment_data["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s result.
 
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
+Category indicator columns
+pd.get_dummies(column, prefix="class", dtype=int) creates a 0/1 column per category. prefix names the columns, such as class_0 and class_1. dtype=int displays integers.
 
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
+Returning plain values
+series.tolist() or array.tolist() returns a Python list of values, without pandas row labels. Preserve their order when pairing actual values and validation_predictions.
 
-Read the displayed code line by line
-for truth, guess in zip(actual, predicted):
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-if truth == 1 and guess == 1:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
+## Slide 34: Indicators from the supplied class labels
 
-tp += 1
-Add the right-hand amount to the current stored value, then keep the updated value.
+Reading chained operations: Read a chain from left to right. In equipment_data["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s mean_load_by_equipment_group.
 
-elif truth == 0 and guess == 0:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
+Category indicator columns: pd.get_dummies(column, prefix="class", dtype=int) creates a 0/1 column per category. prefix names the columns, such as class_0 and class_1. dtype=int displays integers.
 
-tn += 1
-Add the right-hand amount to the current stored value, then keep the updated value.
+Returning plain values: series.tolist() or array.tolist() returns a Python list of values, without pandas row labels. Preserve their order when pairing actual values and validation_predictions.
 
-elif truth == 0 and guess == 1:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
+Step-by-step explanation
 
-fp += 1
-Add the right-hand amount to the current stored value, then keep the updated value.
+class_indicator_columns = pd.get_dummies(raw_data['predicted'], prefix='class', dtype=int)
+class_indicator_columns stores one integer 0/1 column for each predicted class.
 
-else:
-Use this remaining path when the matching earlier condition did not succeed.
+print(class_indicator_columns.head())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-fn += 1
-Add the right-hand amount to the current stored value, then keep the updated value.
+actual_values = raw_data['actual'].tolist()
+actual_values stores observed targets or labels in the order used for comparison.
 
-Result / continuity
-Continue the SAME cell; keep indentation. Run after all parts are entered.
+predicted_values = raw_data['predicted'].tolist()
+predicted_values stores predictions aligned with those actual values.
 
-Continue to
-Counting arbitrary paired observations in Python (3/3)
+print(len(actual_values), len(predicted_values))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 25 — Counting arbitrary paired observations in Python (3/3)
+Verified result with the supplied CSV
+class_0  class_1
+0        0        1
+1        1        0
+2        1        0
+3        0        1
+4        0        1
+6 6
 
-Counting arbitrary paired observations in Python (3/3)
-CML3111, Week 9, slide 25
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Explanation to give
-Work through each actual/predicted pair once and increment exactly one counter. Initialising all four counters to zero makes the later counts auditable.
-
-Worked illustration / lecturer answer
-A pair (1,0) adds one to FN. A pair (0,1) adds one to FP. After processing n pairs, TP + TN + FP + FN must equal n.
-
-Misconception to address
-If separate overlapping conditions increment two counters for one observation, the total exceeds n. Use mutually exclusive cases and verify the total.
-
-Read the displayed code line by line
-print(tp, tn, fp, fn)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
-Continue the SAME cell; keep indentation. Run after all parts are entered.
-
-Continue to
-Represent a category with indicators
-
-## Slide 26 — Represent a category with indicators
-
-Represent a category with indicators
-CML3111, Week 9, slide 26
-
-Explanation to give
-One-hot encoding gives each category its own indicator column. A row has a 1 in the column matching its category and 0 in the others.
-
-Worked illustration / lecturer answer
-For categories A and B, an A row becomes [1,0] and a B row becomes [0,1]. Assigning A=1 and B=2 could accidentally suggest a meaningful numerical distance or order.
-
-Misconception to address
-Fit the encoder on training data and define how to handle categories not seen during training. Do not invent an ordinal meaning for names.
-
-On this slide
-Category: A category is a label such as steel or timber. Its name does not imply a numerical size or rank.
-One-hot indicator: Create a column for each category. Its entry is 1 when the row has that category and 0 otherwise. Learn the allowed categories from training data.
-
-Continue to
-A category can become indicator columns
-
-## Slide 27 — A category can become indicator columns
-
-A category can become indicator columns
-CML3111, Week 9, slide 27
-
-Explanation to give
-One-hot encoding gives each category its own indicator column. A row has a 1 in the column matching its category and 0 in the others.
-
-Worked illustration / lecturer answer
-For categories A and B, an A row becomes [1,0] and a B row becomes [0,1]. Assigning A=1 and B=2 could accidentally suggest a meaningful numerical distance or order.
-
-Misconception to address
-Fit the encoder on training data and define how to handle categories not seen during training. Do not invent an ordinal meaning for names.
-
-On this slide
-Material | is_steel | is_timber
-steel | 1 | 0
-timber | 0 | 1
-An encoder converts category labels to numeric columns. Fit it on training data. Each indicator is 1 when that category applies, otherwise 0.
-
-Continue to
-Accuracy can hide missed warnings
-
-## Slide 28 — Accuracy can hide missed warnings
-
-Accuracy can hide missed warnings
-CML3111, Week 9, slide 28
-
-Explanation to give
-Accuracy counts all correct classifications together. In an imbalanced dataset, correct majority-class answers can dominate the score while the minority class is consistently missed.
-
-Worked illustration / lecturer answer
-With 95 normal cases and 5 genuine faults, always predicting normal gives 95% accuracy but detects zero faults. Fault recall is zero.
-
-Misconception to address
-A high headline accuracy alone is insufficient for a warning system. Report the confusion counts and the relevant costs.
-
-On this slide
-Accuracy = number of correct labels / number of labels. It counts correct warnings and correct non-warnings together.
-
-If 90 of 100 cases need no warning, predicting no warning every time gives 90% accuracy. It detects none of the 10 real warnings: recall is 0.
-
-Always inspect the actual/predicted counts and relevant costs before calling a classifier useful.
-
-Continue to
-Revision example and answer
-
-## Slide 29 — Revision example and answer
-
-Revision example and answer
-CML3111, Week 9, slide 29
-
-Explanation to give
-Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
-
-Worked illustration / lecturer answer
-Example: Change the second prediction to 1. Count again. Does this improve both recall and the assumed cost?
-
-Answer: TP=2, FN=0, FP=1, TN=1. Precision 2/3, recall 1, cost 1. This particular change improves recall and cost.
-
-Misconception to address
-Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
-
-Continue to
-Preparing for the assignment
-
-## Slide 30 — Preparing for the assignment
-
-Preparing for the assignment
-CML3111, Week 9, slide 30
-
-Explanation to give
-Read the metric with its unit and evaluation population. Explain why that error measure matches the cost of a wrong decision in the stated engineering setting.
-
-Worked illustration / lecturer answer
-MAE 3 kW describes an average absolute error on named observations; it does not guarantee every prediction lies within 3 kW. Report baseline comparison and the evaluation protocol.
-
-Misconception to address
-Avoid a deployment claim based only on a score. State genuine limitations involving data coverage, measurement quality or future operating conditions.
-
-On this slide
-Implement classification_metrics on arbitrary paired binary labels, not only the example.
-
-Use the published zero-denominator convention.
-
-Read the supplied W09 comparison separately.
-
-Teacher-written cost assumptions are not approved operating limits.
-
-Continue to
-Preparing for the assignment continued
-
-## Slide 31 — Preparing for the assignment continued
-
-Preparing for the assignment continued
-CML3111, Week 9, slide 31
-
-Explanation to give
-The warning labels and costs belong to this teaching scenario. Name what positive means before discussing benefit or harm.
-
-Worked illustration / lecturer answer
-Compute the confusion counts from aligned actual/predicted labels, then apply the published cost weights. A false alarm and a missed warning can have different costs.
-
-Misconception to address
-These illustrative costs are not approved operational thresholds. Claimed benefits need evaluation on relevant real observations before use in engineering decisions.
-
-On this slide
-All claimed benefits require real-world evaluation.
-
-Continue to
-Category predictions and operating thresholds
-
-## Slide 32 — Category predictions and operating thresholds
-
-Category predictions and operating thresholds
-CML3111, Week 9, slide 32
-
-Explanation to give
-A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
-
-Worked illustration / lecturer answer
-At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
-
-Misconception to address
-A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
-
-On this slide
-A majority-only classifier can achieve high accuracy while missing the rare class.
-
-Name the positive class and both confusion-matrix axes.
-
-A model expecting numeric features cannot directly use raw category strings; use numeric indicator columns for categories.
-
-Compare threshold choices on validation data.
-
-Continue to
-Category predictions and operating thresholds continued
-
-## Slide 33 — Category predictions and operating thresholds continued
-
-Category predictions and operating thresholds continued
-CML3111, Week 9, slide 33
-
-Explanation to give
-A probability-like score becomes a class decision only after choosing a threshold. The threshold expresses an operating trade-off; an error-cost rule states which mistakes matter more for this task.
-
-Worked illustration / lecturer answer
-At threshold >= 0.6, scores 0.59 and 0.60 give 0 and 1. Lowering the threshold usually raises more warnings, potentially reducing misses while increasing false alarms.
-
-Misconception to address
-A score of 0.8 is not a guarantee that this particular prediction is right. Evaluate calibration if probabilities will be interpreted literally. Costs must come from the stated scenario.
-
-On this slide
-Reducing the threshold adds flagged cases and cannot reduce recall on fixed scored observations, but precision can move either way.
-
-Continue to
-Your issued task
-
-## Slide 34 — Your issued task
+## Slide 35: Your issued task
 
 Your issued task
-CML3111, Week 9, slide 34
-
 Explanation to give
 The warning labels and costs belong to this teaching scenario. Name what positive means before discussing benefit or harm.
 
@@ -817,18 +472,13 @@ Use classification_case.csv.
 
 Positive means a synthetic warning condition.
 
-Compute the confusion matrix, precision, recall and cost.
+Compute the confusion matrix, precision, recall and total_error_cost.
 
 Explain the 5:1 missed-warning/false-alarm cost assumption and why accuracy alone is insufficient.
 
-Continue to
-Your issued task continued
-
-## Slide 35 — Your issued task continued
+## Slide 36: Your issued task continued
 
 Your issued task continued
-CML3111, Week 9, slide 35
-
 Explanation to give
 The warning labels and costs belong to this teaching scenario. Name what positive means before discussing benefit or harm.
 
@@ -841,34 +491,21 @@ These illustrative costs are not approved operational thresholds. Claimed benefi
 On this slide
 These costs are teaching assumptions, not approved operating limits.
 
-Continue to
-classification_metrics(actual, predicted)
+## Slide 37: classification_metrics(actual, predicted)
 
-## Slide 36 — classification_metrics(actual, predicted)
+Required interface: classification_metrics(actual, predicted)
 
-classification_metrics(actual, predicted)
-CML3111, Week 9, slide 36
+Return dictionary keys tp, tn, fp, fn, precision, recall and cost.
 
-Explanation to give
-Count the four mutually exclusive actual/predicted cases, then calculate the specified fractions and cost from those counts.
+tp = true positives; tn = true negatives; fp = false positives; fn = false negatives.
 
-Worked illustration / lecturer answer
-Verify TP+TN+FP+FN equals the number of paired observations. Read the cost weights and zero-denominator convention from the issued brief.
+cost = 5 * fn + fp. Return zero when a precision or recall denominator is zero.
 
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-On this slide
-For binary labels return tp, tn, fp, fn, precision, recall and cost=5*fn+fp; use zero for an undefined precision/recall denominator.
-
-Continue to
-Written evidence
-
-## Slide 37 — Written evidence
+## Slide 38: Written evidence
 
 Written evidence
-CML3111, Week 9, slide 37
-
 Explanation to give
 Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
 
@@ -887,14 +524,9 @@ State target units, reasons and limitations.
 
 Submit one complete notebook containing code and written evidence.
 
-Continue to
-Classification and cost submission
-
-## Slide 38 — Classification and cost submission
+## Slide 39: Classification and cost submission
 
 Classification and cost submission
-CML3111, Week 9, slide 38
-
 Explanation to give
 This slide hands over CML3111 W09. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
 
@@ -913,14 +545,9 @@ Use your full Student Registration Number in the form.
 
 Keep the submitted files and confirmation.
 
-Continue to
-Week 9 quiz
-
-## Slide 39 — Week 9 quiz
+## Slide 40: Week 9 quiz
 
 Week 9 quiz
-CML3111, Week 9, slide 39
-
 Explanation to give
 This is the CML3111 Week 9 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W9_CML3111 when ready and read the logged closing time.
 
@@ -939,14 +566,9 @@ Use your Student Registration Number and registered account.
 
 Check the announced quiz closing time.
 
-Continue to
-Revision and submission checklist
-
-## Slide 40 — Revision and submission checklist
+## Slide 41: Revision and submission checklist
 
 Revision and submission checklist
-CML3111, Week 9, slide 40
-
 Explanation to give
 Move from a numerical prediction to a category decision. Name the positive class before counting correct warnings, false alarms and missed warnings.
 
@@ -961,14 +583,9 @@ You can identify a false negative and explain precision and recall with counts.
 
 Save your work and check the required submission files.
 
-Continue to
-Optional revision video
-
-## Slide 41 — Optional revision video
+## Slide 42: Optional revision video
 
 Optional revision video
-CML3111, Week 9, slide 41
-
 Explanation to give
 Give the viewing question before playing the excerpt: Which observations are correctly or incorrectly classified?
 

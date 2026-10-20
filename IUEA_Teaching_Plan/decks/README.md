@@ -1,10 +1,10 @@
-# Current teaching sequence
-
-The explicit-foundations revision expands operators, decisions and loops into definitions, demonstrations and traces before combined examples. Use the current slide numbers in the matching lecturer companions. CML3112 completed Week 3 on 29 September and moves to Week 4. CML3111 and CML3113 start Week 3 at slide 1.
-
 # PowerPoint teaching decks
 
-**29 September revision:** Weeks 3–15 teach prerequisites before examples and use lecturer demonstrations with individual revision. See [current teaching progress](../Teaching_Progress.md) and [current CML3112 deadlines](../CML3112_Sept29_Student_Links.md); the separately authorized A3 reopening supersedes the older deadline printed in the deck. The slide-by-slide Markdown companions and embedded notes match this edition.
+**15 October revision:** Weeks 6–15 continue the pandas workflow introduced in Week 5. Use the matching lecturer notes and current student ZIPs. Check the live forms for current deadlines and Teaching_Progress.md for cohort pacing.
+
+**Pandas explanations:** Each CSV code example now follows explanations of its operations. Presenter View and the matching lecturer companion give line-by-line walkthroughs and interpretations of the supplied data results.
+
+**CSV examples:** File-based worked examples now use the CSV supplied for that cohort and week. The lecturer notes include executed outputs. Share the refreshed ZIPs. Week 7 rehearsal reuses Week 6 data; Week 14 rehearsal reuses Week 12 data.
 
 Teach directly from the PowerPoints below. Open Presenter View for the teaching prompts and practice explanations. All decks include reviewed lecturer notes; completed lessons retain their existing visual design.
 

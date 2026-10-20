@@ -40,3 +40,8 @@ Write your answers in the notebook’s **My written evidence** cell. Keep that h
 ## Submit
 
 ONE completed assignment notebook (.ipynb).
+
+<!-- PANDAS_WORKFLOW_20261015 -->
+## Pandas workflow
+
+Run the supplied pandas loading cell first. Analyse tables with pandas inside the required functions; return the exact list or dictionary requested. Where supplied, use records_from_table when a return needs Python None values. Correct existing loop-based solutions remain accepted.

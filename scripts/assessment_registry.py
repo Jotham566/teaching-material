@@ -74,6 +74,9 @@ def records():
             week=(session+2)//3,title=title,maximum=100,component='DA',weight=weight,
             formats=['sql'] if session==5 else ['pptx','pdf','docx'] if session==15 else ['ipynb','pdf','docx'],opens_at=None,closes_at=None,
             preserve_existing=False,grading='sql' if session==5 else 'rubric'))
+    for r in rows:
+        if r['key'] in ('CML3112|W06','CML3113|W06'):
+            r.update(status='NOT_ASSIGNED',waived=True,original_opens_at=r['opens_at'],original_closes_at=r['closes_at'],opens_at=None,closes_at=None,delivery_note='A6 and Quiz 6 waived. Practical revision; no graded submission. Existing responses retained.')
     return rows
 
 

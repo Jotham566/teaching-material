@@ -30,12 +30,12 @@ def main():
     p.add_argument('--data-dir');p.add_argument('--variant',choices=['A','B','C'],default='A');p.add_argument('--model',help='Defaults to the model in the passing calibration report');a=p.parse_args()
     if a.assessment not in SUPPORTED:raise ValueError('No checked contract for assessment')
     if (a.assessment=='S09')!=(a.cohort=='DA'):raise ValueError('S09 belongs to the independent DA track; IUEA assessments use their engineering cohort')
-    deterministic_only=a.assessment in ('W03','W04','W05')
+    deterministic_only=a.assessment in ('W03','W04','W05','TEST1','TEST2')
     prepared=Path(a.prepared).resolve();out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=True)
     rubric_path=HERE/'rubrics'/('W02.json' if a.assessment=='W02' else 'hybrid/'+a.assessment+'.json')
     from artifact_grade import validate_calibration,local_model_identity,group_manifest
     from registration import filename_id
-    rubric=None;maximum=20;artifact_script=HERE/'artifact_grade.py'
+    rubric=None;maximum=100 if a.assessment in ('TEST1','TEST2') else 20;artifact_script=HERE/'artifact_grade.py'
     if not deterministic_only:
         if not a.calibration:raise ValueError('A passing current calibration report is required for reasoning marks')
         from calibration_record import model_for_report,profile_for_report
@@ -51,7 +51,7 @@ def main():
     valid,invalid=packet_plan(groups,a.assessment)
     if a.assessment=='S09':default_data=HERE.parents[1]/'DataAnalysis_Track/assessment_banks/S09'
     elif a.assessment=='W02':default_data=HERE.parent/'setup'/a.cohort
-    elif deterministic_only:default_data=HERE.parent/'practicals'/a.assessment/a.cohort
+    elif a.assessment in ('W03','W04','W05'):default_data=HERE.parent/'practicals'/a.assessment/a.cohort
     else:default_data=HERE.parent/'assessment_banks'/a.assessment/a.cohort/a.variant
     data=Path(a.data_dir).resolve() if a.data_dir else default_data
     if not data.is_dir():raise ValueError('No dataset for this cohort and variant')

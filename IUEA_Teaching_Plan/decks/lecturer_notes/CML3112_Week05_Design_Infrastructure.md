@@ -1,8 +1,6 @@
-# CML3112 Week05 Design Infrastructure
+# CML3112 Week 5
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Using pandas to answer table questions
+## Slide 1: Using pandas to answer table questions
 
 Using pandas to answer table questions
 CML3112, Week 5, slide 1
@@ -22,7 +20,7 @@ Civil Engineering and Architecture
 Continue to
 Today’s learning
 
-## Slide 2 — Today’s learning
+## Slide 2: Today’s learning
 
 Today’s learning
 CML3112, Week 5, slide 2
@@ -44,773 +42,353 @@ Calculate column summaries and grouped totals.
 Continue to
 Connection to the previous lesson
 
-## Slide 3 — Connection to the previous lesson
+## Slide 3: DataFrame and column names
 
-Connection to the previous lesson
-CML3112, Week 5, slide 3
+Explain each field before indexing. This file provides the observations for every calculation in the lesson.
 
-Explanation to give
-pandas performs table operations that build on the lists, records and loops already taught. Explain the row, column and unit before using an operation.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Worked illustration / lecturer answer
-A filter retains matching rows. groupby gathers matching labels. For A:2, A:3, B:4, the totals are A:5 and B:4.
+## Slide 4: The supplied file
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+Uploading a notebook does not upload its data. Check the exact filename and column headings. Each cohort has its own data, so numerical results can differ.
 
-On this slide
-Week 4 used lists, dictionaries, loops and CSV rows. pandas keeps these same records in a labelled table and provides operations that work across its columns.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-Why this week’s tools are needed
+## Slide 5: Operations for the next example
 
-## Slide 4 — Why this week’s tools are needed
+Import and short names
+import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
 
-Why this week’s tools are needed
-CML3112, Week 5, slide 4
+Reading a CSV
+pd.read_csv("filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
 
-Explanation to give
-pandas performs table operations that build on the lists, records and loops already taught. Explain the row, column and unit before using an operation.
+Counting dimensions
+table.shape gives (number of rows, number of columns). shape is a property, so it has no parentheses.
 
-Worked illustration / lecturer answer
-A filter retains matching rows. groupby gathers matching labels. For A:2, A:3, B:4, the totals are A:5 and B:4.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+## Slide 6: Operations for the next example
 
-On this slide
-The supplied campus_energy.csv records campus electricity use. We practise pandas on four invented rows first, then inspect the supplied file and its units.
+Column data types
+table.dtypes reports each column’s stored type. int64 means integers, float64 means decimal numbers, and object often contains text. Numeric blanks commonly appear as NaN.
 
-Continue to
-Rows columns and units
+A preview of rows
+table.head() returns the first five rows. It leaves the table unchanged. A preview is not the entire dataset.
 
-## Slide 5 — Rows columns and units
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Rows columns and units
-CML3112, Week 5, slide 5
+## Slide 7: Loading the supplied observations
 
-Explanation to give
-A DataFrame is a labelled table. Each row describes one observation and each column holds one field across observations. pandas is the library; pd is the short name we choose when importing it.
+Code walkthrough
+Line 1: import pandas as pd
+Load pandas. An import makes these names available; it does not run the analysis.
 
-Worked illustration / lecturer answer
-A building label and its kWh belong on the same row. If building A has two rows, that is two observations of A, not necessarily two different buildings. pd.DataFrame(...) constructs the table from supplied data.
+Line 2: raw = pd.read_csv("campus_energy.csv")
+Read the supplied file into raw. Its rows remain the untouched source for this lesson.
 
-Misconception to address
-Row count and distinct-building count answer different questions. kW measures power while kWh measures energy accumulated over time.
+Line 3: print(raw.head())
+Display raw.head(). The first five observations and their column headings. Read one whole row aloud before discussing a column.
 
-On this slide
-A row describes one observation. A column describes one field.
+Line 4: print(raw.shape)
+Display raw.shape. The pair is row count followed by column count.
 
-A DataFrame is pandas’ labelled table.
+Line 5: print(raw.dtypes)
+Display raw.dtypes. Read each heading beside its stored type. float64 can include missing numerical entries.
 
-A Series is one labelled column.
+Reading the result
+The preview establishes the file schema. The row/column pair describes the full file, while head shows only five rows. Explain that NaN means a missing entry, not a measured zero.
 
-kWh measures energy. kW measures power.
+Output from the supplied CSV (this cohort):
+  meter_id     building        block    month   kwh  cost_ugx
+0    M-001  Kabojja Lab  Engineering  2026-01  4820   3374000
+1    M-001  Kabojja Lab  Engineering  2026-02  5310   3717000
+2    M-001  Kabojja Lab  Engineering  2026-03  6140   4298000
+3    M-002   Workshop A  Engineering  2026-01  7420   5194000
+4    M-002   Workshop A  Engineering  2026-02  7980   5586000
+(24, 6)
+meter_id    object
+building    object
+block       object
+month       object
+kwh          int64
+cost_ugx     int64
+dtype: object
 
-A data type (dtype) describes the kind of values in a column, such as whole numbers, decimals or text.
 
-Continue to
-A table keeps related observations together
+Further explanation
+read_csv creates a DataFrame. head shows the first five rows. shape gives row and column counts. dtypes describes each column. raw remains unchanged throughout the lesson.
 
-## Slide 6 — A table keeps related observations together
-
-A table keeps related observations together
-CML3112, Week 5, slide 6
-
-Explanation to give
-A DataFrame is a labelled table. Each row describes one observation and each column holds one field across observations. pandas is the library; pd is the short name we choose when importing it.
-
-Worked illustration / lecturer answer
-A building label and its kWh belong on the same row. If building A has two rows, that is two observations of A, not necessarily two different buildings. pd.DataFrame(...) constructs the table from supplied data.
-
-Misconception to address
-Row count and distinct-building count answer different questions. kW measures power while kWh measures energy accumulated over time.
-
-On this slide
-Our four rows record building A twice and building B twice.
-
-Each row contains the building label and an energy reading.
-
-kWh is energy. kW is power. The units describe different quantities.
-
-Continue to
-Our small energy table
-
-## Slide 7 — Our small energy table
-
-Our small energy table
-CML3112, Week 5, slide 7
-
-Explanation to give
-A DataFrame is a labelled table. Each row describes one observation and each column holds one field across observations. pandas is the library; pd is the short name we choose when importing it.
-
-Worked illustration / lecturer answer
-A building label and its kWh belong on the same row. If building A has two rows, that is two observations of A, not necessarily two different buildings. pd.DataFrame(...) constructs the table from supplied data.
-
-Misconception to address
-Row count and distinct-building count answer different questions. kW measures power while kWh measures energy accumulated over time.
-
-On this slide
-building | kwh
-A | 2
-A | 4
-B | 5
-B | 7
-The four observations total 18 kWh.
-
-Continue to
-Library and pandas and DataFrame
-
-## Slide 8 — Library and pandas and DataFrame
-
-Library and pandas and DataFrame
-CML3112, Week 5, slide 8
-
-Explanation to give
-A DataFrame is a labelled table. Each row describes one observation and each column holds one field across observations. pandas is the library; pd is the short name we choose when importing it.
-
-Worked illustration / lecturer answer
-A building label and its kWh belong on the same row. If building A has two rows, that is two observations of A, not necessarily two different buildings. pd.DataFrame(...) constructs the table from supplied data.
-
-Misconception to address
-Row count and distinct-building count answer different questions. kW measures power while kWh measures energy accumulated over time.
-
-On this slide
-Library and pandas: A library is reusable code. pandas provides tools for data tables. import pandas as pd makes pd a short name for that library.
-DataFrame: A table with named columns and indexed rows. df is just the variable name we choose for this table.
-
-Continue to
-A labelled table in Python
-
-## Slide 9 — A labelled table in Python
-
-A labelled table in Python
-CML3112, Week 5, slide 9
-
-Explanation to give
-A DataFrame is a labelled table. Each row describes one observation and each column holds one field across observations. pandas is the library; pd is the short name we choose when importing it.
-
-Worked illustration / lecturer answer
-A building label and its kWh belong on the same row. If building A has two rows, that is two observations of A, not necessarily two different buildings. pd.DataFrame(...) constructs the table from supplied data.
-
-Misconception to address
-Row count and distinct-building count answer different questions. kW measures power while kWh measures energy accumulated over time.
-
-On this slide
-The illustration uses machinery records. The same row, column and index structure applies to our building-energy table.
-
-Continue to
-Series and Method and attribute
-
-## Slide 10 — Series and Method and attribute
-
-Series and Method and attribute
-CML3112, Week 5, slide 10
-
-Explanation to give
-Selecting df["kwh"] gives one column as a Series, retaining its row labels. Calling .mean() then summarises that column. An attribute such as shape reports information without parentheses.
-
-Worked illustration / lecturer answer
-For kWh values 2, 4 and 9, the mean is 15 / 3 = 5. df.shape reports row and column counts; df.head() displays an initial sample of rows.
-
-Misconception to address
-df["kwh"] and df[["kwh"]] have different shapes: a Series versus a one-column DataFrame. Brackets select; parentheses call an operation.
-
-On this slide
-Series: One labelled column. df["kwh"] selects the column named kwh.
-Method and attribute: A method performs an operation, as in df.head(). An attribute provides a stored property, as in df.shape. Parentheses call an operation.
-
-Continue to
-Reading pandas syntax
-
-## Slide 11 — Reading pandas syntax
-
-Reading pandas syntax
-CML3112, Week 5, slide 11
-
-Explanation to give
-Selecting df["kwh"] gives one column as a Series, retaining its row labels. Calling .mean() then summarises that column. An attribute such as shape reports information without parentheses.
-
-Worked illustration / lecturer answer
-For kWh values 2, 4 and 9, the mean is 15 / 3 = 5. df.shape reports row and column counts; df.head() displays an initial sample of rows.
-
-Misconception to address
-df["kwh"] and df[["kwh"]] have different shapes: a Series versus a one-column DataFrame. Brackets select; parentheses call an operation.
-
-On this slide
-import pandas as pd loads the library and gives it a short name.
-
-pd.read_csv("file.csv") calls a function. The quoted text is the file path.
-
-df["kwh"] selects a column. df["kwh"].mean() calls a method on that column.
-
-Continue to
-Read the table constructor in stages
-
-## Slide 12 — Read the table constructor in stages
-
-Read the table constructor in stages
-CML3112, Week 5, slide 12
-
-Explanation to give
-A DataFrame is a labelled table. Each row describes one observation and each column holds one field across observations. pandas is the library; pd is the short name we choose when importing it.
-
-Worked illustration / lecturer answer
-A building label and its kWh belong on the same row. If building A has two rows, that is two observations of A, not necessarily two different buildings. pd.DataFrame(...) constructs the table from supplied data.
-
-Misconception to address
-Row count and distinct-building count answer different questions. kW measures power while kWh measures energy accumulated over time.
-
-On this slide
-import pandas as pd loads pandas and gives it the shorter name pd. This is an alias; you could use another name consistently.
-
-Inside pd.DataFrame(...), the dictionary keys become column names. Each list supplies that column’s values in row order.
-
-All these column lists have the same length. At position 0, building is "A" and kwh is 2; together they form the first row.
-
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
-
-Continue to
-Build the table before asking questions
-
-## Slide 13 — Build the table before asking questions
-
-Build the table before asking questions
-CML3112, Week 5, slide 13
-
-Explanation to give
-A DataFrame is a labelled table. Each row describes one observation and each column holds one field across observations. pandas is the library; pd is the short name we choose when importing it.
-
-Worked illustration / lecturer answer
-A building label and its kWh belong on the same row. If building A has two rows, that is two observations of A, not necessarily two different buildings. pd.DataFrame(...) constructs the table from supplied data.
-
-Misconception to address
-Row count and distinct-building count answer different questions. kW measures power while kWh measures energy accumulated over time.
-
-Read the displayed code line by line
+Complete worked example:
 import pandas as pd
-Load this library. An alias after as is the shorter name used below.
+raw = pd.read_csv("campus_energy.csv")
+print(raw.head())
+print(raw.shape)
+print(raw.dtypes)
 
-df = pd.DataFrame({"building": ["A", "A", "B", "B"],
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Result from the supplied example
+meter_id     building        block    month   kwh  cost_ugx
+0    M-001  Kabojja Lab  Engineering  2026-01  4820   3374000
+1    M-001  Kabojja Lab  Engineering  2026-02  5310   3717000
+2    M-001  Kabojja Lab  Engineering  2026-03  6140   4298000
+3    M-002   Workshop A  Engineering  2026-01  7420   5194000
+4    M-002   Workshop A  Engineering  2026-02  7980   5586000
+(24, 6)
+meter_id    object
+building    object
+block       object
+month       object
+kwh          int64
+cost_ugx     int64
+dtype: object
 
-"kwh": [2, 4, 5, 7]})
-This line continues the surrounding expression or block; read it together with the preceding line rather than running it alone.
+## Slide 8: Selecting and summarising a column
 
-print(df)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+The mean describes readings in this supplied file, not a general expected monthly use.
 
-Result / continuity
-Each dictionary key becomes a column name. Equal-length lists supply its rows.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-Select first then summarise
+## Slide 9: Operations for the next example
 
-## Slide 14 — Select first then summarise
+Reading chained operations
+Read a chain from left to right. In table["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s result.
 
-Select first then summarise
-CML3112, Week 5, slide 14
+Rounded display
+series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
 
-Explanation to give
-Selecting df["kwh"] gives one column as a Series, retaining its row labels. Calling .mean() then summarises that column. An attribute such as shape reports information without parentheses.
+Selecting columns
+table["column"] returns one labelled column, a Series. table[["a", "b"]] returns a DataFrame containing those named columns in that order.
 
-Worked illustration / lecturer answer
-For kWh values 2, 4 and 9, the mean is 15 / 3 = 5. df.shape reports row and column counts; df.head() displays an initial sample of rows.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Misconception to address
-df["kwh"] and df[["kwh"]] have different shapes: a Series versus a one-column DataFrame. Brackets select; parentheses call an operation.
+## Slide 10: Operations for the next example
 
-On this slide
-df["kwh"] selects the energy column as a Series, which is a labelled sequence of values. Its entries are 2, 4, 5 and 7.
+Mean of recorded values
+series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
 
-Store it as energy = df["kwh"]. energy.mean() adds those four values and divides by four: 18 / 4 = 4.5.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-df["kwh"].mean() combines those same two steps. A dot chooses a method; parentheses call it.
+## Slide 11: Energy values and their mean
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+Code walkthrough
+Line 1: print(raw["kwh"].head())
+Display raw['kwh'].head(). Read these values alongside their source column labels. The display does not change the calculation or source data.
 
-Continue to
-Select a column and calculate its mean
+Line 2: print(round(float(raw["kwh"].mean()), 3))
+Display round(float(raw['kwh'].mean()), 3). Read these values alongside their source column labels. The display does not change the calculation or source data.
 
-## Slide 15 — Select a column and calculate its mean
+Reading the result
+The displayed mean covers the entire kwh column, not just the five previewed readings. Its unit is kWh per recorded meter-month.
 
-Select a column and calculate its mean
-CML3112, Week 5, slide 15
+Output from the supplied CSV (this cohort):
+0    4820
+1    5310
+2    6140
+3    7420
+4    7980
+Name: kwh, dtype: int64
+5666.042
 
-Explanation to give
-Selecting df["kwh"] gives one column as a Series, retaining its row labels. Calling .mean() then summarises that column. An attribute such as shape reports information without parentheses.
 
-Worked illustration / lecturer answer
-For kWh values 2, 4 and 9, the mean is 15 / 3 = 5. df.shape reports row and column counts; df.head() displays an initial sample of rows.
+Further explanation
+head shows the first five readings. The mean uses the entire column.
 
-Misconception to address
-df["kwh"] and df[["kwh"]] have different shapes: a Series versus a one-column DataFrame. Brackets select; parentheses call an operation.
+Complete worked example:
+print(raw["kwh"].head())
+print(round(float(raw["kwh"].mean()), 3))
 
-Read the displayed code line by line
-print(df["kwh"])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Result from the supplied example
+0    4820
+1    5310
+2    6140
+3    7420
+4    7980
+Name: kwh, dtype: int64
+5666.042
 
-print(df["kwh"].mean())
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+## Slide 12: Ask a question about each energy reading
 
-Result / continuity
-The four numbers are 2, 4, 5 and 7. Their mean is 18 / 4 = 4.5 kWh.
+This is a practice question, not an engineering safety limit. Separate calculating the answers from selecting the rows. True and False are Boolean values, not the strings "True" and "False".
 
-Continue to
-Mask and filter
+## Slide 13: Operations for the next example
 
-## Slide 16 — Mask and filter
+Selecting rows with a mask
+A column comparison produces one True or False per row. table[mask] keeps the True rows. & combines masks: both conditions must hold. Parenthesise each comparison.
 
-Mask and filter
-CML3112, Week 5, slide 16
+Adding values and counting True
+series.sum() adds its values. For a Boolean mask, True counts as 1 and False as 0. table.isna().sum() therefore counts missing cells separately for each column.
 
-Explanation to give
-A comparison against a column creates one True/False result per row. That Boolean mask selects rows. Explain the mask first and only then put it inside df[...].
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Worked illustration / lecturer answer
-With kWh [2, 5, 8], the mask kwh > 5 is [False, False, True]. Applying it keeps only the row with 8. Using >= 5 would keep two rows.
+## Slide 14: Inspect the answers before selecting rows
 
-Misconception to address
-A mask is not the filtered table. Also check the column contains numbers, since text comparisons follow different rules.
+Match the row labels in the two outputs. The comparison answers the question for every row and leaves raw unchanged.
 
-On this slide
-Mask and filter: A comparison produces True/False for each row. df[mask] keeps the True rows.
+Result from the supplied example
+0    4820
+1    5310
+2    6140
+3    7420
+4    7980
+Name: kwh, dtype: int64
+0    False
+1     True
+2     True
+3     True
+4     True
+Name: kwh, dtype: bool
 
-Continue to
-A comparison creates a Boolean mask
+## Slide 15: Use the True answers to select rows
 
-## Slide 17 — A comparison creates a Boolean mask
+Quoted names inside brackets select a named column; a True/False Series inside brackets selects rows. The question and the table must refer to matching row labels.
 
-A comparison creates a Boolean mask
-CML3112, Week 5, slide 17
+## Slide 16: Keep and count the high-energy readings
 
-Explanation to give
-A comparison against a column creates one True/False result per row. That Boolean mask selects rows. Explain the mask first and only then put it inside df[...].
+This result table contains the selected rows. We only inspect it here; the original raw table remains unchanged. The count should equal the number of retained rows. The supplied threshold is strictly greater than 5000, so exactly 5000 is excluded.
 
-Worked illustration / lecturer answer
-With kWh [2, 5, 8], the mask kwh > 5 is [False, False, True]. Applying it keeps only the row with 8. Using >= 5 would keep two rows.
+Result from the supplied example
+meter_id     building        block    month   kwh  cost_ugx
+1    M-001  Kabojja Lab  Engineering  2026-02  5310   3717000
+2    M-001  Kabojja Lab  Engineering  2026-03  6140   4298000
+3    M-002   Workshop A  Engineering  2026-01  7420   5194000
+4    M-002   Workshop A  Engineering  2026-02  7980   5586000
+5    M-002   Workshop A  Engineering  2026-03  8115   5680500
+14
 
-Misconception to address
-A mask is not the filtered table. Also check the column contains numbers, since text comparisons follow different rules.
+## Slide 17: Groups and labels
 
-On this slide
-The illustration filters torque readings. Our next example applies the same True/False selection to kWh values.
+The maximum is a building label, not a row number. Group totals cover the months present in the CSV.
 
-Continue to
-Keep rows where the comparison is true
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-## Slide 18 — Keep rows where the comparison is true
+## Slide 18: Operations for the next example
 
-Keep rows where the comparison is true
-CML3112, Week 5, slide 18
+Counting distinct labels
+series.nunique() counts different recorded values, ignoring missing values by default. It counts categories rather than rows.
 
-Explanation to give
-A comparison against a column creates one True/False result per row. That Boolean mask selects rows. Explain the mask first and only then put it inside df[...].
+Label of the largest value
+series.idxmax() returns the label attached to the largest value. It does not return that value. If several entries tie, it returns the first such label.
 
-Worked illustration / lecturer answer
-With kWh [2, 5, 8], the mask kwh > 5 is [False, False, True]. Applying it keeps only the row with 8. Using >= 5 would keep two rows.
+Grouping rows
+table.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
 
-Misconception to address
-A mask is not the filtered table. Also check the column contains numbers, since text comparisons follow different rules.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Read the displayed code line by line
-mask = df["kwh"] > 4
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+## Slide 19: Building totals from campus_energy.csv
 
-print(mask)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Code walkthrough
+Line 1: totals = raw.groupby("building")["kwh"].sum()
+Group all source rows by building and add each group’s recorded energy.
 
-print(df[mask])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Line 2: print(totals)
+Display totals. Read these values alongside their source column labels. The display does not change the calculation or source data.
 
-Result / continuity
-The mask is False, False, True, True. The selected rows contain 5 and 7 kWh.
+Line 3: print(raw["building"].nunique())
+Display raw['building'].nunique(). Read these values alongside their source column labels. The display does not change the calculation or source data.
 
-Continue to
-groupby and aggregation
+Line 4: print(totals.idxmax())
+Display totals.idxmax(). Read these values alongside their source column labels. The display does not change the calculation or source data.
 
-## Slide 19 — groupby and aggregation
+Reading the result
+The labelled totals add energy over the recorded months. The distinct-label count is the number of buildings, and the final name identifies the largest total.
 
-groupby and aggregation
-CML3112, Week 5, slide 19
+Output from the supplied CSV (this cohort):
+building
+Admin Tower        7385
+Hostel Block C    29530
+Hostel Block D    26745
+Kabojja Lab       16270
+Lecture Hall 2     5685
+Library            9650
+Server Room       17205
+Workshop A        23515
+Name: kwh, dtype: int64
+8
+Hostel Block C
 
-Explanation to give
-Split rows into groups with the same label, select the quantity to summarise, then apply the aggregation. Read a chained expression as several small operations on the previous result.
 
-Worked illustration / lecturer answer
-For A values 2 and 3, and B value 4, grouped totals are A:5 and B:4. totals.max() returns 5, while totals.idxmax() returns the label A.
+Further explanation
+Trace one building back to its source rows. pandas performs the grouping and addition.
 
-Misconception to address
-nunique counts distinct labels, not records. idxmax returns an index label; it is the appropriate result only when the question asks which group is largest.
-
-On this slide
-groupby and aggregation: groupby collects rows with the same label. An aggregation such as sum or mean returns a summary for each group.
-
-Continue to
-Trace a group total before using groupby
-
-## Slide 20 — Trace a group total before using groupby
-
-Trace a group total before using groupby
-CML3112, Week 5, slide 20
-
-Explanation to give
-Split rows into groups with the same label, select the quantity to summarise, then apply the aggregation. Read a chained expression as several small operations on the previous result.
-
-Worked illustration / lecturer answer
-For A values 2 and 3, and B value 4, grouped totals are A:5 and B:4. totals.max() returns 5, while totals.idxmax() returns the label A.
-
-Misconception to address
-nunique counts distinct labels, not records. idxmax returns an index label; it is the appropriate result only when the question asks which group is largest.
-
-On this slide
-Group | Values assigned to it | Total
-A | 2 and 4 | 6
-B | 5 and 7 | 12
-groupby separates rows by the building label. sum adds the kWh values inside each group.
-
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
-
-Continue to
-Read each step of a pandas chain
-
-## Slide 21 — Read each step of a pandas chain
-
-Read each step of a pandas chain
-CML3112, Week 5, slide 21
-
-Explanation to give
-Split rows into groups with the same label, select the quantity to summarise, then apply the aggregation. Read a chained expression as several small operations on the previous result.
-
-Worked illustration / lecturer answer
-For A values 2 and 3, and B value 4, grouped totals are A:5 and B:4. totals.max() returns 5, while totals.idxmax() returns the label A.
-
-Misconception to address
-nunique counts distinct labels, not records. idxmax returns an index label; it is the appropriate result only when the question asks which group is largest.
-
-On this slide
-groups = df.groupby("building") describes groups of rows with matching building labels.
-
-energy_groups = groups["kwh"] selects the energy values within those groups. totals = energy_groups.sum() calculates one total per group.
-
-df.groupby("building")["kwh"].sum() is the same sequence written on one line. Read it from left to right.
-
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
-
-Continue to
-Calculate one total for each building
-
-## Slide 22 — Calculate one total for each building
-
-Calculate one total for each building
-CML3112, Week 5, slide 22
-
-Explanation to give
-Distinguish a group total from a group mean and from the number of observations. Work one named group's arithmetic by hand before reading the pandas result.
-
-Worked illustration / lecturer answer
-If A has readings 2 and 3, its sum is 5 and its mean is 2.5. The label A remains attached to the summary, so another reader knows which building it describes.
-
-Misconception to address
-A taller total can reflect more observations rather than greater typical use. Choose the aggregation that matches the question.
-
-Read the displayed code line by line
-print(df.groupby("building")["kwh"].sum())
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
-Expected: A totals 6 kWh; B totals 12 kWh.
-
-Continue to
-pandas tables and summaries results
-
-## Slide 23 — pandas tables and summaries results
-
-pandas tables and summaries results
-CML3112, Week 5, slide 23
-
-Explanation to give
-Distinguish a group total from a group mean and from the number of observations. Work one named group's arithmetic by hand before reading the pandas result.
-
-Worked illustration / lecturer answer
-If A has readings 2 and 3, its sum is 5 and its mean is 2.5. The label A remains attached to the summary, so another reader knows which building it describes.
-
-Misconception to address
-A taller total can reflect more observations rather than greater typical use. Choose the aggregation that matches the question.
-
-On this slide
-Mean 4.5. The filter keeps B rows with 5 and 7. Group totals: A = 6, B = 12 kWh.
-
-Continue to
-Unique labels and the largest group
-
-## Slide 24 — Unique labels and the largest group
-
-Unique labels and the largest group
-CML3112, Week 5, slide 24
-
-Explanation to give
-Split rows into groups with the same label, select the quantity to summarise, then apply the aggregation. Read a chained expression as several small operations on the previous result.
-
-Worked illustration / lecturer answer
-For A values 2 and 3, and B value 4, grouped totals are A:5 and B:4. totals.max() returns 5, while totals.idxmax() returns the label A.
-
-Misconception to address
-nunique counts distinct labels, not records. idxmax returns an index label; it is the appropriate result only when the question asks which group is largest.
-
-On this slide
-nunique counts distinct labels, not rows. idxmax returns the label of the largest total.
-
-Here there is no tie.
-
-Continue to
-Unique labels and the largest group in Python
-
-## Slide 25 — Unique labels and the largest group in Python
-
-Unique labels and the largest group in Python
-CML3112, Week 5, slide 25
-
-Explanation to give
-Split rows into groups with the same label, select the quantity to summarise, then apply the aggregation. Read a chained expression as several small operations on the previous result.
-
-Worked illustration / lecturer answer
-For A values 2 and 3, and B value 4, grouped totals are A:5 and B:4. totals.max() returns 5, while totals.idxmax() returns the label A.
-
-Misconception to address
-nunique counts distinct labels, not records. idxmax returns an index label; it is the appropriate result only when the question asks which group is largest.
-
-Read the displayed code line by line
-print(df["building"].nunique())
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-totals = df.groupby("building")["kwh"].sum()
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
+Complete worked example:
+totals = raw.groupby("building")["kwh"].sum()
+print(totals)
+print(raw["building"].nunique())
 print(totals.idxmax())
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+Result from the supplied example
+building
+Admin Tower        7385
+Hostel Block C    29530
+Hostel Block D    26745
+Kabojja Lab       16270
+Lecture Hall 2     5685
+Library            9650
+Server Room       17205
+Workshop A        23515
+Name: kwh, dtype: int64
+8
+Hostel Block C
 
-Continue to
-Create a column from two existing columns
+## Slide 20: A calculated energy rate
 
-## Slide 26 — Create a column from two existing columns
+A zero denominator cannot define a unit rate. Filtering here is for this rate demonstration, not an instruction to delete the original observation.
 
-Create a column from two existing columns
-CML3112, Week 5, slide 26
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Explanation to give
-A derived column combines existing columns row by row. Track units through the division. Cost divided by energy gives a rate in currency per kWh.
+## Slide 21: Operations for the next example
 
-Worked illustration / lecturer answer
-A fictional bill of 6,000 UGX for 10 kWh gives 600 UGX/kWh. Create that rate before filtering if later work needs the column in the filtered table.
+Adding or replacing a column
+table["name"] = values assigns that column. An array follows row order. A Series aligns by row label, so keep labels paired with the intended observations.
 
-Misconception to address
-The average of individual rates is generally different from total cost divided by total energy. Use the operation the question actually specifies and check zero-energy cases.
+Column arithmetic
+Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
 
-On this slide
-A new column can store a calculation for every row. Division pairs the values in matching rows.
+A separate working table
+table.copy() creates a working copy. Assigning columns on this copy preserves the source table, so you can compare before and after.
 
-For this invented table all energy values are positive. UGX is Uganda shillings. Cost divided by energy has units UGX/kWh.
+Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
 
-Continue to
-An energy rate is cost divided by energy
+## Slide 22: Rates from recorded cost and energy
 
-## Slide 27 — An energy rate is cost divided by energy
+Code walkthrough
+Line 1: priced = raw[raw["kwh"] > 0].copy()
+Select positive energy readings and copy them before calculating a unit rate.
 
-An energy rate is cost divided by energy
-CML3112, Week 5, slide 27
+Line 2: priced["rate_ugx_per_kwh"] = priced["cost_ugx"] / priced["kwh"]
+Divide each recorded cost by its paired positive energy reading. The new column has units UGX/kWh.
 
-Explanation to give
-A derived column combines existing columns row by row. Track units through the division. Cost divided by energy gives a rate in currency per kWh.
+Line 3: print(priced[["building", "kwh", "cost_ugx", "rate_ugx_per_kwh"]].head())
+Display priced[['building', 'kwh', 'cost_ugx', 'rate_ugx_per_kwh']].head(). Read these values alongside their source column labels. The display does not change the calculation or source data.
 
-Worked illustration / lecturer answer
-A fictional bill of 6,000 UGX for 10 kWh gives 600 UGX/kWh. Create that rate before filtering if later work needs the column in the filtered table.
+Reading the result
+For any displayed row, divide cost_ugx by kwh to reproduce the rate. Compare rates only where energy is positive.
 
-Misconception to address
-The average of individual rates is generally different from total cost divided by total energy. Use the operation the question actually specifies and check zero-energy cases.
+Output from the supplied CSV (this cohort):
+      building   kwh  cost_ugx  rate_ugx_per_kwh
+0  Kabojja Lab  4820   3374000             700.0
+1  Kabojja Lab  5310   3717000             700.0
+2  Kabojja Lab  6140   4298000             700.0
+3   Workshop A  7420   5194000             700.0
+4   Workshop A  7980   5586000             700.0
 
-Read the displayed code line by line
-df["cost_ugx"] = [1000, 2400, 3500, 5600]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
 
-df["rate_ugx_per_kwh"] = df["cost_ugx"] / df["kwh"]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Further explanation
+The two columns come from the same source row. Double brackets select a list of columns in the requested display order.
 
-print(df["rate_ugx_per_kwh"])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+Complete worked example:
+priced = raw[raw["kwh"] > 0].copy()
+priced["rate_ugx_per_kwh"] = priced["cost_ugx"] / priced["kwh"]
+print(priced[["building", "kwh", "cost_ugx", "rate_ugx_per_kwh"]].head())
 
-Result / continuity
-Expected rates: 500, 600, 700 and 800 UGX/kWh. Keep units in column names.
+Result from the supplied example
+building   kwh  cost_ugx  rate_ugx_per_kwh
+0  Kabojja Lab  4820   3374000             700.0
+1  Kabojja Lab  5310   3717000             700.0
+2  Kabojja Lab  6140   4298000             700.0
+3   Workshop A  7420   5194000             700.0
+4   Workshop A  7980   5586000             700.0
 
-Continue to
-Load the assignment table before analysing it
-
-## Slide 28 — Load the assignment table before analysing it
-
-Load the assignment table before analysing it
-CML3112, Week 5, slide 28
-
-Explanation to give
-Explain the difference between loading a table and understanding it. read_csv opens the supplied file; inspection checks that the expected rows, fields and units arrived before any analysis.
-
-Worked illustration / lecturer answer
-Show df.head(), df.shape and df.dtypes as three views of the same table. The Week 5 campus_energy.csv is a fictional 24-row teaching file with repeated meter observations.
-
-Misconception to address
-A successful read does not prove the right file was loaded. Check the filename, the header and the number of records before calculating.
-
-On this slide
-Upload campus_energy.csv to the current runtime first. read_csv reads it into a new DataFrame.
-
-head() displays the first five rows; shape gives row and column counts; dtypes shows column data types.
-
-We call this issued_table to keep it separate from the invented four-row df used above.
-
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
-
-Continue to
-Inspect the supplied energy file
-
-## Slide 29 — Inspect the supplied energy file
-
-Inspect the supplied energy file
-CML3112, Week 5, slide 29
-
-Explanation to give
-Explain the difference between loading a table and understanding it. read_csv opens the supplied file; inspection checks that the expected rows, fields and units arrived before any analysis.
-
-Worked illustration / lecturer answer
-Show df.head(), df.shape and df.dtypes as three views of the same table. The Week 5 campus_energy.csv is a fictional 24-row teaching file with repeated meter observations.
-
-Misconception to address
-A successful read does not prove the right file was loaded. Check the filename, the header and the number of records before calculating.
-
-Read the displayed code line by line
-issued_table = pd.read_csv("campus_energy.csv")
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(issued_table.head())
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(issued_table.shape)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(issued_table.dtypes)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
-Check column names, data types and units before attempting the six issued tasks.
-
-Continue to
-Revision example and answer
-
-## Slide 30 — Revision example and answer
-
-Revision example and answer
-CML3112, Week 5, slide 30
-
-Explanation to give
-Use the displayed example as a short individual revision question, then explain the reasoning behind its answer.
-
-Worked illustration / lecturer answer
-Example: Use > 5 instead. Predict the surviving rows. Which building has the largest total?
-
-Answer: Only the row with 7 survives. Building B has the larger total, 12 kWh.
-
-Misconception to address
-Trace the operation that changes the value rather than accepting a memorised output. For notebook-state examples, specify which cell is repeated and whether the initialisation ran again.
-
-Continue to
-Preparing for the assignment
-
-## Slide 31 — Preparing for the assignment
-
-Preparing for the assignment
-CML3112, Week 5, slide 31
-
-Explanation to give
-A5 uses the supplied campus_energy.csv and six named pandas outputs. Start with the loaded table, then create the rate column before taking the filtered subset.
-
-Worked illustration / lecturer answer
-Distinguish distinct meter count, a mean rate and the building with greatest total energy. These are three different questions about the same table.
-
-Misconception to address
-Return the exact requested values in one completed notebook. The learner does not upload data, ZIPs, helper scripts or a separate report for A5.
-
-On this slide
-A5 uses the supplied fictional campus_energy.csv, not a live Kaggle download.
-
-The six tasks use read_csv, nunique, division of columns, a > filter, mean and grouped totals. idxmax returns the label of the largest value.
-
-A mean of individual rates gives each observation equal weight.
-
-Total cost divided by total energy weights by energy.
-
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
-
-Continue to
-Data types and filters
-
-## Slide 32 — Data types and filters
-
-Data types and filters
-CML3112, Week 5, slide 32
-
-Explanation to give
-A comparison against a column creates one True/False result per row. That Boolean mask selects rows. Explain the mask first and only then put it inside df[...].
-
-Worked illustration / lecturer answer
-With kWh [2, 5, 8], the mask kwh > 5 is [False, False, True]. Applying it keeps only the row with 8. Using >= 5 would keep two rows.
-
-Misconception to address
-A mask is not the filtered table. Also check the column contains numbers, since text comparisons follow different rules.
-
-On this slide
-A Boolean mask is a list-like column of True/False values. len(mask) counts all rows; mask.sum() counts True entries.
-
-Strings sort as text, so "9" can rank above "100".
-
-Inspect numeric types before taking maxima.
-
-KeyError often means the column name does not match; check spelling, case and spaces. shape is (rows, columns).
-
-Continue to
-Data types and filters continued
-
-## Slide 33 — Data types and filters continued
-
-Data types and filters continued
-CML3112, Week 5, slide 33
-
-Explanation to give
-A comparison against a column creates one True/False result per row. That Boolean mask selects rows. Explain the mask first and only then put it inside df[...].
-
-Worked illustration / lecturer answer
-With kWh [2, 5, 8], the mask kwh > 5 is [False, False, True]. Applying it keeps only the row with 8. Using >= 5 would keep two rows.
-
-Misconception to address
-A mask is not the filtered table. Also check the column contains numbers, since text comparisons follow different rules.
-
-On this slide
-Read provenance and units before trusting a dataset.
-
-Continue to
-Your issued assignment
-
-## Slide 34 — Your issued assignment
+## Slide 23: Your issued assignment
 
 Your issued assignment
 CML3112, Week 5, slide 34
@@ -839,147 +417,57 @@ The latest student package contains no grader scripts or g.check cells. Restart 
 Continue to
 q1: 3 marks
 
-## Slide 35 — q1: 3 marks
+## Slide 24: q1: 3 marks
 
-q1: 3 marks
-CML3112, Week 5, slide 35
+Required interface: q1: 3 marks
 
-Explanation to give
-Load the named CSV into df. Reading the file is different from constructing a new table with copied example values.
-
-Worked illustration / lecturer answer
-Inspect the header and 24-row file before analysis.
-
-Misconception to address
-The student submits the completed notebook only. Grading runs on the lecturer’s side; the current package needs no grading scripts.
-
-On this slide
 Load campus_energy.csv into a DataFrame called df.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q2: 3 marks
+## Slide 25: q2: 3 marks
 
-## Slide 36 — q2: 3 marks
+Required interface: q2: 3 marks
 
-q2: 3 marks
-CML3112, Week 5, slide 36
-
-Explanation to give
-Count distinct meter_id values, not rows. A meter can contribute several monthly observations.
-
-Worked illustration / lecturer answer
-Two readings from M-001 count as one distinct meter.
-
-Misconception to address
-The student submits the completed notebook only. Grading runs on the lecturer’s side; the current package needs no grading scripts.
-
-On this slide
 Set n_meters to the number of distinct meters in the file.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q3: 4 marks
+## Slide 26: q3: 4 marks
 
-## Slide 37 — q3: 4 marks
+Required interface: q3: 4 marks
 
-q3: 4 marks
-CML3112, Week 5, slide 37
-
-Explanation to give
-Create cost_per_kwh by dividing each row’s cost_ugx by its kwh.
-
-Worked illustration / lecturer answer
-For 6000 UGX and 10 kWh the rate is 600 UGX/kWh.
-
-Misconception to address
-The student submits the completed notebook only. Grading runs on the lecturer’s side; the current package needs no grading scripts.
-
-On this slide
 Add a column cost_per_kwh to df, equal to cost_ugx / kwh.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q4: 4 marks
+## Slide 27: q4: 4 marks
 
-## Slide 38 — q4: 4 marks
+Required interface: q4: 4 marks
 
-q4: 4 marks
-CML3112, Week 5, slide 38
-
-Explanation to give
-Filter whole rows using the strict kwh > 5000 comparison, after creating the rate column.
-
-Worked illustration / lecturer answer
-A reading exactly 5000 does not pass this condition.
-
-Misconception to address
-The student submits the completed notebook only. Grading runs on the lecturer’s side; the current package needs no grading scripts.
-
-On this slide
 Set high_use to the rows of df where kwh is greater than 5000.
 
 Do this after q3 so the derived column comes along.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q5: 3 marks
+## Slide 28: q5: 3 marks
 
-## Slide 39 — q5: 3 marks
+Required interface: q5: 3 marks
 
-q5: 3 marks
-CML3112, Week 5, slide 39
-
-Explanation to give
-Find the mean of the created cost_per_kwh column, following the task’s stated table scope.
-
-Worked illustration / lecturer answer
-Mean of rates is not generally total cost divided by total energy.
-
-Misconception to address
-The student submits the completed notebook only. Grading runs on the lecturer’s side; the current package needs no grading scripts.
-
-On this slide
 Set mean_cost_per_kwh to the mean of the cost_per_kwh column.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q6: 3 marks
+## Slide 29: q6: 3 marks
 
-## Slide 40 — q6: 3 marks
+Required interface: q6: 3 marks
 
-q6: 3 marks
-CML3112, Week 5, slide 40
-
-Explanation to give
-Sum kwh by building and return the label with the greatest total.
-
-Worked illustration / lecturer answer
-max gives a total; idxmax gives the label attached to that total.
-
-Misconception to address
-The student submits the completed notebook only. Grading runs on the lecturer’s side; the current package needs no grading scripts.
-
-On this slide
 Set peak_building to the name of the building with the highest total kwh.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-Pandas investigation submission
-
-## Slide 41 — Pandas investigation submission
+## Slide 30: Pandas investigation submission
 
 Pandas investigation submission
 CML3112, Week 5, slide 41
@@ -1005,7 +493,7 @@ Keep the submitted files and confirmation.
 Continue to
 Project preparation
 
-## Slide 42 — Project preparation
+## Slide 31: Project preparation
 
 Project preparation
 CML3112, Week 5, slide 42
@@ -1031,7 +519,7 @@ Published deadline: 27 Oct 2026, 11:00 Kampala
 Continue to
 Week 5 quiz
 
-## Slide 43 — Week 5 quiz
+## Slide 32: Week 5 quiz
 
 Week 5 quiz
 CML3112, Week 5, slide 43
@@ -1057,7 +545,7 @@ Check the announced quiz closing time.
 Continue to
 Revision and submission checklist
 
-## Slide 44 — Revision and submission checklist
+## Slide 33: Revision and submission checklist
 
 Revision and submission checklist
 CML3112, Week 5, slide 44

@@ -22,6 +22,7 @@ OUT=BASE/'assessment_banks';OUT.mkdir(exist_ok=True)
 HYBRID=G/'rubrics/hybrid';HYBRID.mkdir(exist_ok=True)
 manifest={}
 for aid,parts in MAP.items():
+ if aid in ("TEST1","TEST2"):continue  # Owned by build_colab_exams below.
  original=json.loads((G/'rubrics'/f'{aid}.json').read_text());rubric=json.loads(json.dumps(original))
  rubric['id']=aid+'-2026.09-hybrid-r1';rubric['assessment_maximum']=original['maximum'];rubric['deterministic_maximum']=sum(x[1] for x in parts)
  for task,marks,cid in parts:
@@ -100,3 +101,11 @@ for aid,parts in MAP.items():
  manifest[aid]=dict(maximum=original['maximum'],deterministic_maximum=rubric['deterministic_maximum'],reasoning_maximum=rubric['maximum'],criterion_allocation=[dict(task=t,marks=m,criterion=c) for t,m,c in parts],release_status='DRAFT: validate reference solutions, equivalent variants and rubric calibration before issue')
 (OUT/'assessment_components.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('Built',len(MAP),'assessment contracts and 42 cohort/variant task banks; DRAFT pending validation')
+
+# Preserve the pandas teaching workflow whenever assessment banks are rebuilt.
+from pandas_assignment_support import revise as add_pandas_support
+add_pandas_support()
+
+# The approved Colab exam builder supersedes legacy hybrid test templates.
+from build_colab_exams import build as build_colab_tests
+build_colab_tests()

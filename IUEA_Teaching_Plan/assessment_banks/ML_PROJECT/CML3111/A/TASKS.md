@@ -62,3 +62,8 @@ Put the complete written evidence in your report, with relevant notebook results
 ## Submit
 
 TWO files together: your completed notebook (.ipynb) AND one complete report (DOCX or selectable-text PDF).
+
+<!-- PANDAS_WORKFLOW_20261015 -->
+## Pandas workflow
+
+Run the supplied pandas loading cell first. Analyse tables with pandas inside the required functions; return the exact list or dictionary requested. Where supplied, use records_from_table when a return needs Python None values. Correct existing loop-based solutions remain accepted.

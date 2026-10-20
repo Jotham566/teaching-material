@@ -109,6 +109,9 @@ def build_payload():
                   "anything you got wrong is the part worth reading."
                 + "\n• A question left blank scores the same as one "
                   "answered wrongly, so answer all five.")
+            if code in ('CML3112','CML3113'):
+                intro=intro.replace('worth 1% of your final mark.', 'part of the 10% quiz component.').replace('Your best ten of twelve quizzes count.', 'Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count.')
+                if wk==6:intro='NOT ASSIGNED: Quiz 6 is waived for practical revision. No submission or mark is required.'
             entry = {
                 "week": wk,
                 "number": QB.QUIZ_NUMBER[wk],
@@ -2075,6 +2078,8 @@ function clearCloseTriggers_() {
  * column in the response sheet, not the state of the form.
  */
 function openQuizFor(week, code) {
+  if(Number(week)===6 && ['CML3112','CML3113'].indexOf(code)>=0){throw new Error('Quiz 6 is waived for practical revision.');}
+
   if (week === undefined || code === undefined) {
     Logger.log('openQuizFor needs a week and a cohort, and the Run button '
                + 'cannot pass them.');

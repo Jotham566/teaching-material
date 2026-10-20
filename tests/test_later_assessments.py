@@ -9,6 +9,10 @@ class LaterAssessmentTests(unittest.TestCase):
  def test_component_totals(self):
   config=json.loads((ROOT/'IUEA_Teaching_Plan/assessment_banks/assessment_components.json').read_text())
   for aid,cfg in config.items():
+   if aid in ('TEST1','TEST2'):
+    self.assertEqual(sum(m for _,m in cfg['parts']),100)
+    self.assertEqual(cfg['reasoning_maximum'],0)
+    continue
    original=json.loads((G/'rubrics'/f'{aid}.json').read_text());hybrid=json.loads((G/'rubrics/hybrid'/f'{aid}.json').read_text())
    for c in original['criteria']:
     numerical=sum(x['marks'] for x in cfg['criterion_allocation'] if x['criterion']==c['id'])
@@ -25,7 +29,7 @@ class LaterAssessmentTests(unittest.TestCase):
    with tempfile.TemporaryDirectory() as d:
     path=Path(d)/'99_TEST_000_DEMO-X_TEST2.ipynb'
     path.write_text(json.dumps({'cells':[dict(cell_type='code',source='STUDENT_ID="99/TEST/000/DEMO-X"\nCOHORT='+repr(cohort)+'\n'+source)]}))
-    for aid in ('W06','W08','W09','W10','W11','W12','TEST1','TEST2','DA_PROJECT','ML_PROJECT'):
+    for aid in ('W06','W08','W09','W10','W11','W12','DA_PROJECT','ML_PROJECT'):
      r=grade_one(str(path),str(G/'specs'/f'spec_{aid}.py'),str(G/'specs/hidden'/f'spec_{aid}_hidden.py'),aid,cohort,None,15,60,None)
      self.assertEqual(sum(x['awarded'] for x in r['questions'].values()),json.loads((ROOT/'IUEA_Teaching_Plan/assessment_banks/assessment_components.json').read_text())[aid]['deterministic_maximum'],(cohort,aid,r))
 if __name__=='__main__':unittest.main()

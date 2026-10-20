@@ -1,0 +1,10 @@
+{
+  "name": "iuea-test-entry",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-19",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": {
+    "APPS_SCRIPT_URL": "https://script.google.com/macros/s/AKfycbxRlh_k0QbbgWbTE5gukY4QTEBFJ8Y8BNg9VL38Rtf5cYdq2RS93V6tn6ULgvzevrc/exec"
+  }
+}

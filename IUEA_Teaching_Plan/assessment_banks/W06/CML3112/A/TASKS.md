@@ -1,3 +1,7 @@
+# NOT ASSIGNED — optional practice only
+
+A6 and Quiz 6 are waived for this cohort. This is ungraded practical revision. No assignment upload or quiz response is required. Previous submissions remain on record but do not count towards coursework marks.
+
 # CML3112 A6 — task reference
 
 These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.
@@ -61,3 +65,8 @@ Write your answers in the notebook’s **My written evidence** cell. Keep that h
 ## Submit
 
 ONE completed assignment notebook (.ipynb).
+
+<!-- PANDAS_WORKFLOW_20261015 -->
+## Pandas workflow
+
+Run the supplied pandas loading cell first. Analyse tables with pandas inside the required functions; return the exact list or dictionary requested. Where supplied, use records_from_table when a return needs Python None values. Correct existing loop-based solutions remain accepted.

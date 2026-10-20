@@ -1,8 +1,6 @@
-# CML3113 Week03 Mining Petroleum
+# CML3113 Week 3
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
-
-## Slide 1 — Python calculations and reusable functions
+## Slide 1: Python calculations and reusable functions
 
 Python calculations and reusable functions
 CML3113, Week 3, slide 1
@@ -22,7 +20,7 @@ Mining and Petroleum Engineering
 Continue to
 Today’s learning
 
-## Slide 2 — Today’s learning
+## Slide 2: Today’s learning
 
 Today’s learning
 CML3113, Week 3, slide 2
@@ -44,7 +42,7 @@ Define a function, call it and check its inputs.
 Continue to
 How to read the examples
 
-## Slide 3 — How to read the examples
+## Slide 3: How to read the examples
 
 How to read the examples
 CML3113, Week 3, slide 3
@@ -66,7 +64,7 @@ Type the code shown in the example. Run it, then compare your output with the re
 Continue to
 The engineering context
 
-## Slide 4 — The engineering context
+## Slide 4: The engineering context
 
 The engineering context
 CML3113, Week 3, slide 4
@@ -90,7 +88,7 @@ These are teaching examples, not operating limits.
 Continue to
 Start with numbers and values
 
-## Slide 5 — Start with numbers and values
+## Slide 5: Start with numbers and values
 
 Start with numbers and values
 CML3113, Week 3, slide 5
@@ -111,7 +109,7 @@ Value and unit: A value is one piece of information. The number 2.5 is a value. 
 Continue to
 Words we will use
 
-## Slide 6 — Words we will use
+## Slide 6: Words we will use
 
 Words we will use
 CML3113, Week 3, slide 6
@@ -132,7 +130,7 @@ int, float, str, bool: int represents whole numbers; float represents approximat
 Continue to
 A variable refers to its current value
 
-## Slide 7 — A variable refers to its current value
+## Slide 7: A variable refers to its current value
 
 A variable refers to its current value
 CML3113, Week 3, slide 7
@@ -152,7 +150,7 @@ After reassignment, thickness refers to 0.20.
 Continue to
 Python values have types
 
-## Slide 8 — Python values have types
+## Slide 8: Python values have types
 
 Python values have types
 CML3113, Week 3, slide 8
@@ -178,7 +176,7 @@ NoneType | None | No value supplied
 Continue to
 Operator
 
-## Slide 9 — Operator
+## Slide 9: Operator
 
 Operator
 CML3113, Week 3, slide 9
@@ -198,7 +196,7 @@ Operator: A symbol for an operation: + adds, - subtracts, * multiplies, / divide
 Continue to
 Read a function call before using it
 
-## Slide 10 — Read a function call before using it
+## Slide 10: Read a function call before using it
 
 Read a function call before using it
 CML3113, Week 3, slide 10
@@ -219,7 +217,7 @@ Parentheses, quotes and comments: Parentheses hold the inputs to a call. Quotes 
 Continue to
 Reading Python symbols
 
-## Slide 11 — Reading Python symbols
+## Slide 11: Reading Python symbols
 
 Reading Python symbols
 CML3113, Week 3, slide 11
@@ -245,7 +243,7 @@ Indented lines belong to the block above them.
 Continue to
 Names, conversion and comments
 
-## Slide 12 — Names, conversion and comments
+## Slide 12: Names, conversion and comments
 
 Names, conversion and comments
 CML3113, Week 3, slide 12
@@ -281,7 +279,11 @@ type(...) reports the kind of value. <class 'float'> means a floating-point numb
 Continue to
 Week 3 continuation
 
-## Slide 13 — Week 3 continuation
+Result from the supplied example
+7.0
+<class 'float'>
+
+## Slide 13: Week 3 continuation
 
 Week 3 continuation
 CML3113, Week 3, slide 13
@@ -303,7 +305,7 @@ Next: arithmetic, decisions, functions, then lists and the A3 brief.
 Continue to
 Reading a Python expression
 
-## Slide 14 — Reading a Python expression
+## Slide 14: Reading a Python expression
 
 Reading a Python expression
 CML3113, Week 3, slide 14
@@ -331,7 +333,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Addition subtraction multiplication and division
 
-## Slide 15 — Addition subtraction multiplication and division
+## Slide 15: Addition subtraction multiplication and division
 
 Addition subtraction multiplication and division
 CML3113, Week 3, slide 15
@@ -360,7 +362,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Run the four arithmetic operations
 
-## Slide 16 — Run the four arithmetic operations
+## Slide 16: Run the four arithmetic operations
 
 Run the four arithmetic operations
 CML3113, Week 3, slide 16
@@ -397,7 +399,13 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Floor division remainder and powers
 
-## Slide 17 — Floor division remainder and powers
+Result from the supplied example
+9
+5
+14
+3.5
+
+## Slide 17: Floor division remainder and powers
 
 Floor division remainder and powers
 CML3113, Week 3, slide 17
@@ -425,7 +433,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Reading powers signs and remainders
 
-## Slide 18 — Reading powers signs and remainders
+## Slide 18: Reading powers signs and remainders
 
 Reading powers signs and remainders
 CML3113, Week 3, slide 18
@@ -453,7 +461,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Run floor division remainder and powers
 
-## Slide 19 — Run floor division remainder and powers
+## Slide 19: Run floor division remainder and powers
 
 Run floor division remainder and powers
 CML3113, Week 3, slide 19
@@ -493,7 +501,14 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Which operation happens first
 
-## Slide 20 — Which operation happens first
+Result from the supplied example
+3
+1
+8
+-4
+0.75
+
+## Slide 20: Which operation happens first
 
 Which operation happens first
 CML3113, Week 3, slide 20
@@ -521,7 +536,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Trace an expression before its output
 
-## Slide 21 — Trace an expression before its output
+## Slide 21: Trace an expression before its output
 
 Trace an expression before its output
 CML3113, Week 3, slide 21
@@ -549,7 +564,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Check operation order
 
-## Slide 22 — Check operation order
+## Slide 22: Check operation order
 
 Check operation order
 CML3113, Week 3, slide 22
@@ -583,7 +598,12 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Assigning and updating a named value
 
-## Slide 23 — Assigning and updating a named value
+Result from the supplied example
+14
+20
+8.0
+
+## Slide 23: Assigning and updating a named value
 
 Assigning and updating a named value
 CML3113, Week 3, slide 23
@@ -611,7 +631,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Trace one update
 
-## Slide 24 — Trace one update
+## Slide 24: Trace one update
 
 Trace one update
 CML3113, Week 3, slide 24
@@ -648,7 +668,11 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Numbers text and conversion
 
-## Slide 25 — Numbers text and conversion
+Result from the supplied example
+2
+3
+
+## Slide 25: Numbers text and conversion
 
 Numbers text and conversion
 CML3113, Week 3, slide 25
@@ -676,7 +700,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Compare numeric addition with text joining
 
-## Slide 26 — Compare numeric addition with text joining
+## Slide 26: Compare numeric addition with text joining
 
 Compare numeric addition with text joining
 CML3113, Week 3, slide 26
@@ -713,7 +737,13 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Arithmetic that needs care
 
-## Slide 27 — Arithmetic that needs care
+Result from the supplied example
+9
+72
+9
+2.5
+
+## Slide 27: Arithmetic that needs care
 
 Arithmetic that needs care
 CML3113, Week 3, slide 27
@@ -737,7 +767,7 @@ Many decimal fractions are approximate in a computer. A tolerance is an allowed 
 Continue to
 Read the quantities in your programme example
 
-## Slide 28 — Read the quantities in your programme example
+## Slide 28: Read the quantities in your programme example
 
 Read the quantities in your programme example
 CML3113, Week 3, slide 28
@@ -758,7 +788,7 @@ Density and pressure: Density is mass per volume in kg/m³. Pressure is force pe
 Continue to
 A calculation for your programme
 
-## Slide 29 — A calculation for your programme
+## Slide 29: A calculation for your programme
 
 A calculation for your programme
 CML3113, Week 3, slide 29
@@ -780,7 +810,7 @@ Flow = volume ÷ time = 6 litres per second.
 Continue to
 The calculation in Python
 
-## Slide 30 — The calculation in Python
+## Slide 30: The calculation in Python
 
 The calculation in Python
 CML3113, Week 3, slide 30
@@ -813,7 +843,10 @@ Read top to bottom. Run the complete example in the matching practice notebook.
 Continue to
 Reading an error message
 
-## Slide 31 — Reading an error message
+Result from the supplied example
+6.0
+
+## Slide 31: Reading an error message
 
 Reading an error message
 CML3113, Week 3, slide 31
@@ -838,7 +871,7 @@ The last line names the error. The indicated line shows where Python noticed it.
 Continue to
 A comparison produces a Boolean value
 
-## Slide 32 — A comparison produces a Boolean value
+## Slide 32: A comparison produces a Boolean value
 
 A comparison produces a Boolean value
 CML3113, Week 3, slide 32
@@ -866,7 +899,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Equality and difference
 
-## Slide 33 — Equality and difference
+## Slide 33: Equality and difference
 
 Equality and difference
 CML3113, Week 3, slide 33
@@ -893,7 +926,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Comparing sizes and boundaries
 
-## Slide 34 — Comparing sizes and boundaries
+## Slide 34: Comparing sizes and boundaries
 
 Comparing sizes and boundaries
 CML3113, Week 3, slide 34
@@ -922,7 +955,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Display comparison results
 
-## Slide 35 — Display comparison results
+## Slide 35: Display comparison results
 
 Display comparison results
 CML3113, Week 3, slide 35
@@ -968,7 +1001,15 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 A condition and an if block
 
-## Slide 36 — A condition and an if block
+Result from the supplied example
+True
+False
+False
+True
+False
+True
+
+## Slide 36: A condition and an if block
 
 A condition and an if block
 CML3113, Week 3, slide 36
@@ -996,7 +1037,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 An if statement without else
 
-## Slide 37 — An if statement without else
+## Slide 37: An if statement without else
 
 An if statement without else
 CML3113, Week 3, slide 37
@@ -1033,7 +1074,10 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Trace both paths through if
 
-## Slide 38 — Trace both paths through if
+Result from the supplied example
+check finished
+
+## Slide 38: Trace both paths through if
 
 Trace both paths through if
 CML3113, Week 3, slide 38
@@ -1061,7 +1105,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 else gives the other path
 
-## Slide 39 — else gives the other path
+## Slide 39: else gives the other path
 
 else gives the other path
 CML3113, Week 3, slide 39
@@ -1089,7 +1133,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 A decision needs a colon and indentation
 
-## Slide 40 — A decision needs a colon and indentation
+## Slide 40: A decision needs a colon and indentation
 
 A decision needs a colon and indentation
 CML3113, Week 3, slide 40
@@ -1125,7 +1169,10 @@ Result / continuity
 Continue to
 Trace both paths through if else
 
-## Slide 41 — Trace both paths through if else
+Result from the supplied example
+below 30
+
+## Slide 41: Trace both paths through if else
 
 Trace both paths through if else
 CML3113, Week 3, slide 41
@@ -1153,7 +1200,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 More than two branches
 
-## Slide 42 — More than two branches
+## Slide 42: More than two branches
 
 More than two branches
 CML3113, Week 3, slide 42
@@ -1175,7 +1222,7 @@ Python runs only the first matching branch. Put a narrower condition before a br
 Continue to
 Tracing an if elif else chain
 
-## Slide 43 — Tracing an if elif else chain
+## Slide 43: Tracing an if elif else chain
 
 Tracing an if elif else chain
 CML3113, Week 3, slide 43
@@ -1217,7 +1264,10 @@ Output: medium. The first condition is false; the second is true.
 Continue to
 Trace the if elif else chain
 
-## Slide 44 — Trace the if elif else chain
+Result from the supplied example
+medium
+
+## Slide 44: Trace the if elif else chain
 
 Trace the if elif else chain
 CML3113, Week 3, slide 44
@@ -1245,7 +1295,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Combining and reversing conditions
 
-## Slide 45 — Combining and reversing conditions
+## Slide 45: Combining and reversing conditions
 
 Combining and reversing conditions
 CML3113, Week 3, slide 45
@@ -1273,7 +1323,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 and and or with Boolean inputs
 
-## Slide 46 — and and or with Boolean inputs
+## Slide 46: and and or with Boolean inputs
 
 and and or with Boolean inputs
 CML3113, Week 3, slide 46
@@ -1302,7 +1352,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Check a permitted range
 
-## Slide 47 — Check a permitted range
+## Slide 47: Check a permitted range
 
 Check a permitted range
 CML3113, Week 3, slide 47
@@ -1342,7 +1392,12 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Why a zero check comes first
 
-## Slide 48 — Why a zero check comes first
+Result from the supplied example
+True
+False
+False
+
+## Slide 48: Why a zero check comes first
 
 Why a zero check comes first
 CML3113, Week 3, slide 48
@@ -1370,7 +1425,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Function
 
-## Slide 49 — Function
+## Slide 49: Function
 
 Function
 CML3113, Week 3, slide 49
@@ -1390,7 +1445,7 @@ Function: A named, reusable calculation or procedure. def introduces its definit
 Continue to
 Indentation and return
 
-## Slide 50 — Indentation and return
+## Slide 50: Indentation and return
 
 Indentation and return
 CML3113, Week 3, slide 50
@@ -1410,7 +1465,7 @@ Indentation and return: Spaces at the start of a line group the function body. r
 Continue to
 A function definition and a call
 
-## Slide 51 — A function definition and a call
+## Slide 51: A function definition and a call
 
 A function definition and a call
 CML3113, Week 3, slide 51
@@ -1436,7 +1491,7 @@ return sends the result back to the caller.
 Continue to
 Inputs, instructions and a returned result
 
-## Slide 52 — Inputs, instructions and a returned result
+## Slide 52: Inputs, instructions and a returned result
 
 Inputs, instructions and a returned result
 CML3113, Week 3, slide 52
@@ -1456,7 +1511,7 @@ The illustration uses slab_volume: length × width × thickness. The next functi
 Continue to
 Defining and calling double_value
 
-## Slide 53 — Defining and calling double_value
+## Slide 53: Defining and calling double_value
 
 Defining and calling double_value
 CML3113, Week 3, slide 53
@@ -1489,7 +1544,10 @@ Output: 8. Calling passes 4 to x; return sends 8 back; print displays it.
 Continue to
 Trace one function call
 
-## Slide 54 — Trace one function call
+Result from the supplied example
+8
+
+## Slide 54: Trace one function call
 
 Trace one function call
 CML3113, Week 3, slide 54
@@ -1518,7 +1576,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Passing inputs by position or by name
 
-## Slide 55 — Passing inputs by position or by name
+## Slide 55: Passing inputs by position or by name
 
 Passing inputs by position or by name
 CML3113, Week 3, slide 55
@@ -1546,7 +1604,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Positional and named inputs
 
-## Slide 56 — Positional and named inputs
+## Slide 56: Positional and named inputs
 
 Positional and named inputs
 CML3113, Week 3, slide 56
@@ -1579,7 +1637,11 @@ Both calls supply the same inputs. return makes the result reusable.
 Continue to
 None means there is no result value
 
-## Slide 57 — None means there is no result value
+Result from the supplied example
+6
+6
+
+## Slide 57: None means there is no result value
 
 None means there is no result value
 CML3113, Week 3, slide 57
@@ -1607,7 +1669,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 An input check before division
 
-## Slide 58 — An input check before division
+## Slide 58: An input check before division
 
 An input check before division
 CML3113, Week 3, slide 58
@@ -1629,7 +1691,7 @@ The check belongs inside the function, before the division. return ends that cal
 Continue to
 A function with a zero-input check
 
-## Slide 59 — A function with a zero-input check
+## Slide 59: A function with a zero-input check
 
 A function with a zero-input check
 CML3113, Week 3, slide 59
@@ -1665,7 +1727,10 @@ Output: 4.0. safe_share(12, 0) returns None before any division.
 Continue to
 Trace the division guard
 
-## Slide 60 — Trace the division guard
+Result from the supplied example
+4.0
+
+## Slide 60: Trace the division guard
 
 Trace the division guard
 CML3113, Week 3, slide 60
@@ -1692,7 +1757,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 A branch with a clear boundary
 
-## Slide 61 — A branch with a clear boundary
+## Slide 61: A branch with a clear boundary
 
 A branch with a clear boundary
 CML3113, Week 3, slide 61
@@ -1716,7 +1781,7 @@ Try the value exactly at 10 as well as 9 and 11.
 Continue to
 A branch with a clear boundary in Python
 
-## Slide 62 — A branch with a clear boundary in Python
+## Slide 62: A branch with a clear boundary in Python
 
 A branch with a clear boundary in Python
 CML3113, Week 3, slide 62
@@ -1755,7 +1820,11 @@ Read top to bottom. Run the complete example in the matching practice notebook.
 Continue to
 One value and a collection of values
 
-## Slide 63 — One value and a collection of values
+Result from the supplied example
+high
+low
+
+## Slide 63: One value and a collection of values
 
 One value and a collection of values
 CML3113, Week 3, slide 63
@@ -1777,7 +1846,7 @@ Python has several collection types. Choose one according to how you need to fin
 Continue to
 Lists dictionaries tuples and sets
 
-## Slide 64 — Lists dictionaries tuples and sets
+## Slide 64: Lists dictionaries tuples and sets
 
 Lists dictionaries tuples and sets
 CML3113, Week 3, slide 64
@@ -1802,7 +1871,7 @@ List and tuple positions start at zero. Dictionaries use keys. Sets have no posi
 Continue to
 A list stores values in positions
 
-## Slide 65 — A list stores values in positions
+## Slide 65: A list stores values in positions
 
 A list stores values in positions
 CML3113, Week 3, slide 65
@@ -1826,7 +1895,7 @@ Three items have positions 0, 1 and 2. readings[3] raises IndexError because the
 Continue to
 Count items before choosing a position
 
-## Slide 66 — Count items before choosing a position
+## Slide 66: Count items before choosing a position
 
 Count items before choosing a position
 CML3113, Week 3, slide 66
@@ -1854,7 +1923,7 @@ https://docs.python.org/3/tutorial/controlflow.html;
 Continue to
 Creating and reading a list
 
-## Slide 67 — Creating and reading a list
+## Slide 67: Creating and reading a list
 
 Creating and reading a list
 CML3113, Week 3, slide 67
@@ -1887,7 +1956,12 @@ Output: [98, 105, 92], then 98, then 3.
 Continue to
 Choosing the right collection
 
-## Slide 68 — Choosing the right collection
+Result from the supplied example
+[98, 105, 92]
+98
+3
+
+## Slide 68: Choosing the right collection
 
 Choosing the right collection
 CML3113, Week 3, slide 68
@@ -1911,7 +1985,7 @@ We use a list for today’s readings because their order matters. Week 4 develop
 Continue to
 A method belongs to a value
 
-## Slide 69 — A method belongs to a value
+## Slide 69: A method belongs to a value
 
 A method belongs to a value
 CML3113, Week 3, slide 69
@@ -1935,7 +2009,7 @@ The parentheses contain inputs to the operation. The square brackets in readings
 Continue to
 Selecting a largest error without loops
 
-## Slide 70 — Selecting a largest error without loops
+## Slide 70: Selecting a largest error without loops
 
 Selecting a largest error without loops
 CML3113, Week 3, slide 70
@@ -1959,7 +2033,7 @@ Keep the original signed error as well, because the magnitude alone loses direct
 Continue to
 Selecting a largest error without loops in Python
 
-## Slide 71 — Selecting a largest error without loops in Python
+## Slide 71: Selecting a largest error without loops in Python
 
 Selecting a largest error without loops in Python
 CML3113, Week 3, slide 71
@@ -1989,7 +2063,10 @@ Read top to bottom. Run the complete example in the matching practice notebook.
 Continue to
 Keep the reading beside its signed error
 
-## Slide 72 — Keep the reading beside its signed error
+Result from the supplied example
+8
+
+## Slide 72: Keep the reading beside its signed error
 
 Keep the reading beside its signed error
 CML3113, Week 3, slide 72
@@ -2011,7 +2088,7 @@ index(value) finds the first position containing that value. Use that position i
 Continue to
 Find a position, then recover the original values
 
-## Slide 73 — Find a position, then recover the original values
+## Slide 73: Find a position, then recover the original values
 
 Find a position, then recover the original values
 CML3113, Week 3, slide 73
@@ -2047,7 +2124,10 @@ Expected: 92 -8. The largest size is 8; the signed error is -8.
 Continue to
 Revision example and answer
 
-## Slide 74 — Revision example and answer
+Result from the supplied example
+92 -8
+
+## Slide 74: Revision example and answer
 
 Revision example and answer
 CML3113, Week 3, slide 74
@@ -2066,7 +2146,7 @@ Trace the operation that changes the value rather than accepting a memorised out
 Continue to
 Read the quantities before the formulas
 
-## Slide 75 — Read the quantities before the formulas
+## Slide 75: Read the quantities before the formulas
 
 Read the quantities before the formulas
 CML3113, Week 3, slide 75
@@ -2090,7 +2170,7 @@ A named constant stores a value kept fixed in the calculation. Uppercase names s
 Continue to
 Your programme formula
 
-## Slide 76 — Your programme formula
+## Slide 76: Your programme formula
 
 Your programme formula
 CML3113, Week 3, slide 76
@@ -2110,7 +2190,7 @@ Hydrostatic pressure (kPa) = density (kg/m³) × 9.81 (m/s²) × depth (m) / 100
 Continue to
 Preparing for the assignment
 
-## Slide 77 — Preparing for the assignment
+## Slide 77: Preparing for the assignment
 
 Preparing for the assignment
 CML3113, Week 3, slide 77
@@ -2139,7 +2219,7 @@ The latest student package contains no grader scripts or g.check cells. Restart 
 Continue to
 Preparing for the assignment continued
 
-## Slide 78 — Preparing for the assignment continued
+## Slide 78: Preparing for the assignment continued
 
 Preparing for the assignment continued
 CML3113, Week 3, slide 78
@@ -2164,7 +2244,7 @@ The latest student package contains no grader scripts or g.check cells. Restart 
 Continue to
 Unit conversions for the assignment
 
-## Slide 79 — Unit conversions for the assignment
+## Slide 79: Unit conversions for the assignment
 
 Unit conversions for the assignment
 CML3113, Week 3, slide 79
@@ -2191,7 +2271,7 @@ The latest student package contains no grader scripts or g.check cells. Restart 
 Continue to
 Your issued assignment
 
-## Slide 80 — Your issued assignment
+## Slide 80: Your issued assignment
 
 Your issued assignment
 CML3113, Week 3, slide 80
@@ -2220,126 +2300,51 @@ The latest student package contains no grader scripts or g.check cells. Restart 
 Continue to
 q1: 3 marks
 
-## Slide 81 — q1: 3 marks
+## Slide 81: q1: 3 marks
 
-q1: 3 marks
-CML3113, Week 3, slide 81
+Required interface: q1: 3 marks
 
-Explanation to give
-Weight is a force. Multiply the supplied mass by gravitational acceleration and store a numeric result with the required name.
-
-Worked illustration / lecturer answer
-A separate 2 kg practice object weighs 2 × 9.81 = 19.62 N. The assessed object has its own mass.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 A 40 kg motor sits on a bench.
 
 Set weight_n to its weight in newtons, taking g = 9.81.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q2: 4 marks
+## Slide 82: q2: 4 marks
 
-## Slide 82 — q2: 4 marks
+Required interface: q2: 4 marks
 
-q2: 4 marks
-CML3113, Week 3, slide 82
-
-Explanation to give
-The signed difference is measured minus expected. Divide by the nonzero reference and multiply by 100. A negative result means the measurement is below the reference.
-
-Worked illustration / lecturer answer
-For a separate example, measured 18 and expected 20 give -10%. Returning the string "-10%" would prevent later numeric calculations.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Write percent_error(measured, expected) returning the signed percent error.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q3: 3 marks
+## Slide 83: q3: 3 marks
 
-## Slide 83 — q3: 3 marks
+Required interface: q3: 3 marks
 
-q3: 3 marks
-CML3113, Week 3, slide 83
-
-Explanation to give
-Multiply density, gravitational acceleration and depth to obtain pressure in pascals, then divide by 1000 for kilopascals.
-
-Worked illustration / lecturer answer
-Check the units aloud: kg/m³ × m/s² × m gives Pa. Returning the Pa number when the task requests kPa produces a factor-of-1000 error.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Write mud_pressure(depth_m, density) returning the hydrostatic pressure in kPa.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q4: 5 marks
+## Slide 84: q4: 5 marks
 
-## Slide 84 — q4: 5 marks
+Required interface: q4: 5 marks
 
-q4: 5 marks
-CML3113, Week 3, slide 84
-
-Explanation to give
-The specified guard covers zero and negative input power. Handle that before dividing useful output power by input power.
-
-Worked illustration / lecturer answer
-A separate practice case with output 30 W and input 50 W gives 60%. For an invalid input the task requires None, not 0 or an error message string.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Write efficiency(out_w, in_w) returning the percentage, and returning None when in_w is zero or negative.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-q5: 5 marks
+## Slide 85: q5: 5 marks
 
-## Slide 85 — q5: 5 marks
+Required interface: q5: 5 marks
 
-q5: 5 marks
-CML3113, Week 3, slide 85
-
-Explanation to give
-The signed difference is measured minus expected. Divide by the nonzero reference and multiply by 100. A negative result means the measurement is below the reference.
-
-Worked illustration / lecturer answer
-For a separate example, measured 18 and expected 20 give -10%. Returning the string "-10%" would prevent later numeric calculations.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 READINGS is given in the notebook.
 
 Using your own percent_error against a nominal of 100, set worst_reading to the reading with the largest error by size, and worst_error to that reading's signed percent error.
 
-Current notebook workflow
-The latest student package contains no grader scripts or g.check cells. Restart and run the completed notebook, then submit it. Existing older submissions remain valid.
+Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
 
-Continue to
-Engineering functions submission
-
-## Slide 86 — Engineering functions submission
+## Slide 86: Engineering functions submission
 
 Engineering functions submission
 CML3113, Week 3, slide 86
@@ -2365,7 +2370,7 @@ Keep the submitted files and confirmation.
 Continue to
 Week 3 quiz
 
-## Slide 87 — Week 3 quiz
+## Slide 87: Week 3 quiz
 
 Week 3 quiz
 CML3113, Week 3, slide 87
@@ -2391,7 +2396,7 @@ Check the announced quiz closing time.
 Continue to
 Revision and submission checklist
 
-## Slide 88 — Revision and submission checklist
+## Slide 88: Revision and submission checklist
 
 Revision and submission checklist
 CML3113, Week 3, slide 88
@@ -2413,7 +2418,7 @@ Save your work and check the required submission files.
 Continue to
 Optional revision video
 
-## Slide 89 — Optional revision video
+## Slide 89: Optional revision video
 
 Optional revision video
 CML3113, Week 3, slide 89

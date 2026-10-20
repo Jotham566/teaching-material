@@ -1,523 +1,570 @@
-# CML3111 Week14 Engineering
+# CML3111 Week 14
 
-Lecturer companion. The same explanations are embedded in the PowerPoint speaker notes. Open Presenter View, or expand the Notes pane when preparing.
+## Slide 1: Preparing for Practical Test 2
 
-## Slide 1 — Preparing for Practical Test 2
+Send this deck and CML3111_Test2_practice.csv together several days before Test 2. The CSV contains synthetic practice reading_values. All worked data examples use this file. Practice is ungraded. The later test-day section uses different files from the timed portal.
 
-Preparing for Practical Test 2
-CML3111, Week 14, slide 1
+## Slide 2: Your revision files
 
-Explanation to give
-Prepare for Test 2 by rehearsing the previously taught modelling decisions and the offline evidence workflow. Do not turn the assessed period into a worked lesson.
+Share the CSV as a separate attachment beside the PPTX. Students do not need an assessment packet or grader. The practice CSV is intentionally small so they can check every calculation by hand.
 
-Worked illustration / lecturer answer
-Part B is typed reasoning in the same notebook, with code execution prohibited. The invigilated collection is authoritative; a later upload only transports that snapshot.
+## Slide 3: Practice and test-day files
 
-Misconception to address
-Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
+The clearly named practice file avoids confusing it with engineering_data.csv. Portal timing applies to test downloads, not the practice attachment. The repository remains public by the lecturer’s decision, so portal timing is not a claim that public repository files are private.
 
-On this slide
-Communications, Electrical, Mechatronics and Robotics Engineering
+## Slide 4: A new practice notebook in Colab
 
-Continue to
-Today’s learning
+A notebook holds code cells and output. Later cells use names created by earlier cells. Confirm the name and saved status. Students do not need a test notebook for this revision.
 
-## Slide 2 — Today’s learning
+## Slide 5: Uploading your practice CSV
 
-Today’s learning
-CML3111, Week 14, slide 2
+The Files panel uploads to the temporary session, not into the notebook itself. A FileNotFoundError usually means the file was not uploaded, its filename differs, or the session reset. Do not upload the PPTX into Colab. Avoid a duplicate download name ending in (1).
 
-Explanation to give
-Prepare for Test 2 by rehearsing the previously taught modelling decisions and the offline evidence workflow. Do not turn the assessed period into a worked lesson.
+## Slide 6: What each column means
 
-Worked illustration / lecturer answer
-Part B is typed reasoning in the same notebook, with code execution prohibited. The invigilated collection is authoritative; a later upload only transports that snapshot.
+These are synthetic teaching values, not measurements from an operating site. A row contains one measurement and its associated input conditions. target is a column name, not a unit. M1 and M2 are invented equipment identifiers. read_csv displays missing numeric values as NaN.
 
-Misconception to address
-At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
+## Slide 7: Reading a CSV with pandas
 
-On this slide
-Rehearse previously taught modelling decisions.
+A DataFrame is a table with named columns. The equals sign assigns a result to a name. CSV means comma-separated values. Python is case-sensitive, including the practice_filename.
 
-Practise saving the complete test notebook offline.
+## Slide 8: Reading the code syntax / Import and short names
 
-Continue to
-Connection to the previous lesson
+= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
 
-## Slide 3 — Connection to the previous lesson
+import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
+Explain these operations before running the following example.
 
-Connection to the previous lesson
-CML3111, Week 14, slide 3
+## Slide 9: Reading a CSV
 
-Explanation to give
-Prepare for Test 2 by rehearsing the previously taught modelling decisions and the offline evidence workflow. Do not turn the assessed period into a worked lesson.
+pd.read_csv("filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
+Explain these operations before running the following example.
 
-Worked illustration / lecturer answer
-Part B is typed reasoning in the same notebook, with code execution prohibited. The invigilated collection is authoritative; a later upload only transports that snapshot.
+## Slide 10: Loading the supplied practice file
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+pd.read_csv("filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
 
-On this slide
-Can you name the target, fit only on training records and explain how you would keep the test untouched?
+Step-by-step explanation
 
-Continue to
-Preparation happens before the test
+import pandas as pd
+Load the named tools. Importing a model class does not train a model.
 
-## Slide 4 — Preparation happens before the test
+practice_filename = 'CML3111_Test2_practice.csv'
+practice_filename stores the exact name of the accompanying revision CSV.
 
-Preparation happens before the test
-CML3111, Week 14, slide 4
+practice_data = pd.read_csv(practice_filename)
+practice_data stores the small practice table read from that CSV.
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+print(practice_data)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+print(len(practice_data))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+Verified result with the supplied CSV
+reading machine  load  target  ambient
+0        1      M1    20      10     20.0
+1        2      M1    40      20      NaN
+2        3      M2    60      30     30.0
+3        4      M2    80      40     40.0
+4
 
-On this slide
-Practise the already taught error calculations and data-splitting rules.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Use separate practice values.
+## Slide 11: A separate working table / Returning plain values
 
-The timed session follows the issued test instructions.
+table.copy() creates a working copy. Assigning columns on this copy preserves the source table, so you can compare before and after.
 
-Continue to
-Rehearse the offline save procedure
+series.tolist() or array.tolist() returns a Python list of values, without pandas row labels. Preserve their order when pairing actual values and predictions.
+Explain these operations before running the following example.
 
-## Slide 5 — Rehearse the offline save procedure
+## Slide 12: Selecting columns
 
-Rehearse the offline save procedure
-CML3111, Week 14, slide 5
+table["column"] returns one labelled column, a Series. table[["a", "b"]] returns a DataFrame containing those named columns in that order.
+Explain these operations before running the following example.
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+## Slide 13: Keeping the source table
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+table["column"] returns one labelled column, a Series. table[["a", "b"]] returns a DataFrame containing those named columns in that order.
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+Step-by-step explanation
 
-On this slide
-Save your notebook on the prepared lab computer.
+raw_data = practice_data.copy()
+raw_data stores original CSV table; keep it unchanged so the analysis can be checked.
 
-Type Part B under My written evidence in the notebook.
+print(raw_data['target'].tolist())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Locate and reopen the complete notebook without internet.
+Verified result with the supplied CSV
+[10, 20, 30, 40]
 
-Continue to
-A result needs an explanation
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-## Slide 6 — A result needs an explanation
+## Slide 14: Inputs, targets and held-out data
 
-A result needs an explanation
-CML3111, Week 14, slide 6
+For this small practice, only one feature is used. The assessed notebook specifies its own required feature_columns. Training, validation and final test are roles for data, not different versions of a student paper. A final test estimate becomes optimistic if repeatedly used to select a linear_model.
 
-Explanation to give
-Read the metric with its unit and evaluation population. Explain why that error measure matches the cost of a wrong decision in the stated engineering setting.
+## Slide 15: Selecting groups without mixing machines
 
-Worked illustration / lecturer answer
-MAE 3 kW describes an average absolute error on named observations; it does not guarantee every prediction lies within 3 kW. Report baseline comparison and the evaluation protocol.
+The practice uses M1 for training and M2 for validation to keep the example short. It has no separate final test set. A real test task specifies additional equipment groups. A row-wise random split could place readings from the same machine on both sides.
 
-Misconception to address
-Avoid a deployment claim based only on a score. State genuine limitations involving data coverage, measurement quality or future operating conditions.
+## Slide 16: Selecting labelled rows / Membership in a group list
 
-On this slide
-Name the target and its unit or class.
+table.loc[row_mask] selects rows whose mask is True. With column labels, .loc selects named columns too. .copy() makes a separate working table after selection.
 
-Explain which data fitted preprocessing and which data evaluated the model.
+series.isin(["E1", "E2"]) returns True for entries matching either listed label. table[that_mask] keeps all observations belonging to those groups.
+Explain these operations before running the following example.
 
-A high score alone does not establish a useful engineering model.
+## Slide 17: A small group split
 
-Continue to
-Practice before test day
+table.loc[row_mask] selects rows whose mask is True. With column labels, .loc selects named columns too. .copy() makes a separate working table after selection.
 
-## Slide 7 — Practice before test day
+series.isin(["E1", "E2"]) returns True for entries matching either listed label. table[that_mask] keeps all observations belonging to those groups.
 
-Practice before test day
-CML3111, Week 14, slide 7
+Step-by-step explanation
 
-Explanation to give
-Pair the actual and predicted values in order. The first absolute error is abs(4-5)=1; the second is abs(8-6)=2.
+training_data = raw_data.loc[raw_data['machine'].isin(['M1'])].copy()
+training_data stores rows used to learn model settings; only these rows may determine imputation values.
 
-Worked illustration / lecturer answer
-Their mean is (1+2)/2=1.5. The unit is the target unit. Both observations contribute once to the numerator and denominator.
+validation_data = raw_data.loc[raw_data['machine'].isin(['M2'])].copy()
+validation_data stores separate rows used to compare models without fitting on them.
 
-Misconception to address
-Use the practice values only before the assessed session. MAE 1.5 is an average, not a maximum error guarantee.
+print(training_data['target'].tolist())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Read the displayed code line by line
-actual = [4, 8]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+print(validation_data['target'].tolist())
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-predicted = [5, 6]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Verified result with the supplied CSV
+[10, 20]
+[30, 40]
 
-errors = []
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-for a, p in zip(actual, predicted):
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
+## Slide 18: A baseline before a fitted model
 
-errors.append(abs(a - p))
-Evaluate the argument and add it as one new item at the end of this list.
+Training targets are 10 and 20, so their mean is 15. The baseline predicts 15 for both validation rows even though their actual targets are 30 and 40. This is a benchmark rather than a model that responds to the input load.
 
-print(sum(errors) / len(errors))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
+## Slide 19: Repeating a baseline value / Mean of recorded values
 
-Result / continuity
-Read top to bottom. Run the complete example in the matching practice notebook.
+[training_target_mean] is a one-item list. Multiplying that list by the number of validation rows repeats its value once per row. This is list repetition, not multiplication of the mean itself.
 
-Continue to
-Test session
+series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
+Explain these operations before running the following example.
 
-## Slide 8 — Test session
+## Slide 20: Training-mean baseline
 
-Test session
-CML3111, Week 14, slide 8
+[training_target_mean] is a one-item list. Multiplying that list by the number of validation rows repeats its value once per row. This is list repetition, not multiplication of the mean itself.
 
-Explanation to give
-Prepare for Test 2 by rehearsing the previously taught modelling decisions and the offline evidence workflow. Do not turn the assessed period into a worked lesson.
+series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
 
-Worked illustration / lecturer answer
-Part B is typed reasoning in the same notebook, with code execution prohibited. The invigilated collection is authoritative; a later upload only transports that snapshot.
+Step-by-step explanation
 
-Misconception to address
-At the Part A boundary, follow the official snapshot procedure. During the 25-minute Part B period, students type reasoning but must not execute code. Do not change the published timing during an explanation.
+training_target_mean = training_data['target'].mean()
+training_target_mean stores mean target calculated from training rows only.
 
-On this slide
-00–15 minutes: briefing and file check.
+baseline_predictions = [training_target_mean] * len(validation_data)
+baseline_predictions stores the training mean repeated once per validation observation.
 
-15–135 minutes: individual practical work.
+print(baseline_predictions)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-135–160 minutes: typed offline reasoning, with code execution prohibited.
+Verified result with the supplied CSV
+[np.float64(15.0), np.float64(15.0)]
 
-160–180 minutes: save and hand in through invigilated offline collection.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Continue to
-Preparation checkpoint
+## Slide 21: Mean absolute error and RMSE
 
-## Slide 9 — Preparation checkpoint
+For actual [30, 40] and predicted [15, 15], errors are [15, 25]. MAE = (15 + 25)/2 = 20. Squared errors are [225, 625]. Their mean is 425, whose square root is about 20.62. Squaring penalises larger errors more strongly.
 
-Preparation checkpoint
-CML3111, Week 14, slide 9
+## Slide 22: Matching predictions to the correct rows
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+The validation table retained original labels 2 and 3. The baseline list becomes a Series labelled 0 and 1. Resetting the actual labels lets corresponding values subtract correctly. Resetting labels cannot fix an incorrectly reordered prediction list.
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+## Slide 23: Column arithmetic / Squared error and square root
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
 
-On this slide
-Each learner can save and reopen the complete notebook in the offline setting.
+error ** 2 squares each error. After averaging, ** 0.5 takes the square root. This gives root mean squared error, which penalises large errors more strongly than mean absolute error.
+Explain these operations before running the following example.
 
-Continue to
-Your evidence
+## Slide 24: Aligning positions for subtraction / A labelled column
 
-## Slide 10 — Your evidence
+series.reset_index(drop=True) replaces old row labels with 0, 1, 2, and so on. drop=True discards the old labels. Apply it when pairing with a new prediction Series that has those positional labels.
 
-Your evidence
-CML3111, Week 14, slide 10
+pd.Series(values) creates a one-dimensional labelled sequence. With an array of fold errors, the default labels are 0, 1, 2 and so on.
+Explain these operations before running the following example.
 
-Explanation to give
-Show the offline save location and reopen the file before test day. Identify both the code cells and the markdown cell headed My written evidence.
+## Slide 25: Rounded display / Magnitude of each error
 
-Worked illustration / lecturer answer
-Use a separate practice notebook for rehearsal. Students should locate the actual .ipynb on disk rather than rely on a browser tab or cloud link.
+series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
 
-Misconception to address
-During the assessed period, report technical failures immediately and follow the invigilator’s instructions. Do not introduce new modelling code or online resources.
+series.abs() makes negative values positive while leaving nonnegative values unchanged. Averaging these magnitudes gives mean absolute error.
+Explain these operations before running the following example.
 
-On this slide
-Use TEST2’s official brief, interfaces, time allocation, permitted resources and packet requirements.
+## Slide 26: Calculating baseline errors — step 1
 
-Follow the test instructions issued by your lecturer.
+actual_values: observed targets or labels in the order used for comparison.
 
-Continue to
-Practical Test 2
+predicted_values: predictions aligned with those actual values.
 
-## Slide 11 — Practical Test 2
+## Slide 27: Calculating baseline errors — step 1
 
-Practical Test 2
-CML3111, Week 14, slide 11
+actual_values: observed targets or labels in the order used for comparison.
 
-Explanation to give
-Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
+predicted_values: predictions aligned with those actual values.
 
-Worked illustration / lecturer answer
-A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+Step-by-step explanation
 
-Misconception to address
-Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+actual_values = validation_data['target'].reset_index(drop=True)
+actual_values stores observed targets or labels in the order used for comparison.
 
-On this slide
-Write your own explanation in the markdown cell headed `## My written evidence`.
+predicted_values = pd.Series(baseline_predictions)
+predicted_values stores predictions aligned with those actual values.
 
-Keep that heading.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Task prompts and code comments are excluded from reasoning marks.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Complete every original rubric criterion below, not just the checked functions.
+## Slide 28: Compare the baseline with observed targets
 
-Continue to
-Practical Test 2 continued
+Pair each baseline prediction with its validation target. reset_index(drop=True) makes their row labels match by position before subtraction. The training mean must come from training rows only.
 
-## Slide 12 — Practical Test 2 continued
+## Slide 29: Calculating baseline errors — step 2
 
-Practical Test 2 continued
-CML3111, Week 14, slide 12
+Pair each baseline prediction with its validation target. reset_index(drop=True) makes their row labels match by position before subtraction. The training mean must come from training rows only.
 
-Explanation to give
-A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
+Step-by-step explanation
 
-Worked illustration / lecturer answer
-A useful caption names the group or sample, the observed difference and the relevant unit. A limitation states what the plotted observations cannot establish, such as causation or performance at a new site.
+baseline_errors = actual_values - predicted_values
+baseline_errors stores observed validation targets minus baseline predictions.
 
-Misconception to address
-Text claiming “a chart was made” is not the required chart. Check the exact number and kinds required on this slide and in the assessment guide.
+mae = baseline_errors.abs().mean()
+mae stores mean absolute error in the target unit.
 
-On this slide
-Include profiling, justified cleaning, question-led charts and your engineering recommendation where required.
+rmse = (baseline_errors ** 2).mean() ** 0.5
+rmse stores root mean squared error in the target unit.
 
-Keep raw data.
+print(round(mae, 2), round(rmse, 2))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-State units and distinguish correlation from causation.
+Verified result with the supplied CSV
+20.0 20.62
 
-Charts must be actual labelled figures in the notebook, not claims that charts exist.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Continue to
-Practical Test 2 continued
+## Slide 30: Practice: compare two predictions
 
-## Slide 13 — Practical Test 2 continued
+The negative second error means overprediction. A negative error is not automatically a good prediction. Absolute and squared errors prevent positive and negative errors cancelling. Small invented validation data does not demonstrate generalisation to real equipment.
 
-Practical Test 2 continued
-CML3111, Week 14, slide 13
+## Slide 31: Practice answer
 
-Explanation to give
-Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
+The negative second error means overprediction. A negative error is not automatically a good prediction. Absolute and squared errors prevent positive and negative errors cancelling. Small invented validation data does not demonstrate generalisation to real equipment.
 
-Worked illustration / lecturer answer
-Compare models on identical held-out observations with the same metric and preprocessing rules. Each cross-validation training fold learns its own preparation values.
+## Slide 32: Fitting and predicting with scikit-learn
 
-Misconception to address
-A written claim of no leakage must agree with the executable split and fitting code. Follow the published execution requirement for any criterion linked to the split check.
+One pair of brackets gives a Series. Double brackets provide a list of column names and keep a DataFrame, which scikit-learn expects for X. y is a one-dimensional target Series. The four practice targets follow target = load / 2 exactly, so the two validation predictions should be 30 and 40.
 
-On this slide
-Include captions and readable written evidence in the notebook.
+## Slide 33: Creating linear regression / Learning from training examples
 
-Task framing (10.0 total): The ML task is correctly identified, the target named, and regression vs classification correctly chosen and justified.
+LinearRegression() creates an unfitted model. It will learn coefficients and an intercept from training examples. Creating it alone does not train it or make predictions.
 
-Data preparation & leakage control (20.0 total): Cleaning and encoding appropriate.
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+Explain these operations before running the following example.
 
-Split made before any fitting.
+## Slide 34: Predicting new targets
 
-Continue to
-Practical Test 2 continued
+model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
+Explain these operations before running the following example.
 
-## Slide 14 — Practical Test 2 continued
+## Slide 35: Standard names for model inputs
 
-Practical Test 2 continued
-CML3111, Week 14, slide 14
+These are common machine-learning conventions. Some tutorials write train_x and train_y instead. The names are chosen by the programmer, not special Python keywords. Keep training_data as the full table; selecting X_train must exclude target. Rows in X and y must stay paired. fit uses training pairs; predict receives only X_valid. Compare predictions with y_valid afterwards.
 
-Explanation to give
-Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
+## Slide 36: Separate inputs from answers
 
-Worked illustration / lecturer answer
-Compare models on identical held-out observations with the same metric and preprocessing rules. Each cross-validation training fold learns its own preparation values.
+X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
 
-Misconception to address
-A written claim of no leakage must agree with the executable split and fitting code. Follow the published execution requirement for any criterion linked to the split check.
+## Slide 37: A fitted linear model — step 1
 
-On this slide
-Pipeline used.
+X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
 
-No leakage present - a leak found by the marker caps this criterion at zero.
+Step-by-step explanation
 
-Modelling protocol (20.0 total): At least two models built and compared under identical conditions.
+X_train = training_data[['load']]
+X_train stores training input columns, excluding the target.
 
-Baseline included.
+y_train = training_data['target']
+y_train stores observed training targets in matching row order.
 
-Continue to
-Practical Test 2 continued
+X_valid = validation_data[['load']]
+X_valid stores validation input columns in training-column order.
 
-## Slide 15 — Practical Test 2 continued
+y_valid = validation_data['target']
+y_valid stores observed validation targets, used only for evaluation.
 
-Practical Test 2 continued
-CML3111, Week 14, slide 15
+from sklearn.linear_model import LinearRegression
+Load the named tools. Importing a model class does not train a model.
 
-Explanation to give
-Read the metric with its unit and evaluation population. Explain why that error measure matches the cost of a wrong decision in the stated engineering setting.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Worked illustration / lecturer answer
-MAE 3 kW describes an average absolute error on named observations; it does not guarantee every prediction lies within 3 kW. Report baseline comparison and the evaluation protocol.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Misconception to address
-Avoid a deployment claim based only on a score. State genuine limitations involving data coverage, measurement quality or future operating conditions.
+## Slide 38: Create, then train, then predict
 
-On this slide
-Hyperparameters handled sensibly.
+Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
 
-Evaluation & metric justification (20.0 total): Correct metrics computed.
+## Slide 39: A fitted linear model — step 2
 
-Metric choice defended against the cost of error.
+Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
 
-Cross-validation reported with a spread, not a single number.
+Step-by-step explanation
 
-Continue to
-Practical Test 2 continued
+linear_model = LinearRegression()
+linear_model stores the linear regression estimator or imputation-and-regression pipeline.
 
-## Slide 16 — Practical Test 2 continued
+linear_model.fit(X_train, y_train)
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-Practical Test 2 continued
-CML3111, Week 14, slide 16
+validation_predictions = linear_model.predict(X_valid)
+validation_predictions stores one predicted target for each validation row, in the same order.
 
-Explanation to give
-Read the metric with its unit and evaluation population. Explain why that error measure matches the cost of a wrong decision in the stated engineering setting.
+print(validation_predictions.round(2))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-Worked illustration / lecturer answer
-MAE 3 kW describes an average absolute error on named observations; it does not guarantee every prediction lies within 3 kW. Report baseline comparison and the evaluation protocol.
+Verified result with the supplied CSV
+[30. 40.]
 
-Misconception to address
-Avoid a deployment claim based only on a score. State genuine limitations involving data coverage, measurement quality or future operating conditions.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-On this slide
-Engineering interpretation & limits (20.0 total): The result is stated in physical or operational units.
+## Slide 40: Missing values and a fair model comparison
 
-Three genuine limitations given.
+Revise the pipeline and decision-tree examples from the previous teaching weeks. Fit SimpleImputer on the training partition only, even though it does not use target values. A tree learns splits and can overfit. Compare errors on the same rows, and follow the supplied model settings. The first linear example uses only load, which has no missing values. The following pipeline adds ambient and learns its missing-value replacement from training rows.
 
-A clear position on whether it should be deployed.
+## Slide 41: A pipeline with a median imputer
 
-Code clarity (10.0 total): Runs top to bottom.
+The training ambient values are 20 and missing, so the learned ambient median is 20. The full-data median would be 30, which includes validation information. That is why filling the entire source table before splitting is wrong for model evaluation.
 
-Continue to
-Practical Test 2 continued
+## Slide 42: The model tools — step 1
 
-## Slide 17 — Practical Test 2 continued
+feature_columns: the list of input column names supplied to the model.
 
-Practical Test 2 continued
-CML3111, Week 14, slide 17
+## Slide 43: The model tools — step 1
 
-Explanation to give
-Explain the order: partition data using the stated protocol, fit preparation on training data, fit models, compare on validation data and leave final test data untouched until choices are fixed.
+feature_columns: the list of input column names supplied to the model.
 
-Worked illustration / lecturer answer
-Compare models on identical held-out observations with the same metric and preprocessing rules. Each cross-validation training fold learns its own preparation values.
+Step-by-step explanation
 
-Misconception to address
-A written claim of no leakage must agree with the executable split and fitting code. Follow the published execution requirement for any criterion linked to the split check.
+from sklearn.impute import SimpleImputer
+Load the named tools. Importing a model class does not train a model.
 
-On this slide
-Readable.
+from sklearn.pipeline import make_pipeline
+Load the named tools. Importing a model class does not train a model.
 
-Commented where the intent is not obvious.
+from sklearn.tree import DecisionTreeRegressor
+Load the named tools. Importing a model class does not train a model.
 
-Execution requirement for c2: Data-preparation credit requires the published leakage-safe split check to pass.
+feature_columns = ['load', 'ambient']
+feature_columns stores the list of input column names supplied to the model.
 
-If this check fails, written marks in that criterion are zero; other criteria remain independently scored.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Continue to
-Practical Test 2 continued
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-## Slide 18 — Practical Test 2 continued
+## Slide 44: Separate inputs from answers
 
-Practical Test 2 continued
-CML3111, Week 14, slide 18
+X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
 
-Explanation to give
-Prepare for Test 2 by rehearsing the previously taught modelling decisions and the offline evidence workflow. Do not turn the assessed period into a worked lesson.
+## Slide 45: The model tools — step 2
 
-Worked illustration / lecturer answer
-Part B is typed reasoning in the same notebook, with code execution prohibited. The invigilated collection is authoritative; a later upload only transports that snapshot.
+X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
 
-Misconception to address
-At the Part A boundary, follow the official snapshot procedure. During the 25-minute Part B period, students type reasoning but must not execute code. Do not change the published timing during an explanation.
+Step-by-step explanation
 
-On this slide
-Timing and Part B
+X_train = training_data[feature_columns]
+X_train stores training input columns, excluding the target.
 
-15 minutes setup, 120 minutes practical, 25 minutes typed offline reasoning with code execution prohibited, 20 minutes collection.
+X_valid = validation_data[feature_columns]
+X_valid stores validation input columns in training-column order.
 
-No internet, messaging or AI.
+Verified result with the supplied CSV
+This cell stores values for the next example; it does not print a result.
 
-Answer: Why your main cleaning/model choice?
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Continue to
-Practical Test 2 continued
+## Slide 46: A sequence of model steps / Filling model inputs
 
-## Slide 19 — Practical Test 2 continued
+make_pipeline(imputer, estimator) links preprocessing and prediction. fit learns the imputer and estimator on training rows. predict applies the learned steps to new rows in the same order.
 
-Practical Test 2 continued
-CML3111, Week 14, slide 19
+SimpleImputer(strategy="median") learns a median for each input column during fit. It uses those training medians to fill gaps later. Never learn replacement values from validation or test rows.
+Explain these operations before running the following example.
 
-Explanation to give
-A chart must answer a stated question and show the actual data result. Explain what one mark represents and label both the quantity and unit before stating the finding.
+## Slide 47: A linear pipeline
 
-Worked illustration / lecturer answer
-A useful caption names the group or sample, the observed difference and the relevant unit. A limitation states what the plotted observations cannot establish, such as causation or performance at a new site.
+make_pipeline(imputer, estimator) links preprocessing and prediction. fit learns the imputer and estimator on training rows. predict applies the learned steps to new rows in the same order.
 
-Misconception to address
-Text claiming “a chart was made” is not the required chart. Check the exact number and kinds required on this slide and in the assessment guide.
+SimpleImputer(strategy="median") learns a median for each input column during fit. It uses those training medians to fill gaps later. Never learn replacement values from validation or test rows.
 
-On this slide
-What can your chart/metric not establish?
+Step-by-step explanation
 
-What evidence would change your recommendation?
+linear_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
+linear_pipeline stores median imputer followed by linear regression.
 
-What further data is required?
+linear_pipeline.fit(X_train, y_train)
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-Invigilated offline collection is authoritative; Google upload is a later transport step and must not impose an internet requirement during the test.
+linear_predictions = linear_pipeline.predict(X_valid)
+linear_predictions stores validation predictions from the linear pipeline.
 
-Continue to
-Practical Test 2 submission
+print(linear_predictions.round(2))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-## Slide 20 — Practical Test 2 submission
+Verified result with the supplied CSV
+[30. 40.]
 
-Practical Test 2 submission
-CML3111, Week 14, slide 20
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
 
-Explanation to give
-This slide hands over CML3111 TEST2. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
+## Slide 48: A shallow decision tree
 
-Worked illustration / lecturer answer
-For TEST1/TEST2, save Part B under My written evidence. Collect the complete notebook offline under invigilation; the later form upload only transports that collected version.
+The two training loads are 20 and 40. A split near 30 separates their targets 10 and 20. Both validation loads, 60 and 80, follow the higher-load branch and receive 20. Trees do not extend a fitted straight line beyond the training range.
 
-Misconception to address
-Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+## Slide 49: Creating a regression tree
 
-On this slide
-Offline invigilated collection is authoritative.
+DecisionTreeRegressor splits inputs into regions with different predicted values. max_depth limits the number of split levels. random_state fixes random choices so the example can be repeated.
+Explain these operations before running the following example.
 
-Google upload is a later transport step.
+## Slide 50: Compare a second kind of model
 
-Save one notebook with Part B under My written evidence.
+A regression tree learns splits in the input columns. max_depth limits its split levels. The imputer fills missing inputs using training medians; the tree then learns from those filled inputs.
 
-No internet, messaging or AI during the test.
+## Slide 51: A tree pipeline
 
-Continue to
-Revision and submission checklist
+A regression tree learns splits in the input columns. max_depth limits its split levels. The imputer fills missing inputs using training medians; the tree then learns from those filled inputs.
 
-## Slide 21 — Revision and submission checklist
+Step-by-step explanation
 
-Revision and submission checklist
-CML3111, Week 14, slide 21
+tree_model = make_pipeline(SimpleImputer(strategy='median'), DecisionTreeRegressor(max_depth=2, random_state=7))
+tree_model stores the tree regression pipeline being compared on the same validation rows.
 
-Explanation to give
-Prepare for Test 2 by rehearsing the previously taught modelling decisions and the offline evidence workflow. Do not turn the assessed period into a worked lesson.
+tree_model.fit(X_train, y_train)
+model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
 
-Worked illustration / lecturer answer
-Part B is typed reasoning in the same notebook, with code execution prohibited. The invigilated collection is authoritative; a later upload only transports that snapshot.
+tree_predictions = tree_model.predict(X_valid)
+tree_predictions stores validation predictions from the tree pipeline.
 
-Misconception to address
-Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+print(tree_predictions)
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
 
-On this slide
-You can explain training-only preprocessing and locate your saved evidence.
+Verified result with the supplied CSV
+[20. 20.]
 
-Save your work and check the required submission files.
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 52: Practice: compare the three models
+
+The tree errors are 10 and 20, so MAE is 15 and RMSE is sqrt(250), about 15.81. The zero linear error follows the deliberately exact relationship. A separate final test set is still required for an unbiased final evaluation; this miniature example only demonstrates training and validation_data.
+
+## Slide 53: Practice answer
+
+The tree errors are 10 and 20, so MAE is 15 and RMSE is sqrt(250), about 15.81. The zero linear error follows the deliberately exact relationship. A separate final test set is still required for an unbiased final evaluation; this miniature example only demonstrates training and validation_data.
+
+## Slide 54: Test 2 revision checklist
+
+All worked predictions come from the attached CSV. M1 is training and M2 validation_data. The actual test specifies additional groups, a final held-out group, model settings and function return formats. The practice file is intentionally smaller.
+
+## Slide 55: Functions and returned answers
+
+The automated grader calls functions with other equipment_records. A pasted fixed answer can match a displayed example and still fail for another input. print displays a value but does not replace return. The following practice function is unrelated to the assessed function names.
+
+## Slide 56: Defining and calling a function
+
+def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+Explain these operations before running the following example.
+
+## Slide 57: A practice function
+
+def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+
+Step-by-step explanation
+
+def average_reading(values):
+    reading_values = pd.Series(values)
+    return float(reading_values.mean())
+Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
+
+print(average_reading(raw_data['target']))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+print(average_reading(raw_data['load']))
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+Verified result with the supplied CSV
+25.0
+50.0
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 58: Recording interpretation answers
+
+DECISIONS is a Python dictionary in the notebook. Its keys identify questions and its string values hold selected option letters. Use the labels printed in that question. A choice label is unrelated to file allocation. No student should select a paper version or edit the internal allocation cell.
+
+## Slide 59: A dictionary entry for a practice question
+
+
+
+Step-by-step explanation
+
+DECISIONS = {'practice': 'B'}
+DECISIONS stores the result of the displayed expression.
+
+print(DECISIONS['practice'])
+Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+
+Verified result with the supplied CSV
+B
+
+Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+
+## Slide 60: Test-day instructions
+
+Pause at this boundary when reviewing in advance. The remaining slides are procedural instructions, not additional practice tasks. No practice file should be submitted to the test form.
+
+## Slide 61: Your test files on test day
+
+The page assigns files automatically. Students do not choose a version. Re-entering the same registration number and Google email retrieves the same allocation. The page can be opened in advance, but downloads are available only during the authorised test window. A phone scan is useful for opening the page, but students must download and use both files on their laptop. Students never choose a test version.
+
+## Slide 62: Opening the notebook and CSV
+
+A notebook upload does not include its modelling_data. Show the folder icon, then Upload. Wait until engineering_data.csv appears. Do not upload a ZIP. The portal prefills the identity cell; students check it and run it before later cells. The final submission cell contains an internal allocation code and is collapsed for clarity. Keep it unchanged.
+
+## Slide 63: One notebook contains all answers
+
+A function is a named block of code. The grader calls that function with different records, so it must calculate from its argument. DECISIONS is a dictionary pairing each question identifier with one option letter. Use a non-assessed demonstration such as {"practice": "B"}. No separate report or prose answer section is required.
+
+## Slide 64: How the 100 marks are allocated
+
+Explain that all marks come from the published checks. Correct code on unseen inputs earns coding marks. Each of the six interpretation choices earns 5 marks. Test 1 contributes 15 points and Test 2 contributes 20 points to the semester total. For example, 80/100 in Test 1 contributes 12 semester points. Partial marks are available for independently checked outputs; charts and cleaning each have a complete contract.
+
+## Slide 65: Order of work
+
+Test 1: duplicate removal keeps the first occurrence. Exclude a missing target or invalid load. Only then calculate the retained ambient median. Test 2: row filters are supplied, but missing ambient values remain. A pipeline learns the median from the training partition and reuses it for validation_data. Fitting a median on all rows leaks evaluation information. Do not reveal assessed option answers during the test_data.
+
+## Slide 66: The three-hour session
+
+Announce the actual start and close time displayed by the form. These periods total 180 minutes. Code execution is allowed during checking. Report internet or runtime problems immediately. Record incidents with the affected learner and time. Do not silently treat a failed upload as a submitted test_data.
+
+## Slide 67: Before submitting
+
+A fresh session has no variables from earlier runs. This exposes cells that depend on stale values or an incorrect order. The supplied CSV example cell calls the implemented functions. The final submission cell creates a button. Clicking it prepares a separate snapshot of the current notebook in Drive; later edits to the working notebook do not change that snapshot. Students must open the generated form link and press Submit. The button alone is not a completed submission.
+
+## Slide 68: Submission and confirmation
+
+Demonstrate the final button using a rehearsal notebook. The button privately shares a saved snapshot with the lecturer and fills the form fields. Tick the form’s email confirmation box before pressing Submit. Do not type snapshot IDs manually. The form records the verified Google email; it must be the same account that owns the snapshot. A new attempt requires clicking the notebook button again and submitting its new form link. The latest on-time attempt is considered; technical or identity errors remain pending. Earlier attempts are retained.
+
+## Slide 69: How grading works
+
+Grades are calculated in a batch on the lecturer’s Mac after the test_data. The Mac can be off during submission. Google Forms and Drive collect the snapshots. Before admitting students, rehearse the entry page, two downloads, notebook button and form confirmation. After the test, export the batch and run Grade_Tests.command with Docker running. A receipt is not a grade. A genuine zero is distinct from pending or infrastructure failure. The attendee register is built from submissions; without an enrolled roster it cannot identify absentees.

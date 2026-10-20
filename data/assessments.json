@@ -114,11 +114,15 @@
       "docx",
       "pptx"
     ],
-    "opens_at": "2026-10-13T11:00:00+03:00",
-    "closes_at": "2026-10-20T11:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "delivery_note": "",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "status": "NOT_ASSIGNED",
+    "waived": true,
+    "original_opens_at": "2026-10-13T11:00:00+03:00",
+    "original_closes_at": "2026-10-20T11:00:00+03:00"
   },
   {
     "key": "CML3112|W08",
@@ -266,7 +270,8 @@
     "opens_at": "2026-10-20T11:00:00+03:00",
     "closes_at": "2026-10-20T14:00:00+03:00",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "notebook",
+    "assessment_version": "2026.10-colab-v1"
   },
   {
     "key": "CML3112|TEST2",
@@ -284,7 +289,8 @@
     "opens_at": "2026-12-08T11:00:00+03:00",
     "closes_at": "2026-12-08T14:00:00+03:00",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "notebook",
+    "assessment_version": "2026.10-colab-v1"
   },
   {
     "key": "CML3112|ML_PROJECT",
@@ -342,8 +348,8 @@
       "docx",
       "pptx"
     ],
-    "opens_at": "2026-09-21T10:25:40.556Z",
-    "closes_at": "2026-09-27T08:05:46.219Z",
+    "opens_at": "2026-10-16T15:34:16.027Z",
+    "closes_at": "2026-10-19T15:34:16.027Z",
     "delivery_note": "Week 1 catch-up collection authorized 21 September; deadline matches Week 2. Existing marks preserved; new written grading held pending validation.",
     "preserve_existing": true,
     "grading": "rubric"
@@ -362,8 +368,8 @@
       "ipynb",
       "md"
     ],
-    "opens_at": "2026-09-18T08:00:00+03:00",
-    "closes_at": "2026-09-27T08:05:46.219Z",
+    "opens_at": "2026-10-16T15:34:16.027Z",
+    "closes_at": "2026-10-19T15:34:16.027Z",
     "delivery_note": "",
     "preserve_existing": false,
     "grading": "hybrid"
@@ -381,8 +387,8 @@
     "formats": [
       "ipynb"
     ],
-    "opens_at": "2026-09-25T08:00:00+03:00",
-    "closes_at": "2026-10-09T08:00:00+03:00",
+    "opens_at": "2026-10-16T15:34:16.027Z",
+    "closes_at": "2026-10-19T15:34:16.027Z",
     "delivery_note": "",
     "preserve_existing": false,
     "grading": "notebook"
@@ -400,8 +406,8 @@
     "formats": [
       "ipynb"
     ],
-    "opens_at": "2026-10-02T08:00:00+03:00",
-    "closes_at": "2026-10-09T08:00:00+03:00",
+    "opens_at": "2026-10-16T15:34:16.027Z",
+    "closes_at": "2026-10-21T17:59:00+03:00",
     "delivery_note": "",
     "preserve_existing": false,
     "grading": "notebook"
@@ -419,8 +425,8 @@
     "formats": [
       "ipynb"
     ],
-    "opens_at": "2026-10-07T08:00:00+03:00",
-    "closes_at": "2026-10-16T08:00:00+03:00",
+    "opens_at": "2026-10-16T08:00:00+03:00",
+    "closes_at": "2026-10-23T08:00:00+03:00",
     "delivery_note": "Recorded Week 5 session for Friday cohorts; use the published walkthrough and Week 6 consolidation.",
     "preserve_existing": false,
     "grading": "notebook"
@@ -441,11 +447,15 @@
       "docx",
       "pptx"
     ],
-    "opens_at": "2026-10-16T08:00:00+03:00",
-    "closes_at": "2026-10-23T08:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "delivery_note": "",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "status": "NOT_ASSIGNED",
+    "waived": true,
+    "original_opens_at": "2026-10-16T08:00:00+03:00",
+    "original_closes_at": "2026-10-23T08:00:00+03:00"
   },
   {
     "key": "CML3113|W08",
@@ -593,7 +603,8 @@
     "opens_at": "2026-10-23T08:00:00+03:00",
     "closes_at": "2026-10-23T11:00:00+03:00",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "notebook",
+    "assessment_version": "2026.10-colab-v1"
   },
   {
     "key": "CML3113|TEST2",
@@ -611,7 +622,8 @@
     "opens_at": "2026-12-11T08:00:00+03:00",
     "closes_at": "2026-12-11T11:00:00+03:00",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "notebook",
+    "assessment_version": "2026.10-colab-v1"
   },
   {
     "key": "CML3113|ML_PROJECT",
@@ -920,7 +932,8 @@
     "opens_at": "2026-10-23T11:00:00+03:00",
     "closes_at": "2026-10-23T14:00:00+03:00",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "notebook",
+    "assessment_version": "2026.10-colab-v1"
   },
   {
     "key": "CML3111|TEST2",
@@ -938,7 +951,8 @@
     "opens_at": "2026-12-11T11:00:00+03:00",
     "closes_at": "2026-12-11T14:00:00+03:00",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "notebook",
+    "assessment_version": "2026.10-colab-v1"
   },
   {
     "key": "CML3111|ML_PROJECT",
