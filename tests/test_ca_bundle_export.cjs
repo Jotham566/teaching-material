@@ -42,3 +42,8 @@ c.DriveApp={getFileById:()=>({getName:()=> 'work.pdf',getBlob:()=>({setName:()=>
 c.exportCAAssignments();assert.equal(props.CA_EXPORT_CURSOR,'0');assert.equal(stored.get('CML3111_W01_checkpoint.json').meta.files.length,80);
 c.exportCAAssignments();assert.equal(props.CA_EXPORT_CURSOR,'1');assert.equal(stored.get('CML3111_W01_manifest.json').files.length,81);assert(!stored.has('CML3111_W01_checkpoint.json'));
 console.log('PASS: large assignment checkpoint resumes without duplicating attachments');
+// The currently executing one-shot trigger is still listed when a lock fails.
+// Always enqueue another retry; testing for an existing trigger can strand it.
+let retries=0;c.LockService={getScriptLock:()=>({tryLock:()=>false})};
+c.ScriptApp={getProjectTriggers:()=>[{getHandlerFunction:()=> 'exportCANext'}],newTrigger:()=>({timeBased:()=>({after:()=>({create:()=>{retries++;}})})})};
+c.exportCANext();assert.equal(retries,1);console.log('PASS: lock contention schedules a fresh retry');

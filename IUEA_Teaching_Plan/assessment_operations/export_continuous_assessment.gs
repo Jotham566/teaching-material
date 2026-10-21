@@ -124,7 +124,7 @@ function finishCAGradingZip_(){
 function exportCANext(){
  var lock=LockService.getScriptLock();if(!lock.tryLock(1000)){
   Logger.log('Another operation holds the lock; a retry is scheduled.');
-  if(!ScriptApp.getProjectTriggers().some(function(t){return t.getHandlerFunction()==='exportCANext';}))ScriptApp.newTrigger('exportCANext').timeBased().after(60000).create();
+  ScriptApp.newTrigger('exportCANext').timeBased().after(60000).create();
   return;
  }
  try{
