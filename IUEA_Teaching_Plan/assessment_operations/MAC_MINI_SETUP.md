@@ -2,6 +2,18 @@
 
 The public teaching repository contains code and teaching materials. Student submissions, marks, hidden checks and local calibration evidence are separate private data. Do not force-add the ignored private folders to the public repository.
 
+The authorized private snapshot is in `Jotham566/IUEA-Grading-Private`. On the new Mac, sign into GitHub with access to it and run:
+
+```sh
+mkdir -p ~/Projects
+cd ~/Projects
+git clone https://github.com/Jotham566/teaching-material.git IUEA-Teaching-Resources
+git clone https://github.com/Jotham566/IUEA-Grading-Private.git
+python3 IUEA-Grading-Private/sync_snapshot.py restore IUEA-Teaching-Resources
+```
+
+Use existing checkouts instead of cloning twice. The private repository README explains how to capture results and restore subsequent updates. Restore verifies file hashes and refuses to overwrite differing local results unless explicitly requested. Complete the runtime setup below before executing grading.
+
 ## Install once
 
 1. Clone the teaching repository and check out `main`.
