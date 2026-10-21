@@ -24,7 +24,7 @@ Sign into Google as **wirmbeesubs@gmail.com**.
 
 1. Open [Assignment Apps Script](https://script.google.com/home/projects/1XLdUAzi6wnSjQ2iFTV3hl5BQk9XWw-PIi1_vodC_l107B6S13yW_ZObw/edit). Select **Continuous_Assessment_Export.gs**, choose **exportCAGradingZip** and click **Run** once.
 2. In the [assignment collection workbook](https://docs.google.com/spreadsheets/d/1FxAVXwSvLEd7TEd3pJ2E0_ka7Mp6ZM6pW1yNsXKWdm4/edit#gid=534991827), open the **CA Export** tab. Wait until it says **COMPLETE** (refresh the page to check). The export continues automatically; large batches can take tens of minutes. You can close the browser while Google collects the files.
-3. Open the **Download / detail** link and download that **one ZIP**. Do not download the whole folder or any Excel source files. Keep the ZIP unchanged.
+3. Open the **Download / detail** link and download that **one ZIP**. Do not download the whole folder or any Excel source files. Keep the ZIP unchanged. If Google shows its large-file scan notice, choose **Download anyway**.
 
 The ZIP contains original submissions, recorded quiz scores, assignment audit details and quiz deadlines for all three programmes. It uses a fixed cutoff: later submissions belong to the next export. Existing marks, forms and deadlines are unchanged.
 

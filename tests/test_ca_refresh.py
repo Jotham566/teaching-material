@@ -53,6 +53,16 @@ class RefreshTests(unittest.TestCase):
         ledger=ca.build(self.source,self.private/'written_queue/combined_results.json')
         dump(self.private/'ledger.json',ledger);(self.private/runner.BOOK).write_bytes(b'original workbook')
 
+    def test_own_caffeinate_helper_is_not_a_second_grader(self):
+        import os
+        own=f"999999 {os.getpid()} caffeinate -i python refresh_ca.py export.zip"
+        with patch.object(runner.subprocess,'check_output',return_value=own):
+            with runner.exclusive(self.private):pass
+        other="999998 12345 caffeinate -i python refresh_ca.py export.zip"
+        with patch.object(runner.subprocess,'check_output',return_value=other):
+            with self.assertRaisesRegex(RuntimeError,'Another grading'):
+                with runner.exclusive(self.private):pass
+
     def test_preserve_complete_and_regrade_changed_bytes(self):
         raw=ca.build(self.source,resolve_identities=False)
         kept,todo=runner.select_work(self.source,raw,[self.old_grade]);self.assertEqual(len(kept),1);self.assertFalse(todo)

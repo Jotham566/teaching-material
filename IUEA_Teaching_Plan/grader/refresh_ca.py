@@ -51,14 +51,16 @@ def exclusive(private):
         try: fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError: raise RuntimeError('A grading refresh is already running. Wait for it to finish.')
         # Older launchers do not share our lock. Refuse overlap with them too.
-        processes = subprocess.check_output(['ps', '-axo', 'pid=,command='], text=True)
+        processes = subprocess.check_output(['ps', '-axo', 'pid=,ppid=,command='], text=True)
         names={'run_ca_written_queue.py','finish_ca_refresh.py','grade_ca_batch.py',
                'grade_ca_written.py','batch_grade.py','refresh_ca.py'}
         for line in processes.splitlines():
-            parts=line.strip().split(None,1)
-            if len(parts)!=2 or int(parts[0])==os.getpid(): continue
-            try: args=shlex.split(parts[1])
+            parts=line.strip().split(None,2)
+            if len(parts)!=3 or int(parts[0])==os.getpid(): continue
+            try: args=shlex.split(parts[2])
             except ValueError: continue
+            # macOS caffeinate forks a helper with our command in its arguments.
+            if args and Path(args[0]).name=='caffeinate' and int(parts[1])==os.getpid(): continue
             if any(Path(arg).name in names for arg in args):
                 raise RuntimeError('Another grading process is running. Finish it before refreshing.')
         yield
