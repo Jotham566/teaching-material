@@ -10,7 +10,7 @@ NOTES={
 5:'Follow the semester from setup and Python to tables, cleaning, practical tests and models. Weeks 7 and 14 are test weeks. Test-day downloads and Colab submission follow the current test-entry instructions; do not substitute older offline-test guidance.',
 6:'Connect each course goal to visible evidence: a runnable notebook, a correct summary, a reasoned chart or an evaluated model. Knowing a tool name is not the same as explaining a result. Engineering meaning and units remain part of every calculation.',
 7:'Introduce how individual work and projects fit together. The next assessment slide supplies the components and weights. Separate weekly tasks from project milestones so students do not confuse one submission with another.',
-8:'Walk through the displayed assessment components and add their weights to 100%. Explain which work is individual and which is a project. The current cohort waiver policy overrides old weekly counts: CML3112 and CML3113 have A6 and Quiz 6 waived; CML3111 retains them. Waived tasks do not become zeros.',
+8:'Walk through the displayed assessment components and add their weights to 100%. Explain which work is individual and which is a project. The current cohort waiver policy overrides old weekly counts: All three programmes have A6 and Quiz 6 waived, including earlier CML3111 submissions. Waived tasks do not become zeros.',
 9:'Explain reproducible work as work another person can rerun from the supplied files and instructions. Students should state sources, units and contributions. Asking for help is useful when the learner can show the attempted step and the exact error.',
 10:'This is a map of later topics, not an instruction to learn them all today. A roadmap puts tools and ideas in order. Distinguish the topics taught this semester from those deferred to Semester 2.',
 11:'Follow the highlighted route from Python to data preparation and evaluation. Explain that a roadmap is a curriculum outline. Neural networks and transformers are later topics; no understanding of their internal mathematics is assumed here.',
@@ -94,7 +94,7 @@ def main():
      runs=list(paragraph.iter(A+'t'));before=''.join(x.text or '' for x in runs);after=before
      for a,b in REPLACE.items():after=after.replace(a,b)
      if i==56:
-      after=after.replace('Twelve this semester, best ten count. No resits.','Quiz category: 10%. Best nine of eleven count; Quiz 6 is waived.' if cohort in ('CML3112','CML3113') else 'Quiz category: 10%. Best ten of twelve count.')
+      after=after.replace('Twelve this semester, best ten count. No resits.','Quiz category: 10%. Best nine of eleven count; Quiz 6 is waived.' if cohort in ('CML3111','CML3112','CML3113') else 'Quiz category: 10%. Best ten of twelve count.')
       if cohort in ('CML3112','CML3113'):after=after.replace('One per cent each. Tap View score and read the feedback.','Tap View score and read the feedback after submitting.')
      if before!=after:
       if runs:runs[0].text=after

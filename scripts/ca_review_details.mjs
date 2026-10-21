@@ -1,3 +1,4 @@
+import {isWaived} from './ca_assessment_policy.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -30,7 +31,7 @@ export async function reviewDetails(data,base){
   if(path.basename(name)!==name)throw Error('Invalid source filename');
   manifests.set(name,await optionalJson(path.join(base,'reconciled',name),{}));
  }
- return data.current.filter(r=>r.status!=='GRADED').map(r=>{
+ return data.current.filter(r=>r.status!=='GRADED'&&!isWaived(r.assessment)).map(r=>{
   const g=grades.get(r.response_id)||{},meta=manifests.get(r.source)||{};
   const evaluations=g.evidence?.evaluations||[];
   const notes=[g.error,...(prepared[r.response_id]?.errors||[]).map(x=>x.error),

@@ -30,7 +30,7 @@ Introduce how individual work and projects fit together. The next assessment sli
 
 ## Slide 8
 
-Walk through the displayed assessment components and add their weights to 100%. Explain which work is individual and which is a project. The current cohort waiver policy overrides old weekly counts: CML3112 and CML3113 have A6 and Quiz 6 waived; CML3111 retains them. Waived tasks do not become zeros.
+Walk through the displayed assessment components and add their weights to 100%. Explain which work is individual and which is a project. The current cohort waiver policy overrides old weekly counts: All three programmes have A6 and Quiz 6 waived, including earlier CML3111 submissions. Waived tasks do not become zeros.
 
 ## Slide 9
 

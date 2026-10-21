@@ -10,7 +10,7 @@ Do not share this workbook with the class: it contains students' private informa
 
 - Quiz and assignment marks contribute 10 points each to the semester total.
 - Data project: 10; Test 1: 15; Test 2: 20; ML project: 25; demo/reflection: 10.
-- Best-of rules and the CML3112/CML3113 A6 and Quiz 6 waivers are retained.
+- All three programmes waive A6 and Quiz 6, including previously completed CML3111 work. Use best 9 of 11 quizzes and best 7 of 10 weekly assignments. Separate weekly quizzes/assignments are not assigned in Weeks 7, 14 and 15; Test 1, Test 2, final project and demo retain their own marks and weights.
 - A blank is pending or not yet submitted, **not a zero**. A numeric zero is a completed mark.
 - The total is earned semester points so far, not a final grade.
 - “Source mark” retains a recorded score even when an identity conflict prevents it from entering a student's total.

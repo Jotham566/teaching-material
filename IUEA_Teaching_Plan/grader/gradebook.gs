@@ -144,7 +144,7 @@ function round2_(x) { return Math.round(x * 100) / 100; }
  */
 /** A6/Q6 are not assigned to these cohorts. Keep the same drop allowance. */
 function courseworkPolicy_(cohort) {
-  var waived = ['CML3112','CML3113'].indexOf(String(cohort||'').trim().toUpperCase()) >= 0;
+  var waived = ['CML3111','CML3112','CML3113'].indexOf(String(cohort||'').trim().toUpperCase()) >= 0;
   return {waived:waived,quizBest:QUIZ_BEST-(waived?1:0),challengeBest:CHALLENGE_BEST-(waived?1:0),
           quizCount:QUIZ_COUNT-(waived?1:0),challengeCount:CHALLENGE_COUNT-(waived?1:0)};
 }

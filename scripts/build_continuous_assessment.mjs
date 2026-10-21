@@ -4,6 +4,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {isWaived} from './ca_assessment_policy.mjs';
 import {reviewDetails} from './ca_review_details.mjs';
 const runtime=process.env.IUEA_ARTIFACT_NODE_MODULES||path.join(process.env.HOME,'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules');
 const {Workbook,SpreadsheetFile}=createRequire(path.join(runtime,'package.json'))('@oai/artifact-tool');
@@ -44,13 +45,13 @@ const rubricEnd=table(rubricSheet,['Assessment','Criterion ID','Criterion','Maxi
 const index=new Map(data.current.map((r,i)=>[[r.cohort,r.student_id,r.assessment].join('|'),i+7]));
 function best(range,n){return `IF(COUNT(${range})=0,"",(${Array.from({length:n},(_,i)=>`IF(COUNT(${range})>=${i+1},LARGE(${range},${i+1}),0)`).join('+')})` ;}
 for(const cohort of cohorts){
- const s=wb.worksheets.getItem(cohort),students=data.students.filter(r=>r.cohort===cohort),waived=cohort!=='CML3111';
+ const s=wb.worksheets.getItem(cohort),students=data.students.filter(r=>r.cohort===cohort),waived=true;
  const headers=['Name','Registration Number','Email','Record status','Earned points /100','Quizzes /10','Assignments /10','Data project /10','Test 1 /15','Test 2 /20','ML project /25','Demo /10','Graded items','Submitted work pending',...quiz.map(q=>q+' /5'),...assignments.map(q=>'A'+Number(q.slice(1))+' /20'),...projects.map(p=>p+' /100')];
  const end=table(s,headers,students.map(r=>[r.full_name||'Name not collected',r.student_id,r.email,...Array(headers.length-3).fill(null)]));
  s.tabColor='#17365D';s.getRange('A2').values=[[cohort+' continuous assessment']];s.getRange('A3').values=[['Updated '+new Date(data.updated_at).toISOString().slice(0,16).replace('T',' ')+' UTC. Earned points are provisional, not a final semester grade.']];s.getRange('A4').values=[['Blank = not graded or not submitted. WAIVED = excluded. Raw quiz and assignment marks are to the right.']];s.getRange(`A6:C${end}`).format.columnWidth=29;s.getRange(`D6:D${end}`).format.columnWidth=26;s.getRange(`E7:AP${end}`).setNumberFormat('0.00');s.getRange(`M7:N${end}`).setNumberFormat('0');
  const matrices=[];
  for(let i=0;i<students.length;i++){
-  const student=students[i],row=i+7,records=data.current.filter(r=>r.cohort===cohort&&r.student_id===student.student_id),pending=records.filter(r=>r.status!=='GRADED').length;
+  const student=students[i],row=i+7,records=data.current.filter(r=>r.cohort===cohort&&r.student_id===student.student_id&&!isWaived(r.assessment)),pending=records.filter(r=>r.status!=='GRADED').length;
   const f=Array(headers.length).fill(null);f[3]=records.some(r=>r.status.startsWith('IDENTITY_'))?'="Verify identity"':`=IF(N${row}>0,"Submitted work pending","Current marks recorded")`;f[4]=`=IF(COUNT(F${row}:L${row})=0,"",SUM(F${row}:L${row}))`;
   f[5]=best(`O${row}:Z${row}`,waived?9:10)+`/(${waived?9:10}*5)*10)`;
   f[6]=best(`AA${row}:AK${row}`,waived?7:8)+`/(${waived?7:8}*20)*10)`;
@@ -65,8 +66,9 @@ for(const cohort of cohorts){
  s.getRange(`D7:D${end}`).conditionalFormats.add('containsText',{text:'Verify',format:{fill:'#FFF2CC'}});
 }
 const rules=wb.worksheets.getItem('Rules');rules.getRange('A2').values=[['Marking rules and source coverage']];
-const ruleRows=[['Quizzes',10,'Best 10 of 12; CML3112 and CML3113: best 9 of 11. Each /5.'],['Assignments',10,'Best 8 of 11; CML3112 and CML3113: best 7 of 10. Each /20.'],['Data analysis project',10,'Out of 100'],['Practical Test 1',15,'Out of 100'],['Practical Test 2',20,'Out of 100'],['ML project',25,'Out of 100'],['Demo / reflection',10,'Out of 100'],['Waivers',null,'A6 and Quiz 6 waived for CML3112 and CML3113 only.'],['Current selection',null,'Latest eligible receipt per programme, registration number and assessment.'],['Identity',null,'Same-account punctuation variants and strongly supported early digit typos are reconciled; unresolved conflicts remain held.'],['Names',null,'Blank names are filled from a later verified source, never guessed from email.'],['Totals',null,'Earned semester points so far. Missing and future assessments are not final zeros.'],['Grade bands',null,'No letter grades: Faculty grade bands have not been verified.'],['Source coverage',null,data.sources.length+' source files. See the local source manifest for receipt hashes.']];
+const ruleRows=[['Quizzes',10,'All programmes: best 9 of 11; exclude Q6. Each /5.'],['Assignments',10,'All programmes: best 7 of 10; exclude A6. Each /20.'],['Data analysis project',10,'Out of 100'],['Practical Test 1',15,'Out of 100'],['Practical Test 2',20,'Out of 100'],['ML project',25,'Out of 100'],['Demo / reflection',10,'Out of 100'],['Waivers',null,'A6 and Quiz 6 waived for all three programmes. No weekly quiz/assignment in test weeks 7/14 or final-project week 15; major assessments retain their weights.'],['Current selection',null,'Latest eligible receipt per programme, registration number and assessment.'],['Identity',null,'Same-account punctuation variants and strongly supported early digit typos are reconciled; unresolved conflicts remain held.'],['Names',null,'Blank names are filled from a later verified source, never guessed from email.'],['Totals',null,'Earned semester points so far. Missing and future assessments are not final zeros.'],['Grade bands',null,'No letter grades: Faculty grade bands have not been verified.'],['Source coverage',null,data.sources.length+' source files. See the local source manifest for receipt hashes.']];
 const re=table(rules,['Component','Weight /100','Rule'],ruleRows);rules.getRange(`A6:A${re}`).format.columnWidth=28;rules.getRange(`C6:C${re}`).format.columnWidth=95;rules.getRange(`C7:C${re}`).format.wrapText=true;rules.getRange(`A7:C${re}`).format.rowHeight=36;
+rules.getRange('A14:C14').format.rowHeight=66;
 wb.recalculate();
 const check=await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#NUM!|#NULL!',options:{useRegex:true,maxResults:30}});
 await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(path.join(path.dirname(output),'workbook_check.ndjson'),check.ndjson);
