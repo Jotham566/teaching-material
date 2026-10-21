@@ -1,86 +1,71 @@
-# Continuous assessment marks
+# Grading — start here
 
-Start with the short [Mac mini setup checklist](MAC_MINI_SETUP.md). For each new batch of submissions, follow [Continue grading](CONTINUE_GRADING.md). The rest of this page explains the underlying rules and technical workflow.
+**Use only two guides:** this page for setup, then [Continue grading](CONTINUE_GRADING.md) whenever students submit more work. Practical tests have their own [test-day checklist](../test_operations/TEST_CHECKLIST.md).
 
-The private workbook is `private/IUEA_Continuous_Assessment.xlsx`.
-It has one summary per programme, current marks, the receipt history and marking rules.
-Do not share this workbook with the class: it contains students' private information.
+**Already done:** both repositories cloned, private files restored, Python environment and requirements installed. Do not repeat those steps.
 
-## What the totals mean
+Your folders are `~/Projects/teaching-material` and `~/Projects/IUEA-Grading-Private`. Copy each command block separately. Stop if a command reports an error.
 
-- Quiz and assignment marks contribute 10 points each to the semester total.
-- Data project: 10; Test 1: 15; Test 2: 20; ML project: 25; demo/reflection: 10.
-- All three programmes waive A6 and Quiz 6, including previously completed CML3111 work. Use best 9 of 11 quizzes and best 7 of 10 weekly assignments. Separate weekly quizzes/assignments are not assigned in Weeks 7, 14 and 15; Test 1, Test 2, final project and demo retain their own marks and weights.
-- A blank is pending or not yet submitted, **not a zero**. A numeric zero is a completed mark.
-- The total is earned semester points so far, not a final grade.
-- “Source mark” retains a recorded score even when an identity conflict prevents it from entering a student's total.
-- Names were not collected by the original assignment forms. They must come from a verified roster or test receipt; they are not guessed from email addresses.
+## 1. Get the latest code
 
-## Updating after more submissions
+```sh
+git -C ~/Projects/teaching-material pull --ff-only
+git -C ~/Projects/IUEA-Grading-Private pull --ff-only
+```
 
-1. Export a fresh private source snapshot using `startCAExport`, then `exportCANext` in the assignment Apps Script project. This copies submissions without changing forms or deadlines. The temporary export trigger removes itself on completion.
-2. Confirm `inspectCAExportProgress` reports 15 quizzes and 15 assignments. Download that private Drive folder. Keep earlier snapshots.
-3. Extract with `scripts/unpack_ca_export.py`. Check `download_check.json`: missing files and export errors need a retry, not a zero.
-4. Refresh the three quiz response spreadsheets and assignment audit. Record the current quiz deadlines from the quiz project. Reconcile receipts with `scripts/reconcile_ca_sources.py`; never combine two copies of the same quiz.
-5. Rebuild the ledger, grade new eligible notebooks using `grader/grade_ca_batch.py`, then rebuild the ledger with its `results.json`. The grader reuses unchanged results and rechecks changed submissions, checks or CSV data.
-6. Rebuild the Excel workbook using `scripts/build_continuous_assessment.mjs`. Check pending statuses before using the totals. Do not edit calculated cells manually.
+## 2. Build Docker images once
 
-All paths above are relative to the repository root except `grader`, which is inside `IUEA_Teaching_Plan`.
+Open Docker Desktop and wait until it is running. Then:
 
-## Written assessments
+```sh
+cd ~/Projects/teaching-material
+docker build -t iuea-notebooks:2026.09 IUEA_Teaching_Plan/grader
+docker build -t iuea-document-renderer:2026.09 IUEA_Teaching_Plan/grader/document_renderer
+```
 
-A1 requires a passing calibration of the local AI grader against authored examples.
-A2 combines 14 coding marks and 6 written marks; coding alone is not a final A2 mark.
-The current coding batch tool leaves these incomplete marks blank. Do not bypass calibration or convert a failed model run into a student zero.
+Docker is for student code and reading documents. Ollama runs natively on the Mac.
 
-On this Mac, run document extraction while Docker is available, then stop Docker before local AI grading. Running both together exhausts memory. `prepare_ca_written.py` saves verified text linked to each original attachment; image-only, damaged or unsupported files remain pending.
+## 3. Prepare native Ollama
 
-On macOS, the A1/A2 written grader now checks before each uncached submission that Docker Desktop has stopped. It requests a graceful shutdown if necessary and stops the batch if shutdown cannot be verified. Calibration uses the same check. Finish all Docker work first and do not reopen Docker during model inference. See `MAC_MINI_SETUP.md` for native Ollama settings and the separate 9B trial; existing production marks and model choices are not changed by downloading a candidate.
+If it is not installed, run `brew install ollama`.
 
-The validated queue is `grader/run_ca_written_queue.py`. It takes the reconciled source directory, ledger, coding results, prepared text and passing A1/A2 calibration reports. It saves each receipt separately and refreshes the workbook after every 20 processed records and at completion. Repeating the queue reuses only results that still match the source files, model, rubric and grader. Keep the Mac powered and awake; the queue does not use a cloud AI service.
+In a separate Terminal window, start the server and leave it open:
 
-Check `private/written_queue/queue_status.json`:
+```sh
+OLLAMA_NO_CLOUD=1 OLLAMA_HOST=127.0.0.1:11434 \
+  OLLAMA_MAX_LOADED_MODELS=1 OLLAMA_NUM_PARALLEL=1 ollama serve
+```
 
-- `RUNNING`: written grading is still underway; the workbook is provisional.
-- `COMPLETE`: the queue has finished, but identity, unreadable-file or inconsistent-judgement exceptions may still need resolution.
-- `STOPPED`: inspect the private log and resolve the processing error before restarting. Unfinished work has not been assigned zero.
+In your original Terminal, download the current grading models:
 
-To resume the existing downloaded snapshot, double-click `Resume_Written_Grading.command`. Start the local model server first if it is not running. This command refuses a second concurrent queue; it does not export newly submitted work. Follow the refresh steps above for new submissions.
+```sh
+ollama pull qwen3.5:4b
+ollama pull qwen3:4b
+```
 
-Before using marks, check **Current marks** for pending statuses and **Source mark** for marks held because of identity conflicts. Do not distribute the workbook to students.
+If the port is already in use, see the [reference guide](reference/MAC_MINI.md#native-ollama-written-grading). The 9B model is an optional [separate calibration trial](reference/MAC_MINI.md#trial-a-larger-model-on-the-16gb-mac-mini), not a required step or an approved replacement yet.
 
-## Identity and timing exceptions
+## 4. Check the setup
 
-The ledger reconciles punctuation variants within the same programme and Google account when no competing account uses that number. A single early digit typo can also be reconciled when at least three later receipts consistently use the dominant number, that family represents at least 75% of the account's receipts, and neither number belongs to another account. Original entries and the reason are retained. Similar numbers alone are not sufficient.
-Remaining account/registration conflicts need verified identity evidence. Keep all original receipts and scores. `scripts/reconcile_ca_notebook_identity.py` also releases existing valid code checks when the notebook and form differ only in punctuation, spacing or case; it does not change the checker results.
-Multiple accounts can share a student record when every account consistently uses that exact registration across at least two different assessments and none uses another registration in the programme. A single matching upload is not enough.
+```sh
+cd ~/Projects/teaching-material
+.iuea-grader-env/bin/python -m unittest tests.test_continuous_assessment tests.test_ca_written tests.test_ca_export tests.test_ca_reconciliation tests.test_ca_format_recovery tests.test_ca_review_links tests.test_local_ai_resources
+```
 
-Summary statuses:
+The checks should end with **OK**. They do not prove the installed models pass grading calibration.
 
-- **Current marks recorded**: no unresolved submitted receipts for this record in the imported snapshot. Future assessments can still be blank; this is not a final semester grade.
-- **Submitted work pending**: one or more received submissions still need grading, a readable/correct file or a timing decision. The adjacent count is submissions awaiting resolution, not missing uploads.
-- **Verify identity**: conflicting student details still prevent some marks from entering the total. Check the receipt-level status and retained source mark in **Current marks**.
+Open the teaching repository in Codex on the Mac mini and ask:
 
-Keep an immutable `private/grading_input.json` for each grading snapshot, using the original receipt identities. Grade results must continue to match those original identities; reconciliation happens only when building the cumulative ledger. Do not use the reconciled output ledger as the next grading input.
+> Finish the Mac mini preflight: initialize the bundled workbook runtime, regenerate prepared-text paths for the restored snapshot in a separate folder, and validate both installed models against the saved A1/A2 calibration reports. Do not change student marks. Report any failed checks before grading.
 
-Reopening a form has previously overwritten older receipts' timing labels. An `EARLY` label must be checked against the earlier authorized window. Any timing correction needs its evidence recorded in the private timing file.
+This is needed because workbook generation uses Codex's bundled runtime, and prepared-text paths refer to the old Mac. Technical details are in the [reference guide](reference/MAC_MINI.md).
 
-## Reviewing unresolved receipts
+## 5. Continue grading
 
-Open **Review needed** and filter by programme or issue. Each row includes the response ID, any held mark or coding component, related registration numbers/accounts, and links to the original uploaded files. Open those links while signed into the lecturer account that already has access. Links do not make student work public.
+The imported 21 October batch is already complete. Do not restart the old refresh script.
 
-For **WRITTEN_REVIEW**, compare the two passes and processing detail with **Written rubrics** and the uploaded work. A disagreement is not a final mark. For file problems, inspect the linked original; unreadable work remains pending, not zero. For identity problems, verify the student against the receipt and related accounts before allocating a retained mark. Names that were not collected remain explicitly unavailable.
+For new submissions, follow **[New submissions: repeat checklist](CONTINUE_GRADING.md)**. For existing unresolved records, use the workbook's **Review needed** sheet.
 
-Keep any manual decisions separately with the response ID and reason. This workbook is generated and overwrites direct edits on refresh; approved decisions must be incorporated into the grading inputs before rebuilding totals. **Current marks recorded** means all received work for that record is resolved in the imported snapshot, not that all future assessments are complete.
+**One Mac grades at a time. Finish Docker work before written grading. The written grader stops Docker before inference and refuses to proceed if shutdown cannot be verified; keep Docker closed during the run.**
 
-The 21 October refresh is tracked in `private/refresh_status.json`. `COMPLETE` means automatic processing has finished; the review sheet can still contain unresolved cases. The old resume launcher refuses to replace results after this snapshot refresh.
-
-## Tests and later projects
-
-Use `continuous_assessment.py --test-ledger PATH` to add each trusted **production** test batch ledger. Entries explicitly marked `REHEARSAL` are excluded; never supply a rehearsal ledger whose synthetic entries are marked `GRADED`. Rebuilding replaces the calculated view without adding marks twice.
-Project columns are reserved in the workbook; project marks must come from their validated grading process and source receipts. They are not automatically awarded by this early-assessment importer.
-
-## Privacy
-
-Source exports, uploaded work, identity mappings, feedback and marks belong under `private/`, which is ignored by Git.
-Only grading code, synthetic tests and general instructions belong in the public repository.
+Your marks are in `private/IUEA_Continuous_Assessment.xlsx`. For status meanings or marking rules, consult [the reference](reference/GRADING.md) only when needed. A6 and Quiz 6 are waived for all three programmes; their original marks remain recorded but excluded from totals.

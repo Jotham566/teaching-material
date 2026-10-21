@@ -1,6 +1,6 @@
 # New submissions: repeat checklist
 
-Use this when more students submit quizzes or assignments. Process batches whenever convenient; you do not need to wait for everyone.
+Use this after [setup](README.md), whenever more students submit work. You can grade in batches; you do not need to wait for everyone.
 
 **Current scope: Quizzes 1–5 and Assignments A1–A5 across all three programmes.** Later weeks need the exporter/importer extended and their grading rules checked first. Practical tests use the [test checklist](../test_operations/TEST_CHECKLIST.md).
 
@@ -49,7 +49,7 @@ Keep this batch's ZIP and four spreadsheets together in a **new folder**, for ex
 
 Open `~/Projects/teaching-material` in Codex on the Mac mini. Paste this request, replacing the download folder with yours:
 
-> Import and grade new Week 1–5 submissions from ~/Downloads/IUEA_CA_2026-10-22. Preserve the current source snapshot, existing marks and attempt history. Verify all export parts and downloads, import fresh response-sheet scores and the assignment audit, and verify current deadlines plus authorized historical windows. Compare receipts and attachment hashes with the prior batch; grade new or changed eligible work and preserve unchanged completed marks. Keep raw submitted identities for grading. Stop Docker before local AI inference and require valid model calibration. Merge by response ID without duplicate marks; retain unresolved cases with original file links. Rebuild the cumulative Excel workbook, preserving any existing test/project marks. Verify totals and report new, held and failed records. Do not publish marks, alter deadlines or run the old one-time finish_ca_refresh.py script.
+> Grade the new Week 1–5 submissions in ~/Downloads/IUEA_CA_2026-10-22 using assessment_operations/reference/GRADING.md. Preserve previous marks and attempts; process new or changed work without duplicates. Verify downloads, identities and submission windows. Stop Docker before native Ollama grading and require valid calibration. Rebuild the cumulative workbook, retaining test/project marks and review links. Report new marks and unresolved cases. Do not change deadlines or publish marks. Do not rerun finish_ca_refresh.py.
 
 Keep the Mac awake. Docker is used first for code/document extraction, then stopped for written grading. Keep Ollama running natively. Do not run another grader or pull code during the batch.
 

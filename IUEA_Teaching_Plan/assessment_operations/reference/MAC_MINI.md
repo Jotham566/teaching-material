@@ -1,6 +1,6 @@
 # Mac mini: technical reference
 
-Use the short [setup checklist](MAC_MINI_SETUP.md) first. For additional submissions, use [Continue grading](CONTINUE_GRADING.md). This page contains optional model trials, troubleshooting and detailed migration commands; it is not the everyday checklist.
+Use the short [setup checklist](../README.md) first. For additional submissions, use [Continue grading](../CONTINUE_GRADING.md). This page contains optional model trials, troubleshooting and detailed migration commands; it is not the everyday checklist.
 
 The public teaching repository contains code and teaching materials. Student submissions, marks, hidden checks and local calibration evidence are separate private data. Do not force-add the ignored private folders to the public repository.
 
