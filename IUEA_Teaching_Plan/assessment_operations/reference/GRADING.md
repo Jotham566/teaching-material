@@ -18,6 +18,12 @@ Do not share this workbook with the class: it contains students' private informa
 
 ## Updating after more submissions
 
+Use `./grade-submissions DOWNLOAD_FOLDER` from the teaching repository. It coordinates the stages below; do not run them separately for routine batches. Validated generations are stored under `private/batches/`, with the current generation recorded in `private/refresh_active.json`. The normal workbook path remains unchanged. Back up the entire private snapshot after completion.
+
+The command preserves unchanged completed marks and held written-review decisions, merges receipts by response ID, saves older generations, and rebuilds totals. Changed attachment hashes trigger new checks. It retains existing test/project marks; it does not import new test batches. Restoring or manually changing the active ledger outside this runner is detected and requires reconciliation before another refresh.
+
+### Underlying stages (reference only)
+
 1. Export a fresh private source snapshot using `startCAExport`, then `exportCANext` in the assignment Apps Script project. This copies submissions without changing forms or deadlines. The temporary export trigger removes itself on completion.
 2. Confirm `inspectCAExportProgress` reports 15 quizzes and 15 assignments. Download that private Drive folder. Keep earlier snapshots.
 3. Extract with `scripts/unpack_ca_export.py`. Check `download_check.json`: missing files and export errors need a retry, not a zero.

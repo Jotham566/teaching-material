@@ -103,7 +103,7 @@ def resolve_supported_typos(attempts):
       '; original registration preserved. No competing account uses the target number.')
     r['student_id']=dominant
 
-def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=True):
+def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=True,retained_attempts=None):
  source=Path(source);attempts=[];seen={};sources=[]
  timing=timing or {}
  def append(r):
@@ -164,6 +164,16 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
    score=t.get('score') if t['status']=='GRADED' else None
    if t['status']=='GRADED' and (isinstance(score,bool) or not isinstance(score,(int,float)) or not 0<=score<=100):raise ValueError('Invalid completed test score')
    append(dict(cohort=t['cohort'],assessment=t['assessment'],student_id=norm(t['student_registration_number']),submitted_student_id=t['student_registration_number'],email=t['email'].strip().lower(),full_name=t['full_name'],response_id=t['response_id'],submitted_at=t['submitted_at'],timing_status=t['status'] if t['status'] in ('LATE','OUTSIDE_WINDOW') else 'ON_TIME',status=t['status'],score=score,maximum=100,file_ids=[],source=test_path.name))
+ # Retain assessments outside this importer (tests/projects/later coursework).
+ for original in retained_attempts or []:
+  r=dict(original)
+  if r['cohort'] not in COHORTS:raise ValueError('Unexpected retained cohort')
+  r['student_id']=norm(r.get('submitted_student_id',r['student_id']))
+  r['score']=r.get('source_score',r.get('score'))
+  r['status']=r.get('source_status',r['status'])
+  for k in ('source_score','source_status','identity_evidence','attempt_count'):r.pop(k,None)
+  if r['status']=='GRADED' and (isinstance(r['score'],bool) or not isinstance(r['score'],(int,float)) or not 0<=r['score']<=r['maximum']):raise ValueError('Invalid retained mark')
+  append(r)
  if resolve_identities:
   resolve_supported_typos(attempts)
   recover_quiz_ids(attempts)

@@ -4,7 +4,7 @@ Use this after [setup](README.md), whenever more students submit work. You can g
 
 **Current scope: Quizzes 1–5 and Assignments A1–A5 across all three programmes.** Later weeks need the exporter/importer extended and their grading rules checked first. Practical tests use the [test checklist](../test_operations/TEST_CHECKLIST.md).
 
-This refresh is assisted by Codex. It is **not** an unattended Google-to-Excel sync or a single safe terminal command yet.
+After downloading, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
 
 ## 1. Get ready
 
@@ -45,15 +45,21 @@ Also download the assignment collection workbook containing the **Submission aud
 
 Keep this batch's ZIP and four spreadsheets together in a **new folder**, for example `~/Downloads/IUEA_CA_2026-10-22`. Never overwrite the previous batch. Quiz marks come from recorded response-sheet scores; the ZIP alone is insufficient. If a form was reopened or its deadline changed, tell Codex so timing records can be refreshed before marks are allocated.
 
-## 4. Ask Codex to refresh the marks
+## 4. Run one command
 
-Open `~/Projects/teaching-material` in Codex on the Mac mini. Paste this request, replacing the download folder with yours:
+Close the marks workbook in Excel. In Terminal:
 
-> Grade the new Week 1–5 submissions in ~/Downloads/IUEA_CA_2026-10-22 using assessment_operations/reference/GRADING.md. Preserve previous marks and attempts; process new or changed work without duplicates. Verify downloads, identities and submission windows. Stop Docker before native Ollama grading and require valid calibration. Rebuild the cumulative workbook, retaining test/project marks and review links. Report new marks and unresolved cases. Do not change deadlines or publish marks. Do not rerun finish_ca_refresh.py.
+```sh
+~/Projects/teaching-material/grade-submissions ~/Downloads/IUEA_CA_2026-10-22
+```
 
-Keep the Mac awake. Docker is used first for code/document extraction, then stopped for written grading. Keep Ollama running natively. Do not run another grader or pull code during the batch.
+Replace the download folder with yours. Keep the Mac powered and connected. The command prevents idle sleep. Do not start another grader or pull changes during the run.
 
-If processing stops, ask Codex to **resume that same batch from its checkpoints**. Do not delete its results or replace the snapshot to hide an error.
+**If interrupted:** repeat the exact command. Saved grading checkpoints are reused; a completed batch is not added twice. The previous workbook remains available until the new workbook passes validation. Missing or inconsistent downloads stop the run with an explanation.
+
+Existing completed marks and earlier attempts are retained. Changed files are checked again. Unreadable work, conflicting identities and disputed written judgements stay in **Review needed**, not zero.
+
+If a quiz was reopened after the last saved deadline audit, later receipts remain pending until that timing is verified. Include a freshly verified `quiz_deadlines.json` in the batch folder when needed; ask Codex to obtain it from the lecturer quiz controls. This command never changes forms or deadlines.
 
 ## 5. Check and save
 

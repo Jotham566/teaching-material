@@ -56,9 +56,9 @@ The checks should end with **OK**. They do not prove the installed models pass g
 
 Open the teaching repository in Codex on the Mac mini and ask:
 
-> Finish the Mac mini preflight: initialize the bundled workbook runtime, regenerate prepared-text paths for the restored snapshot in a separate folder, and validate both installed models against the saved A1/A2 calibration reports. Do not change student marks. Report any failed checks before grading.
+> Finish the Mac mini preflight: initialize the bundled workbook runtime and validate both installed models against the saved A1/A2 calibration reports. Do not change student marks. Report any failed checks before grading.
 
-This is needed because workbook generation uses Codex's bundled runtime, and prepared-text paths refer to the old Mac. Technical details are in the [reference guide](reference/MAC_MINI.md).
+This is needed because workbook generation uses Codex's bundled runtime. The refresh command regenerates prepared text as needed. Technical details are in the [reference guide](reference/MAC_MINI.md).
 
 ## 5. Continue grading
 

@@ -1,0 +1,14 @@
+#!/bin/zsh
+set -eu
+root_dir="${0:A:h}"
+python_bin="$root_dir/.iuea-grader-env/bin/python"
+if [[ ! -x "$python_bin" ]]; then
+  print 'Python environment missing. Complete assessment_operations/README.md setup first.'
+  exit 1
+fi
+if [[ $# -eq 0 ]]; then
+  print 'Usage: ./grade-submissions ~/Downloads/IUEA_CA_2026-10-22 [--check]'
+  exit 1
+fi
+cd "$root_dir"
+exec caffeinate -i "$python_bin" IUEA_Teaching_Plan/grader/refresh_ca.py "$@"
