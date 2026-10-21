@@ -8,8 +8,28 @@ import signal
 import sys
 import math
 import shutil
+import types
+from pathlib import Path
 shutil.copytree("/inputs", "/work", dirs_exist_ok=True)
 sys.path.insert(0, "/work")
+
+# The lecturer has already supplied the CSVs in this isolated directory.
+# Reproduce Colab's upload return value without opening a browser or network.
+google_module=types.ModuleType('google')
+google_module.__path__=[]
+colab_module=types.ModuleType('google.colab')
+files_module=types.ModuleType('google.colab.files')
+def supplied_csv_upload():
+    return {p.name:p.read_bytes() for p in sorted(Path('/inputs').glob('*.csv'))}
+def no_browser_download(filename):
+    if not Path(filename).is_file():raise FileNotFoundError(filename)
+files_module.upload=supplied_csv_upload
+files_module.download=no_browser_download
+colab_module.files=files_module
+google_module.colab=colab_module
+sys.modules['google']=google_module
+sys.modules['google.colab']=colab_module
+sys.modules['google.colab.files']=files_module
 
 protocol = sys.stdout
 ns = {"__name__": "__main__"}

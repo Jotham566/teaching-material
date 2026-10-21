@@ -91,3 +91,6 @@ IUEA_Teaching_Plan/test_operations/grading_output/
 
 # Local older lecture copy; guided_practice.ipynb is the maintained version.
 IUEA_Teaching_Plan/guided_practice/CML3111/W06/CML3111-Week6-guided_practice.ipynb
+
+# Private continuous-assessment source exports and student marks.
+IUEA_Teaching_Plan/assessment_operations/private/

@@ -1,0 +1,11 @@
+CML3113 WEEK 6 - UNGRADED PRACTICE
+
+A6 and Quiz 6 are waived. No submission is required.
+
+1. Extract this ZIP.
+2. Open guided_practice.ipynb in Colab.
+3. Upload engineering_data.csv using the Files panel.
+4. Run the cells in order. Compare each condition with the row values.
+5. Save your practice notebook in Google Drive.
+
+The numeric-text and function sections are optional extensions after the main walkthrough.

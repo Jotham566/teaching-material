@@ -67,4 +67,27 @@ group_means={g:sum(float(r['winding_temp_c']) for r in valid if r['motor_id']==g
    p.write_text(json.dumps({'cells':[{'cell_type':'code','metadata':{},'source':source}]}))
    r=grade_one(str(p),str(HERE/'specs/spec_W04.py'),str(HERE/'specs/hidden/spec_W04_hidden.py'),'W04','CML3111',str(ROOT/'IUEA_Teaching_Plan/practicals/W04/CML3111'),2,10,None)
    self.assertEqual(sum(q['awarded'] for q in r['questions'].values()),20,r)
+ def test_colab_absolute_paths_share_the_isolated_working_directory(self):
+  r=self.run_notebook('''from pathlib import Path
+Path("local.txt").write_text("same folder")
+assert Path("/content/local.txt").read_text()=="same folder"
+Path("/content/colab.txt").write_text("round trip")
+assert Path("colab.txt").read_text()=="round trip"
+weight_n=40*9.81
+''',timeout=10)
+  self.assertFalse(r['cell_errors'],r)
+  self.assertEqual(r['questions']['q1']['awarded'],r['questions']['q1']['marks'])
+ def test_colab_upload_only_returns_supplied_csv(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   p=Path(tmp)/'S99997_W03.ipynb'
+   p.write_text(json.dumps({'cells':[{'cell_type':'code','source':'''from google.colab import files
+uploaded=files.upload()
+assert sorted(uploaded)==["campus_energy.csv"]
+assert uploaded["campus_energy.csv"]==open("/content/campus_energy.csv","rb").read()
+weight_n=40*9.81
+'''}]}))
+   r=grade_one(str(p),str(HERE/'specs/spec_W03.py'),str(HERE/'specs/hidden/spec_W03_hidden.py'),
+               'W03','CML3111',str(ROOT/'IUEA_Teaching_Plan/practicals/W05/CML3111'),2,10,None)
+   self.assertFalse(r['cell_errors'],r)
+   self.assertEqual(r['questions']['q1']['awarded'],r['questions']['q1']['marks'])
 if __name__=='__main__':unittest.main()
