@@ -17,7 +17,7 @@ for deck in decks:
  if '--csv-only' in sys.argv and not deck.get('csv_examples_revision'):continue
  folder=OUT/cohort/f'W{week:02}';folder.mkdir(parents=True,exist_ok=True)
  cells=[('markdown',f'# Week {week} guided practice\n{cohort}. Follow the lecturer’s PowerPoint in this order. This notebook contains worked examples, not your graded upload.\n\nExtract the student ZIP and keep its files together. For file-reading examples, upload the supplied CSV into the Colab runtime before running the file-reading example. From the file-reading lesson onward, worked table examples use the supplied CSV. Earlier syntax examples introduce Python before file access.\n')]
- if week==6 and cohort in ('CML3112','CML3113'):
+ if week==6 and cohort in ('CML3111','CML3112','CML3113'):
   cells[0]=('markdown',cells[0][1]+'\n**A6 and Quiz 6 are waived. This is ungraded practice. No submission is required.**\n')
  for slide in deck['slides']:
   if slide['title'] in ('Your issued assignment','Your issued task','Ungraded cleaning practice'):break
@@ -43,7 +43,7 @@ for deck in decks:
    else:cells.append(('code',program+'\n'))
    if slide.get('expected_output'):
     cells.append(('markdown','**Example output** (timings and display formatting may vary)\n\n```text\n'+slide['expected_output']+'\n```\n'))
- if week==6 and cohort in ('CML3112','CML3113'):
+ if week==6 and cohort in ('CML3111','CML3112','CML3113'):
   cells.append(('markdown','## Save your practice\nA6 and Quiz 6 are waived. No submission is required. Restart and run all cells, then save in Drive. Continue with the Test 1 revision PDF and matching practice CSV in a new notebook.\n'))
  elif week in (13,15):
   cells.append(('markdown','## Continue your project preparation\nUse the published project and presentation requirements in the slides. This notebook is a revision aid, not an additional weekly assignment. Keep the required submission files and deadlines.\n'))

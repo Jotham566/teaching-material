@@ -133,7 +133,7 @@ function ensureSubmissionTrigger_() {
   if (!exists) { ScriptApp.newTrigger('syncSubmissions').timeBased().everyMinutes(5).create(); }
 }
 function setSubmissionWindow(key, opensAt, closesAt) {
-  if(/^(CML3112|CML3113)\|W06$/.test(key)){throw new Error('A6 is waived for practical revision.');}
+  if(/^(CML3111|CML3112|CML3113)\|W06$/.test(key)){throw new Error('A6 is waived for practical revision.');}
 
   var start=Date.parse(opensAt), end=Date.parse(closesAt);
   if (!isFinite(start)||!isFinite(end)||end<=start) { throw new Error('Use ISO timestamps with timezone, close after open.'); }
@@ -280,7 +280,7 @@ function logSubmissionState_(state) {
 
 /** Upload verification does not establish assessment/grader readiness. */
 function submissionAssessmentReleased_(key, state) {
-  if(state.waived || /^(CML3112|CML3113)\|W06$/.test(key))return false;
+  if(state.waived || /^(CML3111|CML3112|CML3113)\|W06$/.test(key))return false;
   if(state.assessmentReleased===false){return false;}
   if(state.assessmentReleased===true){return typeof state.releaseEvidence==='string'&&state.releaseEvidence.trim().length>=20;}
   return /^(CML3111|CML3112|CML3113)\|W0[2-5]$/.test(key)||key==='DA|S05';

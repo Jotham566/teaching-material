@@ -28,9 +28,19 @@ This preserves the existing allowance to drop two quiz scores and three assignme
 
 The assignment-links sheet shows NOT ASSIGNED instead of opening and deadline times. The quiz index identifies Quiz 6 as NOT ASSIGNED. Old QR codes and URLs should show the closed/waived form, not collect new attempts.
 
+## Live CML3111 verification (21 October)
+
+Completed at 22:29 Kampala. A6 and Quiz 6 are closed and titled NOT ASSIGNED. A6 retains all **3 responses**; Quiz 6 retains all **13 responses and their scores**. Canonical before/after comparisons verified response content, recorded workbook values and other assessment schedules unchanged. No responses, files or marks were deleted or rewritten.
+
+A6 opening/deadline fields and Quiz 6 opening/deadline fields are unset. The quiz pending-close entry is removed. Both link indexes and the Assessment waivers register identify the waiver. Ordinary opening helpers, assignment release checks and the old date-specific Friday quiz opener now block CML3111 Week 6. Test 1 timing is unchanged.
+
+Google rejected custom closed-message updates; the form titles and descriptions carry the waiver instead. The ordinary closed-form notice still prevents submissions. Source backups and verification screenshots remain in the ignored private grading directory.
+
+Local regression checks passed for all-three-cohort exclusions, opening guards, the date-specific opener, ordinary 24-hour quiz windows and quiz imports.
+
 ## Historical live-form verification (19 October)
 
-The record below describes the earlier two-cohort deployment, not confirmation that CML3111's live forms have now been updated. The 21 October rule change is applied to the local cumulative workbook and source policy; live Apps Script deployment is separate.
+The record below describes the earlier two-cohort deployment. CML3111 was added on 21 October as verified above.
 
 Live update completed 19 October, 23:57 Kampala. All four forms report accepting=false; each held zero responses before and after the update. Their titles now show NOT ASSIGNED. Assignment windows are unset, quiz pending windows removed, ordinary reactivation helpers reject these four waived assessments, and CML3111 records were compared unchanged. The collection workbook has an Assessment waivers register; no Grades sheet exists there yet. The updated gradebook script applies the exclusions when a gradebook is populated. Existing student records were not deleted or rewritten.
 

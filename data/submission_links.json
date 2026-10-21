@@ -272,13 +272,20 @@
   "CML3111|W06": {
     "formId": "1WiggA2PcS7PvS94zPkUYfwFs-SYjRJ85uUWtC5q1i_o",
     "ready": true,
-    "openAt": "2026-10-16T11:00:00+03:00",
-    "closeAt": "2026-10-23T11:00:00+03:00",
+    "openAt": null,
+    "closeAt": null,
     "cursor": 0,
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSfcvyIDBXQG0fnr8EYsAHCsFatx8MDwAjzct3kPMz2JgAPxZQ/viewform",
     "polished": true,
     "uploadReady": true,
-    "uploadVerifiedAt": "2026-09-14T14:12:29.460Z"
+    "uploadVerifiedAt": "2026-09-14T14:12:29.460Z",
+    "waiverOriginalWindow": {
+      "openAt": "2026-10-16T11:00:00+03:00",
+      "closeAt": "2026-10-23T11:00:00+03:00"
+    },
+    "waived": true,
+    "assessmentReleased": false,
+    "waiverReason": "A6 waived 21 October 2026; retain raw marks and submissions, exclude from coursework."
   },
   "CML3111|W08": {
     "formId": "15BgNK6hEsZjE0Qm8wKuVZp3UZyAMoW9axM2zTEDBm6Q",
