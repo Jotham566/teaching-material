@@ -10,6 +10,7 @@ from pathlib import Path
 import artifact_grade
 from calibration_record import model_for_report, profile_for_report
 from hybrid_result import combine
+from local_ai_resources import ensure_docker_stopped
 
 HERE=Path(__file__).resolve().parent
 
@@ -81,6 +82,8 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
         old=json.loads(target.read_text()) if target.exists() else {}
         if old.get('signature')==signature and old.get('status')=='GRADED':
             results.append(old);continue
+        # Resource failures stop the batch, never become a student's grading error.
+        ensure_docker_stopped()
         try:
             evidence=backend.grade_packet(evidence_paths,rubric,'ollama',model)
             if deterministic:evidence=combine(evidence,rubric,deterministic,14,20)

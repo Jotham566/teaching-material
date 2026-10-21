@@ -76,7 +76,8 @@ Ollama runs directly on macOS. Docker runs student notebook code in isolation an
 2. Open a separate Terminal window and start the local server:
 
    ```sh
-   OLLAMA_NO_CLOUD=1 OLLAMA_HOST=127.0.0.1:11434 ollama serve
+   OLLAMA_NO_CLOUD=1 OLLAMA_HOST=127.0.0.1:11434 \
+     OLLAMA_MAX_LOADED_MODELS=1 OLLAMA_NUM_PARALLEL=1 ollama serve
    ```
 
    Leave this window open during written grading. These settings keep the server on this Mac and disable Ollama cloud features. Do not also start an Ollama Docker container or a second server.
@@ -98,7 +99,64 @@ Ollama runs directly on macOS. Docker runs student notebook code in isolation an
 
 5. During grading, `ollama ps` shows loaded models and processor usage. An empty list when idle is normal. After grading finishes, press **Control-C** in the server Terminal to stop a manually started server. This does not remove the models or saved marks.
 
-Keep Docker available for code grading and document extraction. It can be stopped during the written-only phase to free memory; Ollama continues running natively.
+## Separate Docker work from local AI work
+
+Finish notebook grading and document extraction first, with Docker running. **Stop Docker Desktop before loading a model for written grading or calibration.** This also stops other containers, so finish any unrelated container work first.
+
+```sh
+cd ~/Projects/teaching-material
+.iuea-grader-env/bin/python IUEA_Teaching_Plan/grader/local_ai_resources.py
+```
+
+On macOS this command checks the local Docker Desktop processes, requests a graceful shutdown if needed, and verifies that they have exited. If it cannot verify shutdown, it fails and tells you to quit Docker Desktop manually. It does not stop a remote Docker daemon.
+
+The A1/A2 written grader and the two calibration commands below also run this check before each uncached submission/case. A failed resource check stops the batch instead of assigning a student zero. Keep Docker closed throughout inference; do not reopen it while a model request is running. These checks do not prevent you or another application from restarting Docker between checks.
+
+Before returning to Docker work, unload any models shown by `ollama ps`. For the models used here:
+
+```sh
+ollama stop qwen3.5:9b
+ollama stop qwen3.5:4b
+ollama stop qwen3:4b
+open -a Docker
+```
+
+Wait for Docker to finish starting before extracting documents or grading notebook code. The native Ollama server can remain idle; model weights need not remain loaded.
+
+## Trial a larger model on the 16GB Mac mini
+
+Trial `qwen3.5:9b` before considering it for production marks. It is a candidate, not an already-validated replacement. Keep the 4B models and existing calibration reports. Downloading the candidate does not change the active grading configuration.
+
+With the native Ollama server running, download the model and create a new private trial folder:
+
+```sh
+ollama pull qwen3.5:9b
+cd ~/Projects/teaching-material
+.iuea-grader-env/bin/python IUEA_Teaching_Plan/grader/local_ai_resources.py
+trial_dir="IUEA_Teaching_Plan/assessment_operations/private/model_trials/qwen35_9b_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$trial_dir"
+```
+
+In that same Terminal window, run the A1 calibration:
+
+```sh
+.iuea-grader-env/bin/python IUEA_Teaching_Plan/grader/calibrate_rubric.py \
+  --rubric IUEA_Teaching_Plan/grader/rubrics/W01.json \
+  --cases IUEA_Teaching_Plan/grader/calibration_cases/W01.json \
+  --model qwen3.5:9b \
+  --out "$trial_dir/W01.json"
+```
+
+Then run the A2 calibration:
+
+```sh
+.iuea-grader-env/bin/python IUEA_Teaching_Plan/grader/calibrate_local_grader.py \
+  --model qwen3.5:9b \
+  --out "$trial_dir/W02.json"
+ollama ps
+```
+
+All cases for each assessment must pass. These commands use authored examples and save separate evidence; they do not regrade student submissions, replace existing marks or select the new model for production. If a run fails or is interrupted, retain its evidence and use a new trial folder for another full run. Compare accuracy, disagreements, elapsed times and Activity Monitor memory pressure before adopting the candidate. Passing this small calibration is necessary but does not by itself establish better grading on real submissions. Any subsequent trial on unresolved work must also use separate results and preserve the current workbook until reviewed.
 
 References: [native Homebrew install](https://formulae.brew.sh/formula/ollama) and [Ollama server configuration and processor checks](https://docs.ollama.com/faq).
 
@@ -130,7 +188,7 @@ Run the relevant checks after setup:
 
 ```sh
 cd ~/Projects/teaching-material
-.iuea-grader-env/bin/python -m unittest tests.test_continuous_assessment tests.test_ca_written tests.test_ca_export tests.test_ca_reconciliation tests.test_ca_format_recovery tests.test_ca_review_links
+.iuea-grader-env/bin/python -m unittest tests.test_continuous_assessment tests.test_ca_written tests.test_ca_export tests.test_ca_reconciliation tests.test_ca_format_recovery tests.test_ca_review_links tests.test_local_ai_resources
 ```
 
 No student marks are published by these local commands.

@@ -6,6 +6,7 @@ grading validity across every later assignment or the real student population.
 import argparse,json,tempfile,time
 from pathlib import Path
 from artifact_grade import grade_packet
+from local_ai_resources import ensure_docker_stopped
 
 CASES=[
  ('strong',
@@ -41,6 +42,7 @@ def main():
             folder=Path(tmp);nb=folder/'answer.ipynb';md=folder/'README.md'
             nb.write_text(json.dumps({'cells':[{'cell_type':'markdown','source':['My explanation: '+explanation]}]}));md.write_text(readme)
             start=time.monotonic()
+            ensure_docker_stopped()
             try:
                 result=grade_packet([nb,md],rubric,'ollama',args.model)
                 passed=result['status']=='AUTO_SCORED' and low<=result['score']<=high

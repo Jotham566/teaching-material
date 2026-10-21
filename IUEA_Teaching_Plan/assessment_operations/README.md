@@ -33,6 +33,8 @@ The current coding batch tool leaves these incomplete marks blank. Do not bypass
 
 On this Mac, run document extraction while Docker is available, then stop Docker before local AI grading. Running both together exhausts memory. `prepare_ca_written.py` saves verified text linked to each original attachment; image-only, damaged or unsupported files remain pending.
 
+On macOS, the A1/A2 written grader now checks before each uncached submission that Docker Desktop has stopped. It requests a graceful shutdown if necessary and stops the batch if shutdown cannot be verified. Calibration uses the same check. Finish all Docker work first and do not reopen Docker during model inference. See `MAC_MINI_SETUP.md` for native Ollama settings and the separate 9B trial; existing production marks and model choices are not changed by downloading a candidate.
+
 The validated queue is `grader/run_ca_written_queue.py`. It takes the reconciled source directory, ledger, coding results, prepared text and passing A1/A2 calibration reports. It saves each receipt separately and refreshes the workbook after every 20 processed records and at completion. Repeating the queue reuses only results that still match the source files, model, rubric and grader. Keep the Mac powered and awake; the queue does not use a cloud AI service.
 
 Check `private/written_queue/queue_status.json`:

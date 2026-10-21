@@ -2,6 +2,7 @@
 import argparse,json,tempfile,time
 from pathlib import Path
 from artifact_grade import grade_packet
+from local_ai_resources import ensure_docker_stopped
 
 def main():
  p=argparse.ArgumentParser(description=__doc__)
@@ -17,6 +18,7 @@ def main():
  for case in cases:
   with tempfile.TemporaryDirectory() as d:
    file=Path(d)/'response.md';file.write_text(case['text']);start=time.monotonic()
+   ensure_docker_stopped()
    try:result=scorer([file],rubric,'ollama',args.model)
    except Exception as exc:result=dict(status='EXCEPTION',error=str(exc))
    result['evaluation_profile']=args.profile
