@@ -2,34 +2,66 @@
 
 The public teaching repository contains code and teaching materials. Student submissions, marks, hidden checks and local calibration evidence are separate private data. Do not force-add the ignored private folders to the public repository.
 
-The authorized private snapshot is in `Jotham566/IUEA-Grading-Private`. On the new Mac, sign into GitHub with access to it and run:
+## Folder layout and where to start
+
+These commands use Git's default teaching-folder name, `teaching-material`, matching your Mac mini. Both repositories are siblings:
+
+```text
+~/Projects/
+├── teaching-material/
+└── IUEA-Grading-Private/
+```
+
+If you previously chose `IUEA-Teaching-Resources` as the teaching folder name, substitute that name in the commands. Do not clone a second copy or rename a working checkout just to match this guide.
+
+**Your confirmed progress on 21 October:** both repositories are cloned, all 5,395 private files are restored, and the Python environment and requirements are installed. **Skip the cloning, restoration and Python-install steps below. Continue at “Build Docker images”.** The prepared-text-path notice is expected and does not mean marks were lost.
+
+For a fresh machine only, sign into GitHub with access to the private repository and run:
 
 ```sh
 mkdir -p ~/Projects
 cd ~/Projects
-git clone https://github.com/Jotham566/teaching-material.git IUEA-Teaching-Resources
+git clone https://github.com/Jotham566/teaching-material.git
 git clone https://github.com/Jotham566/IUEA-Grading-Private.git
-python3 IUEA-Grading-Private/sync_snapshot.py restore IUEA-Teaching-Resources
+python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py restore ~/Projects/teaching-material
 ```
 
 Use existing checkouts instead of cloning twice. The private repository README explains how to capture results and restore subsequent updates. Restore verifies file hashes and refuses to overwrite differing local results unless explicitly requested. Complete the runtime setup below before executing grading.
 
-## Install once
+The restore command uses full home-directory paths, so it works from either repository. A bare `teaching-material` argument is relative to your current directory and fails when you are inside `IUEA-Grading-Private`.
 
-1. Clone the teaching repository and check out `main`.
-2. Install Python 3.12 and Docker Desktop for Apple silicon. Install Ollama natively using the instructions below; no Ollama Docker container is needed. Start Docker Desktop for notebook grading and document extraction.
-3. From the repository root, run:
+## Python environment — already completed on your Mac mini
+
+For a fresh setup, install Python 3.12, then run:
 
    ```sh
+   cd ~/Projects/teaching-material
    python3.12 -m venv .iuea-grader-env
    .iuea-grader-env/bin/python -m pip install -r requirements.txt
+   ```
+
+## Build Docker images — continue here
+
+Install Docker Desktop for Apple silicon if needed. Open it and finish its first-run setup:
+
+```sh
+open -a Docker
+```
+
+Wait until Docker is running, then run the following. `docker info` must succeed before building the images:
+
+   ```sh
+   cd ~/Projects/teaching-material
+   docker info
    docker build -t iuea-notebooks:2026.09 IUEA_Teaching_Plan/grader
    docker build -t iuea-document-renderer:2026.09 IUEA_Teaching_Plan/grader/document_renderer
    ```
 
-4. Restore the private grading snapshot in the same relative directories. It must include the submissions and manifests, completed results, workbook, hidden assessment checks and required calibration reports with their `.complete.json` companions. Preserve source bytes and hashes. Do not copy Python virtual environments, Docker state, browser profiles or credentials.
-5. Install/open Codex on the new Mac and initialize its bundled workspace dependencies. Excel generation uses its `@oai/artifact-tool` package; ordinary Node alone is insufficient. The default dependency location is under `~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node`. If the supported runtime is elsewhere, set `IUEA_NODE` to its Node executable and `IUEA_ARTIFACT_NODE_MODULES` to its `node_modules` directory. Never commit those dependencies.
-6. Set up native Ollama as follows before running written grading. Practical-test code grading does not require Ollama.
+Docker is for isolated notebook grading and document extraction. Set up native Ollama below for written grading; no Ollama Docker container is needed. Practical-test code grading does not require Ollama.
+
+## Excel-generation runtime
+
+Install/open Codex on the new Mac and initialize its bundled workspace dependencies. Excel generation uses its `@oai/artifact-tool` package; ordinary Node alone is insufficient. The default dependency location is under `~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node`. If the supported runtime is elsewhere, set `IUEA_NODE` to its Node executable and `IUEA_ARTIFACT_NODE_MODULES` to its `node_modules` directory. Never commit those dependencies. The restored Excel file can be opened before this runtime is configured.
 
 ## Native Ollama: written grading
 
@@ -78,6 +110,18 @@ References: [native Homebrew install](https://formulae.brew.sh/formula/ollama) a
 - Import new submissions through the refresh steps in `README.md`. Keep existing results; do not replace the full results set with only a new batch.
 - Resolve identity/file/written-review cases separately. More RAM does not resolve ambiguous identity evidence or grader disagreements.
 
+To regenerate text paths for the restored 21 October snapshot, with Docker running:
+
+```sh
+cd ~/Projects/teaching-material
+.iuea-grader-env/bin/python IUEA_Teaching_Plan/grader/prepare_ca_written.py \
+  --source IUEA_Teaching_Plan/assessment_operations/private/reconciled \
+  --ledger IUEA_Teaching_Plan/assessment_operations/private/grading_input_20261021.json \
+  --out IUEA_Teaching_Plan/assessment_operations/private/written_text_macmini
+```
+
+This creates a separate prepared-text directory; it does not award marks or replace the workbook. Use its `prepared.json` for a subsequent written batch against this same snapshot. Extraction problems stay flagged. New submissions require a fresh source snapshot and matching grading input, following `README.md`; do not reuse the dated input for them.
+
 ## Updating safely
 
 Stop grading before pulling changes to grader code or checks. Pull the teaching repository, then synchronize the private snapshot. Run only one grading writer at a time: do not grade into the same shared results on both Macs. Commit/synchronize private results after the batch finishes, then pull them on the other machine. Excel is a generated output; manual edits are not automatically imported into the grading ledger.
@@ -85,6 +129,7 @@ Stop grading before pulling changes to grader code or checks. Pull the teaching 
 Run the relevant checks after setup:
 
 ```sh
+cd ~/Projects/teaching-material
 .iuea-grader-env/bin/python -m unittest tests.test_continuous_assessment tests.test_ca_written tests.test_ca_export tests.test_ca_reconciliation tests.test_ca_format_recovery tests.test_ca_review_links
 ```
 
