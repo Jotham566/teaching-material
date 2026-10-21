@@ -8,10 +8,13 @@ import stat
 import zipfile
 from pathlib import Path, PurePosixPath
 
+from ca_bundle import bundle_header, verify_bundle
+
 MAX_BYTES = 500_000_000
 
 
 def unpack(archive, destination):
+    if bundle_header(archive): verify_bundle(archive)
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
     files = destination/'files'
@@ -36,6 +39,8 @@ def unpack(archive, destination):
                     extract(inner, True)
             elif nested and re.fullmatch(r'[A-Za-z0-9_-]+\.[A-Za-z0-9]+', name):
                 save(files/name, content)
+            elif not nested and name in ('ca_bundle.json','quiz_deadlines.json'):
+                save(destination/name, content)
             elif not nested and re.fullmatch(r'CML311[123]_(?:W0[1-5]_manifest|Q[1-5]_quiz)\.json', name):
                 save(destination/name, content)
             else:

@@ -22,6 +22,7 @@ from import_ca_quiz_sheets import import_sheet
 from reconcile_ca_sources import reconcile
 from recover_ca_file_extensions import recover
 from unpack_ca_export import unpack
+from ca_bundle import bundle_header, verify_bundle
 
 PRIVATE = ROOT/'IUEA_Teaching_Plan/assessment_operations/private'
 EARLY = {f'Q{i}' for i in range(1, 6)} | {f'W{i:02}' for i in range(1, 6)}
@@ -65,9 +66,16 @@ def exclusive(private):
 
 def inventory(download):
     download = Path(download).expanduser().resolve()
-    if not download.is_dir(): raise ValueError('Give the folder containing the downloaded ZIP parts and four Excel files.')
+    if download.is_file() and download.suffix.lower()=='.zip':
+        verify_bundle(download)
+        return {download.name:digest(download)}
+    if not download.is_dir(): raise ValueError('Give the downloaded grading ZIP, or a legacy download folder.')
     expected = {f'{c}_quiz_source.xlsx' for c in COHORTS} | {'assignment_source.xlsx'}
     files = {p.name: p for p in download.iterdir() if p.is_file() and not p.name.startswith('.')}
+    if len(files)==1:
+        only=next(iter(files.values()))
+        if only.suffix.lower()=='.zip' and bundle_header(only):
+            verify_bundle(only);return {only.name:digest(only)}
     missing = expected - files.keys()
     if missing: raise ValueError('Missing downloads: '+', '.join(sorted(missing)))
     zips = [p for p in files.values() if p.suffix.lower()=='.zip']
@@ -156,33 +164,64 @@ def prepare_batch(download, batch, previous):
             if Path(f['export_name']).name!=f['export_name'] or '/' in f['id'] or not isinstance(f['sha256'],str) or len(f['sha256'])!=64:
                 raise ValueError('Invalid attachment metadata')
         if meta.get('errors'): raise ValueError('The export reports attachment errors. Re-export before grading.')
-    deadlines = read(batch/'downloads/quiz_deadlines.json', read(previous/'quiz_deadlines.json'))
-    if not deadlines: raise ValueError('No verified quiz deadlines are available. Restore the private grading snapshot.')
-    for c in COHORTS:
-        for i in range(1,6):
-            if not isinstance(deadlines.get(f'{c}|{i}', {}).get('closeAt'), (float,int)):
-                raise ValueError('Quiz deadline audit is incomplete.')
-    write(batch/'quiz_deadlines.json', deadlines)
-    audit.mkdir(exist_ok=True)
-    import_audit(batch/'downloads/assignment_source.xlsx', audit)
-    for c in COHORTS: import_sheet(batch/'downloads'/f'{c}_quiz_source.xlsx', c, audit, deadlines)
-    # Require fresh form and audit exports to describe the same assignment receipts.
-    for name in expected:
-        if not name.endswith('_manifest.json'): continue
-        f = read(forms/name); a = read(audit/name, {'records': []})
-        if {r['response_id'] for r in f['records']} != {r['response_id'] for r in a['records']}:
-            raise ValueError('Assignment audit and ZIP cover different receipts for '+f['key']+'. Download matching snapshots.')
-        # Empty cohorts still need a manifest for reconciliation.
-        if not (audit/name).exists(): write(audit/name, f)
-    history = read(batch/'downloads/historical_windows.json', read(previous/'historical_windows.json', {}))
-    write(batch/'historical_windows.json', history)
-    checks = reconcile(audit, forms, fresh, deadlines, history)
-    if any(x['issue']=='SHEET_ONLY_RECEIPT' for x in checks):
-        raise ValueError('Quiz spreadsheets contain receipts absent from the ZIP. Re-export matching snapshots.')
+    bundled=read(forms/'ca_bundle.json')
+    history=read(batch/'downloads/historical_windows.json', read(previous/'historical_windows.json', {}))
+    write(batch/'historical_windows.json',history)
+    if bundled:
+        deadlines=read(forms/'quiz_deadlines.json')
+        write(batch/'quiz_deadlines.json',deadlines)
+        shutil.copytree(forms,fresh,dirs_exist_ok=True)
+        timing={};checks=[];cutoff=ca.stamp(bundled['cutoff'])
+        for p in fresh.glob('*_manifest.json'):
+            meta=read(p)
+            for r in meta['records']:
+                if ca.stamp(r['submitted_at'])>cutoff:raise ValueError('Receipt after bundle cutoff')
+                status=r.get('timing_status','UNVERIFIED')
+                if status not in ('ON_TIME','LATE','EARLY'):status='UNVERIFIED'
+                timing[r['response_id']]={'status':status,'evidence':'Assignment audit captured in the verified one-ZIP export.'}
+                for window in history.get(meta['key'],[]):
+                    if not window.get('evidence'):raise ValueError('Historical window requires evidence')
+                    if ca.stamp(window['open'])<=ca.stamp(r['submitted_at'])<=ca.stamp(window['close']):
+                        timing[r['response_id']]={'status':'ON_TIME','evidence':window['evidence']};break
+        for p in fresh.glob('*_quiz.json'):
+            payload=read(p)
+            if payload.get('source_kind')!='recorded_sheet_scores_with_form_receipts':raise ValueError('Bundle lacks recorded quiz scores')
+            for q in payload['quizzes']:
+                end=deadlines.get(q['key'],{}).get('closeAt')
+                if isinstance(end,bool) or not isinstance(end,(int,float)):raise ValueError('Bundle quiz deadline missing')
+                for r in q['records']:
+                    at=ca.stamp(r['submitted_at'])
+                    if at>cutoff:raise ValueError('Receipt after bundle cutoff')
+                    timing[r['response_id']]={'status':'ON_TIME' if at.timestamp()*1000<=end else 'LATE','evidence':'Quiz timing mirror captured in the verified one-ZIP export.'}
+        write(fresh/'timing.json',timing)
+    else:
+        deadlines = read(batch/'downloads/quiz_deadlines.json', read(previous/'quiz_deadlines.json'))
+        if not deadlines: raise ValueError('No verified quiz deadlines are available. Restore the private grading snapshot.')
+        for c in COHORTS:
+            for i in range(1,6):
+                if not isinstance(deadlines.get(f'{c}|{i}', {}).get('closeAt'), (float,int)):
+                    raise ValueError('Quiz deadline audit is incomplete.')
+        write(batch/'quiz_deadlines.json', deadlines)
+        audit.mkdir(exist_ok=True)
+        import_audit(batch/'downloads/assignment_source.xlsx', audit)
+        for c in COHORTS: import_sheet(batch/'downloads'/f'{c}_quiz_source.xlsx', c, audit, deadlines)
+        # Require fresh form and audit exports to describe the same assignment receipts.
+        for name in expected:
+            if not name.endswith('_manifest.json'): continue
+            f = read(forms/name); a = read(audit/name, {'records': []})
+            if {r['response_id'] for r in f['records']} != {r['response_id'] for r in a['records']}:
+                raise ValueError('Assignment audit and ZIP cover different receipts for '+f['key']+'. Download matching snapshots.')
+            # Empty cohorts still need a manifest for reconciliation.
+            if not (audit/name).exists(): write(audit/name, f)
+        history = read(batch/'downloads/historical_windows.json', read(previous/'historical_windows.json', {}))
+        write(batch/'historical_windows.json', history)
+        checks = reconcile(audit, forms, fresh, deadlines, history)
+        if any(x['issue']=='SHEET_ONLY_RECEIPT' for x in checks):
+            raise ValueError('Quiz spreadsheets contain receipts absent from the ZIP. Re-export matching snapshots.')
     recover(fresh)
     merge_sources(previous/'reconciled', fresh, batch/'reconciled')
     timing = read(fresh/'timing.json', {})
-    if not (batch/'downloads/quiz_deadlines.json').exists():
+    if not bundled and not (batch/'downloads/quiz_deadlines.json').exists():
         for p in fresh.glob('*_quiz.json'):
             for q in read(p)['quizzes']:
                 for r in q['records']:
@@ -327,7 +366,9 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
         downloads = batch/'downloads'; downloads.mkdir(exist_ok=True)
         for name, expected in inputs.items():
             target = downloads/name
-            if not target.exists(): shutil.copy2(Path(download).expanduser()/name, target)
+            if not target.exists():
+                source_download=Path(download).expanduser()
+                shutil.copy2(source_download if source_download.is_file() else source_download/name, target)
             if digest(target)!=expected: raise ValueError('A downloaded file changed while importing.')
         write(batch/'inputs.json', inputs)
         # Save the legacy outputs once before the first publication.
@@ -381,7 +422,7 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('download_folder');p.add_argument('--check',action='store_true',help='Validate downloads without running graders or replacing marks')
+    p.add_argument('download_folder',help='One grading ZIP (or legacy download folder)');p.add_argument('--check',action='store_true',help='Validate downloads without running graders or replacing marks')
     args=p.parse_args()
     try:
         summary=refresh(args.download_folder, check_only=args.check)

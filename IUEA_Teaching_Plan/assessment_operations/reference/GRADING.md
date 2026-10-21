@@ -18,20 +18,22 @@ Do not share this workbook with the class: it contains students' private informa
 
 ## Updating after more submissions
 
-Use `./grade-submissions DOWNLOAD_FOLDER` from the teaching repository. It coordinates the stages below; do not run them separately for routine batches. Validated generations are stored under `private/batches/`, with the current generation recorded in `private/refresh_active.json`. The normal workbook path remains unchanged. Back up the entire private snapshot after completion.
+Use `./grade-submissions EXPORT.zip` from the teaching repository. It coordinates the stages below; do not run them separately for routine batches. Validated generations are stored under `private/batches/`, with the current generation recorded in `private/refresh_active.json`. The normal workbook path remains unchanged. Back up the entire private snapshot after completion.
 
 The command preserves unchanged completed marks and held written-review decisions, merges receipts by response ID, saves older generations, and rebuilds totals. Changed attachment hashes trigger new checks. It retains existing test/project marks; it does not import new test batches. Restoring or manually changing the active ledger outside this runner is detected and requires reconciliation before another refresh.
 
 ### Underlying stages (reference only)
 
-1. Export a fresh private source snapshot using `startCAExport`, then `exportCANext` in the assignment Apps Script project. This copies submissions without changing forms or deadlines. The temporary export trigger removes itself on completion.
-2. Confirm `inspectCAExportProgress` reports 15 quizzes and 15 assignments. Download that private Drive folder. Keep earlier snapshots.
-3. Extract with `scripts/unpack_ca_export.py`. Check `download_check.json`: missing files and export errors need a retry, not a zero.
-4. Refresh the three quiz response spreadsheets and assignment audit. Record the current quiz deadlines from the quiz project. Reconcile receipts with `scripts/reconcile_ca_sources.py`; never combine two copies of the same quiz.
+1. Run `exportCAGradingZip` once in the assignment Apps Script project. It checkpoints automatically and copies submissions without changing forms or deadlines. The temporary export trigger removes itself on completion.
+2. Wait for **COMPLETE** in the collection workbook's **CA Export** tab; download the linked ZIP. It includes 15 assignment manifests, 15 quiz exports, original files, audit timing and quiz deadlines at a fixed cutoff.
+3. The runner verifies `ca_bundle.json` inventory, sizes and SHA-256 hashes before extraction, then validates source receipts and original attachment hashes. Missing files and export errors stop import, not award zero.
+4. Quiz marks come from saved response-sheet scores. Legacy receipts without a unique matching sheet row use existing recorded Form item scores, with a warning; missing scores remain pending. The quiz project mirrors its 15 current windows to the private collection workbook every 15 minutes and when links are saved. A stale/incomplete mirror blocks a new export. Previous window evidence is retained during import.
 5. Rebuild the ledger, grade new eligible notebooks using `grader/grade_ca_batch.py`, then rebuild the ledger with its `results.json`. The grader reuses unchanged results and rechecks changed submissions, checks or CSV data.
 6. Rebuild the Excel workbook using `scripts/build_continuous_assessment.mjs`. Check pending statuses before using the totals. Do not edit calculated cells manually.
 
 All paths above are relative to the repository root except `grader`, which is inside `IUEA_Teaching_Plan`.
+
+Legacy download folders containing the submissions ZIP plus four source XLSX files are still accepted for older snapshots; they are no longer required for new exports.
 
 ## Written assessments
 

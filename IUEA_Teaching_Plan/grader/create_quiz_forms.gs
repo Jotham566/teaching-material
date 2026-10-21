@@ -6828,6 +6828,7 @@ function saveLinks_(links) {
   Object.keys(props.getProperties()).forEach(function(k){
     if(k===PROP_LINKS||(k.indexOf(PROP_LINKS+':')===0&&!links[k.slice(PROP_LINKS.length+1)])){props.deleteProperty(k);}
   });
+  if(typeof publishCAQuizWindows==='function'){try{publishCAQuizWindows();}catch(e){Logger.log('CA timing mirror needs retry: '+e.message);}}
 }
 
 function writeLinksSheet_(links) {

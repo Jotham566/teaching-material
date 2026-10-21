@@ -22,46 +22,31 @@ If restore reports differing local files, stop. Save the local batch first; do n
 
 Sign into Google as **wirmbeesubs@gmail.com**.
 
-1. Open [Assignment Apps Script](https://script.google.com/home/projects/1XLdUAzi6wnSjQ2iFTV3hl5BQk9XWw-PIi1_vodC_l107B6S13yW_ZObw/edit).
-2. Run **startCAExport** once, then **exportCANext** once. The scheduled exporter continues the work.
-3. Run **inspectCAExportProgress** to check progress. Wait for **15 quizzes and 15 assignments**. Do not run startCAExport again during that export.
-4. Open the private Drive folder linked in the execution log. Download the complete folder as a ZIP. Keep every part if Drive splits the download.
+1. Open [Assignment Apps Script](https://script.google.com/home/projects/1XLdUAzi6wnSjQ2iFTV3hl5BQk9XWw-PIi1_vodC_l107B6S13yW_ZObw/edit). Select **Continuous_Assessment_Export.gs**, choose **exportCAGradingZip** and click **Run** once.
+2. In the [assignment collection workbook](https://docs.google.com/spreadsheets/d/1FxAVXwSvLEd7TEd3pJ2E0_ka7Mp6ZM6pW1yNsXKWdm4/edit#gid=534991827), open the **CA Export** tab. Wait until it says **COMPLETE** (refresh the page to check). The export continues automatically; allow time for Google to collect the files. You can close the browser while it runs.
+3. Open the **Download / detail** link and download that **one ZIP**. Do not download the whole folder or any Excel source files. Keep the ZIP unchanged.
 
-This copies submissions; it does not reopen forms, change deadlines or award marks.
+The ZIP contains original submissions, recorded quiz scores, assignment audit details and quiz deadlines for all three programmes. It uses a fixed cutoff: later submissions belong to the next export. Existing marks, forms and deadlines are unchanged.
 
-## 3. Download the recorded quiz marks
+If the status says **STOPPED**, read its explanation. After resolving the issue, run **exportCAGradingZip** again to resume. Never run **startCAExport** while an export is underway.
 
-For each programme, open its quiz response spreadsheet from a quiz form's **Responses → View in Sheets**. Use **File → Download → Microsoft Excel (.xlsx)**. Download the whole workbook, not one CSV tab.
-
-Save the three workbooks with these names:
-
-```text
-CML3111_quiz_source.xlsx
-CML3112_quiz_source.xlsx
-CML3113_quiz_source.xlsx
-```
-
-Also download the assignment collection workbook containing the **Submission audit** tab as `assignment_source.xlsx`.
-
-Keep this batch's ZIP and four spreadsheets together in a **new folder**, for example `~/Downloads/IUEA_CA_2026-10-22`. Never overwrite the previous batch. Quiz marks come from recorded response-sheet scores; the ZIP alone is insufficient. If a form was reopened or its deadline changed, tell Codex so timing records can be refreshed before marks are allocated.
-
-## 4. Run one command
+## 3. Run one command
 
 Close the marks workbook in Excel. In Terminal:
 
 ```sh
-~/Projects/teaching-material/grade-submissions ~/Downloads/IUEA_CA_2026-10-22
+~/Projects/teaching-material/grade-submissions ~/Downloads/IUEA_CA_20261022_120000.zip
 ```
 
-Replace the download folder with yours. Keep the Mac powered and connected. The command prevents idle sleep. Do not start another grader or pull changes during the run.
+Replace the ZIP filename with yours (you can drag the downloaded ZIP into Terminal to insert its path). Keep the Mac powered and connected. The command prevents idle sleep. Do not start another grader or pull changes during the run.
 
 **If interrupted:** repeat the exact command. Saved grading checkpoints are reused; a completed batch is not added twice. The previous workbook remains available until the new workbook passes validation. Missing or inconsistent downloads stop the run with an explanation.
 
 Existing completed marks and earlier attempts are retained. Changed files are checked again. Unreadable work, conflicting identities and disputed written judgements stay in **Review needed**, not zero.
 
-If a quiz was reopened after the last saved deadline audit, later receipts remain pending until that timing is verified. Include a freshly verified `quiz_deadlines.json` in the batch folder when needed; ask Codex to obtain it from the lecturer quiz controls. This command never changes forms or deadlines.
+Current quiz windows are included automatically. Earlier reopening windows are retained from the private history; ambiguous timing remains pending for review.
 
-## 5. Check and save
+## 4. Check and save
 
 ```sh
 open ~/Projects/teaching-material/IUEA_Teaching_Plan/assessment_operations/private/IUEA_Continuous_Assessment.xlsx
