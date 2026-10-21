@@ -1,5 +1,7 @@
 # Continuous assessment marks
 
+Start with the short [Mac mini setup checklist](MAC_MINI_SETUP.md). For each new batch of submissions, follow [Continue grading](CONTINUE_GRADING.md). The rest of this page explains the underlying rules and technical workflow.
+
 The private workbook is `private/IUEA_Continuous_Assessment.xlsx`.
 It has one summary per programme, current marks, the receipt history and marking rules.
 Do not share this workbook with the class: it contains students' private information.
