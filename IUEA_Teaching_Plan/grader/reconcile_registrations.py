@@ -39,6 +39,19 @@ def supported_typo_kind(original, target, course):
     return ''
 
 
+def obvious_text_variant(original, target):
+    """Non-numeric repairs against an observed, unique account registration."""
+    raw=canonical(original);target=canonical(target)
+    if raw==target:return ''
+    if raw==target.replace('/','L'):return 'L entered instead of slash'
+    if target in raw and re.fullmatch(r'[A-Z -]+',raw.replace(target,'',1)):
+        return 'Name attached to complete registration'
+    if raw==target.rsplit('-',1)[0]:return 'Missing suffix'
+    if raw==re.sub(r'/\d+/(?=[A-Z]+-[A-Z]$)','/',target):return 'Missing serial component'
+    if re.sub('[/-]','',raw)==re.sub('[/-]','',target)[:-1]:return 'Missing final suffix letter'
+    return ''
+
+
 def canonical(value):
     original = ca.norm(value)
     clean = re.sub("['’‘`\"“”]", '', original)
@@ -157,11 +170,22 @@ def reconcile(ledger, evidence, source, separator_only=False):
                 candidates=[]
                 for target in sorted(ids):
                     kind=supported_typo_kind(variant,target,course)
+                    if authoritative and not kind:kind=obvious_text_variant(variant,target)
                     if not kind or (not authoritative and not compatible_name_keys(names)):continue
                     if not authoritative and (owners[(course,target)]!={email} or owners.get((course,variant),{email})!={email}):continue
                     proof=[(r,p) for r in account for p in verified[r['response_id']]
                            if {canonical(x.get('registration','')) for x in p.get('registrations',[])}=={target}]
-                    if len({p['sha256'] for r,p in proof})<2 or len({r['assessment'] for r,p in proof})<2:continue
+                    distinct_files=len({p['sha256'] for r,p in proof})
+                    target_assessments={r['assessment'] for r in account if r['student_id']==target}
+                    strong=distinct_files>=2 and len({r['assessment'] for r,p in proof})>=2
+                    valid_ids={sid for sid in ids if re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/[A-Z]+-[A-Z]',sid) and sid.rsplit('/',1)[-1].split('-')[0] in COURSE_PROGRAMMES.get(course,{})}
+                    if authoritative and not kind.startswith('Incomplete year'):
+                        strong=strong or (len(target_assessments)>=2 and distinct_files>=1) or (len(target_assessments)>=2 and (valid_ids=={target} or kind=='Programme spelling typo'))
+                        if kind=='L entered instead of slash' and valid_ids=={target}:strong=True
+                    if not strong:continue
+                    if kind=='Missing serial component':
+                        named_files={p['sha256'] for r in account for p in verified[r['response_id']] if valid_name(p.get('name',''))}
+                        if not names or not compatible_name_keys(names) or len(named_files)<2 or distinct_files<2 or valid_ids!={target}:continue
                     affected=[r for r in account if r['student_id']==variant]
                     if kind.startswith('Incomplete year'):
                         if not affected or any(declarations[r['response_id']]!={target} for r in affected):continue
@@ -174,6 +198,18 @@ def reconcile(ledger, evidence, source, separator_only=False):
                     if r['student_id']==variant or variant in declarations[r['response_id']]:
                         if r['student_id']==variant:r['student_id']=target
                         notes[r['response_id']]=kind+': lecturer-confirmed programme; same account; target declared in distinct files across assessments; no conflicting names or competing account. Original retained.'
+                        if authoritative:notes[r['response_id']]=kind+': unique supported target on the same account, repeated across assessments and/or declared in original files. Numeric identity retained; original entry preserved.'
+            # A name mistakenly entered in the registration field is recoverable
+            # only from an exact submitted/lecturer-confirmed name and one target.
+            if authoritative:
+                targets={r['student_id'] for r in account if re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/[A-Z]+-[A-Z]',r['student_id']) and r['student_id'].rsplit('/',1)[-1].split('-')[0] in COURSE_PROGRAMMES.get(course,{})}
+                if len(targets)==1:
+                    target=next(iter(targets));known_names={re.sub('[^A-Z]','',policy.get('confirmed_names',{}).get(course,{}).get(target,'').upper())}
+                    known_names|={re.sub('[^A-Z]','',p.get('name','').upper()) for r in account for p in verified[r['response_id']] if any(resolved(course,x.get('registration',''))==target for x in p.get('registrations',[]))}
+                    for r in account:
+                        sid=r['student_id']
+                        if re.fullmatch('[A-Z]+',sid) and sid in known_names and len({x['assessment'] for x in account if x['student_id']==target})>=2:
+                            r['student_id']=target;notes[r['response_id']]='Name entered as registration: exact name confirmed in submission/lecturer evidence; sole valid registration repeatedly used by this account.'
     ca.recover_quiz_ids(rows)
     # Reuse only complete, hash-bound deterministic results; never manufacture a written mark.
     indexed = {}

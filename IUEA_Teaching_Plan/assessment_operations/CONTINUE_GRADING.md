@@ -149,6 +149,8 @@ Every new `./grade-submissions <ZIP>` run now gathers explicit names and registr
 
 Specific lecturer-confirmed registration corrections and names are saved privately in `identity_policy.json`. They are carried into later grading generations. The private root copy can also be updated separately without restoring or replacing the marks workbook. The older account/name evidence rules below describe supporting evidence; the current registration-first policy takes precedence for allocating marks.
 
+Automatic checks also handle a name attached to a complete registration, an `L` separator, a missing suffix and programme spelling errors when a unique observed target is supported by the account's assessment history. A name-only entry needs an exact confirmed/submission name and one repeated registration. A missing serial component additionally needs consistent names in distinct files and repeated target declarations. Conflicting complete numeric IDs or multiple possible suffixes are not merged by popularity.
+
 Document identity text is extracted in the existing Docker phase, before Docker stops for written AI grading. The automatic identity pass then reads the saved text and notebook declarations without extra AI inference. Names that are not explicitly labelled or supported by earlier evidence remain for review. To request a deeper local-AI name extraction for those cases, use the optional command below.
 
 After grading finishes, close Excel and leave native Ollama running. Run:

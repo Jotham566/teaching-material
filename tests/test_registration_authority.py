@@ -5,6 +5,22 @@ import continuous_assessment as ca
 from reconcile_registrations import reconcile
 
 class RegistrationAuthorityTests(unittest.TestCase):
+    def test_obvious_text_repairs_require_observed_target(self):
+        for original in ('99L987LBSCE-S','ALEXSMITH99/987/BSCE-S','99/987/BSCE','99/987/BSEC-S'):
+            with tempfile.TemporaryDirectory() as temp:
+                target='99/987/BSCE-S'
+                rows=[row(original,cohort='CML3112',full_name=''),row(target,'r2',cohort='CML3112',assessment='Q2',full_name=''),row(target,'r3',cohort='CML3112',assessment='Q3',full_name='')]
+                ledger=ca.finalize(rows,[]);reconcile(ledger,{},Path(temp)/'reconciled')
+                self.assertEqual({r['student_id'] for r in ledger['current']},{target})
+                self.assertTrue(all(r['score']==4 for r in ledger['current']))
+
+    def test_ambiguous_suffix_and_unconfirmed_name_stay_unresolved(self):
+        with tempfile.TemporaryDirectory() as temp:
+            rows=[row('99/987/BSCE',cohort='CML3112'),row('99/987/BSCE-S','r2',cohort='CML3112',assessment='Q2'),row('99/987/BSCE-J','r3',cohort='CML3112',assessment='Q3'),row('ALEXSMITH','r4',cohort='CML3112',assessment='Q4')]
+            ledger=ca.finalize(rows,[]);reconcile(ledger,{},Path(temp)/'reconciled')
+            self.assertEqual(ledger['attempts'][0]['student_id'],'99/987/BSCE')
+            self.assertEqual(ledger['attempts'][3]['student_id'],'ALEXSMITH')
+
     def test_registration_groups_accounts_without_name_or_email(self):
         with tempfile.TemporaryDirectory() as temp:
             rows=[row('99/987/BARC-S',cohort='CML3112',full_name=''),row('99/987/BARC-S','r2',cohort='CML3112',email='other@example.test',assessment='Q2',full_name=''),row('99/987/BARC-S','r3',cohort='CML3112',email='',assessment='Q3',full_name='')]
