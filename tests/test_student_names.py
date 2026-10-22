@@ -4,8 +4,8 @@ from pathlib import Path
 import unittest
 import io,json,tempfile
 from unittest.mock import patch
-import recover_student_names as names
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
+import recover_student_names as names
 from recover_student_names import apply_evidence, labelled_names, email_support, valid_name
 
 def ledger():
