@@ -30,7 +30,20 @@ The ZIP contains original submissions, recorded quiz scores, assignment audit de
 
 If the status says **STOPPED**, read its explanation. After resolving the issue, choose **Export Grading ZIP → Start / resume export** again. A running export is not restarted. If **Request status** shows **ERROR**, read that explanation before trying again.
 
-## 3. Run one command
+## 3. Start the local model server
+
+If your native Ollama server is already running with the setup-guide settings, leave it running. Otherwise, open a separate Terminal window and run:
+
+```sh
+OLLAMA_NO_CLOUD=1 OLLAMA_HOST=127.0.0.1:11434 \
+  OLLAMA_MAX_LOADED_MODELS=1 OLLAMA_NUM_PARALLEL=1 ollama serve
+```
+
+Leave that window open. If it reports **address already in use**, follow [the port-conflict instructions](reference/MAC_MINI.md#native-ollama-written-grading); do not start another server. You do not need to download the models again.
+
+Finish any unrelated Docker work first. The grading command manages Docker for code/document checks, then stops it before written grading. Do not reopen Docker during written grading.
+
+## 4. Run one grading command
 
 Close the marks workbook in Excel. In Terminal:
 
@@ -38,15 +51,15 @@ Close the marks workbook in Excel. In Terminal:
 ~/Projects/teaching-material/grade-submissions ~/Downloads/IUEA_CA_20261022_120000.zip
 ```
 
-Replace the ZIP filename with yours (you can drag the downloaded ZIP into Terminal to insert its path). Keep the Mac powered and connected. The command prevents idle sleep. Do not start another grader or pull changes during the run.
+The filename above is an example. Replace it with your downloaded ZIP. To avoid typing the path, type `~/Projects/teaching-material/grade-submissions ` (including the space), drag the ZIP from Finder into Terminal, then press Return. Keep the Mac powered and connected. The command prevents idle sleep. Do not start another grader or pull changes during the run.
 
-**If interrupted:** repeat the exact command. Saved grading checkpoints are reused; a completed batch is not added twice. The previous workbook remains available until the new workbook passes validation. Missing or inconsistent downloads stop the run with an explanation.
+**If interrupted:** repeat the exact command before pulling or restoring anything. Saved grading checkpoints are reused; a completed batch is not added twice. The previous workbook remains available until the new workbook passes validation. Missing or inconsistent downloads stop the run with an explanation.
 
 Existing completed marks and earlier attempts are retained. Changed files are checked again. Unreadable work, conflicting identities and disputed written judgements stay in **Review needed**, not zero.
 
 Current quiz windows are included automatically. Earlier reopening windows are retained from the private history; ambiguous timing remains pending for review.
 
-## 4. Check and save
+## 5. Review the updated marks
 
 ```sh
 open ~/Projects/teaching-material/IUEA_Teaching_Plan/assessment_operations/private/IUEA_Continuous_Assessment.xlsx
@@ -54,7 +67,9 @@ open ~/Projects/teaching-material/IUEA_Teaching_Plan/assessment_operations/priva
 
 Check programme totals and **Review needed**. Pending work is blank, not zero. A new unresolved attempt can leave the current mark pending; the prior mark remains in history. Keep manual decisions against the response ID and ask Codex to apply approved decisions; direct Excel edits are overwritten on refresh.
 
-After the batch finishes, close Excel and save the private snapshot:
+## 6. Save the results before another batch or switching Macs
+
+After the batch finishes, close Excel and run:
 
 ```sh
 python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py capture ~/Projects/teaching-material

@@ -33,11 +33,15 @@ The notebook button prepares a snapshot; **the form’s final Submit records the
 
 ## After each test
 
+This is a separate workflow from [weekly assignment/quiz grading](../assessment_operations/CONTINUE_GRADING.md). The **Export Grading ZIP** spreadsheet menu currently exports A1–A5/Q1–Q5, not practical tests. Use the test export and `Grade_Tests.command` below for Test 1 and Test 2.
+
 1. Leave the completed window’s **enabled = YES** and its closing time unchanged. It closes by time. This allows delayed collection of responses that were submitted on time.
 2. In Apps Script, select **exportCollectedColabTests**, then **Run**. Open the **DOWNLOAD BATCH** link shown in **Execution log** and download that ZIP from Drive. The export collects any outstanding responses first.
 3. Start **Docker Desktop** on the Mac. Wait until Docker is running. Double-click **Grade_Tests.command** in this folder. Drag the downloaded ZIP into the Terminal window and press Return. Keep the Mac on until it finishes; the command prevents idle sleep while grading.
-4. Open **Test_Marks.xlsx** in `IUEA_Teaching_Plan/test_operations/grading_output (inside this repository)`. It also opens automatically after grading. **Current marks** contains the latest on-time attempt per learner/test; **All attempts** preserves the audit; **Collection issues** lists collection or batch problems. Identity includes name, verified email and Student Registration Number.
+4. Open **Test_Marks.xlsx** in `IUEA_Teaching_Plan/test_operations/grading_output/` inside this repository. It also opens automatically after grading. **Current marks** contains the latest on-time attempt per learner/test; **All attempts** preserves the audit; **Collection issues** lists collection or batch problems. Identity includes name, verified email and Student Registration Number.
 5. Check that the submission count matches the collection workbook and resolve any pending/error/conflict rows before releasing marks. Blank marks mean unresolved, not zero. Re-running the same batch does not duplicate marks. Keep the ZIP, original snapshots and local results folder private and backed up.
+
+6. After checking the results, follow [the private snapshot save steps](../assessment_operations/CONTINUE_GRADING.md#6-save-the-results-before-another-batch-or-switching-macs) before changing Macs. To include new test marks in the cumulative assessment workbook, use the [production test-ledger integration guidance](../assessment_operations/reference/GRADING.md#tests-and-later-projects); the weekly ZIP command does not import new test results automatically.
 
 Test 1 is marked out of 100 and contributes 15 semester points; Test 2 contributes 20. A later attempt with a technical or identity problem stays pending rather than silently releasing an earlier mark. Students without a submission cannot be labelled absent until you have an enrolled class roster.
 

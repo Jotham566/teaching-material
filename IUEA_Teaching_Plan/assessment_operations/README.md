@@ -2,11 +2,13 @@
 
 **Use only two guides:** this page for setup, then [Continue grading](CONTINUE_GRADING.md) whenever students submit more work. Practical tests have their own [test-day checklist](../test_operations/TEST_CHECKLIST.md).
 
-**Already done:** both repositories cloned, private files restored, Python environment and requirements installed. Do not repeat those steps.
+**On your current Mac mini, already done:** both repositories cloned, private files restored, Python environment and requirements installed. Do not repeat those steps. For another new Mac, first follow [fresh-machine setup](reference/MAC_MINI.md#folder-layout-and-where-to-start).
 
 Your folders are `~/Projects/teaching-material` and `~/Projects/IUEA-Grading-Private`. Copy each command block separately. Stop if a command reports an error.
 
 ## 1. Get the latest code
+
+Finish any active grading run and [save its results](CONTINUE_GRADING.md#6-save-the-results-before-another-batch-or-switching-macs) before pulling.
 
 ```sh
 git -C ~/Projects/teaching-material pull --ff-only
@@ -62,9 +64,9 @@ This is needed because workbook generation uses Codex's bundled runtime. The ref
 
 ## 5. Continue grading
 
-The imported 21 October batch is already complete. Do not restart the old refresh script.
+Use the repeat checklist below for every new batch. Do not use the old dated refresh script or `Resume_Written_Grading.command` for this workflow.
 
-For new submissions, follow **[New submissions: repeat checklist](CONTINUE_GRADING.md)**. For existing unresolved records, use the workbook's **Review needed** sheet.
+For new submissions, follow **[New submissions: repeat checklist](CONTINUE_GRADING.md)** in order: synchronize → export one ZIP from the spreadsheet menu → start Ollama → run one grading command → review → save. For existing unresolved records, use the workbook's **Review needed** sheet.
 
 **One Mac grades at a time. Finish Docker work before written grading. The written grader stops Docker before inference and refuses to proceed if shutdown cannot be verified; keep Docker closed during the run.**
 

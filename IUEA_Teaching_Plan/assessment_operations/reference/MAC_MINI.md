@@ -16,7 +16,7 @@ These commands use Git's default teaching-folder name, `teaching-material`, matc
 
 If you previously chose `IUEA-Teaching-Resources` as the teaching folder name, substitute that name in the commands. Do not clone a second copy or rename a working checkout just to match this guide.
 
-**Your confirmed progress on 21 October:** both repositories are cloned, all 5,395 private files are restored, and the Python environment and requirements are installed. **Skip the cloning, restoration and Python-install steps below. Continue at “Build Docker images”.** The prepared-text-path notice is expected and does not mean marks were lost.
+**Your confirmed progress on 21 October:** both repositories are cloned, all 5,395 private files are restored, and the Python environment and requirements are installed. **Skip the cloning, restoration and Python-install steps below. Continue at “Build Docker images — one-time setup”.** The prepared-text-path notice is expected and does not mean marks were lost.
 
 For a fresh machine only, sign into GitHub with access to the private repository and run:
 
@@ -42,7 +42,7 @@ For a fresh setup, install Python 3.12, then run:
    .iuea-grader-env/bin/python -m pip install -r requirements.txt
    ```
 
-## Build Docker images — continue here
+## Build Docker images — one-time setup
 
 Install Docker Desktop for Apple silicon if needed. Open it and finish its first-run setup:
 
@@ -162,12 +162,14 @@ All cases for each assessment must pass. These commands use authored examples an
 
 References: [native Homebrew install](https://formulae.brew.sh/formula/ollama) and [Ollama server configuration and processor checks](https://docs.ollama.com/faq).
 
-## Before grading
+## Historical snapshot maintenance — not required for routine grading
+
+For every new ZIP, use [Continue grading](../CONTINUE_GRADING.md). The one-command runner regenerates prepared text as needed; do not run the historical commands below as extra setup steps. They apply only when deliberately investigating the archived 21 October snapshot.
 
 - The 21 October automatic batch is already complete. Do not rerun `finish_ca_refresh.py`: it is a one-time snapshot refresh with a backup guard.
 - Prepared written-text metadata contains absolute paths from the original Mac. Regenerate it with `prepare_ca_written.py` against the restored source snapshot before a new written batch; do not alter student files or checksums to bypass validation.
 - Use the immutable raw-identity grading input for the selected snapshot, not the reconciled cumulative ledger. For the latest snapshot this is `private/grading_input_20261021.json`.
-- Import new submissions through the refresh steps in `README.md`. Keep existing results; do not replace the full results set with only a new batch.
+- Import new submissions through [Continue grading](../CONTINUE_GRADING.md). Keep existing results; do not replace the full results set with only a new batch.
 - Resolve identity/file/written-review cases separately. More RAM does not resolve ambiguous identity evidence or grader disagreements.
 
 To regenerate text paths for the restored 21 October snapshot, with Docker running:
@@ -180,9 +182,11 @@ cd ~/Projects/teaching-material
   --out IUEA_Teaching_Plan/assessment_operations/private/written_text_macmini
 ```
 
-This creates a separate prepared-text directory; it does not award marks or replace the workbook. Use its `prepared.json` for a subsequent written batch against this same snapshot. Extraction problems stay flagged. New submissions require a fresh source snapshot and matching grading input, following `README.md`; do not reuse the dated input for them.
+This creates a separate prepared-text directory; it does not award marks or replace the workbook. Use its `prepared.json` for a subsequent written batch against this same snapshot. Extraction problems stay flagged. New submissions require a fresh source snapshot and matching grading input, following [Continue grading](../CONTINUE_GRADING.md); do not reuse the dated input for them.
 
 ## Updating safely
+
+Follow steps 1–6 of [Continue grading](../CONTINUE_GRADING.md): synchronize, export from the spreadsheet menu, start native Ollama, run `grade-submissions`, review Excel, then capture and push the private snapshot. No Apps Script editor or four separate Excel downloads are needed for A1–A5/Q1–Q5.
 
 Stop grading before pulling changes to grader code or checks. Pull the teaching repository, then synchronize the private snapshot. Run only one grading writer at a time: do not grade into the same shared results on both Macs. Commit/synchronize private results after the batch finishes, then pull them on the other machine. Excel is a generated output; manual edits are not automatically imported into the grading ledger.
 

@@ -24,7 +24,7 @@ The command preserves unchanged completed marks and held written-review decision
 
 ### Underlying stages (reference only)
 
-1. Run `exportCAGradingZip` once in the assignment Apps Script project. It checkpoints automatically and copies submissions without changing forms or deadlines. The temporary export trigger removes itself on completion.
+1. In the assignment collection spreadsheet, choose **Export Grading ZIP → Start / resume export**. The menu queues a request; the existing exporter processes it automatically and checkpoints its progress. Its temporary work trigger removes itself on completion; the menu listener remains installed. Forms, marks and deadlines are unchanged.
 2. Wait for **COMPLETE** in the collection workbook's **CA Export** tab; download the linked ZIP. It includes 15 assignment manifests, 15 quiz exports, original files, audit timing and quiz deadlines at a fixed cutoff.
 3. The runner verifies `ca_bundle.json` inventory, sizes and SHA-256 hashes before extraction, then validates source receipts and original attachment hashes. Missing files and export errors stop import, not award zero.
 4. Quiz marks come from saved response-sheet scores. Legacy receipts without a unique matching sheet row use existing recorded Form item scores, with a warning; missing scores remain pending. The quiz project mirrors its 15 current windows to the private collection workbook every 15 minutes and when links are saved. A stale/incomplete mirror blocks a new export. Previous window evidence is retained during import.
@@ -53,7 +53,7 @@ Check `private/written_queue/queue_status.json`:
 - `COMPLETE`: the queue has finished, but identity, unreadable-file or inconsistent-judgement exceptions may still need resolution.
 - `STOPPED`: inspect the private log and resolve the processing error before restarting. Unfinished work has not been assigned zero.
 
-To resume the existing downloaded snapshot, double-click `Resume_Written_Grading.command`. Start the local model server first if it is not running. This command refuses a second concurrent queue; it does not export newly submitted work. Follow the refresh steps above for new submissions.
+For a current batch that was interrupted, rerun the same `grade-submissions` command with the same ZIP. It reuses valid checkpoints. `Resume_Written_Grading.command` belongs to the older snapshot workflow and is not the routine resume command; do not run it alongside or instead of the current runner.
 
 Before using marks, check **Current marks** for pending statuses and **Source mark** for marks held because of identity conflicts. Do not distribute the workbook to students.
 
