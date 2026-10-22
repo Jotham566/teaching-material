@@ -130,13 +130,13 @@ Check programme totals and **Review needed**. Pending work is blank, not zero. A
 After the batch finishes, close Excel and run:
 
 ```sh
-python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py capture ~/Projects/teaching-material
-python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py verify
-git -C ~/Projects/IUEA-Grading-Private add snapshot manifest.json
-git -C ~/Projects/IUEA-Grading-Private commit -m "Update private grading results"
+python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py capture ~/Projects/teaching-material &&
+python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py verify &&
+git -C ~/Projects/IUEA-Grading-Private add -A snapshot manifest.json &&
+(git -C ~/Projects/IUEA-Grading-Private diff --cached --quiet || git -C ~/Projects/IUEA-Grading-Private commit -m "Update private grading results") &&
 git -C ~/Projects/IUEA-Grading-Private push
 ```
 
-**Nothing to commit** means there is no new snapshot change to save. Before switching Macs, finish this save/push step; on the other Mac repeat step 1.
+The `&&` symbols mean “continue only if the previous command succeeded.” Paste this whole block together. If capture or verification fails, commit and push will not run. Do not restore a failed snapshot; preserve the teaching folder and resolve the error first. No new snapshot changes means the commit step is skipped. Before switching Macs, finish this save/push step; on the other Mac repeat step 1.
 
 Repeated receipts are matched by response ID, not added again. Different submissions remain as separate attempts, with the eligible current attempt selected under the assessment rules. Original files and previous marks remain available for review.
