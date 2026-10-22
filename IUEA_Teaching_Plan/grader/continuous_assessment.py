@@ -177,7 +177,11 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
  if resolve_identities:
   resolve_supported_typos(attempts)
   recover_quiz_ids(attempts)
- bad=identity_conflicts(attempts)
+ return finalize(attempts,sources)
+
+def finalize(attempts,sources,extra_conflicts=()):
+ """Rebuild current attempts and students after supported identity corrections."""
+ bad=identity_conflicts(attempts)|set(extra_conflicts)
  for r in attempts:
   r['source_score']=r['score']
   r['source_status']=r['status']

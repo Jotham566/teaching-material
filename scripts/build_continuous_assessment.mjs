@@ -17,7 +17,7 @@ const assignments=[1,2,3,4,5,6,8,9,10,11,12].map(w=>'W'+String(w).padStart(2,'0'
 const projects=['DA_PROJECT','TEST1','TEST2','ML_PROJECT','DEMO'];
 const safe=v=>typeof v==='string'&&/^[=+@-]/.test(v)?"'"+v:v;
 const col=n=>{let s='';for(n++;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;};
-for(const name of [...cohorts,'Review needed','Written rubrics','Current marks','All attempts','Rules','Identity review'])wb.worksheets.add(name);
+for(const name of [...cohorts,'Review needed','Written rubrics','Current marks','All attempts','Rules','Identity review','Registration corrections'])wb.worksheets.add(name);
 function table(sheet,headers,rows){const end=Math.max(7,6+rows.length),last=col(headers.length-1);sheet.showGridLines=false;sheet.getRange(`A6:${last}6`).values=[headers];if(rows.length)sheet.getRange(`A7:${last}${end}`).values=rows.map(r=>r.map(safe));sheet.getRange(`A2:${last}${end}`).format.font={name:'Arial',size:11};sheet.getRange(`A2`).format.font={name:'Arial',size:16,bold:true};sheet.getRange(`A6:${last}6`).format={fill:'#17365D',font:{name:'Arial',size:11,bold:true,color:'#FFFFFF'},wrapText:true,rowHeight:44,verticalAlignment:'center',horizontalAlignment:'center'};sheet.getRange(`A7:${last}${end}`).format.rowHeight=23;sheet.getRange(`A6:${last}${end}`).format.columnWidth=16;sheet.freezePanes.freezeRows(6);sheet.freezePanes.freezeColumns(2);if(rows.length)sheet.tables.add(`A6:${last}${end}`,true,sheet.name.replaceAll(' ','')+'Table');return end;}
 const recordHeaders=['Programme','Registration Number','Email','Name','Assessment','Submitted (Kampala)','Status','Mark','Maximum','Timing','Response ID','Source mark','Source status','Registration as entered','Code component','Code maximum','Identity evidence'];
 for(const [name,records] of [['Current marks',data.current],['All attempts',data.attempts]]){
@@ -65,14 +65,25 @@ for(const cohort of cohorts){
  s.getRange(`D7:D${end}`).conditionalFormats.add('containsText',{text:'Pending',format:{fill:'#FFF2CC'}});
  s.getRange(`D7:D${end}`).conditionalFormats.add('containsText',{text:'Verify',format:{fill:'#FFF2CC'}});
 }
+const corrections=wb.worksheets.getItem('Registration corrections');
+corrections.getRange('A2').values=[['Registration reconciliation audit']];
+corrections.getRange('A4').values=[['Original entries are preserved. SUPPORTED = evidence supports correction; REVIEW = check Identity review and the original files.']];
+const correctionRows=(data.registration_reconciliation||[]).map(r=>[r.cohort,r.original,r.student_id,r.email,r.decision,r.reason,r.previous_status,r.status,r.previous_score??null,r.score??null,r.response_id]);
+const correctionEnd=table(corrections,['Course group','Original registration','Workbook registration','Email','Decision','Evidence / reason','Previous status','Current status','Previous allocated mark','Current allocated mark','Response ID'],correctionRows);
+corrections.getRange(`B6:D${correctionEnd}`).format.columnWidth=30;
+corrections.getRange(`F6:F${correctionEnd}`).format.columnWidth=65;
+corrections.getRange(`G6:K${correctionEnd}`).format.columnWidth=25;
+corrections.getRange(`A7:K${correctionEnd}`).format.wrapText=true;
+corrections.getRange(`A7:K${correctionEnd}`).format.rowHeight=85;
+corrections.getRange(`A7:K${correctionEnd}`).format.verticalAlignment='top';
 const identitySheet=wb.worksheets.getItem('Identity review');
 identitySheet.getRange('A2').values=[['Student names and registration evidence']];
-identitySheet.getRange('A4').values=[['Names are extracted from submissions. Email spelling supports a match; it never supplies a name. Registration suggestions do not change marks.']];
+identitySheet.getRange('A4').values=[['Names are extracted from submissions. Email spelling supports a match; it never supplies a name. Supported registration corrections regroup marks; uncertain matches remain held.']];
 identitySheet.getRange('A5').values=[['Course groups contain multiple degree programmes. Observed formats (9 = digit) are clues, not a required pattern. Review conflicting evidence.']];
 const identityRows=(data.identity_review||[]).flatMap(r=>(r.evidence?.length?r.evidence:[{}]).map(e=>[
  r.cohort,r.student_id,r.email,r.name||'',r.status,r.reason,e.name||'',e.quote||'',e.method||'',e.error||'',r.registration_counts||'',r.cohort_formats||'',r.registration_note||'',e.url||'',e.response_id||''
 ]));
-const identityEnd=table(identitySheet,['Course group','Registration as recorded','Email','Supported name','Decision','Reason','Name in file','Exact quotation','Extraction method','File/read issue','Registrations on this account','Formats observed in group','Registration review note','Original file URL','Response ID'],identityRows);
+const identityEnd=table(identitySheet,['Course group','Registration in workbook','Email','Supported name','Decision','Reason','Name in file','Exact quotation','Extraction method','File/read issue','Registrations on this account','Formats observed in group','Registration review note','Original file URL','Response ID'],identityRows);
 identitySheet.getRange(`A6:O${identityEnd}`).format.columnWidth=28;
 identitySheet.getRange(`F6:N${identityEnd}`).format.columnWidth=45;
 identitySheet.getRange(`A7:O${identityEnd}`).format.wrapText=true;
@@ -92,3 +103,5 @@ execFileSync(process.env.IUEA_PYTHON||'python3',[fileURLToPath(new URL('./attach
 if(process.env.IUEA_WORKBOOK_QA==='1')for(const name of [...cohorts,'Review needed','Written rubrics','Current marks','All attempts','Rules']){const b=await wb.render({sheetName:name,range:name==='Written rubrics'?'A6:E15':name==='Review needed'?'E10:K14':name==='Rules'?'A1:C15':cohorts.includes(name)?'D1:N12':'E1:J12',scale:1});await fs.writeFile(path.join(path.dirname(output),name.replaceAll(' ','_')+'_preview.png'),new Uint8Array(await b.arrayBuffer()));}
 if(process.env.IUEA_IDENTITY_QA==='1'){const b=await wb.render({sheetName:'Identity review',range:'A1:H9',scale:1});await fs.writeFile(path.join(path.dirname(output),'identity_review_preview.png'),new Uint8Array(await b.arrayBuffer()));}
 console.log('Saved private cumulative workbook.');
+
+if(process.env.IUEA_IDENTITY_QA==='1'){const b=await wb.render({sheetName:'Registration corrections',range:'A1:F9',scale:1});await fs.writeFile(path.join(path.dirname(output),'registration_review_preview.png'),new Uint8Array(await b.arrayBuffer()));}

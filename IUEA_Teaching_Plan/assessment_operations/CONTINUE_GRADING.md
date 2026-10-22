@@ -151,6 +151,16 @@ After grading finishes, close Excel and leave native Ollama running. Run:
 
 This stops Docker and reads notebook text and previously extracted document text. It never executes notebook code. Local AI proposes names with exact quotations; email spelling is only supporting evidence. Missing names are filled only when corroborated by distinct files, or by both the registration in the file and the email spelling. Existing names are preserved. Unreadable files, conflicting names and uncertain identities go into **Identity review**, with the original file links and evidence. No name is invented from an email address.
 
-**Registration numbers and marks are not changed by this command.** The sheet lists registration variants on the same account and formats observed within each course group. Different degree programmes within CML3111, CML3112 or CML3113 are expected; a common format is not proof that a different number is wrong. Review suggested matches before approving a correction. The existing repeated-receipt reconciliation still applies during normal grading.
+Then reconcile registrations and rebuild the totals:
 
-Open the cumulative workbook as in step 5. Check **Identity review**, then save the private snapshot as in step 6. Later weekly/test updates retain supported name evidence. If a document could not be read, use its link to review it manually. This uses the local model only; no student work is sent to a cloud AI service.
+```sh
+~/Projects/teaching-material/reconcile-identities
+```
+
+If you already ran `review-identities`, run only this second command. It reuses the saved names and submission evidence; neither Docker nor Ollama is needed. Close Excel first and wait for **Complete**.
+
+This normalizes supported punctuation differences, including stray apostrophes and a slash before the final programme suffix. A missing letter is corrected only when the same account has a consistent name, two independently hashed files declare the target registration, and no competing account uses either number. Other spelling/number differences remain for review. Each course group contains multiple degree programmes; the most common programme is never imposed on other students.
+
+The workbook regroups supported matches and recalculates totals using the existing attempt rules. It preserves every original receipt, the registration as entered, and the previous workbook generation. A complete notebook score is released only when its file hashes and recorded checks support the corrected registration. A2 code-only marks remain partial until its written component is graded. Timing and other grading holds remain in force. Check **Registration corrections** for the before/after audit and **Identity review** / **Review needed** for unresolved cases. Do not manually replace calculated totals.
+
+Open the cumulative workbook as in step 5. Check **Identity review**, then save the private snapshot as in step 6. Later weekly/test updates retain the name evidence and repeat registration reconciliation automatically. If a document could not be read, use its link to review it manually. This uses the local model only; no student work is sent to a cloud AI service.

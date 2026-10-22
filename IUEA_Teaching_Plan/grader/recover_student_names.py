@@ -94,7 +94,7 @@ def apply_evidence(ledger, evidence, source=None):
                 if not row.get('full_name'):
                     row['full_name']=chosen
                     row['name_evidence']=reason
-        if proposals or not chosen:
+        if proposals or not chosen or any(a['cohort']==cohort and a['student_id']==sid and a['email']==email for a in ledger.get('registration_reconciliation',[])):
             audit.append({'cohort':cohort,'student_id':sid,'email':email,'name':chosen,
                           'status':'SUPPORTED' if chosen else 'REVIEW','reason':reason,'evidence':proposals})
     by_response={r['response_id']:r for r in ledger['attempts']}
@@ -122,7 +122,11 @@ def apply_evidence(ledger, evidence, source=None):
         counts=collections.Counter(r.get('submitted_student_id',r['student_id']) for r in related)
         row['registration_counts']='; '.join(f'{sid}: {n} receipts' for sid,n in counts.most_common())
         if len(registrations)>1:
-            row['registration_note']='Compare same-account receipts and file evidence. Different degree programme codes within this course are valid; no registration was changed by this review.'
+            row['registration_note']='Compare same-account receipts and file evidence. Different degree programme codes within this course are valid.'
+    for row in audit:
+        changes=[a for a in ledger.get('registration_reconciliation',[]) if a['cohort']==row['cohort'] and a['student_id']==row['student_id'] and a['email']==row['email']]
+        if changes:
+            row['registration_note']=f"{len(changes)} receipt(s) reviewed. See Registration corrections for original entries, decisions and mark status."
     ledger['identity_review']=audit
     return ledger
 
@@ -180,6 +184,7 @@ def collect(ledger, base, out, model, use_ai=True):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--no-ai',action='store_true',help='Only labelled names and existing prepared text')
+    parser.add_argument('--reconcile-only',action='store_true',help='Reuse saved name evidence, reconcile registrations and rebuild marks without AI')
     args=parser.parse_args()
     from calibration_record import model_for_report
     private=refresh.PRIVATE
@@ -188,23 +193,34 @@ def main():
         if (private/('~$'+refresh.BOOK)).exists():raise ValueError('Close Excel first')
         for parent in (private/'batches').glob('*/parent.json'):
             if refresh.read(parent.parent/'status.json',{}).get('state')!='COMPLETE':raise ValueError('Finish the interrupted grading batch before identity review')
-        model=model_for_report(private/'W01_calibration_isolated.json')
-        if not args.no_ai:ensure_docker_stopped()
+        model='' if args.reconcile_only else model_for_report(private/'W01_calibration_isolated.json')
+        if not args.no_ai and not args.reconcile_only:ensure_docker_stopped()
         key=refresh.digest(previous/'ledger.json')[:24]
-        batch=private/'batches'/('identity-'+key);batch.mkdir(parents=True,exist_ok=True)
+        batch=private/'batches'/(('reconcile-v1-' if args.reconcile_only else 'identity-')+key);batch.mkdir(parents=True,exist_ok=True)
         for name in ('reconciled','written_queue','written_text','notebook_grades'):
             if (previous/name).exists():shutil.copytree(previous/name,batch/name,dirs_exist_ok=True)
         for name in ('historical_windows.json','quiz_deadlines.json','identity_file_cache.json'):
             if (previous/name).exists() and not (batch/name).exists():shutil.copy2(previous/name,batch/name)
         ledger=refresh.read(previous/'ledger.json')
         before=[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]
-        evidence=collect(ledger,previous,batch,model,not args.no_ai)
+        if args.reconcile_only:
+            evidence=refresh.read(previous/'identity_evidence.json',{})
+            refresh.write(batch/'identity_evidence.json',evidence)
+            from reconcile_registrations import reconcile
+            reconcile(ledger,evidence,batch/'reconciled')
+        else:
+            evidence=collect(ledger,previous,batch,model,not args.no_ai)
         apply_evidence(ledger,evidence,previous/'reconciled')
-        assert before==[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]
+        if not args.reconcile_only: assert before==[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]
         refresh.write(batch/'ledger.json',ledger)
+        if args.reconcile_only:refresh.write(batch/'registration_reconciliation.json',ledger.get('registration_reconciliation',[]))
         refresh.preflight_workbook();refresh.render(batch)
         refresh.write(batch/'summary.json',{'supported':sum(r['status']=='SUPPORTED' for r in ledger['identity_review']),'review':sum(r['status']=='REVIEW' for r in ledger['identity_review'])})
         refresh.write(batch/'status.json',{'state':'READY'});refresh.publish(private,batch)
-        print('Complete. Names and Identity review updated; marks and registration numbers unchanged.')
+        if args.reconcile_only:
+            changes=ledger.get('registration_reconciliation',[])
+            print(f'Complete. {sum(a["decision"]=="SUPPORTED" for a in changes)} supported receipt corrections; {sum(a["decision"]=="REVIEW" for a in changes)} receipt changes need review. Workbook rebuilt; original receipts retained.')
+        else:
+            print('Complete. Names and Identity review updated; marks and registration numbers unchanged.')
 
 if __name__=='__main__':main()

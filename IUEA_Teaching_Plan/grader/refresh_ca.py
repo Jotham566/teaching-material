@@ -409,8 +409,10 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
             if len(new_ids)!=len(ledger['attempts']): raise ValueError('Duplicate receipt in rebuilt ledger')
             from recover_student_names import apply_evidence
             identity_evidence=read(previous/'identity_evidence.json', {})
+            from reconcile_registrations import reconcile
+            reconcile(ledger,identity_evidence,batch/'reconciled')
+            apply_evidence(ledger,identity_evidence,batch/'reconciled')
             if identity_evidence:
-                apply_evidence(ledger,identity_evidence,batch/'reconciled')
                 write(batch/'identity_evidence.json',identity_evidence)
                 if (previous/'identity_file_cache.json').exists(): shutil.copy2(previous/'identity_file_cache.json',batch/'identity_file_cache.json')
             write(batch/'ledger.json', ledger)

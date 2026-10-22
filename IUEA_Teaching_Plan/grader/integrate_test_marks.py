@@ -58,7 +58,7 @@ def integrate_locked(test_file, private, renderer=refresh.render):
     try:
         # Carry the coursework context forward so the next weekly refresh can
         # reuse sources, grading checkpoints, review evidence and timing history.
-        for name in ('reconciled', 'written_queue', 'written_text'):
+        for name in ('reconciled', 'written_queue', 'written_text', 'notebook_grades'):
             if (previous/name).exists():
                 shutil.copytree(previous/name, batch/name, dirs_exist_ok=True)
         for name in ('historical_windows.json', 'quiz_deadlines.json', 'identity_evidence.json', 'identity_file_cache.json'):
@@ -74,7 +74,9 @@ def integrate_locked(test_file, private, renderer=refresh.render):
         ledger['sources'] = old.get('sources', []) + ledger['sources']
         from recover_student_names import apply_evidence
         identity_evidence=refresh.read(batch/'identity_evidence.json',{})
-        if identity_evidence: apply_evidence(ledger,identity_evidence,batch/'reconciled')
+        from reconcile_registrations import reconcile
+        reconcile(ledger,identity_evidence,batch/'reconciled')
+        apply_evidence(ledger,identity_evidence,batch/'reconciled')
         refresh.write(batch/'ledger.json', ledger)
         refresh.write(batch/'test_import.json', {'sha256': fingerprint})
         refresh.write(batch/'summary.json', {'test_receipts': len(incoming), 'new_receipts': len(set(new_ids)-set(old_by_id))})
