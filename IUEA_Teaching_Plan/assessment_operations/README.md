@@ -1,6 +1,6 @@
 # Grading — start here
 
-**Use only two guides:** this page for setup, then [Continue grading](CONTINUE_GRADING.md) whenever students submit more work. Practical tests have their own [test-day checklist](../test_operations/TEST_CHECKLIST.md).
+**Use only two guides:** this page for setup, then [Continue grading](CONTINUE_GRADING.md) whenever students submit more work. Practical tests have their own **Export Test ZIP** menu in the test collection workbook and a separate [test-day checklist](../test_operations/TEST_CHECKLIST.md).
 
 **On your current Mac mini, already done:** both repositories cloned, private files restored, Python environment and requirements installed. Do not repeat those steps. For another new Mac, first follow [fresh-machine setup](reference/MAC_MINI.md#folder-layout-and-where-to-start).
 

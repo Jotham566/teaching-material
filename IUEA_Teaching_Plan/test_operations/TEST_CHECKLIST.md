@@ -33,10 +33,10 @@ The notebook button prepares a snapshot; **the form’s final Submit records the
 
 ## After each test
 
-This is a separate workflow from [weekly assignment/quiz grading](../assessment_operations/CONTINUE_GRADING.md). The **Export Grading ZIP** spreadsheet menu currently exports A1–A5/Q1–Q5, not practical tests. Use the test export and `Grade_Tests.command` below for Test 1 and Test 2.
+This is a separate workflow from [weekly assignment/quiz grading](../assessment_operations/CONTINUE_GRADING.md). The **Export Grading ZIP** spreadsheet menu currently exports A1–A5/Q1–Q5, not practical tests. Use **Export Test ZIP** in the **test collection workbook**, then `Grade_Tests.command`, for Test 1 and Test 2.
 
 1. Leave the completed window’s **enabled = YES** and its closing time unchanged. It closes by time. This allows delayed collection of responses that were submitted on time.
-2. In Apps Script, select **exportCollectedColabTests**, then **Run**. Open the **DOWNLOAD BATCH** link shown in **Execution log** and download that ZIP from Drive. The export collects any outstanding responses first.
+2. Open the [test collection workbook](https://docs.google.com/spreadsheets/d/1BveqLGvv-6C-00TMbUF0qti6VoEnAcRX9K1s9eja8uM/edit). Choose **Export Test ZIP → Export latest submissions**. Refresh the workbook once if the menu is missing; authorize the menu script on first use. Choose **View progress / download** and wait for the new export to say **COMPLETE** in **Test Export**. While **Request status** says **PENDING**, the previous download may still be displayed. Open **Download / detail** and download the ZIP unchanged. The export first collects outstanding responses and includes Test 1 and Test 2 across all three programmes, plus collection issues; rehearsal entries are excluded. You can close the browser while it works.
 3. Start **Docker Desktop** on the Mac. Wait until Docker is running. Double-click **Grade_Tests.command** in this folder. Drag the downloaded ZIP into the Terminal window and press Return. Keep the Mac on until it finishes; the command prevents idle sleep while grading.
 4. Open **Test_Marks.xlsx** in `IUEA_Teaching_Plan/test_operations/grading_output/` inside this repository. It also opens automatically after grading. **Current marks** contains the latest on-time attempt per learner/test; **All attempts** preserves the audit; **Collection issues** lists collection or batch problems. Identity includes name, verified email and Student Registration Number.
 5. Check that the submission count matches the collection workbook and resolve any pending/error/conflict rows before releasing marks. Blank marks mean unresolved, not zero. Re-running the same batch does not duplicate marks. Keep the ZIP, original snapshots and local results folder private and backed up.
@@ -47,6 +47,7 @@ Test 1 is marked out of 100 and contributes 15 semester points; Test 2 contribut
 
 ## If something fails
 
+- **Export STOPPED or request ERROR:** read **Download / detail**, fix the reported problem, then choose **Export latest submissions** again. A timed-out export is marked STOPPED after about ten minutes. Original submissions are preserved. Repeated clicks while queued/running do not start another export.
 - **No button:** connect the Colab runtime and run the final cell; approve the account prompt. Reconnecting may require rerunning the identity and submission cells.
 - **Wrong account or collection error:** use the same account that created the snapshot in Colab and submitted the form. Check the Collection tab’s detail column. Do not edit a prepared snapshot.
 - **Docker unavailable:** start Docker Desktop and rerun the command. It does not run student code directly on the Mac.
@@ -56,3 +57,7 @@ Test 1 is marked out of 100 and contributes 15 semester points; Test 2 contribut
 ## Account ownership
 
 The Google AI Plus subscription on **jothammartin.wambi@gmail.com** is not used for grading. That account may serve as a rehearsal student account. **wirmbeesubs@gmail.com is still needed** because it owns the submission forms, collection workbook and snapshot folder. No account migration has been performed.
+
+## Menu maintenance only
+
+The workbook-bound source is `test_export_menu.gs`. The existing assignment Apps Script project uses `grader/exam_collection.gs` plus `grader/exam_export_menu_listener.gs` (installed together in **Colab_Test_Collection.gs**). Run `installTestExportMenuListener` once after installation; it creates the **Test Export** status tab and one minute-based request listener. Do not run it for each batch. Request cells `D1:E3` and progress cells `A1:B5` are managed by the scripts. Exporting applies existing collection rules and does not alter the authorised opening or closing times.

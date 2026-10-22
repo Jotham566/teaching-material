@@ -2,7 +2,7 @@
 
 Use this after [setup](README.md), whenever more students submit work. You can grade in batches; you do not need to wait for everyone.
 
-**Current scope: Quizzes 1–5 and Assignments A1–A5 across all three programmes.** Later weeks need the exporter/importer extended and their grading rules checked first. Practical tests use the [test checklist](../test_operations/TEST_CHECKLIST.md).
+**Current scope: Quizzes 1–5 and Assignments A1–A5 across all three programmes.** Later weeks need the exporter/importer extended and their grading rules checked first. Practical tests use **Export Test ZIP** in their own collection workbook and the [test checklist](../test_operations/TEST_CHECKLIST.md).
 
 After downloading, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
 

@@ -85,7 +85,10 @@ function examFormInstructions_(form,w){
 }
 function syncColabExams(){
  var lock=LockService.getScriptLock();if(!lock.tryLock(1000))return false;
- try{
+ try{return syncColabExamsUnlocked_();}finally{lock.releaseLock();}
+}
+// Caller holds the assignment project's script lock.
+function syncColabExamsUnlocked_(){
   var c=examConfig_(),ledger=SpreadsheetApp.openById(c.bookId).getSheetByName('Collection'),known={};
   if(ledger.getLastRow()>1)ledger.getRange(2,1,ledger.getLastRow()-1,1).getValues().forEach(function(r){known[r[0]]=true;});
   Object.keys(c.forms||{}).forEach(function(key){
@@ -94,7 +97,6 @@ function syncColabExams(){
    if(f.isAcceptingResponses()!==shouldOpen)f.setAcceptingResponses(shouldOpen);
    f.getResponses().forEach(function(r){if(!known[r.getId()]){examCollect_(r,key,c);known[r.getId()]=true;}});
   });return true;
- }finally{lock.releaseLock();}
 }
 function exportCollectedColabTests(){
  if(!syncColabExams())throw Error('Collection is currently running. Wait a moment and run export again.');exportColabConfig_(examConfig_());
@@ -105,6 +107,7 @@ function exportColabConfig_(c){
  blobs.push(Utilities.newBlob(JSON.stringify({schema:1,exported_at:new Date().toISOString(),jobs:jobs,collection_issues:issues},null,2),'application/json','manifest.json'));
  var zip=DriveApp.getFolderById(c.folderId).createFile(Utilities.zip(blobs,'IUEA-test-batch-'+Utilities.formatDate(new Date(),'Africa/Kampala','yyyyMMdd-HHmmss')+'.zip'));
  console.log('DOWNLOAD BATCH: https://drive.google.com/file/d/'+zip.getId()+'/view');console.log(jobs.length+' collected notebooks; '+issues.length+' collection issues. Workbook: '+book.getUrl());
+ return {url:'https://drive.google.com/file/d/'+zip.getId()+'/view',notebooks:jobs.length,issues:issues.length};
 }
 
 // Separate rehearsal form, workbook and snapshot folder; never mixed with student marks.
