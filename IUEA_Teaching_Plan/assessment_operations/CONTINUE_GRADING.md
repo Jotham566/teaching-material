@@ -166,3 +166,11 @@ This normalizes supported punctuation differences, including stray apostrophes a
 The workbook regroups supported matches and recalculates totals using the existing attempt rules. It preserves every original receipt, the registration as entered, and the previous workbook generation. A complete notebook score is released only when its file hashes and recorded checks support the corrected registration. A2 code-only marks remain partial until its written component is graded. Timing and other grading holds remain in force. Check **Registration corrections** for the before/after audit and **Identity review** / **Review needed** for unresolved cases. Do not manually replace calculated totals.
 
 Open the cumulative workbook as in step 5. Check **Identity review**, then save the private snapshot as in step 6. Later weekly/test updates retain the name evidence and repeat registration reconciliation automatically. If a document could not be read, use its link to review it manually. This uses the local model only; no student work is sent to a cloud AI service.
+
+### Confirm the remaining identity cases
+
+The separate **Identity_Review.xlsx** has two tabs. In **Cases**, read the possible registrations/accounts and the exact question. Filter **Submission evidence** by the Case ID and click **Open submission** to inspect the files. Fill the yellow columns in **Cases**. If the accounts belong to different students, fill the yellow fields beside the affected receipts in **Submission evidence** instead. Leave uncertain cases marked **Still uncertain**. Save a working copy and return it for reconciliation; editing this sheet does not automatically change marks.
+
+The review file is in the private snapshot under `IUEA_Teaching_Plan/assessment_operations/private/outputs/identity-review-20261022/`. Copy it outside the snapshot before editing so later snapshot captures do not overwrite your decisions. The review reflects the receipts available when generated.
+
+If a pull fails with `HTTP/2`, `curl 92`, or `early EOF`, retry using `git -C ~/Projects/IUEA-Grading-Private -c http.version=HTTP/1.1 pull --ff-only`. This changes the transfer protocol for that command only. A failed first command in an `&&` chain prevents the later grading commands from running. Do not reset your working copy or restore over local marks to fix a download failure.
