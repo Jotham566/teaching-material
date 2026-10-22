@@ -25,7 +25,7 @@ docker build -t iuea-notebooks:2026.09 IUEA_Teaching_Plan/grader
 docker build -t iuea-document-renderer:2026.09 IUEA_Teaching_Plan/grader/document_renderer
 ```
 
-Docker is for student code and reading documents. Ollama runs natively on the Mac.
+Docker is for student code and reading documents. Ollama runs natively on the Mac. The repeat guide explains [when each is used and what you need to do](CONTINUE_GRADING.md#when-docker-and-ollama-are-used).
 
 ## 3. Prepare native Ollama
 

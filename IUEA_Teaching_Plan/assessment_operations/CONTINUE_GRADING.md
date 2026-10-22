@@ -15,6 +15,26 @@ Use the workflow that matches the submission:
 
 After downloading, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
 
+## When Docker and Ollama are used
+
+**Docker** runs submitted notebook code in an isolated environment called a container, instead of running student code directly on your Mac. It also helps prepare documents for reading. **Ollama** runs the local AI models that assess written explanations against the marking rubric. “Native Ollama” means it runs directly on macOS, outside Docker. A model is the downloaded AI used to assess the text; the Ollama server is the background program that receives the grader's requests.
+
+After you run `grade-submissions`, the command handles this sequence automatically:
+
+| Order | What happens | What is used |
+| --- | --- | --- |
+| 1 | Read the downloaded ZIP, identify submissions and import recorded quiz scores. | Grading scripts; quiz scores do not need AI. |
+| 2 | Run submitted notebook code and check its results against the marking rules. | Docker. The command starts it if needed and first asks Ollama to unload the grading models from memory. |
+| 3 | Extract and prepare written content from submitted documents. | Document tools, including Docker where needed. |
+| 4 | Stop Docker to free memory, then assess written answers against the rubric. | Native Ollama. The command checks that Docker has stopped before AI grading. |
+| 5 | Combine available marks, validate the workbook and update Excel. | Grading scripts. Unresolved records remain available for review. |
+
+Completed work is reused, so a batch with nothing new to grade can skip the grading stages.
+
+**Your part:** after the one-time setup, start the Ollama server in step 3 and leave its Terminal window open. Run the grading command in a second Terminal window in step 4. You do not manually switch between Docker and Ollama. The server can stay open during the Docker stage; an open server does not mean its AI model is currently grading. Do not reopen Docker during written grading.
+
+**Test 1 and Test 2 are different:** follow the [test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test). Start Docker Desktop yourself, wait for it to be running, then run `Grade_Tests.command`. Those tests use fixed checks for code and structured answers; Ollama is not needed.
+
 ## 1. Get ready
 
 Use only one Mac. Finish and save any earlier grading run before pulling:
@@ -54,7 +74,7 @@ If the status says **STOPPED**, read its explanation. After resolving the issue,
 
 ## 3. Start the local model server
 
-If your native Ollama server is already running with the setup-guide settings, leave it running. Otherwise, open a separate Terminal window and run:
+If your native Ollama server is already running with the setup-guide settings, leave it running. Otherwise, open Terminal (press Command–Space, type `Terminal`, then press Return). Choose **Shell → New Window** and run:
 
 ```sh
 OLLAMA_NO_CLOUD=1 OLLAMA_HOST=127.0.0.1:11434 \
@@ -67,7 +87,7 @@ Finish any unrelated Docker work first. The grading command manages Docker for c
 
 ## 4. Run one grading command
 
-Close the marks workbook in Excel. In Terminal:
+Close the marks workbook in Excel. Keep the Ollama window open. Choose **Shell → New Window** in Terminal, then run the following command in that second window:
 
 ```sh
 ~/Projects/teaching-material/grade-submissions ~/Downloads/IUEA_CA_20261022_120000.zip
