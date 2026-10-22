@@ -22,13 +22,13 @@ If restore reports differing local files, stop. Save the local batch first; do n
 
 Sign into Google as **wirmbeesubs@gmail.com**.
 
-1. Open [Assignment Apps Script](https://script.google.com/home/projects/1XLdUAzi6wnSjQ2iFTV3hl5BQk9XWw-PIi1_vodC_l107B6S13yW_ZObw/edit). Select **Continuous_Assessment_Export.gs**, choose **exportCAGradingZip** and click **Run** once.
-2. In the [assignment collection workbook](https://docs.google.com/spreadsheets/d/1FxAVXwSvLEd7TEd3pJ2E0_ka7Mp6ZM6pW1yNsXKWdm4/edit#gid=534991827), open the **CA Export** tab. Wait until it says **COMPLETE** (refresh the page to check). The export continues automatically; large batches can take tens of minutes. You can close the browser while Google collects the files.
+1. Open the [assignment collection workbook](https://docs.google.com/spreadsheets/d/1FxAVXwSvLEd7TEd3pJ2E0_ka7Mp6ZM6pW1yNsXKWdm4/edit#gid=534991827). Choose **Export Grading ZIP → Start / resume export**. Refresh the workbook once if the menu is missing. On first use, Google may ask you to authorize the workbook’s menu script.
+2. Allow about a minute for the request to start. Choose **Export Grading ZIP → View progress / download** to open **CA Export**. Wait until the new export says **COMPLETE**; while the request says **PENDING**, the previous download may still be displayed. Large batches can take tens of minutes. You can close the browser while Google collects the files.
 3. Open the **Download / detail** link and download that **one ZIP**. Do not download the whole folder or any Excel source files. Keep the ZIP unchanged. If Google shows its large-file scan notice, choose **Download anyway**.
 
 The ZIP contains original submissions, recorded quiz scores, assignment audit details and quiz deadlines for all three programmes. It uses a fixed cutoff: later submissions belong to the next export. Existing marks, forms and deadlines are unchanged.
 
-If the status says **STOPPED**, read its explanation. After resolving the issue, run **exportCAGradingZip** again to resume. Never run **startCAExport** while an export is underway.
+If the status says **STOPPED**, read its explanation. After resolving the issue, choose **Export Grading ZIP → Start / resume export** again. A running export is not restarted. If **Request status** shows **ERROR**, read that explanation before trying again.
 
 ## 3. Run one command
 

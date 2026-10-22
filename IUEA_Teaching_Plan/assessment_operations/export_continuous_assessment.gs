@@ -14,9 +14,9 @@ function caCutoff_(){return Number(PropertiesService.getScriptProperties().getPr
 function caProgress_(state,message){
  var p=PropertiesService.getScriptProperties();p.setProperty('CA_EXPORT_STATE',state);
  var book=submissionBook_(),s=book.getSheetByName('CA Export')||book.insertSheet('CA Export');
- s.getRange(1,1,5,2).setValues([['CA grading export',state],['Assignments',Number(p.getProperty('CA_EXPORT_CURSOR')||0)+'/15'],['Quizzes',Number(p.getProperty('CA_QUIZ_CURSOR')||0)+'/15'],['Updated',new Date().toISOString()],['Download / detail',message||'Run inspectCAExportProgress for the latest status.']]);
+ s.getRange(1,1,5,2).setValues([['CA grading export',state],['Assignments',Number(p.getProperty('CA_EXPORT_CURSOR')||0)+'/15'],['Quizzes',Number(p.getProperty('CA_QUIZ_CURSOR')||0)+'/15'],['Updated',new Date().toISOString()],['Download / detail',message||'Export in progress. This page updates as each batch finishes.']]);
 }
-function startCAExport(){
+function startCAExport(requestId){
  var p=PropertiesService.getScriptProperties();
  if(p.getProperty('CA_EXPORT_STATE')==='RUNNING')throw Error('An export is running. Use inspectCAExportProgress; do not start another.');
  var sheet=submissionBook_().getSheetByName('CA Quiz windows');if(!sheet)throw Error('Quiz timing mirror is not configured.');
@@ -25,7 +25,7 @@ function startCAExport(){
  rows.slice(1).forEach(function(r){if(/^CML311[123]\|[1-5]$/.test(r[0])){if(Date.now()-Date.parse(r[2])>30*60000)throw Error('Quiz timing mirror is stale; run publishCAQuizWindows in the quiz project.');deadlines[r[0]]=JSON.parse(r[1]);}});
  if(Object.keys(deadlines).length!==15)throw Error('Incomplete quiz timing mirror');
  var cutoff=Date.now(),folder=DriveApp.createFolder('Private CA grading '+new Date(cutoff).toISOString());
- p.setProperties({CA_EXPORT_FOLDER:folder.getId(),CA_EXPORT_CURSOR:'0',CA_QUIZ_CURSOR:'0',CA_EXPORT_CUTOFF:String(cutoff),CA_EXPORT_STATE:'RUNNING',CA_EXPORT_ZIP:''},false);
+ p.setProperties({CA_EXPORT_FOLDER:folder.getId(),CA_EXPORT_CURSOR:'0',CA_QUIZ_CURSOR:'0',CA_EXPORT_CUTOFF:String(cutoff),CA_EXPORT_STATE:'RUNNING',CA_EXPORT_ZIP:'',CA_EXPORT_REQUEST_ID:requestId||''},false);
  caJson_(folder,'quiz_deadlines.json',deadlines);caProgress_('RUNNING','Preparing one private ZIP. Submissions after '+new Date(cutoff).toISOString()+' will be in the next batch.');
 }
 function exportCAGradingZip(){
@@ -141,4 +141,34 @@ function exportCANext(){
 }
 function inspectCAExportProgress(){
  var p=PropertiesService.getScriptProperties();Logger.log(JSON.stringify({state:p.getProperty('CA_EXPORT_STATE'),assignments:p.getProperty('CA_EXPORT_CURSOR'),quizzes:p.getProperty('CA_QUIZ_CURSOR'),download:p.getProperty('CA_EXPORT_ZIP')?'https://drive.google.com/file/d/'+p.getProperty('CA_EXPORT_ZIP')+'/view':null}));
+}
+
+/** Install once in the existing standalone assignment project. */
+function installCAExportMenuListener(){
+ var triggers=ScriptApp.getProjectTriggers().filter(function(t){return t.getHandlerFunction()==='processCAExportRequest';});
+ if(!triggers.length)ScriptApp.newTrigger('processCAExportRequest').timeBased().everyMinutes(1).create();
+ // Keep one listener, without touching assignment schedules or export triggers.
+ triggers.slice(1).forEach(function(t){ScriptApp.deleteTrigger(t);});
+ Logger.log('Spreadsheet Export Grading ZIP requests are checked every minute.');
+}
+function processCAExportRequest(){
+ var sheet=submissionBook_().getSheetByName('CA Export');
+ if(!sheet||sheet.getRange('E2').getValue()!=='PENDING')return;
+ var lock=LockService.getScriptLock();if(!lock.tryLock(1000))return;
+ try{
+  var values=sheet.getRange('E1:E2').getValues(),request=String(values[0][0]);
+  if(!request||values[1][0]!=='PENDING')return;
+  var p=PropertiesService.getScriptProperties(),state=p.getProperty('CA_EXPORT_STATE');
+  if(p.getProperty('CA_EXPORT_REQUEST_ID')!==request){
+   if(['RUNNING','STOPPED'].indexOf(state)<0)startCAExport(request);
+   else p.setProperty('CA_EXPORT_REQUEST_ID',request);
+  }
+  // Replaying the same request after completion must not start another batch.
+  if(p.getProperty('CA_EXPORT_STATE')!=='COMPLETE'){
+   if(!ScriptApp.getProjectTriggers().some(function(t){return t.getHandlerFunction()==='exportCANext';}))
+    ScriptApp.newTrigger('exportCANext').timeBased().after(1000).create();
+  }
+  sheet.getRange('E2').setValue('ACCEPTED');
+ }catch(e){sheet.getRange('E2').setValue('ERROR: '+String(e));throw e;}
+ finally{lock.releaseLock();}
 }

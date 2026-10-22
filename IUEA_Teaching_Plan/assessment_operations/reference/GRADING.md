@@ -92,3 +92,9 @@ Project columns are reserved in the workbook; project marks must come from their
 
 Source exports, uploaded work, identity mappings, feedback and marks belong under `private/`, which is ignored by Git.
 Only grading code, synthetic tests and general instructions belong in the public repository.
+
+### Spreadsheet export menu maintenance
+
+`assessment_operations/ca_export_menu.gs` is bound to the collection spreadsheet (project **IUEA Grading ZIP Menu**). Its `onOpen` adds **Export Grading ZIP**; it uses only the current spreadsheet. Requests occupy `CA Export!D1:E3`, separate from export progress in `A1:B5`. Do not edit these request cells manually.
+
+The existing standalone assignment project runs `installCAExportMenuListener` once to install one minute-based `processCAExportRequest` trigger. Programmatic sheet writes do not fire edit triggers. The listener queues the existing checkpointed exporter, preserves schedules and submissions, and records request IDs to prevent a completed request being replayed as a fresh export. Routine use requires no Apps Script editor.
