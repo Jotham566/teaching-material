@@ -1,10 +1,32 @@
-"""Evidence-based registration reconciliation; never infer degree from course group."""
+"""Evidence-based registration reconciliation; programme context never proves ownership."""
 import collections
 import hashlib
 import json
 import re
 from pathlib import Path
 import continuous_assessment as ca
+
+# Lecturer-confirmed course composition. A course can contain multiple programmes.
+COURSE_PROGRAMMES = {
+    'CML3111': {'BSEE': 'Electrical Engineering', 'BSMRE': 'Robotics and Mechatronics'},
+    'CML3112': {'BARC': 'Architecture', 'BSCE': 'Civil Engineering'},
+    'CML3113': {'BSPE': 'Petroleum Engineering', 'BSME': 'Mining Engineering'},
+}
+
+
+def supported_typo_kind(original, target, course):
+    """Suggest only narrow edits; callers must separately prove account/file support."""
+    pattern = r'(\d{1,4})/(?:(UG|IG)/)?(\d+)/([A-Z]+)-([A-Z])'
+    a, b = re.fullmatch(pattern, canonical(original)), re.fullmatch(pattern, canonical(target))
+    if not a or not b or b[4] not in COURSE_PROGRAMMES.get(course, {}):return ''
+    if a[3] != b[3] or a[5] != b[5]:return ''  # Never change serial digits or suffix.
+    if a.groups()[:3] == b.groups()[:3] and len(a[4]) == len(b[4])+1:
+        if any(a[4][i] == a[4][i-1] and a[4][:i]+a[4][i+1:] == b[4] for i in range(1,len(a[4]))):
+            return 'Repeated programme letter'
+    if a[1] == b[1] and a[4] == b[4] and a[2] == 'IG' and b[2] == 'UG':return 'IG/UG entry typo'
+    if a[2] == b[2] and a[4] == b[4] and len(a[1]) == 1 and len(b[1]) == 2 and a[1] in b[1]:
+        return 'Incomplete year (same submission must declare target)'
+    return ''
 
 
 def canonical(value):
@@ -96,6 +118,37 @@ def reconcile(ledger, evidence, source, separator_only=False):
                     notes[r['response_id']]='Missing letter: same account and consistent name; target declared in two independently hashed submission files; no competing account.'
                 elif targets:
                     notes[r['response_id']]='REVIEW: possible missing letter; insufficient or conflicting evidence. Candidate(s): '+', '.join(targets)
+    # Programme-aware candidates still require the same account, compatible
+    # author evidence and repeated hash-bound declarations. No cohort majority rule.
+    supported_aliases = {}
+    if not separator_only:
+        for (course,email), account in groups.items():
+            ids={r['student_id'] for r in account}
+            names={name_key(r['full_name']) for r in account if valid_name(r.get('full_name',''))}
+            names|={name_key(p['name']) for r in account for p in verified[r['response_id']] if valid_name(p.get('name',''))}
+            declarations={r['response_id']:{canonical(x.get('registration','')) for p in verified[r['response_id']] for x in p.get('registrations',[])} for r in account}
+            variants=ids|set().union(*declarations.values())
+            for variant in sorted(variants):
+                candidates=[]
+                for target in sorted(ids):
+                    kind=supported_typo_kind(variant,target,course)
+                    if not kind or not compatible_name_keys(names):continue
+                    if owners[(course,target)]!={email} or owners.get((course,variant),{email})!={email}:continue
+                    proof=[(r,p) for r in account for p in verified[r['response_id']]
+                           if {canonical(x.get('registration','')) for x in p.get('registrations',[])}=={target}]
+                    if len({p['sha256'] for r,p in proof})<2 or len({r['assessment'] for r,p in proof})<2:continue
+                    affected=[r for r in account if r['student_id']==variant]
+                    if kind.startswith('Incomplete year'):
+                        if not affected or any(declarations[r['response_id']]!={target} for r in affected):continue
+                    elif not names:continue
+                    candidates.append((target,kind))
+                if len(candidates)!=1:continue
+                target,kind=candidates[0]
+                supported_aliases[(course,email,variant)]=target
+                for r in account:
+                    if r['student_id']==variant or variant in declarations[r['response_id']]:
+                        if r['student_id']==variant:r['student_id']=target
+                        notes[r['response_id']]=kind+': lecturer-confirmed programme; same account; target declared in distinct files across assessments; no conflicting names or competing account. Original retained.'
     ca.recover_quiz_ids(rows)
     # Reuse only complete, hash-bound deterministic results; never manufacture a written mark.
     indexed = {}
@@ -105,6 +158,7 @@ def reconcile(ledger, evidence, source, separator_only=False):
     aliases=collections.defaultdict(set)
     for r in rows:
         aliases[(r['cohort'],r['email'],canonical(r.get('submitted_student_id',r['student_id'])))].add(r['student_id'])
+    for key,target in supported_aliases.items():aliases[key].add(target)
     for r in rows:
         if r['status']!='IDENTITY_MISMATCH' or r['assessment'] not in ('W02','W03','W04','W05'):continue
         g=indexed.get(r['response_id'],{}); record=g.get('record',{})
