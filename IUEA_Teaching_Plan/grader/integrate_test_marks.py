@@ -61,7 +61,7 @@ def integrate_locked(test_file, private, renderer=refresh.render):
         for name in ('reconciled', 'written_queue', 'written_text'):
             if (previous/name).exists():
                 shutil.copytree(previous/name, batch/name, dirs_exist_ok=True)
-        for name in ('historical_windows.json', 'quiz_deadlines.json'):
+        for name in ('historical_windows.json', 'quiz_deadlines.json', 'identity_evidence.json', 'identity_file_cache.json'):
             if (previous/name).exists(): shutil.copy2(previous/name, batch/name)
         source = batch/'test_source.json'
         refresh.write(source, {'attempts': incoming})
@@ -72,6 +72,9 @@ def integrate_locked(test_file, private, renderer=refresh.render):
         if not set(old_by_id) <= set(new_ids) or len(new_ids) != len(set(new_ids)):
             raise ValueError('Receipt history changed unexpectedly; existing cumulative marks retained.')
         ledger['sources'] = old.get('sources', []) + ledger['sources']
+        from recover_student_names import apply_evidence
+        identity_evidence=refresh.read(batch/'identity_evidence.json',{})
+        if identity_evidence: apply_evidence(ledger,identity_evidence,batch/'reconciled')
         refresh.write(batch/'ledger.json', ledger)
         refresh.write(batch/'test_import.json', {'sha256': fingerprint})
         refresh.write(batch/'summary.json', {'test_receipts': len(incoming), 'new_receipts': len(set(new_ids)-set(old_by_id))})

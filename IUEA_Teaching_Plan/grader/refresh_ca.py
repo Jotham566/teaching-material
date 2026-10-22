@@ -407,6 +407,12 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
             new_ids = {r['response_id'] for r in ledger['attempts']}
             if not old_ids <= new_ids: raise ValueError('Receipt history would shrink; existing workbook preserved.')
             if len(new_ids)!=len(ledger['attempts']): raise ValueError('Duplicate receipt in rebuilt ledger')
+            from recover_student_names import apply_evidence
+            identity_evidence=read(previous/'identity_evidence.json', {})
+            if identity_evidence:
+                apply_evidence(ledger,identity_evidence,batch/'reconciled')
+                write(batch/'identity_evidence.json',identity_evidence)
+                if (previous/'identity_file_cache.json').exists(): shutil.copy2(previous/'identity_file_cache.json',batch/'identity_file_cache.json')
             write(batch/'ledger.json', ledger)
             summary = {'new_receipts':len(new_ids-old_ids), 'retained_assignment_results':len(retained),
                        'checked_assignment_receipts':len(todo), 'current_statuses':dict(collections.Counter(r['status'] for r in ledger['current']))}

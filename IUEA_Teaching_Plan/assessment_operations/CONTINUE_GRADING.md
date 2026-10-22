@@ -140,3 +140,17 @@ git -C ~/Projects/IUEA-Grading-Private push
 The `&&` symbols mean “continue only if the previous command succeeded.” Paste this whole block together. If capture or verification fails, commit and push will not run. Do not restore a failed snapshot; preserve the teaching folder and resolve the error first. No new snapshot changes means the commit step is skipped. Before switching Macs, finish this save/push step; on the other Mac repeat step 1.
 
 Repeated receipts are matched by response ID, not added again. Different submissions remain as separate attempts, with the eligible current attempt selected under the assessment rules. Original files and previous marks remain available for review.
+
+## Fill missing names and review registration differences
+
+After grading finishes, close Excel and leave native Ollama running. Run:
+
+```sh
+~/Projects/teaching-material/review-identities
+```
+
+This stops Docker and reads notebook text and previously extracted document text. It never executes notebook code. Local AI proposes names with exact quotations; email spelling is only supporting evidence. Missing names are filled only when corroborated by distinct files, or by both the registration in the file and the email spelling. Existing names are preserved. Unreadable files, conflicting names and uncertain identities go into **Identity review**, with the original file links and evidence. No name is invented from an email address.
+
+**Registration numbers and marks are not changed by this command.** The sheet lists registration variants on the same account and formats observed within each course group. Different degree programmes within CML3111, CML3112 or CML3113 are expected; a common format is not proof that a different number is wrong. Review suggested matches before approving a correction. The existing repeated-receipt reconciliation still applies during normal grading.
+
+Open the cumulative workbook as in step 5. Check **Identity review**, then save the private snapshot as in step 6. Later weekly/test updates retain supported name evidence. If a document could not be read, use its link to review it manually. This uses the local model only; no student work is sent to a cloud AI service.
