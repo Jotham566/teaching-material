@@ -16,7 +16,13 @@ git -C ~/Projects/IUEA-Grading-Private pull --ff-only
 python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py restore ~/Projects/teaching-material
 ```
 
-If restore reports differing local files, stop. Save the local batch first; do not use `--replace` to bypass the message.
+If restore reports differing local files, it has copied nothing. This can happen even before grading has run. Identify the files first:
+
+```sh
+python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py compare ~/Projects/teaching-material
+```
+
+This only reads files. `CHANGED` means different contents; `MISSING` means a file has not been restored. Review the changed paths before choosing which copy to keep. Do not run `capture` or `restore --replace` just to clear the error.
 
 ## 2. Export the latest submissions
 
