@@ -4,6 +4,15 @@ Use this after [setup](README.md), whenever more students submit work. You can g
 
 **Current scope: Quizzes 1–5 and Assignments A1–A5 across all three programmes.** Later weeks need the exporter/importer extended and their grading rules checked first. Practical tests use **Export Test ZIP** in their own collection workbook and the [test checklist](../test_operations/TEST_CHECKLIST.md).
 
+Use the workflow that matches the submission:
+
+| Submission | Export and grading route |
+| --- | --- |
+| A1–A5 notebook assignments | This guide: Export Grading ZIP → `grade-submissions`; student code runs in Docker. |
+| A1–A5 written/document assignments | The same ZIP and command; document preparation uses Docker, then native Ollama checks written answers. |
+| Quizzes 1–5 | The same ZIP and command imports the recorded Google Forms scores. |
+| Test 1 / Test 2 notebooks | [Test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test): Export Test ZIP → `Grade_Tests.command`. |
+
 After downloading, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
 
 ## 1. Get ready
@@ -13,6 +22,13 @@ Use only one Mac. Finish and save any earlier grading run before pulling:
 ```sh
 git -C ~/Projects/teaching-material pull --ff-only
 git -C ~/Projects/IUEA-Grading-Private pull --ff-only
+```
+
+**Continuing on the same Mac:** keep its existing grading files and proceed to step 2. Do not restore the snapshot again.
+
+**First setup or switching to this Mac:** after saving and pushing results from the previous Mac, restore the latest private snapshot here:
+
+```sh
 python3 ~/Projects/IUEA-Grading-Private/sync_snapshot.py restore ~/Projects/teaching-material
 ```
 

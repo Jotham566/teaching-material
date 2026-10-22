@@ -64,7 +64,7 @@ This is needed because workbook generation uses Codex's bundled runtime. The ref
 
 ## 5. Continue grading
 
-Use the repeat checklist below for every new batch. Do not use the old dated refresh script or `Resume_Written_Grading.command` for this workflow.
+The repeat checklist covers notebook assignments, written/document assignments and recorded quiz marks together. You do not need a separate notebook-assignment command. Use it for every new batch. Do not use the old dated refresh script or `Resume_Written_Grading.command` for this workflow.
 
 For new submissions, follow **[New submissions: repeat checklist](CONTINUE_GRADING.md)** in order: synchronize → export one ZIP from the spreadsheet menu → start Ollama → run one grading command → review → save. For existing unresolved records, use the workbook's **Review needed** sheet.
 
