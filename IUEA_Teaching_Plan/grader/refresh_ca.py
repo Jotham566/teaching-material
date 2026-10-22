@@ -287,6 +287,10 @@ def grade(batch, todo):
     coding = reconcile_identity(grade_ca_batch.run(source, ledger, coding_dir))
     coding_file = coding_dir/'identity_checked_results.json'; write(coding_file, coding)
     prepare_ca_written.prepare(source, ledger, batch/'written_text')
+    # Extract original identity text in the existing Docker phase, before AI.
+    # Written grading text is redacted and must never be used for identity.
+    from identity_text import prepare as prepare_identity_text
+    prepare_identity_text({'attempts':todo}, batch, batch)
     ensure_docker_stopped()
     merged = {r['response_id']: r for r in coding}
     for assessment, report in [('W01', PRIVATE/'W01_calibration_isolated.json'), ('W02', ROOT/'review/2026-09-14/rework/local_calibration_v10.json')]:
@@ -300,6 +304,32 @@ def grade(batch, todo):
             try: unload(model_for_report(report))
             except Exception: pass
     return list(merged.values())
+
+
+def seed_identity_cache(previous, batch):
+    """Preserve previous AI evidence and resumable extraction checkpoints."""
+    for name in ('identity_evidence.json','identity_file_cache.json','identity_raw_text.json'):
+        if (previous/name).exists() and not (batch/name).exists():
+            shutil.copy2(previous/name,batch/name)
+
+
+def reconcile_batch_identities(ledger, batch):
+    """Refresh explicit file evidence and reconcile before publishing any marks."""
+    from identity_text import prepare
+    from recover_student_names import collect, apply_evidence
+    from reconcile_registrations import reconcile as reconcile_registration
+    print('Checking submission identities and supported registration typos...',flush=True)
+    # Documents were extracted in grade() while Docker was already running.
+    # New notebook/text files can be read safely without executing student code.
+    prepare(ledger,batch,batch,allow_documents=False)
+    evidence=collect(ledger,batch,batch,model='',use_ai=False)
+    before={r['response_id']:(r['student_id'],r['status']) for r in ledger['attempts']}
+    reconcile_registration(ledger,evidence,batch/'reconciled')
+    apply_evidence(ledger,evidence,batch/'reconciled')
+    write(batch/'registration_reconciliation.json',ledger.get('registration_reconciliation',[]))
+    corrected=sum(before[r['response_id']][0]!=r['student_id'] for r in ledger['attempts'])
+    released=sum(before[r['response_id']][1].startswith('IDENTITY_') and r['status']=='GRADED' for r in ledger['attempts'])
+    print(f'Identity checks complete: {corrected} supported registration corrections; {released} held marks allocated. Uncertain cases remain for review.',flush=True)
 
 
 def preflight_workbook():
@@ -393,6 +423,7 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
                 status('CHECKED'); return {'retained':len(retained), 'to_check':len(todo)}
             if renderer is render: preflight_workbook()
             status('GRADING')
+            seed_identity_cache(previous,batch)
             new_results = grader(batch, todo)
             results = {r['response_id']:r for r in retained}
             results.update({r['response_id']:r for r in new_results})
@@ -407,15 +438,7 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
             new_ids = {r['response_id'] for r in ledger['attempts']}
             if not old_ids <= new_ids: raise ValueError('Receipt history would shrink; existing workbook preserved.')
             if len(new_ids)!=len(ledger['attempts']): raise ValueError('Duplicate receipt in rebuilt ledger')
-            from recover_student_names import apply_evidence
-            identity_evidence=read(previous/'identity_evidence.json', {})
-            from reconcile_registrations import reconcile
-            reconcile(ledger,identity_evidence,batch/'reconciled')
-            apply_evidence(ledger,identity_evidence,batch/'reconciled')
-            if identity_evidence:
-                write(batch/'identity_evidence.json',identity_evidence)
-                for name in ('identity_file_cache.json','identity_raw_text.json'):
-                    if (previous/name).exists(): shutil.copy2(previous/name,batch/name)
+            reconcile_batch_identities(ledger,batch)
             write(batch/'ledger.json', ledger)
             summary = {'new_receipts':len(new_ids-old_ids), 'retained_assignment_results':len(retained),
                        'checked_assignment_receipts':len(todo), 'current_statuses':dict(collections.Counter(r['status'] for r in ledger['current']))}

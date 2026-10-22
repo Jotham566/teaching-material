@@ -141,7 +141,11 @@ The `&&` symbols mean “continue only if the previous command succeeded.” Pas
 
 Repeated receipts are matched by response ID, not added again. Different submissions remain as separate attempts, with the eligible current attempt selected under the assessment rules. Original files and previous marks remain available for review.
 
-## Fill missing names and review registration differences
+## Automatic identity checks and optional deeper review
+
+Every new `./grade-submissions <ZIP>` run now gathers explicit names and registrations from new submission files, retains earlier local-AI identity evidence, and applies the full reconciliation rules before rebuilding Excel. This includes supported programme-letter typos, IG/UG entries and incomplete years. You do not need a separate reconciliation command after grading. The terminal reports **Identity checks complete**, with correction and released-mark counts. Test imports also rerun reconciliation before updating cumulative marks. Original receipts, duplicate-submission rules and uncertain identity holds are preserved.
+
+Document identity text is extracted in the existing Docker phase, before Docker stops for written AI grading. The automatic identity pass then reads the saved text and notebook declarations without extra AI inference. Names that are not explicitly labelled or supported by earlier evidence remain for review. To request a deeper local-AI name extraction for those cases, use the optional command below.
 
 After grading finishes, close Excel and leave native Ollama running. Run:
 

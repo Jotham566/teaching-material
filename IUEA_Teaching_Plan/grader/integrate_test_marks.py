@@ -72,11 +72,7 @@ def integrate_locked(test_file, private, renderer=refresh.render):
         if not set(old_by_id) <= set(new_ids) or len(new_ids) != len(set(new_ids)):
             raise ValueError('Receipt history changed unexpectedly; existing cumulative marks retained.')
         ledger['sources'] = old.get('sources', []) + ledger['sources']
-        from recover_student_names import apply_evidence
-        identity_evidence=refresh.read(batch/'identity_evidence.json',{})
-        from reconcile_registrations import reconcile
-        reconcile(ledger,identity_evidence,batch/'reconciled')
-        apply_evidence(ledger,identity_evidence,batch/'reconciled')
+        refresh.reconcile_batch_identities(ledger,batch)
         refresh.write(batch/'ledger.json', ledger)
         refresh.write(batch/'test_import.json', {'sha256': fingerprint})
         refresh.write(batch/'summary.json', {'test_receipts': len(incoming), 'new_receipts': len(set(new_ids)-set(old_by_id))})
