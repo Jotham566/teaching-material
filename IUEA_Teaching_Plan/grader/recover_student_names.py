@@ -205,7 +205,7 @@ def main():
         batch=private/'batches'/(('reconcile-v2-' if args.reconcile_only else 'identity-v2-')+key);batch.mkdir(parents=True,exist_ok=True)
         for name in ('reconciled','written_queue','written_text','notebook_grades'):
             if (previous/name).exists():shutil.copytree(previous/name,batch/name,dirs_exist_ok=True)
-        for name in ('historical_windows.json','quiz_deadlines.json','identity_file_cache.json','identity_raw_text.json'):
+        for name in ('historical_windows.json','quiz_deadlines.json','identity_file_cache.json','identity_raw_text.json','identity_policy.json'):
             if (previous/name).exists() and not (batch/name).exists():shutil.copy2(previous/name,batch/name)
         ledger=refresh.read(previous/'ledger.json')
         before=[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]

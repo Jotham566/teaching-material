@@ -13,6 +13,7 @@ const source=await fs.readFile(input),data=JSON.parse(source),base=path.dirname(
 const evidence=JSON.parse(await fs.readFile(path.join(base,'identity_evidence.json'),'utf8'));
 const details=new Map((await reviewDetails(data,base)).map(x=>[x.r.response_id,x]));
 const uniq=xs=>[...new Set(xs.filter(Boolean))].sort();
+const registrationFirst=data.identity_allocation_policy==='registration_first_notebook_precedence';
 // Components group related evidence for review, not people for automatic merging.
 // Blank identifiers never join unrelated receipts; course groups remain separate.
 const parent=new Map();
@@ -32,10 +33,11 @@ for(const [key,pending] of [...groups].sort((a,b)=>a[0].localeCompare(b[0]))){
  const caseId=pending[0].cohort+'-'+crypto.createHash('sha256').update(uniq(records.map(r=>r.response_id)).join('|')).digest('hex').slice(0,8);
  const questions=[];
  if(ids.length>1)questions.push('Which registration is correct on the university record: '+ids.join(' or ')+'? Confirm every digit and the programme suffix.');
- if(emails.length>1)questions.push('Do all listed email accounts belong to the same student? If not, map each account/receipt to its owner.');
- if(pending.some(r=>r.status==='IDENTITY_MISMATCH'))questions.push('The form and notebook disagree. Confirm the author and correct registration for each flagged receipt; identify any wrong upload.');
+ if(emails.length>1&&!registrationFirst)questions.push('Do all listed email accounts belong to the same student? If not, map each account/receipt to its owner.');
+ if(pending.some(r=>r.status==='IDENTITY_MISMATCH'))questions.push(registrationFirst?'Notebook precedence is configured, but a trusted complete result could not be released. Inspect the notebook registration and original file; confirm the target and flag any unreadable/wrong upload.':'The form and notebook disagree. Confirm the author and correct registration for each flagged receipt; identify any wrong upload.');
  if(pending.some(r=>r.status==='IDENTITY_MISSING'))questions.push('Supply the missing registration/email for each flagged receipt.');
- questions.push(names.length?'Confirm the full name against the submitted work and university record.':'No name was recovered. Ask the student to confirm their full name and registration.');
+ if(!registrationFirst)questions.push(names.length?'Confirm the full name against the submitted work and university record.':'No name was recovered. Ask the student to confirm their full name and registration.');
+ else questions.push('Confirm the registration for the flagged receipts only. Shared email/name does not require merging distinct registrations. Names are optional and do not block marks.');
  const first=rows.length+7;
  for(const r of records){
   const es=evidence[r.response_id]||[], files=uniq([...(r.file_ids||[]),...es.map(e=>e.file_id)]);
@@ -58,7 +60,7 @@ function sheet(name,headers,values,widths){const s=wb.worksheets.add(name),end=v
 const s=sheet('Cases',['Case ID','Class','Names found (unconfirmed)','Registration candidates','Accounts to confirm','Exactly what to confirm','Where to find evidence','Held current records','Your decision','Confirmed full name','Confirmed Registration Number','Confirmed email(s)','Your explanation / evidence','Registrations quoted in files'],cases,[27,14,29,29,34,65,32,15,24,29,30,34,50,30]);
 s.getRange('A3').values=[[`${cases.length} cases covering ${held.length} current records held for identity review. Source ledger: ${data.updated_at}.`]];
 s.getRange('A4').values=[['1. Read the case. 2. Filter Submission evidence by Case ID and open files. 3. Fill yellow cells. Keep uncertain cases open.']];
-s.getRange('A5').values=[['Same student: complete J–M. Different students: fill the yellow receipt-level fields on Submission evidence. Return the saved file; marks do not change automatically.']];
+s.getRange('A5').values=[[registrationFirst?'Confirm the registration in K and explain in M, or use yellow receipt-level fields. Names/email are optional. Return the saved file; marks do not change automatically.':'Same student: complete J–M. Different students: fill the yellow receipt-level fields on Submission evidence. Return the saved file; marks do not change automatically.']];
 if(cases.length){s.getRange(`I7:M${cases.length+6}`).format.fill='#FFF2CC';s.getRange(`I7:I${cases.length+6}`).dataValidation={rule:{type:'list',values:['Unreviewed','Same student confirmed','Different students','Still uncertain']}};}
 const e=sheet('Submission evidence',['Case ID','Assessment','Submitting email','Registration entered','Name in file','Exact name quotation','Registration quotation','Notebook registration','Submission link','Record status','Retained source mark','Response ID','File-reading issue','Confirmed author name','Confirmed registration','Confirmed account owner/email','Receipt decision / reason'],rows,[27,14,34,29,28,45,50,29,24,32,18,40,38,28,29,34,45]);
 e.getRange('A3').values=[['Filter Case ID to see each account’s evidence. Related receipts provide context and are not all held marks.']];

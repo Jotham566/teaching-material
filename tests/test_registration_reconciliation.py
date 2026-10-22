@@ -20,6 +20,7 @@ def row(sid, rid='r1', **kwargs):
 class RegistrationTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name);self.source=self.root/'reconciled';self.source.mkdir()
+        (self.root/'identity_policy.json').write_text(json.dumps({'registration_authoritative':False,'prefer_notebook':False}))
     def tearDown(self):self.tmp.cleanup()
     def run_rows(self, rows, evidence=None):
         ledger=ca.finalize(copy.deepcopy(rows),[])

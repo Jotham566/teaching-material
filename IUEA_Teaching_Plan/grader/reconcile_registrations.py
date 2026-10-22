@@ -16,10 +16,20 @@ COURSE_PROGRAMMES = {
 
 def supported_typo_kind(original, target, course):
     """Suggest only narrow edits; callers must separately prove account/file support."""
+    raw=canonical(original);normalized=re.sub(r'^UG/(\d{2,4})/',r'\1/UG/',raw)
+    normalized=re.sub(r'^(\d{2,4})/GU/',r'\1/UG/',normalized)
+    normalized=re.sub(r'/(?:UG/){2,}','/UG/',normalized)
+    if normalized!=raw and normalized==canonical(target):return 'Misplaced or repeated UG segment'
     pattern = r'(\d{1,4})/(?:(UG|IG)/)?(\d+)/([A-Z]+)-([A-Z])'
     a, b = re.fullmatch(pattern, canonical(original)), re.fullmatch(pattern, canonical(target))
     if not a or not b or b[4] not in COURSE_PROGRAMMES.get(course, {}):return ''
     if a[3] != b[3] or a[5] != b[5]:return ''  # Never change serial digits or suffix.
+    if a.groups()[:3]==b.groups()[:3] and a[4] not in COURSE_PROGRAMMES.get(course,{}):
+        left,right=a[4],b[4]
+        edits=(one_missing_letter(left,right) or one_missing_letter(right,left)
+               or len(left)==len(right) and (sum(x!=y for x,y in zip(left,right))==1
+                   or any(left[:i]+left[i+1]+left[i]+left[i+2:]==right for i in range(len(left)-1))))
+        if edits:return 'Programme spelling typo'
     if a.groups()[:3] == b.groups()[:3] and len(a[4]) == len(b[4])+1:
         if any(a[4][i] == a[4][i-1] and a[4][:i]+a[4][i+1:] == b[4] for i in range(1,len(a[4]))):
             return 'Repeated programme letter'
@@ -32,6 +42,11 @@ def supported_typo_kind(original, target, course):
 def canonical(value):
     original = ca.norm(value)
     clean = re.sub("['’‘`\"“”]", '', original)
+    punct=re.fullmatch(r'(\d{2,4})[/_.\\-](?:(UG)[/_.\\-])?(\d+)[/_.\\-]([A-Z]{2,12})[-/=]([A-Z])',clean)
+    if punct:return '/'.join(x for x in (punct[1],punct[2],punct[3]) if x)+'/'+punct[4]+'-'+punct[5]
+    joined=re.fullmatch(r'(\d{2,4}/(?:UG/)?\d+/)([A-Z]+)([A-Z])',clean)
+    if joined and joined[2] in {code for codes in COURSE_PROGRAMMES.values() for code in codes}:
+        return joined[1]+joined[2]+'-'+joined[3]
     # Only recognized registration shapes. Preserve every letter and digit.
     match = re.fullmatch(r'(\d{2,4}/(?:UG/)?\d+/)([A-Z]{2,12})[-/=]([A-Z])', clean)
     return ''.join((match[1], match[2], '-', match[3])) if match else original
@@ -50,9 +65,19 @@ def reconcile(ledger, evidence, source, separator_only=False):
     """Keep raw receipts; reallocate supported scores and reapply identity/timing gates."""
     from recover_student_names import name_key, valid_name, compatible_name_keys
     source = Path(source)
+    policy=read(Path(__file__).with_name('identity_policy_defaults.json'),{})
+    policy.update(read(source.parent/'identity_policy.json',{}))
+    # A lecturer can install updated private confirmations without restoring marks.
+    live_policy=Path(__file__).resolve().parents[1]/'assessment_operations/private/identity_policy.json'
+    policy.update(read(live_policy,{}))
+    authoritative=policy.get('registration_authoritative',False) and not separator_only
+    approved=policy.get('approved_aliases',{}) if not separator_only else {}
+    def resolved(course,value):
+        value=canonical(value)
+        return approved.get(course,{}).get(value,value)
     rows = ledger['attempts']
     prior = {r['response_id']: (r['student_id'], r['status'], r.get('score')) for r in rows}
-    verified = {}
+    verified = {}; notes = {}
     for r in rows:
         meta = read(source/r.get('source','missing'), {})
         hashes = {f['id']:f['sha256'] for f in meta.get('files', [])}
@@ -61,13 +86,13 @@ def reconcile(ledger, evidence, source, separator_only=False):
         # Remove only identity holds added by the cumulative builder.
         if r['status'] in ('IDENTITY_CONFLICT','IDENTITY_MISSING') and 'source_status' in r:
             r['score'] = r.get('source_score'); r['status'] = r['source_status']
-        r['student_id'] = canonical(r['student_id'])
+        r['student_id'] = resolved(r['cohort'],r['student_id'])
+        if r['student_id']!=canonical(prior[r['response_id']][0]):notes[r['response_id']]='Lecturer-confirmed registration correction; original entry retained.'
     groups = collections.defaultdict(list); owners = collections.defaultdict(set)
     for r in rows:
         if r['email'] and r['student_id']:
             groups[(r['cohort'],r['email'])].append(r)
             owners[(r['cohort'],r['student_id'])].add(r['email'])
-    notes = {}
     # Recover omitted/misplaced separators only against an already submitted,
     # unambiguous registration. Never split a run of digits by guessing.
     compact=lambda value: re.sub(r"[\s/_=\-'’‘`\"“”]",'',str(value).upper())
@@ -132,15 +157,15 @@ def reconcile(ledger, evidence, source, separator_only=False):
                 candidates=[]
                 for target in sorted(ids):
                     kind=supported_typo_kind(variant,target,course)
-                    if not kind or not compatible_name_keys(names):continue
-                    if owners[(course,target)]!={email} or owners.get((course,variant),{email})!={email}:continue
+                    if not kind or (not authoritative and not compatible_name_keys(names)):continue
+                    if not authoritative and (owners[(course,target)]!={email} or owners.get((course,variant),{email})!={email}):continue
                     proof=[(r,p) for r in account for p in verified[r['response_id']]
                            if {canonical(x.get('registration','')) for x in p.get('registrations',[])}=={target}]
                     if len({p['sha256'] for r,p in proof})<2 or len({r['assessment'] for r,p in proof})<2:continue
                     affected=[r for r in account if r['student_id']==variant]
                     if kind.startswith('Incomplete year'):
                         if not affected or any(declarations[r['response_id']]!={target} for r in affected):continue
-                    elif not names:continue
+                    elif not names and not authoritative:continue
                     candidates.append((target,kind))
                 if len(candidates)!=1:continue
                 target,kind=candidates[0]
@@ -155,6 +180,22 @@ def reconcile(ledger, evidence, source, separator_only=False):
     for relative in ('notebook_grades/results.json','notebook_grades/identity_checked_results.json','written_queue/combined_results.json'):
         for grade in read(source.parent/relative, []):
             if grade.get('record'): indexed[grade['response_id']]=grade
+    def verified_grade(r,g):
+        meta=read(source/r.get('source','missing'),{})
+        files=[f for f in meta.get('files',[]) if f['id'] in r.get('file_ids',[])]
+        hashes={f['id']:f['sha256'] for f in files}
+        return (bool(hashes) and set(hashes)==set(r.get('file_ids',[])) and g.get('source_hashes')==hashes
+                and g.get('cohort')==r['cohort'] and g.get('assessment')==r['assessment']
+                and ca.norm(g.get('student_id'))==ca.norm(r.get('submitted_student_id',r['student_id']))
+                and all((source/'files'/f['export_name']).is_file() and hashlib.sha256((source/'files'/f['export_name']).read_bytes()).hexdigest()==f['sha256'] for f in files))
+    if authoritative and policy.get('prefer_notebook'):
+        for r in rows:
+            g=indexed.get(r['response_id'],{});declared=resolved(r['cohort'],g.get('record',{}).get('declared_sid',''))
+            declared=supported_aliases.get((r['cohort'],r['email'],declared),declared)
+            if declared and verified_grade(r,g):
+                if declared!=r['student_id']:
+                    r['student_id']=declared
+                    notes[r['response_id']]='Lecturer policy: hash-verified notebook registration overrides form registration. Original form entry retained.'
     aliases=collections.defaultdict(set)
     for r in rows:
         aliases[(r['cohort'],r['email'],canonical(r.get('submitted_student_id',r['student_id'])))].add(r['student_id'])
@@ -168,7 +209,7 @@ def reconcile(ledger, evidence, source, separator_only=False):
         if g.get('cohort')!=r['cohort'] or g.get('assessment')!=r['assessment']:continue
         if ca.norm(g.get('student_id'))!=ca.norm(r.get('submitted_student_id',r['student_id'])):continue
         if any(not (source/'files'/f['export_name']).is_file() or hashlib.sha256((source/'files'/f['export_name']).read_bytes()).hexdigest()!=f['sha256'] for f in meta.get('files',[]) if f['id'] in hashes):continue
-        declared=canonical(record.get('declared_sid'))
+        declared=resolved(r['cohort'],record.get('declared_sid'))
         accepted=declared==r['student_id'] or aliases.get((r['cohort'],r['email'],declared))=={r['student_id']}
         if not declared or not accepted or record.get('cell_errors'):continue
         questions=record.get('questions',{}); maximum=14 if r['assessment']=='W02' else 20
@@ -206,14 +247,29 @@ def reconcile(ledger, evidence, source, separator_only=False):
         for r in rows:
             if (r['cohort'],r['student_id'])==key:
                 notes[r['response_id']]='Each account submitted distinct file evidence declaring the same full name and registration; no conflicting names.'
-    rebuilt=ca.finalize(rows,ledger.get('sources',[]),conflicts,supported_accounts)
+    if authoritative:
+        # Account ownership and display-name uncertainty do not block marks.
+        # Malformed/unknown programme identifiers still require an explicit target.
+        conflicts=set()
+        known_programmes={code for codes in COURSE_PROGRAMMES.values() for code in codes}
+        previously_graded={(r['cohort'],resolved(r['cohort'],prior[r['response_id']][0])) for r in rows if prior[r['response_id']][1]=='GRADED'}
+        for r in rows:
+            sid=r['student_id'];m=re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/([A-Z]+)-[A-Z]',sid)
+            if sid and (not m or m[1] not in known_programmes) and (r['cohort'],sid) not in previously_graded:
+                conflicts.add((r['cohort'],sid))
+                notes[r['response_id']]='REVIEW: registration needs a confirmed target; no programme or suffix guessed.'
+            elif sid:notes.setdefault(r['response_id'],'Lecturer policy: marks allocated by Student Registration Number across accounts; name uncertainty does not withhold marks.')
+            name=policy.get('confirmed_names',{}).get(r['cohort'],{}).get(sid)
+            if name:r['full_name']=name
+    rebuilt=ca.finalize(rows,ledger.get('sources',[]),conflicts,supported_accounts,registration_authoritative=authoritative)
     ledger.update(rebuilt)
+    if authoritative:ledger['identity_allocation_policy']='registration_first_notebook_precedence'
     audit=[]
     for r in rows:
         old_id, old_status, old_score=prior[r['response_id']]
         raw=r.get('submitted_student_id',old_id)
         reason=notes.get(r['response_id'],'')
-        if (r['cohort'],r['student_id']) in conflicts:reason+=' Conflicting names: lecturer review required.'
+        if (r['cohort'],r['student_id']) in conflicts:reason+=' Unresolved identity: lecturer review required.'
         changed=raw!=r['student_id']
         if changed or reason or old_status!=r['status']:
             r['identity_evidence']=reason or ('Formatting normalized; original preserved.' if canonical(raw)==r['student_id'] else r.get('identity_evidence','Supported registration correction.'))

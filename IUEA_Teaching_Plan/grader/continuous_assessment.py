@@ -179,13 +179,13 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
   recover_quiz_ids(attempts)
  return finalize(attempts,sources)
 
-def finalize(attempts,sources,extra_conflicts=(),supported_accounts=()):
+def finalize(attempts,sources,extra_conflicts=(),supported_accounts=(),registration_authoritative=False):
  """Rebuild current attempts and students after supported identity corrections."""
- bad=identity_conflicts(attempts,supported_accounts)|set(extra_conflicts)
+ bad=(set() if registration_authoritative else identity_conflicts(attempts,supported_accounts))|set(extra_conflicts)
  for r in attempts:
   r['source_score']=r['score']
   r['source_status']=r['status']
-  if not r['student_id'] or not r['email']:r.update(score=None,status='IDENTITY_MISSING')
+  if not r['student_id'] or (not registration_authoritative and not r['email']):r.update(score=None,status='IDENTITY_MISSING')
   elif (r['cohort'],r['student_id']) in bad:r.update(score=None,status='IDENTITY_CONFLICT')
  current=choose_current(attempts);students={}
  for r in attempts:

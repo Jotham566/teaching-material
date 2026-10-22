@@ -308,7 +308,7 @@ def grade(batch, todo):
 
 def seed_identity_cache(previous, batch):
     """Preserve previous AI evidence and resumable extraction checkpoints."""
-    for name in ('identity_evidence.json','identity_file_cache.json','identity_raw_text.json'):
+    for name in ('identity_evidence.json','identity_file_cache.json','identity_raw_text.json','identity_policy.json'):
         if (previous/name).exists() and not (batch/name).exists():
             shutil.copy2(previous/name,batch/name)
 
