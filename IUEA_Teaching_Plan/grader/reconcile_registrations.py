@@ -11,7 +11,7 @@ def canonical(value):
     original = ca.norm(value)
     clean = re.sub("['’‘`\"“”]", '', original)
     # Only recognized registration shapes. Preserve every letter and digit.
-    match = re.fullmatch(r'(\d{2,4}/(?:UG/)?\d+/)([A-Z]{2,12})[-/]([A-Z])', clean)
+    match = re.fullmatch(r'(\d{2,4}/(?:UG/)?\d+/)([A-Z]{2,12})[-/=]([A-Z])', clean)
     return ''.join((match[1], match[2], '-', match[3])) if match else original
 
 
@@ -26,7 +26,7 @@ def read(path, default):
 
 def reconcile(ledger, evidence, source):
     """Keep raw receipts; reallocate supported scores and reapply identity/timing gates."""
-    from recover_student_names import name_key, valid_name
+    from recover_student_names import name_key, valid_name, compatible_name_keys
     source = Path(source)
     rows = ledger['attempts']
     prior = {r['response_id']: (r['student_id'], r['status'], r.get('score')) for r in rows}
@@ -57,7 +57,7 @@ def reconcile(ledger, evidence, source):
                 target_rows = [r for r in account if r['student_id']==target]
                 declarations = {p['sha256'] for r in target_rows for p in verified[r['response_id']]
                     if valid_name(p.get('name','')) and canonical_registration_in_header(target,p.get('header',''))}
-                if len(names)==1 and len(declarations)>=2 and owners[(course,target)]=={email} and owners[(course,sid)]=={email}:
+                if names and compatible_name_keys(names) and len(declarations)>=2 and owners[(course,target)]=={email} and owners[(course,sid)]=={email}:
                     candidates.append(target)
             for r in account:
                 if r['student_id'] != sid:continue
@@ -100,8 +100,29 @@ def reconcile(ledger, evidence, source):
         key=(r['cohort'],r['student_id'])
         if valid_name(r.get('full_name','')):by_id[key].add(name_key(r['full_name']))
         by_id[key].update(name_key(p['name']) for p in verified[r['response_id']] if valid_name(p.get('name','')))
-    conflicts={key for key,names in by_id.items() if len(names)>1}
-    rebuilt=ca.finalize(rows,ledger.get('sources',[]),conflicts)
+    conflicts={key for key,names in by_id.items() if not compatible_name_keys(names)}
+    # Multiple accounts may belong to one learner, but require each account's
+    # own independently hashed submission to state the same name and registration.
+    accounts=collections.defaultdict(set); declarations=collections.defaultdict(list)
+    for r in rows:
+        key=(r['cohort'],r['student_id']);accounts[key].add(r['email'])
+        for p in verified[r['response_id']]:
+            declared={canonical(x.get('registration','')) for x in p.get('registrations',[])}
+            if valid_name(p.get('name','')) and declared=={r['student_id']}:
+                declarations[(key,r['email'])].append(p)
+    supported_accounts=set()
+    for key, emails in accounts.items():
+        if len(emails)<2 or '' in emails or key in conflicts:continue
+        per_account=[declarations[(key,email)] for email in emails]
+        if not all(per_account):continue
+        all_evidence=[p for group in per_account for p in group]
+        if len({name_key(p['name']) for p in all_evidence})!=1:continue
+        if any(not {p['sha256'] for p in group}-{p['sha256'] for other in per_account if other is not group for p in other} for group in per_account):continue
+        supported_accounts.add(key)
+        for r in rows:
+            if (r['cohort'],r['student_id'])==key:
+                notes[r['response_id']]='Each account submitted distinct file evidence declaring the same full name and registration; no conflicting names.'
+    rebuilt=ca.finalize(rows,ledger.get('sources',[]),conflicts,supported_accounts)
     ledger.update(rebuilt)
     audit=[]
     for r in rows:

@@ -61,7 +61,7 @@ def integrate_locked(test_file, private, renderer=refresh.render):
         for name in ('reconciled', 'written_queue', 'written_text', 'notebook_grades'):
             if (previous/name).exists():
                 shutil.copytree(previous/name, batch/name, dirs_exist_ok=True)
-        for name in ('historical_windows.json', 'quiz_deadlines.json', 'identity_evidence.json', 'identity_file_cache.json'):
+        for name in ('historical_windows.json', 'quiz_deadlines.json', 'identity_evidence.json', 'identity_file_cache.json', 'identity_raw_text.json'):
             if (previous/name).exists(): shutil.copy2(previous/name, batch/name)
         source = batch/'test_source.json'
         refresh.write(source, {'attempts': incoming})

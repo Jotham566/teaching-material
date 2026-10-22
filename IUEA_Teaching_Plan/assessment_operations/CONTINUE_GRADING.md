@@ -146,12 +146,12 @@ Repeated receipts are matched by response ID, not added again. Different submiss
 After grading finishes, close Excel and leave native Ollama running. Run:
 
 ```sh
-~/Projects/teaching-material/review-identities
+~/Projects/teaching-material/review-identities --resolve
 ```
 
-This stops Docker and reads notebook text and previously extracted document text. It never executes notebook code. Local AI proposes names with exact quotations; email spelling is only supporting evidence. Missing names are filled only when corroborated by distinct files, or by both the registration in the file and the email spelling. Existing names are preserved. Unreadable files, conflicting names and uncertain identities go into **Identity review**, with the original file links and evidence. No name is invented from an email address.
+This reads original files. It starts Docker to extract private, unredacted document text, then stops Docker before using native Ollama. It also reads notebook/README text and bounded text files inside ZIPs. Identity extraction is separate from the redacted text used to grade written answers. It never executes notebook code. Local AI proposes names with exact quotations; email spelling is only supporting evidence. Missing names are filled only when corroborated by distinct files, or by both the registration in the file and the email spelling. Existing names are preserved. Unreadable files, conflicting names and uncertain identities go into **Identity review**, with the original file links and evidence. No name is invented from an email address.
 
-Then reconcile registrations and rebuild the totals:
+The `--resolve` option also reconciles supported identities and rebuilds totals in the same run. To reuse already collected evidence without another extraction or AI pass, run:
 
 ```sh
 ~/Projects/teaching-material/reconcile-identities
@@ -159,7 +159,7 @@ Then reconcile registrations and rebuild the totals:
 
 If you already ran `review-identities`, run only this second command. It reuses the saved names and submission evidence; neither Docker nor Ollama is needed. Close Excel first and wait for **Complete**.
 
-This normalizes supported punctuation differences, including stray apostrophes and a slash before the final programme suffix. A missing letter is corrected only when the same account has a consistent name, two independently hashed files declare the target registration, and no competing account uses either number. Other spelling/number differences remain for review. Each course group contains multiple degree programmes; the most common programme is never imposed on other students.
+This normalizes supported punctuation differences, including stray apostrophes and a slash before the final programme suffix. A missing letter is corrected only when the same account has a consistent name, two independently hashed files declare the target registration, and no competing account uses either number. Separate email accounts are linked only when each has a distinct submission declaring the same full name and registration, with no conflicting evidence. Other spelling/number differences remain for review. Each course group contains multiple degree programmes; the most common programme is never imposed on other students.
 
 The workbook regroups supported matches and recalculates totals using the existing attempt rules. It preserves every original receipt, the registration as entered, and the previous workbook generation. A complete notebook score is released only when its file hashes and recorded checks support the corrected registration. A2 code-only marks remain partial until its written component is graded. Timing and other grading holds remain in force. Check **Registration corrections** for the before/after audit and **Identity review** / **Review needed** for unresolved cases. Do not manually replace calculated totals.
 

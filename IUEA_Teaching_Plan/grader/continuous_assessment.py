@@ -49,7 +49,7 @@ def choose_current(attempts):
   chosen.append(row)
  return chosen
 
-def identity_conflicts(attempts):
+def identity_conflicts(attempts, supported_accounts=()):
  by_reg=collections.defaultdict(set);by_email=collections.defaultdict(set);assessments=collections.defaultdict(set)
  for r in attempts:
   if r['student_id'] and r['email']:
@@ -57,7 +57,7 @@ def identity_conflicts(attempts):
    assessments[(r['cohort'],r['email'],r['student_id'])].add(r['assessment'])
  consistent={(c,s) for (c,s),emails in by_reg.items() if len(emails)>1 and
    all(by_email[(c,e)]=={s} and len(assessments[(c,e,s)])>=2 for e in emails)}
- bad={k for k,v in by_reg.items() if len(v)>1 and k not in consistent}
+ bad={k for k,v in by_reg.items() if len(v)>1 and k not in consistent and k not in set(supported_accounts)}
  for r in attempts:
   if (r['cohort'],r['student_id']) in consistent:
    r['identity_evidence']=r.get('identity_evidence','')+' Same registration consistently used across at least two assessments by each account; no account uses another registration in this programme.'
@@ -179,9 +179,9 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
   recover_quiz_ids(attempts)
  return finalize(attempts,sources)
 
-def finalize(attempts,sources,extra_conflicts=()):
+def finalize(attempts,sources,extra_conflicts=(),supported_accounts=()):
  """Rebuild current attempts and students after supported identity corrections."""
- bad=identity_conflicts(attempts)|set(extra_conflicts)
+ bad=identity_conflicts(attempts,supported_accounts)|set(extra_conflicts)
  for r in attempts:
   r['source_score']=r['score']
   r['source_status']=r['status']

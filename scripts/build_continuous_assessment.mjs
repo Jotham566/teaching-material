@@ -81,14 +81,14 @@ identitySheet.getRange('A2').values=[['Student names and registration evidence']
 identitySheet.getRange('A4').values=[['Names are extracted from submissions. Email spelling supports a match; it never supplies a name. Supported registration corrections regroup marks; uncertain matches remain held.']];
 identitySheet.getRange('A5').values=[['Course groups contain multiple degree programmes. Observed formats (9 = digit) are clues, not a required pattern. Review conflicting evidence.']];
 const identityRows=(data.identity_review||[]).flatMap(r=>(r.evidence?.length?r.evidence:[{}]).map(e=>[
- r.cohort,r.student_id,r.email,r.name||'',r.status,r.reason,e.name||'',e.quote||'',e.method||'',e.error||'',r.registration_counts||'',r.cohort_formats||'',r.registration_note||'',e.url||'',e.response_id||''
+ r.cohort,r.student_id,r.email,r.name||'',r.status,r.reason,e.name||'',e.quote||'',e.method||'',e.error||'',r.registration_counts||'',r.cohort_formats||'',r.registration_note||'',e.url||'',e.response_id||'',(e.registrations||[]).map(x=>`${x.registration}: ${x.quote}`).join(' | ')
 ]));
-const identityEnd=table(identitySheet,['Course group','Registration in workbook','Email','Supported name','Decision','Reason','Name in file','Exact quotation','Extraction method','File/read issue','Registrations on this account','Formats observed in group','Registration review note','Original file URL','Response ID'],identityRows);
-identitySheet.getRange(`A6:O${identityEnd}`).format.columnWidth=28;
+const identityEnd=table(identitySheet,['Course group','Registration in workbook','Email','Supported name','Decision','Reason','Name in file','Exact quotation','Extraction method','File/read issue','Registrations on this account','Formats observed in group','Registration review note','Original file URL','Response ID','Registration quotations'],identityRows);
+identitySheet.getRange(`A6:P${identityEnd}`).format.columnWidth=28;
 identitySheet.getRange(`F6:N${identityEnd}`).format.columnWidth=45;
-identitySheet.getRange(`A7:O${identityEnd}`).format.wrapText=true;
-identitySheet.getRange(`A7:O${identityEnd}`).format.rowHeight=90;
-identitySheet.getRange(`A7:O${identityEnd}`).format.verticalAlignment='top';
+identitySheet.getRange(`A7:P${identityEnd}`).format.wrapText=true;
+identitySheet.getRange(`A7:P${identityEnd}`).format.rowHeight=90;
+identitySheet.getRange(`A7:P${identityEnd}`).format.verticalAlignment='top';
 const rules=wb.worksheets.getItem('Rules');rules.getRange('A2').values=[['Marking rules and source coverage']];
 const ruleRows=[['Quizzes',10,'All programmes: best 9 of 11; exclude Q6. Each /5.'],['Assignments',10,'All programmes: best 7 of 10; exclude A6. Each /20.'],['Data analysis project',10,'Out of 100'],['Practical Test 1',15,'Out of 100'],['Practical Test 2',20,'Out of 100'],['ML project',25,'Out of 100'],['Demo / reflection',10,'Out of 100'],['Waivers',null,'A6 and Quiz 6 waived for all three programmes. No weekly quiz/assignment in test weeks 7/14 or final-project week 15; major assessments retain their weights.'],['Current selection',null,'Latest eligible receipt per programme, registration number and assessment.'],['Identity',null,'Same-account punctuation variants and strongly supported early digit typos are reconciled; unresolved conflicts remain held.'],['Names',null,'Blank names are filled from a later verified source, never guessed from email.'],['Totals',null,'Earned semester points so far. Missing and future assessments are not final zeros.'],['Grade bands',null,'No letter grades: Faculty grade bands have not been verified.'],['Source coverage',null,data.sources.length+' source files. See the local source manifest for receipt hashes.']];
 const re=table(rules,['Component','Weight /100','Rule'],ruleRows);rules.getRange(`A6:A${re}`).format.columnWidth=28;rules.getRange(`C6:C${re}`).format.columnWidth=95;rules.getRange(`C7:C${re}`).format.wrapText=true;rules.getRange(`A7:C${re}`).format.rowHeight=36;

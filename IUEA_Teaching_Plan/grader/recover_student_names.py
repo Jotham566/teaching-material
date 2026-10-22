@@ -1,4 +1,4 @@
-"""Local evidence extraction for names; registration suggestions never change marks."""
+"""Extract private identity evidence and optionally reconcile supported registrations."""
 import argparse
 import collections
 import hashlib
@@ -17,6 +17,17 @@ from local_ai_resources import ensure_docker_stopped
 
 def name_key(value):
     return ' '.join(sorted(re.findall(r"[^\W\d_]+", value.casefold())))
+
+
+def compatible_name_keys(keys):
+    """Within an otherwise supported identity, allow an omitted middle/family name.
+    Never combine names with different extra words or a single matching word.
+    """
+    keys=set(keys)
+    if len(keys)<2:return True
+    longest=max(keys,key=lambda x:len(x.split()))
+    whole=set(longest.split())
+    return all(len(k.split())>=2 and set(k.split())<=whole for k in keys)
 
 
 def valid_name(value):
@@ -39,23 +50,26 @@ def extract_name(text, model):
     request=urllib.request.Request('http://127.0.0.1:11434/api/chat',data=json.dumps(body).encode(),headers={'Content-Type':'application/json'})
     with artifact_grade.LOCAL_HTTP.open(request,timeout=180) as response:
         result=json.load(response)
-    proposal=json.loads(result['message']['content'])
+    content=result['message']['content'].strip()
+    if content.startswith('```') and content.endswith('```'):
+        content=re.sub(r'^```(?:json)?\s*','',content)[:-3].strip()
+    proposal=json.loads(content)
     name=proposal.get('name','').strip();quote=proposal.get('quote','')
+    if name and quote and len(quote)<=800:
+        # Restore literal source text when the model merely normalized whitespace/case.
+        match=re.search(r'\s+'.join(re.escape(w) for w in quote.split()),text,re.I)
+        if match:
+            quote=match.group()
+            author=re.search(r'\s+'.join(re.escape(w) for w in name.split()),quote,re.I)
+            if author:name=author.group()
     if name and (not valid_name(name) or not quote or quote not in text or name not in quote or len(quote)>800):
         raise ValueError('AI name lacks a valid exact quotation')
     return {'name':name,'quote':quote,'method':'local AI; exact quote checked'}
 
 
 def labelled_names(text):
-    found=[]
-    for line in text.splitlines():
-        clean=line.strip().strip('#* ')
-        match=re.match(r'(?i)^(?:student(?: full)? name|full name|student_name|full_name|name)\s*[:=]\s*(.+)$',clean)
-        if match:
-            name=match[1].strip().strip('*').strip().strip("\"'")
-            if valid_name(name):found.append({'name':name,'quote':line,'method':'explicit name label'})
-    unique={name_key(x['name']):x for x in found}
-    return list(unique.values())
+    from identity_text import names
+    return names(text)
 
 
 def apply_evidence(ledger, evidence, source=None):
@@ -76,10 +90,10 @@ def apply_evidence(ledger, evidence, source=None):
         existing={name_key(r['full_name']):r['full_name'] for r in rows if r.get('full_name') and valid_name(r['full_name'])}
         names=set(existing)|{name_key(p['name']) for p in proposals if p.get('name')}
         chosen='';reason='No unambiguous name found'
-        if len(names)==1 and sid and email and not any(r['status'].startswith('IDENTITY_') for r in rows):
-            nk=next(iter(names));matching=[p for p in proposals if name_key(p.get('name',''))==nk]
+        if names and compatible_name_keys(names) and sid and email and not any(r['status'].startswith('IDENTITY_') for r in rows):
+            nk=max(names,key=lambda x:len(x.split()));matching=[p for p in proposals if p.get('name') and compatible_name_keys({nk,name_key(p['name'])})]
             if existing:
-                chosen=existing[nk];reason='Consistent submitted name on the same account and registration'
+                chosen=max(existing.values(),key=lambda n:len(n.split()));reason='Consistent submitted name on the same account and registration'
             elif matching:
                 candidate=matching[0]['name']
                 # Email spelling is supporting evidence, never the source of a name.
@@ -87,7 +101,7 @@ def apply_evidence(ledger, evidence, source=None):
                 declared=any(re.sub(r'[^A-Z0-9]','',sid.upper()) in re.sub(r'[^A-Z0-9]','',p.get('header','').upper()) for p in matching)
                 if corroborated or (declared and email_support(candidate,email)):
                     chosen=candidate;reason='Name corroborated by independent files' if corroborated else 'Name quoted in submission; registration and email spelling support it'
-        elif len(names)>1:reason='Conflicting names: lecturer review required'
+        elif len(names)>1 and not compatible_name_keys(names):reason='Conflicting names: lecturer review required'
         elif any(r['status'].startswith('IDENTITY_') for r in rows):reason='Identity conflict: lecturer review required'
         if chosen:
             for row in rows:
@@ -104,7 +118,7 @@ def apply_evidence(ledger, evidence, source=None):
         if origin.get('name_evidence'):row['name_evidence']=origin['name_evidence']
     for student in ledger['students']:
         names={r['full_name'] for r in ledger['attempts'] if r['cohort']==student['cohort'] and r['student_id']==student['student_id'] and r.get('full_name')}
-        if len({name_key(n) for n in names})==1:student['full_name']=sorted(names)[0]
+        if names and compatible_name_keys({name_key(n) for n in names}):student['full_name']=max(names,key=lambda n:len(n.split()))
     # A teaching cohort contains multiple degree programmes: never enforce one suffix.
     accounts=collections.defaultdict(set)
     for r in ledger['attempts']:
@@ -132,8 +146,10 @@ def apply_evidence(ledger, evidence, source=None):
 
 
 def collect(ledger, base, out, model, use_ai=True):
+    from identity_text import registrations
     cache=refresh.read(out/'identity_file_cache.json',{})
-    prepared=refresh.read(base/'written_text/prepared.json',{})
+    raw=refresh.read(out/'identity_raw_text.json',{})
+    previous_evidence=refresh.read(base/'identity_evidence.json',{})
     evidence={}
     for index,row in enumerate(ledger['attempts'],1):
         if not row.get('file_ids'):continue
@@ -143,38 +159,27 @@ def collect(ledger, base, out, model, use_ai=True):
         for fid in row['file_ids']:
             f=files.get(fid)
             if not f:continue
-            digest=f['sha256'];key=digest+'|'+model+('|ai-v1' if use_ai else '|labels-v1')
-            if key not in cache:
-                text='';error=''
-                try:
-                    original=base/'reconciled/files'/f['export_name']
-                    if original.stat().st_size>20*1024*1024:raise ValueError('Identity source exceeds 20 MiB; review original')
-                    if refresh.digest(original)!=digest:raise ValueError('Attachment hash mismatch')
-                    if original.suffix.lower()=='.ipynb':
-                        nb=json.loads(original.read_text())
-                        text='\n'.join(''.join(c.get('source',[])) for c in nb.get('cells',[]))
-                    elif original.suffix.lower() in ('.md','.txt'):
-                        text=original.read_text()[:14000]
-                    else:
-                        for packet in prepared.get(row['response_id'],{}).get('files',[]):
-                            if packet['id']==fid and packet['source_sha256']==digest:
-                                # Restore portable paths using the prepared-text basename.
-                                candidate=base/'written_text'/Path(packet['path']).name
-                                if candidate.is_file() and refresh.digest(candidate)==packet['text_sha256']:text=candidate.read_text()
-                    found=labelled_names(text)
-                    if not found and text and use_ai:
+            digest=f['sha256'];key=digest+'|'+model+('|ai-v3' if use_ai else '|labels-v3')
+            original=raw.get(digest,{'text':'','error':'No original identity text available'})
+            text=original.get('text','')
+            if key not in cache or cache[key].get('error'):
+                error=original.get('error','');found=labelled_names(text)
+                if not found and text and use_ai:
+                    try:
                         proposal=extract_name(text,model)
                         if proposal['name']:found=[proposal]
-                    if not text:error='No readable identity text available; review original file'
-                    cache[key]={'proposals':found,'header':text[:2000],'error':error}
-                except urllib.error.URLError:
-                    raise RuntimeError('Local AI request failed. Keep Ollama running and retry; the published workbook is unchanged.')
-                except Exception as exc:
-                    cache[key]={'proposals':[],'header':'','error':str(exc)[:300]}
+                    except urllib.error.URLError:
+                        raise RuntimeError('Local AI request failed. Keep Ollama running and retry; the published workbook is unchanged.')
+                    except Exception as exc:error='Name extraction needs review: '+str(exc)[:200]
+                cache[key]={'proposals':found,'header':text[:20000],'registrations':registrations(text),'error':error}
                 refresh.write(out/'identity_file_cache.json',cache)
             entry=cache[key]
+            if not entry['proposals']:
+                saved=[p for p in previous_evidence.get(row['response_id'],[]) if p.get('file_id')==fid and p.get('sha256')==digest and p.get('name')]
+                if saved:
+                    entry=dict(entry,proposals=saved)
             for proposal in entry['proposals'] or [{'name':'','quote':'','method':'No name extracted'}]:
-                items.append(dict(proposal,sha256=digest,file_id=fid,url='https://drive.google.com/file/d/'+fid+'/view',header=entry['header'],error=entry['error']))
+                items.append(dict(proposal,sha256=digest,file_id=fid,url='https://drive.google.com/file/d/'+fid+'/view',header=entry['header'] or proposal.get('header',''),registrations=entry.get('registrations',[]) or proposal.get('registrations',[]),error=entry['error']))
         evidence[row['response_id']]=items
         refresh.write(out/'identity_evidence.json',evidence)
         if index%50==0:print(f'Identity evidence checked: {index}/{len(ledger["attempts"])} receipts',flush=True)
@@ -185,6 +190,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--no-ai',action='store_true',help='Only labelled names and existing prepared text')
     parser.add_argument('--reconcile-only',action='store_true',help='Reuse saved name evidence, reconcile registrations and rebuild marks without AI')
+    parser.add_argument('--resolve',action='store_true',help='Extract fresh identity evidence, reconcile supported accounts and rebuild marks')
     args=parser.parse_args()
     from calibration_record import model_for_report
     private=refresh.PRIVATE
@@ -193,13 +199,12 @@ def main():
         if (private/('~$'+refresh.BOOK)).exists():raise ValueError('Close Excel first')
         for parent in (private/'batches').glob('*/parent.json'):
             if refresh.read(parent.parent/'status.json',{}).get('state')!='COMPLETE':raise ValueError('Finish the interrupted grading batch before identity review')
-        model='' if args.reconcile_only else model_for_report(private/'W01_calibration_isolated.json')
-        if not args.no_ai and not args.reconcile_only:ensure_docker_stopped()
+        model='' if args.reconcile_only or args.no_ai else model_for_report(private/'W01_calibration_isolated.json')
         key=refresh.digest(previous/'ledger.json')[:24]
-        batch=private/'batches'/(('reconcile-v1-' if args.reconcile_only else 'identity-')+key);batch.mkdir(parents=True,exist_ok=True)
+        batch=private/'batches'/(('reconcile-v1-' if args.reconcile_only else 'identity-v2-')+key);batch.mkdir(parents=True,exist_ok=True)
         for name in ('reconciled','written_queue','written_text','notebook_grades'):
             if (previous/name).exists():shutil.copytree(previous/name,batch/name,dirs_exist_ok=True)
-        for name in ('historical_windows.json','quiz_deadlines.json','identity_file_cache.json'):
+        for name in ('historical_windows.json','quiz_deadlines.json','identity_file_cache.json','identity_raw_text.json'):
             if (previous/name).exists() and not (batch/name).exists():shutil.copy2(previous/name,batch/name)
         ledger=refresh.read(previous/'ledger.json')
         before=[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]
@@ -209,15 +214,22 @@ def main():
             from reconcile_registrations import reconcile
             reconcile(ledger,evidence,batch/'reconciled')
         else:
+            from identity_text import prepare
+            print('Reading original identity text (documents use Docker)...',flush=True)
+            prepare(ledger,previous,batch)
+            if not args.no_ai:ensure_docker_stopped()
             evidence=collect(ledger,previous,batch,model,not args.no_ai)
+            if args.resolve:
+                from reconcile_registrations import reconcile
+                reconcile(ledger,evidence,batch/'reconciled')
         apply_evidence(ledger,evidence,previous/'reconciled')
-        if not args.reconcile_only: assert before==[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]
+        if not args.reconcile_only and not args.resolve: assert before==[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]
         refresh.write(batch/'ledger.json',ledger)
-        if args.reconcile_only:refresh.write(batch/'registration_reconciliation.json',ledger.get('registration_reconciliation',[]))
+        if args.reconcile_only or args.resolve:refresh.write(batch/'registration_reconciliation.json',ledger.get('registration_reconciliation',[]))
         refresh.preflight_workbook();refresh.render(batch)
         refresh.write(batch/'summary.json',{'supported':sum(r['status']=='SUPPORTED' for r in ledger['identity_review']),'review':sum(r['status']=='REVIEW' for r in ledger['identity_review'])})
         refresh.write(batch/'status.json',{'state':'READY'});refresh.publish(private,batch)
-        if args.reconcile_only:
+        if args.reconcile_only or args.resolve:
             changes=ledger.get('registration_reconciliation',[])
             print(f'Complete. {sum(a["decision"]=="SUPPORTED" for a in changes)} supported receipt corrections; {sum(a["decision"]=="REVIEW" for a in changes)} receipt changes need review. Workbook rebuilt; original receipts retained.')
         else:

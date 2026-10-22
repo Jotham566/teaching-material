@@ -414,7 +414,8 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
             apply_evidence(ledger,identity_evidence,batch/'reconciled')
             if identity_evidence:
                 write(batch/'identity_evidence.json',identity_evidence)
-                if (previous/'identity_file_cache.json').exists(): shutil.copy2(previous/'identity_file_cache.json',batch/'identity_file_cache.json')
+                for name in ('identity_file_cache.json','identity_raw_text.json'):
+                    if (previous/name).exists(): shutil.copy2(previous/name,batch/name)
             write(batch/'ledger.json', ledger)
             summary = {'new_receipts':len(new_ids-old_ids), 'retained_assignment_results':len(retained),
                        'checked_assignment_receipts':len(todo), 'current_statuses':dict(collections.Counter(r['status'] for r in ledger['current']))}
