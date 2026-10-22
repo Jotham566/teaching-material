@@ -1,5 +1,6 @@
 """Grade a lecturer-exported test ZIP. Original snapshots and attempts are retained."""
 import argparse,hashlib,json,os,shlex,subprocess,tempfile,zipfile
+import contextlib
 from pathlib import Path
 from exam_intake import connect,process,export
 from isolated_grading import preflight
@@ -45,16 +46,33 @@ def grade_batch(archive,out):
     return out
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('batch',nargs='?');p.add_argument('--out',type=Path,default=DEFAULT_OUT);p.add_argument('--no-workbook',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('batch',nargs='?');p.add_argument('--out',type=Path,default=DEFAULT_OUT);p.add_argument('--no-workbook',action='store_true');p.add_argument('--ca-private',type=Path,help='Cumulative private directory for a custom test output directory');a=p.parse_args()
     if not a.batch:
         entered=input('Drag the downloaded IUEA-test-batch ZIP into this window, then press Return:\n').strip()
         paths=shlex.split(entered)
         if len(paths)!=1:raise ValueError('Choose exactly one exported batch ZIP')
         a.batch=paths[0]
-    out=grade_batch(Path(a.batch).expanduser(),a.out)
-    if not a.no_workbook:
-        node=Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node'
-        subprocess.run([str(node),str(ROOT/'scripts/build_test_marks.mjs'),str(out/'workbook_data.json'),str(out/'Test_Marks.xlsx')],check=True)
+    from integrate_test_marks import integrate_locked
+    import refresh_ca
+    # Custom/rehearsal output must never silently update production marks.
+    ca_private = a.ca_private or (refresh_ca.PRIVATE if a.out.resolve()==DEFAULT_OUT.resolve() else None)
+    if a.no_workbook: ca_private = None
+    guard = refresh_ca.exclusive(ca_private) if ca_private else contextlib.nullcontext()
+    with guard:
+        out=grade_batch(Path(a.batch).expanduser(),a.out)
+        if not a.no_workbook:
+            node=Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node'
+            subprocess.run([str(node),str(ROOT/'scripts/build_test_marks.mjs'),str(out/'workbook_data.json'),str(out/'Test_Marks.xlsx')],check=True)
+        if ca_private:
+            try:
+                integrate_locked(out/'workbook_data.json', ca_private)
+            except Exception:
+                print('Test results are saved, but the cumulative update did not finish. Fix the reported issue and repeat the same command; saved test attempts are reused.', flush=True)
+                raise
+        else:
+            print('Custom output / no-workbook mode: cumulative workbook not updated.')
     print('Finished. Results:',out)
-    if not a.no_workbook:subprocess.run(['open',str(out/'Test_Marks.xlsx')],check=False)
+    if not a.no_workbook:
+        subprocess.run(['open',str(out/'Test_Marks.xlsx')],check=False)
+        if ca_private: subprocess.run(['open',str(ca_private/refresh_ca.BOOK)],check=False)
 if __name__=='__main__':main()

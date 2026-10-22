@@ -11,7 +11,7 @@ Use the workflow that matches the submission:
 | A1–A5 notebook assignments | This guide: Export Grading ZIP → `grade-submissions`; student code runs in Docker. |
 | A1–A5 written/document assignments | The same ZIP and command; document preparation uses Docker, then native Ollama checks written answers. |
 | Quizzes 1–5 | The same ZIP and command imports the recorded Google Forms scores. |
-| Test 1 / Test 2 notebooks | [Test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test): Export Test ZIP → `Grade_Tests.command`. |
+| Test 1 / Test 2 notebooks | [Test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test): Export Test ZIP → `Grade_Tests.command`; updates both test marks and the cumulative workbook automatically. |
 
 After downloading, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
 

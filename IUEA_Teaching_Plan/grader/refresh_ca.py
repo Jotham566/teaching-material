@@ -53,7 +53,7 @@ def exclusive(private):
         # Older launchers do not share our lock. Refuse overlap with them too.
         processes = subprocess.check_output(['ps', '-axo', 'pid=,ppid=,command='], text=True)
         names={'run_ca_written_queue.py','finish_ca_refresh.py','grade_ca_batch.py',
-               'grade_ca_written.py','batch_grade.py','refresh_ca.py'}
+               'grade_ca_written.py','batch_grade.py','refresh_ca.py','grade_test_batch.py'}
         for line in processes.splitlines():
             parts=line.strip().split(None,2)
             if len(parts)!=3 or int(parts[0])==os.getpid(): continue

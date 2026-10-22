@@ -20,7 +20,7 @@ Do not share this workbook with the class: it contains students' private informa
 
 Use `./grade-submissions EXPORT.zip` from the teaching repository. It coordinates the stages below; do not run them separately for routine batches. Validated generations are stored under `private/batches/`, with the current generation recorded in `private/refresh_active.json`. The normal workbook path remains unchanged. Back up the entire private snapshot after completion.
 
-The command preserves unchanged completed marks and held written-review decisions, merges receipts by response ID, saves older generations, and rebuilds totals. Changed attachment hashes trigger new checks. It retains existing test/project marks; it does not import new test batches. Restoring or manually changing the active ledger outside this runner is detected and requires reconciliation before another refresh.
+The command preserves unchanged completed marks and held written-review decisions, merges receipts by response ID, saves older generations, and rebuilds totals. Changed attachment hashes trigger new checks. It retains existing test/project marks. `Grade_Tests.command` imports new production test results into the same cumulative generation automatically. Restoring or manually changing the active ledger outside this runner is detected and requires reconciliation before another refresh.
 
 ### Underlying stages (reference only)
 
@@ -85,7 +85,9 @@ The 21 October refresh is tracked in `private/refresh_status.json`. `COMPLETE` m
 
 ## Tests and later projects
 
-Use `continuous_assessment.py --test-ledger PATH` to add each trusted **production** test batch ledger. Entries explicitly marked `REHEARSAL` are excluded; never supply a rehearsal ledger whose synthetic entries are marked `GRADED`. Rebuilding replaces the calculated view without adding marks twice.
+Use `Grade_Tests.command` for production test ZIPs. After grading, it automatically rebuilds and validates the cumulative workbook, preserving coursework, project marks and previous attempts. Both workbooks open on success. Repeating the command reuses saved test attempts and does not duplicate marks. If publication fails, fix the reported issue and repeat it; test results remain saved. Close Excel and finish any interrupted weekly batch first.
+
+Developer/rehearsal runs using `--out` outside the standard production folder do not update cumulative marks unless an explicit `--ca-private` directory is supplied. `--no-workbook` skips cumulative publication. Entries explicitly marked `REHEARSAL` are excluded; synthetic records labelled `GRADED` must remain in isolated rehearsal output directories. The low-level `continuous_assessment.py --test-ledger` option is not the routine workflow: it bypasses the refresh publication journal.
 Project columns are reserved in the workbook; project marks must come from their validated grading process and source receipts. They are not automatically awarded by this early-assessment importer.
 
 ## Privacy

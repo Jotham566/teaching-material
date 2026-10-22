@@ -140,6 +140,18 @@ class RefreshTests(unittest.TestCase):
         result=ca.build(self.source,self.private/'written_queue/combined_results.json',retained_attempts=extras)
         self.assertEqual({r['assessment']:r['score'] for r in result['current']},{'W03':17,'TEST1':80,'ML_PROJECT':80})
 
+    def test_weekly_refresh_after_automatic_test_import(self):
+        from integrate_test_marks import integrate
+        from tests.test_test_ca_integration import test_row
+        test_file=self.root/'test_marks.json'
+        dump(test_file, {'attempts':[test_row(email='synthetic@example.test')]})
+        integrate(test_file,self.private,self.fake_render)
+        with patch.object(runner,'prepare_batch',side_effect=self.prepared):
+            runner.refresh(self.batch(),self.private,grader=self.fake_grade,renderer=self.fake_render)
+        ledger=runner.read(self.private/'ledger.json')
+        self.assertEqual(len(ledger['attempts']),3)
+        self.assertEqual({x['assessment']:x['score'] for x in ledger['current']},{'W03':19,'TEST1':80})
+
     def test_older_export_cannot_replace_newer_snapshot(self):
         incoming=self.root/'stale';(incoming/'files').mkdir(parents=True)
         (incoming/'files/file1.bin').write_bytes(self.data)
