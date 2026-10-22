@@ -91,6 +91,14 @@ Before the first grading run on a new Mac, or after an Ollama/model update, chec
 
 Both A1 and A2 must say **PASS**. This reads the model information and saved reports without grading anything. If it says **BLOCKED**, keep the output for diagnosis. Do not edit the reports or bypass validation: the exact Ollama version, model files and rubric must match, or new calibration is needed. If a batch already stopped for this reason, preserve its files and resume the same ZIP after the issue is resolved.
 
+If the diagnostic confirms that the installed model files or Ollama version changed, recalibrate them with this command while Ollama is running:
+
+```sh
+caffeinate -i ~/Projects/teaching-material/.iuea-grader-env/bin/python ~/Projects/teaching-material/IUEA_Teaching_Plan/grader/recalibrate_written_setup.py
+```
+
+It stops Docker, tests A1 and A2 using synthetic known-answer examples, and saves the evidence privately. Only after both pass does it activate the new reports, backing up the originals. It does not change student marks. Wait for **PASS: both calibrations activated**, then repeat the original `grade-submissions` command with the same ZIP. If a case fails, retain the output for review; do not bypass the check or restore a snapshot over the interrupted batch.
+
 Finish any unrelated Docker work first. The grading command manages Docker for code/document checks, then stops it before written grading. Do not reopen Docker during written grading.
 
 ## 4. Run one grading command
