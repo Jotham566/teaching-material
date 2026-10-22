@@ -83,6 +83,14 @@ OLLAMA_NO_CLOUD=1 OLLAMA_HOST=127.0.0.1:11434 \
 
 Leave that window open. If it reports **address already in use**, follow [the port-conflict instructions](reference/MAC_MINI.md#native-ollama-written-grading); do not start another server. You do not need to download the models again.
 
+Before the first grading run on a new Mac, or after an Ollama/model update, check the saved calibration (known-answer grading checks):
+
+```sh
+~/Projects/teaching-material/.iuea-grader-env/bin/python ~/Projects/teaching-material/IUEA_Teaching_Plan/grader/check_written_setup.py
+```
+
+Both A1 and A2 must say **PASS**. This reads the model information and saved reports without grading anything. If it says **BLOCKED**, keep the output for diagnosis. Do not edit the reports or bypass validation: the exact Ollama version, model files and rubric must match, or new calibration is needed. If a batch already stopped for this reason, preserve its files and resume the same ZIP after the issue is resolved.
+
 Finish any unrelated Docker work first. The grading command manages Docker for code/document checks, then stops it before written grading. Do not reopen Docker during written grading.
 
 ## 4. Run one grading command
