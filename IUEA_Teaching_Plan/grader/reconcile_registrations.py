@@ -24,7 +24,7 @@ def read(path, default):
     return json.loads(path.read_text()) if path.is_file() else default
 
 
-def reconcile(ledger, evidence, source):
+def reconcile(ledger, evidence, source, separator_only=False):
     """Keep raw receipts; reallocate supported scores and reapply identity/timing gates."""
     from recover_student_names import name_key, valid_name, compatible_name_keys
     source = Path(source)
@@ -46,12 +46,42 @@ def reconcile(ledger, evidence, source):
             groups[(r['cohort'],r['email'])].append(r)
             owners[(r['cohort'],r['student_id'])].add(r['email'])
     notes = {}
+    # Recover omitted/misplaced separators only against an already submitted,
+    # unambiguous registration. Never split a run of digits by guessing.
+    compact=lambda value: re.sub(r"[\s/_=\-'’‘`\"“”]",'',str(value).upper())
+    structured=collections.defaultdict(set)
+    target_assessments=collections.defaultdict(set)
+    for r in rows:
+        sid=r['student_id']
+        if re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/[A-Z]{2,12}-[A-Z]',sid):
+            structured[(r['cohort'],compact(sid))].add(sid)
+            target_assessments[(r['cohort'],sid)].add(r['assessment'])
+    for (course,email), account in groups.items():
+        submitted={r['student_id'] for r in account}
+        for r in account:
+            sid=r['student_id']; candidates=structured[(course,compact(sid))]
+            if len(candidates)!=1:continue
+            target=next(iter(candidates))
+            if target==sid or target not in submitted:continue
+            family=[x for x in rows if x['cohort']==course and compact(x['student_id'])==compact(sid)]
+            names={name_key(x['full_name']) for x in family if valid_name(x.get('full_name',''))}
+            names|={name_key(p['name']) for x in family for p in verified[x['response_id']] if valid_name(p.get('name',''))}
+            if len(target_assessments[(course,target)])<2 or not compatible_name_keys(names):
+                notes[r['response_id']]='REVIEW: separator-only candidate lacks repeated target receipts or has conflicting names: '+target
+                continue
+            r['student_id']=target
+            notes[r['response_id']]='Separator-only correction: identical letters and digits in the same order; same account also submitted the unique structured registration, repeated across assessments. Original retained.'
+    # Rebuild ownership after formatting corrections; account conflicts are
+    # still checked below before any held score can enter totals.
+    owners=collections.defaultdict(set)
+    for r in rows:
+        if r['email'] and r['student_id']:owners[(r['cohort'],r['student_id'])].add(r['email'])
     for (course,email), account in groups.items():
         ids = {r['student_id'] for r in account}
         names = {name_key(r['full_name']) for r in account if valid_name(r.get('full_name',''))}
         names |= {name_key(p['name']) for r in account for p in verified[r['response_id']] if valid_name(p.get('name',''))}
         for sid in sorted(ids):
-            targets = [t for t in ids if one_missing_letter(sid,t)]
+            targets = [] if separator_only else [t for t in ids if one_missing_letter(sid,t)]
             candidates = []
             for target in targets:
                 target_rows = [r for r in account if r['student_id']==target]

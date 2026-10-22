@@ -157,6 +157,8 @@ The `--resolve` option also reconciles supported identities and rebuilds totals 
 ~/Projects/teaching-material/reconcile-identities
 ```
 
+For separator-only corrections (leaving letter, digit and programme-code differences for review), use `reconcile-identities --separators-only`. It requires the same account to have submitted an unambiguous structured registration, repeated across assessments; it never guesses where to split digits.
+
 If you already ran `review-identities`, run only this second command. It reuses the saved names and submission evidence; neither Docker nor Ollama is needed. Close Excel first and wait for **Complete**.
 
 This normalizes supported punctuation differences, including stray apostrophes and a slash before the final programme suffix. A missing letter is corrected only when the same account has a consistent name, two independently hashed files declare the target registration, and no competing account uses either number. Separate email accounts are linked only when each has a distinct submission declaring the same full name and registration, with no conflicting evidence. Other spelling/number differences remain for review. Each course group contains multiple degree programmes; the most common programme is never imposed on other students.

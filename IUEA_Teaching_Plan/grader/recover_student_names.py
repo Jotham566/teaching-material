@@ -191,6 +191,7 @@ def main():
     parser.add_argument('--no-ai',action='store_true',help='Only labelled names and existing prepared text')
     parser.add_argument('--reconcile-only',action='store_true',help='Reuse saved name evidence, reconcile registrations and rebuild marks without AI')
     parser.add_argument('--resolve',action='store_true',help='Extract fresh identity evidence, reconcile supported accounts and rebuild marks')
+    parser.add_argument('--separators-only',action='store_true',help='Correct formatting only; leave letter and digit differences for review')
     args=parser.parse_args()
     from calibration_record import model_for_report
     private=refresh.PRIVATE
@@ -201,7 +202,7 @@ def main():
             if refresh.read(parent.parent/'status.json',{}).get('state')!='COMPLETE':raise ValueError('Finish the interrupted grading batch before identity review')
         model='' if args.reconcile_only or args.no_ai else model_for_report(private/'W01_calibration_isolated.json')
         key=refresh.digest(previous/'ledger.json')[:24]
-        batch=private/'batches'/(('reconcile-v1-' if args.reconcile_only else 'identity-v2-')+key);batch.mkdir(parents=True,exist_ok=True)
+        batch=private/'batches'/(('reconcile-v2-' if args.reconcile_only else 'identity-v2-')+key);batch.mkdir(parents=True,exist_ok=True)
         for name in ('reconciled','written_queue','written_text','notebook_grades'):
             if (previous/name).exists():shutil.copytree(previous/name,batch/name,dirs_exist_ok=True)
         for name in ('historical_windows.json','quiz_deadlines.json','identity_file_cache.json','identity_raw_text.json'):
@@ -212,7 +213,7 @@ def main():
             evidence=refresh.read(previous/'identity_evidence.json',{})
             refresh.write(batch/'identity_evidence.json',evidence)
             from reconcile_registrations import reconcile
-            reconcile(ledger,evidence,batch/'reconciled')
+            reconcile(ledger,evidence,batch/'reconciled',separator_only=args.separators_only)
         else:
             from identity_text import prepare
             print('Reading original identity text (documents use Docker)...',flush=True)
@@ -221,7 +222,7 @@ def main():
             evidence=collect(ledger,previous,batch,model,not args.no_ai)
             if args.resolve:
                 from reconcile_registrations import reconcile
-                reconcile(ledger,evidence,batch/'reconciled')
+                reconcile(ledger,evidence,batch/'reconciled',separator_only=args.separators_only)
         apply_evidence(ledger,evidence,previous/'reconciled')
         if not args.reconcile_only and not args.resolve: assert before==[(r['response_id'],r['student_id'],r['score'],r['status']) for r in ledger['attempts']]
         refresh.write(batch/'ledger.json',ledger)
