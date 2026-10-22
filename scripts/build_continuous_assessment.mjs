@@ -97,9 +97,18 @@ wb.recalculate();
 const check=await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#NUM!|#NULL!',options:{useRegex:true,maxResults:30}});
 await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(path.join(path.dirname(output),'workbook_check.ndjson'),check.ndjson);
 await (await SpreadsheetFile.exportXlsx(wb)).save(output);
-// Preserve native clickable links without unsupported formula-cache errors.
-execFileSync(process.env.IUEA_PYTHON||'python3',[fileURLToPath(new URL('./attach_xlsx_hyperlinks.py',import.meta.url)),output,'xl/worksheets/sheet4.xml'],{input:JSON.stringify(reviewLinks)});
-execFileSync(process.env.IUEA_PYTHON||'python3',[fileURLToPath(new URL('./attach_xlsx_hyperlinks.py',import.meta.url)),output,'xl/worksheets/sheet9.xml'],{input:JSON.stringify(identityRows.flatMap((r,i)=>/^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(r[13])?[[`N${i+7}`,r[13]]]:[]))});
+// Use private files instead of synchronous stdin pipes for large link lists.
+async function attachLinks(sheetPart, links, label) {
+ const linkFile=path.join(path.dirname(output),label+'_hyperlinks.json');
+ await fs.writeFile(linkFile,JSON.stringify(links));
+ console.log(`Adding ${links.length} clickable links: ${label}...`);
+ try {
+  execFileSync(process.env.IUEA_PYTHON||'python3',[fileURLToPath(new URL('./attach_xlsx_hyperlinks.py',import.meta.url)),output,sheetPart,linkFile],{timeout:120000,stdio:['ignore','pipe','pipe']});
+ } finally { await fs.unlink(linkFile).catch(()=>{}); }
+ console.log(`Clickable links complete: ${label}.`);
+}
+await attachLinks('xl/worksheets/sheet4.xml',reviewLinks,'review_needed');
+await attachLinks('xl/worksheets/sheet9.xml',identityRows.flatMap((r,i)=>/^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(r[13])?[[`N${i+7}`,r[13]]]:[]),'identity_review');
 if(process.env.IUEA_WORKBOOK_QA==='1')for(const name of [...cohorts,'Review needed','Written rubrics','Current marks','All attempts','Rules']){const b=await wb.render({sheetName:name,range:name==='Written rubrics'?'A6:E15':name==='Review needed'?'E10:K14':name==='Rules'?'A1:C15':cohorts.includes(name)?'D1:N12':'E1:J12',scale:1});await fs.writeFile(path.join(path.dirname(output),name.replaceAll(' ','_')+'_preview.png'),new Uint8Array(await b.arrayBuffer()));}
 if(process.env.IUEA_IDENTITY_QA==='1'){const b=await wb.render({sheetName:'Identity review',range:'A1:H9',scale:1});await fs.writeFile(path.join(path.dirname(output),'identity_review_preview.png'),new Uint8Array(await b.arrayBuffer()));}
 console.log('Saved private cumulative workbook.');

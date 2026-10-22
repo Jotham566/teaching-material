@@ -52,4 +52,10 @@ def attach(filename, sheet_part, links):
         if os.path.exists(temporary): os.unlink(temporary)
 
 if __name__ == '__main__':
-    attach(sys.argv[1], sys.argv[2], json.load(sys.stdin))
+    # File input avoids large synchronous stdin pipes blocking on macOS.
+    if len(sys.argv) == 4:
+        with open(sys.argv[3], encoding='utf-8') as stream:
+            links = json.load(stream)
+    else:
+        links = json.load(sys.stdin)
+    attach(sys.argv[1], sys.argv[2], links)
