@@ -192,7 +192,8 @@ def reconcile(ledger, evidence, source, separator_only=False):
         for r in rows:
             g=indexed.get(r['response_id'],{});declared=resolved(r['cohort'],g.get('record',{}).get('declared_sid',''))
             declared=supported_aliases.get((r['cohort'],r['email'],declared),declared)
-            if declared and verified_grade(r,g):
+            # Unchanged template text such as YOUR/ID is not a registration.
+            if re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/[A-Z]{2,12}-[A-Z]',declared) and verified_grade(r,g):
                 if declared!=r['student_id']:
                     r['student_id']=declared
                     notes[r['response_id']]='Lecturer policy: hash-verified notebook registration overrides form registration. Original form entry retained.'

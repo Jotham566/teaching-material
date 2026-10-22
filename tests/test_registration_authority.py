@@ -34,5 +34,12 @@ class RegistrationAuthorityTests(unittest.TestCase):
                 self.assertEqual(ledger['current'][0]['student_id'],'99/222/BARC-S' if valid else '99/111/BARC-S')
                 self.assertEqual(ledger['current'][0]['score'],18 if valid else None)
                 self.assertEqual(ledger['attempts'][0]['submitted_student_id'],'99/111/BARC-S')
+            (source/'files/n.ipynb').write_bytes(content)
+            g['record']['declared_sid']='YOUR/ID'
+            (base/'written_queue/combined_results.json').write_text(json.dumps([g]))
+            ledger=ca.finalize([row('99/111/BARC-S',cohort='CML3112',assessment='W03',status='IDENTITY_MISMATCH',score=None,file_ids=['f'])],[])
+            reconcile(ledger,{},source)
+            self.assertEqual(ledger['current'][0]['student_id'],'99/111/BARC-S')
+            self.assertIsNone(ledger['current'][0]['score'])
 
 if __name__=='__main__':unittest.main()
