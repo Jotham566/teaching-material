@@ -2,6 +2,8 @@
 **Individual work · 100 marks · 3 hours from Start test**
 
 ## Start here
+**You can submit only once.** Before submitting, double-check your work, full name, Student ID/ Registration Number and Google email. You cannot edit or replace a submitted response; contact your lecturer if a correction is needed.
+
 Use this private notebook directly; you do not need another copy. Click **Connect** at the top right if shown. Press the triangle beside a code cell to run it.
 
 1. **Run, do not edit:** **Check details and countdown**. **Double-check your full name, Student ID/ Registration Number, and email.** Use the same Google email in Colab and the submission form. If any detail is wrong, contact your lecturer before continuing; do not create another identity.

@@ -175,6 +175,8 @@ def student_guide(course):
 **Individual work · 100 marks · 3 hours from Start test**
 
 ## Start here
+**You can submit only once.** Before submitting, double-check your work, full name, Student ID/ Registration Number and Google email. You cannot edit or replace a submitted response; contact your lecturer if a correction is needed.
+
 Use this private notebook directly; you do not need another copy. Click **Connect** at the top right if shown. Press the triangle beside a code cell to run it.
 
 1. **Run, do not edit:** **Check details and countdown**. **Double-check your full name, Student ID/ Registration Number, and email.** Use the same Google email in Colab and the submission form. If any detail is wrong, contact your lecturer before continuing; do not create another identity.
@@ -243,6 +245,8 @@ Blank cells become missing values. Tasks 1–2 use `raw_data`; Task 3 creates `c
 Fix the first error before later cells. Do not delete or edit supplied support cells. If you accidentally change one, use **Edit → Undo**.
 
 ## Save and submit — allow at least 20 minutes
+**One submission only per Google account and per Student ID/ Registration Number for this test.** Check your work and details before pressing Submit in the Google Form. After submitting, contact your lecturer for any correction; do not use another account.
+
 1. Check your code cells and charts. Submit your work even if some tasks are unfinished. No written report is required.
 2. Choose **File → Save**. Double-check your **full name, Student ID/ Registration Number and Google email**.
 3. **Run, do not edit:** the **Submit your test** cell below. Click **Submit test** and wait for its form link. If no new tab opens, click the displayed link.

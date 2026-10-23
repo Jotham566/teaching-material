@@ -23,10 +23,12 @@ class CodingTests(unittest.TestCase):
   self.assertIn('Student ID/ Registration Number',''.join(nb['cells'][0]['source']))
   self.assertIn('Do not edit this cell',''.join(nb['cells'][3]['source']))
   self.assertIn('## Start here',''.join(nb['cells'][0]['source']))
+  self.assertIn('submit only once',''.join(nb['cells'][0]['source']))
   self.assertIn('Click **Connect**',''.join(nb['cells'][0]['source']))
   final_guide=''.join(nb['cells'][-2]['source'])
   self.assertIn('## Need help with a technical problem?',final_guide)
   self.assertIn('## Save and submit',final_guide)
+  self.assertIn('One submission only',final_guide)
   self.assertIn('Your response has been recorded',final_guide)
  def test_isna_and_isnull_are_both_accepted(self):
   nb=complete_notebook(self.notebook())
