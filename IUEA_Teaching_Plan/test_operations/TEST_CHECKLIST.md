@@ -88,3 +88,7 @@ The Google AI Plus subscription on **jothammartin.wambi@gmail.com** is not used 
 ## Menu maintenance only
 
 The workbook-bound source is `test_export_menu.gs`. The existing assignment Apps Script project uses `grader/exam_collection.gs` plus `grader/exam_export_menu_listener.gs` (installed together in **Colab_Test_Collection.gs**). Run `installTestExportMenuListener` once after installation; it creates the **Test Export** status tab and one minute-based request listener. Do not run it for each batch. Request cells `D1:E3` and progress cells `A1:B5` are managed by the scripts. Exporting applies existing collection rules and does not alter the authorised opening or closing times.
+
+## One submission per student
+
+Each course/test permits one Google Form response per signed-in account and one accepted submission per Student Registration Number. The portal binds the email and registration to one attempt; reopening resumes the original timer. The collector rejects another accepted receipt matching either identity (registration spaces/case ignored), retaining it in the audit as DUPLICATE_SUBMISSION and excluding it from grading exports. Existing submissions and marks are preserved. A student who needs a correction after submitting must contact the lecturer; do not advise using another email. Google confirmation acknowledges receipt, so collection errors still require review.
