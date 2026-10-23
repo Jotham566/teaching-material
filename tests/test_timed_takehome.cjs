@@ -58,13 +58,15 @@ rows[1][11]='COPY';const legacy=ctx.requestTestFiles({...input,test:windowKey});
 console.log('PASS: formatting-only resume, conflicting identity rejection, private editable file, sharing restriction, notebook countdown and legacy copies.');
 // Countdown is presentation only and cannot reset the deadline on rerun.
 const timerSource=ctx.portalCountdownCode_('2026-10-23T19:00:00.000Z');
+assert.match(timerSource,/Kampala time/);assert.ok(!timerSource.includes('__LOCAL_DEADLINE__'));
 const timerScript=timerSource.match(/<script>([\s\S]*?)<\/script>/)[1];
 let timerNow=Date.parse('2026-10-23T18:00:00Z'),timerTick;
 class DisplayClock extends Date{static now(){return timerNow;}}
-const timerText={},timerBox={isConnected:true,querySelector:()=>timerText};
+const timerText={},timerReminder={},timerBox={isConnected:true,querySelector:s=>s==='.iuea-clock'?timerText:timerReminder};
 const timerContext={Date:DisplayClock,Math,document:{currentScript:{previousElementSibling:timerBox}},setInterval:f=>{timerTick=f;return 1},clearInterval(){}};
 vm.runInNewContext(timerScript,timerContext);assert.equal(timerText.textContent,'1h 0m 0s remaining');
 timerNow+=60000;timerTick();assert.equal(timerText.textContent,'0h 59m 0s remaining');
 vm.runInNewContext(timerScript,timerContext);assert.equal(timerText.textContent,'0h 59m 0s remaining');
+timerNow=Date.parse('2026-10-23T18:40:00Z');timerTick();assert.match(timerReminder.textContent,/complete the submission form/);
 timerNow+=3600000;timerTick();assert.match(timerText.textContent,/Time has ended/);
 console.log('PASS countdown ticking, rerun without reset and expiry.');

@@ -174,12 +174,16 @@ def student_guide(course):
  return f"""# {course} Test 1 — Take-home practical
 **Individual work · 100 marks · 3 hours from Start test**
 
-1. Run **Check details and countdown**. **Double-check your full name, Student ID/ Registration Number, and email.** Use the same Google email in Colab and the submission form. If any detail is wrong, contact your lecturer before continuing; do not create another identity.
-2. Run **Prepare CSV and libraries**, then write your own pandas CSV-reading code in Task 1.
-3. Complete Tasks 1–8 in order. Keep `raw_data` unchanged; Task 3 produces `cleaned_data`. Save regularly.
-4. Run **Submit your test**, click the button, open its form, **check your name, Student ID/ Registration Number, and email again**, then press **Submit**. Wait for confirmation.
+## Start here
+Use this private notebook directly; you do not need another copy. Click **Connect** at the top right if shown. Press the triangle beside a code cell to run it.
 
-The timer includes setup, interruptions and submission. It ends at your personal deadline or the class cutoff, whichever comes first. Resume with the same entry link, email and registration number; the timer does not restart.
+1. **Run, do not edit:** **Check details and countdown**. **Double-check your full name, Student ID/ Registration Number, and email.** Use the same Google email in Colab and the submission form. If any detail is wrong, contact your lecturer before continuing; do not create another identity.
+2. **Run, do not edit:** **Prepare CSV and libraries**. It creates your assigned CSV automatically; you do not need to upload a file.
+3. **Write your code:** start in the answer cell immediately below Task 1. Read the CSV with pandas using `file_path`.
+4. Complete Tasks 1–8 in order. Keep `raw_data` unchanged; Task 3 produces `cleaned_data`. Save regularly.
+5. Leave **at least 20 minutes to submit**. Follow the **Save and submit** checklist at the end. Submission is finished only when the Google Form confirms that your response has been recorded.
+
+The timer includes setup, interruptions and submission. A sleeping or disconnected browser may show an outdated countdown: rerun the countdown cell when you return. The server deadline still applies. It ends at your personal deadline or the class cutoff, whichever comes first. Resume with the same entry link, email and registration number; the timer does not restart.
 
 No AI-generated answers or collaboration. If you change a support cell, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
 """+GUIDE_EXTRA
@@ -226,7 +230,27 @@ Blank cells become missing values. Tasks 1–2 use `raw_data`; Task 3 creates `c
     if i==1:answer['metadata']['tags'].append('iuea-read-csv')
     cells.append(answer)
 
-   cells += [cell('## Check and submit\nIf a cell fails, read the last error line. For `NameError`, check spelling and run the cell that creates the variable. For `KeyError`, check `raw_data.columns`. For `FileNotFoundError`, rerun Prepare CSV and libraries and check `file_path`. Fix the first error before continuing.\n\nCheck that each task runs, both charts appear, and your answers use the supplied data. Save your notebook. No written report is required. Run the submission cell below, click **Submit test**, then open the generated form and press **Submit** before your deadline. The notebook button alone is not a completed submission.')]
+   cells += [cell("""## Need help with a technical problem?
+| What you see | What to do |
+|---|---|
+| Disconnected runtime | Click **Connect**. If variables are gone, rerun **Prepare CSV and libraries**, then your answer cells in order from Task 1. Restarting clears variables; it does not reset the timer. |
+| `NameError` | Check the variable spelling and run the earlier cell that creates it. Editing a cell does not run it. |
+| `KeyError` | Check the exact column spelling in `raw_data.columns`. |
+| `FileNotFoundError` | Rerun **Prepare CSV and libraries** and check that `file_path` names `engineering_data.csv`. |
+| Authorization or submission stalls | Select the same Google account used at entry. Allow the requested access to save your snapshot and share it privately with your lecturer. If it still fails, record the error and contact your lecturer before the deadline. |
+| Tab closed or laptop restarted | Reopen the test entry link with the same email and registration number, then resume your notebook. Only saved changes can be recovered. Rerun the countdown cell. |
+
+Fix the first error before later cells. Do not delete or edit supplied support cells. If you accidentally change one, use **Edit → Undo**.
+
+## Save and submit — allow at least 20 minutes
+1. Check your code cells and charts. Submit your work even if some tasks are unfinished. No written report is required.
+2. Choose **File → Save**. Double-check your **full name, Student ID/ Registration Number and Google email**.
+3. **Run, do not edit:** the **Submit your test** cell below. Click **Submit test** and wait for its form link. If no new tab opens, click the displayed link.
+4. In the Google Form, check the signed-in email, name and registration number again. Keep the prefilled snapshot and allocation details unchanged. Complete the required confirmation and press **Submit** before your deadline.
+5. Wait for **Your response has been recorded**. Keep your saved snapshot unchanged until marks are released.
+
+**A saved notebook, a snapshot, or an open form is not a completed submission. You must submit the Google Form.** The confirmation acknowledges receipt; marks are calculated later by the lecturer.
+""")]
    submit=cell('#@title Submit your test — Do not edit this cell\n# Do not edit this cell: saves your answers and prepares the submission form.\n'+helper.replace('__EXAM_CONFIG__',repr(dict(lecturer_email=config['lecturer_email'],forms={course+'|TEST1':config['forms'][course+'|TEST1']}))),True)
    submit['metadata']={'tags':['iuea-submission','autograde-skip'],'cellView':'form'};cells.append(submit)
    nb=dict(cells=cells,metadata=dict(iuea_exam_version=VERSION,kernelspec=dict(display_name='Python 3',language='python',name='python3')),nbformat=4,nbformat_minor=5)

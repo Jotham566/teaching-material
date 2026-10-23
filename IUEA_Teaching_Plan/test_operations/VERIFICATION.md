@@ -134,3 +134,9 @@ Google authorization was slow in the embedded browser; CML3111 completed in norm
 ## 23 October 2026 — opening-time adjustment
 
 At the lecturer's request, changed only CML3111 and CML3113 Test 1 opening times to 24 October 2026 at 11:00 Kampala time. Live read-back confirmed both retain 29 October 23:59 cutoffs and 180-minute attempts. Both forms are currently closed. CML3112 remains 27 October 19:00–2 November 23:59 with 180-minute attempts. The existing scheduler remains installed (one trigger). Updated the stored schedule helper to prevent an accidental reset to the earlier opening time; removed the temporary updater after verification.
+
+## 23 October 2026 — beginner navigation improvements (portal version 16)
+
+Added a Start here checklist (Connect, run support cells, then write answers), explicit run/do-not-edit versus answer instructions, a technical troubleshooting table, and a five-step Save and submit checklist. Existing task headings retain their marks/time estimates. Support cells remain collapsed. The countdown now labels the deadline in Kampala time and shows a non-blocking reminder during the last 20 minutes. The original deadline is unchanged on rerun.
+
+Verified all nine variants against the preceding revision: task prompts, answer-cell code, setup/submission code, CSV bytes and grading specifications are unchanged. All nine Test 1 and nine Test 2 reference packets still score 100/100. Beginner-workflow, missing-cell-tag, partial-answer, timed portal, countdown/reminder, gateway, collector, submission, intake, batch and export-menu tests pass. Published the exact saved Portal.gs + Packets.gs bundle as version 16 at the existing deployment; Google confirmed success. Production schedules and existing issued files were not edited. The three successful live Google Form rehearsals above tested the unchanged submission helper; this guidance-only release did not repeat their OAuth/form submissions.
