@@ -1,3 +1,11 @@
+## 23 October 2026, 19:19 Kampala — student instructions
+
+Published portal version 8 and Worker version `725d84f5-cf68-4831-8d00-bd99dfefc36e`. Updated the entry page, Test 1 notebook introductions, student instructions/packages and live submission-form descriptions. Instructions cover the unpaused timer, saved working copy, automatic CSV setup, account selection, final form confirmation and technical problems. Previously issued Drive files and student working copies are preserved; updated introductions apply to newly issued files and current downloads.
+
+Verified all three live entry pages and form descriptions. Collector schedule verification confirms CML3111/CML3113 accepting responses, CML3112 closed until 27 October, all with 180-minute duration and the approved global cutoffs; exactly one scheduler trigger remains. No windows or allocations were reset.
+
+Automated timed portal, gateway, collection, export and submission/intake checks passed, including a new regression check for a second Start/Resume click on all three entry pages. Compared all 18 source notebooks with the preceding commit: executable code, question cells and assessment metadata unchanged. This follow-up changed instructions only; the live end-to-end rehearsal documented below remains the submission evidence.
+
 # Colab submission and Mac batch grading verification
 
 ## Take-home readiness recheck — 23 October 2026, 19:07 Kampala
