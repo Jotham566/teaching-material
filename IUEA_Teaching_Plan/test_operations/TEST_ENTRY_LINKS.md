@@ -14,8 +14,8 @@ The same links remain usable when test windows are updated. Students finish thro
 
 | Course | Opens | Final cutoff |
 |---|---|---|
-| CML3111 | Friday 23 October 2026, 7:00 PM | Thursday 29 October 2026, 11:59 PM |
-| CML3113 | Friday 23 October 2026, 7:00 PM | Thursday 29 October 2026, 11:59 PM |
+| CML3111 | Saturday 24 October 2026, 11:00 AM | Thursday 29 October 2026, 11:59 PM |
+| CML3113 | Saturday 24 October 2026, 11:00 AM | Thursday 29 October 2026, 11:59 PM |
 | CML3112 | Tuesday 27 October 2026, 7:00 PM | Monday 2 November 2026, 11:59 PM |
 
 Each student has **three hours from Start test**, limited by the final cutoff above. Opening the entry page alone does not start the timer. Enter full name, Google-account email and Student Registration Number before starting. Start only when ready with a laptop and internet access. Refreshing never restarts the timer.

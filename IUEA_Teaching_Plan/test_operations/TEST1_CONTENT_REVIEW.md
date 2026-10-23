@@ -48,7 +48,7 @@ Existing recorded marks and submissions are not rewritten. New Test 1 results re
 
 ## Timing retained
 
-- CML3111 and CML3113: 23 October 2026, 19:00 to 29 October, 23:59 Kampala.
+- CML3111 and CML3113: 24 October 2026, 11:00 to 29 October, 23:59 Kampala.
 - CML3112: 27 October 2026, 19:00 to 2 November, 23:59 Kampala.
 - Personal deadline: the earlier of three hours after Start test or the class closing time.
 

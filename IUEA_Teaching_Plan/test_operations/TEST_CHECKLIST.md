@@ -11,7 +11,7 @@
 
 ## Test 1 take-home windows — October 2026
 
-All times are Kampala time. CML3111 and CML3113: 23 October, 19:00 to 29 October, 23:59. CML3112: 27 October, 19:00 to 2 November, 23:59.
+All times are Kampala time. CML3111 and CML3113: 24 October, 11:00 to 29 October, 23:59. CML3112: 27 October, 19:00 to 2 November, 23:59.
 
 1. Share the existing course-specific test-entry link/QR. Students should read the page before starting and arrange a laptop and internet access.
 2. Students enter their full name, Google-account email and Student Registration Number, then click **Start test / Resume my test** only when ready. The server saves one start time. Their deadline is the earlier of start + 180 minutes or the class closing time. Refreshing does not restart it.

@@ -2,6 +2,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {handle} from '../IUEA_Teaching_Plan/test_portal/gateway/worker.mjs';
+// The displayed windows must match the stored schedule helper.
+const pageSource=fs.readFileSync('IUEA_Teaching_Plan/test_portal/Index.html','utf8');
+const scheduleSource=fs.readFileSync('IUEA_Teaching_Plan/grader/take_home_test1_oct23.gs','utf8');
+const displayDate=value=>new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Kampala',day:'numeric',month:'long',year:'numeric'}).format(new Date(value))+', '+new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Kampala',hour:'numeric',minute:'2-digit',hour12:true}).format(new Date(value));
+for(const match of scheduleSource.matchAll(/'(CML311[123]\|TEST1)':\['([^']+)','([^']+)'\]/g)){
+ const label=displayDate(match[2])+' – '+displayDate(match[3]);
+ assert.ok(pageSource.includes("'"+match[1]+"':'"+label+"'"),'Displayed window differs: '+match[1]);
+}
 const secret='synthetic-test-secret-not-for-production-12345';
 let mode='open',counter=0,rows=[['key','reg','email','code','variant','created']];
 const keys=['CML3111','CML3112','CML3113'].flatMap(c=>['TEST1','TEST2'].map(t=>c+'|'+t));
