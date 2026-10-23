@@ -31,7 +31,8 @@ TEST1_GUIDANCE = "# {course} TEST1 — Take-home practical test\n\nIndividual wo
 
 def brief(cohort,exam,url=''):
     if exam == 'TEST1':
-        return TEST1_GUIDANCE.format(course=cohort, deadline='**Check your personal deadline on the official test entry page. Start only when ready to work.**')
+        from build_test1_coding import student_guide
+        return student_guide(cohort)
     return f'''# {cohort} {exam} — Colab practical test
 
 **Submit one notebook snapshot:** your completed `{exam}_student.ipynb`. Total: **100 marks**. Individual work.

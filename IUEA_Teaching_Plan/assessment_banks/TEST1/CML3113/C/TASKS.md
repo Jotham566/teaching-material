@@ -1,48 +1,30 @@
-# CML3113 TEST1 — Take-home practical test
+# CML3113 Test 1 — Take-home practical
+**Individual work · 100 marks · 3 hours from Start test**
 
-Individual work • 100 marks • Up to three hours from **Start test**.
+1. Run **Check details and countdown**, then **Prepare CSV and libraries**.
+2. In Task 1, write the pandas code to read the file into `raw_data`.
+3. Complete Tasks 1–8 in order. Task 3 produces `cleaned_data`. Save regularly.
+4. Run **Submit your test**, click the button, then open its form and press **Submit**. Wait for confirmation.
 
-**Check your personal deadline on the official test entry page. Start only when ready to work.**
-The timer includes setup, internet interruptions and submission. It cannot be paused or restarted by refreshing, changing devices or reopening Colab. Your deadline is the earlier of three hours after starting or the class closing time. Colab may still allow editing afterwards, but late work is not accepted for grading.
+The timer includes setup, interruptions and submission. It stops at your personal deadline or the class cutoff, whichever comes first. To resume, use the same entry link, email and registration number; your timer does not restart.
 
-## 1. Open your own working copy
-On the entry page, enter your full name, Google account email and Student Registration Number. Use that same Google account throughout. Click **Open my test in Colab**, and work in that private editable notebook. You do not need to make a copy. Click **Connect** if shown. To resume, use the entry link with the same email and Student Registration Number; it opens the same saved notebook without restarting the timer.
-
-## 2. Load the data
-Check the identity cell near the top. Tell your lecturer immediately if the details are wrong; do not change the supplied course, test or allocation settings. Run the identity cell using the triangle beside it. Then run **Load the supplied CSV and Python libraries**. In the issued notebook this creates `engineering_data.csv` automatically; no separate CSV upload is needed. Wait for the preview and row count. After a runtime reset, rerun these setup cells before your work. If using a backup notebook without an embedded CSV setup cell, upload your assigned `engineering_data.csv` through Colab's folder icon first.
-
-## 3. Complete the questions
-Work from top to bottom. Read each question, write your code in its code cell and run it. Keep supplied function names and required output formats unchanged. Use pandas as instructed. Complete the eight coding tasks using pandas, matplotlib and ordinary Python. There are no interpretation choices or written report. Save regularly using **File → Save**.
-
-## 4. Submit — allow at least 20 minutes
-1. Run your completed cells, check the results and save. Submit your completed work even if some questions are unfinished.
-2. Run the final **Submit your test** cell. Choose the same Google account when asked to authorize access. This access lets the helper save a notebook snapshot and share it privately with your lecturer.
-3. Click **Submit test** and wait for the generated form link. If the browser does not open it automatically, click the displayed link.
-4. Open the form. Check the email shown; use **Switch account** if it is wrong. Check your full name and Student Registration Number. Leave the prefilled allocation code, snapshot ID and hash unchanged. Tick the email confirmation box, then press **Submit** before your personal deadline.
-5. Wait for the form confirmation. Keep the saved snapshot unchanged in Drive until marks are released.
-
-**The notebook button alone does not complete submission: you must submit the form too.** Do not separately upload a CSV, PDF, ZIP or screenshots. A form confirmation acknowledges receipt; it does not make a late submission valid. Marks are calculated after the test. If you replace your submission, submit a complete new snapshot and its form before the same deadline.
-
-## If something fails
-Record the error and contact your lecturer immediately, before the deadline. Do not create a second identity or use another student's files. If Colab disconnects, reconnect and rerun setup; your saved notebook remains in Drive, but runtime variables may need to be recreated. The timer continues.
-
-No AI-generated solutions, collaboration, messaging or copied answers.
+No AI-generated answers or collaboration. If a support cell is changed or deleted, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
 
 ## Coding tasks and time plan
-Setup: 10 minutes. Tasks 1–8: about 135 minutes. Check and save: 15 minutes. Submit: 20 minutes. Total: 180 minutes. These are planning estimates; your personal deadline is authoritative.
+10 minutes setup · 135 coding · 15 checking · 20 submitting.
 
-Use only pandas, matplotlib and ordinary Python. No modelling, scikit-learn, SQL, written report or multiple-choice answers. All 100 marks come from coding.
+Use pandas, matplotlib and ordinary Python. Write only in the answer cells. Run the cells labelled “Run only”; do not edit them.
 
-Each question has a supplied function header and a separate supplied run cell. Write your answer inside the function, indented by four spaces. The input argument contains rows from the CSV; the first supplied line converts these to a DataFrame. Do not change function names or returned dictionary keys. `return` sends your answer to the caller; `print` only displays it. The run cell calls the function with your dataset.
-
-The grader also calls each function independently on other values with the same columns and cleaning rules. Use its input argument, not a global table or typed-in final answer. An unfinished cleaning function may prevent later demonstration cells running, but later functions can still earn marks independently. Submit partial work before the deadline.
+Keep function names and return keys unchanged. The supplied first line turns input records into a DataFrame. Calculate from that input; the grader checks other values too. Later functions can earn marks even if cleaning is unfinished.
 
 
 ## Task 1: EDA before cleaning — 10 marks
 
-Use the original data, including its errors. Calculate and return:
+First read `engineering_data.csv` with pandas, using `file_path`, and store the table in `raw_data` (2 marks). The file is in the current folder, so its name is the relative file path.
+
+Then use the original data, including its errors. Calculate and return:
 - `preview`: the first five rows as a DataFrame (2 marks).
-- `rows`: number of rows; `columns`: number of columns (2 marks each).
+- `rows` and `columns`: the two dimensions (2 marks together).
 - `missing`: missing-value count for each column as a Series (2 marks).
 - `duplicates`: repeated record IDs after the first occurrence (2 marks).
 The return dictionary is supplied. Replace each `None` with your calculation. Do not clean this table. The supplied run cell also calls `info()` to show data types and recorded counts, and `describe()` to show numeric summaries; these inspection commands carry no extra marks.

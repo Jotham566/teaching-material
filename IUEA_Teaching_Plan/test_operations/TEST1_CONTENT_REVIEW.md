@@ -7,7 +7,7 @@ The lecturer confirmed no real students had started and authorised replacement f
 
 | Task | Marks | Suggested minutes |
 |---|---:|---:|
-| Inspect raw data: preview, dimensions, missing cells, repeated IDs | 10 | 15 |
+| Read CSV with pandas; preview, dimensions, missing cells, repeated IDs | 10 | 15 |
 | Scatter chart before cleaning | 10 | 15 |
 | Deduplicate, exclude invalid rows, fill missing ambient temperature | 20 | 25 |
 | Scatter chart after cleaning | 10 | 10 |
@@ -57,3 +57,13 @@ Existing recorded marks and submissions are not rewritten. New Test 1 results re
 Published to the existing student portal as Apps Script version 11 on 23 October 2026 at 21:19 Kampala. Existing QR codes and URLs are unchanged. A separate synthetic Google workbook verified creation and repeated opening of the new coding-only notebook for each programme, without changing the production schedules or student marks. Private rehearsal evidence is excluded from Git.
 
 The test intake builds the matching eight-question dispatch from the installed grader code. An older private snapshot's five-question Test 1 dispatch cannot silently override this release. Duplicate receipt handling and previously recorded results are preserved.
+
+## Student workflow refinement
+
+Task 1 now requires students to write their own pandas CSV-reading statement using `file_path`, storing the result in `raw_data`. This earns 2 marks within its existing 10 marks; the four EDA components earn 2 marks each. The final cleaned table is consistently `cleaned_data`. The supplied CSV preparation cell no longer imports pathlib or reads the file with pandas for the learner.
+
+Setup, countdown, conversion, demonstration and submission cells are labelled and collapsed as forms. Colab hiding is not an edit lock; students can reveal or change code. The guide tells students to edit answer cells only and use Edit → Undo if they accidentally damage a support cell. The server still enforces the recorded deadline and allocation. Automatic submission necessarily uses hidden Colab/Google support libraries; those are not assessed student code.
+
+The isolated grader reads literal identity fields from the skipped countdown cell without running browser code. A regression test now completes and grades an actual portal-generated packet, checking both identity and the CSV-reading task.
+
+Deployment update: Apps Script version 12 was published successfully on 23 October 2026 at 21:46 Kampala time. It includes student-written CSV loading, concise instructions and collapsed support cells for all three programmes. Existing entry URLs, schedules and deadlines are unchanged.

@@ -85,10 +85,24 @@ def execute(request):
             raise ValueError('Notebook has no cells list')
         errors, total, ok = [], 0, 0
         for index, cell in enumerate(nb['cells']):
-            if cell.get('cell_type') != 'code' or 'autograde-skip' in cell.get('metadata', {}).get('tags', []):
+            if cell.get('cell_type') != 'code':
                 continue
             source = cell.get('source', '')
             source = ''.join(source) if isinstance(source, list) else source
+            tags = cell.get('metadata', {}).get('tags', [])
+            if 'autograde-skip' in tags:
+                if 'iuea-timer' in tags:
+                    # Read literal identity fields without executing the browser countdown.
+                    import ast
+                    try:
+                        for statement in ast.parse(source).body:
+                            if isinstance(statement, ast.Assign) and isinstance(statement.value, ast.Constant) and isinstance(statement.value.value, str):
+                                for target in statement.targets:
+                                    if isinstance(target, ast.Name) and target.id in ('FULL_NAME','EMAIL','STUDENT_ID','COHORT','TEST_ID'):
+                                        ns[target.id] = statement.value.value[:512]
+                    except SyntaxError:
+                        pass
+                continue
             source = '\n'.join('# notebook magic omitted' if line.lstrip().startswith(('%', '!', '?')) else line for line in source.splitlines())
             if not source.strip():
                 continue

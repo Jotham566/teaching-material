@@ -155,6 +155,9 @@ def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_t
             raise ValueError('Incomplete marking specification')
         ns = Namespace(worker, per_cell)
         ns.cache['COHORT'] = use_cohort
+        if assignment == 'TEST1':
+            import pandas as pd
+            ns.cache['_IUEA_ASSIGNED_DATA'] = pd.read_csv(Path(work)/'engineering_data.csv')
         notebook = json.loads((Path(work)/'submission.ipynb').read_text())
         ns.notebook_sources = [''.join(c.get('source', '')) for c in notebook['cells']
                                if c.get('cell_type') == 'code' and 'autograde-skip' not in c.get('metadata', {}).get('tags', [])]

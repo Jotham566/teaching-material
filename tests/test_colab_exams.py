@@ -33,6 +33,7 @@ class ExamTests(unittest.TestCase):
      for c in nb['cells']:
       text=''.join(c['source'])
       if c['cell_type']!='code':continue
+      if 'iuea-read-csv' in c.get('metadata',{}).get('tags',[]):c['source']='file_path = "engineering_data.csv"\nraw_data = pd.read_csv(file_path)\n'
       if 'STUDENT_ID =' in text:c['source']=text.replace('STUDENT_ID = ""','STUDENT_ID = "99/TEST/000/DEMO-X"')
       if 'raise NotImplementedError' in text or (exam=='TEST1' and text.startswith('def ')):c['source']=source
       if text.startswith('DECISIONS ='):c['source']='DECISIONS = '+repr(decision_keys()[exam])

@@ -32,7 +32,10 @@ def equal(actual, expected):
 def assess(ns, task):
     import pandas as pd
     fn=ns.get(FUNCTIONS[task]); passed=[]
-    if not callable(fn): return False,'Complete '+FUNCTIONS[task]+'.',0
+    # Keep already-issued notebooks with the former raw_table name gradable.
+    submitted_raw_data = ns.get('raw_data', ns.get('raw_table'))
+    read_ok = task=='eda' and equal(submitted_raw_data, ns.get('_IUEA_ASSIGNED_DATA')) and isinstance(submitted_raw_data, pd.DataFrame)
+    if not callable(fn): return False,'Complete '+FUNCTIONS[task]+'.', .2 if read_ok else 0
     if task in ('conditions','loops') and not ns.has_syntax(FUNCTIONS[task], 'If' if task=='conditions' else 'For'):
         return False, 'Use the requested if/elif/else or for-loop inside this function.', 0
     course=ns.get('COHORT')
@@ -55,7 +58,7 @@ def assess(ns, task):
                 try: passed.append(equal(fn(values),expected))
                 except Exception: passed.append(False)
             continue
-        sizes={'eda':5,'before':5,'cleaning':5,'after':5,'statistics':6,'grouping':3}
+        sizes={'eda':4,'before':5,'cleaning':5,'after':5,'statistics':6,'grouping':3}
         try:
             if task in ('before','after'):
                 from isolated_grading import PlotEvidence
@@ -79,7 +82,10 @@ def assess(ns, task):
             if task=='eda':
                 expected={'preview':table.head(),'rows':len(table),'columns':len(table.columns),
                           'missing':table.isna().sum(),'duplicates':table.duplicated('record_id').sum()}
-                passed.extend(isinstance(output,dict) and equal(output.get(k),v) for k,v in expected.items())
+                passed.extend([isinstance(output,dict) and equal(output.get('preview'),expected['preview']),
+                               isinstance(output,dict) and equal(output.get('rows'),expected['rows']) and equal(output.get('columns'),expected['columns']),
+                               isinstance(output,dict) and equal(output.get('missing'),expected['missing']),
+                               isinstance(output,dict) and equal(output.get('duplicates'),expected['duplicates'])])
             elif task=='cleaning':
                 # Credit correctly retained IDs, then each measurement/category column independently.
                 for column in table.columns:
@@ -98,7 +104,9 @@ def assess(ns, task):
         except Exception:
             passed.extend([False]*sizes[task])
     fraction=sum(bool(x) for x in passed)/len(passed)
-    return all(passed),f'{sum(bool(x) for x in passed)}/{len(passed)} checks passed.',fraction
+    if task=='eda':
+        fraction=.2*bool(read_ok)+.8*fraction
+    return fraction==1,f'{sum(bool(x) for x in passed)}/{len(passed)} function checks passed.' + (f' CSV reading: {bool(read_ok)}.' if task=='eda' else ''),fraction
 
 
 def hidden_spec_source():

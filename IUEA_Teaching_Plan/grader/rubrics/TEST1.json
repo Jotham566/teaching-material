@@ -8,7 +8,7 @@
       "id": "q1",
       "title": "EDA before cleaning",
       "maximum": 10,
-      "description": "Use the original data, including its errors. Calculate and return:\n- `preview`: the first five rows as a DataFrame (2 marks).\n- `rows`: number of rows; `columns`: number of columns (2 marks each).\n- `missing`: missing-value count for each column as a Series (2 marks).\n- `duplicates`: repeated record IDs after the first occurrence (2 marks).\nThe return dictionary is supplied. Replace each `None` with your calculation. Do not clean this table. The supplied run cell also calls `info()` to show data types and recorded counts, and `describe()` to show numeric summaries; these inspection commands carry no extra marks."
+      "description": "First read `engineering_data.csv` with pandas, using `file_path`, and store the table in `raw_data` (2 marks). The file is in the current folder, so its name is the relative file path.\n\nThen use the original data, including its errors. Calculate and return:\n- `preview`: the first five rows as a DataFrame (2 marks).\n- `rows` and `columns`: the two dimensions (2 marks together).\n- `missing`: missing-value count for each column as a Series (2 marks).\n- `duplicates`: repeated record IDs after the first occurrence (2 marks).\nThe return dictionary is supplied. Replace each `None` with your calculation. Do not clean this table. The supplied run cell also calls `info()` to show data types and recorded counts, and `describe()` to show numeric summaries; these inspection commands carry no extra marks."
     },
     {
       "id": "q2",

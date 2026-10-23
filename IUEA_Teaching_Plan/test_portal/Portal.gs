@@ -77,17 +77,21 @@ function requestTestFiles(input) {
   if(record[11]==='DIRECT')instructions=instructions.replace('then **File → Save a copy in Drive**. Work in this saved copy, not the read-only original.','and work in that private editable notebook. You do not need to make a copy.').replace('To resume your work, reopen your saved copy from Google Drive; opening the original again does not recover your answers.','To resume, reopen the entry link or QR code with the same email and registration number, then click Resume my test in Colab. This opens the same notebook and its saved answers. Save regularly; unsaved changes lost before a shutdown cannot be recovered by the portal.');
   var codingGuide=packet.instructions.indexOf('## Coding tasks and time plan');
   if(codingGuide>=0)instructions+='\n\n'+packet.instructions.slice(codingGuide);
+  if(nb.metadata.iuea_exam_version==='2026.10-test1-coding-v3'&&record[11]==='DIRECT'){
+   instructions=packet.instructions.replace('**Individual work · 100 marks · 3 hours from Start test**','**Individual work · 100 marks · Deadline: '+w.label+'**');
+  }
   nb.cells[0].source=instructions;
   nb.cells.forEach(function(cell){var text=Array.isArray(cell.source)?cell.source.join(''):cell.source;if(typeof text==='string'&&text.indexOf('invigilator')>=0)cell.source=text.replace(/invigilator/g,'lecturer');});
   nb.metadata.iuea_started_at=record[7];nb.metadata.iuea_deadline=deadline;
-  nb.cells[1].source='#@title Check your details and show the countdown\n'+nb.cells[1].source+portalCountdownCode_(deadline);
+  nb.cells[1].source='#@title Check your details and show the countdown\n'+nb.cells[1].source+'print("Name:", FULL_NAME)\nprint("Registration:", STUDENT_ID)\nprint("Email:", EMAIL)\n'+portalCountdownCode_(deadline);
   nb.cells[1].metadata=nb.cells[1].metadata||{};
   nb.cells[1].metadata.tags=['iuea-timer','autograde-skip'];
+  nb.cells[1].metadata.cellView='form';
   // The data is part of this student's packet. Running setup restores the exact CSV, including after reconnecting.
   var setup=nb.cells[3],original=Array.isArray(setup.source)?setup.source.join(''):setup.source;
-  setup.source='# Run this supplied setup cell. It loads your assigned CSV automatically.\nfrom pathlib import Path as _IueaPath\n_IueaPath("engineering_data.csv").write_text('+JSON.stringify(packet.csv)+', encoding="utf-8")\n'+original;
+  setup.source='#@title Run only — prepare CSV and libraries\nwith open("engineering_data.csv", "w", encoding="utf-8") as _csv_file:\n    _csv_file.write('+JSON.stringify(packet.csv)+')\n'+original;
   setup.metadata=setup.metadata||{};setup.metadata.cellView='form';
-  setup.source='#@title Load the supplied CSV and Python libraries\n'+setup.source;
+
   colabUrl=portalColabFile_(book,record,nb);
   portalWindow_(book,key);
   if(Date.now()>Date.parse(deadline))throw Error('This test has reached your personal deadline. Contact your lecturer.');

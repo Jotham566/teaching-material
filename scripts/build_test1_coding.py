@@ -5,22 +5,24 @@ ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'IUEA_Teaching_Plan';G=BASE/'
 sys.path.insert(0,str(G))
 from engineering_contracts import DOMAINS,dataset
 from test1_coding_contracts import VERSION,PARTS
-from build_colab_exams import cell,brief
+from build_colab_exams import cell
 
 TASKS=[
-('EDA before cleaning', 'explore_data(input_records)', '''Use the original data, including its errors. Calculate and return:
+('EDA before cleaning', 'explore_data(input_records)', '''First read `engineering_data.csv` with pandas, using `file_path`, and store the table in `raw_data` (2 marks). The file is in the current folder, so its name is the relative file path.
+
+Then use the original data, including its errors. Calculate and return:
 - `preview`: the first five rows as a DataFrame (2 marks).
-- `rows`: number of rows; `columns`: number of columns (2 marks each).
+- `rows` and `columns`: the two dimensions (2 marks together).
 - `missing`: missing-value count for each column as a Series (2 marks).
 - `duplicates`: repeated record IDs after the first occurrence (2 marks).
 The return dictionary is supplied. Replace each `None` with your calculation. Do not clean this table. The supplied run cell also calls `info()` to show data types and recorded counts, and `describe()` to show numeric summaries; these inspection commands carry no extra marks.''',
-'''    observation_data = pd.DataFrame(input_records)
+'''    raw_data = pd.DataFrame(input_records)
     return {"preview": None, "rows": None, "columns": None,
             "missing": None, "duplicates": None}''',
-'print(explore_data(records))\nraw_table.info()\nprint(raw_table.describe())',15),
+'print(explore_data(records))\nraw_data.info()\nprint(raw_data.describe())',15),
 ('Visualisation before cleaning', 'plot_observations(input_records, target_unit, chart_title)', '''Create one scatter chart from the original table: `load_pct` on the horizontal axis and `target` on the vertical axis. Keep repeated observations and invalid loads in this BEFORE chart. Matplotlib does not draw pairs with a missing coordinate; do not fill or clean the data for this chart.
 Return the supplied `figure`. Plot the correct points (4 marks), add the supplied `chart_title` (2), label the horizontal axis with load and percent (2), and label the vertical axis with target and the supplied `target_unit` (2). Colour and styling are your choice.''',
-'''    observation_data = pd.DataFrame(input_records)
+'''    raw_data = pd.DataFrame(input_records)
     figure, axes = plt.subplots()
     # Add scatter points, title and axis labels here.
     return figure''',
@@ -31,7 +33,7 @@ Return the supplied `figure`. Plot the correct points (4 marks), add the supplie
 3. Calculate the median `ambient_c` from the retained rows, ignoring missing values. Fill only missing ambient temperatures with this median.
 Return the cleaned DataFrame with the same five columns and original row order. Do not change equipment labels or known measurements. Index numbers do not matter. Do not remove rows merely because they have a high target.
 The grader gives 4 marks for each correctly retained column (record IDs, equipment IDs, loads, temperatures and targets).''',
-'''    observation_data = pd.DataFrame(input_records)
+'''    raw_data = pd.DataFrame(input_records)
     # Apply the three cleaning rules, then return cleaned_data.
     raise NotImplementedError("Complete cleaning")''',
 'cleaned_data = clean_observations(records)\nprint(cleaned_data.head())\nprint(cleaned_data.isna().sum())\ncleaned_records = records_from_table(cleaned_data)',25),
@@ -74,13 +76,28 @@ The run cell gets this list from the CLEANED CSV. For `[20, 40, 75, 90]`, the re
 'load_values = cleaned_data["load_pct"].tolist()\nprint(count_load_bands(load_values))',20)
 ]
 
+GUIDE_EXTRA='\n## Coding tasks and time plan\n10 minutes setup · 135 coding · 15 checking · 20 submitting.\n\nUse pandas, matplotlib and ordinary Python. Write only in the answer cells. Run the cells labelled “Run only”; do not edit them.\n\nKeep function names and return keys unchanged. The supplied first line turns input records into a DataFrame. Calculate from that input; the grader checks other values too. Later functions can earn marks even if cleaning is unfinished.\n'
+
+def student_guide(course):
+ return f"""# {course} Test 1 — Take-home practical
+**Individual work · 100 marks · 3 hours from Start test**
+
+1. Run **Check details and countdown**, then **Prepare CSV and libraries**.
+2. In Task 1, write the pandas code to read the file into `raw_data`.
+3. Complete Tasks 1–8 in order. Task 3 produces `cleaned_data`. Save regularly.
+4. Run **Submit your test**, click the button, then open its form and press **Submit**. Wait for confirmation.
+
+The timer includes setup, interruptions and submission. It stops at your personal deadline or the class cutoff, whichever comes first. To resume, use the same entry link, email and registration number; your timer does not restart.
+
+No AI-generated answers or collaboration. If a support cell is changed or deleted, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
+"""+GUIDE_EXTRA
+
 def build_test1():
  config=json.loads((ROOT/'data/colab_test_submission_config.json').read_text());helper=(BASE/'test_operations/colab_submit_cell.py').read_text()
- guide_extra='''\n## Coding tasks and time plan\nSetup: 10 minutes. Tasks 1–8: about 135 minutes. Check and save: 15 minutes. Submit: 20 minutes. Total: 180 minutes. These are planning estimates; your personal deadline is authoritative.\n\nUse only pandas, matplotlib and ordinary Python. No modelling, scikit-learn, SQL, written report or multiple-choice answers. All 100 marks come from coding.\n\nEach question has a supplied function header and a separate supplied run cell. Write your answer inside the function, indented by four spaces. The input argument contains rows from the CSV; the first supplied line converts these to a DataFrame. Do not change function names or returned dictionary keys. `return` sends your answer to the caller; `print` only displays it. The run cell calls the function with your dataset.\n\nThe grader also calls each function independently on other values with the same columns and cleaning rules. Use its input argument, not a global table or typed-in final answer. An unfinished cleaning function may prevent later demonstration cells running, but later functions can still earn marks independently. Submit partial work before the deadline.\n'''
+
  titles={task:entry[0] for (task,_),entry in zip(PARTS,TASKS)}
  for course,(domain,unit,*_) in DOMAINS.items():
-  guide=brief(course,'TEST1').replace('Enter your six interpretation choices in `DECISIONS`; these choices are answers, not different test files.','There are eight coding tasks and no interpretation choices.')+guide_extra
-  guide=guide.replace('then **File → Save a copy in Drive**. Work in this saved copy, not the read-only original.','and work in that private editable notebook. You do not need to make a copy.').replace('To resume your work, reopen your saved copy from Google Drive; opening the original again does not recover your answers.','To resume, use the entry link with the same email and Student Registration Number; it opens the same saved notebook without restarting the timer.')
+  guide=student_guide(course)
   (BASE/'student_guides'/course/'TEST1.md').write_text(guide)
   for variant,seed in [('A',17),('B',29),('C',43)]:
    folder=BASE/'assessment_banks/TEST1'/course/variant
@@ -100,9 +117,19 @@ Each row is one synthetic observation of **{domain}**. This is a practice engine
 
 Blank cells become missing values in pandas. All tasks use this same CSV. Tasks 1–2 use RAW data; Task 3 cleans it; Tasks 4–8 use CLEANED data.
 
-The supplied `records_from_table` helper converts a table into a list of row dictionaries. You do not need to write or change it. Each function's supplied first line converts those rows back into a DataFrame. This allows the grader to check different data without changing your code.'''),cell('import pandas as pd\nimport matplotlib.pyplot as plt\n\ndef records_from_table(table):\n    objects = table.astype(object)\n    return objects.where(table.notna(), None).to_dict("records")\n\nraw_table = pd.read_csv("engineering_data.csv")\nrecords = records_from_table(raw_table)\nTARGET_UNIT = '+repr(unit)+'\nprint(raw_table.head())\nprint("Rows:", len(raw_table))\n',True)]
+The supplied `records_from_table` helper converts a table into a list of row dictionaries. You do not need to write or change it. Each function's supplied first line converts those rows back into a DataFrame. This allows the grader to check different data without changing your code.'''),cell('import pandas as pd\nimport matplotlib.pyplot as plt\n\ndef records_from_table(table):\n    objects = table.astype(object)\n    return objects.where(table.notna(), None).to_dict("records")\n\nTARGET_UNIT = '+repr(unit)+'\nprint("Setup ready. Continue to Task 1.")\n',True)]
+   cells[3]['metadata']={'cellView':'form','tags':['iuea-support']}
+   cells[3]['source'].insert(0,'#@title Run only — prepare CSV and libraries\n')
    for i,((task,marks),(title,signature,prompt,starter,driver,minutes)) in enumerate(zip(PARTS,TASKS),1):
-    cells += [cell(f'## Task {i}: {title} — {marks} marks · about {minutes} minutes\n\n{prompt}'),cell('def '+signature+':\n'+starter+'\n',True),cell('**Run your answer:** this supplied cell calls your function and displays the result. It is not an extra question.'),cell(driver+'\n',True)]
+    cells.append(cell(f'## Task {i}: {title} — {marks} marks · about {minutes} minutes\n\n{prompt}'))
+    if i==1:
+     reading=cell('file_path = "engineering_data.csv"\n# Write your pandas CSV-reading statement below. Store the result in raw_data.\n\n',True)
+     reading['metadata']['tags']=['iuea-read-csv'];cells.append(reading)
+     cells.append(cell('#@title Run only — pass your raw_data to the tasks\nrecords = records_from_table(raw_data)\nprint(raw_data.head())\n',True))
+     cells[-1]['metadata']={'cellView':'form','tags':['iuea-support']}
+    cells += [cell('def '+signature+':\n'+starter+'\n',True),cell('#@title Run only — show Task '+str(i)+' results\n'+driver+'\n',True)]
+    cells[-1]['metadata']={'cellView':'form','tags':['iuea-support']}
+
    cells += [cell('## Check and submit\nCheck that each task runs, both charts appear, and your answers use the supplied data. Save your notebook. No written report is required. Run the submission cell below, click **Submit test**, then open the generated form and press **Submit** before your deadline. The notebook button alone is not a completed submission.')]
    submit=cell('#@title Submit your test\n'+helper.replace('__EXAM_CONFIG__',repr(dict(lecturer_email=config['lecturer_email'],forms={course+'|TEST1':config['forms'][course+'|TEST1']}))),True)
    submit['metadata']={'tags':['iuea-submission','autograde-skip'],'cellView':'form'};cells.append(submit)
