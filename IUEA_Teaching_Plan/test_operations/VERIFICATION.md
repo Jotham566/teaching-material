@@ -1,6 +1,17 @@
 # Colab submission and Mac batch grading verification
 
-Verified on 19 October 2026. Applies to Test 1 and Test 2 in CML3111, CML3112 and CML3113, variants A/B/C.
+## Take-home readiness recheck — 23 October 2026, 19:07 Kampala
+
+- Completed a fresh live Colab → snapshot → Google Form → collector → ZIP export rehearsal in the **separate rehearsal workbook**, using the saved three-hour allocation. The synthetic receipt was COLLECTED at 19:04:38 Kampala, against a saved start of 18:34:51 and deadline of 21:34:51. Export included that receipt plus the older rehearsal, with zero collection issues. No rehearsal marks entered the student cumulative workbook. The rehearsal form was closed afterwards.
+- Confirmed the real CML3111 and CML3113 Test 1 forms had opened automatically by 19:07; CML3112 remained closed until 27 October at 19:00. All six test forms have one submission trigger each; one scheduler is installed. Form availability follows the existing five-minute scheduler; portal access and accepted submission timestamps enforce the exact configured times independently.
+- Found and fixed a multi-account handoff problem: Google could open the final form under the browser's default email. Submission links now include the learner email as an account hint; verified live that this selected the correct account and preserved all prefilled fields. Issued Colab links also include the account hint. The collector still verifies account ownership; a hint is not authentication. Existing saved notebook copies are not rewritten: their users can use **Switch account** if necessary.
+- Published portal version 7 on the existing endpoint, keeping all student entry URLs, QR codes, allocations and deadlines unchanged. Updated all 18 source notebooks and their ZIPs with the submission-link fix.
+- Expanded automated timed checks to all nine Test 1 cohort/variant combinations: exact supplied CSV, unchanged task code, recorded learner details, stable file/deadline on resume, strict personal expiry, global cutoff, and missing-timer rejection.
+- Reran actual isolated Docker grading for all 18 Test 1/Test 2 reference notebooks: each scored 100/100. The blank-notebook check passed. Portal, gateway, collector, export-menu, intake and submission-helper regression suites passed.
+- Decoded all six QR PNGs with OpenCV and fetched each matching live entry page successfully. No physical phone-camera test was performed in this pass.
+- Colab authorization stalled in the embedded browser; the normal Edge browser completed the live submission. Students should use a normal browser tab, select their declared Google account, and finish the final Form **Submit** step before their deadline. These checks do not guarantee external Google availability or every student's internet connection.
+
+Historical verification on 19 October 2026. Applies to Test 1 and Test 2 in CML3111, CML3112 and CML3113, variants A/B/C.
 
 ## Cloudflare live rehearsal, 19 October 2026, 17:26–18:26 Kampala
 

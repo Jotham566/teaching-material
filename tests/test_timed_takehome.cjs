@@ -1,9 +1,10 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+let windowKey='CML3111|TEST1';
 let now=Date.parse('2026-10-23T16:00:00Z'),end=Date.parse('2026-10-29T20:59:00Z'),rows=[['headers']],fileCount=0;
 const RealDate=Date;class Clock extends Date {constructor(x){super(x===undefined?now:x)}static now(){return now;}}
 const range=(row,col=1,height=1,width=1)=>({getValues:()=>rows.slice(row-1,row-1+height).map(r=>r.slice(col-1,col-1+width)),setValues(v){v.forEach((r,i)=>{rows[row-1+i]??=[];r.forEach((x,j)=>rows[row-1+i][col-1+j]=x);});},setRichTextValues(v){this.setValues(v)},setValue(v){this.setValues([[v]])}});
 const sheet={getDataRange:()=>({getValues:()=>rows}),getLastRow:()=>rows.length,getRange:range};
-const windowRows=()=>[['key','open','close','enabled','duration'],['CML3111|TEST1','2026-10-23T16:00:00Z',new Date(end).toISOString(),'YES',180]];
+const windowRows=()=>[['key','open','close','enabled','duration'],[windowKey,'2026-10-23T16:00:00Z',new Date(end).toISOString(),'YES',180]];
 const book={getSheetByName:n=>n==='Test windows'?{getDataRange:()=>({getValues:windowRows})}:sheet};
 let props={};const ctx={Date:Clock,Math,JSON,console,SpreadsheetApp:{openById:()=>book,newRichTextValue:()=>({setText(v){this.v=v;return this},build(){return this.v}})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},PropertiesService:{getScriptProperties:()=>({getProperty:k=>props[k],setProperty:(k,v)=>props[k]=v})},Utilities:{getUuid:()=> 'synthetic-code',formatDate:d=>d.toISOString(),newBlob:b=>b},ScriptApp:{getOAuthToken:()=> 'never-real'},UrlFetchApp:{fetch:()=>({getResponseCode:()=>200})},DriveApp:{createFolder:()=>({getId:()=> 'private-folder'}),getFolderById:()=>({createFile:()=>{const id='file-'+(++fileCount);return {getId:()=>id};}})}};
 vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Portal.gs','utf8'),ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Packets.gs','utf8'),ctx);
@@ -31,3 +32,21 @@ response.getTimestamp=()=>new Date(now+60*1000);response.getId=()=> 'ontime-synt
 assert.equal(collected.at(-1)[10],'COLLECTED');assert.equal(collected.at(-1)[8],result.startedAt);assert.equal(collected.at(-1)[9],result.personalDeadline);
 response.getId=()=> 'missing-timer';rows[1][7]='';rows[1][8]='';ctx.examCollect_(response,input.test,{bookId:'book'});assert.equal(collected.at(-1)[10],'COLLECTION_ERROR');
 console.log('PASS collector: on-time snapshot accepted with personal timestamps; missing timer fails closed.');
+
+// Exercise every timed Test 1 cohort/variant, including the embedded CSV bytes.
+book.getSheetByName=originalGet;
+for(const cohort of ['CML3111','CML3112','CML3113'])for(const variant of ['A','B','C']){
+ windowKey=cohort+'|TEST1';now=Date.parse('2026-10-23T16:00:00Z');
+ rows=[['headers'],[windowKey,'DEMO / TIMED',input.email,'T-'+cohort+'-'+variant,variant,'2026-10-19T00:00:00Z']];
+ const issued=ctx.requestTestFiles({...input,test:windowKey});const notebook=JSON.parse(issued.notebook);
+ const packet=ctx.PORTAL_PACKETS[windowKey+'|'+variant];
+ assert.equal(issued.csv,packet.csv);
+ assert(notebook.cells[3].source.includes(JSON.stringify(packet.csv)));
+ assert(notebook.cells[1].source.includes(cohort));
+ assert.equal(notebook.metadata.iuea_allocation_code,rows[1][3]);
+ assert.equal(issued.personalDeadline,'2026-10-23T19:00:00.000Z');
+ const baseline=JSON.parse(packet.notebook);
+ for(let i=4;i<notebook.cells.length-1;i++)if(baseline.cells[i].cell_type==='code')assert.deepEqual(notebook.cells[i].source,baseline.cells[i].source);
+ const repeat=ctx.requestTestFiles({...input,test:windowKey});assert.equal(repeat.colabUrl,issued.colabUrl);assert.equal(repeat.personalDeadline,issued.personalDeadline);
+}
+console.log('PASS all nine timed Test 1 packets: correct cohort, allocation, unchanged task code, exact CSV, three-hour deadline and stable resume.');

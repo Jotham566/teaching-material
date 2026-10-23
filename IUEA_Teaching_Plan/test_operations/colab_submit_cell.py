@@ -55,6 +55,9 @@ def _prepare_test_submission(_):
             _query = _urlparse.parse_qsl(_parts.query,keep_blank_values=True)
             _replace={'PLACEHOLDER_'+str(_form['items'][k]):str(v) for k,v in _values.items()}
             _query=[(k,_replace.get(v,v)) for k,v in _query]
+            # Select the student's account when several Google accounts are signed in.
+            _query=[(k,v) for k,v in _query if k != 'authuser']
+            _query.append(('authuser', EMAIL.strip().lower()))
             _link = _urlparse.urlunsplit((_parts.scheme,_parts.netloc,_parts.path,_urlparse.urlencode(_query),_parts.fragment))
             import html as _html
             _display(_HTML('<a target="_blank" rel="noopener" href="'+_html.escape(_link,quote=True)+'" style="font-size:18px">Finish submission: open the form and press Submit</a>'))

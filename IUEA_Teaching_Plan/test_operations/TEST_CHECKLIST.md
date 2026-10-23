@@ -10,6 +10,8 @@ All times are Kampala time. CML3111 and CML3113: 23 October, 19:00 to 29 October
 4. Finish the notebook's submission process AND press Submit on its generated Google Form before the personal deadline. Allow 20 minutes for checking and submission. Google Form confirmation records receipt, but does not override a late timestamp.
 5. Export practical submissions from the existing spreadsheet menu and run the normal grading command. The collector exports the saved personal opening/closing timestamps, and the local grader checks them again. Late receipts remain in collection issues for review; earlier submissions are not deleted.
 
+Use a normal Chrome or Edge browser tab for Colab and allow its Google authorization window. New links select the entered Google email; still check the account displayed on the final form. If it is wrong, use **Switch account** and choose the same account used in Colab. You do not need to sign out of your other accounts.
+
 Entry names and emails are self-declared. Final submission verifies the Google account and snapshot ownership; use that verified evidence when matching earlier assignments/quizzes. A shared email or similar name alone must not merge different valid registration numbers.
 
 Colab cannot be remotely locked at expiry. The server rejects late work for grading. Timers include setup and internet interruptions; handle genuine exceptions individually with an audit record, not by deleting allocations.
