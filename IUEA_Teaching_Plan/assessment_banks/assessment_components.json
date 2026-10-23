@@ -111,27 +111,39 @@
     "maximum": 100,
     "deterministic_maximum": 100,
     "reasoning_maximum": 0,
-    "version": "2026.10-colab-v1",
+    "version": "2026.10-test1-coding-v3",
     "parts": [
       [
-        "clean",
+        "eda",
+        10
+      ],
+      [
+        "before",
+        10
+      ],
+      [
+        "cleaning",
         20
       ],
       [
-        "summary",
+        "after",
+        10
+      ],
+      [
+        "statistics",
         15
       ],
       [
-        "charts",
+        "grouping",
         15
       ],
       [
-        "findings",
-        20
+        "conditions",
+        10
       ],
       [
-        "decisions",
-        30
+        "loops",
+        10
       ]
     ]
   },

@@ -271,7 +271,7 @@
     "closes_at": "2026-10-20T14:00:00+03:00",
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.10-colab-v1"
+    "assessment_version": "2026.10-test1-coding-v3"
   },
   {
     "key": "CML3112|TEST2",
@@ -604,7 +604,7 @@
     "closes_at": "2026-10-23T11:00:00+03:00",
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.10-colab-v1"
+    "assessment_version": "2026.10-test1-coding-v3"
   },
   {
     "key": "CML3113|TEST2",
@@ -933,7 +933,7 @@
     "closes_at": "2026-10-23T14:00:00+03:00",
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.10-colab-v1"
+    "assessment_version": "2026.10-test1-coding-v3"
   },
   {
     "key": "CML3111|TEST2",

@@ -1,38 +1,56 @@
 {
-  "id": "TEST1-2026.10-colab-v1",
-  "title": "Practical TEST1",
+  "id": "TEST1-2026.10-test1-coding-v3",
+  "title": "Coding-only Test 1",
   "maximum": 100,
   "grading": "deterministic",
   "criteria": [
     {
       "id": "q1",
-      "title": "Cleaning",
-      "maximum": 20,
-      "description": "Return copied records in original order: remove repeated record_id after its first occurrence, drop rows with missing target or load_pct outside 0\u2013100 inclusive, then fill missing ambient_c with the median of retained non-missing ambient_c values. Preserve raw input. No other changes."
+      "title": "EDA before cleaning",
+      "maximum": 10,
+      "description": "Use the original data, including its errors. Calculate and return:\n- `preview`: the first five rows as a DataFrame (2 marks).\n- `rows`: number of rows; `columns`: number of columns (2 marks each).\n- `missing`: missing-value count for each column as a Series (2 marks).\n- `duplicates`: repeated record IDs after the first occurrence (2 marks).\nThe return dictionary is supplied. Replace each `None` with your calculation. Do not clean this table. The supplied run cell also calls `info()` to show data types and recorded counts, and `describe()` to show numeric summaries; these inspection commands carry no extra marks."
     },
     {
       "id": "q2",
-      "title": "Summary statistics",
-      "maximum": 15,
-      "description": "Return count, mean, minimum, maximum of target and group_means by equipment_id. Retain full precision."
+      "title": "Visualisation before cleaning",
+      "maximum": 10,
+      "description": "Create one scatter chart from the original table: `load_pct` on the horizontal axis and `target` on the vertical axis. Keep repeated observations and invalid loads in this BEFORE chart. Matplotlib does not draw pairs with a missing coordinate; do not fill or clean the data for this chart.\nReturn the supplied `figure`. Plot the correct points (4 marks), add the supplied `chart_title` (2), label the horizontal axis with load and percent (2), and label the vertical axis with target and the supplied `target_unit` (2). Colour and styling are your choice."
     },
     {
       "id": "q3",
-      "title": "Three labelled charts",
-      "maximum": 15,
-      "description": "Return at least three actual matplotlib Figure objects: scatter load_pct vs target; bar of mean target by equipment_id in alphabetical order; target histogram with ten equal bins from minimum to maximum. Add chart titles and axis labels, including target units. A fourth figure, when required, plots record_id vs target in input order."
+      "title": "Clean the data",
+      "maximum": 20,
+      "description": "Work on a copy. Apply these rules IN ORDER:\n1. Keep the first occurrence of each `record_id`.\n2. Exclude rows with a missing `target` or `load_pct` outside 0\u2013100 inclusive. Keep valid boundary values 0 and 100.\n3. Calculate the median `ambient_c` from the retained rows, ignoring missing values. Fill only missing ambient temperatures with this median.\nReturn the cleaned DataFrame with the same five columns and original row order. Do not change equipment labels or known measurements. Index numbers do not matter. Do not remove rows merely because they have a high target.\nThe grader gives 4 marks for each correctly retained column (record IDs, equipment IDs, loads, temperatures and targets)."
     },
     {
       "id": "q4",
-      "title": "Five numerical findings",
-      "maximum": 20,
-      "description": "Return a dict with count, mean, minimum, maximum and group_gap (highest minus lowest equipment mean). Each value is a dict with value and unit; count uses observations and other values use the cohort target unit. These numerical findings are checked independently of the narrative."
+      "title": "Visualisation after cleaning",
+      "maximum": 10,
+      "description": "The input now contains CLEANED observations. Make the same load/target scatter chart so it can be compared with the BEFORE chart. Use the supplied title and target unit. Return a Figure, not an image filename or text.\nCorrect cleaned points: 4 marks; title: 2; horizontal axis with percent: 2; vertical axis with target units: 2. You may reuse or call your Task 2 function. No written comparison is required."
     },
     {
       "id": "q5",
-      "title": "Structured interpretation",
-      "maximum": 30,
-      "description": "Six scenario choices in DECISIONS; 5 marks for each correct choice."
+      "title": "Calculate statistics",
+      "maximum": 15,
+      "description": "Use CLEANED data. Return the following six entries in the supplied dictionary (2.5 marks each):\n- `mean`, `sum`, `median`, `count`, `std`: calculated from the `target` column.\n- `mode`: ALL most frequent equipment IDs, as a list in alphabetical order, calculated from `equipment_id`.\nUse pandas' sample standard deviation (`.std()`, default `ddof=1`). Do not round returned answers. The sum is a descriptive calculation across observations, not a total-energy measure or a safety conclusion.\n**Reference provided for this test:** mean is the average; sum adds values; median is the middle value; count counts recorded values; standard deviation measures spread. `values.std()` returns sample standard deviation. Mode means most frequent: `labels.mode().tolist()` returns ALL tied modes as a list. For labels `A, A, B, B, C`, it returns `[\"A\", \"B\"]`. You do not need to derive a statistical formula."
+    },
+    {
+      "id": "q6",
+      "title": "Group and aggregate",
+      "maximum": 15,
+      "description": "Group CLEANED observations by `equipment_id`. Use `groupby` and `agg` to calculate the `mean`, `sum` and `count` of `target` for each equipment ID (5 marks per column).\nReturn a DataFrame whose index contains equipment IDs and whose columns are named `mean`, `sum`, `count`. Equipment order does not affect marks. Keep full numerical precision.\nReference: `table.groupby(\"group_column\")[\"numeric_column\"].agg([\"mean\", \"sum\", \"count\"])` applies several calculations to each group. Replace the placeholder column names with the required columns."
+    },
+    {
+      "id": "q7",
+      "title": "A function with conditions",
+      "maximum": 10,
+      "description": "Write a reusable function using `if`, `elif`, `else` and `return`. Its input is one valid numeric load percentage from the same dataset. Return exactly:\n- `\"low\"` if load is below 40;\n- `\"medium\"` if load is from 40 through 75 inclusive;\n- `\"high\"` if load is above 75.\nThese are test categories, not engineering safety limits. Check both boundary values: 40 and 75 must return `\"medium\"`. Return the label rather than only printing it. The supplied run cell uses a load from your cleaned CSV."
+    },
+    {
+      "id": "q8",
+      "title": "A loop using the same data",
+      "maximum": 10,
+      "description": "Use a `for` loop to visit every load in the supplied list. Call `classify_load` for each load and increment the matching counter in the supplied dictionary. Return the dictionary after the loop. An empty list must return all three counts as zero.\nThe run cell gets this list from the CLEANED CSV. For `[20, 40, 75, 90]`, the result is `{\"low\": 1, \"medium\": 2, \"high\": 1}`. Do not type the final dataset counts by hand. If Task 7 is unfinished, you may put the same conditions inside this loop for partial credit."
     }
   ]
 }

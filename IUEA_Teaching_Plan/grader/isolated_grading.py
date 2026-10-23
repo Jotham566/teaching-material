@@ -113,6 +113,17 @@ class Namespace:
         self.worker, self.per_call = worker, per_call
         self.cache = {}
 
+    def has_syntax(self, name, kind):
+        import ast
+        for source in getattr(self, "notebook_sources", []):
+            try: tree = ast.parse(source)
+            except SyntaxError: continue
+            for node in tree.body:
+                if isinstance(node, ast.FunctionDef) and node.name == name:
+                    if any(isinstance(child, getattr(ast, kind)) for child in ast.walk(node)):
+                        return True
+        return False
+
     def get(self, name, default=None):
         if name not in self.cache:
             value = self.worker.request(op='get', name=name)
@@ -144,6 +155,9 @@ def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_t
             raise ValueError('Incomplete marking specification')
         ns = Namespace(worker, per_cell)
         ns.cache['COHORT'] = use_cohort
+        notebook = json.loads((Path(work)/'submission.ipynb').read_text())
+        ns.notebook_sources = [''.join(c.get('source', '')) for c in notebook['cells']
+                               if c.get('cell_type') == 'code' and 'autograde-skip' not in c.get('metadata', {}).get('tags', [])]
         result = {k: meta.get(k, default) for k, default in [
             ('cells_total', 0), ('cells_ok', 0), ('cell_errors', []), ('declared_sid', '')]}
         result.update(cohort=use_cohort, status='ERRORS' if result['cell_errors'] else 'OK', questions={})

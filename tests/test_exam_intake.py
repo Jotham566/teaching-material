@@ -16,6 +16,16 @@ class IntakeTests(unittest.TestCase):
  def test_grading_and_duplicate(self):
   r,n=self.process();self.assertEqual((r['status'],r['score'],r['semester_points']),('GRADED',80,12))
   r,n=self.process();self.assertEqual(n,0);self.assertEqual(len(intake.records(self.db)),1)
+ def test_current_test1_dispatch_ignores_old_private_snapshot(self):
+  def check_dispatch(*args):
+   text=Path(args[2]).read_text()
+   self.assertIn('test1_coding_contracts',text)
+   self.assertIn("'q8'",text)
+   self.assertNotIn('decisions',text)
+   return self.result
+  with patch.object(intake,'grade_one',side_effect=check_dispatch):
+   result=intake.process(self.job,self.path,self.db)
+  self.assertEqual(result['grader_version'],'2026.10-test1-coding-v3')
  def test_late_has_no_mark(self):
   self.job['submitted_at']='2026-10-19T12:00:01+03:00';r,n=self.process();self.assertEqual(r['status'],'OUTSIDE_WINDOW');self.assertIsNone(r['score']);self.assertEqual(n,0)
  def test_identity_conflict_withholds_both(self):

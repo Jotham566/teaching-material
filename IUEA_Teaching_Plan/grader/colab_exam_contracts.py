@@ -4,7 +4,7 @@ from engineering_contracts import dataset, clean, summary, same, DOMAINS, check,
 
 VERSION = '2026.10-colab-v2-units'
 PARTS = {
- 'TEST1': [('clean',20),('summary',15),('charts',15),('findings',20),('decisions',30)],
+ 'TEST1': __import__('test1_coding_contracts').PARTS,
  'TEST2': [('split',20),('regression',30),('errors',20),('decisions',30)],
 }
 def decision_keys():

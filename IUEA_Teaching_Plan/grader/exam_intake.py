@@ -44,7 +44,7 @@ def process(job,notebook,db):
     if not valid(sid) or not name or '@' not in email:raise ValueError('Name, email and Student Registration Number are required')
     if job.get('email_verified') is not True:raise ValueError('The Google Form must collect verified account email')
     if digest!=job['notebook_sha256']:raise ValueError('Downloaded notebook checksum mismatch')
-    out={k:job.get(k,'') for k in FIELDS};out.update(student_registration_number=sid,email=email,full_name=name,status='PENDING',score=None,maximum=100,semester_points=None,notebook_sha256=digest,grader_version=VERSION,feedback='')
+    out={k:job.get(k,'') for k in FIELDS};out.update(student_registration_number=sid,email=email,full_name=name,status='PENDING',score=None,maximum=100,semester_points=None,notebook_sha256=digest,grader_version=(__import__('test1_coding_contracts').VERSION if exam=='TEST1' else VERSION),feedback='')
     when=instant(job['submitted_at'])
     if not instant(job['opens_at'])<=when<=instant(job['closes_at']):out.update(status='OUTSIDE_WINDOW',feedback='Submission is outside the authorised window. No final mark.')
     else:
@@ -59,7 +59,14 @@ def process(job,notebook,db):
             folder=HERE.parent/'assessment_banks'/exam/cohort/job['variant']
             with tempfile.TemporaryDirectory() as tmp:
                 path=Path(tmp)/('submission_'+exam+'.ipynb');shutil.copyfile(notebook,path)
-                result=grade_one(str(path),str(HERE/'specs'/f'spec_{exam}.py'),str(HERE/'specs/hidden'/f'spec_{exam}_hidden.py'),exam,cohort,str(folder),20,180,None)
+                hidden_path=HERE/'specs/hidden'/f'spec_{exam}_hidden.py'
+                if exam=='TEST1':
+                    # Private snapshots may contain the old five-question dispatch.
+                    # Build the current dispatch from trusted installed code, never the submission.
+                    from test1_coding_contracts import hidden_spec_source
+                    hidden_path=Path(tmp)/'test1_current_hidden.py'
+                    hidden_path.write_text(hidden_spec_source())
+                result=grade_one(str(path),str(HERE/'specs'/f'spec_{exam}.py'),str(hidden_path),exam,cohort,str(folder),20,180,None)
             out['feedback']=json.dumps(dict(questions=result['questions'],cell_errors=result['cell_errors']),ensure_ascii=False)
             if result['status'] not in ('OK','ERRORS'):out['status']=result['status']
             elif normalize(result.get('declared_sid',''))!=sid:out['status']='IDENTITY_MISMATCH'
