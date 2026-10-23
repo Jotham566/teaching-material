@@ -1,3 +1,11 @@
+## Resuming a take-home Test 1
+
+- New allocations now use one private editable notebook. Students return through the same QR/link, enter the same email and Student Registration Number, then select **Resume my test in Colab**. Full name is still required on the entry page. The original deadline stays fixed.
+- Students must save regularly. Only saved work survives a lost tab or shutdown. After reconnecting, run the top identity/countdown cell and CSV setup, then their completed code cells to recreate runtime values.
+- The top countdown appears after running the first cell. It is a reminder based on device time; the server enforces the actual deadline regardless of the displayed clock or edited notebook.
+- Students with older read-only originals must reopen the saved Drive copy containing their answers. The portal labels that route clearly; it never replaces their copy or claims the blank original contains saved work.
+- Registration matching ignores whitespace and letter case only. Different digits or programme letters require lecturer review of the original allocation. Do not instruct students to change email accounts to bypass a conflict.
+
 # Running and grading the IUEA Colab tests
 
 ## Test 1 take-home windows — October 2026

@@ -6,11 +6,13 @@ const range=(row,col=1,height=1,width=1)=>({getValues:()=>rows.slice(row-1,row-1
 const sheet={getDataRange:()=>({getValues:()=>rows}),getLastRow:()=>rows.length,getRange:range};
 const windowRows=()=>[['key','open','close','enabled','duration'],[windowKey,'2026-10-23T16:00:00Z',new Date(end).toISOString(),'YES',180]];
 const book={getSheetByName:n=>n==='Test windows'?{getDataRange:()=>({getValues:windowRows})}:sheet};
-let props={};const ctx={Date:Clock,Math,JSON,console,SpreadsheetApp:{openById:()=>book,newRichTextValue:()=>({setText(v){this.v=v;return this},build(){return this.v}})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},PropertiesService:{getScriptProperties:()=>({getProperty:k=>props[k],setProperty:(k,v)=>props[k]=v})},Utilities:{getUuid:()=> 'synthetic-code',formatDate:d=>d.toISOString(),newBlob:b=>b},ScriptApp:{getOAuthToken:()=> 'never-real'},UrlFetchApp:{fetch:()=>({getResponseCode:()=>200})},DriveApp:{createFolder:()=>({getId:()=> 'private-folder'}),getFolderById:()=>({createFile:()=>{const id='file-'+(++fileCount);return {getId:()=>id};}})}};
+let driveCalls=[];let props={};const ctx={Date:Clock,Math,JSON,console,SpreadsheetApp:{openById:()=>book,newRichTextValue:()=>({setText(v){this.v=v;return this},build(){return this.v}})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},PropertiesService:{getScriptProperties:()=>({getProperty:k=>props[k],setProperty:(k,v)=>props[k]=v})},Utilities:{getUuid:()=> 'synthetic-code',formatDate:d=>d.toISOString(),newBlob:b=>b},ScriptApp:{getOAuthToken:()=> 'never-real'},UrlFetchApp:{fetch:(url,options)=>{driveCalls.push({url,options});return {getResponseCode:()=>200}}},DriveApp:{createFolder:()=>({getId:()=> 'private-folder'}),getFolderById:()=>({createFile:()=>{const id='file-'+(++fileCount);return {getId:()=>id};}})}};
 vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Portal.gs','utf8'),ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Packets.gs','utf8'),ctx);
 const input={test:'CML3111|TEST1',registration:'DEMO / Timed',email:'synthetic@example.com',name:'Synthetic learner'};
 let result=ctx.requestTestFiles(input);assert.equal(result.personalDeadline,'2026-10-23T19:00:00.000Z');assert.equal(rows[1][6],input.name);assert(result.colabUrl.includes('/drive/file-1'));let nb=JSON.parse(result.notebook);assert(nb.cells[3].source.includes('write_text'));assert(nb.cells[0].source.includes('Take-home'));assert.equal(fileCount,1);if(process.env.IUEA_TEST_PACKET_OUT)fs.writeFileSync(process.env.IUEA_TEST_PACKET_OUT,JSON.stringify(nb));
-now+=3600000;let again=ctx.requestTestFiles(input);assert.equal(again.personalDeadline,result.personalDeadline);assert.equal(again.colabUrl,result.colabUrl);assert.equal(fileCount,1);
+assert.equal(result.workingMode,'DIRECT');assert.equal(result.resumed,false);assert(driveCalls.some(c=>JSON.parse(c.options.payload).role==='writer'));assert(driveCalls.some(c=>JSON.parse(c.options.payload).writersCanShare===false));assert(nb.cells[1].source.includes('Test countdown'));assert(nb.cells[1].source.includes(result.personalDeadline));
+now+=3600000;let again=ctx.requestTestFiles(input);assert.equal(again.personalDeadline,result.personalDeadline);assert.equal(again.colabUrl,result.colabUrl);assert.equal(fileCount,1);assert.equal(again.resumed,true);
+const spaced=ctx.requestTestFiles({...input,registration:'demo/timed'});assert.equal(spaced.colabUrl,result.colabUrl);assert.equal(spaced.personalDeadline,result.personalDeadline);assert.equal(rows.length,2);assert.throws(()=>ctx.requestTestFiles({...input,registration:'DEMO/OTHER'}),/already has/);assert.throws(()=>ctx.requestTestFiles({...input,email:'other@example.com'}),/do not match/);
 now=Date.parse(result.personalDeadline)+1;assert.throws(()=>ctx.requestTestFiles(input),/personal deadline/);assert.equal(rows.length,2);
 rows=[['headers']];now=end-60000;result=ctx.requestTestFiles(input);assert.equal(Date.parse(result.personalDeadline),end);
 now=end+1;assert.throws(()=>ctx.requestTestFiles(input),/closed/);
@@ -50,3 +52,19 @@ for(const cohort of ['CML3111','CML3112','CML3113'])for(const variant of ['A','B
  const repeat=ctx.requestTestFiles({...input,test:windowKey});assert.equal(repeat.colabUrl,issued.colabUrl);assert.equal(repeat.personalDeadline,issued.personalDeadline);
 }
 console.log('PASS all nine timed Test 1 packets: correct cohort, allocation, unchanged task code, exact CSV, three-hour deadline and stable resume.');
+
+// Existing reader originals must never be represented as saved student work.
+rows[1][11]='COPY';const legacy=ctx.requestTestFiles({...input,test:windowKey});assert.equal(legacy.workingMode,'COPY');assert(legacy.instructions.includes('Save a copy'));assert.equal(legacy.colabUrl,ctx.requestTestFiles({...input,test:windowKey}).colabUrl);
+console.log('PASS: formatting-only resume, conflicting identity rejection, private editable file, sharing restriction, notebook countdown and legacy copies.');
+// Countdown is presentation only and cannot reset the deadline on rerun.
+const timerSource=ctx.portalCountdownCode_('2026-10-23T19:00:00.000Z');
+const timerScript=timerSource.match(/<script>([\s\S]*?)<\/script>/)[1];
+let timerNow=Date.parse('2026-10-23T18:00:00Z'),timerTick;
+class DisplayClock extends Date{static now(){return timerNow;}}
+const timerText={},timerBox={isConnected:true,querySelector:()=>timerText};
+const timerContext={Date:DisplayClock,Math,document:{currentScript:{previousElementSibling:timerBox}},setInterval:f=>{timerTick=f;return 1},clearInterval(){}};
+vm.runInNewContext(timerScript,timerContext);assert.equal(timerText.textContent,'1h 0m 0s remaining');
+timerNow+=60000;timerTick();assert.equal(timerText.textContent,'0h 59m 0s remaining');
+vm.runInNewContext(timerScript,timerContext);assert.equal(timerText.textContent,'0h 59m 0s remaining');
+timerNow+=3600000;timerTick();assert.match(timerText.textContent,/Time has ended/);
+console.log('PASS countdown ticking, rerun without reset and expiry.');

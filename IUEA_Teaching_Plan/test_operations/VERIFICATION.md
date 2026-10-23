@@ -1,3 +1,11 @@
+## 23 October 2026 — resumable working notebooks and countdown
+
+Published Apps Script version 9 and Worker `2eb3e01b-8abe-488a-abc6-cde90a542d9b`. New timed allocations use one lecturer-owned notebook privately editable by the named student; editors cannot reshare through Drive. Resume returns that same file and original deadline. Existing reader-original allocations remain in saved-copy mode; their student copies are not overwritten or replaced.
+
+The first identity cell displays a countdown after execution. It uses an absolute deadline, never a new three-hour duration. The display is advisory and uses device time; collection continues to enforce the saved server deadline. Registration matching tolerates whitespace and case only, rejecting different identities and ambiguous duplicate allocations.
+
+Live isolated Apps Script rehearsal passed for all three programmes: editable access for the test account, same notebook URL and same deadline on repeat. Synthetic records are in a separate rehearsal workbook, not the student ledger. Automated checks passed for resume, formatting variants, conflicting identities, strict expiry, global cutoff, countdown rerun/expiry, old-copy handling and existing gateway/collection paths. Notebook timer Python compiles. Live Colab visual execution and save/reopen confirmation remain pending: the in-app browser reported an expired Google session, while the Edge rehearsal tab remained blank. Do not describe those browser steps as verified until the session is restored and the checks finish.
+
 ## 23 October 2026, 19:19 Kampala — student instructions
 
 Published portal version 8 and Worker version `725d84f5-cf68-4831-8d00-bd99dfefc36e`. Updated the entry page, Test 1 notebook introductions, student instructions/packages and live submission-form descriptions. Instructions cover the unpaused timer, saved working copy, automatic CSV setup, account selection, final form confirmation and technical problems. Previously issued Drive files and student working copies are preserved; updated introductions apply to newly issued files and current downloads.
