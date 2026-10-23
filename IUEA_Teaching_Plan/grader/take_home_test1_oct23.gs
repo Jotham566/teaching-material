@@ -5,8 +5,8 @@ function scheduleTakeHomeTest1October23(){
  try{
   sheet.getRange(1,5).setValue('duration_minutes');
   var schedule={
-   'CML3111|TEST1':['2026-10-23T19:00:00+03:00','2026-10-29T23:59:00+03:00'],
-   'CML3113|TEST1':['2026-10-23T19:00:00+03:00','2026-10-29T23:59:00+03:00'],
+   'CML3111|TEST1':['2026-10-24T11:00:00+03:00','2026-10-29T23:59:00+03:00'],
+   'CML3113|TEST1':['2026-10-24T11:00:00+03:00','2026-10-29T23:59:00+03:00'],
    'CML3112|TEST1':['2026-10-27T19:00:00+03:00','2026-11-02T23:59:00+03:00']
   };
   var rows=sheet.getDataRange().getValues();

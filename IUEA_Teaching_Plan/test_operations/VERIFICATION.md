@@ -130,3 +130,7 @@ All three programmes completed a fresh, isolated rehearsal using the current por
 - Closed the three rehearsal forms and restored the collector's original source after removing temporary rehearsal helpers. Private evidence and the rehearsal workbook remain under test_operations/private and test_operations/grading_output; they are excluded from Git.
 
 Google authorization was slow in the embedded browser; CML3111 completed in normal Edge, and the other two completed in Colab in the embedded browser. This check cannot guarantee Google availability, a student's connection, or every phone/browser. QR payloads were decoded and their destinations checked; a physical phone scan was not part of this run. Students must still finish the Google Form and see its confirmation before their deadline. Grading is the lecturer's batch operation after export, not an immediate student-facing mark.
+
+## 23 October 2026 — opening-time adjustment
+
+At the lecturer's request, changed only CML3111 and CML3113 Test 1 opening times to 24 October 2026 at 11:00 Kampala time. Live read-back confirmed both retain 29 October 23:59 cutoffs and 180-minute attempts. Both forms are currently closed. CML3112 remains 27 October 19:00–2 November 23:59 with 180-minute attempts. The existing scheduler remains installed (one trigger). Updated the stored schedule helper to prevent an accidental reset to the earlier opening time; removed the temporary updater after verification.
