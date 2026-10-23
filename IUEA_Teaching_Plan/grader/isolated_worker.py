@@ -92,8 +92,17 @@ def execute(request):
             source = cell.get('source', '')
             source = ''.join(source) if isinstance(source, list) else source
             tags = cell.get('metadata', {}).get('tags', [])
-            if 'autograde-skip' in tags:
-                if 'iuea-timer' in tags:
+            # Colab can discard custom tags when saving a notebook. Recognize
+            # the supplied controls by their exact paired headers as well.
+            headers = source.splitlines()[:10]
+            timer_cell = 'iuea-timer' in tags or (
+                '#@title Check details and countdown — Do not edit this cell' in headers
+                and '# Do not edit this cell: identifies your attempt and preserves your timer.' in headers)
+            submit_cell = (
+                '#@title Submit your test — Do not edit this cell' in headers
+                and '# Do not edit this cell: saves your answers and prepares the submission form.' in headers)
+            if 'autograde-skip' in tags or timer_cell or submit_cell:
+                if timer_cell:
                     # Read literal identity fields without executing the browser countdown.
                     import ast
                     try:

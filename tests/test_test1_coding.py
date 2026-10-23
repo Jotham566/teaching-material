@@ -57,4 +57,20 @@ class CodingTests(unittest.TestCase):
    self.assertNotIn('pd.read_csv',''.join(nb['cells'][3]['source']))
    r=self.grade(complete_notebook(nb),variant)
    self.assertEqual(r['declared_sid'],'DEMO / TIMED',r);self.assertEqual(self.score(r),100,r)
+ def test_colab_snapshot_without_custom_cell_tags(self):
+  with tempfile.TemporaryDirectory() as temp:
+   path=Path(temp)/'portal.ipynb'
+   subprocess.run(['node','tests/test_timed_takehome.cjs'],cwd=ROOT,env={**os.environ,'IUEA_TEST_PACKET_OUT':str(path)},check=True,capture_output=True)
+   nb=complete_notebook(json.loads(path.read_text()))
+   variant=re.search(r'VARIANT = "([ABC])"',''.join(nb['cells'][-1]['source']))[1]
+   for cell in nb['cells']:cell.get('metadata',{}).pop('tags',None)
+   r=self.grade(nb,variant)
+   self.assertEqual(r['declared_sid'],'DEMO / TIMED',r)
+   self.assertEqual(self.score(r),100,r)
+   self.assertEqual(r['cell_errors'],[],r)
+   # Ordinary answer errors must still be reported.
+   nb['cells'].append({'cell_type':'code','metadata':{},'source':'raise ValueError("student answer error")','outputs':[],'execution_count':None})
+   r=self.grade(nb,variant)
+   self.assertEqual(len(r['cell_errors']),1,r)
+   self.assertEqual(r['cell_errors'][0]['etype'],'ValueError',r)
 if __name__=='__main__':unittest.main()

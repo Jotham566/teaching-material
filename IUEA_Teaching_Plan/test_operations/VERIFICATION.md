@@ -111,3 +111,22 @@ The grader runs locally, so this change requires no portal deployment. Existing 
 - Local tests cover persisted identity/timer, repeats, personal expiry, global cutoff, historical allocation migration, accepted on-time snapshot with personal timestamps, missing timer rejection, late form exclusion, all 18 existing packets and six routes, export menu replay/deduplication, and local intake/submission regression tests.
 - No new live student form was submitted in this check: the real windows remained closed until the authorised times. Timed collector enforcement was tested with synthetic automated responses; the unchanged snapshot/form flow has its earlier live rehearsal record.
 - Entry identity evidence is explicitly unverified. Verified name/email/registration evidence comes from the collected form and matching snapshot owner. No existing marks were modified.
+
+## 23 October 2026 — final live rehearsal of current Test 1 notebooks
+
+All three programmes completed a fresh, isolated rehearsal using the current portal packet generation and collector. Synthetic allocations used separate windows, forms and a workbook; production windows and student marks were not changed. The public Cloudflare pages and all three QR payloads were checked separately. This was not a new student allocation through the production Start button.
+
+| Programme | Issued version | Live collection | Actual snapshot grade |
+| --- | --- | --- | --- |
+| CML3111 | A | Accepted | 100/100; 15 semester points |
+| CML3112 | C | Accepted | 100/100; 15 semester points |
+| CML3113 | B | Accepted | 100/100; 15 semester points |
+
+- Opened the private notebooks in Colab, authorized the rehearsal Google account, ran the CSV preparation and reference answers, and used each submission control. All three Google Forms confirmed submission. The collector exported three notebook snapshots with zero collection issues.
+- Graded the downloaded export in Docker, not merely the local reference notebooks. Each result contains the correct synthetic name, registration number, email and cohort. The generated Test_Marks.xlsx contains three GRADED rows, each 100/100 and 15 semester points. Re-importing the same ZIP retained exactly three attempts.
+- Found that Colab discarded custom cell tags in one saved snapshot. The worker now recognizes the exact paired headers on supplied countdown/submission cells when tags are missing. Literal identity fields are still read without executing browser controls. Regression checks confirm full marks without spurious cell errors, while genuine answer errors remain visible. All three live snapshots now have no cell execution errors.
+- Re-ran all nine Test 1 and nine Test 2 reference packets after the worker fix; all score 100/100. Blank/partial-answer checks and nine beginner-workflow tests pass. Intake, submission, batch, cumulative integration, timed portal, gateway, collector and export-menu checks also passed during this review.
+- Timed checks cover resuming the same allocation, preserving its deadline, rejecting late submission and enforcing the global cutoff. Production configuration remains CML3111/CML3113: 23 October 19:00–29 October 23:59; CML3112: 27 October 19:00–2 November 23:59, Kampala time. Each attempt lasts at most 180 minutes. One scheduler remains installed.
+- Closed the three rehearsal forms and restored the collector's original source after removing temporary rehearsal helpers. Private evidence and the rehearsal workbook remain under test_operations/private and test_operations/grading_output; they are excluded from Git.
+
+Google authorization was slow in the embedded browser; CML3111 completed in normal Edge, and the other two completed in Colab in the embedded browser. This check cannot guarantee Google availability, a student's connection, or every phone/browser. QR payloads were decoded and their destinations checked; a physical phone scan was not part of this run. Students must still finish the Google Form and see its confirmation before their deadline. Grading is the lecturer's batch operation after export, not an immediate student-facing mark.
