@@ -102,7 +102,7 @@ function portalColabFile_(book,record,notebook){
  try{
   var sheet=book.getSheetByName('Test allocations'),saved=sheet.getRange(record._row,1,1,PORTAL_ALLOCATION_HEADERS.length).getValues()[0];
   if(saved[3]!==record[3])throw Error('Files are unavailable. Contact your lecturer.');
-  if(saved[9])return 'https://colab.research.google.com/drive/'+saved[9]+'?authuser='+encodeURIComponent(record[2]);
+  if(saved[9])return 'https://colab.research.google.com/drive/'+saved[9];
   var props=PropertiesService.getScriptProperties(),folderId=props.getProperty('PORTAL_NOTEBOOK_FOLDER');
   if(!folderId){folderId=DriveApp.createFolder('IUEA private issued test notebooks').getId();props.setProperty('PORTAL_NOTEBOOK_FOLDER',folderId);}
   var file=DriveApp.getFolderById(folderId).createFile(Utilities.newBlob(JSON.stringify(notebook,null,1),'application/vnd.google.colaboratory',record[0].replace('|','_')+'_student.ipynb'));
@@ -111,7 +111,7 @@ function portalColabFile_(book,record,notebook){
   var sharing=UrlFetchApp.fetch('https://www.googleapis.com/drive/v3/files/'+file.getId(),{method:'patch',contentType:'application/json',headers:{Authorization:'Bearer '+ScriptApp.getOAuthToken()},payload:JSON.stringify({writersCanShare:false}),muteHttpExceptions:true});
   if(sharing.getResponseCode()!==200)throw Error('Files are unavailable. Contact your lecturer; your timer has started.');
   sheet.getRange(record._row,10).setValue(file.getId());
-  return 'https://colab.research.google.com/drive/'+file.getId()+'?authuser='+encodeURIComponent(record[2]);
+  return 'https://colab.research.google.com/drive/'+file.getId();
  }finally{lock.releaseLock();}
 }
 
