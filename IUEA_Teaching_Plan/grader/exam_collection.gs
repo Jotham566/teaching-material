@@ -45,7 +45,7 @@ function installColabExamCollection(){
 function examWindow_(key,c){
  var rows=SpreadsheetApp.openById(c.bookId).getSheetByName('Test windows').getDataRange().getValues();
  var r=rows.slice(1).filter(function(x){return x[0]===key;})[0];
- return r?{open:String(r[1]),close:String(r[2]),enabled:String(r[3]).toUpperCase()==='YES'}:{open:'',close:'',enabled:false};
+ return r?{open:String(r[1]),close:String(r[2]),enabled:String(r[3]).toUpperCase()==='YES',minutes:Number(r[4])||0}:{open:'',close:'',enabled:false};
 }
 function examCollect_(response,key,c){
  var sheet=SpreadsheetApp.openById(c.bookId).getSheetByName('Collection');
@@ -58,6 +58,11 @@ function examCollect_(response,key,c){
   else{
    if(!email||!row[4]||!row[6])throw Error('Missing student details');
    var allocation=examAllocation_(row[3],key,row[6],email,c);row[3]=allocation.variant;
+   if(w.minutes){
+    if(!allocation.started||!allocation.deadline||!isFinite(Date.parse(allocation.started))||!isFinite(Date.parse(allocation.deadline)))throw Error('No saved test timer. Start through the test entry page.');
+    row[8]=allocation.started;row[9]=new Date(Math.min(Date.parse(allocation.deadline),Date.parse(w.close))).toISOString();
+    if(Date.parse(stamp)<Date.parse(row[8])||Date.parse(stamp)>Date.parse(row[9])){row[10]='OUTSIDE_PERSONAL_WINDOW';row[14]='Submitted outside the saved three-hour test window.';sheet.appendRow(row.map(examText_));return;}
+   }
    if(!/^[a-zA-Z0-9_-]{10,200}$/.test(row[13])||!/^[a-f0-9]{64}$/.test(row[12]))throw Error('Invalid snapshot reference');
    var file=DriveApp.getFileById(row[13]);
    if(file.getOwner().getEmail().toLowerCase()!==email.toLowerCase())throw Error('The form account must own the snapshot. Use the same account in Colab and the form.');
@@ -80,6 +85,7 @@ function examFormInstructions_(form,w){
  if(isFinite(Date.parse(w.open))&&isFinite(Date.parse(w.close))){
   text+='\n\nOpens: '+Utilities.formatDate(new Date(w.open),'Africa/Kampala','d MMM yyyy HH:mm')+' Kampala. Closes: '+Utilities.formatDate(new Date(w.close),'Africa/Kampala','d MMM yyyy HH:mm')+' Kampala.';
  }
+ if(w.minutes)text+='\n\nTAKE-HOME TEST: '+w.minutes+' minutes from Start test. Your personal deadline may be earlier than the class closing time above. Complete this form before your personal deadline shown on the entry page. A form confirmation does not override the deadline: late responses are retained for review but are not graded.';
  if(form.getDescription()!==text)form.setDescription(text);
  form.getItems(FormApp.ItemType.TEXT).forEach(function(item){var i=item.asTextItem();if(/^Snapshot /.test(i.getTitle())&&i.getHelpText()!=='Automatically filled by the notebook button. Do not change this value.')i.setHelpText('Automatically filled by the notebook button. Do not change this value.');});
 }
@@ -104,7 +110,7 @@ function exportCollectedColabTests(){
 function exportColabConfig_(c){
  var book=SpreadsheetApp.openById(c.bookId),rows=book.getSheetByName('Collection').getDataRange().getValues().slice(1),jobs=[],blobs=[],issues=[];
  rows.forEach(function(r){if(r[10]==='REHEARSAL')return;if(r[10]!=='COLLECTED'){issues.push(r);return;}var file=DriveApp.getFileById(r[11]);var name=r[0]+'.ipynb';blobs.push(file.getBlob().setName(name));jobs.push({response_id:r[0],cohort:r[1],assessment:r[2],variant:r[3],full_name:r[4],email:r[5],email_verified:true,student_registration_number:r[6],submitted_at:r[7],opens_at:r[8],closes_at:r[9],notebook_sha256:r[12],file:name});});
- blobs.push(Utilities.newBlob(JSON.stringify({schema:1,exported_at:new Date().toISOString(),jobs:jobs,collection_issues:issues},null,2),'application/json','manifest.json'));
+ blobs.push(Utilities.newBlob(JSON.stringify({schema:1,exported_at:new Date().toISOString(),jobs:jobs,collection_issues:issues,entry_identity_evidence:examEntryIdentity_(book)},null,2),'application/json','manifest.json'));
  var zip=DriveApp.getFolderById(c.folderId).createFile(Utilities.zip(blobs,'IUEA-test-batch-'+Utilities.formatDate(new Date(),'Africa/Kampala','yyyyMMdd-HHmmss')+'.zip'));
  console.log('DOWNLOAD BATCH: https://drive.google.com/file/d/'+zip.getId()+'/view');console.log(jobs.length+' collected notebooks; '+issues.length+' collection issues. Workbook: '+book.getUrl());
  return {url:'https://drive.google.com/file/d/'+zip.getId()+'/view',notebooks:jobs.length,issues:issues.length};
@@ -152,7 +158,7 @@ function examAllocation_(code,key,reg,email,c){
  if(!sheet)throw Error('Get your test files from the lecturer’s test entry link first.');
  var rows=sheet.getDataRange().getValues().slice(1),r=rows.filter(function(x){return x[0]===key&&x[3]===code;})[0];
  if(!r||String(r[1])!==String(reg).trim().toUpperCase()||String(r[2]).toLowerCase()!==email.toLowerCase()||!/^[ABC]$/.test(r[4]))throw Error('Test allocation does not match your registration number and Google email. Use your issued notebook and the same account.');
- return {variant:r[4],code:code};
+ return {variant:r[4],code:code,started:r[7]||'',deadline:r[8]||'',entry_name:r[6]||''};
 }
 function enableTestPortalCollection(){
  var c=examConfig_();
@@ -166,4 +172,10 @@ function archivePortalRehearsal(){
  var s=SpreadsheetApp.openById(examConfig_().bookId).getSheetByName('Collection');
  var rows=s.getDataRange().getValues();
  rows.forEach(function(r,i){if(r[0]==='2_ABaOnucErCJWtrUJ5QIk9pt_P22bRhZm6nqe2Li0vTcYyr5VIZ1viWAb6n2zcNRcqPdXOIk'&&r[4]==='QA Portal Rehearsal'){s.getRange(i+1,11).setValue('REHEARSAL');s.getRange(i+1,15).setValue('Synthetic portal verification only. Excluded from student batches.');console.log('Synthetic rehearsal retained in audit and excluded from student batches.');}});
+}
+
+// Names/emails entered at entry are self-declared until matched to a collected verified account.
+function examEntryIdentity_(book){
+ var sheet=book.getSheetByName('Test allocations');if(!sheet)return [];
+ return sheet.getDataRange().getValues().slice(1).map(function(r){return {assessment_key:r[0],student_registration_number:r[1],email:r[2],allocation_code:r[3],full_name:r[6]||'',started_at:r[7]||'',personal_deadline:r[8]||'',email_verified:false};});
 }

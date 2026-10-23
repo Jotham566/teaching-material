@@ -1,6 +1,6 @@
 # Student test entry gateway
 
-Status: deployed on 19 October 2026 at https://iuea-test-entry.jothammartin-wambi.workers.dev/. Apps Script original endpoint version 4 includes Gateway.gs. The Worker uses Workers Free, with observability disabled and its shared secret stored separately from the source. All six student links and QR codes use this host.
+Status: deployed on 19 October 2026 at https://iuea-test-entry.jothammartin-wambi.workers.dev/. Apps Script original endpoint version 6 includes Gateway.gs and timed Test 1 allocation (updated 23 October 2026). The Worker uses Workers Free, with observability disabled and its shared secret stored separately from the source. All six student links and QR codes use this host.
 
 Students open one ordinary HTTPS address from a QR or clickable link. The page sends requests only to `/api/files` on the same host. The Worker forwards the request to Apps Script from the server without forwarding browser cookies. Google account selection therefore does not run in the student's browser during file retrieval. Colab and final Google Forms submission still require the student's own Google account.
 

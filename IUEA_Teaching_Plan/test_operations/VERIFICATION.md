@@ -68,3 +68,15 @@ Checks completed:
 - Three PPTX files passed package/layout validation, rendered, and their new worked examples were reviewed. Speaker notes match the source. The timed Cloudflare entry links remain in the decks.
 
 The grader runs locally, so this change requires no portal deployment. Existing ledger receipts remain immutable on re-import; previously graded production attempts would require an explicit regrading workflow. The check above used a separate rehearsal ledger.
+
+
+## 23 October 2026 — timed take-home Test 1
+
+- Saved and read back all three authorised windows and duration_minutes=180; one existing syncColabExams scheduler trigger remains installed. Test 2 windows and existing submissions were preserved.
+- Deployed Apps Script version 6 at the existing endpoint and Worker version 8e0a4d18-090f-4ef2-8be6-49af51e22084 at the existing student host. No student URL or QR payload changed.
+- Live requests for all three Test 1 routes before opening return their correct opening date and no files.
+- An editor-only rehearsal used a separate synthetic workbook, never the student collection. All three programmes created private Colab files. Repeat requests reused each file and saved personal deadline. The rehearsal function was removed before final deployment.
+- CML3111's private notebook opened in Colab as the designated test account. Copy to Drive created an editable student-owned copy. The CSV setup cell ran successfully and loaded 91 rows without a manual file upload.
+- Local tests cover persisted identity/timer, repeats, personal expiry, global cutoff, historical allocation migration, accepted on-time snapshot with personal timestamps, missing timer rejection, late form exclusion, all 18 existing packets and six routes, export menu replay/deduplication, and local intake/submission regression tests.
+- No new live student form was submitted in this check: the real windows remained closed until the authorised times. Timed collector enforcement was tested with synthetic automated responses; the unchanged snapshot/form flow has its earlier live rehearsal record.
+- Entry identity evidence is explicitly unverified. Verified name/email/registration evidence comes from the collected form and matching snapshot owner. No existing marks were modified.

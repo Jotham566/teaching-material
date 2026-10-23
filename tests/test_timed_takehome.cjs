@@ -1,0 +1,33 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+let now=Date.parse('2026-10-23T16:00:00Z'),end=Date.parse('2026-10-29T20:59:00Z'),rows=[['headers']],fileCount=0;
+const RealDate=Date;class Clock extends Date {constructor(x){super(x===undefined?now:x)}static now(){return now;}}
+const range=(row,col=1,height=1,width=1)=>({getValues:()=>rows.slice(row-1,row-1+height).map(r=>r.slice(col-1,col-1+width)),setValues(v){v.forEach((r,i)=>{rows[row-1+i]??=[];r.forEach((x,j)=>rows[row-1+i][col-1+j]=x);});},setRichTextValues(v){this.setValues(v)},setValue(v){this.setValues([[v]])}});
+const sheet={getDataRange:()=>({getValues:()=>rows}),getLastRow:()=>rows.length,getRange:range};
+const windowRows=()=>[['key','open','close','enabled','duration'],['CML3111|TEST1','2026-10-23T16:00:00Z',new Date(end).toISOString(),'YES',180]];
+const book={getSheetByName:n=>n==='Test windows'?{getDataRange:()=>({getValues:windowRows})}:sheet};
+let props={};const ctx={Date:Clock,Math,JSON,console,SpreadsheetApp:{openById:()=>book,newRichTextValue:()=>({setText(v){this.v=v;return this},build(){return this.v}})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},PropertiesService:{getScriptProperties:()=>({getProperty:k=>props[k],setProperty:(k,v)=>props[k]=v})},Utilities:{getUuid:()=> 'synthetic-code',formatDate:d=>d.toISOString(),newBlob:b=>b},ScriptApp:{getOAuthToken:()=> 'never-real'},UrlFetchApp:{fetch:()=>({getResponseCode:()=>200})},DriveApp:{createFolder:()=>({getId:()=> 'private-folder'}),getFolderById:()=>({createFile:()=>{const id='file-'+(++fileCount);return {getId:()=>id};}})}};
+vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Portal.gs','utf8'),ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Packets.gs','utf8'),ctx);
+const input={test:'CML3111|TEST1',registration:'DEMO / Timed',email:'synthetic@example.com',name:'Synthetic learner'};
+let result=ctx.requestTestFiles(input);assert.equal(result.personalDeadline,'2026-10-23T19:00:00.000Z');assert.equal(rows[1][6],input.name);assert(result.colabUrl.includes('/drive/file-1'));let nb=JSON.parse(result.notebook);assert(nb.cells[3].source.includes('write_text'));assert(nb.cells[0].source.includes('Take-home'));assert.equal(fileCount,1);if(process.env.IUEA_TEST_PACKET_OUT)fs.writeFileSync(process.env.IUEA_TEST_PACKET_OUT,JSON.stringify(nb));
+now+=3600000;let again=ctx.requestTestFiles(input);assert.equal(again.personalDeadline,result.personalDeadline);assert.equal(again.colabUrl,result.colabUrl);assert.equal(fileCount,1);
+now=Date.parse(result.personalDeadline)+1;assert.throws(()=>ctx.requestTestFiles(input),/personal deadline/);assert.equal(rows.length,2);
+rows=[['headers']];now=end-60000;result=ctx.requestTestFiles(input);assert.equal(Date.parse(result.personalDeadline),end);
+now=end+1;assert.throws(()=>ctx.requestTestFiles(input),/closed/);
+// Historical allocation created during rehearsal gets a new saved timer only on first timed start.
+rows=[['headers'],['CML3111|TEST1','DEMO / TIMED','synthetic@example.com','T-old','A','2026-10-19T00:00:00Z']];now=Date.parse('2026-10-23T16:00:00Z');result=ctx.requestTestFiles(input);assert.equal(result.startedAt,new Date(now).toISOString());assert.equal(rows[1][3],'T-old');
+vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/grader/exam_collection.gs','utf8'),ctx);
+let collected=[];const collection={getLastRow:()=>1,appendRow:r=>collected.push(r)};
+const originalGet=book.getSheetByName;book.getSheetByName=n=>n==='Collection'?collection:originalGet(n);
+const vals={'Full name':'Synthetic learner','Student Registration Number':'DEMO / TIMED','Test allocation code':'T-old'};
+const response={getId:()=> 'late-synthetic',getTimestamp:()=>new Date(now+3*3600000+1),getRespondentEmail:()=>input.email,getItemResponses:()=>Object.entries(vals).map(([k,v])=>({getItem:()=>({getTitle:()=>k}),getResponse:()=>v}))};
+ctx.examCollect_(response,input.test,{bookId:'book'});assert.equal(collected[0][10],'OUTSIDE_PERSONAL_WINDOW');assert.equal(collected[0][9],result.personalDeadline);
+console.log('PASS timed test: stored identity, stable timer/file, refresh, strict expiry, global cutoff, historical allocation migration, collector rejection of late form.');
+// On-time collection exports the personal deadline, independently of notebook metadata.
+const crypto=require('crypto');const bytes=Buffer.from(JSON.stringify({nbformat:4,cells:[],metadata:{iuea_allocation_code:'T-old'}}));
+vals['Snapshot file ID']='synthetic-snapshot-id';vals['Snapshot SHA-256']=crypto.createHash('sha256').update(bytes).digest('hex');
+ctx.Utilities.DigestAlgorithm={SHA_256:'sha256'};ctx.Utilities.computeDigest=(_,b)=>[...crypto.createHash('sha256').update(b).digest()];
+ctx.DriveApp.getFileById=()=>({getOwner:()=>({getEmail:()=>input.email}),getSize:()=>bytes.length,getBlob:()=>({getBytes:()=>bytes,getDataAsString:()=>bytes.toString()})});
+response.getTimestamp=()=>new Date(now+60*1000);response.getId=()=> 'ontime-synthetic';ctx.examCollect_(response,input.test,{bookId:'book',folderId:'private-folder'});
+assert.equal(collected.at(-1)[10],'COLLECTED');assert.equal(collected.at(-1)[8],result.startedAt);assert.equal(collected.at(-1)[9],result.personalDeadline);
+response.getId=()=> 'missing-timer';rows[1][7]='';rows[1][8]='';ctx.examCollect_(response,input.test,{bookId:'book'});assert.equal(collected.at(-1)[10],'COLLECTION_ERROR');
+console.log('PASS collector: on-time snapshot accepted with personal timestamps; missing timer fails closed.');

@@ -1,5 +1,14 @@
 # Student test entry portal
 
+## Timed take-home Test 1 (23 October 2026)
+
+Live Apps Script version 6 and the Cloudflare page were updated on 23 October 2026.
+
+See [the current test checklist](../test_operations/TEST_CHECKLIST.md). Test windows column E (`duration_minutes=180`) enables a persisted personal deadline. Test allocations append full name, started_at, personal_deadline, notebook_id and window_opens_at; original allocation columns and collected submissions remain intact. Old rehearsal allocations start their timer only on their first timed request. The collector checks the server-stored timer, independently of the notebook metadata or browser clock.
+
+Issued Colab files are private, shared as reader only with the declared Google account, without notification emails. Students save their own copy and run the bundled CSV setup cell. Entry email is unverified until the Google Form account and snapshot ownership match. The export includes entry identity evidence marked unverified alongside verified collected jobs.
+
+
 ## Deployment status
 
 Published on 19 October 2026 through Cloudflare Workers Free. Students use the Cloudflare links below; Google redirects happen server-to-server, not in their browser. Apps Script version 4 runs as wirmbeesubs@gmail.com with access Anyone and authenticates the Worker using a private Script Property. Historical diagnosis below records earlier access settings.

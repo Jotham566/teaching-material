@@ -1,5 +1,20 @@
 # Running and grading the IUEA Colab tests
 
+## Test 1 take-home windows — October 2026
+
+All times are Kampala time. CML3111 and CML3113: 23 October, 19:00 to 29 October, 23:59. CML3112: 27 October, 19:00 to 2 November, 23:59.
+
+1. Share the existing course-specific test-entry link/QR. Students should read the page before starting and arrange a laptop and internet access.
+2. Students enter their full name, Google-account email and Student Registration Number, then click **Start test / Resume my test** only when ready. The server saves one start time. Their deadline is the earlier of start + 180 minutes or the class closing time. Refreshing does not restart it.
+3. Click **Open my test in Colab**, sign in with that account, then **File → Save a copy in Drive**. Run the identity cell and **Load the supplied CSV and Python libraries**. The assigned CSV is created automatically; no CSV upload is needed. Downloads remain a backup.
+4. Finish the notebook's submission process AND press Submit on its generated Google Form before the personal deadline. Allow 20 minutes for checking and submission. Google Form confirmation records receipt, but does not override a late timestamp.
+5. Export practical submissions from the existing spreadsheet menu and run the normal grading command. The collector exports the saved personal opening/closing timestamps, and the local grader checks them again. Late receipts remain in collection issues for review; earlier submissions are not deleted.
+
+Entry names and emails are self-declared. Final submission verifies the Google account and snapshot ownership; use that verified evidence when matching earlier assignments/quizzes. A shared email or similar name alone must not merge different valid registration numbers.
+
+Colab cannot be remotely locked at expiry. The server rejects late work for grading. Timers include setup and internet interruptions; handle genuine exceptions individually with an audit record, not by deleting allocations.
+
+
 For Test 1 (Week 7) and Test 2 (Week 14) in CML3111, CML3112 and CML3113.
 Students submit during the test; your Mac grades the collected work afterwards. Google AI Plus is not needed. Keep using **wirmbeesubs@gmail.com** for the lecturer forms and Drive files.
 
@@ -14,7 +29,7 @@ The entry link and QR code may be shared in advance. The portal releases the ass
 1. Sign into **wirmbeesubs@gmail.com**. Open [Test collection workbook](https://docs.google.com/spreadsheets/d/1BveqLGvv-6C-00TMbUF0qti6VoEnAcRX9K1s9eja8uM/edit), then **Test windows**.
 2. Find the correct row, such as `CML3111|TEST1`. Enter the authorised opening and closing times with the Kampala offset: `YYYY-MM-DDTHH:MM:SS+03:00`. Set **enabled** to `YES`. Dates must be real dates, with closing later than opening. Do not copy example dates as the actual schedule.
 3. Open [Assignment Controls in Apps Script](https://script.google.com/home/projects/1XLdUAzi6wnSjQ2iFTV3hl5BQk9XWw-PIi1_vodC_l107B6S13yW_ZObw/edit). Select **Colab_Test_Collection.gs**, choose **syncColabExams** in the function dropdown, and click **Run**. The automatic check also runs every five minutes; run it at the start for immediate opening. The recorded submission time is checked against the exact deadline.
-4. Share the course/test entry link or display its QR code from the Week 7 or Week 14 deck. Learners enter their details and download their own notebook and CSV; do not distribute the A/B/C ZIPs to the class. The private Test allocations tab records the assigned version and allocation code. Keep solutions and grader files private.
+4. Share the course/test entry link or display its QR code from the Week 7 or Week 14 deck. For timed Test 1, learners enter their details, start their timer and open their private notebook in Colab. For untimed Test 2, they download their notebook and CSV; do not distribute the A/B/C ZIPs to the class. The private Test allocations tab records the assigned version and allocation code. Keep solutions and grader files private.
 5. Rehearse the entry page, both downloads and the submission flow before the actual test. In each form’s **Settings → Responses**, keep **Collect email addresses = Verified**, response editing off, and Student Registration Number required with no pattern restriction. Confirm the correct test form opens at its start time.
 
 ## If the test entry link will not open
@@ -23,13 +38,13 @@ Use the current Cloudflare course/test link from [TEST_ENTRY_LINKS.md](TEST_ENTR
 
 Google does not support multiple simultaneous account logins for Apps Script web apps: [Google troubleshooting guidance](https://developers.google.com/apps-script/guides/support/troubleshooting).
 
-If the entry page loads but says **“not open yet”** or **“closed”** after Get my test files, the link is working and the test window is restricting downloads. Check the authorised schedule in Test windows. Do not extend a real test just to troubleshoot a browser error.
+If the entry page loads but says **“not open yet”** or **“closed”** after Start test / Resume my test (or Get my test files for Test 2), the link is working and the test window is restricting downloads. Check the authorised schedule in Test windows. Do not extend a real test just to troubleshoot a browser error.
 
 ## Tell students
 
 “Use your own Google account in Colab and in the form. Complete your name and Student Registration Number in the notebook. Run the final submission cell and approve the Google prompt. Click **Submit test**, open the generated form link, check the details, tick the email confirmation box and press **Submit** on the form. Wait for the confirmation. Keep the snapshot in Drive until marks are released. Tell me immediately if anything fails.”
 
-The notebook button prepares a snapshot; **the form’s final Submit records the submission**. No manual notebook download or upload is needed. Students still upload the supplied CSV into Colab when setting up their work. A replacement attempt needs a new snapshot and a new form submission before the deadline.
+The notebook button prepares a snapshot; **the form’s final Submit records the submission**. No manual notebook download or upload is needed. For timed Test 1, the setup cell creates the supplied CSV automatically. Untimed Test 2 still uses a manual CSV upload. A replacement attempt needs a new snapshot and a new form submission before the deadline.
 
 ## After each test
 
