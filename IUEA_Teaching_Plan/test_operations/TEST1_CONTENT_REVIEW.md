@@ -67,3 +67,28 @@ Setup, countdown, conversion, demonstration and submission cells are labelled an
 The isolated grader reads literal identity fields from the skipped countdown cell without running browser code. A regression test now completes and grades an actual portal-generated packet, checking both identity and the CSV-reading task.
 
 Deployment update: Apps Script version 12 was published successfully on 23 October 2026 at 21:46 Kampala time. It includes student-written CSV loading, concise instructions and collapsed support cells for all three programmes. Existing entry URLs, schedules and deadlines are unchanged.
+
+## Superseding revision: ordinary notebook workflow (23 October 2026)
+
+The lecturer confirmed that no real students had started and authorised replacement for all three programmes. Version `2026.10-test1-notebook-v4` replaces the function-heavy v3 layout:
+
+| Task | Marks | Student work |
+|---|---:|---|
+| Read and inspect | 20 | CSV reading, head/tail, shape/len, column dtype, info, describe, missing counts, duplicate IDs, invalid rows |
+| Before chart | 10 | Original-data scatter with `figure, axes` |
+| Cleaning | 20 | Duplicate IDs, invalid/missing observations, median temperature fill |
+| After chart | 10 | Cleaned-data scatter with `figure, axes` |
+| Statistics | 15 | Mean, sum, median, count, standard deviation and all modes |
+| Grouping | 10 | Equipment target mean and count using groupby/agg |
+| One reusable function | 5 | Reuse mean/sum/median on a supplied table and column |
+| Loop and conditions | 10 | Count load categories with for and if/elif/else |
+
+The same assigned CSV is used throughout. `raw_data` is retained; `cleaned_data` is the cleaned result. Only Task 7 is a user-defined function. The two matplotlib scatter styles are accepted. DataFrame `.dtypes` and Series `.dtype` are distinguished; the assessed answer is the target column's `.dtype`.
+
+Instructions explicitly say **Do not edit this cell** for support cells, and protected lines inside answer cells explain their purpose. Learners check their full name, **Student ID/ Registration Number**, and email before starting work and before submitting. These labels do not imply that Colab locks the cells.
+
+Automatic marking reruns notebook cells in Docker against the assigned CSV; saved outputs are not trusted. Task 7 also runs on additional numeric data and different column names. The grader accepts legacy v3 notebooks with their original question weights. In v4, dependent tasks use the student's cleaned table: an incorrect cleaning result can therefore affect subsequent results. Every checked output receives its own partial credit; the whole test is not discarded because one cell fails.
+
+Validation: all nine completed v4 packets scored 100/100 in isolation; all nine Test 2 packets still scored 100/100; blank work scored zero. Regression checks covered missing EDA operations, incorrect standard deviation, hard-coded function results, missing loop syntax, original v3 compatibility, and a real portal-generated notebook with preserved identity. Portal tests cover all allocations, strict personal/global deadlines, stable resume and disabled/future windows. No production windows or marks were altered.
+
+Release verified: Apps Script version 14, 23 October 2026 at 22:41 Kampala time; Cloudflare Worker version `9e2c87be-9291-46b4-832c-4997c803be65`. All three public Test 1 pages returned HTTP 200 and the updated identity wording. Separate synthetic tutor-review notebooks were generated for all three programmes; the CML3111 notebook was opened and visually checked in Colab. No new end-to-end form submission was made in this revision. Pull the teaching repository on the grading Mac before processing v4 submissions.

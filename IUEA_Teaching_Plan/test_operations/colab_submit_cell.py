@@ -12,6 +12,8 @@ from IPython.display import display as _display, HTML as _HTML, clear_output as 
 _EXAM_CONFIG = __EXAM_CONFIG__
 # Authenticate while running the cell so Colab can display its account dialog.
 from google.colab import auth as _colab_auth
+print('Double-check your full name, Student ID/ Registration Number, and email before submitting.')
+print('Name:', FULL_NAME, '| Student ID/ Registration Number:', STUDENT_ID, '| Email:', EMAIL)
 print('Prepare submission: authorize your own Google account if asked.')
 _colab_auth.authenticate_user()
 
@@ -23,7 +25,7 @@ def _prepare_test_submission(_):
     with _submission_output:
         _clear_output()
         try:
-            for _label,_value in [('Full name',FULL_NAME),('Student Registration Number',STUDENT_ID)]:
+            for _label,_value in [('Full name',FULL_NAME),('Student ID/ Registration Number',STUDENT_ID),('Email',EMAIL)]:
                 if not isinstance(_value,str) or not _value.strip():
                     raise ValueError('Complete '+_label+' in the identity cell and run that cell first.')
             _key = COHORT+'|'+TEST_ID

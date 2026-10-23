@@ -69,6 +69,8 @@ def encode(value, depth=0):
                 bars=[dict(x=patch.get_x(),width=patch.get_width(),height=patch.get_height()) for patch in ax.patches if hasattr(patch,'get_height')],
                 xticklabels=[t.get_text() for t in ax.get_xticklabels()]))
         return {'type':'figure','axes':encode(axes,depth+1)}
+    if isinstance(value, np.dtype):
+        return str(value)
     if isinstance(value, np.generic):
         return encode(value.item(), depth+1)
     raise TypeError("Unsupported answer type: " + type(value).__name__)
@@ -119,6 +121,13 @@ def execute(request):
                 'declared_sid': str(ns.get('STUDENT_ID', ''))[:512], 'cohort': str(ns.get('COHORT', ''))[:30]}
     if request['op'] == 'get':
         return encode(ns.get(request['name'], '__MISSING__'))
+    if request['op'] == 'call_dataframe':
+        import pandas as pd
+        signal.alarm(request['timeout'])
+        try:
+            return encode(ns[request['name']](pd.DataFrame(request['rows']),request['column']))
+        finally:
+            signal.alarm(0)
     if request['op'] == 'call':
         signal.alarm(request['timeout'])
         try:

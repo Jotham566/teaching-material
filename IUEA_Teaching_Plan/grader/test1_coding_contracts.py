@@ -1,116 +1,89 @@
-"""Independent checks for the coding-only take-home Test 1."""
+"""Checks for ordinary notebook answers; retain compatibility with issued v3 tests."""
+import ast
 import math
-from engineering_contracts import dataset, clean, DOMAINS, unit_matches
+from engineering_contracts import DOMAINS, clean, dataset, unit_matches
+from test1_coding_v3 import equal, assess as assess_v3
+VERSION='2026.10-test1-notebook-v4'
+PARTS=[('eda',20),('before',10),('cleaning',20),('after',10),('statistics',15),('grouping',10),('function',5),('loops',10)]
 
-VERSION = '2026.10-test1-coding-v3'
-PARTS = [('eda',10),('before',10),('cleaning',20),('after',10),
-         ('statistics',15),('grouping',15),('conditions',10),('loops',10)]
-FUNCTIONS = dict(eda='explore_data', before='plot_observations', cleaning='clean_observations',
-                 after='plot_cleaned', statistics='calculate_statistics', grouping='summarize_equipment',
-                 conditions='classify_load', loops='count_load_bands')
+def source_tree(ns):
+    nodes=[]
+    for source in getattr(ns,'notebook_sources',[]):
+        try:nodes.extend(ast.parse(source).body)
+        except SyntaxError:pass
+    return ast.Module(body=nodes,type_ignores=[])
 
-def equal(actual, expected):
+def method_used(ns, obj, method):
+    return any(isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and
+               isinstance(n.func.value,ast.Name) and n.func.value.id==obj and n.func.attr==method
+               for n in ast.walk(source_tree(ns)))
+
+def plot_checks(output,table,unit):
+    from isolated_grading import PlotEvidence
+    if not isinstance(output,PlotEvidence) or len(output.get('plot_axes',[]))!=1:return [False]*5
+    ax=output['plot_axes'][0];points=[]
+    for collection in ax['scatter']:
+        points.extend(p for p in collection if all(v is not None and math.isfinite(v) for v in p))
+    expected=table[['load_pct','target']].dropna().values.tolist()
+    correct=equal(sorted(points),sorted(expected))
+    return [correct,correct,bool(ax['title'].strip()),
+            bool(ax['xlabel'].strip()) and ('%' in ax['xlabel'] or 'percent' in ax['xlabel'].lower()),
+            unit_matches(ax['ylabel'],unit,label=True)]
+
+def assess(ns,task):
     import pandas as pd
-    try:
-        if isinstance(expected,pd.DataFrame):
-            if not isinstance(actual,pd.DataFrame): return False
-            pd.testing.assert_frame_equal(actual.reset_index(drop=True),expected.reset_index(drop=True),check_dtype=False,check_exact=False,rtol=1e-6,atol=1e-6)
-            return True
-        if isinstance(expected,pd.Series):
-            if not isinstance(actual,pd.Series): return False
-            pd.testing.assert_series_equal(actual,expected,check_dtype=False,check_names=False,check_exact=False,rtol=1e-6,atol=1e-6)
-            return True
-        if isinstance(expected,dict):
-            return isinstance(actual,dict) and actual.keys()==expected.keys() and all(equal(actual[k],v) for k,v in expected.items())
-        if isinstance(expected,list):
-            return isinstance(actual,list) and len(actual)==len(expected) and all(equal(a,b) for a,b in zip(actual,expected))
-        if isinstance(expected,(int,float)) or hasattr(expected,'item'):
-            return not isinstance(actual,bool) and math.isclose(float(actual),float(expected),rel_tol=1e-6,abs_tol=1e-6)
-        return actual==expected
-    except (AssertionError,ValueError,TypeError,KeyError): return False
-
-def assess(ns, task):
-    import pandas as pd
-    fn=ns.get(FUNCTIONS[task]); passed=[]
-    # Keep already-issued notebooks with the former raw_table name gradable.
-    submitted_raw_data = ns.get('raw_data', ns.get('raw_table'))
-    read_ok = task=='eda' and equal(submitted_raw_data, ns.get('_IUEA_ASSIGNED_DATA')) and isinstance(submitted_raw_data, pd.DataFrame)
-    if not callable(fn): return False,'Complete '+FUNCTIONS[task]+'.', .2 if read_ok else 0
-    if task in ('conditions','loops') and not ns.has_syntax(FUNCTIONS[task], 'If' if task=='conditions' else 'For'):
-        return False, 'Use the requested if/elif/else or for-loop inside this function.', 0
-    course=ns.get('COHORT')
-    if course not in DOMAINS: return False,'Invalid course.',0
-    for seed in (71,113):
-        raw=dataset(course,seed,36,dirty=True)
-        # Test boundary loads, duplicate handling, and a mode that is not simply all IDs.
-        raw[0]['load_pct']=0;raw[1]['load_pct']=100
-        raw[-1]=dict(raw[0]);raw[5]['equipment_id']='E1'
-        fixed=clean(raw);table=pd.DataFrame(raw);cleaned=pd.DataFrame(fixed)
-        if task=='conditions':
-            for load,label in [(0,'low'),(39.99,'low'),(40,'medium'),(75,'medium'),(75.01,'high'),(100,'high')]:
-                try: passed.append(fn(load)==label)
-                except Exception: passed.append(False)
-            continue
-        if task=='loops':
-            for values in ([],[0,40,75,100],cleaned['load_pct'].tolist()):
-                expected={k:0 for k in ('low','medium','high')}
-                for value in values: expected['low' if value<40 else 'medium' if value<=75 else 'high']+=1
-                try: passed.append(equal(fn(values),expected))
-                except Exception: passed.append(False)
-            continue
-        sizes={'eda':4,'before':5,'cleaning':5,'after':5,'statistics':6,'grouping':3}
-        try:
-            if task in ('before','after'):
-                from isolated_grading import PlotEvidence
-                data=raw if task=='before' else fixed
-                output=fn(data,DOMAINS[course][1],'Before cleaning' if task=='before' else 'After cleaning')
-                if not isinstance(output,PlotEvidence) or len(output.get('plot_axes',[]))!=1:
-                    passed.extend([False]*5);continue
-                ax=output['plot_axes'][0]
-                expected=[[r['load_pct'],r['target']] for r in data if r['target'] is not None]
-                # Matplotlib represents missing pairs as NaN. Ignore only non-finite pairs.
-                scatter=[]
-                for collection in ax['scatter']:
-                    scatter.extend([p for p in collection if all(v is not None and math.isfinite(v) for v in p)])
-                # Point order and chart wording/style are not assessed.
-                correct_points=equal(sorted(scatter),sorted(expected))
-                passed.extend([correct_points,correct_points,bool(ax['title'].strip()),
-                               bool(ax['xlabel'].strip()) and ('%' in ax['xlabel'] or 'percent' in ax['xlabel'].lower()),
-                               unit_matches(ax['ylabel'],DOMAINS[course][1],label=True)])
-                continue
-            output=fn(raw if task in ('eda','cleaning') else fixed)
-            if task=='eda':
-                expected={'preview':table.head(),'rows':len(table),'columns':len(table.columns),
-                          'missing':table.isna().sum(),'duplicates':table.duplicated('record_id').sum()}
-                passed.extend([isinstance(output,dict) and equal(output.get('preview'),expected['preview']),
-                               isinstance(output,dict) and equal(output.get('rows'),expected['rows']) and equal(output.get('columns'),expected['columns']),
-                               isinstance(output,dict) and equal(output.get('missing'),expected['missing']),
-                               isinstance(output,dict) and equal(output.get('duplicates'),expected['duplicates'])])
-            elif task=='cleaning':
-                # Credit correctly retained IDs, then each measurement/category column independently.
-                for column in table.columns:
-                    passed.append(isinstance(output,pd.DataFrame) and column in output and
-                                  equal(output[column].reset_index(drop=True),cleaned[column].reset_index(drop=True)))
-            elif task=='statistics':
-                target=cleaned['target']
-                expected={k:getattr(target,k)() for k in ('mean','sum','median','count','std')}
-                expected['mode']=cleaned['equipment_id'].mode().tolist()
-                passed.extend(isinstance(output,dict) and equal(output.get(k),v) for k,v in expected.items())
-            elif task=='grouping':
-                expected=cleaned.groupby('equipment_id')['target'].agg(['mean','sum','count'])
-                for column in expected:
-                    passed.append(isinstance(output,pd.DataFrame) and column in output and
-                                  equal(output[column].sort_index(),expected[column]))
-        except Exception:
-            passed.extend([False]*sizes[task])
-    fraction=sum(bool(x) for x in passed)/len(passed)
+    if ns.get('_IUEA_NOTEBOOK_VERSION')=='2026.10-test1-coding-v3':
+        return assess_v3(ns,'conditions' if task=='function' else task)
+    raw=ns.get('_IUEA_ASSIGNED_DATA');course=ns.get('COHORT')
+    if not isinstance(raw,pd.DataFrame) or course not in DOMAINS:return False,'Assigned dataset unavailable.',0
+    records=raw.astype(object).where(raw.notna(),None).to_dict('records')
+    fixed=pd.DataFrame(clean(records))
+    def get(name):
+        try:return ns.get(name)
+        except Exception:return None
+    checks=[];weights=[]
     if task=='eda':
-        fraction=.2*bool(read_ok)+.8*fraction
-    return fraction==1,f'{sum(bool(x) for x in passed)}/{len(passed)} function checks passed.' + (f' CSV reading: {bool(read_ok)}.' if task=='eda' else ''),fraction
-
+        invalid=raw[raw['target'].isna() | (raw['load_pct']<0) | (raw['load_pct']>100)]
+        expected=[('raw_data',raw,2),('first_rows',raw.head(),1),('last_rows',raw.tail(),1),
+                  ('data_shape',list(raw.shape),1),('row_count',len(raw),1),
+                  ('target_dtype',str(raw['target'].dtype),2),('numeric_summary',raw.describe(),2),
+                  ('missing_counts',raw.isna().sum(),2),('duplicate_count',raw.duplicated('record_id').sum(),2),
+                  ('invalid_records',invalid,4)]
+        for name,value,weight in expected:checks.append(equal(get(name),value));weights.append(weight)
+        checks.append(method_used(ns,'raw_data','info'));weights.append(2)
+    elif task in ('before','after'):
+        checks=plot_checks(get('before_figure' if task=='before' else 'after_figure'),raw if task=='before' else fixed,DOMAINS[course][1])
+    elif task=='cleaning':
+        result=get('cleaned_data')
+        checks=[isinstance(result,pd.DataFrame) and col in result and equal(result[col].reset_index(drop=True),fixed[col].reset_index(drop=True)) for col in raw.columns]
+    elif task=='statistics':
+        checks=[equal(get('target_'+name),getattr(fixed['target'],name)()) for name in ('mean','sum','median','count','std')]
+        modes=get('equipment_modes')
+        if isinstance(modes,pd.Series):modes=modes.tolist()
+        checks.append(equal(modes,fixed['equipment_id'].mode().tolist()))
+    elif task=='grouping':
+        result=get('equipment_summary');expected=fixed.groupby('equipment_id')['target'].agg(['mean','count'])
+        checks=[isinstance(result,pd.DataFrame) and col in result and equal(result[col].sort_index(),expected[col]) for col in expected]
+    elif task=='function':
+        for seed in (71,113):
+            rows=clean(dataset(course,seed,36,dirty=True));table=pd.DataFrame(rows)
+            for column in ('target','load_pct'):
+                try:result=ns.call_with_dataframe('calculate_column_statistics',rows,column)
+                except Exception:result=None
+                checks.extend(isinstance(result,dict) and equal(result.get(name),getattr(table[column],name)()) for name in ('mean','sum','median'))
+    elif task=='loops':
+        expected={name:0 for name in ('low','medium','high')}
+        for value in fixed['load_pct']:expected['low' if value<40 else 'medium' if value<=75 else 'high']+=1
+        result=get('load_band_counts')
+        checks=[isinstance(result,dict) and equal(result.get(k),v) for k,v in expected.items()];weights=[2,2,2]
+        loops=[n for n in source_tree(ns).body if isinstance(n,ast.For)]
+        # Require the requested control flow to actually update the named answer.
+        def updates(n):return any(isinstance(x,(ast.Assign,ast.AugAssign)) and any(isinstance(y,ast.Name) and y.id=='load_band_counts' for y in ast.walk(x)) for x in ast.walk(n))
+        loops=[n for n in loops if updates(n)]
+        checks.extend([bool(loops),any(isinstance(n,ast.If) and n.orelse for loop in loops for n in ast.walk(loop))]);weights.extend([2,2])
+    weights=weights or [1]*len(checks)
+    fraction=sum(w for check,w in zip(checks,weights) if check)/sum(weights)
+    return fraction==1,f'{sum(bool(c) for c in checks)}/{len(checks)} checks passed.',fraction
 
 def hidden_spec_source():
-    """Generate the matching trusted dispatch, even after restoring an older snapshot."""
-    return 'from test1_coding_contracts import assess\nQUESTIONS={\n' + ',\n'.join(
-        f'{("q"+str(i))!r}: {{"check": lambda ns: assess(ns,{task!r})}}'
-        for i,(task,_) in enumerate(PARTS,1)) + '\n}\n'
+    return 'from test1_coding_contracts import assess\nQUESTIONS={\n'+',\n'.join(f'{("q"+str(i))!r}: {{"check": lambda ns: assess(ns,{task!r})}}' for i,(task,_) in enumerate(PARTS,1))+'\n}\n'

@@ -8,88 +8,94 @@ from test1_coding_contracts import VERSION,PARTS
 from build_colab_exams import cell
 
 TASKS=[
-('EDA before cleaning', 'explore_data(input_records)', '''First read `engineering_data.csv` with pandas, using `file_path`, and store the table in `raw_data` (2 marks). The file is in the current folder, so its name is the relative file path.
+('Read and inspect the raw data', '', """Read `engineering_data.csv` with pandas using `file_path`; name the DataFrame `raw_data`. Keep it unchanged throughout the test.
+Complete the named answers below:
+- `first_rows`: first 5 rows using `.head()`; `last_rows`: last 5 using `.tail()` (1 mark each).
+- `data_shape`: `.shape`; `row_count`: `len(raw_data)` (1 mark each).
+- `target_dtype`: the `target` column's `.dtype` (2). A column has `.dtype`; a whole DataFrame has `.dtypes`.
+- Run `raw_data.info()` to display column types and non-missing counts (2). It prints a summary; do not assign its result.
+- `numeric_summary`: `.describe()` for numeric columns (2).
+- `missing_counts`: missing count for each column, using `.isna()` or `.isnull()` followed by `.sum()` (2).
+- `duplicate_count`: number of repeated `record_id` values AFTER the first occurrence (2).
+- `invalid_records`: rows where `target` is missing OR `load_pct` is below 0 OR above 100 (4). This is inspection only: do not remove these rows yet.
+Reading the correct CSV into `raw_data` earns 2 marks. Display your answers to check them.""",
+'''file_path = "engineering_data.csv"  # Do not edit: locates your assigned CSV.
+# Read the file into raw_data, then replace None with each calculation.
+first_rows = None
+last_rows = None
+data_shape = None
+row_count = None
+target_dtype = None
+# Display the column information here.
+numeric_summary = None
+missing_counts = None
+duplicate_count = None
+invalid_records = None''', '',25),
+('Visualisation before cleaning', '', """Using `raw_data`, create a scatter chart of `load_pct` (horizontal) against `target` (vertical). Do not clean or fill values first.
+Use `figure, axes = plt.subplots()`, then either `axes.scatter(...)` or `raw_data.plot.scatter(x=..., y=..., ax=axes)`.
+Add a title, horizontal label including %, and vertical label including the target unit shown above. Keep `before_figure = figure`: it saves this chart for marking.
+Marks: correct points 4; title 2; horizontal label 2; vertical label and unit 2.""",
+'''figure, axes = plt.subplots()
+# Add your scatter plot, title and labels here.
+before_figure = figure  # Do not edit: keeps the before-cleaning chart for marking.
+plt.show()''', '',15),
+('Clean the data', '', """Start with a copy of `raw_data`; call it `cleaned_data`. Apply these rules in order:
+1. Keep the first row for each `record_id`.
+2. Remove rows with missing `target` or `load_pct` outside 0–100. Keep 0 and 100.
+3. Find the median `ambient_c` in the retained rows. Fill only missing temperatures with this median.
+Keep the same five columns and row order. Do not alter known values or equipment labels. Display the cleaned table and check for missing values, duplicates and invalid loads again.
+Marks: 4 for each correctly cleaned column. Index numbers do not matter.""",
+'''# Copy raw_data into cleaned_data, then apply the three cleaning rules.
+# Display and check cleaned_data when finished.''', '',25),
+('Visualisation after cleaning', '', """Repeat Task 2 using `cleaned_data`. Use a new figure with the same two columns and units, and a title such as “After cleaning”. Keep `after_figure = figure`: it saves this chart for marking.
+Marks: correct cleaned points 4; title 2; horizontal label 2; vertical label and unit 2. No written comparison is required.""",
+'''figure, axes = plt.subplots()
+# Add the cleaned-data scatter plot, title and labels here.
+after_figure = figure  # Do not edit: keeps the after-cleaning chart for marking.
+plt.show()''', '',10),
+('Calculate statistics', '', """Using `cleaned_data`, calculate `target_mean`, `target_sum`, `target_median`, `target_count` and `target_std` from `target`.
+Also calculate and display `equipment_modes`: all most frequent `equipment_id` values using `.mode()`. Each of these six answers earns 2.5 marks.
+Use pandas' `.std()` with its default sample standard deviation. Do not round answers. Mode means most frequent; `.mode()` returns every tied mode. These are descriptive calculations, not safety conclusions.""",
+'''target_mean = None
+target_sum = None
+target_median = None
+target_count = None
+target_std = None
+equipment_modes = None''', '',15),
+('Group and aggregate', '', """Group `cleaned_data` by `equipment_id`. Use `groupby` and `agg` to calculate the mean and count of `target` for each equipment. Store the DataFrame as `equipment_summary` and display it.
+Its index must contain equipment IDs and its two columns must be named `mean` and `count`. Keep full precision. Group order does not affect marks (5 marks per column).""",
+'''equipment_summary = None''', '',10),
+('Reuse your statistics in one function', 'calculate_column_statistics(table, column_name)', """Turn three calculations from Task 5 into a reusable function. The supplied inputs are a DataFrame (`table`) and a column name (`column_name`).
+Return a dictionary with keys `mean`, `sum`, `median`, calculated from `table[column_name]`. Replace the three `None` values. Use the inputs rather than a fixed column or the global `cleaned_data`.
+Then call your function for `cleaned_data` and `"target"`, and again for `"load_pct"`. Display both results. The grader tests the function with other numeric values (5 marks).""",
+'''def calculate_column_statistics(table, column_name):  # Do not edit: defines the function inputs used for marking.
+    return {"mean": None, "sum": None, "median": None}
 
-Then use the original data, including its errors. Calculate and return:
-- `preview`: the first five rows as a DataFrame (2 marks).
-- `rows` and `columns`: the two dimensions (2 marks together).
-- `missing`: missing-value count for each column as a Series (2 marks).
-- `duplicates`: repeated record IDs after the first occurrence (2 marks).
-The return dictionary is supplied. Replace each `None` with your calculation. Do not clean this table. The supplied run cell also calls `info()` to show data types and recorded counts, and `describe()` to show numeric summaries; these inspection commands carry no extra marks.''',
-'''    raw_data = pd.DataFrame(input_records)
-    return {"preview": None, "rows": None, "columns": None,
-            "missing": None, "duplicates": None}''',
-'print(explore_data(records))\nraw_data.info()\nprint(raw_data.describe())',15),
-('Visualisation before cleaning', 'plot_observations(input_records, target_unit, chart_title)', '''Create one scatter chart from the original table: `load_pct` on the horizontal axis and `target` on the vertical axis. Keep repeated observations and invalid loads in this BEFORE chart. Matplotlib does not draw pairs with a missing coordinate; do not fill or clean the data for this chart.
-Return the supplied `figure`. Plot the correct points (4 marks), add the supplied `chart_title` (2), label the horizontal axis with load and percent (2), and label the vertical axis with target and the supplied `target_unit` (2). Colour and styling are your choice.''',
-'''    raw_data = pd.DataFrame(input_records)
-    figure, axes = plt.subplots()
-    # Add scatter points, title and axis labels here.
-    return figure''',
-'before_figure = plot_observations(records, TARGET_UNIT, "Before cleaning")\nplt.show()',15),
-('Clean the data', 'clean_observations(input_records)', '''Work on a copy. Apply these rules IN ORDER:
-1. Keep the first occurrence of each `record_id`.
-2. Exclude rows with a missing `target` or `load_pct` outside 0–100 inclusive. Keep valid boundary values 0 and 100.
-3. Calculate the median `ambient_c` from the retained rows, ignoring missing values. Fill only missing ambient temperatures with this median.
-Return the cleaned DataFrame with the same five columns and original row order. Do not change equipment labels or known measurements. Index numbers do not matter. Do not remove rows merely because they have a high target.
-The grader gives 4 marks for each correctly retained column (record IDs, equipment IDs, loads, temperatures and targets).''',
-'''    raw_data = pd.DataFrame(input_records)
-    # Apply the three cleaning rules, then return cleaned_data.
-    raise NotImplementedError("Complete cleaning")''',
-'cleaned_data = clean_observations(records)\nprint(cleaned_data.head())\nprint(cleaned_data.isna().sum())\ncleaned_records = records_from_table(cleaned_data)',25),
-('Visualisation after cleaning', 'plot_cleaned(input_records, target_unit, chart_title)', '''The input now contains CLEANED observations. Make the same load/target scatter chart so it can be compared with the BEFORE chart. Use the supplied title and target unit. Return a Figure, not an image filename or text.
-Correct cleaned points: 4 marks; title: 2; horizontal axis with percent: 2; vertical axis with target units: 2. You may reuse or call your Task 2 function. No written comparison is required.''',
-'''    cleaned_data = pd.DataFrame(input_records)
-    figure, axes = plt.subplots()
-    # Add scatter points, title and axis labels here.
-    return figure''',
-'after_figure = plot_cleaned(cleaned_records, TARGET_UNIT, "After cleaning")\nplt.show()',10),
-('Calculate statistics', 'calculate_statistics(input_records)', '''Use CLEANED data. Return the following six entries in the supplied dictionary (2.5 marks each):
-- `mean`, `sum`, `median`, `count`, `std`: calculated from the `target` column.
-- `mode`: ALL most frequent equipment IDs, as a list in alphabetical order, calculated from `equipment_id`.
-Use pandas' sample standard deviation (`.std()`, default `ddof=1`). Do not round returned answers. The sum is a descriptive calculation across observations, not a total-energy measure or a safety conclusion.
-**Reference provided for this test:** mean is the average; sum adds values; median is the middle value; count counts recorded values; standard deviation measures spread. `values.std()` returns sample standard deviation. Mode means most frequent: `labels.mode().tolist()` returns ALL tied modes as a list. For labels `A, A, B, B, C`, it returns `["A", "B"]`. You do not need to derive a statistical formula.''',
-'''    cleaned_data = pd.DataFrame(input_records)
-    return {"mean": None, "sum": None, "median": None,
-            "count": None, "std": None, "mode": None}''',
-'print(calculate_statistics(cleaned_records))',20),
-('Group and aggregate', 'summarize_equipment(input_records)', '''Group CLEANED observations by `equipment_id`. Use `groupby` and `agg` to calculate the `mean`, `sum` and `count` of `target` for each equipment ID (5 marks per column).
-Return a DataFrame whose index contains equipment IDs and whose columns are named `mean`, `sum`, `count`. Equipment order does not affect marks. Keep full numerical precision.
-Reference: `table.groupby("group_column")["numeric_column"].agg(["mean", "sum", "count"])` applies several calculations to each group. Replace the placeholder column names with the required columns.''',
-'''    cleaned_data = pd.DataFrame(input_records)
-    # Return the grouped summary DataFrame.
-    raise NotImplementedError("Complete grouping")''',
-'print(summarize_equipment(cleaned_records))',15),
-('A function with conditions', 'classify_load(load_pct)', '''Write a reusable function using `if`, `elif`, `else` and `return`. Its input is one valid numeric load percentage from the same dataset. Return exactly:
-- `"low"` if load is below 40;
-- `"medium"` if load is from 40 through 75 inclusive;
-- `"high"` if load is above 75.
-These are test categories, not engineering safety limits. Check both boundary values: 40 and 75 must return `"medium"`. Return the label rather than only printing it. The supplied run cell uses a load from your cleaned CSV.''',
-'''    # Write the conditions and return one label.
-    raise NotImplementedError("Complete load classification")''',
-'first_load = cleaned_data["load_pct"].iloc[0]\nprint(first_load, classify_load(first_load))',15),
-('A loop using the same data', 'count_load_bands(load_values)', '''Use a `for` loop to visit every load in the supplied list. Call `classify_load` for each load and increment the matching counter in the supplied dictionary. Return the dictionary after the loop. An empty list must return all three counts as zero.
-The run cell gets this list from the CLEANED CSV. For `[20, 40, 75, 90]`, the result is `{"low": 1, "medium": 2, "high": 1}`. Do not type the final dataset counts by hand. If Task 7 is unfinished, you may put the same conditions inside this loop for partial credit.''',
-'''    counts = {"low": 0, "medium": 0, "high": 0}
-    # Loop over load_values and update counts.
-    return counts''',
-'load_values = cleaned_data["load_pct"].tolist()\nprint(count_load_bands(load_values))',20)
+# Call your function for the two columns below.''', '',15),
+('Conditions and a loop', '', """Use a `for` loop over `cleaned_data["load_pct"]`. Inside it, use `if`, `elif`, `else` to count loads in these categories:
+- `low`: below 40;
+- `medium`: 40 to 75 inclusive;
+- `high`: above 75.
+Update the supplied `load_band_counts` dictionary and display it after the loop. Do not type the final counts by hand. For loads `[20, 40, 75, 90]`, the counts would be `{"low": 1, "medium": 2, "high": 1}`.
+These are test categories, not safety limits. Correct counts: 6 marks; a loop: 2; conditions inside that loop: 2. No second function is required.""",
+'''load_band_counts = {"low": 0, "medium": 0, "high": 0}
+# Write your loop and conditions, then display load_band_counts.''', '',20)
 ]
 
-GUIDE_EXTRA='\n## Coding tasks and time plan\n10 minutes setup · 135 coding · 15 checking · 20 submitting.\n\nUse pandas, matplotlib and ordinary Python. Write only in the answer cells. Run the cells labelled “Run only”; do not edit them.\n\nKeep function names and return keys unchanged. The supplied first line turns input records into a DataFrame. Calculate from that input; the grader checks other values too. Later functions can earn marks even if cleaning is unfinished.\n'
+GUIDE_EXTRA='\n## Coding tasks and time plan\n10 minutes setup · 135 coding · 15 checking · 20 submitting.\n\nUse pandas, matplotlib and ordinary Python. Work from top to bottom in the answer cells. Keep the requested result names so your work can be marked. Only Task 7 requires a function.\n\nCells labelled **Do not edit this cell** are supplied setup or submission tools: run them, but do not change or delete them. In answer cells, keep lines marked **Do not edit** unchanged.\n'
 
 def student_guide(course):
  return f"""# {course} Test 1 — Take-home practical
 **Individual work · 100 marks · 3 hours from Start test**
 
-1. Run **Check details and countdown**, then **Prepare CSV and libraries**.
-2. In Task 1, write the pandas code to read the file into `raw_data`.
-3. Complete Tasks 1–8 in order. Task 3 produces `cleaned_data`. Save regularly.
-4. Run **Submit your test**, click the button, then open its form and press **Submit**. Wait for confirmation.
+1. Run **Check details and countdown**. **Double-check your full name, Student ID/ Registration Number, and email.** Use the same Google email in Colab and the submission form. If any detail is wrong, contact your lecturer before continuing; do not create another identity.
+2. Run **Prepare CSV and libraries**, then write your own pandas CSV-reading code in Task 1.
+3. Complete Tasks 1–8 in order. Keep `raw_data` unchanged; Task 3 produces `cleaned_data`. Save regularly.
+4. Run **Submit your test**, click the button, open its form, **check your name, Student ID/ Registration Number, and email again**, then press **Submit**. Wait for confirmation.
 
-The timer includes setup, interruptions and submission. It stops at your personal deadline or the class cutoff, whichever comes first. To resume, use the same entry link, email and registration number; your timer does not restart.
+The timer includes setup, interruptions and submission. It ends at your personal deadline or the class cutoff, whichever comes first. Resume with the same entry link, email and registration number; the timer does not restart.
 
-No AI-generated answers or collaboration. If a support cell is changed or deleted, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
+No AI-generated answers or collaboration. If you change a support cell, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
 """+GUIDE_EXTRA
 
 def build_test1():
@@ -104,34 +110,36 @@ def build_test1():
    rows=dataset(course,seed,dirty=True)
    with (folder/'engineering_data.csv').open('w') as f:
     w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n");w.writeheader();w.writerows(rows)
-   cells=[cell(guide),cell(f'FULL_NAME = ""\nEMAIL = ""\nSTUDENT_ID = ""\nCOHORT = "{course}"\nTEST_ID = "TEST1"\nVARIANT = "{variant}"\n',True),cell(f'''## Understand the supplied CSV
-Each row is one synthetic observation of **{domain}**. This is a practice engineering dataset, not evidence for a real safety decision.
+   identity=f'''# Check your full name, Student ID/ Registration Number, and email.
+FULL_NAME = ""
+EMAIL = ""
+STUDENT_ID = ""
+COHORT = "{course}"  # Do not edit: identifies your course for marking.
+TEST_ID = "TEST1"  # Do not edit: identifies this assessment.
+VARIANT = "{variant}"  # Do not edit: identifies your assigned dataset.
+'''
+   cells=[cell(guide),cell(identity,True),cell(f'''## Your CSV
+Each row is a synthetic observation of **{domain}**.
 
 | Column | Meaning |
 |---|---|
-| record_id | Observation identifier, not time; a repeated ID is a duplicate |
-| equipment_id | Equipment label; many observations can belong to the same equipment |
-| load_pct | Load percentage; valid values are 0–100 inclusive |
-| ambient_c | Ambient temperature, degrees Celsius |
-| target | {domain}, in {unit} |
+| record_id | Observation ID; repeated IDs are duplicates, not time points |
+| equipment_id | Equipment label; one piece of equipment can have several observations |
+| load_pct | Load percentage; valid range 0–100 inclusive |
+| ambient_c | Ambient temperature in degrees Celsius |
+| target | {domain}, measured in {unit} |
 
-Blank cells become missing values in pandas. All tasks use this same CSV. Tasks 1–2 use RAW data; Task 3 cleans it; Tasks 4–8 use CLEANED data.
-
-The supplied `records_from_table` helper converts a table into a list of row dictionaries. You do not need to write or change it. Each function's supplied first line converts those rows back into a DataFrame. This allows the grader to check different data without changing your code.'''),cell('import pandas as pd\nimport matplotlib.pyplot as plt\n\ndef records_from_table(table):\n    objects = table.astype(object)\n    return objects.where(table.notna(), None).to_dict("records")\n\nTARGET_UNIT = '+repr(unit)+'\nprint("Setup ready. Continue to Task 1.")\n',True)]
+Blank cells become missing values. Tasks 1–2 use `raw_data`; Task 3 creates `cleaned_data`; Tasks 4–8 use it. Use only this assigned CSV.'''),cell('#@title Prepare CSV and libraries — Do not edit this cell\n# Do not edit this cell: loads the two libraries for your answers.\nimport pandas as pd\nimport matplotlib.pyplot as plt\nTARGET_UNIT = '+repr(unit)+'  # Do not edit: supplies the target measurement unit.\nprint("Setup ready. Continue to Task 1.")\n',True)]
    cells[3]['metadata']={'cellView':'form','tags':['iuea-support']}
-   cells[3]['source'].insert(0,'#@title Run only — prepare CSV and libraries\n')
    for i,((task,marks),(title,signature,prompt,starter,driver,minutes)) in enumerate(zip(PARTS,TASKS),1):
     cells.append(cell(f'## Task {i}: {title} — {marks} marks · about {minutes} minutes\n\n{prompt}'))
-    if i==1:
-     reading=cell('file_path = "engineering_data.csv"\n# Write your pandas CSV-reading statement below. Store the result in raw_data.\n\n',True)
-     reading['metadata']['tags']=['iuea-read-csv'];cells.append(reading)
-     cells.append(cell('#@title Run only — pass your raw_data to the tasks\nrecords = records_from_table(raw_data)\nprint(raw_data.head())\n',True))
-     cells[-1]['metadata']={'cellView':'form','tags':['iuea-support']}
-    cells += [cell('def '+signature+':\n'+starter+'\n',True),cell('#@title Run only — show Task '+str(i)+' results\n'+driver+'\n',True)]
-    cells[-1]['metadata']={'cellView':'form','tags':['iuea-support']}
+    answer=cell(starter+'\n',True)
+    answer['metadata']['tags']=['iuea-answer-'+task]
+    if i==1:answer['metadata']['tags'].append('iuea-read-csv')
+    cells.append(answer)
 
    cells += [cell('## Check and submit\nCheck that each task runs, both charts appear, and your answers use the supplied data. Save your notebook. No written report is required. Run the submission cell below, click **Submit test**, then open the generated form and press **Submit** before your deadline. The notebook button alone is not a completed submission.')]
-   submit=cell('#@title Submit your test\n'+helper.replace('__EXAM_CONFIG__',repr(dict(lecturer_email=config['lecturer_email'],forms={course+'|TEST1':config['forms'][course+'|TEST1']}))),True)
+   submit=cell('#@title Submit your test — Do not edit this cell\n# Do not edit this cell: saves your answers and prepares the submission form.\n'+helper.replace('__EXAM_CONFIG__',repr(dict(lecturer_email=config['lecturer_email'],forms={course+'|TEST1':config['forms'][course+'|TEST1']}))),True)
    submit['metadata']={'tags':['iuea-submission','autograde-skip'],'cellView':'form'};cells.append(submit)
    nb=dict(cells=cells,metadata=dict(iuea_exam_version=VERSION,kernelspec=dict(display_name='Python 3',language='python',name='python3')),nbformat=4,nbformat_minor=5)
    (folder/'TEST1_student.ipynb').write_text(json.dumps(nb,indent=1,ensure_ascii=False)+'\n')

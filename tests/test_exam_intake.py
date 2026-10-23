@@ -25,7 +25,7 @@ class IntakeTests(unittest.TestCase):
    return self.result
   with patch.object(intake,'grade_one',side_effect=check_dispatch):
    result=intake.process(self.job,self.path,self.db)
-  self.assertEqual(result['grader_version'],'2026.10-test1-coding-v3')
+  self.assertEqual(result['grader_version'],'2026.10-test1-notebook-v4')
  def test_late_has_no_mark(self):
   self.job['submitted_at']='2026-10-19T12:00:01+03:00';r,n=self.process();self.assertEqual(r['status'],'OUTSIDE_WINDOW');self.assertIsNone(r['score']);self.assertEqual(n,0)
  def test_identity_conflict_withholds_both(self):

@@ -113,6 +113,9 @@ class Namespace:
         self.worker, self.per_call = worker, per_call
         self.cache = {}
 
+    def call_with_dataframe(self,name,rows,column):
+        return decode(self.worker.request(op='call_dataframe',name=name,rows=rows,column=column,timeout=self.per_call))
+
     def has_syntax(self, name, kind):
         import ast
         for source in getattr(self, "notebook_sources", []):
@@ -159,6 +162,10 @@ def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_t
             import pandas as pd
             ns.cache['_IUEA_ASSIGNED_DATA'] = pd.read_csv(Path(work)/'engineering_data.csv')
         notebook = json.loads((Path(work)/'submission.ipynb').read_text())
+        ns.cache['_IUEA_NOTEBOOK_VERSION'] = notebook.get('metadata',{}).get('iuea_exam_version','')
+        if assignment == 'TEST1' and ns.cache['_IUEA_NOTEBOOK_VERSION']=='2026.10-test1-coding-v3':
+            from test1_coding_v3 import PARTS as old_parts
+            questions = [(qid,dict(question,marks=old_parts[i][1])) for i,(qid,question) in enumerate(questions)]
         ns.notebook_sources = [''.join(c.get('source', '')) for c in notebook['cells']
                                if c.get('cell_type') == 'code' and 'autograde-skip' not in c.get('metadata', {}).get('tags', [])]
         result = {k: meta.get(k, default) for k, default in [

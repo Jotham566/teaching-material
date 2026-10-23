@@ -111,11 +111,11 @@
     "maximum": 100,
     "deterministic_maximum": 100,
     "reasoning_maximum": 0,
-    "version": "2026.10-test1-coding-v3",
+    "version": "2026.10-test1-notebook-v4",
     "parts": [
       [
         "eda",
-        10
+        20
       ],
       [
         "before",
@@ -135,11 +135,11 @@
       ],
       [
         "grouping",
-        15
+        10
       ],
       [
-        "conditions",
-        10
+        "function",
+        5
       ],
       [
         "loops",

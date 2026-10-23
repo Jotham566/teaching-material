@@ -37,6 +37,9 @@ class ExamTests(unittest.TestCase):
       if 'STUDENT_ID =' in text:c['source']=text.replace('STUDENT_ID = ""','STUDENT_ID = "99/TEST/000/DEMO-X"')
       if 'raise NotImplementedError' in text or (exam=='TEST1' and text.startswith('def ')):c['source']=source
       if text.startswith('DECISIONS ='):c['source']='DECISIONS = '+repr(decision_keys()[exam])
+     if exam=='TEST1':
+      from test1_coding_reference import complete_notebook
+      complete_notebook(nb)
      with tempfile.TemporaryDirectory() as tmp:
       path=Path(tmp)/('99_TEST_000_DEMO-X_'+exam+'.ipynb');path.write_text(json.dumps(nb))
       result=grade_one(str(path),str(G/'specs'/f'spec_{exam}.py'),str(G/'specs/hidden'/f'spec_{exam}_hidden.py'),exam,cohort,str(folder),20,180,None)
