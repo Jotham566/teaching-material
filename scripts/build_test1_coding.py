@@ -20,58 +20,136 @@ Complete the named answers below:
 - `invalid_records`: rows where `target` is missing OR `load_pct` is below 0 OR above 100 (4). This is inspection only: do not remove these rows yet.
 Reading the correct CSV into `raw_data` earns 2 marks. Display your answers to check them.""",
 '''file_path = "engineering_data.csv"  # Do not edit: locates your assigned CSV.
-# Read the file into raw_data, then replace None with each calculation.
-first_rows = None
-last_rows = None
-data_shape = None
-row_count = None
-target_dtype = None
-# Display the column information here.
-numeric_summary = None
-missing_counts = None
-duplicate_count = None
-invalid_records = None''', '',25),
+# 1. Replace None with pd.read_csv(...) using file_path inside the parentheses.
+raw_data = None
+
+# 2. Methods use (); attributes such as shape and dtype do not.
+first_rows = None          # First five rows: use the head method on raw_data.
+last_rows = None           # Last five rows: use the tail method.
+data_shape = None          # Store (rows, columns) using the shape attribute.
+row_count = None           # Count rows with len(...).
+target_dtype = None        # Select the target column first, then use its dtype.
+
+# 3. Add the info() call here. It displays information; do not assign its result.
+
+numeric_summary = None    # Use describe() on the whole raw_data table.
+# 4. isna() and isnull() both mark missing cells True; sum() counts them.
+missing_counts = None     # Use either missing-value method, then .sum().
+# Repeated equipment IDs are normal. Look for repeated record_id values.
+duplicate_count = None    # duplicated("record_id") marks repeats; sum counts them.
+
+# 5. Find bad rows without changing raw_data.
+# Build three conditions: missing target, load below 0, load above 100.
+# Combine with | (OR), putting each comparison in parentheses.
+# Select rows with raw_data[condition] or raw_data.loc[condition].
+invalid_records = None
+
+# 6. Run this cell and inspect your results. None means an answer is unfinished.
+print(first_rows)
+print(last_rows)
+print(data_shape, row_count, target_dtype)
+print(numeric_summary)
+print(missing_counts)
+print("Repeated record IDs:", duplicate_count)
+print(invalid_records)''', '',25),
 ('Visualisation before cleaning', '', """Using `raw_data`, create a scatter chart of `load_pct` (horizontal) against `target` (vertical). Do not clean or fill values first.
 Use `figure, axes = plt.subplots()`, then either `axes.scatter(...)` or `raw_data.plot.scatter(x=..., y=..., ax=axes)`.
 Add a title, horizontal label including %, and vertical label including the target unit shown above. Keep `before_figure = figure`: it saves this chart for marking.
 Marks: correct points 4; title 2; horizontal label 2; vertical label and unit 2.""",
 '''figure, axes = plt.subplots()
-# Add your scatter plot, title and labels here.
+# 1. Add raw_data.plot.scatter(x=..., y=..., ax=axes).
+# Replace ... with quoted column names: horizontal load_pct, vertical target.
+# Alternatively use axes.scatter with those two selected columns.
+
+# 2. Add axes.set_title(...), axes.set_xlabel(...), axes.set_ylabel(...).
+# Labels are text in quotes. Include % for load and the target unit from Your CSV.
+
 before_figure = figure  # Do not edit: keeps the before-cleaning chart for marking.
-plt.show()''', '',15),
+plt.show()
+# Check: one chart, two labelled axes, and the raw observations still included.
+''', '',15),
 ('Clean the data', '', """Start with a copy of `raw_data`; call it `cleaned_data`. Apply these rules in order:
 1. Keep the first row for each `record_id`.
 2. Remove rows with missing `target` or `load_pct` outside 0–100. Keep 0 and 100.
 3. Find the median `ambient_c` in the retained rows. Fill only missing temperatures with this median.
 Keep the same five columns and row order. Do not alter known values or equipment labels. Display the cleaned table and check for missing values, duplicates and invalid loads again.
 Marks: 4 for each correctly cleaned column. Index numbers do not matter.""",
-'''# Copy raw_data into cleaned_data, then apply the three cleaning rules.
-# Display and check cleaned_data when finished.''', '',25),
+'''# Work in this order. Write your code under each step.
+# 1. Make a separate copy with .copy(); name it cleaned_data.
+
+# 2. Use drop_duplicates on record_id; save the result back to cleaned_data.
+# Default keep="first" keeps the first occurrence. Check len(cleaned_data).
+
+# 3. Use dropna(subset=[...]) for missing target values only.
+# Do not drop rows just because ambient_c is missing; you will fill those later.
+
+# 4. Use the load_pct column's between(0, 100) to identify valid loads.
+# Select those rows with cleaned_data[condition] or .loc[condition], then .copy().
+# Save the selected table back to cleaned_data. Both endpoints are valid.
+
+# 5. Calculate the ambient_c median from the retained rows.
+# Fill only that column's gaps with fillna(the_median_you_calculated).
+# Assign the filled column back to cleaned_data["ambient_c"].
+
+# 6. Check the result: display cleaned_data, its length, missing counts,
+# duplicate record_id count, and whether all loads are between 0 and 100.
+# Use .isna().sum() or .isnull().sum(); use .between(0, 100).all() for loads.
+# Expect no duplicate IDs, no missing values, and all loads valid.
+''', '',25),
 ('Visualisation after cleaning', '', """Repeat Task 2 using `cleaned_data`. Use a new figure with the same two columns and units, and a title such as “After cleaning”. Keep `after_figure = figure`: it saves this chart for marking.
 Marks: correct cleaned points 4; title 2; horizontal label 2; vertical label and unit 2. No written comparison is required.""",
 '''figure, axes = plt.subplots()
-# Add the cleaned-data scatter plot, title and labels here.
+# Repeat your Task 2 plotting steps, now using cleaned_data instead of raw_data.
+# Use load_pct horizontally and target vertically. Plot on this new axes.
+# Change the title to describe the cleaned data; keep the same axis units.
+
+
 after_figure = figure  # Do not edit: keeps the after-cleaning chart for marking.
-plt.show()''', '',10),
+plt.show()
+# Check that the chart uses only the rows retained in Task 3.
+''', '',10),
 ('Calculate statistics', '', """Using `cleaned_data`, calculate `target_mean`, `target_sum`, `target_median`, `target_count` and `target_std` from `target`.
 Also calculate and display `equipment_modes`: all most frequent `equipment_id` values using `.mode()`. Each of these six answers earns 2.5 marks.
 Use pandas' `.std()` with its default sample standard deviation. Do not round answers. Mode means most frequent; `.mode()` returns every tied mode. These are descriptive calculations, not safety conclusions.""",
-'''target_mean = None
-target_sum = None
-target_median = None
-target_count = None
-target_std = None
-equipment_modes = None''', '',15),
+'''# Select cleaned_data["target"], then apply the method for each calculation.
+# Pattern: table["column"].method(). Keep full precision; do not round.
+target_mean = None       # Average: mean().
+target_sum = None        # Add values: sum().
+target_median = None     # Middle value: median().
+target_count = None      # Number of non-missing values: count().
+target_std = None        # Spread: std(), with pandas' default settings.
+# For this answer select equipment_id, not target. Keep ALL tied modes.
+equipment_modes = None  # Most frequent labels: mode(). Keep its Series or a list.
+
+print("Mean:", target_mean)
+print("Sum:", target_sum)
+print("Median:", target_median)
+print("Count:", target_count)
+print("Standard deviation:", target_std)
+print("Equipment modes:", equipment_modes)
+''', '',15),
 ('Group and aggregate', '', """Group `cleaned_data` by `equipment_id`. Use `groupby` and `agg` to calculate the mean and count of `target` for each equipment. Store the DataFrame as `equipment_summary` and display it.
 Its index must contain equipment IDs and its two columns must be named `mean` and `count`. Keep full precision. Group order does not affect marks (5 marks per column).""",
-'''equipment_summary = None''', '',10),
+'''# You may write this in three steps, as in revision:
+# 1. Group cleaned_data by equipment_id with groupby(...).
+# 2. Select target from those groups.
+# 3. Apply agg([...]) with the strings "mean" and "count".
+equipment_summary = None
+print(equipment_summary)
+# Check: one row per equipment; columns named mean and count.
+''' , '',10),
 ('Reuse your statistics in one function', 'calculate_column_statistics(table, column_name)', """Turn three calculations from Task 5 into a reusable function. The supplied inputs are a DataFrame (`table`) and a column name (`column_name`).
 Return a dictionary with keys `mean`, `sum`, `median`, calculated from `table[column_name]`. Replace the three `None` values. Use the inputs rather than a fixed column or the global `cleaned_data`.
 Then call your function for `cleaned_data` and `"target"`, and again for `"load_pct"`. Display both results. The grader tests the function with other numeric values (5 marks).""",
 '''def calculate_column_statistics(table, column_name):  # Do not edit: defines the function inputs used for marking.
+    # Repeat Task 5's mean, sum and median calculations on table[column_name].
+    # Use these inputs, not the global cleaned_data or a fixed column name.
+    # Keep the three quoted keys; replace each None with a calculation.
     return {"mean": None, "sum": None, "median": None}
 
-# Call your function for the two columns below.''', '',15),
+# Call the function twice: use cleaned_data with "target", then with "load_pct".
+# Pattern: result = function_name(table, "column"); then print(result).
+# The target results should match your Task 5 mean, sum and median.''', '',15),
 ('Conditions and a loop', '', """Use a `for` loop over `cleaned_data["load_pct"]`. Inside it, use `if`, `elif`, `else` to count loads in these categories:
 - `low`: below 40;
 - `medium`: 40 to 75 inclusive;
@@ -79,10 +157,18 @@ Then call your function for `cleaned_data` and `"target"`, and again for `"load_
 Update the supplied `load_band_counts` dictionary and display it after the loop. Do not type the final counts by hand. For loads `[20, 40, 75, 90]`, the counts would be `{"low": 1, "medium": 2, "high": 1}`.
 These are test categories, not safety limits. Correct counts: 6 marks; a loop: 2; conditions inside that loop: 2. No second function is required.""",
 '''load_band_counts = {"low": 0, "medium": 0, "high": 0}
-# Write your loop and conditions, then display load_band_counts.''', '',20)
+# Loop over cleaned_data["load_pct"] using a descriptive name such as load_value.
+# Inside the loop: if below 40, elif at most 75, else above 75.
+# Add one to the matching counter: load_band_counts["low"] += 1 in the low branch.
+# Use the medium and high keys in their respective branches.
+# Indent conditions inside the loop, and increments inside their conditions.
+# Write your loop here:
+
+print(load_band_counts)  # Keep outside the loop to show the final counts once.
+# Check: the three counts should add up to len(cleaned_data).''', '',20)
 ]
 
-GUIDE_EXTRA='\n## Coding tasks and time plan\n10 minutes setup · 135 coding · 15 checking · 20 submitting.\n\nUse pandas, matplotlib and ordinary Python. Work from top to bottom in the answer cells. Keep the requested result names so your work can be marked. Only Task 7 requires a function.\n\nCells labelled **Do not edit this cell** are supplied setup or submission tools: run them, but do not change or delete them. In answer cells, keep lines marked **Do not edit** unchanged.\n'
+GUIDE_EXTRA='\n## Coding tasks and time plan\n10 minutes setup · 135 coding · 15 checking · 20 submitting.\n\nUse pandas, matplotlib and ordinary Python. Work from top to bottom in the answer cells. Replace `None` with your calculation; it means “not completed yet”. Follow the comments, run each cell and check its output. You may add code cells, but keep the requested result names. Only Task 7 requires a function.\n\nCells labelled **Do not edit this cell** are supplied setup or submission tools: run them, but do not change or delete them. In answer cells, keep lines marked **Do not edit** unchanged.\n'
 
 def student_guide(course):
  return f"""# {course} Test 1 — Take-home practical
@@ -119,7 +205,7 @@ TEST_ID = "TEST1"  # Do not edit: identifies this assessment.
 VARIANT = "{variant}"  # Do not edit: identifies your assigned dataset.
 '''
    cells=[cell(guide),cell(identity,True),cell(f'''## Your CSV
-Each row is a synthetic observation of **{domain}**.
+Each row is a synthetic observation of **{domain}**. One DataFrame is the whole table; selecting one column gives a Series.
 
 | Column | Meaning |
 |---|---|
@@ -128,6 +214,8 @@ Each row is a synthetic observation of **{domain}**.
 | load_pct | Load percentage; valid range 0–100 inclusive |
 | ambient_c | Ambient temperature in degrees Celsius |
 | target | {domain}, measured in {unit} |
+
+If your revision example used `reading`, `machine`, `load`, `ambient`, their matching test columns are `record_id`, `equipment_id`, `load_pct`, `ambient_c`. `target` keeps the same name. The revision names `source_data` or `raw_table` mean the original table; here call it `raw_data`. Use this test's column names and data, not the practice CSV or its numerical answers.
 
 Blank cells become missing values. Tasks 1–2 use `raw_data`; Task 3 creates `cleaned_data`; Tasks 4–8 use it. Use only this assigned CSV.'''),cell('#@title Prepare CSV and libraries — Do not edit this cell\n# Do not edit this cell: loads the two libraries for your answers.\nimport pandas as pd\nimport matplotlib.pyplot as plt\nTARGET_UNIT = '+repr(unit)+'  # Do not edit: supplies the target measurement unit.\nprint("Setup ready. Continue to Task 1.")\n',True)]
    cells[3]['metadata']={'cellView':'form','tags':['iuea-support']}
@@ -138,7 +226,7 @@ Blank cells become missing values. Tasks 1–2 use `raw_data`; Task 3 creates `c
     if i==1:answer['metadata']['tags'].append('iuea-read-csv')
     cells.append(answer)
 
-   cells += [cell('## Check and submit\nCheck that each task runs, both charts appear, and your answers use the supplied data. Save your notebook. No written report is required. Run the submission cell below, click **Submit test**, then open the generated form and press **Submit** before your deadline. The notebook button alone is not a completed submission.')]
+   cells += [cell('## Check and submit\nIf a cell fails, read the last error line. For `NameError`, check spelling and run the cell that creates the variable. For `KeyError`, check `raw_data.columns`. For `FileNotFoundError`, rerun Prepare CSV and libraries and check `file_path`. Fix the first error before continuing.\n\nCheck that each task runs, both charts appear, and your answers use the supplied data. Save your notebook. No written report is required. Run the submission cell below, click **Submit test**, then open the generated form and press **Submit** before your deadline. The notebook button alone is not a completed submission.')]
    submit=cell('#@title Submit your test — Do not edit this cell\n# Do not edit this cell: saves your answers and prepares the submission form.\n'+helper.replace('__EXAM_CONFIG__',repr(dict(lecturer_email=config['lecturer_email'],forms={course+'|TEST1':config['forms'][course+'|TEST1']}))),True)
    submit['metadata']={'tags':['iuea-submission','autograde-skip'],'cellView':'form'};cells.append(submit)
    nb=dict(cells=cells,metadata=dict(iuea_exam_version=VERSION,kernelspec=dict(display_name='Python 3',language='python',name='python3')),nbformat=4,nbformat_minor=5)

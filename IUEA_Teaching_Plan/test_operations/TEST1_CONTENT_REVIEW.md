@@ -92,3 +92,19 @@ Automatic marking reruns notebook cells in Docker against the assigned CSV; save
 Validation: all nine completed v4 packets scored 100/100 in isolation; all nine Test 2 packets still scored 100/100; blank work scored zero. Regression checks covered missing EDA operations, incorrect standard deviation, hard-coded function results, missing loop syntax, original v3 compatibility, and a real portal-generated notebook with preserved identity. Portal tests cover all allocations, strict personal/global deadlines, stable resume and disabled/future windows. No production windows or marks were altered.
 
 Release verified: Apps Script version 14, 23 October 2026 at 22:41 Kampala time; Cloudflare Worker version `9e2c87be-9291-46b4-832c-4997c803be65`. All three public Test 1 pages returned HTTP 200 and the updated identity wording. Separate synthetic tutor-review notebooks were generated for all three programmes; the CML3111 notebook was opened and visually checked in Colab. No new end-to-end form submission was made in this revision. Pull the teaching repository on the grading Mac before processing v4 submissions.
+
+## Revision-resource alignment and answer-cell hints
+
+Reviewed the lecturer-supplied `CML3111_Standalone_EDA_Cleaning_Visualization_Lecturer_Guide.docx` and `CML3111_Weeks1-6_Beginner_Cheat_Sheet.pdf` on 23 October 2026. This establishes coverage in the provided CML3111 resources; it is not independent evidence of attendance or delivery in other classes.
+
+- Both resources explicitly use `.isna().sum()`. Neither uses the spelling `.isnull().sum()`. Pandas documents `.isnull()` as an alias of `.isna()`; the notebook explains this and grading accepts both.
+- Guide sections 1–8 cover loading, head/tail/shape/info/describe, missing counts, duplicate identifiers, raw scatter plots, ordered cleaning, validation, cleaned scatter plots, statistics and grouped aggregation. Cheat-sheet sections 7–12 reinforce these operations.
+- The cheat sheet shows DataFrame `.dtypes`; the test asks for a column's `.dtype`. The test explains the Series/DataFrame distinction and the absence of parentheses for attributes.
+- The standalone example uses reading/machine/load/ambient and source_data; the test uses record_id/equipment_id/load_pct/ambient_c and raw_data. A short mapping in the notebook prevents copying the wrong column names or practice answers.
+- The guide teaches sample standard deviation, all tied modes, reusable DataFrame functions, conditions and loops. The cheat sheet explains dictionaries, counter increments, indentation and pandas Boolean operators. Hints connect these to the test without supplying completed solutions.
+
+All eight answer cells now contain local guidance: relevant method names, operation order, expected result names/types, plot axis/units reminders, counter/indentation reminders and output checks. `None` placeholders are explained explicitly. Short error-recovery advice covers missing variables, wrong columns and a missing CSV. Questions, marks, datasets, versioned marking rules and deadlines remain unchanged. Existing issued student notebooks are not overwritten when publishing these hints.
+
+Official alias reference: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isnull.html
+
+Hints release verified: Apps Script version 15, 23 October 2026 at 22:57 Kampala time. Separate synthetic tutor-review notebooks were generated for all three programmes, and the CML3111 answer-cell hints were visually checked in Colab. Eight focused grading tests and four all-packet tests passed, including both missing-value spellings, all nine completed Test 1 variants at 100/100 and blank work at zero. Timed portal and gateway regression checks also passed. No new end-to-end form submission was performed for this hints-only release.

@@ -22,6 +22,10 @@ class CodingTests(unittest.TestCase):
   self.assertNotIn('pathlib','\n'.join(code))
   self.assertIn('Student ID/ Registration Number',''.join(nb['cells'][0]['source']))
   self.assertIn('Do not edit this cell',''.join(nb['cells'][3]['source']))
+ def test_isna_and_isnull_are_both_accepted(self):
+  nb=complete_notebook(self.notebook())
+  self.replace(nb,'eda',NOTEBOOK_ANSWERS['eda'].replace('.isnull()', '.isna()'))
+  result=self.grade(nb);self.assertEqual(self.score(result),100,result)
  def test_partial_statistics(self):
   nb=complete_notebook(self.notebook());self.replace(nb,'statistics',NOTEBOOK_ANSWERS['statistics']+'\ntarget_std = 0\n')
   r=self.grade(nb);self.assertEqual(self.score(r),97.5,r)

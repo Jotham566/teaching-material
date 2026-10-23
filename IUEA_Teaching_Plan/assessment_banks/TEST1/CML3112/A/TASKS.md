@@ -13,7 +13,7 @@ No AI-generated answers or collaboration. If you change a support cell, use **Ed
 ## Coding tasks and time plan
 10 minutes setup · 135 coding · 15 checking · 20 submitting.
 
-Use pandas, matplotlib and ordinary Python. Work from top to bottom in the answer cells. Keep the requested result names so your work can be marked. Only Task 7 requires a function.
+Use pandas, matplotlib and ordinary Python. Work from top to bottom in the answer cells. Replace `None` with your calculation; it means “not completed yet”. Follow the comments, run each cell and check its output. You may add code cells, but keep the requested result names. Only Task 7 requires a function.
 
 Cells labelled **Do not edit this cell** are supplied setup or submission tools: run them, but do not change or delete them. In answer cells, keep lines marked **Do not edit** unchanged.
 
