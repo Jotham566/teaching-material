@@ -14,7 +14,14 @@ Use this private notebook directly; you do not need another copy. Click **Connec
 
 The timer includes setup, interruptions and submission. A sleeping or disconnected browser may show an outdated countdown: rerun the countdown cell when you return. The server deadline still applies. It ends at your personal deadline or the class cutoff, whichever comes first. Resume with the same entry link, email and registration number; the timer does not restart.
 
-No AI-generated answers or collaboration. If you change a support cell, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
+## Test rules
+**Permitted resources:** Your lecture slides, revision guide, cheatsheet and personal course notes. Use your assigned CSV and write the code yourself.
+
+**No AI or outside help:** Do not use Gemini, ChatGPT, Copilot or any other AI tool to generate, complete, rewrite, explain or debug your test answers. Do not obtain answers from another person, collaborate, or copy someone else’s work.
+
+**Understanding check:** You may be asked to explain your submitted code or make a small change without AI or another person’s help.
+
+**Declaration:** By submitting, I confirm that I completed this test myself without AI assistance or another person’s help, using only the permitted resources. I can explain and modify the code I submitted. If you change a support cell, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
 
 ## Coding tasks and time plan
 10 minutes setup · 135 coding · 15 checking · 20 submitting.

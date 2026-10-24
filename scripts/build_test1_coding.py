@@ -187,7 +187,14 @@ Use this private notebook directly; you do not need another copy. Click **Connec
 
 The timer includes setup, interruptions and submission. A sleeping or disconnected browser may show an outdated countdown: rerun the countdown cell when you return. The server deadline still applies. It ends at your personal deadline or the class cutoff, whichever comes first. Resume with the same entry link, email and registration number; the timer does not restart.
 
-No AI-generated answers or collaboration. If you change a support cell, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
+## Test rules
+**Permitted resources:** Your lecture slides, revision guide, cheatsheet and personal course notes. Use your assigned CSV and write the code yourself.
+
+**No AI or outside help:** Do not use Gemini, ChatGPT, Copilot or any other AI tool to generate, complete, rewrite, explain or debug your test answers. Do not obtain answers from another person, collaborate, or copy someone else’s work.
+
+**Understanding check:** You may be asked to explain your submitted code or make a small change without AI or another person’s help.
+
+**Declaration:** By submitting, I confirm that I completed this test myself without AI assistance or another person’s help, using only the permitted resources. I can explain and modify the code I submitted. If you change a support cell, use **Edit → Undo**. If submission fails, contact your lecturer before the deadline.
 """+GUIDE_EXTRA
 
 def build_test1():
@@ -246,6 +253,8 @@ Fix the first error before later cells. Do not delete or edit supplied support c
 
 ## Save and submit — allow at least 20 minutes
 **One submission only per Google account and per Student ID/ Registration Number for this test.** Check your work and details before pressing Submit in the Google Form. After submitting, contact your lecturer for any correction; do not use another account.
+
+**Declaration:** By submitting, I confirm that I completed this test myself without AI assistance or another person’s help, using only the permitted resources. I can explain and modify the code I submitted.
 
 1. Check your code cells and charts. Submit your work even if some tasks are unfinished. No written report is required.
 2. Choose **File → Save**. Double-check your **full name, Student ID/ Registration Number and Google email**.
