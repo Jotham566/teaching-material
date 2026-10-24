@@ -253,7 +253,7 @@ Fix the first error before later cells. Do not delete or edit supplied support c
 4. In the Google Form, check the signed-in email, name and registration number again. Keep the prefilled snapshot and allocation details unchanged. Complete the required confirmation and press **Submit** before your deadline.
 5. Wait for **Your response has been recorded**. Keep your saved snapshot unchanged until marks are released.
 
-**A saved notebook, a snapshot, or an open form is not a completed submission. You must submit the Google Form.** The confirmation acknowledges receipt; marks are calculated later by the lecturer.
+**A saved notebook, a snapshot, or an open form is not a completed submission. You must submit the Google Form.** The confirmation acknowledges receipt only. The server rejects late receipts from grading, even if an old form was left open. When time ends, the notebook submission button closes. Contact your lecturer if you need help.
 """)]
    submit=cell('#@title Submit your test — Do not edit this cell\n# Do not edit this cell: saves your answers and prepares the submission form.\n'+helper.replace('__EXAM_CONFIG__',repr(dict(lecturer_email=config['lecturer_email'],forms={course+'|TEST1':config['forms'][course+'|TEST1']}))),True)
    submit['metadata']={'tags':['iuea-submission','autograde-skip'],'cellView':'form'};cells.append(submit)

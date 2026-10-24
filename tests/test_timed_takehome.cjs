@@ -46,6 +46,8 @@ for(const cohort of ['CML3111','CML3112','CML3113'])for(const variant of ['A','B
  assert(notebook.cells[3].source.includes(JSON.stringify(packet.csv)));
  assert(notebook.cells[1].source.includes(cohort));
  assert.equal(notebook.metadata.iuea_allocation_code,rows[1][3]);
+ assert(notebook.cells.at(-1).source.includes('_IUEA_DEADLINE = '+JSON.stringify(issued.personalDeadline)));
+ assert(notebook.cells.at(-1).source.includes('_check_submission_time()'));
  assert.equal(issued.personalDeadline,'2026-10-23T19:00:00.000Z');
  const baseline=JSON.parse(packet.notebook);
  for(let i=4;i<notebook.cells.length-1;i++)if(baseline.cells[i].cell_type==='code')assert.deepEqual(notebook.cells[i].source,baseline.cells[i].source);

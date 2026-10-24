@@ -83,6 +83,7 @@ function requestTestFiles(input) {
   nb.cells[0].source=instructions;
   nb.cells.forEach(function(cell){var text=Array.isArray(cell.source)?cell.source.join(''):cell.source;if(typeof text==='string'&&text.indexOf('invigilator')>=0)cell.source=text.replace(/invigilator/g,'lecturer');});
   nb.metadata.iuea_started_at=record[7];nb.metadata.iuea_deadline=deadline;
+  nb.cells.forEach(function(cell){if((cell.metadata&&cell.metadata.tags||[]).indexOf('iuea-submission')>=0){var source=Array.isArray(cell.source)?cell.source.join(''):cell.source;cell.source=source.replace('\n','\n_IUEA_DEADLINE = '+JSON.stringify(deadline)+' # Do not edit: fixed submission deadline.\n');}});
   nb.cells[1].source='#@title Check details and countdown — Do not edit this cell\n'+nb.cells[1].source+'print("Name:", FULL_NAME)\nprint("Student ID/ Registration Number:", STUDENT_ID)\nprint("Email:", EMAIL)\n'+portalCountdownCode_(deadline);
   nb.cells[1].metadata=nb.cells[1].metadata||{};
   nb.cells[1].metadata.tags=['iuea-timer','autograde-skip'];
