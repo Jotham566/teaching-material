@@ -92,3 +92,13 @@ The workbook-bound source is `test_export_menu.gs`. The existing assignment Apps
 ## One submission per student
 
 Each course/test permits one Google Form response per signed-in account and one accepted submission per Student Registration Number. The portal binds the email and registration to one attempt; reopening resumes the original timer. The collector rejects another accepted receipt matching either identity (registration spaces/case ignored), retaining it in the audit as DUPLICATE_SUBMISSION and excluding it from grading exports. Existing submissions and marks are preserved. A student who needs a correction after submitting must contact the lecturer; do not advise using another email. Google confirmation acknowledges receipt, so collection errors still require review.
+
+## Monitor during the test window
+
+1. Open the private Test collection workbook above with **wirmbeesubs@gmail.com**, then select **Test Monitor**.
+2. Read the **Updated** timestamp. The report refreshes automatically about every five minutes, including when your computer is off. Collection can also take a few minutes, so a just-submitted response may not appear immediately.
+3. Read the programme/test totals, then filter the student table by programme or status. All displayed times are **Kampala (UTC+3)**. Minutes left are measured at the displayed refresh time.
+4. **In progress** means the saved timer is open, not that the learner is online. **Submitted** means a notebook was accepted for grading, not that marks are ready. **Time expired without accepted submission** means no accepted receipt is recorded. **Submission needs attention** and **Timer needs attention** require checking the original Collection or Test allocations row.
+5. The monitor does not alter submissions, grades, timers or deadlines. Unmatched receipts are listed for review rather than being assigned to another student. Without a class roster, students who never started cannot be listed as absent. Do not enter corrections directly into this automatically generated tab.
+
+Maintenance: `grader/test_monitor.gs` is installed as **Test_Monitor.gs** in the lecturer-owned collector project. `installTestMonitor` creates the tab and an idempotent five-minute trigger for `refreshTestMonitor`. Keep it out of the public student portal project.
