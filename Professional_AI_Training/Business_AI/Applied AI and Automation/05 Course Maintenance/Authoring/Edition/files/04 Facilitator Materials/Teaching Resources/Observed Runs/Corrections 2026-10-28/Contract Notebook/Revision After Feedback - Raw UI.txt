@@ -1,0 +1,447 @@
+Window: "KLAi — Fictional legal and tax r…val rehearsal - Gemini Notebook", App: Microsoft Edge Beta.
+0 standard window KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook - Microsoft Edge Beta, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692, Secondary Actions: Raise
+	1 container KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook - Microsoft Edge Beta, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692
+		2 container
+			3 container
+				4 toolbar App bar
+					5 button Back
+					6 button Refresh
+					7 button Home
+					8 container
+						9 pop up button View site information
+						10 text field (settable) Address and search bar, Value: https://notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692, Placeholder: Search or enter web address
+						11 button App available. Install Gemini Notebook
+							12 container App Available
+						13 button Enter Reading mode (F9)
+						14 button Add this page to favorites (⌘D)
+					15 container
+						16 pop up button Extensions
+					17 button Control your music, videos, and more
+					18 container
+						19 button Favorites
+						20 button Performance | Performance issue detected
+					21 button Personal Profile
+					22 button Settings and more
+					23 button Chat
+				24 toolbar Favorites bar
+					25 toolbar Saved Tab Groups
+						26 button Tab groups
+					27 splitter Separator
+					28 bookmark folder button Research Stats Portal
+					29 bookmark folder button YU-MOT
+					30 bookmark folder button Startup Lab
+					31 bookmark folder button Personal Learning Journey
+					32 bookmark folder button AI Tools
+					33 bookmark folder button magentIQ
+					34 bookmark button JICE Japanese Classes
+					35 bookmark button Seven Chapters on Japanese Modernization
+					36 bookmark folder button PhD
+					37 bookmark button Bookmarks
+					38 bookmark button Translate
+					39 bookmark folder button Soccer
+					40 bookmark folder button Seiha
+					41 pop up button Menu containing hidden favorites
+					42 bookmark folder button Other Favorites
+					43 splitter Separator
+				44 container
+					45 scroll area
+						46 HTML content KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692
+							47 container
+								48 link Gemini Notebook Homepage, Value: notebook.google.com/
+								49 text field (settable) KLAi — Fictional legal and tax retrieval rehearsal
+								50 container Create notebook
+									51 button Create notebook
+								52 container Share notebook
+									53 button Share notebook
+								54 container Notebook configuration
+									55 pop up button Notebook configuration
+								56 container Settings
+									57 pop up button Settings
+								58 heading Sources, Value: 2
+									59 text Sources
+								60 button Collapse source panel
+								61 container Add source
+									62 button Add source
+								63 container
+									64 text entry area (settable) Discover sources based on the inputted query, Placeholder: Search the web for new sources
+									65 pop up button Web
+									66 pop up button Fast Research
+									67 container Submit
+										68 button (disabled) Submit
+								69 pop up button Sort sources
+								70 text Select all
+								71 container
+									72 text check_box
+									73 checkbox Select all sources, Value: 1
+								74 container
+									75 button Agreement - Executed v2.txt
+									76 pop up button More
+									77 container
+										78 text check_box
+										79 checkbox Select Agreement - Executed v2.txt, Value: 1
+								80 container
+									81 container
+										82 button Customize notebook
+										83 text 📄
+										84 heading KLAi — Fictional legal and tax retrieval rehearsal, Value: 2
+											85 text KLAi — Fictional legal and tax retrieval rehearsal
+										86 text 1 source ·
+										87 text Oct 27, 2026
+									88 container
+										89 text This document outlines a  cloud service agreement  between Equator Systems Ltd and Victoria Services Ltd for a hosted reporting application governed by Ugandan law. The contract establishes a  twelve-month subscription  with specific payment terms, technical support windows, and invoicing requirements. It incorporates detailed  service level agreements , including a target uptime of ninety-nine point five percent and defined response time commitments backed by service credits. Additionally, the framework addresses  legal protections and liabilities , covering intellectual property indemnification, confidentiality obligations, and standard operational restrictions for users. Finally, the text specifies  administrative provisions , detailing procedures for agreement termination, governing jurisdiction in Kampala, and specific teaching adaptations applied for course purposes.
+									90 button Save to note
+									91 container Copy summary
+										92 button Copy summary
+									93 container Good summary
+										94 button Good summary
+									95 container Bad summary
+										96 button Bad summary
+									97 text Tuesday, October 27
+									98 container
+										99 heading Value: 3, This is a fictional classroom matter. Use only the selected Agreement - Executed v2 source. Equator proposes an internal reorganisation; ownership after the change and continued responsibility have not been confirmed. (1) Identify which text governs consent, distinguishing the Key Terms replacement from the original Standard Terms section 12.6. Quote the operative rule, its exception and every condition, and cite the source. (2) Explain what we can and cannot conclude on these facts and what evidence we mus
+											100 text This is a fictional classroom matter. Use only the selected Agreement - Executed v2 source. Equator proposes an internal reorganisation; ownership after the change and continued responsibility have not been confirmed. (1) Identify which text governs consent, distinguishing the Key Terms replacement from the original Standard Terms section 12.6. Quote the operative rule, its exception and every condition, and cite the source. (2) Explain what we can and cannot conclude on these facts and what evidence we mus
+										101 button Thoughts
+										102 heading 1. Governing Text on Consent, Value: 3
+											103 text 1. Governing Text on Consent
+										104 container
+											105 text The  Key Terms replacement of Section 12.6  governs consent, as the Key Terms control over and replace the Standard Terms
+											106 pop up button 1: Agreement - Executed v2.txt
+											107 pop up button 2: Agreement - Executed v2.txt
+											108 text . Original Section 12.6 allowed assignment upon notice for reorganizations
+											109 pop up button 3: Agreement - Executed v2.txt
+											110 text , whereas the Key Terms replacement mandates prior written consent for changes of control
+											111 pop up button 2: Agreement - Executed v2.txt
+											112 text .
+										113 content list
+											114 container
+												115 text Operative Rule:  “In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect.”
+												116 pop up button 2: Agreement - Executed v2.txt
+												117 text  (Also: “Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party.”
+												118 pop up button 2: Agreement - Executed v2.txt
+												119 text )
+											120 container
+												121 text Exception:  “That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.”
+												122 pop up button 2: Agreement - Executed v2.txt
+											123 container
+												124 text Conditions:
+												125 content list
+													126 container
+														127 text 1 . The reorganization must be "within a wholly owned group"
+														128 pop up button 2: Agreement - Executed v2.txt
+														129 text .
+													130 container
+														131 text 2 . Provider must "remain responsible for its obligations under this Agreement"
+														132 pop up button 2: Agreement - Executed v2.txt
+														133 text .
+										134 heading 2. Conclusions & Required Evidence, Value: 3
+											135 text 2. Conclusions & Required Evidence
+										136 content list
+											137 container
+												138 text What We Can Conclude:  Customer consent is mandatory for Equator’s proposed change of control unless Equator strictly satisfies both conditions of the Section 12.6 exception
+												139 pop up button 2: Agreement - Executed v2.txt
+												140 text .
+											141 container
+												142 text What We Cannot Conclude:  We cannot determine whether consent is required or waived because Equator’s ownership structure following the change and its continued legal responsibility have not been confirmed
+												143 pop up button 2: Agreement - Executed v2.txt
+												144 text .
+											145 container
+												146 text Evidence to Request:
+												147 content list
+													148 container
+														149 text 1 . Corporate group structure documentation proving the reorganization takes place entirely within a wholly owned group
+														150 pop up button 2: Agreement - Executed v2.txt
+														151 text .
+													152 container
+														153 text 2 . Written undertaking/confirmation that Equator Systems Ltd remains fully responsible for its obligations under the Agreement
+														154 pop up button 2: Agreement - Executed v2.txt
+														155 text .
+										156 heading 3. Annual Fee & Missing Document, Value: 3
+											157 text 3. Annual Fee & Missing Document
+										158 container
+											159 text The annual fee  cannot be determined  from the provided document
+											160 pop up button 4: Agreement - Executed v2.txt
+											161 pop up button 5: Agreement - Executed v2.txt
+											162 text . The missing signed source required to determine the fees is the  Fee Schedule  signed by the parties on the Order Date
+											163 pop up button 5: Agreement - Executed v2.txt
+											164 text .
+										165 text 💡 Would you like me to draft a formal information request letter to Equator asking for the corporate structure proof and confirmation of continued responsibility?
+										166 container Save message to a note
+											167 button Save message to a note
+										168 container Copy model response to clipboard
+											169 button Copy model response to clipboard
+										170 container Rate response as good
+											171 button Rate response as good
+										172 container Rate response as bad
+											173 button Rate response as bad
+									174 text Today • 12:33 AM
+									175 container
+										176 heading Value: 3, Review the consent position again using only the executed agreement. Facts: Equator proposes an internal reorganisation; no assignment, change of control, group ownership or continued responsibility has yet been confirmed. Establish the assignment and change-of-control triggers separately before considering an exception. Do not infer that a trigger occurred from the label internal reorganisation or from an unproved exception. Read the Key Terms replacement and preserve its sequence; flag which consent the e
+											177 text Review the consent position again using only the executed agreement. Facts: Equator proposes an internal reorganisation; no assignment, change of control, group ownership or continued responsibility has yet been confirmed. Establish the assignment and change-of-control triggers separately before considering an exception. Do not infer that a trigger occurred from the label internal reorganisation or from an unproved exception. Read the Key Terms replacement and preserve its sequence; flag which consent the e
+										178 button Thoughts
+										179 heading DRAFT FOR HUMAN REVIEW, Value: 3
+											180 text DRAFT FOR HUMAN REVIEW
+										181 container
+											182 text Re:  Consent Position for Equator’s Proposed Internal Reorganisation Source Document: Agreement_-_Executed_v2.txt  (CONTRACT-01 v2)
+											183 pop up button 1: Agreement - Executed v2.txt
+										184 heading 1. Governing Provision & Hierarchy, Value: 3
+											185 text 1. Governing Provision & Hierarchy
+										186 container
+											187 text The  Key Terms replacement  under "Other Changes to Standard Terms" governs consent
+											188 pop up button 2: Agreement - Executed v2.txt
+											189 text . Under the Framework Terms rules, the Key Terms supersede the Standard Terms
+											190 pop up button 3: Agreement - Executed v2.txt
+											191 text .
+										192 heading 2. Separate Trigger Analysis & Provision Sequence, Value: 3
+											193 text 2. Separate Trigger Analysis & Provision Sequence
+										194 container
+											195 text Under replaced Section 12.6, contractual consent triggers must be evaluated independently without assuming that a "reorganisation" automatically satisfies or activates either trigger
+											196 pop up button 2: Agreement - Executed v2.txt
+											197 text :
+										198 content list
+											199 container
+												200 text Trigger 1 — Assignment (Sentence 1): Rule: "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+												201 pop up button 2: Agreement - Executed v2.txt
+												202 text Analysis:  Consent is triggered only if rights or obligations are transferred to another legal entity. An "internal reorganisation" label does not inherently establish that an assignment has occurred.
+											203 container
+												204 text Trigger 2 — Change of Control (Sentence 2): Rule: "In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect."
+												205 pop up button 2: Agreement - Executed v2.txt
+												206 text Analysis:  Consent is triggered if ownership/control of Equator shifts
+												207 pop up button 2: Agreement - Executed v2.txt
+												208 pop up button 4: Agreement - Executed v2.txt
+												209 text . An "internal reorganisation" does not automatically mean a change of control takes place.
+											210 container
+												211 text Exception Placement & Sequence (Sentence 3): Rule: "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+												212 pop up button 2: Agreement - Executed v2.txt
+												213 text Flag: "That consent"  immediately follows Sentence 2, placing the exception directly after the  change-of-control consent requirement
+												214 pop up button 2: Agreement - Executed v2.txt
+												215 text .
+										216 heading 3. Short Conditional Conclusion, Value: 3
+											217 text 3. Short Conditional Conclusion
+										218 content list
+											219 container
+												220 text If  the reorganisation involves neither an assignment of rights/obligations nor a change of control, no consent is required under Section 12.6
+												221 pop up button 2: Agreement - Executed v2.txt
+												222 text .
+											223 container
+												224 text If  a change of control (or assignment) is triggered, Customer consent is required  unless  Equator proves it meets both conditions of the exception:
+												225 content list
+													226 container
+														227 text 1 . The reorganisation occurs strictly within a wholly owned group
+														228 pop up button 2: Agreement - Executed v2.txt
+														229 text .
+													230 container
+														231 text 2 . Equator (Provider) remains legally responsible for its obligations under the Agreement
+														232 pop up button 2: Agreement - Executed v2.txt
+														233 text .
+										234 heading 4. Required Missing Evidence, Value: 3
+											235 text 4. Required Missing Evidence
+										236 text To determine the consent position, Equator must submit:
+										237 content list
+											238 container
+												239 text 1 . Transaction Structure Documents:  Details showing whether the reorganisation involves a transfer of contractual rights/obligations or a change of control
+												240 pop up button 2: Agreement - Executed v2.txt
+												241 text .
+											242 container
+												243 text 2 . Corporate Group Structure:  Proof confirming the entity remains within a wholly owned group
+												244 pop up button 2: Agreement - Executed v2.txt
+												245 text .
+											246 container
+												247 text 3 . Written Undertaking/Confirmation:  Evidence that Equator Systems Ltd remains fully liable for all contractual obligations
+												248 pop up button 2: Agreement - Executed v2.txt
+												249 text .
+										250 heading 5. Annual Fees Determination, Value: 3
+											251 text 5. Annual Fees Determination
+										252 container
+											253 text The supplied document  does not establish the annual Fees
+											254 pop up button 5: Agreement - Executed v2.txt
+											255 pop up button 6: Agreement - Executed v2.txt
+											256 text . The Order Form states that Fees are set out in a separate Fee Schedule signed on the Order Date, which is explicitly omitted from the supplied source text
+											257 pop up button 5: Agreement - Executed v2.txt
+											258 pop up button 6: Agreement - Executed v2.txt
+											259 text .
+										260 text 💡 Would you like me to draft a formal request letter to Equator seeking the transaction details and corporate proof?
+										261 container Save message to a note
+											262 button Save message to a note
+										263 container Copy model response to clipboard
+											264 button Copy model response to clipboard
+										265 container Rate response as good
+											266 button Rate response as good
+										267 container Rate response as bad
+											268 button Rate response as bad
+									269 container
+										270 heading Value: 3, Reviewer feedback: your source-order discussion places “That consent” after the change-of-control sentence, but your conclusion then says “change of control (or assignment)” can use that exception. That conflates the two obligations. For this teaching exercise, apply the reading that the group exception qualifies change-of-control consent; flag any material interpretive ambiguity for qualified review. Revise the conclusion into three cases: assignment of the contract, change of control, and neither trigger.
+											271 text Reviewer feedback: your source-order discussion places “That consent” after the change-of-control sentence, but your conclusion then says “change of control (or assignment)” can use that exception. That conflates the two obligations. For this teaching exercise, apply the reading that the group exception qualifies change-of-control consent; flag any material interpretive ambiguity for qualified review. Revise the conclusion into three cases: assignment of the contract, change of control, and neither trigger.
+										272 container
+											273 button Thoughts
+											274 heading DRAFT FOR HUMAN REVIEW, Value: 3
+												275 text DRAFT FOR HUMAN REVIEW
+											276 text Re:  Revised Consent Analysis for Equator’s Proposed Internal Reorganisation Controlling Source:
+											277 text Agreement_-_Executed_v2.txt
+											278 text  (CONTRACT-01 v2)
+											279 pop up button 1: Agreement - Executed v2.txt
+											280 pop up button 2: Agreement - Executed v2.txt
+											281 heading 1. Governing Provision & Hierarchy, Value: 3
+												282 text 1. Governing Provision & Hierarchy
+											283 text The  Key Terms replacement  of Section 12.6 governs the consent position
+											284 pop up button 2: Agreement - Executed v2.txt
+											285 text . Under the Framework Terms rules, the Key Terms supersede the Standard Terms in the event of any inconsistency
+											286 pop up button 3: Agreement - Executed v2.txt
+											287 text .
+											288 heading 2. Sequential Analysis & Scope of Exception, Value: 3
+												289 text 2. Sequential Analysis & Scope of Exception
+											290 text The replaced Section 12.6 sets out three sequential rules regarding consent
+											291 pop up button 2: Agreement - Executed v2.txt
+											292 text :
+											293 content list
+												294 container
+													295 text 1 . Sentence 1 (Assignment Trigger): "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+													296 pop up button 2: Agreement - Executed v2.txt
+												297 container
+													298 text 2 . Sentence 2 (Change-of-Control Trigger): "In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect."
+													299 pop up button 2: Agreement - Executed v2.txt
+												300 container
+													301 text 3 . Sentence 3 (Group Exception): "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+													302 pop up button 2: Agreement - Executed v2.txt
+											303 text Grammatical Placement & Scope:  "That consent" in Sentence 3 directly follows the change-of-control obligation in Sentence 2
+											304 pop up button 2: Agreement - Executed v2.txt
+											305 text . Applying this strict structural reading, the group reorganization exception qualifies  only  change-of-control consent
+											306 pop up button 2: Agreement - Executed v2.txt
+											307 text .
+											308 heading 3. Flagged Interpretive Ambiguity, Value: 3
+												309 text 3. Flagged Interpretive Ambiguity
+											310 content list
+												311 container
+													312 text Material Ambiguity for Qualified Review:  A party might argue that "That consent" broadly refers to both prior written consent obligations in Section 12.6 (including assignment)
+													313 pop up button 2: Agreement - Executed v2.txt
+													314 text . However, on a strict textual reading, an assignment during a reorganisation remains subject to absolute prior written consent under Sentence 1, regardless of group ownership or continued responsibility
+													315 pop up button 2: Agreement - Executed v2.txt
+													316 text .
+											317 heading 4. Three-Case Conditional Conclusion, Value: 3
+												318 text 4. Three-Case Conditional Conclusion
+											319 text Because the factual details of Equator's internal reorganisation remain unconfirmed, the consent requirement falls into one of three distinct legal cases
+											320 pop up button 2: Agreement - Executed v2.txt
+											321 text :
+											322 content list
+												323 container
+													324 text Case 1: Neither Trigger Occurs  — If the reorganisation involves neither an assignment of rights/obligations nor a change of control of Equator (Provider), no Customer consent is required under Section 12.6
+													325 pop up button 2: Agreement - Executed v2.txt
+													326 text .
+												327 container
+													328 text Case 2: Change of Control Occurs  — If the reorganisation results in a change of control of Equator, Customer consent is required  unless  Equator satisfies both conditions of the group exception:
+													329 content list
+														330 container
+															331 text 1 . The reorganisation takes place strictly within a wholly owned group
+															332 pop up button 2: Agreement - Executed v2.txt
+															333 text .
+														334 container
+															335 text 2 . Equator remains responsible for its obligations under the Agreement
+															336 pop up button 2: Agreement - Executed v2.txt
+															337 text .
+												338 container
+													339 text Case 3: Assignment of the Contract Occurs  — If the reorganisation involves assigning any contractual rights or obligations to another legal entity, prior written consent is mandatory under Sentence 1 and (under the strict reading) is not qualified by the group exception
+													340 pop up button 2: Agreement - Executed v2.txt
+													341 text .
+											342 heading 5. Required Missing Evidence, Value: 3
+												343 text 5. Required Missing Evidence
+											344 text To determine which case applies, Equator must provide:
+											345 content list
+												346 container
+													347 text 1 . Transaction Details:  Written confirmation of whether rights/obligations are being assigned or if equity ownership/control is shifting.
+												348 container
+													349 text 2 . Group Ownership Proof:  Corporate structure charts demonstrating a wholly owned group (if a change of control occurs).
+												350 container
+													351 text 3 . Underwriting of Responsibility:  Legal undertaking that Equator Systems Ltd remains fully responsible for its obligations.
+											352 heading 6. Determination of Annual Fees, Value: 3
+												353 text 6. Determination of Annual Fees
+											354 text The supplied agreement  does not establish the annual Fees
+											355 pop up button 4: Agreement - Executed v2.txt
+											356 text . The Order Form states that Fees are set out in a separate Fee Schedule signed by the parties on the Order Date, which is explicitly omitted from the supplied source text
+											357 pop up button 4: Agreement - Executed v2.txt
+											358 text .
+											359 text 💡 Would you like me to draft a formal letter to Equator requesting these transaction details and corporate proof?
+										360 container Save message to a note
+											361 button Save message to a note
+										362 container Copy model response to clipboard
+											363 button Copy model response to clipboard
+										364 container Rate response as good
+											365 button Rate response as good
+										366 container Rate response as bad
+											367 button Rate response as bad
+										368 container
+											369 button What are the specific exceptions under Section 12.6?
+											370 button How does the Key Terms replacement modify assignment rules?
+											371 button What evidence is missing to determine annual fees?
+									372 container
+										373 text entry area (settable) Query box, Placeholder: Ask a question or create something
+										374 text 1 source
+										375 container Submit
+											376 button (disabled) Submit
+									377 text Gemini Notebook can make mistakes, so double-check it.
+								378 heading Studio, Value: 2
+									379 text Studio
+								380 button Collapse studio panel
+								381 container
+									382 button Audio Overview
+									383 button Slide Deck
+									384 button Video Overview
+									385 button Mind Map
+									386 button Reports
+									387 text New!
+									388 button Flashcards
+									389 button Quiz
+									390 button Infographic
+									391 button Data Table
+									392 text Studio output will be saved here. After adding sources, click to add Audio Overview, Study Guide, Mind Map, and more!
+									393 button Add note
+							394 text Reply ready.
+				395 tab group Tab bar
+					396 pop up button Search tabs
+					397 button Workspace Button
+					398 container
+						399 tab group
+							400 tab (settable, boolean) IUEA Login - Sleeping - Memory usage - 28.7 MB, Value: off
+								401 button Close tab
+							402 tab (settable, boolean) Value: off, Course: Introduction to Machine Learning in Design and Infrastructure, Section: Week 7 - Sleeping - Memory usage - 73.8 MB
+								403 button Close tab
+							404 tab (settable, boolean) MSc in Strategic AI and Innovation | WQU.edu - Sleeping - Memory usage - 57.3 MB, Value: off
+								405 button Close tab
+							406 tab (settable, boolean) Value: off, teaching-material/IUEA_Teaching_Plan/assessment_operations/CONTINUE_GRADING.md at main · Jotham566/teaching-material - Sleeping - Memory usage - 140 MB
+								407 button Close tab
+							408 tab (settable, boolean) Inbox (104) - jothammartin.wambi@gmail.com - Gmail - Sleeping - Memory usage - 533 MB, Value: off
+								409 button Close tab
+							410 tab (settable, boolean) The African Gazette | Team Gazette | Substack - Sleeping - Memory usage - 212 MB, Value: off
+								411 button Close tab
+							412 tab (settable, boolean) Agasaro | Team Gazette | Substack - Sleeping - Memory usage - 184 MB, Value: off
+								413 button Close tab
+							414 tab (settable, boolean) Agasaro Kaburaga - YouTube - Sleeping - Memory usage - 250 MB, Value: off
+								415 button Close tab
+							416 tab (settable, boolean) Home - Google Drive - Memory usage - 249 MB, Value: off
+								417 button Close tab
+							418 tab (settable, boolean) usd to ugx - Google Search - Sleeping - Memory usage - 113 MB, Value: off
+								419 button Close tab
+							420 tab (selected, settable, boolean) KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook - Memory usage - 406 MB, Value: on
+								421 button Close tab
+							422 tab (settable, boolean) Agents - Sleeping - Memory usage - 641 MB, Value: off
+								423 button Close tab
+							424 tab (settable, boolean) Zapier Agents - Sleeping - Memory usage - 101 MB, Value: off
+								425 button Close tab
+							426 tab (settable, boolean) KLAi - Fictional contract review rehearsal | Zapier - Sleeping - Memory usage - 272 MB, Value: off
+								427 button Close tab
+							428 tab (settable, boolean) ballon d'or winner 2026 - Google Search - Sleeping - Memory usage - 193 MB, Value: off
+								429 button Close tab
+							430 scroll area
+					431 button New Tab
+	432 menu button Window sharing
+433 menu bar
+	434 Edge Beta
+	435 File
+	436 Edit
+	437 View
+	438 History
+	439 Favorites
+	440 Profiles
+	441 Tab
+	442 Window
+	443 Help
+
+The focused UI element is 46 HTML content KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692

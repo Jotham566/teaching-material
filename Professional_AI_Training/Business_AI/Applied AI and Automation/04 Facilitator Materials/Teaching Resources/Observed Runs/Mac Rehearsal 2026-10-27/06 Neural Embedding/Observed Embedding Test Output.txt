@@ -1,0 +1,96 @@
+ACTUAL NEURAL EMBEDDING RETRIEVAL — 27 October 2026, Africa/Kampala
+Model sentence-transformers/all-MiniLM-L6-v2; eight fictional tests. Preserve failed checks.
+Downloaded model revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+
+COMMAND: run_retrieval_tests.py --method sbert
+EXIT: 0
+method: sbert; top 5; negation words kept
+K1 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-04, RECORD-05, RECORD-20, RECORD-19
+K2 FAIL phrases missing ['upon notice if the assigning party undergoes', 'Neither party may assign any rights'] leaked -
+     top: RECORD-04, RECORD-20, RECORD-14, RECORD-24, RECORD-28
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-04, RECORD-20, RECORD-19
+K4 PASS phrases missing - leaked -
+     top: RECORD-06, CONTRACT-01, RECORD-20
+K5 PASS phrases missing - leaked -
+     top: RECORD-34, RECORD-12, RECORD-04, CONTRACT-01
+K6 PASS phrases missing - leaked -
+     top: RECORD-20, RECORD-23, RECORD-03, RECORD-04
+K7 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-06, RECORD-25
+K8 FAIL phrases missing ['Neither party may assign any rights'] leaked -
+     top: RECORD-04, RECORD-28, RECORD-20, RECORD-24
+
+STDERR:
+W1027 21:31:35.319000 5107 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7268.42it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 21758.41it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14117.16it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 19059.13it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14084.48it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 16408.27it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15641.89it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 9163.89it/s]
+
+
+COMMAND: negation_check.py --method sbert
+EXIT: 0
+method: sbert; top 3; negation words kept
+
+A: consent is required for a reorganization within a wholly owned group
+B: consent is not required for a reorganization within a wholly owned group
+  top for A: ['RECORD-04 v1 #2', 'RECORD-10 v1 #1', 'RECORD-20 v1 #2']
+  top for B: ['RECORD-04 v1 #2', 'RECORD-10 v1 #1', 'CONTRACT-01 v2 #19']
+  same chunks in the same order: False
+
+A: Provider may give support staff access to Customer Content
+B: Provider may not give support staff access to Customer Content
+  top for A: ['CONTRACT-01 v2 #13', 'CONTRACT-01 v2 #8', 'RECORD-22 v1 #1']
+  top for B: ['CONTRACT-01 v2 #13', 'RECORD-22 v1 #1', 'CONTRACT-01 v2 #8']
+  same chunks in the same order: False
+
+A: the Fees are set out in the signed Fee Schedule
+B: the Fees are not set out in the signed Fee Schedule
+  top for A: ['RECORD-06 v1 #2', 'RECORD-06 v1 #1', 'CONTRACT-01 v2 #2']
+  top for B: ['RECORD-06 v1 #2', 'RECORD-06 v1 #1', 'CONTRACT-01 v2 #2']
+  same chunks in the same order: True
+
+STDERR:
+W1027 21:31:57.865000 5130 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 10662.26it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17165.86it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14387.02it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15050.11it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14359.28it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 15229.97it/s]

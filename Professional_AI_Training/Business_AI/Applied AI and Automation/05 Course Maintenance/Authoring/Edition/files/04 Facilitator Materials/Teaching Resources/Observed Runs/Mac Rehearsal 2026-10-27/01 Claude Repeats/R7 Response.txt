@@ -1,0 +1,22 @@
+**Yes, Victoria's consent is required.**
+
+Under the modified Section 12.6 (Teaching Adaptation 1), Provider must obtain Customer's prior written consent before a change of control takes effect. The exception—which waives consent for reorganizations within a wholly owned group where Provider remains responsible—does not apply here because the stipulated variant specifies the buyer is unrelated and outside any wholly owned group.
+
+**Key provision:**
+> "Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+
+**Analysis:**
+- A share sale transferring control to an unrelated buyer is a "change of control" under this clause
+- The wholly-owned-group exception is inapplicable (stipulated as outside such a group)
+- Consent must be obtained *before* the change of control takes effect
+- Without Victoria's consent, proceeding would make any attempted assignment void
+
+**What Victoria needs to confirm before granting consent:**
+1. Identity and financial standing of the acquiring party
+2. Written confirmation that Equator (or successor) remains responsible for all obligations under the Agreement
+3. Ownership chart showing the post-transaction structure
+4. Confirmation of whether the Agreement will be transferred or novated
+5. Assurance that service continuity, security standards, and support obligations will be maintained
+6. Whether any personnel changes affect the approved support staff access under Teaching Adaptation 2 (Section 1.5)
+
+**Advice:** Victoria should withhold consent until Equator provides the missing documentation (ownership chart, written confirmation of continued responsibility, and statement on agreement transfer). Victoria has contractual leverage—Equator cannot complete the change of control without prior written consent.

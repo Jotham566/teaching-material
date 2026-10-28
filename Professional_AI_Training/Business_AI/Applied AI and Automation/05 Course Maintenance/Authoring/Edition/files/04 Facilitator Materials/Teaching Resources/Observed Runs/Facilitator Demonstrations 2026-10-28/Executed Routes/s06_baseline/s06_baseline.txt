@@ -1,0 +1,17 @@
+method: lexical; top 5; negation words kept
+K1 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-24, RECORD-28
+K2 PASS phrases missing - leaked -
+     top: RECORD-04, RECORD-05, CONTRACT-01
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-11, RECORD-05, RECORD-10
+K4 PASS phrases missing - leaked -
+     top: RECORD-05, CONTRACT-01, RECORD-28
+K5 PASS phrases missing - leaked -
+     top: RECORD-31, CONTRACT-01, RECORD-11, RECORD-28, RECORD-21
+K6 PASS phrases missing - leaked -
+     top: RECORD-19, RECORD-06, RECORD-24, RECORD-20, RECORD-03
+K7 PASS phrases missing - leaked -
+     top: CONTRACT-01
+K8 FAIL phrases missing ['Neither party may assign any rights'] leaked -
+     top: CONTRACT-01

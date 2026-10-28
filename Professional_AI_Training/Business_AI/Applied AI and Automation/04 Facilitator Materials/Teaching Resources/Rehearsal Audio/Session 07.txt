@@ -1,0 +1,187 @@
+Welcome to Session 7. Today's question is this. How do we turn a legal question into a verified, appropriately limited memo?
+
+It matters because a research memo is the thing a client relies on, and in a legal or tax practice every claim in it has to trace back to a source you have actually read. A fluent answer from a tool is easy to get. A memo where every claim has a source and every limit is stated takes work.
+
+By the end you and I will have produced two things: a claim-to-source register, and a short research memo that we have audited line by line. We'll read a real public Ugandan judgment, and Victoria's own question will stay separate from it. First, a recall question.
+
+Let me start with something from last session. A retrieved passage has a valid citation. What remains before advice? Have a think.
+
+This is how I see it. Three things remain. You read the passage itself. You check that the authority is the right one, in the right version. And then you ask whether the passage supports the proposition we want, on our client's facts.
+
+If your first thought was just to check the citation, try this angle. A citation can be real and still say something different from what the memo claims. So where would you look to find out? You'd look at the passage.
+
+Last session the tool found passages in the firm's own files. Today it searches outside the firm, so the same habit matters more. Today's question is the one you saw at the start, and the result is the register and the audited memo. Now we turn a question into something we can actually research.
+
+A question is researchable when it has an issue, a jurisdiction, a relevant date, the facts, and a stated output. Without those, a search tool has nothing firm to work on.
+
+Today we hold two questions side by side. The historical question is how the Goal Relief court treated the programme delivery fee. The client question is what evidence and current law a proposed overseas support fee for Victoria would need.
+
+The third line is the discipline that keeps them apart. The court's facts stay with the court. Victoria's unconfirmed facts stay with Victoria. The court decided a dispute between other parties, in other periods.
+
+Let me ask you something. Looking at the client question, which facts would you need from Victoria before any search is useful? See what you come up with.
+
+I'd want the supplier, the nature of the service, the payment date and the contract terms. With those, the search has a shape. Next we plan the research before any tool writes a report.
+
+A plan comes before a report. Four things go in it. The question and the jurisdiction. The sources we will search and the ones we exclude. The subquestions, along with any conflicting positions. And the evidence that would support a conclusion.
+
+I'll use the words deep research a lot today. It means a tool that takes a question, makes its own plan of searches, reads what it finds, and writes a long report with references. It may revise its plan as it goes. Many tools show you that plan before they start, and if yours does, that is your first checkpoint.
+
+So imagine the tool shows you its plan for the Victoria question. What do you check before you let it run? Say it out loud if it helps.
+
+Here's what I'd check. I'd look at the scope, and I'd look for the decisive legal issue the plan might have left out, such as the dates or the jurisdiction. If the plan misses that, the whole report will miss it too.
+
+Plans depend on sources, so next we sort sources by what each one can establish.
+
+This table asks, for each kind of source, what we must establish before we rely on it. Think of it as a set of roles. It doesn't rank sources for every jurisdiction, and a qualified lawyer decides what binds and how later cases treated it.
+
+For legislation we need the text, when it came into force, and any amendments. For a judgment we need the court, the issue, the reasoning and the disposition, which is the final order. For official guidance we need who issued it, the date, its scope and its status. Commentary explains, and it gives leads to primary authority. We follow the lead to the original.
+
+Try this one. A vendor's summary of a judgment looks tidy and has a link. Can it replace reading the judgment? Take a moment with that.
+
+No. We treat the summary as a lead, and then we read the authority itself. To practise that, we now take one real public authority and inspect it.
+
+Here is the case we will read. Goal Relief Development Organisation against Uganda Revenue Authority, Civil Appeal 50 of 2023, reported as 2024 UGCommC 272. It's a public judgment, and we use it as a research-reading exercise. We take the title, the court and the date from the judgment itself, so a summary never supplies them.
+
+I also want to be clear about how we access it. The text we hold is a downloaded reproduction of the court's text. That is enough for reading the historical decision. It tells us nothing about current law, or about how later courts treated the case.
+
+This case is about tax. What would you check before applying it to Victoria? Take your time.
+
+I'd check the issue, the material facts, the holding, which court decided it, how later cases treated it, and how well it fits our question.
+
+Before we read it, let's look at how to use AI on a judgment without letting a summary change its meaning.
+
+There are four moves for reading a judgment, and an AI tool can help with each. First, identify the parties and the procedural posture, which means how the case reached this court. Second, find the issue and the court's reasoning. Third, separate what the parties submitted from what the court found. Fourth, check the order at the end.
+
+Whenever a tool summarises for me, I have it give paragraph or page references, and then I open those pages. A summary is only as good as its attribution. Suppose it says VAT was charged on the fee. It matters whether the court said that, or whether the appellant said it in argument.
+
+Here's something to chew on. Where can a summary reverse the meaning of a judgment? Sit with it for a second.
+
+My answer is this. At attribution, at procedural history, at the qualifications the court attached, and at the final disposition. Attribution is the slip I see most often, so we'll spend some time on it now.
+
+Two boxes here. On one side, a party argues. An argument in submissions only tells us that party's position. On the other side, the court decides. A finding or a holding needs support in the court's own reasoning, or in its order.
+
+In Goal Relief, I'll find a short passage in the judgment and read it with you, and we'll label who is speaking. If the judgment isn't available on the day, I'll use a prepared exercise, tell you plainly that it is fictional, and I won't invent a holding for the real case.
+
+Let me put a question to you. For every proposition in the memo, what must we label accurately? Let's hear your answer first.
+
+Who said it, and what legal status it carries. Is it the appellant's submission, the respondent's submission, a finding, or an order? Once the speaker is clear, we can ask which version of the law the court was applying.
+
+Law changes, so every legislative proposition needs a date. Four checks. Identify the enactment and the provision. Check amendments and commencement, that is, when a change started to apply. Match the version to the date of the question. And trace any quoted wording back to its source.
+
+Three dates are easy to mix up. The publication date is when a text was published. The effective date is when it applied. The access date is when we looked at it. A current consolidated page may not answer a question about an earlier period.
+
+Now a question. Suppose Victoria makes a payment to an overseas supplier in September 2026. That date is one I've made up for the exercise. Which date matters when we check the law, and why? Give that a little thought.
+
+The position at the relevant time for the transaction matters, established through the sources, and we record the date we checked. If you said the latest version, try this angle. What if the payment date falls before an amendment starts?
+
+Look at the first row. The Goal Relief judgment, at printed page 3, lines 24 to 27, cites section 27(2) of Cap 341, 7th Revised Edition. It gives that as the rule that an appeal to the High Court may be made on questions of law only. I'll read the line to you from the PDF.
+
+A section number belongs to an edition of the statute. Acts are revised and consolidated, and numbers can change between editions. A number copied from a judgment tells us what that court cited on that date. It doesn't tell us what the provision is called now.
+
+A quick question before we go on. A summary gives you section 27(2) for the appeal rule. What do you do before you put it in advice to Victoria? Think it over.
+
+I'd open the current consolidated Act, find the provision, record its edition and the date I looked, and check whether the wording still says the same thing. If you'd trust the judgment, try this. Which edition did the court cite, and which edition applies to our transaction?
+
+The page 3 pinpoint supports the appeal-scope proposition in this judgment. Current applicability needs further checks. Next we move from reading authorities to a tool that searches for them.
+
+Now we move from reading authorities to a tool that searches for them. A deep-research tool works in a cycle, and I'll take you through it one stage at a time.
+
+First comes the plan. The tool frames subquestions, breaking your big question into smaller ones it can search for.
+
+Then the search. The tool goes out and finds candidate authority. Candidate is the right word, because at this point nothing has been read or confirmed.
+
+Third is inspection. The tool reads and compares what it found. This is the stage where we most want to see its work.
+
+Last comes synthesis. The tool answers, with limitations. It can loop back at any point. If inspecting a source raises a new question, it can plan and search again. Deep research is a product mode and a working pattern, and it doesn't promise that the search was complete or the result correct. So we stay in the loop and check scope and authority at each stage.
+
+Here's a question. What would make the cycle go round again? No rush.
+
+A missing authority would do it. So would two conflicting propositions, or a doubt about whether the source is current.
+
+The report is a claim about the sources. The sources are the evidence. So we check each claim in four steps. Open the cited source. Find the passage that supports the claim. Check that the passage says what the report says it does. And record gaps, along with any contrary authority.
+
+Let me define one word. A hallucination is an output that reads confidently and is wrong, such as an invented case, or a quotation that isn't in the source. Retrieval and search tools reduce this risk and don't remove it. Even a working link proves little. It may lead to a real judgment that says something else, or to a passage that only records a party's submission.
+
+Now it's your turn. A citation in the report is genuine, but it doesn't support the claim. What do we do? Work it through before I answer.
+
+We correct the claim or remove it, and we continue the research. To practise that checking, we now have a note with a claim that no source supports.
+
+We have two examples to inspect: a deliberately flawed teaching note and an actual failed research report. I label them separately. The real report contained an incorrect total, weak pinpoints and statute references that did not faithfully identify what the judgment cited.
+
+Let's start with the arithmetic. The original judgment's first page has four assessment rows. I add those outside the model. Figures recited in separate grounds of appeal are different descriptions and cannot simply be added again.
+
+If a genuine judgment is cited, has the report established its proposition?
+
+Read the passage before deciding.
+
+It has not. A paragraph may report the appellant's argument rather than the court's finding. We will check the programme delivery fee against the reasoning and orders on the original pages. My checked historical note records the conclusion, the correct assessment total and the source locations. Present applicability, later treatment and conflicting source metadata remain separate questions.
+
+A search query is information leaving the firm. Even with no document uploaded, a query can reveal a matter. A public search engine, or a tool the firm hasn't approved, can expose a client's identity or plans.
+
+There are three habits. Use an approved tool. Use the minimum facts needed. And keep public-law research apart from confidential matter analysis. For example, I can search for the legal treatment of an overseas software support fee in Uganda without naming Victoria or the amount, then bring the answer back into the private file to apply it.
+
+So if we remove the company name from a query, is the fact pattern anonymous? Think about that for a moment.
+
+No. A distinctive combination of facts, such as an unusual structure, a date and a sector, can still identify the client.
+
+With the query kept safe, we can look at the shape of the memo that comes out of the research.
+
+A short memo has four parts. The question and the material facts. The applicable sources and the analysis. The uncertainty and the contrary points. And then the advice, or the next questions for review.
+
+I generate a draft only after we have a few checked claims in the register. I keep quotations and analysis apart, so the reader can see which words belong to the court and which are ours. You and I then review it together.
+
+Here's a concrete case. The historical holding goes in the sources and analysis section. Victoria's open questions go in the uncertainty section: the supplier, the service terms, the dates and current law.
+
+Now a question. A tool gives you a generic opening paragraph about VAT in Uganda. What would you remove? Give that a moment.
+
+I'd remove the background that doesn't help answer the defined issue. A memo can read well and still be weak, so next we have three tests of its quality.
+
+Three questions make up the test of a research memo. Can a second lawyer reproduce the source trail? Does the memo distinguish facts, authority and inference? And would the conclusion change if a key source were withdrawn?
+
+I'd like you to choose the weakest claim in our draft, and we'll correct it where we can both see the correction. Visible corrections show that the process works. A hidden one teaches nothing.
+
+A question for you. What does a useful uncertainty statement do? Give that a little thought.
+
+It names the missing evidence and says how that evidence could affect the advice. For instance, we have not confirmed the payment date, and if it falls before an amendment the answer may differ. If your instinct was to write that more research is needed, try this angle. Which source, and what would it change?
+
+We have all the pieces now. Next is the class exercise itself.
+
+We now prepare a short historical research note together. I operate the tools while you choose three claims to test. For each claim we record the original source, page, supporting passage and whether it is a submission, reasoning or an order.
+
+For Goal Relief we check the four assessment rows, the programme delivery fee conclusion and the appeal disposition. We record statute editions as the judgment cites them. We also preserve a conflicting year for the underlying Tribunal application instead of silently choosing one.
+
+What would let us turn this historical summary into advice on a current transaction?
+
+Think about the additional sources we would need.
+
+We would need the relevant transaction facts, applicable legislation and later authority checked for that period, followed by professional review. A limited search returning no later appeal is not a complete clearance. We will hold unresolved claims, and copy quotations from the original passages rather than ask the model to recreate them.
+
+Before I show you the conclusion, tell me your own. What do you think the evidence supports? Take a moment with that, and then we'll compare.
+
+On Ground 5, the court held that Goal Ireland's fundraising for the appellant was an imported service. So VAT on the 10 percent programme delivery fee was correctly assessed, and the court dismissed the appeal with costs. That's at printed pages 22 to 24. It's a historical result between other parties, and it doesn't decide Victoria's position.
+
+The second point is about our source. The downloaded reproduction of the court's text supports the reading exercise. Current law and later treatment need fresh research.
+
+So which part of today's result is still unverified? Give that a little thought.
+
+The paragraph, the statute edition, the client facts, and current law and later treatment all remain open. Next we turn this result into a decision for the firm.
+
+The decision in front of the firm is this. Adopt a claim-level research record, with an accountable reviewer and explicit unresolved questions. We write down the decision and the evidence still needed. In class this is a decision record, and it doesn't authorise anything for the firm.
+
+I'd like you to name an owner and one condition before the practice goes ahead. For example, the owner could be the supervising partner, and the condition could be that no memo leaves the firm until each material claim has a checked passage in the register.
+
+Here's one for you. What evidence would change this proposed decision? See what you come up with.
+
+We revisit it if the evidence changes, if the quality of the work changes, or if the permitted scope changes. Then we test whether the ideas hold up when the facts change.
+
+Let's check what has stuck. I'll ask three questions, one at a time, and you answer in your own words before I say anything.
+
+First. A later summary contradicts the historical judgment. Which text must be inspected? Take a moment with that.
+
+Second. Section numbers differ between editions. What must the memo record? Say it out loud if it helps.
+
+Third. Can the historical holding decide Victoria's proposed fee? Give that a little thought.
+
+Here's how I'd answer all three. We inspect both actual authorities and the later treatment, and we don't choose between summaries. The memo records the Act, the edition and date, the provision and the proposition, so a reader can find the exact provision. The client's facts and the applicable current law need their own analysis, so the holding does not decide Victoria's fee.
+
+That ends the main session. In Session 8 we turn from research to contract review and drafting, using the same evidence-first habit on an agreement.

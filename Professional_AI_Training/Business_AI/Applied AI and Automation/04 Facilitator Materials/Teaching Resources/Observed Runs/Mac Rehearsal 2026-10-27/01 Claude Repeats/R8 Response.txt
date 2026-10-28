@@ -1,0 +1,19 @@
+**Yes, Victoria's consent is required.**
+
+Under the modified Section 12.6 (Teaching Adaptation 1), the general rule is: "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+
+The exception for reorganization within a wholly owned group does not apply here because Equator proposes to assign to another company, not reorganize within its own group.
+
+**Key points:**
+1. Assignment requires Victoria's prior written consent
+2. Any attempted non-permitted assignment is void
+3. The carve-out for group reorganizations only applies if Provider remains responsible and the reorganization is within a wholly owned group—neither condition is satisfied by an assignment to an external company
+
+**Before advising, confirm:**
+- Identity and financial standing of the proposed assignee
+- Whether the assignee will assume all Provider obligations (support, SLA, security, confidentiality)
+- Whether Equator proposes any continuing liability or guarantee
+- Any proposed changes to the service or terms
+- The assignee's technical capability to operate the Cloud Service
+
+**Recommendation:** Victoria may withhold or condition consent. If Victoria agrees, ensure the assignment documentation confirms the assignee assumes all obligations and any conditions Victoria requires are documented in writing before consent is given.

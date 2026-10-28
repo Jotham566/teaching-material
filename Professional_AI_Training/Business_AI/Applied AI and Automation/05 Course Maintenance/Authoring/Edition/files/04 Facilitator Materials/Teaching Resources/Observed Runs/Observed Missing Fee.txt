@@ -1,0 +1,24 @@
+ACTUAL SAVED AI OUTPUT, 26 OCTOBER 2026 (run R6)
+Run: Absent fact: annual Fees
+Product: a Claude subagent started with no conversation history and given one prompt file. The subagent saved its own reply to a file, and this file holds that reply unedited below the line. It is not the learner's product and says nothing about any other tool.
+Tools: none for the task itself (the subagent read the prompt file and wrote its reply to disk).
+Evidence supplied: same as run 1. The exact prompt is saved in 05 Course Maintenance/Run Prompts/prompt_R'(run number)'.txt. Hashes (first 16 hex of SHA-256) of Agreement - Executed v2.txt (first 16 hex) 74c2190a908d0adf, Client Instruction.txt 4b77ff776aac1c98.
+One run per condition unless the title says otherwise. A single run shows what happened once and says nothing about how often.
+
+TASK GIVEN
+What are the annual Fees under the Order Form? Explain what the evidence establishes. Keep the answer under 200 words.
+
+ACTUAL RESPONSE (unedited)
+------------------------------------------------------------
+The annual Fees cannot be determined from the documents supplied, and I have not inferred them.
+
+What the evidence establishes:
+
+- The Order Form says the Fees "are set out in the Fee Schedule signed by the parties on the Order Date." The Fee Schedule is not in the supplied set. The document says so itself, and Victoria's instruction confirms it was not supplied.
+- The Fees are in Ugandan shillings and exclude taxes. This overrides the default of U.S. Dollars in Section 4.1.
+- Invoicing is monthly, with payment due within 30 days of the invoice date.
+- The Subscription Period is 12 months. If the monthly fee were known, the annual figure would follow from it. But no monthly or annual amount appears anywhere.
+- The SLA credits are percentages of the monthly fee, and the 8% credit cap is a percentage of the period's fees. Neither gives an amount.
+- The liability caps (1x and 2x of Fees paid or payable in the prior 12 months) are multiples, not amounts.
+
+To answer, we need the signed Fee Schedule dated 15 August 2026, or the invoices issued under it.

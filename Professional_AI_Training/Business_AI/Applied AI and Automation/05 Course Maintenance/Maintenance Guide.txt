@@ -1,0 +1,49 @@
+READ FIRST: Authoring/README - Read First.txt explains how the teaching edition is reproduced and released. The builder steps below produce only the base layer. Do not run them over the live files.
+
+COURSE MAINTENANCE
+
+CURRENT SOURCES
+Authoring/Documents/legal_tax_course.py supplies the recurring matter and base
+content. teaching_design.py applies the current 12-session structure, dedicated
+LLM lesson, per-session timing, essential/optional sequence, misconceptions,
+questions and notes. Edit these together; do not change only a generated deck.
+definitions.py records full definitions and primary sources.
+practice_resources.py builds the extended fixtures, local demonstrators,
+implementation examples, teacher keys and retained observed runs.
+prepare_legal_tax_course.py writes course.json, the practice index and manifest.
+build_course_documents.py builds the four matching Word documents.
+agent_rehearsal.py supplies the bounded read-only model-selected lookup route.
+verify_course_content.py checks timings, files, notes, optional flags, exact
+clause fidelity and encoded animation targets.
+Authoring/PowerPoint/build_course.mjs builds editable slides and finalizes PPTX.
+add_animations.py adds native staged reveals and note metadata.
+Reference Assets/ holds the authored source/scan and source illustrations with
+attribution. Preserve original public source documents and their hashes.
+
+BUILD AND RELEASE
+Use the bundled Python and Node runtimes named in the PowerPoint builder.
+1. Run prepare_legal_tax_course.py, then build_course_documents.py.
+2. If the contract source changes, render the exact clause to contract_page.png
+   and derive the labelled degraded scan from that same page. The current source
+   page is authored with Pillow; preserve the operative words and attribution.
+3. Run PowerPoint/build_course.mjs for all sessions or selected session numbers.
+4. Run verify_course_content.py. Do not use the old universal TIMING constant
+   as a teaching schedule; the current lessons have individual 120-minute plans.
+5. Render all changed Word documents and inspect every changed page. Inspect
+   changed slide renders, source alignment, arithmetic and click targets.
+6. Rehearse demonstrations in the actual selected teaching account. Preserve
+   prompts, source inputs and observed outputs; never relabel a prepared trace.
+7. Preserve manual edits in a recoverable backup. Publish only the 12 manifest
+   filenames and four current DOCX files to the numbered teaching folders.
+   Remove superseded names from those folders to avoid duplicate editions.
+8. Update the manifest, receipts, animation inventory, review record and hashes.
+   Run package_teaching.py; ZIP creation is optional and not used by default.
+
+PRIVATE BUILD
+Authoring/.build/legal_tax_rebuild holds working renders, receipts and rehearsal
+evidence. Only the current manifest identifies the teaching files.
+Original Scope/ preserves the accepted input, not a second current overview.
+File Integrity.json hashes the current files in folders 01–04.
+Validation/ distinguishes automated structural/layout checks from manual review
+and sampled native playback. Do not turn a package pass into a claim that every
+animation or connected service has been executed in the target application.

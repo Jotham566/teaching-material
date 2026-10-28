@@ -1,0 +1,41 @@
+{
+  "source_scope": "Standard Terms only (Cloud Service Agreement Standard Terms Version 3.0 and SLA Standard Terms Version 2.0). The signed Key Terms, Order Form, Fee Schedule, and any amendments were not supplied and have not been inspected. The full contract position requires review of those documents.",
+  "established_facts": [
+    "Equator (Provider) has proposed an internal reorganisation.",
+    "Victoria (Customer) has not received: (a) Equator's ownership chart, (b) written confirmation that Equator remains responsible, or (c) any statement about whether the agreement will be transferred.",
+    "The signed Fee Schedule was not supplied."
+  ],
+  "unresolved_facts": [
+    "Whether the agreement will be assigned or transferred to a different legal entity.",
+    "The nature of the proposed internal reorganisation (corporate restructure without assignment, or assignment to a group entity).",
+    "Whether Equator will remain the contracting party after the reorganisation.",
+    "Whether any Key Terms or Order Form modify Section 12.6."
+  ],
+  "quotations": [
+    {
+      "source": "Document 1 - Standard Terms",
+      "location": "Section 12.6 Assignment",
+      "quote": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+    },
+    {
+      "source": "Document 1 - Standard Terms",
+      "location": "Section 12.6 Assignment",
+      "quote": "However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates."
+    },
+    {
+      "source": "Document 1 - Standard Terms",
+      "location": "Section 12.6 Assignment",
+      "quote": "Any attempted but non-permitted assignment is void."
+    }
+  ],
+  "analysis": "Section 12.6 contains two distinct rules. First sentence: assignment requires Customer's prior written consent. Second sentence (exception): either party may assign upon notice (not consent) if the assigning party undergoes a merger, change of control, reorganization, or sale of substantially all equity/business/assets. The critical unknown is whether Equator proposes to assign the agreement. An internal corporate reorganisation where Equator remains the contracting party would not trigger Section 12.6 at all. If Equator intends to assign the agreement to another entity within its group, then Section 12.6 applies. The exception permits assignment upon notice when the assigning party undergoes a 'reorganization' - but we cannot determine whether this exception applies without knowing whether an assignment is proposed. The term 'internal reorganisation' in Equator's communication is ambiguous: it could mean a corporate restructure with no assignment, or it could involve transferring the agreement to an affiliate.",
+  "conclusion": "Cannot determine whether consent applies. If no assignment occurs, Section 12.6 is not triggered. If assignment occurs, the exception may permit assignment upon notice only if Equator (the assigning party) undergoes the reorganisation. Victoria must ask Equator: (1) Will the agreement be assigned or transferred to a different legal entity? (2) If yes, which entity? (3) Will Equator remain contractually responsible? The full contract position requires inspection of the Key Terms and Order Form for any modifications to Section 12.6.",
+  "review_checks": [
+    "Confirmed: Distinguished assignment (first sentence) from the notice-only exception (second sentence).",
+    "Confirmed: Did not assume an assignment is occurring - the task states this is unknown.",
+    "Confirmed: Did not add facts about assignee's group membership or Equator's continued responsibility.",
+    "Confirmed: Did not infer fees from the unsigned Fee Schedule.",
+    "Confirmed: Noted Standard Terms position only; acknowledged Key Terms/Order Form not inspected.",
+    "Confirmed: Identified specific evidence needed from Equator rather than inferring transaction type."
+  ]
+}

@@ -9,10 +9,10 @@
 
 Registration: https://forms.gle/n8XLwbK1QxcUsRnx5
 
-## Editing and previous versions
+## Editing and retired versions
 
 Each design directory contains its assets, editable output and build source. Use the source for that design and inspect the exported slides before sharing. Asset credits and licences are retained beside the assets.
 
-The numbered `editable_flyer` directories record earlier revisions. Older files may include superseded pricing, audience wording, the tutor portrait or a WhatsApp QR code. Use the current files linked above when preparing a new post. ZIP files are handoff packages; the matching unpacked folders contain the editable source.
+The current sharing materials are linked above. Superseded flyer revisions through v12 and the earlier parent carousel have been removed from the checkout; Git history retains them. Their pricing, audience wording and QR destinations may be obsolete. Build new posts from the current source and assets. Duplicate ZIP handoff exports are removed where their complete contents already exist unpacked; retain an archive if it holds unique assets or licence text.
 
-`registration_form_review/` records earlier checks of the live form. Preserve the existing version directories so their build scripts and asset references keep working.
+`registration_form_review/` records earlier checks of the live form. Each retained current design uses its own assets and source. Temporary `.build/` and `.chart-data-*/` folders can be regenerated and should not be committed.

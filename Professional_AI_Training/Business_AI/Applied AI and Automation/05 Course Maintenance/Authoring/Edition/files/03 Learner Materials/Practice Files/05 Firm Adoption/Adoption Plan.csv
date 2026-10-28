@@ -1,0 +1,4 @@
+relative_period,objective,proposed_owner_role,evidence_needed,decision,actual_owner,actual_date,status
+Day 0–30 after approval,Scope and prepare sources,Practice and information owners,"Baseline, permissions and source readiness",Ready to shadow?,,,Proposed
+Day 31–60,Test in shadow,Workflow owner and reviewers,"Quality, total effort and access tests",Ready for bounded use?,,,Proposed
+Day 61–90,Review bounded pilot,Sponsor and risk owner,"Value, incidents, cost and remaining risk","Expand, revise or stop?",,,Proposed

@@ -1,0 +1,7 @@
+SIGNED-IN DOCUMENT RETRIEVAL — 27 OCTOBER 2026
+Notebook: KLAi — Fictional legal and tax retrieval rehearsal
+https://notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692
+The signed-in Google notebook imported Agreement - Executed v2.txt as its sole source. The prompt asked about consent, missing transaction facts and the absent fee. A live answer was generated, and citation 2 was opened to inspect the Key Terms source passage.
+The answer identified the Key Terms override, quoted the rule and group exception, requested ownership/responsibility evidence and refused to invent the fee. It referred to the proposed transaction as a change of control even though only an internal reorganisation was established. The reviewer must first ask whether control changes or an assignment is proposed.
+This demonstrates grounding in one uploaded fictional document. It does not test an enterprise connector, a NetDocuments installation, synchronisation or matter-level access enforcement.
+Raw UI files preserve the accessibility transcript, not a vendor export. Some UI text values are truncated by the accessibility interface. The full prompt is recorded in Notebook Retrieval - Raw UI.txt. The screenshot is cropped only to remove browser chrome.

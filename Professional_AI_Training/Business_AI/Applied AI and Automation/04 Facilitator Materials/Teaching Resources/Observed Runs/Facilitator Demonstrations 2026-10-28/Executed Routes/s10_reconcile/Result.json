@@ -1,0 +1,26 @@
+{
+  "kind": "deterministic classroom calculation, not an AI output or tax assessment",
+  "small": {
+    "imported": 125000000,
+    "duplicate_difference": 25000000,
+    "unique_invoices": 100000000,
+    "credits": 2000000,
+    "net": 98000000,
+    "receipts": 80000000,
+    "teaching_outstanding": 18000000
+  },
+  "larger": {
+    "imported": 60800000,
+    "unique_invoices": 59400000,
+    "duplicate_ids": [
+      "INV-C013",
+      "INV-C048",
+      "INV-C094"
+    ],
+    "credits": 750000,
+    "net": 58650000,
+    "september_receipts": 30000000,
+    "teaching_outstanding": 28650000,
+    "missing_unique_invoice_support": 7
+  }
+}

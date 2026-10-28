@@ -1,0 +1,98 @@
+[
+  {
+    "session": 1,
+    "title": "Understanding AI in the firm",
+    "slides": 22,
+    "file": "02 Class Slides/01 - Understanding AI in the firm.pptx",
+    "essentialSlides": 19,
+    "optionalSlides": 3
+  },
+  {
+    "session": 2,
+    "title": "How AI learns and represents information",
+    "slides": 25,
+    "file": "02 Class Slides/02 - How AI learns and represents information.pptx",
+    "essentialSlides": 19,
+    "optionalSlides": 6
+  },
+  {
+    "session": 3,
+    "title": "How language models generate answers and fail",
+    "slides": 18,
+    "file": "02 Class Slides/03 - How language models generate answers and fail.pptx",
+    "essentialSlides": 18,
+    "optionalSlides": 0
+  },
+  {
+    "session": 4,
+    "title": "AI tools, effective instructions and safe use",
+    "slides": 24,
+    "file": "02 Class Slides/04 - AI tools, effective instructions and safe use.pptx",
+    "essentialSlides": 19,
+    "optionalSlides": 5
+  },
+  {
+    "session": 5,
+    "title": "Preparing the firm’s information",
+    "slides": 24,
+    "file": "02 Class Slides/05 - Preparing the firm’s information.pptx",
+    "essentialSlides": 20,
+    "optionalSlides": 4
+  },
+  {
+    "session": 6,
+    "title": "Internal knowledge search and retrieval",
+    "slides": 24,
+    "file": "02 Class Slides/06 - Internal knowledge search and retrieval.pptx",
+    "essentialSlides": 20,
+    "optionalSlides": 4
+  },
+  {
+    "session": 7,
+    "title": "Legal research and deep research",
+    "slides": 22,
+    "file": "02 Class Slides/07 - Legal research and deep research.pptx",
+    "essentialSlides": 20,
+    "optionalSlides": 2
+  },
+  {
+    "session": 8,
+    "title": "Contract review and drafting",
+    "slides": 23,
+    "file": "02 Class Slides/08 - Contract review and drafting.pptx",
+    "essentialSlides": 19,
+    "optionalSlides": 4
+  },
+  {
+    "session": 9,
+    "title": "Automation and agentic AI",
+    "slides": 26,
+    "file": "02 Class Slides/09 - Automation and agentic AI.pptx",
+    "essentialSlides": 19,
+    "optionalSlides": 7
+  },
+  {
+    "session": 10,
+    "title": "Tax evidence workflows and controlled actions",
+    "slides": 28,
+    "file": "02 Class Slides/10 - Tax evidence workflows and controlled actions.pptx",
+    "essentialSlides": 20,
+    "optionalSlides": 8
+  },
+  {
+    "session": 11,
+    "title": "Organisational risk and governance",
+    "slides": 25,
+    "file": "02 Class Slides/11 - Organisational risk and governance.pptx",
+    "essentialSlides": 20,
+    "optionalSlides": 5
+  },
+  {
+    "session": 12,
+    "title": "Leading implementation and evaluating a pilot",
+    "slides": 24,
+    "file": "02 Class Slides/12 - Leading implementation and evaluating a pilot.pptx",
+    "essentialSlides": 20,
+    "optionalSlides": 4
+  }
+]

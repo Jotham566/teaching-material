@@ -1,0 +1,14 @@
+{
+  "started": "2026-10-28T00:02:34.796795+03:00",
+  "command": [
+    "/opt/homebrew/bin/claude",
+    "-p",
+    "--output-format",
+    "json",
+    "--strict-mcp-config",
+    "--disallowedTools",
+    "Bash,Read,Edit,Write,Glob,Grep,LS,WebFetch,WebSearch,Task"
+  ],
+  "prompt_sha256": "2081c9321f4454aa58c9e712bdfa0c76f926665af0fbe4b1673bbf8e67192bbd",
+  "returncode": 0
+}

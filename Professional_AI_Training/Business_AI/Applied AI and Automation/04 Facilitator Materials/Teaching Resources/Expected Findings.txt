@@ -1,0 +1,169 @@
+FACILITATOR ANSWER KEY — KEEP SEPARATE FROM THE LEARNER WORKBOOK
+
+SESSION 01 Understanding AI in the firm
+MODEL RESULT
+Calculation, learned classification, retrieval and drafting are different operations. The base facts do not establish every exception condition. A pilot needs an owner, permitted evidence and a task-specific test.
+TRANSFER CHECK
+A fixed date needs a reminder. Would you train a model?
+A draft quotes the contract but omits the exception. Is it usable?
+Name one source owner for the candidate task.
+EXPECTED
+Use a maintained date and rule. The omitted operative exception fails completeness. Identify the actual or proposed matter/source owner.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 02 How AI learns and represents information
+MODEL RESULT
+Training adjusts parameters; inference uses them. Tokens are input units; embeddings are numerical representations. Similarity proposes candidates and does not decide legal equivalence.
+TRANSFER CHECK
+Does a token ID near another token ID establish similar meaning?
+Why can charge mean security in one sentence and accusation in another?
+What changes during training rather than ordinary inference?
+EXPECTED
+IDs are identifiers, not a distance metric. Context changes the representation. Training adjusts parameters; ordinary inference uses them.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 03 How language models generate answers and fail
+MODEL RESULT
+Generation selects tokens conditioned on context. Responses can vary. Matching answers still need evidence checks. A larger context or reasoning mode does not remove that need.
+TRANSFER CHECK
+The document never supplies a renewal fee. What should the answer say?
+A longer context window includes the clause. Is the conclusion guaranteed?
+Three identical responses appear. What is the remaining verification?
+EXPECTED
+State the missing fee and request the source. Capacity is not faithful use. Compare the proposition with the authoritative text and facts.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 04 AI tools, effective instructions and safe use
+MODEL RESULT
+For Variant A, the wholly-owned-group exception does not apply and the Key Terms change to Section 12.6 requires prior written customer consent. A useful brief specifies sources, task, output, gaps and review. Data terms require account-specific inspection.
+TRANSFER CHECK
+An unrelated buyer acquires control of Equator. Does the group exception in the Key Terms change to Section 12.6 apply?
+The account is paid. May the firm upload any matter?
+A prompt requests a citation. What makes it useful?
+EXPECTED
+The stipulated share sale is outside the group exception, so prior written customer consent is required. Price does not settle permission. Check the exact passage, authority, version and fit.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 05 Preparing the firm’s information
+MODEL RESULT
+A system, modality, structure and format describe different properties. Extraction must preserve the negation, exception and qualification. Preserve originals and source/access metadata through conversion.
+TRANSFER CHECK
+The scan says shall not disclose; extraction says shall disclose. Which stage failed?
+The text is accurate but the matter tag is wrong. What risk remains?
+Which record preserves correction history?
+EXPECTED
+Extraction reversed meaning. Wrong metadata can expose or retrieve the wrong matter. Keep a source-linked quality/correction record and retest derived content.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 06 Internal knowledge search and retrieval
+MODEL RESULT
+Source selection and generated-answer fidelity are separate tests. Current permitted source selection is mandatory. A language model must preserve the exception and identify absent facts.
+TRANSFER CHECK
+The answer uses the right version but invents an ownership fact. Which test fails?
+Search finds no current permitted source. What should happen?
+Could keyword retrieval be part of a RAG system?
+EXPECTED
+Answer fidelity/uncertainty fails. Return a gap or clarification, not an invented answer. RAG can use keyword, vector or hybrid retrieval; it is not defined by vectors alone.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 07 Legal research and deep research
+MODEL RESULT
+On Ground 5 the court held that Goal Ireland’s fundraising for the appellant was a service imported by the appellant, so VAT on the 10% programme delivery fee was correctly assessed, and it dismissed the appeal with costs (printed pages 22 to 24). This is a historical result between other parties. It does not decide Victoria’s position. The paragraph, the statute edition and the client facts each need separate verification.
+TRANSFER CHECK
+A later summary contradicts the historical judgment. Which text must be inspected?
+Section numbers differ between editions. What must the memo record?
+Can the historical holding decide Victoria’s proposed fee?
+EXPECTED
+Inspect both actual authorities and later treatment. Record Act, edition/date, provision and proposition. The client’s facts and applicable current law need their own analysis.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 08 Contract review and drafting
+MODEL RESULT
+NER identifies names, not all legal relationships. The three errors lose the exception, reverse support approval and invent a fee. The full KT-1 replacement contains separate assignment and change-of-control obligations. The teaching reading connects the group exception to change-of-control consent.
+TRANSFER CHECK
+Equator proposes assigning the agreement. Does the Key Terms change to Section 12.6 alone settle permission?
+The company name is extracted. Has its obligation been established?
+The signed schedule is absent. May the amendment assume a fee?
+EXPECTED
+The complete KT-1 replacement includes an assignment-consent sentence. Read it separately from change of control and the group exception; preserve unresolved facts and flag material interpretation for qualified review. Roles and obligations require surrounding text. Do not invent a fee.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 09 Automation and agentic AI
+MODEL RESULT
+A workflow follows configured logic; an agent can select permitted actions from observations. Tool requests require enforced authorisation. Rejection or a stale approval stops the dependent action. A local rules demo is not evidence of live agentic behaviour.
+TRANSFER CHECK
+The model requests an unapproved lookup. Who stops it?
+A field changes after approval. Is the old approval sufficient?
+A tool server is connected. Has agentic behaviour been demonstrated?
+EXPECTED
+The execution host enforces the allowed tool and arguments. A changed version requires new review. A connection alone proves no model-selected action.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 10 Tax evidence workflows and controlled actions
+MODEL RESULT
+Amounts in UGX million: 125 less duplicate 25 gives 100, then credit 2 gives 98. Receipts of 80 leave 18 under the stated assumptions. That difference alone does not establish unpaid tax. Evidence checks, declaration and payment are separate operations.
+TRANSFER CHECK
+One receipt belongs to October rather than September. Does the 18m balance still follow?
+A missing reference proves fraud: accept or reject?
+Acknowledgement is uncertain. Should the action be repeated immediately?
+EXPECTED
+Recalculate under the changed timing. Reject the unsupported fraud claim and request evidence. Inspect actual status and identifiers before retrying.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 11 Organisational risk and governance
+MODEL RESULT
+Privacy, professional confidentiality, quality and action authority are distinct risks. Each control needs an owner and a test. Incident response starts with containment and assessment, not a guessed universal reporting deadline.
+TRANSFER CHECK
+No-training is enabled. What other data questions remain?
+A scanned collection has more errors. What must be measured?
+A restricted passage entered a draft. What is the first response?
+EXPECTED
+Check retention, access, contracts, location and permission. Measure relevant group quality and effects, with adequate samples. Contain the affected route and preserve evidence while assessing recipients and duties.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.
+
+SESSION 12 Leading implementation and evaluating a pilot
+MODEL RESULT
+A pilot needs a bounded problem, representative evidence, acceptance tests, resources, owners and a review decision. Time released is not automatically cash saved. State what evidence would justify expansion or stopping.
+TRANSFER CHECK
+The draft saves time but loses a critical exception. Expand?
+Review effort rises above the manual baseline. What changes?
+Who can approve more users or action authority?
+EXPECTED
+Do not expand with a critical failure. Revise the design or stop if total effort/value is worse. Named firm authorities decide scope and permissions after additional tests.
+PARTLY CORRECT RESPONSE
+Ask which source supports the claim; inspect it together; change one condition and ask again. Score support needed rather than rewarding terminology alone.
+OBSERVED RUN
+Record the actual tool, source, output and limitation. A model result in this key is an authored answer, not a transcript of an AI run.

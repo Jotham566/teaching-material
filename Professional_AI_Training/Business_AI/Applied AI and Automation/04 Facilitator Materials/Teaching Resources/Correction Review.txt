@@ -1,0 +1,27 @@
+OBSERVED ISSUES: CORRECTIONS | 28 OCTOBER 2026
+
+Contract reasoning
+The teaching reference now starts with separate assignment and change-of-control triggers, preserves unknown facts and the exception's conditions, distinguishes a share sale from assignment, and follows termination and liability cross-references. The incorrect claim that no consequences exist beyond assignment voidness is removed. The fee and any monetary cap remain unresolved without their evidence. Generated drafts pass a source-and-inference review before release. Failed first attempts and feedback-assisted revisions remain separately labelled.
+
+Research
+The historical case note corrects the assessment total, original tax-head labels, court/submission distinction, statutory editions and page locations. Its four original rows total UGX 650,508,770. The source-led account retest now gets the key historical claims right with original-PDF citations. Current applicability and later treatment are explicitly separate; the course no longer treats the failed web report as a verified memo.
+
+Retrieval
+The actual tokenizer showed 15 of 79 baseline passages exceeded the 256-token limit; KT-1's 728-token passage lost the operative rule from the encoded input. The repaired route bounds passages, checks source identity and hashes, separates source purposes, combines candidates, reranks and supplies amendment context. All eight original fixture checks and eleven further safeguards pass. These are retrieval evidence tests, not proof of generated legal correctness or enterprise security.
+
+Agents and account demonstrations
+The final four local model-selected runs respect their read-only scope and preserve uncertainty. Two earlier malformed JSON replies were held safely; the instruction now requests simpler structured output, with regression checks for malformed and ungrounded replies. The private Zapier full test already passed and remains unpublished. The contract notebook required explicit feedback to repair an exception-scope inference. Source grounding does not remove the need for review.
+
+Teaching and materials
+Ten speaker scripts in Sessions 3, 6, 7, 8 and 9 are revised. The Guide and Workbook match the corrected activities. Each session has a concrete 120-minute plan: recall, explanation, demonstration, break, guided work, a proposed firm decision and transfer. I operate the tools and complete records with the learner during class. Optional material remains outside that plan. Five synthetic practice recordings are refreshed; none is claimed as Jotham's own spoken rehearsal.
+
+Layout and release
+Word rendered the Guide and Workbook for visual checks. The Guide's stale neural status and orphan resource-list page were repaired. Release checks also compare the deck visual/animation parts with the prior edition and rebuild from maintained sources. Original failed evidence is preserved. See the release verification record for final results.
+
+Executed checks: repaired retrieval 19/19; protocol regressions 3/3; existing host tests 7/7; maintained release and rebuild 32/32, followed by the separate inventory read-back and plain verification.
+
+Facilitator delivery gap closed | 28 October 2026
+The single current Facilitator Guide now contains the full twelve-session demonstration instructions, with direct navigation from the session summaries. It supplies exact tools, files, setup, commands/copy-ready prompts, expected checks, questions/answers, failure recovery and saved-output routes. Seventeen local routes were actually executed; raw evidence and scope limits are in Observed Runs/Facilitator Demonstrations 2026-10-28. Fresh local OCR is explicitly Apple Vision, separate from the retained historical Tesseract results. Browser procedures include source selection, citation inspection and the exact local workflow form actions. The Guide is 53 visually inspected pages; no PPTX or Workbook content changed in this pass. The source JSON, assembler, prompt generator and launcher are maintained so the next build retains these instructions. See Validation/Edition Verification.json for the final current check count.
+
+Experienced professional delivery | 28 October 2026
+The course now explicitly builds on existing chatbot use. The Guide keeps exact interface instructions as private preparation and starts each session with a professional decision and evidence standard. Familiar explanations lead into harder cases within the current guided blocks. Session 3 uses one live answer and dated saved repeats, with differing prompts/models/dates labelled; Session 4 starts with the learner’s own way of briefing AI, then tests a reusable review specification. The Workbook and run sheets match. The Workbook’s older 20-minute incident wording is corrected to the 35-minute guided block in the facilitator plan. Guide 53 pages, Workbook 17. The executable demo routes and previously saved actual outputs are unchanged; instruction-source alignment is now recorded separately from executable hashes.

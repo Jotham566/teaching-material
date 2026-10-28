@@ -1,0 +1,1217 @@
+[
+ {
+  "session": 1,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "parties",
+   "cogs"
+  ]
+ },
+ {
+  "session": 1,
+  "slide": 2,
+  "kind": "side",
+  "motif": "people_ai"
+ },
+ {
+  "session": 1,
+  "slide": 4,
+  "kind": "side",
+  "motif": "database"
+ },
+ {
+  "session": 1,
+  "slide": 5,
+  "kind": "side",
+  "motif": "cogs"
+ },
+ {
+  "session": 1,
+  "slide": 7,
+  "kind": "side",
+  "motif": "chat"
+ },
+ {
+  "session": 1,
+  "slide": 11,
+  "kind": "side",
+  "motif": "tree"
+ },
+ {
+  "session": 1,
+  "slide": 12,
+  "kind": "side",
+  "motif": "magnifier"
+ },
+ {
+  "session": 1,
+  "slide": 13,
+  "kind": "side",
+  "motif": "sidebyside"
+ },
+ {
+  "session": 1,
+  "slide": 14,
+  "kind": "side",
+  "motif": "folder_lock"
+ },
+ {
+  "session": 1,
+  "slide": 16,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 1,
+  "slide": 17,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 1,
+  "slide": 18,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 1,
+  "slide": 19,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 1,
+  "slide": 20,
+  "kind": "side",
+  "motif": "network"
+ },
+ {
+  "session": 1,
+  "slide": 21,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 1,
+  "slide": 22,
+  "kind": "side",
+  "motif": "team"
+ },
+ {
+  "session": 2,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "network",
+   "tokens"
+  ]
+ },
+ {
+  "session": 2,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 2,
+  "slide": 3,
+  "kind": "side",
+  "motif": "cogs"
+ },
+ {
+  "session": 2,
+  "slide": 4,
+  "kind": "side",
+  "motif": "cycle"
+ },
+ {
+  "session": 2,
+  "slide": 7,
+  "kind": "side",
+  "motif": "database"
+ },
+ {
+  "session": 2,
+  "slide": 9,
+  "kind": "side",
+  "motif": "tokens"
+ },
+ {
+  "session": 2,
+  "slide": 10,
+  "kind": "side",
+  "motif": "vecmap"
+ },
+ {
+  "session": 2,
+  "slide": 12,
+  "kind": "side",
+  "motif": "compass"
+ },
+ {
+  "session": 2,
+  "slide": 13,
+  "kind": "side",
+  "motif": "puzzle"
+ },
+ {
+  "session": 2,
+  "slide": 14,
+  "kind": "side",
+  "motif": "sidebyside"
+ },
+ {
+  "session": 2,
+  "slide": 16,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 2,
+  "slide": 17,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 2,
+  "slide": 18,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 2,
+  "slide": 19,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 2,
+  "slide": 21,
+  "kind": "side",
+  "motif": "network"
+ },
+ {
+  "session": 2,
+  "slide": 23,
+  "kind": "side",
+  "motif": "books"
+ },
+ {
+  "session": 2,
+  "slide": 24,
+  "kind": "side",
+  "motif": "tree"
+ },
+ {
+  "session": 2,
+  "slide": 25,
+  "kind": "side",
+  "motif": "cycle"
+ },
+ {
+  "session": 3,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "chat",
+   "dice",
+   "window"
+  ]
+ },
+ {
+  "session": 3,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 3,
+  "slide": 3,
+  "kind": "side",
+  "motif": "chat"
+ },
+ {
+  "session": 3,
+  "slide": 8,
+  "kind": "side",
+  "motif": "window"
+ },
+ {
+  "session": 3,
+  "slide": 10,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 3,
+  "slide": 13,
+  "kind": "side",
+  "motif": "dice"
+ },
+ {
+  "session": 3,
+  "slide": 15,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 3,
+  "slide": 16,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 3,
+  "slide": 17,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 3,
+  "slide": 18,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 4,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "clipboard",
+   "sidebyside"
+  ]
+ },
+ {
+  "session": 4,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 4,
+  "slide": 3,
+  "kind": "side",
+  "motif": "sidebyside"
+ },
+ {
+  "session": 4,
+  "slide": 6,
+  "kind": "side",
+  "motif": "chat"
+ },
+ {
+  "session": 4,
+  "slide": 7,
+  "kind": "side",
+  "motif": "clipboard"
+ },
+ {
+  "session": 4,
+  "slide": 8,
+  "kind": "side",
+  "motif": "docstack"
+ },
+ {
+  "session": 4,
+  "slide": 12,
+  "kind": "side",
+  "motif": "deskperson"
+ },
+ {
+  "session": 4,
+  "slide": 13,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 4,
+  "slide": 16,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 4,
+  "slide": 17,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 4,
+  "slide": 18,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 4,
+  "slide": 19,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 4,
+  "slide": 20,
+  "kind": "side",
+  "motif": "magnifier"
+ },
+ {
+  "session": 4,
+  "slide": 21,
+  "kind": "side",
+  "motif": "database"
+ },
+ {
+  "session": 4,
+  "slide": 22,
+  "kind": "side",
+  "motif": "magnifier"
+ },
+ {
+  "session": 4,
+  "slide": 24,
+  "kind": "side",
+  "motif": "tree"
+ },
+ {
+  "session": 5,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "scanpage",
+   "database"
+  ]
+ },
+ {
+  "session": 5,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 5,
+  "slide": 6,
+  "kind": "side",
+  "motif": "database"
+ },
+ {
+  "session": 5,
+  "slide": 9,
+  "kind": "side",
+  "motif": "scanpage"
+ },
+ {
+  "session": 5,
+  "slide": 11,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 5,
+  "slide": 13,
+  "kind": "side",
+  "motif": "clipboard"
+ },
+ {
+  "session": 5,
+  "slide": 15,
+  "kind": "side",
+  "motif": "docstack"
+ },
+ {
+  "session": 5,
+  "slide": 17,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 5,
+  "slide": 18,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 5,
+  "slide": 19,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 5,
+  "slide": 20,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 5,
+  "slide": 21,
+  "kind": "side",
+  "motif": "tree"
+ },
+ {
+  "session": 5,
+  "slide": 23,
+  "kind": "side",
+  "motif": "parties"
+ },
+ {
+  "session": 5,
+  "slide": 24,
+  "kind": "side",
+  "motif": "compass"
+ },
+ {
+  "session": 6,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "database",
+   "vecmap",
+   "magnifier"
+  ]
+ },
+ {
+  "session": 6,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 6,
+  "slide": 3,
+  "kind": "side",
+  "motif": "magnifier"
+ },
+ {
+  "session": 6,
+  "slide": 4,
+  "kind": "side",
+  "motif": "chat"
+ },
+ {
+  "session": 6,
+  "slide": 5,
+  "kind": "side",
+  "motif": "puzzle"
+ },
+ {
+  "session": 6,
+  "slide": 8,
+  "kind": "side",
+  "motif": "database"
+ },
+ {
+  "session": 6,
+  "slide": 9,
+  "kind": "side",
+  "motif": "vecmap"
+ },
+ {
+  "session": 6,
+  "slide": 13,
+  "kind": "side",
+  "motif": "sidebyside"
+ },
+ {
+  "session": 6,
+  "slide": 16,
+  "kind": "side",
+  "motif": "cycle"
+ },
+ {
+  "session": 6,
+  "slide": 17,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 6,
+  "slide": 18,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 6,
+  "slide": 19,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 6,
+  "slide": 20,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 6,
+  "slide": 21,
+  "kind": "side",
+  "motif": "vecmap"
+ },
+ {
+  "session": 6,
+  "slide": 22,
+  "kind": "side",
+  "motif": "window"
+ },
+ {
+  "session": 6,
+  "slide": 23,
+  "kind": "side",
+  "motif": "gap"
+ },
+ {
+  "session": 6,
+  "slide": 24,
+  "kind": "side",
+  "motif": "cloud"
+ },
+ {
+  "session": 7,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "scales",
+   "books"
+  ]
+ },
+ {
+  "session": 7,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 7,
+  "slide": 3,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 7,
+  "slide": 4,
+  "kind": "side",
+  "motif": "compass"
+ },
+ {
+  "session": 7,
+  "slide": 6,
+  "kind": "side",
+  "motif": "scales"
+ },
+ {
+  "session": 7,
+  "slide": 7,
+  "kind": "side",
+  "motif": "books"
+ },
+ {
+  "session": 7,
+  "slide": 8,
+  "kind": "side",
+  "motif": "sidebyside"
+ },
+ {
+  "session": 7,
+  "slide": 9,
+  "kind": "side",
+  "motif": "calendar"
+ },
+ {
+  "session": 7,
+  "slide": 12,
+  "kind": "side",
+  "motif": "magnifier"
+ },
+ {
+  "session": 7,
+  "slide": 13,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 7,
+  "slide": 14,
+  "kind": "side",
+  "motif": "shield"
+ },
+ {
+  "session": 7,
+  "slide": 15,
+  "kind": "side",
+  "motif": "docstack"
+ },
+ {
+  "session": 7,
+  "slide": 16,
+  "kind": "side",
+  "motif": "clipboard"
+ },
+ {
+  "session": 7,
+  "slide": 17,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 7,
+  "slide": 18,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 7,
+  "slide": 19,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 7,
+  "slide": 20,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 7,
+  "slide": 22,
+  "kind": "side",
+  "motif": "team"
+ },
+ {
+  "session": 8,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "docstack",
+   "magnifier"
+  ]
+ },
+ {
+  "session": 8,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 8,
+  "slide": 3,
+  "kind": "side",
+  "motif": "parties"
+ },
+ {
+  "session": 8,
+  "slide": 4,
+  "kind": "side",
+  "motif": "docstack"
+ },
+ {
+  "session": 8,
+  "slide": 6,
+  "kind": "side",
+  "motif": "clipboard"
+ },
+ {
+  "session": 8,
+  "slide": 9,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 8,
+  "slide": 12,
+  "kind": "side",
+  "motif": "sidebyside"
+ },
+ {
+  "session": 8,
+  "slide": 13,
+  "kind": "side",
+  "motif": "magnifier"
+ },
+ {
+  "session": 8,
+  "slide": 14,
+  "kind": "side",
+  "motif": "bulb"
+ },
+ {
+  "session": 8,
+  "slide": 16,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 8,
+  "slide": 17,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 8,
+  "slide": 18,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 8,
+  "slide": 19,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 8,
+  "slide": 21,
+  "kind": "side",
+  "motif": "tree"
+ },
+ {
+  "session": 8,
+  "slide": 22,
+  "kind": "side",
+  "motif": "deskperson"
+ },
+ {
+  "session": 8,
+  "slide": 23,
+  "kind": "side",
+  "motif": "team"
+ },
+ {
+  "session": 9,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "agent",
+   "flow"
+  ]
+ },
+ {
+  "session": 9,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 9,
+  "slide": 3,
+  "kind": "side",
+  "motif": "flow"
+ },
+ {
+  "session": 9,
+  "slide": 5,
+  "kind": "side",
+  "motif": "cogs"
+ },
+ {
+  "session": 9,
+  "slide": 6,
+  "kind": "side",
+  "motif": "cloud"
+ },
+ {
+  "session": 9,
+  "slide": 7,
+  "kind": "side",
+  "motif": "agent"
+ },
+ {
+  "session": 9,
+  "slide": 12,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 9,
+  "slide": 13,
+  "kind": "side",
+  "motif": "tree"
+ },
+ {
+  "session": 9,
+  "slide": 14,
+  "kind": "side",
+  "motif": "envelope"
+ },
+ {
+  "session": 9,
+  "slide": 16,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 9,
+  "slide": 17,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 9,
+  "slide": 18,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 9,
+  "slide": 19,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 9,
+  "slide": 20,
+  "kind": "side",
+  "motif": "cogs"
+ },
+ {
+  "session": 9,
+  "slide": 21,
+  "kind": "side",
+  "motif": "cloud"
+ },
+ {
+  "session": 9,
+  "slide": 23,
+  "kind": "side",
+  "motif": "team"
+ },
+ {
+  "session": 9,
+  "slide": 24,
+  "kind": "side",
+  "motif": "flow"
+ },
+ {
+  "session": 9,
+  "slide": 26,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 10,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "ledger",
+   "bars"
+  ]
+ },
+ {
+  "session": 10,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 10,
+  "slide": 3,
+  "kind": "side",
+  "motif": "bars"
+ },
+ {
+  "session": 10,
+  "slide": 4,
+  "kind": "side",
+  "motif": "ledger"
+ },
+ {
+  "session": 10,
+  "slide": 7,
+  "kind": "side",
+  "motif": "sidebyside"
+ },
+ {
+  "session": 10,
+  "slide": 8,
+  "kind": "side",
+  "motif": "gap"
+ },
+ {
+  "session": 10,
+  "slide": 10,
+  "kind": "side",
+  "motif": "scales"
+ },
+ {
+  "session": 10,
+  "slide": 14,
+  "kind": "side",
+  "motif": "hourglass"
+ },
+ {
+  "session": 10,
+  "slide": 16,
+  "kind": "side",
+  "motif": "clipboard"
+ },
+ {
+  "session": 10,
+  "slide": 17,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 10,
+  "slide": 18,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 10,
+  "slide": 19,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 10,
+  "slide": 20,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 10,
+  "slide": 21,
+  "kind": "side",
+  "motif": "magnifier"
+ },
+ {
+  "session": 10,
+  "slide": 22,
+  "kind": "side",
+  "motif": "calendar"
+ },
+ {
+  "session": 10,
+  "slide": 23,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 10,
+  "slide": 24,
+  "kind": "side",
+  "motif": "clipboard"
+ },
+ {
+  "session": 10,
+  "slide": 26,
+  "kind": "side",
+  "motif": "cogs"
+ },
+ {
+  "session": 10,
+  "slide": 27,
+  "kind": "side",
+  "motif": "cloud"
+ },
+ {
+  "session": 11,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "shield",
+   "scales"
+  ]
+ },
+ {
+  "session": 11,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 11,
+  "slide": 3,
+  "kind": "side",
+  "motif": "warn"
+ },
+ {
+  "session": 11,
+  "slide": 6,
+  "kind": "side",
+  "motif": "shield"
+ },
+ {
+  "session": 11,
+  "slide": 8,
+  "kind": "side",
+  "motif": "envelope"
+ },
+ {
+  "session": 11,
+  "slide": 9,
+  "kind": "side",
+  "motif": "scales"
+ },
+ {
+  "session": 11,
+  "slide": 10,
+  "kind": "side",
+  "motif": "deskperson"
+ },
+ {
+  "session": 11,
+  "slide": 11,
+  "kind": "side",
+  "motif": "people_ai"
+ },
+ {
+  "session": 11,
+  "slide": 13,
+  "kind": "side",
+  "motif": "clipboard"
+ },
+ {
+  "session": 11,
+  "slide": 14,
+  "kind": "side",
+  "motif": "stopgate"
+ },
+ {
+  "session": 11,
+  "slide": 17,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 11,
+  "slide": 18,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 11,
+  "slide": 19,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 11,
+  "slide": 20,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 11,
+  "slide": 22,
+  "kind": "side",
+  "motif": "folder_lock"
+ },
+ {
+  "session": 11,
+  "slide": 24,
+  "kind": "side",
+  "motif": "scales"
+ },
+ {
+  "session": 11,
+  "slide": 25,
+  "kind": "side",
+  "motif": "stamp"
+ },
+ {
+  "session": 12,
+  "slide": 1,
+  "kind": "hero",
+  "motifs": [
+   "timeline",
+   "team",
+   "stairs"
+  ]
+ },
+ {
+  "session": 12,
+  "slide": 2,
+  "kind": "side",
+  "motif": "rewind"
+ },
+ {
+  "session": 12,
+  "slide": 3,
+  "kind": "side",
+  "motif": "team"
+ },
+ {
+  "session": 12,
+  "slide": 7,
+  "kind": "side",
+  "motif": "gauge"
+ },
+ {
+  "session": 12,
+  "slide": 9,
+  "kind": "side",
+  "motif": "bars"
+ },
+ {
+  "session": 12,
+  "slide": 11,
+  "kind": "side",
+  "motif": "team"
+ },
+ {
+  "session": 12,
+  "slide": 12,
+  "kind": "side",
+  "motif": "people_ai"
+ },
+ {
+  "session": 12,
+  "slide": 13,
+  "kind": "side",
+  "motif": "hourglass"
+ },
+ {
+  "session": 12,
+  "slide": 16,
+  "kind": "side",
+  "motif": "docstack"
+ },
+ {
+  "session": 12,
+  "slide": 17,
+  "kind": "side",
+  "motif": "laptop"
+ },
+ {
+  "session": 12,
+  "slide": 18,
+  "kind": "side",
+  "motif": "target"
+ },
+ {
+  "session": 12,
+  "slide": 19,
+  "kind": "side",
+  "motif": "signpost"
+ },
+ {
+  "session": 12,
+  "slide": 20,
+  "kind": "side",
+  "motif": "question"
+ },
+ {
+  "session": 12,
+  "slide": 21,
+  "kind": "side",
+  "motif": "people_ai"
+ },
+ {
+  "session": 12,
+  "slide": 22,
+  "kind": "side",
+  "motif": "tree"
+ },
+ {
+  "session": 12,
+  "slide": 23,
+  "kind": "side",
+  "motif": "cycle"
+ },
+ {
+  "session": 12,
+  "slide": 24,
+  "kind": "side",
+  "motif": "books"
+ }
+]

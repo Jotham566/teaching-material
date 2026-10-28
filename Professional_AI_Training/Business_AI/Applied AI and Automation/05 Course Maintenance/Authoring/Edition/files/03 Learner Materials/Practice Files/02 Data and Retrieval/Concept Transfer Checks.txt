@@ -1,0 +1,2 @@
+DISCUSS BEFORE LOOKING AT A DEFINITION
+Does a near token ID imply near meaning? Does every similar phrase have the same legal effect? Does reading an upload necessarily update model weights? Can a large context omit or misuse a relevant clause? Explain each using a different example, not the wording on a slide.

@@ -1,0 +1,63 @@
+ACTUAL SAVED AI OUTPUT — 26 OCTOBER 2026
+Product: Claude Code CLI, existing default configuration
+Model: Not separately exposed in this CLI result
+Rehearsal on supplied fictional sources; no tools enabled. Not a claim about future model performance.
+
+PROMPT
+Fictional teaching exercise. Use only these labelled source files. Make no tax assessment. Return a concise reconciliation and evidence gaps, under 220 words. Distinguish receipts from a tax declaration. Source fields, file roles and period must be preserved.
+
+FILE: Invoice Import.csv
+invoice_id,period,amount_ugx,supporting_identifier
+INV-001,2026-09,40000000,TEACHING-REF-1
+INV-002,2026-09,35000000,
+INV-003,2026-09,25000000,TEACHING-REF-3
+INV-003,2026-09,25000000,TEACHING-REF-3
+
+FILE: Credit Notes.csv
+credit_note_id,invoice_id,period,amount_ugx
+CN-001,INV-003,2026-09,2000000
+
+FILE: Ledger.csv
+period,account,amount_ugx
+2026-09,Net teaching sales,98000000
+
+FILE: Receipts.csv
+period,amount_ugx
+2026-09,80000000
+
+Task: reconcile invoices, adjustments, ledger and receipts. State the assumptions needed to interpret any outstanding balance. Do not infer tax liability, fraud, exemptions or a declared tax basis from these files.
+
+ACTUAL RESPONSE
+## Reconciliation Summary (Period 2026-09)
+
+### Invoice to Ledger Reconciliation
+| Item | Amount (UGX) |
+|------|-------------|
+| Gross Invoices (INV-001 + INV-002 + INV-003) | 100,000,000 |
+| Less: Credit Note CN-001 | (2,000,000) |
+| **Net Invoiced Sales** | **98,000,000** |
+| Ledger: Net teaching sales | 98,000,000 |
+| **Variance** | **0** |
+
+### Receipts vs Net Sales
+| Item | Amount (UGX) |
+|------|-------------|
+| Net Invoiced Sales | 98,000,000 |
+| Receipts (cash collected) | 80,000,000 |
+| **Outstanding Balance** | **18,000,000** |
+
+### Data Quality Issues
+- **Duplicate row**: INV-003 appears twice (excluded one from calculation)
+- **Missing identifier**: INV-002 lacks `supporting_identifier`
+
+### Evidence Gaps
+1. No aged receivables breakdown for the 18M outstanding
+2. No payment allocation linking receipts to specific invoices
+3. No documentation confirming INV-003 duplicate is erroneous vs intentional
+
+### Key Distinction
+- **Receipts.csv**: Records cash collected—not a tax declaration or liability statement
+- **Ledger.csv**: Accrual-based sales record—not a filed tax return
+
+### Assumptions Required
+The 18M difference assumes: (a) receipts apply to this period's invoices only, (b) no unrecorded adjustments exist, (c) the duplicate INV-003 is a data error.

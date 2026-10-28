@@ -1,0 +1,39 @@
+{
+  "kind": "source-owned extracts, not model output",
+  "source": "03 Learner Materials/Practice Files/01 Matter and Sources/Agreement - Executed v2.txt",
+  "sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+  "extracts": [
+    {
+      "line": 3,
+      "text": "[ADAPTED] Changes made. The Standard Terms (from “To use these Cloud Service Agreement Standard Terms” to the end) are unchanged. Only the Order Form and Key Terms cover pages have been completed. Text in blue is added or chosen for teaching and was not in the original. Black text is original wording. Drafting notes and unselected options were removed. Two substantive changes to the Standard Terms are made in the Key Terms under “Other Changes to Standard Terms”: Teaching Adaptation 1 (Section 12.6) and Teaching Adaptation 2 (Section 1.5). The Fee Schedule referred to in the Order Form is not supplied."
+    },
+    {
+      "line": 30,
+      "text": "== USING THE FRAMEWORK TERMS / The Framework Terms have 2 parts: (1) the Key Terms below (including any attached or referenced policies and documents) and (2) the Common Paper Cloud Service Standard Terms Version 3.0 posted at https://commonpaper.com/standards/cloud-service-agreement/3.0, which are incorporated by reference. If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms. Capitalized words have the meanings or descriptions given in the Cover Page or Standard Terms. =="
+    },
+    {
+      "line": 43,
+      "text": "Other Changes to Standard Terms / List specific changes to the Standard Terms: [ADAPTED] [TEACHING ADAPTATION 1] Section 12.6 (Assignment) is replaced with the following: [ADAPTED] “12.6 Assignment.  Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.” [ADAPTED] [TEACHING ADAPTATION 2] Section 1.5 (Customer Content) is supplemented with the following sentence: “Provider may give its support staff access to Customer Content only if each person is named in a written request and Customer has approved that person in writing before access begins. This access is subject to Section 10 (Confidentiality).”"
+    },
+    {
+      "line": 82,
+      "text": "Section 5.3 Termination.  Either party may terminate the Framework Terms or an Order Form immediately:"
+    },
+    {
+      "line": 105,
+      "text": "Section 8.1 Liability Cap.  Except as provided in the Cover Page, each party’s total cumulative liability for all claims arising out of or relating to this Agreement will not be more than the General Cap Amount."
+    },
+    {
+      "line": 106,
+      "text": "Section 8.2 Indirect Damages Waiver.  Except for a breach of Section 10 (Confidentiality) and as provided in the Cover Page, under no circumstances will either party be liable to the other for lost profits or revenues (whether direct or indirect), or for consequential, special, indirect, exemplary, punitive, or incidental damages relating to this Agreement, even if the party is informed of the possibility of this type of damage in advance."
+    },
+    {
+      "line": 108,
+      "text": "Section 8.4 Exceptions.  Nothing in this Agreement will limit, exclude, or restrict a party's liability (a) to the extent prohibited by Applicable Laws, or (b) for its gross negligence, willful misconduct, or fraud."
+    },
+    {
+      "line": 136,
+      "text": "Section 12.5 Non-Exhaustive Remedies.  Except where the Agreement provides for an exclusive remedy, seeking or exercising a remedy does not limit the other rights or remedies available to a party."
+    }
+  ]
+}

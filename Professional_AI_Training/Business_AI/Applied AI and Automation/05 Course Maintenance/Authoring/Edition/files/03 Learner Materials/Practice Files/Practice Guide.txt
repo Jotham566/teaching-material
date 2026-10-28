@@ -1,0 +1,103 @@
+PRACTICE FILES
+facilitator_demo.command: Mac launcher for the exact demonstration commands in the Facilitator Guide.
+facilitator_ocr.swift: Local Apple Vision OCR used by Sessions 5 and 11, separately labelled from historical Tesseract.
+facilitator_demo.py: Local dispatcher; writes dated run outputs to Downloads/KLAi Demo Runs.
+One fictional legal and tax matter. All required work happens in class. Files that need an account, an installed tool or a rehearsal in the real account are listed in Teaching Resources/Run Demonstrations.txt.
+
+01 MATTER AND SOURCES
+  Agreement - Executed v2.docx: The agreement as a Word document, with the cover pages completed.
+  Agreement - Executed v2.txt: The same agreement as plain text, for tools that read text. Teaching adaptations are marked [ADAPTED].
+  Agreement - Superseded Draft v1.txt: An earlier draft, kept for version-control exercises.
+  Agreement Provenance and Adaptations.txt: Source, licence, what is original wording and what is teaching adaptation.
+  Client Instruction.txt: What the client has asked, and the facts not yet confirmed.
+  Common Paper CSA v3.0 with SLA - Original unmodified.docx: The public source document without changes (CC BY 4.0).
+  Contract Review Playbook.txt: The customer-side review rules.
+  Goal Relief Judgment.pdf: The real judgment used in the research session.
+  Judgment Source Record.txt: Where the judgment came from and what was checked.
+  Matter Brief.txt: The fictional matter: Kampala Legal and Tax advises Victoria Services Ltd about Equator Systems Ltd.
+  Public Sources.txt: Public sources used in the course.
+  Transaction Variants.txt: Share sale, assignment and reorganisation variants for the matter.
+
+02 DATA AND RETRIEVAL
+  reviewed_retrieval.py: Current teaching route: identity, purpose, token-bounded chunks, hybrid candidates, reranking and amendment context.
+  test_reviewed_retrieval.py: Eight original checks plus eleven strengthened or additional safeguards.
+  Clause Record.json: Four clause records the agent host can return (12.6, KT-1, 1.5, KT-2).
+  Concept Transfer Checks.txt: Questions that apply the concepts to a new case.
+  Damaged Contract Extract.txt: Text extracted from a damaged page, for checking against the source.
+  Degraded Scan - moderate.png: Moderate scan of the same passage.
+  Document Quality Record.csv: Record of document quality checks.
+  Extraction Run Record.csv: Record of extraction runs.
+  Information Inventory.csv: Blank inventory of the firm's information sources.
+  Knowledge Assistant Tests.csv: The eight test questions with expected passages.
+  Knowledge Library: 40 documents for the retrieval exercises: the current and draft agreement and 38 internal records.
+  Knowledge Library Manifest.csv: Index of the library with hashes, type, date and title.
+  Language Representation Exercise.txt: Tokens, counts and vectors on the matter's own wording.
+  Learning and Embedding Examples.txt: Small worked examples of learning and embeddings.
+  Legal XML Teaching Fragment.xml: A short marked-up legal text.
+  OCR Experiment: Four print conditions, twelve passages and a script to measure word accuracy and lost negations.
+  Original Source.png: Clean image of the key passage.
+  Retrieval Scorecard.csv: Blank scorecard for the learner's judgment of answers.
+  Retrieval Trace.txt: A worked retrieval trace.
+  Synthetic Scan.png: Mild scan of the same passage.
+  run_retrieval_tests.py: Program check of the eight retrieval tests. It checks passages, not answers.
+  embedding_selftest.py: Checks the neural embedding setup. Executed outputs are saved in Observed Runs.
+  negation_check.py: Compares the results for a statement and its opposite for each search method.
+  Embedding Demo Run Sheet.txt: Executed baseline and repaired-workflow instructions, with their limits.
+  search_library.py: Lexical, LSA (classical vector) and optional neural embedding search over the library. Negation words are kept by default.
+
+03 RESEARCH AND REVIEW
+  Source Review Workflow.txt: Evidence, inference and release checks for generated drafts.
+  Research Verification Workflow.txt: Original-source claim checks, arithmetic and historical/current-law boundaries.
+  Contract Review Record.csv: Record of review runs.
+  Evaluation Rubric.txt: Scoring rubric.
+  Evidence Register.csv: Authorities checked.
+  Flawed Contract Review.txt: A contract review with problems to find.
+  Flawed Research Note.txt: A research note with problems to find.
+  Generation Experiments.txt: The four reliability tasks for Session 3.
+  Generation Run Record.csv: Record of the runs and scores.
+  Research Brief.txt: The research question.
+  Research Run Record.csv: Record of research runs.
+  Review Instruction.txt: The contract review instruction.
+  Verified Authority Example.txt: A verified holding from the judgment.
+
+04 AUTOMATION AND TAX
+  test_agent_protocol.py: Scripted checks that malformed replies and ungrounded answers are held.
+  Agent Build Guide.txt: How to build and label an agent route.
+  Agent Execution Record.csv: Record of agent runs.
+  Agent Test Cases.csv: Test cases.
+  Credit Notes.csv: Credit notes.
+  Filing Assistance Instruction.txt: What the assistant may and may not do.
+  Filing Preparation Record.csv: Preparation record.
+  Filing Process.txt: The filing process.
+  Financial Assumptions.txt: Assumptions for the model.
+  Flawed Tax Report.txt: A tax report with problems to find.
+  Invoice Import.csv: Imported invoices.
+  Ledger Challenge.csv: Reconciliation exercise data.
+  Ledger.csv: Sales ledger.
+  Prompt Injection Fixture.txt: A document with an embedded instruction.
+  Receipts.csv: Receipts.
+  Tax Exception Record.csv: Exceptions found.
+  Tax Review Instruction.txt: Tax review instruction.
+  Tool Call Example.json: An example request and host decision.
+  agent_host.py: The host that checks each requested operation. Runs locally with no account.
+  host_control_tests.py: Seven scripted tests of the host. No model is involved.
+  read_only_agent.py: Connects a model command to the host. Needs a model you can run from a terminal.
+  workflow_demo.html: Approval workflow demonstration. Opens in a browser.
+  workflow_engine.js: The workflow logic.
+
+05 FIRM ADOPTION
+  AI Risk Register.csv
+  AI Use Rule Example.txt
+  Adoption Plan.csv
+  Cost and Effort Example.csv
+  In-Class Progress Record.csv
+  Incident Exercise.txt
+  Investment AI Due Diligence.txt
+  Pilot Decision Record.csv
+  Pilot Proposal.txt
+  Progress Record Guide.txt
+  Roles and Decisions.csv
+  Uganda Legal Frame.txt
+  Vendor Due Diligence.csv
+  Worked AI Risk Register.csv
+  Worked Pilot Proposal.txt

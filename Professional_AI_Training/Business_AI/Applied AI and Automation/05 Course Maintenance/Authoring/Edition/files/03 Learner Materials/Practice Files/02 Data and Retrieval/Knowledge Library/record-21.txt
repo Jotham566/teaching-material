@@ -1,0 +1,24 @@
+RECORD-21 | ticket | 2026-09-28 | Ticket: password reset for reporting application
+
+TICKET TKT-4377
+Customer: Victoria Services Ltd
+Requester: Peter Wasswa, credit controller
+Opened: 28 September 2026, 15:12
+Priority: Low
+Category: User access
+
+Description:
+I cannot log in to the reporting application. My password was reset two weeks ago and now says it has expired. I tried the reset link and it did not arrive.
+
+Steps already taken
+- Checked spam folder.
+- Tried from a different browser.
+- Asked a colleague to try my username from her computer (same error).
+
+Technician notes
+28 Sept 15:40: Account found, locked after five failed attempts. Unlocked and password reset sent to the email on record.
+28 Sept 16:05: Requester confirmed that the new link arrived.
+
+Resolution: Account unlocked, password reset completed. Requester reminded that passwords expire after 90 days.
+
+Status: Closed 29 September 2026.

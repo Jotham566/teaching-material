@@ -1,0 +1,53 @@
+ACTUAL SAVED AI OUTPUT — 26 OCTOBER 2026
+Product: Claude Code CLI, existing default configuration
+Model: Not separately exposed in this CLI result
+Rehearsal on supplied fictional sources; no tools enabled. Not a claim about future model performance.
+
+PROMPT
+This is a fictional teaching exercise. Use only the supplied evidence. Give a concise partner-review draft under 250 words. Preserve rule, exception, conditions and missing facts. Do not use tools, files or outside knowledge.
+invoice_id,period,amount_ugx,supporting_identifier
+INV-001,2026-09,40000000,TEACHING-REF-1
+INV-002,2026-09,35000000,
+INV-003,2026-09,25000000,TEACHING-REF-3
+INV-003,2026-09,25000000,TEACHING-REF-3
+
+credit_note_id,invoice_id,period,amount_ugx
+CN-001,INV-003,2026-09,2000000
+
+period,account,amount_ugx
+2026-09,Net teaching sales,98000000
+
+period,amount_ugx
+2026-09,80000000
+
+Task: Reconcile the records and explain whether any difference proves unpaid tax. Do not treat a missing supporting identifier as fraud.
+
+ACTUAL RESPONSE
+## Partner-Review Draft: Reconciliation Analysis
+
+**Reconciliation of Invoice Data to Reported Amounts**
+
+| Item | Amount (UGX) |
+|------|-------------|
+| INV-001 | 40,000,000 |
+| INV-002 | 35,000,000 |
+| INV-003 | 25,000,000 |
+| **Gross invoices** | **100,000,000** |
+| Less: CN-001 | (2,000,000) |
+| **Net invoiced** | **98,000,000** |
+
+**Observation 1 – Duplicate entry:** INV-003 appears twice with identical data. This is likely a data-entry duplication, not a separate transaction. Counted once above.
+
+**Observation 2 – Agreement with ledger:** Net invoiced (98,000,000) equals the "Net teaching sales" ledger balance. No unexplained variance at this level.
+
+**Observation 3 – Difference to declared amount:** The declared tax basis of 80,000,000 is 18,000,000 lower than net sales.
+
+**Does the 18,000,000 difference prove unpaid tax?**
+
+No. The difference alone does not prove unpaid tax because:
+
+1. **Missing facts:** We lack information on applicable exemptions, zero-rated supplies, timing adjustments, or non-taxable components that may legitimately reduce the tax base.
+2. **Rule and exception:** If the rule requires tax on net sales, an exception (e.g., educational exemption) or condition (e.g., threshold or registration status) could apply.
+3. **INV-002's missing identifier** is noted but, per instruction, is not indicative of fraud—it may reflect an administrative gap requiring follow-up, not evasion.
+
+**Conclusion:** Further inquiry is needed to determine whether the 18,000,000 shortfall reflects a legitimate adjustment or a reporting error before concluding on tax liability.

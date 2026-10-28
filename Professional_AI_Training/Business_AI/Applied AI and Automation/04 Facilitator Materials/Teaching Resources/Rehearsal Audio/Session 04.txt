@@ -1,0 +1,201 @@
+Welcome to Session 4. Today's question is this. How do we select an AI tool, brief it clearly and check that what comes back is useful?
+
+It matters in a legal or tax practice because every firm will be offered products, and every product will answer something. Choosing well, asking well and checking well decide whether the answer can be used.
+
+We stay with the Kampala Legal and Tax matter for Victoria Services Ltd. By the end you'll have a reusable review brief, and a recorded decision about a tool and the data we would let it see. Before any of that, I want to start with a question from last time.
+
+Before I explain anything, let me take you back to Session 3. Three assistants repeat the same unsupported fee. What has been established? Take your time, and tell me your reason as well as your answer.
+
+Let me give you mine. Three matching answers show that the agreement exists, and that the assistants agree with one another. They don't show the fee. The signed Fee Schedule was never supplied, so nothing supports the number. Agreement between tools is a weak test.
+
+If your first instinct is that the fee is probably right, I'd ask which document you would open to check it, and whether we have it.
+
+Now today's question is on the right. How do we select a tool, brief it clearly and verify a useful result? What we build is a reusable review brief and a documented decision about the tool and its data. First, we put one question to several products and see what a fair comparison needs.
+
+Here's the setup for comparing products. The question is this one. What does the agreement require for an internal reorganisation? In our agreement that answer sits in Section 12.6, as replaced by the Key Terms. Every product gets the same two sources, the executed agreement and the client instruction.
+
+Products differ in many ways. One may read an uploaded file, another may search, and they use different models and settings. If I change the question or the files between runs, I can't tell what caused a difference. So I keep the inputs fixed, and I write down what each product actually did.
+
+Here's one for you. If I gave one product the agreement and another only a summary of it, what could we conclude from the two answers? Have a think.
+
+Here's how I'd answer it. Nothing reliable, because the evidence differed. You might say the better product will cope anyway. If so, how would we know it coped, when we never compared like with like? The task, the evidence, the output criteria and the review method all have to stay the same.
+
+Next, a look at the kinds of product we might compare.
+
+This is a short tour of categories. The names are examples. I'm not endorsing any of them, and I'm claiming nothing beyond what the table says.
+
+General assistants such as Claude, ChatGPT and Gemini are listed for drafting and for analysis of files we supply. An assistant, by the way, is a program that answers instructions written in ordinary language. Legal platforms such as Harvey and NetDocuments are listed for precedents and document review. AlphaSense is listed for investment and industry research. Copilot Studio and Zapier are workflow builders, where the work is connections and review steps. Products and plans change, so I would check the vendor's current material before relying on any of this.
+
+Now it's your turn. A product calls itself a legal platform. What would you need to see before you believed it covers Ugandan law? Take your time.
+
+A specialised label guarantees nothing about local legal coverage. I'd want to know the jurisdiction, which sources the product holds, how they're updated, and how it performs when tested on our own cases. The label proves none of those. If the label still feels convincing, I'd ask which sources the product actually searches.
+
+Now we turn to what must be settled before any real matter goes into a product.
+
+This table is a checklist I'd run before any real matter goes into a product. Let's work down it together.
+
+First, which product and which account? Consumer, business and API terms are different documents. Second, how is the content used? That covers any training choice, and feedback. Third, where is it kept? Think of chats, files, logs, backups and deletion. Fourth, who can see it, through workspace roles, connectors and subprocessors, which are the other companies that handle data for the provider. The last row asks whether this matter may go in at all. That is a firm decision, made under professional duties.
+
+In class we use fictional records only. I open the official terms of the account we actually have, and I note anything those terms leave unanswered.
+
+I'd like to hear your thinking on this one. A product says it doesn't train on your content. Does that tell you nobody keeps a copy, or can open it? Think it over.
+
+Here's my answer. No. Training, retention and access are separate questions, and each needs its own evidence. If they still feel like one question, I'd ask which row of the table that setting would answer. It speaks to training and nothing else.
+
+Next, a vague request beside a clear brief.
+
+Here are two requests side by side. The vague one reads, "Review this contract and tell me if it is okay." What does okay mean here? Okay for whom, against what standard, and shown how? The tool has to guess, and so does anyone reading its answer.
+
+The clear request names the comparison, which is the consent provisions against our playbook. It asks for the relevant passages in quotation. It asks the tool to preserve exceptions, and to flag missing transaction facts. In our matter the passage is Section 12.6 as changed by the Key Terms. The missing facts are the ownership chart, and confirmation that Equator remains responsible.
+
+Here's something to chew on. Which part of the clear request tells us how to judge the answer? Give that a moment.
+
+My answer is this. The comparison criteria and the source requirements. The quoted passage, the preserved exceptions and the flagged gaps are each things a reviewer can check. If the clear request still just feels longer, try this angle. Which sentence in it could you mark as met or missed?
+
+Next, we break a good brief into four parts.
+
+A good brief has four parts. The first is purpose and audience. What decision does the work support, and who will read it? The second is evidence and boundaries. Which sources apply, and which don't? The third is the output and the acceptance criteria. What does the answer look like, and how will we judge it? The fourth is questions, uncertainties and a review point. Where should the tool stop and ask, and who looks next?
+
+I like the picture of briefing a junior colleague, with one limit. A junior understands the client and answers for the work. A model has neither of those. So the brief serves our checking, and accountability stays with us.
+
+One for you to work out. Before a junior starts on the Equator question, what would you tell them? Take a moment with that.
+
+Here's where I land. I'd name the decision at stake, and say the agreement and the client instruction are the sources. I'd describe the form of the answer, and say when to come back with a question. If you gave a junior only the task, how would they know what to do when a fact is missing?
+
+Next is a written instruction we can reuse.
+
+This is our working instruction, and I'll read all four lines once. Use the supplied agreement and playbook only. Return the clause, the exact passage, the departure and a proposed amendment. Keep qualifications, and ask about missing facts. Prepare a draft for partner review.
+
+I have it open as Review Instruction.txt for class. It's a working example for this matter, and I wouldn't offer it as a prompt that works everywhere.
+
+One exercise for you. Think of an acceptance criterion you could sharpen. For example, the quoted passage must come from Section 12.6 as replaced in the Key Terms, and the unmodified Standard Terms don't count.
+
+Now a question. What should the tool do if the sources are silent on a point, such as the annual fee? Say it out loud if it helps.
+
+The way I read it is this. It should say that the source doesn't establish the point, and ask for the signed Fee Schedule. You might think a better prompt will find the number. If so, which signed document would the number come from?
+
+Next, how a finding links back to its evidence.
+
+Each row here ties a finding to its evidence and to a place. The first finding says the consent exception may apply. It rests on a wholly owned group, and on the provider remaining responsible. The agreement supplies that wording, and the location points to it. Read that reference as Section 12.6 as replaced by the Key Terms change. The second finding says ownership is unconfirmed, because the client gave no ownership chart. That comes from the client instruction.
+
+Different claims need different kinds of source. A contract shows what the words say. It can't show how Equator is owned today.
+
+Tell me what you make of this. Can the agreement tell us how Equator is actually owned? No rush.
+
+No. For that we need transaction evidence, such as an ownership chart from the client or from Equator. If you feel the agreement mentions groups, so it probably covers it, try this angle. Does a rule about groups tell you whether this group exists?
+
+Next, one finding set beside its supporting passage.
+
+Here's a situation you'll meet often. A tool hands you a finding, a citation and a link. How much has it really told you? We'll look at the finding first, and then at the passage it rests on.
+
+First comes the finding. The group exception may apply. Confirm ownership and continued provider responsibility. Notice how careful that is. It says may apply, and it names the two things we still have to confirm before anyone relies on it.
+
+Then the passage beneath it, from the Key Terms, item KT-1 of the executed agreement. The provider must obtain the customer's prior written consent before a change of control takes effect. That consent isn't required for a reorganisation within a wholly owned group, if the provider remains responsible for its obligations. The closing line says the clause establishes wording, and transaction facts need their own evidence. One caution. This quotes only the two sentences on change of control. The replacement also begins with the general assignment sentence, so I'd read the full replacement in the agreement and check this against it.
+
+Here's a question for you. A tool gives a citation and a link. What do you check beyond whether the link opens? Sit with it for a second.
+
+I'd answer it like this. Read the passage. Confirm the version is the executed version 2. Then ask whether the passage supports the finding, including its exception. A real-looking citation proves nothing until the cited sentence says what the finding says it says. Next, the four stages we repeat on every task.
+
+Every task we do follows a cycle with four stages. We'll apply it to a changed fact, which I call Variant A. Variant A is fictional. An unrelated buyer acquires control of Equator through a share sale, so I'm stipulating a change of control outside any wholly owned group.
+
+First is the brief. That means the task, the sources and the criteria, all written down before the tool starts.
+
+Second, produce. The tool gives us a draft, and the draft is linked to its sources.
+
+Third, check. We look at the rule, the exception and the facts. Is the right clause quoted? Was the exception kept? Do the facts fit?
+
+Fourth, refine. We correct the draft and test again. Under Section 12.6 as replaced, Equator must get Victoria's prior written consent before the change takes effect, and the group exception doesn't apply. The unmodified Standard Terms would have let Equator assign on notice after a change of control, and the Key Terms change overrides that. I'll run the brief and keep the real output. If the tool is unavailable, I'll use a labelled example and mark that step unexecuted.
+
+Now a question for you. On these facts, does the group exception apply? Give that a little thought.
+
+This is how I see it. No. The buyer is unrelated, so the exception doesn't apply, and prior written customer consent is required. Next, we look at who decides once the draft exists.
+
+Human review begins here, and these three lines say how. A named partner checks the source and the interpretation. The draft stays unapproved until that decision is made. External delivery needs the defined approval.
+
+Be careful with the phrase human in the loop. It means a particular person looks at particular evidence, and can reject the draft. A general instruction to be careful does nothing. In our matter the partner would open Section 12.6 as replaced, read the exception, and check whether the facts about Equator's ownership are in the file. We come back to building this into a workflow in Session 9.
+
+A quick question before we go on. What exactly is the partner deciding at that point? Work it through before I answer.
+
+Here's my answer. Whether the draft is supported by the sources, and appropriate for its intended use. You might say the partner checks for mistakes. I'd ask which mistakes, and against which document.
+
+Next, a check on tone, to catch fluent text that says nothing.
+
+Two drafts sit side by side. The weak one praises the agreement for seamlessly safeguarding stakeholders and unlocking compliance. It sounds confident. It contains no source, no issue and no fact.
+
+The useful one names the group reorganisation exception in Section 12.6 as replaced by the Key Terms. It then tells the reader to confirm ownership and continued provider responsibility before advising on consent.
+
+Here's how I'd repair the weak draft. Delete the praise. Ask what the actual issue is. Ask which fact is missing. Smooth wording can hide a gap, because a model can write well with nothing behind it.
+
+Now a question. Which of the two sentences could a client act on tomorrow, and why? See what you come up with.
+
+My answer is this. The second, because it identifies the source-based issue and the evidence still needed. If you lean towards the first for its tone, picture the client afterwards. What would they do after reading it?
+
+Next, a small scored check for the drafts we produce.
+
+This is the checklist we use to judge a draft. Source accuracy. Does the quote match the current clause? Completeness. Does the answer keep the exception? Uncertainty. Does it name the missing ownership facts? Usefulness. Can the reviewer see the next action?
+
+I score each of these from 0 to 2, using Evaluation Rubric.txt. A critical error fails the draft whatever the total. That means a restricted disclosure, an invented material term, or a lost operative exception.
+
+This part is guided application. You direct the changed example, and I score the saved output together with you. We keep the real responses, because one run shows what happened once and says nothing about how often.
+
+Let me ask you something. A draft scores 6 out of 8, but it quotes the old unmodified Section 12.6. Do we accept it? Take your time.
+
+I'd put it like this. No. Quoting the wrong source version is a critical error, and the total doesn't rescue it. If you were tempted to accept it because of the score, I'd ask which row of the table that error falls under.
+
+Next, questions to put to a vendor.
+
+This is our list of questions for a vendor, one row for each area. Legal coverage. Which jurisdictions, which sources, how updates work, and what is excluded. Evaluation. Representative cases, errors and review effort. Data. Terms, access, retention, location and deletion. Operations. Integrations, support, logs and how we leave. Commercial. Total costs, limits and change terms.
+
+In every row we ask for evidence. A statement isn't an answer.
+
+I treat a sales demonstration as a claim to test. A product can have a feature that our particular account hasn't switched on, so the question is which version we would actually receive.
+
+Try this one. After a convincing sales demonstration, what would you request before buying? Give it a moment.
+
+Here's where I land. A controlled pilot on permitted, representative cases, with tests agreed in advance and a documented review of the data terms. You might say the demonstration was enough because the output looked right. If so, what would the vendor show us if the next case were harder?
+
+Now we do the in-class work.
+
+Now we work, and this stretch carries most of the session. I'll show the first example and keep its real output.
+
+There are four steps. First, we inspect the account we actually have, and record any data-use questions the terms leave unanswered. We enter no client data. Second, we run the vague request and then the professional brief on the same fictional text. Third, we change to Variant A, the unrelated buyer acquiring control of Equator by share sale. Fourth, we score the result and record a procurement question that a demonstration could never answer.
+
+You'll predict the answer, choose the evidence and check the changed example. I'll save each output, or mark a step unexecuted if the connected tool isn't available. In that case I'll use the labelled example and keep time for the explanation.
+
+Before we run anything, tell me what you expect the tool to say for Variant A. Take a moment with that.
+
+Then we'll look at what we can conclude from the work.
+
+Before I say what the evidence supports, I'd like to hear it from you. What can we conclude from today's work? Give that a little thought.
+
+Here's what I'd say. For Variant A, the group exception doesn't apply, and Section 12.6 as replaced by the Key Terms requires Victoria's prior written consent. A useful brief names the sources, the task, the output, the gaps and the review. Data terms need inspection of the actual account.
+
+The second point sets the limit. A tiny class comparison doesn't rank providers, and it doesn't authorise use of a real client matter.
+
+Tell me what you make of this. Which part of today's result is still unverified? Take a moment with that.
+
+We compared a few runs on fictional records. So we know nothing yet about reliability across many cases, and nothing about the firm's approval for real data. If you feel the tool passed, how many times did we run it?
+
+Next, we record the firm decision.
+
+The firm is making one decision here. It will evaluate one available tool on a permitted task before it selects a subscription or an integration. It records that decision, and the evidence still needed.
+
+The record that would justify it shows the decision, the evidence still needed, an owner and one condition. Before we move on, we'll name that owner and set the condition. This is a class record. It doesn't authorise the firm to do anything.
+
+Now it's your turn. What evidence would change this proposed decision? Think it over.
+
+Here's how I'd answer it. Weak performance on permitted cases would change it. So would data terms that fail the checklist, or a change in the permitted scope. Then we revisit the decision. If the instinct is to buy the tool now, I'd ask what we have learned that justifies a subscription.
+
+Next, three questions that check what we've covered.
+
+Here are three questions, and I'll ask them before I open the key. Take them in order.
+
+First. An unrelated buyer acquires control of Equator. Does the group exception in the Key Terms replacement of Section 12.6 apply? Second. The account is paid. May the firm upload any matter? Third. A prompt requests a citation. What makes it useful?
+
+Take a moment with them, and then I'll give you my answers.
+
+For the first, no. The share sale is outside the group, so Equator needs Victoria's prior written consent before the change takes effect. For the second, price doesn't settle permission. The firm checks the account terms, how the data is processed, and its own authority. For the third, a useful citation points to the exact passage, and we check its authority, version and fit.
+
+If any answer felt partial, I'd ask which document would settle it.
+
+The next session turns to preparing the firm's information, where the files and sources a tool reads get organised. What follows is optional extra material.

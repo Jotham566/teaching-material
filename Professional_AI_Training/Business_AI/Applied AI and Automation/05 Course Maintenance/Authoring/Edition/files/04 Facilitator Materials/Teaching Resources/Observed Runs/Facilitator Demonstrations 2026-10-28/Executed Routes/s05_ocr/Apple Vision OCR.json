@@ -1,0 +1,42 @@
+{
+  "configuration": "fast, revision 2, CPU only, en-US, language correction off",
+  "engine": "Apple Vision VNRecognizeTextRequest",
+  "images": [
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/Original Source.png",
+      "line_confidences": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text": "CONTRACT-01 v21 Key Terms, Teaching Adaptation l (Section 12.6)\nProvider must obtain Customer's prior written consent before a\nchange of control of Provider takes effect.\nThat consent is not required for a reorganization within a wholly\nowned group if Provider remains responsible for its obligations under\nthis Agreement.",
+      "source_sha256": "af512a7049c6ed5f65b4185252e4af6b36efed73187ed5c3730beae45f4d2516"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/Synthetic Scan.png",
+      "line_confidences": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text": "CONTRACT-01 v21 Key Ternis, Teachlng Adaptatlon l (Section 12.6)\nProvider must obtain Customer's prior written consent before a\nchange ol control of Provider takes effect.\nThat consent is not required for a reorganization wthin a wholly\nowned group if Provider remains responsible for its obligations under\nthis Agreement.",
+      "source_sha256": "9ac32dd7a5aaf0d8604c45e211876b386a2b038bdca6e9e557daf07100b25b0c"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/Degraded Scan - moderate.png",
+      "line_confidences": [],
+      "text": "",
+      "source_sha256": "eeac9b082fc9b0cebf931788f27bed175c7c1078e3ee582780edfd87cf50a34f"
+    }
+  ],
+  "system": "Version 27.2 (Build 26B118)"
+}

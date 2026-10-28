@@ -1,0 +1,4 @@
+source_id,system,modality,structure,format,owner,version,status,access,next_action
+CONTRACT-01,Matter folder,text,narrative with cover-page tables,DOCX and TXT,Matter partner,v2,executed teaching version,matter team,read Key Terms and Standard Terms together; check extract
+CONTRACT-01,Matter folder,text,narrative,TXT,Matter partner,v1,superseded draft,matter team,exclude from default current answer
+SALES-09,Accounting export,tabular text,table,CSV,Finance owner,September 2026,teaching records,tax team,reconcile

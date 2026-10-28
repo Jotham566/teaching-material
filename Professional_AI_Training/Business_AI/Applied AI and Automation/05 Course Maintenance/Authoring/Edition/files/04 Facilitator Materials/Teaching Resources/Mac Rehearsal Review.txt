@@ -1,0 +1,24 @@
+CURRENT FOLLOW-UP | 28 OCTOBER 2026
+The issues from this dated rehearsal have been addressed in Correction Review.txt and Observed Runs/Corrections 2026-10-28. Five decks' notes, the Guide, Workbook, current audio and delivery plans are updated. The native PowerPoint visual parts remain unchanged. The record below describes the original 27 October observations.
+
+HISTORICAL REHEARSAL RECORD
+
+MAC REHEARSAL — 27 OCTOBER 2026
+
+PowerPoint: all twelve current decks opened in native Microsoft PowerPoint. All 34 animated slides were played through their 126 clicks, including the optional Session 10 animation. Initial and revealed stages were captured; every click changed the slide content. All 35 review sheets were inspected. No animation-order or diagram-layout defect was found. Evidence: 05 Course Maintenance/Validation/Native PowerPoint Playback.
+
+Spoken scripts: all twelve core-session scripts were rendered into actual system-voice recordings and measured (18.76–23.69 minutes each). See Rehearsal Audio. This checks automated delivery and length, not Jotham's natural speaking voice or full class timing. The longest note in each session was reviewed as text. No note or deck content changed in this pass.
+
+Document retrieval: completed in the signed-in Google notebook using the fictional executed agreement. The citation was opened and checked. This is an uploaded-document demonstration; enterprise document connectors and access boundaries were not tested.
+
+Portal builder: a private Zapier draft was built and its AI Preview and complete two-step Test run executed successfully after repairing malformed generated output fields. The original failure is preserved. It quotes KT-1, asks for missing transaction evidence, refuses to invent the fee and returns a human-review draft. Copilot Studio was blocked by missing Dataverse. No production workflow, new paid plan or external-action connection was enabled.
+
+Live research: a signed-in Deep Research report completed. It contains a faulty assessment table, missing page pinpoints, edition mismatches and unsupported source claims. The verification review identifies these against the local original judgment. This is ready as a research-verification exercise, not a legal memo to rely on.
+
+Neural embedding: the actual model was downloaded and ran. Self-test passed; retrieval passed four of eight checks. Failures and negation behaviour are preserved. This makes a useful comparison with keyword and classical vector retrieval.
+
+Fresh model observations: nine new Claude CLI outputs and four local model-selected agent traces are saved. The contract answers show real errors: elided change-of-control text, unproved transaction facts and a share-sale/assignment mix-up. Use the Observed Run Review to mark them. These came from the existing teaching account, not a confirmed learner account.
+
+Evidence and replay instructions: Observed Runs/Mac Rehearsal 2026-10-27. The notebook and draft workflow links are private account resources. Captured screenshots omit browser chrome. The original saved runs remain unchanged.
+
+Still specific to a human or the firm: Jotham's own spoken rehearsal; the learner's exact tool/settings; an actual enterprise document connector and matter access tests; production agent integrations and current-law citator verification. None is silently marked complete.

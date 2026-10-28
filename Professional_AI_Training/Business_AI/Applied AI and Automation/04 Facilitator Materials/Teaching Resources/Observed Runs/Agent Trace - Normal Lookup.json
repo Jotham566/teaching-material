@@ -1,0 +1,48 @@
+{
+  "kind": "actual model-selected structured lookup with local host execution",
+  "product": "plain backend; the model was a Claude subagent started fresh for each turn (no history other than the host history in the prompt); not the learner's product",
+  "date": "2026-10-26",
+  "task": "Review the consent rules for a reorganisation of the provider in CONTRACT-01 for the customer. Does an internal reorganisation require consent? Ownership and continued responsibility are not yet confirmed.",
+  "lookup_calls": 2,
+  "max_lookup_calls": 2,
+  "injection_fixture": false,
+  "trace": [
+    {
+      "turn": 1,
+      "prompt_sha256": "a2b776c53a9111ce20c58dbe42d458853be8608acb687ec5e6373cf206fc5e70",
+      "actual_model_output": "{\"action\":\"lookup\",\"contract_id\":\"CONTRACT-01\",\"clause\":\"12.6\"}\n\n",
+      "host_decision": "EXECUTED permitted local read-only lookup",
+      "actual_tool_result": {
+        "document_id": "CONTRACT-01",
+        "version": "v2",
+        "clause": "12.6",
+        "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+        "source_location": "Agreement - Executed v2.txt, Section 12.6 (Standard Terms)"
+      }
+    },
+    {
+      "turn": 2,
+      "prompt_sha256": "b8b234f1d22d77d7f9588e6fa348b80a069d6110b731565e259f8650b20c1da0",
+      "actual_model_output": "{\"action\":\"lookup\",\"contract_id\":\"CONTRACT-01\",\"clause\":\"KT-1\"}\n\n",
+      "host_decision": "EXECUTED permitted local read-only lookup",
+      "actual_tool_result": {
+        "document_id": "CONTRACT-01",
+        "version": "v2",
+        "clause": "KT-1",
+        "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+        "source_location": "Agreement - Executed v2.txt, Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1"
+      }
+    },
+    {
+      "turn": 3,
+      "prompt_sha256": "b4cdc317047c9f645eeb19ce01088dc16dd3b6a38e64e1931d5cd7da0ece3d8d",
+      "actual_model_output": "{\"action\":\"answer\",\"text\":\"Review draft for CONTRACT-01 (fictional M-01), read-only. Sources: Section 12.6 as written (Standard Terms, v2) and KT-1 (Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1, v2). I did not look up 1.5 or KT-2, so nothing here relies on them. KT-1 is the Key Terms change that replaces Section 12.6, so KT-1 is the operative rule and the original 12.6 reorganization-on-notice language should not be relied on. Under KT-1: (1) neither party may assign rights or obligations without the other party's prior written consent; (2) Provider must obtain Customer's prior written consent before a change of control of Provider takes effect; (3) exception: that consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under the Agreement; (4) a non-permitted assignment is void. Answer to the question: an internal reorganization does not automatically require Customer consent, but only if it falls within the exception, meaning it is a reorganization within a wholly owned group AND Provider remains responsible for its obligations. If either condition fails, consent is required where the reorganization involves a change of control of Provider, and any assignment still needs prior written consent or it is void. Note the exception as quoted removes the change-of-control consent requirement; the general assignment consent sentence is not expressly excepted, so if the reorganization involves an assignment of the Agreement itself, that point needs confirmation. Not yet confirmed (missing facts): (a) whether the reorganization is entirely within a wholly owned group, i.e. the ownership structure before and after; (b) whether Provider itself will remain the responsible party for its obligations after the reorganization; (c) whether the reorganization involves any assignment of the Agreement or a change of control. Conclusion is conditional on these facts and cannot be finalised until they are provided.\"}\n\n",
+      "host_decision": "RETURNED read-only answer",
+      "result": "Review draft for CONTRACT-01 (fictional M-01), read-only. Sources: Section 12.6 as written (Standard Terms, v2) and KT-1 (Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1, v2). I did not look up 1.5 or KT-2, so nothing here relies on them. KT-1 is the Key Terms change that replaces Section 12.6, so KT-1 is the operative rule and the original 12.6 reorganization-on-notice language should not be relied on. Under KT-1: (1) neither party may assign rights or obligations without the other party's prior written consent; (2) Provider must obtain Customer's prior written consent before a change of control of Provider takes effect; (3) exception: that consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under the Agreement; (4) a non-permitted assignment is void. Answer to the question: an internal reorganization does not automatically require Customer consent, but only if it falls within the exception, meaning it is a reorganization within a wholly owned group AND Provider remains responsible for its obligations. If either condition fails, consent is required where the reorganization involves a change of control of Provider, and any assignment still needs prior written consent or it is void. Note the exception as quoted removes the change-of-control consent requirement; the general assignment consent sentence is not expressly excepted, so if the reorganization involves an assignment of the Agreement itself, that point needs confirmation. Not yet confirmed (missing facts): (a) whether the reorganization is entirely within a wholly owned group, i.e. the ownership structure before and after; (b) whether Provider itself will remain the responsible party for its obligations after the reorganization; (c) whether the reorganization involves any assignment of the Agreement or a change of control. Conclusion is conditional on these facts and cannot be finalised until they are provided."
+    }
+  ],
+  "external_actions": 0,
+  "limitation": "No portal builder or production system was tested. The host permits one fictional clause lookup only.",
+  "how_made": "read_only_agent.py with --backend plain and a bridge command that passes each prompt to a fresh subagent and returns its saved reply. The host (agent_host.py) executed or held each request. Replies are unedited.",
+  "model_selected": true
+}

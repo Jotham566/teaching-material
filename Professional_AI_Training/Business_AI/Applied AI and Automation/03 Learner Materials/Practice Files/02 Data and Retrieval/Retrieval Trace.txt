@@ -1,0 +1,8 @@
+PREPARED RETRIEVAL TRACE. NOT A LIVE SEARCH RUN.
+Query: Does the current agreement require Victoria’s consent for an internal group reorganisation of Equator?
+Candidate A: CONTRACT-01 v1 (unsigned draft), Key Terms change to Section 12.6. Status superseded. It required consent to any change of control or reorganization, with no group exception. Unsuitable for a current answer.
+Candidate B: CONTRACT-01 v2, Key Terms change KT-1 (replacing Section 12.6) and the original Section 12.6 in the Standard Terms. Executed teaching version. Permitted for the M-01 team. The Key Terms control over the Standard Terms, so KT-1 states the operative rule and the original Section 12.6 shows what it replaced.
+Candidate C: OTHER-02, a change-of-control clause in a different client’s agreement (RECORD-35). Restricted to another matter. Not permitted to this user and excluded before anything reaches the model.
+Selected evidence: B (both parts) plus Client Instruction.txt for the missing ownership and responsibility facts.
+Expected answer: state the rule and the group exception with its condition, say the ownership chart, continued responsibility and any planned assignment are unconfirmed, and request them.
+Failure variants: only A returned = retrieval error (wrong version). Only the original Section 12.6 returned = retrieval error (the Key Terms change was missed). B returned but the exception omitted = answer error.

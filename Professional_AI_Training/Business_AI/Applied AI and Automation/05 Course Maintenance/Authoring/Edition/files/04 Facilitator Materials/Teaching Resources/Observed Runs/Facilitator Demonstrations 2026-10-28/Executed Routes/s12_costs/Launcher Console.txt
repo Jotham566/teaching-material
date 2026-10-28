@@ -1,0 +1,16 @@
+DEMO: s12_costs 
+OUTPUT: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/05 Course Maintenance/Authoring/.build/guided_demonstrations/final_tests/s12_costs 
+Independently calculate the fictional main and stress cost scenarios.
+{
+  "kind": "fictional planning arithmetic, not vendor pricing or guaranteed savings",
+  "values": {
+    "manual_monthly_UGX": "1200000",
+    "main_monthly_review_UGX": "800000",
+    "stress_monthly_review_UGX": "1320000",
+    "tool_monthly_UGX": "240000",
+    "main_effect_UGX": "160000",
+    "stress_effect_UGX": "-360000",
+    "illustrative_setup_payback_months": "3.75",
+    "input_output_tokens_USD_per_task": "0.014"
+  }
+}

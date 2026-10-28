@@ -1,0 +1,125 @@
+PLAYBACK AND REHEARSAL CHECKLIST
+
+Part 1, in PowerPoint on the machine you will teach from. Open each deck, choose Slide Show, and play every animated slide from the first click to the last. Confirm the stages appear in the order listed and that nothing overlaps. Editing view shows the finished diagram, so only Slide Show proves the build. Tick each line.
+Part 2, read the notes aloud once per session, timing yourself. The estimate below is the speaking time of the notes alone at 130 words a minute, before any pauses for the learner. Each session has 120 minutes, with different allocations for explanation, demonstration, guided work and discussion. The notes alone should fill well under the full class time.
+Part 3, run the demonstrations that need your accounts (see Run Demonstrations.txt and Demonstration Preflight.txt) and tick them here when done.
+
+RECORDED REHEARSAL: 2026-10-28
+Native PowerPoint playback completed: 34 animated slides, 126 clicks. Captures and visual review are in 05 Course Maintenance/Validation/Native PowerPoint Playback.
+All twelve core scripts were rendered into system-voice practice recordings. Rehearsal Audio retains their scripts, measured durations and regeneration instructions; generated audio binaries are excluded from the repository. These measurements exclude learner answers, reveals, demonstrations, discussion and breaks and are not a human rehearsal.
+See Mac Rehearsal Review.txt for the executed account routes and their limits. Empty human-rehearsal boxes remain personal delivery checks, not unperformed automated tests.
+
+SESSION 1: Understanding AI in the firm
+  Notes read aloud: about 24 minutes for the core slides, plus about 3 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 19.40 minutes (automated practice aid).
+  [x] Slide 8: How the fields relate, 5 clicks
+  [x] Slide 10: The model inside a working system, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 2: How AI learns and represents information
+  Notes read aloud: about 25 minutes for the core slides, plus about 7 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 20.76 minutes (automated practice aid).
+  [x] Slide 5: The learning loop, 4 clicks
+  [x] Slide 8: Layers learn representations, 4 clicks
+  [x] Slide 11: A simplified map of related language, 3 clicks
+  [x] Slide 15: How a language model develops, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 3: How language models generate answers and fail
+  Notes read aloud: about 23 minutes for the core slides.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 18.54 minutes (automated practice aid).
+  [x] Slide 4: Predicting the next token, 3 clicks
+  [x] Slide 5: The response grows one token at a time, 4 clicks
+  [x] Slide 7: The context window, 3 clicks
+  [x] Slide 9: Attention connects relevant context, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 4: AI tools, effective instructions and safe use
+  Notes read aloud: about 27 minutes for the core slides, plus about 5 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 22.82 minutes (automated practice aid).
+  [x] Slide 10: A citation and its supporting passage, 2 clicks
+  [x] Slide 11: The instruction and review cycle, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 5: Preparing the firm’s information
+  Notes read aloud: about 25 minutes for the core slides, plus about 4 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 20.42 minutes (automated practice aid).
+  [x] Slide 8: The document preparation pipeline, 4 clicks
+  [x] Slide 16: Permissions through the pipeline, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 6: Internal knowledge search and retrieval
+  Notes read aloud: about 28 minutes for the core slides, plus about 5 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 23.61 minutes (automated practice aid).
+  [x] Slide 6: Two phases of a retrieval system, 8 clicks
+  [x] Slide 7: Chunking and the exception, 2 clicks
+  [x] Slide 10: Hybrid retrieval, 4 clicks
+  [x] Slide 12: The answer and its evidence, 2 clicks
+  [x] Slide 14: Access-aware retrieval, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 7: Legal research and deep research
+  Notes read aloud: about 25 minutes for the core slides, plus about 2 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 20.89 minutes (automated practice aid).
+  [x] Slide 11: A deep-research cycle, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 8: Contract review and drafting
+  Notes read aloud: about 23 minutes for the core slides, plus about 3 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 19.07 minutes (automated practice aid).
+  [x] Slide 7: The consent rule with its qualification, 3 clicks
+  [x] Slide 11: Drafting with controlled inputs, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 9: Automation and agentic AI
+  Notes read aloud: about 24 minutes for the core slides, plus about 6 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 19.60 minutes (automated practice aid).
+  [x] Slide 8: The agent loop, 4 clicks
+  [x] Slide 10: Human in the loop, 4 clicks
+  [x] Slide 11: Our small classroom assistant, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 10: Tax evidence workflows and controlled actions
+  Notes read aloud: about 26 minutes for the core slides, plus about 10 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 23.12 minutes (automated practice aid).
+  [x] Slide 5: The reconciliation calculation, 4 clicks
+  [x] Slide 13: A bounded filing-assistance process, 4 clicks
+  [x] Slide 28: Human approval of the exact action, 4 clicks (optional)
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 11: Organisational risk and governance
+  Notes read aloud: about 25 minutes for the core slides, plus about 5 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 20.66 minutes (automated practice aid).
+  [x] Slide 4: NIST risk-management functions, 2 clicks
+  [x] Slide 7: Cross-matter access, 4 clicks
+  [x] Slide 15: Response and recovery, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+SESSION 12: Leading implementation and evaluating a pilot
+  Notes read aloud: about 26 minutes for the core slides, plus about 4 minutes if you teach the optional ones.
+  [x] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [x] System-voice core script rendered and measured: 21.69 minutes (automated practice aid).
+  [x] Slide 4: The connected learning journey, 4 clicks
+  [x] Slide 6: The current and redesigned process, 2 clicks
+  [x] Slide 14: A staged adoption route, 4 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+
+ACCOUNT AND MODEL DEMONSTRATIONS
+  [x] RUN: signed-in notebook, one uploaded fictional agreement; citation inspected. Enterprise connector/access controls untested.
+  [x] RUN: Zapier private draft, successful AI Preview and complete two-step Test run; no publication. Copilot Studio blocked by missing Dataverse. Multi-tool permissions untested.
+  [x] RUN: signed-in notebook Deep Research; output saved and material errors identified against the original PDF.
+  [x] RUN: downloaded all-MiniLM-L6-v2; self-test and eight retrieval checks executed (4/8 passed).
+  [x] RUN: nine fresh Claude CLI replies and four actual model-selected local agent traces. Learner-specific product/settings unconfirmed.
+  [ ] Confirm the learner's exact product/settings and repeat there if different from the teaching account.
+  [ ] Enterprise connector, matter access and production-action tests, if those routes are selected for the firm.

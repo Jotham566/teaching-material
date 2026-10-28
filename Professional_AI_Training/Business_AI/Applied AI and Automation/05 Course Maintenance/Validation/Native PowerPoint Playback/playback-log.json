@@ -1,0 +1,1141 @@
+[
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 8 - How the fields relate"
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 8 - How the fields relate"
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 8 - How the fields relate"
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 8 - How the fields relate"
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 5,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 8 - How the fields relate"
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t127 layout area Slide 10 - The model inside a working system\n+\t\t128 layout area (disabled) Slide 10 - The model inside a working system\nThe focused UI element is 127 layout area Slide 10 - The model inside a working system"
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 10 - The model inside a working system"
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 10 - The model inside a working system"
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 127 layout area Slide 10 - The model inside a working system"
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t88 layout area Slide 5 - The learning loop\n+\t\t89 layout area (disabled) Slide 5 - The learning loop\nThe focused UI element is 88 layout area Slide 5 - The learning loop"
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 5 - The learning loop"
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 5 - The learning loop"
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 5 - The learning loop"
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t88 layout area Slide 8 - Layers learn representations\n+\t\t89 layout area (disabled) Slide 8 - Layers learn representations\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations"
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations"
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations"
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations"
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t88 layout area Slide 11 - A simplified map of related language\n+\t\t89 layout area (disabled) Slide 11 - A simplified map of related language\nThe focused UI element is 88 layout area Slide 11 - A simplified map of related language"
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 11 - A simplified map of related language"
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 11 - A simplified map of related language"
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t88 layout area Slide 15 - How a language model develops\n+\t\t89 layout area (disabled) Slide 15 - How a language model develops\nThe focused UI element is 88 layout area Slide 15 - How a language model develops"
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 15 - How a language model develops"
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 15 - How a language model develops"
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 15 - How a language model develops"
+  },
+  {
+    "session": 3,
+    "slide": 4,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t87 layout area Slide 4 - Predicting the next token\n+\t\t88 layout area (disabled) Slide 4 - Predicting the next token\n+\t\t89 container\n+\t\t\t90 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t91 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t92 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t93 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t94 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t95 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t96 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 87 layout area Slide 4 - Predicting the next token"
+  },
+  {
+    "session": 3,
+    "slide": 4,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 4 - Predicting the next token"
+  },
+  {
+    "session": 3,
+    "slide": 4,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 4 - Predicting the next token"
+  },
+  {
+    "session": 3,
+    "slide": 5,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t87 layout area Slide 5 - The response grows one token at a time\n+\t\t88 layout area (disabled) Slide 5 - The response grows one token at a time\n+\t\t89 container\n+\t\t\t90 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t91 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t92 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t93 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t94 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t95 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t96 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 87 layout area Slide 5 - The response grows one token at a time"
+  },
+  {
+    "session": 3,
+    "slide": 5,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 5 - The response grows one token at a time"
+  },
+  {
+    "session": 3,
+    "slide": 5,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 5 - The response grows one token at a time"
+  },
+  {
+    "session": 3,
+    "slide": 5,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 5 - The response grows one token at a time"
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t87 layout area Slide 7 - The context window\n+\t\t88 layout area (disabled) Slide 7 - The context window\n+\t\t89 container\n+\t\t\t90 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t91 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t92 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t93 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t94 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t95 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t96 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 87 layout area Slide 7 - The context window"
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 7 - The context window"
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 7 - The context window"
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t87 layout area Slide 9 - Attention connects relevant context\n+\t\t88 layout area (disabled) Slide 9 - Attention connects relevant context\n+\t\t89 container\n+\t\t\t90 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t91 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t92 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t93 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t94 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t95 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t96 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 87 layout area Slide 9 - Attention connects relevant context"
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 9 - Attention connects relevant context"
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 87 layout area Slide 9 - Attention connects relevant context"
+  },
+  {
+    "session": 4,
+    "slide": 10,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t87 layout area Slide 10 - A citation and its supporting passage\n+\t\t88 layout area (disabled) Slide 10 - A citation and its supporting passage\n+\t\t89 container\n+\t\t\t90 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t91 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t92 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t93 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t94 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t95 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t96 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 87 layout area Slide 10 - A citation and its supporting passage"
+  },
+  {
+    "session": 4,
+    "slide": 10,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 10 - A citation and its supporting passage"
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t87 layout area Slide 11 - The instruction and review cycle\n+\t\t88 layout area (disabled) Slide 11 - The instruction and review cycle\n+\t\t89 container\n+\t\t\t90 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t91 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t92 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t93 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t94 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t95 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t96 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle"
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle"
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle"
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle"
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t88 layout area Slide 8 - The document preparation pipeline\n+\t\t89 layout area (disabled) Slide 8 - The document preparation pipeline\n+\t\t90 container\n+\t\t\t91 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t92 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t93 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t94 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t95 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t96 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t97 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline"
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline"
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline"
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline"
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 1,
+    "state": "The following is a diff from the previous accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t88 layout area Slide 16 - Permissions through the pipeline\n+\t\t89 layout area (disabled) Slide 16 - Permissions through the pipeline\n+\t\t90 container\n+\t\t\t91 button Description: Previous Slide, Help: Return to the previous slide\n+\t\t\t92 button Description: Pointer Options, Help: Show/Hide pointer options\n+\t\t\t93 toggle button Description: Zoom in, Help: Zoom into the slide or zoom out, Value: off\n+\t\t\t94 toggle button Description: Subtitles, Help: Turn live subtitles on/off, Value: off\n+\t\t\t95 toggle button Description: Camera, Help: Turn camera on/off, Value: on\n+\t\t\t96 button Description: Slide Show Options, Help: Show/Hide slide show options\n+\t\t\t97 button Description: Next Slide, Help: Advance to the next slide\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline"
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline"
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline"
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline"
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 8 - How the fields relate",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 8 - How the fields relate",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 8 - How the fields relate",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 8 - How the fields relate",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 8,
+    "click": 5,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 8 - How the fields relate",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 10 - The model inside a working system",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 10 - The model inside a working system",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 10 - The model inside a working system",
+    "settled": true
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [01 - Understanding AI in the firm]\".\nThe focused UI element is 87 layout area Slide 10 - The model inside a working system",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 5 - The learning loop",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 5 - The learning loop",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 5 - The learning loop",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 5 - The learning loop",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 8 - Layers learn representations",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 11 - A simplified map of related language",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 11 - A simplified map of related language",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 11 - A simplified map of related language",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 15 - How a language model develops",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 15 - How a language model develops",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 15 - How a language model develops",
+    "settled": true
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [02 - How AI learns and represents information]\".\nThe focused UI element is 88 layout area Slide 15 - How a language model develops",
+    "settled": true
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 1 layout area Slide 7 - The context window",
+    "settled": true
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 1 layout area Slide 7 - The context window",
+    "settled": true
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 1 layout area Slide 7 - The context window",
+    "settled": true
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 1 layout area Slide 9 - Attention connects relevant context",
+    "settled": true
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 1 layout area Slide 9 - Attention connects relevant context",
+    "settled": true
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [03 - How language models generate answers and fail]\".\nThe focused UI element is 1 layout area Slide 9 - Attention connects relevant context",
+    "settled": true
+  },
+  {
+    "session": 4,
+    "slide": 10,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 10 - A citation and its supporting passage",
+    "settled": true
+  },
+  {
+    "session": 4,
+    "slide": 10,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 10 - A citation and its supporting passage",
+    "settled": true
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle",
+    "settled": true
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle",
+    "settled": true
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle",
+    "settled": true
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [04 - AI tools, effective instructions and safe use]\".\nThe focused UI element is 87 layout area Slide 11 - The instruction and review cycle",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 8 - The document preparation pipeline",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline",
+    "settled": true
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [05 - Preparing the firm’s information]\".\nThe focused UI element is 88 layout area Slide 16 - Permissions through the pipeline",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 5,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 6,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 7,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "click": 8,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 6 - Two phases of a retrieval system",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 7,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 7 - Chunking and the exception",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 7,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 7 - Chunking and the exception",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 10,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 10 - Hybrid retrieval",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 10,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 10 - Hybrid retrieval",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 10,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 10 - Hybrid retrieval",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 10,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 10 - Hybrid retrieval",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 12,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 12 - The answer and its evidence",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 12,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 12 - The answer and its evidence",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 14,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 14 - Access-aware retrieval",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 14,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 14 - Access-aware retrieval",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 14,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 14 - Access-aware retrieval",
+    "settled": true
+  },
+  {
+    "session": 6,
+    "slide": 14,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [06 - Internal knowledge search and retrieval]\".\nThe focused UI element is 87 layout area Slide 14 - Access-aware retrieval",
+    "settled": true
+  },
+  {
+    "session": 7,
+    "slide": 11,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [07 - Legal research and deep research]\".\nThe focused UI element is 88 layout area Slide 11 - A deep-research cycle",
+    "settled": true
+  },
+  {
+    "session": 7,
+    "slide": 11,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [07 - Legal research and deep research]\".\nThe focused UI element is 88 layout area Slide 11 - A deep-research cycle",
+    "settled": true
+  },
+  {
+    "session": 7,
+    "slide": 11,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [07 - Legal research and deep research]\".\nThe focused UI element is 88 layout area Slide 11 - A deep-research cycle",
+    "settled": true
+  },
+  {
+    "session": 7,
+    "slide": 11,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [07 - Legal research and deep research]\".\nThe focused UI element is 88 layout area Slide 11 - A deep-research cycle",
+    "settled": true
+  },
+  {
+    "session": 8,
+    "slide": 7,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [08 - Contract review and drafting]\".\nThe focused UI element is 87 layout area Slide 7 - The consent rule with its qualification",
+    "settled": true
+  },
+  {
+    "session": 8,
+    "slide": 7,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [08 - Contract review and drafting]\".\nThe focused UI element is 87 layout area Slide 7 - The consent rule with its qualification",
+    "settled": true
+  },
+  {
+    "session": 8,
+    "slide": 7,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [08 - Contract review and drafting]\".\nThe focused UI element is 87 layout area Slide 7 - The consent rule with its qualification",
+    "settled": true
+  },
+  {
+    "session": 8,
+    "slide": 11,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [08 - Contract review and drafting]\".\nThe focused UI element is 87 layout area Slide 11 - Drafting with controlled inputs",
+    "settled": true
+  },
+  {
+    "session": 8,
+    "slide": 11,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [08 - Contract review and drafting]\".\nThe focused UI element is 87 layout area Slide 11 - Drafting with controlled inputs",
+    "settled": true
+  },
+  {
+    "session": 8,
+    "slide": 11,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [08 - Contract review and drafting]\".\nThe focused UI element is 87 layout area Slide 11 - Drafting with controlled inputs",
+    "settled": true
+  },
+  {
+    "session": 8,
+    "slide": 11,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [08 - Contract review and drafting]\".\nThe focused UI element is 87 layout area Slide 11 - Drafting with controlled inputs",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 8,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 8 - The agent loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 8,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 8 - The agent loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 8,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 8 - The agent loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 8,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 8 - The agent loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 10,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 10 - Human in the loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 10,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 10 - Human in the loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 10,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 10 - Human in the loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 10,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 10 - Human in the loop",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 11,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 11 - Our small classroom assistant",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 11,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 11 - Our small classroom assistant",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 11,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 11 - Our small classroom assistant",
+    "settled": true
+  },
+  {
+    "session": 9,
+    "slide": 11,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [09 - Automation and agentic AI]\".\nThe focused UI element is 88 layout area Slide 11 - Our small classroom assistant",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 5,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 5 - The reconciliation calculation",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 5,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 5 - The reconciliation calculation",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 5,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 5 - The reconciliation calculation",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 5,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 5 - The reconciliation calculation",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 13,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 13 - A bounded filing-assistance process",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 13,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 13 - A bounded filing-assistance process",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 13,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 13 - A bounded filing-assistance process",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 13,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 13 - A bounded filing-assistance process",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 28,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 28 - Human approval of the exact action",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 28,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 28 - Human approval of the exact action",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 28,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 28 - Human approval of the exact action",
+    "settled": true
+  },
+  {
+    "session": 10,
+    "slide": 28,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [10 - Tax evidence workflows and controlled actions]\".\nThe focused UI element is 88 layout area Slide 28 - Human approval of the exact action",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 4,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 4 - NIST risk-management functions",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 4,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 4 - NIST risk-management functions",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 7,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 7 - Cross-matter access",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 7,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 7 - Cross-matter access",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 7,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 7 - Cross-matter access",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 7,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 7 - Cross-matter access",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 15,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 15 - Response and recovery",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 15,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 15 - Response and recovery",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 15,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 15 - Response and recovery",
+    "settled": true
+  },
+  {
+    "session": 11,
+    "slide": 15,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [11 - Organisational risk and governance]\".\nThe focused UI element is 87 layout area Slide 15 - Response and recovery",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 4,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 4 - The connected learning journey",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 4,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 4 - The connected learning journey",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 4,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 4 - The connected learning journey",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 4,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 4 - The connected learning journey",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 6,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 6 - The current and redesigned process",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 6,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 6 - The current and redesigned process",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 14,
+    "click": 1,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 14 - A staged adoption route",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 14,
+    "click": 2,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 14 - A staged adoption route",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 14,
+    "click": 3,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 14 - A staged adoption route",
+    "settled": true
+  },
+  {
+    "session": 12,
+    "slide": 14,
+    "click": 4,
+    "state": "There has been no change in the accessibility tree for Window: \"PowerPoint Slide Show - [12 - Leading implementation and evaluating a pilot]\".\nThe focused UI element is 88 layout area Slide 14 - A staged adoption route",
+    "settled": true
+  }
+]

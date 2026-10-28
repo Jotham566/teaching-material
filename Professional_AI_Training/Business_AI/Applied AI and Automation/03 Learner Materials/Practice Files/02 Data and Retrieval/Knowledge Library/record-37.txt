@@ -1,0 +1,23 @@
+RECORD-37 | invoice | 2026-09-30 | Lakeview Data invoice LV-2211 to Kisumu Freight
+
+LAKEVIEW DATA LTD
+Tax invoice LV-2211
+Issued: 30 September 2026
+Customer: Kisumu Freight Ltd
+Matter: OTHER-02 (restricted)
+
+Description                                  Amount (UGX)
+Hosting of shipping records, September        9,600,000
+Support hours, 22 hours at 150,000            3,300,000
+Tracking dashboard licence, September         2,100,000
+
+Subtotal                                     15,000,000
+VAT 18 percent                                2,700,000
+Total due                                    17,700,000
+
+Payment terms: 30 days from invoice date.
+Bank details: as in the agreement schedule.
+
+Note from Kisumu finance clerk, 5 October: the approval sheet has been sent to the finance director. Support hours to be checked against ticket log before approval.
+
+Please quote LV-2211 on all payments.

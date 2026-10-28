@@ -1,0 +1,1 @@
+run_id,date,product,model_if_shown,source_files,prompt,actual_output_file,source_score,completeness_score,uncertainty_score,usefulness_score,critical_failure,observation

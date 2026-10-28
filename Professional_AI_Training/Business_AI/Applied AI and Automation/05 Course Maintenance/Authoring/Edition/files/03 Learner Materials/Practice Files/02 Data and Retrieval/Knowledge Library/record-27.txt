@@ -1,0 +1,32 @@
+RECORD-27 | service report | 2026-09-04 | Equator monthly service report - August 2026
+
+EQUATOR SYSTEMS LTD - MONTHLY SERVICE REPORT
+Customer: Victoria Services Ltd
+Period: 1 to 31 August 2026
+Prepared: 4 September 2026
+
+Availability: 99.9 percent. No unplanned outages.
+
+Tickets
+Opened: 19
+Closed: 19
+Average first response: 2 hours 25 minutes
+Longest open ticket: 6 days (report layout request)
+
+Changes made
+- Added Jinja outlet to branch list
+- Quarterly security patch applied 14 August during the agreed window
+
+Users
+Active named users: 39
+New accounts: 2
+Accounts disabled: 0
+
+Open items for Victoria
+Please confirm your preferred date for the quarter end data archive.
+
+Comments from account manager
+Victoria's users reported the month end run finishing in under two minutes. We are happy with performance.
+
+Prepared by: D. Oroma
+Account Manager, Equator Systems Ltd

@@ -1,0 +1,6 @@
+{
+  "status": "no_source",
+  "hits": [],
+  "mandatory_context": [],
+  "note": "No requested source is available in the permitted scope. Do not substitute another document."
+}

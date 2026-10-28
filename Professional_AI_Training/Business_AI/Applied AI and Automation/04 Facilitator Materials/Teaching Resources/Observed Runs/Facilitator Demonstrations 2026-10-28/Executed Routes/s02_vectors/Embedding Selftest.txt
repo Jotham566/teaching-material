@@ -1,0 +1,13 @@
+EMBEDDING SELF-TEST 2026-10-28T08:40:02
+model: all-MiniLM-L6-v2
+python 3.12.14, numpy 2.5.4, sentence-transformers 6.2.0
+vector shape: (8, 384)
+vector lengths (should be 1.0): min 1.0000 max 1.0000
+same text, same vector: True
+cosine(hand_over, assign) = 0.399
+cosine(restructure, consent) = 0.241
+cosine(hand_over, weather) = 0.007
+cosine(fees, weather) = 0.096
+cosine(req, notreq) = 0.839
+cosine(req, weather) = -0.179
+Read the pairs yourself. The pair req/notreq shows how close a statement and its opposite sit in the space.

@@ -1,0 +1,19 @@
+RECORD-08 | invoice query | 2026-10-19 | Query on repeated invoice INV-003
+
+INVOICE QUERY
+From: Accounts payable, Victoria Services Ltd
+To: Equator Systems Ltd, accounts desk
+Date: 19 October 2026
+
+Dear Accounts,
+
+We have received invoice INV-003 twice. The first copy arrived on 6 October and the second on 17 October, both showing the same invoice number, same amount of UGX 25,000,000 and same service period. The second copy is stamped 'reminder'.
+
+Our ledger shows the first copy was entered and is scheduled for the next payment run on 30 October. Please confirm whether the second copy is a duplicate or whether there are two separate charges. If it is a duplicate, please confirm that nothing further is due on it.
+
+We have put the second copy on hold and will not pay it until we hear back.
+
+Please reply to ap@victoriaservices.example quoting INV-003.
+
+Regards,
+Accounts Payable Clerk

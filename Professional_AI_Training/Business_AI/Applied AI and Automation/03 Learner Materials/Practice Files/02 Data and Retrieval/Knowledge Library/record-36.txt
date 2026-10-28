@@ -1,0 +1,14 @@
+RECORD-36 | agreement extract | 2025-07-01 | Kisumu Freight / Lakeview Data: assignment clause
+
+EXTRACT - SERVICES AGREEMENT BETWEEN KISUMU FREIGHT LTD AND LAKEVIEW DATA LTD
+RESTRICTED - MATTER OTHER-02 ONLY
+
+Assignment and subcontracting
+
+Lakeview Data Ltd may assign or transfer any of its rights or obligations under this agreement to a company in its own group, provided that it gives Kisumu Freight Ltd fourteen days' written notice and remains liable for the performance of the assignee. Any other assignment by Lakeview requires Kisumu Freight's prior written approval. Kisumu Freight may not assign this agreement without written notice to Lakeview.
+
+Lakeview may subcontract routine technical tasks, but not the hosting of Kisumu's shipping records, without Kisumu's written agreement.
+
+Notices under this agreement must be sent to the addresses in the schedule and are treated as received two working days after posting or on the next working day after email.
+
+Filed with the other team's working papers. Not for circulation outside matter OTHER-02.

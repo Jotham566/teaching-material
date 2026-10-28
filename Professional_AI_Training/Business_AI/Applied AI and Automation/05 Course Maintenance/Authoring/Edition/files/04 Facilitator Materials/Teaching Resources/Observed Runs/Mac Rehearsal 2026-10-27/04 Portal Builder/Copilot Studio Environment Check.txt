@@ -1,0 +1,18 @@
+ACTUAL ACCOUNT CHECK — 27 October 2026
+Creation screen showed: Dataverse is not set up in this environment. Agents need Microsoft Dataverse to store their configuration. Ask the administrator to provision Dataverse.
+Environment selector transcript:
+HTML content Agents, URL: copilotstudio.microsoft.com/environments/Default-c6536236-4bc8-46f7-bdfd-5326a43a3508/agents/new
+							44 container Switch environment
+								45 heading Switch environment, Value: 2
+									46 text Switch environment
+								47 text Spaces to create, store, and work with agents.
+								48 text field (settable) Search environments, Placeholder: Search
+								49 toggle button Filter by environment type, Value: 0
+								50 container Environments
+									51 text All environments loaded.
+									52 container
+										53 text Current environment
+										54 button Shinsa (default) Default
+										55 toggle button Unpin Shinsa (default), Value: 1
+									56 button All environments (0)
+				57 

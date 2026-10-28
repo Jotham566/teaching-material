@@ -1,0 +1,240 @@
+[
+  {
+    "session": 1,
+    "slide": 8,
+    "title": "How the fields relate",
+    "clicks": 5,
+    "animatedObjects": 9
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "title": "The model inside a working system",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "title": "The learning loop",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "title": "Layers learn representations",
+    "clicks": 4,
+    "animatedObjects": 34
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "title": "A simplified map of related language",
+    "clicks": 3,
+    "animatedObjects": 10
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "title": "How a language model develops",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 3,
+    "slide": 4,
+    "title": "Predicting the next token",
+    "clicks": 3,
+    "animatedObjects": 9
+  },
+  {
+    "session": 3,
+    "slide": 5,
+    "title": "The response grows one token at a time",
+    "clicks": 4,
+    "animatedObjects": 15
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "title": "The context window",
+    "clicks": 3,
+    "animatedObjects": 11
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "title": "Attention connects relevant context",
+    "clicks": 3,
+    "animatedObjects": 12
+  },
+  {
+    "session": 4,
+    "slide": 10,
+    "title": "A citation and its supporting passage",
+    "clicks": 2,
+    "animatedObjects": 7
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "title": "The instruction and review cycle",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "title": "The document preparation pipeline",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "title": "Permissions through the pipeline",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "title": "Two phases of a retrieval system",
+    "clicks": 8,
+    "animatedObjects": 31
+  },
+  {
+    "session": 6,
+    "slide": 7,
+    "title": "Chunking and the exception",
+    "clicks": 2,
+    "animatedObjects": 4
+  },
+  {
+    "session": 6,
+    "slide": 10,
+    "title": "Hybrid retrieval",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 6,
+    "slide": 12,
+    "title": "The answer and its evidence",
+    "clicks": 2,
+    "animatedObjects": 7
+  },
+  {
+    "session": 6,
+    "slide": 14,
+    "title": "Access-aware retrieval",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 7,
+    "slide": 11,
+    "title": "A deep-research cycle",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 8,
+    "slide": 7,
+    "title": "Clause 3 with its qualification",
+    "clicks": 3,
+    "animatedObjects": 6
+  },
+  {
+    "session": 8,
+    "slide": 11,
+    "title": "Drafting with controlled inputs",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 9,
+    "slide": 8,
+    "title": "The agent loop",
+    "clicks": 4,
+    "animatedObjects": 16
+  },
+  {
+    "session": 9,
+    "slide": 10,
+    "title": "Human in the loop",
+    "clicks": 4,
+    "animatedObjects": 16
+  },
+  {
+    "session": 9,
+    "slide": 11,
+    "title": "Our small classroom assistant",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 10,
+    "slide": 5,
+    "title": "The reconciliation calculation",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 10,
+    "slide": 13,
+    "title": "A bounded filing-assistance process",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 10,
+    "slide": 28,
+    "title": "Human approval of the exact action",
+    "clicks": 4,
+    "animatedObjects": 16
+  },
+  {
+    "session": 11,
+    "slide": 4,
+    "title": "NIST risk-management functions",
+    "clicks": 2,
+    "animatedObjects": 11
+  },
+  {
+    "session": 11,
+    "slide": 7,
+    "title": "Cross-matter access",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 11,
+    "slide": 15,
+    "title": "Response and recovery",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 12,
+    "slide": 4,
+    "title": "The connected learning journey",
+    "clicks": 4,
+    "animatedObjects": 19
+  },
+  {
+    "session": 12,
+    "slide": 6,
+    "title": "The current and redesigned process",
+    "clicks": 2,
+    "animatedObjects": 32
+  },
+  {
+    "session": 12,
+    "slide": 14,
+    "title": "A staged adoption route",
+    "clicks": 4,
+    "animatedObjects": 19
+  }
+]

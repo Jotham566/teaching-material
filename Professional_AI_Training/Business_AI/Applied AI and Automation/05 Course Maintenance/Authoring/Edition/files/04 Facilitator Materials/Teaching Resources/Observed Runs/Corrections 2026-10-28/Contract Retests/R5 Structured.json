@@ -1,0 +1,38 @@
+{
+  "source_scope": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1 — this is identified as a replacement to Section 12.6 Standard Terms and controls over the original wording for CONTRACT-01 v2. Full contract position requires signed cover pages and any amendments, which have not been supplied.",
+  "established_facts": [
+    "Equator is the Provider; Victoria is the Customer.",
+    "Equator has communicated a proposed internal reorganisation.",
+    "The applicable provision is Teaching Adaptation 1, which modifies Section 12.6."
+  ],
+  "unresolved_facts": [
+    "Whether the proposed internal reorganisation constitutes a 'change of control' of Equator.",
+    "Whether the reorganisation is 'within a wholly owned group'.",
+    "Whether Equator will remain responsible for its obligations under the Agreement.",
+    "Equator's ownership chart has not been received.",
+    "No written confirmation that Equator remains responsible.",
+    "No statement on whether the Agreement will be transferred (which would be an assignment, a separate trigger)."
+  ],
+  "quotations": [
+    {
+      "source": "Document 1",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1, sentence 2",
+      "quote": "In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect."
+    },
+    {
+      "source": "Document 1",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1, sentence 3",
+      "quote": "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+    }
+  ],
+  "analysis": "The consent requirement in sentence 2 is triggered only by a 'change of control of Provider.' An internal reorganisation does not automatically constitute a change of control. A change of control typically involves a shift in ultimate ownership or voting power. Even if a change of control occurs, the exception in sentence 3 removes the consent requirement if two conditions are met: (1) the reorganisation is within a wholly owned group, and (2) Provider remains responsible for its obligations. The exception's conditions being unmet does not itself establish that a change of control has occurred — the triggering event must be established first. Assignment (sentence 1) is a separate transaction from a share-level change of control; no transfer of the Agreement has been stated.",
+  "conclusion": "Whether consent applies cannot be determined on current facts. Victoria must first establish whether a change of control of Equator is occurring. If so, consent is required unless Equator demonstrates both conditions of the exception. Victoria should request: (1) confirmation whether the reorganisation involves a change of control; (2) Equator's ownership chart showing whether it is within a wholly owned group; (3) written confirmation Equator remains responsible for its obligations; (4) clarification whether the Agreement will be transferred.",
+  "review_checks": [
+    "Confirmed: distinguished assignment (sentence 1) from change of control (sentence 2).",
+    "Confirmed: did not assume change of control from the label 'internal reorganisation.'",
+    "Confirmed: did not infer group membership, responsibility, or ownership absent from task.",
+    "Confirmed: identified exception conditions as contingent, not self-proving triggers.",
+    "Confirmed: did not inspect or invent absent Fee Schedule.",
+    "Confirmed: noted full contract requires signed cover pages and amendments not supplied."
+  ]
+}

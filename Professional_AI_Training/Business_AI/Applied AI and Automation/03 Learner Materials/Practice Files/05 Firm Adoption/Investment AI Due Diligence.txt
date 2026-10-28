@@ -1,0 +1,2 @@
+OPTIONAL TRANSFER TO AN INVESTMENT
+What user problem is solved and what evidence shows demand? Is the claimed AI capability necessary? Which models, data rights and dependencies does it rely on? What are evaluation results on representative tasks, critical failures and human-review costs? Who controls data, tools, spend and material changes? What happens during an outage or provider exit? What technical/commercial assumptions would invalidate the investment case? Request evidence, not an impressive demo. This is a discussion checklist, not investment advice.

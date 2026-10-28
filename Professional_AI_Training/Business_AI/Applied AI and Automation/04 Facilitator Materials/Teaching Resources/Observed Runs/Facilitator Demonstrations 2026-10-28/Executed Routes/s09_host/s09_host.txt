@@ -1,0 +1,7 @@
+T1 permitted lookup                           EXECUTED  expected EXECUTED  ok
+T2 unknown document                           DENIED    expected DENIED    ok
+T3 extra argument                             DENIED    expected DENIED    ok
+T4 operation the host does not offer          DENIED    expected DENIED    ok
+T5 request that follows an injected note      DENIED    expected DENIED    ok
+T6 second lookup against a budget of one      HELD      expected HELD      ok
+T7 malformed request                          HELD      expected HELD      ok

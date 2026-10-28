@@ -1,0 +1,784 @@
+{
+ "01": {
+  "12": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Does the agreement require Victoria’s consent for this transaction?",
+      23.25
+     ]
+    ]
+   },
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.",
+      23.25
+     ]
+    ]
+   }
+  ],
+  "13": [
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Consent applies to a change of control. A reorganization within a wholly owned group is excused if Provider remains responsible.",
+      24.75
+     ]
+    ]
+   }
+  ]
+ },
+ "02": {
+  "11": [
+   {
+    "shape": 9,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Key Terms: group exception",
+      18.75
+     ]
+    ]
+   }
+  ]
+ },
+ "03": {
+  "13": [
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Give the evidence in three forms and compare the answers.",
+      23.25
+     ]
+    ]
+   }
+  ],
+  "15": [
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Give the evidence in three forms and compare the answers.",
+      23.25
+     ]
+    ]
+   }
+  ]
+ },
+ "04": {
+  "3": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "What does the agreement require for an internal reorganisation?",
+      23.25
+     ]
+    ]
+   }
+  ],
+  "6": [
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Compare the consent provisions with our playbook. Quote the relevant passages, preserve exceptions and flag missing transaction facts. Prepare a partner-review draft.",
+      24.75
+     ]
+    ]
+   }
+  ],
+  "9": [
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     1,
+     2,
+     0
+    ],
+    "runs": [
+     [
+      "CONTRACT-01 v2, Key Terms KT-1",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     2,
+     2,
+     0
+    ],
+    "runs": [
+     [
+      "Client Instruction",
+      18.75
+     ]
+    ]
+   }
+  ],
+  "10": [
+   {
+    "shape": 8,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "CONTRACT-01 v2, KEY TERMS KT-1",
+      17.25
+     ]
+    ]
+   },
+   {
+    "shape": 9,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.",
+      17.0
+     ]
+    ]
+   }
+  ],
+  "11": [
+   {
+    "shape": 23,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Variant A: an unrelated buyer acquires control through a share sale. Apply the Key Terms and Section 12.6.",
+      17.25
+     ]
+    ]
+   }
+  ],
+  "13": [
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "The Key Terms contain a group-reorganisation exception. Confirm ownership and continued provider responsibility before advising on consent.",
+      24.75
+     ]
+    ]
+   }
+  ],
+  "17": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "For Variant A, the wholly-owned-group exception does not apply and the Key Terms change to Section 12.6 requires Victoria’s prior written consent. A useful brief specifies sources, task, output, gaps and review. Data terms require account-specific inspection.",
+      23.25
+     ]
+    ]
+   }
+  ],
+  "19": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "An unrelated buyer acquires control of Equator. Does the group exception in the Key Terms apply?",
+      25.5
+     ]
+    ]
+   }
+  ]
+ },
+ "05": {
+  "5": [
+   {
+    "shape": 4,
+    "image": "9ac32dd7a5aaf0d8"
+   }
+  ],
+  "11": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.",
+      24.75
+     ]
+    ]
+   },
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "That consent is required for a reorganization within a wholly owned group.",
+      24.75
+     ]
+    ]
+   }
+  ],
+  "12": [
+   {
+    "shape": 4,
+    "image": "af512a7049c6ed5f"
+   },
+   {
+    "shape": 6,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "That consent is required for a reorganization within a wholly owned group.",
+      24.75
+     ]
+    ]
+   }
+  ],
+  "15": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     1
+    ],
+    "runs": [
+     [
+      "Key Terms KT-1",
+      21.75
+     ]
+    ]
+   },
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     2
+    ],
+    "runs": [
+     [
+      "Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.",
+      21.75
+     ]
+    ]
+   },
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     3
+    ],
+    "runs": [
+     [
+      "  \"clause\": \"KT-1\",",
+      20.25
+     ]
+    ]
+   },
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     5
+    ],
+    "runs": [
+     [
+      "  \"source_location\": \"Key Terms KT-1\"",
+      20.25
+     ]
+    ]
+   }
+  ]
+ },
+ "06": {
+  "3": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Does the agreement require Victoria’s consent for the proposed reorganisation?",
+      23.25
+     ]
+    ]
+   }
+  ],
+  "5": [
+   {
+    "shape": 6,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Retrieve the current Key Terms change and Section 12.6 and supply them with the question so the model can draft a consent analysis.",
+      22.5
+     ]
+    ]
+   }
+  ],
+  "7": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Chunk A: Provider must obtain Customer’s prior written consent before a change of control takes effect.",
+      24.75
+     ]
+    ]
+   },
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     1
+    ],
+    "runs": [
+     [
+      "Chunk B: That consent is not required for a reorganization within a wholly owned group … (no antecedent for “That consent”)",
+      24.75
+     ]
+    ]
+   }
+  ],
+  "12": [
+   {
+    "shape": 8,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "CONTRACT-01 v2, KEY TERMS KT-1",
+      17.25
+     ]
+    ]
+   },
+   {
+    "shape": 9,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.",
+      17.0
+     ]
+    ]
+   }
+  ],
+  "18": [
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "The local scripts are demonstrations. Lexical is word matching. LSA is a classical vector method learned from 40 documents only. Neither is a neural embedding model or a live RAG product.",
+      23.25
+     ]
+    ]
+   }
+  ]
+ },
+ "07": {
+  "10": [
+   {
+    "shape": 2,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "A section number belongs to an edition",
+      33.0
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     1,
+     1,
+     0
+    ],
+    "runs": [
+     [
+      "Section 27(2), Cap 341, 7th Revised Edition",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     1,
+     2,
+     0
+    ],
+    "runs": [
+     [
+      "The court’s quoted appeal-scope rule",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     2,
+     0,
+     0
+    ],
+    "runs": [
+     [
+      "Current consolidated Act",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     2,
+     1,
+     0
+    ],
+    "runs": [
+     [
+      "Read the number and wording in the current text",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     2,
+     2,
+     0
+    ],
+    "runs": [
+     [
+      "Whether the same rule sits under the same number",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     3,
+     0,
+     0
+    ],
+    "runs": [
+     [
+      "Client advice",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     3,
+     1,
+     0
+    ],
+    "runs": [
+     [
+      "The version in force at the date of the question",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     3,
+     2,
+     0
+    ],
+    "runs": [
+     [
+      "Do not copy a number from a judgment or a summary",
+      18.75
+     ]
+    ]
+   }
+  ],
+  "18": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "On Ground 5 the court held that Goal Ireland’s fundraising for the appellant was an imported service, so VAT on the 10% programme delivery fee was correctly assessed and the appeal was dismissed (pp. 22 to 24). This result between other parties does not decide Victoria’s position.",
+      23.0
+     ]
+    ]
+   }
+  ]
+ },
+ "08": {
+  "7": [
+   {
+    "shape": 2,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "The consent rule with its qualification",
+      33.0
+     ]
+    ]
+   },
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Prior written consent for a change of control of Provider.",
+      25.5
+     ]
+    ]
+   }
+  ],
+  "8": [
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     3,
+     1,
+     0
+    ],
+    "runs": [
+     [
+      "No notice requirement in the Key Terms change",
+      18.75
+     ]
+    ]
+   }
+  ],
+  "10": [
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     1,
+     0,
+     0
+    ],
+    "runs": [
+     [
+      "Key Terms KT-1",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     2,
+     0,
+     0
+    ],
+    "runs": [
+     [
+      "Section 1.5 and KT-2",
+      18.75
+     ]
+    ]
+   },
+   {
+    "shape": 4,
+    "key": [
+     "c",
+     3,
+     0,
+     0
+    ],
+    "runs": [
+     [
+      "Order Form, Fees",
+      18.75
+     ]
+    ]
+   }
+  ],
+  "17": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "NER identifies names, not all legal relationships. The three errors lose the exception, reverse support approval and invent a fee. An assignment needs its own consent under the first sentence of Section 12.6.",
+      23.25
+     ]
+    ]
+   },
+   {
+    "shape": 7,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "The agreement is fictional teaching material built on a public template. It is not a production contract or legal opinion.",
+      23.25
+     ]
+    ]
+   }
+  ],
+  "19": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Equator proposes assigning the agreement. Does the group exception excuse consent to an assignment?",
+      25.5
+     ]
+    ]
+   }
+  ]
+ },
+ "09": {
+  "6": [
+   {
+    "shape": 5,
+    "key": [
+     "t",
+     3
+    ],
+    "runs": [
+     [
+      "  \"clause\": \"KT-1\"",
+      22.5
+     ]
+    ]
+   }
+  ],
+  "21": [
+   {
+    "shape": 6,
+    "key": [
+     "t",
+     0
+    ],
+    "runs": [
+     [
+      "Request CONTRACT-01 v2 from a permitted lookup and receive the Key Terms change KT-1 with its source location.",
+      22.5
+     ]
+    ]
+   }
+  ]
+ },
+ "10": {},
+ "11": {},
+ "12": {}
+}

@@ -1,0 +1,73 @@
+ACTUAL SAVED AI OUTPUT — 26 OCTOBER 2026
+Product: Claude Code CLI, existing default configuration
+Model: Not separately exposed in this CLI result
+Rehearsal on supplied fictional sources; no tools enabled. Not a claim about future model performance.
+
+PROMPT
+This is a fictional teaching exercise. Use only the supplied evidence. Give a concise partner-review draft under 250 words. Preserve rule, exception, conditions and missing facts. Do not use tools, files or outside knowledge.
+FICTIONAL TEACHING AGREEMENT
+CONTRACT-01 v2
+Status: executed teaching version. Effective date: 15 August 2026.
+Customer: Victoria Services Ltd
+Provider: Equator Systems Ltd
+Matter: M-01
+
+1. Services
+The provider will maintain the customer’s reporting application under the agreed service schedule.
+
+2. Support access
+Only named support staff may access customer records. Access requires prior customer approval and is subject to confidentiality obligations.
+
+3. Change of control
+The customer must give prior written consent to a change of control of the provider. Consent is not required for a reorganisation within a wholly owned group if the provider remains responsible for its obligations.
+
+4. Fees
+The customer pays the fees in the signed service schedule. No fee amount is supplied in this teaching agreement.
+
+5. Liability
+The applicable liability position remains subject to the signed schedule and qualified review. This extract does not supply that schedule.
+
+6. Termination
+The customer may terminate for an unremedied material breach after the notice procedure in the signed schedule.
+
+7. Confidentiality
+Each party must restrict use of confidential information to the agreed service purpose and permitted disclosures.
+
+8. Governing law
+The teaching agreement states Ugandan law. Applicable requirements and advice require qualified review.
+
+This is a fictional exercise, not a complete commercial agreement or legal advice.
+
+Stipulated variant: an unrelated buyer acquires control of Equator through a share sale; the transaction is outside the wholly owned group. Apply clause 3.
+
+ACTUAL RESPONSE
+# PARTNER REVIEW DRAFT
+**Matter: M-01 | Victoria Services Ltd / Equator Systems Ltd**
+
+## Issue
+Does the proposed share sale to an unrelated buyer require Victoria's prior written consent under CONTRACT-01 v2?
+
+## Applicable Clause
+**Clause 3 (Change of Control)**
+- **Rule:** Customer must give prior written consent to a change of control of the provider.
+- **Exception:** Consent not required for a reorganisation within a wholly owned group, provided the provider remains responsible for its obligations.
+
+## Analysis
+The stipulated variant involves an unrelated buyer acquiring control of Equator through a share sale. The transaction falls outside the wholly owned group. Therefore, the exception does not apply.
+
+**Conclusion:** Under clause 3, Victoria's prior written consent is required before the transaction completes.
+
+## Missing Facts / Open Items
+1. Definition of "change of control" not supplied—confirm whether share sale triggers clause
+2. Threshold for control (percentage/voting rights) not specified
+3. Consequences of proceeding without consent not stated in extract
+4. Whether consent may be unreasonably withheld—no standard stated
+5. Timing requirements for seeking consent not provided
+
+## Caveats
+- Liability position and service schedule not supplied (clauses 4–6)
+- Ugandan law governs; qualified local review required
+- This is a fictional teaching exercise, not legal advice
+
+---
+*Word count: ~210*

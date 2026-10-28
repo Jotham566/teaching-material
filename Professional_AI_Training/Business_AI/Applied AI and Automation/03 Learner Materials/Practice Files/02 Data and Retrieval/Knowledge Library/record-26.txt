@@ -1,0 +1,29 @@
+RECORD-26 | staff form | 2026-10-01 | New user request form: reporting application
+
+VICTORIA SERVICES LTD - NEW USER REQUEST (REPORTING APPLICATION)
+
+Date: 1 October 2026
+Name of new user: Esther Nabirye
+Job title: Branch accountant, Mbarara
+Line manager: Grace Atim
+
+Access needed (tick):
+[x] Branch sales reports
+[x] Branch stock summary
+[ ] Group consolidation view
+[ ] Administrator functions
+
+Start date: 5 October 2026
+Equipment: Company laptop, issued
+
+Approvals
+Line manager: Approved - G. Atim, 1 Oct
+IT lead: Approved - 2 Oct
+HR: Contract confirmed, change of reporting line recorded
+
+IT use
+Account created: 5 Oct 2026
+Welcome email sent: Yes
+Training slot booked: Thursday 8 Oct, 10:00
+
+Note: if the branch assignment changes, please submit a new form so that the branch data she sees is updated. Do not share your password.

@@ -1,0 +1,51 @@
+```json
+{
+  "source_scope": "CONTRACT-01 v2, executed 15 August 2026, comprising Order Form and Key Terms (both signed cover pages) incorporating Standard Terms Version 3.0 by reference. Key Terms replace Section 12.6 via Teaching Adaptation 1. Per Key Terms preamble: 'If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms.'",
+  "established_facts": [
+    "The stipulated transaction is an assignment by Equator to another company.",
+    "Section 12.6 has been replaced by the Key Terms version, which controls over the original Standard Terms.",
+    "The replaced Section 12.6 contains separate provisions: (1) assignment requiring consent, (2) change of control requiring consent, (3) an exception for reorganization within a wholly owned group applicable to 'that consent' in sentence two.",
+    "An assignment to another company is a distinct transaction from a change of control or internal reorganization."
+  ],
+  "unresolved_facts": [
+    "Identity of the proposed assignee company.",
+    "Formal written request from Equator specifying the assignment and proposed assignee.",
+    "Whether the assignee is within a wholly owned group (though this exception applies to change-of-control consent, not assignment consent, so may be immaterial for an assignment).",
+    "Whether any implied duty (e.g., not to unreasonably withhold consent) applies under Ugandan law—clause is silent on this."
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1 (replaced Section 12.6), first sentence",
+      "quote": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1 (replaced Section 12.6), second and third sentences",
+      "quote": "In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1 (replaced Section 12.6), fourth sentence",
+      "quote": "Any attempted but non-permitted assignment is void."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms preamble",
+      "quote": "If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms."
+    }
+  ],
+  "analysis": "The replaced Section 12.6 must be parsed sentence by sentence. The first sentence requires prior written consent for assignment—no textual exceptions. The second sentence separately addresses change of control. The third sentence creates an exception for 'that consent' (grammatically referring to sentence two's change-of-control consent) for reorganizations within a wholly owned group where Provider remains responsible. The stipulated transaction is an assignment, triggering sentence one. The wholly-owned-group exception does not modify the assignment-consent requirement. The clause requires consent but does not specify any standard for granting or withholding it. Whether an implied reasonableness standard applies is a question of Ugandan law requiring qualified legal advice.",
+  "conclusion": "Under the replaced Section 12.6, Victoria's prior written consent is required for Equator to assign the agreement to another company. The wholly-owned-group exception applies only to change-of-control consent, not assignment consent. An attempted assignment without consent would be void per sentence four. Before advising, Victoria should request: (1) identity of the proposed assignee, (2) Equator's formal written assignment request. Whether Victoria may withhold consent freely or must act reasonably is not addressed in the clause and requires Ugandan law advice. Any conditions Victoria might seek to impose are commercial proposals for qualified review, not rights established by this clause.",
+  "review_checks": [
+    "Confirmed: Distinguished assignment (sentence 1) from change of control (sentence 2) as separate triggers.",
+    "Confirmed: The exception in sentence 3 grammatically refers to sentence 2's change-of-control consent, not sentence 1's assignment consent.",
+    "Confirmed: Did not add facts about assignee's group membership or responsibility—none provided.",
+    "Confirmed: Did not infer fees from the absent Fee Schedule.",
+    "Confirmed: Applied Key Terms replacement, which controls over original Standard Terms.",
+    "Confirmed: Did not conflate assignment with share-sale variant excluded by instruction.",
+    "Revised: Removed assertion that Victoria has absolute right to withhold consent or impose conditions—clause is silent on standard; described commercial conditions as proposals for qualified review.",
+    "Revised: Added unresolved fact regarding implied duties under Ugandan law."
+  ]
+}
+```

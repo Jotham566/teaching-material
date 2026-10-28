@@ -1,0 +1,125 @@
+[
+  {
+    "session": 1,
+    "core_slides": 19,
+    "words": 3100,
+    "synthetic_voice": "macOS Daniel",
+    "rate_wpm": 130,
+    "measured_audio_minutes": 19.4,
+    "scope": "Synthesised core script; excludes learner answers, clicks, demonstrations, breaks and instructor improvisation."
+  },
+  {
+    "session": 2,
+    "core_slides": 19,
+    "words": 3291,
+    "synthetic_voice": "macOS Daniel",
+    "rate_wpm": 130,
+    "measured_audio_minutes": 20.76,
+    "scope": "Synthesised core script; excludes learner answers, clicks, demonstrations, breaks and instructor improvisation."
+  },
+  {
+    "session": 3,
+    "core_slides": 18,
+    "words": 2943,
+    "synthetic_voice": "macOS Daniel; Samantha fallback chunks listed",
+    "fallback_chunks": [],
+    "rate_wpm": 130,
+    "measured_audio_minutes": 18.54,
+    "script_sha256": "e1f73344f4221d55530dab38c064296105ae3ea94a2d8bad599562808ce311dd",
+    "date": "2026-10-28",
+    "scope": "Synthetic core-script practice aid, not a human rehearsal; excludes discussion, demonstrations, pauses and breaks."
+  },
+  {
+    "session": 4,
+    "core_slides": 19,
+    "words": 3503,
+    "synthetic_voice": "macOS Daniel",
+    "rate_wpm": 130,
+    "measured_audio_minutes": 22.82,
+    "scope": "Synthesised core script; excludes learner answers, clicks, demonstrations, breaks and instructor improvisation."
+  },
+  {
+    "session": 5,
+    "core_slides": 20,
+    "words": 3192,
+    "synthetic_voice": "macOS Daniel",
+    "rate_wpm": 130,
+    "measured_audio_minutes": 20.42,
+    "scope": "Synthesised core script; excludes learner answers, clicks, demonstrations, breaks and instructor improvisation."
+  },
+  {
+    "session": 6,
+    "core_slides": 20,
+    "words": 3601,
+    "synthetic_voice": "macOS Daniel; Samantha fallback chunks listed",
+    "fallback_chunks": [],
+    "rate_wpm": 130,
+    "measured_audio_minutes": 23.61,
+    "script_sha256": "e4e90f266da0f1a9e16e6c5136530d44b6340cb490a7aecb0e2f2671adb4013a",
+    "date": "2026-10-28",
+    "scope": "Synthetic core-script practice aid, not a human rehearsal; excludes discussion, demonstrations, pauses and breaks."
+  },
+  {
+    "session": 7,
+    "core_slides": 20,
+    "words": 3281,
+    "synthetic_voice": "macOS Daniel; Samantha fallback chunks listed",
+    "fallback_chunks": [],
+    "rate_wpm": 130,
+    "measured_audio_minutes": 20.89,
+    "script_sha256": "b39c5bf277bc83b762aceccbb9c2868bcac6b340eab9836fb25e2eb5331e9166",
+    "date": "2026-10-28",
+    "scope": "Synthetic core-script practice aid, not a human rehearsal; excludes discussion, demonstrations, pauses and breaks."
+  },
+  {
+    "session": 8,
+    "core_slides": 19,
+    "words": 2938,
+    "synthetic_voice": "macOS Daniel; Samantha fallback chunks listed",
+    "fallback_chunks": [],
+    "rate_wpm": 130,
+    "measured_audio_minutes": 19.07,
+    "script_sha256": "663cda43acaa611935dcf6f0d456e7ad49c6d0cb3990648348a52ae99af3394f",
+    "date": "2026-10-28",
+    "scope": "Synthetic core-script practice aid, not a human rehearsal; excludes discussion, demonstrations, pauses and breaks."
+  },
+  {
+    "session": 9,
+    "core_slides": 19,
+    "words": 3097,
+    "synthetic_voice": "macOS Daniel; Samantha fallback chunks listed",
+    "fallback_chunks": [],
+    "rate_wpm": 130,
+    "measured_audio_minutes": 19.6,
+    "script_sha256": "a7b0eeaf789f2457f57b84cd2731b967d412a991a6ba493ab3eef7745699fce0",
+    "date": "2026-10-28",
+    "scope": "Synthetic core-script practice aid, not a human rehearsal; excludes discussion, demonstrations, pauses and breaks."
+  },
+  {
+    "session": 10,
+    "core_slides": 20,
+    "words": 3442,
+    "synthetic_voice": "macOS Daniel",
+    "rate_wpm": 130,
+    "measured_audio_minutes": 23.12,
+    "scope": "Synthesised core script; excludes learner answers, clicks, demonstrations, breaks and instructor improvisation."
+  },
+  {
+    "session": 11,
+    "core_slides": 20,
+    "words": 3197,
+    "synthetic_voice": "macOS Daniel",
+    "rate_wpm": 130,
+    "measured_audio_minutes": 20.66,
+    "scope": "Synthesised core script; excludes learner answers, clicks, demonstrations, breaks and instructor improvisation."
+  },
+  {
+    "session": 12,
+    "core_slides": 20,
+    "words": 3354,
+    "synthetic_voice": "macOS Daniel",
+    "rate_wpm": 130,
+    "measured_audio_minutes": 21.69,
+    "scope": "Synthesised core script; excludes learner answers, clicks, demonstrations, breaks and instructor improvisation."
+  }
+]

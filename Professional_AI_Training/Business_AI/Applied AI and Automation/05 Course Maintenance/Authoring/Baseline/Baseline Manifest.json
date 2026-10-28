@@ -1,0 +1,22 @@
+{
+ "what": "Output of the deck and document builder (PowerPoint/build_course.mjs and Documents/build_course_documents.py) as last run on the author's Mac, before the October 2026 patches. It is the BASE the patch layer is applied to. The builder sources still describe the earlier agreement, so this baseline is kept as versioned binary files and cannot be regenerated from maintained sources.",
+ "copied_from": ".build/legal_tax_rebuild/Final Decks and .build/legal_tax_rebuild/Documents (copied 2026-10-27)",
+ "files": {
+  "Documents/Course Overview.docx": "a8cb4a13ec6d2303c92a2ce6374d97d7ac6733186051517d992ce2c45792c54e",
+  "Documents/Facilitator Guide.docx": "c6dd284aea134c8746ef1482812d51dda48fab0d2636feb4a6b3884eeefe43c5",
+  "Documents/Law Firm Implementation Playbook.docx": "79a2c996dc6d8fdf3d52d7eb61c2464a727fd5fbf11bf0138fecc05201d7a8c6",
+  "Documents/Learner Workbook.docx": "0adcd8bb6d97e35bbf06db03f925b6bd0be3824128a685bec45eea16f3689722",
+  "Final Decks/01 - Understanding AI in the firm.pptx": "fd46c9eb33a5355c8d782c57ba87f37a53fb72777dbd7b1dce4566a8e37fe0be",
+  "Final Decks/02 - How AI learns and represents information.pptx": "e3907961bc3a6fbf517de819a149fb374362069f81973961286eff0fb9faa1a7",
+  "Final Decks/03 - How language models generate answers and fail.pptx": "74eb7b45a601a40c3c46803c52c89a07e655a479ca203ecce71b7fd38c38ec2e",
+  "Final Decks/04 - AI tools, effective instructions and safe use.pptx": "91b2e9a57fc6f6376f8efd542135e204d4ba743116d1f4d5ac78792b88a34b20",
+  "Final Decks/05 - Preparing the firm’s information.pptx": "385be37c4216723e2b24181d3d7a5451c31d36338feb8a995013e5b107105827",
+  "Final Decks/06 - Internal knowledge search and retrieval.pptx": "6d5793b5b127e4b02e650b60752c81faabcf8f17fb4427b52e2082f43cc3f1e7",
+  "Final Decks/07 - Legal research and deep research.pptx": "e19cc4f9a8b20db010e910adc451f20fa2fda8dfa9d0d2ac6a1089e29ee87d95",
+  "Final Decks/08 - Contract review and drafting.pptx": "c916893d68e1647e21f2b6f1f530ecffd59e652e6c0c6f459cc48fd43ca05a42",
+  "Final Decks/09 - Automation and agentic AI.pptx": "08d0d9ac9b5192ac34c98f5b4eaad71276c0c34932726692cf57fce08274d508",
+  "Final Decks/10 - Tax evidence workflows and controlled actions.pptx": "efea00846c51f9b728ad1c2c8de0602fbb480979c870864361e2e038222fc6ad",
+  "Final Decks/11 - Organisational risk and governance.pptx": "72118dda7886b922f0ae73458937e7b55cd780f4e54138f80d944efbca12c0cf",
+  "Final Decks/12 - Leading implementation and evaluating a pilot.pptx": "fc82ef31cfc5e6be8bc24c055f14f9a9e518d8fc9f8f91177306d687da8770c9"
+ }
+}

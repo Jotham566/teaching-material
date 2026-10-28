@@ -1,0 +1,9 @@
+{
+  "bundled Python": "/Users/jothamwambi/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "embedding Python": "/Users/jothamwambi/.cache/klai-course/embedding-venv/bin/python",
+  "Node": "/Users/jothamwambi/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "Apple Vision Swift runner": "/usr/bin/swift",
+  "Claude CLI": "/opt/homebrew/bin/claude",
+  "guide": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/04 Facilitator Materials/Facilitator Guide.docx",
+  "prompt folder": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/04 Facilitator Materials/Teaching Resources/Demo Materials"
+}

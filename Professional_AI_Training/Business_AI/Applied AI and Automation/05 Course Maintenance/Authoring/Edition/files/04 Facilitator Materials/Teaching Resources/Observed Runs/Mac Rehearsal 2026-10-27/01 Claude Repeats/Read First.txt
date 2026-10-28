@@ -1,0 +1,4 @@
+FRESH CLAUDE CLI REPETITIONS — 27 OCTOBER 2026
+Nine separate invocations of the existing Claude command-line account, in fresh temporary working directories with no conversation history. The original R1–R9 prompts were supplied unchanged. Tool access was restricted; the task used supplied fictional text.
+Each Raw.json is the unedited command response; Response.txt is its result field. Metadata records command, prompt hash and exit status. No model version is claimed because this CLI did not expose one in these JSON responses.
+These are the teaching account's runs. The learner's exact product, model and settings remain unconfirmed. Read Observed Run Review.txt before presenting any result as correct.

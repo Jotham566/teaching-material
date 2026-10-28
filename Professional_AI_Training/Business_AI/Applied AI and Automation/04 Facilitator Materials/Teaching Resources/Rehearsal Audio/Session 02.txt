@@ -1,0 +1,199 @@
+Welcome back. Last session we separated what an assistant calculates from what it writes. Today we look one step further inside. The question for the session is this. What is learned from examples, and how can language be represented numerically?
+
+It matters in a legal or tax practice because every vendor claim about accuracy rests on how a model was trained and how it was tested. Once you know that, you can put clear questions to a vendor.
+
+By the end you'll be able to explain training, inference, tokens and similarity, using one matter all the way through: Victoria Services Ltd and its agreement with Equator Systems Ltd. I'll ask for no maths from you.
+
+Let's begin with a question from Session 1. An assistant totals invoices and drafts a letter. Which operation needs learned generation? Have a think.
+
+Here's where I land. The letter needs generation. The total should come from defined arithmetic, the same sum every time. If you'd put both through the model, try this. If the invoices added up to a different figure on a second run, would you sign the ledger?
+
+Now today's question again. What is learned from examples, and how can language be represented numerically? By the end we'll be able to explain training, inference, tokens and similarity, all on the same matter. We start with the model itself.
+
+Here's the term we'll use all session. A large language model is a computer program built from a neural network. A neural network is a set of connected calculations, each controlled by numbers called parameters. The model was trained on a very large amount of text, and it works by predicting which token comes next. A token is a small piece of text, often a word or part of a word. I'll say more on tokens shortly.
+
+Look at the second box. Classifying an agreement, pulling out a party name and writing a clause are three different jobs, and each needs its own test of success.
+
+Let me put a question to you. If a vendor says its tool is accurate, which of those three jobs do you ask about first? Give that a little thought.
+
+I'd name the job, and then ask how it was tested on documents like ours. If that feels slippery, try this angle. What would a wrong result cost the firm in that job? Training comes next, because every claim about accuracy depends on it.
+
+Training means fitting a model to data. The model starts with its parameters set to rough values. We show it examples, and the parameters are adjusted so its answers get closer to a target we chose. That target is called the objective.
+
+Take our matter. The firm labels a pile of past documents as agreements or invoices. A classifier looks at them and adjusts itself until its labels match ours.
+
+I'd like to hear your thinking on this one. When we say the model was trained, what exactly was changed? Think it over.
+
+The parameters changed, those internal numbers, and the change came from the examples and the objective. You might be tempted to say the model learned the facts. If so, I'd ask where those facts would be stored, and whether we could point to them. We couldn't. The parameters hold patterns, and they don't hold a list of documents.
+
+Next we'll watch the loop that does this adjusting, one step at a time.
+
+Training happens in a loop, and I'll build it up in four steps. Keep one question in mind as we go. How would you know the model had really learned something useful?
+
+First come the examples. Each one is an input with its target, such as a document and its label.
+
+Then the prediction. The model looks at an example and gives its current output.
+
+Third is the comparison. We measure the gap between what the model predicted and the target. That gap is the error against our objective.
+
+Last, the update. The parameters move a little, to shrink that gap, and then the loop repeats over many examples. One caution goes with all of this. A model can shrink its error on examples it has seen simply by memorising them, so we evaluate on relevant data it has never seen.
+
+Here's a question for you. A vendor shows you a chart where the error falls steadily during training. What else do you need before you trust it? No rush.
+
+I'd want results on documents the model never saw, of the kind we handle. If that feels slippery, try this angle. Would the chart look the same if the model had simply memorised the examples? It would. Different kinds of feedback drive this loop, and next we meet four of them.
+
+There are four ways a model can get its feedback, and I'll take them one row at a time.
+
+Supervised learning means we supply the target label. For example, we tell the model that each document is an agreement or an invoice. Unsupervised learning means there are no labels for the task, and the model looks for structure, such as groups of similar documents. Self-supervised learning means the targets come from the data itself. That is how language models learn from plain text, by predicting masked or next tokens. Reinforcement learning means the model receives a reward from its interactions and improves its choices of action.
+
+Let me ask you something. You have ten thousand old letters and nobody has labelled them. Which approach could you start with, and what would it give you? Take your time.
+
+Unsupervised learning. It would offer groups of similar letters to inspect, and a person still has to read those groups. If you leaned towards supervised, I'd ask who would supply the labels, and how long that would take.
+
+Whichever approach we use, we need to keep some documents aside. That's next.
+
+A model is only as trustworthy as the test we give it, so we split our documents into three sets.
+
+Training examples fit the parameters. Validation examples help us choose settings, such as how long to train. The held-out test checks the final choice on documents the model has never seen, and we use it once, at the end.
+
+There's a legal wrinkle here. Suppose near-identical copies of one service agreement land in both training and test. The model looks excellent because it has effectively seen the answer. So we split by matter or document family.
+
+Something to chew on. Why would you take a near-duplicate of a training document out of the test set? See what you come up with.
+
+The test would then measure familiarity with the training example, and tell us little about performance on new work. If you'd say it just wastes space, try this angle. If the test is easy because the model has seen it, what does a good score tell you about next month's new matters?
+
+We've now covered how a model is trained and tested. Next we look at what a neural network does inside.
+
+Now let's look inside a small illustrative classifier. It's a drawing to help us think, and it isn't a biological brain. It's arithmetic done many times.
+
+First come the inputs. These are the document features, numbers that describe a document, such as how often certain words appear.
+
+Then the first layer. It mixes those features together into learned combinations.
+
+The second layer does the same again. It mixes those combinations into further combinations.
+
+Finally the output, a type score. For example, how strongly the document looks like an agreement. When there are several layers, each building on the one before, we call it deep learning.
+
+Tell me what you make of this. In this picture, which numbers were learned in training, and which come in fresh today? Say it out loud if it helps.
+
+The connections between the layers are the learned parameters, and the document features are today's input. If that feels slippery, try this angle. If we feed in a different document tomorrow, which part of the picture changes? Only the inputs. Next, how text gets into a model, starting with the token.
+
+A model can't read letters the way we do. It first cuts the text into pieces called tokens. A token can be a whole word, part of a word, a punctuation mark, or, for images, a patch. Tokenisation depends on the model, which means two models can cut the same sentence differently.
+
+Here's what that means for our work. A common word like agreement may be a single token. A rarer legal word such as indemnification may be split into several pieces. Each piece is then given a number, an ID, which only names the piece.
+
+Try this one. Does one token always equal one word? Sit with it for a second.
+
+Not always. It depends on the tokenizer and on the text. If you were inclined to say yes, I'd ask how a model would cut the word indemnification, and who decides. The tokenizer decides, and each model has its own.
+
+A token only names a piece of text. Next we cover the numbers that carry meaning, called embeddings.
+
+An embedding is a list of numbers that represents an item, such as a word, a sentence or a whole clause. The numbers are built so that a computer can compare items. Two passages whose lists are close under our chosen measure are treated as related.
+
+Here's how we'd use it. We have a query about group restructuring, and we have candidate passages from the contract. A system turns the query and each passage into lists of numbers, using the same embedding model. It then ranks the passages by how close they sit to the query.
+
+Now it's your turn. What does an embedding let a search system compare, and what must be true of the two things being compared? Work it through before I answer.
+
+It lets the system compare the query and the candidate passages, as long as a compatible model converted both and we compare them under a chosen measure of similarity. If you'd say it finds the right answer, I'd ask who decides whether the top result is the right passage, the system or the lawyer.
+
+To make this visible, next we place our matter on an invented map.
+
+Before we look, one thing to say plainly. This map is invented for teaching. No embedding model produced these positions.
+
+First comes the query, which is restructuring consent. That's what we are searching for.
+
+Then the nearby candidates appear. The group exception sits close. On this map it stands for the Key Terms change to Section 12.6, which requires consent to a change of control and excuses it for a reorganization within a wholly owned group. The support access clause sits somewhat near.
+
+Last come the distant ones. The invoice payment term sits far off, and so does photograph consent. That last one shares the word consent with our query, and still sits a long way away.
+
+One for you. Does this drawing prove how a real model would place these passages? Give that a little thought.
+
+We couldn't claim that from a drawing. We would need actual embeddings and a documented way of flattening them. If you were tempted to say yes, I'd ask what we would have to run to find out. The picture is flat, and next we see what flattening costs.
+
+A real embedding has many numerical dimensions, often hundreds or more. We can't draw that, so a drawing squeezes it into two dimensions. Think of a globe and a flat map of the world. The map is useful, and it still distorts distances, such as the size of countries far in the north. A two-dimensional projection loses information in the same way.
+
+There's a third point. A distance or similarity score depends on the representation we use and on the method we use to compare.
+
+One for you to work out. Could we read one dimension of an embedding as a named legal concept, like liability? Take a moment with that.
+
+Usually not, because learned dimensions need not have a simple label. If you'd say yes, I'd ask how we would check that claim, and what result would show it was wrong.
+
+Now we look at a different limit. The same word can carry different representations in different sentences, and we'll see an example next.
+
+Read the two sentences with me. The bank registered a charge over the property. The prosecutor amended the charge. The word is the same. In the first it means security over land. In the second it is an accusation in court.
+
+Older methods gave each word in the vocabulary a single fixed list of numbers. Modern language models build the representation from the surrounding tokens, so the representation of charge differs in the two sentences. Contextual representations depend on surrounding language.
+
+A quick question before we go on. What in each sentence tells you which meaning of charge applies? Mull that over for a moment.
+
+The neighbouring words. Bank, registered and property on one side, and prosecutor and amended on the other, together with the task we are doing. If that feels slippery, try this angle. If I show you only the word charge and nothing else, what can you tell me? Very little.
+
+Context helps, yet closeness still doesn't settle legal meaning, and we'll see why next.
+
+This next point is a caution about trusting closeness.
+
+Related terms can have different legal effects. Approve and reject can appear in very similar contexts, so a system may rank them close together even though they mean opposite things. Take our own agreement. The Key Terms say neither party may assign without the other's prior written consent. A sentence saying a party may assign on notice, which is what the unmodified Standard Terms version of Section 12.6 allowed, looks very similar in vocabulary and has the opposite effect.
+
+Here's a challenge for you. Give me a pair of clauses from a contract where one small change in wording reverses the result. Any real pair is fine. Work it through before I answer.
+
+Consent and no consent is a good one. If you're stuck, take the assignment example I just gave. Which of the two would the Customer prefer?
+
+The idea to keep is that similarity proposes candidates, and the lawyer decides. A retrieved passage still needs interpretation and an authority check. Next we step back to show how a language model is built from start to use.
+
+Let's step back and see how a language model is built, from start to use. This is one common route, and providers vary. The first three stages are training, where the parameters can change. The last is use.
+
+First is pretraining. The model learns from broad data, mostly by predicting tokens.
+
+Second, instruction tuning. The model is trained further to fit requested behaviour, so that it follows instructions.
+
+Third, preference learning. Feedback signals about better and worse answers shape it.
+
+Fourth, inference. That means running the finished model on today's input, and inference does not itself run a training update.
+
+A question for you. A colleague uploads Equator's agreement to a chat tool and gets an answer. Did that upload train the model? Sit with it for a second.
+
+It did not. The upload supplied today's evidence for inference and changed no parameters. If you said yes, I'd ask what the vendor would have had to do, and whether we would expect to be told. What a specific product's terms say is a separate contract question, and I won't state it here. Next we move to the in-class exercises, where we test these ideas on our matter.
+
+Now we work on the matter together. There are four parts, and we'll go in order.
+
+First, I'll show you six short document descriptions: a signed service agreement, employee terms, a credit note, a sales invoice, a privacy notice and a board approval. You sort them by type, and then we discuss how labels would be assigned for training.
+
+Second, we follow one numerical representation through the labelled network.
+
+Third, we place the query, consent for an internal restructuring of the provider, beside three candidates. Those are the Key Terms change to Section 12.6, an invoice payment term, and the word consent in a photograph permission.
+
+Fourth, we test the idea that uploading an agreement equals training.
+
+You direct the work, and I'll follow. If a connected tool is unavailable, we'll use the labelled example and I'll say clearly that the step was not run. Then we gather what we found straight afterwards.
+
+Before I summarise, I'd like you to give me the conclusion in your own words. Go ahead, and I'll compare it with mine.
+
+Here's what the evidence supports. Training adjusts parameters, and inference uses them. Tokens are input units, and embeddings are numerical representations. Similarity proposes candidates, and the lawyer still decides legal equivalence.
+
+Here's what it does not support. The coordinates on our map and the numbers in our network are illustrations. They are invented, and they are not measurements from a deployed model.
+
+Let me put a question to you. Which part of today's picture would you not repeat to a client as a fact? Take a moment with that.
+
+The invented map and the schematic numbers. If you're unsure, I'd ask which figure on the similarity map we actually measured. The answer is none of them. Let's note any question still open, so we can return to it. Now we turn the lesson into a decision for the firm.
+
+This is a class decision record, and it doesn't authorise anything for the firm.
+
+The proposed decision is to require vendors to explain training, source access and evaluation as separate matters. Training is what was done to the model before we got it. Source access is what documents the tool can read when we use it. Evaluation is how the vendor tested it. A vendor answer that blends the three tells us little.
+
+A decision needs a record. So I'd like you to name one owner and one condition before it applies. For example, the owner could be the partner who signs off tools, and the condition could be that we receive the vendor's test method in writing. We also record the evidence still needed.
+
+One more question. What evidence would change this proposed decision? See what you come up with.
+
+We revisit it if the evidence, the quality or the permitted scope changes. If you have nothing, try this angle. What could a vendor show us that would make us ask fewer questions?
+
+Then you can test yourself in a moment.
+
+Let's finish with three questions, one at a time. Answer each in your own words, and I'll give you mine after you've tried. The first. Does a token ID near another token ID establish similar meaning? No rush.
+
+The answer is no. An ID names a piece of text, and nearby numbers need not mean nearby ideas. If that's unclear, we can swap two IDs, such as 285 and 914, and notice that the words stay the same. The second question. Why can charge mean security in one sentence and accusation in another? Give that a little thought.
+
+Context does it. The surrounding words change the representation. Now the third. What changes during training, as against ordinary inference? Take your time.
+
+Parameters change in training. In ordinary inference, none do. If any answer comes out partial, we'll go back to the matching idea and try the question again with a changed fact.
+
+That ends the core of Session 2. Session 3 covers how language models generate answers and how they fail.

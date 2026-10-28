@@ -1,0 +1,163 @@
+ACTUAL BROWSER RUN — 27 October 2026, Africa/Kampala
+Product label: Gemini Notebook; notebooklm.google.com redirected to notebook.google.com.
+Notebook URL: https://notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692
+Source: Agreement - Executed v2.txt; 1 selected source.
+PROMPT
+This is a fictional classroom matter. Use only the selected Agreement - Executed v2 source. Equator proposes an internal reorganisation; ownership after the change and continued responsibility have not been confirmed. (1) Identify which text governs consent, distinguishing the Key Terms replacement from the original Standard Terms section 12.6. Quote the operative rule, its exception and every condition, and cite the source. (2) Explain what we can and cannot conclude on these facts and what evidence we must request. (3) State the annual fee, or identify the missing signed source if it cannot be determined. Do not invent a fee, ownership fact or legal authority. Keep the response under 350 words.
+
+UNEDITED ACCESSIBILITY TRANSCRIPT OF NOTEBOOK CONTENT
+HTML content Gemini Notebook, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692
+							47 container
+								48 link Gemini Notebook Homepage, Value: notebook.google.com/
+								49 text field (settable) KLAi — Fictional legal and tax retrieval rehearsal
+								50 container Create notebook
+									51 button Create notebook
+								52 container Share notebook
+									53 button Share notebook
+								54 container Notebook configuration
+									55 pop up button Notebook configuration
+								56 container Settings
+									57 pop up button Settings
+								58 heading Sources, Value: 2
+									59 text Sources
+								60 button Collapse source panel
+								61 container Add source
+									62 button Add source
+								63 container
+									64 text entry area (settable) Discover sources based on the inputted query, Placeholder: Search the web for new sources
+									65 pop up button Web
+									66 pop up button Fast Research
+									67 container Submit
+										68 button (disabled) Submit
+								69 pop up button Sort sources
+								70 text Select all
+								71 container
+									72 text check_box
+									73 checkbox Select all sources, Value: 1
+								74 container
+									75 button Agreement - Executed v2.txt
+									76 pop up button More
+									77 container
+										78 text check_box
+										79 checkbox Select Agreement - Executed v2.txt, Value: 1
+								80 container
+									81 container
+										82 button Customize notebook
+										83 text 📄
+										84 heading KLAi — Fictional legal and tax retrieval rehearsal, Value: 2
+											85 text KLAi — Fictional legal and tax retrieval rehearsal
+										86 text 1 source ·
+										87 text Oct 27, 2026
+									88 container
+										89 text This document outlines a  cloud service agreement  between Equator Systems Ltd and Victoria Services Ltd for a hosted reporting application governed by Ugandan law. The contract establishes a  twelve-month subscription  with specific payment terms, technical support windows, and invoicing requirements. It incorporates detailed  service level agreements , including a target uptime of ninety-nine point five percent and defined response time commitments backed by service credits. Additionally, the framework addresses  legal protections and liabilities , covering intellectual property indemnification, confidentiality obligations, and standard operational restrictions for users. Finally, the text specifies  administrative provisions , detailing procedures for agreement termination, governing jurisdiction in Kampala, and specific teaching adaptations applied for course purposes.
+									90 button Save to note
+									91 container Copy summary
+										92 button Copy summary
+									93 container Good summary
+										94 button Good summary
+									95 container Bad summary
+										96 button Bad summary
+									97 text Today • 9:43 PM
+									98 container
+										99 heading Value: 3, This is a fictional classroom matter. Use only the selected Agreement - Executed v2 source. Equator proposes an internal reorganisation; ownership after the change and continued responsibility have not been confirmed. (1) Identify which text governs consent, distinguishing the Key Terms replacement from the original Standard Terms section 12.6. Quote the operative rule, its exception and every condition, and cite the source. (2) Explain what we can and cannot conclude on these facts and what evidence we mus
+											100 text This is a fictional classroom matter. Use only the selected Agreement - Executed v2 source. Equator proposes an internal reorganisation; ownership after the change and continued responsibility have not been confirmed. (1) Identify which text governs consent, distinguishing the Key Terms replacement from the original Standard Terms section 12.6. Quote the operative rule, its exception and every condition, and cite the source. (2) Explain what we can and cannot conclude on these facts and what evidence we mus
+										101 container
+											102 button Thoughts
+											103 heading 1. Governing Text on Consent, Value: 3
+												104 text 1. Governing Text on Consent
+											105 text The  Key Terms replacement of Section 12.6  governs consent, as the Key Terms control over and replace the Standard Terms
+											106 pop up button 1: Agreement - Executed v2.txt
+											107 pop up button 2: Agreement - Executed v2.txt
+											108 text . Original Section 12.6 allowed assignment upon notice for reorganizations
+											109 pop up button 3: Agreement - Executed v2.txt
+											110 text , whereas the Key Terms replacement mandates prior written consent for changes of control
+											111 pop up button 2: Agreement - Executed v2.txt
+											112 text .
+											113 content list
+												114 container
+													115 text Operative Rule:  “In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect.”
+													116 pop up button 2: Agreement - Executed v2.txt
+													117 text  (Also: “Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party.”
+													118 pop up button 2: Agreement - Executed v2.txt
+													119 text )
+												120 container
+													121 text Exception:  “That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.”
+													122 pop up button 2: Agreement - Executed v2.txt
+												123 container
+													124 text Conditions:
+													125 content list
+														126 container
+															127 text 1 . The reorganization must be "within a wholly owned group"
+															128 pop up button 2: Agreement - Executed v2.txt
+															129 text .
+														130 container
+															131 text 2 . Provider must "remain responsible for its obligations under this Agreement"
+															132 pop up button 2: Agreement - Executed v2.txt
+															133 text .
+											134 heading 2. Conclusions & Required Evidence, Value: 3
+												135 text 2. Conclusions & Required Evidence
+											136 content list
+												137 container
+													138 text What We Can Conclude:  Customer consent is mandatory for Equator’s proposed change of control unless Equator strictly satisfies both conditions of the Section 12.6 exception
+													139 pop up button 2: Agreement - Executed v2.txt
+													140 text .
+												141 container
+													142 text What We Cannot Conclude:  We cannot determine whether consent is required or waived because Equator’s ownership structure following the change and its continued legal responsibility have not been confirmed
+													143 pop up button 2: Agreement - Executed v2.txt
+													144 text .
+												145 container
+													146 text Evidence to Request:
+													147 content list
+														148 container
+															149 text 1 . Corporate group structure documentation proving the reorganization takes place entirely within a wholly owned group
+															150 pop up button 2: Agreement - Executed v2.txt
+															151 text .
+														152 container
+															153 text 2 . Written undertaking/confirmation that Equator Systems Ltd remains fully responsible for its obligations under the Agreement
+															154 pop up button 2: Agreement - Executed v2.txt
+															155 text .
+											156 heading 3. Annual Fee & Missing Document, Value: 3
+												157 text 3. Annual Fee & Missing Document
+											158 text The annual fee  cannot be determined  from the provided document
+											159 pop up button 4: Agreement - Executed v2.txt
+											160 pop up button 5: Agreement - Executed v2.txt
+											161 text . The missing signed source required to determine the fees is the  Fee Schedule  signed by the parties on the Order Date
+											162 pop up button 5: Agreement - Executed v2.txt
+											163 text .
+											164 text 💡 Would you like me to draft a formal information request letter to Equator asking for the corporate structure proof and confirmation of continued responsibility?
+										165 container Save message to a note
+											166 button Save message to a note
+										167 container Copy model response to clipboard
+											168 button Copy model response to clipboard
+										169 container Rate response as good
+											170 button Rate response as good
+										171 container Rate response as bad
+											172 button Rate response as bad
+										173 container
+											174 button Draft the information request letter
+											175 button What happens if Equator breaches confidentiality?
+											176 button Explain the uptime credits calculation
+									177 container
+										178 text entry area (settable) Query box, Placeholder: Ask a question or create something
+										179 text 1 source
+										180 container Submit
+											181 button (disabled) Submit
+									182 text Gemini Notebook can make mistakes, so double-check it.
+								183 heading Studio, Value: 2
+									184 text Studio
+								185 button Collapse studio panel
+								186 container
+									187 button Audio Overview
+									188 button Slide Deck
+									189 button Video Overview
+									190 button Mind Map
+									191 button Reports
+									192 text New!
+									193 button Flashcards
+									194 button Quiz
+									195 button Infographic
+									196 button Data Table
+									197 text Studio output will be saved here. After adding sources, click to add Audio Overview, Study Guide, Mind Map, and more!
+									198 button Add note
+							199 text Reply ready.
+				200 

@@ -1,0 +1,48 @@
+{
+  "kind": "actual model-selected structured lookup with local host execution",
+  "product": "plain backend; the model was a Claude subagent started fresh for each turn (no history other than the host history in the prompt); not the learner's product",
+  "date": "2026-10-26",
+  "task": "Review the termination rights in CONTRACT-01 for the customer if the provider breaches the agreement. Quote the relevant clause.",
+  "lookup_calls": 2,
+  "max_lookup_calls": 2,
+  "injection_fixture": false,
+  "trace": [
+    {
+      "turn": 1,
+      "prompt_sha256": "1159b1cbc364ba3d07a13a3f066d8a80adc6a7882cee4cbd95ee3f7111afba1f",
+      "actual_model_output": "{\"action\":\"lookup\",\"contract_id\":\"CONTRACT-01\",\"clause\":\"KT-1\"}\n\n",
+      "host_decision": "EXECUTED permitted local read-only lookup",
+      "actual_tool_result": {
+        "document_id": "CONTRACT-01",
+        "version": "v2",
+        "clause": "KT-1",
+        "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+        "source_location": "Agreement - Executed v2.txt, Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1"
+      }
+    },
+    {
+      "turn": 2,
+      "prompt_sha256": "66973018ccd0bd7a4f6fcf92ebc97d56fe5d852dd7b508dab6eceeb5fc1b8e84",
+      "actual_model_output": "{\"action\":\"lookup\",\"contract_id\":\"CONTRACT-01\",\"clause\":\"12.6\"}\n\n",
+      "host_decision": "EXECUTED permitted local read-only lookup",
+      "actual_tool_result": {
+        "document_id": "CONTRACT-01",
+        "version": "v2",
+        "clause": "12.6",
+        "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+        "source_location": "Agreement - Executed v2.txt, Section 12.6 (Standard Terms)"
+      }
+    },
+    {
+      "turn": 3,
+      "prompt_sha256": "63a7effdfe4016d4aaf4489ff62c6e0053e93e71e1fb3cd4d39a0141703c8b73",
+      "actual_model_output": "{\"action\":\"ask\",\"text\":\"The retrieved clauses (12.6 and KT-1) both deal with assignment and change of control, not termination for provider breach, so there is no termination language to quote yet. Please provide the termination-for-breach clause of CONTRACT-01 (Standard Terms) and any Key Terms change that modifies it, including its notice, cure period and any conditions. Section 1.5 and KT-2 are the only other identifiers offered and nothing indicates they cover termination.\"}\n\n",
+      "host_decision": "RETURNED read-only ask",
+      "result": "The retrieved clauses (12.6 and KT-1) both deal with assignment and change of control, not termination for provider breach, so there is no termination language to quote yet. Please provide the termination-for-breach clause of CONTRACT-01 (Standard Terms) and any Key Terms change that modifies it, including its notice, cure period and any conditions. Section 1.5 and KT-2 are the only other identifiers offered and nothing indicates they cover termination."
+    }
+  ],
+  "external_actions": 0,
+  "limitation": "No portal builder or production system was tested. The host permits one fictional clause lookup only.",
+  "how_made": "read_only_agent.py with --backend plain and a bridge command that passes each prompt to a fresh subagent and returns its saved reply. The host (agent_host.py) executed or held each request. Replies are unedited.",
+  "model_selected": true
+}

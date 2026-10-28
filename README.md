@@ -160,3 +160,11 @@ The review's evidence folder is not committed. It is 18 MB of extracted deck
 text and tool output, all of it regenerable from this repository.
 
 For weekly delivery, use [Before each class](IUEA_Teaching_Plan/Before_Each_Class_Checklist.md). [Today’s CML3112 student links](IUEA_Teaching_Plan/Week2_CML3112_Student_Links.md) include the authorized Week 1 catch-up window.
+
+## Repository size and generated files
+
+Keep current teaching deliverables, editable sources, original assets and required build baselines in Git. Temporary render images, staging copies, `.build/`, `.qa/`, `.chart-data-*/`, Python caches and duplicate handoff exports are disposable. Older School Track flyer editions are available in Git history; use the current files linked from the marketing README.
+
+The Business AI course keeps approved illustration bytes, its small hash-checked rebuild baseline and observed-run evidence. Synthetic voice transcripts and measured timings stay versioned; large regenerated recordings are optional local outputs. See its authoring README before rebuilding.
+
+Private assessment records and local Python environments stay outside version control. Written review findings and authoring records are retained; superseded render media may be removed. Use normal `git gc` to compact local Git objects. Deleting a tracked export reduces the checkout, while its historical versions remain recoverable in Git.

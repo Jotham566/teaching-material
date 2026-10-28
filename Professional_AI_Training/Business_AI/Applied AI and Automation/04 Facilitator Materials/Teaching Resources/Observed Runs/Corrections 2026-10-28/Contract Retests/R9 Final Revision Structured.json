@@ -1,0 +1,54 @@
+{
+  "source_scope": "CONTRACT-01 v2, executed 15 August 2026, comprising Order Form, Key Terms (Framework Terms cover page), and incorporated Standard Terms Version 3.0 and SLA Standard Terms Version 2.0. Key Terms control over Standard Terms per the Framework Terms hierarchy. The Fee Schedule is not supplied.",
+  "established_facts": [
+    "An unrelated buyer acquires Equator Systems Ltd by share sale.",
+    "A share sale changes ownership of the company but does not transfer the agreement to a different legal entity.",
+    "Teaching Adaptation 1 replaces Section 12.6 in its entirety.",
+    "The replacement Section 12.6 contains a separate change-of-control sentence requiring Provider to obtain Customer's prior written consent before a change of control takes effect.",
+    "The exception to the consent requirement applies only to 'a reorganization within a wholly owned group if Provider remains responsible'.",
+    "An acquisition by an unrelated buyer is not a reorganization within a wholly owned group.",
+    "The 'void' consequence applies expressly to 'attempted but non-permitted assignment', stated in a distinct sentence from the change-of-control obligation."
+  ],
+  "unresolved_facts": [
+    "Whether breach of the change-of-control consent obligation constitutes a 'material breach' within the meaning of Section 5.3.",
+    "Whether such breach is one 'that cannot be cured' under Section 5.3(b)(i).",
+    "The Fee Schedule amount, required to calculate any applicable liability cap."
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Teaching Adaptation 1",
+      "quote": "In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Teaching Adaptation 1",
+      "quote": "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Teaching Adaptation 1",
+      "quote": "Any attempted but non-permitted assignment is void."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Standard Terms Section 5.3(a)",
+      "quote": "Either party may terminate the Framework Terms or an Order Form immediately: (a) if the other party fails to cure a material breach of the Framework Terms or an Order Form following 30 days notice"
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Standard Terms Section 8.4",
+      "quote": "Nothing in this Agreement will limit, exclude, or restrict a party's liability (a) to the extent prohibited by Applicable Laws, or (b) for its gross negligence, willful misconduct, or fraud."
+    }
+  ],
+  "analysis": "The Key Terms replacement of Section 12.6 requires Provider to obtain Customer's prior written consent before a change of control takes effect. A share sale to an unrelated buyer triggers this obligation; the wholly-owned-group exception does not apply. The 'void' consequence appears in a separate sentence applying only to 'attempted but non-permitted assignment.' A share sale is not an assignment, so this express voidness provision does not apply. The agreement contains no clause-specific declaration that an unconsented share sale is void; any determination of transaction validity under applicable law has not been researched. If Provider proceeds without consent, this breaches Section 12.6. Victoria's contractual remedies depend on Section 5.3: termination under (a) requires material breach and 30 days to cure; under (b)(i) requires material breach that cannot be cured. Whether the breach meets these conditions is not specified by the agreement. Section 8.1's general cap applies to most claims, but Section 8.4 excludes gross negligence, willful misconduct, or fraud from any limitation. The cap amount cannot be stated without the Fee Schedule.",
+  "conclusion": "Equator must obtain Victoria's prior written consent before the change of control takes effect. Failure to do so breaches Section 12.6. The 'void' consequence applies only to non-permitted assignments, not share sales. Remedies under Section 5.3 require establishing materiality and, for immediate termination, incurability. Liability limitations under Section 8.1 are subject to the Section 8.4 carve-outs.",
+  "review_checks": [
+    "Confirmed: Distinguished 'void' consequence (applies to assignment) from change-of-control breach (no clause-specific voidness declared).",
+    "Confirmed: Noted transaction validity under applicable law not researched.",
+    "Confirmed: Preserved Section 5.3(a) materiality and cure conditions; preserved Section 5.3(b)(i) incurability condition.",
+    "Revised: Addressed Section 8.4 exceptions to liability cap.",
+    "Revised: Did not quantify liability cap without Fee Schedule.",
+    "Confirmed: Analysis plus conclusion under 230 words."
+  ]
+}

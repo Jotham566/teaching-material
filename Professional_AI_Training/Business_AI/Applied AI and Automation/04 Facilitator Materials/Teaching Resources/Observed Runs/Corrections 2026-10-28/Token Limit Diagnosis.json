@@ -1,0 +1,562 @@
+{
+  "date": "2026-10-28",
+  "baseline_chunks": 79,
+  "oversized_chunks": 15,
+  "max_tokens": 1409,
+  "chunks": [
+    {
+      "id": "CONTRACT-01 v2 #1",
+      "tokens": 307,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #2",
+      "tokens": 677,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #3",
+      "tokens": 153,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #4",
+      "tokens": 142,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #5",
+      "tokens": 728,
+      "limit": 256,
+      "operative_change_of_control_in_source": true,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #6",
+      "tokens": 153,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #7",
+      "tokens": 76,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #8",
+      "tokens": 394,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #9",
+      "tokens": 431,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #10",
+      "tokens": 150,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #11",
+      "tokens": 282,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #12",
+      "tokens": 683,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #13",
+      "tokens": 365,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #14",
+      "tokens": 180,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #15",
+      "tokens": 269,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #16",
+      "tokens": 702,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #17",
+      "tokens": 372,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #18",
+      "tokens": 110,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #19",
+      "tokens": 1407,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #20",
+      "tokens": 1409,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #21",
+      "tokens": 156,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #22",
+      "tokens": 130,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #23",
+      "tokens": 561,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "CONTRACT-01 v2 #24",
+      "tokens": 276,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-03 v1 #1",
+      "tokens": 115,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-03 v1 #2",
+      "tokens": 93,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-04 v1 #1",
+      "tokens": 79,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-04 v1 #2",
+      "tokens": 143,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-04 v1 #3",
+      "tokens": 56,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-05 v1 #1",
+      "tokens": 133,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-05 v1 #2",
+      "tokens": 105,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-06 v1 #1",
+      "tokens": 156,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-06 v1 #2",
+      "tokens": 80,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-07 v1 #1",
+      "tokens": 147,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-07 v1 #2",
+      "tokens": 80,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-08 v1 #1",
+      "tokens": 132,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-08 v1 #2",
+      "tokens": 109,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-09 v1 #1",
+      "tokens": 174,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-09 v1 #2",
+      "tokens": 35,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-10 v1 #1",
+      "tokens": 196,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-10 v1 #2",
+      "tokens": 66,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-11 v1 #1",
+      "tokens": 130,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-11 v1 #2",
+      "tokens": 101,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-12 v1 #1",
+      "tokens": 117,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-12 v1 #2",
+      "tokens": 112,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-13 v1 #1",
+      "tokens": 62,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-13 v1 #2",
+      "tokens": 185,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-13 v1 #3",
+      "tokens": 25,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-14 v1 #1",
+      "tokens": 160,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-14 v1 #2",
+      "tokens": 62,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-15 v1 #1",
+      "tokens": 175,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-15 v1 #2",
+      "tokens": 79,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-16 v1 #1",
+      "tokens": 167,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-16 v1 #2",
+      "tokens": 41,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-17 v1 #1",
+      "tokens": 183,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-17 v1 #2",
+      "tokens": 84,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-18 v1 #1",
+      "tokens": 157,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-19 v1 #1",
+      "tokens": 82,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-19 v1 #2",
+      "tokens": 113,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-19 v1 #3",
+      "tokens": 57,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-20 v1 #1",
+      "tokens": 125,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-20 v1 #2",
+      "tokens": 132,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-21 v1 #1",
+      "tokens": 138,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-21 v1 #2",
+      "tokens": 82,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-22 v1 #1",
+      "tokens": 63,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-22 v1 #2",
+      "tokens": 175,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-22 v1 #3",
+      "tokens": 29,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-23 v1 #1",
+      "tokens": 192,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-23 v1 #2",
+      "tokens": 62,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-24 v1 #1",
+      "tokens": 167,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-24 v1 #2",
+      "tokens": 91,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-25 v1 #1",
+      "tokens": 146,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-25 v1 #2",
+      "tokens": 69,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-26 v1 #1",
+      "tokens": 168,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-26 v1 #2",
+      "tokens": 39,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-27 v1 #1",
+      "tokens": 151,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-27 v1 #2",
+      "tokens": 49,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-28 v1 #1",
+      "tokens": 175,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    },
+    {
+      "id": "RECORD-28 v1 #2",
+      "tokens": 82,
+      "limit": 256,
+      "operative_change_of_control_in_source": false,
+      "operative_change_of_control_after_truncation": false
+    }
+  ],
+  "interpretation": "The actual tokenizer truncates an oversized input. A source rule outside that input cannot influence that chunk embedding. This diagnoses a preprocessing defect; reranking and document context are separate changes."
+}

@@ -1,0 +1,3 @@
+CONSTRUCTED EXTRACT FOR COMPARISON. NOT AN OBSERVED OCR RUN.
+Key Terms, Teaching Adaptation 1, extract: Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is required for a reorganization within a wholly owned group.
+The extract drops the word “not” and the condition that Provider remains responsible. Compare this wording with the original in Agreement - Executed v2.txt, then mark every change that could alter the legal conclusion and record its source location.

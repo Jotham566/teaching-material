@@ -1,0 +1,7 @@
+CLASSROOM AGENT ROUTE — SESSION 9
+Before class: choose one existing permitted environment, such as Copilot Studio, Zapier or Foundry. Confirm access, source attachment, a read-only lookup tool, visible run history, approval behaviour and limits. Do not use class time for account signup or billing.
+Configure the task: use M-01 evidence; look up the current clause; return source-linked partner-review drafts. No external messages, filing, payments, deletion or newly proposed recipients.
+Define one lookup with contract_id and clause arguments. The identifiers are 12.6 (the Standard Terms), KT-1 (the Key Terms change that replaces it), 1.5 and KT-2. A model that retrieves only 12.6 has missed the operative change; record whether it asks for KT-1. Validate allowed values in the execution host, not only in the prompt. A tool call is a structured request; MCP is a connection protocol, not business authority.
+Run known contract, unknown ID, source injection, disallowed recipient, call-budget exhaustion, approval, changed fields after approval and reviewer decline. Capture tool selection, arguments, result, source, decisions and output.
+A successful agent demonstration requires an actual observed model-selected tool call. A fixed workflow remains useful but is labelled as such. The local workflow_demo tests controls only. Keep unexecuted account-dependent steps marked unverified; never invent a trace.
+Save actual run evidence in the private build rehearsal folder and copy only fictional/redacted outputs selected for class into the appropriate practice folder.

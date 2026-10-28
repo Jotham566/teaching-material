@@ -1,0 +1,443 @@
+HTML content KLAi — Public-law deep research rehearsal - Gemini Notebook, URL: notebook.google.com/notebook/467e5157-8f0a-4f85-b22f-c92b5a7f174c
+							47 container
+								48 link Gemini Notebook Homepage, Value: notebook.google.com/
+								49 text field (settable) KLAi — Public-law deep research rehearsal
+								50 container Create notebook
+									51 button Create notebook
+								52 container Share notebook
+									53 button Share notebook
+								54 container Notebook configuration
+									55 pop up button Notebook configuration
+								56 container Settings
+									57 pop up button Settings
+								58 heading Sources Source Discovery, Value: 2
+									59 text Sources
+									60 text Source Discovery
+								61 button
+								62 container
+									63 text Public-law teaching research, not client advice: investigate Goal Relief and Development Organisation v Uganda Revenue Authority, Civil Appeal 50 of 2023. Find the original High Court judgment and verify what it held about the programme delivery fee, imported services and VAT. Distinguish the appellant’s submissions from the court’s findings and disposition. Give exact source links, judgment date, printed-page pinpoints and the statutory provisions/editions actually cited. Investigate later treatment and cu Public-Law Analysis of Goal Relief and Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023) based on 8 sources
+									64 container
+										65 text check_box
+										66 checkbox Value: 1, Public-Law Analysis of Goal Relief and Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023)
+									67 heading Value: 1, Public-Law Analysis of Goal Relief and Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023)
+										68 text Public-Law Analysis of Goal Relief and Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023)
+									69 heading Case Overview, Metadata, and Primary Source Links, Value: 2
+										70 text Case Overview, Metadata, and Primary Source Links
+									71 container
+										72 text The ruling in  Goal Relief and Development Organisation v Uganda Revenue Authority , Civil Appeal No. 50 of 2023 (neutral citation  [2024] UGCommC 272 ), represents a major precedent by the High Court of Uganda (Commercial Division) regarding the taxation of non-governmental organisations (NGOs), cross-border intra-group cost allocations, imported services, and statutory withholding obligations [cite: 1, 2]. Delivered on 19 August 2024 by Justice Ocaya Thomas O. R., the judgment clarifies the boundary between charitable grant disbursement and taxable cross-border service transactions [cite: 1, 2].
+									73 text The dispute arose from a tax compliance audit executed by the Uganda Revenue Authority (URA) covering the tax periods from January 2017 through December 2019 [cite: 2]. The URA assessed additional tax liabilities against Goal Relief and Development Organisation (operating locally as Goal Uganda) amounting to UGX 650,508,770 [cite: 1, 2]. After the Commissioner General of the URA rejected Goal Uganda's administrative objection, the taxpayer appealed to the Tax Appeals Tribunal under Application No. 77 of 202
+									74 table
+										75 row
+											76 column header
+												77 text Attribute
+											78 column header
+												79 text Primary Source / Official Record Detail
+										80 row
+											81 cell
+												82 text Case Name
+											83 cell
+												84 container
+													85 text Goal Relief and Development Organisation v Uganda Revenue Authority  [cite: 1, 2]
+										86 row
+											87 cell
+												88 text Court & Division
+											89 cell
+												90 text High Court of Uganda, Commercial Division, Kampala [cite: 1, 2]
+										91 row
+											92 cell
+												93 text Appeal Number
+											94 cell
+												95 text Civil Appeal No. 50 of 2023 [cite: 1, 2]
+										96 row
+											97 cell
+												98 text Lower Forum
+											99 cell
+												100 text Tax Appeals Tribunal of Uganda (TAT Application No. 77 of 2023) [cite: 1, 2]
+										101 row
+											102 cell
+												103 text Neutral Citation
+											104 cell
+												105 container
+													106 text [2024] UGCommC 272  [cite: 1, 2]
+										107 row
+											108 cell
+												109 text Judgment Date
+											110 cell
+												111 text 19 August 2024 [cite: 1, 2]
+										112 row
+											113 cell
+												114 text Presiding Judge
+											115 cell
+												116 text Justice Ocaya Thomas O. R. [cite: 1, 2]
+										117 row
+											118 cell
+												119 text Appellant Representation
+											120 cell
+												121 text Paul Kaweesi (Advocate) [cite: 1]
+										122 row
+											123 cell
+												124 text Respondent Representation
+											125 cell
+												126 text Samuel Oseku, Bakashaba Donald, and Derrick Nahumuza (Advocates, URA) [cite: 1]
+										127 row
+											128 cell
+												129 text Primary Repository URLs
+											130 cell
+												131 container
+													132 text https://wakilii.org/en/akn/ug/judgment/ugcommc/2024/272/goal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023  [cite: 2] https://chat.esheria.ai/case-law/uganda/goal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023-2024-ugcommc-272-19-august-2024-unknown-topic-unknown-court-20  [cite: 1]
+										133 row
+											134 cell
+												135 text Printed-Page Pinpoints
+											136 cell
+												137 container
+													138 text Unverified/Not Applicable : Official electronic repositories in Uganda (ULII and Wakilii) publish rulings using neutral paragraph citations ( [2024] UGCommC 272 ) rather than hardcopy printed volume page numbers [cite: 1, 2].
+									139 heading Factual Matrix, Audit Findings, and Assessment Breakdown, Value: 2
+										140 text Factual Matrix, Audit Findings, and Assessment Breakdown
+									141 text Goal Relief and Development Organisation is an international non-governmental organization registered in Uganda as a company limited by guarantee, functioning as the operating arm of its parent body, GOAL Ireland [cite: 1, 2, 3, 4]. GOAL Ireland, headquartered in Dublin, manages global fundraising, institutional grant procurement, legal compliance, and strategic oversight for its operational branches [cite: 2, 5].
+									142 text During the audit period, GOAL Ireland negotiated and executed multi-year grant agreements with international donors to fund humanitarian and development projects in Uganda [cite: 2]. Under its operational structure, GOAL Ireland retained 10% of the gross grant funds as a "program delivery fee" or overhead charge before transferring the remaining 90% to Goal Uganda's operational bank accounts [cite: 2, 5]. Additionally, GOAL Ireland centrally procured software licenses from vendors such as Microsoft and Sage
+									143 text The URA determined that the 10% retained fee constituted taxable consideration for cross-border management and technical services provided by a non-resident entity, triggering obligations for Withholding Tax (WHT) and Value Added Tax (VAT) on imported services [cite: 1, 2]. Furthermore, the URA classified the software license reimbursements as taxable royalties subject to WHT and VAT [cite: 2, 5].
+									144 table
+										145 row
+											146 column header
+												147 text Tax Head / Assessment Line Item
+											148 column header
+												149 text Assessed Amount (UGX)
+											150 column header
+												151 text Factual and Legal Basis
+										152 row
+											153 cell
+												154 text Withholding Tax (Local Supplies)
+											155 cell
+												156 text 51,867,131
+											157 cell
+												158 text Unwithheld tax on domestic procurement contracts [cite: 1].
+										159 row
+											160 cell
+												161 text Withholding Tax (International Payments)
+											162 cell
+												163 text 263,533,867
+											164 cell
+												165 text Statutory WHT on cross-border service remittances [cite: 1].
+										166 row
+											167 cell
+												168 text Withholding Tax (Imported Services)
+											169 cell
+												170 text 316,240,641
+											171 cell
+												172 text WHT on technical and administrative services supplied from abroad [cite: 1].
+										173 row
+											174 cell
+												175 text Withholding Tax (Management Fees / Commissions)
+											176 cell
+												177 text 285,825,249
+											178 cell
+												179 text Non-resident WHT assessed on the 10% program delivery fee retained by GOAL Ireland [cite: 1].
+										180 row
+											181 cell
+												182 text Withholding Tax (Software Licenses)
+											183 cell
+												184 text 10,090,415
+											185 cell
+												186 text Royalty WHT on software license reimbursements to GOAL Ireland [cite: 1].
+										187 row
+											188 cell
+												189 text VAT on Imported Services (Program Delivery Fee)
+											190 cell
+												191 text 379,488,769
+											192 cell
+												193 text Reverse-charge VAT assessed on the 10% imported administrative services [cite: 1].
+										194 row
+											195 cell
+												196 text Pay As You Earn (PAYE)
+											197 cell
+												198 text 18,867,131
+											199 cell
+												200 text Payroll tax adjustments on non-taxed employee benefits [cite: 1].
+										201 row
+											202 cell
+												203 text Total Cumulative Assessment
+											204 cell
+												205 text 650,508,770
+											206 cell
+												207 text Total principal and statutory adjustments confirmed by URA [cite: 1, 2].
+									208 heading Appellant Submissions Versus High Court Findings, Value: 2
+										209 text Appellant Submissions Versus High Court Findings
+									210 text The appeal before the High Court involved six main legal disputes, opposing the formal contractual assertions of the NGO against the statutory substance-over-form doctrine applied by the Commercial Division [cite: 2].
+									211 heading Scope of Judicial Review in Tax Appeals, Value: 3
+										212 text Scope of Judicial Review in Tax Appeals
+									213 text The Appellant submitted that the Tax Appeals Tribunal failed to properly evaluate the factual context of NGO funding structures, urging the High Court to re-examine the evidentiary record regarding donor grant allocations [cite: 2]. The URA countered that statutory appeals from the Tribunal to the High Court are restricted solely to questions of law [cite: 2].
+									214 text Justice Ocaya Thomas O. R. held that the High Court’s jurisdiction under the Tax Appeals Tribunal Act is confined to determining questions of law [cite: 2]. The Court established that it must accept the factual findings of the Tribunal unless those findings are entirely unsupported by evidence or perverse [cite: 2]. A reviewable question of law arises only where the Tribunal misconstrued a statutory provision, applied incorrect legal principles, or reached a conclusion outside the range a properly directed 
+									215 heading Characterization of the Programme Delivery Fee as a Management Charge, Value: 3
+										216 text Characterization of the Programme Delivery Fee as a Management Charge
+									217 text Goal Uganda argued that GOAL Ireland was acting purely as a non-profit parent entity engaging in charitable fundraising [cite: 2]. It contended that the retention of the 10% fee was an internal administrative overhead allocation rather than consideration for commercial management services under Section 78(b) of the Income Tax Act [cite: 2].
+									218 text The High Court rejected the Appellant’s framing, holding that the statutory term "management charge" under Section 78(b) covers any payment made as consideration for managerial, administrative, or technical support services [cite: 2]. Managerial services encompass functions such as strategic planning, governance, organizing, staffing, directing, and operational control [cite: 2]. The Court ruled that when an international parent organization conducts central grant negotiations, administrative oversight, and
+									219 heading Construction of "Payment" and Netting Mechanisms, Value: 3
+										220 text Construction of "Payment" and Netting Mechanisms
+									221 text The Appellant submitted that because no physical currency or bank transfer was remitted from Goal Uganda to GOAL Ireland—since GOAL Ireland deducted the 10% fee at source before transferring grant balances—no "payment" occurred within Uganda to trigger withholding tax liability under Section 83 [cite: 2].
+									222 text The High Court held that under Section 2(xx) of the Income Tax Act, "payment" is broadly defined to include any action that confers economic value, discharges a liability, or satisfies an obligation, extending beyond direct monetary remittances [cite: 2]. Where a non-resident payee retains sums passing through its hands to cover fees owed by a local affiliate, value is exchanged [cite: 2]. The Court established that taxpayers cannot escape statutory withholding obligations by structuring transactions throug
+									223 heading Software License Reimbursements as Taxable Royalties, Value: 3
+										224 text Software License Reimbursements as Taxable Royalties
+									225 text Goal Uganda argued that its payments for Microsoft and Sage software were non-taxable, pass-through reimbursements for expenses paid by GOAL Ireland on its behalf, without any royalty markup or profit margin [cite: 2, 5].
+									226 text The Court ruled that software licensing reimbursements constitute taxable royalties under Section 79(j) of the Income Tax Act [cite: 2, 5]. Under Uganda’s statutory source rules, income is derived from sources in Uganda if it is paid by a resident person or incurred as an expense of a business conducted in Uganda [cite: 2]. Reimbursing a foreign entity for software deployment gives the local branch the operational right to use protected intellectual property within Uganda, attracting Withholding Tax under S
+									227 heading Value Added Tax on Imported Services and the Reverse-Charge Rule, Value: 3
+										228 text Value Added Tax on Imported Services and the Reverse-Charge Rule
+									229 text The Appellant asserted that it was not liable for VAT on imported services regarding either the 10% fee or the software licenses, arguing that humanitarian entities executing aid projects are not commercial recipients of taxable supplies [cite: 1, 2].
+									230 text Justice Ocaya Thomas O. R. affirmed that under Section 4(c) and Section 5 of the Value Added Tax Act, VAT is charged on every supply of imported services (other than exempt services) by any person [cite: 2, 6]. Under the reverse-charge mechanism, a resident recipient of imported services must account for output VAT on services rendered by a non-resident supplier [cite: 1, 2, 6, 7]. Because Goal Uganda was the end recipient and beneficiary of the administrative and software services in Uganda, it was liable 
+									231 heading Substance Over Form and Transaction Recharacterization, Value: 3
+										232 text Substance Over Form and Transaction Recharacterization
+									233 text Goal Uganda requested the Court to give primary weight to the non-profit intent expressed in its grant documentation and internal inter-company accounting entries [cite: 2].
+									234 text The High Court confirmed that tax administration relies on the doctrine of substance over form [cite: 2]. Revenue authorities and courts are required to look at the underlying economic reality of a transaction rather than its formal labels or accounting entries [cite: 2]. Where value is exchanged for administrative, management, or technological rights, tax liabilities apply according to the economic substance of the arrangement [cite: 2].
+									235 table
+										236 row
+											237 column header
+												238 text Dispute Issue
+											239 column header
+												240 text Appellant Submission
+											241 column header
+												242 text High Court Ruling & Legal Principle
+											243 column header
+												244 text Statutory Authority
+										245 row
+											246 cell
+												247 text Standard of Review
+											248 cell
+												249 text Court should conduct a comprehensive re-evaluation of factual grant context [cite: 2].
+											250 cell
+												251 text Appeals from TAT are strictly limited to questions of law; factual findings of TAT are binding unless perverse [cite: 2].
+											252 cell
+												253 text Tax Appeals Tribunal Act / Civil Procedure Rules [cite: 2]
+										254 row
+											255 cell
+												256 text 10% Grant Overhead
+											257 cell
+												258 text Non-taxable grant overhead deduction for non-profit fundraising [cite: 2].
+											259 cell
+												260 text Taxable management charge; parent entity provided structured administrative oversight [cite: 2, 5].
+											261 cell
+												262 text Income Tax Act, Cap. 340, s. 78(b) [cite: 2]
+										263 row
+											264 cell
+												265 text Mechanism of Payment
+											266 cell
+												267 text No WHT triggered because no cash remittance originated from Uganda [cite: 2].
+											268 cell
+												269 text "Payment" under s. 2(xx) includes netting, offsets, and conferring value; direct remittance is not required [cite: 2].
+											270 cell
+												271 text Income Tax Act, Cap. 340, s. 2(xx) & s. 83 [cite: 2]
+										272 row
+											273 cell
+												274 text Software Reimbursements
+											275 cell
+												276 text Non-taxable pass-through cost reimbursement for third-party software [cite: 2, 5].
+											277 cell
+												278 text Taxable royalty; payments granted operational rights to exploit software in Uganda [cite: 2, 5].
+											279 cell
+												280 text Income Tax Act, Cap. 340, s. 79(j) & s. 83 [cite: 2, 5]
+										281 row
+											282 cell
+												283 text Imported Services VAT
+											284 cell
+												285 text Exempt from VAT as a non-profit entity utilizing aid grants [cite: 1, 2].
+											286 cell
+												287 text Liable under reverse-charge mechanism as recipient of imported services [cite: 1, 2, 6].
+											288 cell
+												289 text Value Added Tax Act, Cap. 349, s. 4(c) & s. 5 [cite: 2, 6]
+									290 heading Statutory Provisions and Judicial Authorities Cited, Value: 2
+										291 text Statutory Provisions and Judicial Authorities Cited
+									292 text The High Court’s decision drew upon statutory enactments in Ugandan tax law as well as domestic, regional, and international legal authorities [cite: 2, 6, 8].
+									293 heading Statutory Provisions Cited in Judgment, Value: 3
+										294 text Statutory Provisions Cited in Judgment
+									295 content list
+										296 container
+											297 text Income Tax Act, Cap. 340 (Laws of Uganda 2000, as amended) :
+											298 content list
+												299 container
+													300 text Section 2(xx) : Statutory definition of "payment," covering any form of value transfer, offset, or discharge of obligation [cite: 2].
+												301 container
+													302 text Section 78(b) : Statutory definition of "management charge," covering consideration paid for managerial, technical, or administrative services [cite: 2].
+												303 container
+													304 text Section 79(j) & (l) : Source rules for Ugandan-sourced income, establishing that royalties and management fees paid by resident entities or local branches are Ugandan-sourced [cite: 2, 6].
+												305 container
+													306 text Section 83 : Charging provision for Withholding Tax on non-resident persons deriving management charges, royalties, or technical fees from Uganda [cite: 2, 6].
+										307 container
+											308 text Value Added Tax Act, Cap. 349 (Laws of Uganda, as amended) :
+											309 content list
+												310 container
+													311 text Section 4(c) : Imposes Value Added Tax on every supply of imported services (other than exempt services) by any person [cite: 6].
+												312 container
+													313 text Section 5 : Establishes liability for VAT on imported services, placing tax responsibility on the resident service recipient via the reverse-charge mechanism [cite: 6].
+									314 heading Judicial Authorities and Precedents Cited, Value: 3
+										315 text Judicial Authorities and Precedents Cited
+									316 content list
+										317 container
+											318 text Absa Bank Uganda Limited v Uganda Revenue Authority  (TAT Application No. 57 of 2021 / [2023] UGTAT 8): Cited regarding the legal scope of management services provided by foreign affiliate head offices [cite: 8].
+										319 container
+											320 text Lubanga Jamada v Ddumba Edward  (Court of Appeal Civil Appeal No. 11 of 2016): Cited on the standards of judicial review and appellate deference to tribunal factual findings [cite: 2].
+										321 container
+											322 text Celtel Uganda Limited v Karungi Susan  (Civil Appeal No. 73 of 2013): Cited regarding statutory interpretation of commercial agreements [cite: 2].
+										323 container
+											324 text Uganda Revenue Authority v Tembo Steel Mills  (High Court Civil Appeal No. 9 of 2005): Cited on the legal test for distinguishing questions of law from questions of fact in administrative tax appeals [cite: 2].
+										325 container
+											326 text Kenyan Court of Appeal Precedent on Credit Card Management Fees vs. Royalties : Cited for comparative jurisprudence on recharacterizing service payments based on economic reality [cite: 1].
+										327 container
+											328 text Ibm India (P) Ltd v Commissioner of Central Tax, Bangaluru  (ST/429, 548, 549/2009): Cited on cross-border software licensing and corporate cost-allocation tax liability [cite: 2].
+										329 container
+											330 text Re LMSCL Lower Mainland Society for Community Living  (2020 BCEST 118) &  Director of Employment Standards, BC EST # D479/97 ("Amelia") : Cited regarding public-law interpretation of statutory service definitions [cite: 2].
+										331 container
+											332 text General Investment Company Limited v Commissioner for Income Tax  (Civil Appeal No. 935 of 1950) [1951] EACA 331: Cited in comparative citator indexes regarding holding company tax liability on isolated transactions [cite: 5].
+									333 heading Legal Disposition and Formal Orders, Value: 2
+										334 text Legal Disposition and Formal Orders
+									335 text Justice Ocaya Thomas O. R. concluded that the Tax Appeals Tribunal had correctly interpreted the Income Tax Act and Value Added Tax Act [cite: 1, 2]. The High Court issued the following orders:
+									336 content list
+										337 container
+											338 text 1 . Dismissal of Appeal : The appeal filed by Goal Relief and Development Organisation (Civil Appeal No. 50 of 2023) was dismissed [cite: 1, 2].
+										339 container
+											340 text 2 . Affirmation of Lower Rulings : The ruling and tax assessments affirmed by the Tax Appeals Tribunal in TAT Application No. 77 of 2023 (totaling UGX 650,508,770) were confirmed [cite: 1, 2].
+										341 container
+											342 text 3 . Award of Costs : The Respondent, Uganda Revenue Authority, was awarded full costs of the appeal in the High Court as well as the proceedings in the Tax Appeals Tribunal [cite: 1, 2].
+									343 heading Subsequent Treatment, Current-Law Questions, and Unverified Elements, Value: 2
+										344 text Subsequent Treatment, Current-Law Questions, and Unverified Elements
+									345 text As recorded in primary Ugandan judicial citators (ULII and Wakilii), no subsequent appellate ruling overruling, modifying, or distinguishing the judgment in Civil Appeal No. 50 of 2023 has been reported [cite: 2].
+									346 text The judgment forms part of current Ugandan tax law, establishing important compliance standards for non-profit entities:
+									347 content list
+										348 container
+											349 text Taxability of Non-Profit Operations : NGO registration does not grant an automatic exemption from statutory Withholding Tax or reverse-charge VAT on imported services [cite: 1, 2].
+										350 container
+											351 text Tax Status of Grant Netting : The retention of overhead fees abroad by international parent entities constitutes a taxable payment under Section 2(xx) of the Income Tax Act, triggering WHT obligations under Section 83 [cite: 2].
+										352 container
+											353 text Reverse-Charge VAT Compliance : Cross-border software procurement and centralized parent administrative support attract reverse-charge VAT under Section 4(c) and Section 5 of the Value Added Tax Act [cite: 2, 5, 6].
+									354 heading Unverified Elements, Value: 3
+										355 text Unverified Elements
+									356 content list
+										357 container
+											358 text Printed-Page Pinpoints in Hardcopy Law Reports : Public digital legal databases in Uganda (ULII and Wakilii) publish rulings with neutral paragraph citations ( [2024] UGCommC 272 ) rather than volume page pinpoints [cite: 1, 2]. Printed-page pinpoints cannot be verified from electronic records [cite: 2].
+										359 container
+											360 text Status of Pending Appeals Beyond the High Court : While legal citators show no adverse treatment to date, the filing of a Notice of Appeal to the Court of Appeal of Uganda remains possible within statutory limits [cite: 2]. No Court of Appeal judgment on this specific case has been published in primary legal databases [cite: 2].
+									361 content list
+										362 container
+											363 text 1 . Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) [2024] UGCommC 272 (19 August 2024) - Esheria, 
+											364 link https://chat.esheria.ai/case-law/uganda/goal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023-2024-ugcommc-272-19-august-2024-unknown-topic-unknown-court-20, Value: google.com/url?sa=E&q=https%3A%2F%2Fchat.esheria.ai%2Fcase-law%2Fuganda%2Fgoal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023-2024-ugcommc-272-19-august-2024-unknown-topic-unknown-court-20
+										365 container
+											366 text 2 . Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) - Wakilii, 
+											367 link https://wakilii.org/en/akn/ug/judgment/ugcommc/2024/272/goal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023, Value: google.com/url?sa=E&q=https%3A%2F%2Fwakilii.org%2Fen%2Fakn%2Fug%2Fjudgment%2Fugcommc%2F2024%2F272%2Fgoal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023
+										368 container
+											369 text 3 . Centenary Group Integrated Report | 2022, 
+											370 link https://www.centenarybank.co.ug/assets/uploads/reports/CentenaryAR_IM_070623_Lite.pdf, Value: google.com/url?sa=E&q=https%3A%2F%2Fwww.centenarybank.co.ug%2Fassets%2Fuploads%2Freports%2FCentenaryAR_IM_070623_Lite.pdf
+										371 container
+											372 text 4 . ANNUAL REPORT 2024 - GOAL Global, 
+											373 link https://www.goalglobal.org/wp-content/uploads/2025/08/2024_GOAL_annual_report.pdf, Value: google.com/url?sa=E&q=https%3A%2F%2Fwww.goalglobal.org%2Fwp-content%2Fuploads%2F2025%2F08%2F2024_GOAL_annual_report.pdf
+										374 container
+											375 text 5 . General Investment Company Limited v Commissioner for Income Tax (Civil Appeal No. 935 of 1950) - Wakilii, 
+											376 link https://wakilii.org/en/akn/ug/judgment/eaca/1951/1a82cfa98eafd91c/general-investment-company-limited-v-commissioner-for-income-tax-civil-appeal-no-935-of-19, Value: google.com/url?sa=E&q=https%3A%2F%2Fwakilii.org%2Fen%2Fakn%2Fug%2Fjudgment%2Feaca%2F1951%2F1a82cfa98eafd91c%2Fgeneral-investment-company-limited-v-commissioner-for-income-tax-civil-appeal-no-935-of-19
+										377 container
+											378 text 6 . The Income Tax Act Cap.340 4 - Amazon S3, 
+											379 link https://s3.amazonaws.com/rgi-documents/0216350e05e4b5dd46a9abc9d5ce2ffe7cda0610.pdf, Value: google.com/url?sa=E&q=https%3A%2F%2Fs3.amazonaws.com%2Frgi-documents%2F0216350e05e4b5dd46a9abc9d5ce2ffe7cda0610.pdf
+										380 container
+											381 text 7 . Tax Revision Kit | PDF | Value Added Tax | Double Taxation - Scribd, 
+											382 link https://www.scribd.com/document/282253047/Tax-Revision-Kit, Value: google.com/url?sa=E&q=https%3A%2F%2Fwww.scribd.com%2Fdocument%2F282253047%2FTax-Revision-Kit
+										383 container
+											384 text 8 . Absa Bank Uganda Limited V Uganda Revenue Authority (TAT Application 57 of 2021) 2023 UGTAT 8 (22 November 2023) - Scribd, 
+											385 link https://www.scribd.com/document/945125275/Absa-Bank-Uganda-Limited-v-Uganda-Revenue-Authority-TAT-Application-57-of-2021-2023-UGTAT-8-22-November-2023, Value: google.com/url?sa=E&q=https%3A%2F%2Fwww.scribd.com%2Fdocument%2F945125275%2FAbsa-Bank-Uganda-Limited-v-Uganda-Revenue-Authority-TAT-Application-57-of-2021-2023-UGTAT-8-22-November-2023
+									386 tab group
+										387 tab (selected) Cited in Report 8, Value: 1
+											388 text Cited in Report
+											389 text 8
+										390 tab (settable, integer) Not cited 19, Value: 0
+											391 text Not cited
+											392 text 19
+									393 container Cited in Report 8
+									394 container
+										395 text check_box
+										396 checkbox check_box Select all, Value: 1
+										397 text Select all
+									398 container
+										399 text Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) [2024] UGCommC 272 (19 August 2024) - Esheria
+										400 button Open source link
+										401 text You find the direct judgment details answering your core questions.
+									402 container
+										403 text check_box
+										404 checkbox Value: 1, Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) [2024] UGCommC 272 (19 August 2024) - Esheria
+									405 container
+										406 text General Investment Company Limited v Commissioner for Income Tax (Civil Appeal No. 935 of 1950) - Wakilii
+										407 button Open source link
+										408 text You see a concise case summary directly matching the appeal.
+									409 container
+										410 text check_box
+										411 checkbox Value: 1, General Investment Company Limited v Commissioner for Income Tax (Civil Appeal No. 935 of 1950) - Wakilii
+									412 container
+										413 text Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) - Wakilii
+										414 button Open source link
+										415 text You check background facts of the specific assessed tax amounts.
+									416 container
+										417 text check_box
+										418 checkbox Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) - Wakilii, Value: 1
+									419 text ANNUAL REPORT 2024 - GOAL Global
+									420 button Open source link
+									421 text You read corporate structure details regarding the appellant organization.
+									422 container
+										423 text check_box
+										424 checkbox ANNUAL REPORT 2024 - GOAL Global, Value: 1
+									425 text Centenary Group Integrated Report | 2022
+									426 button Open source link
+									427 text You locate background corporate reference data for the entity.
+									428 container
+										429 text check_box
+										430 checkbox Centenary Group Integrated Report | 2022, Value: 1
+									431 text The Income Tax Act Cap.340 4 - Amazon S3
+									432 button Open source link
+									433 text You browse general statutes and tax practice notes lists.
+									434 container
+										435 text check_box
+										436 checkbox The Income Tax Act Cap.340 4 - Amazon S3, Value: 1
+									437 container
+										438 text Tax Revision Kit | PDF | Value Added Tax | Double Taxation - Scribd
+										439 button Open source link
+										440 text You consult general tax study materials on imported services.
+									441 container
+										442 text check_box
+										443 checkbox Tax Revision Kit | PDF | Value Added Tax | Double Taxation - Scribd, Value: 1
+									444 container
+										445 text Absa Bank Uganda Limited V Uganda Revenue Authority (TAT Application 57 of 2021) 2023 UGTAT 8 (22 November 2023) - Scribd
+										446 button Open source link
+									447 container
+										448 text check_box
+										449 checkbox Value: 1, Absa Bank Uganda Limited V Uganda Revenue Authority (TAT Application 57 of 2021) 2023 UGTAT 8 (22 November 2023) - Scribd
+									450 button Hide sources
+									451 container Thumbs up
+										452 button Thumbs up
+									453 container Thumbs down
+										454 button Thumbs down
+									455 text Report & 8 sources selected
+									456 button Import
+								457 container
+									458 heading Let's start your notebook..., Value: 1
+										459 text Let's start your notebook...
+									460 text This is your blank canvas to understand, create, or make progress on something new. I can help you get started or you can go ahead and add your own sources.
+									461 text What would you like this notebook to help you do?
+									462 button Learn about a new topic
+									463 button Create something new
+									464 button Make progress on a project
+									465 container
+										466 text entry area (settable) Query box, Placeholder: Ask a question or create something
+										467 text 0 sources
+										468 container Submit
+											469 button (disabled) Submit
+									470 text Gemini Notebook can make mistakes, so double-check it.
+								471 heading Studio, Value: 2
+									472 text Studio
+								473 button Collapse studio panel
+								474 container
+									475 button Audio Overview
+									476 button Slide Deck
+									477 button Video Overview
+									478 button Mind Map
+									479 button Reports
+									480 text New!
+									481 button Flashcards
+									482 button Quiz
+									483 button Infographic
+									484 button Data Table
+									485 text Studio output will be saved here. After adding sources, click to add Audio Overview, Study Guide, Mind Map, and more!
+									486 button Add note
+							487 text Reply ready.
+				488 

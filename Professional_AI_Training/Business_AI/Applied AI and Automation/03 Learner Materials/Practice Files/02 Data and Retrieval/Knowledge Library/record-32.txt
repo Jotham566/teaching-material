@@ -1,0 +1,31 @@
+RECORD-32 | service report | 2026-02-03 | Equator monthly service report - January 2026
+
+EQUATOR SYSTEMS LTD - MONTHLY SERVICE REPORT
+Customer: Victoria Services Ltd
+Period: 1 to 31 January 2026
+Prepared: 3 February 2026
+
+Availability: 98.8 percent. Two outages (3 January, 52 minutes; 22 January, 1 hour 15 minutes), both caused by a storage fault now repaired.
+
+Tickets
+Opened: 31
+Closed: 28
+Carried over: 3
+Average first response: 4 hours 5 minutes
+
+Changes made
+- Storage replaced on 24 January
+- User training session for new branch staff on 29 January
+
+Users
+Active named users: 36
+New accounts: 4
+Accounts disabled: 2
+
+Open items for Victoria
+Please return the signed data processing form (sent 12 January).
+
+Support lead: Harriet Namuli
+Account manager: Patrick Lule
+
+Prepared by: P. Lule

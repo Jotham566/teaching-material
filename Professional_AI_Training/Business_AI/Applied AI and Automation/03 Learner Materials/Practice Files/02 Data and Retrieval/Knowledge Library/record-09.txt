@@ -1,0 +1,26 @@
+RECORD-09 | access request form | 2026-10-21 | Support access request: two Equator staff
+
+VICTORIA SERVICES LTD - THIRD PARTY SUPPORT ACCESS REQUEST
+
+Request number: SAR-0172
+Date submitted: 21 October 2026
+Requested by: Equator Systems Ltd (Daniel Oroma, account manager)
+
+Named support staff:
+1. Joseph Kintu - support engineer
+2. Rehema Auma - database analyst
+
+Systems: Reporting application (production) and its database, read access to logs
+Purpose: Investigate slow month end reports (ticket reference on file)
+Access type: Remote, via company VPN
+Requested period: 26 October to 6 November 2026
+
+Victoria use only
+Assessed by IT lead: Recommended
+Approved by finance manager: PENDING
+Approval date: ____________
+VPN accounts created: No
+
+Note: access stays switched off until the approval box is completed and signed.
+
+Signed (requester): D. Oroma

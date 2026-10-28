@@ -1,0 +1,48 @@
+APPLIED AI AND AUTOMATION
+12 sessions of 2 hours | 24 hours total | flexible schedule
+
+Build on existing use of AI assistants. Use the Guide’s professional decisions
+and evidence checks to set the pace; routine interface instructions are private
+facilitator preparation. Explain unfamiliar mechanisms before applying them.
+
+01 Course Overview
+One current one-page summary to share with the learner.
+
+02 Class Slides
+One editable PowerPoint per session, numbered in teaching order.
+The essential sequence ends with a check of understanding. Optional exploration
+slides follow that check and are labelled in the footer; they are not required
+within the two-hour lesson. The set has 233 essential and 52 optional slides.
+88 slides explain concepts; the others support demonstrations, discussion,
+application, recall and firm decisions. Avoid treating the set as 285 lectures.
+Animation Guide.txt lists the native click reveals. Use Slide Show mode.
+
+03 Learner Materials
+Learner Workbook.docx and Practice Files/. One fictional legal and tax matter
+connects the course. Complete required work together in class; no homework.
+Use the blank in-class progress record to identify concepts to revisit.
+
+04 Facilitator Materials
+Facilitator Guide.docx gives each 120-minute plan, teaching landmarks,
+misconceptions, questions, expected answers and recovery routes.
+Every slide has speaker notes written as a script to read aloud. Sources and click counts are in Teaching Resources/Presenter Notes Backup.txt.
+Law Firm Implementation Playbook.docx supports one proposed pilot and includes
+a completed teaching example, costs, risks, owners and a staged adoption route.
+Teaching Resources/ contains instructor answer keys, demonstration preparation
+and saved actual runs. Keep answer keys separate from learner handouts.
+
+BEFORE CLASS
+Read Teaching Resources/Demonstration Preflight.txt and Run Demonstrations.txt.
+Rehearse the chosen AI account and any connected tools. Actual saved runs,
+constructed examples and local simulations are labelled separately. The local
+workflow page works without an account. It does not connect to URA or file tax.
+The selected portal builder, enterprise search and live deep research still
+need account-specific rehearsal. Use the documented fallback if unavailable.
+
+05 Course Maintenance
+Review Response.txt maps the independent feedback to the changes.
+Benchmark Review.txt records the public-syllabus comparison and its limits.
+Authoring/ preserves editable sources. Validation/ records checks and review
+scope. This is maintenance material, not another teaching edition.
+
+For exact demonstration delivery, open Facilitator Guide.docx and use Open demonstration index. The full session instructions and copy-ready prompt IDs are now inside that one guide. Teaching Resources/Run Demonstrations.txt gives the launch route; Demo Materials holds the text to copy.

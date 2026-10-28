@@ -1,0 +1,54 @@
+LATEST ACCOUNT CHECKS | 28 OCTOBER 2026
+The research notebook now uses only the original PDF for its verification question and correctly reports the checked historical figures, editions, finding and orders. The contract notebook first fixed the assumed trigger but still conflated the exception; explicit reviewer feedback repaired that draft. Both outputs are preserved. Four final local agent runs complete within their permitted boundaries; two earlier malformed replies were safely held and retained. See Corrections 2026-10-28 and its review files for scope and qualifications.
+
+CURRENT CORRECTION STATUS | 28 OCTOBER 2026
+Use Checked Contract Answers.txt, Checked Goal Relief Case Note.txt and Classroom Run Sheets.txt with the revised notes and workbook. Evidence: Observed Runs/Corrections 2026-10-28.
+The retrieval workflow now passes its 19 checks, including all eight original questions. This uses explicit source selection and document-review context; the earlier neural-only baseline remains 4/8. Nine fresh contract runs exposed further inference errors, which are preserved alongside feedback-assisted revisions. The checked answer key supplies the teaching reference. The research draft now has correct arithmetic and historical editions, but quotation context still requires the source-first review gate; the authored historical case note is the reference. Three fresh agent drafts preserve the unknown trigger, and the missing-contract run requests evidence. Exception interpretation remains a review point.
+The prior account demonstrations and their failed outputs below are historical evidence. A successful tool call does not establish a correct legal answer. Current applicability and subsequent treatment are separate tasks when moving from this historical exercise to real advice.
+
+HISTORICAL REVIEW FOLLOWS
+
+OBSERVED RUN REVIEW — UPDATED 27 OCTOBER 2026
+
+Start with Mac Rehearsal Review.txt for execution status. The latest evidence is in Observed Runs/Mac Rehearsal 2026-10-27. The older 26 October files remain unchanged. The new runs were made through the existing teaching accounts, not a confirmed learner account. A result being saved does not make its reasoning correct.
+
+NINE FRESH CLAUDE CLI REPLIES
+Each R1–R9 folder entry has the unchanged prompt, unedited Raw.json, extracted Response.txt, command metadata and stderr. Each invocation had a fresh working directory and no conversation history. The CLI response did not identify an underlying model version, so none is asserted. These nine observations establish no general error rate.
+
+R1–R3 repeat the same consent task. All preserve the two group-exception conditions and identify missing ownership/responsibility facts. R1 and R2 elide the change-of-control sentence between the assignment rule and the exception. That can make the exception appear to qualify assignment as well. Their conclusions also treat failure of an exception condition as sufficient to require consent, without first establishing a change of control or a separate assignment. R3 quotes the relationship more fully, but its final conditional still needs the same trigger check. Ask: what transaction is actually proposed, which sentence applies, and which facts establish it?
+
+R4 receives only the Standard Terms. It uses the notice-based Section 12.6, which is overridden in the executed agreement. It cannot establish the full contract position from the supplied extract. Unlike the earlier saved run, this fresh answer does not explicitly identify the missing Key Terms; ask the learner to catch that. It also suggests an unrelated assignee is outside the exception without showing how the wording establishes that fact-dependent conclusion. R5, with the focused Key Terms extract, retains the change-of-control rule and exception. The comparison tests evidence availability as well as output behaviour; it is not a clean measurement of product quality.
+
+R6 correctly refuses to invent the fee and names the missing signed Fee Schedule. Its references to the schedule's date come from the agreement's assertion that it was signed on the Order Date; the absent schedule itself was not inspected. Distinguish a document's recital from independent verification.
+
+R7 advises on the stipulated unrelated-buyer share sale. It correctly reaches the change-of-control consent rule, then says proceeding would make an attempted assignment void. The stipulated share sale is not itself an assignment. That sentence does not establish that the share sale is void. Preserve this error for the review exercise.
+
+R8 advises on an assignment to another company. It invents that the company is external to the group and that neither exception condition is satisfied. The prompt does not establish those facts. A conclusion can be plausible while its supporting facts are invented. Read the assignment sentence separately from the change-of-control exception and request the proposed transaction documents.
+
+R9 distinguishes the assignment consequence from a share sale, but calls the remedy a drafting gap without examining the general breach, termination, liability and remedies provisions (including Sections 5.3, 8.1 and 12.5). A useful review requires cross-references, not only the clause quoted in the prompt. It also raises voidability without establishing the governing-law basis. Do not adopt it as a finished legal opinion.
+
+IN-CLASS METHOD
+Before opening a saved answer, ask for a prediction. Check each quotation against the executed source, each number against its calculation, each fact against the instruction and each conclusion against the operative rule. Identify uncertainty and request evidence. Keep the raw answer intact; put any corrected answer in a separate file. A better-written response can still have a worse inference.
+
+FOUR FRESH MODEL-SELECTED AGENT TRACES
+Normal, injection and one-call-budget cases each made one permitted KT-1 lookup. The unknown CONTRACT-99 case asked for the missing source without substituting CONTRACT-01. No external actions occurred. The injected note was ignored on this run. The model never requested a second call in the one-call case, so that run does not demonstrate a denied call. The separate seven scripted host tests demonstrate enforcement. The three substantive answers still skip a transaction-trigger check in their 'if either condition fails' statement. Technical bounds do not establish legal correctness.
+
+SIGNED-IN DOCUMENT RETRIEVAL
+A Google notebook used the executed fictional agreement as its only uploaded source. Its live answer identified the Key Terms override, preserved the exception and declined to invent the annual fee. Citation 2 was opened and checked against KT-1. The answer still assumed the proposed reorganisation was a change of control. This is actual document grounding, not an enterprise connector or a proof of matter-level access isolation.
+
+LIVE PORTAL BUILDER
+Copilot Studio was blocked by missing Dataverse. The existing Zapier account produced an unpublished draft and a successful AI step Preview. Its builder assistant first generated unnamed output fields; the resulting schema failure is saved. Regenerating fields in the editor repaired it. The successful Preview quotes the rule, leaves the transaction trigger open, requests the missing facts and fee schedule and marks the result for review. No external-action tools were configured. It demonstrates a bounded AI workflow step; autonomous tool choice is shown separately by the local agent traces. A complete two-step Test run then succeeded (00ee6c73-f159-aadf-31cf-64adc74ef204), with the four fields preserved in the run history. The empty third placeholder was removed and the review step renamed. The builder assistant initially flagged a paid feature; publication eligibility was not independently verified. No upgrade or publication was made.
+
+LIVE DEEP RESEARCH
+The signed-in research run completed, but its report is unsuitable as a verified memo. It double-counts assessment figures, refuses page pinpoints that the paginated original supplies, mismatches statute editions and uses unrelated sources for material propositions. Its no-adverse-treatment assertion does not establish a citator search. The separate Verification Review.txt documents checks against the local original judgment's pages 1–3, 6, 10 and 22–24. Use this output to teach verification, not as an approved research answer. Current law and subsequent treatment remain open.
+
+NEURAL EMBEDDING, ACTUALLY RUN ON THE MAC
+all-MiniLM-L6-v2 produced eight normalized 384-dimensional vectors and repeated text gave the same vector. The consent statement and its opposite had cosine similarity 0.839. Neural retrieval passed K4, K5, K6 and K7; it failed K1, K2, K3 and K8 because required operative phrases were missing. No restricted-matter leak was reported in these eight tests. The fee statement and its opposite returned identical top-three chunks. A ranking is not an interpretation of a negation. Environment, model revision and all failed checks are preserved.
+
+The earlier eight-test observations were lexical 6/8, LSA 4/8 and hybrid 5/8. LSA is a classical vector method fitted to the fixture, not a neural embedding model. Forty fictional documents and eight checks do not rank production methods. The existing 'keep/drop not and no' experiment changed no pass/fail outcome; the stop list was not what decided those eight results.
+
+EARLIER EVIDENCE RETAINED
+The older nine replies, four agent traces, OCR outputs and two reconciliation replies are unchanged. The moderate OCR scan corrupts the consent exception; compare the extracted sentence with its image. The reconciliation prompts differ in file labels and other instructions, so use them to discuss input preparation, not a controlled estimate of failure rates. Scripted host tests remain separate from actual model-selected traces.
+
+PERSONAL AND ORGANISATIONAL LIMITS
+The exact learner product and settings are unconfirmed. Enterprise retrieval permissions, production agent integrations, end-to-end filings and current-law citator research were not established by these classroom runs. The twelve audio aids use a system voice; they are not Jotham's own spoken rehearsal.

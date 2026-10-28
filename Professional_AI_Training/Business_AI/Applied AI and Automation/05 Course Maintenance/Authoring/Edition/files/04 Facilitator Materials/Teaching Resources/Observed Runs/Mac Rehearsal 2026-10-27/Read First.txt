@@ -1,0 +1,9 @@
+MAC ACCOUNT AND MODEL REHEARSALS — 27 OCTOBER 2026
+Start with ../../Mac Rehearsal Review.txt and ../../Observed Run Review.txt.
+01 Claude Repeats: nine unedited fresh CLI results with prompts and metadata.
+02 Agent Repeats: four actual model-selected traces with local enforcement.
+03 Document Retrieval: signed-in notebook answer and opened citation.
+04 Portal Builder: actual draft configuration, failed Preview and repaired successful Preview.
+05 Deep Research: actual report UI and a separate primary-source verification review.
+06 Neural Embedding: actual model self-test, retrieval and negation output with pinned environment.
+The files record observations, including failed outputs. A completed execution is not a claim that its answer is correct. UI transcripts can truncate long values; they are labelled accordingly. No real client documents were used.

@@ -97,3 +97,11 @@ IUEA_Teaching_Plan/assessment_operations/private/
 
 # Private test deployment backups and rehearsal evidence
 IUEA_Teaching_Plan/test_operations/private/
+
+# Disposable authoring previews and optional synthetic voice output
+**/.chart-data-*/
+**/Rehearsal Audio/*.m4a
+**/Rehearsal Audio/*.aiff
+
+# Keep the small written release status linked by README; render evidence stays local.
+!review/2026-09-14/REWORK_STATUS.md

@@ -1,0 +1,5 @@
+DEMONSTRATION INSTRUCTIONS
+The single current Facilitator Guide.docx now contains the full instructions. Use Open demonstration index near the start, then the session link, or Full steps beside a session's demonstration heading. The instructions name purpose, tool, source files, setup, exact numbered actions, prompts or commands, checks, discussion, recovery, records and transition.
+The copy-ready prompts are in Demo Materials, with matching S01-P1-style IDs. The two Session 03 evidence scopes are copied from the current specimen and intentionally labelled. Do not treat an authored reference or a saved dated output as a live model run.
+Local launcher: from Practice Files, run ./facilitator_demo.command preflight, then the exact session command in the Guide. Outputs go to Downloads/KLAi Demo Runs, not over the course sources. The Python dispatcher is maintained as facilitator_demo.py.
+The fixed Zapier AI step, model-selected local lookup, scripted host tests and deterministic browser simulation are separate routes. The Guide identifies which claim each supports. No class requires publication, a new connection, a plan purchase or a real client filing.

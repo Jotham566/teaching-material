@@ -1,0 +1,39 @@
+ACTUAL SAVED AI OUTPUT, 26 OCTOBER 2026 (run R2)
+Run: Repeat 2 of 3, same prompt and evidence
+Product: a Claude subagent started with no conversation history and given one prompt file. The subagent saved its own reply to a file, and this file holds that reply unedited below the line. It is not the learner's product and says nothing about any other tool.
+Tools: none for the task itself (the subagent read the prompt file and wrote its reply to disk).
+Evidence supplied: same. The exact prompt is saved in 05 Course Maintenance/Run Prompts/prompt_R'(run number)'.txt. Hashes (first 16 hex of SHA-256) of Agreement - Executed v2.txt (first 16 hex) 74c2190a908d0adf, Client Instruction.txt 4b77ff776aac1c98.
+One run per condition unless the title says otherwise. A single run shows what happened once and says nothing about how often.
+
+TASK GIVEN
+Does Victoria’s consent apply to Equator’s proposed internal reorganisation? Quote the provisions you rely on, state what is unknown and list what we must ask Equator. Keep the answer under 300 words.
+
+ACTUAL RESPONSE (unedited)
+------------------------------------------------------------
+Short answer: not yet determinable. Consent is required unless two conditions are both met, and we have evidence of neither.
+
+Provisions relied on (Teaching Adaptation 1, replacing Section 12.6):
+- "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+- "Provider must obtain Customer's prior written consent before a change of control of Provider takes effect."
+- "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+
+The original Section 12.6 allowed assignment on notice after a reorganization. That wording was replaced, so Equator cannot rely on it.
+
+Analysis: The carve-out covers only a reorganization that is (a) within a wholly owned group and (b) leaves Equator Systems Ltd responsible. If either fails, consent is needed. If the agreement is transferred, the assignment sentence applies. If control of Equator changes, the change-of-control sentence applies. "Change of control" is not defined in the documents supplied.
+
+Unknown:
+- Whether the structure is wholly owned.
+- Whether Equator stays the contracting party and remains responsible.
+- Whether the agreement is transferred.
+- Whether control of Equator changes.
+
+The Fee Schedule was not supplied, and no fees are inferred.
+
+What to ask Equator, in writing (to the Section 12.9 Notice Address):
+1. The ownership chart before and after, showing every entity and percentage held.
+2. Written confirmation that Equator Systems Ltd remains bound and responsible.
+3. Whether any rights or obligations under the agreement will be assigned or transferred.
+4. Whether anyone will gain or lose control of Equator, and when.
+5. The proposed effective date.
+
+Please do not give consent until these answers arrive.

@@ -1,0 +1,22 @@
+**Relevant Provision:**
+
+Section 12.6 (Assignment): "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. **However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates.**"
+
+**Analysis:**
+
+If Equator's internal reorganisation qualifies as a "reorganization" under Section 12.6, Victoria's consent is **not required**—only notice is required. However, if the transaction involves assigning rights/obligations outside these exceptions (e.g., to an unrelated third party), prior written consent **is required**.
+
+**What is Unknown:**
+- Whether the "internal reorganisation" constitutes a reorganization, merger, or change of control under Section 12.6
+- Whether the Agreement will be assigned to a different entity
+- Whether Equator (or a successor) remains the obligor
+- The corporate structure before and after the transaction
+
+**Questions to Ask Equator:**
+1. Will the Agreement be assigned to another entity? If so, which entity?
+2. Does the reorganisation involve a merger, change of control, or reorganization as described in Section 12.6?
+3. Provide the ownership chart (before and after)
+4. Written confirmation that the assuming entity accepts all Provider obligations under the Agreement
+5. Will the reorganisation affect the Cloud Service, Support, or any Order Form terms?
+
+**Conclusion:** Cannot advise until Equator confirms whether Section 12.6's notice-only exception applies or whether this is an assignment requiring consent.

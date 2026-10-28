@@ -1,0 +1,29 @@
+CHECKED CONTRACT ANSWERS | Instructor reference | 28 October 2026
+Fictional classroom agreement only. I use this key to review an answer, not as advice on a real transaction.
+
+1. Start with the transaction, not the exception
+Read the executed Order Form, Key Terms and incorporated Standard Terms. The Key Terms replace Section 12.6 and take precedence. KT-1 has distinct assignment and change-of-control obligations. An internal reorganisation alone establishes neither trigger. The client instruction leaves ownership and continued responsibility unconfirmed. The base-case conclusion is unresolved: request the transaction structure, before-and-after ownership and responsibility evidence. Failure to establish an exception does not establish a trigger.
+
+2. Read the exception in context
+The sentence about a wholly owned group follows the change-of-control sentence. Our teaching reading connects that exception to that consent requirement. Preserve both conditions: a reorganisation within a wholly owned group and Provider remaining responsible. Do not silently apply it to every assignment. If its scope matters in practice, flag the drafting and obtain qualified interpretation. Do not convert an unknown fact into a negative fact.
+
+3. Distinguish evidence scopes
+A Standard Terms-only answer may report its assignment rule, but cannot decide the executed agreement's complete consent position without the Key Terms. An extract can explain the supplied words, while identifying the omitted agreement and transaction facts. A result based on fewer documents is not proof of what the complete signed contract provides.
+
+4. Missing fee
+The Order Form refers to a signed Fee Schedule that is absent from the teaching pack. Do not invent annual Fees or calculate a monetary liability cap. Request the schedule and relevant fee evidence. A date recited in the contract does not independently verify signing history.
+
+5. Stipulated share sale to an unrelated buyer
+In this exercise the buyer acquires control of Equator. That establishes the change-of-control trigger; the wholly-owned-group exception is unavailable on the stated facts. Prior written Customer consent is required before the change takes effect. Do not call the share sale an assignment of this agreement. The express voidness sentence addresses a non-permitted assignment. It does not by itself declare this share sale void. Validity under applicable law has not been researched.
+
+6. Consequences require the rest of the contract
+A consent breach can engage general remedies. Section 5.3(a) requires material breach and 30 days' notice to cure; Section 5.3(b)(i) concerns material breach that cannot be cured. Do not promise automatic termination. Read Section 8.1's general cap, Section 8.2's waiver and Section 8.4's restrictions and exceptions before describing liability; also check the Key Terms. Section 12.5 preserves cumulative remedies. The supplied facts do not establish materiality, incurability, loss, every exception, or an amount. No advice on enforceability or statutory remedies has been established here.
+
+7. Consent negotiations
+The text requires consent; it does not expressly resolve whether consent may be withheld unreasonably or what conditions can be imposed. Those questions require applicable-law research and a commercial instruction. Label proposed wording as an amendment, separate from an agreed obligation.
+
+Release check
+Identify the source version and location; copy supporting words from that source; establish each trigger; keep facts and unknowns separate; inspect qualifications and cross-references; then record a human decision. A correct lookup or genuine citation can still support an incorrect inference. The saved failed answers remain evidence of this problem.
+
+Current evidence
+Observed Runs/Corrections 2026-10-28 contains nine fresh first-pass runs, four revisions after specific feedback, a further R9 revision and the actual agent traces. These are observations, not a blind model benchmark. The answer key above is an authored instructor reference, not an observed model response.

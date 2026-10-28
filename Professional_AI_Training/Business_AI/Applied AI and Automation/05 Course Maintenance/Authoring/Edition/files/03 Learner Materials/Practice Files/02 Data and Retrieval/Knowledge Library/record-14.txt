@@ -1,0 +1,24 @@
+RECORD-14 | email | 2026-10-08 | Equator notice of scheduled maintenance
+
+From: Equator Support Desk <support@equator.example>
+To: Victoria Services Ltd - IT contacts
+Date: 8 October 2026
+Subject: Notice of scheduled maintenance - Saturday 24 October
+
+Dear customer,
+
+This is a notice that we will carry out scheduled maintenance on the hosted reporting platform on Saturday 24 October 2026 between 22:00 and 02:00 Sunday.
+
+What will happen:
+- The reporting application will be unavailable for roughly two hours.
+- Overnight data loads will pause and restart automatically afterwards.
+- Scheduled report emails due in this window will be delivered by 07:00 Sunday.
+
+What we need from you: please make sure nobody is running a large export late on Saturday.
+
+If you have a business reason for us to move the date, tell us by Tuesday 13 October and we will try.
+
+This notice is only about the technical window and has nothing to do with any other communication you may have received from us.
+
+Kind regards,
+Equator Support Desk

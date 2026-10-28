@@ -1,0 +1,15 @@
+RECORD-22 | policy excerpt | 2026-03-04 | Victoria IT access policy excerpt: external support staff
+
+VICTORIA SERVICES LTD - INFORMATION SECURITY POLICY (EXTRACT)
+Section 7: Access for external support staff
+Issued 4 March 2026, owner: IT Lead
+
+7.1 External support staff may only use accounts set up in their own names. Shared logins are not allowed.
+7.2 Each request for access must name the individual, the system, the purpose and the dates. It is recorded on a support access request form.
+7.3 The IT lead assesses the request. The finance manager approves access to systems holding financial data.
+7.4 Access is granted for the period requested and no longer. It lapses automatically on the end date.
+7.5 Remote sessions go through the company VPN and are logged.
+7.6 If an external support person leaves their employer or changes role, the supplier must tell the IT lead within five working days so that the account can be closed.
+7.7 Access logs are reviewed monthly by the IT lead.
+
+Questions about this policy go to itlead@victoriaservices.example.

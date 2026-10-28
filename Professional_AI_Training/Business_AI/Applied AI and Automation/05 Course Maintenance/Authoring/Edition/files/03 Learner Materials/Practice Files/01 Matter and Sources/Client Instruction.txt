@@ -1,0 +1,4 @@
+FICTIONAL INSTRUCTION FROM VICTORIA, THE CUSTOMER
+Equator has told us it proposes an internal reorganisation. Tell us whether CONTRACT-01 v2 requires our consent and list what we need to confirm before you advise. We have not received Equator’s ownership chart, written confirmation that Equator remains responsible, or any statement about whether the agreement will be transferred.
+We have not supplied the signed Fee Schedule. Do not infer the fees.
+Keep the separate share-sale and assignment variants in Transaction Variants.txt out of the base facts.

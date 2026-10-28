@@ -1,0 +1,153 @@
+Welcome to Session 8. Today's question is how an AI model can help us review a contract and draft a change to it, while the legal judgement stays with us. An AI model is a program that has learned patterns from large amounts of text and writes the most likely next words.
+
+For a legal or tax practice this matters because contracts are where small wording decisions carry big consequences. By the end you will have a repaired three-finding review and one amendment you can defend. Everything runs on our fictional matter, Victoria and Equator.
+
+Before we start on contracts, let's go back to last session. Here's one for you. A party argues that a fee is not taxable, and our memo wants to say the court found that. May the memo label it as the court's finding? Think it over.
+
+Here's how I'd answer it. No. A party's submission is an argument. The finding and the order come from the court's own reasoning and its disposition, meaning what it actually ordered. If that feels slippery, ask yourself which part of the judgment you would quote to show what the court decided.
+
+Now to today. Our question is how AI can support review and drafting while we keep our legal judgement. The result we're aiming for is a repaired three-finding review and a justified proposed amendment. The habit of tracing every statement back to its source carries straight into contract work.
+
+Here is the matter in three lines. Equator Systems Ltd, the Provider, proposes a group reorganisation. We act for Victoria Services Ltd, the Customer, so every view we take is customer-side. The partner wants a review against the firm playbook, and the review has to keep qualifications and missing facts visible.
+
+Let me ask you something before we touch any tool. What would make the result of this review acceptable to the partner? Give that a little thought.
+
+Here's what I'd say. Each statement is taken accurately from the agreement and compared with the relevant playbook point. Anything we don't know is written down as unknown. Victoria hasn't sent us the ownership chart or written confirmation that Equator remains responsible. If the review stayed silent about those gaps, what would the partner assume? Think about that for a moment.
+
+Three documents can easily get mixed up, so let's fix their status now. CONTRACT-01 version 2 is the executed teaching agreement. Draft version 1 is still in the folder, labelled as superseded, which means replaced, so we never quote from it. Any redline we produce is a new draft for review. A redline is a marked-up version showing proposed changes, and it has no effect on the signed agreement.
+
+Here's a question about that. When we propose a change to Section 12.6, what must the proposal carry with it? Sit with that for a moment.
+
+I'd say three things: the source section, the proposed wording, and the reason for the change. Anyone who picks up the draft should see which signed text it responds to. A generated change doesn't amend the contract. It's a draft for review, and the signed text of Section 12.6 stays as it is until the parties sign a change.
+
+Named entity recognition, or NER, is the task of finding names in text and labelling them by type. Here the tool finds Victoria Services Ltd and Equator Systems Ltd and labels each one an organisation. It finds 15 August 2026 and labels it a date. Those labels describe the kind of thing each phrase is. They say nothing about what either company must do.
+
+Here's something to chew on. The tool has pulled out Equator Systems Ltd as an organisation. Has it established that Equator owes any particular obligation? Work it through before I answer.
+
+Here's where I land. No. The label says organisation and that's all. To learn that Equator is the Provider and must obtain Victoria's consent in some circumstances, we have to read the surrounding text of Section 12.6 as replaced by the Key Terms. If you're unsure, look for the words in the agreement that tell us what Equator must do.
+
+A complete record of one obligation has four parts. First, the actor and the action required. Second, the trigger or timing. Third, the conditions and exceptions. Fourth, the exact source and a review status, such as checked or not checked.
+
+Take the sentence in Section 12.6, the Key Terms replacement known as KT-1, that says Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. The actor is Equator, the action is getting Victoria's written consent, and the timing is before the change takes effect. The exception sits in the next sentence.
+
+Now a question for you. If one field in the record is empty, how do we know whether the source says nothing or the tool simply failed to find it? Sit with it for a second.
+
+We go back to the exact passage, read it ourselves, and record which of the two it is.
+
+Let's take Section 12.6 apart. Before we do, I'll read you the real wording from the agreement. The operative rule is the Key Terms replacement of Section 12.6, called KT-1, and it controls over the Standard Terms. The unmodified Standard Terms version let either party assign on notice after a merger, change of control, reorganization or sale. That version is overridden.
+
+The rule comes first. Provider must obtain Customer's prior written consent before a change of control of Provider takes effect.
+
+Then the exception. That consent is not required for a reorganization within a wholly owned group. A group where one company owns all the others is what wholly owned means here.
+
+And last, the condition on the exception. It applies if Provider remains responsible for its obligations under this Agreement.
+
+Here's a question for you. If a tool extracted only the first sentence about consent, what would the review get wrong? Take a moment with that.
+
+It would overstate the consent requirement, because the group exception and its condition would vanish. And on our facts, has anyone shown that Equator is wholly owned within a group, or that it stays responsible?
+
+The table sets the source position beside the playbook preference. The source gives prior consent with an exception, and the playbook prefers a clear change-of-control boundary. The group exception depends on Provider remaining responsible, and the playbook is willing to keep a workable exception. Section 12.6 as replaced by the Key Terms has no separate notice step for an internal reorganisation, and the playbook says to consider adding one.
+
+Remember that the playbook is a fictional set of firm preferences. It measures what we would like for the customer. It says nothing about what the law requires.
+
+So, if a clause departs from the playbook, does that make the clause unlawful? Take a moment with that.
+
+No. A departure may be a commercial or drafting preference, and calling a term unlawful needs a legal source. If we want to make that claim, we have to be able to cite one.
+
+Next we'll test a review against the source, and I have one with mistakes in it for you.
+
+Here's a review containing three findings, and I'd like you to check each one against the executed agreement. Finding one says every reorganisation needs consent. Finding two says support staff need no customer approval. Finding three says the agreement fixes fees at UGX 50 million.
+
+Let's open the agreement for each. Section 12.6, as replaced by the Key Terms, has the group exception, and the first finding leaves it out. Section 1.5, as supplemented by the Key Terms, lets Provider give support staff access only if each person is named in a written request and Customer has approved that person in writing first. The signed Fee Schedule hasn't been supplied, so no figure can be stated.
+
+Which passage lets you correct each finding, and what do you write for the fee? No rush.
+
+Three corrections. Keep the exception in the first. Restore the prior approval in the second. For the fee, write that it's unknown until we receive the signed schedule.
+
+Here is the repaired review. Each row names the source, states the finding, and gives the next step. Section 12.6 shows an exception with conditions, and we confirm ownership and responsibility. Section 1.5 shows prior approval for support access, and we check the named people and the approval. The fee row says the Fee Schedule is absent, and we obtain the signed schedule.
+
+The footer matters. It says this is a fictional teaching review, and that partner approval decides how a finding is used.
+
+Here's my question. What would let another partner check this review in a few minutes? Have a think.
+
+Three things help. Exact passages, clear labels for each issue, and a visible reason for each next step. Ownership facts we don't have sit in their own place, away from the wording of the agreement. And a reader should be able to find the exact words of Section 1.5 without hunting for them.
+
+With a checked review in hand, we can turn to drafting.
+
+Now to drafting. A model works from what we put in front of it, and everything it works from has to fit in its context window, which is the amount of text it can take in at once. That's why we choose carefully what to put in.
+
+First come the instructions. That means the client objective, for example that Victoria wants to know about an internal reorganisation.
+
+Then the sources. These are the agreement and any precedent we supply.
+
+Third is the draft. This is the proposed wording the model produces.
+
+Fourth is the review, where a lawyer checks the meaning and the consequences of the wording. Now I'd like your thinking on something. If the model needs a fact we haven't given it, such as the new owner of Equator, what should it do? Take your time with that. It should ask, or mark an assumption in the draft, and never fill the gap quietly. A tool may hallucinate, which means it states something that sounds right but has no support. If that's hard to picture, think about how you would spot an invented fact in a draft.
+
+On the left is the current position. The wholly owned group-reorganisation exception applies if the provider remains responsible. On the right is a draft for discussion. It adds a notice requirement for a qualifying internal reorganisation, with timing and recipient still to agree.
+
+This is a drafting option that fits the firm's customer-side playbook. Nothing says the law requires a notice term.
+
+A question for you. If we proposed this notice, which details would still need to be agreed? See what you come up with.
+
+My list is the notice period, who receives it, the evidence that goes with it, and what happens if Equator fails to give it. Victoria's Notice Address is in the Order Form, so the recipient is a fair place to start. We should also expect Equator to ask what we'd give in return.
+
+If a tool is available, I'll run the first version live and keep the real output. If not, I'll use a labelled example and mark it as unexecuted.
+
+A redline shows the changes between two versions, and each change needs a reason. There are four points. Link each change to the client objective. Keep defined terms and cross-references intact. Check how the change interacts with other clauses. And record the partner's decision to accept or reject.
+
+Here's an example. Our added notice has to fit with Section 12.9, part of the unmodified Standard Terms, which says notices must be in writing and sent to the Notice Address. If our wording says something different about delivery, the two clauses collide.
+
+Now a question. A model suggests a smoother wording of a sentence in Section 12.6. Does better grammar justify the change? Take your time.
+
+No. First we check the effect on legal meaning and on the commercial position. A single word in that sentence could change who has to consent, so we find out which one before we accept the edit.
+
+Drafts from a model often read the same way. There's a warm opening, some general praise, and legal-sounding phrases with little content. There are three fixes. Remove generic praise and unnecessary legal-sounding language. Use the firm's voice and defined terms, such as Provider and Customer. And keep each sentence tied to the real issue.
+
+Imagine a generic paragraph beside a precise one on the group exception. The precise one says Victoria's consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations.
+
+Let me put a question to you. When you shorten a sentence, which words must stay even if the sentence gets longer? Let that settle for a moment.
+
+The conditions that affect legal meaning. In this case that's the wholly owned group and Provider remaining responsible. If we cut the second condition, Equator gains, because it would no longer have to stay responsible.
+
+Each stage gets an owner and a record. Extraction belongs to the operator or tool and leaves a source-linked draft. Legal interpretation belongs to a qualified reviewer and leaves a checked finding. Client advice belongs to an authorised partner and leaves an approved version. Retention belongs to the matter owner and leaves the final record with its source trail.
+
+Using AI for a stage leaves the professional accountability where it was. The software has no standing to advise Victoria.
+
+So who in our firm may approve the advice that goes to Victoria, and what do they need to see first? Have a think.
+
+That's the person authorised under the firm's professional and internal arrangements, and they need the checked finding with its sources. At this point I'd put real names against each role. The reviewer's check produces the checked finding, and approval to advise the client comes from the authorised partner.
+
+We will now review the contract together. First name the source version and identify whether the transaction involves an assignment, a change of control or neither. Keep an unknown fact unknown. Then read the Key Terms replacement before applying an exception.
+
+For the unrelated-buyer share sale, we inspect the change-of-control obligation. We also follow the remedy cross-references: material breach, notice and cure, liability restrictions and exceptions, and cumulative remedies. The absent Fee Schedule prevents us from quantifying a cap.
+
+Does the sentence making a non-permitted assignment void automatically make this share sale void?
+
+Read both sentences and make your distinction.
+
+It does not establish that result. We must separate the two transaction mechanisms and leave any applicable-law validity question for research. I will draft one proposed amendment from your instruction. We label it as proposed wording, then compare it with the agreed obligation and record what a partner would need to approve.
+
+Before I summarise, tell me the conclusion in your own words. Then we'll compare it with mine.
+
+The first point is that NER finds names and leaves out most legal relationships. The three errors lost the exception, reversed the support approval and invented a fee. And an assignment needs its own consent under the first sentence of Section 12.6. The second point is that the agreement is fictional teaching material built on a public template. It is not a production contract or a legal opinion.
+
+So which part of today's result remains unverified? Sit with it for a second.
+
+I'd say the facts we lack, such as ownership and Equator's continued responsibility, and any outputs we didn't run. What we produced is a classroom exercise, and a real matter would need the real documents and a qualified review. If only one gap came to mind, think about what else we would request from Victoria.
+
+Here's the decision the firm is making. It will maintain a customer-side playbook and require a reason and source for each proposed change. We write down an owner and one condition under which we go ahead.
+
+The record that would justify it is the one we built today. Each change cites its source clause and carries its reason, and the evidence still needed is written beside it.
+
+So what evidence would change this decision? Think about the evidence for a moment.
+
+We revisit it if the evidence changes, if the quality of the output changes, or if the permitted scope changes. This is a class decision record and carries no firm authorisation.
+
+Let's finish with three questions where the facts have changed. I'll ask all three before I give you any answers.
+
+First, Equator proposes assigning the agreement. Does the group exception excuse consent to an assignment? Second, the company name has been extracted. Has its obligation been established? Third, the signed schedule is absent. May our amendment assume a fee? Take your time with each.
+
+The way I read it is this. On assignment, the first sentence of Section 12.6 as replaced by the Key Terms asks for Victoria's prior written consent, and the group exception speaks to change of control. On the name, a label establishes no obligation, so we need the surrounding text. On the fee, no, we ask for the signed schedule. In one saved Variant B run, a model reached the consent answer, and that shows one result only. For any of these answers, we should be able to point to the passage that supports it.
+
+That closes Session 8. In Session 9 we look at automation and agentic AI, and who controls what a tool may do.

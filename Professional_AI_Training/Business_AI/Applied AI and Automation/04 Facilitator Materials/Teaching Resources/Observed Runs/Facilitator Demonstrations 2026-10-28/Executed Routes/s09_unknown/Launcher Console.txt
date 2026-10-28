@@ -1,0 +1,5 @@
+DEMO: s09_unknown 
+OUTPUT: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/05 Course Maintenance/Authoring/.build/guided_demonstrations/final_tests/s09_unknown 
+Ask the model for unavailable CONTRACT-99; do not substitute CONTRACT-01.
+Observed lookup calls: 0
+Final host state: RETURNED read-only ask

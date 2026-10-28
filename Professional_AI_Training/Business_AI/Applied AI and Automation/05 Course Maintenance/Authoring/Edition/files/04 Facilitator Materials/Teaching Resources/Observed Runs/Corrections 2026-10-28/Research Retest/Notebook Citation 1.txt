@@ -1,0 +1,220 @@
+The following is a diff from the previous accessibility tree for Window: "Gemini Notebook" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 47-293
++							343 container
++								344 container
++									345 link Gemini Notebook Homepage, Value: notebook.google.com/
++									346 text field (settable) KLAi — Public-law deep research rehearsal
++									347 container Create notebook
++										348 button Create notebook
++									349 container Share notebook
++										350 button Share notebook
++									351 container Notebook configuration
++										352 pop up button Notebook configuration
++									353 container Settings
++										354 pop up button Settings
++								355 container
++									356 heading Sources, Value: 2
++										357 text Sources
++									358 button
++									359 heading Source guide, Value: 4
++										360 text Source guide
++									361 progress indicator
++									362 button (disabled) Open source guide
++								363 container
++									364 container
++										365 button Customize notebook
++										366 text 📄
++										367 heading KLAi — Public-law deep research rehearsal, Value: 2
++											368 text KLAi — Public-law deep research rehearsal
++										369 text 10 sources ·
++										370 text Oct 27, 2026
++									371 container
++										372 text GOAL’s 2024 annual report  details the international humanitarian organization's global operations, strategic framework, and crisis response efforts. Founded in  1977  by  John O’Shea , the non-governmental agency aims to assist marginalized and vulnerable populations facing poverty, conflict, and climate shocks. Guided by  Strategy 2025 , the organization utilizes a  Crisis to Resilience  framework to address root causes while delivering immediate humanitarian aid. The report highlights extensive operations across  fourteen countries , showcasing support for millions of people through emergency health services, food security, and protection initiatives. Furthermore, the document emphasizes the importance of  local partnerships , sustainable development, and transparency in navigating complex global challenges.
++									373 button Save to note
++									374 container Copy summary
++										375 button Copy summary
++									376 container Good summary
++										377 button Good summary
++									378 container Bad summary
++										379 button Bad summary
++									380 text Wednesday, October 28
++									381 container
++										382 heading Value: 3, Use only the selected original Goal Relief Judgment.pdf. Prepare a short historical verification note, not current legal advice. First transcribe the four original assessment rows on printed page 1, preserve each tax-head label and add only those four amounts. Keep amounts in grounds of appeal on pages 2–3 separate. Then distinguish the appellant’s Ground 5 submissions on pages 22–23 from the court’s reasoning and orders on pages 23–24. State the court’s programme delivery fee holding and disposition, with 
++											383 text Use only the selected original Goal Relief Judgment.pdf. Prepare a short historical verification note, not current legal advice. First transcribe the four original assessment rows on printed page 1, preserve each tax-head label and add only those four amounts. Keep amounts in grounds of appeal on pages 2–3 separate. Then distinguish the appellant’s Ground 5 submissions on pages 22–23 from the court’s reasoning and orders on pages 23–24. State the court’s programme delivery fee holding and disposition, with 
++										384 container
++											385 button Thoughts
++											386 heading Value: 3, Historical Verification Note: Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023) UGCommC 272
++												387 text Historical Verification Note:  Goal Relief Development Organisation v Uganda Revenue Authority  (Civil Appeal No. 50 of 2023)  UGCommC 272
++											388 heading 1. Original Assessment Rows (Printed Page 1), Value: 3
++												389 text 1. Original Assessment Rows (Printed Page 1)
++											390 text The Respondent (Uganda Revenue Authority) conducted a compliance review of the Appellant for the period January 2017 to December 2019 and issued additional assessments on June 7, 2021
++											391 pop up button 1: Goal Relief Judgment.pdf
++											392 text . The four original assessment rows and quantum amounts listed on printed page 1 are:
++											393 content list
++												394 container
++													395 text Withholding Tax [“WHT”] on local supplies : UGX 51,867,131
++													396 pop up button 1: Goal Relief Judgment.pdf
++												397 container
++													398 text WHT on international payments : UGX 263,533,867
++													399 pop up button 1: Goal Relief Judgment.pdf
++												400 container
++													401 text WHT on imported services : UGX 316,240,641
++													402 pop up button 1: Goal Relief Judgment.pdf
++												403 container
++													404 text Pay As You Earn [“PAYE”] : UGX 18,867,131
++													405 pop up button 1: Goal Relief Judgment.pdf
++												406 container
++													407 text Total Original Assessment :  UGX 650,508,770
++													408 pop up button 1: Goal Relief Judgment.pdf
++											409 heading 2. Amounts in Grounds of Appeal (Printed Pages 2–3), Value: 3
++												410 text 2. Amounts in Grounds of Appeal (Printed Pages 2–3)
++											411 text The amounts framed in the Appellant’s grounds of appeal challenging the Tax Appeals Tribunal (TAT) ruling are separate from the original assessment breakdown above [4–7]:
++											412 content list
++												413 container
++													414 text Ground 2 : Relates to alleged payments of management fees/commissions of UGX 1,554,123,178 to Goal Ireland, on which it was held the Appellant ought to have withheld tax of  UGX 285,825,249  (inclusive of interest)
++													415 pop up button 2: Goal Relief Judgment.pdf
++													416 text (noted elsewhere in court summary as UGX 233,825,249 inclusive of interest)
++													417 pop up button 3: Goal Relief Judgment.pdf
++													418 text .
++												419 container
++													420 text Ground 4 : Relates to software licenses on which it was held the Appellant ought to have withheld tax of  UGX 10,090,415
++													421 pop up button 4: Goal Relief Judgment.pdf
++													422 text .
++												423 container
++													424 text Ground 5 : Relates to the 10% ‘program delivery fee’ deducted by Goal Ireland, alleged to be consideration for imported services attracting Value Added Tax (VAT) of  UGX 379,488,769  (inclusive of interest)
++													425 pop up button 4: Goal Relief Judgment.pdf
++													426 pop up button 5: Goal Relief Judgment.pdf
++													427 text .
++											428 heading 3. Exact Statutory Citations & Editions (Pages 3, 6, 10, 22), Value: 3
++												429 text 3. Exact Statutory Citations & Editions (Pages 3, 6, 10, 22)
++											430 text The judgment explicitly cites statutory chapters and revised editions as follows:
++											431 content list
++												432 container
++													433 text Printed Page 3 : Section 27(2) of the  Tax Appeals Tribunal Act Cap. 341 (7th Revised Edition)
++													434 pop up button 6: Goal Relief Judgment.pdf
++													435 text .
++												436 container
++													437 text Printed Page 6 : Section 78(b) of the  Income Tax Act Cap. 338 (7th Revised Edition)
++													438 pop up button 7: Goal Relief Judgment.pdf
++													439 text .
++												440 container
++													441 text Printed Page 10 : Section 2(xx) of the  Income Tax Act Cap. 338 (7th Revised Edition)
++													442 pop up button 8: Goal Relief Judgment.pdf
++													443 text .
++												444 container
++													445 text Printed Page 22 : Section 5(1)(c) of the  VAT Act Now Cap. 344 (7th Revised Edition)
++													446 pop up button 9: Goal Relief Judgment.pdf
++													447 text .
++											448 heading 4. Ground 5: Appellant Submissions vs. Court Reasoning & Orders, Value: 3
++												449 text 4. Ground 5: Appellant Submissions vs. Court Reasoning & Orders
++											450 heading Appellant's Submissions (Printed Pages 22–23), Value: 4
++												451 text Appellant's Submissions (Printed Pages 22–23)
++											452 content list
++												453 container
++													454 text Argument : The Appellant contended that the 10% program delivery fee was not consideration for imported services
++													455 pop up button 10: Goal Relief Judgment.pdf
++													456 text .
++												457 container
++													458 text Statutory Basis : Citing Section 1(k) of the VAT Act (definition of "import") and Section 16(1) (location of supply), the Appellant argued that a service is only imported if supplied from outside Uganda
++													459 pop up button 11: Goal Relief Judgment.pdf
++													460 text . Citing  URA v COWA/S , Section 4(c), Regulation 13(2), Section 21, and Section 5(1)(c) of the VAT Act, it submitted that supply without consideration is not chargeable, and soliciting grants/donations abroad was not a service provided to the Appellant for consideration
++													461 pop up button 11: Goal Relief Judgment.pdf
++													462 pop up button 12: Goal Relief Judgment.pdf
++													463 text .
++											464 heading Court's Reasoning & Programme Delivery Fee Holding (Printed Pages 23–24), Value: 4
++												465 text Court's Reasoning & Programme Delivery Fee Holding (Printed Pages 23–24)
++											466 content list
++												467 container
++													468 text Reasoning : The High Court defined a service as anything transacted in that is not a good, conferred as an intangible benefit or advantage for consideration
++													469 pop up button 13: Goal Relief Judgment.pdf
++													470 text . Under Section 1(j) of the VAT Act and  Apollo Hotel Corporation v URA , importing a service involves provision by a non-resident/foreign entity to a Ugandan resident/business
++													471 pop up button 14: Goal Relief Judgment.pdf
++													472 text .
++												473 container
++													474 text Holding : Goal Ireland fundraised abroad and secured funding enjoyed by the Appellant in Uganda
++													475 pop up button 15: Goal Relief Judgment.pdf
++													476 text . The 10% deduction was consideration for fundraising/program delivery services rendered by Goal Ireland, constituting an imported service subject to VAT
++													477 pop up button 15: Goal Relief Judgment.pdf
++													478 pop up button 16: Goal Relief Judgment.pdf
++													479 text . VAT was therefore correctly assessed by URA
++													480 pop up button 16: Goal Relief Judgment.pdf
++													481 text .
++											482 heading Disposition & Orders (Printed Page 24), Value: 4
++												483 text Disposition & Orders (Printed Page 24)
++											484 content list
++												485 container
++													486 text 1 . The judgment of the Tax Appeals Tribunal is  affirmed
++													487 pop up button 16: Goal Relief Judgment.pdf
++													488 text .
++												489 container
++													490 text 2 . The appeal is  dismissed
++													491 pop up button 16: Goal Relief Judgment.pdf
++													492 text .
++												493 container
++													494 text 3 . The Respondent (URA) is  awarded costs  both in the High Court and in the Tribunal
++													495 pop up button 16: Goal Relief Judgment.pdf
++													496 text .
++											497 heading 5. Unresolved Matters, Value: 3
++												498 text 5. Unresolved Matters
++											499 text The selected judgment source ( Goal Relief Judgment.pdf ) does not establish or resolve:
++											500 content list
++												501 text Subsequent appellate history or treatment (e.g., any appeal to the Court of Appeal).
++												502 container
++													503 text Current legal or statutory applicability beyond the date of judgment delivery (19 August 2024)
++													504 pop up button 17: Goal Relief Judgment.pdf
++													505 text .
++												506 text Discrepancies or conflicting metadata across external case repositories or unselected sources.
++											507 text ⚖️ Would you like to analyze the court's detailed treatment of withholding tax on software licenses (Grounds 3, 4, and 6) next?
++										508 container Save message to a note
++											509 button Save message to a note
++										510 container Copy model response to clipboard
++											511 button Copy model response to clipboard
++										512 container Rate response as good
++											513 button Rate response as good
++										514 container Rate response as bad
++											515 button Rate response as bad
++										516 button Would you like to analyze the court's detailed treatment of withholding tax on software licenses (Grounds 3, 4, and 6) next?
++									517 text Today • 9:57 PM
++									518 container
++										519 text entry area (settable) Query box, Placeholder: Ask a question or create something
++										520 text 1 source
++										521 container Submit
++											522 button (disabled) Submit
++									523 text Gemini Notebook can make mistakes, so double-check it.
++								524 container
++									525 heading Studio, Value: 2
++										526 text Studio
++									527 button Collapse studio panel
++									528 button Audio Overview
++									529 button Slide Deck
++									530 button Video Overview
++									531 button Mind Map
++									532 container
++										533 button Reports
++										534 text New!
++									535 button Flashcards
++									536 button Quiz
++									537 button Infographic
++									538 button Data Table
++									539 text Studio output will be saved here. After adding sources, click to add Audio Overview, Study Guide, Mind Map, and more!
++									540 button Add note
++								541 text Reply ready.
++								542 container Citation Details
++									543 container Citation Details
++										544 text Goal Relief Judgment.pdf
++										545 container
++											546 text build community resilience and support socio-economic growth. The Respondent conducted
++											547 text a compliance review of the Appellant for the period January 2017 to December 2019 and 25
++											548 text issued additional assessments amounting to UGX 650,508,770 on 7th June 2021 itemised as
++											549 text below:
++											550 text TAX HEAD QUANTUM (UGX)
++											551 text Withholding Tax [“WHT”] on local supplies 51,867,131
++											552 text WHT on international payments 263,533,867
++											553 text WHT on imported services 316,240,641
++											554 text Pay As You Earn [“PAYE”] 18,867,131
++											555 text TOTAL 650,508,770
++											556 image https://lh3.googleusercontent.com/notebooklm/ABzcPv10Xh5fHLj2BIzgBymTUejPkBAmpAEW-890rrqcfM2VxoPH8_3YTURIr34ZvSETfAsevJwM_vBeS4hlQUmfLf6FXCUOClC07hex3dBhMLLrx-3pvPeh8qkUstuj9zN0ky0LMQPX=w440-h1280-v0
++											557 text Page 2 of 24
++											558 text According to the Appellant, in supporting the assessments, the Respondent raised the 5
++										559 button View source of the citation in a new tab
+The focused UI element is 408 pop up button 1: Goal Relief Judgment.pdf

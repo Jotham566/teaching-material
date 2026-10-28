@@ -1,0 +1,229 @@
+PRESENTER NOTES BACKUP
+
+The speaker notes in the decks are a script to read aloud. This file holds what the script leaves out: the source links behind a slide and the click count of each animated slide.
+
+Reading an animated slide. The first paragraph of its note is read before any click. Each of the next paragraphs is read as the matching click reveals its part. Paragraphs after those continue once the last part is on screen. Play the slide in Slide Show mode; editing view shows the finished diagram.
+
+SESSION 1: Understanding AI in the firm
+Slide 5: AI systems
+  Sources: https://www.oecd.org/en/publications/explanatory-memorandum-on-the-updated-oecd-definition-of-an-ai-system_623da898-en.html
+Slide 7: Generative AI
+  Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+Slide 8: How the fields relate  [5 clicks]
+  Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml
+Slide 10: The model inside a working system  [4 clicks]
+Slide 14: Our first information boundary
+  Sources: https://pdpo.go.ug/knowledge-center
+Slide 20: Model
+  Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml
+
+SESSION 2: How AI learns and represents information
+Slide 4: Training
+  Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml
+Slide 5: The learning loop  [4 clicks]
+  Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml
+Slide 6: Learning approaches
+  Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml https://developers.google.com/machine-learning/crash-course/llm/transformers
+Slide 7: Training and evaluation collections
+  Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml
+Slide 8: Layers learn representations  [4 clicks]
+  Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers
+Slide 9: Token
+  Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers
+Slide 10: Embedding
+  Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings
+Slide 11: A simplified map of related language  [3 clicks]
+  Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings
+Slide 12: Many dimensions and a flat picture
+  Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings
+Slide 13: Context changes the representation
+  Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings
+Slide 15: How a language model develops  [4 clicks]
+  Sources: https://arxiv.org/abs/2203.02155 https://developers.google.com/machine-learning/crash-course/llm
+Slide 21: Neural network
+  Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers
+Slide 22: Words become model inputs
+  Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers
+Slide 23: Foundation model
+  Sources: https://arxiv.org/abs/2108.07258
+Slide 24: Model families and architectures
+  Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers
+
+SESSION 3: How language models generate answers and fail
+Slide 3: From a prompt to a response
+  Sources: https://developers.google.com/machine-learning/crash-course/llm
+Slide 4: Predicting the next token  [3 clicks]
+  Sources: https://developers.google.com/machine-learning/crash-course/llm
+Slide 5: The response grows one token at a time  [4 clicks]
+  Sources: https://developers.google.com/machine-learning/crash-course/llm
+Slide 6: Selection and variation
+  Sources: https://developers.google.com/machine-learning/crash-course/llm
+Slide 7: The context window  [3 clicks]
+  Sources: https://developers.google.com/machine-learning/crash-course/llm
+Slide 8: Context capacity and evidence use
+  Sources: https://developers.google.com/machine-learning/crash-course/llm https://arxiv.org/abs/2307.03172
+Slide 9: Attention connects relevant context  [3 clicks]
+  Sources: https://arxiv.org/abs/1706.03762
+Slide 10: Hallucination
+  Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+Slide 11: What improves the answer
+  Sources: https://developers.google.com/machine-learning/crash-course/llm https://www.anthropic.com/research/building-effective-agents
+Slide 12: Text, images and documents
+  Sources: https://developers.google.com/machine-learning/crash-course/llm https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0
+Slide 14: Model and workflow cost
+  Sources: https://www.anthropic.com/research/building-effective-agents
+
+SESSION 4: AI tools, effective instructions and safe use
+Slide 4: The tool landscape
+  Sources: https://help.harvey.ai/articles/getting-started-with-harvey https://www.netdocuments.com/solutions/netdocuments-tabular-review/ https://help.alpha-sense.com/hc/en-us/articles/42391092171795-Deep-Research-Conduct-In-Depth-Multi-Step-Research-Autonomously
+Slide 5: Before using a real matter
+  Sources: https://developers.openai.com/api/docs/guides/your-data https://support.claude.com/en/articles/15707726-using-claude-for-legal-work-privilege-confidentiality-and-how-to-think-about-configuration
+Slide 10: A citation and its supporting passage  [2 clicks]
+Slide 11: The instruction and review cycle  [4 clicks]
+Slide 15: Questions for a vendor
+  Sources: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
+Slide 20: Legal document review in the market
+  Sources: https://help.harvey.ai/articles/getting-started-with-harvey https://www.netdocuments.com/solutions/netdocuments-tabular-review/
+Slide 21: Knowledge search in the firm
+  Sources: https://www.netdocuments.com/en-gb/solutions/ai-search/
+Slide 22: Investment research as a transfer example
+  Sources: https://help.alpha-sense.com/hc/en-us/articles/42391092171795-Deep-Research-Conduct-In-Depth-Multi-Step-Research-Autonomously
+Slide 23: Adjacent use cases to assess
+  Sources: https://www.itu.int/epublications/publication/itu-t-tr-genai-telecom-2025-03-potential-requirements-and-methodology-for-deploying-and-assessing-generative-ai-models-in-telecom-networks
+
+SESSION 5: Preparing the firm’s information
+Slide 8: The document preparation pipeline  [4 clicks]
+Slide 9: OCR and structured extraction
+  Sources: https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0
+Slide 10: OCR and document layout
+  Sources: https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0
+Slide 14: Machine-readable representations
+  Sources: https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html https://www.rfc-editor.org/rfc/rfc8259
+Slide 15: One clause in structured form
+  Sources: https://www.rfc-editor.org/rfc/rfc8259
+Slide 16: Permissions through the pipeline  [4 clicks]
+  Sources: https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview
+Slide 21: Akoma Ntoso in legal publishing
+  Sources: https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html
+Slide 23: Entities and document metadata
+  Sources: https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories
+
+SESSION 6: Internal knowledge search and retrieval
+Slide 5: RAG
+  Sources: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-information-retrieval
+Slide 6: Two phases of a retrieval system  [8 clicks]
+  Sources: https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview
+Slide 7: Chunking and the exception  [2 clicks]
+  Sources: https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents
+Slide 9: Keyword and semantic search
+  Sources: https://www.anthropic.com/research/contextual-retrieval
+Slide 10: Hybrid retrieval  [4 clicks]
+  Sources: https://www.anthropic.com/research/contextual-retrieval
+Slide 12: The answer and its evidence  [2 clicks]
+Slide 13: A source error and an answer error
+  Sources: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 ; https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html ; Observed Runs/Corrections 2026-10-28/Retrieval Retest.json. The workflow adds explicit source selection and document context.
+Slide 14: Access-aware retrieval  [4 clicks]
+  Sources: https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview
+Slide 17: Our in-class work
+  Sources: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 ; https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html ; Observed Runs/Corrections 2026-10-28/Retrieval Retest.json. The workflow adds explicit source selection and document context.
+Slide 21: Embedding
+  Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings
+Slide 22: Direct context, RAG and CAG
+  Sources: https://www.anthropic.com/research/contextual-retrieval
+Slide 24: A choice for the firm
+  Sources: https://www.netdocuments.com/en-gb/solutions/ai-search/
+
+SESSION 7: Legal research and deep research
+Slide 5: Sources and their roles
+  Sources: https://ulii.org/ https://ura.go.ug/en/domestic-taxes/returns/
+Slide 6: A real public authority to inspect
+  Sources: https://ulii.org/en/akn/ug/judgment/ugcommc/2024/272/eng%402024-08-19
+Slide 9: Legislation at the relevant time
+  Sources: https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html https://ulii.org/
+Slide 10: A section number belongs to an edition
+  Sources: https://ulii.org/en/akn/ug/judgment/ugcommc/2024/272/eng%402024-08-19 https://ulii.org/en/akn/ug/act/1997/12/eng%402023-12-31
+Slide 11: A deep-research cycle  [4 clicks]
+  Sources: https://help.alpha-sense.com/hc/en-us/articles/42391092171795-Deep-Research-Conduct-In-Depth-Multi-Step-Research-Autonomously
+Slide 12: The report is not the evidence
+  Sources: https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf
+Slide 14: Confidential facts in a search query
+  Sources: https://pdpo.go.ug/knowledge-center
+Slide 21: Research failure modes
+  Sources: https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf
+
+SESSION 8: Contract review and drafting
+Slide 5: Named entity recognition
+  Sources: https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories
+Slide 7: The consent rule with its qualification  [3 clicks]
+Slide 11: Drafting with controlled inputs  [4 clicks]
+
+SESSION 9: Automation and agentic AI
+Slide 4: Automation approaches
+  Sources: https://www.anthropic.com/research/building-effective-agents https://learn.microsoft.com/en-us/training/paths/desktop-flows-robotic-process-automation-power-automate/
+Slide 5: Robotic process automation (RPA)
+  Sources: https://learn.microsoft.com/en-us/training/paths/desktop-flows-robotic-process-automation-power-automate/
+Slide 6: A tool request and response
+  Sources: https://www.rfc-editor.org/rfc/rfc8259
+Slide 7: Agent
+  Sources: https://www.anthropic.com/research/building-effective-agents
+Slide 8: The agent loop  [4 clicks]
+  Sources: https://www.anthropic.com/research/building-effective-agents
+Slide 9: Function calling and MCP
+  Sources: https://modelcontextprotocol.io/docs/learn/architecture https://www.anthropic.com/research/building-effective-agents
+Slide 10: Human in the loop  [4 clicks]
+Slide 11: Our small classroom assistant  [4 clicks]
+Slide 14: An injected instruction inside a document
+  Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+Slide 20: Automation
+  Sources: https://www.anthropic.com/research/building-effective-agents
+Slide 21: API
+  Sources: https://developer.mozilla.org/en-US/docs/Glossary/API
+Slide 23: Single and multiple agents
+  Sources: https://www.anthropic.com/research/building-effective-agents
+Slide 24: Builder options for the demonstration
+  Sources: https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions https://help.zapier.com/hc/en-us/sections/38731226552845-Human-in-the-Loop https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview?view=foundry
+Slide 25: An actual orchestration interface
+  Sources: https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions
+
+SESSION 10: Tax evidence workflows and controlled actions
+Slide 5: The reconciliation calculation  [4 clicks]
+Slide 8: A missing supporting identifier
+  Sources: https://ura.go.ug/en/efris/
+Slide 11: A supported tax question
+  Sources: https://ura.go.ug/en/efris/
+Slide 12: Different operations
+  Sources: https://ura.go.ug/en/efris/ https://ura.go.ug/en/domestic-taxes/returns/
+Slide 13: A bounded filing-assistance process  [4 clicks]
+Slide 16: A record of execution
+  Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+Slide 21: Rules and anomaly detection
+  Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml
+Slide 22: Current authority and the relevant period
+  Sources: https://ura.go.ug/en/domestic-taxes/returns/ https://ulii.org/
+Slide 24: A return-specific requirements list
+  Sources: https://ura.go.ug/en/domestic-taxes/returns/
+Slide 27: API and browser interaction
+  Sources: https://learn.microsoft.com/en-us/training/paths/desktop-flows-robotic-process-automation-power-automate/ https://ura.go.ug/en/efris/
+Slide 28: Human approval of the exact action  [4 clicks]
+
+SESSION 11: Organisational risk and governance
+Slide 4: NIST risk-management functions  [2 clicks]
+  Sources: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
+Slide 5: Ugandan duties to examine
+  Sources: https://ulii.org/en/akn/ug/act/2019/9/eng%402023-12-31 https://ulii.org/en/akn/ug/act/ord/1909/11/eng%402023-12-31 https://pdpo.go.ug/
+Slide 7: Cross-matter access  [4 clicks]
+Slide 8: Prompt injection and tool misuse
+  Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+Slide 9: Bias and unequal errors
+  Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+Slide 15: Response and recovery  [4 clicks]
+  Sources: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/ https://pdpo.go.ug/knowledge-center
+Slide 21: Information and authority
+  Sources: https://pdpo.go.ug/knowledge-center https://ulii.org/en/akn/ug/act/ord/1909/11/eng%402023-12-31 https://www.wipo.int/documents/d/frontier-technologies/docs-en-pdf-generative-ai-factsheet.pdf
+Slide 22: Privacy and the organisation’s role
+  Sources: https://pdpo.go.ug/knowledge-center
+
+SESSION 12: Leading implementation and evaluating a pilot
+Slide 4: The connected learning journey  [4 clicks]
+Slide 6: The current and redesigned process  [2 clicks]
+Slide 14: A staged adoption route  [4 clicks]

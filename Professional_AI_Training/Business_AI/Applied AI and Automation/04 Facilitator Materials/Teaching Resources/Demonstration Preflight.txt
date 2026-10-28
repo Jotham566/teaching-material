@@ -1,0 +1,10 @@
+BEFORE EACH CLASS
+The learner already uses AI assistants. I prepare routine interface steps privately, start from current practice and a professional decision, and move to the harder case when the explanation is sound.
+1. Open the current Guide, use Open demonstration index and follow that session's Before the learner arrives section. Keep the matching deck and working record ready.
+2. Run ./facilitator_demo.command preflight from Practice Files. Check the tool needed for this session, then run its commands before class. Models must be cached and the existing account signed in; do not spend the class on installation or billing.
+3. Open each linked source and copy blank records to the dated output folder. Keep public/fictional sources only in the shared window.
+4. Copy the matching prompt from Teaching Resources/Demo Materials and confirm the exact source scope. A fresh chat must not inherit extra project evidence in a scope comparison.
+5. Open the named saved/reference fallback in the Guide before class. Confirm whether it is an actual observed output or an authored teaching reference.
+6. Check one material source claim yourself. A successful command or citation does not approve the answer.
+7. Keep the two-hour session table; the detailed steps explain its worked and guided blocks. Stop account troubleshooting after two minutes and use the correctly labelled saved route.
+8. During class I operate the tools; the learner predicts, checks and directs. Save the prompt, sources, raw result, revision if any, learner reasoning and the next decision together.

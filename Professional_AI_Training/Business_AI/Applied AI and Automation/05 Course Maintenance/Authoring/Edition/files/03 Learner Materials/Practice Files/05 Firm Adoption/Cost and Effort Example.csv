@@ -1,0 +1,22 @@
+item,assumed_value,unit,meaning
+tasks_per_month,40,tasks,Fictional planning assumption
+manual_minutes_per_task,30,minutes,Replace with observed baseline
+assisted_minutes_per_task,20,minutes,Include checking and correction
+stress_assisted_minutes,33,minutes,Stress scenario
+reviewer_hourly_cost,60000,UGX/hour,Invented rate for the exercise. Use the firm's real cost of reviewer time
+subscription,120000,UGX/month,Illustrative assumption. Not a vendor quote
+usage,30000,UGX/month,Illustrative assumption
+maintenance,90000,UGX/month,Illustrative support cost
+setup,600000,UGX once,Illustrative implementation cost
+input_rate,1,USD/million tokens,Invented rate for token arithmetic
+output_rate,4,USD/million tokens,Invented rate. Not market pricing
+input_tokens_per_task,10000,tokens,Illustrative
+output_tokens_per_task,1000,tokens,Illustrative
+manual_review_cost_per_month,1200000,UGX/month,Calculated: 40 x 30 minutes = 20 hours x 60000
+assisted_review_cost_per_month,800000,UGX/month,Calculated: 40 x 20 minutes = 13.33 hours x 60000
+stress_review_cost_per_month,1320000,UGX/month,Calculated: 40 x 33 minutes = 22 hours x 60000
+monthly_tool_cost,240000,UGX/month,Calculated: 120000 + 30000 + 90000
+net_monthly_effect_main_case,160000,UGX/month,Calculated: 1200000 - 800000 - 240000. Time valued at cost. Not cash unless the capacity is used
+net_monthly_effect_stress_case,-360000,UGX/month,Calculated: 1200000 - 1320000 - 240000
+token_cost_per_task,0.014,USD,Calculated: 10000/1000000 x 1 + 1000/1000000 x 4. Kept in USD
+token_cost_per_month,0.56,USD/month,Calculated: 40 x 0.014. Token charges are small beside fees and review time in this example

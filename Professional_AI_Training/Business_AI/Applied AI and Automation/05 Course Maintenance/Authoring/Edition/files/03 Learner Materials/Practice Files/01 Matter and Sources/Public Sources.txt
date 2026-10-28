@@ -1,0 +1,54 @@
+PUBLIC SOURCES — REVIEWED 26 OCTOBER 2026
+
+ml: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml
+embedding: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings
+transformer: https://developers.google.com/machine-learning/crash-course/llm/transformers
+foundation: https://arxiv.org/abs/2108.07258
+ocr: https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0
+chunk: https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents
+rag: https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview
+hybrid: https://www.anthropic.com/research/contextual-retrieval
+akn: https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html
+json: https://www.rfc-editor.org/rfc/rfc8259
+ner: https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories
+agents: https://www.anthropic.com/research/building-effective-agents
+copilot: https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions
+foundry: https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview?view=foundry
+rpa: https://learn.microsoft.com/en-us/training/paths/desktop-flows-robotic-process-automation-power-automate/
+zapier: https://help.zapier.com/hc/en-us/sections/38731226552845-Human-in-the-Loop
+netdocs: https://www.netdocuments.com/solutions/netdocuments-tabular-review/
+netsearch: https://www.netdocuments.com/en-gb/solutions/ai-search/
+harvey: https://help.harvey.ai/articles/getting-started-with-harvey
+alpha: https://help.alpha-sense.com/hc/en-us/articles/42391092171795-Deep-Research-Conduct-In-Depth-Multi-Step-Research-Autonomously
+ura: https://ura.go.ug/en/domestic-taxes/returns/
+efris: https://ura.go.ug/en/efris/
+nist: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
+genrisk: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+pdpo: https://pdpo.go.ug/knowledge-center
+privilege: https://ulii.org/en/akn/ug/act/ord/1909/11/eng%402023-12-31
+wipo: https://www.wipo.int/documents/d/frontier-technologies/docs-en-pdf-generative-ai-factsheet.pdf
+lawresearch: https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf
+ulii: https://ulii.org/
+case: https://ulii.org/en/akn/ug/judgment/ugcommc/2024/272/eng%402024-08-19
+casecopy: https://sheriahub.com/cases/ug/caselaw/goal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023-2024-ugcommc-272-19-august-2024-5eb2fdb41b0f4b89
+berkeley: https://executive.law.berkeley.edu/programs/generative-ai-for-the-legal-profession/
+mit: https://executive.mit.edu/course/artificial-intelligence/a056g00000URaa3AAD.html
+telco: https://www.itu.int/epublications/publication/itu-t-tr-genai-telecom-2025-03-potential-requirements-and-methodology-for-deploying-and-assessing-generative-ai-models-in-telecom-networks
+
+Additional current sources:
+https://developers.google.com/machine-learning/crash-course/llm
+https://arxiv.org/abs/1706.03762
+https://arxiv.org/abs/2203.02155
+https://developers.openai.com/api/docs/guides/your-data
+https://support.claude.com/en/articles/15707726-using-claude-for-legal-work-privilege-confidentiality-and-how-to-think-about-configuration
+https://modelcontextprotocol.io/docs/learn/architecture
+https://ulii.org/en/akn/ug/act/2019/9/eng%402023-12-31
+https://doingbusiness.finance.go.ug/licensing/pdpo-data-protection-registration
+
+See Verified Authority Example.txt for the historical case, exact edition references and limits. Provider claims do not establish local legal compliance.
+
+Common Paper Cloud Service Agreement (Standard Terms v3.0 with Service Level Agreement v2.0)
+Publisher: Common Paper. Licence: Creative Commons Attribution 4.0 International (CC BY 4.0), stated in the document footer. Used as the agreement in the course matter. The unmodified source file is in this folder; "Agreement Provenance and Adaptations.txt" lists the completed cover pages and the two teaching adaptations. The file was supplied by the instructor on 26 October 2026 and its SHA-256 hash is recorded in the provenance file. Check the current version and licence at commonpaper.com before reuse.
+
+URA FDN validation guidance checked 28 October 2026: https://ura.go.ug/en/efris/fdn-validation/
+For Session 10 we read the guidance only. Teaching identifiers are not submitted for real validation.

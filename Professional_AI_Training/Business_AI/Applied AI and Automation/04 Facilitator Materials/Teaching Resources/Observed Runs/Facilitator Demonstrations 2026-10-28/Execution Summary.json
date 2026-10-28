@@ -1,0 +1,121 @@
+[
+  {
+    "demo": "preflight",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:39:45.917098+03:00",
+    "output": "final_tests/preflight"
+  },
+  {
+    "demo": "s02_vectors",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:39:45.917243+03:00",
+    "output": "final_tests/s02_vectors"
+  },
+  {
+    "demo": "s05_ocr",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:39:45.969795+03:00",
+    "output": "final_tests/s05_ocr"
+  },
+  {
+    "demo": "s06_baseline",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:39:49.071572+03:00",
+    "output": "final_tests/s06_baseline"
+  },
+  {
+    "demo": "s06_reviewed",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:39:49.398570+03:00",
+    "output": "final_tests/s06_reviewed"
+  },
+  {
+    "demo": "s06_query",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:05.570025+03:00",
+    "output": "final_tests/s06_query"
+  },
+  {
+    "demo": "s06_missing",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:10.622377+03:00",
+    "output": "final_tests/s06_missing"
+  },
+  {
+    "demo": "s09_host",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:10.933687+03:00",
+    "output": "final_tests/s09_host"
+  },
+  {
+    "demo": "s09_protocol",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:11.003460+03:00",
+    "output": "final_tests/s09_protocol"
+  },
+  {
+    "demo": "s09_agent",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:11.117346+03:00",
+    "output": "final_tests/s09_agent"
+  },
+  {
+    "demo": "s09_injection",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:14.043515+03:00",
+    "output": "final_tests/s09_injection"
+  },
+  {
+    "demo": "s09_unknown",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:31.243934+03:00",
+    "output": "final_tests/s09_unknown"
+  },
+  {
+    "demo": "s09_onecall",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:35.191479+03:00",
+    "output": "final_tests/s09_onecall"
+  },
+  {
+    "demo": "s10_reconcile",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:38.054905+03:00",
+    "output": "final_tests/s10_reconcile"
+  },
+  {
+    "demo": "s10_controls",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:38.103638+03:00",
+    "output": "final_tests/s10_controls"
+  },
+  {
+    "demo": "s11_ocr_ladder",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:38.305214+03:00",
+    "output": "final_tests/s11_ocr_ladder"
+  },
+  {
+    "demo": "s12_costs",
+    "exit_code": 0,
+    "passed": true,
+    "started": "2026-10-28T08:40:40.198564+03:00",
+    "output": "final_tests/s12_costs"
+  }
+]

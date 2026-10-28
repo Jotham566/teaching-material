@@ -1,0 +1,24 @@
+## Analysis
+
+**Applicable Provision (Teaching Adaptation 1):**
+
+> "Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+
+**Answer:** Victoria's consent may or may not be required—it depends on facts not yet confirmed.
+
+The exception to the consent requirement applies only if **both** conditions are met:
+1. The reorganization is "within a wholly owned group"
+2. Equator "remains responsible for its obligations under this Agreement"
+
+**What is Unknown:**
+- Whether the reorganization is within a wholly owned group
+- Whether Equator will remain responsible for its obligations post-reorganization
+- Whether the Agreement will be assigned or transferred to another entity
+
+**Questions to Ask Equator:**
+1. Please provide the ownership chart showing the current and proposed post-reorganization structure.
+2. Confirm whether all entities involved are wholly owned within the same group.
+3. Confirm in writing that Equator will remain responsible for all obligations under the Agreement after the reorganization.
+4. Clarify whether the Agreement will be assigned or transferred to any other entity.
+
+Until Equator provides this information, Victoria cannot confirm whether the wholly-owned-group exception applies and therefore cannot determine whether her consent is required.

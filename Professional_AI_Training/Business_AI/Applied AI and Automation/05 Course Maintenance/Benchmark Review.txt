@@ -1,0 +1,159 @@
+CURRICULUM AND PAID-PROGRAMME BENCHMARK
+26 October 2026 | Revised after independent evaluations
+
+SCOPE AND CONCLUSION
+This review compares public syllabi, published outcomes and official guidance,
+not full paid course interiors or equivalent qualifications. The first review
+was too reassuring about readiness: coverage and clean layouts did not establish
+teaching depth, credible timing or good transfer questions. The revisions below
+address those weaknesses. Learning still needs to be observed in the classes.
+
+The course remains 12 sessions of two hours, with flexible scheduling and no
+required homework. It now contains 285 slides: 233 in the essential sequence
+and 52 clearly marked optional slides after the closing checks. Only
+88 slides are allocated to concept explanation; the remaining essential
+slides support worked cases, practice, recall and decisions. Each session has
+its own 120-minute allocation, including a break and buffer.
+
+PAID COMPARATORS — PRIMARY PAGES OPENED 26 OCTOBER 2026
+
+Berkeley Law — GenAI for the Legal Profession: Power User Edition
+Audience: legal professionals; no prior technical skills required. Format:
+self-paced, nine modules, about eight hours with a four-week suggested schedule;
+optional live sessions and targeted exercises. Published general tuition USD950;
+the 2026 cohort is closed and the page invites interest for 2027. Useful benchmark:
+legal-work habits, iterative use, source validation and evaluation. Our response:
+actual saved examples, better review questions and implementation exemplars.
+https://executive.law.berkeley.edu/programs/generative-ai-for-the-legal-profession/
+
+MIT Sloan / CSAIL — Artificial Intelligence: Implications for Business Strategy
+Audience: business leaders without a required technical background. The provider
+lists six weeks, 6–8 hours/week and USD3,850. It distinguishes 4–5 core hours from
+optional extension time and includes an individual organisational application
+project. Useful benchmark: separate essential learning from extensions and make
+the final organisational proposal substantive. Our response: session-specific
+slide allocations and a worked pilot with costs, owners and acceptance evidence.
+https://executive.mit.edu/course/artificial-intelligence/a056g00000URaa3AAD.html
+
+Harvard Business School Online — AI Essentials for Business
+Provider page lists four weeks, 5–7 hours/week, self-paced, USD1,949, and a
+completion certificate. Outcomes join AI concepts with responsible use and
+operating-model/organisational change. The public listing does not establish
+all assessment details. Our response: stronger foundations and a firm-specific
+implementation decision; no claim of equivalence to an HBS qualification.
+https://pll.harvard.edu/course/ai-essentials-business
+
+Oxford Saïd — Artificial Intelligence Programme
+The official programme page was inspected as an additional executive comparator.
+Its emphasis is business understanding and implications. A reliable programme
+fee was not established for this comparison; no price from a third-party listing
+is used. The lesson for this course is executive judgement supported by technical
+intuition, rather than a developer syllabus.
+https://www.sbs.ox.ac.uk/programmes/online-learning/oxford-artificial-intelligence-programme
+
+Do not convert these tuition figures into a recommended one-to-one hourly rate.
+Brand, cohort, access, assessment and support differ. Our fee was not supplied.
+The added value to test is guided correction, relevant work, actual tools and a
+usable organisational proposal—not a claim that we are superior to universities
+or that this is a completed consulting engagement.
+
+OTHER PROVIDER BENCHMARKS AND THEIR CURRENT COURSE LOCATIONS
+
+DeepLearning.AI, hosted on Coursera: AI for Everyone and Generative AI for
+Everyone progress from concepts to applications, projects and implications.
+New Session 3 now explains generation, context and reliability explicitly.
+https://www.coursera.org/learn/ai-for-everyone
+https://www.coursera.org/learn/generative-ai-for-everyone
+
+Wharton, hosted on Coursera: AI Strategy and Governance connects economics,
+organisation and governance. Sessions 11–12 connect risks, owners, review effort,
+budget and a pilot decision. Coursera is the platform, not the university.
+https://www.coursera.org/learn/wharton-ai-strategy-governance
+
+Reforge AI Strategy is an adjacent product/strategy comparator, not the closest
+legal teaching match. Session 12 retains strategic service and execution choices.
+Current membership pricing was not independently re-established in this pass.
+https://www.reforge.com/courses/ai-strategy/
+
+IBM SkillsBuild provides a foundations/application/ethics reference. Its full
+current catalogue and badge assessment were not accessible in the earlier pass.
+Use it as a coverage reference, not proof of equivalent learning or assessment.
+https://www.ibm.com/new/product-blog/ai-skills-for-all-how-ibm-is-helping-to-close-the-digital-divide
+
+NVIDIA training emphasises hands-on work. Its technical RAG/model-building labs
+are extensions, not required executive outcomes. The prior introductory-course
+comparison used an August 2024 catalogue, not current pricing or availability.
+https://www.nvidia.com/en-us/training/
+
+Microsoft's business-AI path links resources, value, responsible use and scaling.
+Sessions 5,11,12 connect data readiness, controls and implementation. Product
+screenshots are references; the optional Copilot image is explicitly a weather
+task, while our actual legal lookup has a separate execution trace.
+https://learn.microsoft.com/en-us/training/paths/transform-your-business-with-microsoft-ai/
+
+Google's leadership path and ML teaching resources support foundations through
+applications and agents. Sessions 2–3 distinguish training, representations,
+generation and limitations with explanatory editable diagrams.
+https://www.skills.google/paths/1951
+https://developers.google.com/machine-learning/crash-course/llm/transformers
+
+Anthropic AI Fluency and evaluation guidance support effective briefing,
+judgement and specific success criteria. Our Session 4 and evaluation rubric
+use original legal examples. No non-commercial course assets were copied.
+https://www.anthropic.com/ai-fluency/overview
+https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
+
+OpenAI's Building agents track is developer-oriented. Its model/tool/control
+distinctions and evaluation guidance inform our non-coding explanation in
+Session 9, not a claim that learners complete a developer credential.
+https://developers.openai.com/tracks/building-agents
+https://developers.openai.com/api/docs/guides/evaluation-best-practices
+
+WHAT CHANGED
+• Generation and reliability is a dedicated session; tax and filing content
+  is combined into a bounded evidence-and-control lesson.
+• Technical topics requested by the client remain available as optional
+  exploration; they were not deleted simply to reduce the slide count.
+• The customer/provider roles, share sale and assignment are distinct.
+• The notes and guide include misconceptions, model answers and transfer checks.
+• Entry and exit explanations are compared; progress statuses start blank.
+• The learner workbook uses meeting-style records and contains no session key.
+• The example source set has 40 documents, an extended fictional agreement and
+  a larger ledger; these are synthetic exercises, not measured firm data.
+• Worked policy, register, proposal, costs and relative decision stages support
+  the implementation path. Proposed owners/dates require the firm's agreement.
+
+OBSERVED REHEARSALS AND LIMITS
+Seven supplied-source AI runs were saved: three consent, missing fee, share sale
+and two reconciliation runs. The first financial result mislabelled receipts
+as a declared tax basis after an input without file-name boundaries. The clearer
+labelled-source rerun corrected that distinction. This contrast has an input
+confound and is not a model error-rate benchmark. The failed result is retained.
+
+Apple Vision OCR preserved the operative negation and qualifications in a
+synthetically degraded scan. The damaged extract is a separate constructed
+exercise. A local lexical search tests version/access filtering, not vectors.
+The read-only agent trace records actual model-selected lookup, host checks and
+source return; unknown ID and zero-budget requests were held/denied. The injection
+test ran against that small allowlist, not an enterprise security environment.
+
+The deterministic workflow is source-derived and tests rejection, stale approval,
+recipient limits, call/spend limits and uncertain acknowledgement. It makes no
+external call and no tax calculation. Portal builders, firm-connected retrieval
+and live deep research still need the intended teaching-account preflight.
+
+SOURCE ACCURACY
+The original Goal Relief PDF was downloaded unmodified and read directly,
+including printed p. 3 and pp22–24. The source record includes its hash. K-Files
+explicitly cites section 28(2) in the 2023 Revised Edition, differing from Goal
+Relief's reference. The course teaches resolving the edition/citation discrepancy,
+not silently substituting a number. Current applicability and later treatment
+remain separate research tasks. The Ugandan legal source map identifies privacy,
+registration and professional-communications questions without declaring any
+specific AI product compliant.
+
+FINAL QUALITY EVIDENCE
+Validation/ contains package/layout receipts, the review scope and file hashes.
+The Animation Guide identifies actual native click builds; static slides have
+static cues. Representative PowerPoint playback is distinguished from structural
+animation checks. No automated check establishes teaching effectiveness.

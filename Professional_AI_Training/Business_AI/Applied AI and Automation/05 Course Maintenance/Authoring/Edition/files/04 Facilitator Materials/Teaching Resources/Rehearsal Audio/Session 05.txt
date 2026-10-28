@@ -1,0 +1,207 @@
+Welcome to Session 5. Today's question is a practical one for any legal or tax practice. What does the firm actually hold, and what has to happen to it before an AI tool can use it reliably?
+
+A tool can only be as good as the material we put in front of it, and in a firm that material sits in boxes, folders, email threads and systems that were never built with AI in mind.
+
+By the end of today we'll have two things. One is an inventory of the firm's sources. The other is one extraction that we've checked against the original page, with its provenance recorded, which simply means we can say exactly where it came from.
+
+Before I explain anything, I'd like to start with a question that goes back to Session 4. There we wrote an instruction that asks the model for exact quotes. Now suppose the scan feeding that instruction has lost a word. What happens? Think it through out loud if it helps.
+
+Here's my answer. A good instruction can't recover a word that was never captured. Careful wording can't fill a gap in the input, so the source itself has to be inspected. And if your first thought is that the model would just guess, here's a follow-up. Would you be able to tell from the answer that it guessed?
+
+That's today's question, and the result we're building is an inventory and an inspected extraction with provenance. We begin with the firm's actual sources.
+
+Let's look at where the firm's information lives. There are three kinds of source here. Paper, meaning files and scans. Digital files, such as agreements and email. And systems, such as a document management system and accounting software.
+
+These are categories to walk through. They aren't steps in a sequence. We list every source first, and only afterwards decide how to prepare each one.
+
+I won't assume which systems your firm uses. Describe your own landscape in your own words, and I'll write down the systems and the pain points as you name them, without client names.
+
+Here's my question. Where does a piece of advice the firm has already given become hard to find today, and where does it sit when that happens? Think about it for a moment.
+
+A box of signed originals, a shared drive folder or an email thread would each fit, as long as you tell me why it's hard to find. What you say sets our inventory priority for the rest of the session.
+
+Any source can be described in four separate ways. Location or system is where it lives, such as the records room, a drive or a database. Modality is the kind of content, whether text, a document image or audio. Structure is how it's organised, as a table, as fields, or as narrative. And format is the file type, such as DOCX, PDF, CSV, JSON or XML.
+
+I keep these four apart on purpose. A spreadsheet in the drive has one location and one format, yet it can hold both a structured table and free notes.
+
+A question for you. Is every PDF made of text that a computer can search? See what you come up with.
+
+The answer is no. A PDF can hold selectable text, a picture of a page, or both. If that feels slippery, picture a scanned signed agreement saved as a PDF. What does the computer actually hold? A picture. That's what we look at next.
+
+Here we see an authored page, a synthetic scan of it, and the saved OCR output. OCR stands for optical character recognition. It's software that reads an image of text and returns characters.
+
+Searchable text is only useful if the rule, the negation, the exception and the condition survive the trip. So we compare the observed OCR with the original page.
+
+The run I have open used Tesseract 4.1.1 on the page for CONTRACT-01 version 2, Section 12.6 as the Key Terms replace it, which we call KT-1. The clean image and the synthetic scan both read correctly. The moderately degraded scan came out as, That consent not sequel fF 2 reorganization. The condition was lost. Keep in mind that this is one run on one page.
+
+Now it's your turn. If I search this text for the word consent and get a hit, what have I proved? Think about it for a moment.
+
+Only that the word is present. It doesn't show that the sentence around it, with its exception, was captured correctly. Go ahead and find the damaged words for me.
+
+For every source, the firm needs four facts on record. Who is the matter and information owner. Which version is authoritative, and from what effective date. Who may read it, and for what use. And who is responsible for updating it, keeping it and disposing of it.
+
+Access belongs in the design from the start. If we add it at the end, copied content may already be in the wrong hands.
+
+Let me ask you something. In our matter, who should decide which agreement is the authoritative one for Victoria Services Ltd, and why that person? Let's hear your answer first.
+
+I'd say it's the matter owner, or a qualified person the owner designates. A tool and a filename can't settle authority. And if you named whoever happens to hold the file, consider this. Would that person know whether a later version was signed?
+
+Now we fill those four facts in for four sources from our matter. The table has four rows.
+
+CONTRACT-01 version 2 is the executed agreement, so we extract it and verify its clauses. Draft version 1 is superseded context, so we label it and keep it out of default answers. The September ledger is financial evidence, so we check its fields, period and units. And a public judgment is a candidate legal authority, so we check the court, the date and the treatment.
+
+The role decides how a search tool should treat each source. The same filename can sit in two folders and hide two versions.
+
+Let me put a question to you. Would you delete Draft version 1 as soon as version 2 was signed? Say it out loud if it helps.
+
+My answer is to follow the retention policy. Keep the draft's history, while making sure it doesn't answer current questions. If you'd delete it, picture a colleague asking how the Section 12.6 wording changed. What would you show them?
+
+Now let's follow a source through the steps that prepare it. There are four. This pipeline only prepares content. Searching it at question time is Session 6.
+
+First comes capture. We scan the source or retrieve it. The evidence to keep at this step is the image itself.
+
+Then extraction. We pull out the text and the layout. What should survive this step is the text, in the right order.
+
+Third is the check. We compare the original against the extract, and the result of that check is itself something we keep.
+
+Last is representation, where we add structure and metadata, including the identifiers.
+
+So which of these four steps could change the legal meaning of a clause, and how? Have a think.
+
+Any of the first three can. A poor capture can drop a line, extraction can misread a word, and a missed check lets either one through. Representation can also detach a quote from its source. If you picked just one step, think about what happens when the earlier steps went wrong.
+
+Three different things sit under the loose label of OCR. Optical character recognition turns images of text into machine-readable text. Layout analysis finds the parts of a document, such as headings, tables and paragraphs, and how they relate. Structured extraction takes chosen content and places it in defined fields, such as a party name or a date.
+
+A document tool often combines all three, so a product's name for itself tells us little about what it covers.
+
+Here's something to chew on. If a vendor says its product does OCR, does that tell you the clause numbers and table cells will come out in the right places? Take a moment with that.
+
+It doesn't. OCR recognises characters. Layout and field extraction need their own checks. If that's unclear, look at the three lines again and ask yourself which one deals with a table cell and its column.
+
+This picture comes from Microsoft's Document Intelligence documentation. It's a reference example of a product, and it isn't a run on our files. It shows text blocks, sections and a table picked out on a page.
+
+The left caption says OCR recovers readable text, meaning characters and words. The right says headings, tables and reading order keep the context. Think of a table of fees. A number such as 5,000,000 has to stay tied to its row, its column, its unit and its period, or it means nothing.
+
+So in a ledger table, why does reading the characters correctly still leave a number unusable? Mull it over.
+
+Because the number must stay with its row, its column, its currency and its period. If you feel accurate OCR is enough, picture every figure shifted up one row. What would you conclude then?
+
+Now we go back to our own agreement, where a damaged extract changes a legal result.
+
+Here are two texts side by side. On the left is the authoritative wording, from the Key Terms replacement of Section 12.6. It says that consent is not required for a reorganization within a wholly owned group, if the Provider remains responsible for its obligations under the Agreement. On the right is a damaged extract. It says that consent is required for a reorganization within a wholly owned group.
+
+I should say plainly that I prepared the damaged extract by hand, as an exercise. It's a constructed example and has no connection to any OCR measurement.
+
+See if you can find both changes. The word not is gone, and the condition about the Provider remaining responsible is gone. The meaning has reversed.
+
+Here's my question. Could a better prompt bring back the missing words? Work it through before I answer.
+
+No. If the evidence is missing from the input, no instruction can reconstruct it reliably. We re-extract, or we go back to the original. If you hesitate, ask yourself how the model would know what the page said.
+
+This is the rendered original page from our fictional agreement, with the damaged extract again beneath it. The question underneath asks which wording disappeared.
+
+Let's work through it together. I'll put the page and the extract next to each other and trace along the heading, the Section 12.6 reference, which is the Key Terms replacement, then the negation and then the exception. In the extracted record we keep the page and the section reference.
+
+Here's one for you. Before we put any of this text into a search tool, which checks must pass? Give that a little thought.
+
+Let me give you mine. The text must be complete. The reading order must be right. The key wording must be present. And the source location must be recorded. If you listed only spelling, consider what a perfectly spelled wrong sentence would pass.
+
+Next we record what we found in a document quality record.
+
+A document quality record has four lines. Preserve the original. Record the defect and the corrected version. Keep the source location and the reviewer. And keep uncertain fields unresolved.
+
+I'll fill one row for the damaged extract as we go. The defect is the dropped not and its condition. We write in the corrected text and the location, which is the Key Terms replacement of Section 12.6.
+
+A correction must never overwrite the only copy of the original. And an OCR confidence score can't settle the legal effect, because it measures reading and says nothing about what the clause means.
+
+I'd like to hear your thinking on this one. An amount in the ledger scan is smudged and could be 1,800,000 or 7,800,000. What do we write in the record? No need to rush.
+
+We mark the field unknown until better evidence arrives, such as the original document. If you'd pick the likelier figure, think about who would bear the cost of a wrong guess.
+
+After the break we turn to the formats we store the corrected text in.
+
+Once the text is corrected, we need a format to keep it in. Four are common. Markdown keeps headings and document text readable. JSON holds named fields and structured outputs. Akoma Ntoso XML is a legal structure that carries identifiers and metadata. And a CSV file or database table suits repeated financial or matter records.
+
+Converting a file to a new format doesn't make its content reliable. And no single format is required by every AI system. We pick the one that suits the use.
+
+So would you convert every private contract in the firm into Akoma Ntoso? Think it over.
+
+I wouldn't. We choose a representation that fits the use and the system. For one agreement, a simple record with the exact text and its source location may be enough. If you'd say yes, ask yourself what the firm would gain for a contract nobody will publish.
+
+Let's take one clause and write it as a structured record. On the left is the source, labelled Key Terms KT-1. That's the Key Terms replacement of Section 12.6, and I'll say so as I point at the record. On the right is a JSON record. JSON is a text format for named fields. Each key names a field and each value holds its content. Document ID is the key, and CONTRACT-01 is its value. The text is abbreviated here.
+
+The record holds the document ID, the version, which is version 2, the clause, the exact passage and the source location. The passage has to be a verbatim copy. Each field is something a program can check.
+
+Here's my question. Which fields stop a quoted passage from losing its link to the agreement it came from? Sit with it for a second.
+
+The document ID with the version, and the source location. If you named only the text, ask yourself how a reader would find the page again in a year.
+
+Now, who is allowed to see these records as they travel through the system?
+
+Permissions have to follow the information all the way through. There are four stages.
+
+First comes source access. These are the matter permissions on the original document.
+
+Then copied content. Search tools often work from a copy of the source, so the copy has to carry restriction metadata with it.
+
+Third, search results. These get filtered for the user who is asking.
+
+And last, the answer, which is built from allowed evidence only. The copy can drift out of step with the permissions on the original, so our tests have to include a change of access, a deletion and a withdrawn document.
+
+Here's a question. A lawyer is taken off the Victoria Services matter after the files are indexed. What has to happen before the tool can answer their next question? Give it a moment. The access change must reach the copy and the search results, so no restricted passage comes back. If you think the original permission is enough, ask yourself where the copy lives and who updates it. The next stretch is the work we do together.
+
+This is our in-class work, and we'll do it together. There are four tasks, in this order.
+
+First, we inventory systems, formats, owners and access. I'll open the Information Inventory and add one row for each system we actually discuss, with no client names.
+
+Second, we compare the original, the synthetic scan and the observed OCR.
+
+Third, we mark omissions against the authoritative page.
+
+And fourth, we record corrections, provenance and update responsibilities.
+
+I'll demonstrate the first example. Then you predict, pick the evidence, and check the changed example. If a live OCR tool isn't available, I'll use the labelled example, tell you that step wasn't run, and spend the time on explanation. A real run of any tool gets saved with its output.
+
+Before we begin, which row of the inventory would you complete first, and what evidence would you need for it? Take a moment with that.
+
+I'm hoping for a row tied to a real system and a named owner. Then we'll write down what the work shows.
+
+Let's write down what the work shows. Before I give you my version, tell me the conclusion in your own words, and then we'll compare.
+
+Here's mine. System, modality, structure and format describe four different properties. Extraction must keep the negation, the exception and the condition. And originals and access details travel with every converted copy.
+
+The second point is a limit. A synthetic scan can test a method. It says nothing about how well extraction would do on the firm's own archive.
+
+So which part of today's result is still unverified? Have a think.
+
+The archive. We tested one authored page, with one OCR run on it, and the firm's real documents would need their own sample. If you feel everything is verified, count how many real firm documents we tried.
+
+I'll write down any open questions you have. Next we turn this result into a decision.
+
+Now the result becomes a decision. The proposed decision is to assign source owners and choose one collection for preparation before buying a search layer. We record that decision, and the evidence we still need.
+
+Name a proposed owner and one condition, and I'll record both. Keep in mind that this is a class decision record. It carries no authority for any firm.
+
+Tell me what you make of this. What evidence would make you change this decision? Take your time.
+
+Something concrete. For example, a sample of the chosen collection showing that most documents are scans too poor to read. Or a change in who may see the material. Or a quality check that fails. The decision stands until the evidence, the quality or the permitted scope changes.
+
+If your answer feels general, try this angle. Name the first document you would test.
+
+Next come three questions that check what we covered.
+
+Let's finish with three questions. I'll ask them before we look at any answers.
+
+First. The scan says shall not disclose, and the extraction says shall disclose. Which stage failed? Think about it.
+
+Extraction. That's the stage that reversed the meaning.
+
+Second. The text is accurate, but the matter tag is wrong. What risk remains? Let's hear your answer first.
+
+A wrong tag can send a passage to a user who has no access to that matter, or retrieve the wrong matter altogether. If that's unclear, ask yourself which user would receive the passage.
+
+Third. Which record keeps the correction history? Take your time.
+
+The source-linked document quality record, with the derived content tested again after each correction.
+
+That closes Session 5. In Session 6 we take prepared sources and see how a search tool finds the right passage in them.

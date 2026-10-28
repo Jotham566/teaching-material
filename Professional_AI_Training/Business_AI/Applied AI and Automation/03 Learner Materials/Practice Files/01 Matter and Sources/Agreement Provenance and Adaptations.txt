@@ -1,0 +1,29 @@
+AGREEMENT PROVENANCE AND TEACHING ADAPTATIONS
+
+SOURCE
+Common Paper Cloud Service Agreement, Version 3.0, with the Common Paper Service Level Agreement Standard Terms, Version 2.0 (cover page and standard terms, Word file named "Common-Paper-Cloud-Service-Agreement-SLA-v3.0-cover-page-and-standard-terms.docx"). The maintainer supplied this file on 26 October 2026. Its document properties give the author as Tiffany Bui LeTourneau and the date 29 September 2026. The footer of every page of the file reads "Common Paper Cloud Service Agreement (Version 3.0) free to use under CC BY 4.0". Public pages: https://commonpaper.com/standards/cloud-service-agreement/ and https://commonpaper.com/standards/service-level-agreement/. CC BY 4.0 allows reuse and adaptation with attribution and an indication of changes. Check the licence statement on Common Paper's own site before any use outside this course. This course is not endorsed by Common Paper.
+
+FILES AND HASHES (SHA-256)
+Common Paper CSA v3.0 with SLA - Original unmodified.docx
+  7490e47bc819c70bccd5ee2f961695b1738c4104e2be7d61ee8fd5a4aad698a4   The file as supplied. Never edit it.
+Agreement - Executed v2.docx
+  ecaad8393a2b63d29b64f8e356977d469dbfa9d3ead7706f702f238e166247c4   The teaching specimen. Blue text is added for teaching. Black text is original wording.
+Agreement - Executed v2.txt
+  74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6   The same specimen as plain text with numbered sections, for uploading to an assistant. Text added for teaching is marked [ADAPTED]. The line [ADAPTED] is a marker and is not part of the agreement.
+Agreement - Superseded Draft v1.txt
+  The unsigned draft, with its single difference stated.
+
+WHAT IS ORIGINAL AND WHAT IS ADAPTED
+1 Original and unchanged: the whole of the Standard Terms, from the heading "Cloud Service Agreement Standard Terms" to the end (Sections 1 to 18 including the Service Level Agreement terms and definitions), and the "Using the Framework Terms" box. A word-by-word comparison of 139 body paragraphs found no difference from the original.
+2 Completed for teaching (the Order Form and Key Terms cover pages are forms that the parties fill in): party names, dates, 12-month Subscription Period, fees in UGX payable under a signed Fee Schedule, monthly invoicing and 30-day payment, 60-day non-renewal notice, support hours, Target Uptime 99.5%, uptime credit table, Target Response Time 4 hours, scheduled downtime window, governing law of Uganda, courts in Kampala, liability cap of 1x fees and Supercap of 2x fees, no data processing agreement attached, fictional signatories and notice addresses. Drafting notes and options not chosen were deleted. The Professional Services, Pilot, Uncapped Claims and Insurance Minimums rows were deleted as not used.
+3 Substantive changes to the Standard Terms, made in the Key Terms row "Other Changes to Standard Terms":
+  Teaching Adaptation 1. Section 12.6 (Assignment) is replaced. The replacement keeps the first sentence and the last two sentences of the original and removes the original second sentence, which let either party assign on notice after a merger, change of control, reorganization or sale. In its place Provider must obtain Customer's prior written consent before a change of control of Provider takes effect, and that consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations. The original wording of Section 12.6 therefore still appears in the Standard Terms, and the Key Terms change overrides it because the Key Terms control over the Standard Terms.
+  Teaching Adaptation 2. Section 1.5 (Customer Content) is supplemented so that Provider's support staff may access Customer Content only if each person is named in a written request and Customer has approved that person in writing beforehand.
+4 Not supplied on purpose: the signed Fee Schedule. Anything that depends on the amount of the Fees (the liability cap, service credits, renewal fee) cannot be calculated from this set.
+5 Fictional: all parties, people, addresses, dates and signatures.
+
+WHY THESE ADAPTATIONS
+The matter asks whether a provider's reorganisation needs the customer's consent. The unmodified Standard Terms would let the provider assign on notice, so there would be no consent right to analyse. A customer-side firm would negotiate a consent right in the Key Terms, which is where the Common Paper form invites changes. The adaptation makes the exercise realistic: the reader has to find the Key Terms change, connect it to Section 12.6 and to the precedence rule, and interpret it against the variants in Transaction Variants.txt.
+
+IF YOU CHANGE THE AGREEMENT
+Update, together: Transaction Variants.txt, Matter Brief.txt, Client Instruction.txt, Contract Review Playbook.txt, Clause Record.json, Flawed Contract Review.txt, the Knowledge Library files agreement-current.txt and agreement-draft.txt and their hashes in the manifest, Knowledge Assistant Tests.csv, ocr passages, Expected Findings.txt, Fresh Discussion Tests.txt, the Facilitator Guide and Learner Workbook, the slides that quote the provision, and the saved runs (they quote the text and become stale).

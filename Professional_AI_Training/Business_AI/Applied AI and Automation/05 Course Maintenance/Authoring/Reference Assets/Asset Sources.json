@@ -1,0 +1,28 @@
+{
+  "document_layout": {
+    "file": "document_layout.png",
+    "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/media/document-layout-example-new.png",
+    "source": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0",
+    "description": "Microsoft documentation layout example",
+    "kind": "official documentation image",
+    "retrieved": "2026-10-25"
+  },
+  "copilot_activity": {
+    "file": "copilot_activity.png",
+    "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/media/advanced-generative-actions/example-1.png",
+    "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions",
+    "description": "Microsoft documentation activity-map screenshot",
+    "kind": "official documentation image",
+    "retrieved": "2026-10-25"
+  },
+  "contract_page": {
+    "file": "contract_page.png",
+    "kind": "authored fictional clause rendered with Pillow; no AI image generation",
+    "source": "Contract - Executed v2.txt clause 3"
+  },
+  "contract_scan": {
+    "file": "contract_scan.png",
+    "kind": "synthetic degraded scan of the same authored fictional clause",
+    "source": "contract_page.png; resize, slight rotation and blur for an OCR exercise"
+  }
+}

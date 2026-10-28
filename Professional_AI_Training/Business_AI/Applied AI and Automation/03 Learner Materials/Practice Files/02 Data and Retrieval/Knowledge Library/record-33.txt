@@ -1,0 +1,25 @@
+RECORD-33 | form | 2025-09-15 | Named support staff access list, version 1
+
+VICTORIA SERVICES LTD - APPROVED EXTERNAL SUPPORT ACCESS LIST
+Version 1, 15 September 2025
+Prepared by: IT Lead
+Approved by: Finance Manager
+
+Equator Systems Ltd staff with approved remote access to the reporting application:
+
+1. Emmanuel Opio - senior engineer - read and write, production
+2. Harriet Namuli - deputy support lead - read only, production
+3. Julius Byaruhanga - support engineer - read only, test environment
+
+Access review date: 15 March 2026
+All sessions via company VPN, logged.
+
+Changes since last list
+- Added Julius Byaruhanga (new starter at Equator)
+- Removed Patrick Okumu (left Equator in August 2025)
+
+Signatures
+IT Lead: signed 15 Sep 2025
+Finance Manager: signed 16 Sep 2025
+
+Note: if Equator staff change, ask Equator to confirm in writing so that this list can be reissued.

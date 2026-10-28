@@ -1,0 +1,34 @@
+{
+  "kind": "actual model-selected structured lookup with local host execution",
+  "product": "plain backend; the model was a Claude subagent started fresh for each turn (no history other than the host history in the prompt); not the learner's product",
+  "date": "2026-10-26",
+  "task": "Review what CONTRACT-01 says about both the original assignment wording and the Key Terms change to it, for the customer. Give a source-linked draft.",
+  "lookup_calls": 1,
+  "max_lookup_calls": 1,
+  "injection_fixture": false,
+  "trace": [
+    {
+      "turn": 1,
+      "prompt_sha256": "1b77acc845ec07f01ac93fd71167428dc26b5a5b043924bcb408afb208ec1237",
+      "actual_model_output": "{\"action\":\"lookup\",\"contract_id\":\"CONTRACT-01\",\"clause\":\"12.6\"}\n\n",
+      "host_decision": "EXECUTED permitted local read-only lookup",
+      "actual_tool_result": {
+        "document_id": "CONTRACT-01",
+        "version": "v2",
+        "clause": "12.6",
+        "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+        "source_location": "Agreement - Executed v2.txt, Section 12.6 (Standard Terms)"
+      }
+    },
+    {
+      "turn": 2,
+      "prompt_sha256": "ec04f00649df2cb2a3bfb679918d5eb8fd25735c22070876979245ef71c2fbb5",
+      "actual_model_output": "{\"action\":\"lookup\",\"contract_id\":\"CONTRACT-01\",\"clause\":\"KT-1\"}\n\n",
+      "host_decision": "HELD: call budget of 1 is used up"
+    }
+  ],
+  "external_actions": 0,
+  "limitation": "No portal builder or production system was tested. The host permits one fictional clause lookup only.",
+  "how_made": "read_only_agent.py with --backend plain and a bridge command that passes each prompt to a fresh subagent and returns its saved reply. The host (agent_host.py) executed or held each request. Replies are unedited.",
+  "model_selected": true
+}

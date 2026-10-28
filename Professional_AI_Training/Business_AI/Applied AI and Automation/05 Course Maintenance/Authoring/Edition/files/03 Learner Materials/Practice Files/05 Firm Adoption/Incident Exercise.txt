@@ -1,0 +1,3 @@
+IN-CLASS INCIDENT
+A knowledge assistant returns a passage from restricted matter OTHER-02 to a user with M-01 access only. Part of the response has entered a draft.
+Discuss containment, evidence preservation, access scope, recipients and required legal or contractual responses with designated responsible people. Do not assume a universal reporting deadline. Before restart, investigate cause, correct controls, retest and record the decision. Include logs and derived content in the assessment.

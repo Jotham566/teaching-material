@@ -1,0 +1,36 @@
+{
+  "source_scope": "CONTRACT-01 v2 executed 15 August 2026: Order Form, Key Terms (Framework Terms cover page), and incorporated Standard Terms Version 3.0. The Key Terms include Teaching Adaptation 1 replacing Section 12.6. The signed Fee Schedule is referenced but not supplied.",
+  "established_facts": [
+    "Provider is Equator Systems Ltd; Customer is Victoria Services Ltd.",
+    "Teaching Adaptation 1 in the Key Terms replaces Standard Terms Section 12.6.",
+    "Key Terms control over Standard Terms where inconsistent.",
+    "Stipulated transaction: an unrelated buyer acquires control of Equator through a share sale, outside any wholly owned group."
+  ],
+  "unresolved_facts": [
+    "No ownership chart showing Equator's current or proposed structure.",
+    "No written confirmation that Equator remains responsible post-transaction.",
+    "No statement whether the agreement itself will be transferred or assigned."
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2 Key Terms",
+      "location": "Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "12.6 Assignment. Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void."
+    },
+    {
+      "source": "CONTRACT-01 v2 Key Terms",
+      "location": "Using the Framework Terms",
+      "quote": "If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms."
+    }
+  ],
+  "analysis": "The replaced Section 12.6 contains distinct rules: (1) assignment requires prior written consent; (2) a separate, additional requirement that Provider must obtain Customer's prior written consent before any change of control takes effect; (3) an exception removing the consent requirement for reorganizations within a wholly owned group where Provider remains responsible. A share sale changing Equator's ownership is not an assignment of the agreement—the agreement remains with Equator. However, the second sentence independently requires consent for a change of control of Provider. The stipulated facts confirm the buyer is unrelated and the transaction is outside any wholly owned group, so the exception does not apply. The replaced provision controls over the original Standard Terms Section 12.6, which would have permitted assignment upon notice for a change of control.",
+  "conclusion": "Under the replaced Section 12.6, Equator must obtain Victoria's prior written consent before the change of control takes effect. Victoria's consent is required. Before advising, Victoria should obtain: (1) the ownership chart showing current and proposed structure; (2) written confirmation whether Equator will remain responsible for its obligations; (3) confirmation whether any assignment of the agreement is also proposed.",
+  "review_checks": [
+    "Confirmed: Teaching Adaptation 1 replaces Section 12.6 and controls over original Standard Terms.",
+    "Confirmed: Share sale is a change of control, not an assignment—these are distinct triggers.",
+    "Confirmed: The exception requires both wholly owned group AND Provider remaining responsible; stipulated facts place transaction outside wholly owned group.",
+    "Confirmed: No inference made about fees from the absent Fee Schedule.",
+    "Confirmed: No facts added about assignee's group membership or responsibility beyond stipulated variant.",
+    "Confirmed: Consequence of proceeding without consent (void assignment) applies to assignments; change-of-control consequence not expressly stated—this is a gap but consent requirement remains express."
+  ]
+}

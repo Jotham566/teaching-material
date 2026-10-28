@@ -1,0 +1,28 @@
+SEE ALSO: Edition Verification Record.txt (27 October 2026) for the final verification, the staging build and what remains open. The list under STILL OPEN below is superseded by that record.
+
+MAINTENANCE RECORD: FIXES APPLIED 26-27 OCTOBER 2026
+Basis: Part 3 of "Applied AI and Automation - Independent Evaluation.md".
+
+HOW THE FILES WERE CHANGED
+The decks, the Facilitator Guide, the Learner Workbook and the practice files were edited directly with python-pptx and python-docx. The builder sources in Authoring/Documents and Authoring/PowerPoint were not rebuilt, and they still carry the earlier fictional agreement, the generated notes and the earlier practice files. Do not run the builder over the current files. If a rebuild is ever needed:
+1. Re-apply the agreement wording, the replaced practice files and the Guide and Workbook edits from this folder's current files.
+2. Run Authoring/Documents/apply_lesson_notes.py on the 02 Class Slides folder. It writes the notes from lesson_notes.json and keeps the Sources and Playback lines from lesson_notes_sources.json.
+3. Check the animation click counts (34 slides, 126 click stages) and the notes counts (285).
+The Validation folder and Deck Manifest.json describe the earlier build. The counts for slides and animation did not change. File Integrity.json holds the hashes of the current files.
+
+WHAT CHANGED
+Agreement: replaced with Common Paper Cloud Service Agreement Standard Terms v3.0 with SLA v2.0 (CC BY 4.0), with two labelled teaching adaptations. Provenance and hashes in 01 Matter and Sources/Agreement Provenance and Adaptations.txt. All dependent files, slides, the Guide and the Workbook were updated.
+Notes: every one of the 285 slides has a new note in the teacher's first-person voice (concept in plain words, worked step, a real question, what a good answer contains, a likely misconception with a follow-up, and a transition). Generated rotating lines were removed. Answers and scoring stay in Teaching Resources. The Workbook holds prompts and records only.
+Accounts and tools: Run Demonstrations.txt sets out five routes (needs an account, local, needs a command-line tool, needs the real account and rehearsal, saved). No account type is assumed.
+Evidence: Observed Runs holds nine fresh model runs on the new agreement, four model-selected agent traces, OCR output and retrieval test output, each labelled with how it was made. Scripted host tests are kept apart in Scripted Host Tests. The earlier saved runs are in Observed Runs/Superseded - earlier fictional agreement.
+Retrieval: 40-document library with lexical, LSA (vector search learned from the library only) and an optional embedding backend that was not tested in the maintenance environment. Test results are saved as observed.
+OCR: four fixed print conditions with measured word accuracy and negation survival.
+Time: Sessions 1, 9, 10, 11 and 12 were rebalanced, with one complete exercise per session.
+Smaller fixes: typos, definitions used before their optional slides, Entry and Exit Diagnostic moved to Teaching Resources with an answer key, cost sheet with labour rate and calculated rows, Animation Guide footer, Goal Relief wording checked against the judgment PDF.
+
+STILL OPEN
+1. The embedding backend in search_library.py (sbert) has not been run. Run it once on a machine with internet access and save the output.
+2. Connected retrieval, portal-builder and live deep-research demonstrations have not been run in the learner's account. They stay on the rehearsal list.
+3. K-Files citation for the Goal Relief appeal-scope point has not been checked.
+4. The run outputs are single runs by one model family on one day. Re-run them with the tools the learner actually uses.
+5. Rendered visual check was done for slides changed in the agreement replacement. The new notes do not change any slide appearance.

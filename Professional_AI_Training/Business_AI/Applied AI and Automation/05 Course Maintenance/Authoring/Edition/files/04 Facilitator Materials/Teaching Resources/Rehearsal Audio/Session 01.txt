@@ -1,0 +1,183 @@
+Welcome to Session 1. For the next two hours we work on one question: which work suits AI, which suits ordinary software, and which stays with professional judgement. In a legal or tax practice that matters, because the wrong tool on the wrong task costs accuracy, time or a client's trust.
+
+By the end you'll have picked one real task from your own firm and agreed how we would test it. Everything we use today is fictional: the firm, the clients and the contract.
+
+I won't start with slides. I'd like to hear first how you think about AI right now. Name a task you trust AI with today, and a task you would always check. Tell me why for each. Any concrete example works, and your reasons are what I'm after. Take a moment with that.
+
+Before I explain anything, I'm going to ask you a few spoken questions, one at a time, and I'll write down your reasons as well as your answers. This is the first of them.
+
+Name one task you trust AI with today, and one task where you would always check what it gives you. Then tell me why. Give that a little thought.
+
+Any concrete example is fine. Say you trust it to tidy an email but you check anything with a figure in it. That already tells me where your line sits, and it becomes our baseline for the day. By the end we want one candidate task from your own firm, so I'll be listening for tasks that could become that.
+
+Now let me show you the matter we'll use all day.
+
+This is the matter. Kampala Legal and Tax acts for Victoria Services Ltd, the customer and our client. Its service provider is Equator Systems Ltd. Equator has told Victoria that it proposes an internal reorganisation, and Victoria wants to know whether the agreement requires its consent. We don't yet know who owns what after the reorganisation, or whether Equator stays responsible. All of it is fictional.
+
+Try this one. If this landed on your desk this morning, what would you ask for first? See what you come up with.
+
+Let me give you mine. I'd ask for the signed agreement, the facts of the proposed transaction, the client's instruction, and any records the advice depends on. If your first instinct was to ask what the law says, I'd steer you to what the agreement itself says, because the contract is the first source.
+
+Next is the set of documents we'll keep coming back to.
+
+This is the folder we work from, and it holds four kinds of material. First, the executed agreement, which we call CONTRACT-01 version 2. Second, the older draft version 1, the firm playbook and the client's instruction. Third, the financial records: sales, credit notes, the ledger and receipts. Fourth, public sources such as legislation, judgments and URA guidance.
+
+An AI tool could read all of these in seconds. That doesn't make them equal. The executed agreement is evidence of what the parties agreed. The superseded draft is history. The playbook is the firm's own policy. A judgment is public authority.
+
+A question for you. If the draft and the executed agreement disagree, which one answers the client's question, and why? Take your time.
+
+The executed version, because it's the one that binds the parties. If you'd said the newest one, I'd ask how you know which is newest.
+
+Now we put a name on what these tools are.
+
+Here is a working definition of an AI system. It's a system that takes inputs and infers how to produce predictions, content, recommendations or decisions for a goal. The word to hold on to is infers. A filing cabinet stores a record and gives it back unchanged. An AI system works out an output from what you give it. Systems also differ in how much they act on their own and how much they adapt. The lower line adds that AI is also the field of study that builds such systems.
+
+This paraphrases a published definition from the OECD. It says nothing about how well any product performs.
+
+I'd like to hear your thinking on this one. If a vendor tells you its product meets this definition, have you learned that it's reliable? Say it out loud if it helps.
+
+Not at all. The definition tells you what kind of thing it is. Reliability comes from testing it on your task. If that feels slippery, try this angle: what test would you run on one firm task?
+
+Next we separate the labels people mix up.
+
+This table sorts four terms by what the work is. Data analysis means examining data to answer a question, such as reconciling sales and receipts. You can do that in a spreadsheet with no AI at all. Data science is the wider practice of using computing, statistics and subject knowledge to study data. Machine learning means a program learns patterns from examples, such as predicting which category a document belongs to. Deep learning is machine learning that uses neural networks with many layers. A neural network is a program built from layers of small connected calculations.
+
+Now it's your turn. Take an invoice total of 4,820,000 shillings across twelve lines. Would a language model add that up better than a calculator? Mull that over for a moment.
+
+Exact arithmetic has a defined right answer, so a calculation tool should do it. The AI can help prepare the data or explain the result. If you'd back the language model, how would you check its total?
+
+Now to the kind of AI most people have met.
+
+Generative AI is a kind of AI model that produces new content, such as text, by modelling patterns it learned from data. A model here is the trained program itself. In our matter the task is to draft a response using the client's instruction and the approved clause.
+
+The draft will read well. New wording can still contain a claim the contract doesn't support, because the model produces likely text and doesn't look up a fact. So the draft is a proposal to check against the source.
+
+Let me put a question to you. Victoria's draft reply reads smoothly and sounds confident. What does that tell you about whether it's correct? Work it through before I answer.
+
+It tells you nothing about correctness. You check each factual claim against the agreement. If a confident tone feels like a good sign, think of a human colleague who sounded sure and was wrong.
+
+Next I'll draw how these fields sit inside one another.
+
+Now I'll build a picture of how these fields sit inside one another. We go one layer at a time, and I'll stop after each so you can see where each term lives.
+
+Start with the widest idea. Artificial intelligence is the largest field. It covers the whole effort to build and study systems that infer outputs from inputs. Everything else we name today sits inside it or beside it.
+
+Inside it sits machine learning. This is the part where programs learn patterns from examples.
+
+Inside machine learning sits deep learning. These are models built from neural networks with many layers of small connected calculations, and the layers help them learn useful representations of text.
+
+Next comes generative AI. It describes the ability to create new content, and it often uses deep learning to do it. Drafting a letter or an amendment belongs here.
+
+Last come two side notes. Data science overlaps all of these fields, and it also includes work with no machine learning at all. Natural language processing, or NLP, studies how computers handle human language.
+
+Here's one for you. Is every data analysis task a generative AI task? Sit with it for a second.
+
+The answer is no. Counting records, sorting documents into categories and drafting a letter are three different jobs. If that feels slippery, think about which of those three a spreadsheet already does.
+
+Here the ideas become tasks. Totalling invoice amounts is calculation, and it gives a number. Identifying a contract type is classification, and it gives a category. Finding a precedent clause is retrieval, which means searching a collection and returning the passages it found. Drafting an amendment is generation, and it gives proposed wording.
+
+Each task has its own test of success. The number is right. The category is right. The passage is relevant and current. The wording is accurate and fit for purpose. One workflow can mix several of these, and when people say AI they often mean a single chat tool. This table shows that one name covers different jobs.
+
+Let me ask you something. Of these four, which output would you never send out without a lawyer's decision? Think it over.
+
+Every output needs a decision about whether and how to use it, and the amendment needs a partner's review most of all. If you'd only said the draft, I'd ask what decision applies to the number.
+
+Next I'll show where the model sits in a working tool.
+
+Let's look at where the model sits in a working tool. We'll take it in four parts, and our question about the agreement is the example all the way through.
+
+First comes the person. The person brings the question and the authority to ask it.
+
+Then the application. This holds the files and the instructions. A model that hasn't been given the executed agreement can't tell us what it says.
+
+Third, the model and its tools. This is where the generating or the searching happens. A tool can fetch the document. An API, which is a way for one program to ask another to do something, is how such pieces often connect.
+
+Finally, review. A person checks what came back and decides how the output may be used.
+
+A quick question before we go on. Where in this chain should the check on who may see a restricted document happen? Let's hear your answer first.
+
+It belongs before the system returns the evidence or takes an action. If you'd said at the review step, I'd ask what has already been exposed by then. Next, a simpler contrast.
+
+Two approaches sit side by side here. A rule follows logic someone wrote down. When a recorded review date arrives, send a reminder. A learned prediction is a model's estimate based on examples, such as which incoming documents belong to a matter. The estimate can be wrong on a new document, and the rule never guesses. Both can live in the same firm.
+
+One for you to work out. A limitation period date is already on the file. Which approach would you use for the reminder, and who owns the date? No rush.
+
+I'd keep a maintained date field with a simple rule, and name a person responsible for the date being right. A rule only works if the date is correct. If you lean toward the model, I'd ask what you would show it as examples, and whether you'd trust it on a date that has legal effect.
+
+Now we put a real question to the contract.
+
+Now the first contract question. Victoria asks whether the agreement requires its consent for this transaction. The answer sits in Section 12.6. The version that governs is the replacement in the Key Terms, because the Key Terms control over the Standard Terms.
+
+Let me read the replacement in full. Neither party may assign without the other's prior written consent. Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganisation within a wholly owned group if Provider remains responsible for its obligations under the agreement.
+
+Tell me what you make of this. Can we answer yes or no right now? Take a moment with that.
+
+We can't. The exception has two conditions, and we have no ownership chart and no confirmation that Equator remains responsible. If you'd say it's internal, so no consent, I'd ask how we know the group is wholly owned.
+
+Now I'll show you two ways an AI answer could read.
+
+Here are two answers to the consent question. The first reads: every change of control requires prior written consent. It's fluent and short, and it leaves out the exception. The second says prior consent applies to a change of control, and a reorganisation inside a wholly owned group is excused if the provider remains responsible. Hold the Key Terms text of Section 12.6 beside them, and see if you can find the words the first answer is missing.
+
+Here's something to chew on. What makes the second answer more useful to the partner? Have a think.
+
+It keeps the condition and can be traced to the source. It still depends on the facts, which we don't yet have.
+
+If the connected tool is available, this is where we put the real question to it and keep whatever it returns, right or wrong. If it's unavailable, I'll use the labelled example and mark that step as not run.
+
+Next, a boundary on what we may feed these tools.
+
+Before you use any tool with this material, we set a boundary. In class, public authorities and our fictional client records are fine. Real client material is different. It needs a permitted tool, a stated purpose and an access decision. Confidentiality and personal data duties apply, and some matters are restricted. A personal subscription doesn't by itself give a firm the right to upload client files. I'll keep this short today, and Session 11 covers governance in detail.
+
+Here's one for you. In your firm, who decides whether a real matter may go into a tool? Sleep on it for a second, then tell me.
+
+The person designated to own the information decides, together with an approver under the firm's duties. If you'd say whoever is using it, I'd ask who answers to the client if something leaks.
+
+Now we pick a task to work on.
+
+This table offers three candidate tasks. Precedent search aims to find relevant firm knowledge, and its first constraint is current sources and permissions. Contract comparison aims to find departures from the playbook, and it has to preserve qualifications such as the exception we just read. Tax evidence review aims to find discrepancies between records, and it needs complete and comparable records.
+
+You'll choose one, and we'll record it as a hypothesis to test later. I won't ask you for a promised saving. We come back to this choice after the data and risk sessions.
+
+So here's the question. Which one could your firm investigate first, and what would a good result look like? No rush.
+
+A strong answer picks a narrow task with evidence you can reach, and a way to tell whether the output is right. If you picked something broad, I'd ask which single document type you'd start with.
+
+Now we do the work in class.
+
+Now we do the work together. It runs in four steps.
+
+First, we talk about how you use AI today, using the answers I wrote down at the start. Second, you ask the assistant the clause question with the evidence you choose. I'll demonstrate once so you see the steps, and then you choose the evidence for a changed version of the question. Third, we compare the response with the complete clause. Fourth, you pick one firm task and a success test.
+
+This needs a connected account, so I've rehearsed it in the real account before class. If the tool is unavailable, I'll use the labelled example, mark that step as not run, and keep time for the explanation. Either way I save the actual output.
+
+Before you press enter, tell me what you expect the answer to include. Let that settle for a moment.
+
+Then we'll look at what we can conclude.
+
+Now let's say what today's work shows. Before I give you my version, put the conclusion in your own words. Take your time, and then I'll compare it with mine.
+
+Here's mine. Calculation, learned classification, retrieval and drafting are different operations. The base facts we were given don't establish every condition of the exception. A pilot needs an owner, permitted evidence and a test for the specific task. The second point is a limit. One opening demonstration and an entry diagnostic say nothing about how a tool performs in production.
+
+I'd like to hear your thinking on this one. Which part of today's result is still unverified? Have a think.
+
+One run shows what happened once. It doesn't show how often the tool is right. If you only repeated the first point, I'd ask what you would need to see across many documents before relying on it.
+
+Next we record the decision.
+
+We record one decision. Select one task to investigate, and write down how it's done today, who owns the source material, and what is still uncertain. Then note the evidence you still need. This is a decision record for our class and doesn't authorise anything in your firm.
+
+We'll write down a proposed owner and one condition together before we move on. For the contract comparison task, an owner might be the partner who maintains the playbook, and a condition might be that only fictional or permitted documents are used.
+
+A quick question before we go on. What evidence would change this proposed decision? Let's hear your answer first.
+
+You'd revisit it if the quality results, the source material or the permitted scope changed. If you'd say nothing would change it, I'd ask what result you'd accept as a reason to stop.
+
+Last, a short check.
+
+Here's the check, and I'll ask all three questions before we look at any answers. First, a deadline is fixed and you need a reminder. Would you train a model? Second, a draft quotes the contract but leaves out the exception. Is it usable? Third, name one person who owns the source material for your chosen task. Take a moment with all three.
+
+Here's how I'd answer them. For the date, keep a maintained date and a simple rule. The draft fails on completeness because it left out the operative exception, so it isn't usable as it stands. For the owner, name the real or proposed person who looks after that matter's sources.
+
+If one of your answers is partial, I'll change the facts and ask again. What if the date were uncertain, who would you ask?
+
+That's Session 1. Next time, in Session 2, we look at how AI learns and represents information.

@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-28",
+  "sessions": 12,
+  "prompts": 17,
+  "passed": 17,
+  "total": 17,
+  "launcher_results": [
+    {
+      "demo": "preflight",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:39:45.917098+03:00",
+      "output": "final_tests/preflight"
+    },
+    {
+      "demo": "s02_vectors",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:39:45.917243+03:00",
+      "output": "final_tests/s02_vectors"
+    },
+    {
+      "demo": "s05_ocr",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:39:45.969795+03:00",
+      "output": "final_tests/s05_ocr"
+    },
+    {
+      "demo": "s06_baseline",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:39:49.071572+03:00",
+      "output": "final_tests/s06_baseline"
+    },
+    {
+      "demo": "s06_reviewed",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:39:49.398570+03:00",
+      "output": "final_tests/s06_reviewed"
+    },
+    {
+      "demo": "s06_query",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:05.570025+03:00",
+      "output": "final_tests/s06_query"
+    },
+    {
+      "demo": "s06_missing",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:10.622377+03:00",
+      "output": "final_tests/s06_missing"
+    },
+    {
+      "demo": "s09_host",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:10.933687+03:00",
+      "output": "final_tests/s09_host"
+    },
+    {
+      "demo": "s09_protocol",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:11.003460+03:00",
+      "output": "final_tests/s09_protocol"
+    },
+    {
+      "demo": "s09_agent",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:11.117346+03:00",
+      "output": "final_tests/s09_agent"
+    },
+    {
+      "demo": "s09_injection",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:14.043515+03:00",
+      "output": "final_tests/s09_injection"
+    },
+    {
+      "demo": "s09_unknown",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:31.243934+03:00",
+      "output": "final_tests/s09_unknown"
+    },
+    {
+      "demo": "s09_onecall",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:35.191479+03:00",
+      "output": "final_tests/s09_onecall"
+    },
+    {
+      "demo": "s10_reconcile",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:38.054905+03:00",
+      "output": "final_tests/s10_reconcile"
+    },
+    {
+      "demo": "s10_controls",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:38.103638+03:00",
+      "output": "final_tests/s10_controls"
+    },
+    {
+      "demo": "s11_ocr_ladder",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:38.305214+03:00",
+      "output": "final_tests/s11_ocr_ladder"
+    },
+    {
+      "demo": "s12_costs",
+      "exit_code": 0,
+      "passed": true,
+      "started": "2026-10-28T08:40:40.198564+03:00",
+      "output": "final_tests/s12_costs"
+    }
+  ],
+  "tested_source_hashes": {
+    "03 Learner Materials/Practice Files/facilitator_demo.py": "39a64dbe97a17fb07ac602d165caed57b0ee76e0eb832702e6725f92a19a1d9e",
+    "03 Learner Materials/Practice Files/facilitator_demo.command": "6f6e72685341c11667da3c0e8b2fa125da51390664cc32593e948b5b8f6aa891",
+    "03 Learner Materials/Practice Files/facilitator_ocr.swift": "a0fcb213590bca699602344db43db172548202e18c59f98345f95ff95102488d",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_D_severe.png": "4bec2aa1b4d321f03eceb9798db74cb89b25865630c0338233d7ff5efb6015ef",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_D_severe.png": "44a02cdf275c1b13f014c7aed35f6adecfdaced35215ed7d8379f731bde6891a",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_B_mild.png": "f105010c5c0ca5cc41cf72cad4e040cc1137c0668a2f98392fa33d13123d37f3",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_B_mild.png": "842a116ec758f51436fe28f8c2bd872341b480319178a6509116906fbfc8fc75",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_A_clean.png": "2074d5f2f53e987f9845120d37485a549c1e62cd23fd8e237aa386612915dcde",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_C_moderate.png": "d82967a5240fc9f807ef444adf662d2c2f9fc321cc1a87ce662c218eaba56df7",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_A_clean.png": "274ead4f3503b8d757eafb20920df0fac08b647c76485e2554ae4d2d86e251cb",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_B_mild.png": "d5d40edee6923a5785e4b18c5c3419bb4d4caf6a8bee534714aa2a820b58ca1e",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_C_moderate.png": "eeac9b082fc9b0cebf931788f27bed175c7c1078e3ee582780edfd87cf50a34f",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_D_severe.png": "da4c79f9b5db43ba91112df9b7d3d2c53d34829b78c905d130af0f9d7babee76",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_C_moderate.png": "acc5a28f7afea2cf5c5735810e6a239f140618e578769f568392f299dca3ba75",
+    "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_A_clean.png": "901c528594cdb9a563d281624514661c68ad2dc45a092f495df3b7723e53f4fa"
+  },
+  "scope": "Execution smoke checks plus the existing deeper retrieval/host tests. Browser procedures use official UI references and previously rehearsed account routes; future model outputs still require source review.",
+  "document_review": {
+    "guide_pages": 53,
+    "workbook_pages": 17,
+    "all_changed_pages_visually_inspected": true,
+    "unchanged_core_guide_pages_pixel_identical": 17,
+    "off_page_text": 0,
+    "orphan_pages": 0,
+    "guide_sha256": "b59737989068e8ce830fdae45ea0a8fc453d2cee0deab6e79b96f507ec3a9726",
+    "workbook_sha256": "aec4f9a590be071c05f6122ea1b4c2d609eb4f9fcac31959351903ae2281c02b"
+  },
+  "instruction_source_hashes": {
+    "05 Course Maintenance/Authoring/Documents/demonstrations.json": "7d0264f4b0b230c7e36c6d07b8fa87bc7c07337e61839342b00739096bb46938",
+    "05 Course Maintenance/Authoring/Documents/add_demonstration_instructions.py": "3ca0bb7bdfb48a1a3aab4140fd847d95bf8b92c118eedc8349782ed5e7914502",
+    "05 Course Maintenance/Authoring/Documents/make_demo_materials.py": "3e8b4ff45a7de87a9cf3861cea169ba46f9776214238f49bdca5d21e2676189e",
+    "05 Course Maintenance/Authoring/Documents/session_delivery.json": "9f423367f386a33b80b7d3fedaeb747168859576f354cdcaf3e004e3f166e7b2",
+    "05 Course Maintenance/Authoring/Edition/patch/docx_patch.json": "2e4b501f522041019228ff2019e7e229fa9da92f3198313a5c7464fbefbd636d"
+  },
+  "instruction_review": {
+    "date": "2026-10-28",
+    "learner_context": "Existing use of Claude, ChatGPT and similar assistants; mechanism and organisational judgement developed through legal and tax decisions.",
+    "sessions_with_professional_decision": 12,
+    "routine_interface_steps": "Private facilitator preparation unless requested.",
+    "repeatability": "One fresh answer plus labelled saved repeated runs; saved repeat prompts are identical within that set; today uses its own prompt.",
+    "briefing": "Begin with the learner\u2019s usual brief, assess evidence and review effort, then test a reusable review specification.",
+    "timing": "Twelve 120-minute plans; familiar explanations move quickly into the deeper case in the existing guided block.",
+    "execution_scope": "No executable route, retrieval fixture, model source or source image changed in this delivery revision. The 17 actual execution results are retained from the preceding pass; instruction alignment and the rebuild are checked separately."
+  }
+}

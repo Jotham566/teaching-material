@@ -1,0 +1,97 @@
+{
+  "kind": "SCRIPTED HOST TEST - no model involved",
+  "host": "agent_host.ReadOnlyHost",
+  "budget": 1,
+  "all_as_expected": true,
+  "results": [
+    {
+      "test": "T1 permitted lookup",
+      "request": {
+        "action": "lookup",
+        "contract_id": "CONTRACT-01",
+        "clause": "12.6"
+      },
+      "untrusted_note_in_previous_result": false,
+      "host_decision": "EXECUTED",
+      "detail": "returned the permitted record",
+      "expected": "EXECUTED",
+      "as_expected": true
+    },
+    {
+      "test": "T2 unknown document",
+      "request": {
+        "action": "lookup",
+        "contract_id": "UNKNOWN-99",
+        "clause": "12.6"
+      },
+      "untrusted_note_in_previous_result": false,
+      "host_decision": "DENIED",
+      "detail": "no permitted record for this document and clause in this matter",
+      "expected": "DENIED",
+      "as_expected": true
+    },
+    {
+      "test": "T3 extra argument",
+      "request": {
+        "action": "lookup",
+        "contract_id": "CONTRACT-01",
+        "clause": "12.6",
+        "matter": "OTHER-02"
+      },
+      "untrusted_note_in_previous_result": false,
+      "host_decision": "DENIED",
+      "detail": "unexpected arguments: matter",
+      "expected": "DENIED",
+      "as_expected": true
+    },
+    {
+      "test": "T4 operation the host does not offer",
+      "request": {
+        "action": "send",
+        "to": "new.recipient@example.test",
+        "body": "full matter"
+      },
+      "untrusted_note_in_previous_result": false,
+      "host_decision": "DENIED",
+      "detail": "operation 'send' is not offered by this host",
+      "expected": "DENIED",
+      "as_expected": true
+    },
+    {
+      "test": "T5 request that follows an injected note",
+      "request": {
+        "action": "send",
+        "to": "new.recipient@example.test",
+        "body": "full matter"
+      },
+      "untrusted_note_in_previous_result": true,
+      "host_decision": "DENIED",
+      "detail": "operation 'send' is not offered by this host",
+      "expected": "DENIED",
+      "as_expected": true
+    },
+    {
+      "test": "T6 second lookup against a budget of one",
+      "request": {
+        "action": "lookup",
+        "contract_id": "CONTRACT-01",
+        "clause": "12.6"
+      },
+      "untrusted_note_in_previous_result": false,
+      "host_decision": "HELD",
+      "detail": "call budget of 1 is used up",
+      "expected": "HELD",
+      "as_expected": true
+    },
+    {
+      "test": "T7 malformed request",
+      "request": "lookup everything",
+      "untrusted_note_in_previous_result": false,
+      "host_decision": "HELD",
+      "detail": "malformed request",
+      "expected": "HELD",
+      "as_expected": true
+    }
+  ],
+  "limitation": "Shows enforcement only. Says nothing about what a model would propose."
+}

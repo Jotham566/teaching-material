@@ -1,0 +1,51 @@
+```json
+{
+  "source_scope": "CONTRACT-01 v2 executed 15 August 2026, comprising Order Form, Key Terms (Framework Terms), and incorporated Standard Terms Version 3.0 and SLA Standard Terms Version 2.0. The Key Terms state: 'If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms.'",
+  "established_facts": [
+    "Teaching Adaptation 1 in Key Terms replaces Standard Terms Section 12.6 with a modified assignment clause",
+    "Equator (Provider) has notified Victoria (Customer) of a proposed internal reorganisation",
+    "Victoria has not received Equator's ownership chart",
+    "Victoria has not received written confirmation that Equator remains responsible",
+    "Victoria has not received any statement about whether the agreement will be transferred"
+  ],
+  "unresolved_facts": [
+    "Whether the proposed reorganisation involves an assignment of rights or obligations under the Agreement",
+    "Whether the proposed reorganisation involves a change of control of Equator",
+    "Whether the reorganisation is within a wholly owned group",
+    "Whether Equator will remain responsible for its obligations post-reorganisation"
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2 Key Terms",
+      "location": "Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "12.6 Assignment. Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+    },
+    {
+      "source": "CONTRACT-01 v2 Key Terms",
+      "location": "Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect."
+    },
+    {
+      "source": "CONTRACT-01 v2 Key Terms",
+      "location": "Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+    },
+    {
+      "source": "CONTRACT-01 v2 Key Terms",
+      "location": "Using the Framework Terms",
+      "quote": "If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms."
+    }
+  ],
+  "analysis": "The replaced Section 12.6 contains three operative elements: (1) assignment of rights/obligations requires prior written consent; (2) change of control of Provider requires Customer's prior written consent; (3) an exception—'That consent' (referring to change-of-control consent) is not required for a reorganisation within a wholly owned group if Provider remains responsible. The exception applies only to the change-of-control consent, not to assignment consent. An internal reorganisation alone—without assignment or change of control—would not trigger either consent requirement. Without knowing the transaction structure, we cannot determine which trigger applies. If it is an assignment, consent is required with no exception. If it is a change of control, the exception may apply but only if both conditions are satisfied: wholly owned group AND Provider remains responsible. The facts needed to verify the exception have not been provided.",
+  "conclusion": "Cannot determine. If no assignment and no change of control, consent is not required. If assignment occurs, consent is required (no exception). If change of control occurs, consent is required unless Equator demonstrates both exception conditions. Victoria must request: (1) confirmation whether the agreement will be assigned; (2) confirmation whether a change of control of Equator will occur; (3) ownership chart showing wholly owned group structure; (4) written confirmation Equator remains responsible for its obligations.",
+  "review_checks": [
+    "Confirmed Key Terms replacement controls over original Standard Terms Section 12.6",
+    "Separated assignment sentence from change-of-control sentence from exception sentence",
+    "Identified that exception ('That consent') refers specifically to change-of-control consent in prior sentence",
+    "Did not assume reorganisation constitutes assignment or change of control without evidence",
+    "Did not add facts about group membership or responsibility not stated in task",
+    "Listed specific evidence needed for each unresolved fact",
+    "Did not infer fees from absent Fee Schedule"
+  ]
+}
+```

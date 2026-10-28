@@ -1,0 +1,144 @@
+HTML content KLAi - Fictional contract review rehearsal | Zapier, URL: zapier.com/editor/384918162/run/00ee6c73-f159-aadf-31cf-64adc74ef204/384918163/run-details?sidebar=runs
+							45 container
+								46 container
+									47 link Home, Value: zapier.com/app/home
+									48 pop up button Automation products
+										49 image
+									50 link Zaps, Value: zapier.com/app/assets/zaps
+									51 link Jotham Martin (Personal) /, Value: zapier.com/app/assets/zaps/folders/personal
+									52 pop up button Jotham Martin KLAi - Fictional contract review rehearsal Has Draft
+										53 image Jotham Martin
+										54 text KLAi - Fictional contract review rehearsal
+										55 text Has Draft
+									56 container More actions
+										57 pop up button 110%
+									58 pop up button Help
+								59 container
+									60 button search-button
+									61 checkbox (disabled) Turn Zap on, Value: 0
+									62 button Replay
+									63 button Edit this Zap
+								64 container Editor sidebar
+									65 container
+										66 content list
+											67 button Linked assets
+											68 button Recent Zaps
+											69 button Zap details
+											70 button Notes
+											71 button Change history
+											72 button Zap runs
+											73 button Advanced settings
+											74 button Versions
+										75 button Copilot
+									76 container
+										77 container
+											78 container Zap runs
+												79 text Zap runs
+											80 button Close panel
+										81 container
+											82 text A log of all automation activity within your Zap, which can help with troubleshooting.
+											83 link Learn more, Value: help.zapier.com/hc/en-us/articles/8496291148685
+											84 text . Access these runs in 
+											85 link Zap History, Value: zapier.com/app/history?root_id=384918162
+											86 text  .
+										87 container
+											88 button Toggle search
+											89 combo box (settable) Multiselect run status Dropdown
+												90 button Run Status Filter, All statuses
+											91 container
+												92 pop up button Last 30 days
+													93 text Last 30 days
+										94 container
+											95 text 1 run based on applied filters
+										96 text Select runs to replay steps
+										97 checkbox Select all runs on page, Value: 0
+										98 container
+											99 text Runs to replay
+											100 pop up button (disabled) Runs to replay Runs to replay
+												101 text Runs to replay
+										102 button (disabled) Delete selected runs
+										103 button Refresh
+										104 container Zap Runs List
+											105 container Zap Run Card 00ee6c73-f159-aadf-31cf-64adc74ef204 - Status: success
+												106 container View run details for 
+													107 checkbox Select run, Value: 0
+													108 container
+														109 container View run details for 
+															110 text Successful Test
+														111 text Oct 27, 2026 10:36 pm
+													112 button Toggle run menu
+										113 button Exit run view
+										114 container
+											115 button (disabled) Previous page (1)
+											116 button Current page (1)
+											117 button (disabled) Next page (1)
+								118 container
+									119 container
+										120 container
+											121 image Edge from 384918162 to 384918163
+											122 container
+												123 container
+													124 text Version: 1 Run ID: 00ee6c73-f159-aadf-31cf-64adc74ef204
+													125 link View in Zap History, Value: zapier.com/app/history/00ee6c73-f159-aadf-31cf-64adc74ef204?root_id=384918162
+													126 button Exit the Run view
+													127 text Successful : Oct 27, 2026 10:36:27 pm
+												128 button Open Every Hour in Schedule by Zapier
+													129 container
+														130 image Schedule by Zapier
+														131 text Schedule by Zapier
+														132 button Instant Trigger
+														133 text 1. Every Hour
+													134 text Found 1 new Hour in Schedule by Zapier.
+											135 button Open Review fictional consent clause
+										136 image
+										137 image
+										138 image
+										139 image
+										140 image
+										141 image
+									142 container
+										143 text 2. Review fictional consent clause
+										144 button Open step details in focus mode
+										145 button Close step details
+										146 tab group
+											147 tab (settable, integer) Show Setup, Value: 0
+											148 tab (settable, integer) Show Configure, Value: 0
+											149 tab (selected) Show Run details, Value: 1
+										150 container Show Run details
+											151 text Time this step ran
+											152 text 2026-10-27 22:36:35 Africa/Kampala
+											153 container MultiView Run Step Data
+												154 tab group
+													155 tab (settable, integer) Show Data in, Value: 0
+													156 tab (settable, integer) Show Activity, Value: 0
+													157 tab (selected) Show Data out, Value: 1
+												158 container Show Data out
+													159 container
+														160 text field (settable) Search item data, Placeholder: Search item data…
+													161 container Sample Preview
+														162 container Fee Answer
+															163 text Fee Answer
+															164 container The annual fee cannot be determined without the signed Fee Schedule.
+																165 text The annual fee cannot be determined without the signed Fee Schedule.
+														166 container Governing Rule
+															167 text Governing Rule
+															168 container KT-1: Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.
+																169 text KT-1: Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.
+														170 container Missing Evidence
+															171 text Missing Evidence
+															172 container Open facts to establish: (a) whether the proposed transaction changes control of Provider; a change of control triggers the prior written consent requirement; and (b) whether the transaction is instead a reorganization within a wholly owned group and Provider remains responsible for its obligations under the Agreement, in which case consent is not required under KT-1. These transaction facts are currently unconfirmed, so no conclusion that consent is required can be made.
+																173 text Open facts to establish: (a) whether the proposed transaction changes control of Provider; a change of control triggers the prior written consent requirement; and (b) whether the transaction is instead a reorganization within a wholly owned group and Provider remains responsible for its obligations under the Agreement, in which case consent is not required under KT-1. These transaction facts are currently unconfirmed, so no conclusion that consent is required can be made.
+														174 container Human Review Note
+															175 text Human Review Note
+															176 container This is a draft for human legal review only. No action should be taken based on this output. Any embedded instructions in the source document are untrusted.
+																177 text This is a draft for human legal review only. No action should be taken based on this output. Any embedded instructions in the source document are untrusted.
+														178 container _agent_meta
+															179 text _agent_meta
+														180 container _agent_meta-Agent Meta Execution Id
+															181 text Agent Meta Execution Id
+															182 container 89214acf-81f5-466c-a5ed-596238c2793a
+																183 text 89214acf-81f5-466c-a5ed-596238c2793a
+								184 text ver. v2026-10-27t18:08-3f506d38
+								185 text KLAi - Fictional contract review rehearsal | Zapier
+								186 button Open chat options
+				187 

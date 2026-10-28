@@ -1,0 +1,32 @@
+EMBEDDING DEMO RUN SHEET
+Status: RUN on the teaching Mac, 27 October 2026. all-MiniLM-L6-v2 was downloaded and executed. Self-test: normalized 384-dimensional vectors and repeatable output. Retrieval: K4–K7 pass; K1–K3 and K8 fail (4/8 overall). All outputs, model revision and package versions are in Teaching Resources/Observed Runs/Mac Rehearsal 2026-10-27/06 Neural Embedding. The opposite consent statements have cosine similarity 0.839; similarity is not a legal reading.
+
+What it shows
+A neural embedding model turns each chunk and the question into a list of numbers, and the search ranks chunks by how close their lists are. Unlike LSA, the model was trained elsewhere on a very large amount of text, to represent relationships beyond exact word matches. In this run, the paraphrased assignment retrieval check still failed; inspect the returned passages rather than assuming the model will find the operative rule. LSA (in the same script) is a classical vector method learned from these 40 documents only, so it stays as the comparison.
+
+What needs an account or a download
+No account. One download of the model (about 90 MB for all-MiniLM-L6-v2) from Hugging Face on first use, then it runs on a laptop processor. Pin the model name in the saved output.
+
+Steps (about 20 minutes, before class)
+1. On the teaching Mac, use ~/.cache/klai-course/embedding-venv/bin/python for the commands below. The model is already cached. On another machine, create an isolated virtual environment and install sentence-transformers; use Embedding Environment.txt to reproduce the recorded package versions.
+2. python3 embedding_selftest.py --save "Observed Embedding Selftest.txt"
+   Check that the vector lengths are 1.0 and that the same text gives the same vector. Read the printed cosine pairs.
+3. python3 run_retrieval_tests.py --method sbert > "Observed Embedding Test Output.txt"
+4. python3 negation_check.py --method sbert >> "Observed Embedding Test Output.txt"
+5. Save both files in Teaching Resources/Observed Runs and add the date, the model name, the package versions and any difference you notice from lexical and LSA.
+
+What to record
+The date, the model name and version, the package versions, and every test result, including failures. A model that fails K1 or K7 is a result.
+
+What the run does not establish
+That the neural model will pass K3 or K8, or that it will tell "required" from "not required". Run it and say what it did. The self-test prints the similarity of a statement and its opposite so you can see the second point on your own machine.
+
+Limits
+Forty fictional documents, eight tests, one model, one run. The tests check which passages come back and not whether an answer is correct. Real systems add chunking choices, metadata, access rules and re-ranking.
+
+CURRENT TEACHING ROUTE | REPAIRED 28 OCTOBER 2026
+The original neural baseline remains 4/8. Its oversized passages could exceed the model's 256-token input limit. Compare that failure with reviewed_retrieval.py, which uses bounded source spans, an explicit document identity and source purpose, combined keyword/neural candidates, cross-encoder reranking and mandatory amendment context. This is a changed review workflow, not a claim that embeddings alone improved.
+On the teaching Mac, run from this directory:
+  ~/.cache/klai-course/embedding-venv/bin/python test_reviewed_retrieval.py
+  ~/.cache/klai-course/embedding-venv/bin/python reviewed_retrieval.py "Does the reorganisation need consent?" --source-id CONTRACT-01 --offline
+First use on a new machine needs sentence-transformers and both public model downloads. The output is evidence for a reviewer, not a generated legal answer. No source is substituted when the requested agreement is unavailable. See Observed Runs/Corrections 2026-10-28 for all 19 recorded checks and their scope.

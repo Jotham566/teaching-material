@@ -1,0 +1,9 @@
+POWERPOINT AUTHORING
+
+The twelve decks in 02 Class Slides are the teaching edition. They are produced by the layered process in ../README - Read First.txt: the builder's output, the slide patch, the notes file and the illustration plan.
+
+Diagrams use native objects; the financial illustration is an editable chart. Source images are attributed in Reference Assets/Asset Sources.json. The pictures added in October 2026 (176 pictures: 164 on content slides and one scene on each of the 12 title slides) are drawn in Illustrations/illustrations.py with Pillow, so no third-party artwork or photographs are used, and each picture carries alt text. Real screenshots can be added later where a slide benefits from one; the repository has none that the course may reuse.
+
+Slide Show mode plays animations; editing view shows the completed diagram. Animated slides were not given pictures. Optional explorations remain visible, follow the closing check and carry a distinct footer.
+
+Do not run the builder over the live decks. Do not teach from files inside the private .build directory.

@@ -1,0 +1,9 @@
+ACTUAL NEURAL EMBEDDING RUN — 27 OCTOBER 2026, MAC
+Model: sentence-transformers/all-MiniLM-L6-v2
+Downloaded revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+Isolated environment: ~/.cache/klai-course/embedding-venv
+The model was downloaded and all three original scripts ran successfully. Package versions are in Embedding Environment.txt.
+Self-test: eight 384-dimensional vectors; unit lengths; repeated text gives the same vector. Opposite consent statements have cosine similarity 0.839.
+Retrieval: four of eight tests passed (K4, K5, K6, K7). K1, K2, K3 and K8 failed because required operative phrases were absent from the returned passages. No restricted-matter leak was reported in these eight tests. Do not equate that with a security assurance.
+Negation check: the fee statement and its opposite returned the same three chunks in the same order. Two other pairs changed a chunk or ordering. Similarity alone did not resolve legal meaning.
+All failures are preserved. The prior lexical result was 6/8, LSA 4/8 and hybrid 5/8 on this small fixture. This comparison does not rank production systems or prove why a particular query failed.

@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+05 Course Maintenance/Authoring/.build/
+05 Course Maintenance/Authoring/.chart-data-*/
+03 Learner Materials/Practice Files/.runs/
+~$*

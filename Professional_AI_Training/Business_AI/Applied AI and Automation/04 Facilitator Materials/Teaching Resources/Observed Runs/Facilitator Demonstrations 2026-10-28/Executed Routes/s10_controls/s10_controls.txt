@@ -1,0 +1,77 @@
+{
+  "kind": "scripted local engine tests, no model or external action",
+  "checks": [
+    {
+      "name": "missing evidence",
+      "got": "HELD",
+      "want": "HELD",
+      "pass": true
+    },
+    {
+      "name": "prepare",
+      "got": "READY",
+      "want": "READY",
+      "pass": true
+    },
+    {
+      "name": "approve",
+      "got": "APPROVED",
+      "want": "APPROVED",
+      "pass": true
+    },
+    {
+      "name": "stale approval",
+      "got": "HELD",
+      "want": "HELD",
+      "pass": true
+    },
+    {
+      "name": "decline stops action",
+      "got": "HELD",
+      "want": "HELD",
+      "pass": true
+    },
+    {
+      "name": "recipient held",
+      "got": "HELD",
+      "want": "HELD",
+      "pass": true
+    },
+    {
+      "name": "withheld acknowledgement",
+      "got": "UNCERTAIN",
+      "want": "UNCERTAIN",
+      "pass": true
+    },
+    {
+      "name": "blind retry held",
+      "got": "HELD",
+      "want": "HELD",
+      "pass": true
+    },
+    {
+      "name": "status checked",
+      "got": "STATUS CHECKED",
+      "want": "STATUS CHECKED",
+      "pass": true
+    },
+    {
+      "name": "same snapshot not repeated",
+      "got": "DUPLICATE PREVENTED",
+      "want": "DUPLICATE PREVENTED",
+      "pass": true
+    },
+    {
+      "name": "spend budget",
+      "got": "Illustrative spend budget exhausted.",
+      "want": "Illustrative spend budget exhausted.",
+      "pass": true
+    },
+    {
+      "name": "call budget",
+      "got": "Local call budget exhausted.",
+      "want": "Local call budget exhausted.",
+      "pass": true
+    }
+  ]
+}

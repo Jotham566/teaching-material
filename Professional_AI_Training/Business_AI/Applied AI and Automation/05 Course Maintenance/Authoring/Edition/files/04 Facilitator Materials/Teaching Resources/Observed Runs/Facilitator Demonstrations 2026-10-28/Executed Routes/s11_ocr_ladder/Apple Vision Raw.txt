@@ -1,0 +1,114 @@
+{
+  "configuration" : "fast, revision 2, CPU only, en-US, language correction off",
+  "engine" : "Apple Vision VNRecognizeTextRequest",
+  "images" : [
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p01_A_clean.png",
+      "line_confidences" : [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text" : "Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That\nconsent is not required for a reorganization within a wholly owned group if Provider remains responsible for its\nobligations under this Agreement."
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p01_B_mild.png",
+      "line_confidences" : [
+        0.5,
+        0.5
+      ],
+      "text" : "Prvvidff mull ohaln Cwtixiier's prkn wrtnen con5eM a rharye of corfrol of Provlthr tskes eff¢a. Tha c(msenl b n\nroquird fw a rew8thzauon wkhin a wlKlly (rdnod rn if rematsb resB)Mi14e f¢x tts d)liKath uMler thls AwnW."
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p01_C_moderate.png",
+      "line_confidences" : [
+
+      ],
+      "text" : ""
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p01_D_severe.png",
+      "line_confidences" : [
+
+      ],
+      "text" : ""
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p02_A_clean.png",
+      "line_confidences" : [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text" : "Neither party may assign any rights or obligations under this Agreement without the prior written consent of\nthe other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a\nmerger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to\nwhich this Agreement relates."
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p02_B_mild.png",
+      "line_confidences" : [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text" : "Neiihor party may assigii any rlghty or dJll8ail(ms thls A8rnMYm# wlthwf the wrft*n cffis¢N of the party.\nHowevff. either party may assly thls A%TtemeN upn notke If the assi8niry party un&ryoes a mer8ef. chan8o of c(mtr\nAwryantsail(m. or 5ale ot all cr its equliy. buslnes5. or asseis to whlch th&s A8Tremff* rel*es."
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p02_C_moderate.png",
+      "line_confidences" : [
+
+      ],
+      "text" : ""
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p02_D_severe.png",
+      "line_confidences" : [
+
+      ],
+      "text" : ""
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p06_A_clean.png",
+      "line_confidences" : [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text" : "The provider's total liability for all claims arising out of this agreement shall not exceed the fees paid in the\ntwelve months before the first event giving rise to liability. This limit does not apply to fraud or to a breach of\nthe confidentiality obligations in section 9."
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p06_B_mild.png",
+      "line_confidences" : [
+        0.5,
+        0.5
+      ],
+      "text" : "The PfDvhkn's i(Xal ltsbllhy all clalms arlslffj Iwi of this a8reenwni $hall niA exceed the fee5 pJld In twelve m(mihs befoTr the\ntlrA evont 8ivu4 rtse to Ikibillty. This Ilmli awly to fraud or io a Ixtach of the cY>nflkntiality obliW(ms th seaiOn"
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p06_C_moderate.png",
+      "line_confidences" : [
+
+      ],
+      "text" : ""
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/OCR Experiment\/images\/p06_D_severe.png",
+      "line_confidences" : [
+
+      ],
+      "text" : ""
+    }
+  ],
+  "system" : "Version 27.2 (Build 26B118)"
+}

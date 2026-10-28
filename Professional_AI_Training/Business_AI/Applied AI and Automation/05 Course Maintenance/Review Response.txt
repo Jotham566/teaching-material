@@ -1,0 +1,89 @@
+INDEPENDENT REVIEW RESPONSE — 26 OCTOBER 2026
+
+C1 | AI-system definition and source
+S1 AI systems; field and system definitions distinguished
+
+C2 | Opening expected answers
+Unique recall/diagnostic prompts with substantive answers
+
+C3 | Attention illustration
+S3 input-dependent weighted links; not measured attention
+
+C4 | Architecture depth
+Retained as optional, respecting the user’s requested foundation
+
+C5 | Training source
+Primary instruction-tuning paper and Google resource
+
+C6 | Changed transaction
+Separate base, share-sale and assignment variants with determinate boundaries
+
+C7 | Client roles
+Victoria customer; Equator provider; customer-side playbook
+
+C8 | Judgment pinpoint/edition
+Original Goal Relief PDF checked; differing provision references explicitly investigated
+
+C9 | Substantive research
+Ground 5 and final disposition used; client facts and current-law gaps remain separate
+
+C10 | Findings count
+All three contract findings repaired consistently
+
+C11 | Unsupported generalisation
+Session-specific limits and task evidence replace generic expected answers
+
+C12 | Duplicate explanation
+Invoice identity, amount, reference and ledger evidence rather than circular assertion
+
+C13 | Interim totals
+125−25=100;100−2=98 displayed
+
+C14 | Financial chart
+Editable waterfall-style stacked chart and receipts/outstanding split
+
+C15 | Named portal user
+Old URA screenshot removed from the revised teaching sequence
+
+C16 | Source imagery
+Synthetic source/scan and actual OCR; uncropped documentation/source images
+
+C17 | Playback cues
+Renderer derives cues from actual reveal groups
+
+C18 | NER amount
+Notes no longer describe a nonexistent amount
+
+C19 | Sources and closing
+Course marketing URLs removed as factual service evidence; substantive closing handover
+
+C20 | Retrieval model roles
+Two-path architecture separates embeddings, retrieval and answer generation
+
+C21 | Ugandan legal frame
+Named instruments, primary pointers and explicit applicability/version limits
+
+C22 | Class timing
+Distinct plans, essential lecture/application allocations and optional slides
+
+C23 | Teacher support
+Lesson misconceptions, slide-specific questions/responses and separate answer keys
+
+OTHER IMPLEMENTED ITEMS
+Entry/exit diagnostic; fresh changed examples; blank progress status plus a guide;
+professional workbook records; completed implementation examples; procurement
+and optional investment diligence; larger fictional fixtures; actual saved runs.
+
+RECOMMENDATIONS ADAPTED RATHER THAN ACCEPTED LITERALLY
+Architecture/data-science/XML/CAG topics remain optional because the user asked
+for those distinctions. A larger synthetic source is not a guarantee of failure.
+RAG inference does not itself train weights, but retrieval components can be
+trained separately. Attention weights depend on inputs, not only training.
+No claim of flawless consistency, superiority or consulting-market valuation is
+adopted. No platform migration is required merely to make Word seem executive.
+
+ACCOUNT-DEPENDENT WORK
+The small read-only model-selected agent has actual traces. Portal builders,
+enterprise connected search and live deep research need account-specific rehearsal.
+No real firm deployment, filing, payment, client-data approval or follow-up booking
+has occurred. Proposed roles, dates and budget figures are labelled as such.

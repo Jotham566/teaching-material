@@ -1,0 +1,191 @@
+Welcome to Session 11. Up to now we've worked on single tasks, one at a time. Today we step back and ask a bigger question. What rules, owners and evidence should govern AI use across the whole firm?
+
+That matters for a legal or tax practice because the firm answers for how these tools get used, whether or not anyone planned it. By the end of the session you'll have three things in hand: a reviewed use rule, a register of three risks, and a decision on an incident. We'll start with a quick recall from last session, then build the picture one risk at a time.
+
+Let's begin with last session, before I show you anything new. Here's the question. Do receipts that are lower than sales establish unpaid tax? Give that a minute, and tell me the reason behind your answer.
+
+What I'm hoping to hear is no. Lower receipts could come from timing, from missing evidence, or from a different tax question altogether. Each of those has to be checked before anyone says tax is unpaid. If you said yes, I'd ask you this. What else could make receipts lower than sales in the same period?
+
+Now today's question. What rules, owners and evidence should govern AI use in the firm? Last session you checked one conclusion against its evidence. Today we ask who does the checking, and what the firm writes down.
+
+Here are four risks we've already met in this course. A clause exception disappears from a summary. A search returns a restricted or old source. A research note overstates what an authority says. And an automation prepares an action nobody authorised.
+
+Tell me what you make of this. If only one of these could happen in the firm this year, which would worry you most, and why? Sit with it for a second.
+
+There's no single right pick. Someone may choose the lost exception, because a client relies on the contract. Someone else may choose the restricted source, because a client's confidence is at stake. What makes an answer good is the reasoning, meaning who is affected and how bad the result would be. If you'd picked the automation because it sounds advanced, I'd ask you how often it would happen, and what it would cost the client when it did.
+
+Next we'll look at a framework for sorting worries like these.
+
+NIST is a United States standards body, and it publishes a voluntary framework for managing AI risk. It doesn't replace Ugandan law or our professional duties. I want to say that up front. The framework has four functions, and the first sits across the top.
+
+Govern covers responsibilities, policies and continuing oversight. It applies throughout, and it sits above everything else.
+
+Under it come three more. Map describes the use, its context and its effects. Measure gathers evidence about the risks. Manage treats those risks and keeps watching them. These three repeat as the system changes. If the provider updates the model, we map and measure again.
+
+One for you to work out. Which of these four would you do only at the end, after the tool is running? See what you come up with.
+
+My answer is none of them. Governance and risk work continue through design, use and change. If you'd picked Manage, I'd ask what we would have measured, and who would have decided what to treat, if we only started then.
+
+This table shows where the firm's duties come from. The Data Protection and Privacy Act 2019 raises purpose, minimisation, security and overseas processing. The Regulations of 2021 raise registration and operational requirements. The Evidence Act raises confidentiality and protected communications. The last row is closest to home. It's our own engagement and employment terms, which say what use is permitted, how it's supervised and what we've promised clients.
+
+I'm not interpreting these provisions today. This is a list of places to look, and each one needs a lawyer to read the current text against the firm's facts.
+
+A question for you. A vendor tells us it will not train on our data. Does that promise alone settle these duties? No rush.
+
+The way I read it, the answer is no. We have to assess the actual processing, the contract, the permissions, the applicable law and our professional obligations. If you'd said yes, I'd ask which row of the table a no-training promise even speaks to. Next we take up exactly that promise.
+
+Let's look closely at that vendor promise. A provider may offer a setting that keeps our content out of model training. A model is the software that produces the answers, and training is how it was built from huge amounts of text. Keeping our content out of that process helps.
+
+But it leaves a lot of questions open. Retention is how long content is kept. Access is who at the provider can see it. Subprocessors are the other companies the provider relies on. Then there's how incidents get handled. And above all of that, the firm still decides whether this use is permitted at all.
+
+Now it's your turn. Suppose no-training is confirmed in writing. What would you still ask, of the provider and of ourselves? Think it over.
+
+This is how I see it. Where does the content go, who can reach it, how long is it kept, and do our engagement terms allow the use? If you'd stopped at the contract, I'd ask where you would find out how the tool is actually configured today.
+
+Let's follow one question through a permission check, step by step.
+
+First comes the person asking. The user is on the M-01 team.
+
+Then the permission. The M-01 team is allowed to see matter M-01, and that is the check the system makes.
+
+Third, the evidence. The system may draw on one source here, CONTRACT-01.
+
+Finally the answer. It's built from permitted sources only. Matter OTHER-02 stays restricted. Source access and derived access both need maintenance and tests. Derived means anything built from a source, such as an index or a summary, so if access to a matter is withdrawn, the derived copies must follow.
+
+Here's something to chew on. What would count as a critical failure when we test this? Have a think.
+
+I'd say a user receives content, or sensitive details such as a title or file name, from a matter they can't access. If the answer shows no text but names the other client, has the test passed? It hasn't. This is a design to test, and I have no observed run behind it.
+
+Next, what happens when a document itself tries to give orders. Prompt injection is when a document the assistant retrieves contains instructions, and the assistant follows them as if we had written them. Picture a scanned letter with a line telling the assistant to send the file to an outside address.
+
+The rule is simple. A source has no authority to change permissions. And tools and destinations need boundaries that are enforced. Telling the model in a prompt to ignore such lines helps a little. The firm still needs limits set in the system itself, covering which tools the assistant can call and which destinations it can reach.
+
+I'd like to hear your thinking on this one. If this happened, what should the incident record contain? Give that a little thought.
+
+I'd put it like this. The record names the source document, the behaviour it tried to cause, what the assistant actually did, what data was affected, and how it was contained. If you'd said delete the document, I'd ask how we would know whether it had already acted before we deleted it.
+
+Now we turn from attack to fairness, to unequal errors. I'll use the observed results from the OCR practice files. OCR means software reads printed text from a scanned image. This experiment used synthetic pages, an older engine called tesseract 4.1.1, and four print conditions. These are not the firm's archive.
+
+Clean print scored 100.0 percent mean word accuracy. Mild scored 98.8. Moderate fell to 54.4, with 5 of 12 passages unusable, and negation words kept in only 7 of 21 cases. Severe scored 0.4 percent. Negation words such as not matter in law, because a lost not reverses a clause.
+
+Let me ask you something. Whose matters would a poorly read collection disadvantage, and would an average accuracy figure show it? Take your time.
+
+The clients whose documents are scan-heavy, perhaps older records or other languages. An average hides that gap, so we compare errors by source group and look at the consequence. If you'd said the average is fine, I'd ask what the average would be if the clean collection were ten times larger.
+
+Now the human who is supposed to catch such errors. Four conditions make human review meaningful. The reviewer knows the task and its limits. Source evidence is in front of them. The review happens before the dependent action. And rejecting or stopping actually changes what runs.
+
+Think of a partner who approves forty drafts at the end of a day with no sources open. That's a signature and nothing more. An approval given by another AI doesn't count as human review either.
+
+Try this one. A reviewer has no time to inspect the sources. Is their approval adequate? Work it through before I answer.
+
+It isn't. The fix is to redesign the scope or the workload, so the reviewer can do the check. If you'd said the reviewer should just work faster, I'd ask what we would cut from the review volume, and who decides that.
+
+Reviewers are people with habits, and so is everyone else in the firm. People may already be using AI tools nobody approved. A staff member under deadline pastes a paragraph into a free chat tool because it saves an hour. In their own eyes they're solving a problem.
+
+An approved route that's easy to use cuts these workarounds. And training and reporting should help us find problems early, which only works if people can report without fear.
+
+Here's one for you. Before you write any rules, what would you ask staff? Take a moment with that.
+
+Let me give you mine. Which tasks they do, which tools they use, what information they put in, and what gets in their way. If you'd begin with the penalties, think about how a staff member would answer a survey whose first line was a list of penalties. A rule written without this picture usually fails.
+
+Next we'll look at risks that arrive after launch, operational and commercial ones.
+
+This table pairs five risks with a response for each. If the provider or model changes, we retest and review what materially changed. If there's an outage or a failed integration, we need a manual fallback and a way to recover. Costs can climb, so we set budgets, limits and monitoring. Vendor dependence calls for export, portability and exit arrangements. And skill erosion, where staff lose the ability to do the task unaided, calls for competence review and training.
+
+A pilot that works in class is not a maintenance plan.
+
+Here's a question. After I leave, a recurring failure appears in the tool. Who owns it? Let's hear your answer first.
+
+Here's where I land. A named workflow owner, with an escalation route and a support arrangement behind them. If you'd said IT, I'd ask whether that's the person who understands the legal consequence of the failure.
+
+Next we'll look at a place to write all of this down.
+
+A risk register is a table where each risk is written once and tracked. It has four groups of columns. First, the use case, the information it touches and the people affected. Second, the failure, its consequence and the control already in place. Third, the test evidence and the risk that remains. Fourth, the owner, the decision and a review date.
+
+We'll open the worked register and read its three rows, which are precedent search, contract review and draft routing. In class we complete a few material risks. We won't try every imaginable one.
+
+One for you to work out. How do I tell an action that was planned from a control that works? Say it out loud if it helps.
+
+Evidence is the difference. The action was implemented, and a test in the relevant situation showed it works. If you'd said someone signed it off, I'd ask what the test showed and where that is recorded.
+
+Next, the main exercise begins with an incident in our matter.
+
+Now the exercise. Here's the situation. The assistant returns a passage from a restricted client matter to a user. And it gets worse, because the user has already copied part of it into a draft.
+
+In the practice file, the passage comes from OTHER-02, and the user has M-01 access only. This is a made-up event, but I'd like you to work it as a real one.
+
+A question for you. Before anything is restarted, what would you do? Take your time.
+
+My answer is to investigate the scope, correct the controls, retest, and obtain the appropriate decision to restart. That includes logs and derived content, since the passage may live in more places than the draft. If you'd jumped to switching it back on after a fix, I'd ask how you would know the same passage isn't sitting in an index or a log.
+
+Next we'll lay the response out in four stages.
+
+Here's the response, one stage at a time. Notification duties depend on the facts, the law and the contract terms. I won't give you a universal deadline, and I won't guess one.
+
+First comes Contain. Pause the affected use, so the problem stops growing.
+
+Then Assess. What's the scope and what are the consequences? Who saw the passage, where is it now, and what does that mean for the client?
+
+Third, Respond. This means the actions that are required. The legal, privacy and technical people each have a part, and we name them.
+
+Last, Recover. Retest, and then authorise the restart.
+
+Try this one. The service is working again. Does restoring it close the incident? Think it over.
+
+My answer is no. We still record the cause, the corrective action and what we monitor afterwards. If you'd said yes, I'd ask what would stop the same thing happening on Monday. You'll do this as a flow in a moment. First, who holds each decision.
+
+This table sets out who does what. The partner sponsor sets purpose and scope, and takes the risk decision. The practice owner holds quality and professional review. The information owner holds source authority and access. The technical owner holds configuration and monitoring. Staff users follow permitted use and report problems.
+
+In a small firm one person can hold several roles. Even then the responsibilities stay separate and written down. Where one person reviews their own work, independent review matters most.
+
+Here's a scenario. Someone asks to widen what the agent is allowed to do. An agent is software that takes steps and uses tools on its own. Who can approve that? Give it a moment.
+
+The designated authority under the firm's change and access process can approve it. A user's request in a chat doesn't count. If you'd named the partner automatically, I'd ask whether the partner knows the system's configuration well enough to judge the change.
+
+Now we put these roles to work.
+
+Here's what we'll do in the next stretch. I'll demonstrate the first step, and you decide and record.
+
+First, we adapt the worked three-risk register. You replace the one control that doesn't fit the firm, and name its owner and its test. Second, we look again at unequal errors across the source collections. Third, you run the restricted-matter incident for 20 minutes. You decide what to contain first, what to preserve, who the recipients are, who assesses the legal duties, and what must be true before restart. Fourth, we draft a use rule, with an owner, a reporting route and restart conditions.
+
+If the connected tool is unavailable, we'll use the labelled example, mark that step as unexecuted, and keep the time for discussion.
+
+Before we begin, here's one for you. Which control in the worked register would not work in our firm, and what replaces it? Have a think.
+
+It helps to name three things. The control, a person who owns it, and a test that would show it works.
+
+Now let's see what the work supports. Before I read the conclusion, tell me in your own words what you think it is.
+
+Here's what I'd say. Privacy, professional confidentiality, quality and action authority are separate risks. Each control needs an owner and a test. Incident response starts with containment and assessment, and it doesn't rely on a guessed universal reporting deadline.
+
+There's also a limit. The legal frame we used is a sourced teaching aid. It's not an opinion that any particular product or configuration complies.
+
+Tell me what you make of this. Which part of today's result is still unverified? Give that a little thought.
+
+It's the legal frame. We haven't confirmed that any specific tool or setup complies, and a lawyer would need to review it with the facts. If you'd said everything is verified, I'd ask who has checked the Ugandan texts against our actual vendor contract.
+
+Next is the firm decision itself.
+
+Now the decision. The firm is deciding whether to approve a proportionate pilot policy, and to assign risk, information, technical and practice owners. It then records the decision and the evidence still needed.
+
+A pilot is a small trial with limits. Proportionate means the controls match the risk of the use. Before we go on, name one owner and one condition. This is a class decision record, and the firm would still need its own authorisation.
+
+One more question. What evidence would change this decision? Say it out loud if it helps.
+
+Let me give you mine. If quality drops, if the permitted scope widens, or if a test fails, we revisit. The record itself holds the use, the evidence, the remaining risks, the conditions, an owner and a review date. If you'd said more testing, I'd ask which test, run by whom, with what result that would make you stop.
+
+Let's check your understanding with three changed facts. Answer each one aloud.
+
+First. No-training is enabled. What other data questions remain? Take a moment with that.
+
+I'd look at retention, access, contracts, location and permission.
+
+Second. A scanned collection has more errors. What must be measured? Work it through before I answer.
+
+I'd measure the quality and effects for the relevant groups, using samples large enough to mean something. How many pages from each group would you need before you trusted the comparison?
+
+Third. A restricted passage has entered a draft. What's the first response? Think about that for a moment.
+
+I'd contain the affected route, preserve the evidence, and assess the recipients and the duties.
+
+That ends Session 11. Next time, in Session 12, we lead implementation and evaluate a pilot, using the owners and rules you drafted today.

@@ -1,0 +1,213 @@
+Welcome to session six. Last time we prepared the firm's documents. Today we look at what happens when someone asks a question of that prepared collection.
+
+The question we work to is this. How does the assistant find current permitted evidence, and then use it faithfully? In a legal or tax practice that matters a great deal. A fluent answer built on the wrong version of an agreement, or on a file the person should never have seen, puts a client and the firm at risk.
+
+By the end of the session we will have scored a retrieval test and read one source-linked answer, which is an answer that shows exactly which passages it came from.
+
+Before anything new, let's go back to last session. We had two readable versions of the Equator agreement, the executed version two and the earlier draft, version one. Beyond the text itself, what must a retrieval system know about each one? Take a moment with that.
+
+Here's where I land. It needs to know which version is authoritative, which matter it belongs to, who is permitted to see it, and whether it has been updated or withdrawn. If your first thought was simply which one is newer, push on that a little. Newer by date, or the one that was signed? That brings out the status of a document.
+
+Now today's question, which you can see here. How does the assistant find current permitted evidence and use it faithfully? We are working toward a scored retrieval test and a source-linked answer. The matter from last time comes back next, this time with an assistant that has to find its own evidence.
+
+Here is the question from our matter again. Does the agreement require Victoria's consent for the proposed reorganisation? One small correction to the wording you see. The operative text is the Key Terms replacement of Section 12.6, which the course calls KT-1. It overrides the unmodified Section 12.6 in the Standard Terms. So the real question is whether Victoria must consent when Equator reorganises.
+
+The collection holds the executed agreement and an older draft. That gives the assistant two candidates, and both look like the agreement.
+
+Here's a question for you. If you were the assistant, and both documents mention reorganisation, what makes one passage the right passage? Have a think.
+
+This is how I see it. The right passage is relevant to the question. It also comes from the authoritative, signed document, in its current version, and this user has permission to see it. Relevance alone is not enough. The draft matches the words well, and it is still the wrong source.
+
+Now we separate two things that a chat window blurs together, which are finding documents and writing an answer.
+
+A search tool and an assistant that writes answers look alike in a chat window, so let's pull them apart. Search returns documents or passages, and the person reads them. A generated answer is new text written by a language model, which is a program that has learned patterns from large amounts of text and writes the next words. It builds that text from whatever information was selected for it, and it needs checking.
+
+I'd like to hear your thinking on this one. Suppose the search returns the correct Section 12.6 text, the Key Terms replacement, and the answer still comes out wrong. How could that happen? Give that a little thought.
+
+Here's how I'd answer it. The model can leave out a qualification from correct evidence, for example the group exception, or it can add a fact that no source gives. Correct search results do not guarantee a correct answer. Someone has to read the evidence before you rely on the sentence.
+
+That gap between finding and writing is exactly what the next idea names as a method.
+
+Here is the method. RAG stands for retrieval-augmented generation. In plain words, the system first looks up relevant source material. It then hands that material to the language model together with the question, and the model writes the answer from it.
+
+In our matter, the system retrieves the Key Terms replacement of Section 12.6, KT-1, and when we want the history, the unmodified Section 12.6 it replaced. It supplies them with the question, and the model drafts a consent analysis.
+
+A quick question before we go on. When the system supplies that clause to the model, has the model learned the firm's files? Sit with it for a second.
+
+No. The model's parameters, the numbers it set during training, do not change. The evidence is placed in front of it for this one question and is gone afterwards. Many people assume RAG means the model was trained on firm files. A good test is to ask whether the model would still know the agreement if we deleted it from the library tomorrow.
+
+The next picture shows the two separate paths that make this work.
+
+This picture shows two paths that run at different times. The first prepares the collection, ahead of any question. The second answers a question when it arrives.
+
+It starts with the documents, and only current, permitted ones go in.
+
+Next they are cut into chunks, pieces of text that carry their source details with them.
+
+An embedding model then turns each chunk into a list of numbers, called a vector, so that similar meanings can be compared.
+
+The index stores those vectors together with their metadata, which is the information about each chunk. That finishes the preparation.
+
+Now a question arrives. It is turned into a vector too, so it can be compared with the chunks.
+
+The system retrieves the closest passages and filters them, keeping only the ones this person may see.
+
+The language model receives the question together with that evidence.
+
+It writes an answer with its sources, and a person reviews it against the original.
+
+Now a question for you. If the index returns draft version one, will a stronger answer-writing model repair that? Give that a little thought.
+
+Choosing the right source and writing the answer are separate jobs, so a smarter writer cannot fix a wrong source, and we test the two separately. Think of it this way. If the model only sees version one, where could it learn the group exception?
+
+Now let's see how chunking can go wrong, because the way we cut a document decides what the assistant can find.
+
+Here is a bad split. The first chunk says that Provider must obtain Customer's prior written consent before a change of control takes effect. The second chunk begins with the words, that consent is not required for a reorganization within a wholly owned group. Those words, that consent, point back to a sentence that now sits in a different chunk, so the second chunk has nothing to refer to.
+
+The second picture keeps the rule, the exception and the responsibility condition together, with the source name and location. A chunking strategy gets tested against the questions and relationships the firm needs it to preserve.
+
+Let me put a question to you. Which question from a client would expose the bad split? Say it out loud if it helps.
+
+Something like this would do it. Does an internal group reorganisation need Victoria's consent? If the search returns only the first chunk, the answer says consent is required and leaves out the exception in the Key Terms replacement of Section 12.6, KT-1. If it returns only the second chunk, the condition is lost. Chunk size is a design choice, and a very small chunk loses the context that makes the clause readable. Next we look at what every chunk should carry with it.
+
+A chunk is the unit that retrieval hands to the model, so it has to carry four things with it.
+
+First, the relevant text and its relationships, so a rule travels with its exception. Second, the document identity and current version, so we know we are looking at CONTRACT-01 version two. Third, the clause or page location, so a reader can find it again. Fourth, the matter permissions, so the system knows who may see it.
+
+Here's something to chew on. Suppose a chunk says, consent is required unless the Provider's group exception applies, and the word group is defined three pages earlier. What do we do? See what you come up with.
+
+We retrieve or link the definition along with the chunk, because the clause cannot be read correctly without it. A chunk does not always stand alone. You would not advise a client from one sentence with its definition removed, and the assistant should not either.
+
+Now we look at two ways of searching for these chunks.
+
+There are two basic ways to find a passage. Keyword search looks for exact words or identifiers, such as CONTRACT-01 or the phrase change of control. Semantic search uses the vectors we met earlier to find text with a related meaning. A question about a group restructuring can then find a clause that says reorganization.
+
+One for you to work out. A partner types the exact record number RECORD-03 into the assistant. Which method helps most, and why? Think it over.
+
+Keyword or identifier matching helps most. A number has no meaning to compare, only characters to match. Semantic search could return a nearby record that reads similarly. In the other direction, keyword search would miss restructuring if the clause only says reorganization. So it's worth asking yourself when the exact words matter more than the meaning.
+
+In our scripts there is a check called negation_check.py. It asks for a statement and its opposite, for example, consent is required for a reorganization within a wholly owned group, and consent is not required for it. With lexical word matching, the two questions returned the same chunks in the same order in the saved run, whether the negation words were kept or dropped. That is one saved run on 40 documents. Ranking by similarity finds candidates. A person or the model has to read the passage to see which way it points.
+
+Next we combine the two methods into one pipeline.
+
+Here is how a hybrid system is put together, in four steps. The rankings we show are illustrative, and we use no invented scores.
+
+First comes the question. It has terms in it and it has a meaning.
+
+Then the candidates. The system gathers a pool of results from keyword search and from vector search together.
+
+Third is ranking. The two lists are merged and reranked, which means a second step puts the passages into a better order.
+
+Last comes the evidence, the few passages that go to the model.
+
+Here's one for you. What happens if the right source never enters the candidate pool? Take your time.
+
+Reranking only reorders what it receives, so it cannot bring back a missing document. The candidate stage has to supply it. If you think a good ranker rescues a poor search, ask yourself where in these four steps you would check for the missing source first. Next is a prepared trace of this process for our matter, and I'll say clearly what it is.
+
+This table comes from a file called Retrieval Trace, which is a prepared teaching trace. It is not a live search run, and the table says so. I want that clear before we read the rows.
+
+Draft version one is superseded, so it gives historical context only. Executed version two is current and permitted, so it supports the current answer. The item called OTHER-02 belongs to a restricted, unrelated matter, so it is excluded before anything reaches the model.
+
+Here's a question. Which candidate supports the current answer, and which other piece of evidence do we need to add? No rush.
+
+Let me give you mine. Executed version two supports the answer, along with the Key Terms replacement of Section 12.6, KT-1, and the unmodified Section 12.6 it replaced. We also need the Client Instruction, because the ownership and responsibility facts are missing from the agreement. If you were tempted to pick all three candidates because they all mention change of control, look at the status column. It tells you what each one is good for.
+
+With the evidence chosen, next we see the answer built from it.
+
+Now we see the answer the assistant produces from that evidence.
+
+First comes the finding. The group exception may apply, and we need to confirm ownership and continued provider responsibility.
+
+Then the source text, labelled CONTRACT-01 version two, Key Terms KT-1. That is Section 12.6 as replaced by the Key Terms. It reads, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.
+
+Tell me what you make of this. What does this clause not tell us, so that we cannot yet say whether consent is needed? Work it through before I answer.
+
+The clause gives the wording, and the transaction facts are separate. We do not have Equator's ownership chart, written confirmation that Equator remains responsible, or a statement on whether the agreement will move to another entity. The Client Instruction lists those. A quoted clause does not settle the client's case, so keep asking which sentence of the answer is a quote and which is the model's inference. Next we look at the two different ways this process can go wrong.
+
+Here is a failure we actually found. The file contained the relevant change-of-control rule, yet some searches missed it. One passage had 728 tokens, while this embedding model reads at most 256. The rule was beyond the part that the model encoded. A readable source file is therefore only the beginning of the pipeline.
+
+I repaired the route by bounding passages with the actual tokenizer, selecting the intended source and purpose, combining keyword and neural candidates and reranking them. The agreement's amendment and precedence wording also travel with its evidence. That last step is an explicit document-review rule.
+
+Does a high similarity score establish whether consent is required?
+
+Consider the transaction facts before answering.
+
+It does not. Retrieval supplies evidence. We still read the rule, exception and facts before reaching a conclusion. We will compare the original and repaired results, including the unavailable-agreement question, where substituting our active agreement would be wrong. Passing these classroom checks leaves wider production performance unproven.
+
+Access has its own path, and the order of the steps matters. The filter works before retrieval, so restricted text never reaches the model.
+
+First, identity. Who is asking?
+
+Second, the filter. Which matters may this person see?
+
+Third, retrieval, which returns only the permitted passages.
+
+Fourth, the response, a source-linked answer.
+
+Let me ask you something. A senior partner who is not on the Victoria matter asks for the change of control clause in another client's agreement. Should the executive role get it automatically? Say it out loud if it helps.
+
+It should not. Access follows the actual authorised policy for that matter, and seniority does not override it. Titles and metadata matter too. A document title such as another client's name can reveal something confidential, so the test checks content and titles. If you assume rank opens every door, ask yourself who decides who is on a matter, and where that is recorded. Next, we turn all of this into a short list of tests.
+
+Here is a set of tests for the firm assistant. Each row names a situation and the behaviour we expect. A request for the current clause returns version two with the exception. A request for old wording labels the draft status clearly. A missing transaction fact gets a question, or an answer of unknown. A restricted matter has its evidence withheld. And after a source update, the assistant uses the amended evidence once it has refreshed.
+
+Let me put a question to you. Suppose the assistant passes ninety-five percent of its tests. What could that high total be hiding? Give that a little thought.
+
+It could hide a single serious failure, for example one access leak or one invented conclusion, which a total score smooths over. So we record the expected passages and score retrieval and answer fidelity separately. We treat a critical failure as a failure however the total looks. The partner and a domain reviewer agree the acceptance rules. If you are tempted to treat the average as the decision, ask yourself which single failure would stop the pilot, whatever the score.
+
+Tests only help if the collection stays in good order, which is where we go next.
+
+A knowledge assistant is an information service, and someone has to maintain it. There are four duties.
+
+An owner approves new and amended sources. Withdrawals and access changes reach the derived content, which means the chunks and vectors made from a source change when the source changes. Tests run after material changes. And users can inspect sources and report mistakes.
+
+Now it's your turn. The assistant gives the wrong-version answer three times in one month. Who is responsible for fixing it, and what do they do first? Think it over.
+
+The designated source owner and system owner look at the pipeline together. They check which version was indexed and when, and whether a withdrawal reached the index. It is easy to think the software vendor owns the problem. Ask yourself instead who at the firm approved that source when it went in.
+
+Now that we know what a sound system looks like, we try it on our own library in class.
+
+We will test the assistant together, with me operating it and you choosing what evidence it should search. First identify the matter, document and source purpose. Current obligations, historical wording and transaction facts need different evidence.
+
+Choose a paraphrase of the consent question. Then ask for an agreement that our library does not contain. What should happen on the second request?
+
+Give me your proposed result.
+
+The system should report that the requested source is unavailable. It should not substitute the familiar agreement. Now we inspect the returned passages, their locations and the amendment context. We separate the obligation from the email that reports a proposed transaction.
+
+Our repaired route passed the eight original questions and added checks for token bounds, source identity, permissions and altered files. These are fixture results. We still need representative firm questions and a separate test of the generated answer. We will write down one such test before deciding whether to propose a pilot.
+
+Let's separate three conclusions from today's work. First, retrieval must find the intended permitted source. Second, its passages must preserve the operative wording and amendments. Third, a generated answer must use that evidence faithfully and keep unknown facts unresolved.
+
+The original neural retrieval run passed four of eight checks. We found that long passages could exceed the model's input limit. The repaired workflow passed all eight original questions and eleven additional checks. It adds source selection, bounded passages, hybrid ranking, reranking and amendment context. We cannot attribute that result to the embedding model alone.
+
+What remains unproven after those checks pass?
+
+Give that a little thought.
+
+Performance on representative firm matters, production access enforcement and the accuracy of every generated answer remain unproven. Our signed-in document assistant also needed a reviewer correction despite having the correct source. Similarity scores and citations help us inspect evidence; they do not settle legal interpretation.
+
+We will record one further firm test and its reviewer before proposing a pilot.
+
+This is a class decision record, and it carries no firm authorisation. The proposed decision is to pilot a maintained, permitted collection with an owner, independent test cases and update rules. The record also lists the evidence still needed. Before we go on, write down one owner and one condition.
+
+I'd like to hear your thinking on this one. What result in the pilot would make you change this decision? See what you come up with.
+
+Here's my answer. Name something checkable. A critical access failure would do it, and so would a repeated wrong-version answer, weak scores on answer fidelity, or a change in which matters the collection covers. In short, we revisit the plan if the evidence, the quality or the permitted scope changes. If your answer is that we would change course if people don't like it, ask yourself what you would measure to know that.
+
+We finish with three questions that change the facts, and I will ask them before I open the key.
+
+Let's finish with three questions. Work on each one before I give my answer.
+
+First. The answer uses the right version but invents an ownership fact. Which test fails? Take a moment with that.
+
+Answer fidelity and uncertainty handling fail. The source choice was right, and the answer said more than the sources support.
+
+Second. Search finds no current permitted source. What should happen? Take your time.
+
+The assistant returns a gap or asks a clarifying question. It does not invent an answer.
+
+Third. Could keyword retrieval be part of a RAG system? Give that a little thought.
+
+Yes. RAG can use keyword, vector or hybrid retrieval, so vectors alone do not define it. If you said no, go back to the definition we met earlier. It asks only that relevant source material is retrieved and supplied to the model.
+
+That closes the main session. If we have time, or you ask, the optional extras follow, starting with embeddings. Otherwise the next session covers legal research and deep research.

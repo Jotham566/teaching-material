@@ -1,0 +1,1142 @@
+{
+ "1/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/4": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/5": {
+  "sources": "Sources: https://www.oecd.org/en/publications/explanatory-memorandum-on-the-updated-oecd-definition-of-an-ai-system_623da898-en.html",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/6": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/7": {
+  "sources": "Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/8": {
+  "sources": "Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml",
+  "playback": "Playback: 5 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "1/9": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/10": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "1/11": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/12": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/14": {
+  "sources": "Sources: https://pdpo.go.ug/knowledge-center",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/20": {
+  "sources": "Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/21": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "1/22": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/4": {
+  "sources": "Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/5": {
+  "sources": "Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "2/6": {
+  "sources": "Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml https://developers.google.com/machine-learning/crash-course/llm/transformers",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/7": {
+  "sources": "Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/8": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "2/9": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/10": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/11": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings",
+  "playback": "Playback: 3 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "2/12": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/13": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/14": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/15": {
+  "sources": "Sources: https://arxiv.org/abs/2203.02155 https://developers.google.com/machine-learning/crash-course/llm",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "2/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/21": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/22": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/23": {
+  "sources": "Sources: https://arxiv.org/abs/2108.07258",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/24": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm/transformers",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "2/25": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/3": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/4": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm",
+  "playback": "Playback: 3 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "3/5": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "3/6": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/7": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm",
+  "playback": "Playback: 3 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "3/8": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm https://arxiv.org/abs/2307.03172",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/9": {
+  "sources": "Sources: https://arxiv.org/abs/1706.03762",
+  "playback": "Playback: 3 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "3/10": {
+  "sources": "Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/11": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm https://www.anthropic.com/research/building-effective-agents",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/12": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/llm https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/14": {
+  "sources": "Sources: https://www.anthropic.com/research/building-effective-agents",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "3/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/4": {
+  "sources": "Sources: https://help.harvey.ai/articles/getting-started-with-harvey https://www.netdocuments.com/solutions/netdocuments-tabular-review/ https://help.alpha-sense.com/hc/en-us/articles/42391092171795-Deep-Research-Conduct-In-Depth-Multi-Step-Research-Autonomously",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/5": {
+  "sources": "Sources: https://developers.openai.com/api/docs/guides/your-data https://support.claude.com/en/articles/15707726-using-claude-for-legal-work-privilege-confidentiality-and-how-to-think-about-configuration",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/6": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/7": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/8": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/9": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/10": {
+  "sources": "",
+  "playback": "Playback: 2 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "4/11": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "4/12": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/14": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/15": {
+  "sources": "Sources: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/20": {
+  "sources": "Sources: https://help.harvey.ai/articles/getting-started-with-harvey https://www.netdocuments.com/solutions/netdocuments-tabular-review/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/21": {
+  "sources": "Sources: https://www.netdocuments.com/en-gb/solutions/ai-search/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/22": {
+  "sources": "Sources: https://help.alpha-sense.com/hc/en-us/articles/42391092171795-Deep-Research-Conduct-In-Depth-Multi-Step-Research-Autonomously",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/23": {
+  "sources": "Sources: https://www.itu.int/epublications/publication/itu-t-tr-genai-telecom-2025-03-potential-requirements-and-methodology-for-deploying-and-assessing-generative-ai-models-in-telecom-networks",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "4/24": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/4": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/5": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/6": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/7": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/8": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "5/9": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/10": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/11": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/12": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/14": {
+  "sources": "Sources: https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html https://www.rfc-editor.org/rfc/rfc8259",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/15": {
+  "sources": "Sources: https://www.rfc-editor.org/rfc/rfc8259",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/16": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "5/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/21": {
+  "sources": "Sources: https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/22": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/23": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "5/24": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/4": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/5": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-information-retrieval",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/6": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview",
+  "playback": "Playback: 8 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "6/7": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents",
+  "playback": "Playback: 2 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "6/8": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/9": {
+  "sources": "Sources: https://www.anthropic.com/research/contextual-retrieval",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/10": {
+  "sources": "Sources: https://www.anthropic.com/research/contextual-retrieval",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "6/11": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/12": {
+  "sources": "",
+  "playback": "Playback: 2 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "6/13": {
+  "sources": "Sources: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 ; https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html ; Observed Runs/Corrections 2026-10-28/Retrieval Retest.json. The workflow adds explicit source selection and document context.",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/14": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "6/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/17": {
+  "sources": "Sources: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 ; https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html ; Observed Runs/Corrections 2026-10-28/Retrieval Retest.json. The workflow adds explicit source selection and document context.",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/21": {
+  "sources": "Sources: https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/22": {
+  "sources": "Sources: https://www.anthropic.com/research/contextual-retrieval",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/23": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "6/24": {
+  "sources": "Sources: https://www.netdocuments.com/en-gb/solutions/ai-search/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/4": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/5": {
+  "sources": "Sources: https://ulii.org/ https://ura.go.ug/en/domestic-taxes/returns/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/6": {
+  "sources": "Sources: https://ulii.org/en/akn/ug/judgment/ugcommc/2024/272/eng%402024-08-19",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/7": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/8": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/9": {
+  "sources": "Sources: https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html https://ulii.org/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/10": {
+  "sources": "Sources: https://ulii.org/en/akn/ug/judgment/ugcommc/2024/272/eng%402024-08-19 https://ulii.org/en/akn/ug/act/1997/12/eng%402023-12-31",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/11": {
+  "sources": "Sources: https://help.alpha-sense.com/hc/en-us/articles/42391092171795-Deep-Research-Conduct-In-Depth-Multi-Step-Research-Autonomously",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "7/12": {
+  "sources": "Sources: https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/14": {
+  "sources": "Sources: https://pdpo.go.ug/knowledge-center",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/21": {
+  "sources": "Sources: https://dho.stanford.edu/wp-content/uploads/Legal_RAG_Hallucinations.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "7/22": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/4": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/5": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/concepts/named-entity-categories",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/6": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/7": {
+  "sources": "",
+  "playback": "Playback: 3 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "8/8": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/9": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/10": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/11": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "8/12": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/14": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/21": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/22": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "8/23": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/4": {
+  "sources": "Sources: https://www.anthropic.com/research/building-effective-agents https://learn.microsoft.com/en-us/training/paths/desktop-flows-robotic-process-automation-power-automate/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/5": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/training/paths/desktop-flows-robotic-process-automation-power-automate/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/6": {
+  "sources": "Sources: https://www.rfc-editor.org/rfc/rfc8259",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/7": {
+  "sources": "Sources: https://www.anthropic.com/research/building-effective-agents",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/8": {
+  "sources": "Sources: https://www.anthropic.com/research/building-effective-agents",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "9/9": {
+  "sources": "Sources: https://modelcontextprotocol.io/docs/learn/architecture https://www.anthropic.com/research/building-effective-agents",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/10": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "9/11": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "9/12": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/14": {
+  "sources": "Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/20": {
+  "sources": "Sources: https://www.anthropic.com/research/building-effective-agents",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/21": {
+  "sources": "Sources: https://developer.mozilla.org/en-US/docs/Glossary/API",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/22": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/23": {
+  "sources": "Sources: https://www.anthropic.com/research/building-effective-agents",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/24": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions https://help.zapier.com/hc/en-us/sections/38731226552845-Human-in-the-Loop https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview?view=foundry",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/25": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "9/26": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/4": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/5": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "10/6": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/7": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/8": {
+  "sources": "Sources: https://ura.go.ug/en/efris/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/9": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/10": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/11": {
+  "sources": "Sources: https://ura.go.ug/en/efris/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/12": {
+  "sources": "Sources: https://ura.go.ug/en/efris/ https://ura.go.ug/en/domestic-taxes/returns/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/13": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "10/14": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/16": {
+  "sources": "Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/21": {
+  "sources": "Sources: https://developers.google.com/machine-learning/intro-to-ml/what-is-ml",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/22": {
+  "sources": "Sources: https://ura.go.ug/en/domestic-taxes/returns/ https://ulii.org/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/23": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/24": {
+  "sources": "Sources: https://ura.go.ug/en/domestic-taxes/returns/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/25": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/26": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/27": {
+  "sources": "Sources: https://learn.microsoft.com/en-us/training/paths/desktop-flows-robotic-process-automation-power-automate/ https://ura.go.ug/en/efris/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "10/28": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "11/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/4": {
+  "sources": "Sources: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+  "playback": "Playback: 2 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "11/5": {
+  "sources": "Sources: https://ulii.org/en/akn/ug/act/2019/9/eng%402023-12-31 https://ulii.org/en/akn/ug/act/ord/1909/11/eng%402023-12-31 https://pdpo.go.ug/",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/6": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/7": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "11/8": {
+  "sources": "Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/9": {
+  "sources": "Sources: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/10": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/11": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/12": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/14": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/15": {
+  "sources": "Sources: https://airc.nist.gov/airmf-resources/airmf/5-sec-core/ https://pdpo.go.ug/knowledge-center",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "11/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/21": {
+  "sources": "Sources: https://pdpo.go.ug/knowledge-center https://ulii.org/en/akn/ug/act/ord/1909/11/eng%402023-12-31 https://www.wipo.int/documents/d/frontier-technologies/docs-en-pdf-generative-ai-factsheet.pdf",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/22": {
+  "sources": "Sources: https://pdpo.go.ug/knowledge-center",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/23": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/24": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "11/25": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/1": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/2": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/3": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/4": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "12/5": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/6": {
+  "sources": "",
+  "playback": "Playback: 2 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "12/7": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/8": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/9": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/10": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/11": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/12": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/13": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/14": {
+  "sources": "",
+  "playback": "Playback: 4 native click reveals. Advance each stage and ask about the relationship it adds."
+ },
+ "12/15": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/16": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/17": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/18": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/19": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/20": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/21": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/22": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/23": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ },
+ "12/24": {
+  "sources": "",
+  "playback": "Playback: Static slide. Discuss the complete visual; no click build is attached."
+ }
+}

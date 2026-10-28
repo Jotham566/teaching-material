@@ -1,0 +1,9 @@
+FACILITATOR SOURCE MAP — REVIEWED 26 OCTOBER 2026
+Data Protection and Privacy Act 2019: purpose, minimisation, retention, security and rights need separate attention. In the original 2019 Act, section 19 addresses processing/storage outside Uganda and section 29 the register. Check the relevant consolidated edition and regulations before advising.
+Primary consolidated source: https://ulii.org/en/akn/ug/act/2019/9/eng%402023-12-31
+Government-hosted original: https://fia.go.ug/sites/default/files/downloads/Data-Protection-and-Privacy-Act-2019.pdf
+Data Protection and Privacy Regulations 2021 and PDPO guidance: examine applicable registration/renewal and operational obligations; do not infer compliance from a provider’s privacy setting. PDPO official portal: https://pdpo.go.ug/
+Government registration guidance: https://doingbusiness.finance.go.ug/licensing/pdpo-data-protection-registration
+Evidence Act: professional communications, section 125 in the 2023 text, has a scope and exceptions requiring legal interpretation. No product configuration by itself establishes preservation of privilege or authorises disclosure. https://ulii.org/en/akn/ug/act/ord/1909/11/eng%402023-12-31
+Training use, retention, access, contractual permission, cross-border processing and professional confidentiality are separate questions. Identify the actual product, account, purpose, recipients and responsible firm authority.
+The course does not rely on an unverified summary of the 2025 Google complaint, invent a universal incident deadline or conclude that a particular AI provider complies with Ugandan law.

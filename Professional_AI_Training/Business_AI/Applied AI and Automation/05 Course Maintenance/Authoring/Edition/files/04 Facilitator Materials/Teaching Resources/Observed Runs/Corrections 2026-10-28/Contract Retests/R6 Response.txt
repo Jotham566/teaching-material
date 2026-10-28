@@ -1,0 +1,40 @@
+```json
+{
+  "source_scope": "CONTRACT-01 v2, executed 15 August 2026 (Order Form and Key Terms). The signed Fee Schedule referenced in the Order Form is not supplied.",
+  "established_facts": [
+    "The Order Form states that 'The Fees are set out in the Fee Schedule signed by the parties on the Order Date.'",
+    "The Fees are denominated in Ugandan shillings (UGX) and are exclusive of taxes.",
+    "The Subscription Period is 12 months.",
+    "The teaching note confirms: 'the signed Fee Schedule is deliberately not part of this teaching set.'",
+    "The client instruction states: 'We have not supplied the signed Fee Schedule. Do not infer the fees.'"
+  ],
+  "unresolved_facts": [
+    "The actual fee amount requires the signed Fee Schedule, which has not been provided."
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Order Form, Cloud Service Fees",
+      "quote": "The Fees are set out in the Fee Schedule signed by the parties on the Order Date. The Fees are in Ugandan shillings (UGX) and exclusive of taxes."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Order Form, Cloud Service Fees, Teaching note",
+      "quote": "[Teaching note: the signed Fee Schedule is deliberately not part of this teaching set.]"
+    },
+    {
+      "source": "CLIENT INSTRUCTION",
+      "location": "Document 2",
+      "quote": "We have not supplied the signed Fee Schedule. Do not infer the fees."
+    }
+  ],
+  "analysis": "The Order Form recites that a Fee Schedule was signed by the parties on the Order Date (15 August 2026) and that this schedule contains the Fees. The Order Form further specifies that Fees are in UGX and exclusive of taxes. However, the Fee Schedule itself is not among the supplied documents. The teaching note explicitly confirms its deliberate omission, and the client instruction prohibits inferring the fee amount. Therefore, while the Order Form establishes that a fee mechanism exists and identifies the currency, the specific annual fee amount cannot be determined from the supplied evidence.",
+  "conclusion": "The annual Fees cannot be determined. The Order Form recites that Fees are set out in a signed Fee Schedule, but that schedule has not been supplied. Only the currency (UGX) and tax treatment (exclusive of taxes) are established from the supplied documents.",
+  "review_checks": [
+    "Confirmed: No fee amount is stated in the Order Form or Key Terms.",
+    "Confirmed: The Fee Schedule is referenced but not provided.",
+    "Confirmed: No inference of fee amount has been made, consistent with client instruction.",
+    "Confirmed: The recital that a Fee Schedule was signed is reported as a statement in the Order Form, not as independent verification of signing or inspection of the absent schedule."
+  ]
+}
+```

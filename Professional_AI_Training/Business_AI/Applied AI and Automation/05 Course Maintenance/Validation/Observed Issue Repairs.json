@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-28",
+  "decks": [
+    {
+      "file": "01 - Understanding AI in the firm.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": []
+    },
+    {
+      "file": "02 - How AI learns and represents information.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": []
+    },
+    {
+      "file": "03 - How language models generate answers and fail.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": [
+        13
+      ]
+    },
+    {
+      "file": "04 - AI tools, effective instructions and safe use.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": []
+    },
+    {
+      "file": "05 - Preparing the firm’s information.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": []
+    },
+    {
+      "file": "06 - Internal knowledge search and retrieval.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": [
+        13,
+        17,
+        18
+      ]
+    },
+    {
+      "file": "07 - Legal research and deep research.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": [
+        13,
+        17
+      ]
+    },
+    {
+      "file": "08 - Contract review and drafting.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": [
+        16
+      ]
+    },
+    {
+      "file": "09 - Automation and agentic AI.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": [
+        12,
+        14,
+        15
+      ]
+    },
+    {
+      "file": "10 - Tax evidence workflows and controlled actions.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": []
+    },
+    {
+      "file": "11 - Organisational risk and governance.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": []
+    },
+    {
+      "file": "12 - Leading implementation and evaluating a pilot.pptx",
+      "visual_and_animation_parts_identical": true,
+      "notes_changed": []
+    }
+  ],
+  "updated_decks": 5,
+  "updated_scripts": 10,
+  "word_documents": 2,
+  "visual_review": "Guide and Workbook rendered by Microsoft Word for Mac. All initial pages inspected; final corrected Guide pages 13 and 14 re-rendered and inspected. Guide 25 pages, Workbook 17 pages. No clipping or overlap observed.",
+  "native_animation_scope": "All visual and animation package parts remain byte-identical to the edition previously played in native PowerPoint. This update changes notes only."
+}

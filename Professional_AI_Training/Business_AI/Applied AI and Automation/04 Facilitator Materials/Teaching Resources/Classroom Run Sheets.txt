@@ -1,0 +1,231 @@
+CLASSROOM RUN SHEETS
+All twelve sessions run for 120 minutes. The learner already uses AI assistants. I use familiar tasks to test mechanisms, evidence and implementation decisions. Tool setup and routine typing happen before class or while we discuss the work; I do not teach account creation, file upload or basic chat interaction unless help is requested. Sound explanations let us move promptly to the harder case in the Guide, within the same session time. I operate the tools, and we complete the working record together. Optional slides remain outside the core plan.
+
+SESSION 01 Understanding AI in the firm
+000–015 min | Recall or entry diagnostic | 1–2
+Use one current AI success and frustration to frame the seven short reasoning checks. Record explanations and move quickly through sound answers.
+015–050 min | Concepts and explanation | 3–11
+Compare three firm tasks, then map calculation, classification, retrieval and drafting to their different mechanisms.
+050–070 min | Worked demonstration | 12–13, 16
+Predict the consent answer, run it, read KT-1 together and mark the unconfirmed transaction trigger.
+070–075 min | Break | —
+Take a five-minute break.
+075–100 min | Guided application and tests | 14–16
+Choose one firm task, describe today's process and evidence owner, then write a success test together.
+100–110 min | Firm decision and understanding | 17–19
+Choose a proposed pilot task and explain who would review its output.
+110–120 min | Transfer and recap | —
+Change the example to a deadline reminder. Ask for a mechanism, a failure test and a two-sentence explanation to a partner.
+Executive application: Choose one familiar firm task and decide whether a chat, a maintained retrieval workflow or ordinary software is sufficient. Name the evidence and reviewer required before a result is used.
+Check: A defensible choice links the mechanism to the task and names a source owner, a success test and a hold condition. More AI is not automatically a better design.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 02 How AI learns and represents information
+000–010 min | Recall or entry diagnostic | 1–2
+Explain training and inference using yesterday's contract example before showing a definition.
+010–055 min | Concepts and explanation | 3–15
+Walk through labelled documents, the training loop and held-out evaluation. Then compare token IDs, embeddings and contextual representations.
+055–070 min | Worked demonstration | 16
+Predict which sentence pairs will be close, inspect actual cosine values and compare a consent sentence with its opposite.
+070–075 min | Break | —
+Take a five-minute break.
+075–100 min | Guided application and tests | 16
+Use a short document-label check, then test held-out evaluation, near-duplicate leakage and why similarity cannot settle consent.
+100–110 min | Firm decision and understanding | 17–19
+List evidence a vendor would need to show beyond a falling training-loss curve.
+110–120 min | Transfer and recap | —
+Give charge a new context and explain the changed meaning. Check whether uploading a file retrains the model.
+Executive application: Explain why a high similarity score cannot settle a consent exception. Then propose one evaluation case that similar training examples would not prepare the system to handle.
+Check: The answer separates representation from legal interpretation and uses a genuinely held-out case, including an exception or negation. A falling training loss alone is insufficient.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 03 How language models generate answers and fail
+000–010 min | Recall or entry diagnostic | 1–2
+Recall how inference differs from training. Ask which parts of today's answer are still unknown.
+010–045 min | Concepts and explanation | 3–12
+Build token generation and context examples, then distinguish unsupported facts, missing evidence and valid variation.
+045–070 min | Worked demonstration | 13, 15
+Run one fresh response and compare the saved dated repeats and evidence scopes. Prioritise the missing-fee and release checks.
+070–075 min | Break | —
+Take a five-minute break.
+075–100 min | Guided application and tests | 14–15
+Mark the failed response, apply the review workflow and compare the revised answer. Then change only the transaction to a share sale.
+100–110 min | Firm decision and understanding | 16–18
+Agree what must be checked before a draft can enter the matter file.
+110–120 min | Transfer and recap | —
+Explain why a repeated answer is not independent verification. Separate a raw run, a revision after feedback and an instructor answer.
+Executive application: Decide what can be released when the Standard Terms-only answer is coherent but omits the overriding Key Terms. Identify which extra evidence would actually change the decision.
+Check: The release is held pending the governing version and transaction facts. Agreement between generated answers cannot supply omitted evidence.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 04 AI tools, effective instructions and safe use
+000–010 min | Recall or entry diagnostic | 1–2
+Recall a correct citation that still failed to support the conclusion.
+010–040 min | Concepts and explanation | 3–10
+Compare available tool roles, practise briefing a junior colleague and inspect the teaching account's data-use questions.
+040–060 min | Worked demonstration | 11–13, 16
+Start with the learner’s usual AI brief, then compare a review specification on the same evidence. Inspect support and review effort.
+060–065 min | Break | —
+Take a five-minute break.
+065–100 min | Guided application and tests | 14–16
+Add one missing acceptance test, inspect a revision and test Variant A. Decide what belongs in the repeatable firm review process.
+100–110 min | Firm decision and understanding | 17–19
+Record the tool decision, an unanswered procurement question and the approval owner.
+110–120 min | Transfer and recap | —
+Explain what additional evidence a paid account does and does not supply about employer-data permission.
+Executive application: Turn the tested brief into a reusable review process. Decide what belongs in the instruction, what needs a maintained source collection and what must be checked by a reviewer.
+Check: The process records source/version, acceptance tests and responsibility. A better prompt alone does not provide source maintenance, access enforcement or firm authority.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 05 Preparing the firm’s information
+000–010 min | Recall or entry diagnostic | 1–2
+Name the data format, modality and source system for three law-firm examples.
+010–040 min | Concepts and explanation | 3–10
+Trace a scanned contract through OCR, correction, structured records, bounded chunks and an index. Locate the access checks.
+040–060 min | Worked demonstration | 11–13, 17
+Compare clean and degraded OCR, then inspect the source sentence whose negation was lost.
+060–065 min | Break | —
+Take a five-minute break.
+065–100 min | Guided application and tests | 14–17
+Complete an inventory row, inspect the oversized-chunk diagnostic, preserve KT-1 and its context, then assign a correction owner.
+100–110 min | Firm decision and understanding | 18–20
+Choose a collection to prepare and define the quality gate before indexing it.
+110–120 min | Transfer and recap | —
+Change the example to a scanned tax schedule. Explain which relationships and source locations must survive conversion.
+Executive application: Choose one collection such as scanned agreements or tax correspondence. Define its intake gate, correction owner and how a corrected source invalidates old derived content.
+Check: The plan preserves original, provenance, version, access metadata and a correction/re-indexing route. Clean-looking text alone does not clear a collection.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 06 Internal knowledge search and retrieval
+000–010 min | Recall or entry diagnostic | 1–2
+Recall the difference between a readable file, a searchable index and a supported answer.
+010–045 min | Concepts and explanation | 3–10
+Explain retrieval and generation separately, then trace token limits, source purpose, document identity, ranking and amendment context.
+045–065 min | Worked demonstration | 11–13, 17
+Compare the original failed search with bounded chunks and the repaired evidence packet. Read the retrieved rule and its exception.
+065–070 min | Break | —
+Take a five-minute break.
+070–100 min | Guided application and tests | 14–17
+Choose a new query and source purpose, test a paraphrase, request an unavailable agreement and compare a consent statement with its opposite.
+100–110 min | Firm decision and understanding | 18–20
+Record separate acceptance gates for retrieval, answer fidelity and permissions.
+110–120 min | Transfer and recap | —
+Explain why all eight fixture checks passing does not prove production reliability. Identify one additional representative firm test.
+Executive application: Use the missing-source result to define when the assistant must ask for evidence. Add one representative firm test beyond the 19 fixture checks and explain which layer it tests.
+Check: The proposed test distinguishes retrieval, answer fidelity and real access enforcement. Passing a small fixture does not certify a production system.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 07 Legal research and deep research
+000–010 min | Recall or entry diagnostic | 1–2
+Recall why a relevant-looking hit is still only a candidate source.
+010–040 min | Concepts and explanation | 3–7
+Set the historical research scope, distinguish submissions from findings and identify statute editions and page pinpoints.
+040–065 min | Worked demonstration | 8–12, 17
+Inspect the failed report, add page 1's actual four rows and compare its claims with pages 3 and 22–24 of the original judgment.
+065–070 min | Break | —
+Take a five-minute break.
+070–100 min | Guided application and tests | 13–17
+Build three claim records, draft a short historical note and separate current-law questions. Record the conflicting Tribunal year without guessing.
+100–110 min | Firm decision and understanding | 18–20
+Agree which claims can be released and which need a further source or qualified review.
+110–120 min | Transfer and recap | —
+Inspect a genuine citation that does not establish the proposition. Explain the limit of a search returning no later appellate decision.
+Executive application: A colleague wants to reuse the historical tax note in a new current matter. Specify the additional legislation, later-treatment checks and client facts before release.
+Check: The answer assigns each material claim to an authority and period and names unresolved checks. A research report or absence of a search result cannot clear current advice.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 08 Contract review and drafting
+000–010 min | Recall or entry diagnostic | 1–2
+Recall the transaction-trigger check and distinguish an assignment from a share sale.
+010–040 min | Concepts and explanation | 3–8
+Read the party, obligation and source-version records. Trace the Key Terms override and relevant cross-references.
+040–060 min | Worked demonstration | 9–12, 16
+Repair the flawed review using the complete clause. Distinguish a source quotation from a proposed customer-side amendment.
+060–065 min | Break | —
+Take a five-minute break.
+065–100 min | Guided application and tests | 13–16
+Apply Variant B, review share-sale remedies including materiality, cure and liability exceptions, then draft and explain one amendment.
+100–110 min | Firm decision and understanding | 17–19
+Record the reviewer's decision and what still needs source evidence or legal research.
+110–120 min | Transfer and recap | —
+Change only continued responsibility, leaving control unknown. Explain why an exception failure alone does not establish the trigger.
+Executive application: Choose one review finding and negotiate the proposed clause change aloud. What commercial protection improves, and what new ambiguity or burden could the amendment create?
+Check: The explanation compares current and proposed text, preserves unknown facts, checks cross-references and separates a proposal from agreed obligations.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 09 Automation and agentic AI
+000–010 min | Recall or entry diagnostic | 1–2
+Recall which part of the system approves an action and which part drafts a recommendation.
+010–045 min | Concepts and explanation | 3–9
+Compare RPA, defined workflows and tool-selecting agents. Trace a lookup, host decision and human review boundary.
+045–060 min | Worked demonstration | 10–12, 16
+Inspect the successful private Zapier test, then a real model-selected lookup trace. State which part demonstrates tool choice.
+060–065 min | Break | —
+Take a five-minute break.
+065–100 min | Guided application and tests | 13–16
+Test unknown ID, injected instructions and the call limit. Then approve, change and reject a local mock action while I operate the tools.
+100–110 min | Firm decision and understanding | 17–19
+Choose a read-only pilot scope, permitted tools and a stop condition with a proposed owner.
+110–120 min | Transfer and recap | —
+Separate model cooperation from host enforcement. Review an accurate lookup followed by an unsupported legal inference.
+Executive application: Design a first read-only pilot for the same task. Set permitted evidence, tool arguments, a call limit and the events that require a human decision.
+Check: The design identifies host-enforced boundaries and stale-approval handling, plus accountable ownership. Prompt instructions alone are insufficient controls.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 10 Tax evidence workflows and controlled actions
+000–010 min | Recall or entry diagnostic | 1–2
+Recall why a valid receipt reference alone does not establish tax treatment.
+010–040 min | Concepts and explanation | 3–6
+Separate source-file roles, accounting reconciliation, exception investigation and authority to declare or submit.
+040–060 min | Worked demonstration | 7–11
+Recalculate the reconciliation, compare the two saved prompts and inspect the official FDN guidance.
+060–065 min | Break | —
+Take a five-minute break.
+065–100 min | Guided application and tests | 12–17
+Work through the ledger challenge together for 25 minutes, then test uncertain acknowledgement and safe retry for 10 minutes.
+100–110 min | Firm decision and understanding | 18–20
+Record missing evidence, the reviewer and the boundary between a preparation pack and formal submission.
+110–120 min | Transfer and recap | —
+Move one receipt to a different month. Recompute the effect before accepting the old conclusion.
+Executive application: Decide what evidence must accompany a filing-preparation pack and what the system must do after an uncertain acknowledgement. Test whether a retry could duplicate an action.
+Check: The answer separates reconciliation from tax treatment and preparation from submission, and requires status/identifier checks before retrying.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 11 Organisational risk and governance
+000–010 min | Recall or entry diagnostic | 1–2
+Recall the difference between an output error, an access incident and a data-retention concern.
+010–045 min | Concepts and explanation | 3–8
+Apply the risk framework to the recurring matter, then identify proportionate access, retention and incident controls.
+045–055 min | Worked demonstration | 9–12
+Compare clean and difficult-scan OCR results and discuss which matters the difference may disadvantage.
+055–060 min | Break | —
+Take a five-minute break.
+060–095 min | Guided application and tests | 13–17
+Run the restricted-matter incident through containment, evidence preservation, recipient identification, review and restart conditions.
+095–110 min | Firm decision and understanding | 18–20
+Draft one approved-use rule with owners, a reporting route and review conditions.
+110–120 min | Transfer and recap | —
+Change the incident from a retrieved paragraph to an email attachment. Explain which controls and evidence change.
+Executive application: Draft a usable rule for this incident route, then explain how the firm will know the rule is followed. Identify who can authorise restart and what evidence they need.
+Check: The rule specifies a permitted purpose, responsible roles, enforceable controls, tests and a reporting route. A policy statement without operational evidence is incomplete.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+
+SESSION 12 Leading implementation and evaluating a pilot
+000–010 min | Recall or entry diagnostic | 1–2
+Repeat selected entry concepts in new examples before opening the answer key.
+010–030 min | Concepts and explanation | 3–6
+Explain pilot scope, critical failures, total review effort and the difference between capacity and cash savings.
+030–045 min | Worked demonstration | 7–11
+Calculate the main cost case and stress case together. Identify assumptions that determine the result.
+045–050 min | Break | —
+Take a five-minute break.
+050–085 min | Guided application and tests | 12–17
+Adapt one worked proposal to the learner's chosen task: baseline, sources, exclusions, tests, owners and day-30/60/90 decisions.
+085–110 min | Firm decision and understanding | 18–20
+Complete the exit diagnostic and decide whether the proposal is ready for the firm's approval process.
+110–120 min | Transfer and recap | —
+Explain the proposal to a fellow partner in two minutes, then identify the next evidence request and review date.
+Executive application: Stress-test the proposed pilot with higher review time, a critical missed exception or incomplete source coverage. State the point at which you would revise or stop.
+Check: The proposal keeps adverse results visible and uses quality and cost gates. Expansion depends on representative evidence and the firm’s approval process.
+Evidence: complete the existing working record together. The Guide contains the exact procedure and source references.
+

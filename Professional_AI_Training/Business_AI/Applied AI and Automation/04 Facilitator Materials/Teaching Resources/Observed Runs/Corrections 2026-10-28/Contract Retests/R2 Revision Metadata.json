@@ -1,0 +1,6 @@
+{
+  "date": "2026-10-28T00:06:44.495145+03:00",
+  "returncode": 0,
+  "reviewer_feedback": "Your conclusion says the consent requirement cannot be disapplied before the transaction trigger is established. Clarify that consent is unresolved, and that neither an assignment nor a change of control is yet established. A proposed internal reorganisation alone establishes neither trigger.",
+  "kind": "revision with explicit feedback; not a fresh blind test"
+}

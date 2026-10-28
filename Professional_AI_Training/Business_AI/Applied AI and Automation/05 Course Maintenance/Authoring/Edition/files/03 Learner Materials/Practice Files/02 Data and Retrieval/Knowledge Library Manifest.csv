@@ -1,0 +1,41 @@
+document_id,version,matter,status,type,date,title,file,sha256
+CONTRACT-01,v2,M-01,current,agreement,2026-08-15,"Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",Knowledge Library/agreement-current.txt,74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6
+CONTRACT-01,v1,M-01,superseded,draft agreement,2026-06-30,"Services agreement CONTRACT-01 v1, unsigned draft (Key Terms change only)",Knowledge Library/agreement-draft.txt,75887089dc30bad69c321c47b064c53378577414efc3dc4779ca6c7f5073b12b
+RECORD-03,v1,M-01,current,letter,2026-10-02,Equator letter announcing proposed group restructuring,Knowledge Library/record-03.txt,8ba9ed37685623804d4f8cba1063fe0433bdcdb0fbaa37dd681a93919aab2ef6
+RECORD-04,v1,M-01,current,file note,2026-10-14,File note: call with Equator account manager,Knowledge Library/record-04.txt,f71022a009fe1e002e506145e0b48ef031f8e593cf788ad1fd9d24ea2e314ba8
+RECORD-05,v1,M-01,current,email,2026-10-09,Victoria instruction: what is needed before you can advise,Knowledge Library/record-05.txt,34b9e838973176befc9506592ea39825e70d3b35de3052ac61e5da8fa4bafde1
+RECORD-06,v1,M-01,current,file note,2026-10-16,Note: signed fee schedule cannot be located,Knowledge Library/record-06.txt,f5bca63ad417061287a8f82f088a537e39d03e7a53089168458651b3f2c46611
+RECORD-07,v1,M-01,current,board paper extract,2026-10-12,Draft board paper extract: overseas software support,Knowledge Library/record-07.txt,bc73ed48932428b848f09155d9fafea3cee22ab3307a750954bbb1613d704239
+RECORD-08,v1,M-01,current,invoice query,2026-10-19,Query on repeated invoice INV-003,Knowledge Library/record-08.txt,36d9ad26ff1d5a99ae46c02909b00d2435a7a1d68c1fad541e756870424632e6
+RECORD-09,v1,M-01,current,access request form,2026-10-21,Support access request: two Equator staff,Knowledge Library/record-09.txt,f9168cfdb132bdd4dabd900aed4e8eba2b1595e820ed68e66248b29215b94c4f
+RECORD-10,v1,M-01,current,staff form,2026-09-03,Staff photograph consent form,Knowledge Library/record-10.txt,3bb36895a6b1d7b1b02344cebd9c563a723119c2ae0efa306b370a66808252e6
+RECORD-11,v1,M-01,current,email,2026-09-22,Customer survey consent wording,Knowledge Library/record-11.txt,e86b4a71b249ea034f11abf1ece65d2a1001780280a06c354bd82f847a159ffb
+RECORD-12,v1,M-01,current,email,2026-08-27,Reorganisation of finance filing system,Knowledge Library/record-12.txt,d8c1c64f228b2615b2111afc34003751607f61cd0c72621b0446566e76ed52cf
+RECORD-13,v1,M-01,current,policy excerpt,2026-02-10,Invoice approval workflow (policy excerpt),Knowledge Library/record-13.txt,d41ead9975f3aa59f56a5f19bf73331db55f76b75aa963449cac701aa99bf747
+RECORD-14,v1,M-01,current,email,2026-10-08,Equator notice of scheduled maintenance,Knowledge Library/record-14.txt,a1e9a4e074ac9339c396bbd7586ceeb39f2540a02544091e6f7580261fc9648b
+RECORD-15,v1,M-01,current,ticket,2026-10-15,Ticket: please assign TKT-4410 to a senior engineer,Knowledge Library/record-15.txt,2bd4f62c001ac0b562504951a6b003c86d0ed4a498465d2930fb745206d99de1
+RECORD-16,v1,M-01,current,service report,2026-10-05,Equator monthly service report - September 2026,Knowledge Library/record-16.txt,ee678b332774013b3662b09d5eea693836a822354662b715bda17137959a2da4
+RECORD-17,v1,M-01,current,meeting minutes,2026-10-13,Victoria finance meeting: September sales reconciliation,Knowledge Library/record-17.txt,ed800de33c9682722ca710ec4e00de6f915419c981a4383889894f0ace87204a
+RECORD-18,v1,M-01,current,email,2026-10-22,Tax team query on September sales records,Knowledge Library/record-18.txt,3a08dc2145fb99207d1ff19463f122e238477ce30c7258176f6aaeb2b343d79e
+RECORD-19,v1,M-01,current,file note,2026-10-12,Internal note: Peter Mugisha instructions to associate,Knowledge Library/record-19.txt,f38f22effed4097746e9eb6dca9c5222d1a21fd568bd68c16158325ca6c05d46
+RECORD-20,v1,M-01,current,email,2026-10-15,Email to Equator: request for ownership chart and written confirmation,Knowledge Library/record-20.txt,8d3233070b8ca0bdac3b69157d3edc847c36a8697abe4f1d720ec98661d9d4a3
+RECORD-21,v1,M-01,current,ticket,2026-09-28,Ticket: password reset for reporting application,Knowledge Library/record-21.txt,6a8907ba967ccb0f9b130819498bf4b30fc1821efb00a785180aeb33cc07520e
+RECORD-22,v1,M-01,current,policy excerpt,2026-03-04,Victoria IT access policy excerpt: external support staff,Knowledge Library/record-22.txt,ad396e9c065bc323cc08b8c44380b6343632126478b1f080411c912f1300d80e
+RECORD-23,v1,M-01,current,email,2026-10-23,Equator reply on INV-003 query,Knowledge Library/record-23.txt,e37148de0095b1e616112d053ad75c8fdf7ccd741ae0f449d9fe8da67a158159
+RECORD-24,v1,M-01,current,meeting minutes,2026-10-20,"Firm and Victoria call minutes, 20 October",Knowledge Library/record-24.txt,178f3f0ae391db43db3fe94878e8ea0944427c63b64211166f5ed2dcd80730a4
+RECORD-25,v1,M-01,current,email,2026-10-10,IT lead email on overseas software trial,Knowledge Library/record-25.txt,c195c2261e7aeabb1c8e278dfb3a5d9c37c48d10230ac145e1fdc3720fc858b1
+RECORD-26,v1,M-01,current,staff form,2026-10-01,New user request form: reporting application,Knowledge Library/record-26.txt,515b6c9d50ab0f45e04d47709655684f3ddd0a2545b9f5779fa5a85608594f99
+RECORD-27,v1,M-01,current,service report,2026-09-04,Equator monthly service report - August 2026,Knowledge Library/record-27.txt,951b669275f90031405509327deb6d079d8ac305f8ac905f1b9cbd54fa4bfb6a
+RECORD-28,v1,M-01,current,email,2026-10-23,Grace Atim to firm: Equator calls and Victoria's own notes,Knowledge Library/record-28.txt,cf8ef5d33c3f3aafda2f030511b4dcaf968a68319731e351e8bab2fb33d83736
+RECORD-29,v1,M-01,superseded,file note,2025-03-18,Note of Equator group ownership (as understood in 2025),Knowledge Library/record-29.txt,cbf566f8bd18a715c8a1d614a71b2abbad4f3bb0bfde9aac171b658bd437a358
+RECORD-30,v1,M-01,superseded,list,2025-06-02,"Equator support contact list, version 1",Knowledge Library/record-30.txt,c1d3ef999111b4e70ef464e82f9ab3bfdf992efd786127e1391aaac96641671e
+RECORD-31,v1,M-01,superseded,file note,2025-11-12,"Firm draft playbook position on provider changes, version 1",Knowledge Library/record-31.txt,c2c6bf08355efabac8b9323753b9122175e28e471f1c46476e294f1c75c53a51
+RECORD-32,v1,M-01,superseded,service report,2026-02-03,Equator monthly service report - January 2026,Knowledge Library/record-32.txt,6a75ff22fc83cd626f031b8e2459a272e9204e48f6430fdda5dc96eb0d3111a6
+RECORD-33,v1,M-01,superseded,form,2025-09-15,"Named support staff access list, version 1",Knowledge Library/record-33.txt,125b8622daded58fc0f4aecf1f8a5645c4c95dca9cfb5d75bdfa2946c2c88df8
+RECORD-34,v1,M-01,superseded,meeting minutes,2026-02-24,"Victoria management meeting: plan for reporting platform, February 2026",Knowledge Library/record-34.txt,92fedb6119e4f50432601e153792768d82ab92b7fe4836094a4dc37b85669d0a
+RECORD-35,v1,OTHER-02,current,agreement extract,2025-07-01,Kisumu Freight / Lakeview Data: change of control clause,Knowledge Library/record-35.txt,04c3f6c13ecee8f75d7127e5b5cbf9519c48da1f6f57c1caea477c50df8c3e16
+RECORD-36,v1,OTHER-02,current,agreement extract,2025-07-01,Kisumu Freight / Lakeview Data: assignment clause,Knowledge Library/record-36.txt,9216e7f4b451b55db77f584973d9bf49e500c0f7472d4cf2bb193d1002bb62fe
+RECORD-37,v1,OTHER-02,current,invoice,2026-09-30,Lakeview Data invoice LV-2211 to Kisumu Freight,Knowledge Library/record-37.txt,f153ad9e6e38c69035941e426a8364e25d72bd0d39dc35bb7c7b5d73bce3a75d
+RECORD-38,v1,OTHER-02,current,ticket,2026-10-07,Lakeview ticket: tracking dashboard not refreshing,Knowledge Library/record-38.txt,5d0ae3a5180ecdf14c5e106c9d2041c93545e069831150a750ad2114cf846d5e
+RECORD-39,v1,OTHER-02,current,meeting minutes,2026-09-18,Kisumu Freight / Lakeview quarterly review notes,Knowledge Library/record-39.txt,1ce5bb0774e0ce7aa838a75d63ac1d22e1c7138e8cb9f34dad1baafa715d5201
+RECORD-40,v1,OTHER-02,current,access request form,2026-10-12,"Lakeview support access request, Kisumu Freight systems",Knowledge Library/record-40.txt,6d43ba6f58426e81959e5617d3a39d8ca10748a64698c66a1c7b30aba8c01250

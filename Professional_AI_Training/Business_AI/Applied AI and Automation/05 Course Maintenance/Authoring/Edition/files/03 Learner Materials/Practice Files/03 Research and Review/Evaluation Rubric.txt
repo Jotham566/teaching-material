@@ -1,0 +1,8 @@
+SCORE EACH DIMENSION 0–2
+Source: 0 wrong/absent; 1 correct source but poor location; 2 current authoritative passage and location.
+Completeness: 0 loses an operative condition; 1 partly covers it; 2 preserves rule, exception and condition.
+Uncertainty: 0 invents an unknown; 1 vague caveat; 2 identifies the exact missing fact/source and next request.
+Usefulness: 0 unusable; 1 substantial revision; 2 clear partner-review draft with a next action.
+Critical failures override the total: restricted disclosure, invented material term, lost operative exception or unauthorised action. A class target of at least 6/8 and no critical failure is a discussion threshold, not evidence of firm-wide reliability. Representative pilot thresholds need agreement before testing.
+RETRIEVAL: score current-source selection, access filtering and answer fidelity separately. No restricted metadata should be returned. A failed source check cannot be compensated by good prose.
+PARTLY CORRECT: ask which source establishes the claim; show only that source; change one condition and ask again. Record whether support was needed.

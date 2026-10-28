@@ -1,0 +1,812 @@
+[
+  {
+    "session": 1,
+    "slide": 8,
+    "clicks": 5,
+    "missing": [],
+    "title": "How the fields relate",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 7132
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4169
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 1794
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 7723
+      },
+      {
+        "click": 5,
+        "changed_content_pixels": 5605
+      }
+    ]
+  },
+  {
+    "session": 1,
+    "slide": 10,
+    "clicks": 4,
+    "missing": [],
+    "title": "The model inside a working system",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4670
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5392
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 6340
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 4131
+      }
+    ]
+  },
+  {
+    "session": 2,
+    "slide": 5,
+    "clicks": 4,
+    "missing": [],
+    "title": "The learning loop",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4692
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5220
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5935
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 4828
+      }
+    ]
+  },
+  {
+    "session": 2,
+    "slide": 8,
+    "clicks": 4,
+    "missing": [],
+    "title": "Layers learn representations",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 3093
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 6218
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 10123
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5721
+      }
+    ]
+  },
+  {
+    "session": 2,
+    "slide": 11,
+    "clicks": 3,
+    "missing": [],
+    "title": "A simplified map of related language",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 2853
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4957
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 4431
+      }
+    ]
+  },
+  {
+    "session": 2,
+    "slide": 15,
+    "clicks": 4,
+    "missing": [],
+    "title": "How a language model develops",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 5192
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 6467
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 6895
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5202
+      }
+    ]
+  },
+  {
+    "session": 3,
+    "slide": 4,
+    "clicks": 3,
+    "missing": [],
+    "title": "Predicting the next token",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 30876
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 9897
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 6168
+      }
+    ]
+  },
+  {
+    "session": 3,
+    "slide": 5,
+    "clicks": 4,
+    "missing": [],
+    "title": "The response grows one token at a time",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 6011
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 7163
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 7147
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 8083
+      }
+    ]
+  },
+  {
+    "session": 3,
+    "slide": 7,
+    "clicks": 3,
+    "missing": [],
+    "title": "The context window",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 8455
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4430
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 9639
+      }
+    ]
+  },
+  {
+    "session": 3,
+    "slide": 9,
+    "clicks": 3,
+    "missing": [],
+    "title": "Attention connects relevant context",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 9039
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 1568
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 9047
+      }
+    ]
+  },
+  {
+    "session": 4,
+    "slide": 10,
+    "clicks": 2,
+    "missing": [],
+    "title": "A citation and its supporting passage",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 18217
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 24315
+      }
+    ]
+  },
+  {
+    "session": 4,
+    "slide": 11,
+    "clicks": 4,
+    "missing": [],
+    "title": "The instruction and review cycle",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4506
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4865
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5336
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 4940
+      }
+    ]
+  },
+  {
+    "session": 5,
+    "slide": 8,
+    "clicks": 4,
+    "missing": [],
+    "title": "The document preparation pipeline",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4128
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4224
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5314
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5604
+      }
+    ]
+  },
+  {
+    "session": 5,
+    "slide": 16,
+    "clicks": 4,
+    "missing": [],
+    "title": "Permissions through the pipeline",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 5155
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 6253
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5620
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5076
+      }
+    ]
+  },
+  {
+    "session": 6,
+    "slide": 6,
+    "clicks": 8,
+    "missing": [],
+    "title": "Two phases of a retrieval system",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4065
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 3498
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 4898
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 3226
+      },
+      {
+        "click": 5,
+        "changed_content_pixels": 7164
+      },
+      {
+        "click": 6,
+        "changed_content_pixels": 4858
+      },
+      {
+        "click": 7,
+        "changed_content_pixels": 4745
+      },
+      {
+        "click": 8,
+        "changed_content_pixels": 4611
+      }
+    ]
+  },
+  {
+    "session": 6,
+    "slide": 7,
+    "clicks": 2,
+    "missing": [],
+    "title": "Chunking and the exception",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 26217
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 16364
+      }
+    ]
+  },
+  {
+    "session": 6,
+    "slide": 10,
+    "clicks": 4,
+    "missing": [],
+    "title": "Hybrid retrieval",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4698
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5831
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5170
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5559
+      }
+    ]
+  },
+  {
+    "session": 6,
+    "slide": 12,
+    "clicks": 2,
+    "missing": [],
+    "title": "The answer and its evidence",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 18217
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 24315
+      }
+    ]
+  },
+  {
+    "session": 6,
+    "slide": 14,
+    "clicks": 4,
+    "missing": [],
+    "title": "Access-aware retrieval",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 3826
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5178
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5365
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5206
+      }
+    ]
+  },
+  {
+    "session": 7,
+    "slide": 11,
+    "clicks": 4,
+    "missing": [],
+    "title": "A deep-research cycle",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4103
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5052
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5006
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5697
+      }
+    ]
+  },
+  {
+    "session": 8,
+    "slide": 7,
+    "clicks": 3,
+    "missing": [],
+    "title": "Clause 3 with its qualification",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 6934
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5654
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 6916
+      }
+    ]
+  },
+  {
+    "session": 8,
+    "slide": 11,
+    "clicks": 4,
+    "missing": [],
+    "title": "Drafting with controlled inputs",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4729
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5275
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 4787
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5605
+      }
+    ]
+  },
+  {
+    "session": 9,
+    "slide": 8,
+    "clicks": 4,
+    "missing": [],
+    "title": "The agent loop",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 6885
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 7171
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5472
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 7177
+      }
+    ]
+  },
+  {
+    "session": 9,
+    "slide": 10,
+    "clicks": 4,
+    "missing": [],
+    "title": "Human in the loop",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 5054
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 6165
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5713
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 6171
+      }
+    ]
+  },
+  {
+    "session": 9,
+    "slide": 11,
+    "clicks": 4,
+    "missing": [],
+    "title": "Our small classroom assistant",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4882
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5405
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5046
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 4465
+      }
+    ]
+  },
+  {
+    "session": 10,
+    "slide": 5,
+    "clicks": 4,
+    "missing": [],
+    "title": "The reconciliation calculation",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4259
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5498
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 4956
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 4892
+      }
+    ]
+  },
+  {
+    "session": 10,
+    "slide": 13,
+    "clicks": 4,
+    "missing": [],
+    "title": "A bounded filing-assistance process",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4818
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4936
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5342
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 6247
+      }
+    ]
+  },
+  {
+    "session": 10,
+    "slide": 28,
+    "clicks": 4,
+    "missing": [],
+    "title": "Human approval of the exact action",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 5054
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 6165
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5793
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 6171
+      }
+    ]
+  },
+  {
+    "session": 11,
+    "slide": 4,
+    "clicks": 2,
+    "missing": [],
+    "title": "NIST risk-management functions",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 13859
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 15651
+      }
+    ]
+  },
+  {
+    "session": 11,
+    "slide": 7,
+    "clicks": 4,
+    "missing": [],
+    "title": "Cross-matter access",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 3291
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4670
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 4939
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5022
+      }
+    ]
+  },
+  {
+    "session": 11,
+    "slide": 15,
+    "clicks": 4,
+    "missing": [],
+    "title": "Response and recovery",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4475
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 4975
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5141
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 5015
+      }
+    ]
+  },
+  {
+    "session": 12,
+    "slide": 4,
+    "clicks": 4,
+    "missing": [],
+    "title": "The connected learning journey",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4746
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5021
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 4866
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 4456
+      }
+    ]
+  },
+  {
+    "session": 12,
+    "slide": 6,
+    "clicks": 2,
+    "missing": [],
+    "title": "The current and redesigned process",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 13864
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 17020
+      }
+    ]
+  },
+  {
+    "session": 12,
+    "slide": 14,
+    "clicks": 4,
+    "missing": [],
+    "title": "A staged adoption route",
+    "stage_changes": [
+      {
+        "click": 1,
+        "changed_content_pixels": 4947
+      },
+      {
+        "click": 2,
+        "changed_content_pixels": 5477
+      },
+      {
+        "click": 3,
+        "changed_content_pixels": 5214
+      },
+      {
+        "click": 4,
+        "changed_content_pixels": 4979
+      }
+    ]
+  }
+]

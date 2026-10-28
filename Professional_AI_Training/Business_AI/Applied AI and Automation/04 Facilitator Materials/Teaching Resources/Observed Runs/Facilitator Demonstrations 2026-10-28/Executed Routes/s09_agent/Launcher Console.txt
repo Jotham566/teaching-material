@@ -1,0 +1,5 @@
+DEMO: s09_agent 
+OUTPUT: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/05 Course Maintenance/Authoring/.build/guided_demonstrations/final_tests/s09_agent 
+Make a real read-only model-selected lookup using the existing Claude CLI account.
+Observed lookup calls: 1
+Final host state: RETURNED read-only answer

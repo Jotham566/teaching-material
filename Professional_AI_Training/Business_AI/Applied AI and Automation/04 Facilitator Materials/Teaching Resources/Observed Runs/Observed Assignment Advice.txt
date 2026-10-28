@@ -1,0 +1,32 @@
+ACTUAL SAVED AI OUTPUT, 26 OCTOBER 2026 (run R8)
+Run: Variant B, assignment
+Product: a Claude subagent started with no conversation history and given one prompt file. The subagent saved its own reply to a file, and this file holds that reply unedited below the line. It is not the learner's product and says nothing about any other tool.
+Tools: none for the task itself (the subagent read the prompt file and wrote its reply to disk).
+Evidence supplied: same as run 1. The exact prompt is saved in 05 Course Maintenance/Run Prompts/prompt_R'(run number)'.txt. Hashes (first 16 hex of SHA-256) of Agreement - Executed v2.txt (first 16 hex) 74c2190a908d0adf, Client Instruction.txt 4b77ff776aac1c98.
+One run per condition unless the title says otherwise. A single run shows what happened once and says nothing about how often.
+
+TASK GIVEN
+Stipulated variant: Equator proposes to assign the agreement to another company. Apply the agreement and advise Victoria. Keep the answer under 300 words.
+
+ACTUAL RESPONSE (unedited)
+------------------------------------------------------------
+Advice to Victoria Services Ltd: proposed assignment by Equator (CONTRACT-01 v2)
+
+Yes. Equator needs Victoria's prior written consent before it assigns the agreement to another company.
+
+Why
+- Section 12.6 was replaced by Teaching Adaptation 1. Its first sentence says neither party may assign any rights or obligations without the other's prior written consent.
+- The standard wording that let either party assign on notice after a merger, reorganization or sale is gone. Equator cannot assign on notice alone.
+- The carve-out for a reorganization within a wholly owned group sits in the change-of-control sentence. It excuses only the change-of-control consent, and only if Equator stays responsible. It does not excuse consent to an assignment, so calling the deal an internal reorganisation does not remove Victoria's right.
+- An assignment made without consent is void. Under Section 12.2, consent must be in writing and accepted by both parties.
+- The clause sets no reasonableness test for refusing. Whether Ugandan law, which governs, adds one should be checked.
+
+What to confirm before we advise
+1. The assignee's legal name, its link to Equator, and the ownership chart.
+2. Whether the whole agreement, including the Order Form, or only part is to be assigned.
+3. Whether a change of control of Equator comes with it, which needs separate consent.
+4. Whether Equator will stay liable after the assignment, in writing.
+5. Whether the assignee can deliver the hosted service, support, uptime and response commitments, and whether handling of Victoria's data or support-staff access will change (Section 1.5 requires Victoria's approval of named staff).
+6. The timing, and that the request will go to Victoria's Notice Address.
+
+We have not seen the signed Fee Schedule and assume nothing about fees. We have not relied on the separate variants file.

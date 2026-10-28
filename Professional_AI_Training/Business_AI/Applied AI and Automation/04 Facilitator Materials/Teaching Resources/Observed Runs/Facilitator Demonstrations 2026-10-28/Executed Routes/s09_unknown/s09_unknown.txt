@@ -1,0 +1,2 @@
+Observed lookup calls: 0
+Final host state: RETURNED read-only ask

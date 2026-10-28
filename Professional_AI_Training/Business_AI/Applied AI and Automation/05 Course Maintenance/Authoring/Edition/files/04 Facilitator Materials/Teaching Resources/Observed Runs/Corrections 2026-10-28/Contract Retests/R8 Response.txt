@@ -1,0 +1,47 @@
+```json
+{
+  "source_scope": "CONTRACT-01 v2, executed 15 August 2026, comprising Order Form and Key Terms (both signed cover pages) incorporating Standard Terms Version 3.0 by reference. Key Terms replace Section 12.6 via Teaching Adaptation 1. Per Key Terms preamble: 'If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms.'",
+  "established_facts": [
+    "The stipulated transaction is an assignment by Equator to another company.",
+    "Section 12.6 has been replaced by the Key Terms version, which controls over the original Standard Terms.",
+    "The replaced Section 12.6 contains separate provisions: (1) assignment requiring consent, (2) change of control requiring consent, (3) an exception for reorganization within a wholly owned group applicable to 'that consent' in sentence two.",
+    "An assignment to another company is a distinct transaction from a change of control or internal reorganization."
+  ],
+  "unresolved_facts": [
+    "Identity of the proposed assignee company.",
+    "Whether the assignee is within a wholly owned group (though this exception applies to change-of-control consent, not assignment consent, so may be immaterial for an assignment)."
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1 (replaced Section 12.6), first sentence",
+      "quote": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1 (replaced Section 12.6), second and third sentences",
+      "quote": "In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1 (replaced Section 12.6), fourth sentence",
+      "quote": "Any attempted but non-permitted assignment is void."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms preamble",
+      "quote": "If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms."
+    }
+  ],
+  "analysis": "The replaced Section 12.6 must be parsed sentence by sentence. The first sentence prohibits assignment without prior written consent—no exceptions. The second sentence separately addresses change of control. The third sentence creates an exception for 'that consent' (grammatically referring to the change-of-control consent in sentence two) for reorganizations within a wholly owned group where Provider remains responsible. The stipulated transaction is an assignment to another company, which triggers the first sentence. The wholly-owned-group exception in the third sentence does not modify the first sentence's assignment-consent requirement; it only modifies the change-of-control consent requirement. Therefore, for an assignment, Victoria's prior written consent is required regardless of group membership or continued responsibility.",
+  "conclusion": "Victoria's prior written consent IS required for Equator to assign the agreement to another company. The wholly-owned-group exception does not apply to assignments—only to changes of control. An attempted assignment without Victoria's consent would be void. Victoria should withhold consent until satisfied with the assignee's creditworthiness and capability, and may impose conditions.",
+  "review_checks": [
+    "Confirmed: Distinguished assignment (sentence 1) from change of control (sentence 2) as separate triggers.",
+    "Confirmed: The exception in sentence 3 ('that consent') grammatically refers to sentence 2's change-of-control consent, not sentence 1's assignment consent.",
+    "Confirmed: Did not add facts about assignee's group membership or responsibility—none provided in the task.",
+    "Confirmed: Did not infer fees from the absent Fee Schedule.",
+    "Confirmed: Applied Key Terms replacement, which controls over original Standard Terms Section 12.6.",
+    "Confirmed: Did not conflate assignment with share-sale variant excluded by instruction."
+  ]
+}
+```

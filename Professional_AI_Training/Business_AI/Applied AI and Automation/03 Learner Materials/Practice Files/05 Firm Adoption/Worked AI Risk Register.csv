@@ -1,0 +1,4 @@
+use_case,risk,control,test,owner_role,stop_condition,status
+Precedent search,Cross-matter disclosure,Filter by authorised matter before retrieval,Restricted-source query returns no passage or metadata,Information and technical owners,Any restricted content returned,Proposed teaching example
+Contract review,Omitted operative exception,Source-linked review and critical-error rubric,Change responsibility condition; inspect answer,Practice reviewer,Lost condition in accepted draft,Proposed teaching example
+Draft routing,Action after rejection or stale approval,Version-bound approval and allowed destination,Decline then change recipient,Workflow owner,Dependent action executes without current approval,Proposed teaching example

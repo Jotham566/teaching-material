@@ -1,0 +1,27 @@
+PASS K1 evidence and scope
+PASS K2 evidence and scope
+PASS K3 evidence and scope
+PASS K4 evidence and scope
+PASS K5 evidence and scope
+PASS K6 evidence and scope
+PASS K7 evidence and scope
+PASS K8 evidence and scope
+PASS new wording ownership event
+PASS new wording transfer
+PASS exception retained
+PASS unknown identity has no substitute or metadata
+PASS no permitted matter returns no metadata
+PASS missing document identity asks for clarification
+PASS overlong query is held rather than truncated
+PASS every embedded input fits the actual model limit
+PASS every evidence chunk is a verbatim source span
+PASS historical results are labelled superseded
+PASS changed source is held by the manifest check
+RESULT 19/19
+W1028 08:39:54.220000 41958 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 14841.74it/s]
+
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 105/105 [00:00<00:00, 4156.15it/s]

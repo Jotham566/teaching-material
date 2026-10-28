@@ -1,0 +1,8 @@
+FICTIONAL LANGUAGE EXERCISE
+Sort: signed service agreement, employee terms, credit note, sales invoice, privacy notice, board approval.
+Then compare query: consent for an internal restructuring of the provider.
+Candidate A: the Key Terms change to Section 12.6, which requires consent to a change of control and excuses it for a group reorganization if Provider remains responsible.
+Candidate B: an invoice payment term.
+Candidate C: the word consent in a staff photograph permission.
+Explain which candidate is relevant and why a shared word alone does not establish legal relevance.
+Charge example: a charge over property; a charge for an alleged offence. Identify contextual words before discussing embeddings.

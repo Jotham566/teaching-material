@@ -1,0 +1,9 @@
+DEMO: s06_missing 
+OUTPUT: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/05 Course Maintenance/Authoring/.build/guided_demonstrations/final_tests/s06_missing 
+Request an unavailable agreement; no substitute source should be returned.
+{
+  "status": "no_source",
+  "hits": [],
+  "mandatory_context": [],
+  "note": "No requested source is available in the permitted scope. Do not substitute another document."
+}

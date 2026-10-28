@@ -1,0 +1,53 @@
+{
+  "source_scope": "CONTRACT-01 v2, executed 15 August 2026, comprising Order Form, Key Terms (Framework Terms cover page), and incorporated Standard Terms Version 3.0 and SLA Standard Terms Version 2.0. Key Terms control over Standard Terms per the hierarchy stated in the Framework Terms. The Fee Schedule is not supplied.",
+  "established_facts": [
+    "An unrelated buyer acquires Equator Systems Ltd by share sale.",
+    "A share sale changes ownership of the company but does not transfer the agreement to a different legal entity.",
+    "Teaching Adaptation 1 replaces Section 12.6 in its entirety.",
+    "The replacement Section 12.6 requires Provider to obtain Customer's prior written consent before a change of control takes effect.",
+    "The exception to the consent requirement applies only to 'a reorganization within a wholly owned group if Provider remains responsible'.",
+    "An acquisition by an unrelated buyer is not a reorganization within a wholly owned group."
+  ],
+  "unresolved_facts": [
+    "The agreement does not expressly state the consequence if Provider proceeds with a change of control without obtaining Customer's prior written consent."
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "12.6 Assignment.  Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "Any attempted but non-permitted assignment is void."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Standard Terms Section 5.3",
+      "quote": "Either party may terminate the Framework Terms or an Order Form immediately: (a) if the other party fails to cure a material breach of the Framework Terms or an Order Form following 30 days notice"
+    }
+  ],
+  "analysis": "The Key Terms replacement of Section 12.6 creates two distinct obligations: (1) consent for assignment, and (2) consent for change of control. A share sale by an unrelated buyer is a change of control, not an assignment—Equator remains the contracting party. The replacement provision expressly requires Provider to obtain Customer's prior written consent before such change of control takes effect. The wholly-owned-group exception does not apply because the buyer is unrelated. The 'void' consequence applies expressly to 'attempted but non-permitted assignment'—a share sale is not an assignment of the agreement itself, so the void language does not directly apply. The agreement is silent on what occurs if Provider proceeds with an unconsented change of control. Proceeding without consent would breach the express obligation in Section 12.6, potentially triggering the general material-breach termination right in Section 5.3(a) with 30 days to cure, though the agreement does not characterize this breach as incurable. Section 12.5 preserves non-exclusive remedies except where exclusive remedies are stated.",
+  "conclusion": "Equator must obtain Victoria's prior written consent before the share-sale change of control takes effect. The wholly-owned-group exception does not apply. The agreement does not expressly state what happens if Equator proceeds without consent; the 'void' consequence addresses non-permitted assignments, not unconsented changes of control. A failure to obtain consent would breach Section 12.6, which may entitle Victoria to pursue termination under Section 5.3(a) for material breach (with 30 days' cure notice) or other available remedies under Section 12.5, but no automatic consequence is specified for the change of control itself.",
+  "review_checks": [
+    "Confirmed: Key Terms replacement controls over original Standard Terms Section 12.6 per Framework Terms hierarchy.",
+    "Confirmed: Distinguished share sale (change of control) from assignment (transfer of agreement).",
+    "Confirmed: The 'void' language applies to 'attempted but non-permitted assignment', not to unconsented change of control.",
+    "Confirmed: The wholly-owned-group exception requires both conditions (reorganization within wholly owned group AND Provider remains responsible); an unrelated buyer fails the first condition.",
+    "Confirmed: No express consequence stated for proceeding without change-of-control consent; did not infer automatic voidness or automatic termination.",
+    "Confirmed: Identified general breach/termination provision (Section 5.3) without asserting specific outcome.",
+    "Confirmed: Did not add facts about assignee's group membership, responsibility, or ownership not present in task.",
+    "Confirmed: Did not infer fees from the absent Fee Schedule."
+  ]
+}

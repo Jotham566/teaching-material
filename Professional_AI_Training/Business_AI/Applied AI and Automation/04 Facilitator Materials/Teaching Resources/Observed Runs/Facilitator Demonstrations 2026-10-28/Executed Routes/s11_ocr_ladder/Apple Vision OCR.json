@@ -1,0 +1,114 @@
+{
+  "configuration": "fast, revision 2, CPU only, en-US, language correction off",
+  "engine": "Apple Vision VNRecognizeTextRequest",
+  "images": [
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_A_clean.png",
+      "line_confidences": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text": "Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That\nconsent is not required for a reorganization within a wholly owned group if Provider remains responsible for its\nobligations under this Agreement.",
+      "source_sha256": "274ead4f3503b8d757eafb20920df0fac08b647c76485e2554ae4d2d86e251cb"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_B_mild.png",
+      "line_confidences": [
+        0.5,
+        0.5
+      ],
+      "text": "Prvvidff mull ohaln Cwtixiier's prkn wrtnen con5eM a rharye of corfrol of Provlthr tskes eff\u00a2a. Tha c(msenl b n\nroquird fw a rew8thzauon wkhin a wlKlly (rdnod rn if rematsb resB)Mi14e f\u00a2x tts d)liKath uMler thls AwnW.",
+      "source_sha256": "842a116ec758f51436fe28f8c2bd872341b480319178a6509116906fbfc8fc75"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_C_moderate.png",
+      "line_confidences": [],
+      "text": "",
+      "source_sha256": "eeac9b082fc9b0cebf931788f27bed175c7c1078e3ee582780edfd87cf50a34f"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p01_D_severe.png",
+      "line_confidences": [],
+      "text": "",
+      "source_sha256": "44a02cdf275c1b13f014c7aed35f6adecfdaced35215ed7d8379f731bde6891a"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_A_clean.png",
+      "line_confidences": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of\nthe other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a\nmerger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to\nwhich this Agreement relates.",
+      "source_sha256": "901c528594cdb9a563d281624514661c68ad2dc45a092f495df3b7723e53f4fa"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_B_mild.png",
+      "line_confidences": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text": "Neiihor party may assigii any rlghty or dJll8ail(ms thls A8rnMYm# wlthwf the wrft*n cffis\u00a2N of the party.\nHowevff. either party may assly thls A%TtemeN upn notke If the assi8niry party un&ryoes a mer8ef. chan8o of c(mtr\nAwryantsail(m. or 5ale ot all cr its equliy. buslnes5. or asseis to whlch th&s A8Tremff* rel*es.",
+      "source_sha256": "d5d40edee6923a5785e4b18c5c3419bb4d4caf6a8bee534714aa2a820b58ca1e"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_C_moderate.png",
+      "line_confidences": [],
+      "text": "",
+      "source_sha256": "d82967a5240fc9f807ef444adf662d2c2f9fc321cc1a87ce662c218eaba56df7"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p02_D_severe.png",
+      "line_confidences": [],
+      "text": "",
+      "source_sha256": "da4c79f9b5db43ba91112df9b7d3d2c53d34829b78c905d130af0f9d7babee76"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_A_clean.png",
+      "line_confidences": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text": "The provider's total liability for all claims arising out of this agreement shall not exceed the fees paid in the\ntwelve months before the first event giving rise to liability. This limit does not apply to fraud or to a breach of\nthe confidentiality obligations in section 9.",
+      "source_sha256": "2074d5f2f53e987f9845120d37485a549c1e62cd23fd8e237aa386612915dcde"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_B_mild.png",
+      "line_confidences": [
+        0.5,
+        0.5
+      ],
+      "text": "The PfDvhkn's i(Xal ltsbllhy all clalms arlslffj Iwi of this a8reenwni $hall niA exceed the fee5 pJld In twelve m(mihs befoTr the\ntlrA evont 8ivu4 rtse to Ikibillty. This Ilmli awly to fraud or io a Ixtach of the cY>nflkntiality obliW(ms th seaiOn",
+      "source_sha256": "f105010c5c0ca5cc41cf72cad4e040cc1137c0668a2f98392fa33d13123d37f3"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_C_moderate.png",
+      "line_confidences": [],
+      "text": "",
+      "source_sha256": "acc5a28f7afea2cf5c5735810e6a239f140618e578769f568392f299dca3ba75"
+    },
+    {
+      "error": null,
+      "file": "/Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/images/p06_D_severe.png",
+      "line_confidences": [],
+      "text": "",
+      "source_sha256": "4bec2aa1b4d321f03eceb9798db74cb89b25865630c0338233d7ff5efb6015ef"
+    }
+  ],
+  "system": "Version 27.2 (Build 26B118)"
+}

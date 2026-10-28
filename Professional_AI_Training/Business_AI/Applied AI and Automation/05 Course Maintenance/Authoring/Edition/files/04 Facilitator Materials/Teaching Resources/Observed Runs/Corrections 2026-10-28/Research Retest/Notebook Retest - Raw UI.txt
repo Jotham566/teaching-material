@@ -1,0 +1,346 @@
+Window: "Gemini Notebook", App: Microsoft Edge Beta.
+0 standard window Gemini Notebook - Microsoft Edge Beta, URL: notebook.google.com/notebook/467e5157-8f0a-4f85-b22f-c92b5a7f174c, Secondary Actions: Raise
+	1 container Gemini Notebook - Microsoft Edge Beta, URL: notebook.google.com/notebook/467e5157-8f0a-4f85-b22f-c92b5a7f174c
+		2 container
+			3 container
+				4 toolbar App bar
+					5 button Back
+					6 button Refresh
+					7 button Home
+					8 container
+						9 pop up button View site information
+						10 text field (settable) Address and search bar, Value: https://notebook.google.com/notebook/467e5157-8f0a-4f85-b22f-c92b5a7f174c, Placeholder: Search or enter web address
+						11 button App available. Install Gemini Notebook
+							12 container App Available
+						13 button Enter Reading mode (F9)
+						14 button Add this page to favorites (⌘D)
+					15 container
+						16 pop up button Extensions
+					17 button Control your music, videos, and more
+					18 container
+						19 button Favorites
+						20 button Performance | Performance issue detected
+					21 button Personal Profile
+					22 button Settings and more
+					23 button Chat
+				24 toolbar Favorites bar
+					25 toolbar Saved Tab Groups
+						26 button Tab groups
+					27 splitter Separator
+					28 bookmark folder button Research Stats Portal
+					29 bookmark folder button YU-MOT
+					30 bookmark folder button Startup Lab
+					31 bookmark folder button Personal Learning Journey
+					32 bookmark folder button AI Tools
+					33 bookmark folder button magentIQ
+					34 bookmark button JICE Japanese Classes
+					35 bookmark button Seven Chapters on Japanese Modernization
+					36 bookmark folder button PhD
+					37 bookmark button Bookmarks
+					38 bookmark button Translate
+					39 bookmark folder button Soccer
+					40 bookmark folder button Seiha
+					41 pop up button Menu containing hidden favorites
+					42 bookmark folder button Other Favorites
+					43 splitter Separator
+				44 container
+					45 scroll area
+						46 HTML content Gemini Notebook, URL: notebook.google.com/notebook/467e5157-8f0a-4f85-b22f-c92b5a7f174c
+							47 container
+								48 link Gemini Notebook Homepage, Value: notebook.google.com/
+								49 text field (settable) KLAi — Public-law deep research rehearsal
+								50 container Create notebook
+									51 button Create notebook
+								52 container Share notebook
+									53 button Share notebook
+								54 container Notebook configuration
+									55 pop up button Notebook configuration
+								56 container Settings
+									57 pop up button Settings
+								58 heading Sources, Value: 2
+									59 text Sources
+								60 button Collapse source panel
+								61 container Add source
+									62 button Add source
+								63 container
+									64 text entry area (settable) Discover sources based on the inputted query, Placeholder: Search the web for new sources
+									65 pop up button Web
+									66 pop up button Fast Research
+									67 container Submit
+										68 button (disabled) Submit
+								69 button Auto-label your sources by topic
+								70 pop up button Sort sources
+								71 text Select all
+								72 container
+									73 text check_box_outline_blank
+									74 checkbox Select all sources, Value: 0
+								75 container
+									76 button ANNUAL REPORT 2024 - GOAL Global
+									77 pop up button More
+									78 container
+										79 text check_box_outline_blank
+										80 checkbox Select ANNUAL REPORT 2024 - GOAL Global, Value: 0
+									81 button Deep Research Report: Public-Law Analysis of Goal Relief and Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023)
+									82 pop up button More
+									83 container
+										84 text check_box_outline_blank
+										85 checkbox Value: 0, Select Deep Research Report: Public-Law Analysis of Goal Relief and Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023)
+									86 button Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) [2024] UGCommC 272 (19 August 2024) - Esheria
+									87 pop up button More
+									88 container
+										89 text check_box_outline_blank
+										90 checkbox Value: 0, Select Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal 50 of 2023) [2024] UGCommC 272 (19 August 2024) - Esheria
+									91 button Goal Relief Judgment.pdf
+									92 pop up button More
+									93 container
+										94 text check_box
+										95 checkbox Select Goal Relief Judgment.pdf, Value: 1
+									96 button https://wakilii.org/en/akn/ug/judgment/eaca/1951/1a82cfa98eafd91c/general-investment-company-limited-v-commissioner-for-income-tax-civil-appeal-no-935-of-19
+									97 pop up button More
+									98 button Error info
+									99 button https://wakilii.org/en/akn/ug/judgment/ugcommc/2024/272/goal-relief-development-organisation-v-uganda-revenue-authority-civil-appeal-50-of-2023
+									100 pop up button More
+									101 button Error info
+									102 button https://www.centenarybank.co.ug/assets/uploads/reports/CentenaryAR_IM_070623_Lite.pdf
+									103 pop up button More
+									104 button Error info
+									105 button https://www.scribd.com/document/282253047/Tax-Revision-Kit
+									106 pop up button More
+									107 button Error info
+									108 button https://www.scribd.com/document/945125275/Absa-Bank-Uganda-Limited-v-Uganda-Revenue-Authority-TAT-Application-57-of-2021-2023-UGTAT-8-22-November-2023
+									109 pop up button More
+									110 button Error info
+									111 button The Income Tax Act Cap.340 4 - Amazon S3
+									112 pop up button More
+									113 container
+										114 text check_box_outline_blank
+										115 checkbox Select The Income Tax Act Cap.340 4 - Amazon S3, Value: 0
+								116 container
+									117 container
+										118 button Customize notebook
+										119 text 📄
+										120 heading KLAi — Public-law deep research rehearsal, Value: 2
+											121 text KLAi — Public-law deep research rehearsal
+										122 text 10 sources ·
+										123 text Oct 27, 2026
+									124 container
+										125 text GOAL’s 2024 annual report  details the international humanitarian organization's global operations, strategic framework, and crisis response efforts. Founded in  1977  by  John O’Shea , the non-governmental agency aims to assist marginalized and vulnerable populations facing poverty, conflict, and climate shocks. Guided by  Strategy 2025 , the organization utilizes a  Crisis to Resilience  framework to address root causes while delivering immediate humanitarian aid. The report highlights extensive operations across  fourteen countries , showcasing support for millions of people through emergency health services, food security, and protection initiatives. Furthermore, the document emphasizes the importance of  local partnerships , sustainable development, and transparency in navigating complex global challenges.
+									126 button Save to note
+									127 container Copy summary
+										128 button Copy summary
+									129 container Good summary
+										130 button Good summary
+									131 container Bad summary
+										132 button Bad summary
+									133 text Wednesday, October 28
+									134 container
+										135 heading Value: 3, Use only the selected original Goal Relief Judgment.pdf. Prepare a short historical verification note, not current legal advice. First transcribe the four original assessment rows on printed page 1, preserve each tax-head label and add only those four amounts. Keep amounts in grounds of appeal on pages 2–3 separate. Then distinguish the appellant’s Ground 5 submissions on pages 22–23 from the court’s reasoning and orders on pages 23–24. State the court’s programme delivery fee holding and disposition, with 
+											136 text Use only the selected original Goal Relief Judgment.pdf. Prepare a short historical verification note, not current legal advice. First transcribe the four original assessment rows on printed page 1, preserve each tax-head label and add only those four amounts. Keep amounts in grounds of appeal on pages 2–3 separate. Then distinguish the appellant’s Ground 5 submissions on pages 22–23 from the court’s reasoning and orders on pages 23–24. State the court’s programme delivery fee holding and disposition, with 
+										137 container
+											138 button Thoughts
+											139 heading Value: 3, Historical Verification Note: Goal Relief Development Organisation v Uganda Revenue Authority (Civil Appeal No. 50 of 2023) UGCommC 272
+												140 text Historical Verification Note:  Goal Relief Development Organisation v Uganda Revenue Authority  (Civil Appeal No. 50 of 2023)  UGCommC 272
+											141 heading 1. Original Assessment Rows (Printed Page 1), Value: 3
+												142 text 1. Original Assessment Rows (Printed Page 1)
+											143 text The Respondent (Uganda Revenue Authority) conducted a compliance review of the Appellant for the period January 2017 to December 2019 and issued additional assessments on June 7, 2021
+											144 pop up button 1: Goal Relief Judgment.pdf
+											145 text . The four original assessment rows and quantum amounts listed on printed page 1 are:
+											146 content list
+												147 container
+													148 text Withholding Tax [“WHT”] on local supplies : UGX 51,867,131
+													149 pop up button 1: Goal Relief Judgment.pdf
+												150 container
+													151 text WHT on international payments : UGX 263,533,867
+													152 pop up button 1: Goal Relief Judgment.pdf
+												153 container
+													154 text WHT on imported services : UGX 316,240,641
+													155 pop up button 1: Goal Relief Judgment.pdf
+												156 container
+													157 text Pay As You Earn [“PAYE”] : UGX 18,867,131
+													158 pop up button 1: Goal Relief Judgment.pdf
+												159 container
+													160 text Total Original Assessment :  UGX 650,508,770
+													161 pop up button 1: Goal Relief Judgment.pdf
+											162 heading 2. Amounts in Grounds of Appeal (Printed Pages 2–3), Value: 3
+												163 text 2. Amounts in Grounds of Appeal (Printed Pages 2–3)
+											164 text The amounts framed in the Appellant’s grounds of appeal challenging the Tax Appeals Tribunal (TAT) ruling are separate from the original assessment breakdown above [4–7]:
+											165 content list
+												166 container
+													167 text Ground 2 : Relates to alleged payments of management fees/commissions of UGX 1,554,123,178 to Goal Ireland, on which it was held the Appellant ought to have withheld tax of  UGX 285,825,249  (inclusive of interest)
+													168 pop up button 2: Goal Relief Judgment.pdf
+													169 text (noted elsewhere in court summary as UGX 233,825,249 inclusive of interest)
+													170 pop up button 3: Goal Relief Judgment.pdf
+													171 text .
+												172 container
+													173 text Ground 4 : Relates to software licenses on which it was held the Appellant ought to have withheld tax of  UGX 10,090,415
+													174 pop up button 4: Goal Relief Judgment.pdf
+													175 text .
+												176 container
+													177 text Ground 5 : Relates to the 10% ‘program delivery fee’ deducted by Goal Ireland, alleged to be consideration for imported services attracting Value Added Tax (VAT) of  UGX 379,488,769  (inclusive of interest)
+													178 pop up button 4: Goal Relief Judgment.pdf
+													179 pop up button 5: Goal Relief Judgment.pdf
+													180 text .
+											181 heading 3. Exact Statutory Citations & Editions (Pages 3, 6, 10, 22), Value: 3
+												182 text 3. Exact Statutory Citations & Editions (Pages 3, 6, 10, 22)
+											183 text The judgment explicitly cites statutory chapters and revised editions as follows:
+											184 content list
+												185 container
+													186 text Printed Page 3 : Section 27(2) of the  Tax Appeals Tribunal Act Cap. 341 (7th Revised Edition)
+													187 pop up button 6: Goal Relief Judgment.pdf
+													188 text .
+												189 container
+													190 text Printed Page 6 : Section 78(b) of the  Income Tax Act Cap. 338 (7th Revised Edition)
+													191 pop up button 7: Goal Relief Judgment.pdf
+													192 text .
+												193 container
+													194 text Printed Page 10 : Section 2(xx) of the  Income Tax Act Cap. 338 (7th Revised Edition)
+													195 pop up button 8: Goal Relief Judgment.pdf
+													196 text .
+												197 container
+													198 text Printed Page 22 : Section 5(1)(c) of the  VAT Act Now Cap. 344 (7th Revised Edition)
+													199 pop up button 9: Goal Relief Judgment.pdf
+													200 text .
+											201 heading 4. Ground 5: Appellant Submissions vs. Court Reasoning & Orders, Value: 3
+												202 text 4. Ground 5: Appellant Submissions vs. Court Reasoning & Orders
+											203 heading Appellant's Submissions (Printed Pages 22–23), Value: 4
+												204 text Appellant's Submissions (Printed Pages 22–23)
+											205 content list
+												206 container
+													207 text Argument : The Appellant contended that the 10% program delivery fee was not consideration for imported services
+													208 pop up button 10: Goal Relief Judgment.pdf
+													209 text .
+												210 container
+													211 text Statutory Basis : Citing Section 1(k) of the VAT Act (definition of "import") and Section 16(1) (location of supply), the Appellant argued that a service is only imported if supplied from outside Uganda
+													212 pop up button 11: Goal Relief Judgment.pdf
+													213 text . Citing  URA v COWA/S , Section 4(c), Regulation 13(2), Section 21, and Section 5(1)(c) of the VAT Act, it submitted that supply without consideration is not chargeable, and soliciting grants/donations abroad was not a service provided to the Appellant for consideration
+													214 pop up button 11: Goal Relief Judgment.pdf
+													215 pop up button 12: Goal Relief Judgment.pdf
+													216 text .
+											217 heading Court's Reasoning & Programme Delivery Fee Holding (Printed Pages 23–24), Value: 4
+												218 text Court's Reasoning & Programme Delivery Fee Holding (Printed Pages 23–24)
+											219 content list
+												220 container
+													221 text Reasoning : The High Court defined a service as anything transacted in that is not a good, conferred as an intangible benefit or advantage for consideration
+													222 pop up button 13: Goal Relief Judgment.pdf
+													223 text . Under Section 1(j) of the VAT Act and  Apollo Hotel Corporation v URA , importing a service involves provision by a non-resident/foreign entity to a Ugandan resident/business
+													224 pop up button 14: Goal Relief Judgment.pdf
+													225 text .
+												226 container
+													227 text Holding : Goal Ireland fundraised abroad and secured funding enjoyed by the Appellant in Uganda
+													228 pop up button 15: Goal Relief Judgment.pdf
+													229 text . The 10% deduction was consideration for fundraising/program delivery services rendered by Goal Ireland, constituting an imported service subject to VAT
+													230 pop up button 15: Goal Relief Judgment.pdf
+													231 pop up button 16: Goal Relief Judgment.pdf
+													232 text . VAT was therefore correctly assessed by URA
+													233 pop up button 16: Goal Relief Judgment.pdf
+													234 text .
+											235 heading Disposition & Orders (Printed Page 24), Value: 4
+												236 text Disposition & Orders (Printed Page 24)
+											237 content list
+												238 container
+													239 text 1 . The judgment of the Tax Appeals Tribunal is  affirmed
+													240 pop up button 16: Goal Relief Judgment.pdf
+													241 text .
+												242 container
+													243 text 2 . The appeal is  dismissed
+													244 pop up button 16: Goal Relief Judgment.pdf
+													245 text .
+												246 container
+													247 text 3 . The Respondent (URA) is  awarded costs  both in the High Court and in the Tribunal
+													248 pop up button 16: Goal Relief Judgment.pdf
+													249 text .
+											250 heading 5. Unresolved Matters, Value: 3
+												251 text 5. Unresolved Matters
+											252 text The selected judgment source ( Goal Relief Judgment.pdf ) does not establish or resolve:
+											253 content list
+												254 text Subsequent appellate history or treatment (e.g., any appeal to the Court of Appeal).
+												255 container
+													256 text Current legal or statutory applicability beyond the date of judgment delivery (19 August 2024)
+													257 pop up button 17: Goal Relief Judgment.pdf
+													258 text .
+												259 text Discrepancies or conflicting metadata across external case repositories or unselected sources.
+											260 text ⚖️ Would you like to analyze the court's detailed treatment of withholding tax on software licenses (Grounds 3, 4, and 6) next?
+										261 container Save message to a note
+											262 button Save message to a note
+										263 container Copy model response to clipboard
+											264 button Copy model response to clipboard
+										265 container Rate response as good
+											266 button Rate response as good
+										267 container Rate response as bad
+											268 button Rate response as bad
+										269 button Would you like to analyze the court's detailed treatment of withholding tax on software licenses (Grounds 3, 4, and 6) next?
+									270 text Today • 9:57 PM
+									271 container
+										272 text entry area (settable) Query box, Placeholder: Ask a question or create something
+										273 text 1 source
+										274 container Submit
+											275 button (disabled) Submit
+									276 text Gemini Notebook can make mistakes, so double-check it.
+								277 heading Studio, Value: 2
+									278 text Studio
+								279 button Collapse studio panel
+								280 container
+									281 button Audio Overview
+									282 button Slide Deck
+									283 button Video Overview
+									284 button Mind Map
+									285 button Reports
+									286 text New!
+									287 button Flashcards
+									288 button Quiz
+									289 button Infographic
+									290 button Data Table
+									291 text Studio output will be saved here. After adding sources, click to add Audio Overview, Study Guide, Mind Map, and more!
+									292 button Add note
+							293 text Reply ready.
+				294 tab group Tab bar
+					295 pop up button Search tabs
+					296 button Workspace Button
+					297 container
+						298 tab group
+							299 tab (settable, boolean) IUEA Login - Sleeping - Memory usage - 28.7 MB, Value: off
+								300 button Close tab
+							301 tab (settable, boolean) Value: off, Course: Introduction to Machine Learning in Design and Infrastructure, Section: Week 7 - Sleeping - Memory usage - 73.8 MB
+								302 button Close tab
+							303 tab (settable, boolean) MSc in Strategic AI and Innovation | WQU.edu - Sleeping - Memory usage - 57.3 MB, Value: off
+								304 button Close tab
+							305 tab (settable, boolean) Value: off, teaching-material/IUEA_Teaching_Plan/assessment_operations/CONTINUE_GRADING.md at main · Jotham566/teaching-material - Sleeping - Memory usage - 140 MB
+								306 button Close tab
+							307 tab (settable, boolean) Inbox (104) - jothammartin.wambi@gmail.com - Gmail - Sleeping - Memory usage - 533 MB, Value: off
+								308 button Close tab
+							309 tab (settable, boolean) The African Gazette | Team Gazette | Substack - Sleeping - Memory usage - 212 MB, Value: off
+								310 button Close tab
+							311 tab (settable, boolean) Agasaro | Team Gazette | Substack - Sleeping - Memory usage - 184 MB, Value: off
+								312 button Close tab
+							313 tab (settable, boolean) Agasaro Kaburaga - YouTube - Sleeping - Memory usage - 250 MB, Value: off
+								314 button Close tab
+							315 tab (settable, boolean) Home - Google Drive - Memory usage - 249 MB, Value: off
+								316 button Close tab
+							317 tab (settable, boolean) usd to ugx - Google Search - Sleeping - Memory usage - 113 MB, Value: off
+								318 button Close tab
+							319 tab (selected, settable, boolean) Gemini Notebook - Memory usage - 285 MB, Value: on
+								320 button Close tab
+							321 tab (settable, boolean) Agents - Sleeping - Memory usage - 641 MB, Value: off
+								322 button Close tab
+							323 tab (settable, boolean) Zapier Agents - Sleeping - Memory usage - 101 MB, Value: off
+								324 button Close tab
+							325 tab (settable, boolean) KLAi - Fictional contract review rehearsal | Zapier - Sleeping - Memory usage - 272 MB, Value: off
+								326 button Close tab
+							327 tab (settable, boolean) ballon d'or winner 2026 - Google Search - Memory usage - 210 MB, Value: off
+								328 button Close tab
+							329 scroll area
+					330 button New Tab
+	331 menu button Window sharing
+332 menu bar
+	333 Edge Beta
+	334 File
+	335 Edit
+	336 View
+	337 History
+	338 Favorites
+	339 Profiles
+	340 Tab
+	341 Window
+	342 Help
+
+The focused UI element is 46 HTML content Gemini Notebook, URL: notebook.google.com/notebook/467e5157-8f0a-4f85-b22f-c92b5a7f174c

@@ -1,0 +1,25 @@
+RECORD-30 | list | 2025-06-02 | Equator support contact list, version 1
+
+EQUATOR SYSTEMS LTD - SUPPORT CONTACTS FOR VICTORIA SERVICES LTD
+Version 1, issued 2 June 2025
+
+First line support desk
+Telephone: 0414 000 111
+Email: helpdesk@equator.example
+Hours: Monday to Friday 08:00 to 17:00
+
+Escalation (second line)
+Emmanuel Opio, senior engineer: 0772 000 222
+Harriet Namuli, deputy support lead: 0772 000 333
+
+Account manager
+Patrick Lule: 0772 000 444, patrick.lule@equator.example
+
+Accounts
+Sandra Okello: accounts@equator.example
+
+Out of hours emergency line (critical outages only): 0414 000 999
+
+Please keep this list near the IT desk. We will tell you if any name changes.
+
+Victoria IT lead note, 3 June 2025: list pinned on noticeboard, copies to finance and operations.

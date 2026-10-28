@@ -1,0 +1,207 @@
+This is our last working session, and it pulls the whole course together around one decision. The question for today is this. What would justify starting, revising or stopping the firm's first pilot?
+
+For a legal or tax practice, that question matters because a pilot spends partner time, touches client information and puts the firm's name on the result. A good decision rests on a written record of evidence, and a hopeful impression of a demonstration can't supply that.
+
+By the end of today we'll have a pilot proposal for the firm, and a record of what we would do next. I won't answer the question yet. I'll ask it again at the end of class, and we'll compare your two answers.
+
+Let's start with a recall question from last session. We looked at a disclosure of restricted data. What evidence would you want to see before the process is allowed to restart? Take a moment with that, and say it in your own words.
+
+Here's what I'd listen for. Containment of the disclosure. An investigation of the cause. Corrected controls. Passed tests. And a decision to restart, made by someone with the authority to make it. If you've given me two or three of those, then tell me who signs off the restart, and what they look at before signing.
+
+Now look at today's question. It has the same shape as the one you just answered. Both ask what evidence permits a firm to go ahead. I'm keeping your answer from today, because it's the entry diagnostic we'll compare against at the end of class.
+
+I'm using this as a working definition for the course. It's a way of talking about the firm, and it doesn't mean every process needs AI.
+
+There are three points. First, the work is designed with suitable AI capabilities in it. Second, reliable information and clear responsibilities sit under the work. Third, evidence decides whether we adopt, change or expand.
+
+A short example makes it concrete. One lawyer pastes a loan agreement into a chatbot and gets an answer. A firm has approved sources, a checking step, a named owner and a record of how well it works.
+
+Here's a question for you. What would separate this firm from five lawyers who each use a chatbot on their own? Sit with it for a second.
+
+The firm has shared sources, repeatable steps, named responsibilities, evaluation, and someone who maintains the capability. If you only named tools, ask yourself who would look after them in six months.
+
+Before we decide anything, let's look back at the path we've walked. It has four stages, and the same fictional matter ran through all of them.
+
+First comes Understand. That's the task and the model. A model is the software that produces text from a prompt.
+
+Then Prepare. That's information and search. Retrieval is how the right passages reach the model, and everything later relied on it being done well.
+
+Next is Apply. Here we did legal and tax work, using what the earlier stages gave us.
+
+And last, Lead, where we govern and evaluate. Governance means who may do what with the system.
+
+Now it's your turn. Why did we prepare the sources before we tried to build an assistant? Give that a little thought.
+
+My answer is that the system can only be as good as the evidence it's given, and that evidence has to be relevant, reliable and permitted. If that feels slippery, picture what the assistant would have done with an out-of-date source.
+
+This is the table we use to compare candidate pilots, and I'll put each row to you as a question.
+
+Value asks which recurring problem matters. Feasibility asks whether the sources and systems are usable. Risk asks what could fail and who is affected. Adoption asks whether staff will use it and review it. Ownership asks who maintains it.
+
+Take a simple example. A precedent search for tax opinions might score high on value. If the opinions sit in scattered folders with unclear access, it scores low on feasibility. The ranking changes once we look at both.
+
+Tell me what you make of this. Which single missing condition should stop a launch even if everything else looks good? Work it through before I answer.
+
+Here's what I'd say. No owner. No permitted data. No way to test quality. Or a serious risk that nobody has dealt with. Any one of those is enough to stop us.
+
+A common mistake is to pick the candidate that makes the best demonstration. If you catch yourself doing that, ask who would maintain it a year from now.
+
+Now let's see how one process changes. We'll take a research task and look at how it runs today and how it would run with assistance.
+
+The current process goes like this. You search, find a source, read it and interpret it. Then you draft and prepare the result, and it goes to the partner for review.
+
+Now the assisted version. Retrieval comes first, and it draws only from permitted sources. The model produces an AI draft, which is a first version for a person to check, and it comes with a cited finding. Then a reviewer checks and decides. Last, the approved result is recorded. The assisted design changes the preparation. Review stays, and so does accountability. Think of a research note on a tax question, where the reviewer opens each citation before approving.
+
+Which responsibility stays with the partner in this design? Let's hear your answer first.
+
+I'd say professional judgement, and the defined approval of advice. If you're tempted to say the partner no longer reads sources, ask who is answerable if a citation is wrong.
+
+To judge whether a pilot helps, we need to know how the work goes today. That measurement is called a baseline, and we take it before the pilot starts. Without it, we can't say whether anything improved.
+
+There are four measures. The time it takes to find relevant evidence. The accuracy and completeness of the finding. The effort the partner spends reviewing and correcting. And the turnaround, cost and client experience.
+
+We observe the current process first. We take a sample of real tasks, including the awkward ones, and we write down what each one took and what the partner changed. For a tax research task, that could mean timing the search, then counting the corrections the partner makes to the first draft.
+
+I'd like to hear your thinking on this one. If the tool writes a draft much faster, what might that speed be hiding? Take your time with it.
+
+Here's where I land. More verification, more correction, or more handling of exceptions further down the line. If you think nothing is hidden, ask where the extra time would show up in the partner's day.
+
+Here's a small example with invented figures, kept simple so we can follow the arithmetic. Read it left to right.
+
+Search and preparation falls from 20 minutes to 8. Review rises from 10 minutes to 12. Under these assumptions, the total is 30 minutes now and 20 minutes with assistance.
+
+Let me do the sum aloud. Ten minutes saved on each task, across forty tasks, releases four hundred minutes. That's six hours and forty minutes. Look at the review row. The assisted review is longer, because a person must now check a draft they didn't write.
+
+Released minutes are capacity. They turn into cash only under conditions we'll examine when we stress this example, and again in the cost sheet.
+
+Here's one for you. What should the pilot measure, so that this table gets filled with the firm's own figures? See what you come up with.
+
+Total time is what I'd measure, including review, correction, support and exceptions. If you listed only search time, ask yourself where the partner's checking would go in the table.
+
+This is the stress case, and every figure is invented. Suppose assisted review rises from 12 minutes to 25. Add the 8 minutes of search and preparation, and the assisted total is 33 minutes. The manual baseline is 30. Each task now takes 3 minutes longer, and forty tasks consume 120 extra minutes.
+
+Do that sum yourself as well, and then notice where the benefit sits. It sits in one number we don't control, which is how long a careful review takes. Tool charges, setup, training and support come on top of this.
+
+Let me put a question to you. If the pilot data looked like this, what action would it support? Give that a little thought.
+
+The way I read it, we investigate quality and scope, revise the design, or stop. What we wouldn't do is claim a productivity gain. If you're thinking of training staff to review faster, ask what faster review would do to the accuracy of the finding.
+
+Next question. How does the firm get the capability in the first place? The table gives three routes. We can buy an existing product, configure a platform, or commission custom development.
+
+The right-hand column tells the partner what to assess on each route. For a product, that's task fit, sources, rights and the contract. For a platform, connections, permissions and support. For custom development, ownership, evaluation and maintenance.
+
+One term to be clear on. An agent is software that takes steps toward a goal using a model, for example searching and then drafting. A custom agent isn't automatically more capable or cheaper, and it needs someone to maintain it.
+
+With any vendor, the step I'd take is to give them a sample of our permitted documents and ask them to work on it.
+
+So what should we request from a vendor beyond a polished demo? Have a think.
+
+I'd ask for tests we can repeat, a list of the failures, the review effort, the operating cost and the arrangements for leaving. If you only thought of price, ask what happens to our work if the vendor closes.
+
+Whichever route we choose, someone has to run the pilot. So let's name the team.
+
+First, a sponsor with decision authority. Second, practice and information owners. Third, technical support and qualified reviewers. And fourth, the staff who will use the process. In a small firm, one person may hold two of these roles. What's needed is clear responsibility, and no new committee.
+
+Take the tax team's precedent library. It changes when a new ruling is added. Somebody has to update it, and say when it was last checked.
+
+Try this one. Who owns the freshness of the sources? No rush.
+
+The named information or knowledge owner. If your first thought was the vendor or the tool, ask who in this firm can say what the current version of that source is.
+
+There's one more thing to settle, which is who can say no. The sponsor can, provided the sponsor really has the authority.
+
+Now we're at the guided application block, and this part is about people. There are four points.
+
+Explain which work changes and why. Demonstrate permitted uses with real workflow examples. Train reviewers as well as users. And provide an accessible route for feedback and incidents.
+
+Adoption also touches supervision and junior learning. A junior who never drafts a first research note may not learn how to judge one. The firm should decide how staff keep their domain skills and learn to challenge output.
+
+Here's something to chew on. What would make a lawyer avoid the approved process and go back to a private tool? Say it out loud if it helps.
+
+Poor fit with the work, difficult access, unclear expectations, or no one to ask. Those are the reasons I'd expect. If you think staff are simply resistant, try this angle. What would you change so the approved route is easier than the private one?
+
+And one more for you. Which of these four points would you write into your own proposal first?
+
+This part is about what the firm does with any time the process releases. There are three points. Decide how quality and turnaround benefit clients. Review engagement terms and communication where relevant. And consider fees, value and accountability under applicable duties.
+
+I'm not giving a legal opinion on fees or disclosure. Those duties come from the firm's professional and contractual requirements, and the partners apply them.
+
+Here's a practical example. If research takes less time on a matter billed at a fixed fee, the client may expect a faster turnaround. If it's billed by time, the engagement terms matter. I don't assume released time turns into revenue.
+
+One for you to work out. Who decides the pricing or disclosure position for work done with AI help? Think it over.
+
+This is how I see it. The responsible partners decide, using the applicable professional and contractual requirements. If you thought the technology team decides, ask whose name is on the advice and the invoice.
+
+Now let's look at the stages by which a firm moves toward live use. There are four, and each depends on evidence.
+
+First is Prepare. That means sources, scope and an owner.
+
+Second is Shadow. The assisted process runs next to the manual work, and we compare the two. For example, a reviewer completes the same ten tasks by hand and with assistance, and records the differences.
+
+Third is Pilot. That's bounded, authorised use.
+
+Fourth is Review, where the firm decides to expand, revise or stop. These stages follow evidence and agreed dates. They don't promise deployment in thirty days. I want that clear, because the 90-day plan coming up could be read as a launch schedule.
+
+A question for you. What evidence would let the firm expand after the Pilot stage? Think it over.
+
+I'd look for quality results, access working as intended, operating performance and user adoption, all under the wider scope being proposed. If your answer was that the demo went well, ask what the demo left out.
+
+This is a discussion plan, and it uses relative dates because no kickoff date or firm owner has been agreed. Let me go through the rows.
+
+Days 0 to 30. The practice and information owners settle scope, sources and baseline, and decide whether we're ready to shadow. Days 31 to 60. The workflow owner and reviewers run tests on quality, effort and access, and decide whether bounded use is justified. Days 61 to 90. The sponsor and risk owner weigh value and remaining risk, and choose to expand, revise or stop.
+
+Day 90 is a decision point, and expansion doesn't follow automatically. Later, you and I will turn these roles into real names, and we'll agree actual dates only if you're ready.
+
+One for you to work out. If data preparation takes longer than planned, what would you do? See what you come up with.
+
+Let me give you mine. Revise the plan and the scope, and keep the source and access work in place. If you were tempted to start anyway, ask what the shadow stage would compare against.
+
+The proposal we'll write together has four parts. The problem and the selected workflow. The information, system and review design. The evidence and acceptance conditions. And the ownership, resources and staged decision.
+
+I have the Worked Pilot Proposal open, and I'll read it through once. Then we'll fill in our own Pilot Proposal, using decisions you've already made in this course. You should be able to explain every line without technical buzzwords.
+
+One term to be clear on. An acceptance condition is a test result we agree beforehand, for example a stated share of cited findings that a reviewer confirms from the source.
+
+Here's a question before we go on. What would another partner need to see in this proposal before they approve it? Take your time.
+
+A bounded purpose, the resources, named responsibilities, an evidence plan and a decision about the risk. If you wanted more detail on the technology, ask which of the four parts is weakest in what we have so far.
+
+This is the working stretch. We have four tasks, and we'll do them together. We have about thirty-five minutes for this block, and we'll set the time between us.
+
+First, we repeat the diagnostic with changed examples, and I won't show you the model answers. Second, we adapt the worked proposal to one candidate task. That covers the problem and baseline, scope and exclusions, sources and permissions, acceptance tests and owners. Third, we check cost, review effort and the stress case from the Cost and Effort Example sheet. Fourth, we assign proposed owners and relative decisions at day 30, 60 and 90.
+
+I'll demonstrate the first example, and you'll do the rest. We use the files in front of you and the sheet, so no account or connected tool is needed. If a tool is unavailable, we use the labelled example and I'll mark that step as unexecuted.
+
+Before we begin, give me your answer to the exit diagnostic from the start of the session, using the alternate facts. A strong answer names a bounded problem, representative evidence, acceptance tests, resources, owners and a review decision. Take your time putting it together.
+
+Before I give you the conclusion, say it in your own words. Then we'll compare.
+
+The first point is that a pilot needs a bounded problem, representative evidence, acceptance tests, resources, owners and a review decision. Time released isn't automatically cash saved. And the firm should state what evidence would justify expansion or stopping.
+
+Let me connect that to the cost sheet. In the main case, the monthly effect is a gain of UGX 160,000, valued at the cost of reviewer time. It becomes cash only if the freed capacity is used for paid work or avoids a real cost. In the stress case, it's a loss of UGX 360,000. These are invented numbers in a teaching example.
+
+Here's one for you. Which part of today's result remains unverified? Sit with it for a second.
+
+A classroom proposal isn't production approval, and the proposed roles and dates still need the firm's agreement. If you feel everything is settled, ask yourself who has agreed to these dates.
+
+This is the decision record, and I'll say plainly what it is. It's a class decision record. The firm hasn't authorised anything.
+
+We write the recommendation as it appears here. Prepare one proposal for firm review, with conditions and a next decision date. We name a proposed owner and one condition, and we list the evidence still needed. For example, the condition could be that the information owner confirms the sources are permitted for this use before the shadow stage begins.
+
+Let me put a question to you. What evidence would change this proposed decision? Work it through before I answer.
+
+I'd put it like this. New results on quality, a change in the review effort, or a change in the permitted scope. If any of those moves, we revisit the proposal. If you named only a change in cost, try this angle. What would you do if the reviewers found a critical error in the shadow stage?
+
+Now a short check, using changed facts. There are three questions. I'll read each one, and you answer before I give you my view.
+
+The first. The draft saves time but loses a critical exception. Should we expand?
+
+The second. Review effort rises above the manual baseline. What changes?
+
+The third. Who can approve more users, or more authority for the system to act?
+
+Give each one a little thought, and say your answers aloud.
+
+Here are mine. On the first, we don't expand with a critical failure. On the second, we revise the design, or stop if total effort or value is worse than the baseline. On the third, the named authorities in the firm decide scope and permissions, after further tests.
+
+If your first answer was partial, ask how a missed exception would reach a client. On the second, ask which number from the cost sheet changes first. On the third, ask who in the firm holds that authority today. Afterwards, we'll compare your answers with the entry diagnostic.

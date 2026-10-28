@@ -1,0 +1,50 @@
+{
+  "source_scope": "CONTRACT-01 v2 executed 15 August 2026, comprising Order Form and Framework Terms (Key Terms plus Standard Terms Version 3.0). The signed Fee Schedule is referenced but not supplied and not inspected.",
+  "established_facts": [
+    "Equator has proposed an internal reorganisation.",
+    "Victoria has not received Equator's ownership chart.",
+    "Victoria has not received written confirmation that Equator remains responsible.",
+    "Victoria has not received any statement about whether the agreement will be transferred.",
+    "The Key Terms replace Standard Terms Section 12.6 via Teaching Adaptation 1."
+  ],
+  "unresolved_facts": [
+    "Whether the reorganisation involves an assignment of the Agreement to another entity.",
+    "Whether the reorganisation involves a change of control of Equator.",
+    "Whether the reorganisation is within a wholly owned group.",
+    "Whether Equator will remain responsible for its obligations post-reorganisation.",
+    "The ownership structure of Equator and its group."
+  ],
+  "quotations": [
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "12.6 Assignment. Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "In addition, Provider must obtain Customer's prior written consent before a change of control of Provider takes effect."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+      "quote": "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+    },
+    {
+      "source": "CONTRACT-01 v2",
+      "location": "Key Terms, Using the Framework Terms",
+      "quote": "If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms."
+    }
+  ],
+  "analysis": "The modified Section 12.6 in the Key Terms replaces the Standard Terms version and controls per the Framework Terms hierarchy. The provision contains three operative rules: (1) assignment requires prior written consent; (2) change of control of Provider requires Customer's prior written consent; (3) an exception disapplies consent for 'a reorganization within a wholly owned group if Provider remains responsible.' The transaction type is unstated. If the reorganisation involves assigning the Agreement, consent is required. If it triggers a change of control, consent is required unless the exception applies. The exception requires two cumulative conditions: wholly owned group membership AND continued responsibility. Neither condition is evidenced. Victoria has not received the ownership chart, confirmation of responsibility, or clarity on whether the Agreement transfers. Without this evidence, we cannot determine whether the exception applies.",
+  "conclusion": "On current evidence, the consent requirement cannot be disapplied. Victoria should require Equator to confirm: (1) whether the Agreement will be assigned; (2) whether a change of control of Equator will occur; (3) the ownership chart demonstrating a wholly owned group structure; and (4) written confirmation that Equator remains responsible for all obligations. Until these are provided, Victoria's consent position remains unresolved.",
+  "review_checks": [
+    "Confirmed Key Terms replacement controls over Standard Terms Section 12.6.",
+    "Separated assignment sentence from change-of-control sentence and exception.",
+    "Did not assume transaction type (assignment vs change of control vs neither).",
+    "Did not assume group membership or responsibility absent evidence.",
+    "Did not inspect or infer content of absent Fee Schedule.",
+    "Identified specific evidence required for each unresolved fact.",
+    "Did not conflate exception conditions with satisfaction of those conditions."
+  ]
+}

@@ -1,0 +1,528 @@
+Window: "KLAi — Fictional legal and tax r…val rehearsal - Gemini Notebook", App: Microsoft Edge Beta.
+0 standard window KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook - Microsoft Edge Beta, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692, Secondary Actions: Raise
+	1 container KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook - Microsoft Edge Beta, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692
+		2 container
+			3 container
+				4 toolbar App bar
+					5 button Back
+					6 button Refresh
+					7 button Home
+					8 container
+						9 pop up button View site information
+						10 text field (settable) Address and search bar, Value: https://notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692, Placeholder: Search or enter web address
+						11 button App available. Install Gemini Notebook
+							12 container App Available
+						13 button Enter Reading mode (F9)
+						14 button Add this page to favorites (⌘D)
+					15 container
+						16 pop up button Extensions
+					17 button Control your music, videos, and more
+					18 container
+						19 button Favorites
+						20 button Performance | Performance issue detected
+					21 button Personal Profile
+					22 button Settings and more
+					23 button Chat
+				24 toolbar Favorites bar
+					25 toolbar Saved Tab Groups
+						26 button Tab groups
+					27 splitter Separator
+					28 bookmark folder button Research Stats Portal
+					29 bookmark folder button YU-MOT
+					30 bookmark folder button Startup Lab
+					31 bookmark folder button Personal Learning Journey
+					32 bookmark folder button AI Tools
+					33 bookmark folder button magentIQ
+					34 bookmark button JICE Japanese Classes
+					35 bookmark button Seven Chapters on Japanese Modernization
+					36 bookmark folder button PhD
+					37 bookmark button Bookmarks
+					38 bookmark button Translate
+					39 bookmark folder button Soccer
+					40 bookmark folder button Seiha
+					41 pop up button Menu containing hidden favorites
+					42 bookmark folder button Other Favorites
+					43 splitter Separator
+				44 container
+					45 scroll area
+						46 HTML content KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook, URL: notebook.google.com/notebook/2fa0c6ce-9d08-436a-801a-a905c7067692
+							47 container
+								48 container
+									49 link Gemini Notebook Homepage, Value: notebook.google.com/
+									50 text field (settable) KLAi — Fictional legal and tax retrieval rehearsal
+									51 container Create notebook
+										52 button Create notebook
+									53 container Share notebook
+										54 button Share notebook
+									55 container Notebook configuration
+										56 pop up button Notebook configuration
+									57 container Settings
+										58 pop up button Settings
+								59 container
+									60 heading Sources, Value: 2
+										61 text Sources
+									62 button
+									63 text Agreement - Executed v2.txt
+									64 heading Source guide, Value: 4
+										65 text Source guide
+									66 button Open source guide
+									67 container (showing 0-100 of 210 items)
+										68 text [ADAPTED] TEACHING SPECIMEN FOR THE COURSE APPLIED AI AND AUTOMATION. THE PARTIES, DATES AND SIGNATURES ARE FICTIONAL.
+										69 text [ADAPTED] Source and licence. Based on the Common Paper Cloud Service Agreement, Version 3.0, with the Service Level Agreement Standard Terms, supplied as “Common-Paper-Cloud-Service-Agreement-SLA-v3.0-cover-page-and-standard-terms.docx”. The source document states that it is free to use under CC BY 4.0. This specimen is not endorsed by Common Paper.
+										70 text [ADAPTED] Changes made. The Standard Terms (from “To use these Cloud Service Agreement Standard Terms” to the end) are unchanged. Only the Order Form and Key Terms cover pages have been completed. Text in blue is added or chosen for teaching and was not in the original. Black text is original wording. Drafting notes and unselected options were removed. Two substantive changes to the Standard Terms are made in the Key Terms under “Other Changes to Standard Terms”: Teaching Adaptation 1 (Section 12.6) and Tea
+										71 text [ADAPTED] Document identity for the course: CONTRACT-01 v2, executed 15 August 2026, matter M-01. The unsigned draft CONTRACT-01 v1 is in a separate file.
+										72 text Cloud Service Agreement
+										73 text == Order Form / The key business terms of this Order Form are as follows: ==
+										74 text Framework Terms: [ADAPTED] This Order Form incorporates and is governed by the Framework Terms dated 15 August 2026 between Equator Systems Ltd and Victoria Services Ltd. If there is any inconsistency between this Order Form and the Framework Terms, this Order Form will control for this Agreement.
+										75 text Cloud Service: [ADAPTED] The Cloud Service available under this Order Form is a hosted reporting application for Victoria Services Ltd, with maintenance and technical support.
+										76 text Order Date / The date access to the Cloud Service starts: ( x ) Date of last signature on this Order Form
+										77 text == Subscription details ==
+										78 text Subscription Period: [ADAPTED] 12 months
+										79 text Cloud Service Fees: [ADAPTED] The Fees are set out in the Fee Schedule signed by the parties on the Order Date. The Fees are in Ugandan shillings (UGX) and exclusive of taxes. [ADAPTED] [Teaching note: the signed Fee Schedule is deliberately not part of this teaching set.]
+										80 text Invoicing & Payment: [ADAPTED] ( x ) Pay by invoice [ADAPTED] Provider will invoice Customer monthly. [ADAPTED] Customer will pay each invoice within 30 days from the invoice date.
+										81 text Auto-renewal: [ADAPTED] ( x ) Non-Renewal Notice Date: At least 60 days before the end of the current Subscription Period
+										82 text Technical Support: [ADAPTED] Provider will provide technical support on business days from 08:00 to 17:00 East Africa Time through the Support Channel described under SLA below.
+										83 text == Additions and Modifications ==
+										84 text SLA / Service Level Agreement: This Order Form incorporates the Service Level Agreement Standard Terms available at https://commonpaper.com/standards/service-level-agreement/2.0/ with the below Variables. A copy of the SLA Standard Terms is attached for convenience only. [ADAPTED] ( x ) Target Uptime: 99.5% The Uptime Credit will be calculated as outlined in the table below: | Actual Uptime Percentage | Percentage of monthly Cloud Service Fee | [ADAPTED] 99.0% to Target Uptime | [ADAPTED] 2% | [ADAPTED] 98.
+										85 text Other Changes to Standard Terms / Changes that apply for this Order Form only: [ADAPTED] None. All changes to the Standard Terms are in the Key Terms.
+										86 text By signing this Order Form, each party agrees to enter into this Order Form.
+										87 text | [ADAPTED] PROVIDER: Equator Systems Ltd | | [ADAPTED] CUSTOMER: Victoria Services Ltd
+										88 text Signature | [ADAPTED] Electronic acceptance (teaching specimen, not a real signature) | | [ADAPTED] Electronic acceptance (teaching specimen, not a real signature)
+										89 text Print Name | [ADAPTED] Rebecca Auma | | [ADAPTED] Joseph Okello
+										90 text Title | [ADAPTED] Director | | [ADAPTED] Managing Director
+										91 text Notice Address Use email or postal address | [ADAPTED] legal@equator.example | | [ADAPTED] md@victoriaservices.example
+										92 text Date | [ADAPTED] 15 August 2026 | | [ADAPTED] 15 August 2026
+										93 text Cloud Service Agreement
+										94 text == USING THE FRAMEWORK TERMS / The Framework Terms have 2 parts: (1) the Key Terms below (including any attached or referenced policies and documents) and (2) the Common Paper Cloud Service Standard Terms Version 3.0 posted at https://commonpaper.com/standards/cloud-service-agreement/3.0, which are incorporated by reference. If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms. Capitalized words have the meanings or descriptions given in 
+										95 text == Key Terms / The key legal terms of this Agreement are as follows: ==
+										96 text Effective Date / The date the Framework Terms start: ( x ) Date of last Cover Page signature
+										97 text Governing Law: [ADAPTED] The laws of Uganda
+										98 text Chosen Courts / Jurisdiction or where disputes are filed: [ADAPTED] The courts (whether state, federal, or otherwise) located in Kampala, Uganda
+										99 text Covered Claims / Claims covered by indemnity obligations: [ x ] Provider Covered Claims: Any action, proceeding, or claim that the Cloud Service, when used by Customer according to the terms of the Agreement, violates, misappropriates, or otherwise infringes upon anyone else’s intellectual property or other proprietary rights. [ x ] Customer Covered Claims: Any action, proceeding, or claim that (1) the Customer Content, when used according to the terms of the Agreement, violates, misappropriates, or otherwi
+										100 text General Cap Amount / Limitation of liability amount for most claims: [ADAPTED] [ x ] 1x the Fees paid or payable by Customer to Provider in the 12 month period immediately before the claim
+										101 text Supercap / Higher limitation of liability amount for Increased Claims: Notwithstanding Section 8.1, each party’s total cumulative liability for all Increased Claims arising out of or relating to this Agreement will not be more than: [ADAPTED] [ x ] 2x the Fees paid or payable by Customer to Provider in the 12 month period immediately before the claim
+										102 text Increased Claims / Specific claims covered by the Supercap: [ x ] The Supercap applies to the following claims: [ x ] Breach of Section 3 (Privacy & Security) [ x ] Breach of Section 10 (Confidentiality) (however, excluding any data or security breaches)
+										103 text == Attachments, Supplements & Modifications ==
+										104 text DPA / Data Processing Agreement: [ADAPTED] No data processing agreement is attached to this Cover Page.
+										105 text Security Policy: [ x ] Provider will use commercially reasonable efforts to secure the Cloud Service from unauthorized access, alteration, or use and other unlawful tampering.
+										106 text Other Changes to Standard Terms / List specific changes to the Standard Terms: [ADAPTED] [TEACHING ADAPTATION 1] Section 12.6 (Assignment) is replaced with the following: [ADAPTED] “12.6 Assignment. Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly o
+										107 text Provider and Customer have not changed the Standard Terms except for the details in the Key Terms above. By signing this Cover Page, each party agrees to enter into the Framework Terms.
+										108 text | [ADAPTED] PROVIDER: Equator Systems Ltd | | [ADAPTED] CUSTOMER: Victoria Services Ltd
+										109 text Signature | [ADAPTED] Electronic acceptance (teaching specimen, not a real signature) | | [ADAPTED] Electronic acceptance (teaching specimen, not a real signature)
+										110 text Print Name | [ADAPTED] Rebecca Auma | | [ADAPTED] Joseph Okello
+										111 text Title | [ADAPTED] Director | | [ADAPTED] Managing Director
+										112 text Notice Address Use email or postal address | [ADAPTED] legal@equator.example | | [ADAPTED] md@victoriaservices.example
+										113 text Date | [ADAPTED] 15 August 2026 | | [ADAPTED] 15 August 2026
+										114 text Cloud Service Agreement
+										115 text == To use these Cloud Service Agreement Standard Terms, the parties must complete and sign or electronically accept Key Terms. / Variables have the meanings or descriptions given on the Cover Page. All other capitalized words have the meanings or descriptions given in these Standard Terms. ==
+										116 text SECTION 1. Service
+										117 text Section 1.1 Access and Use. During the Subscription Period and subject to the terms of this Agreement, Customer may (a) access and use the Cloud Service; and (b) copy and use the included Software and Documentation only as needed to access and use the Cloud Service, in each case, for its internal business purposes. If a Customer Affiliate enters a separate Order Form with Provider, the Customer’s Affiliate creates a separate agreement between Provider and that Affiliate, where Provider’s responsibility to t
+										118 text Section 1.2 Support. During the Subscription Period, Provider will provide Technical Support as described in the Order Form.
+										119 text Section 1.3 User Accounts. Customer is responsible for all actions on Users’ accounts and for all Users’ compliance with this Agreement. Customer and Users must protect the confidentiality of their passwords and login credentials. Customer will promptly notify Provider if it suspects or knows of any fraudulent activity with its accounts, passwords, or credentials, or if they become compromised.
+										120 text Section 1.4 Feedback and Usage Data. Customer may, but is not required to, give Provider Feedback, in which case Customer gives Feedback “AS IS”. Provider may use all Feedback freely without any restriction or obligation. In addition, Provider may collect and analyze Usage Data, and Provider may freely use Usage Data to maintain, improve, enhance, and promote Provider’s products and services without restriction or obligation. However, Provider may only disclose Usage Data to others if the Usage Data is aggr
+										121 text Section 1.5 Customer Content. Provider may copy, display, modify, and use Customer Content only as needed to provide and maintain the Product and related offerings. Customer is responsible for the accuracy and content of Customer Content.
+										122 text SECTION 2. Restrictions & Obligations
+										123 text Section 2.1 Restrictions on Customer.
+										124 text (a) Except as expressly permitted by this Agreement, Customer will not (and will not allow anyone else to): (i) reverse engineer, decompile, or attempt to discover any source code or underlying ideas or algorithms of the Product (except to the extent Applicable Laws prohibit this restriction); (ii) provide, sell, transfer, sublicense, lend, distribute, rent, or otherwise allow others to access or use the Product; (iii) remove any proprietary notices or labels; (iv) copy, modify, or create derivative works o
+										125 text (b) Use of the Product must comply with all Documentation.
+										126 text Section 2.2 Suspension. If Customer (a) has an outstanding, undisputed balance on its account for more than 30 days; (b) breaches Section 2.1 (Restrictions on Customer); or (c) uses the Product in violation of the Agreement or in a way that materially and negatively impacts the Product or others, then Provider may temporarily suspend Customer’s access to the Product with or without notice. However, Provider will try to inform Customer before suspending Customer’s account when practical. Provider will reinst
+										127 text SECTION 3. Privacy & Security
+										128 text Section 3.1 Personal Data. Before submitting Personal Data governed by GDPR, Customer must enter into a data processing agreement with Provider. If the parties have a DPA, each party will comply with its obligations in the DPA, the terms of the DPA will control each party’s rights and obligations as to Personal Data, and the terms of the DPA will control in the event of any conflict with this Agreement.
+										129 text Section 3.2 Prohibited Data. Customer will not (and will not allow anyone else to) submit Prohibited Data to the Product unless authorized by the Order Form or Key Terms.
+										130 text SECTION 4. Payment & Taxes
+										131 text Section 4.1 Fees. Unless the Order Form specifies a different currency, all Fees are in U.S. Dollars and are exclusive of taxes. Except for the prorated refund of prepaid Fees allowed with specific termination rights given in the Agreement, Fees are non-refundable.
+										132 text Section 4.2 Taxes. Customer is responsible for all duties, taxes, and levies that apply to Fees, including sales, use, VAT, GST, or withholding, that Provider itemizes and includes in an invoice. However, Customer is not responsible for Provider’s income taxes.
+										133 text Section 4.3 Payment. Customer will pay Provider Fees and taxes in U.S. Dollars, unless the Order Form specifies a different currency, according to the payment terms in the Order Form.
+										134 text Section 4.4 Payment Dispute. If Customer has a good-faith disagreement about the Fees charged or invoiced, Customer must notify Provider about the dispute before payment is due, or within 30 days of an automatic payment, and must pay all undisputed amounts on time. The parties will work together to resolve the dispute within 15 days. If no resolution is agreed, each party may pursue any remedies available under the Agreement or Applicable Laws.
+										135 text SECTION 5. Term & Termination
+										136 text Section 5.1 Order Form and Agreement. For each Order Form, the Agreement will start on the Order Date, continue through the Subscription Period, and automatically renew for additional Subscription Periods unless one party gives notice of non-renewal to the other party before the Non-Renewal Notice Date.
+										137 text Section 5.2 Framework Terms. These Framework Terms will start on the Effective Date and continue for the longer of one year or until all Order Forms governed by the Framework Terms have ended.
+										138 text Section 5.3 Termination. Either party may terminate the Framework Terms or an Order Form immediately:
+										139 text (a) if the other party fails to cure a material breach of the Framework Terms or an Order Form following 30 days notice;
+										140 text (b) upon notice if the other party (i) materially breaches the Framework Terms or an Order Form in a manner that cannot be cured; (ii) dissolves or stops conducting business without a successor; (iii) makes an assignment for the benefit of creditors; or (iv) becomes the debtor in insolvency, receivership, or bankruptcy proceedings that continue for more than 60 days.
+										141 text Section 5.4 Force Majeure. Either party may terminate an affected Order Form upon notice if a Force Majeure Event prevents the Product from materially operating for 30 or more consecutive days. Provider will pay to Customer a prorated refund of any prepaid Fees for the remainder of the Subscription Period. A Force Majeure Event does not excuse Customer's obligation to pay Fees accrued prior to termination.
+										142 text Section 5.5 Effect of Termination. Termination of the Framework Terms will automatically terminate all Order Forms governed by the Framework Terms. Upon any expiration or termination:
+										143 text (a) Customer will no longer have any right to use the Product.
+										144 text (b) Upon Customer’s request, Provider will delete Customer Content within 60 days.
+										145 text (c) Each Recipient will return or destroy Discloser’s Confidential Information in its possession or control.
+										146 text (d) Provider will submit a final bill or invoice for all outstanding Fees accrued before termination and Customer will pay the invoice according to Section 4 (Payment & Taxes).
+										147 text Section 5.6 Survival.
+										148 text (a) The following sections will survive expiration or termination of the Agreement: Section 1.4 (Feedback and Usage Data), Section 2.1 (Restrictions on Customer), Section 4 (Payment & Taxes) for Fees accrued or payable before expiration or termination, Section 5.5 (Effect of Termination), Section 5.6 (Survival), Section 6 (Representations & Warranties), Section 7 (Disclaimer of Warranties), Section 8 (Limitation of Liability), Section 9 (Indemnification), Section 10 (Confidentiality), Section 11 (Reservatio
+										149 text (b) Each Recipient may retain Discloser’s Confidential Information in accordance with its standard backup or record retention policies maintained in the ordinary course of business or as required by Applicable Laws, in which case Section 3 (Privacy & Security) and Section 10 (Confidentiality) will continue to apply to retained Confidential Information.
+										150 text SECTION 6. Representations & Warranties
+										151 text Section 6.1 Mutual. Each party represents and warrants to the other that: (a) it has the legal power and authority to enter into this Agreement; (b) it is duly organized, validly existing, and in good standing under the Applicable Laws of the jurisdiction of its origin; and (c) it will comply with all Applicable Laws in performing its obligations or exercising its rights in this Agreement.
+										152 text Section 6.2 From Customer. Customer represents and warrants that it, all Users, and anyone submitting Customer Content each have and will continue to have all rights necessary to submit or make available Customer Content to the Product and to allow the use of Customer Content as described in the Agreement.
+										153 text Section 6.3 From Provider. Provider represents and warrants to Customer that it will not materially reduce the general functionality of the Cloud Service during the Subscription Period.
+										154 text Section 6.4 Provider Warranty Remedy. If Provider breaches the warranty in Section 6.3 (Representations & Warranties from Provider), Customer must give Provider notice (with enough detail for Provider to understand or replicate the issue) within 45 days of discovering the issue. Within 45 days of receiving sufficient details of the warranty issue, Provider will attempt to restore the general functionality of the Cloud Service. If Provider cannot resolve the issue, Customer may terminate the affected Order F
+								155 container
+									156 container
+										157 button Customize notebook
+										158 text 📄
+										159 heading KLAi — Fictional legal and tax retrieval rehearsal, Value: 2
+											160 text KLAi — Fictional legal and tax retrieval rehearsal
+										161 text 1 source ·
+										162 text Oct 27, 2026
+									163 container
+										164 text This document outlines a  cloud service agreement  between Equator Systems Ltd and Victoria Services Ltd for a hosted reporting application governed by Ugandan law. The contract establishes a  twelve-month subscription  with specific payment terms, technical support windows, and invoicing requirements. It incorporates detailed  service level agreements , including a target uptime of ninety-nine point five percent and defined response time commitments backed by service credits. Additionally, the framework addresses  legal protections and liabilities , covering intellectual property indemnification, confidentiality obligations, and standard operational restrictions for users. Finally, the text specifies  administrative provisions , detailing procedures for agreement termination, governing jurisdiction in Kampala, and specific teaching adaptations applied for course purposes.
+									165 button Save to note
+									166 container Copy summary
+										167 button Copy summary
+									168 container Good summary
+										169 button Good summary
+									170 container Bad summary
+										171 button Bad summary
+									172 text Tuesday, October 27
+									173 container
+										174 heading Value: 3, This is a fictional classroom matter. Use only the selected Agreement - Executed v2 source. Equator proposes an internal reorganisation; ownership after the change and continued responsibility have not been confirmed. (1) Identify which text governs consent, distinguishing the Key Terms replacement from the original Standard Terms section 12.6. Quote the operative rule, its exception and every condition, and cite the source. (2) Explain what we can and cannot conclude on these facts and what evidence we mus
+											175 text This is a fictional classroom matter. Use only the selected Agreement - Executed v2 source. Equator proposes an internal reorganisation; ownership after the change and continued responsibility have not been confirmed. (1) Identify which text governs consent, distinguishing the Key Terms replacement from the original Standard Terms section 12.6. Quote the operative rule, its exception and every condition, and cite the source. (2) Explain what we can and cannot conclude on these facts and what evidence we mus
+										176 button Thoughts
+										177 heading 1. Governing Text on Consent, Value: 3
+											178 text 1. Governing Text on Consent
+										179 container
+											180 text The  Key Terms replacement of Section 12.6  governs consent, as the Key Terms control over and replace the Standard Terms
+											181 pop up button 1: Agreement - Executed v2.txt
+											182 pop up button 2: Agreement - Executed v2.txt
+											183 text . Original Section 12.6 allowed assignment upon notice for reorganizations
+											184 pop up button 3: Agreement - Executed v2.txt
+											185 text , whereas the Key Terms replacement mandates prior written consent for changes of control
+											186 pop up button 2: Agreement - Executed v2.txt
+											187 text .
+										188 content list
+											189 container
+												190 text Operative Rule:  “In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect.”
+												191 pop up button 2: Agreement - Executed v2.txt
+												192 text  (Also: “Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party.”
+												193 pop up button 2: Agreement - Executed v2.txt
+												194 text )
+											195 container
+												196 text Exception:  “That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement.”
+												197 pop up button 2: Agreement - Executed v2.txt
+											198 container
+												199 text Conditions:
+												200 content list
+													201 container
+														202 text 1 . The reorganization must be "within a wholly owned group"
+														203 pop up button 2: Agreement - Executed v2.txt
+														204 text .
+													205 container
+														206 text 2 . Provider must "remain responsible for its obligations under this Agreement"
+														207 pop up button 2: Agreement - Executed v2.txt
+														208 text .
+										209 heading 2. Conclusions & Required Evidence, Value: 3
+											210 text 2. Conclusions & Required Evidence
+										211 content list
+											212 container
+												213 text What We Can Conclude:  Customer consent is mandatory for Equator’s proposed change of control unless Equator strictly satisfies both conditions of the Section 12.6 exception
+												214 pop up button 2: Agreement - Executed v2.txt
+												215 text .
+											216 container
+												217 text What We Cannot Conclude:  We cannot determine whether consent is required or waived because Equator’s ownership structure following the change and its continued legal responsibility have not been confirmed
+												218 pop up button 2: Agreement - Executed v2.txt
+												219 text .
+											220 container
+												221 text Evidence to Request:
+												222 content list
+													223 container
+														224 text 1 . Corporate group structure documentation proving the reorganization takes place entirely within a wholly owned group
+														225 pop up button 2: Agreement - Executed v2.txt
+														226 text .
+													227 container
+														228 text 2 . Written undertaking/confirmation that Equator Systems Ltd remains fully responsible for its obligations under the Agreement
+														229 pop up button 2: Agreement - Executed v2.txt
+														230 text .
+										231 heading 3. Annual Fee & Missing Document, Value: 3
+											232 text 3. Annual Fee & Missing Document
+										233 container
+											234 text The annual fee  cannot be determined  from the provided document
+											235 pop up button 4: Agreement - Executed v2.txt
+											236 pop up button 5: Agreement - Executed v2.txt
+											237 text . The missing signed source required to determine the fees is the  Fee Schedule  signed by the parties on the Order Date
+											238 pop up button 5: Agreement - Executed v2.txt
+											239 text .
+										240 text 💡 Would you like me to draft a formal information request letter to Equator asking for the corporate structure proof and confirmation of continued responsibility?
+										241 container Save message to a note
+											242 button Save message to a note
+										243 container Copy model response to clipboard
+											244 button Copy model response to clipboard
+										245 container Rate response as good
+											246 button Rate response as good
+										247 container Rate response as bad
+											248 button Rate response as bad
+									249 text Today • 12:33 AM
+									250 container
+										251 heading Value: 3, Review the consent position again using only the executed agreement. Facts: Equator proposes an internal reorganisation; no assignment, change of control, group ownership or continued responsibility has yet been confirmed. Establish the assignment and change-of-control triggers separately before considering an exception. Do not infer that a trigger occurred from the label internal reorganisation or from an unproved exception. Read the Key Terms replacement and preserve its sequence; flag which consent the e
+											252 text Review the consent position again using only the executed agreement. Facts: Equator proposes an internal reorganisation; no assignment, change of control, group ownership or continued responsibility has yet been confirmed. Establish the assignment and change-of-control triggers separately before considering an exception. Do not infer that a trigger occurred from the label internal reorganisation or from an unproved exception. Read the Key Terms replacement and preserve its sequence; flag which consent the e
+										253 button Thoughts
+										254 heading DRAFT FOR HUMAN REVIEW, Value: 3
+											255 text DRAFT FOR HUMAN REVIEW
+										256 container
+											257 text Re:  Consent Position for Equator’s Proposed Internal Reorganisation Source Document: Agreement_-_Executed_v2.txt  (CONTRACT-01 v2)
+											258 pop up button 1: Agreement - Executed v2.txt
+										259 heading 1. Governing Provision & Hierarchy, Value: 3
+											260 text 1. Governing Provision & Hierarchy
+										261 container
+											262 text The  Key Terms replacement  under "Other Changes to Standard Terms" governs consent
+											263 pop up button 2: Agreement - Executed v2.txt
+											264 text . Under the Framework Terms rules, the Key Terms supersede the Standard Terms
+											265 pop up button 3: Agreement - Executed v2.txt
+											266 text .
+										267 heading 2. Separate Trigger Analysis & Provision Sequence, Value: 3
+											268 text 2. Separate Trigger Analysis & Provision Sequence
+										269 container
+											270 text Under replaced Section 12.6, contractual consent triggers must be evaluated independently without assuming that a "reorganisation" automatically satisfies or activates either trigger
+											271 pop up button 2: Agreement - Executed v2.txt
+											272 text :
+										273 content list
+											274 container
+												275 text Trigger 1 — Assignment (Sentence 1): Rule: "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+												276 pop up button 2: Agreement - Executed v2.txt
+												277 text Analysis:  Consent is triggered only if rights or obligations are transferred to another legal entity. An "internal reorganisation" label does not inherently establish that an assignment has occurred.
+											278 container
+												279 text Trigger 2 — Change of Control (Sentence 2): Rule: "In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect."
+												280 pop up button 2: Agreement - Executed v2.txt
+												281 text Analysis:  Consent is triggered if ownership/control of Equator shifts
+												282 pop up button 2: Agreement - Executed v2.txt
+												283 pop up button 4: Agreement - Executed v2.txt
+												284 text . An "internal reorganisation" does not automatically mean a change of control takes place.
+											285 container
+												286 text Exception Placement & Sequence (Sentence 3): Rule: "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+												287 pop up button 2: Agreement - Executed v2.txt
+												288 text Flag: "That consent"  immediately follows Sentence 2, placing the exception directly after the  change-of-control consent requirement
+												289 pop up button 2: Agreement - Executed v2.txt
+												290 text .
+										291 heading 3. Short Conditional Conclusion, Value: 3
+											292 text 3. Short Conditional Conclusion
+										293 content list
+											294 container
+												295 text If  the reorganisation involves neither an assignment of rights/obligations nor a change of control, no consent is required under Section 12.6
+												296 pop up button 2: Agreement - Executed v2.txt
+												297 text .
+											298 container
+												299 text If  a change of control (or assignment) is triggered, Customer consent is required  unless  Equator proves it meets both conditions of the exception:
+												300 content list
+													301 container
+														302 text 1 . The reorganisation occurs strictly within a wholly owned group
+														303 pop up button 2: Agreement - Executed v2.txt
+														304 text .
+													305 container
+														306 text 2 . Equator (Provider) remains legally responsible for its obligations under the Agreement
+														307 pop up button 2: Agreement - Executed v2.txt
+														308 text .
+										309 heading 4. Required Missing Evidence, Value: 3
+											310 text 4. Required Missing Evidence
+										311 text To determine the consent position, Equator must submit:
+										312 content list
+											313 container
+												314 text 1 . Transaction Structure Documents:  Details showing whether the reorganisation involves a transfer of contractual rights/obligations or a change of control
+												315 pop up button 2: Agreement - Executed v2.txt
+												316 text .
+											317 container
+												318 text 2 . Corporate Group Structure:  Proof confirming the entity remains within a wholly owned group
+												319 pop up button 2: Agreement - Executed v2.txt
+												320 text .
+											321 container
+												322 text 3 . Written Undertaking/Confirmation:  Evidence that Equator Systems Ltd remains fully liable for all contractual obligations
+												323 pop up button 2: Agreement - Executed v2.txt
+												324 text .
+										325 heading 5. Annual Fees Determination, Value: 3
+											326 text 5. Annual Fees Determination
+										327 container
+											328 text The supplied document  does not establish the annual Fees
+											329 pop up button 5: Agreement - Executed v2.txt
+											330 pop up button 6: Agreement - Executed v2.txt
+											331 text . The Order Form states that Fees are set out in a separate Fee Schedule signed on the Order Date, which is explicitly omitted from the supplied source text
+											332 pop up button 5: Agreement - Executed v2.txt
+											333 pop up button 6: Agreement - Executed v2.txt
+											334 text .
+										335 text 💡 Would you like me to draft a formal request letter to Equator seeking the transaction details and corporate proof?
+										336 container Save message to a note
+											337 button Save message to a note
+										338 container Copy model response to clipboard
+											339 button Copy model response to clipboard
+										340 container Rate response as good
+											341 button Rate response as good
+										342 container Rate response as bad
+											343 button Rate response as bad
+									344 container
+										345 heading Value: 3, Reviewer feedback: your source-order discussion places “That consent” after the change-of-control sentence, but your conclusion then says “change of control (or assignment)” can use that exception. That conflates the two obligations. For this teaching exercise, apply the reading that the group exception qualifies change-of-control consent; flag any material interpretive ambiguity for qualified review. Revise the conclusion into three cases: assignment of the contract, change of control, and neither trigger.
+											346 text Reviewer feedback: your source-order discussion places “That consent” after the change-of-control sentence, but your conclusion then says “change of control (or assignment)” can use that exception. That conflates the two obligations. For this teaching exercise, apply the reading that the group exception qualifies change-of-control consent; flag any material interpretive ambiguity for qualified review. Revise the conclusion into three cases: assignment of the contract, change of control, and neither trigger.
+										347 container
+											348 button Thoughts
+											349 heading DRAFT FOR HUMAN REVIEW, Value: 3
+												350 text DRAFT FOR HUMAN REVIEW
+											351 text Re:  Revised Consent Analysis for Equator’s Proposed Internal Reorganisation Controlling Source:
+											352 text Agreement_-_Executed_v2.txt
+											353 text  (CONTRACT-01 v2)
+											354 pop up button 1: Agreement - Executed v2.txt
+											355 pop up button 2: Agreement - Executed v2.txt
+											356 heading 1. Governing Provision & Hierarchy, Value: 3
+												357 text 1. Governing Provision & Hierarchy
+											358 text The  Key Terms replacement  of Section 12.6 governs the consent position
+											359 pop up button 2: Agreement - Executed v2.txt
+											360 text . Under the Framework Terms rules, the Key Terms supersede the Standard Terms in the event of any inconsistency
+											361 pop up button 3: Agreement - Executed v2.txt
+											362 text .
+											363 heading 2. Sequential Analysis & Scope of Exception, Value: 3
+												364 text 2. Sequential Analysis & Scope of Exception
+											365 text The replaced Section 12.6 sets out three sequential rules regarding consent
+											366 pop up button 2: Agreement - Executed v2.txt
+											367 text :
+											368 content list
+												369 container
+													370 text 1 . Sentence 1 (Assignment Trigger): "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+													371 pop up button 2: Agreement - Executed v2.txt
+												372 container
+													373 text 2 . Sentence 2 (Change-of-Control Trigger): "In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect."
+													374 pop up button 2: Agreement - Executed v2.txt
+												375 container
+													376 text 3 . Sentence 3 (Group Exception): "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+													377 pop up button 2: Agreement - Executed v2.txt
+											378 text Grammatical Placement & Scope:  "That consent" in Sentence 3 directly follows the change-of-control obligation in Sentence 2
+											379 pop up button 2: Agreement - Executed v2.txt
+											380 text . Applying this strict structural reading, the group reorganization exception qualifies  only  change-of-control consent
+											381 pop up button 2: Agreement - Executed v2.txt
+											382 text .
+											383 heading 3. Flagged Interpretive Ambiguity, Value: 3
+												384 text 3. Flagged Interpretive Ambiguity
+											385 content list
+												386 container
+													387 text Material Ambiguity for Qualified Review:  A party might argue that "That consent" broadly refers to both prior written consent obligations in Section 12.6 (including assignment)
+													388 pop up button 2: Agreement - Executed v2.txt
+													389 text . However, on a strict textual reading, an assignment during a reorganisation remains subject to absolute prior written consent under Sentence 1, regardless of group ownership or continued responsibility
+													390 pop up button 2: Agreement - Executed v2.txt
+													391 text .
+											392 heading 4. Three-Case Conditional Conclusion, Value: 3
+												393 text 4. Three-Case Conditional Conclusion
+											394 text Because the factual details of Equator's internal reorganisation remain unconfirmed, the consent requirement falls into one of three distinct legal cases
+											395 pop up button 2: Agreement - Executed v2.txt
+											396 text :
+											397 content list
+												398 container
+													399 text Case 1: Neither Trigger Occurs  — If the reorganisation involves neither an assignment of rights/obligations nor a change of control of Equator (Provider), no Customer consent is required under Section 12.6
+													400 pop up button 2: Agreement - Executed v2.txt
+													401 text .
+												402 container
+													403 text Case 2: Change of Control Occurs  — If the reorganisation results in a change of control of Equator, Customer consent is required  unless  Equator satisfies both conditions of the group exception:
+													404 content list
+														405 container
+															406 text 1 . The reorganisation takes place strictly within a wholly owned group
+															407 pop up button 2: Agreement - Executed v2.txt
+															408 text .
+														409 container
+															410 text 2 . Equator remains responsible for its obligations under the Agreement
+															411 pop up button 2: Agreement - Executed v2.txt
+															412 text .
+												413 container
+													414 text Case 3: Assignment of the Contract Occurs  — If the reorganisation involves assigning any contractual rights or obligations to another legal entity, prior written consent is mandatory under Sentence 1 and (under the strict reading) is not qualified by the group exception
+													415 pop up button 2: Agreement - Executed v2.txt
+													416 text .
+											417 heading 5. Required Missing Evidence, Value: 3
+												418 text 5. Required Missing Evidence
+											419 text To determine which case applies, Equator must provide:
+											420 content list
+												421 container
+													422 text 1 . Transaction Details:  Written confirmation of whether rights/obligations are being assigned or if equity ownership/control is shifting.
+												423 container
+													424 text 2 . Group Ownership Proof:  Corporate structure charts demonstrating a wholly owned group (if a change of control occurs).
+												425 container
+													426 text 3 . Underwriting of Responsibility:  Legal undertaking that Equator Systems Ltd remains fully responsible for its obligations.
+											427 heading 6. Determination of Annual Fees, Value: 3
+												428 text 6. Determination of Annual Fees
+											429 text The supplied agreement  does not establish the annual Fees
+											430 pop up button 4: Agreement - Executed v2.txt
+											431 text . The Order Form states that Fees are set out in a separate Fee Schedule signed by the parties on the Order Date, which is explicitly omitted from the supplied source text
+											432 pop up button 4: Agreement - Executed v2.txt
+											433 text .
+											434 text 💡 Would you like me to draft a formal letter to Equator requesting these transaction details and corporate proof?
+										435 container Save message to a note
+											436 button Save message to a note
+										437 container Copy model response to clipboard
+											438 button Copy model response to clipboard
+										439 container Rate response as good
+											440 button Rate response as good
+										441 container Rate response as bad
+											442 button Rate response as bad
+										443 container
+											444 button What are the specific exceptions under Section 12.6?
+											445 button How does the Key Terms replacement modify assignment rules?
+											446 button What evidence is missing to determine annual fees?
+									447 container
+										448 text entry area (settable) Query box, Placeholder: Ask a question or create something
+										449 text 1 source
+										450 container Submit
+											451 button (disabled) Submit
+									452 text Gemini Notebook can make mistakes, so double-check it.
+								453 container
+									454 heading Studio, Value: 2
+										455 text Studio
+									456 button Collapse studio panel
+									457 button Audio Overview
+									458 button Slide Deck
+									459 button Video Overview
+									460 button Mind Map
+									461 container
+										462 button Reports
+										463 text New!
+									464 button Flashcards
+									465 button Quiz
+									466 button Infographic
+									467 button Data Table
+									468 text Studio output will be saved here. After adding sources, click to add Audio Overview, Study Guide, Mind Map, and more!
+									469 button Add note
+								470 text Reply ready.
+								471 container Citation Details
+									472 container Citation Details
+										473 text Agreement - Executed v2.txt
+										474 text Other Changes to Standard Terms / List specific changes to the Standard Terms: [ADAPTED] [TEACHING ADAPTATION 1] Section 12.6 (Assignment) is replaced with the following: [ADAPTED] “12.6 Assignment. Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly o
+										475 button View source of the citation in a new tab
+				476 tab group Tab bar
+					477 pop up button Search tabs
+					478 button Workspace Button
+					479 container
+						480 tab group
+							481 tab (settable, boolean) IUEA Login - Sleeping - Memory usage - 28.7 MB, Value: off
+								482 button Close tab
+							483 tab (settable, boolean) Value: off, Course: Introduction to Machine Learning in Design and Infrastructure, Section: Week 7 - Sleeping - Memory usage - 73.8 MB
+								484 button Close tab
+							485 tab (settable, boolean) MSc in Strategic AI and Innovation | WQU.edu - Sleeping - Memory usage - 57.3 MB, Value: off
+								486 button Close tab
+							487 tab (settable, boolean) Value: off, teaching-material/IUEA_Teaching_Plan/assessment_operations/CONTINUE_GRADING.md at main · Jotham566/teaching-material - Sleeping - Memory usage - 140 MB
+								488 button Close tab
+							489 tab (settable, boolean) Inbox (104) - jothammartin.wambi@gmail.com - Gmail - Sleeping - Memory usage - 533 MB, Value: off
+								490 button Close tab
+							491 tab (settable, boolean) The African Gazette | Team Gazette | Substack - Sleeping - Memory usage - 212 MB, Value: off
+								492 button Close tab
+							493 tab (settable, boolean) Agasaro | Team Gazette | Substack - Sleeping - Memory usage - 184 MB, Value: off
+								494 button Close tab
+							495 tab (settable, boolean) Agasaro Kaburaga - YouTube - Sleeping - Memory usage - 250 MB, Value: off
+								496 button Close tab
+							497 tab (settable, boolean) Home - Google Drive - Memory usage - 249 MB, Value: off
+								498 button Close tab
+							499 tab (settable, boolean) usd to ugx - Google Search - Sleeping - Memory usage - 113 MB, Value: off
+								500 button Close tab
+							501 tab (selected, settable, boolean) KLAi — Fictional legal and tax retrieval rehearsal - Gemini Notebook - Memory usage - 406 MB, Value: on
+								502 button Close tab
+							503 tab (settable, boolean) Agents - Sleeping - Memory usage - 641 MB, Value: off
+								504 button Close tab
+							505 tab (settable, boolean) Zapier Agents - Sleeping - Memory usage - 101 MB, Value: off
+								506 button Close tab
+							507 tab (settable, boolean) KLAi - Fictional contract review rehearsal | Zapier - Sleeping - Memory usage - 272 MB, Value: off
+								508 button Close tab
+							509 tab (settable, boolean) ballon d'or winner 2026 - Google Search - Sleeping - Memory usage - 193 MB, Value: off
+								510 button Close tab
+							511 scroll area
+					512 button New Tab
+	513 menu button Window sharing
+514 menu bar
+	515 Edge Beta
+	516 File
+	517 Edit
+	518 View
+	519 History
+	520 Favorites
+	521 Profiles
+	522 Tab
+	523 Window
+	524 Help
+
+The focused UI element is 415 pop up button 2: Agreement - Executed v2.txt

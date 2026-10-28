@@ -1,0 +1,12 @@
+PARTNER DISCUSSION DRAFT
+Complete during class with Jotham.
+Problem and baseline:
+Selected workflow and excluded actions:
+Sources, permissions and information preparation:
+Product or implementation options:
+Expected benefit and assumptions:
+Quality and failure tests:
+Review, stop and incident arrangements:
+Owners, resources and staff support:
+Stages and decisions to expand, revise or stop:
+No production authority follows from completing this classroom proposal.

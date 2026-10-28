@@ -1,0 +1,21 @@
+RECORD-38 | ticket | 2026-10-07 | Lakeview ticket: tracking dashboard not refreshing
+
+TICKET LV-8803 (matter OTHER-02, restricted)
+Customer: Kisumu Freight Ltd
+Requester: Operations supervisor, Kisumu Freight
+Opened: 7 October 2026
+Priority: High
+
+Description:
+The shipment tracking dashboard has not refreshed since early Tuesday. Lorry positions show data from 36 hours ago. Dispatchers are using phone calls to confirm deliveries and the manual process is slowing us down.
+
+Technician notes
+7 Oct 10:15: Feed from the GPS provider shows errors. Restarted the collector service.
+7 Oct 13:40: Data flowing again but about 800 records missing from Tuesday. Backfill requested.
+8 Oct 09:00: Backfill completed. Spot check of 20 vehicles matched.
+
+Customer asked for the ticket to be assigned to the senior engineer to write a short cause report.
+
+Status: Resolved, awaiting cause report. Due 16 October.
+
+This record is held in the OTHER-02 folder only.

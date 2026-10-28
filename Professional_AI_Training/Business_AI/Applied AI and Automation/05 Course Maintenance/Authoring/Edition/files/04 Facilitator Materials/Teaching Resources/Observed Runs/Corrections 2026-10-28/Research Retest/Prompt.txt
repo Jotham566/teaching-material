@@ -1,0 +1,290 @@
+Use only the original judgment extracts below. Produce a historical classroom case note as JSON with keys scope, claims, assessment_rows, assessment_total, disposition, unresolved. Each claim must identify court finding or party submission, printed page and exact supporting words. Separate page 1 assessment heads from amounts recited in grounds of appeal. Preserve the statute editions actually cited in the judgment. State no current-law or no-adverse-treatment assurance. If the extracts do not establish a proposition, mark it unresolved. Explain the programme delivery fee issue and its outcome in no more than 350 words, excluding copied passages. Do not infer Victoria's liability.
+
+ORIGINAL JUDGMENT PRINTED PAGE 1
+ 
+Page 1 of 24 
+ 
+THE REPUBLIC OF UGANDA 5 
+IN THE HIGH COURT OF UGANDA AT KAMPALA 
+[COMMERCIAL DIVISION] 
+CIVIL APPEAL NO. 50 OF 2023 
+ 
+GOAL RELIEF DEVELOPMENT ORGANISATION   ] APPELLANT 10 
+ 
+VERSUS 
+ 
+UGANDA REVENUE AUTHORITY     ] RESPONDENT 
+ 15 
+Before: Hon. Justice Ocaya Thomas O.R 
+ 
+JUDGMENT 
+ 
+Background 20 
+The Appellant brings this appeal against the ruling and orders of the Tax Appeals Tribunal 
+in TAT Application No. 77 of 2023. The Appellant is a Non -Governmental Organisation 
+engaged in providing humanitarian and sustainable developmen t programs in Uganda that 
+build community resilience and support socio-economic growth.  The Respondent conducted 
+a compliance review of the Appellant for the period January 2017 to December 2019 and 25 
+issued additional assessments amounting to UGX 650,508,7 70 on 7th June 2021 itemised as 
+below: 
+T AX HEAD QUANTUM (UGX) 
+Withholding Tax [“WHT”] on local supplies 51,867,131 
+WHT on international payments 263,533,867 
+WHT on imported services 316,240,641 
+Pay As You Earn [“PAYE”] 18,867,131 
+TOT AL 650,508,770 
+ 
+
+
+ORIGINAL JUDGMENT PRINTED PAGE 2
+ 
+Page 2 of 24 
+ 
+According to the Appellant , in supporting the assessments, the Respondent raised the 5 
+following reasons/justifications: 
+(a) There were some payments to local suppliers on which withholding tax at the rate of 
+6% was not deducted. 
+(b) The Appellant made international payments under the label of program delivery fees, 
+software licenses and payments for head office support staff on which WHT at the 10 
+rate of 15% was not deducted and VAT on imported services at the rate of 18% was 
+not accounted for. 
+(c) The Appellant paid tuition for some of her staff in higher institutions of learning 
+which is an employment benefit and yet PAYE was not deducted. 
+ 15 
+The Appellant objected to the above assessments on 2nd June 2021 and on 23rd August 2021 
+the Respondent disallowe d the objections on the grounds that the Appellant had not 
+produced any evidence. The Appellant filed an application for review of the objection 
+decision before the Tax Appeals Tribunal which upheld the objection decision and the 
+Appellant, being dissatisfied with this decision, now appeals to this court. 20 
+ 
+The Appellant framed six grounds of appeal namely: 
+1. The Honourable Members of the Tax Appeals Tribunal erred in law in holding that 
+Goal Ireland derived income in form of management fees from sources in Uganda. 
+2. The Honourable Members of the Tax Appeals Tribunal erred in law when they held 25 
+that the Appellant made a payment of management fees/commissions of UGX 
+1,554,123,178 to Goal Ireland on which it ought to have withheld tax of UGX 
+285,825,249 (inclusive of interest) 
+3. The Honourable Members of the Tax Appeals Tribunal erred in law in holding that 
+Goal Ireland derived income from sources in Uganda when it paid for software 30 
+licenses. 
+4. The Honourable Members of the Tax Appeals Tribunal erred in law when they he ld 
+that the Appellant made a payment for software licenses on which it ought to have 
+withheld tax of UGX 10,090,415. 
+ 35 
+
+
+ORIGINAL JUDGMENT PRINTED PAGE 3
+ 
+Page 3 of 24 
+ 
+5. The Honourable Members of the Tax Appeals Tribunal erred in law when they held 5 
+that the 10% ‘program delivery fee’ deducted by Goal Irelan d was consideration for 
+the provisions of imported services on which VAT of UGX 379,488,769 (inclusive of 
+interest is payable). 
+6. The Honourable Members of the Tax Appeals Tribunal erred in law in holding that 
+the Appellant was liable to pay VAT on imported services for the use of the software 10 
+purchased by Goal Ireland. 
+ 
+Representation 
+The Appellant was represented by Mr. Paul Kaweesi from M/s Libra Advocates. The 
+Respondents were represented by Mr. Samuel Oseku, Mr. Bakashaba Donald and Mr. Derrick 15 
+Nahumuza from the Respondent’s Legal Services and Board Affairs Department. 
+ 
+Both Counsel filed written submissions in support of their respective cases and made oral 
+highlight submissions before the court . I have reviewed these submissions and taken them 
+into consideration before coming to the decision below and I thank both counsel for their 20 
+most helpful submissions. 
+ 
+Decision 
+Role of High Court in Tax Appeals 
+Section 27(2) of the Tax Appeals Tribunal Act Cap. 341 (7 th Revised Edition) provides as 25 
+below: 
+“An appeal to the High Court may be made on questions of law only, and the Notice of Appeal 
+shall state the question or questions of law that will be raised on the appeal.” 
+ 
+An appeal on a point of law arises when the court whose decision is being appealed  against 30 
+made a finding on a case before it but got the relevant law wrong or applied it wrongly in 
+arriving at that finding or if the court reached a conclusion on the facts which is outside the 
+range that the court would have arrived at, had the court pr operly directed itself as to the 
+applicable law. The error must a result of a misapprehension or misapplication of the law. 
+Where an appeal is confined to questions of law, grounds of appeal raising questions of fact 35 
+
+
+ORIGINAL JUDGMENT PRINTED PAGE 6
+ 
+Page 6 of 24 
+ 
+maintenance to which the services were 
+charged. 
+Goal Uganda also received technical support 
+from Goal Ireland’s technical team and paid 
+for the support. 
+P820-821 of the record of appeal. 
+ 5 
+As noted above, appeals to the High Court from the Tax Appeals Tribu nal are confined to 
+questions of law. The import of this is that this court must consider the factual findings of the 
+Tax Appeals Tribunal and determine whether the legal conclusions drawn from those 
+findings are correct. 
+ 10 
+The factual matters underpinning the questions raised by the above grounds are not 
+substantially in dispute. Goal Ireland sources funding for the Applicant, provides program 
+delivery support and retains 10% of the grant amount. For the Applicant, it is contended that 
+this isn’t income/a gain as this is to cover the cost of providing these services and fundraising. 
+For the Respondent, it is contended that this is income. 15 
+ 
+For the court, the fundamental questions to ask are two (1) whether the provision of the 
+support above as described is a management service and/or (2) whether, if the service is not 
+a management service, it is taxable. 
+ 20 
+Management Services 
+Section 78(b) of the Income Tax Act Cap. 338 (7 th Revised Edition) defines a management 
+charge thus: 
+“management charge ” means any  payment made to any  person, other than 
+a payment of employment income, as consideration for any managerial services, however 25 
+calculated.” 
+ 
+
+
+ORIGINAL JUDGMENT PRINTED PAGE 10
+ 
+Page 10 of 24 
+ 
+Turning back to the pres ent circumstances, we must consider whether the 10% “levy” on 5 
+grant amounts was a disbursement, that is, as a refund for expenses incurred on behalf of 
+the Appellant. 
+ 
+I have reviewed the record of proceedings and I did not find any evidence of matching of  
+fundraising expenses to grant income so as to always keep it at 10%. It appears that, no 10 
+matter the fundraising expenses, the fundraising provision of the grant is 10%. I have not, 
+and neither was the tribunal exposed to evidence to show that at all mater ial times, the 
+expenses incurred in fundraising matched the cost of that fundraising. I have not seen, and 
+neither was the tribunal exposed to evidence of a causal link between the cost of fundraising 
+and the grant amount.  15 
+ 
+The Question as to Source 
+The Appellant contended that per Sections 83(1) and 79(q) of the Income Tax Act, WHT on 
+international payments (such as management fees) is applicable to persons who derive 
+income from sources in Uganda. The thrust of the argument was that the Appellant did not 20 
+make any payment to Goal Ireland on which a withholding obligation would arise. Goal 
+Ireland did not source or receive any payment for the impugned services from the Appellant 
+and as such there was no WHT obligation. 
+ 
+This is potentially profound point. The argument by the Appellant is that, essentially, a tax 25 
+payer cannot be required to withhold income on a payment they did not process. As noted 
+in the instant case, grants were made to the Appellant by third parties who would route the 
+grant sums to Goal Ireland. Goal Ireland would deduct the 10% fundraising charge and route 
+the grant sums to the Appellant. Against this background, the Appellant asks the respondent 
+“when did I pay Goal Ireland such that there is a withholding obligation?” 30 
+ 
+Let us look at the law. Section 2(xx) of the Income Tax Act Cap. 338 (7 th Revised Edition) 
+reads thus: 
+“payment” includes any amount paid or payable in cash or kind, and any other means of 
+conferring value or benefit on a person;” 35 
+
+
+ORIGINAL JUDGMENT PRINTED PAGE 22
+ 
+Page 22 of 24 
+ 
+Having held as above, it follows that the contentions on Ground 6 also do not have merit. 5 
+Section 5(1)(c) of the VAT  Act Now Cap. 344 (7 th Revised Edition) imposes the liability to 
+collect VAT on imported services on the recipient of those services. This is what is 
+colloquially referred to as VAT Withholding or Reverse VAT. 
+ 
+Having held as I have above on the question of the computer licenses above, it follows that 10 
+VAT was applicable on the impugned transactions and should have been accounted for by 
+the Appellant. Accordingly, the VAT assessment on the above mentioned transactions was 
+correctly issued by the Respondent. 
+ 
+Accordingly, these three grounds all fail. 15 
+ 
+Ground 5: The Honourable Members of the Tax Appeals Tribunal erred in law when 
+they held that the 10% ‘program delivery fee’ deducted by Goal Ireland was 
+consideration for the provisions of imported services on which VAT of UGX 
+379,488,769 (inclusive of interest is payable) 20 
+On this ground, Counsel for the Appellant submitted that the tribunal erroneously held that 
+since Goal Ireland was soliciting for grants for the Appellant, and since these services were 
+provided abroad while the Appellant was in Uganda, it amounted to an import of services as 
+the grants were used locally and therefore the 10% commission was consideration for the 
+provision of imported services which attracted VAT. 25 
+ 
+Counsel cited Section 1(k) of the VAT Act and submitted that to import mean s to bring or 
+cause to be brought into Uganda from a foreign country or place. Counsel submitted that 
+Section 16(1) of the same act locates a service as provided in Uganda if the business of the 
+supplier from which the services are supplied is in Uganda an d therefore, if the business of 30 
+the supplier is not in Uganda, such service can be said to be imported. Counsel cited the 
+decision of URA v COW A/S HCCA 34/2020 in support of the proposition that any transaction 
+involving a supply of goods or services with out consideration is not a supply, barring a few 
+exceptions, in which a transaction is deemed to be a supply even without consideration. 
+ 35 
+
+
+ORIGINAL JUDGMENT PRINTED PAGE 23
+ 
+Page 23 of 24 
+ 
+Counsel cited Section 4(c) of the VAT Act, Regulation 13(2) of the VAT Regulations, 5 
+Section 21 of the VAT Act and Sect ion 5(1)(c) of the VAT Act  to advance the argument 
+that since the Appellant did not pay any consideration to Goal Ireland for any service, there 
+wasn’t a charge of VAT. Counsel submitted that solicitation of donations/grants is not a 
+service that Goal Ireland provided to the Appellant. 
+ 10 
+The Respondent contended that Section 5(1)(c) of the VAT Act  imposes the liability to 
+collect VAT on imported services on the recipient of that service. Counsel cited the decision 
+of Metropolitan Life Limited v Commissioner For South African Revenue Services 
+232/2007 to advance the assertion that services mean anything done or to be done 
+including the granting of assignment, cession or surrender of rights, making available of any 15 
+facility or advantage but excludes a supply of goods, money or any stamp, form or card. 
+ 
+Counsel submitted that the court correctly found that Goal Ireland had provided a service to 
+the Appellant which the Appellant had paid for, and accordingly, was obliged to account for 
+VAT. 20 
+ 
+Services are essentially anything capable of being transacted in that is not a good. Usually, a 
+service is provided where there is conferred a benefit, facility, advantage, license, permission 
+or some other thing of value or benefit which is intangible and cannot be classified as a good 
+and typically provided for consideration. See Africa Broadcasting (U) Ltd v URA TAT 25 
+Application No. 44/2018, Marga Gootjes-Schwarz v Finanzamt Bergisch Gladbach Case 
+C-76/05, Cricket Club of India Ltd. v CST Mumbai [2015 (40) S. T. R. 973  
+ 
+Importation of a service involves the provision of as service by a person who is resident or 
+carries on business outside Uganda to a person that is resident or carries on business in 30 
+Uganda. See Section 1(j) of the VAT Act, Apollo Hotel Corporation v URA HCCA 48/2022 
+ 
+In the present case, Goal Ireland fundraised for the Appellant abroad and managed to secure 
+funding for the Appellant. Goal looked for and secured funding for the Appellant and the 
+enjoyment of the said service by the Appellant was in the util isation of the grant funds to 35 
+achieve the Appellant’s objectives and undertake its operations. Clearly, a service was 
+
+
+ORIGINAL JUDGMENT PRINTED PAGE 24
+ 
+Page 24 of 24 
+ 
+imported by the Appellant and provided by Goal Ireland. It follows that there was an import 5 
+of services. 
+ 
+Clearly, against that background, and as I have already shown on grounds 1 and 2 above, 
+there was a provision of fundraising services by Goal Ireland to the Appellant. It follows 
+therefore that VAT on the same was correctly assessed by the Respondent. 10 
+ 
+It follows that this ground fails. 
+ 
+Conclusion 
+In Conclusion, the Appellant’s Appeal fails with the following orders: 15 
+1. The judgment of the Tax Appeals Tribunal is affirmed. 
+2. The present Appeal is dismissed. 
+3. The Respondent is awarded costs both in this court and  in the proceedings in the 
+tribunal. 
+ 20 
+I so order. 
+ 
+Dated this_______ day of ___________________2024, delivered electronically and uploaded on 
+ECCMIS.  
+ 25 
+ 
+Ocaya Thomas O.R 
+Judge 
+19th August 2024 
+August
+19th 

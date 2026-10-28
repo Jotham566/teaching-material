@@ -1,0 +1,33 @@
+{
+  "kind": "actual model-selected structured lookup with local host execution",
+  "product": "claude backend, command claude",
+  "date": "2026-10-27",
+  "task": "Review the consent rules for a reorganisation of the provider in CONTRACT-01 for the customer. Does an internal reorganisation require consent? Ownership and continued responsibility are not yet confirmed.",
+  "lookup_calls": 1,
+  "max_lookup_calls": 2,
+  "injection_fixture": false,
+  "trace": [
+    {
+      "turn": 1,
+      "prompt_sha256": "a2b776c53a9111ce20c58dbe42d458853be8608acb687ec5e6373cf206fc5e70",
+      "actual_model_output": "{\"action\":\"lookup\",\"contract_id\":\"CONTRACT-01\",\"clause\":\"KT-1\"}",
+      "host_decision": "EXECUTED permitted local read-only lookup",
+      "actual_tool_result": {
+        "document_id": "CONTRACT-01",
+        "version": "v2",
+        "clause": "KT-1",
+        "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer\u2019s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+        "source_location": "Agreement - Executed v2.txt, Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1"
+      }
+    },
+    {
+      "turn": 2,
+      "prompt_sha256": "2eb2549661bd537b28e35cbcc77b70fd7468fb50882c93080832d88d1888062f",
+      "actual_model_output": "{\"action\":\"answer\",\"text\":\"Based on KT-1 (Agreement - Executed v2.txt, Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1):\\n\\n**General rule:** Provider must obtain Customer's prior written consent before any change of control takes effect.\\n\\n**Exception:** Consent is NOT required for a reorganisation within a wholly owned group, but only if Provider remains responsible for its obligations under the Agreement.\\n\\n**Assessment:** Whether Customer consent is required depends on two unconfirmed facts:\\n1. Whether the reorganisation is within a wholly owned group\\n2. Whether Provider will remain responsible for its obligations\\n\\nIf both conditions are satisfied, no consent is needed. If either is not met, prior written consent is required. Customer should request confirmation of these facts before determining whether to demand consent rights.\"}",
+      "host_decision": "RETURNED read-only answer",
+      "result": "Based on KT-1 (Agreement - Executed v2.txt, Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1):\n\n**General rule:** Provider must obtain Customer's prior written consent before any change of control takes effect.\n\n**Exception:** Consent is NOT required for a reorganisation within a wholly owned group, but only if Provider remains responsible for its obligations under the Agreement.\n\n**Assessment:** Whether Customer consent is required depends on two unconfirmed facts:\n1. Whether the reorganisation is within a wholly owned group\n2. Whether Provider will remain responsible for its obligations\n\nIf both conditions are satisfied, no consent is needed. If either is not met, prior written consent is required. Customer should request confirmation of these facts before determining whether to demand consent rights."
+    }
+  ],
+  "external_actions": 0,
+  "limitation": "No portal builder or production system was tested. The host permits one fictional clause lookup only."
+}

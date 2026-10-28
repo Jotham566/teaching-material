@@ -1,0 +1,10 @@
+{
+  "sessions": 12,
+  "visible_slides": 285,
+  "essential_slides": 233,
+  "optional_slides": 52,
+  "concept_explanation_slides": 88,
+  "native_click_stages": 126,
+  "indexed_practice_files": 113,
+  "checks": "Source/deck titles, notes, timings, optional flags, referenced files, receipts, animation targets and supplied-clause fidelity passed."
+}

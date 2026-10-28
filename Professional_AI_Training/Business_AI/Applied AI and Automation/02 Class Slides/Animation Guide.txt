@@ -1,0 +1,66 @@
+POWERPOINT ANIMATIONS
+
+Open a deck in PowerPoint Slide Show mode. Click or press Right once for each stage. Editing view shows the completed diagram. These are native editable object reveals; no video or generated imagery is required.
+
+126 click stages across the course. The speaker notes of an animated slide are written in parts: the first paragraph is read before any click, then one paragraph per click. The click count of each slide is in Teaching Resources/Presenter Notes Backup.txt. Use the stages to ask what should happen before showing the next part.
+
+Native playback was sampled in Session 3 slide 4: bars responsible 70%, liable 20%, available 10% reveal on three clicks. The numbers are illustrative next-token probabilities, not measured truth. Other current groups were verified against encoded target objects, but have not all been replayed in native PowerPoint.
+
+SESSION 01
+  Slide 08: How the fields relate — 5 clicks
+  Slide 10: The model inside a working system — 4 clicks
+
+SESSION 02
+  Slide 05: The learning loop — 4 clicks
+  Slide 08: Layers learn representations — 4 clicks
+  Slide 11: A simplified map of related language — 3 clicks
+  Slide 15: How a language model develops — 4 clicks
+
+SESSION 03
+  Slide 04: Predicting the next token — 3 clicks
+  Slide 05: The response grows one token at a time — 4 clicks
+  Slide 07: The context window — 3 clicks
+  Slide 09: Attention connects relevant context — 3 clicks
+
+SESSION 04
+  Slide 10: A citation and its supporting passage — 2 clicks
+  Slide 11: The instruction and review cycle — 4 clicks
+
+SESSION 05
+  Slide 08: The document preparation pipeline — 4 clicks
+  Slide 16: Permissions through the pipeline — 4 clicks
+
+SESSION 06
+  Slide 06: Two phases of a retrieval system — 8 clicks
+  Slide 07: Chunking and the exception — 2 clicks
+  Slide 10: Hybrid retrieval — 4 clicks
+  Slide 12: The answer and its evidence — 2 clicks
+  Slide 14: Access-aware retrieval — 4 clicks
+
+SESSION 07
+  Slide 11: A deep-research cycle — 4 clicks
+
+SESSION 08
+  Slide 07: Key Terms change to Section 12.6 with its qualification — 3 clicks
+  Slide 11: Drafting with controlled inputs — 4 clicks
+
+SESSION 09
+  Slide 08: The agent loop — 4 clicks
+  Slide 10: Human in the loop — 4 clicks
+  Slide 11: Our small classroom assistant — 4 clicks
+
+SESSION 10
+  Slide 05: The reconciliation calculation — 4 clicks
+  Slide 13: A bounded filing-assistance process — 4 clicks
+  Slide 28: Human approval of the exact action — 4 clicks
+
+SESSION 11
+  Slide 04: NIST risk-management functions — 2 clicks
+  Slide 07: Cross-matter access — 4 clicks
+  Slide 15: Response and recovery — 4 clicks
+
+SESSION 12
+  Slide 04: The connected learning journey — 4 clicks
+  Slide 06: The current and redesigned process — 2 clicks
+  Slide 14: A staged adoption route — 4 clicks
+

@@ -1,0 +1,674 @@
+[
+  {
+    "session": 1,
+    "title": "Understanding AI in the firm",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 15,
+        "label": "Recall or entry diagnostic",
+        "action": "Use one current AI success and frustration to frame the seven short reasoning checks. Record explanations and move quickly through sound answers.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 15,
+        "end_minute": 50,
+        "label": "Concepts and explanation",
+        "action": "Compare three firm tasks, then map calculation, classification, retrieval and drafting to their different mechanisms.",
+        "slides": "3–11"
+      },
+      {
+        "start_minute": 50,
+        "end_minute": 70,
+        "label": "Worked demonstration",
+        "action": "Predict the consent answer, run it, read KT-1 together and mark the unconfirmed transaction trigger.",
+        "slides": "12–13, 16"
+      },
+      {
+        "start_minute": 70,
+        "end_minute": 75,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 75,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Choose one firm task, describe today's process and evidence owner, then write a success test together.",
+        "slides": "14–16"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Choose a proposed pilot task and explain who would review its output.",
+        "slides": "17–19"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Change the example to a deadline reminder. Ask for a mechanism, a failure test and a two-sentence explanation to a partner.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 2,
+    "title": "How AI learns and represents information",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Explain training and inference using yesterday's contract example before showing a definition.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 55,
+        "label": "Concepts and explanation",
+        "action": "Walk through labelled documents, the training loop and held-out evaluation. Then compare token IDs, embeddings and contextual representations.",
+        "slides": "3–15"
+      },
+      {
+        "start_minute": 55,
+        "end_minute": 70,
+        "label": "Worked demonstration",
+        "action": "Predict which sentence pairs will be close, inspect actual cosine values and compare a consent sentence with its opposite.",
+        "slides": "16"
+      },
+      {
+        "start_minute": 70,
+        "end_minute": 75,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 75,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Use a short document-label check, then test held-out evaluation, near-duplicate leakage and why similarity cannot settle consent.",
+        "slides": "16"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "List evidence a vendor would need to show beyond a falling training-loss curve.",
+        "slides": "17–19"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Give charge a new context and explain the changed meaning. Check whether uploading a file retrains the model.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 3,
+    "title": "How language models generate answers and fail",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall how inference differs from training. Ask which parts of today's answer are still unknown.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 45,
+        "label": "Concepts and explanation",
+        "action": "Build token generation and context examples, then distinguish unsupported facts, missing evidence and valid variation.",
+        "slides": "3–12"
+      },
+      {
+        "start_minute": 45,
+        "end_minute": 70,
+        "label": "Worked demonstration",
+        "action": "Run one fresh response and compare the saved dated repeats and evidence scopes. Prioritise the missing-fee and release checks.",
+        "slides": "13, 15"
+      },
+      {
+        "start_minute": 70,
+        "end_minute": 75,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 75,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Mark the failed response, apply the review workflow and compare the revised answer. Then change only the transaction to a share sale.",
+        "slides": "14–15"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Agree what must be checked before a draft can enter the matter file.",
+        "slides": "16–18"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Explain why a repeated answer is not independent verification. Separate a raw run, a revision after feedback and an instructor answer.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 4,
+    "title": "AI tools, effective instructions and safe use",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall a correct citation that still failed to support the conclusion.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 40,
+        "label": "Concepts and explanation",
+        "action": "Compare available tool roles, practise briefing a junior colleague and inspect the teaching account's data-use questions.",
+        "slides": "3–10"
+      },
+      {
+        "start_minute": 40,
+        "end_minute": 60,
+        "label": "Worked demonstration",
+        "action": "Start with the learner’s usual AI brief, then compare a review specification on the same evidence. Inspect support and review effort.",
+        "slides": "11–13, 16"
+      },
+      {
+        "start_minute": 60,
+        "end_minute": 65,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 65,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Add one missing acceptance test, inspect a revision and test Variant A. Decide what belongs in the repeatable firm review process.",
+        "slides": "14–16"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Record the tool decision, an unanswered procurement question and the approval owner.",
+        "slides": "17–19"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Explain what additional evidence a paid account does and does not supply about employer-data permission.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 5,
+    "title": "Preparing the firm’s information",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Name the data format, modality and source system for three law-firm examples.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 40,
+        "label": "Concepts and explanation",
+        "action": "Trace a scanned contract through OCR, correction, structured records, bounded chunks and an index. Locate the access checks.",
+        "slides": "3–10"
+      },
+      {
+        "start_minute": 40,
+        "end_minute": 60,
+        "label": "Worked demonstration",
+        "action": "Compare clean and degraded OCR, then inspect the source sentence whose negation was lost.",
+        "slides": "11–13, 17"
+      },
+      {
+        "start_minute": 60,
+        "end_minute": 65,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 65,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Complete an inventory row, inspect the oversized-chunk diagnostic, preserve KT-1 and its context, then assign a correction owner.",
+        "slides": "14–17"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Choose a collection to prepare and define the quality gate before indexing it.",
+        "slides": "18–20"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Change the example to a scanned tax schedule. Explain which relationships and source locations must survive conversion.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 6,
+    "title": "Internal knowledge search and retrieval",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall the difference between a readable file, a searchable index and a supported answer.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 45,
+        "label": "Concepts and explanation",
+        "action": "Explain retrieval and generation separately, then trace token limits, source purpose, document identity, ranking and amendment context.",
+        "slides": "3–10"
+      },
+      {
+        "start_minute": 45,
+        "end_minute": 65,
+        "label": "Worked demonstration",
+        "action": "Compare the original failed search with bounded chunks and the repaired evidence packet. Read the retrieved rule and its exception.",
+        "slides": "11–13, 17"
+      },
+      {
+        "start_minute": 65,
+        "end_minute": 70,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 70,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Choose a new query and source purpose, test a paraphrase, request an unavailable agreement and compare a consent statement with its opposite.",
+        "slides": "14–17"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Record separate acceptance gates for retrieval, answer fidelity and permissions.",
+        "slides": "18–20"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Explain why all eight fixture checks passing does not prove production reliability. Identify one additional representative firm test.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 7,
+    "title": "Legal research and deep research",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall why a relevant-looking hit is still only a candidate source.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 40,
+        "label": "Concepts and explanation",
+        "action": "Set the historical research scope, distinguish submissions from findings and identify statute editions and page pinpoints.",
+        "slides": "3–7"
+      },
+      {
+        "start_minute": 40,
+        "end_minute": 65,
+        "label": "Worked demonstration",
+        "action": "Inspect the failed report, add page 1's actual four rows and compare its claims with pages 3 and 22–24 of the original judgment.",
+        "slides": "8–12, 17"
+      },
+      {
+        "start_minute": 65,
+        "end_minute": 70,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 70,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Build three claim records, draft a short historical note and separate current-law questions. Record the conflicting Tribunal year without guessing.",
+        "slides": "13–17"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Agree which claims can be released and which need a further source or qualified review.",
+        "slides": "18–20"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Inspect a genuine citation that does not establish the proposition. Explain the limit of a search returning no later appellate decision.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 8,
+    "title": "Contract review and drafting",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall the transaction-trigger check and distinguish an assignment from a share sale.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 40,
+        "label": "Concepts and explanation",
+        "action": "Read the party, obligation and source-version records. Trace the Key Terms override and relevant cross-references.",
+        "slides": "3–8"
+      },
+      {
+        "start_minute": 40,
+        "end_minute": 60,
+        "label": "Worked demonstration",
+        "action": "Repair the flawed review using the complete clause. Distinguish a source quotation from a proposed customer-side amendment.",
+        "slides": "9–12, 16"
+      },
+      {
+        "start_minute": 60,
+        "end_minute": 65,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 65,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Apply Variant B, review share-sale remedies including materiality, cure and liability exceptions, then draft and explain one amendment.",
+        "slides": "13–16"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Record the reviewer's decision and what still needs source evidence or legal research.",
+        "slides": "17–19"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Change only continued responsibility, leaving control unknown. Explain why an exception failure alone does not establish the trigger.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 9,
+    "title": "Automation and agentic AI",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall which part of the system approves an action and which part drafts a recommendation.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 45,
+        "label": "Concepts and explanation",
+        "action": "Compare RPA, defined workflows and tool-selecting agents. Trace a lookup, host decision and human review boundary.",
+        "slides": "3–9"
+      },
+      {
+        "start_minute": 45,
+        "end_minute": 60,
+        "label": "Worked demonstration",
+        "action": "Inspect the successful private Zapier test, then a real model-selected lookup trace. State which part demonstrates tool choice.",
+        "slides": "10–12, 16"
+      },
+      {
+        "start_minute": 60,
+        "end_minute": 65,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 65,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Test unknown ID, injected instructions and the call limit. Then approve, change and reject a local mock action while I operate the tools.",
+        "slides": "13–16"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Choose a read-only pilot scope, permitted tools and a stop condition with a proposed owner.",
+        "slides": "17–19"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Separate model cooperation from host enforcement. Review an accurate lookup followed by an unsupported legal inference.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 10,
+    "title": "Tax evidence workflows and controlled actions",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall why a valid receipt reference alone does not establish tax treatment.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 40,
+        "label": "Concepts and explanation",
+        "action": "Separate source-file roles, accounting reconciliation, exception investigation and authority to declare or submit.",
+        "slides": "3–6"
+      },
+      {
+        "start_minute": 40,
+        "end_minute": 60,
+        "label": "Worked demonstration",
+        "action": "Recalculate the reconciliation, compare the two saved prompts and inspect the official FDN guidance.",
+        "slides": "7–11"
+      },
+      {
+        "start_minute": 60,
+        "end_minute": 65,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 65,
+        "end_minute": 100,
+        "label": "Guided application and tests",
+        "action": "Work through the ledger challenge together for 25 minutes, then test uncertain acknowledgement and safe retry for 10 minutes.",
+        "slides": "12–17"
+      },
+      {
+        "start_minute": 100,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Record missing evidence, the reviewer and the boundary between a preparation pack and formal submission.",
+        "slides": "18–20"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Move one receipt to a different month. Recompute the effect before accepting the old conclusion.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 11,
+    "title": "Organisational risk and governance",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Recall the difference between an output error, an access incident and a data-retention concern.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 45,
+        "label": "Concepts and explanation",
+        "action": "Apply the risk framework to the recurring matter, then identify proportionate access, retention and incident controls.",
+        "slides": "3–8"
+      },
+      {
+        "start_minute": 45,
+        "end_minute": 55,
+        "label": "Worked demonstration",
+        "action": "Compare clean and difficult-scan OCR results and discuss which matters the difference may disadvantage.",
+        "slides": "9–12"
+      },
+      {
+        "start_minute": 55,
+        "end_minute": 60,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 60,
+        "end_minute": 95,
+        "label": "Guided application and tests",
+        "action": "Run the restricted-matter incident through containment, evidence preservation, recipient identification, review and restart conditions.",
+        "slides": "13–17"
+      },
+      {
+        "start_minute": 95,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Draft one approved-use rule with owners, a reporting route and review conditions.",
+        "slides": "18–20"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Change the incident from a retrieved paragraph to an email attachment. Explain which controls and evidence change.",
+        "slides": "—"
+      }
+    ]
+  },
+  {
+    "session": 12,
+    "title": "Leading implementation and evaluating a pilot",
+    "minutes": 120,
+    "blocks": [
+      {
+        "start_minute": 0,
+        "end_minute": 10,
+        "label": "Recall or entry diagnostic",
+        "action": "Repeat selected entry concepts in new examples before opening the answer key.",
+        "slides": "1–2"
+      },
+      {
+        "start_minute": 10,
+        "end_minute": 30,
+        "label": "Concepts and explanation",
+        "action": "Explain pilot scope, critical failures, total review effort and the difference between capacity and cash savings.",
+        "slides": "3–6"
+      },
+      {
+        "start_minute": 30,
+        "end_minute": 45,
+        "label": "Worked demonstration",
+        "action": "Calculate the main cost case and stress case together. Identify assumptions that determine the result.",
+        "slides": "7–11"
+      },
+      {
+        "start_minute": 45,
+        "end_minute": 50,
+        "label": "Break",
+        "action": "Take a five-minute break.",
+        "slides": "—"
+      },
+      {
+        "start_minute": 50,
+        "end_minute": 85,
+        "label": "Guided application and tests",
+        "action": "Adapt one worked proposal to the learner's chosen task: baseline, sources, exclusions, tests, owners and day-30/60/90 decisions.",
+        "slides": "12–17"
+      },
+      {
+        "start_minute": 85,
+        "end_minute": 110,
+        "label": "Firm decision and understanding",
+        "action": "Complete the exit diagnostic and decide whether the proposal is ready for the firm's approval process.",
+        "slides": "18–20"
+      },
+      {
+        "start_minute": 110,
+        "end_minute": 120,
+        "label": "Transfer and recap",
+        "action": "Explain the proposal to a fellow partner in two minutes, then identify the next evidence request and review date.",
+        "slides": "—"
+      }
+    ]
+  }
+]

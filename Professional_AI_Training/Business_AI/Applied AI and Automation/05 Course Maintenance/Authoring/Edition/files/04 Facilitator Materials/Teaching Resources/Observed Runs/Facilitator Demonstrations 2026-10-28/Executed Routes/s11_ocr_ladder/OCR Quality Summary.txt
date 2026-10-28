@@ -1,0 +1,6 @@
+ACTUAL APPLE VISION RUN | fast, revision 2, CPU only, en-US, language correction off
+Uses 12 prepared images: three selected passages under four conditions. Historical Tesseract results cover twelve passages; do not rank engines across different samples.
+A_clean: mean word accuracy 98.4%; negations kept 5 of 5
+B_mild: mean word accuracy 20.3%; negations kept 0 of 5
+C_moderate: mean word accuracy 0.0%; negations kept 0 of 5
+D_severe: mean word accuracy 0.0%; negations kept 0 of 5

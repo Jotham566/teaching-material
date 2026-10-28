@@ -1,0 +1,21 @@
+RECORD-15 | ticket | 2026-10-15 | Ticket: please assign TKT-4410 to a senior engineer
+
+TICKET TKT-4410
+Opened by: Grace Atim (Victoria Services Ltd)
+Opened: 15 October 2026, 08:42
+Priority: Medium
+Category: Reporting application - month end
+Current assignee: Level 1 desk (unassigned queue)
+
+Description:
+The 'Monthly sales by branch' report takes about 14 minutes to open. In August it took under two minutes. The slowness began after the September data load. Branch totals look right once it opens.
+
+Request:
+Could you please assign this ticket to a senior engineer rather than leaving it with the first line desk? We have month end reporting due on 2 November and would like it looked at this week.
+
+History
+- 15 Oct 09:10 Level 1: logged, awaiting triage.
+- 16 Oct 14:05 Level 1: asked customer for screenshot. Screenshot attached by Grace.
+- 19 Oct 10:30 Level 1: ticket re-queued for assignment.
+
+Assignment status: still open at 26 October.

@@ -1,0 +1,3 @@
+REVIEW THIS CONSTRUCTED REPORT — NOT AN OBSERVED MODEL RUN
+The raw invoices show 125 million and the ledger 98 million. Therefore the client has hidden 27 million of taxable sales. Bank receipts of 80 million prove additional unpaid tax of 18 million. Missing support on INV-002 means the transaction never occurred.
+Investigate each claim using source records. Separate the data calculation, professional interpretation and further evidence needed.

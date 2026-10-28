@@ -1,0 +1,7 @@
+OCR experiment: tesseract 4.1.1, language eng, psm 6; Linux-6.8.0-138-generic-aarch64-with-glibc2.35
+Passages: 12. Conditions fixed in ocr_experiment.py. Synthetic renderings, not a firm's archive.
+
+A_clean: mean word accuracy 100.0%; passages below 50% accuracy (unusable) 0 of 12; negation words kept 21 of 21; passages with at least one negation word missing from the output 0 of 12
+B_mild: mean word accuracy 98.8%; passages below 50% accuracy (unusable) 0 of 12; negation words kept 21 of 21; passages with at least one negation word missing from the output 0 of 12
+C_moderate: mean word accuracy 54.4%; passages below 50% accuracy (unusable) 5 of 12; negation words kept 7 of 21; passages with at least one negation word missing from the output 9 of 12
+D_severe: mean word accuracy 0.4%; passages below 50% accuracy (unusable) 12 of 12; negation words kept 1 of 21; passages with at least one negation word missing from the output 11 of 12

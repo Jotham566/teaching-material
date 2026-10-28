@@ -1,0 +1,22 @@
+RECORD-12 | email | 2026-08-27 | Reorganisation of finance filing system
+
+From: Hassan Lubega, Office Manager
+To: All finance staff
+Date: 27 August 2026
+Subject: Finance filing system - reorganisation next week
+
+Dear colleagues,
+
+Over the weekend of 5 and 6 September the shared drive folders for finance will be reorganised. At the moment we have folders by year, by supplier and sometimes by whoever created them, and people cannot find things. The new layout is simply Year > Process > Counterparty.
+
+What changes for you:
+- Your old folder shortcuts will stop working on Monday 7 September.
+- A map of old to new locations will be pinned in the team chat.
+- Paper files in the procurement cabinet will be boxed, labelled and moved to the archive room.
+
+Please do not save new documents until Monday. If you have a document you are working on, finish it by Friday 4 September.
+
+I know this is a nuisance. Once it is done, month end should be quicker.
+
+Thank you,
+Hassan

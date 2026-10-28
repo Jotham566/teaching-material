@@ -1,0 +1,14 @@
+RECORD-13 | policy excerpt | 2026-02-10 | Invoice approval workflow (policy excerpt)
+
+VICTORIA SERVICES LTD - FINANCE POLICY MANUAL (EXTRACT)
+Section: Supplier invoice approval
+Version in force from 10 February 2026
+
+1. Every supplier invoice is logged by Accounts Payable on the day it arrives and given a ledger reference.
+2. The budget holder checks the invoice against the purchase order or the contract and marks it 'matches' or 'query'.
+3. Invoices below UGX 5,000,000 are approved by the budget holder. Invoices from UGX 5,000,000 to UGX 25,000,000 need the finance manager's approval as well. Anything above that goes to the managing director.
+4. Approved invoices are paid on the next fortnightly run. The run closes on the Wednesday before payment.
+5. Queried invoices are put on hold and the supplier is told in writing.
+6. A repeated invoice number is always treated as a query.
+
+Forms for approval are in the Finance folder under Templates.

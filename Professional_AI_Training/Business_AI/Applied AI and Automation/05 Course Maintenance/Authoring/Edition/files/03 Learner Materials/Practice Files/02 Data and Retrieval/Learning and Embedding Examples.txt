@@ -1,0 +1,6 @@
+ILLUSTRATIVE TECHNICAL EXAMPLES
+Labelled document rows illustrate inputs and target categories only. They do not train or validate a legal classifier.
+The embedding map uses illustrative 2D coordinates. It is not measured model output. Similarity can capture related use without synonymy or legal equivalence.
+Charge over property and criminal charge illustrate contextual interpretation.
+Token boundaries and identifiers in the slides are schematic and model-dependent. Attention links are explanatory, not an extracted explanation of a model decision.
+For actual training, separate relevant unseen tests and check leakage, label quality and consequences of errors.

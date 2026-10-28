@@ -1,0 +1,166 @@
+DEMO: s06_query 
+OUTPUT: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/05 Course Maintenance/Authoring/.build/guided_demonstrations/final_tests/s06_query 
+Retrieve the selected current agreement and its amendment context.
+{
+  "status": "evidence_for_review",
+  "purpose": "obligations",
+  "selected_source": "CONTRACT-01",
+  "user_matters": [
+    "M-01"
+  ],
+  "method": "purpose and identity filters; token-bounded chunks; BM25 and neural candidates; cross-encoder reranking; amendment and precedence context",
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+  "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "max_embedding_tokens": 212,
+  "model_limit": 256,
+  "hits": [
+    {
+      "id": "CONTRACT-01 v2 L43-44 part 15",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 43,
+      "line_end": 44,
+      "text": "[ADAPTED] [TEACHING ADAPTATION 1] Section 12.6 (Assignment) is replaced with the following: [ADAPTED] \u201c12.6 Assignment.  Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer\u2019s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.\u201d",
+      "embedding_tokens": 152,
+      "mandatory_context": true,
+      "rank": 1,
+      "rerank_score": -0.71724
+    },
+    {
+      "id": "CONTRACT-01 v2 L137-137 part 77",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 137,
+      "line_end": 137,
+      "text": "Section 12.6 Assignment.  Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+      "embedding_tokens": 126,
+      "mandatory_context": false,
+      "rank": 2,
+      "rerank_score": -6.75199
+    },
+    {
+      "id": "CONTRACT-01 v2 L125-125 part 67",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 125,
+      "line_end": 125,
+      "text": "Section 10.3 Required Disclosures.  Recipient may disclose Discloser\u2019s Confidential Information to the extent required by Applicable Laws if, unless prohibited by Applicable Laws, Recipient provides Discloser reasonable advance notice of the required disclosure and reasonably cooperates, at Discloser\u2019s expense, with Discloser\u2019s efforts to obtain confidential treatment for the Confidential Information.",
+      "embedding_tokens": 92,
+      "mandatory_context": false,
+      "rank": 3,
+      "rerank_score": -8.53439
+    },
+    {
+      "id": "CONTRACT-01 v2 L115-115 part 60",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 115,
+      "line_end": 115,
+      "text": "Section 9.2 Procedure.  The Indemnifying Party\u2019s obligations in this section are contingent upon the Protected Party: (a) promptly notifying the Indemnifying Party of each Covered Claim for which it seeks protection; (b) providing reasonable assistance to the Indemnifying Party at the Indemnifying Party\u2019s expense; and (c) giving the Indemnifying Party sole control over the defense and settlement of each Covered Claim. A Protected Party may participate in a Covered Claim for which it seeks protection with its own attorneys only at its own expense. The Indemnifying Party may not agree to any settlement of a Covered Claim that contains an admission of fault or otherwise materially and adversely impacts the Protected Party without the prior written consent of the Protected Party.",
+      "embedding_tokens": 183,
+      "mandatory_context": false,
+      "rank": 4,
+      "rerank_score": -8.55463
+    },
+    {
+      "id": "CONTRACT-01 v2 L60-60 part 23",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 60,
+      "line_end": 60,
+      "text": "Section 1.4 Feedback and Usage Data.  Customer may, but is not required to, give Provider Feedback, in which case Customer gives Feedback \u201cAS IS\u201d. Provider may use all Feedback freely without any restriction or obligation. In addition, Provider may collect and analyze Usage Data, and Provider may freely use Usage Data to maintain, improve, enhance, and promote Provider\u2019s products and services without restriction or obligation. However, Provider may only disclose Usage Data to others if the Usage Data is aggregated and does not identify Customer or Users.",
+      "embedding_tokens": 130,
+      "mandatory_context": false,
+      "rank": 5,
+      "rerank_score": -9.85767
+    }
+  ],
+  "mandatory_context": [
+    {
+      "id": "CONTRACT-01 v2 L30-30 part 9",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 30,
+      "line_end": 30,
+      "text": "== USING THE FRAMEWORK TERMS / The Framework Terms have 2 parts: (1) the Key Terms below (including any attached or referenced policies and documents) and (2) the Common Paper Cloud Service Standard Terms Version 3.0 posted at https://commonpaper.com/standards/cloud-service-agreement/3.0, which are incorporated by reference. If there is any inconsistency between the parts of the Framework Terms, the Key Terms will control over the Standard Terms. Capitalized words have the meanings or descriptions given in the Cover Page or Standard Terms. ==",
+      "embedding_tokens": 142,
+      "mandatory_context": true
+    },
+    {
+      "id": "CONTRACT-01 v2 L43-44 part 15",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 43,
+      "line_end": 44,
+      "text": "[ADAPTED] [TEACHING ADAPTATION 1] Section 12.6 (Assignment) is replaced with the following: [ADAPTED] \u201c12.6 Assignment.  Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer\u2019s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.\u201d",
+      "embedding_tokens": 152,
+      "mandatory_context": true
+    },
+    {
+      "id": "CONTRACT-01 v2 L43-44 part 16",
+      "doc": "CONTRACT-01",
+      "version": "v2",
+      "matter": "M-01",
+      "status": "current",
+      "type": "agreement",
+      "title": "Services agreement CONTRACT-01 v2, executed (Order Form, Key Terms, Standard Terms)",
+      "source_file": "Knowledge Library/agreement-current.txt",
+      "source_sha256": "74c2190a908d0adf6ad2bf4d12861f9cb7bd9415510528a18e184ebe8bae17d6",
+      "line_start": 43,
+      "line_end": 44,
+      "text": "[ADAPTED] [TEACHING ADAPTATION 2] Section 1.5 (Customer Content) is supplemented with the following sentence: \u201cProvider may give its support staff access to Customer Content only if each person is named in a written request and Customer has approved that person in writing before access begins. This access is subject to Section 10 (Confidentiality).\u201d\nProvider and Customer have not changed the Standard Terms except for the details in the Key Terms above. By signing this Cover Page, each party agrees to enter into the Framework Terms.",
+      "embedding_tokens": 126,
+      "mandatory_context": true
+    }
+  ],
+  "note": "Similarity scores do not establish a legal conclusion, negation, transaction fact or current law. Read the evidence and keep an unresolved fact unresolved."
+}
+W1028 08:40:10.305000 41978 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 9515.92it/s]
+
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 105/105 [00:00<00:00, 7059.42it/s]

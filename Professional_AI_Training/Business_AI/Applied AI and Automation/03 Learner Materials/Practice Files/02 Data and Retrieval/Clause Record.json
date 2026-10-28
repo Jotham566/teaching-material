@@ -1,0 +1,46 @@
+[
+  {
+    "document_id": "CONTRACT-01",
+    "version": "v2",
+    "clause": "12.6",
+    "part": "Standard Terms, original wording. The Key Terms change KT-1 replaces this section.",
+    "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+    "source_location": "Agreement - Executed v2.txt, Section 12.6 (Standard Terms)",
+    "matter": "M-01",
+    "access": "authorised matter team",
+    "status": "executed teaching version"
+  },
+  {
+    "document_id": "CONTRACT-01",
+    "version": "v2",
+    "clause": "KT-1",
+    "part": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1. Replaces Section 12.6.",
+    "text": "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.",
+    "source_location": "Agreement - Executed v2.txt, Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1",
+    "matter": "M-01",
+    "access": "authorised matter team",
+    "status": "executed teaching version"
+  },
+  {
+    "document_id": "CONTRACT-01",
+    "version": "v2",
+    "clause": "1.5",
+    "part": "Standard Terms, original wording. Supplemented by KT-2.",
+    "text": "Provider may copy, display, modify, and use Customer Content only as needed to provide and maintain the Product and related offerings. Customer is responsible for the accuracy and content of Customer Content.",
+    "source_location": "Agreement - Executed v2.txt, Section 1.5 (Standard Terms)",
+    "matter": "M-01",
+    "access": "authorised matter team",
+    "status": "executed teaching version"
+  },
+  {
+    "document_id": "CONTRACT-01",
+    "version": "v2",
+    "clause": "KT-2",
+    "part": "Key Terms, Other Changes to Standard Terms, Teaching Adaptation 2. Supplements Section 1.5.",
+    "text": "Provider may give its support staff access to Customer Content only if each person is named in a written request and Customer has approved that person in writing before access begins. This access is subject to Section 10 (Confidentiality).",
+    "source_location": "Agreement - Executed v2.txt, Key Terms, Other Changes to Standard Terms, Teaching Adaptation 2",
+    "matter": "M-01",
+    "access": "authorised matter team",
+    "status": "executed teaching version"
+  }
+]

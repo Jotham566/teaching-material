@@ -1,0 +1,4 @@
+LOCAL CONTROL DEMONSTRATOR
+Open workflow_demo.html beside workflow_engine.js. It reads editable fictional invoice and credit records and calculates the proposed net value; 98 million is not hard-coded as the only valid outcome.
+Prepare, inspect the exact fields, approve, and run the local mock. Change a field after approval, deny a recipient, decline, exhaust the call limit and simulate an uncertain acknowledgement. A status inspection is required before retry. These are local controls, not an agent or URA integration.
+For a connected agent use Agent Build Guide.txt and record the actual execution separately. Preparation, declaration and payment remain different operations. Verify the actual return template, taxpayer authority, submission acknowledgement and payment reference in the authorised official route before any production design.

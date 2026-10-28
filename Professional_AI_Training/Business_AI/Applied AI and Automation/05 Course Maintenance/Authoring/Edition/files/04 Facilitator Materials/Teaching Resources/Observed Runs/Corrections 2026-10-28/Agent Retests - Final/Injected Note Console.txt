@@ -1,0 +1,2 @@
+Observed lookup calls: 1
+Final host state: HELD: malformed structured operation

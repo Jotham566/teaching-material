@@ -1,0 +1,29 @@
+{
+  "status": "Illustrative request, not an observed trace",
+  "local_read_only_request": {
+    "action": "lookup",
+    "contract_id": "CONTRACT-01",
+    "clause": "KT-1"
+  },
+  "identifiers_the_host_offers": {
+    "12.6": "Section 12.6 as written in the Standard Terms",
+    "KT-1": "Key Terms change that replaces Section 12.6",
+    "1.5": "Section 1.5 as written in the Standard Terms",
+    "KT-2": "Key Terms change that supplements Section 1.5"
+  },
+  "host_checks": [
+    "Only the lookup operation is executable",
+    "Only CONTRACT-01 version v2 records for matter M-01 are permitted",
+    "Reject additional arguments",
+    "Enforce the lookup-call budget"
+  ],
+  "returned_fields": [
+    "document_id",
+    "version",
+    "clause",
+    "text",
+    "source_location"
+  ],
+  "source": "02 Data and Retrieval/Clause Record.json",
+  "observed_runs": "See facilitator Teaching Resources/Observed Runs for actual traces"
+}

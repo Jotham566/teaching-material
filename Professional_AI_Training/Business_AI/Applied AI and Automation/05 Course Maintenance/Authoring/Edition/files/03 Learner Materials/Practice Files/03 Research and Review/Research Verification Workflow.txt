@@ -1,0 +1,14 @@
+RESEARCH VERIFICATION WORKFLOW
+
+Define the question and period first. For this classroom task, the question is the High Court's historical holding on the programme delivery fee in Goal Relief, Civil Appeal 50 of 2023. That scope does not establish today's law or Victoria's position.
+
+1. Discovery produces candidate sources. Prefer the original judgment and official legislation. A search snippet, automated case summary or citation count does not prove a proposition.
+2. Open the original. Record its identity, date, edition and page numbering. If the original is inaccessible and no saved original can be inspected, stop at a source request. Do not manufacture a verified report from snippets.
+3. Build a claim record before drafting: proposition, court finding or party submission, source identity, printed page, exact supporting passage and unresolved issue. Software should copy the passage from the source rather than ask a model to recreate a quotation.
+4. Check numeric claims separately. Label each dataset. The four assessment heads on page 1 form one total. The amounts in the grounds of appeal on pages 2–3 explain disputed issues; they are not extra independent assessment heads to add to page 1.
+5. Keep the historical statute edition beside its section number. The judgment cites Cap 341 for the appeal rule, Cap 338 for the Income Tax Act and Cap 344 for the VAT Act in the 7th Revised Edition. A differently numbered later or earlier document does not itself establish renumbering or current applicability.
+6. Draft only from checked claims. Every material proposition needs its supporting passage. Remove unsupported propositions, irrespective of how polished the prose sounds. Read cross-references and contrary material.
+7. Keep current applicability and subsequent treatment in separate fields. Record which official repositories were checked, the query and date, access failures and the temporal scope of any consolidated legislation. A search returning no verified later decision does not prove that none exists.
+8. Release a historical classroom note only after checking the court's actual findings and orders. A qualified reviewer must separately approve any real client advice.
+
+In class, I operate the tools while you choose the question, inspect the evidence and decide which claims survive. We complete the correction and record together; no homework is required.

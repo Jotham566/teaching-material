@@ -1,0 +1,8 @@
+SYSTEM VOICE PRACTICE SCRIPTS AND TIMING RECORDS
+The twelve Session NN.txt files contain the core slide scripts used for the measured synthetic-voice rehearsal. Timing Results.json and the authoring rehearsal_status.json retain the observed durations and provenance. These are automated practice measurements, not a recording of Jotham teaching or a full two-hour class.
+
+The generated M4A files and their duplicate edition snapshot were removed during repository cleanup on 28 October 2026. They are optional local derivatives. PowerPoint notes remain the teaching source; the scripts and timing records stay versioned.
+
+To regenerate one optional recording on the teaching Mac, open Terminal in this directory and run:
+/usr/bin/say -v Daniel -r 130 -f "Session 01.txt" -o "$TMPDIR/KLAi-Session-01.aiff"
+Change the session number as needed. The output is outside the repository. Voice availability can vary; a new recording is a new measurement.

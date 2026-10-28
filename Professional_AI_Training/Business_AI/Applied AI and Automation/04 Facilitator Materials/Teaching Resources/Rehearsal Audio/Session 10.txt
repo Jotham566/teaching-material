@@ -1,0 +1,215 @@
+Welcome to Session 10. Today is about records and evidence. We take one month of Victoria's figures, reconcile them, look into the gaps, and then prepare a next step that a person has to approve before anything happens.
+
+The question for the session is this. How do we reconcile records, investigate evidence and prepare a controlled next step? In a legal or tax practice, this is the daily work behind every return and every client file. Numbers from different sources rarely agree at first, and the way you handle that moment decides whether your advice stands on evidence.
+
+By the end you'll have a checked reconciliation, and a record that says whether the next step was held or approved. Everything today is fictional, and nothing we do touches a real return. First, a quick recall from Session 9.
+
+Let's start with a question from last time. A human rejects an otherwise accurate draft. What happens next? Give that a little thought before I say anything.
+
+The way I read it is this. The action that depended on the draft stops. Then the draft is revised, or someone requests a new authorised decision. It doesn't matter that the numbers were right, because the reviewer's decision controls the action. If your first instinct was that the system goes ahead since the figures were correct, ask yourself who gave the authority to act, and whether that authority still exists after a rejection.
+
+Now look at today's question, and at the result we're working toward: a checked reconciliation and a held or approved local preparation record. That's what we'll have in hand at the end. Next, we put Victoria's September records on the table, and three numbers that don't agree.
+
+Here are three figures for Victoria's September. The invoice import shows UGX 125 million. The ledger records UGX 98 million of sales. The bank shows UGX 80 million of receipts. All of these amounts are fictional, and they exclude any separately assessed tax.
+
+A discrepancy is a question to investigate. It isn't yet a finding about anyone's compliance. I can tell you that the import file holds one repeated row, and we'll find it shortly.
+
+A question for you. Looking at 125 against 98, would you conclude that sales were understated, and what would you want to see first? Have a think.
+
+Here's my answer. No, it's too early to conclude that. I'd inspect duplicate records, credit notes, timing, and what each source means by sales. If that feels slippery, try this angle: which of the three numbers measures invoices, which measures bookkeeping, and which measures cash?
+
+To start that work, we look at the identity of each invoice before we do any arithmetic.
+
+We have three invoices. INV-001 is for UGX 40 million, INV-002 is for 35 million, and INV-003 is for 25 million. The import lists INV-003 twice.
+
+Before adding anything, I check identity. A row is a duplicate when the invoice number, the amount and the supporting reference all match across two rows. In the import, both INV-003 rows carry the reference TEACHING-REF-3 and the same 25 million, and the ledger holds that sale once.
+
+Let me put a question to you. What would justify removing the second INV-003 row? Sit with it for a second.
+
+This is how I'd answer it. The same invoice number, amount and supporting reference appear twice, and the ledger carries one sale. An equal amount alone proves nothing. If two customers were each billed 25 million, you wouldn't delete one. They are separate sales until their identities say otherwise.
+
+With the duplicate identified, we can do the arithmetic.
+
+Now the arithmetic, one step at a time. Before we start, tell me what you expect the raw import to be reduced to once we clean it up.
+
+First comes the raw import, at 125 million. That's the figure straight from the file, with nothing adjusted.
+
+Then we remove the duplicate. 125 less 25 gives 100. The repeated INV-003 row goes, and what's left is one row per invoice.
+
+Next we apply the credit. 100 less 2 gives 98. That's the credit note, CN-001, against INV-003.
+
+Last, we match the ledger. The result is 98 million, which is exactly what the ledger records.
+
+So here's the question. What explains the UGX 27 million gap between the raw import and the ledger? Work it through before I answer.
+
+It's a 25 million duplicate and a 2 million credit note. Each one comes from a named record. Notice the note at the bottom too. This computes no tax liability. If you were tempted to call the 27 million tax owed, ask which file mentions tax at all. Next, the same reconciliation as a chart, with the bank receipts added.
+
+This chart is a waterfall of the same numbers. It steps down from 125 to 100, then down to 98. Then it splits the 98 into 80 received and 18 outstanding.
+
+That 18 depends on the stated timing assumptions. Receipts apply to these sales only, and there are no opening balances or other adjustments. The chart helps us compare four values, 125, 100, 98 and 80. The source table is what explains why they differ. I don't call any of these differences a tax gap.
+
+Here's something to chew on. What could make this chart misleading to a reader who sees only the picture? Think it over.
+
+Let me give you mine. Gross invoices, net sales and cash receipts are three different measures, and putting them in one chart invites the reader to treat them as one. A careful reader also asks what the 18 depends on. If that feels slippery, try this angle: label each bar with what it measures, and the problem becomes visible.
+
+Now I'll show you what a saved run of an AI assistant did with these same records.
+
+These are saved outputs from a rehearsal on 26 October 2026. They were run in a command-line assistant, on the fictional files, with no tools enabled. In the first run, the input was pasted CSV text with no file names. The response called the UGX 80 million a declared tax basis. In the second run, the files were labelled, and the response separated cash receipts from a declaration.
+
+Before I open the file, tell me this. Which supplied file establishes a tax declaration of UGX 80 million? Take a moment with that.
+
+None of them does. The 80 million is a receipts figure, so calling it a declared tax basis is unsupported. And we check the output whichever run it came from.
+
+One caution. The labels and the task wording both changed between the two runs, so they can't tell us which change made the difference. Each is a single run, and says nothing about how often this happens. If you're tempted to say the second run proves the tool is reliable, ask what one run can tell us. I keep the first result in front of us as we talk.
+
+Next, a record with no supporting identifier.
+
+One teaching record has no supporting identifier. In the import, INV-002 has a blank in that field. The handling comes in three steps. The transaction stays in the reconciliation, and the report asks for the underlying evidence. Nobody drops the row, and nobody fills in the blank.
+
+The identifiers in this class are teaching references. I don't invent a valid FDN or a taxpayer number. Formal tax treatment depends on the actual rules and verified records.
+
+A quick question before we go on. A model sees the blank and offers a plausible reference to complete the row. Should we accept it? Take your time.
+
+My answer is no. We keep the gap visible and ask for the real document, because a made-up value looks like evidence and isn't. If a reasonable guess seems harmless, think about who would later rely on that field, and what they would assume about it.
+
+Next is the exception report, where this gap sits beside the duplicate and the credit note.
+
+This table is the useful form of the output. Each row gives an issue, the evidence, and a status.
+
+The duplicate INV-003 is the same invoice repeated in the import, and its status is corrected import. The 2 million credit note, CN-001 against INV-003, is reconciled. The missing identifier, a blank field on INV-002, has the status request support.
+
+The line under the table is the point. Corrected data issues remain distinct from open professional tax questions. The first two rows are closed by arithmetic and records. The third stays open.
+
+Now it's your turn. Which of these three rows has arithmetic actually resolved, and which has it left open? Give that a little thought.
+
+The duplicate and the credit note are resolved, so the raw invoice-to-ledger difference in the prepared dataset is explained. The missing identifier is open until evidence arrives. If you were thinking all three are resolved because the totals now agree, ask yourself whether agreeing totals tell you that INV-002 is supported.
+
+Next we separate the risk flag from the tax conclusion.
+
+There are two boxes here. The risk flag says the evidence identifier is missing and needs review. The tax conclusion says the tax effect requires current rules, complete facts and professional analysis.
+
+A report can raise a flag in a few lines. A conclusion needs the applicable law for the period, the full facts, and a qualified person. If a document is titled a tax health check, its scope should be written on it, because a clean result from an incomplete dataset is a risk in itself.
+
+One for you to work out. Who decides the tax treatment of INV-002, and on what basis? Say it out loud if it helps.
+
+A qualified person authorised for that work decides, applying current rules to complete facts. A model doesn't decide, and neither does the reconciliation. If your answer was the assistant, ask what it would need to have seen that this file doesn't contain.
+
+Now we test that distinction on a question the sources can support.
+
+This table pairs three questions with a source-based response and a next check.
+
+First, is a missing teaching reference proof of evasion? No, it's an evidence gap. The next step is to obtain the actual invoice and decide whether it applies. Second, how can an EFRIS document be checked? URA describes validation by FDN and date, so the next check is to validate an actual permitted document through the official route. Third, does a valid FDN settle all tax treatment? No. Identity and tax entitlement differ, so we apply the relevant law and facts.
+
+We'll now read URA's EFRIS document-validation guidance together, and I'll keep each answer tied to what the guidance says. Our references are teaching references, so we never test them on a live portal.
+
+I'd like to hear your thinking on this one. The reference is blank. What can the report properly conclude? See what you come up with.
+
+The support is incomplete, so we request it and check it. The record alone shows neither fraud nor a credit entitlement.
+
+Next, EFRIS sits among four different operations.
+
+This table lists four operations that people often run together. EFRIS invoicing covers fiscal invoice and receipt operations. Return preparation assembles records and proposed fields. Return submission makes a declaration through the applicable process. Payment settles a recorded amount through a payment route.
+
+Each has its own authority and its own record of what happened. A tool that handles one doesn't automatically handle the next. When we draw the workflow shortly, each of these gets its own step.
+
+Here's one for you. A system we use is connected to EFRIS for invoices. Does that show it can file a return? Let's hear your answer first.
+
+I'd put it like this. No. The EFRIS connection is evidence about invoicing only, so the filing route has to be checked on its own. If it feels like one system anyway, try this angle: if submission and payment were one step, where would a reviewer place the stop?
+
+That leads into the bounded process, with four stages and a person at the last one.
+
+Here is a bounded filing-assistance process. It has four stages, and as we go through them, ask yourself what each one hands to the next.
+
+First comes Gather. That means collecting the required source records. Nothing is proposed yet. We only bring together what the work depends on.
+
+Then Prepare. Here the assistant proposes return fields, drawing on those records. They are proposals, and nothing has been declared.
+
+Next is Validate, where the evidence and checks come in. The proposed fields get tested against the records, and gaps show up here.
+
+The last stage is Authorise. This is the review, and the submission decision, and it belongs to a person. In our class, the route ends with a reviewed preparation pack or a mock submission. A production route would need a supported interface and formal authority, and we have neither today.
+
+So here's the question. Where should missing mandatory evidence stop this work? No rush.
+
+It stops the work before the workflow reaches formal declaration or submission. It can stop even earlier, at Validate, and the gap goes back to Gather. If you feel the model could proceed and we fix it afterwards, ask who can take a declaration back after submission. Once a submission is made, we have to know what status came back.
+
+There are three rules here. Capture the actual response and reference. Distinguish draft, submitted, rejected and uncertain status. And never infer acceptance from a page closing.
+
+The mock acknowledgement in our demo is labelled fictional. In a real system, a network failure can leave the status uncertain. The request may have gone through, or it may not have.
+
+Tell me what you make of this. A submission times out and the page goes blank. Would you retry immediately? Take a moment with that.
+
+Here's where I land. Not blindly. I'd check the status first, because repeating the action could duplicate something already recorded. The right next step is to look for the reference or the response. If retrying seems natural since nothing came back, try this angle: what if the first request had already arrived?
+
+We practise exactly this later in the workflow demo. Next, the failures we should plan for.
+
+This table matches each failure with its expected response. Missing evidence means hold and request clarification. A changed template means review the mapping before continuing. A rejected upload means retain the error and correct the source. An unknown submission status means check status before retry. An access or authorisation failure means stop and escalate.
+
+A process that works on the happy path isn't yet a usable service. Try covering the right-hand column in your mind and choosing the response for each failure yourself.
+
+Try this one. Which of these five failures could create a duplicate action, and why? Say it out loud if it helps.
+
+The answer is the unknown submission status, followed by an unchecked retry. When an upload is rejected, nothing was recorded. An unknown status leaves open that something was. If you picked the access failure, ask what would happen if the system tried again with the same permission.
+
+Whatever happens, we want to be able to show it afterwards, which is the record of execution.
+
+Four items go into the record of execution. First, the request and the source versions. Second, the proposed fields and the validation results. Third, the reviewer decision. Fourth, the action response and the recovery record.
+
+With these, the firm can reconstruct who approved which version, and what the system actually did. Logs also hold confidential material, so we avoid copying more of it than we need. Access and retention rules apply to logs just as they do to source files.
+
+Let me ask you something. A partner asks six weeks later why a figure changed. What in this record answers the question? Let's hear your answer first.
+
+Look at the source versions and the reviewer decision, which show which version was approved. The action response shows what happened. If your thought was that the model's explanation would answer it, ask yourself whether that explanation tells us what the system did, or only what it says it did.
+
+That closes the concepts. Next is our in-class work.
+
+This is the main practice block, and it takes about 35 minutes. Here is how it will go.
+
+First, you reconcile the four small files on your own. Then I show you the assistant's mapping and exception report from the saved runs, and we compare. Remember that the first saved run omitted file labels and the second labelled them, and the wording of the task changed too. So we don't treat the pair as a clean test of the model. Each is a single run.
+
+The main exercise is the Ledger Challenge. You and the assistant separate true duplicates, meaning the same identity, amount and reference, from repeated amounts with distinct IDs. You keep the October receipt out of September, and you list the blank references. Then you recalculate and compare with the answer key.
+
+After that, we spend ten minutes in the workflow demo on an uncertain acknowledgement. If the demo or the connected tool is unavailable, I'll use the labelled example, mark that step as unexecuted, and keep the time for discussion.
+
+Before you start, which of the four small files will you check first, and why? Give that a little thought.
+
+Afterwards we'll state what we can conclude.
+
+Before I give you the conclusion, give it to me in your own words, and then we'll compare.
+
+Here's what the evidence supports. In UGX million, 125 less the duplicate 25 gives 100, then the credit of 2 gives 98. Receipts of 80 leave 18 under the stated assumptions. That difference alone doesn't establish unpaid tax. Evidence checks, declaration and payment are separate operations.
+
+The second point is the limit of the demo. The local mock has no URA connection, computes no tax and grants no filing authority. These are invented numbers in a fictional case.
+
+One for you to work out. Which part of today's result remains unverified? No rush.
+
+The 18 million is an outstanding balance that rests on assumptions, and the whole filing side is unverified, since nothing here connected to URA. If you were thinking of the 18 million as tax owed, ask which source file shows a tax amount.
+
+I'll save the actual outputs and note any questions still open, and then we move to the decision for the firm.
+
+The firm is deciding how to start. The proposed decision is to begin with supervised evidence preparation, using return-specific requirements and qualified review. The record that would justify it states the decision and lists the evidence still needed.
+
+Before we go on, name a proposed owner and one condition. This is a class decision record, and it doesn't authorise anything at the firm.
+
+Try this one. What evidence would change this proposed decision, either toward going further or toward stopping? Work it through before I answer.
+
+Something concrete. The supporting references for INV-002 arriving, a reviewer finding wrong mappings in the output, or the permitted scope of the work changing. Quality and scope are the triggers. If your first answer was that nothing would change it, try this angle: what result in a trial month would make you pause?
+
+With the decision written, we test it on changed facts.
+
+Let's check understanding with three questions. I'll let you answer each one before I comment.
+
+One. A receipt turns out to belong to October, and September no longer includes it. Does the 18 million balance still follow? See what you come up with.
+
+Recalculate under the changed timing, since less cash in September changes the balance.
+
+Two. A missing reference proves fraud. Do you accept or reject that? Give that a little thought.
+
+I'd reject the claim and ask for evidence, because a missing reference is an evidence gap.
+
+Three. The acknowledgement is uncertain. Do we repeat the action at once? Take a moment with that as well.
+
+Inspect the actual status and the identifiers before retrying, because repeating could duplicate something already recorded.
+
+If an answer comes out partial, ask yourself what you would look at first to be sure. And ask which of your three answers depends on an assumption you haven't yet stated.
+
+That finishes the core session. In Session 11 we move from this one workflow to organisational risk and governance. What remains is optional extra material, for a useful question or extra time.

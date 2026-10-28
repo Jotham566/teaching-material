@@ -1,0 +1,183 @@
+Welcome to Session 9. Today's question is this: when do rules, workflows and agents actually help, and how does the firm keep authority when software starts doing steps for us?
+
+That matters in a legal or tax practice because a tool that acts can send, file or release something, and the firm is still responsible for what goes out. By the end of the session we'll hold two things. One is a tool boundary that we have tested. The other is an execution record that says plainly what ran and what did not.
+
+We'll start with a quick recall question from Session 8.
+
+Here's the question from last time. A draft quotes the contract correctly, but it names a recipient who isn't authorised to receive it. May it be sent? Take a moment with that, and give me a reason as well as an answer.
+
+Here's where I land. No. A correct quotation tells us nothing about who may receive the draft. Whether the content is good and whether anyone has authority to act on it are two separate checks. If you leaned towards yes because the quote is right, try this angle: who at the firm decides who receives a draft, and where is that written down?
+
+Today's question is the second check, authority to act. When do rules, workflows and agents help, and how do we keep authority? By the end we'll have a tested tool boundary and an execution record with every step labelled accurately.
+
+Here's the job we'd like to hand to software, in four steps. Find the current contract clause. Check it against the playbook. Prepare a draft with links back to its sources. Then ask a partner before anything goes outside the firm.
+
+The first three steps read and write inside the firm. The fourth is a decision about advice to a client. Take Section 12.6 of the Standard Terms and its replacement in the Key Terms, KT-1. Software can fetch both texts and draft a comparison. Whether Victoria Services should rely on that reading is a partner's call.
+
+A quick question before we go on. Which of these steps would you keep as a partner decision, and why that one? Work it through before I answer.
+
+I'd pick step four, the approval of legal interpretation or external advice, because the responsibility to the client sits there. If you chose step two, think about what the playbook leaves open that a person still has to judge.
+
+This table is a ladder of control over the steps. With rules, the logic is fixed in advance, like a reminder that fires on an agreed date. RPA, robotic process automation, is a script that works the screen, for example copying approved fields from one system to another. An AI workflow has a defined sequence with an AI step inside it, such as extracting a clause and routing a draft. With an AI agent, the model picks the next action from a set of permitted ones.
+
+A product can mix these. A screen-clicking bot isn't automatically an agent, and an agent can use a screen tool.
+
+A question for you. What makes the last row agentic? Take a moment with that.
+
+It's the model that chooses the action, based on the task and on what it has seen so far. If you said it uses AI, look at the workflow row. It has an AI step too. Who chose the sequence there? We did.
+
+RPA is software that operates a desktop or a browser the way a person would. It presses buttons, types and reads whatever is displayed, and it follows a fixed script along a defined route.
+
+The weakness is in the third point. If the screen layout changes, the script may press the wrong button or read the wrong field, and often it has no idea anything went wrong. Picture a script that enters figures on a filing portal. It would still need permitted access and a review step before anything is submitted.
+
+So when might a supported API be a better route than a script that works through screens? Give that a moment.
+
+An API, an application programming interface, is a defined way for one program to ask another for something. Where one exists, it gives structured requests that can be authorised and logged. If your first thought was that it's faster, think about what we could check afterwards in each case.
+
+Here's what one structured request looks like. It asks for a tool called lookup_contract, for the contract CONTRACT-01, and for the clause KT-1. KT-1 is the Key Terms replacement of Section 12.6, so it's the clause as it governs the matter. On the other side is the evidence that should come back: the clause text, its version and status, its source location, or a controlled error.
+
+This is an illustrative request. A request in this shape is tidy, and tidiness proves nothing. Syntax, permissions and factual support each need their own check. A well-formed request can still ask for something the user may not see, and a well-formed answer can still be wrong.
+
+Let me ask you something. If someone sends an unknown document ID, what should happen? Think it over.
+
+The tool, or the layer that runs it, should return a controlled error or a not-found result. It shouldn't guess at a nearby document. If you said the AI should work it out, would you want a nearby contract's clause quoted to a client?
+
+An agent is a system where a model chooses actions or tool calls, looks at the results, and decides how to continue toward a goal, inside limits we set. A model here is a program that has learned patterns from large amounts of text and produces an answer to a prompt. A tool call is a request for one of the operations we have allowed.
+
+In our matter, the assistant picks the clause lookup, reads the result, and asks for the missing ownership chart. Notice that the model proposes the lookup. The system around it carries the lookup out, or refuses.
+
+Now it's your turn. Suppose a prompt always tells the assistant to take the same three steps in the same order. Does that show it plans on its own? No rush.
+
+No. We fixed the steps ourselves. To judge autonomy, we inspect which choices the model actually made. If you said yes, what would differ if we changed the question?
+
+Let's draw the agent loop one piece at a time, and watch where the checks sit. The loop repeats until something stops it.
+
+First the model chooses. It picks a permitted next operation from the set we have allowed. At this point it is only proposing.
+
+Then the execution checks run. This is the system around the model testing the authority and the arguments of the request. The check sits in the system that runs the call.
+
+Next the tool returns. What comes back is evidence, or an error. Either one is a result the model has to work with.
+
+Last, the model continues. It answers, asks for something, or stops. The line at the bottom matters most. The loop stops on denied access, missing evidence or limits, and a human approves anything consequential. A sentence in the instructions can ask for good behaviour, but only the system can enforce it.
+
+So here's a question. What stops the agent from adding a new recipient to the matter? Take a moment with that.
+
+Here's how I'd answer it. The tools and destinations are fenced in by the system, and a line inside a retrieved document cannot change that. If you said we tell it not to, what happens when the document tells it otherwise?
+
+This table gives names to the parts. A function call, or tool call, is a structured request for an allowed operation. The execution host is the program that checks the request, decides whether it's permitted, and runs it. The tool result is what comes back as the observation for the next step. And MCP, the Model Context Protocol, is a way to expose tools and context to a model.
+
+When the model asks for a clause lookup, that is a proposal. Nothing has happened until the host checks the arguments and runs it. MCP describes how a tool is connected. It doesn't give anyone permission, and it doesn't show that a model chose anything.
+
+So if we add an MCP server to a workflow, has it become an autonomous agent? Give that a little thought.
+
+No. A connection method, the decision logic and the permissions are three separate things. If you said yes, what in the trace would show that the model made a choice?
+
+Now let's look at where a person steps in, and draw it one piece at a time. The point is a review that means something.
+
+First the reviewer receives the draft and its evidence, together with the exact version under review. Both are in front of them, so the decision rests on the real document.
+
+Then comes the reviewer's decision. They check, and they decide.
+
+If they approve, the reviewed test action continues.
+
+If they decline, or the evidence is missing, the work is held or sent back for revision. The rule at the bottom is that approval applies to the reviewed version. A changed field needs a new decision. Real oversight means the reviewer has the evidence, the time, the skill and the power to say no.
+
+Here's a question for you. What would make a partner's approval meaningless here? Think it over.
+
+Here's what I'd say. It would be meaningless with no source evidence in front of the reviewer, with an approve button that is the default, or with the action running before the decision. If you gave only one of those, what if the document changed after approval?
+
+Here's the small assistant we'll use in class. It's built from the pieces we've just named, and I'll tell you each time which version I'm showing you.
+
+First comes the request. We ask it to review CONTRACT-01.
+
+Then the lookup. It fetches the current clause and the playbook.
+
+Third is the draft. It produces a finding with links back to its sources.
+
+Fourth, the partner makes the review decision. I'll be clear about what I show you. One thing I'll show is a saved set of traces, called Observed Runs, where a model chose its own lookups and a local host ran or held each one. Those traces were made with Claude models, one fresh model call per turn, through a plain backend, and they are not any product you may use. The other is a scripted test with no model in it. I'll say aloud which one you're looking at.
+
+Let me put a question to you. What would count as evidence of agentic behaviour in this assistant? Take your time.
+
+Here's my answer. An observed model-selected tool call, together with the result the host returned. A fixed sequence is useful, and we'll label it a workflow. If you said the answer sounds clever, what record could support that?
+
+We have two different demonstrations. The private Zapier workflow ran successfully after its field mapping was corrected. It follows a defined sequence and has no external sending step. That shows a working automation in our teaching account.
+
+Next we inspect an actual model-selected local lookup. The model chooses a permitted clause request, the host executes it and the model returns a draft. The host checks tool identity, document identity and the call budget before execution.
+
+Which part of these demonstrations shows the model choosing a tool?
+
+Take a moment to separate the two routes.
+
+The structured local lookup trace shows that choice. A fixed workflow following configured steps demonstrates something different. We will keep those claims separate. We also check the substance of the answer: an accurate lookup can still lead to an unsupported legal inference. Every answer remains a draft for our review.
+
+Two designs sit side by side. In the fixed workflow, the sequence is set. It always fetches the clause, then writes the draft. In the tool-selecting agent, the model decides whether to call the permitted lookup and how, and then uses the result.
+
+Both can be good. What matters is that we label what was actually built. If a step is a fixed extraction, I won't call it an agent. In the saved traces, the model asked for Section 12.6, the unmodified Standard Terms text, and then for KT-1, the Key Terms replacement. In one saved trace it asked for KT-1 first, so the order was the model's own choice. A fixed fetch always returns the same pair in the same order.
+
+Try this one. For a predictable filing preparation step, which design would you pick? Have a think.
+
+Often a defined workflow, since the steps don't vary, though it depends on requirements and on how each design performs when tested. If you picked the agent for its flexibility, what extra checking would that flexibility cost?
+
+We added an instruction inside the retrieved material asking the model to exceed its role. In our observed run the model ignored it and stayed with the permitted work. That is an observation about this run.
+
+The host offers only an approved local lookup. It has no sending tool. This is a separate control from the model deciding to cooperate. Our scripted host tests exercise the refusal paths directly, because the observed model did not request every forbidden action.
+
+If the model behaves safely once, can we remove the host checks?
+
+Think about what the observation actually proves.
+
+We cannot infer that future behaviour will be identical. We retain the tool allowlist, document checks and call limit, and then inspect the resulting answer for unsupported facts. In our fresh normal trace, the answer preserves uncertainty about the transaction trigger. That successful example still needs review and does not certify every future response.
+
+We will exercise three boundaries: an unknown document, an injected instruction and a limited lookup budget. I operate the demonstration while you predict the permitted result. We distinguish an observed model choice from a scripted test of a host refusal.
+
+Then we inspect the answer itself. Does it keep an unknown ownership structure unresolved? Does it distinguish an assignment from a change of control? A safe tool call can be followed by a poor conclusion, so access testing alone is insufficient.
+
+What should we do when the tool boundary passes but the answer invents a fact?
+
+Decide whether you would release the draft.
+
+We hold it, identify the unsupported inference and check any revision against the source again. We preserve the failed output as evidence. Finally we approve, change and reject a local mock action. No client message or tax filing leaves this classroom exercise.
+
+This is the main exercise, and it takes about 35 minutes. Here's what we'll do, in order.
+
+First, I'll open one saved trace with you. The model chose its own lookup, so you'll see the model's request, the host's decision and the evidence that came back. Then I'll run host_control_tests.py. It's scripted with no model in it, so it shows enforcement only. Before each result, I'll ask what you think the host will do. I'll say which kind we're looking at each time, and I won't describe one as the other.
+
+Then you run workflow_demo.html. You'll approve the exact version, change one field and check that the old approval no longer works. You'll decline, change the recipient, and use up the call budget. If the portal builder or live route is unavailable, I'll use the labelled example, mark that step as not run, and keep the time.
+
+So before you run it, what do you expect the host to do when the field changes after approval? Sit with it for a second.
+
+The dependent action is held, and a new decision is required. If you predicted it runs, think about what the approval was attached to.
+
+Before I give you the conclusions, tell me what you think we can safely conclude. Give that a little thought, and then we'll compare.
+
+There are two points. The first is that a workflow follows configured logic, while an agent can select permitted actions from what it observes. Tool requests need enforced authorisation, and a rejection or a stale approval stops the dependent action. A local rules demo is not evidence of live agentic behaviour.
+
+The second is that the saved read-only traces show model-selected lookup. The separate local workflow tests approval controls. Neither shows a production deployment.
+
+So which part of today's result stays unverified? Take a moment with that.
+
+Production use, for one. A connected portal builder, for another. And how often a model behaves the same way, since we saw single runs. If you said everything was verified, which of those runs involved a real client system?
+
+Here's the decision the firm is making. It will pilot one bounded workflow, with an owner, limits, tests and a manual fallback. Before we move on, I'd like you to name a proposed owner and one condition, and then we record the decision along with the evidence we still need.
+
+This is a class decision record. It doesn't authorise anything at the firm.
+
+What evidence would make you change this proposal, either to widen the pilot or to stop it? Take a moment with that.
+
+I'd name test results on representative matters, the quality of the drafts, or a change in the permitted scope. If any of those moves, we revisit the pilot. If what came to mind was a feeling about the tool, think about what we could count in a month.
+
+Last, three short questions where the facts change. I'll ask each one, you answer it fully, and then I'll give mine.
+
+First. The model requests a lookup nobody approved. Who stops it? Give that a little thought.
+
+The execution host stops it, because it enforces the allowed tool and its arguments. If you said the model's own caution, where is that enforced?
+
+Second. A field changes after approval. Is the old approval sufficient? Take a moment with that.
+
+No. A changed version needs a new review, so the old approval doesn't cover it.
+
+Third. A tool server is connected. Has agentic behaviour been demonstrated? Think it over.
+
+No. A connection alone shows no model-selected action. We would need an observed request and its result.
+
+That completes the session. In Session 10 we move to tax evidence workflows and controlled actions, where these same boundaries apply to ledgers and filings.

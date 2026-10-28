@@ -1,0 +1,5 @@
+FICTIONAL RECONCILIATION CONDITIONS
+Amounts are UGX, excluding any separately assessed tax. Period: September 2026.
+An invoice ID identifies one invoice; an import may repeat a row. Verify identity, amount and support reference before treating a repeat as a second sale or a duplicate. Credit notes adjust the relevant invoice.
+For the initial teaching balance, assume receipts apply to these sales only, with no opening balances, other allocations, adjustments or timing differences. Revisit that assumption in the October receipt variant.
+Supporting identifiers are teaching references, not valid FDNs. These records do not establish a filed return, tax treatment or tax liability. Calculate the results rather than copying an answer reference.

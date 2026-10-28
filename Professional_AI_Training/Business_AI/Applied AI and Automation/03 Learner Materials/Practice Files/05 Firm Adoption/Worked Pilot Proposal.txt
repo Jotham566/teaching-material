@@ -1,0 +1,11 @@
+WORKED FICTIONAL PILOT PROPOSAL — NOT AN APPROVED DEPLOYMENT
+Problem: partner time is spent locating current clauses and correcting incomplete summaries.
+Scope: internal M-01 precedent search and review drafts. Exclude external delivery, cross-matter retrieval, filing and payment.
+Sources: current executed agreement and customer-side playbook; preserve source locations and permissions. Missing schedules remain gaps.
+Approach: compare one available configured product with the current manual process. No need to train a new foundation model for this scope.
+Baseline: measure ten representative manual tasks, including difficult cases. Record review time, source correctness, completeness and critical errors.
+Acceptance proposal: no restricted disclosure or unauthorised action; no accepted draft with a lost operative exception; at least the agreed quality threshold and lower total review effort than baseline. Ten tasks are an initial check, not statistical proof of reliability.
+Owners: partner sponsor, practice reviewer, information owner and technical/workflow owner — roles to assign, not named people.
+Costs: use Cost and Effort Example.csv with actual quotations and observed review minutes before an investment decision. Released time is a capacity benefit until a cash or revenue effect is evidenced.
+Plan: day 0–30 source readiness and baseline; day 31–60 shadow tests; day 61–90 bounded use only if approved, followed by expand/revise/stop decision.
+Review gates: stop for restricted disclosure, unapproved action or unsupported material advice. Retest material changes. Agree actual dates, people and terms with the firm.

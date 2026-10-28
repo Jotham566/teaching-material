@@ -1,0 +1,37 @@
+ACTUAL SAVED AI OUTPUT, 26 OCTOBER 2026 (run R3)
+Run: Repeat 3 of 3, same prompt and evidence
+Product: a Claude subagent started with no conversation history and given one prompt file. The subagent saved its own reply to a file, and this file holds that reply unedited below the line. It is not the learner's product and says nothing about any other tool.
+Tools: none for the task itself (the subagent read the prompt file and wrote its reply to disk).
+Evidence supplied: same. The exact prompt is saved in 05 Course Maintenance/Run Prompts/prompt_R'(run number)'.txt. Hashes (first 16 hex of SHA-256) of Agreement - Executed v2.txt (first 16 hex) 74c2190a908d0adf, Client Instruction.txt 4b77ff776aac1c98.
+One run per condition unless the title says otherwise. A single run shows what happened once and says nothing about how often.
+
+TASK GIVEN
+Does Victoria’s consent apply to Equator’s proposed internal reorganisation? Quote the provisions you rely on, state what is unknown and list what we must ask Equator. Keep the answer under 300 words.
+
+ACTUAL RESPONSE (unedited)
+------------------------------------------------------------
+Short answer: not necessarily; it depends on facts we lack.
+
+Provisions relied on (Key Terms, Teaching Adaptation 1, replacing Section 12.6; the Order Form says "None. All changes to the Standard Terms are in the Key Terms"):
+
+1. "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party."
+2. "Provider must obtain Customer's prior written consent before a change of control of Provider takes effect."
+3. "That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+4. "Any attempted but non-permitted assignment is void."
+
+Analysis: The standard right to assign on a reorganization without consent is gone. A reorganization needs Victoria's consent only if it involves a change of control of Provider or an assignment. Sentence 3 removes the consent requirement for a reorganization within a wholly owned group, but only if Equator remains responsible. It follows the change-of-control sentence, so it clearly covers change of control. Whether it also excuses an assignment is open to argument; the cautious reading is that assignment still needs consent.
+
+Unknown:
+- Whether the reorganization is wholly within a wholly owned group.
+- Whether it changes who controls Equator.
+- Whether Equator remains responsible.
+- Whether the agreement will be transferred.
+
+Ask Equator for:
+1. Its ownership chart before and after, with percentages.
+2. Written confirmation that Equator Systems Ltd stays the contracting party and remains responsible.
+3. A statement on whether any rights or obligations under the agreement will move to another entity.
+4. The timing.
+5. Whether anyone new will control Equator.
+
+Fees are not relevant here and are not inferred; the Fee Schedule was not supplied.

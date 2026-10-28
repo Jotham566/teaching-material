@@ -1,0 +1,252 @@
+{
+ "date": "2026-10-28",
+ "checks": [
+  {
+   "check": "twelve decks",
+   "passed": true,
+   "detail": 12
+  },
+  {
+   "check": "no spoken stock sentence repeated more than 40 times",
+   "passed": true,
+   "detail": [
+    [
+     "Give that a little thought.",
+     34
+    ],
+    [
+     "Take a moment with that.",
+     28
+    ]
+   ]
+  },
+  {
+   "check": "285 slides, 52 optional, 233 essential",
+   "passed": true,
+   "detail": [
+    285,
+    52
+   ]
+  },
+  {
+   "check": "126 click stages on 34 animated slides",
+   "passed": true,
+   "detail": [
+    126,
+    34
+   ]
+  },
+  {
+   "check": "deck titles, notes, sources, playback, animation targets, pictures",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "illustrations placed with alt text",
+   "passed": true,
+   "detail": 176
+  },
+  {
+   "check": "four Word documents open",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "Guide time tables: twelve sessions of 120 minutes",
+   "passed": true,
+   "detail": [
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120
+   ]
+  },
+  {
+   "check": "every file named in \"Open before class\" exists",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "source and specimen hashes match the provenance record",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "library copy of the agreement equals the specimen text",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "every body paragraph of the unmodified source appears unchanged, in order, at the end of the specimen (Standard Terms untouched)",
+   "passed": true,
+   "detail": "143 v 147"
+  },
+  {
+   "check": "the specimen adds only a short notice before the source text",
+   "passed": true,
+   "detail": 4
+  },
+  {
+   "check": "Key Terms replacement of Section 12.6 and supplement to Section 1.5 present",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "original Section 12.6 still present in the Standard Terms",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "Practice Guide lists every practice file",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "practice scripts compile",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "scripted host tests T1 to T7 pass",
+   "passed": true,
+   "detail": "d note      DENIED    expected DENIED    ok\nT6 second lookup against a budget of one      HELD      expected HELD      ok\nT7 malformed request                          HELD      expected HELD      ok\n"
+  },
+  {
+   "check": "lexical retrieval tests give the recorded result (6 of 8; K3 and K8 fail)",
+   "passed": true,
+   "detail": [
+    [
+     "K1",
+     "PASS"
+    ],
+    [
+     "K2",
+     "PASS"
+    ],
+    [
+     "K3",
+     "FAIL"
+    ],
+    [
+     "K4",
+     "PASS"
+    ],
+    [
+     "K5",
+     "PASS"
+    ],
+    [
+     "K6",
+     "PASS"
+    ],
+    [
+     "K7",
+     "PASS"
+    ],
+    [
+     "K8",
+     "FAIL"
+    ]
+   ]
+  },
+  {
+   "check": "Clause Record holds the four host identifiers",
+   "passed": true,
+   "detail": [
+    "12.6",
+    "KT-1",
+    "1.5",
+    "KT-2"
+   ]
+  },
+  {
+   "check": "observed model runs and outputs preserved",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "four model-selected agent traces, within budget, no external action",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "scripted host test output kept apart from model traces",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "no stale agreement names, rotated lines, K-Files reliance or gendered learner",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "versioned rebuild baseline matches its manifest",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "approved illustration PNGs match their manifest and cover the plan",
+   "passed": true,
+   "detail": [
+    [],
+    []
+   ]
+  },
+  {
+   "check": "every illustration in the decks is the approved PNG, byte for byte",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "picture comparison is exact for every image, with the Session 12 title illustration regression",
+   "passed": true,
+   "detail": "y 0.1221 percent of pixels is a difference\nPASS Session 12 title picture equals approved hero_12.png byte for byte\nPASS hero_12.png matches its manifest hash\nPASS the illustration step runs on the live Session 12 deck\nPASS re-running the illustration step reproduces the live Session 12 deck exactly\n"
+  },
+  {
+   "check": "repaired retrieval evidence passes 19 checks and matches the tested sources",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "historical case arithmetic uses exactly the four original assessment rows",
+   "passed": true,
+   "detail": [
+    51867131,
+    263533867,
+    316240641,
+    18867131
+   ]
+  },
+  {
+   "check": "twelve concrete in-class plans match the Guide and each total 120 minutes",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "all twelve demonstrations have linked complete procedures, existing sources and matching prompts",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "seventeen documented launch routes passed with the current tested sources",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "staging build from the authoring sources equals the live edition",
+   "passed": true,
+   "detail": "536 staged files, 536 live files, 0 differences\n"
+  }
+ ],
+ "all_passed": true,
+ "illustrations": 176,
+ "note": "File Integrity.json hashes this record. It does not hash itself."
+}

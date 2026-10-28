@@ -1,0 +1,18 @@
+RECORD-25 | email | 2026-10-10 | IT lead email on overseas software trial
+
+From: Isaac Mutebi, IT Lead, Victoria Services Ltd
+To: Grace Atim
+Date: 10 October 2026
+Subject: Overseas reporting tool trial
+
+Grace,
+
+The overseas vendor has sent a trial link for their reporting tool. I have set up a sandbox with dummy data only and nothing from the live system.
+
+Two observations. The dashboards are quicker to build and the sales by branch view loaded in seconds. But support is offered from another time zone, so the first response may arrive overnight for us. Their invoice would be in dollars and payable by international transfer.
+
+I have not told anyone at Equator and I suggest we do not until the board decides. I also have no idea whether buying support from outside the country brings any tax or withholding consequence, and I do not think I should guess. Can you ask the firm?
+
+Trial ends 30 November.
+
+Isaac

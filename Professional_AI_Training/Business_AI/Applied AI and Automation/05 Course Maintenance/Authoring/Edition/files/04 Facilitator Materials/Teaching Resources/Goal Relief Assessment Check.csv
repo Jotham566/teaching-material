@@ -1,0 +1,9 @@
+dataset,source_page,description,amount_UGX,included_in_page_1_total
+Page 1 assessment,1,WHT local supplies,51867131,yes
+Page 1 assessment,1,WHT international payments,263533867,yes
+Page 1 assessment,1,WHT imported services (label in original table),316240641,yes
+Page 1 assessment,1,PAYE,18867131,yes
+Computed total,1,Sum of the four page 1 rows,650508770,check
+Ground of appeal amount,2,Ground 2 management-fee WHT figure including interest,285825249,"no; separate description, not an extra page 1 row"
+Ground of appeal amount,2,Ground 4 software-licence WHT figure,10090415,"no; separate description, not an extra page 1 row"
+Ground of appeal amount,3,Ground 5 programme-delivery-fee VAT figure including interest,379488769,"no; separate description, not an extra page 1 row"

@@ -1,0 +1,20 @@
+LIVE DEEP-RESEARCH REVIEW — 27 OCTOBER 2026
+Notebook: KLAi — Public-law deep research rehearsal
+https://notebook.google.com/notebook/467e5157-8f0a-4f85-b22f-c92b5a7f174c
+A signed-in Deep Research run completed and returned a report with eight cited sources and nineteen additional discoveries. The report and its sources were imported into the private notebook. Several sources then showed import errors. The exact prompt, observed report UI and a cropped screenshot are retained. Accessibility text can truncate long paragraphs, so these files are labelled UI transcripts rather than a complete vendor export.
+
+DO NOT USE THE GENERATED REPORT AS A VERIFIED LEGAL MEMO
+It gets the judgment date (19 August 2024), overall dismissal and the programme-delivery-fee VAT outcome broadly right. Material problems remain:
+1. It refuses printed-page pinpoints on the theory that electronic records cannot supply them. The original judgment is explicitly paginated, Page 1 of 24 through Page 24 of 24. Page 3, lines 24–28 gives the appeal-scope provision; pages 22–24 contain Ground 5 and the disposition.
+2. Its assessment table mixes page 1's four assessment heads with separate disputed figures from the grounds of appeal and adds them as if independent rows. The seven reported line amounts total UGX 1,325,913,203, while it labels the total UGX 650,508,770. Page 1's actual four rows sum to UGX 650,508,770. Page 2 grounds 2 and 4 and page 3 ground 5 explain where three of the extra figures came from; they must not be added again.
+3. It describes the Income Tax Act using Cap 340 without documenting the edition used by the judgment. The judgment expressly cites Cap 338 (7th Revised Edition) at page 6 and page 10. Its VAT discussion expressly refers to Cap 344 (7th Revised Edition) at page 22. Preserve the historical edition when reporting what the court cited.
+4. It cites a Centenary bank annual report and an unrelated 1951 investment case for propositions about this NGO and its appeal. Those citations do not establish those propositions. A citation number alone supplies no assurance of relevance.
+5. Its claim of no subsequent adverse treatment cites the case page, rather than an evidenced citator search. Current law and later treatment remain unverified. It also makes broad assertions about NGO tax treatment and judicial authorities that require independent source inspection; they are not adopted here.
+
+PRIMARY-SOURCE CHECK ACTUALLY PERFORMED
+The existing local original Goal Relief Judgment.pdf was opened and its printed pages 1–3, 6, 10 and 22–24 were examined. Page 23 records the competing submissions and the court's explanation of imported services. Page 24 holds that Goal Ireland's fundraising services were imported and VAT was correctly assessed, dismisses the appeal, affirms the Tribunal and awards URA costs in both forums.
+Original PDF URL recorded in the course: https://media.ulii.org/media/judgment/110482/source_file/bbd78662f5af28ae/JTO-Judgment_Goal_Relief_v_URA_CA-50-2023.pdf
+A fresh web fetch of that URL returned 403, so verification used the local original, not a claim of fresh access to every linked source. The file hash is in Rehearsal Evidence.json.
+
+TEACHING USE
+Ask the learner to predict which claims need a source. Open page 1 and add the actual four rows; compare the report. Open page 3 and page 24 to check the rule and disposition. Reject unsupported current-law assurances. Save any corrected memo separately from the unedited run.

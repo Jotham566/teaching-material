@@ -1,0 +1,184 @@
+{
+  "date": "2026-10-27",
+  "application": "Microsoft PowerPoint for Mac",
+  "native_slideshow": true,
+  "deck_count": 12,
+  "animated_slides": 34,
+  "clicks": 126,
+  "missing_captures": 0,
+  "visual_review": "All 35 contact sheets covering the initial state and each click of all 34 animated slides were inspected. No missing reveal, wrong sequence, body-text clipping or diagram overlap identified.",
+  "scope": "Native playback of animated slides; not a new visual review of all 285 non-animated slide layouts. A Product Deactivated banner appeared in the editor; Slide Show still ran. No deck was saved from PowerPoint.",
+  "evidence_directory": "05 Course Maintenance/Validation/Native PowerPoint Playback",
+  "slides": [
+    {
+      "session": 1,
+      "slide": 8,
+      "clicks": 5
+    },
+    {
+      "session": 1,
+      "slide": 10,
+      "clicks": 4
+    },
+    {
+      "session": 2,
+      "slide": 5,
+      "clicks": 4
+    },
+    {
+      "session": 2,
+      "slide": 8,
+      "clicks": 4
+    },
+    {
+      "session": 2,
+      "slide": 11,
+      "clicks": 3
+    },
+    {
+      "session": 2,
+      "slide": 15,
+      "clicks": 4
+    },
+    {
+      "session": 3,
+      "slide": 4,
+      "clicks": 3
+    },
+    {
+      "session": 3,
+      "slide": 5,
+      "clicks": 4
+    },
+    {
+      "session": 3,
+      "slide": 7,
+      "clicks": 3
+    },
+    {
+      "session": 3,
+      "slide": 9,
+      "clicks": 3
+    },
+    {
+      "session": 4,
+      "slide": 10,
+      "clicks": 2
+    },
+    {
+      "session": 4,
+      "slide": 11,
+      "clicks": 4
+    },
+    {
+      "session": 5,
+      "slide": 8,
+      "clicks": 4
+    },
+    {
+      "session": 5,
+      "slide": 16,
+      "clicks": 4
+    },
+    {
+      "session": 6,
+      "slide": 6,
+      "clicks": 8
+    },
+    {
+      "session": 6,
+      "slide": 7,
+      "clicks": 2
+    },
+    {
+      "session": 6,
+      "slide": 10,
+      "clicks": 4
+    },
+    {
+      "session": 6,
+      "slide": 12,
+      "clicks": 2
+    },
+    {
+      "session": 6,
+      "slide": 14,
+      "clicks": 4
+    },
+    {
+      "session": 7,
+      "slide": 11,
+      "clicks": 4
+    },
+    {
+      "session": 8,
+      "slide": 7,
+      "clicks": 3
+    },
+    {
+      "session": 8,
+      "slide": 11,
+      "clicks": 4
+    },
+    {
+      "session": 9,
+      "slide": 8,
+      "clicks": 4
+    },
+    {
+      "session": 9,
+      "slide": 10,
+      "clicks": 4
+    },
+    {
+      "session": 9,
+      "slide": 11,
+      "clicks": 4
+    },
+    {
+      "session": 10,
+      "slide": 5,
+      "clicks": 4
+    },
+    {
+      "session": 10,
+      "slide": 13,
+      "clicks": 4
+    },
+    {
+      "session": 10,
+      "slide": 28,
+      "clicks": 4
+    },
+    {
+      "session": 11,
+      "slide": 4,
+      "clicks": 2
+    },
+    {
+      "session": 11,
+      "slide": 7,
+      "clicks": 4
+    },
+    {
+      "session": 11,
+      "slide": 15,
+      "clicks": 4
+    },
+    {
+      "session": 12,
+      "slide": 4,
+      "clicks": 4
+    },
+    {
+      "session": 12,
+      "slide": 6,
+      "clicks": 2
+    },
+    {
+      "session": 12,
+      "slide": 14,
+      "clicks": 4
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+ACTUAL APPLE VISION OCR — 26 OCTOBER 2026
+Input: a synthetic degraded rendering of the authored fictional clause, not a scan from the firm.
+
+CONTRACT-01 v2 | clause 3
+The customer must give prior written consent to a
+change of control of the provider.
+Consent is not required for a reorganisation within a
+wholly owned group if the provider remains responsible
+for its obligations.
+
+Inspection: the negation, exception and responsibility condition survived in this run. The damaged extract is a separately constructed counterexample, not this OCR output.

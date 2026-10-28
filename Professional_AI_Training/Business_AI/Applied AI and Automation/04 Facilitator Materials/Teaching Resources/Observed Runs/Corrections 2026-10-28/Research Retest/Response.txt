@@ -1,0 +1,78 @@
+```json
+{
+  "scope": {
+    "court": "High Court of Uganda at Kampala, Commercial Division",
+    "citation": "Civil Appeal No. 50 of 2023",
+    "lower_tribunal": "TAT Application No. 77 of 2023",
+    "judge": "Hon. Justice Ocaya Thomas O.R",
+    "date": "19th August 2024",
+    "parties": {
+      "appellant": "Goal Relief Development Organisation",
+      "respondent": "Uganda Revenue Authority"
+    },
+    "review_period": "January 2017 to December 2019"
+  },
+  "claims": [
+    {
+      "ground": 1,
+      "party": "Appellant submission",
+      "content": "Goal Ireland did not derive income in form of management fees from sources in Uganda",
+      "page": 2,
+      "supporting_words": "Goal Ireland derived income in form of management fees from sources in Uganda"
+    },
+    {
+      "ground": 2,
+      "party": "Appellant submission",
+      "content": "Challenged WHT of UGX 285,825,249 on alleged management fees of UGX 1,554,123,178",
+      "page": 2,
+      "supporting_words": "payment of management fees/commissions of UGX 1,554,123,178 to Goal Ireland on which it ought to have withheld tax of UGX 285,825,249 (inclusive of interest)"
+    },
+    {
+      "ground": 5,
+      "party": "Appellant submission",
+      "content": "10% program delivery fee was not consideration for imported services",
+      "page": 3,
+      "supporting_words": "the 10% 'program delivery fee' deducted by Goal Ireland was consideration for the provisions of imported services on which VAT of UGX 379,488,769 (inclusive of interest is payable)"
+    },
+    {
+      "ground": 5,
+      "party": "Court finding",
+      "content": "Goal Ireland provided fundraising services; VAT correctly assessed",
+      "page": 24,
+      "supporting_words": "there was a provision of fundraising services by Goal Ireland to the Appellant. It follows therefore that VAT on the same was correctly assessed by the Respondent"
+    }
+  ],
+  "assessment_rows": {
+    "page_1_assessment": {
+      "WHT_local_supplies": "UGX 51,867,131",
+      "WHT_international_payments": "UGX 263,533,867",
+      "WHT_imported_services": "UGX 316,240,641",
+      "PAYE": "UGX 18,867,131"
+    },
+    "grounds_of_appeal_amounts": {
+      "ground_2_management_fees_WHT": "UGX 285,825,249 (inclusive of interest)",
+      "ground_4_software_licenses_WHT": "UGX 10,090,415",
+      "ground_5_VAT_imported_services": "UGX 379,488,769 (inclusive of interest)"
+    }
+  },
+  "assessment_total": "UGX 650,508,770",
+  "statutes_cited": [
+    "Tax Appeals Tribunal Act Cap. 341 (7th Revised Edition), Section 27(2)",
+    "Income Tax Act Cap. 338 (7th Revised Edition), Sections 2(xx), 78(b), 79(q), 83(1)",
+    "VAT Act Cap. 344 (7th Revised Edition), Sections 1(j), 1(k), 4(c), 5(1)(c), 16(1), 21",
+    "VAT Regulations, Regulation 13(2)"
+  ],
+  "disposition": {
+    "outcome": "Appeal dismissed",
+    "page": 24,
+    "supporting_words": "The judgment of the Tax Appeals Tribunal is affirmed. The present Appeal is dismissed. The Respondent is awarded costs both in this court and in the proceedings in the tribunal."
+  },
+  "unresolved": [
+    "No current-law or no-adverse-treatment assurance established in extracts",
+    "Victoria's liability not addressed in judgment extracts",
+    "Ground 3 and 4 detailed reasoning not included in provided extracts",
+    "PAYE tuition benefit assessment outcome not explicitly stated in provided extracts"
+  ],
+  "programme_delivery_fee_explanation": "Goal Ireland retained 10% of grant funds as a 'programme delivery fee' before remitting balances to the Appellant. The Appellant argued this was not taxable income but rather cost recovery for fundraising expenses, and that no payment flowed from the Appellant to Goal Ireland triggering withholding obligations. The Court examined whether the 10% constituted a disbursement (refund for expenses incurred on behalf of the Appellant). At page 10, the Court found: 'I have reviewed the record of proceedings and I did not find any evidence of matching of fundraising expenses to grant income so as to always keep it at 10%.' The Court held there was no causal link between actual fundraising costs and the fixed 10% charge. The Court determined that Goal Ireland fundraised for the Appellant abroad and secured funding, with the Appellant enjoying this service through utilisation of grant funds. This constituted an import of services under Section 1(j) of the VAT Act Cap. 344. Consequently, the VAT assessment of UGX 379,488,769 (inclusive of interest) on the programme delivery fee was upheld as correctly issued by the Respondent. Ground 5 failed."
+}
+```

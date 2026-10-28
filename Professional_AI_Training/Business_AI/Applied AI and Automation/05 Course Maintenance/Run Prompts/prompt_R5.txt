@@ -1,0 +1,18 @@
+This is a fictional teaching exercise. Use only the documents supplied below. Do not use any tools, files or outside knowledge, and do not read any other file. Reply with your answer only.
+
+DOCUMENT 1: EXTRACTS FROM THE AGREEMENT
+Section 12.6 (Standard Terms, original wording):
+Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.
+
+Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1:
+Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.
+
+DOCUMENT 2: CLIENT INSTRUCTION
+FICTIONAL INSTRUCTION FROM VICTORIA, THE CUSTOMER
+Equator has told us it proposes an internal reorganisation. Tell us whether CONTRACT-01 v2 requires our consent and list what we need to confirm before you advise. We have not received Equator’s ownership chart, written confirmation that Equator remains responsible, or any statement about whether the agreement will be transferred.
+We have not supplied the signed Fee Schedule. Do not infer the fees.
+Keep the separate share-sale and assignment variants in Transaction Variants.txt out of the base facts.
+
+
+TASK
+Does Victoria’s consent apply to Equator’s proposed internal reorganisation? Quote the provisions you rely on, state what is unknown and list what we must ask Equator. Keep the answer under 300 words.

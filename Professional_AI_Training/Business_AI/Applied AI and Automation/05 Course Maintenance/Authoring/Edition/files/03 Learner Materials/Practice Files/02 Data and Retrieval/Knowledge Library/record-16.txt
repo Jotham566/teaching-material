@@ -1,0 +1,28 @@
+RECORD-16 | service report | 2026-10-05 | Equator monthly service report - September 2026
+
+EQUATOR SYSTEMS LTD - MONTHLY SERVICE REPORT
+Customer: Victoria Services Ltd
+Period: 1 to 30 September 2026
+Prepared: 5 October 2026
+
+Availability: 99.4 percent (target stated in our internal dashboard: 99.5 percent). One unplanned outage on 11 September, 47 minutes, caused by a failed database patch.
+
+Tickets
+Opened: 23
+Closed: 21
+Carried to October: 2 (both low priority)
+Average first response: 3 hours 10 minutes
+
+Changes made
+- Patch to reporting database (11 Sept, rolled back and redone 12 Sept)
+- New branch code added for Jinja outlet
+
+Users
+Active named users: 41
+New accounts: 3
+Accounts disabled: 1
+
+Comments from account manager
+The slowdown in some branch reports is being looked at. Please log individual cases as tickets.
+
+Prepared by: D. Oroma

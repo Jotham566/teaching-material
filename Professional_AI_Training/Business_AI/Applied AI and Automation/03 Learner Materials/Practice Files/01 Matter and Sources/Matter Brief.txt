@@ -1,0 +1,7 @@
+FICTIONAL CUSTOMER-SIDE MATTER M-01
+Kampala Legal and Tax acts for Victoria Services Ltd, the customer. Equator Systems Ltd, its service provider, proposes an internal group reorganisation. Victoria asks whether its consent is required. A related team reviews Victoria’s September 2026 records. The firms, companies and client records are fictional.
+The agreement is CONTRACT-01 v2, a teaching specimen built on the Common Paper Cloud Service Agreement v3.0 (see Agreement Provenance and Adaptations.txt). The Key Terms change Section 12.6 (Assignment) and Section 1.5 (Customer Content). The signed Fee Schedule has not been supplied.
+Base facts: Equator proposes an internal group reorganisation. The ownership chart, confirmation that Equator remains responsible, and whether the agreement will move to another entity have not been supplied. Do not assume the exception conditions are satisfied.
+Use Transaction Variants.txt for explicitly changed facts. A share sale and an assignment are different variants, not interchangeable descriptions of the base proposal.
+Separate question for research: Victoria may procure overseas software or support. Terms, provider status and tax facts remain to be established. Goal Relief is a public historical decision involving unrelated parties.
+The September records are a reconciliation exercise, not a complete return. All required activities happen in class. No homework is required.

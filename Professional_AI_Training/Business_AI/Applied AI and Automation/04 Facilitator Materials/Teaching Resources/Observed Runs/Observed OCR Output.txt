@@ -1,0 +1,28 @@
+OBSERVED OCR RUN, 26 OCTOBER 2026
+Tool: tesseract 4.1.1, default English model, run in the maintenance sandbox with the command: tesseract <image> stdout
+Files: Original Source.png, Synthetic Scan.png, Degraded Scan - moderate.png from 02 Data and Retrieval. Output below is unedited.
+
+=============== Original Source.png
+CONTRACT-01 v2 | Key Terms, Teaching Adaptation 1 (Section 12.6)
+
+Provider must obtain Customer’s prior written consent before a
+change of control of Provider takes effect.
+
+That consent is not required for a reorganization within a wholly
+owned group if Provider remains responsible for its obligations under
+this Agreement.
+
+=============== Synthetic Scan.png
+CONTRACT-01 v2 | Key Terms, Teaching Adaptation 1 (Section 12.6)
+
+Provider must obtain Customer's prior written consent before a
+change of control of Provider takes effect.
+
+That consent is not required for a reorganization within a wholly
+owned group if Provider remains responsible for its obligations under
+this Agreement.
+
+=============== Degraded Scan - moderate.png
+provider must chusn Customer's peor writen coasem before a change of control of Provider ines effect. That consent not sequel fF 2
+reorganization within a wholly cerned group if Provider remains responsible for is obligations under Uns Agreement,
+

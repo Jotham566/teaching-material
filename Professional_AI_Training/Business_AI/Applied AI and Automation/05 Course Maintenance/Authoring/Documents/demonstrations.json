@@ -1,0 +1,875 @@
+[
+  {
+    "session": 1,
+    "title": "Understanding AI in the firm",
+    "purpose": "Build on existing chatbot use to distinguish a fluent answer from a supported professional conclusion, then choose one firm task worth improving.",
+    "tool": "Claude web in a new chat; Word or a text editor for the diagnostic and source. I operate the computer.",
+    "files": [
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Matter Brief.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Agreement - Executed v2.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Client Instruction.txt",
+      "04 Facilitator Materials/Teaching Resources/Entry and Exit Diagnostic.csv",
+      "04 Facilitator Materials/Teaching Resources/Diagnostic Answer Key.txt",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/In-Class Progress Record.csv"
+    ],
+    "prepare": [
+      "I open the seven entry questions and keep the answer key off the shared screen. I create a working copy of the progress record in the session output folder.",
+      "I open the executed agreement beside the chat and find the Key Terms adaptation replacing Section 12.6. I can point to the complete five-sentence passage."
+    ],
+    "steps": [
+      "At slides 1–2, I ask the learner to describe one useful AI task and one frustrating result from current use, without client details. I use the seven entry questions as short reasoning checks, record the answers and avoid reteaching sound explanations. The existing diagnostic block stays within 15 minutes.",
+      "At the worked demonstration, I introduce Victoria as Customer and Equator as Provider. I say that ownership, assignment, change of control and continued responsibility are unconfirmed.",
+      "I start a new Claude chat, attach Agreement - Executed v2.txt and Client Instruction.txt, and confirm both filenames are visible. I paste S01-P1 and submit it once.",
+      "While it responds, I ask the learner to predict what facts are missing. I do not ask for confidential examples from a live client matter.",
+      "I put the answer beside KT-1. I underline the assignment trigger, change-of-control trigger and both exception conditions. I mark each factual statement supported, missing or invented.",
+      "If the answer is sound, I keep it as a successful observation. If it assumes consent from the label internal reorganisation, I hold the conclusion and request the missing transaction evidence.",
+      "During guided work, I compare four candidate tasks: total invoices, classify a document, find a precedent and draft an amendment. For each we choose a mechanism, identify where a chatbot alone is insufficient and name the evidence and review needed. I move quickly through familiar labels and spend the time on the design choice.",
+      "I choose one candidate task with the learner, name a proposed evidence owner and write one observable success test. I complete the progress record together in class."
+    ],
+    "prompts": [
+      {
+        "id": "S01-P1",
+        "text": "Use only the attached fictional executed agreement and client instruction. Victoria asks whether its consent is required for Equator’s proposed internal reorganisation. Identify assignment and change-of-control obligations separately. Do not assume either trigger or the group-exception facts. Quote the controlling Key Terms passage and identify its location. Separate established facts, unresolved facts and a conditional conclusion. Identify the evidence Victoria should request. Keep this a short draft for human review; take no external action."
+      }
+    ],
+    "check": [
+      "The controlling source is the Key Terms replacement, rather than the unmodified Standard Terms alone.",
+      "The base case remains unresolved because the transaction triggers and exception conditions have not been established. A confident yes/no without those facts fails the check.",
+      "The task map uses different mechanisms. A fixed known deadline needs a maintained date and reminder rule; it does not require training a model."
+    ],
+    "discuss": [
+      [
+        "Does a genuine quotation make the conclusion correct?",
+        "No. The conclusion must follow from the quoted rule and established facts."
+      ],
+      [
+        "Who would own the source and review for the proposed task?",
+        "A proposed firm role is sufficient today; the class does not appoint a real owner without agreement."
+      ]
+    ],
+    "rescue": [
+      [
+        "Upload fails",
+        "I use the attachment route in the common setup, or paste the complete clearly labelled fictional source. If neither works within two minutes, I show the saved consent run and state its date."
+      ],
+      [
+        "The learner gives only terminology",
+        "I ask for one concrete task and what an acceptable output would contain."
+      ]
+    ],
+    "record": "The seven starting reasons, source/version, exact prompt and response, one checked conclusion, proposed task, owner and success test. I use a working copy, leaving the blank template intact.",
+    "transition": "I say: Next we will look at what learning changes inside a model and what happens when it is used on a new document.",
+    "commands": [],
+    "optional": [],
+    "entry_question": "Which part of a fluent consent answer would you sign off, and what evidence would you still request?",
+    "entry_focus": "We compare the actual answer with the complete Key Terms and unresolved transaction facts. I ask for the release decision before discussing terminology.",
+    "executive_task": "Choose one familiar firm task and decide whether a chat, a maintained retrieval workflow or ordinary software is sufficient. Name the evidence and reviewer required before a result is used.",
+    "executive_check": "A defensible choice links the mechanism to the task and names a source owner, a success test and a hold condition. More AI is not automatically a better design."
+  },
+  {
+    "session": 2,
+    "title": "How AI learns and represents information",
+    "purpose": "Show the difference between training and inference, identifiers and learned representations, and similarity and legal meaning.",
+    "tool": "PowerPoint diagrams, six paper/text document labels and the cached neural embedding self-test in Terminal.",
+    "files": [
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Language Representation Exercise.txt",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Learning and Embedding Examples.txt",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Concept Transfer Checks.txt",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/embedding_selftest.py"
+    ],
+    "prepare": [
+      "I run s02_vectors before class and open Embedding Selftest.txt. I keep the actual measured cosine values, not a remembered number.",
+      "I put six labels on paper or in a text editor: signed service agreement; employee terms; credit note; sales invoice; privacy notice; board approval. The two-dimensional slide map is explicitly illustrative."
+    ],
+    "steps": [
+      "I use the six record labels for a two-minute check of how categories and training examples are chosen. I move directly to held-out evaluation and near-duplicate leakage if the learner can explain the distinction; we do not spend the block practising an obvious document sort.",
+      "I trace the training diagram in the deck: example, prediction, comparison and parameter update. I then supply a new example and name this inference.",
+      "I ask which data must stay unseen for evaluation and why near-duplicate agreements should not occur across both training and test.",
+      "In Terminal I run s02_vectors. I wait for completion and open the newly saved Embedding Selftest.txt, which reports the actual model and vector dimensions.",
+      "I read the vector shape and norms. I explain that the embedding coordinates are learned numerical representations; token IDs are names, not a meaningful distance scale.",
+      "Before reading each printed cosine pair, I ask which pair should be closer. I include the consent statement and its opposite, then inspect their actual similarity.",
+      "I say that high similarity can identify a related topic while missing a decisive negation. I do not turn a cosine into a legal interpretation.",
+      "I compare charge over property with charge for an offence. The learner names the context words. We return to the map and label its coordinates illustrative, separate from the measured self-test.",
+      "I ask for a two-sentence explanation to a partner: what changes in training, and what changes when a new file is uploaded. I record the explanation and any help needed."
+    ],
+    "prompts": [],
+    "check": [
+      "The actual self-test produces normalized 384-dimensional vectors for this model; repeated text gives the same representation under this setup.",
+      "Opposite consent statements can be close. A similarity score is not a yes/no consent result.",
+      "Uploading context or indexing files does not by itself update model parameters. Provider retention/training use is a separate account-terms question."
+    ],
+    "discuss": [
+      [
+        "A token has ID 900 and another has ID 901. Are they synonyms?",
+        "No. IDs identify units; closeness of identifiers is not semantic distance."
+      ],
+      [
+        "A training error curve falls. Is the model ready for our firm?",
+        "No. We need relevant held-out tests, leakage checks and consequences of errors."
+      ]
+    ],
+    "rescue": [
+      [
+        "Model download or import fails",
+        "I stop the live step and open the saved Neural Embedding self-test in the Mac Rehearsal evidence. I label it as saved measured output."
+      ],
+      [
+        "The learner treats the diagram as a real model visualization",
+        "I point to the illustrative label and separate it from the actual self-test values."
+      ]
+    ],
+    "record": "Run Record.json, Embedding Selftest.txt, the predicted versus observed pair comparison and one plain-language explanation in the progress record.",
+    "transition": "I say: We can now distinguish learned patterns from the evidence supplied during a request; next we test what generated answers do with that evidence.",
+    "commands": [
+      "s02_vectors"
+    ],
+    "optional": [],
+    "entry_question": "A search model places two opposite consent sentences close together. Would you trust it to clear the transaction?",
+    "entry_focus": "We use the measured vectors to explain related topic versus legal effect, then specify the held-out tests a vendor would need.",
+    "executive_task": "Explain why a high similarity score cannot settle a consent exception. Then propose one evaluation case that similar training examples would not prepare the system to handle.",
+    "executive_check": "The answer separates representation from legal interpretation and uses a genuinely held-out case, including an exception or negation. A falling training loss alone is insufficient."
+  },
+  {
+    "session": 3,
+    "title": "How language models generate answers and fail",
+    "purpose": "Test repeatability, source scope and missing information without staging a failure. Use the same matter and check every conclusion.",
+    "tool": "Claude web for one fresh whole-agreement run and the source-scope/missing-fee tests; saved dated repeats for comparison; a text editor.",
+    "files": [
+      "03 Learner Materials/Practice Files/03 Research and Review/Generation Experiments.txt",
+      "03 Learner Materials/Practice Files/03 Research and Review/Generation Run Record.csv",
+      "03 Learner Materials/Practice Files/03 Research and Review/Evaluation Rubric.txt",
+      "04 Facilitator Materials/Teaching Resources/Checked Contract Answers.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Agreement - Executed v2.txt",
+      "04 Facilitator Materials/Teaching Resources/Demo Materials/Session 03 Standard Terms Only.txt",
+      "04 Facilitator Materials/Teaching Resources/Demo Materials/Session 03 Focused Consent Extract.txt"
+    ],
+    "prepare": [
+      "I prepare one fresh whole-agreement chat and the full agreement, Standard Terms-only file and focused extract as distinct attachments. I open the saved dated repeated runs before class. I do not use a persistent project containing the missing sources.",
+      "In Contract Retests I open R1 Prompt.txt and R1, R2 and R3 Response.txt; these three historical prompts are byte-identical. I label today’s whole-agreement answer F1, scope tests B1/B2 and missing-fee test C1."
+    ],
+    "steps": [
+      "I run S03-P1 once in a fresh chat with the full agreement, label the answer F1 and record its model/date. We inspect the saved dated repeats with their own prompt. Today’s prompt differs, so F1 is not a controlled fourth repeat; we use the saved set to examine consistency.",
+      "I ask the learner to compare substance before style: trigger, exception, missing facts, source and conclusion. Three similar answers do not constitute independent source verification.",
+      "For B1 I start another fresh chat and attach only Session 03 Standard Terms Only.txt, then submit S03-P1. I do not reveal the missing Key Terms in that chat.",
+      "For B2 I use a fresh chat with only Session 03 Focused Consent Extract.txt and the same prompt. I compare its evidence scope with the full agreement, keeping unknown transaction facts unchanged.",
+      "I open the original Key Terms beside the Standard Terms-only answer. We identify what the restricted input could and could not establish; a source-scope difference is not a controlled product ranking.",
+      "For C1 I attach the full agreement in a fresh chat and submit S03-P2. I inspect the Order Form fee reference and confirm that the schedule itself is absent.",
+      "I choose one unsupported claim if a run contains one. I paste S03-P3 with that exact claim and location. I save the feedback-assisted revision separately from the initial response.",
+      "If every live answer is sound, I keep those successes. I then open a labelled failed historical run for the correction exercise, rather than changing inputs until failure appears.",
+      "I finish with the unrelated-buyer share-sale variant. We identify the change-of-control trigger and distinguish assignment voidness from general breach remedies in the checked key."
+    ],
+    "prompts": [
+      {
+        "id": "S03-P1",
+        "text": "On the supplied evidence only, does Victoria’s consent apply to Equator’s proposed internal reorganisation? Transaction structure, ownership and continued responsibility are unconfirmed. Identify the applicable consent wording, exact supporting passage, established facts, missing facts and conditional conclusion. Do not assume an assignment or a change of control from the label alone. State any limits caused by omitted sources. Keep the answer within 250 words, excluding quoted source passages."
+      },
+      {
+        "id": "S03-P2",
+        "text": "What are the annual Fees under this supplied executed agreement? Identify the exact source provision and whether the signed Fee Schedule itself has been supplied. Do not infer or invent a fee or a monetary liability cap. Distinguish a recital in the Order Form from independent inspection of the schedule."
+      },
+      {
+        "id": "S03-P3",
+        "text": "Reviewer feedback: the following claim needs correction: [paste the actual unsupported sentence]. The source passage or missing evidence is: [paste the complete relevant wording or describe the gap]. Reassess the trigger, exception and conclusion using only established facts. Keep uncertainty explicit. Return a short revised draft and identify what changed. Do not alter the original response."
+      }
+    ],
+    "check": [
+      "Historical repeats and today’s outputs are labelled separately. The saved set uses its recorded prompt and conditions; today uses S03-P1. Agreement does not validate an answer, and the two sets are not a controlled model comparison.",
+      "The Standard Terms-only run cannot establish the complete executed position without the override. The focused extract cannot establish every surrounding provision or transaction fact.",
+      "The correct missing-fee result requests the absent schedule. Feedback-assisted revisions are labelled as such; they do not become first-pass successes."
+    ],
+    "discuss": [
+      [
+        "Why did a correctly quoted clause still produce a poor answer?",
+        "The model may have assumed a transaction fact or misapplied the exception."
+      ],
+      [
+        "What does a longer context window establish?",
+        "Capacity to supply more context; it does not guarantee faithful use."
+      ]
+    ],
+    "rescue": [
+      [
+        "Live requests exceed the allotted time",
+        "I retain the one live answer, compare the prepared dated evidence scopes, then prioritise the missing-fee and release-decision checks. I identify which outputs are live and which are saved."
+      ],
+      [
+        "The answer exceeds the requested length",
+        "I record that format failure separately from substantive correctness. I do not silently trim the saved raw output."
+      ]
+    ],
+    "record": "The source scope for every run, unchanged prompt and output, word-limit result, substantive checks, feedback and revised draft in separate files.",
+    "transition": "I say: We have seen what can go wrong; next we practise giving a clear brief and checking the result.",
+    "commands": [],
+    "optional": [],
+    "entry_question": "Several answers agree, and each quotes a real clause. What would make that agreement misleading?",
+    "entry_focus": "We compare whole-agreement, Standard Terms-only and focused-extract evidence. We distinguish consistency, source completeness and correctness.",
+    "executive_task": "Decide whether to release a coherent Standard-Terms-only answer that omits the overriding Key Terms. Identify the extra evidence needed.",
+    "executive_check": "Hold release pending the governing version and transaction facts. Repeated generated answers cannot supply omitted evidence."
+  },
+  {
+    "session": 4,
+    "title": "AI tools, effective instructions and safe use",
+    "purpose": "Demonstrate a professional brief, source traceability, a review cycle and the questions needed before choosing a workplace tool.",
+    "tool": "Claude web; one new chat per comparison; an existing account settings page and vendor due-diligence working copy.",
+    "files": [
+      "03 Learner Materials/Practice Files/03 Research and Review/Review Instruction.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Agreement - Executed v2.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Client Instruction.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Transaction Variants.txt",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Vendor Due Diligence.csv",
+      "03 Learner Materials/Practice Files/03 Research and Review/Evaluation Rubric.txt"
+    ],
+    "prepare": [
+      "I keep the evidence identical across the vague and structured runs. I open the same displayed model if the interface permits it, recording any difference.",
+      "I open the actual account settings without changing settings, adding connectors or entering employer data. I prepare a blank vendor record."
+    ],
+    "steps": [
+      "I ask the learner to dictate the sort of brief they already use with AI, applied to this fictional agreement and instruction. I record it verbatim and run it in a fresh chat with those sources. I use S04-P1 only if a comparison baseline is needed; a vague prompt is not the primary lesson.",
+      "In a second fresh chat with the same files, I use S04-P2 as a review specification, adapting it only to the learner’s stated purpose and recording every change. We judge source support, missing facts and review effort rather than rewarding a more polished writing style.",
+      "I choose a material claim, open its quoted source and check whether the passage actually supports the claim. A source label alone is not the check.",
+      "The learner identifies one test the usual brief did not explicitly specify. I add it to a recorded revision and run the changed request if time permits. We check whether the result actually improves and keep a successful original answer as a success.",
+      "I introduce Variant A from the source file: an unrelated buyer acquires control. I paste S04-P3 into the relevant new comparison chat and test the changed conclusion.",
+      "On the account page, I record the actual account/product, data-use information shown, available controls and questions still unanswered. I do not infer workplace permission from a subscription price.",
+      "I compare the result with the rubric, then record one supported use, one exclusion and one procurement question for the firm.",
+      "I ask the learner to explain how a clear prompt and a human evidence check perform different jobs. I record the proposed reviewer and output boundary."
+    ],
+    "prompts": [
+      {
+        "id": "S04-P1",
+        "text": "Review this contract and tell me whether the reorganisation can go ahead."
+      },
+      {
+        "id": "S04-P2",
+        "text": "I advise Victoria, Customer in the attached fictional executed agreement. Review consent for Equator’s proposed internal reorganisation using only the agreement and instruction. Start with assignment and change-of-control triggers; both are unconfirmed. Read the Key Terms override. Return issue, source location, exact supporting passage, established facts, missing evidence and a conditional conclusion. Preserve exceptions and qualifications. Do not invent annual Fees or advise that a share sale is void under the assignment sentence. Label proposed changes separately. Produce a concise partner-review draft with no external action."
+      },
+      {
+        "id": "S04-P3",
+        "text": "Change only this fact: an unrelated buyer acquires control of Equator through a share sale, with no assignment of the agreement stipulated. Reassess the relevant consent trigger and exception. Distinguish the assignment-voidness sentence from breach remedies. Identify unresolved legal and transaction questions and cite the supplied source. Keep this a review draft."
+      }
+    ],
+    "check": [
+      "The structured brief makes evaluation easier but need not improve every answer. I accept a vague-prompt success if supported.",
+      "Variant A engages the stipulated change-of-control rule; it does not establish a transfer of the contract.",
+      "Retention, model training use, access, contractual permission and professional duties remain separate due-diligence entries."
+    ],
+    "discuss": [
+      [
+        "What makes a citation useful?",
+        "The original passage exists, matches the version and supports the actual claim."
+      ],
+      [
+        "Does asking for certainty make an unknown fact known?",
+        "No. We request evidence or preserve uncertainty."
+      ]
+    ],
+    "rescue": [
+      [
+        "A cited location cannot be found",
+        "I hold the claim and ask for an exact passage, then search the original. If still absent, I mark it unsupported."
+      ],
+      [
+        "The account page omits a necessary term",
+        "I record it as an unanswered procurement question rather than invent a policy."
+      ]
+    ],
+    "record": "The learner’s usual brief verbatim, comparison specification, exact sources, raw outputs, review findings, changed-fact result and one reusable review or procurement decision.",
+    "transition": "I say: A good brief still depends on good evidence; next we examine the firm’s information before a model receives it.",
+    "commands": [],
+    "optional": [],
+    "entry_question": "How does your current way of briefing AI hold up when the source is incomplete or the transaction changes?",
+    "entry_focus": "I start with the learner’s own usual brief on the fictional matter. We preserve what already works and test evidence, uncertainty and review effort.",
+    "executive_task": "Turn the tested brief into a reusable review process. Decide what belongs in the instruction, what needs a maintained source collection and what must be checked by a reviewer.",
+    "executive_check": "The process records source/version, acceptance tests and responsibility. A better prompt alone does not provide source maintenance, access enforcement or firm authority."
+  },
+  {
+    "session": 5,
+    "title": "Preparing the firm’s information",
+    "purpose": "Show how physical/scanned records become usable evidence and how extraction, structure, metadata and access can fail separately.",
+    "tool": "Image viewer, Apple Vision OCR through the local launcher, text editor for JSON/XML and an inventory working copy.",
+    "files": [
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Original Source.png",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Synthetic Scan.png",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Degraded Scan - moderate.png",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Information Inventory.csv",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Document Quality Record.csv",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Clause Record.json",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Legal XML Teaching Fragment.xml",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Extraction Run Record.csv"
+    ],
+    "prepare": [
+      "I open the clean, mild and moderate images side by side, with the executed agreement available for verification. The degraded images are authored teaching approximations.",
+      "I run s05_ocr before class. I open the saved three Apple Vision OCR text outputs beside their corresponding images and keep both successes and omissions."
+    ],
+    "steps": [
+      "I ask where information lives: paper rooms, scanned PDFs, Word/email, a document-management system such as NetDocuments, or a database. I record one generic system row without client identifiers.",
+      "For each row we name modality, structure and format separately: image, unstructured prose or a table, then PNG/PDF/DOCX/CSV. A searchable PDF can still have poor OCR.",
+      "I run s05_ocr live using Apple Vision fast/revision 2, CPU only, English and language correction off, or identify a saved engine/date. I compare the exact consent exception across each image and OCR output, including the words not required and continued responsibility.",
+      "I record any omission with source name, passage/location, observed extraction and required correction. I do not assume that every degraded image must fail on every engine.",
+      "I open Clause Record.json in a text editor and locate document_id, version, clause, text and source_location. I compare KT-1 with the original before trusting the structured record.",
+      "I open Legal XML Teaching Fragment.xml and show how marked sections can preserve a legal text’s structure. I explain that this is a teaching fragment, not certified Akoma Ntoso conversion of a whole legal collection.",
+      "We trace original, extraction, quality correction, structured representation, bounded passages, index and retrieved evidence. JSON, Markdown and legal XML are possible representations; converting to all three is not a compulsory pipeline.",
+      "I intentionally describe a metadata mistake: accurate M-01 words labelled OTHER-02. The learner explains how source identity and access can fail despite perfect OCR.",
+      "We assign a proposed source owner and a correction/re-indexing rule to the inventory row. I keep the original scan and any edited derivative separately."
+    ],
+    "prompts": [],
+    "check": [
+      "The comparison is source-to-extraction, rather than a claim that the model understands a scanned contract.",
+      "The record preserves version, location and access context; a correct text string with the wrong matter tag is still unsuitable.",
+      "Chunking/indexing happen after source preparation, and an index is not the original authority."
+    ],
+    "discuss": [
+      [
+        "What could reverse the legal meaning without changing most words?",
+        "Losing a negation or exception condition."
+      ],
+      [
+        "Must every file become legal XML?",
+        "No. Choose a usable representation that preserves the required structure, relationships and source traceability."
+      ]
+    ],
+    "rescue": [
+      [
+        "Local OCR cannot run",
+        "I open Observed OCR Output.txt beside the three source images and name its recorded Tesseract engine/date. I state that the live Apple Vision step did not run."
+      ],
+      [
+        "All three outputs are accurate",
+        "I keep the valid result, then inspect the separately labelled damaged extract or the recorded difficult condition. I do not claim a live failure occurred."
+      ]
+    ],
+    "record": "One inventory row, image-to-extraction comparison, quality/correction entry, metadata risk and proposed preparation gate.",
+    "transition": "I say: Once the evidence is usable, the next question is how the system selects the right passages.",
+    "commands": [
+      "s05_ocr"
+    ],
+    "optional": [],
+    "entry_question": "The firm wants an internal assistant next month. Which collection is ready, and what would you stop from entering the index?",
+    "entry_focus": "We trace a sample from its original system through extraction and metadata, identify a quality failure and define who clears it for use.",
+    "executive_task": "Choose one collection such as scanned agreements or tax correspondence. Define its intake gate, correction owner and how a corrected source invalidates old derived content.",
+    "executive_check": "The plan preserves original, provenance, version, access metadata and a correction/re-indexing route. Clean-looking text alone does not clear a collection."
+  },
+  {
+    "session": 6,
+    "title": "Internal knowledge search and retrieval",
+    "purpose": "Separate retrieval from generation and demonstrate the effects of source identity, input limits, ranking and amendment context.",
+    "tool": "Local launcher with cached embedding models; the existing Google notebook for a source-grounded answer and citation inspection.",
+    "files": [
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Knowledge Library Manifest.csv",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Knowledge Assistant Tests.csv",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/Retrieval Scorecard.csv",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/reviewed_retrieval.py",
+      "04 Facilitator Materials/Teaching Resources/Observed Runs/Corrections 2026-10-28/Token Limit Diagnosis.json",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Agreement - Executed v2.txt"
+    ],
+    "prepare": [
+      "I run s06_baseline, s06_reviewed, s06_query and s06_missing before class. I open their saved text/JSON and identify hits versus mandatory_context.",
+      "I open the existing fictional retrieval notebook from the account route in the common setup. Only the executed agreement is selected. This is uploaded-document grounding, not an enterprise connector."
+    ],
+    "steps": [
+      "I inspect the library manifest with the learner: 40 fictional sources, versions, matter tags, status and hashes. I choose CONTRACT-01 current obligations in M-01.",
+      "I run s06_baseline. I read the eight checks and the historical lexical failures K3 and K8. The launcher treats those as an expected baseline observation, not a repaired-route success.",
+      "I open Token Limit Diagnosis.json. The KT-1 passage had 728 tokens while the baseline encoder reads 256; its operative rule was outside the encoded portion.",
+      "I run s06_query and inspect the source ID/version, returned passages, source location and amendment context. I explain each added mechanism before comparing the result.",
+      "I run s06_reviewed. I distinguish the eight original questions from eleven added or strengthened safeguards. Identity and source purpose are explicit inputs, so this changed workflow is not an isolated model ranking.",
+      "I run s06_missing. The result must say no_source with no substitute hits. The learner explains why returning the familiar agreement would be a failure.",
+      "In the notebook I paste S06-P1. I click a material citation, read the source passage and compare its conclusion with the facts. I preserve a bad inference even if its citation is genuine.",
+      "If the notebook conflates assignment with the change-of-control exception, I paste S06-P2 and save the revision separately. I flag this as the teaching reading, with qualified interpretation if material.",
+      "The learner chooses a new question and source purpose. We identify what a representative firm test would add beyond the fixture, then write separate retrieval, answer and permission acceptance gates."
+    ],
+    "prompts": [
+      {
+        "id": "S06-P1",
+        "text": "Use only the selected executed fictional agreement. Equator proposes an internal reorganisation; assignment, change of control, group ownership and continued responsibility are unconfirmed. Identify the two consent triggers separately and the Key Terms override. Quote the relevant passage and state which consent the exception follows. Keep the conclusion conditional. Also state whether the annual Fees can be established without the signed Fee Schedule. Cite the original source for each material claim; keep this a review draft."
+      },
+      {
+        "id": "S06-P2",
+        "text": "Reviewer feedback: do not extend the group exception automatically to assignment consent. For this teaching reading, it follows and qualifies the change-of-control consent requirement. State the assignment rule and change-of-control rule separately, preserve both exception conditions and leave the current transaction facts unresolved. Flag any material interpretive ambiguity for qualified review. The triggers can coexist. Save this as a revised draft, not a first attempt."
+      }
+    ],
+    "check": [
+      "The repaired suite reports 19/19 on the supplied fixture; the missing-source query returns no_source. Similarity scores remain evidence-ranking values.",
+      "The notebook keeps trigger uncertainty and the absent fee explicit. I check the inference as well as the quoted words.",
+      "Matter permissions in the local exercise are stipulated. No enterprise identity or cross-matter security certification is inferred."
+    ],
+    "discuss": [
+      [
+        "A rule exists in the file; why might retrieval miss it?",
+        "It may be truncated, split without its context, filtered out or ranked below other passages."
+      ],
+      [
+        "All 19 checks pass. What should the firm test next?",
+        "Representative new matters, generated-answer fidelity and real access enforcement."
+      ]
+    ],
+    "rescue": [
+      [
+        "A model is not cached or a command fails",
+        "I use the correction evidence and diagnosis as saved output. I do not spend class time downloading models."
+      ],
+      [
+        "The notebook returns the correct source but an invented fact",
+        "I hold the answer, identify the unsupported inference and recheck a separately saved revision."
+      ]
+    ],
+    "record": "The four local run folders, selected source/purpose, actual retrieved IDs and context, one opened notebook citation, initial/revised answers and acceptance gates.",
+    "transition": "I say: Internal evidence is one source problem; public legal research adds authority, time and conflicting sources.",
+    "commands": [
+      "s06_baseline",
+      "s06_reviewed",
+      "s06_query",
+      "s06_missing"
+    ],
+    "optional": [],
+    "entry_question": "A relevant rule is in the library, yet the answer misses it. Is this a source, retrieval or reasoning failure?",
+    "entry_focus": "We locate the actual failure in the trace, compare the repaired route and check the generated answer separately.",
+    "executive_task": "Use the missing-source result to define when the assistant must ask for evidence. Add one representative firm test beyond the 19 fixture checks and explain which layer it tests.",
+    "executive_check": "The proposed test distinguishes retrieval, answer fidelity and real access enforcement. Passing a small fixture does not certify a production system."
+  },
+  {
+    "session": 7,
+    "title": "Legal research and deep research",
+    "purpose": "Turn a research draft into a checked historical note by separating candidate sources, submissions, findings, arithmetic and current-law questions.",
+    "tool": "Google notebook with only the original judgment selected; PDF viewer; independent arithmetic; a working Evidence Register.",
+    "files": [
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Goal Relief Judgment.pdf",
+      "03 Learner Materials/Practice Files/03 Research and Review/Research Brief.txt",
+      "03 Learner Materials/Practice Files/03 Research and Review/Evidence Register.csv",
+      "03 Learner Materials/Practice Files/03 Research and Review/Research Verification Workflow.txt",
+      "04 Facilitator Materials/Teaching Resources/Checked Goal Relief Case Note.txt",
+      "04 Facilitator Materials/Teaching Resources/Goal Relief Assessment Check.csv",
+      "04 Facilitator Materials/Teaching Resources/Observed Runs/Corrections 2026-10-28/Research Retest/Notebook Review.txt"
+    ],
+    "prepare": [
+      "I open the public-law notebook and select only Goal Relief Judgment.pdf. I deselect the old generated report, secondary web pages and unrelated candidates, without deleting the historical evidence.",
+      "I open the original PDF at printed pages 1, 3 and 22–24. The local PDF has 24 pages; I verify whether viewer numbering and printed numbering match before citing."
+    ],
+    "steps": [
+      "I state the scope: the High Court’s historical treatment of the programme delivery fee, not advice on Victoria’s current liability.",
+      "I ask the learner to predict the four assessment rows, the possible party/court confusion and the further sources a current opinion would require.",
+      "I paste S07-P1 into the notebook and wait for the complete answer. While it runs, we read page 1 and add only its four rows independently.",
+      "I compare the reported total with UGX 650,508,770. I keep the different figures appearing in grounds of appeal separate; adding them again would double-count descriptions.",
+      "I read pages 22–23 and mark what counsel submitted. I then read the court’s reasoning and the orders on pages 23–24. We identify the source role of each claim.",
+      "I click the appeal-rule and final-order citations in the answer. I compare the quoted text with printed page 3 and page 24, and record the exact location in the evidence register.",
+      "I check Act chapter and edition as the judgment cites them: Cap 341 for the appeal rule, Cap 338 for Income Tax and Cap 344 for VAT, in the 7th Revised Edition. Different current or earlier numbering is a separate verification task.",
+      "I flag the Tribunal-year discrepancy between the original High Court background and the official/listing sources. I identify the High Court by Civil Appeal 50 of 2023 and date; I do not silently choose a corrected year.",
+      "We draft three supported claims and a short historical note, then list current legislation, later treatment and client facts as unresolved research work. I compare with the checked note after the learner decides which claims survive."
+    ],
+    "prompts": [
+      {
+        "id": "S07-P1",
+        "text": "Use only the selected original Goal Relief Judgment.pdf. Prepare a short historical verification note, not current legal advice. Transcribe the four assessment rows on printed page 1, preserving their labels, and add only those amounts. Keep amounts in grounds of appeal on pages 2–3 separate. Distinguish the appellant’s Ground 5 submissions on pages 22–23 from the court’s reasoning and orders on pages 23–24. Give the programme delivery fee holding and disposition with printed-page pinpoints. Report the Act chapters and editions exactly as cited on pages 3, 6, 10 and 22. Cite the original. Leave current applicability, later treatment and external metadata conflicts unresolved."
+      },
+      {
+        "id": "S07-P2",
+        "text": "Discover primary public sources for Goal Relief Development Organisation v Uganda Revenue Authority, Civil Appeal 50 of 2023, High Court Commercial Division, 19 August 2024. Locate the original judgment, relevant historical legislation and any verifiable later appellate treatment. For each candidate state court or issuing body, date, exact URL, edition/period, access status and the proposition it might establish. Separate discovery from verification. Do not treat a search snippet, generated summary or absence of a result as clearance. Do not include client facts or produce current tax advice."
+      }
+    ],
+    "check": [
+      "The four page-1 figures are 51,867,131; 263,533,867; 316,240,641; 18,867,131. The sum is 650,508,770.",
+      "The court treated the fundraising/programme service as imported and held VAT correctly assessed; it affirmed the Tribunal, dismissed the appeal and awarded costs.",
+      "The historical note does not certify current legislation, later appellate treatment or Victoria’s position."
+    ],
+    "discuss": [
+      [
+        "A genuine citation reproduces counsel’s submission. Can we call it the holding?",
+        "No. Identify the speaker and inspect the court’s actual reasoning and orders."
+      ],
+      [
+        "No later appeal appears in a limited search. What can we say?",
+        "Only what was searched, when, and what was verified; not that no later authority exists."
+      ]
+    ],
+    "rescue": [
+      [
+        "The web original is blocked",
+        "I inspect the saved original PDF and mark fresh source discovery incomplete. I do not replace authority with an unverified summary."
+      ],
+      [
+        "The report is polished but fails arithmetic or pinpoints",
+        "I hold the affected claims, correct them against the original and preserve the failed output."
+      ]
+    ],
+    "record": "The selected source, exact prompt/answer, four-row arithmetic, three claim records with source role/page, opened citations and unresolved current-law questions.",
+    "transition": "I say: We will now apply the same discipline to reviewing and drafting contractual language.",
+    "commands": [],
+    "optional": [
+      "Before class or in agreed extra time, choose Deep Research in the source-search box, paste S07-P2 and review the plan. Inspect sources before importing; completion is not verification."
+    ],
+    "entry_question": "A polished research note has genuine citations. Which claims could go into advice today?",
+    "entry_focus": "We audit source role, historical edition, arithmetic and page location, then separate verified historical claims from current-law work still required.",
+    "executive_task": "A colleague wants to reuse the historical tax note in a current matter. Which legislation, later-treatment checks and client facts are still required?",
+    "executive_check": "Assign each material claim to an authority and period. Name the unresolved checks; a generated report or empty search result cannot clear current advice."
+  },
+  {
+    "session": 8,
+    "title": "Contract review and drafting",
+    "purpose": "Show how entity extraction differs from obligation analysis, repair a flawed review and draft a justified amendment without inventing agreed terms.",
+    "tool": "Claude web with the full agreement, instruction and playbook; Word/text editor for side-by-side review and drafting.",
+    "files": [
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Agreement - Executed v2.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Client Instruction.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Contract Review Playbook.txt",
+      "03 Learner Materials/Practice Files/01 Matter and Sources/Transaction Variants.txt",
+      "03 Learner Materials/Practice Files/03 Research and Review/Flawed Contract Review.txt",
+      "03 Learner Materials/Practice Files/03 Research and Review/Contract Review Record.csv",
+      "04 Facilitator Materials/Teaching Resources/Checked Contract Answers.txt"
+    ],
+    "prepare": [
+      "I open the playbook and flawed review beside the original, with KT-1, Section 1.5 and KT-2 located. I keep the absent Fee Schedule absent.",
+      "I prepare three source checks: consent scope, named-person support approval and annual fee evidence."
+    ],
+    "steps": [
+      "I start a new Claude chat, attach the agreement and paste S08-P1. I inspect extracted spans before discussing legal roles.",
+      "I show that the same organisation name can appear as a contracting party, user or third party; NER alone does not establish who owes which obligation.",
+      "I attach the playbook, client instruction and flawed review, then paste S08-P2. I retain the output as a proposed review table.",
+      "We repair the three constructed errors against the complete source: the consent exception, support approval supplement and missing schedule. I label the flawed review a constructed exercise.",
+      "I read Variant B aloud: an assignment to another company is proposed. I ask for the first assignment sentence before considering the separate change-of-control exception. I preserve facts not supplied about the assignee.",
+      "For the unrelated-buyer share-sale question, we distinguish the assignment-voidness sentence and follow Sections 5.3(a), 5.3(b)(i), 8.1–8.4, the Key Terms and 12.5 before describing possible remedies.",
+      "I paste S08-P3. We compare the proposed amendment with the agreed text, checking actor, permission, condition, exception and unintended effect.",
+      "I record a partner-review decision, the reason for the proposed change and the evidence or legal interpretation still required. We do not turn the draft into an agreed contract."
+    ],
+    "prompts": [
+      {
+        "id": "S08-P1",
+        "text": "Extract the named parties, organisations, dates and monetary references from the supplied fictional agreement. For each give the exact source span, location and tentative entity type. Separately identify the contractual role and the surrounding wording supporting it. Do not infer an obligation or a missing fee from the name alone. Mark uncertain roles and distinguish Order Form recitals from independently verified facts."
+      },
+      {
+        "id": "S08-P2",
+        "text": "Review the attached constructed Flawed Contract Review against the full executed agreement, client instruction and customer-side playbook. Return issue, source version/location, exact supporting passage, missing facts, qualification and proposed correction. Start with the transaction trigger before exceptions. Read KT-1 and KT-2. Do not invent a fee or conflate share sale with assignment. Follow relevant remedy cross-references rather than claiming no consequences exist. Keep agreed obligations separate from proposals and legal questions needing qualified review."
+      },
+      {
+        "id": "S08-P3",
+        "text": "Draft one customer-side amendment addressing the specific issue we selected: [state the actual selected issue]. Show the current wording beside the proposed wording, explain the commercial reason and identify any changed actor, consent condition, exception or remedy. Use no invented fee. Mark the wording as a proposal requiring partner review and negotiation. Do not claim that the proposed text is already agreed."
+      }
+    ],
+    "check": [
+      "The replaced first sentence requires assignment consent; under the teaching reading the following group exception qualifies change-of-control consent, with interpretive review if material.",
+      "KT-2 requires each support person to be named in a written request and approved in writing before access. The annual fee remains unestablished without the schedule.",
+      "A possible breach remedy retains materiality, cure, liability qualifications and source limits; a share sale is not automatically void under the assignment sentence."
+    ],
+    "discuss": [
+      [
+        "The model found a company name. Has it found the obligation?",
+        "No. We need the actor, operative wording, conditions and surrounding context."
+      ],
+      [
+        "An amendment sounds commercially reasonable. Can it be treated as the current contract?",
+        "No. Label the proposal and obtain review/negotiation."
+      ]
+    ],
+    "rescue": [
+      [
+        "The review uses only the original Standard Terms",
+        "I point to the Key Terms override and rerun or correct the affected row, preserving the first output."
+      ],
+      [
+        "A draft invents an assignee, fee or automatic termination",
+        "I remove the unsupported claim and request the needed evidence or qualified interpretation."
+      ]
+    ],
+    "record": "Entity-versus-role example, checked review rows, current/proposed amendment comparison, reason, source locations and proposed reviewer.",
+    "transition": "I say: Drafting is one output; next we decide what happens when a system can choose or execute a step.",
+    "commands": [],
+    "optional": [],
+    "entry_question": "A review identifies the parties correctly. Has it established their obligations, and is the proposed amendment acceptable?",
+    "entry_focus": "We follow entities into operative provisions and cross-references, then inspect one amendment for changed rights, conditions and unintended effects.",
+    "executive_task": "Choose one review finding and negotiate the proposed clause change aloud. What commercial protection improves, and what new ambiguity or burden could the amendment create?",
+    "executive_check": "The explanation compares current and proposed text, preserves unknown facts, checks cross-references and separates a proposal from agreed obligations."
+  },
+  {
+    "session": 9,
+    "title": "Automation and agentic AI",
+    "purpose": "Make the distinction between a configured AI workflow, a model-selected tool call and host-enforced controls visible.",
+    "tool": "Existing private Zapier draft for configured AI; local Claude CLI agent for actual tool choice; local browser simulator for human approval controls.",
+    "files": [
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Agent Build Guide.txt",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Agent Execution Record.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Agent Test Cases.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/workflow_demo.html",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/workflow_engine.js",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/read_only_agent.py",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Prompt Injection Fixture.txt"
+    ],
+    "prepare": [
+      "I run s09_host, s09_protocol and one s09_agent before class. I open Agent Trace.json and locate actual_model_output, host_decision, actual_tool_result and result.",
+      "I open the local workflow page using the common browser-file steps. I confirm the heading says Local deterministic simulation. I check the existing private Zapier draft remains off/unpublished."
+    ],
+    "steps": [
+      "I show the private Zapier step named Review fictional consent clause and its saved or live Preview. I identify configured steps and output fields; without model-selected tools this is an AI workflow.",
+      "In Terminal I run s09_agent and open Agent Trace.json from the printed output folder. I identify the model’s structured lookup request, host execution, returned KT-1 text and draft answer.",
+      "I ask the learner to point to the actual tool-selection evidence. A successful fixed sequence or a connected tool by itself is insufficient.",
+      "I run s09_unknown. The model should request CONTRACT-99 evidence without silently substituting CONTRACT-01. I inspect the actual trace, including a hold or failure.",
+      "I run s09_injection. I compare model behaviour with the permitted host boundary. If the model ignores the injected note, I do not claim that a refusal path was exercised.",
+      "I run s09_onecall, then s09_host. If the model uses one call, I show the scripted extra-call denial separately. s09_protocol separately demonstrates malformed/ungrounded reply holds.",
+      "In the local browser page I check Required source evidence, click Prepare and inspect, then Approve exact version. I change one amount from 40000000 to 41000000 in the source JSON and select Run local mock. I inspect the stale-approval hold.",
+      "I restore the amount, prepare and approve again, choose Decline, then Run local mock. I inspect the stop. I change Recipient to New external recipient and select Prepare and inspect; it must be held.",
+      "I close by specifying a read-only pilot’s permitted evidence, tool, limit, reviewer and stop condition. No message, filing, payment or publication is enabled."
+    ],
+    "prompts": [
+      {
+        "id": "S09-P1",
+        "text": "Use only the fictional CONTRACT-01 v2 clause supplied below. Equator proposes an internal reorganisation; assignment, change of control, ownership and continued responsibility are unconfirmed. Separate the two consent triggers; do not infer either from the label. Under the teaching reading the group exception follows change-of-control consent. Preserve both conditions and flag material interpretation for review. Return four plain-text fields: consent_summary, source_quote, open_facts, review_status. Keep the conclusion unresolved until facts establish it. Take no external action. CLAUSE: CONTRACT-01 v2 KT-1 | Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns."
+      }
+    ],
+    "check": [
+      "The actual trace shows model-selected lookup and host execution. The answer must also preserve trigger uncertainty and source qualifications.",
+      "The host suite passes seven tests and the protocol suite three. A malformed response is held rather than repaired into an executable request.",
+      "The local page holds changed fields, declined approval and an unapproved recipient. It is deterministic and has no URA or external-action connection."
+    ],
+    "discuss": [
+      [
+        "Who stops an unauthorised tool request?",
+        "The execution host enforces permitted tools and arguments; a prompt alone is insufficient."
+      ],
+      [
+        "Can correct access produce an incorrect answer?",
+        "Yes. We inspect the draft’s facts and inference after the safe lookup."
+      ]
+    ],
+    "rescue": [
+      [
+        "Claude CLI is unavailable or a run times out",
+        "I open Agent Retests - Structured/Normal.json as a saved dated model-selected trace; I still run the account-free host tests live."
+      ],
+      [
+        "The model returns malformed JSON",
+        "I show the held state, retain the raw output and use the protocol test to explain why execution stops. I do not weaken parsing."
+      ],
+      [
+        "Zapier asks for an upgrade or a new connection",
+        "I use the existing saved full-test evidence and proceed to the local agent. Class time does not depend on a purchase or provisioning."
+      ]
+    ],
+    "record": "Actual trace and tool arguments, host decision, draft support check, scripted-test outputs and the three browser hold states. I label each route correctly.",
+    "transition": "I say: We can apply those same boundaries to preparing financial evidence, while keeping formal tax authority separate.",
+    "commands": [
+      "s09_agent",
+      "s09_unknown",
+      "s09_injection",
+      "s09_onecall",
+      "s09_host",
+      "s09_protocol"
+    ],
+    "optional": [
+      "Zapier build/rehearsal route before class: open https://zapier.com/editor/384918162. Confirm the draft is the fictional rehearsal and off. Select Review fictional consent clause, open Configure, inspect Prompt and Output Fields, then Preview. The four outputs are consent summary, supporting source quote, open facts and human-review status; each needs a non-empty distinct field name. If field names are blank, generate/recreate the output fields, inspect them, then Preview again. Run the full draft Test only when no external action steps exist. Open Data In/Data Out and save the complete result. Do not publish.",
+      "If constructing a fresh rehearsal draft in an already authorised account, add an AI by Zapier action, select an existing permitted model and paste the supplied S09-P1 workflow prompt. Define four named Text outputs: consent_summary, source_quote, open_facts, review_status. Supply the fictional clause as prompt evidence. Leave Tools empty. Preview and inspect all fields. This tests a configured AI step; use the local agent trace to show model-selected tool choice."
+    ],
+    "entry_question": "What may an assistant decide, what may it execute, and who can stop it?",
+    "entry_focus": "We inspect actual tool choice and host enforcement, then test a changed version, declined approval and unapproved recipient.",
+    "executive_task": "Design a first read-only pilot for the same task. Set permitted evidence, tool arguments, a call limit and the events that require a human decision.",
+    "executive_check": "The design identifies host-enforced boundaries and stale-approval handling, plus accountable ownership. Prompt instructions alone are insufficient controls."
+  },
+  {
+    "session": 10,
+    "title": "Tax evidence workflows and controlled actions",
+    "purpose": "Reconcile the fictional records, expose evidence gaps and demonstrate approval and safe-retry controls without treating a balance as tax liability.",
+    "tool": "Claude web for a mapping/draft; independent local calculation; local browser workflow simulator; official URA guidance as a source to inspect.",
+    "files": [
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Invoice Import.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Credit Notes.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Ledger.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Receipts.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Ledger Challenge.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Financial Assumptions.txt",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Tax Review Instruction.txt",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/Filing Preparation Record.csv",
+      "03 Learner Materials/Practice Files/04 Automation and Tax/workflow_demo.html",
+      "04 Facilitator Materials/Teaching Resources/Ledger Challenge Answer.txt"
+    ],
+    "prepare": [
+      "I run s10_reconcile and s10_controls before class, keeping their outputs separate from any AI reply. I open the small source files beside the assumptions.",
+      "I open the local workflow page fresh, leave Required source evidence unchecked and note that Reset exercise resets engine state, not the visible form values."
+    ],
+    "steps": [
+      "I attach the four small CSVs and Financial Assumptions.txt to a new Claude chat and paste S10-P1. I inspect whether it maps identity, period, currency and file roles before arithmetic.",
+      "I run s10_reconcile. We independently compare 125m imported, 25m repeated row, 100m unique invoices, 2m credit, 98m net and 80m receipts, leaving 18m under the stated assumptions.",
+      "I ask why the 18m balance does not prove unpaid tax. We name timing, allocations, source support and tax rules as unresolved.",
+      "I attach Ledger Challenge.csv and paste S10-P2. Over 25 minutes we inspect duplicate identities, repeated amounts, missing support and the October receipt, then compare with the independent larger result.",
+      "I open https://ura.go.ug/en/efris/fdn-validation/ and read its explanation. I describe invoice validation without entering a fictional identifier. These records do not establish genuine FDN validity.",
+      "On the local page, with evidence unchecked, I select Prepare and inspect and show HELD. I check evidence, keep Internal partner and period 2026-09, then prepare and approve.",
+      "I check Simulate an uncertain acknowledgement and choose Run local mock. The state is UNCERTAIN. I immediately try Run local mock again; it is held. I choose Inspect status to find the existing local acknowledgement.",
+      "I clear the timeout box, prepare and approve the same data, then select Run local mock. DUPLICATE PREVENTED means the snapshot already completed. This is our simulator’s guard, not a claim about URA’s interface.",
+      "For the transfer check, I copy Receipts.csv to the output folder and change its only row from 2026-09 to 2026-10. September receipts become zero and the conditional balance becomes 98m. I calculate in the working copy. The launcher reads the unchanged original and still returns 18m. Neither result is a tax assessment."
+    ],
+    "prompts": [
+      {
+        "id": "S10-P1",
+        "text": "Use the supplied fictional September 2026 invoice import, credit notes, ledger, receipts and assumptions. First map each file’s role, currency, period and record identity. Calculate imported versus unique invoice value, credit adjustment, net sales, relevant receipts and the teaching outstanding balance. Identify duplicates by identity and source agreement rather than repeated amounts alone. Return each figure with source record and calculation, then uncertainty and evidence requests. A reconciliation difference is not a tax assessment; do not infer fraud, FDN validity or input-credit entitlement."
+      },
+      {
+        "id": "S10-P2",
+        "text": "Apply the same source-first method to the supplied Ledger Challenge.csv. Keep September and October separate. Identify exact duplicate invoice identities, conflicting records if any, unique invoice value, credits, September receipts, the conditional teaching balance and missing unique-invoice support references. Show the calculation and source IDs. Do not treat equal amounts as duplicates automatically or missing support as proof of fraud. Produce a review draft, not a return or tax assessment."
+      }
+    ],
+    "check": [
+      "The larger result is net 58,650,000, September receipts 30,000,000 and conditional outstanding 28,650,000; duplicate identities are INV-C013, INV-C048 and INV-C094.",
+      "Seven unique invoice support references are blank; R-OCT is outside September. The absence of a reference raises an evidence request.",
+      "The browser moves through HELD, READY, APPROVED, UNCERTAIN, STATUS CHECKED and DUPLICATE PREVENTED for the stated paths. No real filing or payment occurs."
+    ],
+    "discuss": [
+      [
+        "A missing reference proves fraud. Accept or reject?",
+        "Reject. Request and inspect evidence before classifying the transaction."
+      ],
+      [
+        "An acknowledgement is uncertain. Should we retry immediately?",
+        "No. Inspect status and identifiers because the first action may already have completed."
+      ]
+    ],
+    "rescue": [
+      [
+        "The AI arithmetic is wrong",
+        "I keep the raw reply and correct against the source calculation. I do not paste the answer key into the evidence before claiming an independent result."
+      ],
+      [
+        "The browser does not return the expected state",
+        "I reload the file, restore the exact default values and repeat once. I use s10_controls to distinguish an engine defect from a changed form value."
+      ]
+    ],
+    "record": "AI mapping and reply, independent calculation, duplicate/evidence decisions, changed-period working copy and browser state sequence in the preparation record.",
+    "transition": "I say: These technical controls need organisational owners, rules and a response when something goes wrong.",
+    "commands": [
+      "s10_reconcile",
+      "s10_controls"
+    ],
+    "optional": [],
+    "entry_question": "The assistant reports an outstanding balance. What has it established, and which next action would you permit?",
+    "entry_focus": "We inspect record identity, period and evidence before arithmetic, then test approval and uncertain acknowledgement in the local workflow.",
+    "executive_task": "Decide what evidence must accompany a filing-preparation pack and what the system must do after an uncertain acknowledgement. Test whether a retry could duplicate an action.",
+    "executive_check": "The answer separates reconciliation from tax treatment and preparation from submission, and requires status/identifier checks before retrying."
+  },
+  {
+    "session": 11,
+    "title": "Organisational risk and governance",
+    "purpose": "Turn risks into owned controls and rehearse a restricted-matter incident with evidence, decisions and restart conditions.",
+    "tool": "Saved measured Tesseract ladder or a fresh local Apple Vision run on the same prepared images; editable risk and incident working copies.",
+    "files": [
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Worked AI Risk Register.csv",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/AI Risk Register.csv",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/AI Use Rule Example.txt",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Incident Exercise.txt",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Uganda Legal Frame.txt",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/summary.txt",
+      "03 Learner Materials/Practice Files/02 Data and Retrieval/OCR Experiment/passages.txt"
+    ],
+    "prepare": [
+      "I open the risk register and the original measured Tesseract summary. For a fresh comparison I run s11_ocr_ladder before class; it reads 12 existing images for selected passages 1, 2 and 6 with Apple Vision and saves OCR Quality Summary.txt. I keep the two engine results separately labelled.",
+      "I prepare a blank incident log with time/decision, evidence, owner, next check and restart condition. No real restricted material is used.",
+      "The OCR ladder is a generic synthetic quality fixture. Its passages include the source override, original Standard Terms and other illustrative wording; they are not all operative clauses of CONTRACT-01. I use them to measure extraction, and use the executed agreement for legal conclusions."
+    ],
+    "steps": [
+      "I choose three risks from the worked register: restricted disclosure, unsupported professional output and unapproved action. For each, the learner names a control, owner and a test that could fail it.",
+      "I compare word accuracy and negation retention across the four conditions within the named run. The fresh Apple Vision run covers three selected passages; the historical Tesseract summary covers twelve, so I do not rank the engines from those different samples. These synthetic conditions do not establish a demographic bias rate.",
+      "I ask which firm matters might have difficult scans and how the firm would measure source quality on representative permitted records.",
+      "At minute 0 of the 35-minute incident block, I read Incident Exercise.txt: OTHER-02 content appeared in an M-01 user’s draft. I ask for the first containment action before supplying the next detail.",
+      "Minutes 0–8: we stop the affected retrieval/output route and hold the draft. I preserve the query, access context, source identifiers, output and recipients without reproducing restricted text.",
+      "Minutes 8–18: we identify who saw or received the passage, which permissions were involved and the firm roles that must assess professional, contractual and data duties. I do not invent a universal reporting deadline.",
+      "Minutes 18–28: the learner proposes cause investigation, access correction, derived-index checks and an adversarial retest. I ask how we would know the correction worked.",
+      "Minutes 28–35: we define an authorised restart decision, evidence needed and a communication owner. I change the scenario from a retrieved paragraph to an attached email and ask which controls change.",
+      "We adapt one approved-use rule with permitted evidence, excluded actions, reviewer, reporting route and review date. These are proposed firm decisions for later approval."
+    ],
+    "prompts": [],
+    "check": [
+      "Each risk has an owner and a testable control. No-training, retention, access and professional permission are assessed separately.",
+      "The first incident action contains exposure and preserves evidence. Restart requires verified correction and an authorised decision.",
+      "The OCR evidence supports a document-condition quality discussion; claims about protected groups need representative data and separate analysis."
+    ],
+    "discuss": [
+      [
+        "A vendor says no-training. What remains to check?",
+        "Retention, access, contracts, location, recipients, purpose and professional permission."
+      ],
+      [
+        "Who can authorise restart?",
+        "The firm’s designated responsible authority after the agreed tests and legal/professional assessment, rather than the AI tool itself."
+      ]
+    ],
+    "rescue": [
+      [
+        "The learner proposes only a policy slogan",
+        "I ask who performs the control, where it is enforced and what evidence would show it failed."
+      ],
+      [
+        "A precise legal deadline is requested",
+        "I identify the relevant legal question and source to verify; I do not turn the classroom source map into current advice."
+      ]
+    ],
+    "record": "One revised risk row, the incident decision log, source-quality observation, proposed rule and explicit restart conditions.",
+    "transition": "I say: We can now decide what a first organisational pilot should cost, prove and stop for.",
+    "commands": [
+      "s11_ocr_ladder"
+    ],
+    "optional": [],
+    "entry_question": "An assistant puts another matter’s restricted material into a draft. What happens in the first few minutes?",
+    "entry_focus": "We rehearse containment, evidence preservation, affected recipients and restart authority. Each proposed control needs an owner and a failure test.",
+    "executive_task": "Draft a usable rule for this incident route, then explain how the firm will know the rule is followed. Identify who can authorise restart and what evidence they need.",
+    "executive_check": "The rule specifies a permitted purpose, responsible roles, enforceable controls, tests and a reporting route. A policy statement without operational evidence is incomplete."
+  },
+  {
+    "session": 12,
+    "title": "Leading implementation and evaluating a pilot",
+    "purpose": "Turn the course work into a bounded implementation proposal with evidence, cost assumptions, acceptance tests and a 30/60/90-day decision path.",
+    "tool": "Excel or another CSV viewer for the supplied figures, independent local calculation, proposal working copy and oral exit diagnostic.",
+    "files": [
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Cost and Effort Example.csv",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Worked Pilot Proposal.txt",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Pilot Proposal.txt",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Adoption Plan.csv",
+      "03 Learner Materials/Practice Files/05 Firm Adoption/Pilot Decision Record.csv",
+      "04 Facilitator Materials/Teaching Resources/Entry and Exit Diagnostic.csv",
+      "04 Facilitator Materials/Teaching Resources/Diagnostic Answer Key.txt"
+    ],
+    "prepare": [
+      "I open the cost CSV without changing its assumptions, the blank proposal and the exit questions. I keep the worked proposal and answer key out of sight until the learner has answered.",
+      "I run s12_costs before class. I have the earlier progress records available to connect the proposal with the learner’s chosen task."
+    ],
+    "steps": [
+      "I ask the selected exit questions with their changed facts and record the learner’s reasons before showing the entry answers or answer key.",
+      "In the cost file I locate 40 tasks/month, 30 manual minutes, 20 assisted minutes including review, 33 stress minutes and UGX 60,000/hour. The tool/month total is 120,000 + 30,000 + 90,000.",
+      "I ask the learner to predict whether the main and stress cases justify proceeding. I calculate manually with a calculator or formulas, then run s12_costs as an independent check.",
+      "We compare main review cost 800,000 with manual 1,200,000 and tool costs 240,000: a 160,000 monthly capacity-value difference. The stress case gives negative 360,000. These are fictional planning assumptions, not vendor quotes or guaranteed cash savings.",
+      "I show that 600,000 setup divided by 160,000 gives a conditional 3.75-month simple payback, before other costs. Token arithmetic remains in USD; I do not add USD directly to UGX.",
+      "Over 35 minutes we complete the blank pilot proposal: problem/baseline 7 minutes, permitted sources/exclusions 7, owners and acceptance tests 8, costs/resources 6, and staged decision gates 7.",
+      "I choose a realistic read-only legal/tax task from the earlier records. We specify critical failures, representative test cases, total review effort and a manual fallback before discussing expansion.",
+      "We set proposed day 0–30 source readiness/baseline, day 31–60 shadow testing and day 61–90 bounded use only if approved. We give actual names or dates only if agreed.",
+      "I present a counterexample: the draft saves time but omits a critical exception. The learner decides stop/revise rather than expand on speed alone.",
+      "I finish with a two-minute explanation to a fellow partner: proposed change, proof required, owner and next decision. I compare the exit reasons with the entry baseline and identify any concept still needing work."
+    ],
+    "prompts": [],
+    "check": [
+      "Main effect 160,000 UGX/month; stress effect −360,000; illustrative token cost 0.014 USD/task. These are distinct units and assumptions.",
+      "The proposal includes a bounded scope, exclusions, evidence owners, acceptance tests, costs, stop conditions and approval gates.",
+      "The class produces a proposal for firm review; it does not approve production deployment or promise measured learning from terminology alone."
+    ],
+    "discuss": [
+      [
+        "Time is released. Has cash been saved?",
+        "Only if the capacity produces an evidenced avoidable cost or revenue effect."
+      ],
+      [
+        "The demo works once. Expand to the entire firm?",
+        "No. Use representative tests, real permissions, cost/review evidence and the firm’s approval process."
+      ]
+    ],
+    "rescue": [
+      [
+        "The learner has no time for written work",
+        "I operate the working document while the learner dictates decisions. We complete it in class."
+      ],
+      [
+        "The main case is marginal or negative",
+        "I keep the unfavourable result and revise scope or stop; I do not change assumptions to justify the course."
+      ]
+    ],
+    "record": "Exit reasons/scores, independent cost output, completed draft pilot proposal, proposed owners and the next evidence/decision date.",
+    "transition": "I close with the agreed next evidence request and the path for the firm to review the proposal.",
+    "commands": [
+      "s12_costs"
+    ],
+    "optional": [],
+    "entry_question": "A pilot saves drafting time but increases review effort. Would you sponsor it?",
+    "entry_focus": "We use the main and stress cases, then complete a bounded proposal with evidence gates, costs, owners and an expand, revise or stop decision.",
+    "executive_task": "Stress-test the proposed pilot with higher review time, a critical missed exception or incomplete source coverage. State the point at which you would revise or stop.",
+    "executive_check": "The proposal keeps adverse results visible and uses quality and cost gates. Expansion depends on representative evidence and the firm’s approval process."
+  }
+]

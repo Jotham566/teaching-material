@@ -1,0 +1,36 @@
+ACTUAL SAVED AI OUTPUT, 26 OCTOBER 2026 (run R7)
+Run: Variant A, share sale
+Product: a Claude subagent started with no conversation history and given one prompt file. The subagent saved its own reply to a file, and this file holds that reply unedited below the line. It is not the learner's product and says nothing about any other tool.
+Tools: none for the task itself (the subagent read the prompt file and wrote its reply to disk).
+Evidence supplied: same as run 1. The exact prompt is saved in 05 Course Maintenance/Run Prompts/prompt_R'(run number)'.txt. Hashes (first 16 hex of SHA-256) of Agreement - Executed v2.txt (first 16 hex) 74c2190a908d0adf, Client Instruction.txt 4b77ff776aac1c98.
+One run per condition unless the title says otherwise. A single run shows what happened once and says nothing about how often.
+
+TASK GIVEN
+Stipulated variant: an unrelated buyer acquires control of Equator through a share sale, and the transaction is outside any wholly owned group. Apply the agreement and advise Victoria. Keep the answer under 300 words.
+
+ACTUAL RESPONSE (unedited)
+------------------------------------------------------------
+Advice to Victoria Services Ltd: CONTRACT-01 v2, stipulated share-sale variant
+
+Short answer: yes. Equator needs your prior written consent before the sale takes effect.
+
+Why
+- Teaching Adaptation 1 in the Key Terms replaces Section 12.6. The standard right to assign on notice after a change of control is gone.
+- The new 12.6 says Equator "must obtain Customer's prior written consent before a change of control of Provider takes effect."
+- A share sale to an unrelated buyer is a change of control. "Change of control" is not defined in the Standard Terms, so we should confirm the buyer will actually gain control.
+- The only carve-out is a reorganisation within a wholly owned group where Equator stays responsible. Your stipulated facts put this deal outside any such group, so the carve-out does not apply.
+- A share sale does not transfer the agreement itself, so the first sentence of 12.6 (no assignment without consent) is not the trigger. The change-of-control sentence is.
+
+Consequences
+- The clause sets no reasonableness test. You may give, refuse or condition consent, and consent must be in writing (Sections 12.2 and 12.9).
+- Closing without consent would be a breach. You could give 30 days' notice to cure, or terminate under Section 5.3 if the breach cannot be cured.
+- Your damages would be limited by the General Cap of 1x the 12-month Fees. We have not seen the Fee Schedule and have not inferred the amount.
+
+What to confirm before we advise further
+1. The buyer's identity, its ultimate owners and any competitor or sanctions concerns.
+2. Equator's ownership chart, and proof that the buyer is unrelated and that control passes.
+3. The closing date and timetable, so consent can be given or withheld before closing.
+4. Whether the agreement will stay with Equator or be moved to anyone else.
+5. Written confirmation that Equator remains bound by all its obligations.
+6. Plans for support staff access to your data. Teaching Adaptation 2 requires your written approval of each named person.
+7. The signed Fee Schedule, to size any exposure.

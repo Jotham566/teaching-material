@@ -1,0 +1,44 @@
+DEMO: s05_ocr 
+OUTPUT: /Users/jothamwambi/Projects/IUEA-Teaching-Resources/Professional_AI_Training/Business_AI/Applied AI and Automation/05 Course Maintenance/Authoring/.build/guided_demonstrations/final_tests/s05_ocr 
+Read the three existing images with local Apple Vision OCR; originals remain untouched.
+{
+  "configuration" : "fast, revision 2, CPU only, en-US, language correction off",
+  "engine" : "Apple Vision VNRecognizeTextRequest",
+  "images" : [
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/Original Source.png",
+      "line_confidences" : [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text" : "CONTRACT-01 v21 Key Terms, Teaching Adaptation l (Section 12.6)\nProvider must obtain Customer's prior written consent before a\nchange of control of Provider takes effect.\nThat consent is not required for a reorganization within a wholly\nowned group if Provider remains responsible for its obligations under\nthis Agreement."
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/Synthetic Scan.png",
+      "line_confidences" : [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "text" : "CONTRACT-01 v21 Key Ternis, Teachlng Adaptatlon l (Section 12.6)\nProvider must obtain Customer's prior written consent before a\nchange ol control of Provider takes effect.\nThat consent is not required for a reorganization wthin a wholly\nowned group if Provider remains responsible for its obligations under\nthis Agreement."
+    },
+    {
+      "error" : null,
+      "file" : "\/Users\/jothamwambi\/Projects\/IUEA-Teaching-Resources\/Professional_AI_Training\/Business_AI\/Applied AI and Automation\/03 Learner Materials\/Practice Files\/02 Data and Retrieval\/Degraded Scan - moderate.png",
+      "line_confidences" : [
+
+      ],
+      "text" : ""
+    }
+  ],
+  "system" : "Version 27.2 (Build 26B118)"
+}

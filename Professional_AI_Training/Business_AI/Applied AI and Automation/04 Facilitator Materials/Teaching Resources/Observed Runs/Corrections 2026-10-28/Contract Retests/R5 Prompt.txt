@@ -1,0 +1,25 @@
+This is a fictional teaching exercise. Use only the documents supplied below. Do not use any tools, files or outside knowledge, and do not read any other file. Reply with your answer only.
+
+DOCUMENT 1: EXTRACTS FROM THE AGREEMENT
+Section 12.6 (Standard Terms, original wording):
+Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to which this Agreement relates. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.
+
+Key Terms, Other Changes to Standard Terms, Teaching Adaptation 1:
+Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. In addition, Provider must obtain Customer’s prior written consent before a change of control of Provider takes effect. That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement. Any attempted but non-permitted assignment is void. This Agreement will be binding upon and inure to the benefit of the parties and their permitted successors and assigns.
+
+DOCUMENT 2: CLIENT INSTRUCTION
+FICTIONAL INSTRUCTION FROM VICTORIA, THE CUSTOMER
+Equator has told us it proposes an internal reorganisation. Tell us whether CONTRACT-01 v2 requires our consent and list what we need to confirm before you advise. We have not received Equator’s ownership chart, written confirmation that Equator remains responsible, or any statement about whether the agreement will be transferred.
+We have not supplied the signed Fee Schedule. Do not infer the fees.
+Keep the separate share-sale and assignment variants in Transaction Variants.txt out of the base facts.
+
+
+TASK
+Does Victoria’s consent apply to Equator’s proposed internal reorganisation? Quote the provisions you rely on, state what is unknown and list what we must ask Equator. Keep the answer under 300 words.
+
+
+REVIEW WORKFLOW FOR THIS RUN
+The task above is a fictional classroom review. Use only the supplied evidence. Return JSON with keys source_scope, established_facts, unresolved_facts, quotations, analysis, conclusion, review_checks. Each quotation must have source, location and quote, copied verbatim from the supplied text. Keep analysis plus conclusion under 250 words; quotations and fact records are outside that limit.
+Before concluding, identify the source version and precedence. Separate the first assignment sentence from the change-of-control sentence and the exception that refers to that consent. First establish the relevant transaction trigger. A failed exception condition alone does not establish a change of control. An assignment and a share sale are different transactions. Do not add an assignee's group membership, responsibility, ownership or other fact absent from the task. For an unresolved fact, ask for the specific evidence.
+For whole-agreement tasks, include the Key Terms replacement when relevant and explain how it controls over the original Standard Terms. For a Standard-Terms-only task, report the position in that extract and that the full contract position requires the signed cover pages and any amendments; do not imply those were inspected. For a consequence or remedies question, inspect the general material-breach, termination, liability and cumulative-remedies provisions as well as the transaction clause. An assignment consequence cannot simply be applied to a share sale. Separate a provision's express wording from an inference about materiality, cure or enforceability.
+A recital that a schedule was signed is a statement in the supplied document. Do not say you inspected the absent schedule or independently verified its signing, and do not invent its fee. Preserve each qualification. Flag any unsupported inference during review_checks and revise it before returning the JSON. This is a draft for qualified human review with no external action.

@@ -1,0 +1,25 @@
+**Answer:** Consent depends on facts not yet confirmed.
+
+**Relevant provision (Teaching Adaptation 1, replacing Section 12.6):**
+
+> "Neither party may assign any rights or obligations under this Agreement without the prior written consent of the other party. ... That consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its obligations under this Agreement."
+
+**Analysis:**
+
+The exception to the consent requirement applies **only if both conditions are met**:
+1. The reorganisation is within a wholly owned group
+2. Equator remains responsible for its obligations
+
+**What is unknown:**
+- Whether the reorganisation is within a wholly owned group (no ownership chart provided)
+- Whether Equator will remain responsible for its obligations (no written confirmation)
+- Whether the Agreement will be assigned/transferred to another entity
+
+**Questions for Equator:**
+
+1. Provide the ownership chart showing the entities involved in the reorganisation and confirming they form a wholly owned group.
+2. Confirm in writing that Equator Systems Ltd will remain responsible for all obligations under the Agreement after the reorganisation.
+3. Clarify whether the reorganisation involves any assignment or transfer of the Agreement to another entity.
+4. If assignment is proposed, identify the assignee entity and its relationship to Equator.
+
+**Conclusion:** Victoria's consent is required unless Equator demonstrates both conditions of the exception are satisfied. Do not approve until Equator provides the ownership structure and written confirmation of continued responsibility.

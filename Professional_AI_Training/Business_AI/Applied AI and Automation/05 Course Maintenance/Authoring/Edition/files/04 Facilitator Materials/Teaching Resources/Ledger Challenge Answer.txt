@@ -1,0 +1,3 @@
+FICTIONAL LARGER-LEDGER KEY
+Invoice import 60,800,000; unique invoice value 59,400,000; duplicate difference 1,400,000; credits 750,000; net 58,650,000; September receipts 30,000,000; teaching outstanding 28,650,000 under the same no-opening/no-other-adjustment assumptions. R-OCT belongs to October and is excluded from September receipts.
+Duplicate invoice identities: INV-C013, INV-C048, INV-C094. Repeated amounts with distinct valid IDs are not automatically duplicates. Seven unique invoice support references are blank. Request evidence; do not label the transactions fraudulent. No tax liability follows from this reconciliation.

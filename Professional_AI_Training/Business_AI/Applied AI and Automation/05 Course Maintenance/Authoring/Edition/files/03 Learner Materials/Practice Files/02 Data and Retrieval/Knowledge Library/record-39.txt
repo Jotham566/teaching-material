@@ -1,0 +1,24 @@
+RECORD-39 | meeting minutes | 2026-09-18 | Kisumu Freight / Lakeview quarterly review notes
+
+NOTES - QUARTERLY REVIEW MEETING (OTHER-02 team, restricted)
+Date: 18 September 2026
+Attendees: Kisumu Freight operations manager and finance director; Lakeview Data account lead; firm associate (other team) taking notes
+
+1. Service performance
+Lakeview reported 99.7 percent availability for the quarter. Kisumu raised two incidents of slow loading in July and asked for a plan.
+
+2. Data volume
+Shipping record volume is up 30 percent compared with last year. Lakeview will propose a hosting upgrade and a quotation in October.
+
+3. Reporting
+Kisumu would like a weekly rather than monthly report on deliveries delayed at the border.
+
+4. Next review
+December.
+
+Actions
+- Lakeview to send the hosting quotation (by 16 October)
+- Kisumu to give a list of border reports they want (by 25 September)
+- Firm to diarise the next review
+
+These notes are confidential to the OTHER-02 team.

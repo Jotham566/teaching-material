@@ -1,0 +1,3 @@
+RESEARCH CORRECTION RECORD
+The original Deep Research report remains unedited in the dated Observed Runs folder. Checked Goal Relief Case Note.txt is an instructor-authored correction based on the original court PDF, not a claim that the original model produced a correct answer. It replaces the report for teaching the historical holding. Research Verification Workflow.txt supplies the process for a fresh task.
+The corrected note removes the faulty seven-row assessment total, supplies the actual page pinpoints and historical statute editions, removes irrelevant sources, distinguishes submissions from findings and records the unresolved Tribunal-year discrepancy. It does not assert a clean subsequent-treatment history or current tax advice without evidence.

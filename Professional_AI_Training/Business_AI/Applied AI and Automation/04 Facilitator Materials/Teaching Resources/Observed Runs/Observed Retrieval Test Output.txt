@@ -1,0 +1,203 @@
+OBSERVED RETRIEVAL TEST RUN, 27 OCTOBER 2026 (second version of the script)
+Programs: run_retrieval_tests.py and negation_check.py, top 5 (tests) and top 3 (negation). 40-document library. No model is involved; a program checks whether the expected phrases appear in the top results. The neural embedding method (sbert) was NOT run: the maintenance environment has no network and no model files.
+Changes from the first version: negation words are now KEPT by default (the first version removed not and no from the index). Results are shown with the negation words kept and with them dropped. Test K8 was added (a question that shares no words with the answer). LSA is a classical vector method.
+
+=========== method: lexical (negation words kept)
+method: lexical; top 5; negation words kept
+K1 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-24, RECORD-28
+K2 PASS phrases missing - leaked -
+     top: RECORD-04, RECORD-05, CONTRACT-01
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-11, RECORD-05, RECORD-10
+K4 PASS phrases missing - leaked -
+     top: RECORD-05, CONTRACT-01, RECORD-28
+K5 PASS phrases missing - leaked -
+     top: RECORD-31, CONTRACT-01, RECORD-11, RECORD-28, RECORD-21
+K6 PASS phrases missing - leaked -
+     top: RECORD-19, RECORD-06, RECORD-24, RECORD-20, RECORD-03
+K7 PASS phrases missing - leaked -
+     top: CONTRACT-01
+K8 FAIL phrases missing ['Neither party may assign any rights'] leaked -
+     top: CONTRACT-01
+
+=========== method: lsa (negation words kept)
+method: lsa; top 5; negation words kept
+K1 PASS phrases missing - leaked -
+     top: RECORD-20, RECORD-04, RECORD-05, CONTRACT-01
+K2 FAIL phrases missing ['upon notice if the assigning party undergoes', 'Neither party may assign any rights'] leaked -
+     top: RECORD-14, RECORD-20, RECORD-05, RECORD-03
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-20, RECORD-05, RECORD-14
+K4 PASS phrases missing - leaked -
+     top: CONTRACT-01
+K5 FAIL phrases missing ['any change of control or reorganization of Provider'] leaked -
+     top: RECORD-31, RECORD-07, RECORD-19
+K6 PASS phrases missing - leaked -
+     top: RECORD-04, RECORD-19, RECORD-24
+K7 FAIL phrases missing ['Fee Schedule'] leaked -
+     top: CONTRACT-01
+K8 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-19
+
+=========== method: hybrid (negation words kept)
+method: hybrid; top 5; negation words kept
+K1 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-20, RECORD-04
+K2 FAIL phrases missing ['upon notice if the assigning party undergoes', 'Neither party may assign any rights'] leaked -
+     top: RECORD-05, RECORD-04, RECORD-14
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-05, RECORD-20, RECORD-11
+K4 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-05
+K5 PASS phrases missing - leaked -
+     top: RECORD-31, CONTRACT-01, RECORD-11, RECORD-24
+K6 PASS phrases missing - leaked -
+     top: RECORD-19, RECORD-04, RECORD-06, RECORD-20, RECORD-24
+K7 FAIL phrases missing ['Fee Schedule'] leaked -
+     top: CONTRACT-01
+K8 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-19
+
+=========== method: lexical --drop-negations
+method: lexical; top 5; negation words dropped
+K1 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-24, RECORD-28
+K2 PASS phrases missing - leaked -
+     top: RECORD-04, RECORD-05, CONTRACT-01
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-11, RECORD-05, RECORD-10
+K4 PASS phrases missing - leaked -
+     top: RECORD-05, CONTRACT-01, RECORD-28
+K5 PASS phrases missing - leaked -
+     top: RECORD-31, CONTRACT-01, RECORD-11, RECORD-28, RECORD-21
+K6 PASS phrases missing - leaked -
+     top: RECORD-19, RECORD-06, RECORD-24, RECORD-20, RECORD-28
+K7 PASS phrases missing - leaked -
+     top: CONTRACT-01
+K8 FAIL phrases missing ['Neither party may assign any rights'] leaked -
+     top: CONTRACT-01
+
+=========== method: lsa --drop-negations
+method: lsa; top 5; negation words dropped
+K1 PASS phrases missing - leaked -
+     top: RECORD-20, RECORD-04, RECORD-05, CONTRACT-01
+K2 FAIL phrases missing ['upon notice if the assigning party undergoes', 'Neither party may assign any rights'] leaked -
+     top: RECORD-14, RECORD-20, RECORD-05, RECORD-03
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-20, RECORD-05, RECORD-14
+K4 PASS phrases missing - leaked -
+     top: CONTRACT-01
+K5 FAIL phrases missing ['any change of control or reorganization of Provider'] leaked -
+     top: RECORD-31, RECORD-07, RECORD-19
+K6 PASS phrases missing - leaked -
+     top: RECORD-04, RECORD-19, RECORD-20
+K7 FAIL phrases missing ['Fee Schedule'] leaked -
+     top: CONTRACT-01
+K8 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-19
+
+=========== method: hybrid --drop-negations
+method: hybrid; top 5; negation words dropped
+K1 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-20, RECORD-04
+K2 FAIL phrases missing ['upon notice if the assigning party undergoes', 'Neither party may assign any rights'] leaked -
+     top: RECORD-05, RECORD-04, RECORD-14
+K3 FAIL phrases missing ['before a change of control of Provider takes effect'] leaked -
+     top: RECORD-03, RECORD-05, RECORD-20, RECORD-11
+K4 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-05
+K5 PASS phrases missing - leaked -
+     top: RECORD-31, CONTRACT-01, RECORD-24, RECORD-11
+K6 PASS phrases missing - leaked -
+     top: RECORD-19, RECORD-04, RECORD-20, RECORD-06
+K7 FAIL phrases missing ['Fee Schedule'] leaked -
+     top: CONTRACT-01
+K8 PASS phrases missing - leaked -
+     top: CONTRACT-01, RECORD-19
+
+################ NEGATION CHECK
+
+=========== lexical (negation words kept)
+method: lexical; top 3; negation words kept
+
+A: consent is required for a reorganization within a wholly owned group
+B: consent is not required for a reorganization within a wholly owned group
+  top for A: ['CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #23', 'RECORD-03 v1 #1']
+  top for B: ['CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #23', 'RECORD-03 v1 #1']
+  same chunks in the same order: True
+
+A: Provider may give support staff access to Customer Content
+B: Provider may not give support staff access to Customer Content
+  top for A: ['CONTRACT-01 v2 #8', 'CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #13']
+  top for B: ['CONTRACT-01 v2 #8', 'CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #13']
+  same chunks in the same order: True
+
+A: the Fees are set out in the signed Fee Schedule
+B: the Fees are not set out in the signed Fee Schedule
+  top for A: ['CONTRACT-01 v2 #2', 'RECORD-06 v1 #1', 'RECORD-06 v1 #2']
+  top for B: ['CONTRACT-01 v2 #2', 'RECORD-06 v1 #1', 'RECORD-06 v1 #2']
+  same chunks in the same order: True
+
+=========== lsa (negation words kept)
+method: lsa; top 3; negation words kept
+
+A: consent is required for a reorganization within a wholly owned group
+B: consent is not required for a reorganization within a wholly owned group
+  top for A: ['RECORD-10 v1 #2', 'RECORD-10 v1 #1', 'RECORD-11 v1 #1']
+  top for B: ['CONTRACT-01 v2 #5', 'RECORD-10 v1 #1', 'RECORD-10 v1 #2']
+  same chunks in the same order: False
+
+A: Provider may give support staff access to Customer Content
+B: Provider may not give support staff access to Customer Content
+  top for A: ['RECORD-22 v1 #2', 'RECORD-22 v1 #1', 'CONTRACT-01 v2 #8']
+  top for B: ['RECORD-22 v1 #2', 'CONTRACT-01 v2 #8', 'RECORD-22 v1 #1']
+  same chunks in the same order: False
+
+A: the Fees are set out in the signed Fee Schedule
+B: the Fees are not set out in the signed Fee Schedule
+  top for A: ['RECORD-06 v1 #2', 'RECORD-06 v1 #1', 'RECORD-24 v1 #2']
+  top for B: ['RECORD-06 v1 #2', 'RECORD-06 v1 #1', 'RECORD-24 v1 #2']
+  same chunks in the same order: True
+
+=========== lexical --drop-negations
+method: lexical; top 3; negation words dropped
+
+A: consent is required for a reorganization within a wholly owned group
+B: consent is not required for a reorganization within a wholly owned group
+  top for A: ['CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #23', 'RECORD-03 v1 #1']
+  top for B: ['CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #23', 'RECORD-03 v1 #1']
+  same chunks in the same order: True
+
+A: Provider may give support staff access to Customer Content
+B: Provider may not give support staff access to Customer Content
+  top for A: ['CONTRACT-01 v2 #8', 'CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #13']
+  top for B: ['CONTRACT-01 v2 #8', 'CONTRACT-01 v2 #5', 'CONTRACT-01 v2 #13']
+  same chunks in the same order: True
+
+A: the Fees are set out in the signed Fee Schedule
+B: the Fees are not set out in the signed Fee Schedule
+  top for A: ['CONTRACT-01 v2 #2', 'RECORD-06 v1 #1', 'RECORD-06 v1 #2']
+  top for B: ['CONTRACT-01 v2 #2', 'RECORD-06 v1 #1', 'RECORD-06 v1 #2']
+  same chunks in the same order: True
+
+=========== lsa --drop-negations
+method: lsa; top 3; negation words dropped
+
+A: consent is required for a reorganization within a wholly owned group
+B: consent is not required for a reorganization within a wholly owned group
+  top for A: ['RECORD-10 v1 #2', 'RECORD-10 v1 #1', 'RECORD-11 v1 #1']
+  top for B: ['RECORD-10 v1 #2', 'RECORD-10 v1 #1', 'RECORD-11 v1 #1']
+  same chunks in the same order: True
+
+A: Provider may give support staff access to Customer Content
+B: Provider may not give support staff access to Customer Content
+  top for A: ['RECORD-22 v1 #2', 'RECORD-22 v1 #1', 'CONTRACT-01 v2 #8']
+  top for B: ['RECORD-22 v1 #2', 'RECORD-22 v1 #1', 'CONTRACT-01 v2 #8']
+  same chunks in the same order: True
+
+A: the Fees are set out in the signed Fee Schedule
+B: the Fees are not set out in the signed Fee Schedule
+  top for A: ['RECORD-06 v1 #2', 'RECORD-06 v1 #1', 'RECORD-24 v1 #1']
+  top for B: ['RECORD-06 v1 #2', 'RECORD-06 v1 #1', 'RECORD-24 v1 #1']
+  same chunks in the same order: True

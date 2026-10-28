@@ -1,0 +1,24 @@
+passage,condition,word_accuracy,negations_in_source,negations_kept,ocr_text
+1,A_clean,0.974,1,1,"Provider must obtain Customer's prior written consent before a change of control of Provider takes effect. That
+consent is not required for a reorganization within a wholly owned group if Provider remains responsible for its
+obligations under this Agreement."
+1,B_mild,0.051,1,0,"Prvvidff mull ohaln Cwtixiier's prkn wrtnen con5eM a rharye of corfrol of Provlthr tskes eff¢a. Tha c(msenl b n
+roquird fw a rew8thzauon wkhin a wlKlly (rdnod rn if rematsb resB)Mi14e f¢x tts d)liKath uMler thls AwnW."
+1,C_moderate,0,1,0,
+1,D_severe,0,1,0,
+2,A_clean,1.0,2,2,"Neither party may assign any rights or obligations under this Agreement without the prior written consent of
+the other party. However, either party may assign this Agreement upon notice if the assigning party undergoes a
+merger, change of control, reorganization, or sale of all or substantially all its equity, business, or assets to
+which this Agreement relates."
+2,B_mild,0.246,2,0,"Neiihor party may assigii any rlghty or dJll8ail(ms thls A8rnMYm# wlthwf the wrft*n cffis¢N of the party.
+Howevff. either party may assly thls A%TtemeN upn notke If the assi8niry party un&ryoes a mer8ef. chan8o of c(mtr
+Awryantsail(m. or 5ale ot all cr its equliy. buslnes5. or asseis to whlch th&s A8Tremff* rel*es."
+2,C_moderate,0,2,0,
+2,D_severe,0,2,0,
+6,A_clean,0.979,2,2,"The provider's total liability for all claims arising out of this agreement shall not exceed the fees paid in the
+twelve months before the first event giving rise to liability. This limit does not apply to fraud or to a breach of
+the confidentiality obligations in section 9."
+6,B_mild,0.312,2,0,"The PfDvhkn's i(Xal ltsbllhy all clalms arlslffj Iwi of this a8reenwni $hall niA exceed the fee5 pJld In twelve m(mihs befoTr the
+tlrA evont 8ivu4 rtse to Ikibillty. This Ilmli awly to fraud or io a Ixtach of the cY>nflkntiality obliW(ms th seaiOn"
+6,C_moderate,0,2,0,
+6,D_severe,0,2,0,

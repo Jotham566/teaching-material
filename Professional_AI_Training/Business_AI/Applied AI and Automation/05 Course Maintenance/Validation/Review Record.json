@@ -1,0 +1,39 @@
+{
+  "edition": "Independent review implementation — 26 October 2026",
+  "contentChecks": {
+    "sessions": 12,
+    "visible_slides": 285,
+    "essential_slides": 233,
+    "optional_slides": 52,
+    "concept_explanation_slides": 88,
+    "native_click_stages": 126,
+    "indexed_practice_files": 113,
+    "checks": "Source/deck titles, notes, timings, optional flags, referenced files, receipts, animation targets and supplied-clause fidelity passed."
+  },
+  "manualReview": {
+    "slideRendersInspected": 285,
+    "documentPagesInspected": 51,
+    "documentPages": {
+      "Course Overview": 1,
+      "Facilitator Guide": 25,
+      "Learner Workbook": 17,
+      "Law Firm Implementation Playbook": 8
+    },
+    "scope": "Every slide render individually inspected; six content/layout findings corrected and affected renders re-inspected. Every document page inspected. This is a visual/content review, not a guarantee of error-free teaching or production readiness."
+  },
+  "rehearsals": [
+    "Seven actual general-assistant prompts/responses saved, including repeat, missing-fee and financial tests; an input-label confound is documented rather than attributed solely to the model.",
+    "Actual Apple Vision OCR on the synthetic degraded clause; constructed damaged extract kept separate.",
+    "Four read-only model-selected lookup traces; host rejects an unknown ID and holds a zero-call budget. No external actions.",
+    "Fifteen deterministic workflow tests passed, covering changed values, missing evidence, invalid input, exact-version approval, rejection, recipient limits, duplicates, uncertain status, call and spend limits.",
+    "Local browser tested evidence hold, approved calculation and stale approval after a changed value.",
+    "Native PowerPoint Slide Show sampled current Session 3 slide 4: 70/20/10 bars reveal on three clicks, file opened without repair. Other current click groups checked structurally against target objects; not all replayed in native PowerPoint."
+  ],
+  "notYetRehearsed": [
+    "Copilot Studio/Zapier/Foundry portal build in the selected teaching account",
+    "Enterprise connected retrieval",
+    "Live deep-research service"
+  ],
+  "useBoundary": "Fictional practice data and public sources. Local filing simulation makes no URA connection, tax calculation, filing, payment or real client-data authorisation.",
+  "backup": "/Users/jothamwambi/.Trash/Applied AI Course - superseded edition 2026-10-26 13-39-52"
+}

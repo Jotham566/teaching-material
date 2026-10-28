@@ -1,0 +1,337 @@
+{
+ "about": "Adopted from the live decks on 27 October 2026 (drawn by illustrations.py with the Pillow version below). Approved assets are the pictures teachers see.",
+ "drawn_with_pillow": "12.3.0",
+ "files": {
+  "agent.png": {
+   "kind": "motif",
+   "motif": "agent",
+   "sha256": "23dc841bf47dade5c56e87f2f8049438380fe53c698a8f9964de0d9e9a76ddf2"
+  },
+  "bars.png": {
+   "kind": "motif",
+   "motif": "bars",
+   "sha256": "3d54c8275e9fb3882f946cebcee2c26b8efcb8c90f9ebfa949e3d7057d4710bf"
+  },
+  "books.png": {
+   "kind": "motif",
+   "motif": "books",
+   "sha256": "1fe9bda301696030bd9f244bacc21cddd946e7f05ef880a19add133c3a284867"
+  },
+  "bulb.png": {
+   "kind": "motif",
+   "motif": "bulb",
+   "sha256": "ccf31c57a1b201abfdeceda5c45dd9167f71155e08e6dcdfdfff1fc1403f44a5"
+  },
+  "calendar.png": {
+   "kind": "motif",
+   "motif": "calendar",
+   "sha256": "2b9f3e58933d8d8888c5b0178ad8fb4814d505205c90568ef0988233f9b8d02b"
+  },
+  "chat.png": {
+   "kind": "motif",
+   "motif": "chat",
+   "sha256": "cd7bd64f59b9706c7c0f3674999e236b76ba20c59d0a73f703937be7e41ae8e5"
+  },
+  "clipboard.png": {
+   "kind": "motif",
+   "motif": "clipboard",
+   "sha256": "17652d8e390a8e6e6219de06eb2800be76695b1dc5e6d8c858827485fcd60c6d"
+  },
+  "cloud.png": {
+   "kind": "motif",
+   "motif": "cloud",
+   "sha256": "b43fe77b6a4d0981946d4cae76081d7916923bc05ff23682c962e7cf2ec70dff"
+  },
+  "cogs.png": {
+   "kind": "motif",
+   "motif": "cogs",
+   "sha256": "10324b1fda3bceaeeaea02bdcdcd616a9209729c27f72c2f330fd7009886158a"
+  },
+  "compass.png": {
+   "kind": "motif",
+   "motif": "compass",
+   "sha256": "2bbcfdb8a6453cca2b0d99e68a6b822a7b0379169888515578d11a72f5d9dd4c"
+  },
+  "cycle.png": {
+   "kind": "motif",
+   "motif": "cycle",
+   "sha256": "1cb17d07941a75de46473866b420a2cbcee2327dd1fe34e3e21338238cb41534"
+  },
+  "database.png": {
+   "kind": "motif",
+   "motif": "database",
+   "sha256": "dcb52801584596456f79e02726bb325ff62bf7d030ac2537104eae1dd6c2eae6"
+  },
+  "deskperson.png": {
+   "kind": "motif",
+   "motif": "deskperson",
+   "sha256": "38ded50a74fbc6dc2c1045507b3d790243c7342a23743e02e745da5176e42c89"
+  },
+  "dice.png": {
+   "kind": "motif",
+   "motif": "dice",
+   "sha256": "d96a132d91fb8de7c8b2ac84d76c0db5d2371b13d40d14fae9be20df01de3e17"
+  },
+  "docstack.png": {
+   "kind": "motif",
+   "motif": "docstack",
+   "sha256": "71d102cb53c7fb86708501486a4a701ce6fda801175d6bdd5c0882f0a394156f"
+  },
+  "envelope.png": {
+   "kind": "motif",
+   "motif": "envelope",
+   "sha256": "5ba5aab3de4c85b032205d351b4d13459b8d885dcbf6c047acd8f5354f043ee2"
+  },
+  "flow.png": {
+   "kind": "motif",
+   "motif": "flow",
+   "sha256": "34f7be662bbf41666431b1420a1746bcee06b31feb0ac90fd178ca172323b746"
+  },
+  "folder_lock.png": {
+   "kind": "motif",
+   "motif": "folder_lock",
+   "sha256": "d6cbcfbd8bcca88ee97c713c3c37130750f25d47979e979aafe14d81c4c7eb54"
+  },
+  "gap.png": {
+   "kind": "motif",
+   "motif": "gap",
+   "sha256": "89edca0beaefa1a8582da8873900be4aaa830c48c38c1e30b546fef05402c6eb"
+  },
+  "gauge.png": {
+   "kind": "motif",
+   "motif": "gauge",
+   "sha256": "1d038d8ec139c93a62319ac0d3fa9bc9ab8d020cfee7efe43f9b1f03cde6ece5"
+  },
+  "hero_01.png": {
+   "kind": "hero",
+   "session": 1,
+   "motifs": [
+    "parties",
+    "cogs"
+   ],
+   "sha256": "a22b84c67f570fea73869223ecd578f03a6152f4785d5c419a2694d96421f280"
+  },
+  "hero_02.png": {
+   "kind": "hero",
+   "session": 2,
+   "motifs": [
+    "network",
+    "tokens"
+   ],
+   "sha256": "be744c2e1c4727d75aba9007eab77c0b0bdc19905397446fd551f0755d58be37"
+  },
+  "hero_03.png": {
+   "kind": "hero",
+   "session": 3,
+   "motifs": [
+    "chat",
+    "dice",
+    "window"
+   ],
+   "sha256": "25d644a164a3249776ae2a4b09cf292fe7cb0d816c963b0334f87be5bc5d5181"
+  },
+  "hero_04.png": {
+   "kind": "hero",
+   "session": 4,
+   "motifs": [
+    "clipboard",
+    "sidebyside"
+   ],
+   "sha256": "b0e81cab1a287216462a6d6ccf907e8deeca7d4d51ae49c00f4dd09588264476"
+  },
+  "hero_05.png": {
+   "kind": "hero",
+   "session": 5,
+   "motifs": [
+    "scanpage",
+    "database"
+   ],
+   "sha256": "081cc2d5b7ca06077199b902c633a9bae08c889c0e91dbaf1374326d0c602206"
+  },
+  "hero_06.png": {
+   "kind": "hero",
+   "session": 6,
+   "motifs": [
+    "database",
+    "vecmap",
+    "magnifier"
+   ],
+   "sha256": "5549c36da6f94e6cf38b65226803f6d1968c87c5ba7817b62f3d9b1aa3d69608"
+  },
+  "hero_07.png": {
+   "kind": "hero",
+   "session": 7,
+   "motifs": [
+    "scales",
+    "books"
+   ],
+   "sha256": "9649d8a5dc1da079b7dcc8bde809bc11a267398706ac9bf60dee27abbdd38291"
+  },
+  "hero_08.png": {
+   "kind": "hero",
+   "session": 8,
+   "motifs": [
+    "docstack",
+    "magnifier"
+   ],
+   "sha256": "4cabbf8854e20809654002233e3b3eb8d30ec5718b07a07ee1b4486874cfd8e2"
+  },
+  "hero_09.png": {
+   "kind": "hero",
+   "session": 9,
+   "motifs": [
+    "agent",
+    "flow"
+   ],
+   "sha256": "1bd830d77d42a071ff95d8fc27ad58654d4d1a48654eda252217ec2351d61d1d"
+  },
+  "hero_10.png": {
+   "kind": "hero",
+   "session": 10,
+   "motifs": [
+    "ledger",
+    "bars"
+   ],
+   "sha256": "80ff23447a052bcf5389e6e640b381c7b636d7cb23ea2c684ef5d74371d23b94"
+  },
+  "hero_11.png": {
+   "kind": "hero",
+   "session": 11,
+   "motifs": [
+    "shield",
+    "scales"
+   ],
+   "sha256": "87ad7e0386e6f59d11d32a1f7453a934ebcecec0a73e60dc003b2023f2d463c5"
+  },
+  "hero_12.png": {
+   "kind": "hero",
+   "session": 12,
+   "motifs": [
+    "timeline",
+    "team",
+    "stairs"
+   ],
+   "sha256": "6f6a481d511c0e4dcf087ea64aa7b0c32e6d30b3c3468599bc02f5d340b0b44b"
+  },
+  "hourglass.png": {
+   "kind": "motif",
+   "motif": "hourglass",
+   "sha256": "85c86ad79a9e7a02702e5cb46b1b8f5986d5ddd6e90e4dfec1e0a1ef322470cd"
+  },
+  "laptop.png": {
+   "kind": "motif",
+   "motif": "laptop",
+   "sha256": "7f1ab94732a17e88342e9ca8c133a9eb4a0ad7c96a610814561128ce92c6c0a2"
+  },
+  "ledger.png": {
+   "kind": "motif",
+   "motif": "ledger",
+   "sha256": "9ad125b93faf6747fca3555bf19d4003c9f9e32cbfa0be0f9a7b8c1682436ea7"
+  },
+  "magnifier.png": {
+   "kind": "motif",
+   "motif": "magnifier",
+   "sha256": "5cc133beb31862b5f2033388c4b500e356d9a5fc4894093cdff50f31abb17b5a"
+  },
+  "network.png": {
+   "kind": "motif",
+   "motif": "network",
+   "sha256": "38d306c117765d027fbc1dc03ec9d38326f01f229ba9c3b6324a4870dbcc478b"
+  },
+  "parties.png": {
+   "kind": "motif",
+   "motif": "parties",
+   "sha256": "741daf3d7f4fa5301dc1cc4018ce3ad20e1a8707e08e127fe6266395e566e295"
+  },
+  "people_ai.png": {
+   "kind": "motif",
+   "motif": "people_ai",
+   "sha256": "024f9bf29b81ebcc64fc90e06f1ccf832482390c0bc3eeb1b0f4768bbda33dfc"
+  },
+  "puzzle.png": {
+   "kind": "motif",
+   "motif": "puzzle",
+   "sha256": "8bf28fa2c86f53a46ae338234b0fcc043a6608b8c52abd8ee465cafb002cf93a"
+  },
+  "question.png": {
+   "kind": "motif",
+   "motif": "question",
+   "sha256": "e84e47f4b1543eaecee43b97842466ad7ce9e8514b738fbf41027476eb018c9d"
+  },
+  "rewind.png": {
+   "kind": "motif",
+   "motif": "rewind",
+   "sha256": "f6dd77d8564066d69fca70ebfcca09a6a7cb5461ca05b1efb4f4b999a24e9447"
+  },
+  "scales.png": {
+   "kind": "motif",
+   "motif": "scales",
+   "sha256": "cea5520727fd64f82875e8517cf885255ea885fbe96571a0739b50fe22e0fb9b"
+  },
+  "scanpage.png": {
+   "kind": "motif",
+   "motif": "scanpage",
+   "sha256": "0d20ff83f5f942ef72de23b07646e97e11f3888df1e63b0e95d8bdf8a1cc3dfa"
+  },
+  "shield.png": {
+   "kind": "motif",
+   "motif": "shield",
+   "sha256": "0ca00b3577cfc685d8001b376abbe75ff7668c749acc8d241401b06ae13b6f0c"
+  },
+  "sidebyside.png": {
+   "kind": "motif",
+   "motif": "sidebyside",
+   "sha256": "9324764f8c24a2b944e70c74844e7a381e61e4cad7c5ad9a3fb741e86f713a8b"
+  },
+  "signpost.png": {
+   "kind": "motif",
+   "motif": "signpost",
+   "sha256": "cd95e20344afe0408ea887d9172d4b2c85aaf69640b958b1d432461c78f96d82"
+  },
+  "stamp.png": {
+   "kind": "motif",
+   "motif": "stamp",
+   "sha256": "95751356cfe7f1a425ada3a3042bb6edb4823727b68433013e1c97c75de3f05c"
+  },
+  "stopgate.png": {
+   "kind": "motif",
+   "motif": "stopgate",
+   "sha256": "599f27117cd2f029bc5a0a2a3a7ec3a259c2868aa2eb4594448d508e9ef40c68"
+  },
+  "target.png": {
+   "kind": "motif",
+   "motif": "target",
+   "sha256": "6613fd1db8c4bc59c6e57384b1d1facb88df61e28d3b66b9b601d4d9a0fb868f"
+  },
+  "team.png": {
+   "kind": "motif",
+   "motif": "team",
+   "sha256": "7998f6750928e7888ab33842873f49bac924b8837074b5ed2cef776522416d1a"
+  },
+  "tokens.png": {
+   "kind": "motif",
+   "motif": "tokens",
+   "sha256": "658e364363ce298db07f16caaafa80a1a0a16acdae919fd891175a0442e43cfb"
+  },
+  "tree.png": {
+   "kind": "motif",
+   "motif": "tree",
+   "sha256": "434a17776dbd06847cbb5683b159a1becd2bdd58749af220029939bbf9f4be28"
+  },
+  "vecmap.png": {
+   "kind": "motif",
+   "motif": "vecmap",
+   "sha256": "cf134e912629a1a2bde2f27bf3c68b1de75cd843d058219e5c8116024c619ba4"
+  },
+  "warn.png": {
+   "kind": "motif",
+   "motif": "warn",
+   "sha256": "cd154140bf6681ccf7fdf579618dc7c8eeab826089aa4b7d09d48343d87a0bde"
+  },
+  "window.png": {
+   "kind": "motif",
+   "motif": "window",
+   "sha256": "d2876bcf6186a9f8b827c265b61faa39e9b5972e74e611c262caee06424cc0d4"
+  }
+ }
+}

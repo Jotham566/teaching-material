@@ -1,0 +1,177 @@
+Welcome to Session 3. Last session we looked at how a model learns. Today we look at what it does when you ask it a question.
+
+Here is the question we'll work on. Why can a fluent answer vary from one run to the next, leave out evidence, or state a fact that no document supports? In a legal or tax practice that matters a great deal, because a smooth paragraph is easy to trust and hard to audit.
+
+By the end of the session we'll have run a reliability comparison on our own matter, and you'll have a routine for checking answers.
+
+Before I show you anything new, I want to check what we covered last time. Here's one for you. We upload a new clause today, for example the Section 12.6 change in the Key Terms. Which of the model's learned parameters must change? A parameter is one of the numbers the model adjusted during training. Take your time.
+
+Here's where I land. None of them need to change. Training is finished. The clause arrives as input at the time of the request, and we call that inference. If that feels slippery, try this angle. Close the chat and open a new one. What does the model still hold from your file? Nothing.
+
+That brings us to today's question. Why can a fluent answer vary, omit evidence or invent a fact? We'll finish with an observed comparison and a practical checking routine. First, let's see how a prompt becomes a response.
+
+Let me show you the path from your question to the answer. There are three steps.
+
+First, the application assembles what the model will see. That means instructions, your question and any documents it was given. Second, the model, which is the trained program, calculates a score for every possible next token. A token is a small piece of text, often a word or part of a word. Third, a decoding method picks one token, adds it to the text, and the whole process repeats.
+
+Now a question for you. Is the model normally choosing one finished answer from a shelf of prewritten answers? Say it out loud if it helps.
+
+No. It produces the text piece by piece. If you're tempted to say it looks answers up, try this. If it looked answers up, why would the same question come back worded differently?
+
+Some products add search or tools before this step. What I've described is the core mechanism underneath them.
+
+Let's make that concrete with a half-written sentence. The model has the words, the provider remains, and it has to choose what comes next.
+
+There are three candidates. The first is the word responsible, and the model gives it seventy percent.
+
+Then liable, at twenty percent.
+
+And finally available, at ten percent. I want to be clear that these numbers are invented for teaching. They don't come from a real model. The percentages describe how likely each word is as the next word, and they add up to one hundred. A sentence that reads well can still leave out a legal condition, such as the group exception in Section 12.6 as replaced by the Key Terms.
+
+So here's a question for you. Does seventy percent here mean there's a seventy percent chance the legal advice is correct? Let's hear your answer first.
+
+Not at all. The number belongs to the next word. It says nothing about whether a legal claim is true. If you find yourself agreeing with the seventy, ask yourself what source would tell you whether the sentence is true.
+
+Now let's watch the answer grow one token at a time, as a loop. We start with the current prefix, which is the text so far. It reads, the provider remains.
+
+Next the model scores the possible next tokens and the decoding method picks one. Here it chooses the word responsible.
+
+That word joins the text, and we have a new prefix. The provider remains responsible.
+
+Then the loop closes. The updated prefix goes back in, and the model produces the next token from it, again and again.
+
+The step to watch is that the answer so far becomes input for the next word. If an early word leaves out a qualification, later words build on that. The model reads the signed contract only if the system has supplied it. Our real question is whether Victoria's consent is needed. What would this prefix need in front of it before we trusted the next words? Sit with that for a second. It needs the current clause, meaning Section 12.6 as replaced by the Key Terms, and the transaction facts. If that feels vague, ask yourself which document you would hand it first.
+
+This table is about why one prompt can give different answers. Decoding is the rule for picking a token from the candidate scores. Since there's more than one possible pick, more than one response is possible.
+
+Temperature is a setting that can flatten or sharpen those scores. Many chat products don't show it, so I won't promise that your tool has the setting. Low randomness often favours the strongest candidates. It gives no proof of truth and no guarantee that two runs match.
+
+Try this one. If three answers to the same question agree, have we verified the clause? No rush.
+
+No. Agreement between answers is a different thing from comparison with the agreement text itself. If you lean towards yes, imagine all three read the wrong document. What would they agree on?
+
+Today's run may well show three matching answers, and that's a valid result.
+
+Now let's talk about how much the model can see at once. That limit is called the context window. First comes a box for the active context. It holds what the model can use for this request.
+
+Inside it sit the instructions, the evidence, the conversation so far and the output, because the answer being written also takes up space. The window is the amount of text the model can work with in one request. The proportions here are conceptual. Each product sets its own rules for what goes in, what gets summarised and what is dropped.
+
+Then comes the line underneath the box. Application files and earlier material can sit outside the window. A file in the application isn't always in the window.
+
+A quick question before we go on. A file is uploaded to the chat. Can it be available in the application and still absent from what the model used to write this answer? Have a think.
+
+Yes. Available, retrieved and in the window are three different states. If you're unsure, ask yourself how you would find out which pages the answer actually used.
+
+There are two separate problems here. One is capacity, a hard limit on how much fits. The other is use, how well the model works with what does fit. A passage can sit inside the window and still be left out or misread. The relevant passage may not be retrieved, or the model may not weigh it effectively. So the habit is to ask for the exact passage and inspect the original.
+
+Our agreement has a cross-reference. The Key Terms replace the Standard Terms' Section 12.6, and the Key Terms control. In class we'll compare answers from the whole agreement, from the Standard Terms only, and from the focused excerpt. I won't promise a failure on any of them. A correct answer is a valid result.
+
+Now it's your turn. If the window is large enough to hold the whole agreement, do we still need to check the exception against the text? Think it over.
+
+We do, because evidence that is present can still be misread or omitted. If you said no, what check would you do on the answer?
+
+Let's look at how the model relates words to one another. Here's a sentence. The provider remains responsible for its obligations. The model builds the meaning of each word by weighing the other words around it. That weighing is called attention.
+
+First we mark the words that matter, provider and responsible, and everything else counts as other context.
+
+Then take the word its. A link is drawn from its to provider.
+
+The weights come from the input, so the same word gets a different representation in a different sentence. Think of the word charge in a security clause and in a criminal allegation. The surrounding words differ, so the representation differs. The links here are invented for teaching. Real attention depends on the input, the layer and the head, and it isn't a record of the model's legal reasoning.
+
+So in this sentence, what does its point to, and how would you know? See what you come up with.
+
+To the provider, and you know from the surrounding words. If you're tempted to say these arcs show how the model reasoned, ask who verified that they match a real decision.
+
+Now to what goes wrong. Hallucination is the word for generated content that is false, unsupported or inconsistent with the evidence. Fluent language is no test of truth.
+
+The model is trained to produce likely text. That goal doesn't require it to check each statement against a source. Missing sources, vague instructions and reasoning slips can each contribute, so I wouldn't point to a single cause.
+
+Take our matter. The signed Fee Schedule wasn't supplied to us. If an answer gives Victoria an annual fee figure, nothing in the evidence supports it.
+
+One for you to work out. The model states the annual fee as a number. Which source would establish the amount? Take a moment with that.
+
+It would be the signed Fee Schedule, and the documents we were given don't include it. If you said the contract in general, narrow it down. Where in the Order Form does the fee figure live, and is that document in front of us?
+
+This table lists four things that can improve an answer, and in the last column, what is still left for you to check.
+
+A reasoning-oriented mode spends more computation on a multi-step task, and you still check the conclusion against the evidence. Search or retrieval brings in current or task-specific sources, and you check their authority, coverage and fidelity. A calculation tool executes the arithmetic, and you check which numbers went in and the formula. Human review adds professional judgment, and the reviewer needs competence and evidence.
+
+An explanation in chat is a piece of generated text. It isn't a transcript of the model's inner workings. What I want from the model is a short justification, the source passage and a calculation I can repeat.
+
+Let me put a question to you. Can a convincing explanation replace a missing source? Give that a little thought.
+
+No. We request the source or record the gap. If you hesitate, think about what you would write in the file note.
+
+Let's look at three kinds of input. A text layer can be read and transformed, and the failure to inspect is a lost scope or exception. A scanned page is an image. The tool recognises the image or runs OCR, which is software that turns picture text into typed text. There the failure to inspect is a missing word or a wrong reading order. A spreadsheet can be read as a table or calculated, and the risk is the wrong cells, units or formula.
+
+An assistant that accepts images may use several components behind the screen. Session 5 tests extraction in detail. For now I'll mention only that OCR output on a poor scan broke the key consent sentence in our saved test output.
+
+Here's something to chew on. The assistant has seen the page. Does that mean it extracted every clause accurately? Work it through before I answer.
+
+It doesn't. We compare its output with the source. If you think it does, how would you spot one missing word?
+
+Now we compare actual runs on the same fictional agreement. First, three fresh chats asked the same question. Agreement between them tells us about repeatability on those runs; it does not independently verify the answer. Then we changed the evidence: the full agreement, Standard Terms alone, and the consent extract. We also asked for the missing annual fee.
+
+Before I show you the outputs, what could an answer based only on Standard Terms miss?
+
+Take a moment to decide.
+
+It can miss the Key Terms replacement. We must also establish whether this transaction involves an assignment, a change of control or neither. The words internal reorganisation do not settle that question. Some real outputs quoted the right clause and still assumed a trigger.
+
+We will mark those failures, apply our source review workflow and inspect the revisions. I keep the original output, the feedback and the revision separately. A revised answer after specific feedback is a different observation from a first attempt. Our checked answer key is my teaching reference, rather than a model result.
+
+Let's talk about what a workflow costs. Four things drive it. Inputs and outputs are measured in tokens, and I use actual usage where the product reports it. Tools and repeated runs add calls, retries and set-up. Human checking is the minutes spent per acceptable result. Maintenance covers refreshing sources, testing and support.
+
+We'll use the Cost and Effort Example file. Its rates are invented for the exercise and aren't any provider's prices. For example, it assumes 40 tasks a month, 30 manual minutes and 20 assisted minutes, with a stress case of 33. Remember that checking time belongs in the sum.
+
+I'd like to hear your thinking on this one. A cheaper model needs two retries and a long correction on each matter. Could it cost more per reviewed matter than a dearer one? Mull that over.
+
+Yes, because the cost that counts is the cost per acceptable result. If you picked the lowest token rate, ask where the reviewer's minutes went in your total.
+
+Now for our in-class work, which takes about twenty-five minutes. First, I show you the first example and keep its actual output. Then you predict which parts of the answer might vary, and we run the same fictional-source task in three new chats.
+
+Next we compare the whole agreement with the focused excerpt. After that we ask for the annual fee. We score source fidelity and completeness separately from writing quality, and we keep the prompts and outputs in the Generation Run Record file.
+
+Before we start, tell me this. Which parts of the answer do you expect to differ between the three runs, and which should stay the same? See what you come up with.
+
+I'd expect wording and order to differ, while the quoted clauses and the list of unknown facts stay.
+
+If the account is unavailable, I'll use the saved runs from one Claude model on one day, 26 October 2026, with one run per condition except the three repeats. I'll label that step unexecuted and keep time for the explanation. A correct or identical result is still a valid result.
+
+Let's say what the evidence supports. Before I read it out, tell me the conclusion in your own words. Go ahead.
+
+Here's mine. Generation selects tokens conditioned on context. Responses can vary. Matching answers still need evidence checks. A larger context or a reasoning mode doesn't remove that need.
+
+The second point is a limit. The probabilities in our diagram were invented, and real behaviour and interface controls differ by product.
+
+A quick question before we go on. Which part of today's result is still unverified? Take a breath and think.
+
+What we saw only once, such as three runs of one model, and the controls of your own tool. One run shows what happened once and gives no failure rate. If you're tempted to claim a general rate, ask how many runs you would need before saying that.
+
+I'll keep a list of open questions on the page.
+
+This is the decision the firm is making. It's a class decision record, and it doesn't authorise anything for the firm. The proposed decision is to require source checking and measured review effort before the firm relies on a workflow. We'll write down a proposed owner and one condition for going ahead.
+
+Now it's your turn. What evidence would change this decision, in either direction? Let's hear your answer first.
+
+Something observable would do it. Review minutes per matter from the cost file would count. So would errors found against the agreement text, or a change in the permitted scope of use. We revisit the decision if the evidence, the quality or the scope changes.
+
+If what comes to mind is a feeling, ask what we would measure to settle it.
+
+We record the decision and the evidence still needed. Then we have three questions to check what we covered.
+
+Let's finish with three questions. Answer each in turn, and I'll give mine afterwards.
+
+First. The document never supplies a renewal fee. What should the answer say? Have a think.
+
+The answer should state that the fee is missing and request the source, here the signed Fee Schedule.
+
+Second. A longer context window includes the clause. Is the conclusion guaranteed? Think it over.
+
+No. Capacity is different from faithful use, so the answer is still compared with the text.
+
+Third. Three identical responses appear. What is the remaining verification? Give it a moment.
+
+You compare the proposition with the authoritative text and the facts. If any answer felt partial, ask for the source that would support it.
+
+Next session, Session 4, covers AI tools, effective instructions and safe use.

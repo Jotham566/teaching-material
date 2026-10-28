@@ -34,3 +34,13 @@ DataAnalysis_Track/decks/**  linguist-generated=true
 figs/**                      linguist-generated=true
 DataAnalysis_Track/figs/**   linguist-generated=true
 qr/**                        linguist-generated=true
+
+# The Business AI course inventory and provenance records pin exact source bytes.
+# Preserve exported CSV line endings and raw evidence when checking out the course.
+Professional_AI_Training/Business_AI/** -text
+"Professional_AI_Training/Business_AI/**/Observed Runs/**" -whitespace
+"Professional_AI_Training/Business_AI/**/Reference Assets/**" -whitespace
+Professional_AI_Training/Business_AI/**/fonts/*LICENSE* -whitespace
+Professional_AI_Training/Business_AI/**/*.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+"Professional_AI_Training/Business_AI/**/Animation Guide.txt" whitespace=-blank-at-eof
+"Professional_AI_Training/Business_AI/**/Classroom Run Sheets.txt" whitespace=-blank-at-eof
