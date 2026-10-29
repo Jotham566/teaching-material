@@ -2,7 +2,7 @@
 
 ## Timed take-home Test 1 (23 October 2026)
 
-Live Apps Script version 6 and the Cloudflare page were updated on 23 October 2026.
+On 29 October 2026, the existing Apps Script web-app deployment was updated to version 22 with the allocated-email metadata and Colab account preflight. The Cloudflare Worker was already live and was not redeployed.
 
 See [the current test checklist](../test_operations/TEST_CHECKLIST.md). Test windows column E (`duration_minutes=180`) enables a persisted personal deadline. Test allocations append full name, started_at, personal_deadline, notebook_id and window_opens_at; original allocation columns and collected submissions remain intact. Old rehearsal allocations start their timer only on their first timed request. The collector checks the server-stored timer, independently of the notebook metadata or browser clock.
 
@@ -11,7 +11,9 @@ Issued Colab files are private, shared as reader only with the declared Google a
 
 ## Deployment status
 
-Published on 19 October 2026 through Cloudflare Workers Free. Students use the Cloudflare links below; Google redirects happen server-to-server, not in their browser. Apps Script version 4 runs as wirmbeesubs@gmail.com with access Anyone and authenticates the Worker using a private Script Property. Historical diagnosis below records earlier access settings.
+The existing Cloudflare Workers Free endpoint remains `https://iuea-test-entry.jothammartin-wambi.workers.dev/`. Its six course/test pages returned HTTP 200 after the Apps Script update. No Worker code, route, secret, or setting changed. Google redirects happen server-to-server, not in the learner's browser.
+
+The existing Apps Script web-app deployment now targets version 22 at the same `/exec` URL, running as `wirmbeesubs@gmail.com` with anonymous web-app access. The collector project source was updated separately; its existing triggers and spreadsheet were not reconfigured. Publication did not open or extend any test window.
 
 Student host: https://iuea-test-entry.jothammartin-wambi.workers.dev/
 
@@ -20,6 +22,8 @@ Use a course/test link, not the bare host. All six live routes were checked in t
 Deployment: https://script.google.com/macros/s/AKfycbxRlh_k0QbbgWbTE5gukY4QTEBFJ8Y8BNg9VL38Rtf5cYdq2RS93V6tn6ULgvzevrc/exec
 
 Use the course-specific links in [TEST_ENTRY_LINKS.md](../test_operations/TEST_ENTRY_LINKS.md). Downloads follow the existing Test windows; publication does not open all tests.
+
+The portal update was prepared from the previously deployed packet set. Only the submission helper was updated in each of the 18 packet notebooks; question cells, CSVs, instructions, timer values, and allocation metadata were preserved. Existing issued Drive notebooks were not edited, so an already-open Colab session continues unchanged. Previously issued notebooks do not gain the client-side preflight retroactively; the collector's server-side identity and ownership checks remain in force.
 
 Project: https://script.google.com/home/projects/1QHfTCL-vxjaWjrQLvDhg8PlGaHoUDzT5MdvJ7Tz46JK6VSz-4lgYFJay/edit
 
@@ -45,6 +49,16 @@ One course/test link and QR code leads to the entry page. Students enter their n
 Downloads are available only within the existing Test windows row. The notebook has the entered identity details filled in. Its final submission cell is collapsed in Colab and includes an opaque allocation code. The code is filled into the submission form automatically. The lecturer collector checks the code against the assigned course/test, registration and verified Google email, then checks the notebook snapshot metadata and hash before copying it privately.
 
 The portal's email is initially self-declared. Actual ownership is checked by the verified Google Form email and Drive snapshot ownership at submission. With no enrolled roster, this does not prove that a registration number belongs to the claimant. It does not prevent students sharing code, and the notebook's internal code is inspectable. The purpose is straightforward distribution and consistent file matching, not a claim of complete cheating prevention.
+
+## Google account consistency checks
+
+The issued notebook carries the allocated email in its identity cell and metadata. Before creating a snapshot, its Submit test cell asks the authenticated Colab Drive session for the active account and blocks the flow unless that account matches the allocation. After snapshot creation it checks the Drive file owner as well; on either mismatch it shows the active, allocated and (when available) snapshot-owner addresses and does not display a form link. It then adds the allocated email as the Google Form `authuser` hint. Students must still check the account shown in the form banner before submitting.
+
+The portal is intentionally deployed to execute as the lecturer and is reached through the Cloudflare gateway, which forwards requests server-to-server. It does not receive the learner's Google browser session, so `Session.getActiveUser().getEmail()` cannot reliably identify the learner. Do not change the deployment to execute as the accessing user as a shortcut; the portal-issued email is checked against the authenticated Colab account and the collector's verified Form respondent.
+
+Keep Colab notebook links canonical: an email-valued `authuser` query caused Google's invalid-authentication page in the recorded live rehearsal. Account selection is enforced in Colab and hinted on the Form link instead. No Apps Script manifest change is needed; the Colab cell already authorizes Drive operations for snapshot creation and lecturer sharing, and now also reads the active user and created file owner using Drive v3.
+
+When deploying these changes, regenerate the student notebooks and `Packets.gs`, update the portal source and publish a new Apps Script web-app version. Update the private lecturer collector project with `grader/exam_collection.gs` and run its existing synchronization/rehearsal procedure. Existing issued notebooks lack the new metadata but retain the identity-cell email fallback; the preflight still checks their active Colab account and snapshot owner.
 
 ## Original deployment procedure (historical)
 

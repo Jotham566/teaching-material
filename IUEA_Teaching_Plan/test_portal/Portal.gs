@@ -78,9 +78,10 @@ function requestTestFiles(input) {
  var packet=PORTAL_PACKETS[key+'|'+record[4]];if(!packet)throw Error('Files are unavailable. Tell the lecturer.');
  var nb=JSON.parse(packet.notebook),parts=key.split('|');
  if(w.minutes){name=record[6];reg=record[1];}
- nb.cells[1].source='# Do not edit this cell: identifies your attempt and preserves your timer.\nFULL_NAME = '+JSON.stringify(name)+'\nEMAIL = '+JSON.stringify(email)+'\nSTUDENT_ID = '+JSON.stringify(reg)+'  # Your Student ID/ Registration Number\nCOHORT = '+JSON.stringify(parts[0])+'\nTEST_ID = '+JSON.stringify(parts[1])+'\n';
+ nb.cells[1].source='# Do not edit this cell: identifies your attempt and preserves your timer.\nFULL_NAME = '+JSON.stringify(name)+'\nEMAIL = '+JSON.stringify(email)+'\n_IUEA_ALLOCATED_EMAIL = '+JSON.stringify(email)+'\nSTUDENT_ID = '+JSON.stringify(reg)+'  # Your Student ID/ Registration Number\nCOHORT = '+JSON.stringify(parts[0])+'\nTEST_ID = '+JSON.stringify(parts[1])+'\n';
  var finalCell=nb.cells[nb.cells.length-1];finalCell.source='# Do not edit this cell: links your saved answers to your test attempt.\n_IUEA_ALLOCATION = '+JSON.stringify(record[3])+'\nVARIANT = '+JSON.stringify(record[4])+'  # Internal file allocation; leave unchanged.\n'+(Array.isArray(finalCell.source)?finalCell.source.join(''):finalCell.source);
  nb.metadata.iuea_allocation_code=record[3];
+ nb.metadata.iuea_allocated_email=email;
  var instructions=packet.instructions,colabUrl='';
  if(w.minutes){
   var deadline=new Date(Math.min(Date.parse(record[8]),Date.parse(w.close))).toISOString();

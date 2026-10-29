@@ -12,15 +12,19 @@ class Call:
  def __init__(self,value):self.value=value
  def execute(self):return self.value
 class SubmitTests(unittest.TestCase):
- def helper(self,missing=False,deadline=None,advance_on_snapshot=False):
+ def helper(self,missing=False,deadline=None,advance_on_snapshot=False,active_email='synthetic@example.com',owner_email='synthetic@example.com'):
   captured={};shown=[];clock=[1000.0]
   class Timer:
    def __init__(self,seconds,callback):self.callback=callback
    def start(self):pass
    def cancel(self):pass
   class Drive:
+   def about(self):return self
    def files(self):return self
    def permissions(self):return self
+   def get(self,**kwargs):
+    if 'fileId' in kwargs:return Call({'owners':[{'emailAddress':owner_email}]})
+    return Call({'user':{'emailAddress':active_email}})
    def create(self,**kwargs):
     if 'fileId' in kwargs:captured['permission']=kwargs;return Call({})
     captured['bytes']=kwargs['media_body']
@@ -48,6 +52,19 @@ class SubmitTests(unittest.TestCase):
   link=next(x for x in shown if isinstance(x,str));self.assertIn('DEMO+%2F+%26+example',link);self.assertIn('authuser=synthetic%40example.com',link);self.assertIn(hashlib.sha256(captured['bytes']).hexdigest(),link);self.assertFalse(ns['_button'].disabled)
  def test_missing_identity_does_not_upload(self):
   ns,captured,shown=self.helper(True);self.assertEqual(captured,{});self.assertFalse(ns['_button'].disabled)
+ def test_active_account_mismatch_blocks_snapshot_and_form_link(self):
+  ns,captured,shown=self.helper(active_email='other@example.com')
+  self.assertNotIn('bytes',captured)
+  self.assertFalse(any(isinstance(x,str) and '<a ' in x for x in shown))
+  warning=next(x for x in shown if isinstance(x,str) and 'ACCOUNT MISMATCH' in x)
+  self.assertIn('other@example.com',warning);self.assertIn('synthetic@example.com',warning)
+ def test_snapshot_owner_mismatch_blocks_permission_and_form_link(self):
+  ns,captured,shown=self.helper(owner_email='other@example.com')
+  self.assertIn('bytes',captured);self.assertNotIn('permission',captured)
+  self.assertFalse(any(isinstance(x,str) and '<a ' in x for x in shown))
+  warning=next(x for x in shown if isinstance(x,str) and 'ACCOUNT MISMATCH' in x)
+  self.assertIn('Snapshot owner:</strong> other@example.com',warning)
+  self.assertIn('synthetic@example.com',warning)
  def test_expired_before_cell_blocks_auth_and_upload(self):
   with self.assertRaisesRegex(RuntimeError,'Time has ended'):
    self.helper(deadline='1970-01-01T00:10:00Z')
