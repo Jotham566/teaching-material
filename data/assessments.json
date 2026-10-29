@@ -290,7 +290,7 @@
     "closes_at": "2026-12-08T14:00:00+03:00",
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.10-colab-v1"
+    "assessment_version": "2026.10-colab-v2-units"
   },
   {
     "key": "CML3112|ML_PROJECT",
@@ -623,7 +623,7 @@
     "closes_at": "2026-12-11T11:00:00+03:00",
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.10-colab-v1"
+    "assessment_version": "2026.10-colab-v2-units"
   },
   {
     "key": "CML3113|ML_PROJECT",
@@ -952,7 +952,7 @@
     "closes_at": "2026-12-11T14:00:00+03:00",
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.10-colab-v1"
+    "assessment_version": "2026.10-colab-v2-units"
   },
   {
     "key": "CML3111|ML_PROJECT",

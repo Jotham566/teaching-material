@@ -151,7 +151,7 @@
     "maximum": 100,
     "deterministic_maximum": 100,
     "reasoning_maximum": 0,
-    "version": "2026.10-colab-v1",
+    "version": "2026.10-colab-v2-units",
     "parts": [
       [
         "split",
