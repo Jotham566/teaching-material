@@ -9,18 +9,23 @@ function testMonitorRows_(allocations,receipts,windows,now){
  var used={},rows=[];
  allocations.slice(1).forEach(function(a){
   if(!/^CML311[123]\|TEST[12]$/.test(a[0])||/^DEMO|^REHEARSAL/i.test(String(a[1])))return;
+  var issued=stamp(a[5]);
   var matches=[];receipts.slice(1).forEach(function(r,i){
    if(r[10]==='REHEARSAL'||r[1]+'|'+r[2]!==a[0])return;
    // Match BOTH entry identifiers. Do not silently merge conflicting accounts.
    if(norm(r[6])===norm(a[1])&&email(r[5])===email(a[2])){matches.push(r);used[i]=true;}
   });
   var accepted=matches.filter(function(r){return r[10]==='COLLECTED';});
-  var latest=matches.slice().sort(function(a,b){return (stamp(b[7])||0)-(stamp(a[7])||0);})[0];
+  // A lecturer reset issues a new allocation: failures and superseded receipts from
+  // before it are history (kept in Collection), not the student's current status.
+  var current=matches.filter(function(r){return r[10]!=='SUPERSEDED_FOR_RETRY'&&(issued===null||(stamp(r[7])||0)>=issued);});
+  var latest=current.slice().sort(function(a,b){return (stamp(b[7])||0)-(stamp(a[7])||0);})[0];
   var w=windowMap[a[0]],start=stamp(a[7]),personal=stamp(a[8]),close=w?stamp(w[2]):null;
   var deadline=personal!==null&&close!==null?Math.min(personal,close):personal!==null?personal:close;
   var status,detail='';
   if(accepted.length){status='Submitted';if(matches.length>accepted.length)detail='Accepted submission retained; additional receipt needs review in Collection.';}
   else if(latest){status='Submission needs attention';detail=String(latest[10])+': '+String(latest[14]||'Check Collection.');}
+  else if(w&&!start&&issued!==null&&String(w[3]).toUpperCase()==='YES'){status='Not started';detail='Issued or reset by the lecturer; the timer starts when the student opens the test.';}
   else if(!w||!start||!deadline){status='Timer needs attention';detail='Missing start time or deadline; inspect Test allocations and Test windows.';}
   else if(String(w[3]).toUpperCase()!=='YES'){status='Test disabled';}
   else if(now>deadline){status='Time expired without accepted submission';}
@@ -29,7 +34,12 @@ function testMonitorRows_(allocations,receipts,windows,now){
   rows.push({key:a[0],name:String(a[6]||''),reg:String(a[1]||''),email:String(a[2]||''),start:start,deadline:deadline,status:status,remaining:status==='In progress'?Math.max(0,Math.ceil((deadline-now)/60000)):'',submitted:submission?stamp(submission[7]):null,detail:detail,allocation:String(a[3]||''),started:!!start});
  });
  receipts.slice(1).forEach(function(r,i){
-  if(used[i]||r[10]==='REHEARSAL'||!/^CML311[123]$/.test(r[1]))return;
+  if(used[i]||r[10]==='REHEARSAL'||r[10]==='SUPERSEDED_FOR_RETRY'||!/^CML311[123]$/.test(r[1]))return;
+  // A failed receipt (e.g. mistyped registration) is resolved once the same student was reissued an allocation later.
+  if(r[10]!=='COLLECTED'&&allocations.slice(1).some(function(a){
+   var issued=stamp(a[5]);
+   return a[0]===r[1]+'|'+r[2]&&issued!==null&&issued>(stamp(r[7])||0)&&(norm(a[1])===norm(r[6])||email(a[2])===email(r[5]));
+  }))return;
   rows.push({key:r[1]+'|'+r[2],name:String(r[4]||''),reg:String(r[6]||''),email:String(r[5]||''),start:null,deadline:null,status:'Submission needs attention',remaining:'',submitted:stamp(r[7]),detail:'No exact entry match. '+r[10]+': '+String(r[14]||'Check both identifiers in Collection and Test allocations.'),allocation:'',started:false});
  });
  return rows.sort(function(a,b){return a.key.localeCompare(b.key)||(a.start||0)-(b.start||0)||a.reg.localeCompare(b.reg);});

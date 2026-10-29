@@ -17,4 +17,13 @@ assert.equal(run([a()],[r('REHEARSAL')])[0].status,'In progress');
 assert.equal(run([a('DEMO / TEST')],[]).length,0);
 assert.equal(run([a()],[],now,[[],['CML3111|TEST1','2026-10-24T08:00:00Z','2026-10-24T09:30:00Z','YES',180]])[0].status,'Time expired without accepted submission');
 const missing=a();missing[7]='';assert.equal(run([missing],[])[0].status,'Timer needs attention');
-console.log('PASS monitor: active, expired, accepted, failed, duplicate, conflicting identifiers, rehearsal exclusion, cutoff and missing timer.');
+// Reset allocation: older failures/superseded receipts must not show; no timer yet = Not started.
+const reset=a();reset[5]='2026-10-24T09:30:00Z';reset[7]='';reset[8]='';
+assert.equal(run([reset],[r('COLLECTION_ERROR')])[0].status,'Not started');
+assert.equal(run([reset],[r('COLLECTION_ERROR')]).length,1);
+assert.equal(run([reset],[r('SUPERSEDED_FOR_RETRY')]).length,1);
+assert.equal(run([reset],[r('COLLECTION_ERROR','DE-001-TYPO')]).length,1);
+assert.equal(run([reset],[r('COLLECTION_ERROR','DE-001-TYPO','other@example.com')]).length,2);
+const failedAfter=a();failedAfter[5]='2026-10-24T08:30:00Z';
+assert.equal(run([failedAfter],[r('COLLECTION_ERROR')])[0].status,'Submission needs attention');
+console.log('PASS monitor: active, expired, accepted, failed, duplicate, conflicting identifiers, rehearsal exclusion, cutoff, missing timer and reset.');

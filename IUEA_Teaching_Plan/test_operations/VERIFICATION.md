@@ -1,3 +1,26 @@
+## Multi-account submission safeguards — published 29 October 2026
+
+Published Apps Script portal deployment version 22 at the existing `/exec` URL, running under `wirmbeesubs@gmail.com`; the existing Cloudflare Worker and all six course/test URLs were left unchanged. Their entry pages returned HTTP 200 after publication. The portal update embeds each allocated email in the notebook identity cell and metadata. Its Colab Submit test cell checks the authenticated Drive account before snapshot creation, verifies snapshot ownership before lecturer sharing or displaying the Form link, and shows a prominent active/allocated/owner warning while withholding the link on mismatch. The Google Form URL retains the email-valued `authuser` hint; Colab URLs remain canonical because email-valued `authuser` caused an invalid-authentication page in the live test recorded below.
+
+The collector project was updated in place and recorded as immutable source version 1. Only `examCollect_`, `examFormInstructions_`, and `examAllocation_` were replaced; existing lecturer retry, export, and trigger functions were preserved. Hash validation, allocation metadata checks, duplicate/submission guards, and the spreadsheet ledger remain unchanged. No Apps Script setup, retry, sync, or export function was run manually. No workbook rows, test windows, allocations, collected responses, Form response settings, Drive notebooks, triggers, Cloudflare settings, or secrets were altered directly by this release.
+
+The portal packet update was built from the previously deployed version 21 packet set, not the regenerated assessment-bank artifacts in the local worktree. Only the submission-helper source changed in the 18 packet notebooks; all question cells, CSVs, instructions, timer values, and other metadata were checked as unchanged. Already-issued notebooks were not edited, so open Colab sessions were not interrupted; they do not gain the client-side preflight retroactively, and continue to rely on the collector's existing server-side checks.
+
+The collector's existing periodic `syncColabExams` trigger should apply the revised Form instructions on its next scheduled run. I did not manually run it because that function also reconciles response acceptance against the live windows. A read-only trigger/form-state verification call returned a Google `NOT_FOUND` error, so the live trigger counts and refreshed Form descriptions could not be independently confirmed. No real two-account Form submission was attempted during the open Test 1 windows.
+
+There is no `appsscript.json` manifest in the repository. The Apps Script project's existing manifest was left unchanged (execute as deploying user; anonymous web-app access). The Colab helper uses the existing Drive v3 authorization for snapshot creation/sharing plus account/owner reads; no additional Apps Script OAuth scope or Cloudflare setting was introduced.
+
+Automated checks to run from the repository root:
+
+```sh
+python3 -m unittest tests.test_colab_submit
+node tests/test_test_portal.cjs
+node tests/test_exam_collection.cjs
+node tests/test_timed_takehome.cjs
+```
+
+For a live rehearsal, use only a separate synthetic allocation and closed rehearsal Form/workbook. Sign in to two Google accounts in the browser, issue the notebook to account A, then select account B when Colab asks for authorization. Clicking Submit test must show B versus A in the warning, create no snapshot, and display no Form link. Switch Colab to A and rerun: the snapshot must be owned by A and only then should the link appear with `authuser=A`. Open it and verify the Form banner shows A before submitting; the isolated collector should record `COLLECTED`. Finally, deliberately open the Form under B in the rehearsal and confirm the collector logs both conflicting addresses without copying the snapshot. Do not use a production allocation or consume a student's one allowed response for this test.
+
 ## 23 October 2026, 20:35 Kampala — Colab URL correction
 
 The exact email-valued `authuser` query returned by the portal reproduced a Colab invalid-authentication error even after the account session was restored. Removed that parameter from both new and resumed Colab links. Verified that the canonical notebook URL opens, and Colab's account selector offers the signed-in learner account with Google's own numeric account routing. No account number is hardcoded into student links. Submission-form account routing is unchanged; it was separately verified in the earlier end-to-end rehearsal. Apps Script version 10 publishes the correction; added a regression assertion that issued Colab URLs contain no `authuser` parameter.
@@ -177,3 +200,13 @@ No issued notebook, packet, allocation, receipt, schedule or deadline was change
 Passed local suites: test_timed_takehome.cjs, test_exam_collection.cjs, test_test_portal.cjs, test_test_gateway.mjs. Coverage includes accepted-attempt re-entry, alternate email with same registration, unchanged allocation/file state, stable active resumes, expiry, all nine timed packets and six entry routes. A direct HTTP live probe returned a non-JSON response; no live test submission was created. Deployment success and live source were verified in Apps Script.
 
 Google Forms may acknowledge a raw late/duplicate response; collection rejects it for grading. The portal's accepted status appears after collection processes the form. Existing Colab tabs are not remotely closed or rewritten.
+
+## 29 Oct 2026 – Test 1 deadline extension and batch reset
+
+- CML3111 and CML3113 Test 1 close moved from 2026-10-29T23:59+03:00 to 2026-10-30T23:59+03:00 (CML3112 unchanged).
+- 20 students with failed or timed-out Test 1 attempts were reset with `authoriseFreshTestAttempt` (5 CML3111, 15 CML3113). Students with a `COLLECTED` receipt were skipped by design.
+- Submitted counts were unchanged after the reset (CML3111 14, CML3112 12, CML3113 22). Reset students show "Timer needs attention" until they re-enter; their new timer starts on the next portal visit.
+- Audit trail: `Test Retry Authorisations` tab.
+- Follow-up resets: 3 CML3112 timed-out students were reset. Julia Hafez Chol's never-started CML3111 allocation and a stray CML3113 allocation (typo email/registration) were removed; her accepted CML3113 submission was kept (not reset).
+- `Test Monitor` now ignores failures that predate a lecturer reset or reissue, hides superseded receipts, and shows reissued students as "Not started" until they open the test (`grader/test_monitor.gs`, `tests/test_test_monitor.cjs`).
+- Post-operation monitor (20:50 EAT): CML3111 15 submitted, CML3112 12, CML3113 22; no failed or expired rows other than the test account. The one-off batch scripts were removed from the collector project.
