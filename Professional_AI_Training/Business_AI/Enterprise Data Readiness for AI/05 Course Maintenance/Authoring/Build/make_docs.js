@@ -138,7 +138,7 @@ async function workbook() {
     c.push(H2('Workshop tasks'));
     s.workshop.forEach((w, i) => {
       c.push(new Paragraph({ keepNext: true, keepLines: true, spacing: { before: 140, after: 40, line: 264 }, indent: { left: 540, hanging: 340 }, children: [run(`${i + 1}.  `, { bold: true, color: INK }), run(w.task, { color: INK })] }));
-      c.push(...ruled(3));
+      c.push(...ruled(2));
     });
     c.push(H2('Decide'));
     c.push(new Paragraph({ keepNext: true, keepLines: true, spacing: { after: 40, line: 264 }, children: [bold('Decide. '), run(s.decision.q)] }));
