@@ -1,0 +1,410 @@
+{
+ "session": 9,
+ "notes_title": "Session 9 puts your clean tables to work. Last time you cleaned a messy file and proved what you changed. Today we ask questions that need groups and several tables. Which branch sells the most, in which product category, in which month? We'll also meet a join that runs without a single error and makes revenue five times too big. By the end you'll know how to catch it.",
+ "notes_outcomes": "By the end you'll group rows and work out several answers at once, which is a PivotTable written as code. You'll join tables on a key and check the row count and the total, so no rows are lost and none are doubled. And you'll build a pivot table in code, using months and weekdays taken from dates. The live part carries the join traps, because they are easier to believe when you watch them run, and in the lab you hunt one down yourself.",
+ "notes_words": "Six words today, each with a spreadsheet cousin. Groupby is the rows box of a PivotTable. An aggregation is the sum, count or average in the values box. A merge is a VLOOKUP that returns every match. A left join keeps every row of the first table. Fan out is what happens when one row matches many and your totals swell. A pivot_table is the PivotTable itself. Read the right hand column and you'll see you already know these.",
+ "vocab": [
+  [
+   "groupby",
+   "Split a table into groups by one or more columns.",
+   "The rows box of a PivotTable"
+  ],
+  [
+   "Aggregation",
+   "One calculation that turns many values into one.",
+   "The values box of a PivotTable"
+  ],
+  [
+   "Merge",
+   "Join two tables by matching a shared column, returning every match.",
+   "VLOOKUP, but with every match"
+  ],
+  [
+   "Left join",
+   "A merge that keeps every row of the first table.",
+   "VLOOKUP with IFERROR around it"
+  ],
+  [
+   "Fan out",
+   "One row matching several rows, so the result gains rows.",
+   "A lookup list with repeated keys"
+  ],
+  [
+   "pivot_table",
+   "A pandas command that lays groups out as a grid.",
+   "A PivotTable"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 8",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "The order dates arrive as text. What do you do before you use them as dates?",
+     "a": "Convert them with pd.to_datetime, then check the column type again."
+    },
+    {
+     "q": "You removed eighty exact duplicate lines from the raw file. What goes in the cleaning log?",
+     "a": "The rule you used, and the row count before and after."
+    }
+   ],
+   "notes": "Cleaning comes first, with two questions from Session 8.\n\nFirst. The order dates arrive as text. What do you do before you can use them as dates? Have a think.\n\nYou convert them with to_datetime, then you check the column type again to prove it worked. That same move opens today's last topic, where we pull months and weekdays out of a date.\n\nSecond. You removed eighty exact duplicate lines from the raw file. What goes in the cleaning log? No rush.\n\nThe rule you used, and the row count before and after. A log like that is what lets someone trust your numbers. Today we'll meet a mistake that a row count catches straight away."
+  },
+  {
+   "type": "concept",
+   "title": "groupby is a PivotTable written as code",
+   "lead": "Split the table into groups, work out one answer per group, and put the answers in a small table.",
+   "points": [
+    {
+     "h": "Split",
+     "t": "One group of rows for each branch."
+    },
+    {
+     "h": "Apply",
+     "t": "Sum, count or average each group."
+    },
+    {
+     "h": "Combine",
+     "t": "One row per group comes back."
+    }
+   ],
+   "fig": "split_apply_combine",
+   "alt": "A big table is split into groups by branch, each group is summed, and the sums combine into a small table with one row per branch.",
+   "notes": "Today we answer questions that need groups and several tables. We start with groups.\n\nIn Excel you drag branch into the rows of a PivotTable, drag revenue into the values, and you get one total per branch. pandas has the same idea, and it's called groupby.\n\nLook at the picture. On the left sits the whole orders table. First it's split into piles, one pile for each branch. Then we apply a calculation to each pile, here a sum. Last, the answers are combined into one small table with one row per branch.\n\nSplit, apply, combine. Every groupby you write for the rest of the course follows those three steps."
+  },
+  {
+   "type": "code",
+   "title": "Total revenue for each branch",
+   "lang": "python",
+   "code": "import pandas as pd\n\norders = pd.read_csv('orders.csv')\nby_branch = orders.groupby('branch_id').order_value_ugx.sum()\nprint(by_branch)",
+   "says": [
+    "groupby names the column that makes the groups.",
+    "Then pick the column to work on.",
+    "sum is the calculation applied to every group."
+   ],
+   "output": "branch_id\nB01 283331305\nB02 238222000\nB03 157490190\nB04 176738325",
+   "notes": "Let's do it live. We load the orders again and group them by branch.\n\nThe word groupby takes the column that makes the piles. Here that's branch_id, so we get eight piles.\n\nThen we pick the column we want to work on, order_value_ugx. That's the same as dragging revenue into the values box of a PivotTable.\n\nLast, sum. Branch B01, Kampala Central, comes to two hundred and eighty three million, three hundred and thirty one thousand, three hundred and five shillings. These are sample figures, because orders.csv holds a five percent sample of the till transactions. If you add all eight, you get one billion, four hundred and thirty five million, six hundred and fourteen thousand, one hundred and eighty five. Keep that total in mind. It matters in a few minutes."
+  },
+  {
+   "type": "code",
+   "title": "Several answers for each group",
+   "lang": "python",
+   "code": "summary = orders.groupby('branch_id').agg(\n    orders=('order_id', 'count'),\n    revenue=('order_value_ugx', 'sum'),\n    average=('order_value_ugx', 'mean'))\nprint(summary.round(0))",
+   "says": [
+    "Each new column is a name, then the column and the calculation.",
+    "count, sum and mean run on each branch at once."
+   ],
+   "output": "orders revenue average\nB01 5885 283331305 48145.0\nB02 4830 238222000 49321.0",
+   "notes": "Usually one number isn't enough. A manager wants the count of orders, the revenue and the average, side by side. In a PivotTable you'd drag the value field in three times. In pandas you use agg.\n\nEach line inside agg makes one new column. You write the name you want, then in brackets the column to use and the calculation. So orders is a count of order_id, and revenue is a sum of order_value_ugx.\n\nThe result has one row per branch and three columns. Kampala Central has five thousand eight hundred and eighty five orders and an average of about forty eight thousand shillings. The word for any calculation like count, sum or mean is an aggregation. You'll use that word often."
+  },
+  {
+   "type": "compare",
+   "title": "VLOOKUP and merge",
+   "left": {
+    "h": "VLOOKUP in Sheets",
+    "points": [
+     "Finds the first match only",
+     "Fills one helper column at a time",
+     "A missing key shows #N/A"
+    ]
+   },
+   "right": {
+    "h": "merge in pandas",
+    "points": [
+     "Returns every match",
+     "Adds all the columns you pick",
+     "A missing key shows NaN"
+    ]
+   },
+   "verdict": "merge returns every match, so the row count can change under you.",
+   "notes": "Now the second big idea. Bringing information from another table, which is the job you give to VLOOKUP.\n\nVLOOKUP looks for your key in a second table and gives back the first match it finds. Then it stops. You also fill one helper column at a time.\n\nIn pandas the command is merge. It adds every column you pick in one line, and it doesn't stop at the first match. It returns every match.\n\nWhen a key can't be found, VLOOKUP shows the hash N slash A error. pandas leaves an empty cell, which it writes as NaN.\n\nRead the verdict. Returning every match is useful, and it also means the row count can change under you. We'll see two ways it happens."
+  },
+  {
+   "type": "code",
+   "title": "Add the branch name to every order",
+   "lang": "python",
+   "code": "branches = pd.read_csv('branches.csv')\nnamed = orders.merge(branches[['branch_id', 'branch_name']],\n                     on='branch_id', how='left')\nprint(len(orders), len(named))\nrev = named.groupby('branch_name').order_value_ugx.sum()\nprint(rev.sort_values(ascending=False).head(3))",
+   "says": [
+    "on names the key that both tables share.",
+    "how='left' keeps every order.",
+    "The row count must not change."
+   ],
+   "output": "30229 30229\nbranch_name\nKampala Central 283331305\nKampala Ntinda 238222000\nJinja 176738325",
+   "notes": "Here's merge at work. The orders table has a branch code such as B04, and the branches table has the full name. We bring the name across.\n\nThe on option names the key that both tables share. It's the lookup value in VLOOKUP.\n\nThe how option says left, which means keep every row of the table on the left, our orders, even if no match is found.\n\nThen comes the habit I want you to keep. Print the row count before and after. Thirty thousand two hundred and twenty nine orders went in, and thirty thousand two hundred and twenty nine came out. Every branch code found exactly one name. Now the report says Kampala Central and Jinja, which a manager can read."
+  },
+  {
+   "type": "figure",
+   "title": "Four ways to join two tables",
+   "fig": "join_types",
+   "look": [
+    "Inner keeps only the rows found on both sides.",
+    "Left keeps every row of A and fills gaps from B.",
+    "Outer keeps everything from both."
+   ],
+   "caption": "In pandas: how='inner', 'left', 'right' or 'outer'. Table A is the one on the left.",
+   "alt": "Four small Venn diagrams for inner, left, right and outer joins with the kept area shaded.",
+   "notes": "There are four ways to join, and the picture shows what each one keeps. Table A is the one you start with, and table B is the one you bring in.\n\nAn inner join keeps only the rows found in both tables. Anything that has no partner is dropped without a word.\n\nA left join keeps every row of A. Where B has no partner, the new columns stay empty.\n\nAn outer join keeps everything from both sides. A right join is the mirror of a left join, and you'll rarely need it.\n\nSo which one should be your default? Sit with it for a second.\n\nA left join. It keeps every row you started with, so you can count what failed to match instead of losing it."
+  },
+  {
+   "type": "code",
+   "title": "Lost rows: an inner join drops the walk-ins",
+   "lang": "python",
+   "code": "customers = pd.read_csv('customers.csv')\ninner = orders.merge(customers, on='customer_id', how='inner')\nleft = orders.merge(customers, on='customer_id', how='left')\nprint(len(orders), len(inner), len(left))\nprint(inner.order_value_ugx.sum())",
+   "says": [
+    "Both joins run without any error.",
+    "The inner join lost thousands of orders.",
+    "So its revenue is far below the true total."
+   ],
+   "output": "30229 21058 30229\n998818340",
+   "notes": "Here's the first trap, lost rows. We join each order to its loyalty customer.\n\nBoth versions run. Neither gives an error or a warning.\n\nBut look at the counts. We started with thirty thousand two hundred and twenty nine orders. The inner join returns twenty one thousand and fifty eight. The left join keeps all thirty thousand two hundred and twenty nine. The difference is nine thousand one hundred and seventy one orders, the walk in customers with no loyalty number. You met that count in Session 7.\n\nNow the money. The inner join's revenue is nine hundred and ninety eight million, eight hundred and eighteen thousand, three hundred and forty. That's about four hundred and thirty seven million shillings below the true total, and nobody told us. A report built on it would understate sales by almost a third."
+  },
+  {
+   "type": "figure",
+   "title": "Doubled rows: one order, two matches",
+   "fig": "join_doubling",
+   "look": [
+    "Order O001 is in the orders table once, with its value.",
+    "The second table has two rows for O001.",
+    "So the result has two rows, and the value is counted twice."
+   ],
+   "caption": "In our data: orders.csv has one row per order. order_lines.csv has one row per product on an order.",
+   "alt": "Two small tables joined on order_id where a duplicate key in the second table produces two result rows for one order.",
+   "notes": "The second trap is the opposite. Rows that multiply. The drawing uses a small example.\n\nOn the top left, order O001 appears once, worth fifty thousand shillings.\n\nThe table below it has two rows for the same order. Think of two lines on one receipt.\n\nWhen you join on order_id, pandas does what it promised and returns every match. One order meets two lines, so the result has two rows. The fifty thousand is now counted twice.\n\nIn our files, order_lines has one row for every product on an order. An order has between one and thirty five lines, with a typical order having two or three. So this can happen to us."
+  },
+  {
+   "type": "code",
+   "title": "Join orders to order lines and add up the revenue",
+   "lang": "python",
+   "code": "lines = pd.read_csv('order_lines.csv')\ndoubled = orders.merge(lines, on='order_id')\nprint(len(orders), len(lines), len(doubled))\nprint(orders.order_value_ugx.sum())\nprint(doubled.order_value_ugx.sum())",
+   "says": [
+    "The joined table has one row per line.",
+    "This is the true revenue, from orders.",
+    "The same column after the join: far too big."
+   ],
+   "output": "30229 98066 98066\n1435614185\n7606090055",
+   "notes": "Now we do it with the Lakeside files. We join the orders to their lines, then add up order_value_ugx.\n\nThe joined table has ninety eight thousand and sixty six rows. That's one row for each line, and so more than the thirty thousand orders we started with.\n\nBefore the join, order_value_ugx adds up to one billion, four hundred and thirty five million, six hundred and fourteen thousand, one hundred and eighty five shillings. That's the true revenue of the sample.\n\nAfter the join, the same column adds up to seven billion, six hundred and six million, ninety thousand and fifty five. That's about five point three times the truth. No error, no warning. The order value belongs to the whole order, and it was copied onto every line."
+  },
+  {
+   "type": "trap",
+   "title": "A join that runs and inflates revenue",
+   "looks": "You join orders to order lines to add product details, then sum order_value_ugx. The code runs and the total looks big and impressive.",
+   "why": "order_value_ugx describes the whole order. After the join, each order appears once per line, so its value is added once per line.",
+   "fix": "Sum line_revenue_ugx from the lines table, and compare the row count and the total before and after every join.",
+   "notes": "Here's the trap of the day, and it makes the revenue look better, which is exactly why people don't question it.\n\nYou join orders to order lines to get product details. You sum the order value. The code runs, and the number is huge.\n\nThe reason is that the order value sits on the order, and the join copied it onto every line. An order with five lines is counted five times.\n\nThere are two fixes. Add up line_revenue_ugx, which belongs to each line, so each line is counted once. And always check two things after a join. Did the row count change in a way you expected? And does the total still match? If a manager had seen seven billion in a sample worth one point four billion, you'd want to find out here, before the meeting."
+  },
+  {
+   "type": "code",
+   "title": "A safe join: look up one row per key",
+   "lang": "python",
+   "code": "products = pd.read_csv('products.csv')\ncat = lines.merge(products[['product_id', 'category']], on='product_id')\nprint(len(lines), len(cat))\nprint(cat.line_revenue_ugx.sum() == orders.order_value_ugx.sum())",
+   "says": [
+    "products has one row for each product, so no row multiplies.",
+    "The total now matches the true revenue.",
+    "Now every line carries its category, ready to group."
+   ],
+   "output": "98066 98066\nTrue",
+   "notes": "Now a join done safely. We take the lines and look up the category of each product.\n\nThe products table has exactly one row for each product. So every line finds one match, and no row multiplies. Ninety eight thousand and sixty six rows in, and the same number out.\n\nThen the check. The total of line_revenue_ugx equals the true order revenue, and Python answers True. That's the test that the earlier join failed.\n\nWith the category on every line, we can group revenue by category, and you'll do that in the lab."
+  },
+  {
+   "type": "code",
+   "title": "Ask pandas to guard the join",
+   "lang": "python",
+   "expect_error": true,
+   "code": "orders.merge(lines, on='order_id', validate='many_to_one')",
+   "output": "MergeError: Merge keys are not unique in right dataset; not a many-to-one merge",
+   "says": [
+    "validate says what shape the join must have."
+   ],
+   "notes": "You don't have to rely on your own eyes. pandas can guard the join for you.\n\nThe option validate says what shape the join must have. Many to one means that many rows on the left may match one row on the right, but never the other way round.\n\nOur lines table has many rows for each order, so pandas stops with a MergeError. Read the last line. The merge keys are not unique in the right dataset. That's the doubling trap, caught before it costs you anything. Adding validate to your important joins is a cheap habit."
+  },
+  {
+   "type": "flow",
+   "title": "Four checks around every join",
+   "steps": [
+    {
+     "h": "Count before",
+     "t": "len() of both tables"
+    },
+    {
+     "h": "Check the key",
+     "t": "Is it unique on the lookup side?"
+    },
+    {
+     "h": "Join",
+     "t": "Choose how='left' on purpose"
+    },
+    {
+     "h": "Count after",
+     "t": "Rows and totals still make sense"
+    }
+   ],
+   "caption": "Run these four every time. Two lines of print catch both traps.",
+   "notes": "Let's put the habits in one routine. Four checks around every join.\n\nFirst, count the rows of both tables before you start.\n\nSecond, ask whether the key is unique on the lookup side. In a VLOOKUP that's the table you search. If it isn't unique, the join will multiply rows.\n\nThird, do the join, and choose the type on purpose. Left is a good default.\n\nFourth, count again. Do the rows match what you expected? Does the total still equal the total you had before? Those two prints catch the lost rows and the doubled rows we met today."
+  },
+  {
+   "type": "code",
+   "title": "Turn text into dates first",
+   "lang": "python",
+   "code": "orders['order_date'] = pd.to_datetime(orders['order_date'])\norders['month'] = orders.order_date.dt.strftime('%Y-%m')\norders['weekday'] = orders.order_date.dt.day_name()\norders[['order_date', 'month', 'weekday']].head(2)",
+   "says": [
+    "to_datetime turns text into dates Python understands.",
+    "dt.strftime builds a label such as 2024-01.",
+    "dt.day_name gives Saturday, Wednesday and so on."
+   ],
+   "output": "order_date month weekday\n0 2024-01-06 2024-01 Saturday\n1 2024-01-03 2024-01 Wednesday",
+   "notes": "Now dates. A manager rarely wants revenue by day. The request is usually by month, or by weekday. In Sheets you'd use the MONTH and TEXT functions on a date column.\n\nFirst, the column is still text. So we convert it with to_datetime. You did this in Session 8, and it always comes first.\n\nAfter that the dt part of the column opens up, with tools for dates. With strftime and the pattern year, month, we make a label like 2024 01. Sorting that label sorts the months in the right order.\n\nAnd day_name gives the weekday as a word. The first order, on the sixth of January 2024, was a Saturday. The second, on the third, was a Wednesday."
+  },
+  {
+   "type": "code",
+   "title": "Revenue by month and by weekday",
+   "lang": "python",
+   "code": "by_month = orders.groupby('month').order_value_ugx.sum()\nprint(by_month.sort_values(ascending=False).head(3))\nby_day = orders.groupby('weekday').order_value_ugx.sum()\nprint(by_day.sort_values(ascending=False).head(2))",
+   "says": [
+    "The month label is just another group.",
+    "The weekday label works the same way."
+   ],
+   "output": "month\n2024-12 89460715\n2025-12 72791705\n2024-03 67562400\nweekday\nThursday 223743120\nMonday 209004180",
+   "notes": "Now the new labels are just columns to group by.\n\nThe biggest month is December 2024 with about eighty nine million shillings, then December 2025 with about seventy three million. March 2024 comes third. That December peak is the shape you saw in Session 3.\n\nBy weekday, Thursday leads with about two hundred and twenty four million and Monday follows. But the gaps between weekdays are small, with the lowest day, Friday, at about one hundred and ninety seven million. So I wouldn't plan the staff rota around that gap. Always ask whether a difference is big enough to act on."
+  },
+  {
+   "type": "code",
+   "title": "pivot_table: the PivotTable, in code",
+   "lang": "python",
+   "code": "pt = orders.pivot_table(index='branch_id', columns='payment_method',\n                      values='order_value_ugx', aggfunc='sum',\n                      margins=True)\nprint(pt)",
+   "says": [
+    "index gives the rows and columns gives the columns.",
+    "values and aggfunc say what to add up.",
+    "margins=True adds the totals."
+   ],
+   "output": "payment_method Card Cash Mobile money All\nB01 15600415 135489170 132241720 283331305\nAll 103985640 646449825 685178720 1435614185",
+   "notes": "Here's the command most like the tool you know. pivot_table. It builds the grid you'd make with the PivotTable wizard.\n\nIndex is what you'd drop in the rows box, and columns is what you'd drop in the columns box.\n\nValues is the number to add up, and aggfunc says how. Sum here, but it could be mean or count.\n\nMargins equals True adds the totals, which Excel calls grand totals. Look at the bottom right corner. One billion, four hundred and thirty five million, six hundred and fourteen thousand, one hundred and eighty five. It's the same true total we've had all along, so this pivot is trustworthy. It also shows mobile money, at about six hundred and eighty five million, is now the biggest way to pay."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: revenue by branch, category and month",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 9 notebook and run the setup cell",
+    "Group revenue by branch and attach branch names",
+    "Count the rows an inner join loses",
+    "Find the join that doubles revenue",
+    "Build one table with branch, category and month",
+    "Pivot it, then check every total with assert"
+   ],
+   "done": "Every check prints correct, and you can explain why one join inflated revenue.",
+   "notes": "Lab time, forty minutes in Google Colab. The first task is the groupby we opened with, revenue for each branch, and its check cell expects the eight branches to add up to the true total.\n\nRun the setup cell in the Session 9 notebook, then take the tasks in order. Each one has a blank for you and a check cell with an assert on a number we computed from the data.\n\nTask four is the detective job. You join two tables, get a revenue figure that is far too high, and find out why. Count the rows before and after, and compare the total with the one you know.\n\nAt the end you build revenue by branch, category and month, and test the totals. If an assert fails, read its message first. It usually names the step to look at."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "What are the three steps inside every groupby?",
+     "a": "Split into groups, apply a calculation to each group, combine the answers into one table."
+    },
+    {
+     "q": "A join runs with no error, but revenue is five times too big. What happened, and how do you catch it?",
+     "a": "The key was not unique on one side, so rows multiplied. Compare row counts and totals before and after, or use validate."
+    },
+    {
+     "q": "Why default to how='left' when you join?",
+     "a": "It keeps every row of your main table, so unmatched rows show as NaN instead of vanishing."
+    }
+   ],
+   "notes": "Three questions on groups and joins. Answer each in your head first.\n\nQuestion one. What are the three steps inside every groupby? Take your time.\n\nSplit into groups, apply a calculation to each group, and combine the answers into one small table.\n\nQuestion two. A join runs with no error, yet revenue is five times too big. What happened, and how do you catch it? Think it over.\n\nThe key wasn't unique on one side, so rows multiplied and the order value was added more than once. You catch it by comparing row counts and totals before and after, or by adding validate to the merge.\n\nQuestion three. Why make a left join your default? Give that a moment.\n\nBecause it keeps every row of your main table. A row with no match shows up as NaN, so you can count it. With an inner join it just disappears."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "groupby splits, applies and combines. pivot_table is the same thing laid out as a grid.",
+    "merge returns every match, so check the row count and the total before and after.",
+    "Convert dates first, then group by month or weekday."
+   ],
+   "next": "SQL for analysts",
+   "notes": "One. groupby splits the table into groups, applies a calculation, and combines the answers. pivot_table does the same and lays it out as a grid.\n\nTwo. merge returns every match. Check the row count and the total before and after each join. Lost rows and doubled rows both run without an error.\n\nThree. Convert the text to dates first. After that, months and weekdays are only more columns to group by.\n\nNext session we ask a database the same questions using SQL, the language most employers use. You'll see the joins you met today again, and you'll check each answer against pandas."
+  }
+ ],
+ "lab": {
+  "intro": "Revenue by branch, category and month, and the hunt for the join that doubles revenue. Every task ends with an assert on a real number.",
+  "cells": [
+   {
+    "md": "## Task 1. Revenue by branch\nLoad `orders.csv`. Add up `order_value_ugx` for each branch and store it in `rev_branch`."
+   },
+   {
+    "code": "import pandas as pd\n\norders = pd.read_csv('orders.csv')\nrev_branch = orders.groupby('branch_id').order_value_ugx.sum()\nprint(rev_branch)",
+    "starter": "import pandas as pd\n\norders = pd.read_csv('orders.csv')\n# Your turn: group by branch_id and sum order_value_ugx into rev_branch\n"
+   },
+   {
+    "code": "assert rev_branch['B01'] == 283331305, 'Group by branch_id, then sum order_value_ugx'\nassert rev_branch.sum() == 1435614185, 'The eight branches should add up to the true total'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Branch names\nMerge the branch names from `branches.csv` onto the orders with a left join. Call the result `named`."
+   },
+   {
+    "code": "branches = pd.read_csv('branches.csv')\nnamed = orders.merge(branches[['branch_id', 'branch_name']], on='branch_id', how='left')\nprint(len(orders), len(named))",
+    "starter": "branches = pd.read_csv('branches.csv')\n# Your turn: merge on branch_id with how='left' into named\n"
+   },
+   {
+    "code": "assert len(named) == 30229, 'A left join on one name per branch must keep every order'\nassert named.branch_name.isna().sum() == 0, 'Every branch code should find a name'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Lost rows\nJoin the orders to `customers.csv` on `customer_id` twice: once with `how='inner'` into `inner`, and once with `how='left'` into `left`. How many orders does the inner join lose? Store the number in `n_lost`."
+   },
+   {
+    "code": "customers = pd.read_csv('customers.csv')\ninner = orders.merge(customers, on='customer_id', how='inner')\nleft = orders.merge(customers, on='customer_id', how='left')\nn_lost = len(orders) - len(inner)\nprint(n_lost)",
+    "starter": "customers = pd.read_csv('customers.csv')\n# Your turn: make inner and left joins on customer_id, then n_lost = rows lost by the inner join\n"
+   },
+   {
+    "code": "assert len(left) == 30229, 'The left join keeps every order'\nassert n_lost == 9171, 'These are the walk-in orders with no customer_id'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. The join that doubles revenue\nJoin `orders` to `order_lines.csv` on `order_id` into `doubled`. Add up `order_value_ugx` in the joined table (`inflated`) and in `orders` (`true_total`). Print how many times too big it is."
+   },
+   {
+    "code": "lines = pd.read_csv('order_lines.csv')\ndoubled = orders.merge(lines, on='order_id')\ninflated = doubled.order_value_ugx.sum()\ntrue_total = orders.order_value_ugx.sum()\nprint(len(doubled), inflated, true_total)\nprint(round(inflated / true_total, 1))",
+    "starter": "lines = pd.read_csv('order_lines.csv')\n# Your turn: merge orders and lines on order_id into doubled\n# then set inflated and true_total, and print the ratio\n"
+   },
+   {
+    "code": "assert len(doubled) == 98066, 'One row per order line is expected after the join'\nassert inflated == 7606090055, 'Sum order_value_ugx in the joined table'\nassert true_total == 1435614185, 'Sum order_value_ugx in orders itself'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. One table with branch, category and month\nAdd the product category to `lines`, then the branch and date from `orders`. Convert the date and make a `month` column such as `2024-12`. Call the table `full`."
+   },
+   {
+    "code": "products = pd.read_csv('products.csv')\nfull = lines.merge(products[['product_id', 'category']], on='product_id')\nfull = full.merge(orders[['order_id', 'branch_id', 'order_date']], on='order_id')\nfull['order_date'] = pd.to_datetime(full['order_date'])\nfull['month'] = full.order_date.dt.strftime('%Y-%m')\nprint(len(full))",
+    "starter": "products = pd.read_csv('products.csv')\n# Your turn: merge the category on product_id, then branch_id and order_date on order_id\n# convert order_date with pd.to_datetime, then build the month column\n"
+   },
+   {
+    "code": "assert len(full) == 98066, 'Both joins look up one row per key, so the row count must not change'\nassert full.line_revenue_ugx.sum() == 1435614185, 'Use line_revenue_ugx, and the total must match the true revenue'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Branch by category\nMake a pivot table `pv` of `line_revenue_ugx` with branches down the side and categories across the top."
+   },
+   {
+    "code": "pv = full.pivot_table(index='branch_id', columns='category', values='line_revenue_ugx', aggfunc='sum')\npv",
+    "starter": "# Your turn: pivot_table with index, columns, values and aggfunc='sum'\n"
+   },
+   {
+    "code": "assert pv.shape == (8, 7), 'Expect eight branches and seven categories'\nassert pv.loc['B01', 'Staples'] == 132778105, 'Check the index, columns and values'\nassert pv.sum().sum() == 1435614185, 'The pivot must add up to the true total'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Branch, category and month\nGroup `full` by branch, category and month together, summing `line_revenue_ugx`, into `detail`. Then store the revenue of Kampala Central (B01), Staples, December 2024 in `b01_staples_dec`."
+   },
+   {
+    "code": "detail = full.groupby(['branch_id', 'category', 'month']).line_revenue_ugx.sum()\nb01_staples_dec = detail.loc[('B01', 'Staples', '2024-12')]\nprint(len(detail), b01_staples_dec)",
+    "starter": "# Your turn: groupby with a list of three columns, then pick one value with .loc\n"
+   },
+   {
+    "code": "assert len(detail) == 1336, 'Group by all three columns'\nassert b01_staples_dec == 8099605, 'Use the tuple (B01, Staples, 2024-12)'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Check against Sheets\nOpen `lakeside_for_sheets.xlsx` and build a PivotTable of revenue by branch. Its numbers come from a smaller sample, so they will differ from ours. Write one sentence below: how would you spot a doubled join in Sheets?"
+   }
+  ]
+ }
+}

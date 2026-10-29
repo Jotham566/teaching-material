@@ -1,0 +1,17 @@
+id,item,start_month,duration_months,effort_days,value,depends_on,owner_role
+W01,Name the steering council and an owner for every source,1,1,6,5,,Chief Executive
+W02,Complete the data inventory and classify every source,2,2,20,4,W01,Data steward lead
+W03,Approve the data classification and acceptable AI use policies,2,2,12,4,W01,Head of Legal and Compliance
+W04,Choose the hosting option and write the exit plan,2,2,10,3,W01,Head of IT
+W05,Fix the quality defects in the customer and claims tables,4,2,30,4,W02,Data steward lead
+W06,Write data contracts for the three main datasets,4,2,15,3,W02,"Data owner, claims"
+W07,"Set up raw, cleaned and serving zones",4,3,40,4,W02;W04,Head of IT
+W08,Read and repair the claims and policy documents,4,2,25,4,W02,Data custodian
+W09,Train staff and publish the acceptable use guidance,4,2,10,3,W03,Head of Human Resources
+W10,Build the 60 question test set and track recall,6,2,12,4,W08,Data steward lead
+W11,Midyear rescore of the baseline,6,1,5,3,W05;W06,Steering council
+W12,Mask personal data before indexing,6,2,18,5,W03;W08,Data protection officer
+W13,Add permission filters and query logging,7,1,14,5,W07,Head of IT
+W14,"Add freshness, volume and schema alerts",7,2,16,4,W07,Head of IT
+W15,Run the staff policy assistant pilot,8,3,35,5,W12;W13;W07,Head of Human Resources
+W16,Second rescore and board report,11,2,8,4,W15;W14,Steering council

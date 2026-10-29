@@ -1,0 +1,510 @@
+{
+ "session": 23,
+ "notes_title": "Today your work leaves the notebook. Until now everything you built lived in Colab, and only you could run it. We'll make it something a colleague can repeat, open and use. You'll set seeds, save a model, put code on GitHub, and see a small app. Then comes the part that decides whether anyone should use it: a model card, a watch for drift, a fairness check, and a short tour of Uganda's data protection law. After today, only the capstone presentations remain.",
+ "notes_outcomes": "By the end of today you can make a notebook reproducible, save and reload a model, publish code and a small app for free, write a model card, check a rule for fairness, and name the main duties in the Uganda Data Protection and Privacy Act of 2019. The live part builds a loan app in about twenty five lines, and the fairness checks come after it. In the lab the numbers run and the app file gets written, and you deploy it afterwards with your own free accounts. This is the capstone step where you publish your app and model card.",
+ "notes_words": "Eight words today. Reproducibility means a colleague can repeat your result. A repository is the project folder on GitHub, and a commit is one saved version of it. A model card is the one page that explains a model to someone who didn't build it. Data drift is the slow change in the data coming in. A proxy variable is a column that stands in for another one. Personal data is information that identifies a person, and the data subject is the person it describes. Read the right hand column and you'll find the spreadsheet cousin of each one.",
+ "vocab": [
+  [
+   "Reproducibility",
+   "The same notebook gives the same result to anyone who runs it.",
+   "Pasting RAND as values and noting the file version"
+  ],
+  [
+   "Repository",
+   "A project folder tracked by Git, kept online on GitHub.",
+   "A shared Drive folder with version history"
+  ],
+  [
+   "Commit",
+   "One saved version of a repository, with a message saying what changed.",
+   "A named version in Version history"
+  ],
+  [
+   "Model card",
+   "A one page note on what a model is for, its data, its scores, its limits and who reviews it.",
+   "The notes tab that explains a workbook"
+  ],
+  [
+   "Data drift",
+   "A change over time in the data coming in, which can make an old model wrong.",
+   "A monthly average that moves away from the one you built on"
+  ],
+  [
+   "Proxy variable",
+   "A column that carries information about another column, such as gender.",
+   "A postcode column standing in for income"
+  ],
+  [
+   "Personal data",
+   "Information from which a person can be identified.",
+   "The name and phone columns of a customer list"
+  ],
+  [
+   "Data subject",
+   "The person that personal data is about.",
+   "The person on each row of the list"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 22",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "A language model gives a confident answer that is in none of your documents. What is that, and what did we add to reduce it?",
+     "a": "The model invented it. We added retrieval, so it answers from passages found in our own documents."
+    },
+    {
+     "q": "Why did we write twelve test questions with checked answers?",
+     "a": "So we can run them again after any change and see whether answers got better or worse."
+    }
+   ],
+   "notes": "Two questions on language models and testing, before the new material.\n\nFirst. A language model gives a confident answer that appears in none of your documents. What is that, and what did we add to reduce it? Have a think.\n\nThe model invented it. Models do that when they have nothing solid to go on. We added retrieval, so the model answers from passages we found in our own documents.\n\nSecond. Why did we write twelve test questions with checked answers? No rush.\n\nSo we can run them again after any change and see whether the answers got better or worse. Today's habit is the same one. Anything you ship, you can repeat and you can check."
+  },
+  {
+   "type": "concept",
+   "title": "Three habits make a notebook reproducible",
+   "lead": "Reproducible means a colleague gets your result from your notebook, on another laptop, next month.",
+   "points": [
+    {
+     "h": "Seed",
+     "t": "A seed fixes the random choices. In Sheets, paste RAND as values to freeze them."
+    },
+    {
+     "h": "Versions",
+     "t": "Print the library versions. pip freeze lists them, and you keep the lines you need."
+    },
+    {
+     "h": "Order",
+     "t": "Restart and run all, top to bottom, before you share."
+    }
+   ],
+   "notes": "Here's the first problem with sharing a notebook. It can give you one answer today and a slightly different one tomorrow. Reproducibility means the same notebook gives the same result to whoever runs it. Three habits get you there.\n\nThe first is the seed. In Sheets, RAND gives new numbers every time the sheet recalculates, and you freeze them by pasting them as values. Python's random choices behave the same way. A random seed is a number that fixes the choices, so the same seed gives the same numbers. We've used forty two all course.\n\nThe second is the versions. Libraries change over time. In Colab, a cell with an exclamation mark and pip freeze lists every installed package. That's a long list, so for a small project you keep only the libraries you import, and save them in a file called requirements dot txt.\n\nThe third is the order. Run the notebook from the top before you share it."
+  },
+  {
+   "type": "code",
+   "title": "Same seed, same numbers, and the versions printed",
+   "lang": "python",
+   "code": "import numpy as np\nimport pandas as pd\n\na = np.random.default_rng(42).integers(1, 100, 5)\nb = np.random.default_rng(42).integers(1, 100, 5)\nprint(a, b, (a == b).all())\nprint(np.__version__, pd.__version__)",
+   "output": "[ 9 77 65 44 43] [ 9 77 65 44 43] True\n2.2.6 2.3.3",
+   "says": [
+    "Two generators with seed 42 each draw five whole numbers.",
+    "all checks that every pair of numbers matches.",
+    "__version__ prints the version of each library."
+   ],
+   "notes": "Let's see it. Two small experiments in one cell.\n\nWe make a random number generator with the seed forty two, and ask it for five whole numbers between one and ninety nine. Then we do it all again with a fresh generator and the same seed.\n\nThe all part checks every pair of numbers. It prints True. Both runs gave nine, seventy seven, sixty five, forty four and forty three. Change the seed to forty three and you'd get a different five.\n\nThe last line prints the library versions. On the machine I prepared this on, numpy is two point two point six and pandas is two point three point three. Your Colab will show its own numbers, and that's fine. Write them down beside your results, so if something differs later you know where to look."
+  },
+  {
+   "type": "trap",
+   "title": "A notebook that only works in your order",
+   "looks": "It ran perfectly for you. Your colleague opens it, runs it from the top, and it stops with NameError: name 'loans_clean' is not defined.",
+   "why": "You ran cells in a different order, or deleted the cell that made that name. Your session still remembered it. Theirs starts empty.",
+   "fix": "In Colab choose Runtime, then Restart session and run all. Fix the first error it meets, and repeat until it runs top to bottom.",
+   "notes": "This trap gives you no warning at all.\n\nYou finish a notebook and everything works. You send it to a colleague. They run it from the top and it stops, with an error saying a name isn't defined.\n\nWhat happened? While you worked, you ran cells in a different order, or you deleted the cell that made a variable. Your session still remembered it, so nothing complained. Your colleague's session starts empty, so it can't find it.\n\nThe fix takes about a minute. In Colab choose Runtime, then Restart session and run all. If it stops, fix the first error it meets, then do it again. Only share a notebook that runs from top to bottom with no help from you."
+  },
+  {
+   "type": "code",
+   "title": "Save a trained model to a file and load it back",
+   "lang": "python",
+   "code": "import joblib\n\njoblib.dump(model, 'loan_model.joblib')\n\nloaded = joblib.load('loan_model.joblib')\nprint(loaded.predict_proba(X_test.head(1)))",
+   "says": [
+    "dump writes the trained model to a file.",
+    "load reads it back with no retraining.",
+    "predict_proba gives the chance of repaid, then of default."
+   ],
+   "notes": "You trained a model. Now you want to keep it, so nobody has to train it again. In a spreadsheet you'd press Save As. For a model, the same idea is one file.\n\nThe library is joblib. The dump line takes the trained model and a file name and writes the file. By habit the name ends in dot joblib.\n\nThe load line reads the file back. The loaded model works exactly like the one you trained, and no training happens.\n\nThen predict_proba gives the model's probabilities for a row. The first number is the chance the loan is repaid, and the second is the chance it defaults.\n\nTwo cautions. Load only files you trust, because loading can run code. And load with the same library versions you saved with, which is why we wrote the versions down."
+  },
+  {
+   "type": "table",
+   "title": "Git and GitHub in five steps",
+   "header": [
+    "Step",
+    "Type this",
+    "What it does"
+   ],
+   "rows": [
+    [
+     "1",
+     "git init",
+     "Start tracking this folder"
+    ],
+    [
+     "2",
+     "git add .",
+     "Choose every file for the next version"
+    ],
+    [
+     "3",
+     "git commit -m \"first version\"",
+     "Save a version with a message"
+    ],
+    [
+     "4",
+     "git branch -M main",
+     "Name the main line of work main"
+    ],
+    [
+     "5",
+     "git remote add origin URL, then git push -u origin main",
+     "Link your GitHub repository and upload"
+    ]
+   ],
+   "colw": [
+    0.8,
+    5.6,
+    4.6
+   ],
+   "caption": "Free GitHub account. Public repository. Never push data with personal details.",
+   "notes": "Git keeps versions of your project folder. Think of Version history in Sheets, except that you choose when to save a version and you give it a name. GitHub is the free website where you keep a copy online.\n\nA repository is the project folder that Git tracks. A commit is one saved version of it, with a short message about what changed.\n\nFive steps. Init starts tracking the folder. Add chooses the files for the next version, and the dot means all of them. Commit saves the version with your message. Branch main names the main line of work, main. Then you link the folder to an empty repository you created on GitHub, with remote add, and push uploads it.\n\nYou need a free GitHub account, and the simplest way to let Streamlit read your repository is to make it public. If the command line is new to you, GitHub's website also lets you drag files in."
+  },
+  {
+   "type": "compare",
+   "title": "What goes into a public repository",
+   "left": {
+    "h": "Put in",
+    "points": [
+     "Your notebook",
+     "app.py and requirements.txt",
+     "The saved model, if it is small",
+     "A README and the model card"
+    ]
+   },
+   "right": {
+    "h": "Leave out",
+    "points": [
+     "Files with names, phones or addresses",
+     "Passwords and keys",
+     "Data you may not share",
+     "Anything you would not print on a poster"
+    ]
+   },
+   "verdict": "Public means anyone can read and copy it. Check before you push.",
+   "notes": "A public repository can be read by anyone in the world. So decide what goes in before you push.\n\nOn the left, what belongs. Your notebook, the app file, and the requirements file. The saved model, if it's small. And a README and your model card, so a visitor knows what they're looking at.\n\nOn the right, what stays out. Any file with names, phone numbers or addresses. Our course data is fictional, so it's safe to share. Real customer data is a different matter, and you never push it.\n\nPasswords and keys also stay out. Once something is pushed, assume it can be copied.\n\nThe last item is the test I use. If you wouldn't print it on a poster and stick it at the taxi park, don't put it in a public repository."
+  },
+  {
+   "type": "code",
+   "title": "A loan app in about 25 lines",
+   "lang": "python",
+   "code": "import joblib\nimport pandas as pd\nimport streamlit as st\nmodel = joblib.load('loan_model.joblib')\nst.title('Loan risk checker')\nst.caption('Teaching model, fictional data. A person decides.')\nincome = st.number_input('Monthly income (UGX)', 100000, 5000000, 600000)\namount = st.number_input('Loan amount (UGX)', 200000, 6000000, 1500000)\nmonths = st.slider('Term in months', 3, 12, 6)\nlate = st.slider('Previous late payments', 0, 6, 0)\nrow = pd.DataFrame({\n    'monthly_income_ugx': [income],\n    'loan_amount_ugx': [amount],\n    'term_months': [months],\n    'previous_late_payments': [late],\n})\nif st.button('Show probability'):\n    p = model.predict_proba(row)[0, 1]\n    st.metric('Chance of default', f'{p:.0%}')",
+   "notes": "The app comes next. Streamlit turns a Python file into a web page. You write ordinary Python, and each line that starts with st draws something on the page. Think of a form with a few input cells and one answer cell, without the spreadsheet around it. The top of the file loads the saved model.\n\nNext come the inputs. Two number boxes and two sliders, each with a label and limits that match our data.\n\nThe values go into a one row table. The column names must match the ones the model was trained on. A different name or order gives an error or a wrong answer.\n\nThe button runs predict_proba and shows the chance of default as a percentage. A person still decides. The caption at the top says so."
+  },
+  {
+   "type": "flow",
+   "title": "Put the app on the internet for free",
+   "steps": [
+    {
+     "h": "Repository",
+     "t": "Public, with app.py, the model file and requirements.txt"
+    },
+    {
+     "h": "Sign in",
+     "t": "Streamlit Community Cloud, with your GitHub account"
+    },
+    {
+     "h": "New app",
+     "t": "Pick the repository, branch main, file app.py"
+    },
+    {
+     "h": "Deploy",
+     "t": "It installs the libraries and gives a web address"
+    },
+    {
+     "h": "Sleep",
+     "t": "After 12 hours without visitors, the app sleeps"
+    }
+   ],
+   "caption": "Free for public repositories. Keep the app small, because the free service has limits.",
+   "notes": "Your app can live on the internet for free. Five steps.\n\nFirst, a public GitHub repository holding the app file, your saved model, and a requirements file. That file lists the libraries the app needs, ideally with the versions you printed.\n\nSecond, sign in to Streamlit Community Cloud with your GitHub account. It costs nothing.\n\nThird, choose New app. Pick the repository, the branch, which is main, and the file name, app dot py.\n\nFourth, press Deploy. It installs the libraries and gives you a web address you can send to a colleague.\n\nFifth, a free app sleeps after twelve hours without visitors. The next visitor wakes it, and that takes a short while.\n\nThe free service has limits on its resources, so keep your app small and simple. It suits a demonstration. Treat it as one."
+  },
+  {
+   "type": "table",
+   "title": "A model card fits on one page",
+   "header": [
+    "Section",
+    "The loan model"
+   ],
+   "rows": [
+    [
+     "Purpose",
+     "Ranks loan applications for a loan officer to review. It does not approve or refuse."
+    ],
+    [
+     "Data",
+     "8,000 fictional loans, 2023 to 2025. collection_calls removed because it leaks the answer."
+    ],
+    [
+     "Metrics",
+     "AUC about 0.76. At threshold 0.5 it finds about 15 in 100 defaults."
+    ],
+    [
+     "Limits",
+     "Fictional data. 379 loans lack income. Gaps by gender and district are measured and reported."
+    ],
+    [
+     "Who must review",
+     "The credit manager and the data protection officer, before each release."
+    ]
+   ],
+   "colw": [
+    2.6,
+    8.4
+   ],
+   "caption": "Update the card every time the model changes.",
+   "notes": "A model card is one page that tells a reader what a model is for and where it can fail. Think of the notes tab in a workbook, the one that explains how the numbers were made and who should be careful with them.\n\nFive rows. Purpose is the job it does. Ours ranks loan applications for a loan officer to review, and it makes no final decision.\n\nData says where it came from and what we removed. We removed collection calls, because that column leaks the answer.\n\nMetrics gives plain numbers. An AUC of about zero point seven six, and at a threshold of zero point five it finds about fifteen in every hundred defaults. Your own run will be close to these, and not identical.\n\nLimits lists the weak spots. Who must review names the people or roles who sign off before each release. Update the card whenever the model changes."
+  },
+  {
+   "type": "figure",
+   "title": "Data drift: today's applicants stop matching the training data",
+   "fig": "drift_chart",
+   "look": [
+    "For 18 months the average income index moves between about 93 and 105.",
+    "Then it drops to between about 82 and 93 and stays there.",
+    "The model learned the old picture, so check it at the red line."
+   ],
+   "caption": "Simulated for teaching. This is not Nile Microfinance data.",
+   "alt": "Line chart of a monthly average that is steady and then drops, with a label showing the point where the model should be re-checked.",
+   "notes": "Here's a line chart of the average income of loan applicants, month by month, since a model went live. This chart is simulated. It's drawn for teaching, and it isn't Nile Microfinance data.\n\nFor the first eighteen months the average moves around between about ninety three and a hundred and five.\n\nThen at month nineteen it drops, to somewhere between eighty two and ninety three, and stays down.\n\nThe model learned from the old picture, so it may now be wrong about the new applicants. This slow or sudden change in the incoming data is called data drift. The red line marks the point where a watch would tell you to check the model.\n\nIn practice you do what you'd do in Sheets. Each month, compare the average of the key inputs with the training data. When outcomes arrive, compare predicted and actual defaults. Agree who looks, how often, and what happens when the line moves."
+  },
+  {
+   "type": "code",
+   "title": "Default rate and flag rate for each group",
+   "lang": "python",
+   "code": "import numpy as np\nimport pandas as pd\nloans = pd.read_csv('loans.csv')\nloans['district'] = loans.district.str.strip().str.title()\nprint(loans.groupby('gender').default.mean().round(3).to_dict())\nd = loans.groupby('district').default.mean().round(3)\nprint(d.idxmin(), d.idxmax())\nknown = loans.dropna(subset=['monthly_income_ugx']).copy()\nb = known.loan_amount_ugx / known.term_months / known.monthly_income_ugx\nknown['flag'] = np.where(b > 0.35, 1, 0)\nprint(known.groupby('gender').flag.mean().round(3).to_dict())",
+   "output": "{'F': 0.121, 'M': 0.131}\nFort Portal Masaka\n{'F': 0.353, 'M': 0.363}",
+   "notes": "Fairness checks need no special library. You need a group column and a rate. In Excel it's a pivot table with the group down the side and the average of a one or zero column.\n\nFirst, the default rate by group. Women default on twelve point one percent of loans and men on thirteen point one. By district, the lowest is Fort Portal at ten point six percent and the highest is Masaka at fourteen point eight. These match the answer key. District came in with three spellings, so we tidied it first.\n\nNow a simple rule. We flag a loan for extra review when the monthly instalment is more than thirty five percent of income. Flag simply means a person looks again. We drop the three hundred and seventy nine loans with no income.\n\nThe flag rate is the share of each group that gets flagged. Thirty five point three percent of women and thirty six point three of men. A gap of one point. That's a rule you can defend."
+  },
+  {
+   "type": "code",
+   "title": "A rule that never sees gender can still treat the sexes differently",
+   "lang": "python",
+   "code": "occ_rate = known.groupby('occupation').default.transform('mean')\nknown['flag2'] = np.where(occ_rate > 0.125, 1, 0)\nprint(known.groupby('gender').flag2.mean().round(3).to_dict())\n\nshare_f = (known.gender == 'F').groupby(known.occupation).mean()\nprint(share_f.round(2)[['Tailor', 'Salon owner']].to_dict())",
+   "output": "{'F': 0.29, 'M': 0.464}\n{'Tailor': 0.77, 'Salon owner': 0.73}",
+   "says": [
+    "Give each loan its occupation's default rate. Flag it above 12.5 percent.",
+    "Flag rate by gender: 29 percent of women, 46.4 percent of men.",
+    "Women are 77 percent of tailors and 73 percent of salon owners."
+   ],
+   "notes": "Now a second rule, and gender isn't in it anywhere. We give each loan the default rate of its occupation, and flag the loan if that rate is above twelve and a half percent.\n\nLook at the flag rate by gender. Twenty nine percent of women are flagged, against forty six point four percent of men. A gap of more than seventeen points, from a rule that never saw the gender column.\n\nWhy? Occupation is linked to gender in this data. Women are seventy seven percent of tailors and seventy three percent of salon owners, and those occupations sit below the line. A column that carries information about another column is called a proxy variable.\n\nOccupation does predict default here, so the rule isn't random. But it moves the burden onto one group, and someone must decide whether that's acceptable."
+  },
+  {
+   "type": "trap",
+   "title": "Dropping the gender column does not make a rule fair",
+   "looks": "You remove gender from the data, run your rule, and report that it treats everyone alike. No error, no warning.",
+   "why": "Other columns carry the same information. Occupation does here: the occupation rule flags 46 percent of men and 29 percent of women.",
+   "fix": "Compute the rate for every group, whether or not the column was used. Ask what each column stands in for. Report any gap on the model card.",
+   "notes": "This trap has no error message either, and it's a common fairness mistake.\n\nYou remove the gender column, run your rule, and tell your manager it treats everyone alike. The code ran, so it feels finished.\n\nBut a column you removed can come back through the columns you kept. In our data occupation stands in for gender, and the occupation rule flagged forty six percent of men and twenty nine percent of women.\n\nThe fix is to measure. Compute the rate for every group, whether or not the column was used in the rule. Ask what each column stands in for. And write any gap you find on the model card. A gap doesn't prove the rule is wrong, because groups can really differ. It tells you to look, and to explain your choice to the reviewer."
+  },
+  {
+   "type": "concept",
+   "title": "Uganda's Data Protection and Privacy Act, 2019: who it covers",
+   "lead": "This is a teaching summary and not legal advice. For your own case, ask a lawyer or your data protection officer.",
+   "points": [
+    {
+     "h": "Who",
+     "t": "Anyone who collects, processes, holds or uses personal data in Uganda."
+    },
+    {
+     "h": "Personal data",
+     "t": "Information from which a person can be identified, such as a name, phone number or loan record."
+    },
+    {
+     "h": "Data subject",
+     "t": "The person the data is about."
+    },
+    {
+     "h": "Regulator",
+     "t": "The Personal Data Protection Office, under NITA."
+    }
+   ],
+   "notes": "Now the law. A word first. This is a teaching summary, and it isn't legal advice. If you handle real personal data at work, ask a lawyer or your data protection officer about your own situation. For the exact wording, read the Act itself.\n\nThe Data Protection and Privacy Act of 2019 applies to anyone who collects, processes, holds or uses personal data in Uganda. That includes companies, banks, clinics, schools, and you.\n\nPersonal data is information from which a person can be identified. A name, a phone number, a loan record with an address. The person the data is about is the data subject.\n\nThe regulator is the Personal Data Protection Office, which sits under NITA. Our course data is fictional, but the same loan file in real life would count."
+  },
+  {
+   "type": "table",
+   "title": "The seven principles in plain words",
+   "header": [
+    "Principle",
+    "In plain words"
+   ],
+   "rows": [
+    [
+     "Accountability",
+     "Someone is responsible and can show what was done."
+    ],
+    [
+     "Fair and lawful processing",
+     "Use data fairly and within the law."
+    ],
+    [
+     "Adequate and relevant data",
+     "Collect only what the purpose needs."
+    ],
+    [
+     "Kept only as long as needed",
+     "Delete data when the purpose ends."
+    ],
+    [
+     "Quality of information",
+     "Keep data accurate and up to date."
+    ],
+    [
+     "Openness and participation",
+     "Tell people what you hold and why."
+    ],
+    [
+     "Safety and security",
+     "Protect data from loss, leaks and misuse."
+    ]
+   ],
+   "colw": [
+    4.4,
+    6.6
+   ],
+   "caption": "Teaching summary. Not legal advice. Read the Act itself for the exact wording.",
+   "notes": "The Act rests on seven principles. Here they are in plain words, with a thought for our loan model beside each.\n\nAccountability. Someone is responsible, and can show what was done. That's your model card.\n\nFair and lawful processing. Use data fairly and within the law. That's why we checked flag rates by group.\n\nCollect only adequate and relevant data. If the model doesn't need a column, don't collect it.\n\nKeep data only as long as needed. Delete it when the purpose ends.\n\nQuality of information. Keep it accurate and up to date. We saw missing incomes and odd ages in Session 14.\n\nOpenness and participation. Tell people what you hold and why.\n\nSafety and security. Protect data from loss, leaks and misuse. A public repository with real customer files breaks this one at once."
+  },
+  {
+   "type": "concept",
+   "title": "What data subjects can ask for",
+   "lead": "Four rights that matter for any model that touches personal data.",
+   "points": [
+    {
+     "h": "Access",
+     "t": "Ask what data an organisation holds about you."
+    },
+    {
+     "h": "Correction",
+     "t": "Ask for wrong data to be fixed."
+    },
+    {
+     "h": "Erasure",
+     "t": "Ask for data to be deleted, in the cases the law allows."
+    },
+    {
+     "h": "Automated decisions",
+     "t": "Ask to prevent a decision about you being taken only by a computer."
+    }
+   ],
+   "notes": "Data subjects have rights. Four matter most for what we build.\n\nThe right of access. A borrower can ask what data you hold about them. So you need to know where it is.\n\nThe right of correction. If a record is wrong, they can ask for it to be fixed. A wrong income could change a loan decision.\n\nThe right of erasure. In the cases the law allows, they can ask for their data to be deleted. Think about whether your saved files and repository could ever comply.\n\nAnd the right to prevent automated decision taking. A person can ask that an important decision about them isn't made only by a computer.\n\nThat's why our app shows a probability and says a person decides. A loan officer reviews, can explain the reason, and can change the outcome. Before you use real data, ask your data protection officer. Again, this is a teaching summary and not legal advice."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: repeat it, check it, save it, document it",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Draw twice with a seed and print the library versions",
+    "Default rates by gender and district",
+    "Flag rates by gender for the instalment rule",
+    "Test the occupation rule for a proxy gap",
+    "Save and reload the model, then write app.py",
+    "Complete the model card and data protection checklist",
+    "Check Task 2 in a PivotTable and write one sentence"
+   ],
+   "done": "Your seeded draws match, your gaps are measured, and your model card has all five sections.",
+   "notes": "The first task draws five loan ids twice with the same seed, and a check cell confirms the two lists match. The next three tasks run real numbers: default rates, the flag rates for the instalment rule, and the flag rates for the occupation rule. Each has a check cell that tells you if you've got it.\n\nThe joblib task runs in Colab, and the app task writes the app file as text. To deploy it, you'll make a free GitHub account and a Streamlit account in your own time, using the steps we just saw. Don't push anything with personal details.\n\nThe model card comes last, with a short data protection checklist beside it. Then a PivotTable check and one sentence on what a gap between groups does and doesn't show. When an error appears, start with its last line, then call me over."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Name three habits that let a colleague repeat your notebook.",
+     "a": "Set the seed, write down the library versions, and restart and run all from the top."
+    },
+    {
+     "q": "A rule never uses gender but flags 46 percent of men and 29 percent of women. What is going on, and what do you do?",
+     "a": "Occupation is a proxy for gender. Measure rates by group, report the gap, and justify the rule."
+    },
+    {
+     "q": "Which office regulates data protection in Uganda, and name two rights of a data subject.",
+     "a": "The Personal Data Protection Office, under NITA. Rights: access, correction, erasure, preventing automated decisions."
+    }
+   ],
+   "notes": "First, the habits that make a notebook repeatable. Name three. Sit with it for a second.\n\nSet the seed, write down the library versions, and restart and run all from the top.\n\nSecond, a rule that never uses gender yet flags forty six percent of men and twenty nine percent of women. What is going on, and what do you do? Take your time.\n\nOccupation is acting as a proxy for gender. You measure the rate for each group, report the gap, and justify the rule to the reviewer.\n\nThird, data protection in Uganda. Which office regulates it, and what are two rights of a data subject? Think it over.\n\nThe Personal Data Protection Office, which sits under NITA. The rights are access, correction, erasure, and preventing a decision taken only by a computer. Any two will do."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Make it repeatable: seed, versions, run top to bottom. Save with joblib, share on GitHub, serve with Streamlit.",
+    "Govern it: a model card, a drift watch, and rates for every group, including through proxies.",
+    "Know the duty: Uganda's 2019 Act protects personal data. This is a summary and not legal advice."
+   ],
+   "next": "Capstone presentations and your path from here",
+   "notes": "Make your work repeatable by setting the seed, writing down the versions and running it top to bottom. Then save the model with joblib, share the code on GitHub, and serve it with Streamlit.\n\nGovern it. Write a model card, watch for drift, and compute the rates for every group, including through proxies like occupation.\n\nKnow your duty. The Data Protection and Privacy Act of 2019 protects personal data in Uganda. What I gave you is a teaching summary and not legal advice, so ask your data protection officer about real data.\n\nNext session is the last. You present your capstone, say what it can and can't do, and choose your path from here. Bring your model card."
+  }
+ ],
+ "lab": {
+  "intro": "Seed a draw, measure fairness with pandas, save a model, write an app file, and complete a model card with a data protection checklist for the Nile Microfinance loans. Apply the same steps to your own capstone model.",
+  "cells": [
+   {
+    "md": "## Task 1. Same seed, same sample\nLoad `loans.csv`. Draw five loan ids with `loans.sample(5, random_state=42)` twice, keep the lists in `s1` and `s2`, and print the library versions."
+   },
+   {
+    "code": "import numpy as np\nimport pandas as pd\n\nloans = pd.read_csv('loans.csv')\ns1 = loans.sample(5, random_state=42).loan_id.tolist()\ns2 = loans.sample(5, random_state=42).loan_id.tolist()\nprint(s1 == s2)\nprint(np.__version__, pd.__version__)",
+    "starter": "import numpy as np\nimport pandas as pd\n\nloans = pd.read_csv('loans.csv')\n# Your turn: draw 5 loan ids twice with random_state=42, into s1 and s2\n# Your turn: print numpy and pandas versions\n"
+   },
+   {
+    "code": "assert len(s1) == 5 and s1 == s2, 's1 and s2 should each hold 5 loan ids and be equal. Use random_state=42 both times and take .loan_id.tolist()'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Default rate by group\nTidy `district` with `.str.strip().str.title()`. Then store the default rate by gender in `by_gender` and by district in `by_district`."
+   },
+   {
+    "code": "loans['district'] = loans.district.str.strip().str.title()\nby_gender = loans.groupby('gender').default.mean().round(3)\nby_district = loans.groupby('district').default.mean().round(3)\nprint(by_gender)\nprint(by_district)",
+    "starter": "# Your turn: tidy the district column\n# Your turn: store the mean of default by gender in by_gender and by district in by_district\n"
+   },
+   {
+    "code": "assert abs(by_gender['F'] - 0.121) < 0.003, 'by_gender[\"F\"] should be about 0.121. Take the mean of default for each gender, after tidying district'\nassert by_district.idxmax() == 'Masaka', 'Masaka should have the highest default rate in by_district. Did you tidy district with strip and title first?'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. A rule and its flag rate\nDrop loans with no income into `known`. Flag a loan when the monthly instalment (`loan_amount_ugx / term_months`) is over 35 percent of income. Store the flag rate by gender in `flag_by_gender`."
+   },
+   {
+    "code": "known = loans.dropna(subset=['monthly_income_ugx']).copy()\nb = known.loan_amount_ugx / known.term_months / known.monthly_income_ugx\nknown['flag'] = np.where(b > 0.35, 1, 0)\nflag_by_gender = known.groupby('gender').flag.mean().round(3)\nprint(flag_by_gender)",
+    "starter": "# Your turn: known = the loans that have a monthly income\n# Your turn: work out each loan's monthly instalment as a share of income\n# Your turn: flag = 1 when that share is over 0.35, otherwise 0\n# Your turn: store the mean flag by gender in flag_by_gender\n"
+   },
+   {
+    "code": "assert 0.30 <= flag_by_gender['F'] <= 0.40, 'The female flag rate should be between 0.30 and 0.40. Divide the instalment (loan_amount_ugx / term_months) by income and flag above 0.35'\nassert abs(flag_by_gender['F'] - flag_by_gender['M']) < 0.03, 'The male and female flag rates should be within 0.03 of each other. Check you used the same rule for both'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Look for a proxy\nGive every loan its occupation's default rate with `transform('mean')`. Flag loans above 0.125 in `flag2`. Store the flag rate by gender in `flag2_by_gender`."
+   },
+   {
+    "code": "occ_rate = known.groupby('occupation').default.transform('mean')\nknown['flag2'] = np.where(occ_rate > 0.125, 1, 0)\nflag2_by_gender = known.groupby('gender').flag2.mean().round(3)\nprint(flag2_by_gender)",
+    "starter": "# Your turn: give every loan the default rate of its occupation, using groupby and transform\n# Your turn: flag2 = 1 when that rate is above 0.125, otherwise 0, stored as a column of known\n# Your turn: store the mean of flag2 by gender in flag2_by_gender\n"
+   },
+   {
+    "code": "gap = flag2_by_gender['M'] - flag2_by_gender['F']\nassert 0.10 < gap < 0.25, 'The gap (male minus female flag2 rate) should be between 0.10 and 0.25. Use the occupation default rate with transform and flag above 0.125'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Save and load a model\nFit a pipeline on four features, save it with joblib, load it back into `loaded`, and store the default probability of the first loan in `p`. Print it."
+   },
+   {
+    "code": "from sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nimport joblib\n\nfeatures = ['monthly_income_ugx', 'loan_amount_ugx', 'term_months', 'previous_late_payments']\nmodel = make_pipeline(SimpleImputer(strategy='median'), StandardScaler(), LogisticRegression(max_iter=1000))\nmodel.fit(loans[features], loans.default)\njoblib.dump(model, 'loan_model.joblib')\nloaded = joblib.load('loan_model.joblib')\np = loaded.predict_proba(loans[features].head(1))[0, 1]\nprint(round(p, 3))",
+    "starter": "from sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nimport joblib\n\nfeatures = ['monthly_income_ugx', 'loan_amount_ugx', 'term_months', 'previous_late_payments']\n# Your turn: build model, a pipeline of an imputer, a scaler and a logistic regression, and fit it\n# Your turn: save it to the file loan_model.joblib, then load that file into loaded\n# Your turn: store the default probability of the first loan in p, and print it\n"
+   },
+   {
+    "code": "import os\nassert os.path.exists('loan_model.joblib'), 'loan_model.joblib is missing. Save the model with joblib.dump'\nimport joblib\nassert 0.0 <= p <= 1.0, 'p should be a probability between 0 and 1. Use predict_proba and take the column for default'\nassert 0.01 < p < 0.6, 'p should be between 0.01 and 0.6 for the first loan. Fit on the four features and predict from the loaded model'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Write the app file\nCopy the app text from the Session 23 slide into a string called `app_code` and write it to a file named `app.py`. Then read it line by line and find the line that loads the model and the line that shows the probability. To deploy it, put `app.py`, `loan_model.joblib` and `requirements.txt` in a public GitHub repository. Never include data with personal details."
+   },
+   {
+    "code": "app_code = '''import joblib\nimport pandas as pd\nimport streamlit as st\n\nmodel = joblib.load('loan_model.joblib')\n\nst.title('Loan risk checker')\nst.caption('Teaching model, fictional data. A person decides.')\n\nincome = st.number_input('Monthly income (UGX)', 100000, 5000000, 600000)\namount = st.number_input('Loan amount (UGX)', 200000, 6000000, 1500000)\nmonths = st.slider('Term in months', 3, 12, 6)\nlate = st.slider('Previous late payments', 0, 6, 0)\n\nrow = pd.DataFrame({\n    'monthly_income_ugx': [income],\n    'loan_amount_ugx': [amount],\n    'term_months': [months],\n    'previous_late_payments': [late],\n})\n\nif st.button('Show probability'):\n    p = model.predict_proba(row)[0, 1]\n    st.metric('Chance of default', f'{p:.0%}')\n'''\nopen('app.py', 'w').write(app_code)\nprint(len(app_code.splitlines()), 'lines written')",
+    "starter": "# Your turn: copy the app text from the slide into a string called app_code\n# Your turn: write app_code to a file named app.py\n"
+   },
+   {
+    "code": "import os\nassert os.path.exists('app.py'), 'app.py is missing. Write app_code to a file named app.py'\ntext = open('app.py').read()\nassert 'loan_model.joblib' in text, 'app.py should load loan_model.joblib'\nassert 'predict_proba' in text, 'app.py should call predict_proba to show the probability'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Complete the model card\nDouble click this cell and replace each dots line with your own words.\n\n**Purpose:** ...\n\n**Data:** ... (source, years, what you removed and why)\n\n**Metrics:** ... (for this loan model the AUC is about 0.76; quote that, or your own capstone figure)\n\n**Limits:** ... (include the gender flag-rate gap you measured in Task 4)\n\n**Who must review:** ... (a role, and a date)\n\n**Data protection checklist:** one line for each of the seven principles in the Session 23 table, saying what you do or still need to do. Mark any line you cannot answer yet."
+   },
+   {
+    "md": "## Task 8. Reflect\nOpen `loans.csv` in Google Sheets. Build a PivotTable of the average of `default` by `gender` and check it against Task 2. Then write one sentence: what does the gap in Task 4 show, and what does it leave open?"
+   }
+  ]
+ }
+}

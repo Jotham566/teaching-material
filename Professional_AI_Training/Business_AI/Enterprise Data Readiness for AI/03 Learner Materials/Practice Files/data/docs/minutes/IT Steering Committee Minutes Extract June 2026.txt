@@ -1,0 +1,10 @@
+KITARA GROUP
+IT Steering Committee: Minutes Extract, 9 June 2026
+
+IT Steering Committee. Extract of the minutes of 9 June 2026.
+
+Item 2: Multi-factor authentication. 1,420 of 1,800 staff have registered. Accounts without a registered device are locked. Staff who change phones must register the new phone by 30 November 2026.
+
+Item 3: AI sandbox pilot. The Committee approved a pilot of an internal search over policy documents, limited to 120 documents and 40 users. The pilot will test whether the search shows staff only documents they are allowed to see. A budget of UGX 38,000,000 was approved for the pilot.
+
+Item 4: Data catalogue. The Committee asked for a list of data sources with an owner for each. Fourteen sources were identified. None is yet in a catalogue.

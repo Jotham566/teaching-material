@@ -1,0 +1,439 @@
+{
+ "session": 21,
+ "notes_title": "Until now every column in our files held numbers or short categories. Today a column holds a sentence. We'll take eight hundred customer messages from Lakeside Mart and turn them into numbers in two ways, first by counting words, then with embeddings, which put meaning into numbers. By the end you'll have a sentiment classifier, and a search that finds a long queue complaint even when the customer used different words. You'll score that search against an answer key.",
+ "notes_outcomes": "By the end you'll turn text into counts and into embeddings, train a sentiment classifier and read its mistakes, including the ones that are bad labels, and search customer messages by meaning. You'll score that search by counting how many of the top ten results are the right kind of message. The live part runs in two halves. The counting methods and the classifier come first, then a keyword search that falls short, and only then the embeddings that fix it. The lab checks for the model results accept a range.",
+ "notes_words": "Seven words today, all about turning text into numbers. Sentiment is the mood of a message, like a Good or Bad column you'd fill in by hand. A regular expression is Find and Replace with wildcards, only stronger. A bag of words is a table of counts, one column per word. TF-IDF is a weight column that shrinks common words. An embedding is a row of numbers that stands for meaning. Cosine similarity is a score for how alike two such rows are, and semantic search uses that score to find messages close to your question.",
+ "vocab": [
+  [
+   "Sentiment",
+   "The mood of a message: positive, negative or neutral.",
+   "A Good or Bad column"
+  ],
+  [
+   "Regular expression",
+   "A pattern that describes text to find or replace.",
+   "Find and Replace with wildcards"
+  ],
+  [
+   "Bag of words",
+   "A table of word counts per message, ignoring word order.",
+   "One COUNTIF column per word"
+  ],
+  [
+   "TF-IDF",
+   "Word counts weighted so that rare words count more.",
+   "A weight column"
+  ],
+  [
+   "Embedding",
+   "A list of numbers that stands for the meaning of a phrase.",
+   "A row of scores"
+  ],
+  [
+   "Cosine similarity",
+   "A score for how closely two lists of numbers point the same way.",
+   "SUMPRODUCT over the lengths"
+  ],
+  [
+   "Semantic search",
+   "Finding items close in meaning, even when the words differ.",
+   "Ctrl F that knows meaning"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 20",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "What does one neuron do with the numbers that come into it?",
+     "a": "It multiplies each by a weight, adds them up and passes the total through an activation."
+    },
+    {
+     "q": "When is a simpler model better than a neural network?",
+     "a": "When it scores about the same on test data. It is cheaper and easier to explain."
+    }
+   ],
+   "notes": "Let's recall how one neuron works, and when a simpler model wins.\n\nFirst. What does one neuron do with the numbers that come into it? Have a think.\n\nIt multiplies each number by a weight, adds them all up, and passes the total through an activation. Today we meet a problem where the numbers don't exist yet, because the data is words.\n\nSecond. When is a simpler model better than a neural network? Sit with it for a second.\n\nWhen the simple model scores about the same on test data. It's cheaper to run and easier to explain to a manager. Keep that in mind today, because the simplest text model we build will do well."
+  },
+  {
+   "type": "concept",
+   "title": "A message is a row, and words are the columns we must invent",
+   "lead": "Customers write in sentences. A model needs numbers, so we turn each sentence into a row of numbers.",
+   "points": [
+    {
+     "h": "The file",
+     "t": "feedback.csv holds 800 customer messages."
+    },
+    {
+     "h": "The label",
+     "t": "Each has a sentiment: positive, negative or neutral."
+    },
+    {
+     "h": "The answer key",
+     "t": "A theme column says what each message is about, such as queue or price."
+    },
+    {
+     "h": "The catch",
+     "t": "About 6 percent of the sentiment labels are wrong on purpose."
+    }
+   ],
+   "notes": "The file is feedback.csv. It has eight hundred customer messages from the Lakeside Mart branches, and the column that matters holds sentences. Each message carries a sentiment, which is a word for its mood. Positive, negative or neutral.\n\nThere's a second label this time, called theme. It says what the message is about, such as queues, prices or payments. We'll use it as an answer key to mark our search, the way you'd mark a test with the answers in your hand.\n\nIn Excel this is a column of text that you read one cell at a time. You can read eight hundred, slowly. You can't read eight hundred thousand.\n\nOne warning. A person wrote the sentiment labels, and people slip. About six percent of them are wrong on purpose, so you can practise spotting them."
+  },
+  {
+   "type": "code",
+   "title": "Load the messages and look first",
+   "lang": "python",
+   "code": "import pandas as pd\n\nfb = pd.read_csv('feedback.csv')\nprint(fb.shape)\nprint(fb.sentiment.value_counts())\nprint(fb.theme.value_counts().head(3))\nprint(fb.message[0])",
+   "says": [
+    "Same routine as Session 7: load, then look.",
+    "value_counts is the PivotTable count. Sentiment is the mood, theme is the topic.",
+    "Print the first message in full."
+   ],
+   "output": "(800, 6)\nnegative 405\npositive 225\nneutral 170\nquestion 166\nprice 92\nqueue 89\nFeedback: Too costly for ordinary families. Will recommend.",
+   "notes": "Same first five minutes as always. Load the file, then look before you ask.\n\nThe shape is eight hundred rows and six columns.\n\nThen value_counts, which is the PivotTable count by label. There are four hundred and five negative messages, two hundred and twenty five positive and a hundred and seventy neutral. Below that, the three most common themes. Questions come first with a hundred and sixty six, then price with ninety two, then queue with eighty nine.\n\nLast, the first message in full. It says too costly for ordinary families, and then will recommend. That's a complaint with a friendly closing line. Customers often add a line like that, and we'll deal with them in a few minutes."
+  },
+  {
+   "type": "code",
+   "title": "Clean the text, then count the words",
+   "lang": "python",
+   "code": "from collections import Counter\n\nfb['clean'] = (fb.message.str.lower()\n               .str.replace(r'[^a-z\\s]', '', regex=True))\nfb['n_words'] = fb.clean.str.split().str.len()\nprint(fb.n_words.mean().round(1))\nwords = Counter(w for m in fb.clean for w in m.split())\nprint(words.most_common(5))",
+   "says": [
+    "Lower case, and remove anything that is not a letter or a space.",
+    "split cuts each message into words. len counts them.",
+    "Counter tallies every word in all 800 messages."
+   ],
+   "output": "11.9\n[('the', 586), ('at', 413), ('i', 338), ('please', 255), ('on', 239)]",
+   "notes": "Now we clean the text. The Excel version is a helper column with LOWER and SUBSTITUTE to strip commas and full stops. Here it's one line.\n\nFirst we change every letter to lower case and remove anything that isn't a letter or a space. Now Fresh and fresh count as the same word.\n\nThen split cuts each message into words and len counts them. The average message has eleven point nine words. These are short messages.\n\nLast, Counter tallies every word across all the messages. The winners are the, at, I, please and on. Common little words that say nothing about mood. Please comes from closing lines such as please reply. Hold that thought, because it explains why we need a smarter count in a few minutes."
+  },
+  {
+   "type": "code",
+   "title": "Strip phone numbers before any analysis",
+   "lang": "python",
+   "code": "import re\n\nraw = ['Call me on 0700 000 111 about my refund.',\n       'Receipt asked for my phone number, is that needed?',\n       'Mobile money from +256 700 000 222 failed.']\npat = r'(\\+?256|0)[\\s-]?\\d{3}[\\s-]?\\d{3}[\\s-]?\\d{3}'\nfor r in raw:\n    print(re.sub(pat, '[PHONE]', r))",
+   "says": [
+    "A regular expression is a pattern for text.",
+    "\\d{3} means exactly three digits.",
+    "re.sub swaps every match for [PHONE]."
+   ],
+   "output": "Call me on [PHONE] about my refund.\nReceipt asked for my phone number, is that needed?\nMobile money from [PHONE] failed.",
+   "notes": "Customers sometimes type personal details into a message. A phone number is personal data. The Data Protection and Privacy Act of 2019 expects us to handle it with care, and the simplest care is to remove it before anyone analyses the text.\n\nThe tool is a regular expression, which is a pattern for text. In Excel you'd use Find and Replace with wildcards. A regular expression is a stronger version of that.\n\nRead the pattern like this. It begins with a country code of two five six or a leading zero. Then come three digits, three more and three more, with optional spaces or hyphens between. The function re.sub swaps each match for the word PHONE in square brackets.\n\nThese three messages are made up. The first and third have a number and lose it. The second only mentions the words phone number, so it stays as it was. In your own work, always look at a sample after cleaning to check the pattern caught what you meant."
+  },
+  {
+   "type": "code",
+   "title": "A bag of words for three messages, built by hand",
+   "lang": "python",
+   "code": "msgs = [\n 'Mobile money payment failed twice and I was charged anyway.',\n 'Mobile money payment went through quickly, thank you.',\n 'My loyalty points did not show after the purchase.']\ntoks = [re.sub(r'[^a-z\\s]', '', m.lower()).split() for m in msgs]\nbow = pd.DataFrame([Counter(t) for t in toks])\nbow = bow.fillna(0).astype(int)\nbow[['mobile','money','payment','failed','quickly','not']]",
+   "says": [
+    "Counter counts the words in each message.",
+    "Each distinct word becomes a column. Unused words become 0.",
+    "Messages with similar words get similar rows."
+   ],
+   "output": "0 1 1 1 1 0 0\n1 1 1 1 0 1 0\n2 0 0 0 0 0 1",
+   "notes": "Most text models start from an idea called a bag of words. Imagine tipping each message out of its sentence and into a bag. The order is gone and only the counts remain. We build one by hand for three messages.\n\nFirst, Counter counts the words in each message, after the same cleaning as before.\n\nSecond, the table stacks those counts as rows. Every distinct word across the three messages becomes a column, and a word a message doesn't use becomes a zero. There are twenty four columns in all. In Excel that's a COUNTIF for every word, which is a lot of typing.\n\nThird, look at six of the columns. Rows zero and one both say mobile money payment, so they share ones there. Row zero says failed and row one says quickly. Row two shares nothing with the others. Two messages are close if their rows look alike."
+  },
+  {
+   "type": "code",
+   "title": "TF-IDF gives rare words more weight",
+   "lang": "python",
+   "code": "import numpy as np\n\ndf = (bow > 0).sum()\nidf = np.log(len(bow) / df)\ntfidf = (bow * idf).round(2)\ntfidf[['mobile','money','payment','failed','quickly']]",
+   "says": [
+    "df counts the messages that contain each word.",
+    "Rare words get a big idf. Words in every message get zero.",
+    "Multiply the counts by idf to get the weights."
+   ],
+   "output": "0 0.41 0.41 0.41 1.1 0.0\n1 0.41 0.41 0.41 0.0 1.1\n2 0.00 0.00 0.00 0.0 0.0",
+   "notes": "Plain counts have the problem we saw a minute ago. Little words like the and was are everywhere, and they drown out the words that carry meaning.\n\nTF-IDF fixes that. It stands for term frequency times inverse document frequency, which sounds heavy. The idea is light. Count each word as before, then multiply by how rare the word is across all messages. In Excel that's a weight column you multiply by.\n\nThe code first counts, for each word, how many of the three messages contain it. Then the weight is the log of three divided by that count. A word in all three messages scores zero. A word in only one scores one point one.\n\nIn the result, mobile, money and payment appear in two messages and score point four one. Failed and quickly appear in one, so they score one point one. The distinctive words now stand out. The scikit-learn version smooths this formula a little, so its numbers will be close but not the same as ours."
+  },
+  {
+   "type": "code",
+   "title": "A sentiment classifier in six lines",
+   "lang": "python",
+   "code": "from sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\n\nX_tr, X_te, y_tr, y_te = train_test_split(\n    fb.message, fb.sentiment, test_size=0.25, random_state=42)\nvec = TfidfVectorizer()\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(vec.fit_transform(X_tr), y_tr)\npred = model.predict(vec.transform(X_te))\nprint((pred == y_te).mean())",
+   "says": [
+    "fit_transform learns the words from training messages only.",
+    "transform turns test messages into the same columns.",
+    "The mean of True and False is the accuracy."
+   ],
+   "notes": "The classifier uses a shape you know from Sessions 14 and 15. Split the data, fit on the training part, predict on the test part.\n\nThe new piece is the vectorizer, which turns messages into TF-IDF columns. We call fit_transform on the training messages. That learns the vocabulary and builds the table in one step. For the test messages we call only transform, so they use the same columns and never teach the vocabulary anything.\n\nThen LogisticRegression fits on those columns, exactly as it did for loan default, only now there are three categories instead of two. Predict, compare, and take the mean of the matches to get accuracy.\n\nThere's no number on the slide, because the exact figure comes from your own run. I'd expect your accuracy to land well above eighty five percent. It won't be perfect, because some labels are wrong and no model can match a wrong label. One more thing to remember. These messages are built from a modest set of sentences, so test messages often have a twin in the training part. Real feedback is messier, so expect a lower score on your own data. Your number will also differ a little from your neighbour's, and that's fine."
+  },
+  {
+   "type": "code",
+   "title": "Strip the greeting and the closing line",
+   "lang": "python",
+   "code": "hi = r'^(Hello|On Friday evening'\nhi += r'|Yesterday I shopped at [\\w ]+)\\. '\nhi += r'|^(To the manager|Feedback): '\nbye = r' (Thank you|Thanks|Keep it up|Do better'\nbye += r'|Will recommend|Please fix this|Please reply'\nbye += r'|I am not happy|This has happened before)\\.$'\nfb['core'] = fb.message.str.replace(hi, '', regex=True)\nfb['core'] = fb.core.str.replace(bye, '', regex=True)\nprint(fb.message.nunique(), fb.core.nunique())\nprint(fb.message[0])\nprint(fb.core[0])",
+   "says": [
+    "Two patterns: greetings at the front, closing lines at the end. A bar means or.",
+    "Replace each match with nothing. The core is what is left.",
+    "758 different messages, but only 360 different sentences."
+   ],
+   "output": "758 360\nFeedback: Too costly for ordinary families. Will recommend.\nToo costly for ordinary families.",
+   "notes": "Before we trust any score, look at the text itself. These messages carry a greeting at the front and a closing line at the end, and they hide how often the same sentence repeats.\n\nTwo regular expressions do the work. One matches greetings at the start, such as Hello, or To the manager, or a line saying where the customer shopped. The other matches closing lines such as thank you, keep it up or please reply. The vertical bar means or.\n\nWe replace each match with nothing. Read the example. The message starts with Feedback and ends with will recommend. The core is just the complaint, too costly for ordinary families.\n\nNow count. There are seven hundred and fifty eight different messages, which sounds like plenty of variety. Strip the greeting and the closing line and only three hundred and sixty different sentences remain. Customers write the same things again and again, with a different branch or product. That matters for scores. A test message often has a near twin in the training part, so accuracy looks better than it will on fresh feedback."
+  },
+  {
+   "type": "code",
+   "title": "Reading the mistakes: spot the noisy labels",
+   "lang": "python",
+   "code": "fb['usual'] = fb.groupby('core').sentiment.transform(\n    lambda s: s.mode().iloc[0])\nsize = fb.groupby('core').core.transform('size')\nrep = fb[size >= 3]\nodd = rep[rep.sentiment != rep.usual]\nprint(len(rep), len(odd), round(len(odd) / len(rep) * 100, 1))\nfor _, r in odd.head(2).iterrows():\n    print(r.core, r.sentiment, r.usual)",
+   "says": [
+    "usual is the label most people gave that sentence.",
+    "Keep sentences that appear three or more times.",
+    "odd holds the labels that disagree with the usual one."
+   ],
+   "output": "469 22 4.7\nDoes the receipt need my phone number? negative neutral\nMobile money payment failed twice and I was charged anyway. positive negative",
+   "notes": "Before blaming the model for its mistakes, check the labels. Here's a trick that needs no model.\n\nFor each core sentence we find the label most people gave it, and call that the usual label.\n\nThen we keep only the sentences that appear at least three times, so the usual label is believable.\n\nOf four hundred and sixty nine such messages, twenty two carry an odd label. That's four point seven percent. It's a little under the six percent in the data dictionary, because a sentence that appears only once or twice can't be checked this way. Look at the two examples. A question about the receipt, labelled negative, where everyone else said neutral. And a payment failure labelled positive, where everyone else said negative. A model that predicts the usual label is right in both, and the file is wrong. So when you read a mistake, first ask who made it, the model or the label."
+  },
+  {
+   "type": "code",
+   "title": "Keyword search for queue, scored with the answer key",
+   "lang": "python",
+   "code": "q = fb[fb.theme == 'queue']\nfound = q.message.str.contains('queue')\nprint(len(q), found.sum(), (~found).sum())\nhits = fb[fb.message.str.contains('queue')]\ntop = hits.head(10)\nprint((top.theme == 'queue').mean(), round(found.mean(), 2))\nmiss = q[~found & (q.sentiment == 'negative')]\nfor m in miss.message.head(2):\n    print(m[:46])",
+   "says": [
+    "theme is the answer key. 89 messages are really about queues.",
+    "Precision at ten: the share of the first ten hits that are right.",
+    "Recall is the share of all 89 that we found. See two it missed."
+   ],
+   "output": "89 19 70\n1.0 0.21\nWe waited ages to pay at Mbale. Only one till\nToo many people and not enough cashiers at For",
+   "notes": "Next, a search. In Excel this is Ctrl F, or a filter that says contains. We want every message about queues, and this time we have an answer key to mark ourselves with.\n\nThe theme column says which messages are really about queues. There are eighty nine of them. We search for the word queue. Only nineteen of the eighty nine contain it. Seventy do not.\n\nNext, precision at ten. Take the first ten results the search gives and ask how many are right. All ten are queue messages, so the score is one point oh. That looks perfect.\n\nThen recall, which is the share of all eighty nine that we found. It's point two one, so twenty one percent. Two of the messages it missed read, We waited ages to pay, and Not enough cashiers. Other customers wrote line, or checkout, or slow service. None of them wrote the word queue. Even the word waiting finds nothing in this file."
+  },
+  {
+   "type": "trap",
+   "title": "A perfect precision score that hides the misses",
+   "looks": "You search for queue and check the first ten results. All ten are queue messages, so precision at ten is perfect and you report that the search works.",
+   "why": "Precision at ten only judges what came back. 70 of the 89 queue messages never appeared. Of the 19 that did, some are praise, such as no queue at all.",
+   "fix": "Report recall beside precision. Recall is the share of all the right messages that you found. Here it is 21 percent.",
+   "notes": "This trap raises no error at all, and the number it gives is perfect.\n\nYou search for queue and check the first ten results. All ten are queue messages. Precision at ten is one hundred percent, so you write that the search works.\n\nBut precision at ten only judges what came back. It says nothing about what's missing. Seventy of the eighty nine queue messages never showed up. And among the nineteen that did, eleven carry a positive label, because they say things like no queue at all. The word is there and the customer is happy.\n\nThe fix is to report recall beside precision. Recall is the share of all the right answers that you found. Here it's twenty one percent. A search that's right every time it answers, and silent four times out of five, needs a second number beside it. Give both."
+  },
+  {
+   "type": "figure",
+   "title": "Embeddings place meaning in space",
+   "fig": "embedding_idea",
+   "look": [
+    "Phrases about waiting sit together, with different words.",
+    "Phrases about prices form a second group.",
+    "Payment problems form a third, far from the other two."
+   ],
+   "caption": "A schematic with example phrases. Real embeddings have hundreds of numbers.",
+   "alt": "A two-dimensional map where phrases about queues sit near each other, away from phrases about prices and about payment.",
+   "notes": "An embedding is a list of numbers that stands for the meaning of a phrase. A model has read a huge amount of text and learned to put phrases with similar meaning at nearby positions. Think of a map where distance means difference in meaning.\n\nThis picture is a sketch with example phrases, and real embeddings have hundreds of numbers where this one has two. It still shows the idea.\n\nThe blue group is long queue at the till, waited twenty minutes and slow checkout. The words are different and the meaning is close, so the dots are close.\n\nThe yellow group is about prices. Prices keep going up, too expensive and cheaper elsewhere.\n\nThe red group is about payment problems, far from the others. Charged twice, mobile money failed, payment error. Now a search can ask which dots are nearest to my question."
+  },
+  {
+   "type": "code",
+   "title": "Cosine similarity, by hand with numpy",
+   "lang": "python",
+   "code": "import numpy as np\n\ndef cosine(x, y):\n    return x @ y / (np.linalg.norm(x) * np.linalg.norm(y))\n\nqueue = np.array([3, 1, 0])\nwait = np.array([2, 1, 1])\nprice = np.array([0, 1, 4])\nprint(round(cosine(queue, wait), 2))\nprint(round(cosine(queue, price), 2))",
+   "says": [
+    "The dot product multiplies matching numbers and adds them.",
+    "Dividing by the lengths leaves only the direction.",
+    "Near 1 means the same direction. Near 0 means unrelated."
+   ],
+   "output": "0.9\n0.08",
+   "notes": "How does a search decide that two phrases are close? It measures the angle between their lists of numbers. That measure is called cosine similarity. We do it by hand on three tiny made-up phrases, each with just three numbers.\n\nThe function multiplies matching numbers and adds them up, which is SUMPRODUCT in Excel. That's the dot product.\n\nThen it divides by the length of each list, so a long phrase doesn't win just for being long. What's left is the direction.\n\nA score near one means two phrases point the same way. Queue and wait score point nine. Queue and price score point zero eight, so they're almost unrelated. Real embeddings do exactly this sum, with three hundred and eighty four numbers instead of three."
+  },
+  {
+   "type": "code",
+   "title": "Semantic search with sentence-transformers",
+   "lang": "python",
+   "code": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\nvecs = model.encode(fb.message.tolist(),\n                    normalize_embeddings=True)\nq = model.encode(['long queue at the till'],\n                 normalize_embeddings=True)\nfb['score'] = (vecs @ q.T).ravel()\nmissed = fb[~fb.message.str.contains('queue')]\ntop = missed.sort_values('score', ascending=False).head(10)\nprint((top.theme == 'queue').sum())",
+   "says": [
+    "The model downloads about 90 MB once. Free, no key.",
+    "Dot product of unit lists is the cosine. One score per message.",
+    "Search only messages without the word queue, then count."
+   ],
+   "notes": "Now the search by meaning. The model is all-MiniLM-L6-v2, from the sentence-transformers library, and it's free.\n\nThe first time you run it in Colab it downloads about ninety megabytes, which takes a minute. After that it runs inside your notebook. No account, no key, and your messages never leave Colab.\n\nThe encode call turns every one of the eight hundred messages into a list of numbers, normalised so each list has length one. Then the dot product of two lists is exactly their cosine similarity. We encode the question the same way and multiply, which gives one score for every message.\n\nNow the fair test. We keep only the messages that lack the word queue, so the keyword search could never return them, and sort them from the highest score down. Then we count how many of the top ten have the theme queue. I'd expect most of them, and the check accepts six or more. There's no output on the slide, because it comes from your own run. Read the ten messages yourself, then try your own question."
+  },
+  {
+   "type": "code",
+   "title": "Counting words cannot see the word not",
+   "lang": "python",
+   "code": "from collections import Counter\nimport math\n\ndef bow_cos(a, b):\n    ca, cb = Counter(a.split()), Counter(b.split())\n    dot = sum(ca[w] * cb[w] for w in ca)\n    na = math.sqrt(sum(v * v for v in ca.values()))\n    nb = math.sqrt(sum(v * v for v in cb.values()))\n    return dot / (na * nb)\n\ngood = 'the service was good'\nprint(round(bow_cos(good, 'the service was not good'), 2))\nprint(round(bow_cos(good, 'the service was bad'), 2))",
+   "says": [
+    "The same cosine, now on plain word counts.",
+    "Not good scores as very close to good.",
+    "Bad scores lower, though it is the opposite."
+   ],
+   "output": "0.89\n0.75",
+   "notes": "Time to see where a bag of words breaks. We reuse the cosine idea, now on plain word counts.\n\nThe sentence the service was good has four words. We compare it with the service was not good, and with the service was bad.\n\nThe first score is point eight nine. The counting method says not good is very close to good, because they share four words out of five. The second score is point seven five. It says bad is further away, even though bad is the opposite of good.\n\nThe word not is just one more column, and the model can't see that it flips what comes after. Embeddings read the whole sentence, so they often do better here, but not always. Test with your own examples before you trust either."
+  },
+  {
+   "type": "table",
+   "title": "Where each method fails",
+   "header": [
+    "Case",
+    "Example message",
+    "Word counts",
+    "Embeddings"
+   ],
+   "rows": [
+    [
+     "Negation",
+     "The service was not good",
+     "Sees good, may call it positive",
+     "Often catches it, not always"
+    ],
+    [
+     "Sarcasm",
+     "Great, another twenty minutes at the till",
+     "Sees great, may call it positive",
+     "Often fooled too"
+    ],
+    [
+     "Text speak",
+     "pls refund, v slow 2day",
+     "Unseen spellings are ignored",
+     "May cope better. Test it"
+    ],
+    [
+     "Mixed languages",
+     "A message that switches language halfway",
+     "Unseen words are ignored",
+     "Weaker. Trained mostly on English"
+    ]
+   ],
+   "colw": [
+    2.2,
+    3.6,
+    3.4,
+    3.4
+   ],
+   "caption": "Test each method on messages like your own customers write, with speakers of their languages.",
+   "notes": "Four cases where the methods go wrong, with both methods side by side.\n\nNegation first. The service was not good. Word counts see good and may call it positive. Embeddings often catch the not, and sometimes miss it.\n\nSarcasm next. Great, another twenty minutes at the till. A person hears the sarcasm at once. Word counts see great. Embeddings can be fooled as well, because sarcasm depends on context that isn't in the sentence. Text speak is the third case. Please refund, very slow today, typed as pls refund, v slow 2day. Spellings the method never saw are ignored by word counts, so test it.\n\nThe last row matters in Uganda. Customers mix English with other languages in one message. The embedding model we use was trained mostly on English, so I expect it to be weaker there. I can't tell you how weak. Only people who speak those languages can judge that, so test on real messages with local speakers beside you before anyone relies on the results."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: classify feedback and search by meaning",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Load feedback.csv, clean the text and count words",
+    "Strip phone numbers with a regular expression",
+    "Score the keyword search for queue with the theme answer key",
+    "Fit the TF-IDF classifier and read its mistakes",
+    "Compute cosine similarity by hand",
+    "Search by meaning and count the queue messages in the top ten",
+    "Compare both searches and name where each fails"
+   ],
+   "done": "You can name one message type where each method fails.",
+   "notes": "Run the setup cell first. The first task loads feedback.csv and cleans the text, and the phone number, keyword and cosine tasks run anywhere. The classifier and the meaning search need scikit-learn and the sentence-transformers model, which Colab provides. The first search run downloads the model, so give it a minute.\n\nYou have forty minutes. Your accuracy and search results will be near what I described but not the same as your neighbour's, which is why the checks accept a range.\n\nThe last task is one sentence about a message where a method fails. When something breaks, the last line of the error message is the place to start, and then call me over."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Why does TF-IDF give the word the a low weight?",
+     "a": "The word appears in nearly every message, so it tells us little about any one of them."
+    },
+    {
+     "q": "A search returns ten results and all ten are right. Is it a good search?",
+     "a": "Not yet. Precision only judges what came back. Check recall: how many of all the right messages it found."
+    },
+    {
+     "q": "Customers type phone numbers into messages. What do you do first?",
+     "a": "Strip them out with a regular expression, as the Data Protection and Privacy Act of 2019 expects care with personal data."
+    }
+   ],
+   "notes": "Start with TF-IDF. Why does it give a common word like the a low weight? Think it over.\n\nBecause the word appears in nearly every message, so it tells us almost nothing about any one of them. Rare words carry the signal.\n\nNext, a search that returns ten results, all of them right. Is it a good search? No rush.\n\nNot yet. Precision only judges the results that came back. Ask for recall too, the share of all the right messages that the search found. Our keyword search for queue found twenty one percent. Embeddings should find many more, and you'll count them in the lab.\n\nLast, customers sometimes type phone numbers into their messages. What do you do before you analyse? Give that a moment.\n\nYou strip them out with a regular expression. The Data Protection and Privacy Act of 2019 expects us to take care of personal data, and removing it first is the easiest care to give."
+  },
+  {
+   "type": "summary",
+   "points": [
+    "Text becomes numbers by counting words, with TF-IDF giving rare words more weight.",
+    "A classifier reads those numbers. Its mistakes come from noisy labels as well as the model.",
+    "Score a search with an answer key. Embeddings find messages that use other words."
+   ],
+   "next": "Language models and building with them",
+   "notes": "Text becomes numbers by counting words, and TF-IDF gives rare words more weight than common ones.\n\nA classifier reads those numbers. When it's wrong, check the labels as well as the model. These messages repeat the same sentences, so real data will score lower.\n\nScore a search with an answer key, and report precision and recall together. Embeddings put meaning in space, so a search for a long queue can find messages that use other words. Test the methods on negation, sarcasm and the languages your customers use, and strip personal details first.\n\nNext session we meet language models. We'll use the same embeddings to find the right passage in a policy document, then ask a small model to answer from it."
+  }
+ ],
+ "lab": {
+  "intro": "Nine tasks on the 800 Lakeside Mart feedback messages. Cleaning, the regular expression, keyword scoring and cosine run anywhere. The classifier and the meaning search need scikit-learn and sentence-transformers, which Colab has.",
+  "cells": [
+   {
+    "md": "## Task 1. Load the messages\nRead `feedback.csv` into `fb` and print its shape."
+   },
+   {
+    "code": "import pandas as pd\n\nfb = pd.read_csv('feedback.csv')\nprint(fb.shape)",
+    "starter": "import pandas as pd\n\n# Your turn: read feedback.csv into fb, then print its shape\n"
+   },
+   {
+    "code": "assert fb.shape == (800, 6), 'fb should have 800 rows and 6 columns. Check the file name'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Clean the text and count words\nMake a column `clean` (lower case, letters and spaces only) and a column `n_words`. Store the mean word count in `avg_words`."
+   },
+   {
+    "code": "fb['clean'] = (fb.message.str.lower()\n               .str.replace(r'[^a-z\\s]', '', regex=True))\nfb['n_words'] = fb.clean.str.split().str.len()\navg_words = fb.n_words.mean()\nprint(round(avg_words, 1))",
+    "starter": "# Your turn: lower-case the message, remove non-letters with str.replace and a regex,\n# split into words, count them, and store the mean in avg_words\n"
+   },
+   {
+    "code": "assert abs(avg_words - 11.9) < 0.1, 'avg_words should be about 11.9. Check n_words counts the words of the clean text, and avg_words is its mean'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Strip phone numbers\nUse `re.sub` with a pattern to replace each phone number in `raw` with `[PHONE]`. Store the cleaned messages in `safe`. (The numbers are made up.)"
+   },
+   {
+    "code": "import re\n\nraw = ['Call 0700 000 111 about my refund.',\n       'Sent from +256 700 000 222 twice.',\n       'No number in this one.']\npat = r'(\\+?256|0)[\\s-]?\\d{3}[\\s-]?\\d{3}[\\s-]?\\d{3}'\nsafe = [re.sub(pat, '[PHONE]', r) for r in raw]\nprint(safe)",
+    "starter": "import re\n\nraw = ['Call 0700 000 111 about my refund.',\n       'Sent from +256 700 000 222 twice.',\n       'No number in this one.']\n# Your turn: write a pattern for a Ugandan phone number, then use re.sub on each message\n"
+   },
+   {
+    "code": "assert safe[0] == 'Call [PHONE] about my refund.', 'The pattern must match 0700 000 111'\nassert safe[1] == 'Sent from [PHONE] twice.', 'The pattern must match +256 700 000 222'\nassert safe[2] == raw[2], 'A message with no number stays the same'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Score a keyword search\nThe `theme` column is the answer key. Store the number of messages with theme `queue` in `n_theme`, and how many of them contain the word `queue` in `n_found`. Store the precision at ten of the keyword hits in `p10`: the share of the first ten messages containing `queue` whose theme is `queue`. Store the recall in `recall` (`n_found` divided by `n_theme`). Finally widen the keyword to `wait` (use `case=False`) and store in `p_wait` the share of those hits whose theme is `queue`."
+   },
+   {
+    "code": "q = fb[fb.theme == 'queue']\nn_theme = len(q)\nn_found = q.message.str.contains('queue').sum()\nhits = fb[fb.message.str.contains('queue')]\np10 = (hits.head(10).theme == 'queue').mean()\nrecall = n_found / n_theme\nwait = fb[fb.message.str.contains('wait', case=False)]\np_wait = (wait.theme == 'queue').mean()\nprint(n_theme, n_found, p10, round(recall, 2), round(p_wait, 2))",
+    "starter": "# Your turn: q = rows with theme 'queue'; count them and the ones containing 'queue'\n# then precision at ten, recall, and the share of 'wait' hits that are queue messages\n"
+   },
+   {
+    "code": "assert n_theme == 89, 'Filter fb on theme == queue'\nassert n_found == 19, 'Count the queue-theme messages that contain the word queue'\nassert p10 == 1.0, 'Take the first ten hits with head(10)'\nassert abs(recall - 0.213) < 0.01, 'recall is n_found divided by n_theme'\nassert abs(p_wait - 0.667) < 0.01, 'Use str.contains with case=False'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. A sentiment classifier\nSplit `fb.message` and `fb.sentiment` 75 / 25 with `random_state=42`. Fit `TfidfVectorizer` and `LogisticRegression`, store the test predictions in `pred`, store the test accuracy in `acc`, and keep the test rows in `test` with `fb.loc[X_te.index]`."
+   },
+   {
+    "code": "from sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\n\nX_tr, X_te, y_tr, y_te = train_test_split(\n    fb.message, fb.sentiment, test_size=0.25, random_state=42)\nvec = TfidfVectorizer()\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(vec.fit_transform(X_tr), y_tr)\npred = model.predict(vec.transform(X_te))\nacc = (pred == y_te).mean()\ntest = fb.loc[X_te.index]\nprint(round(acc, 3))",
+    "starter": "from sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\n\n# Your turn: split, fit_transform the training messages, fit the model,\n# predict the test messages, and store the accuracy in acc\n"
+   },
+   {
+    "code": "assert 0.85 <= acc <= 1.0, 'acc should be between 0.85 and 1.0. Fit the vectoriser and model on the training messages only, then score the test messages'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Read the mistakes\nKeep the rows of `test` where the true label differs from `pred` in `wrong`. Read the first ten. Which ones look like noisy labels?"
+   },
+   {
+    "code": "# pred comes from the sklearn model above\nwrong = test[test.sentiment != pred]\nprint(len(wrong))\nwrong[['message', 'sentiment']].head(10)",
+    "starter": "# pred comes from the sklearn model above\n# Your turn: keep the rows of test where sentiment differs from pred\n"
+   },
+   {
+    "code": "assert len(wrong) == (pred != y_te).sum(), 'wrong should hold only the rows where label and pred differ'\nassert len(wrong) < 0.15 * len(test), 'A good model gets most messages right'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Cosine similarity by hand\nWrite `cosine(x, y)` with numpy. Check it on two vectors. Store `cosine(a, b)` in `sim`."
+   },
+   {
+    "code": "import numpy as np\n\ndef cosine(x, y):\n    return x @ y / (np.linalg.norm(x) * np.linalg.norm(y))\n\na = np.array([3, 1, 0])\nb = np.array([2, 1, 1])\nsim = cosine(a, b)\nprint(round(sim, 2))",
+    "starter": "import numpy as np\n\n# Your turn: write cosine(x, y), then store cosine(a, b) in sim\na = np.array([3, 1, 0])\nb = np.array([2, 1, 1])\n"
+   },
+   {
+    "code": "assert abs(sim - 0.9) < 0.01, 'sim should be about 0.90: the dot product of a and b, divided by the length of a times the length of b'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Search by meaning\nEncode the messages with `all-MiniLM-L6-v2` (it downloads about 90 MB once). Search for `long queue at the till`, but only among the messages that do not contain the word `queue`. Keep the best ten in `top10` and count how many have theme `queue` in `n_right`. Then try your own question."
+   },
+   {
+    "code": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\nvecs = model.encode(fb.message.tolist(), normalize_embeddings=True)\nq = model.encode(['long queue at the till'], normalize_embeddings=True)\nfb['score'] = (vecs @ q.T).ravel()\nmissed = fb[~fb.message.str.contains('queue')]\ntop10 = missed.sort_values('score', ascending=False).head(10)\nn_right = (top10.theme == 'queue').sum()\nprint(n_right)\ntop10[['message', 'score']]",
+    "starter": "from sentence_transformers import SentenceTransformer\n\n# Your turn: load the model, encode the messages and the question, take the dot product,\n# keep only messages without the word queue, sort, keep ten rows in top10,\n# and count the queue-theme ones in n_right\n"
+   },
+   {
+    "code": "assert n_right >= 6, 'n_right should be at least 6. Search only the messages without the word queue, rank them by score, and count the theme queue rows in the best ten'\nprint('Task 8 correct')"
+   },
+   {
+    "md": "## Task 9. Where does it fail?\nSearch for `waiting forever to pay` by keyword (`str.contains('waiting')`) and by meaning. Write one sentence below: which found more of the 89 queue messages, and name one message type where each method would fail. Remember that local languages need testing with local speakers."
+   }
+  ]
+ }
+}

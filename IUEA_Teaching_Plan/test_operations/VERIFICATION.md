@@ -166,3 +166,14 @@ Reviewed all eight tasks against their CSV columns and grading requirements acro
 Published portal version 20 and Cloudflare Worker bb7db697-7d15-4c7e-94ff-c1899dbe936b. All three Test 1 landing pages and all nine notebook variants now list permitted lecture slides, revision guide, cheatsheet and personal course notes; prohibit AI assistance and outside answers; state that learners may be asked to explain or modify code; and include a first-person declaration made by submitting. The notebook repeats the declaration in the submission checklist. This is a stated assessment rule, not a technical AI blocker or an added Google Form checkbox.
 
 Verified live landing-page wording and scheduled windows in the browser. Verified saved Apps Script source exactly matches the local portal and packet bundle. All nine notebooks retain identical code cells to the preceding commit. Timed take-home, gateway, portal and submission-helper regression checks pass. Questions, marks, data, schedules and submission enforcement are unchanged. No student attempt or new test response was created during this update.
+
+
+## 28 October 2026 — ongoing-test submission safeguards
+
+Portal deployment version 21 adds a read-only check of accepted Collection receipts before allocation/resume. An accepted receipt matching the same course/test and either email or registration blocks re-entry with a clear already-submitted message. Expired attempts explicitly say submission is closed and the timer cannot restart. Registration matching ignores spaces and letter case; it does not guess conflicting digits or programme suffixes.
+
+No issued notebook, packet, allocation, receipt, schedule or deadline was changed. Live collector source still has its script lock, one accepted receipt per email OR registration, saved personal-deadline check, one Google Form response per account and disabled response edits. Read-only ledger audit found nine COLLECTED receipts, no duplicate accepted identities, and one COLLECTION_ERROR (allocation/account mismatch), retained unchanged.
+
+Passed local suites: test_timed_takehome.cjs, test_exam_collection.cjs, test_test_portal.cjs, test_test_gateway.mjs. Coverage includes accepted-attempt re-entry, alternate email with same registration, unchanged allocation/file state, stable active resumes, expiry, all nine timed packets and six entry routes. A direct HTTP live probe returned a non-JSON response; no live test submission was created. Deployment success and live source were verified in Apps Script.
+
+Google Forms may acknowledge a raw late/duplicate response; collection rejects it for grading. The portal's accepted status appears after collection processes the form. Existing Colab tabs are not remotely closed or rewritten.

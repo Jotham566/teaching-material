@@ -1,0 +1,460 @@
+{
+ "session": 17,
+ "notes_title": "Seventeen sessions in, and today's question is how to get a stronger model without fooling ourselves. Last session you learned to judge a model and to catch a column that leaks the answer. We start with a curve from Lakeside Mart weekly orders that shows what overfitting looks like. Then come forests and boosting on the Nile Microfinance loans, cross-validation to tune them, and feature importance read with care. The question at the end is a business one. When two models score about the same, which would you ship?",
+ "notes_outcomes": "The ideas and the code are mixed together today, so you'll see each model run as soon as we meet it. By the end you can explain overfitting, bias and variance from a curve. You can fit a random forest and a gradient boosting model on the loans and tune a few settings with cross-validation. You can read feature importance without claiming more than it shows. The lab ends with a table of train and test scores and one sentence on which model you would ship.",
+ "notes_words": "Seven words today. Overfitting is a trendline with so many bends that it passes through every dot. Bias and variance are the two ways to get a model wrong, too simple or too wiggly. Bagging, short for bootstrap aggregating, averages many models trained on resamples. A random forest is bagging applied to decision trees. Boosting adds small trees one after another, each fixing the last one's mistakes. A hyperparameter is a setting you choose before learning, like the periods in a moving average. Permutation importance shuffles one column to see how much the score drops.",
+ "vocab": [
+  [
+   "Overfitting",
+   "A model that fits the data it studied very well and does worse on new data.",
+   "A trendline with so many bends it passes through every dot"
+  ],
+  [
+   "Bias and variance",
+   "Bias is error from a model too simple to see the pattern. Variance is error from a model so wiggly it follows the noise.",
+   null
+  ],
+  [
+   "Bagging",
+   "Training many models on random resamples of the data and averaging their answers.",
+   "Asking twenty colleagues for a forecast and averaging"
+  ],
+  [
+   "Random forest",
+   "Bagging applied to decision trees, each seeing a few columns at a time.",
+   "A committee of many different trees voting"
+  ],
+  [
+   "Boosting",
+   "Adding small trees one after another, each aimed at the mistakes of the ones before.",
+   "A new column that corrects the errors in the last column"
+  ],
+  [
+   "Hyperparameter",
+   "A setting you choose before the model learns, such as the depth of a tree.",
+   "The number of periods in a moving average"
+  ],
+  [
+   "Permutation importance",
+   "The drop in score when one column is shuffled, used to see which columns a model relies on.",
+   "Blank out one column and see how much the forecast gets worse"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 16",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "A loan model scored an AUC near 0.995 once a single column was added. What did that column do?",
+     "a": "collection_calls is recorded only after a loan goes bad, so it leaks the answer."
+    },
+    {
+     "q": "Why cross-validate instead of trusting one train and test split?",
+     "a": "Five different test parts give five scores. Their average depends less on luck."
+    }
+   ],
+   "notes": "Leakage and cross-validation first. Two questions from last session.\n\nFirst. A loan model scored an AUC near zero point nine nine five once one column was added. What did that column do? Have a think.\n\nThe column was collection_calls. A lender only makes collection calls after a loan has gone bad, so the column holds the answer inside it. That is leakage, and it's why we removed it.\n\nSecond. Why cross-validate instead of trusting a single train and test split? No rush.\n\nOne split can be lucky or unlucky. Cross-validation gives every part of the data a turn as the test part, so you get five scores and you average them. Today you'll use that same idea to pick settings for a stronger model."
+  },
+  {
+   "type": "figure",
+   "title": "A curve with too many bends fails on new weeks",
+   "fig": "overfit_curve",
+   "look": [
+    "Training error sits near 6 orders a week at every degree.",
+    "Test error stays near 6 up to degree 5, apart from a small bump at degree 4.",
+    "From degree 6 the test error shoots off the chart."
+   ],
+   "caption": "Weekly orders at the Jinja branch against footfall. 35 weeks to learn from, 69 weeks held back to test.",
+   "alt": "Two lines of error against model flexibility. Training error stays low and flat. Test error is low until degree 5, then jumps far above the top of the chart.",
+   "notes": "We start with a picture from data you know. It's the weekly orders at the Jinja branch of Lakeside Mart, predicted from footfall, which is the number of people through the door.\n\nIn Excel you can add a trendline to a scatter chart and choose polynomial, then pick an order. Order one is a straight line. Each higher order adds one more bend. On the bottom of this chart, that's the degree. More degree means a more flexible curve.\n\nWe fitted each curve on thirty five weeks, then measured the error in orders per week on those same weeks. That's the dark line. It stays near six all the way across. The fit to the old weeks barely changes.\n\nThe red line is the error on sixty nine weeks the curve never saw. Up to degree five it stays close to the blue line, also near six, with one small bump at degree four.\n\nThen at degree six it shoots off the top of the chart. The curve has stopped learning the pattern and started following the quirks of those thirty five weeks. That is overfitting."
+  },
+  {
+   "type": "code",
+   "title": "Train error and test error for five curves",
+   "lang": "python",
+   "code": "import numpy as np\nimport pandas as pd\nbw = pd.read_csv('branch_weeks.csv')\ng = bw[bw.branch_id == 'B04']\nf = g.footfall.values\nx, y = (f - f.mean()) / f.std(ddof=1), g.orders.values\nidx = np.random.default_rng(2).permutation(104)\ntr, te = idx[:35], idx[35:]\ndef rmse(i): return round(np.sqrt(np.mean(r[i] ** 2)), 1)\nfor d in [1, 3, 5, 6, 9]:\n    r = np.polyval(np.polyfit(x[tr], y[tr], d), x) - y\n    print(d, rmse(tr), rmse(te))",
+   "says": [
+    "Learn from 35 weeks and hold the other 69 back for testing.",
+    "polyfit draws a curve with d bends through the training weeks.",
+    "Error is how far off we are, in orders per week, on each part."
+   ],
+   "output": "5 6.1 6.4\n6 6.0 72.4\n9 5.9 25053.4",
+   "notes": "Here's the code behind that chart, so you can see there's no trick. It's only numpy and the Jinja weeks.\n\nFirst we split the weeks. Thirty five go in the learning part, called tr, and the other sixty nine go in the test part, called te. The random generator has a fixed seed, so you'll get the same split I do.\n\nThen a loop tries five degrees. polyfit draws a curve of that degree through the learning weeks only.\n\nLast, we measure the typical miss, in orders per week, on each part, with the learning weeks first and the test weeks second. Read the output. At degree one the miss is about six on both parts. At degree six, the learning miss is still six, but the test miss is seventy two. At degree nine it's over twenty five thousand. A model can look perfect on the weeks it studied and be useless on next week."
+  },
+  {
+   "type": "compare",
+   "title": "Too simple and too wiggly are both wrong",
+   "left": {
+    "h": "Too simple (bias)",
+    "points": [
+     "Misses the real pattern",
+     "Wrong on old data and on new data",
+     "One flat average for every loan"
+    ]
+   },
+   "right": {
+    "h": "Too wiggly (variance)",
+    "points": [
+     "Follows the noise in the data",
+     "Right on old data, wrong on new data",
+     "A special rule for every borrower"
+    ]
+   },
+   "verdict": "Aim for the middle: flexible enough to see the pattern, plain enough to hold up on new loans.",
+   "notes": "Two words come up in every machine learning conversation, bias and variance. Here they are in plain speech.\n\nA model that's too simple has high bias. It's a straight line through a curved cloud, or one average used for every loan. It misses the real pattern, so it's wrong on the old data and wrong on the new data.\n\nA model that's too wiggly has high variance. Imagine a rule for every single borrower, including the odd ones. It follows the noise. On the old data it looks brilliant. On new loans it falls apart, like the degree six curve we just saw.\n\nSo the goal sits in the middle. Flexible enough to see the real pattern, plain enough to hold up on loans it has never met. Every setting we tune today is a way of sliding along that line between the two."
+  },
+  {
+   "type": "code",
+   "title": "Get the loans ready, leaving out the leak",
+   "lang": "python",
+   "code": "import pandas as pd\n\nloans = pd.read_csv('loans.csv')\nage = loans.age\nloans['age'] = age.where(age.between(18, 90), age.median())\ninc = loans.monthly_income_ugx\nloans['monthly_income_ugx'] = inc.fillna(inc.median())\nloans['burden'] = (loans.loan_amount_ugx / loans.term_months\n                   / loans.monthly_income_ugx)\nX = loans.drop(columns=['default', 'collection_calls'])\nX = X.select_dtypes('number')\ny = loans['default']\nprint(X.shape)\nprint(y.sum(), len(y))",
+   "says": [
+    "Mend the impossible ages and the blank incomes.",
+    "burden is the monthly instalment divided by monthly income.",
+    "Keep the number columns. collection_calls is left out."
+   ],
+   "output": "(8000, 11)\n1004 8000",
+   "notes": "The loans come next. We load the Nile Microfinance file and get it ready, using only pandas, which you know.\n\nTwo ages in this file are impossible, one is zero and one is a hundred and ninety nine. We replace anything outside eighteen to ninety with the median age. The blank incomes get the median income. Then we make one new column, burden. It's the monthly instalment divided by monthly income, ignoring interest to keep it simple. A loan that eats a big share of someone's income is riskier.\n\nWe keep the number columns as our features, eleven of them, after dropping the answer column and collection_calls. We removed it last session because it leaks the answer.\n\nThe output says eight thousand loans and eleven columns. And a thousand and four defaulted out of eight thousand, which is about one loan in eight."
+  },
+  {
+   "type": "flow",
+   "title": "A forest is many different trees asked to vote",
+   "steps": [
+    {
+     "h": "Resample",
+     "t": "Draw a random sample of loans, with repeats."
+    },
+    {
+     "h": "Grow a tree",
+     "t": "It sees that sample, and a few columns at each question."
+    },
+    {
+     "h": "Repeat",
+     "t": "Hundreds of trees, each a little different."
+    },
+    {
+     "h": "Vote",
+     "t": "Average their answers into one probability."
+    }
+   ],
+   "caption": "Averaging many wiggly trees cancels out the wiggles. This is bagging.",
+   "notes": "In Session 15 you met the decision tree, a set of yes and no questions. One deep tree is very wiggly. It memorises. A forest fixes that by asking many trees and taking the vote. It works like asking twenty colleagues for a forecast and averaging their answers.\n\nStep one. Resample. This is the bootstrap idea from Session 12. We draw a random sample of the loans, with repeats allowed, so each tree gets a slightly different version of the data.\n\nStep two. Grow a tree on that sample. At each question it only looks at a few of the columns, picked at random, so the trees don't all copy each other.\n\nStep three. Repeat, a few hundred times. Every tree is a little different.\n\nStep four. Vote. The forest averages the trees' answers into one probability of default.\n\nThe resample and average trick has a name, bagging. It's short for bootstrap aggregating. A random forest is bagging applied to decision trees. Each tree is wiggly, but their mistakes point in different directions, so the average is steadier."
+  },
+  {
+   "type": "code",
+   "title": "Fit a random forest on the loans",
+   "lang": "python",
+   "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import roc_auc_score\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, stratify=y, random_state=42)\nforest = RandomForestClassifier(n_estimators=200, random_state=42)\nforest.fit(X_train, y_train)\np = forest.predict_proba(X_test)[:, 1]\nprint(roc_auc_score(y_test, p))",
+   "says": [
+    "stratify keeps the same share of defaults in both parts.",
+    "200 trees. random_state fixes the dice so you can repeat the run.",
+    "predict_proba gives a probability. Column 1 is default."
+   ],
+   "notes": "Here's a forest in scikit-learn. The pattern is the one you know, split, fit, predict.\n\nFirst we split the loans, a quarter held back for testing. The word stratify keeps the share of defaults the same in both parts. That matters when only one loan in eight defaults. The seed of forty two makes the split repeatable.\n\nNext we make the forest with two hundred trees and fit it on the learning part. Same fit call as every model you've built.\n\nThen predict_proba gives a probability for each test loan, and we keep column one, the chance of default. The last line scores it with AUC.\n\nIn a typical run a forest scores an AUC a little above the logistic regression, around zero point seven six to zero point eight. Your own number will be close to that but won't be identical. Read your own output, and write it down. You'll need it for the lab."
+  },
+  {
+   "type": "trap",
+   "title": "A near perfect score on the training loans",
+   "looks": "You fit a forest and score it on the same loans it learned from. The AUC is close to one. It runs with no error and looks like a triumph.",
+   "why": "Deep trees can remember every training loan. The training score shows how well the model memorised, and says little about new borrowers.",
+   "fix": "Report the test score, and print the training score beside it. A large gap between the two is the warning sign.",
+   "notes": "This trap can cost money, and it runs without a single error.\n\nYou fit the forest, then you score it on the same loans it learned from. The AUC comes out close to one. Perfect. You email your manager.\n\nA deep tree can remember every loan it was shown, including the odd ones. Scoring it on those same loans is like marking a student with the exact questions they practised. The forest shows how good its memory is. It tells you very little about the next borrower to walk in.\n\nReport the score on the test part, and print the training score right beside it. If training says point nine nine and test says point seven eight, that gap is your overfitting, measured. A small gap means the model is holding up."
+  },
+  {
+   "type": "cycle",
+   "title": "Boosting: each tree repairs the last one's mistakes",
+   "steps": [
+    {
+     "h": "Start simple",
+     "t": "A very small first tree, a rough guess."
+    },
+    {
+     "h": "Find the misses",
+     "t": "Which loans did it get wrong?"
+    },
+    {
+     "h": "Add a small tree",
+     "t": "Aim it at those mistakes."
+    },
+    {
+     "h": "Add a bit, repeat",
+     "t": "Scale the fix down, then loop a few hundred times."
+    }
+   ],
+   "center": "Boosting",
+   "notes": "The second family of strong models is boosting. A forest grows its trees side by side and averages them. Boosting grows its trees one after another.\n\nYou start simple. The first tree is tiny and gives a rough guess for every loan.\n\nThen you look at the mistakes. Which loans did that guess get wrong?\n\nNext you grow a small tree aimed at exactly those mistakes. It's a correction.\n\nFinally you add the correction to the running answer, but scaled down to a small share, called the learning rate. Then you go round again, a few hundred times. It works like a forecast sheet with a new column that fixes the errors of the column before it.\n\nBecause each tree chases the leftover mistakes, boosting can fit very closely. If you add too many trees it starts to chase noise as well, so it can overfit too. That's why we'll tune it with cross-validation."
+  },
+  {
+   "type": "code",
+   "title": "Fit a gradient boosting model",
+   "lang": "python",
+   "code": "from sklearn.ensemble import HistGradientBoostingClassifier\nfrom sklearn.metrics import roc_auc_score\n\nboost = HistGradientBoostingClassifier(\n    learning_rate=0.05, max_iter=200, max_depth=3, random_state=42)\nboost.fit(X_train, y_train)\np_boost = boost.predict_proba(X_test)[:, 1]\nprint(roc_auc_score(y_test, p_boost))",
+   "says": [
+    "learning_rate is the share of each correction we keep.",
+    "max_iter is the number of small trees added, one after another.",
+    "The same fit and predict_proba as every model before it."
+   ],
+   "notes": "Boosting in scikit-learn is the same few lines. We use HistGradientBoostingClassifier. It's a fast version that comes with scikit-learn, so there's nothing to install.\n\nThree settings matter. The learning rate of zero point zero five means we keep only five percent of each correction. A small step is safer. The max_iter of two hundred is how many small trees we add. And max_depth of three keeps every tree small.\n\nThen fit, predict_proba and score, exactly as before.\n\nIn a typical run the boosted model lands in about the same place as the forest, an AUC around zero point seven six to zero point eight. Don't expect a jump. Run it, then read your own number, and compare it with the forest on your screen."
+  },
+  {
+   "type": "table",
+   "title": "What to expect from three models on the loans",
+   "header": [
+    "Model",
+    "Test AUC in a typical run",
+    "Easy to explain?"
+   ],
+   "rows": [
+    [
+     "Logistic regression",
+     "about 0.76",
+     "Yes. One weight per column."
+    ],
+    [
+     "Random forest",
+     "around 0.76 to 0.80",
+     "Partly. Hundreds of trees."
+    ],
+    [
+     "Gradient boosting",
+     "around 0.76 to 0.80",
+     "Partly. Hundreds of trees."
+    ]
+   ],
+   "caption": "Your own run will be close to these and will differ a little. Read your own numbers.",
+   "colw": [
+    3,
+    3,
+    4
+   ],
+   "notes": "Let's put the three models side by side. These are typical results, so they're a guide and not a promise.\n\nThe logistic regression from Session 15 gives an AUC of about zero point seven six without the leaked column. A forest or a boosted model typically scores a little above it, somewhere from zero point seven six to zero point eight.\n\nNotice how small the gain is. A step of a few hundredths in AUC. The logistic regression is also easy to explain, because every column has one weight you can read out. A forest has hundreds of trees, and nobody can read those out.\n\nSo already you can see the question for the end of the session. If the forest gains a little and costs us a lot of clarity, is it worth it? Your own numbers will be close to these but not identical. Fill in your own row in the lab."
+  },
+  {
+   "type": "concept",
+   "title": "Three settings worth knowing on a forest",
+   "lead": "A setting you choose before the model learns is called a hyperparameter. These three steer a forest between too simple and too wiggly.",
+   "points": [
+    {
+     "h": "max_depth",
+     "t": "How many questions deep each tree may go. Deeper memorises more."
+    },
+    {
+     "h": "min_samples_leaf",
+     "t": "The fewest loans allowed in a final box. Larger smooths."
+    },
+    {
+     "h": "n_estimators",
+     "t": "The number of trees. More is steadier and slower."
+    }
+   ],
+   "notes": "Before we tune, let's name what we're tuning. A setting you choose before the model starts learning is called a hyperparameter. In Excel it's like choosing the number of periods in a moving average. You pick it, and the data doesn't.\n\nThree settings matter for a forest.\n\nmax_depth is how many questions deep each tree may go. A shallow tree is simple and may miss things. A very deep tree can memorise single loans.\n\nmin_samples_leaf is the fewest loans allowed in a final box at the bottom of a tree. A bigger number forces every box to hold many loans, which smooths out the wiggles.\n\nn_estimators is how many trees. More trees give a steadier vote and take longer. It rarely hurts, so we fix it and tune the other two."
+  },
+  {
+   "type": "code",
+   "title": "Tune two settings with cross-validation",
+   "lang": "python",
+   "code": "from sklearn.model_selection import GridSearchCV\nfrom sklearn.ensemble import RandomForestClassifier\n\ngrid = {'max_depth': [3, 6, None],\n        'min_samples_leaf': [1, 10, 30]}\nsearch = GridSearchCV(\n    RandomForestClassifier(n_estimators=200, random_state=42),\n    grid, scoring='roc_auc', cv=5, n_jobs=-1)\nsearch.fit(X_train, y_train)\nprint(search.best_params_)\nprint(round(search.best_score_, 3))",
+   "says": [
+    "A small grid: three depths and three leaf sizes, nine combinations.",
+    "Each combination is scored on five folds, so 45 fits in all.",
+    "best_params_ and best_score_ hold the winner."
+   ],
+   "notes": "The computer can try the combinations for us. GridSearchCV is the tool. It's a grid in the spreadsheet sense, with a row for every combination.\n\nOur grid has three depths and three leaf sizes, nine combinations. For each one, it runs the five fold cross-validation you met last session, using the learning part only. Nine combinations times five folds is forty five fits. That takes a minute or so in Colab, so be patient.\n\nThe test part stays untouched. If we peeked at it while choosing, we'd be tuning to it and our final score would be flattering.\n\nWhen it finishes, best_params_ tells you the winning combination and best_score_ is its average AUC across the folds. Notice we keep the grid small. A huge grid finds winners by luck. Write down your winner. In a typical run it picks a limited depth or a larger leaf, and the score sits near the logistic regression."
+  },
+  {
+   "type": "figure",
+   "title": "Logistic regression weights show direction and size",
+   "fig": "feature_weights",
+   "look": [
+    "Repayment burden pushes default risk up the most.",
+    "Earlier late payments push it up as well.",
+    "Group loans and savings pull the risk down."
+   ],
+   "caption": "Standardised weights from the logistic regression. A forest has no weights like these.",
+   "alt": "Horizontal bars of the strongest weights in the loan model: repayment burden and late payments push risk up, savings and group loans push it down.",
+   "notes": "Before importance in forests, look at what the simpler model already gives you. This is the weights figure from the logistic regression, drawn without the leaked column.\n\nEach bar is one column's weight. Red bars push the chance of default up, green bars pull it down. The longest red bar is repayment burden. The more of a borrower's income the instalment takes, the higher the risk.\n\nNext, the earlier late payments also push risk up.\n\nThen group loans and savings are in green. A borrower in a group, or with money saved, is less likely to default.\n\nThe chart gives a size and a direction for every column in one picture. A forest can't give you that. It has hundreds of trees and no single weight per column. For a forest we need another tool, and it comes next."
+  },
+  {
+   "type": "code",
+   "title": "Feature importance by shuffling a column",
+   "lang": "python",
+   "code": "from sklearn.inspection import permutation_importance\n\nresult = permutation_importance(\n    forest, X_test, y_test, scoring='roc_auc',\n    n_repeats=10, random_state=42)\nimp = pd.Series(result.importances_mean, index=X.columns)\nimp.sort_values(ascending=False).head(5)",
+   "says": [
+    "Shuffle one column at a time, on the test part.",
+    "If the score drops a lot, the model leaned on that column.",
+    "importances_mean is the average drop over ten shuffles."
+   ],
+   "notes": "So how do we ask a forest which columns it relied on? The tool is permutation importance. A permutation is a shuffle.\n\nTake the test part and shuffle one column, so the values no longer belong to the right loans. Then score the model again. If the AUC falls a lot, the model leaned on that column. If it barely moves, the column wasn't doing much. Do this for each column, ten times each, and average.\n\nIt's like blanking out one column in your spreadsheet and seeing how much your forecast gets worse.\n\nThe code stores the average drop for each column in a Series, sorted from largest to smallest, and shows the top five. In a typical run, repayment burden comes near the top. Read your own list. The ranking shows size only. For direction, go back to the weights or to the data."
+  },
+  {
+   "type": "concept",
+   "title": "Feature importance has limits",
+   "lead": "A ranking of columns is a useful clue. Read it with three cautions.",
+   "points": [
+    {
+     "h": "Shared credit",
+     "t": "Two related columns split the credit, so each looks smaller than it is."
+    },
+    {
+     "h": "No proof of cause",
+     "t": "A high score says the model used the column. It does not say what changing it would do."
+    },
+    {
+     "h": "Today's loans only",
+     "t": "The order can change on a new type of borrower or a new year."
+    }
+   ],
+   "notes": "Importance scores are tempting to over read, so here are three cautions.\n\nFirst, shared credit. In our loans, loan amount, income and burden are linked, because burden is built from the other two. When columns carry the same information, the credit is split between them, and each looks less important than the idea behind them really is.\n\nSecond, no proof of cause. A high score tells you the model used that column to predict. It doesn't tell you that changing the column would change anyone's behaviour. You met this with correlation in Session 4, and it still applies. Giving a borrower more savings is not the same as choosing borrowers who already have savings.\n\nThird, today's loans only. The scores were measured on this test part. A new district, or a new year, can reorder them. So treat importance as a clue to investigate, and check it with the people who know the business."
+  },
+  {
+   "type": "compare",
+   "title": "When would you ship the simpler model?",
+   "left": {
+    "h": "Ship the simpler model",
+    "points": [
+     "Test scores are close, within about 0.01 AUC",
+     "Staff must explain each decision to a borrower",
+     "A colleague must be able to rebuild it"
+    ]
+   },
+   "right": {
+    "h": "Ship the complex model",
+    "points": [
+     "It wins on the test part by a gain that matters in shillings",
+     "The gain holds across all five folds",
+     "You can monitor it and retrain it"
+    ]
+   },
+   "verdict": "When scores are equal, ship the simple one.",
+   "notes": "You've built a logistic regression and a forest. Which one goes to the lender?\n\nStart with the left side, the simple model. Ship it when the test scores are close, say within about one hundredth of AUC. Ship it when staff must explain each decision to a borrower, because a weight you can read out beats a forest you can't. And ship it when a colleague has to rebuild it six months from now, from a few lines.\n\nOn the right, the complex model. Ship it when it beats the simple one on the test part by a gain you can count in shillings. A change in the third decimal place is too small to count. Ask how many more bad loans it catches, and what each one costs. Ship it when that gain holds across all five folds, so it isn't luck. And ship it when you can monitor and retrain it, because it'll drift.\n\nThe verdict is the rule to remember. When scores are equal, ship the simple one."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: tune a forest and decide if complexity paid",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 17 notebook and run the setup cell",
+    "Prepare the loans and split them 75 to 25",
+    "Fit a logistic regression and a default forest",
+    "Compare train and test AUC, and plot depth",
+    "Tune the forest with GridSearchCV and fit a boosted model",
+    "List the five columns the forest leaned on",
+    "Write the shipping decision in one sentence"
+   ],
+   "done": "A table of train and test scores for each model, and a one sentence decision that names the model you would ship.",
+   "notes": "Task one rebuilds the loan table you saw earlier, eleven columns and no collection_calls. Open the Session 17 notebook, run the setup cell, and start there. It takes forty minutes in Google Colab.\n\nNext you fit a logistic regression and a forest, and put the train score beside the test score for each. The gap between them is your overfitting, in numbers. Then you draw the depth chart, which is the Jinja curve idea again, now with loans.\n\nAfter that you tune the forest with a small grid and fit a boosted model. The grid makes forty five fits, so give it a minute. Then you list the five columns the forest leaned on.\n\nThe last step is a single sentence. Which model would you ship, and why? Did the complexity pay? Your numbers will land near the typical ones and differ a little, and every check in the notebook accepts a sensible range. If a check fails, read its message, then ask me."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A model scores 0.99 on its training loans and 0.75 on its test loans. What is happening?",
+     "a": "It is overfitting: it memorised the training loans and does not hold up on new ones."
+    },
+    {
+     "q": "How does a forest differ from boosting?",
+     "a": "A forest grows many trees side by side and averages them. Boosting grows small trees one after another, each fixing the last one's mistakes."
+    },
+    {
+     "q": "Two models have the same test score. One is a logistic regression and one is a forest. Which do you ship?",
+     "a": "The logistic regression. When scores are equal, the simpler model wins."
+    }
+   ],
+   "notes": "Overfitting, forests against boosting, and one shipping decision. Three questions on those, and I'll give my answers after each.\n\nQuestion one. A model scores zero point nine nine on its training loans and zero point seven five on its test loans. What's happening? Think it over.\n\nIt's overfitting. The model memorised the training loans and doesn't hold up on new ones. That gap is the sign.\n\nQuestion two. How does a forest differ from boosting? Sit with it for a second.\n\nA forest grows many trees side by side and averages their votes. Boosting grows small trees one after another, and each one fixes the mistakes of the one before.\n\nQuestion three. Two models have the same test score. One is a logistic regression and one is a forest. Which do you ship? Let's hear your answer first.\n\nThe logistic regression. When the scores are equal, the simpler model wins, because it's easier to explain, check and rebuild."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Overfitting is a model that is great on the data it studied and weak on new data. Always show the train score beside the test score.",
+    "Forests average many trees. Boosting adds small trees that fix mistakes. Tune a few settings with cross-validation.",
+    "Importance is a clue about the model. It does not prove cause. When scores are equal, ship the simpler model."
+   ],
+   "next": "Finding structure without labels",
+   "notes": "One. Overfitting is a model that's great on the data it studied and weak on new data. Show the train score beside the test score every time.\n\nTwo. A forest averages many trees, and boosting adds small trees that fix mistakes. Tune a few settings with cross-validation on the learning part, and keep the test part clean.\n\nThree. Importance is a clue and no proof of cause. And when the scores are equal, ship the simpler model.\n\nNext session we leave the labelled loans behind. There's no default column and no right answers. We'll group Lakeside Mart customers into segments by their buying habits, and find the odd baskets. Bring a guess for how many kinds of customer a shop has."
+  }
+ ],
+ "lab": {
+  "intro": "Prepare the Nile Microfinance loans, fit a logistic regression, a forest and a boosted model, tune the forest, and decide whether the extra complexity paid. Scores in your run will be close to the typical ones in the lesson, so the checks accept a range.",
+  "cells": [
+   {
+    "md": "## Task 1. Prepare the loans\nRead `loans.csv` into `loans`. Replace ages outside 18 to 90 with the median age. Fill blank incomes with the median income. Add `burden`, the monthly instalment divided by monthly income: `loan_amount_ugx` divided by `term_months`, divided by `monthly_income_ugx`. Build `X` from the number columns only (eleven columns), leaving out `default` and `collection_calls`, and build `y` from `default`."
+   },
+   {
+    "code": "import pandas as pd\n\nloans = pd.read_csv('loans.csv')\nage = loans.age\nloans['age'] = age.where(age.between(18, 90), age.median())\ninc = loans.monthly_income_ugx\nloans['monthly_income_ugx'] = inc.fillna(inc.median())\nloans['burden'] = (loans.loan_amount_ugx / loans.term_months\n                   / loans.monthly_income_ugx)\nX = loans.drop(columns=['default', 'collection_calls'])\nX = X.select_dtypes('number')\ny = loans['default']\nprint(X.shape)\nprint(y.sum(), len(y))",
+    "starter": "import pandas as pd\n\n# Your turn: read loans.csv into loans\n# Your turn: replace ages outside 18 to 90 with the median age\n# Your turn: fill the blank monthly incomes with the median income\n# Your turn: add the burden column\n# Your turn: X holds the number columns of loans, without default and collection_calls\n# Your turn: y is the default column\n"
+   },
+   {
+    "code": "assert X.shape == (8000, 11), 'X should have 8000 rows and 11 columns: number columns only, with default and collection_calls left out'\nassert X.isna().sum().sum() == 0, 'Fill the blank incomes with the median'\nassert 'collection_calls' not in X.columns, 'collection_calls leaks the answer. Leave it out'\nassert y.sum() == 1004, 'y should be the default column (1004 defaults)'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Split, then a simple baseline\nSplit `X` and `y` 75 to 25 with `stratify=y` and `random_state=42`. Fit a logistic regression (scaled first, in a Pipeline) and store its test AUC in `auc_logit`."
+   },
+   {
+    "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import roc_auc_score\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, stratify=y, random_state=42)\nlogit = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))\nlogit.fit(X_train, y_train)\nauc_logit_train = roc_auc_score(y_train, logit.predict_proba(X_train)[:, 1])\nauc_logit = roc_auc_score(y_test, logit.predict_proba(X_test)[:, 1])\nprint(round(auc_logit_train, 3), round(auc_logit, 3))",
+    "starter": "from sklearn.model_selection import train_test_split\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import roc_auc_score\n\n# Your turn: split X and y into X_train, X_test, y_train, y_test using the settings in the task\n# Your turn: logit is a pipeline that scales, then fits a logistic regression (max_iter=1000)\n# Your turn: fit it on the training part\n# Your turn: auc_logit_train and auc_logit are the AUC of its chances of default on the training part and on the test part\n"
+   },
+   {
+    "code": "assert 0.68 <= auc_logit <= 0.85, 'auc_logit should be the AUC on the test part, using the chance of default (predict_proba, column 1)'\nassert abs(auc_logit_train - auc_logit) < 0.08, 'A simple model should have a small gap between train and test. Check which part you scored'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. A default forest: train against test\nFit a `RandomForestClassifier` with 200 trees and `random_state=42`. Store the train AUC in `auc_f_train` and the test AUC in `auc_f_test`. How big is the gap?"
+   },
+   {
+    "code": "from sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import roc_auc_score\n\nforest = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)\nforest.fit(X_train, y_train)\nauc_f_train = roc_auc_score(y_train, forest.predict_proba(X_train)[:, 1])\nauc_f_test = roc_auc_score(y_test, forest.predict_proba(X_test)[:, 1])\nprint(round(auc_f_train, 3), round(auc_f_test, 3))",
+    "starter": "from sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import roc_auc_score\n\n# Your turn: make a forest as the task describes and call it forest\n# Your turn: fit it on the training part\n# Your turn: auc_f_train and auc_f_test, scored as in Task 2\n"
+   },
+   {
+    "code": "assert auc_f_train >= 0.90, 'A default forest should score very high on its own training loans. Score X_train and y_train'\nassert 0.68 <= auc_f_test <= 0.90, 'auc_f_test should be scored on the test part, not the training part'\nassert auc_f_train > auc_f_test, 'The training score should be higher than the test score'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Watch the gap open as depth grows\nFor `max_depth` in 2, 4, 6, 8, 12 and 20, fit a forest of 100 trees. Collect the train AUC in `train_scores` and the test AUC in `test_scores`, then plot both against depth. This is the Jinja curve again, on loans."
+   },
+   {
+    "code": "import matplotlib.pyplot as plt\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import roc_auc_score\n\ndepths = [2, 4, 6, 8, 12, 20]\ntrain_scores = []\ntest_scores = []\nfor d in depths:\n    m = RandomForestClassifier(n_estimators=100, max_depth=d,\n                               random_state=42, n_jobs=-1)\n    m.fit(X_train, y_train)\n    train_scores.append(roc_auc_score(y_train, m.predict_proba(X_train)[:, 1]))\n    test_scores.append(roc_auc_score(y_test, m.predict_proba(X_test)[:, 1]))\nplt.plot(depths, train_scores, marker='o', label='Train')\nplt.plot(depths, test_scores, marker='o', label='Test')\nplt.xlabel('max_depth')\nplt.ylabel('AUC')\nplt.legend()\nplt.show()",
+    "starter": "import matplotlib.pyplot as plt\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import roc_auc_score\n\ndepths = [2, 4, 6, 8, 12, 20]\ntrain_scores = []\ntest_scores = []\nfor d in depths:\n    # Your turn: fit a forest of 100 trees with max_depth=d\n    # Your turn: add its train AUC to train_scores and its test AUC to test_scores\n    pass\n# Your turn: plot both lists against depths, with axis labels and a legend\n"
+   },
+   {
+    "code": "assert len(train_scores) == 6 and len(test_scores) == 6, 'Add one score per depth to each list'\nassert train_scores[-1] > train_scores[0], 'Train AUC should rise with depth. Score the training part for train_scores'\nassert train_scores[-1] - test_scores[-1] > train_scores[0] - test_scores[0], 'The gap should be wider at depth 20 than at depth 2. Score the test part for test_scores'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Tune with cross-validation\nUse `GridSearchCV` with `max_depth` in 3, 6 and None and `min_samples_leaf` in 1, 10 and 30, scored by `roc_auc` over 5 folds. Store the fitted search in `search`, then the tuned forest's train and test AUC in `auc_t_train` and `auc_t_test`."
+   },
+   {
+    "code": "from sklearn.model_selection import GridSearchCV\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import roc_auc_score\n\ngrid = {'max_depth': [3, 6, None], 'min_samples_leaf': [1, 10, 30]}\nsearch = GridSearchCV(\n    RandomForestClassifier(n_estimators=200, random_state=42),\n    grid, scoring='roc_auc', cv=5, n_jobs=-1)\nsearch.fit(X_train, y_train)\ntuned = search.best_estimator_\nauc_t_train = roc_auc_score(y_train, tuned.predict_proba(X_train)[:, 1])\nauc_t_test = roc_auc_score(y_test, tuned.predict_proba(X_test)[:, 1])\nprint(search.best_params_)\nprint(round(search.best_score_, 3), round(auc_t_train, 3), round(auc_t_test, 3))",
+    "starter": "from sklearn.model_selection import GridSearchCV\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import roc_auc_score\n\n# Your turn: grid is a dictionary with the two settings and their values from the task\n# Your turn: search is a GridSearchCV around a forest of 200 trees (random_state=42), scored by roc_auc over 5 folds\n# Your turn: fit the search on the training part\n# Your turn: tuned is the best forest it found. Then fill auc_t_train and auc_t_test\n"
+   },
+   {
+    "code": "assert 0.65 <= search.best_score_ <= 0.90, 'search.best_score_ looks wrong. Fit the search on the training part only, with scoring=\\'roc_auc\\''\nassert 0.68 <= auc_t_test <= 0.90, 'auc_t_test should be scored on the test part with the tuned forest'\nassert (auc_t_train - auc_t_test) <= (auc_f_train - auc_f_test) + 0.01, 'The tuned forest should not overfit more than the default one. Check the grid values'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. A boosted model, and one table\nFit a `HistGradientBoostingClassifier` (learning_rate 0.05, max_iter 200, max_depth 3, random_state 42). Store its test AUC in `auc_b_test`. Then build a DataFrame `results` with one row per model (logistic regression, tuned forest, boosting) and columns `model` and `test_auc`."
+   },
+   {
+    "code": "import pandas as pd\nfrom sklearn.ensemble import HistGradientBoostingClassifier\nfrom sklearn.metrics import roc_auc_score\n\nboost = HistGradientBoostingClassifier(\n    learning_rate=0.05, max_iter=200, max_depth=3, random_state=42)\nboost.fit(X_train, y_train)\nauc_b_test = roc_auc_score(y_test, boost.predict_proba(X_test)[:, 1])\nresults = pd.DataFrame({\n    'model': ['Logistic regression', 'Tuned forest', 'Gradient boosting'],\n    'test_auc': [auc_logit, auc_t_test, auc_b_test]})\nprint(results.round(3))",
+    "starter": "import pandas as pd\nfrom sklearn.ensemble import HistGradientBoostingClassifier\nfrom sklearn.metrics import roc_auc_score\n\n# Your turn: make the boosted model with the settings in the task, call it boost, and fit it on the training part\n# Your turn: auc_b_test is its test AUC\n# Your turn: results is a DataFrame with columns model and test_auc, three rows\n"
+   },
+   {
+    "code": "assert 0.68 <= auc_b_test <= 0.90, 'auc_b_test should be the AUC on the test part, using the chance of default'\nassert len(results) == 3, 'results needs one row per model: three rows'\nassert list(results.columns) == ['model', 'test_auc'], 'results needs the columns model and test_auc'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Which columns did the forest lean on?\nUse `permutation_importance` on the tuned forest and the test part (10 repeats, `random_state=42`). Store the five largest in `top5`, a Series sorted from largest to smallest."
+   },
+   {
+    "code": "from sklearn.inspection import permutation_importance\n\nresult = permutation_importance(\n    tuned, X_test, y_test, scoring='roc_auc',\n    n_repeats=10, random_state=42)\nimp = pd.Series(result.importances_mean, index=X.columns)\ntop5 = imp.sort_values(ascending=False).head(5)\nprint(top5.round(4))",
+    "starter": "import pandas as pd\nfrom sklearn.inspection import permutation_importance\n\n# Your turn: result is permutation_importance for tuned on the test part, scored by roc_auc, 10 repeats, random_state=42\n# Your turn: imp is a Series of the mean importances with the column names as its index\n# Your turn: top5 is the five largest, largest first\n"
+   },
+   {
+    "code": "assert len(top5) == 5, 'top5 should keep five columns'\nassert top5.iloc[0] >= top5.iloc[-1], 'Sort from largest to smallest'\nassert set(top5.index) <= set(X.columns), 'The index of top5 should be column names. Pass index=X.columns when you build the Series'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Decide, in your own words\nLook at `results`, and at the train and test scores in Tasks 2, 3 and 5. Write two sentences below. First, did the complexity pay: how much better is the best model than the logistic regression, and is that gain worth losing the readable weights? Second, which model would you ship, and what would make you change your mind? Compare your numbers with the typical ones in the lesson. They should be close, not identical."
+   }
+  ]
+ }
+}

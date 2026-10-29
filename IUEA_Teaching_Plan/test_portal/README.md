@@ -61,6 +61,14 @@ Run scripts/build_colab_exams.py, then scripts/build_test_portal.py after any te
 
 The private Test allocations tab has one row per course/test and registration number. Do not delete allocations to reshuffle versions. For a genuine typo, verify the student's identity and check existing submissions before correcting the registration/email in that allocation row; keep its allocation code and variant. The student then retrieves the files with the corrected details. Already collected identity conflicts require separate resolution before releasing marks.
 
+### Authorising one fresh attempt after a technical failure
+
+Do **not** delete allocation rows, Collection rows, notebook snapshots, or marks to let a learner retry. The private lecturer collector now includes `authoriseFreshTestAttemptForRegistration(registration, reason)` and `authoriseFreshTestAttempt(key, registration, reason, replacementEmail)`. Run either only in the private collector Apps Script project after checking the technical issue and the learner's identity.
+
+The registration-only helper works when that registration has exactly one currently open test. It records the decision in **Test Retry Authorisations**, preserves the earlier Collection row and snapshot as audit evidence, marks an accepted receipt `SUPERSEDED_FOR_RETRY`, deletes the matching Google Form response so Forms will allow another response, revokes the old allocation code, and clears the old timer/notebook reference. The learner must then revisit the normal entry link with the same registration number and Google email; the portal issues a fresh timer and private notebook.
+
+If a wrong Google account caused the failure, use the keyed function with `replacementEmail` after verifying the correct account. Do not add these administrative functions to `Portal.gs`, the public web app, or the Cloudflare gateway.
+
 ## Verification completed locally
 
 - All 18 packets load and contain only student material.

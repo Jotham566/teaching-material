@@ -1,0 +1,435 @@
+{
+ "session": 5,
+ "notes_title": "A folder of documents looks like one asset until you try to hand it to a program. Today we take the Kitara Group folder, one hundred and twenty one documents, and find out which ones an AI can read, which need repair first, and which should wait. You will see text pulled from a PDF, a scan read by software that gets some digits wrong, a price table that scrambles, and a policy cut into pieces. Then you sample fifty of your own documents and fill in a readiness table.",
+ "notes_outcomes": "By the end you can tell a text PDF from a scan and get text out of each. You will see how a document is cut into chunks that keep their meaning, and how each chunk carries labels for version and access. The demonstration runs on the Kitara files, and the workshop applies the same checks to fifty of yours. Near the end, the leaders in the room decide who signs off the documents that may go forward, and what error rate on scans you will accept.",
+ "notes_words": "Six words today. The text layer is the part of a PDF that a program can copy. OCR is software that reads a picture of a page. Parsing is the whole job of turning a file into clean text. A chunk is a piece of a document that a search returns on its own, and overlap is the stretch repeated at the join between two chunks. Cutting by headings keeps each rule with its title.",
+ "vocab": [
+  [
+   "Text layer",
+   "The characters stored inside a PDF that a program can copy. A scan has none.",
+   "97 Kitara PDFs have one. The 8 scans do not."
+  ],
+  [
+   "OCR",
+   "Optical character recognition: software that reads the picture of a page and returns text.",
+   "Tesseract on the 8 scans in docs/scans"
+  ],
+  [
+   "Parsing",
+   "Turning a file into clean text that a program can use.",
+   "pypdf, pdfplumber and python-docx on the Kitara folder"
+  ],
+  [
+   "Chunk",
+   "A piece of a document, a few hundred words, that a search returns on its own.",
+   "The Staff Handbook 2025 becomes 3 chunks"
+  ],
+  [
+   "Overlap",
+   "Words repeated at the join of two chunks so a sentence is not cut in half.",
+   "40 words between chunks"
+  ],
+  [
+   "Cutting by headings",
+   "Splitting a document where its own headings fall, so each chunk is one section.",
+   "The handbook's 9 numbered sections"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 4",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Last session you profiled the customer table. What separates a blank cell from an invalid one?",
+     "a": "A blank cell is a completeness defect: 550 customers have no national ID. An invalid cell is filled but wrong: 2,490 phone numbers are not in the +256 form."
+    },
+    {
+     "q": "Besides the columns, what does a data contract say?",
+     "a": "How good the data must be, how fresh, who owns it, and how a change is announced."
+    }
+   ],
+   "notes": "Two questions from the quality session before we start on documents.\n\nLast session you profiled the customer table. What separates a blank cell from an invalid one? Have a think.\n\nA blank cell is a completeness problem. In the customer table, five hundred and fifty customers have no national ID. An invalid cell has something in it, and the something is wrong. Twenty four hundred and ninety phone numbers are not in the plus two five six form. A rule checks each kind differently.\n\nSecond. Besides the columns, what does a data contract say? No rush.\n\nIt says how good the data must be, how fresh it must be, who owns it, and how a change gets announced. Today those same questions come back, because a document is data too, and it also needs an owner and a version."
+  },
+  {
+   "type": "figure",
+   "title": "Kitara's folder: 121 documents, 11 of them replaced",
+   "fig": "corpus_makeup",
+   "look": [
+    "Text PDFs are the long bar: 97 of 121 documents.",
+    "Eight scanned PDFs look like any other PDF.",
+    "Clay marks superseded documents: 11 in all, 5 of them scans."
+   ],
+   "caption": "Counts from docs_metadata.csv. Status is held only in that file, not in the documents.",
+   "alt": "Bar chart of documents by format, with 11 superseded documents highlighted and most scanned PDFs among them.",
+   "notes": "The Kitara Group folder, counted from the metadata file, holds one hundred and twenty one documents in four formats.\n\nNinety seven are text PDFs. They are the easy majority, and most of today's tools handle them well.\n\nEight are scanned PDFs. To a person they look like any other PDF. To a program they are pictures of paper.\n\nThe clay colour marks documents that a newer one has replaced. Eleven in all, and five of them are scans. The files that are hardest to read are also the ones most likely to be out of date. A search that ignores that can return an old answer and sound sure of itself."
+  },
+  {
+   "type": "table",
+   "title": "Four kinds of file, four ways to read them",
+   "header": [
+    "Kind of file",
+    "At Kitara",
+    "How a program reads it",
+    "What goes wrong"
+   ],
+   "rows": [
+    [
+     "Text PDF",
+     "97",
+     "Copies the text layer out",
+     "Columns, tables, headers and footers jumble"
+    ],
+    [
+     "Scanned PDF",
+     "8",
+     "OCR reads the picture of the page",
+     "Letters and digits misread"
+    ],
+    [
+     "Word file",
+     "10",
+     "python-docx reads paragraphs and tables",
+     "Old drafts sit beside current ones"
+    ],
+    [
+     "Text file",
+     "6",
+     "Read as it is",
+     "Few problems. All six are current"
+    ]
+   ],
+   "colw": [
+    2.2,
+    1.3,
+    4.2,
+    4.2
+   ],
+   "caption": "Source: docs_metadata.csv, 121 documents. Your own mix will differ.",
+   "notes": "Four kinds of file sit in the folder, and each one is read in its own way.\n\nA text PDF has a text layer. That means the characters are stored inside the file, and a program can copy them out. A scanned PDF has no text layer. It is a photograph of a page, and software has to read the picture. That software is called OCR, which stands for optical character recognition.\n\nWord files and text files are the simplest to read. The Word files bring a different risk. The 2019 and 2022 staff handbooks are both Word files, and they sit in the same folder as the 2025 one.\n\nYour folder will have a different mix, and probably some spreadsheets and emails as well. Later today you count it."
+  },
+  {
+   "type": "code",
+   "title": "Read a text PDF two ways",
+   "lang": "python",
+   "code": "from pypdf import PdfReader\nimport pdfplumber\n\npath = 'docs/policies/Staff Handbook 2025.pdf'\na = PdfReader(path).pages[0].extract_text()\nwith pdfplumber.open(path) as pdf:\n    b = pdf.pages[0].extract_text()\nprint(len(a), len(b))\nprint(a.splitlines()[0])\nprint(b.splitlines()[0])\nprint(a.splitlines()[-1])",
+   "says": [
+    "pypdf reads page one of the Staff Handbook. pdfplumber reads the same page.",
+    "len counts characters. The two readers return almost the same text.",
+    "pdfplumber starts with the page header. pypdf starts with the title and ends with the footer."
+   ],
+   "output": "2213 2210\nKitara Group Staff Handbook 2025\nKITARA GROUP | Kitara Group Staff Handbook 2025\nPage 1 of 2",
+   "notes": "We start with the easy case, a text PDF. The Staff Handbook 2025.\n\nTwo free libraries do this job, pypdf and pdfplumber. We open page one with each of them and compare.\n\nThe first line prints how many characters each one returned. Two thousand two hundred and thirteen from pypdf, two thousand two hundred and ten from pdfplumber. Almost the same text, so the choice between them comes down to details.\n\nThe next lines show one of those details. pypdf starts with the handbook title. pdfplumber starts with the page header, which reads Kitara Group, a bar, and the title again. At the other end, pypdf finishes with the footer, Page one of two. Headers and footers belong to the text layer, so they travel into every chunk unless we remove them."
+  },
+  {
+   "type": "code",
+   "title": "A scan returns nothing until OCR reads it",
+   "lang": "python",
+   "code": "import kitara_search as ks\nfrom pypdf import PdfReader\n\nscan = 'docs/scans/Scan Motor Claim Form Signed.pdf'\nprint(repr(PdfReader(scan).pages[0].extract_text()))\nkeys = ('Name', 'Cust', 'Nati', 'Phon')\nfor line in ks.extract_text(scan).splitlines():\n    if line.startswith(keys):\n        print(line)",
+   "says": [
+    "pypdf asks the scan for text. It returns an empty string.",
+    "The Kitara toolkit sees the empty page and runs Tesseract, a free OCR program.",
+    "Four lines of the result. Look at the national ID and the phone number."
+   ],
+   "output": "''\nName of insured: Ruth Nankya Kasozi\nCustomer ID: KT-0041872\nNational ID: kx482910554237\nPhone: +256 70@ 951 944",
+   "notes": "The next file is a scan, the Motor Claim Form Signed, from the scans folder.\n\nThe first line asks pypdf for the text on the page. It returns an empty string, two quotes with nothing between them. A search system that only used pypdf would index this form as a blank page, and nobody would be told.\n\nThe second step uses the Kitara search toolkit. It notices the page is empty, turns the page into a picture, and runs Tesseract on it.\n\nHere are four lines of what came back. The text is readable. Check the national ID. The capital letters came back in lower case. In the phone number, one zero came back as an at sign. These are clean scans, and the errors still land in the fields where a typo breaks a match."
+  },
+  {
+   "type": "figure",
+   "title": "OCR on a faded scan misreads the amount",
+   "fig": "ocr_example",
+   "look": [
+    "13 of 31 words wrong in this crop. Amount became Amwont.",
+    "The requested sum, 35,000,000, was read as 35, 8e0,e00.",
+    "Faded scans: 9 to 13 percent of characters wrong. Clean scans: under 2 percent."
+   ],
+   "caption": "Character error rates from answer_key.json, Tesseract at 150 dpi, English.",
+   "alt": "A faded scanned note on the left and the text a reader program extracted on the right, with 13 wrongly read words in clay.",
+   "notes": "The loan committee note from 2018 is a faded scan. On the left is the crop the computer sees. On the right is what Tesseract read from it.\n\nThirteen of the thirty one words in this crop are wrong. Amount came back as Amwont. A person forgives that.\n\nThe requested sum is another matter. Thirty five million came back as thirty five, eight e zero, e zero zero. A person can guess what it meant. A program stores it as it is, and a search will happily return it.\n\nWe measured every scan against its known source text. The three faded scans, this one, the regulator fax from 2017 and the motor policy schedule from 2015, have between nine and thirteen percent of their characters wrong. The five clean scans stay under two percent. How well OCR works depends on the state of the paper, and your oldest paper is the faded kind."
+  },
+  {
+   "type": "code",
+   "title": "Sort scans by how sure Tesseract is",
+   "lang": "python",
+   "code": "import glob, subprocess, tempfile\nfrom pytesseract import image_to_data\ndef confidence(pdf):\n    with tempfile.TemporaryDirectory() as t:\n        subprocess.run(['pdftoppm', '-png', pdf, t + '/p'])\n        png = t + '/p-1.png'\n        d = image_to_data(png, output_type='dict')\n    c = [x for x in d['conf'] if x >= 0]\n    return round(sum(c) / len(c), 1)\n\nfor f in sorted(glob.glob('docs/scans/*.pdf')):\n    c = confidence(f)\n    print(c, 'REPAIR' if c < 85 else 'ok', f[11:-4])",
+   "says": [
+    "Tesseract gives each word a confidence from 0 to 100. We average the words on a page.",
+    "Loop over the eight scans. Anything under 85 is marked REPAIR.",
+    "Three scans fall under the line."
+   ],
+   "output": "95.4 ok Scan Board Resolution Extract 2019\n69.2 REPAIR Scan Loan Committee Note 2018\n67.2 REPAIR Scan Motor Policy Schedule 2015\n75.0 REPAIR Scan Regulator Notice Fax 2017",
+   "notes": "Nobody wants to read a thousand scans by eye. Tesseract offers a quicker check, a confidence score for every word it reads.\n\nThe function reads one page and averages those scores. Zero means it is guessing, a hundred means it is certain.\n\nThe loop runs the function over the eight scans and marks anything under eighty five as repair. The cut off is our choice. Pick yours by reading a few pages on both sides of the line.\n\nFive scans score between ninety one and ninety five. Three score between sixty seven and seventy five, and they are the same three with the high error rates we just saw. The loan note, the regulator fax and the motor policy schedule. Confidence proves nothing on its own, but it lets you split a large pile into a repair pile and a go pile without reading every page."
+  },
+  {
+   "type": "figure",
+   "title": "A table that a PDF reader scrambles",
+   "fig": "table_scramble",
+   "look": [
+    "Left: the page. Each service sits on one row with its charge.",
+    "Middle, pypdf: all services first, then all charges. A withdrawal and its 2,500 are 9 lines apart.",
+    "Right, pdfplumber: 8 rows with service and charge kept together."
+   ],
+   "caption": "Tariff Schedule 2025.pdf, page 1. Real extraction output.",
+   "alt": "A table page shown with its scrambled pypdf text in the middle and the clean rows recovered by pdfplumber on the right.",
+   "notes": "Tables are the second place where a text PDF fools you. Take the tariff schedule, a page that any customer would find perfectly clear.\n\nOn the left, the page. Every service has its charge on the same row, which is how a person reads it.\n\nIn the middle, pypdf. It returns the whole column of services first, then the whole column of charges. The cash withdrawal at branch and its charge of two thousand five hundred shillings end up nine lines apart. A chunk that holds only services names no prices. A chunk that holds only prices names no services.\n\nOn the right, pdfplumber. It finds the ruled lines of the table and returns eight rows, each service next to its charge. A search that answers what a branch withdrawal costs needs the right hand side."
+  },
+  {
+   "type": "code",
+   "title": "Recover the rows with pdfplumber",
+   "lang": "python",
+   "code": "from pypdf import PdfReader\nimport pdfplumber\n\npath = 'docs/product guides/Tariff Schedule 2025.pdf'\nwith pdfplumber.open(path) as pdf:\n    rows = pdf.pages[0].extract_table()\nprint(len(rows) - 1, 'data rows')\nprint(rows[3])\ntext = PdfReader(path).pages[0].extract_text().splitlines()\ni, j = text.index(rows[3][0]), text.index('2,500')\nprint(j - i, 'lines apart')",
+   "says": [
+    "extract_table returns the table as a list of rows. Row zero is the header.",
+    "One data row, with service, charge and note together.",
+    "In the pypdf text, the same row is split across nine lines."
+   ],
+   "output": "8 data rows\n['Cash withdrawal at branch', '2,500', 'Per withdrawal']\n9 lines apart",
+   "notes": "This is how the right hand side of that picture is made.\n\nextract_table looks for the ruled lines of a table and returns a list of rows. Each row is a list of cells. The first row is the header, so eight data rows follow it.\n\nOne of those rows is printed. The cash withdrawal at branch, two thousand five hundred, per withdrawal. The row keeps service, charge and note together.\n\nThe last line measures the scramble in the pypdf text. Nine lines between the service and its charge.\n\nAcross the ninety seven text PDFs, pdfplumber finds tables in exactly two, the tariff schedule and the motor premium rates. In the workshop you use that to flag the documents that need table handling."
+  },
+  {
+   "type": "trap",
+   "title": "A clean extraction of an out of date document",
+   "looks": "The 2019 staff handbook parses perfectly. Its text is clean and says 21 days of annual leave. A search finds it and answers.",
+   "why": "The 2025 handbook says 28. The 2019 file does not say it was replaced. 9 of the 11 superseded documents carry no notice in their own text.",
+   "fix": "Record status, version and effective date for every document, and attach them to every chunk, before anything is searched.",
+   "notes": "This failure never shows an error message.\n\nThe 2019 staff handbook parses perfectly. The text is clean, the sentences are whole, and it says twenty one days of annual leave. A search finds it and answers with confidence.\n\nThe 2025 handbook says twenty eight days, and the 2019 file never says it was replaced. Of the eleven superseded documents in the Kitara folder, nine carry no notice of that in their own text. The status lives in one place only, the metadata file, and a program that reads the document never sees it.\n\nThe fix happens before any search. Record the status, the version and the effective date for every document, and attach them to every chunk. Then a search can ask for current documents only. Who keeps that record up to date is a question for a leader, and we return to it at the end.\n\nExact copies are the easy cousin of this problem, because comparing file fingerprints finds them. Kitara has none. The harder case is the near copy, like the three handbooks, which cover the same rules and differ in numbers such as the leave days."
+  },
+  {
+   "type": "figure",
+   "title": "Cutting a document into overlapping chunks",
+   "fig": "chunking_overlap",
+   "look": [
+    "The Staff Handbook 2025 has 436 words.",
+    "Chunks of 200 words, each starting 160 words after the last, give 3 chunks.",
+    "The clay stretch is 40 words held in two chunks at once."
+   ],
+   "caption": "chunk_text from kitara_search.py: 200 words, 40 words of overlap.",
+   "alt": "Bars showing one document of 436 words cut into 3 overlapping chunks, with the repeated stretch of 40 words in clay.",
+   "notes": "A chunk is a piece of a document that a search can return by itself. Why cut at all? A model reads a limited amount at a time, and a search that hands back a whole policy buries the one sentence you asked about.\n\nThe Staff Handbook 2025 has four hundred and thirty six words.\n\nWe cut pieces of two hundred words, and each new piece starts one hundred and sixty words after the previous start. That gives three chunks.\n\nThe clay stretches are forty words that sit in two chunks at once. That is the overlap. Without it, a sentence at the join would be cut in half and neither chunk would hold the whole rule. The Azure AI Search documentation suggests starting near five hundred and twelve tokens, the word pieces a model counts, with about a quarter of overlap, and Weaviate gives similar advice. Both say to test on your own questions, and Session 7 does that."
+  },
+  {
+   "type": "code",
+   "title": "Chunk the handbook and look at the joins",
+   "lang": "python",
+   "code": "import kitara_search as ks\n\npath = 'docs/policies/Staff Handbook 2025.pdf'\ntext = ks.extract_text(path)\nchunks = ks.chunk_text(text, size=200, overlap=40)\nprint(len(text.split()), 'words ->', len(chunks), 'chunks')\nfor c in chunks:\n    print(len(c.split()), c[:42], '...')\nn = sum(c.count('Classification') for c in chunks)\nprint(n, 'footers inside chunks')",
+   "says": [
+    "Extract the text once, then cut it: 200 words per chunk, 40 shared.",
+    "Each chunk is printed with its length and its first words.",
+    "Count the header and footer lines that ended up inside chunks."
+   ],
+   "output": "436 words -> 3 chunks\n200 Kitara Group Staff Handbook 2025 This hand ...\n200 carried forward until 31 March of the next ...\n116 than UGX 100,000 must be declared to Human ...\n2 footers inside chunks",
+   "notes": "The same cut in code uses the function from the search toolkit.\n\nWe extract the handbook text, then ask chunk_text for chunks of two hundred words with forty words of overlap.\n\nEach chunk prints with its length and its opening words. The first line agrees with the picture. Four hundred and thirty six words became three chunks, of two hundred, two hundred and one hundred and sixteen words. The second chunk starts mid sentence. It opens with carried forward until thirty one March, and the beginning of that annual leave sentence sits in the chunk before.\n\nThe last line counts header and footer lines inside the chunks. Two. The Grievances heading sits at the bottom of page one, and a footer and a header now stand between that heading and its text. Nobody planned that. A count by words falls where it falls."
+  },
+  {
+   "type": "compare",
+   "title": "Where to cut: by word count or by heading",
+   "left": {
+    "h": "Fixed size",
+    "points": [
+     "Counts words and cuts",
+     "Works on any file",
+     "A cut can fall inside a rule",
+     "Header and footer text rides along"
+    ]
+   },
+   "right": {
+    "h": "By headings",
+    "points": [
+     "Cuts where the author put a heading",
+     "Each chunk is one rule with its title",
+     "Needs headings a program can find",
+     "Long sections still need a size limit"
+    ]
+   },
+   "verdict": "Start with fixed size. Move to headings when test answers come back as half a rule.",
+   "notes": "There are two common ways to decide where to cut. By word count, called fixed size, and by headings, which is called structure aware chunking.\n\nOn the left, fixed size. It counts words and cuts, so it works on any file, and it is what we just ran. Its weakness is that a cut can land in the middle of a rule, and header and footer text rides along into the chunk.\n\nOn the right, cutting by headings. It cuts where the author put a heading, so each chunk is one rule with its title. The handbook has nine numbered sections of thirty to fifty four words, and each one is a natural chunk. It needs headings that a program can find, and a long section still needs a size limit.\n\nThe verdict is practical. Start with fixed size because it is quick. Move to headings when your test questions come back answered by half a rule."
+  },
+  {
+   "type": "code",
+   "title": "Cut by numbered headings and drop the footers",
+   "lang": "python",
+   "code": "import re\nimport kitara_search as ks\n\npath = 'docs/policies/Staff Handbook 2025.pdf'\nskip = ('KITARA', 'Classif', 'Page ')\nlines = ks.extract_text(path).splitlines()\nkeep = [l for l in lines if not l.startswith(skip)]\nparts = re.split(r'\\n(?=\\d+\\. [A-Z])', '\\n'.join(keep))\nprint(len(parts) - 1, 'numbered sections')\nfor s in parts[2:5]:\n    print(len(s.split()), 'words:', s.splitlines()[0])\nprint(sum('Page ' in s for s in parts), 'footers left')",
+   "says": [
+    "Remove lines that start with the header or footer words.",
+    "One pattern cuts before every line like '2. Probation'.",
+    "Nine sections. Each chunk starts at its heading and no footer is left."
+   ],
+   "output": "9 numbered sections\n43 words: 2. Probation\n54 words: 3. Annual leave\n44 words: 4. Other leave\n0 footers left",
+   "notes": "Cutting by headings on the same handbook takes a few lines.\n\nFirst we remove the header and footer lines. Any line that starts with KITARA GROUP, Classification or Page is dropped.\n\nThen one pattern cuts the text before every line that starts with a number, a full stop and a capital letter. That is the shape of one, Working hours, two, Probation, and so on.\n\nThe result is nine numbered sections, and three are printed. Probation is forty three words, annual leave fifty four, other leave forty four. Each chunk starts at a heading and stops at the end of its rule, and no footer is left, so Grievances sits with its text.\n\nThis works because the handbook is numbered. Your documents will follow other patterns, so expect to write one small rule for each family of documents."
+  },
+  {
+   "type": "code",
+   "title": "Attach labels to every chunk",
+   "lang": "python",
+   "code": "import pandas as pd\nimport kitara_search as ks\n\nmeta = pd.read_csv('docs_metadata.csv', dtype=str)\nids = ['D001', 'D003', 'D004']\nthree = meta[meta.doc_id.isin(ids)].copy()\npaths = 'docs/' + three.file\nthree['text'] = paths.map(ks.extract_text)\ncols = 'chunk_id status access_groups sensitivity'.split()\nprint(ks.build_chunks(three)[cols].to_string(index=False))",
+   "says": [
+    "Read the metadata file and keep three documents: two handbooks and the salary bands.",
+    "build_chunks cuts each text and copies the document's row onto every chunk.",
+    "Each chunk now carries its status and who may see it."
+   ],
+   "output": "chunk_id     status access_groups  sensitivity\n D001-01 superseded     all_staff     internal\n D001-02 superseded     all_staff     internal\n D003-01    current     all_staff     internal\n D003-02    current     all_staff     internal\n D003-03    current     all_staff     internal\n D004-01    current  hr;executive confidential",
+   "notes": "A chunk on its own knows nothing about where it came from. Metadata is the set of labels we attach to it so a search can filter.\n\nWe keep three documents. The 2019 handbook, the 2025 handbook and the salary bands appendix.\n\nbuild_chunks cuts each one and copies the document's row from the metadata file onto every chunk. Six chunks come out.\n\nRead the columns. The two 2019 chunks say superseded. The 2025 chunks say current. The salary chunk says confidential and open to HR and the executive only. A search that filters on these columns can leave out the old handbook, and can keep the salary bands away from a general staff member. We build that filter in Session 7. Today the job is to make sure every chunk carries the labels, and a label nobody recorded cannot be attached."
+  },
+  {
+   "type": "code",
+   "title": "Count your own unstructured data",
+   "lang": "python",
+   "code": "from collections import Counter\nfrom pathlib import Path\nfrom pypdf import PdfReader\n\nfiles = [p for p in Path('docs').rglob('*') if p.is_file()]\nprint(len(files), Counter(p.suffix for p in files))\npdfs = [p for p in files if p.suffix == '.pdf']\nn = sum(len(PdfReader(p).pages[0].extract_text()) < 40 for p in pdfs)\nprint(n, 'PDFs have no text layer')",
+   "says": [
+    "List every file under the folder and count them by ending.",
+    "The 105 PDFs look the same from outside.",
+    "Open page one of each and check for text. Eight have none."
+   ],
+   "output": "121 Counter({'.pdf': 105, '.docx': 10, '.txt': 6})\n8 PDFs have no text layer",
+   "notes": "Before you can plan, you count. This is how you do it for any folder.\n\nWe list every file under docs and count them by ending. One hundred and twenty one files. A hundred and five PDFs, ten Word files, six text files.\n\nThose hundred and five PDFs look the same from outside. The last lines open page one of each and check for text. Eight have none. That finds the scans without opening them one at a time.\n\nYou will often see a claim that most enterprise data is unstructured. Nobody has counted every organisation's files, so use your own number. Your own count of your own folder tells you more than any estimate."
+  },
+  {
+   "type": "code",
+   "title": "Docling, a free converter to try on your hardest files",
+   "lang": "python",
+   "code": "from docling.document_converter import DocumentConverter\n\nconverter = DocumentConverter()\nresult = converter.convert('docs/policies/Staff Handbook 2025.pdf')\nprint(result.document.export_to_markdown())",
+   "says": [
+    "Create the converter. Its layout models download the first time it runs.",
+    "Convert one file, then print its structure as markdown text."
+   ],
+   "notes": "One more tool to know about. We show it as syntax only today, because it was not run on this machine.\n\nIt is called Docling. It is a free converter that was started at IBM Research and is now reported to be hosted by the LF AI and Data Foundation. Its code carries the MIT licence. It reads PDFs and Word files and returns text with headings and tables kept, in a form called markdown. To find the layout it uses models, and those are downloaded on first use. The models carry their own licences, so read each model card before a bank puts it in production.\n\nThe code is four lines. Create the converter. On the first run it fetches its model files.\n\nThen convert the file and print the result as markdown. Try it on the ten hardest files from today's table, and compare it with pypdf and pdfplumber."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: the readiness table for 50 documents",
+   "tool": "Your own sheet with six columns, and the team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Pick 50 non-confidential documents from one shared drive, old and new",
+    "Make a sheet: file, format, text quality, version status, sensitivity, chunk plan",
+    "Fill in format. Open each PDF and try to select a line of text",
+    "Mark text quality: good, repair or unreadable",
+    "Mark version status: current, superseded or unknown",
+    "Add sensitivity and a chunk plan for each row",
+    "Count the rows by verdict and name an owner for the worst three"
+   ],
+   "done": "50 rows with six columns filled, a verdict on each, and the three most urgent repairs each with an owner.",
+   "notes": "For the next forty minutes you build a readiness table, and the first thing you need is fifty documents.\n\nChoose them from one shared drive, and choose non confidential ones. Mix old and new, long and short, PDFs, scans and Word files. A table that holds only your best documents will tell you nothing.\n\nMake a sheet with six columns named file, format, text quality, version status, sensitivity and chunk plan. Fill in the format by looking at the file. For each PDF, open it and try to select a line of text. If you cannot, it is a scan.\n\nMark the quality of the text, then the version status. Write unknown where nobody can say, and put a name next to who could say. Add sensitivity from the classes in Session 3, and choose a chunk plan.\n\nThe data colleague runs the team notebook on the Kitara folder alongside you and shows how counting can be done by program. The leader owns the last step, the owners of the worst three repairs."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A PDF returns an empty string from pypdf. What is it and what do you do?",
+     "a": "A scan with no text layer. Run OCR, then check its confidence or error rate before you trust the text."
+    },
+    {
+     "q": "Why does a price table read by pypdf give wrong answers?",
+     "a": "pypdf lists every service, then every charge, so a price lands nine lines from its name. pdfplumber keeps each row together."
+    },
+    {
+     "q": "Who in your organisation signs off which documents may feed an AI search, and what error rate on scans will you accept?",
+     "a": "Name a role, such as the owner of the document family with the records lead. Accept a higher rate only where answers show their source page."
+    }
+   ],
+   "notes": "Questions to finish, and the last one belongs to the leaders.\n\nA PDF returns an empty string from pypdf. What is it, and what do you do? Give that a moment.\n\nIt is a scan with no text layer. You run OCR, and then you check the confidence or the error rate before you trust the text. The faded Kitara scans had up to thirteen percent of characters wrong.\n\nSecond. Why does a price table read by pypdf give wrong answers? Think it over.\n\npypdf lists every service and then every charge, so a price lands nine lines away from its name. pdfplumber keeps each row together.\n\nThird, for the leaders. Who in your organisation signs off which documents may feed an AI search, and what error rate on scans will you accept? Sit with it for a second.\n\nName one role. It is usually the owner of that family of documents together with the records lead. For a policy that staff act on, accept only repaired or checked text. For old reference scans, a higher rate can be fine if every answer shows the source page, so a person can check it."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A PDF without a text layer is a scan. OCR reads it, with errors you must measure.",
+    "Tables, headers and footers and old versions make clean looking text wrong.",
+    "Cut text into overlapping chunks, and give each chunk a status and an access label."
+   ],
+   "next": "Search by meaning",
+   "notes": "You can now sort a folder into text PDFs, scans, Word files and text files, and you have seen what each one costs to read.\n\nA scan has no text layer. OCR reads it, and you measure the errors. On the Kitara scans that meant under two percent on the clean ones and up to thirteen on the faded ones.\n\nClean looking text can still be wrong. A table scrambles, a footer lands in the middle of a rule, and the 2019 handbook parses perfectly while saying twenty one days of leave.\n\nThe remedy is the same each time. Cut the text into overlapping chunks, and attach status, version and access to every chunk. The readiness table you filled in today is your list of what to fix first.\n\nNext session we take those chunks and search them by meaning, and see what that adds to the keyword search you already have."
+  }
+ ],
+ "lab": {
+  "intro": "You build a readiness table for 50 of your own documents on a sheet with six named columns. The team notebook builds the same table for all 121 Kitara documents so you can compare.",
+  "workshop": [
+   {
+    "task": "Choose 50 non-confidential documents from one shared drive: old and new, long and short, PDFs, scans and Word files. Make a sheet with six columns named file, format, text quality, version status, sensitivity and chunk plan, and list the files.",
+    "example": "The Kitara folder has 121 documents: 97 text PDFs, 8 scanned PDFs, 10 Word files and 6 text files."
+   },
+   {
+    "task": "Fill in format and text quality. Open every PDF and try to select a line of text. If you cannot, it is a scan. Mark each row good, repair or unreadable, and mark PDFs that hold a table.",
+    "example": "8 PDFs have no text layer. Five scans have Tesseract confidence 91 to 95 and are good. Three score 67 to 75 (Loan Committee Note 2018, Regulator Notice Fax 2017, Motor Policy Schedule 2015) and have 9 to 13 percent of characters wrong, so they need repair. Two text PDFs hold tables: Tariff Schedule 2025 and Motor Premium Rates 2025."
+   },
+   {
+    "task": "Fill in version status: current, superseded or unknown. Find the other versions of each family of documents. Where nobody can say, write unknown and name who could say.",
+    "example": "11 of the 121 documents are superseded, and 9 of those carry no notice in their own text. The three Staff Handbooks (2019, 2022, 2025) say 21, 24 and 28 days of annual leave."
+   },
+   {
+    "task": "Fill in sensitivity with the four classes from Session 3 and mark which documents hold personal data.",
+    "example": "Kitara: 54 internal, 44 restricted, 15 public and 8 confidential documents. 32 documents contain personal data, mostly claims letters."
+   },
+   {
+    "task": "Choose a chunk plan for each row: whole document, fixed 200 words with 40 overlap, by headings, table rows, or repair first.",
+    "example": "Kitara: 100 documents fit one chunk, 16 need fixed chunks, 2 need table rows and 3 need repair first. In all they give 139 chunks."
+   },
+   {
+    "task": "Give every row a verdict: ready, filter first (superseded, confidential or personal data) or repair first. Count the verdicts, choose your three most urgent repairs and name an owner for each.",
+    "example": "Kitara: 70 ready, 46 filter first, 5 repair first. The five repairs are the 3 faded scans and the 2 table PDFs. Owners could be the records manager for the scans and the product team for the two rate tables."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Find the scans\nLoad `docs_metadata.csv`. For every PDF, read page one with pypdf and treat fewer than 40 characters as no text layer. Add a column `text_layer` (True or False; non-PDF files count as True) and keep the rows with no text layer in `no_layer`."
+   },
+   {
+    "code": "import pandas as pd\nfrom pypdf import PdfReader\n\nmeta = pd.read_csv('docs_metadata.csv', dtype=str, keep_default_na=False)\n\ndef has_text_layer(f):\n    if not f.endswith('.pdf'):\n        return True\n    return len((PdfReader('docs/' + f).pages[0].extract_text() or '').strip()) >= 40\n\nmeta['text_layer'] = meta.file.map(has_text_layer)\nno_layer = meta[~meta.text_layer]\nprint(len(no_layer))",
+    "starter": "import pandas as pd\nfrom pypdf import PdfReader\n\nmeta = pd.read_csv('docs_metadata.csv', dtype=str, keep_default_na=False)\n\ndef has_text_layer(f):\n    # Your turn: return True for a non-PDF file; for a PDF read page one with pypdf\n    # and return True when it has at least 40 characters of text\n    pass\n\n# Your turn: add the text_layer column, then keep the rows without one in no_layer\n"
+   },
+   {
+    "code": "assert len(no_layer) == 8, 'There should be 8 documents with no text layer'\nassert set(no_layer.format) == {'scanned_pdf'}, 'Only scanned PDFs should be in no_layer'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. How well does OCR read each scan?\nThe first cell installs Tesseract if the notebook does not have it. Then compute Tesseract's mean word confidence for each scan in `no_layer` into a dictionary `conf`, and list the files under 85 in `poor`."
+   },
+   {
+    "code": "import shutil, subprocess\nif shutil.which('tesseract') is None:\n    subprocess.run('apt-get install -y -q tesseract-ocr poppler-utils && pip install -q pytesseract', shell=True)",
+    "starter": "import shutil, subprocess\nif shutil.which('tesseract') is None:\n    subprocess.run('apt-get install -y -q tesseract-ocr poppler-utils && pip install -q pytesseract', shell=True)"
+   },
+   {
+    "code": "import glob, tempfile\nimport pytesseract\nfrom PIL import Image\n\ndef mean_confidence(pdf):\n    with tempfile.TemporaryDirectory() as tmp:\n        subprocess.run(['pdftoppm', '-r', '150', '-png', pdf, tmp + '/p'], check=True)\n        page = Image.open(sorted(glob.glob(tmp + '/p*.png'))[0])\n        d = pytesseract.image_to_data(page, output_type=pytesseract.Output.DICT)\n    scores = [float(c) for c, t in zip(d['conf'], d['text']) if t.strip() and float(c) >= 0]\n    return sum(scores) / len(scores)\n\nconf = {f: mean_confidence('docs/' + f) for f in no_layer.file}\npoor = sorted(f for f, c in conf.items() if c < 85)\nprint(poor)",
+    "starter": "import glob, tempfile\nimport pytesseract\nfrom PIL import Image\n\ndef mean_confidence(pdf):\n    with tempfile.TemporaryDirectory() as tmp:\n        subprocess.run(['pdftoppm', '-r', '150', '-png', pdf, tmp + '/p'], check=True)\n        page = Image.open(sorted(glob.glob(tmp + '/p*.png'))[0])\n        d = pytesseract.image_to_data(page, output_type=pytesseract.Output.DICT)\n    scores = [float(c) for c, t in zip(d['conf'], d['text']) if t.strip() and float(c) >= 0]\n    return sum(scores) / len(scores)\n\n# Your turn: build the dictionary conf: file name -> mean_confidence('docs/' + file), for each file in no_layer\n# Your turn: poor = the file names with confidence under 85, sorted\n"
+   },
+   {
+    "code": "assert len(conf) == 8, 'conf should hold all 8 scans'\nassert len(poor) == 3, 'Three scans should fall under 85'\nassert all('2018' in f or '2015' in f or '2017' in f for f in poor), 'The poor scans are the 2018, 2017 and 2015 ones'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Which old documents say nothing about being old?\nLoad the whole corpus with `ks.load_corpus('.')` (it runs OCR on the scans and takes about twenty seconds). Keep the superseded documents in `old`. Then keep in `silent` those whose text has none of the words supersed, replaces, replaced, withdrawn or no longer."
+   },
+   {
+    "code": "import kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nnotice = corpus.text.str.contains('supersed|replaces|replaced|withdrawn|no longer', case=False)\nold = corpus[corpus.status == 'superseded']\nsilent = old[~notice[old.index]]\nprint(len(old), len(silent))",
+    "starter": "import kitara_search as ks\n\ncorpus = ks.load_corpus('.')\n# Your turn: notice = True for each document whose text contains supersed, replaces, replaced, withdrawn or no longer\n#   hint: corpus.text.str.contains('a|b|c', case=False)\n# Your turn: old = the superseded documents (status column)\n# Your turn: silent = the old documents where notice is False\n"
+   },
+   {
+    "code": "assert len(old) == 11, 'There are 11 superseded documents'\nassert len(silent) == 9, 'Nine superseded documents never mention it in their text'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Chunk plan\nAdd a column `n_chunks` to `corpus` with the number of chunks `ks.chunk_text(text, 200, 40)` gives for each document. Store the total in `total_chunks` and the number of documents with more than one chunk in `multi`."
+   },
+   {
+    "code": "corpus['n_chunks'] = corpus.text.map(lambda t: len(ks.chunk_text(t, 200, 40)))\ntotal_chunks = int(corpus.n_chunks.sum())\nmulti = int((corpus.n_chunks > 1).sum())\nprint(total_chunks, multi)",
+    "starter": "# Your turn: add the n_chunks column using ks.chunk_text(t, 200, 40) for each document text\n# Your turn: total_chunks = the sum of n_chunks; multi = how many documents have more than one chunk\n"
+   },
+   {
+    "code": "assert total_chunks == 139, 'The 121 documents should give 139 chunks'\nassert multi == 16, 'Sixteen documents need more than one chunk'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. The readiness table\nBuild `table` with one row per document and the columns `file`, `format`, `text_quality` (scan poor, scan ok, table or text ok), `version_status`, `sensitivity`, `chunk_plan` and `verdict`. Use `conf` for the scans and `pdfplumber`'s `find_tables()` for the table PDFs. The verdict is repair first for a poor scan or a table, filter first for a superseded or confidential document or one with personal data, and ready otherwise."
+   },
+   {
+    "code": "import pdfplumber\n\nhas_layer = meta.set_index('file').text_layer\n\ndef tables_in(f):\n    if not f.endswith('.pdf') or not has_layer[f]:\n        return 0\n    with pdfplumber.open('docs/' + f) as pdf:\n        return sum(len(p.find_tables()) for p in pdf.pages)\n\ndef quality(f):\n    if f in conf:\n        return 'scan poor' if conf[f] < 85 else 'scan ok'\n    return 'table' if tables_in(f) else 'text ok'\n\ntable = pd.DataFrame({'file': corpus.file, 'format': corpus.format})\ntable['text_quality'] = corpus.file.map(quality)\ntable['version_status'] = corpus.status\ntable['sensitivity'] = corpus.sensitivity\ntable['chunk_plan'] = [('repair first' if q == 'scan poor' else 'table rows' if q == 'table'\n                        else 'whole document' if n == 1 else 'fixed 200 / 40')\n                       for q, n in zip(table.text_quality, corpus.n_chunks)]\n\ndef verdict(row, personal):\n    if row.text_quality in ('scan poor', 'table'):\n        return 'repair first'\n    if row.version_status == 'superseded' or row.sensitivity == 'confidential' or personal == 'Y':\n        return 'filter first'\n    return 'ready'\n\ntable['verdict'] = [verdict(r, p) for r, p in zip(table.itertuples(), corpus.contains_personal_data)]\nprint(table.verdict.value_counts().to_dict())",
+    "starter": "import pdfplumber\n\nhas_layer = meta.set_index('file').text_layer\n\ndef tables_in(f):\n    # Your turn: 0 for a non-PDF or a scan; otherwise count find_tables() over the pages with pdfplumber\n    pass\n\ndef quality(f):\n    # Your turn: 'scan poor' or 'scan ok' for a file in conf (cut at 85); 'table' if tables_in(f); else 'text ok'\n    pass\n\ntable = pd.DataFrame({'file': corpus.file, 'format': corpus.format})\n# Your turn: add text_quality, version_status, sensitivity, chunk_plan and verdict\n#   chunk_plan: repair first (poor scan), table rows, whole document (1 chunk), else fixed 200 / 40\n#   verdict: repair first, filter first or ready, as the task describes\n"
+   },
+   {
+    "code": "vc = table.verdict.value_counts().to_dict()\nassert vc == {'ready': 70, 'filter first': 46, 'repair first': 5}, f'Expected 70 ready, 46 filter first, 5 repair first. Got {vc}'\nassert (table.text_quality == 'table').sum() == 2, 'Two PDFs hold tables'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Question for the leader\nOf 121 Kitara documents, 70 are ready, 46 need a filter or label first and 5 need repair. Which group would you fix first before paying for a search pilot, who in your organisation owns that fix, and what share of your own documents must be ready before you start? Write your answer in two sentences."
+   }
+  ]
+ }
+}

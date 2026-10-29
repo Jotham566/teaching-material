@@ -1,0 +1,547 @@
+{
+ "session": 12,
+ "notes_title": "Kitara's board has the baseline and now wants a plan. What do we do first, and what do we ask for? Today you answer both. You sort sixteen work items by value, effort and what waits for what. You find the chain of work that cannot slip, and you see where the year is overloaded. Then you write the board paper and present it in ten minutes. This is your third workpiece, a roadmap you could take into a board meeting next month.",
+ "notes_outcomes": "By the end you can put work in an order that respects dependencies, value and effort. You can turn the gaps on your scorecard into a plan with measures, and a target you will rescore against. And you can present it to a board in ten minutes. First we teach the ideas using Kitara's sixteen items. Then in the live part we rank them, find the critical chain, total the effort for each month and compute the projected score. After the break you build your own. The last ten minutes go to a leader's decision, who presents and when.",
+ "notes_words": "Seven terms today. A quick win is small effort with a visible result. A foundation is work that other work waits for. A dependency is an item that cannot start until another finishes. The critical path is the longest chain of dependent items, which sets the end date. The priority score is value divided by effort, times ten. The projected score is where the plan aims to be, a target and not a measurement. And the board paper is the short document that asks for a decision.",
+ "vocab": [
+  [
+   "Quick win",
+   "A piece of work with small effort and a result people can see soon.",
+   "W01, naming the council and an owner for every source: 6 person-days."
+  ],
+  [
+   "Foundation",
+   "Work that takes effort and that other work waits for.",
+   "W07, the raw, cleaned and serving zones: 40 person-days."
+  ],
+  [
+   "Dependency",
+   "A work item that cannot start until another has finished.",
+   "W15, the pilot, waits for W12, W13 and W07."
+  ],
+  [
+   "Critical path",
+   "The longest chain of dependent items. If one slips, the end date slips.",
+   "Three chains of 12 months in Kitara's plan."
+  ],
+  [
+   "Priority score",
+   "Value divided by effort in person-days, times ten. It helps choose between items that can start together.",
+   "W01 scores 8.33 and W07 scores 1.0."
+  ],
+  [
+   "Projected score",
+   "The score the plan aims for at month 12. It is a target and not a measurement.",
+   "Kitara's mean target is 3.3."
+  ],
+  [
+   "Board paper",
+   "A short document that asks the board for a decision and shows the baseline, plan, costs, risks and measures.",
+   "Board Paper Outline.docx has ten sections."
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 11",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Name the four functions of the NIST AI Risk Management Framework.",
+     "a": "Govern, map, measure and manage."
+    },
+    {
+     "q": "Kitara's risk register puts R01 at the top with a score of 20. What is R01, and who owns it?",
+     "a": "Personal data enters the search index. Likelihood 4 times impact 5. The data protection officer owns it."
+    }
+   ],
+   "notes": "Last session we gave Kitara roles, three policies and a scored risk register. Name the four functions of the NIST AI Risk Management Framework. Take your time.\n\nGovern, map, measure and manage. Govern sets the roles and rules, map describes the AI use and its context, measure tests it, and manage acts on what the tests show. Second question. Kitara's register puts R01 at the top with a score of twenty. What is R01, and who owns it? Have a think.\n\nR01 is personal data entering the search index. Likelihood four, impact five, which multiplies to twenty. The data protection officer owns it. Hold on to that risk, because today it becomes a work item on the plan, and the plan has to put it in the right month."
+  },
+  {
+   "type": "compare",
+   "title": "Quick wins and foundations",
+   "left": {
+    "h": "Quick win",
+    "points": [
+     "Small effort, visible result",
+     "Kitara: name the steering council and an owner for every source, 6 person-days",
+     "Kitara: midyear rescore, 5 person-days",
+     "Builds belief in the plan"
+    ]
+   },
+   "right": {
+    "h": "Foundation",
+    "points": [
+     "Large effort, other work waits for it",
+     "Kitara: raw, cleaned and serving zones, 40 person-days",
+     "Kitara: complete the data inventory, 20 person-days",
+     "Nothing visible for months, everything depends on it"
+    ]
+   },
+   "verdict": "A plan needs both. Quick wins keep the sponsor interested while the foundations are built.",
+   "notes": "Every roadmap mixes two kinds of work. I want you to be able to tell them apart in your own list.\n\nA quick win takes little effort and shows a result people can see. At Kitara, naming the steering council and an owner for every source takes six person days. The midyear rescore takes five. Both are cheap, and both change how the organisation talks about data.\n\nA foundation takes a lot of effort and other work waits for it. Setting up the raw, cleaned and serving zones takes forty person days. Completing the data inventory takes twenty. Nobody applauds an inventory, yet fifteen of the sixteen items on this plan depend on something else finishing first.\n\nA plan with only quick wins stalls in month six. A plan with only foundations loses its sponsor in month three. You need both, in the right order."
+  },
+  {
+   "type": "code",
+   "title": "Rank the sixteen work items by value for effort",
+   "lang": "python",
+   "code": "import pandas as pd\n\nitems = pd.read_csv('roadmap_items.csv')\nitems['priority'] = (items.value / items.effort_days * 10).round(2)\ntop = items.sort_values('priority', ascending=False).set_index('id').priority\nprint(top.head(4).to_dict())\nprint('Lowest:', top.index[-1], top.iloc[-1])",
+   "says": [
+    "Read the sixteen work items and divide value by effort in person-days, times ten.",
+    "Sort so the highest value for effort comes first and show the top four.",
+    "Show the item at the bottom."
+   ],
+   "output": "{'W01': 8.33, 'W11': 6.0, 'W16': 5.0, 'W13': 3.57}\nLowest: W07 1.0",
+   "notes": "Kitara's plan has sixteen work items in roadmap_items.csv. Each has an effort in person days and a value from one to five that the steering council gave it. First question for any plan. Which items give the most value for the least effort?\n\nWe divide value by effort and multiply by ten, which is the same priority number the Roadmap Planner workbook shows. The multiplication only keeps the numbers readable.\n\nThe top of the list is W01, naming the steering council and an owner for every source. Value five for six days gives eight point three three. Then the midyear rescore, the second rescore and board report, and the permission filters.\n\nAt the bottom sits W07, the raw, cleaned and serving zones, at exactly one. Forty days of effort for a value of four. Hold that thought, because it is about to matter."
+  },
+  {
+   "type": "trap",
+   "title": "Starting at the top of the ranking",
+   "looks": "The team sorts the plan by value for effort and works down. W13, permission filters and query logging, ranks fourth at 3.57.",
+   "why": "W13 waits for W07, the zones, which ranks last at 1.0. Filters built first have no place to sit. The ranking says what is cheap and valuable. It does not say what can start.",
+   "fix": "Rank only the items whose prerequisites have finished. The dependency check column in the Roadmap Planner flags any item that starts too early.",
+   "notes": "Here is a mistake that looks fine. The team sorts the plan by value for effort and works down the list. W13, permission filters and query logging, ranks fourth, so it is scheduled early. It is cheap, it is valuable, and it answers risk R03, restricted documents exposed through search.\n\nBut W13 waits for W07, the raw, cleaned and serving zones. W07 ranks last, at one point oh. Permission filters built before the zones exist have nowhere to sit, and they get rebuilt later.\n\nThe ranking tells you what is cheap and valuable. It does not tell you what can start. The fix is to rank only the items whose prerequisites have finished. In the Roadmap Planner, a column called Dependency check flags any item that starts before its prerequisite ends.\n\nUse the ranking to choose between items that can start together. Never use it to override a dependency."
+  },
+  {
+   "type": "code",
+   "title": "Record what each item waits for",
+   "lang": "python",
+   "code": "dep = items.depends_on.fillna('')\ndeps = {i: s.split(';') if s else [] for i, s in zip(items.id, dep)}\nprint(deps['W15'])\nprint(deps['W16'])",
+   "says": [
+    "Turn the depends_on column into a list of prerequisites for each item.",
+    "Show what W15, the pilot, waits for.",
+    "Show what the board report W16 waits for."
+   ],
+   "output": "['W12', 'W13', 'W07']\n['W15', 'W14']",
+   "notes": "Before we can find the chain that sets the end date, the code needs to know what each item waits for. In roadmap_items.csv that is the depends_on column, with several ids separated by semicolons.\n\nThe first two lines turn that column into a dictionary. Each item gets a list of the items it waits for, and an empty list when it waits for nothing.\n\nThen we read two entries. The staff policy assistant pilot, W15, waits for three items. W12, masking personal data, W13, permission filters and logging, and W07, the zones. All three must finish before the pilot starts.\n\nThe board report, W16, waits for the pilot and for W14, the freshness and schema alerts. Fifteen of the sixteen items wait for something. Only the first one, naming the council, starts cold."
+  },
+  {
+   "type": "code",
+   "title": "Find the chain of work that sets the end date",
+   "lang": "python",
+   "code": "months = dict(zip(items.id, items.duration_months))\ndef chains(i):\n    return [[i]] if not deps[i] else [c + [i] for d in deps[i] for c in chains(d)]\nsize = {tuple(c): sum(months[x] for x in c) for c in chains('W16')}\nbest = max(size.values())\nprint('Longest chain:', best, 'months')\nprint(*[' > '.join(c) for c, n in size.items() if n == best], sep='\\n')",
+   "says": [
+    "For each item, list the prerequisites it names.",
+    "Walk back from W16, the board report, through every chain of prerequisites.",
+    "Add up the months along each chain and print the longest ones."
+   ],
+   "output": "Longest chain: 12 months\nW01 > W02 > W08 > W12 > W15 > W16\nW01 > W02 > W07 > W13 > W15 > W16\nW01 > W04 > W07 > W13 > W15 > W16",
+   "notes": "The critical path is the longest chain of dependent work. If any item on it slips by a month, the whole plan ends a month later. Items off the path have some room.\n\nA small function walks backward from W16, the second rescore and board report, through every chain of prerequisites. We add the durations along each chain.\n\nThe longest chain is twelve months, which fills the year exactly. And there are three of them. Each starts with W01 and ends with W15 and W16. They differ in the middle. One goes through reading and repairing the documents and masking personal data. Two go through the zones and the permission filters.\n\nThe chart you are about to see draws the first one in clay. In practice all three have no room to slip."
+  },
+  {
+   "type": "code",
+   "title": "A check that catches an item started too early",
+   "lang": "python",
+   "expect_error": true,
+   "code": "late = items.set_index('id').copy()\nlate.loc['W15', 'start_month'] = 6\nfor i, r in late.iterrows():\n    for d in deps[i]:\n        end = late.start_month[d] + late.duration_months[d]\n        assert end <= r.start_month, f'{i} starts before {d} ends'",
+   "says": [
+    "Move W15, the staff policy assistant pilot, back to month 6.",
+    "For every item, check that each prerequisite has ended before it starts."
+   ],
+   "output": "AssertionError: W15 starts before W12 ends",
+   "notes": "Let's make the Roadmap Planner's check in code, and then break the plan on purpose.\n\nWe take a copy of the plan and move W15, the staff policy assistant pilot, back to month six. Someone always says the pilot could start sooner.\n\nThen the loop looks at every item and every prerequisite it names. The assert line says the prerequisite must have ended before the item starts.\n\nIt fails. W15 now starts in month six, but W12, masking personal data, ends after month seven. The pilot would index documents that still contain personal data, which is risk R01 coming true. The check stopped it on paper, where changing it costs nothing."
+  },
+  {
+   "type": "figure",
+   "title": "The twelve month plan on one page",
+   "fig": "roadmap_gantt",
+   "look": [
+    "One bar for each of the 16 items, from its start month for its duration.",
+    "Clay bars mark one chain of 12 months: W01, W02, W08, W12, W15, W16.",
+    "A dashed line after month 6 marks the rescore."
+   ],
+   "caption": "From roadmap_items.csv. Lines join each item to the work it waits for.",
+   "alt": "A twelve month Gantt chart of sixteen work items with dependency lines, a rescore marker after month six and the 12 month critical chain in clay.",
+   "notes": "This is the page a board member will remember. Sixteen items, twelve months, one picture.\n\nEach bar starts in its start month and runs for its duration. The thin lines join an item to the work it waits for, so you can follow any bar back to its prerequisites.\n\nThe clay bars are one of the twelve month chains we just found. It begins in month one with the steering council and ends in month twelve with the second rescore and board report. Nothing in it can slip without moving the end date.\n\nThe dashed line after month six is the midyear rescore. It is built into the plan from the start, so the plan tests itself halfway.\n\nNotice how the chart is crowded in months four and five, and nearly empty in the last two. We measure that next."
+  },
+  {
+   "type": "code",
+   "title": "Effort per month shows where the plan is overloaded",
+   "lang": "python",
+   "code": "load = pd.Series(0.0, index=range(1, 13))\nfor r in items.itertuples():\n    for m in range(r.start_month, r.start_month + r.duration_months):\n        load[m] += r.effort_days / r.duration_months\nprint(load.round(1).values)\nprint('Total:', round(load.sum()), 'Busiest month:', load.idxmax())",
+   "says": [
+    "Spread each item's effort evenly over the months it runs.",
+    "Add up the effort for each month.",
+    "Print the total and the busiest month."
+   ],
+   "output": "[ 6.  21.  21.  53.3 53.3 33.3 37.  19.7 11.7 11.7  4.   4. ]\nTotal: 276 Busiest month: 4",
+   "notes": "A plan can be in the right order and still be impossible to staff. So we spread each item's effort evenly across the months it runs, which is also what the Roadmap Planner does under its table.\n\nThen we add up each month. Month one is six person days. Months two and three are twenty one each. Then months four and five jump to fifty three point three. The total across the year is two hundred and seventy six person days.\n\nFifty three days in a month is about two and a half people working full time, if we count twenty one working days. That is a question for the leader. Who steps in during months four and five, and which item moves if nobody can?\n\nMonths eleven and twelve need four days each, so the plan has room at the end. You can use the slack there."
+  },
+  {
+   "type": "concept",
+   "title": "What can push the plan off course",
+   "lead": "Four risks, each already visible in Kitara's files.",
+   "points": [
+    {
+     "h": "Overloaded months",
+     "t": "Months 4 and 5 need 53.3 person-days each, against 21 in month 2."
+    },
+    {
+     "h": "No slack",
+     "t": "Three chains fill all 12 months. One late item moves the board report."
+    },
+    {
+     "h": "No owner",
+     "t": "R07 gives claims data to a council that does not exist yet. W01 in month 1 fixes that."
+    },
+    {
+     "h": "Personal data",
+     "t": "The pilot W15 waits for W12, the masking. R01 scores 20 until masking runs."
+    }
+   ],
+   "notes": "A plan fails in predictable places, and Kitara's own files show four of them. Each one goes into the risk section of the board paper with a named owner.\n\nThe first is overload. Months four and five need fifty three person days each, and month two needs twenty one. If nobody can cover those two months, an item moves, and the chain behind it moves too.\n\nThe second is slack, which the plan does not have. Three chains fill all twelve months, so one late item pushes the board report out by a month.\n\nThe third is ownership. Risk R07 hands claims data to a steering council that does not exist yet. W01, in month one, creates it, and the Chief Executive owns that item.\n\nThe fourth is personal data. The pilot waits for the masking work. Until masking runs on the claims letters, R01 stays at twenty, and the data protection officer owns both."
+  },
+  {
+   "type": "table",
+   "title": "Thirty days, ninety days, three hundred and sixty five days",
+   "header": [
+    "By day",
+    "What is finished",
+    "Effort so far"
+   ],
+   "rows": [
+    [
+     "30",
+     "W01: steering council and an owner for every source",
+     "6 person-days"
+    ],
+    [
+     "90",
+     "Also W02 inventory, W03 policies, W04 hosting and exit plan",
+     "48 person-days"
+    ],
+    [
+     "365",
+     "All 16 items, the pilot W15 and the second rescore W16",
+     "276 person-days"
+    ]
+   ],
+   "colw": [
+    1.8,
+    7.9,
+    2.6
+   ],
+   "hl": [
+    1
+   ],
+   "caption": "Effort so far counts items that start by the end of that month. Computed from roadmap_items.csv.",
+   "notes": "Boards think in short horizons, so give them three. Thirty days, ninety days and three hundred and sixty five.\n\nIn thirty days one thing is finished, W01. The chief executive names the steering council and an owner for every source. Six person days. If this has not happened by day thirty, the rest of the plan has no owner to run it.\n\nBy day ninety four items are done. The inventory and classification, the data classification and acceptable use policies, and the hosting choice with its exit plan. The Kitara plan has used forty eight person days by then, with no spend on tools.\n\nBy day three hundred and sixty five all sixteen items are done, including the staff policy assistant pilot and the second rescore. Two hundred and seventy six person days in total.\n\nThe first ninety days are mostly decisions and paperwork. That is deliberate, and a board should hear it said."
+  },
+  {
+   "type": "code",
+   "title": "The projected rescored baseline",
+   "lang": "python",
+   "code": "sc = pd.read_csv('scorecard_after.csv')\ncols = ['baseline_score', 'evidence_adjusted_score', 'projected_score_month_12']\nprint(sc[cols].mean().round(2).to_string())\ntop = sc.loc[sc.change_from_baseline.idxmax()]\nprint('Biggest gain:', top.dimension, top.change_from_baseline)",
+   "says": [
+    "Average the three score columns: as proposed, evidence-adjusted, and the month 12 target.",
+    "Find the dimension with the biggest planned gain."
+   ],
+   "output": "baseline_score              2.40\nevidence_adjusted_score     2.01\nprojected_score_month_12    3.30\nBiggest gain: People and governance 1.5",
+   "notes": "Now we turn the plan into a number. The file scorecard_after.csv holds, for each dimension, the baseline from Session 2, the evidence adjusted score, and the score the plan aims for at month twelve, plus the action that is meant to move it.\n\nThe code averages three columns. The baseline mean is two point four, which is what the assessor proposed. With the self reported items taken out, it is two point oh one. The mean of the month twelve targets is three point three.\n\nThen it finds the dimension with the biggest planned gain. People and governance goes from one and a half to three, a gain of one and a half. That is where the steering council and the named owners do their work.\n\nWord this carefully in any paper. Three point three is a target. The plan aims at it. The month six and month twelve rescores will say whether it was reached."
+  },
+  {
+   "type": "trap",
+   "title": "A target reported as a result",
+   "looks": "The board paper says: Kitara data readiness will rise from 2.4 to 3.3. The slide shows the 3.3 in the same bold figure as the baseline.",
+   "why": "The 3.3 comes from a planning file. Nobody has measured it. A board will read a bold number as a finding and will hold the team to it.",
+   "fix": "Label it target. Show the evidence-adjusted 2.01 beside the 2.4. Name the two rescores, month 6 and month 12, as the test.",
+   "notes": "This one is easy to do by accident. The board paper says that Kitara's data readiness will rise from two point four to three point three. The three point three sits in the same bold figure as the baseline.\n\nThe three point three comes from scorecard_after.csv, which is a planning file. Nobody has measured anything yet. A board reads a bold number as a finding, and later holds the team to it as a promise.\n\nThree changes repair it. Label it as a target. Show the evidence adjusted two point oh one next to the two point four, so the board sees the starting point with the self reported items taken out. And name the two rescores, in month six and month twelve, as the test of the target.\n\nIf month six comes in lower than planned, that is useful news. It tells the council which action to look at while there is still time to change it."
+  },
+  {
+   "type": "table",
+   "title": "Benefits are hypotheses with a measure",
+   "header": [
+    "Hypothesis",
+    "Measure that tests it",
+    "Baseline today"
+   ],
+   "rows": [
+    [
+     "Named owners cut stale and orphaned data",
+     "Sources with no owner, from sources.csv",
+     "4 of 14"
+    ],
+    [
+     "Masking and filters lower the top risks",
+     "Risks scoring 15 or more, from risk_register.csv",
+     "3 of 12"
+    ],
+    [
+     "The assistant returns the right policy",
+     "Recall on the 60 question test set (W10)",
+     "46 of 60 in Session 7"
+    ]
+   ],
+   "colw": [
+    4.8,
+    4.9,
+    2.6
+   ],
+   "hl": [],
+   "caption": "No return on investment is claimed. Each line says what would test it, and when.",
+   "notes": "Every board asks what it gets for the money. You will be tempted to answer with a return on investment. Resist it. Kitara has no measured saving, and a made up figure will not survive the first question.\n\nWhat you can offer is a hypothesis with a measure that tests it. Three examples, each from files you already have.\n\nThe first hypothesis is that named owners cut stale and orphaned data. The measure is the number of sources with no owner. Today it is four of fourteen.\n\nThe second is that masking and permission filters lower the top risks. The measure is the number of risks scoring fifteen or more in the register. Today it is three of twelve.\n\nThe third is that the assistant returns the right policy. The measure is recall on the sixty question test set from W10, and the baseline is your Session 7 pilot report. For Kitara it was forty six of sixty with hybrid search at five results, measured on the stand-in meaning scorer.\n\nEach line names a baseline now and a date to measure again. A board can hold you to that."
+  },
+  {
+   "type": "table",
+   "title": "The board paper in six answers",
+   "header": [
+    "Section",
+    "The question it answers"
+   ],
+   "rows": [
+    [
+     "Decision asked",
+     "What is the board asked to approve, for how much and for how long?"
+    ],
+    [
+     "Baseline",
+     "Where do we stand, with the evidence-adjusted score?"
+    ],
+    [
+     "Plan",
+     "What happens in 30, 90 and 365 days, and what waits for what?"
+    ],
+    [
+     "Cost lines",
+     "People, hosting, licences, evaluation and support, one-off or recurring?"
+    ],
+    [
+     "Risks",
+     "Which five risks matter most, and who owns each?"
+    ],
+    [
+     "Measures",
+     "Which three measures, with a baseline and a date?"
+    ]
+   ],
+   "colw": [
+    3.2,
+    9.1
+   ],
+   "hl": [
+    1
+   ],
+   "caption": "Board Paper Outline.docx has ten sections. These six carry the decision.",
+   "notes": "The board paper in the Board Paper Outline has ten sections. Six of them carry the decision, and I would build those first.\n\nThe decision asked comes first, in one sentence, with the amount and the period. If a director reads only the first line, they still know what you want.\n\nThe baseline shows the five scores, the weakest dimension and what it blocks. The plan shows the twelve months on one page and says what is done at thirty, ninety and three hundred and sixty five days.\n\nCost lines come from your own quotes. People are the person days in the roadmap, priced at your day rate. Hosting comes from the Hosting Cost Model and licences from the Licence Register. Evaluation covers the test set and the two rescores. Support is what continues after month twelve. Say which are one off and which recur, and what is already funded. The Kitara files contain no prices, so yours must be your own.\n\nRisks come from the register, with an owner each. Measures are the three hypotheses with their baselines. Why now, law, governance and next steps fill the other four sections."
+  },
+  {
+   "type": "flow",
+   "title": "Ten minutes in front of the board",
+   "steps": [
+    {
+     "h": "1 minute",
+     "t": "The decision asked, with the amount"
+    },
+    {
+     "h": "2 minutes",
+     "t": "Baseline: five scores and the weakest"
+    },
+    {
+     "h": "3 minutes",
+     "t": "Plan: the one page chart and 30, 90, 365"
+    },
+    {
+     "h": "2 minutes",
+     "t": "Cost lines and the three measures"
+    },
+    {
+     "h": "2 minutes",
+     "t": "Top risks, owners and the rescore dates",
+     "hot": true
+    }
+   ],
+   "caption": "Put the decision first and say it again at the end.",
+   "notes": "You will not get more than ten minutes, and the board will interrupt. So spend them in this order.\n\nOne minute on the decision asked. Say the amount, the period and what it buys. Do not build up to it.\n\nTwo minutes on the baseline. Five scores, the evidence adjusted mean, and the weakest dimension with what it blocks. At Kitara that is data and people, which block the staff policy assistant.\n\nThree minutes on the plan. Show the one page chart. Walk the three horizons, thirty, ninety and three hundred and sixty five days. Point at the clay chain and say that these items cannot slip.\n\nTwo minutes on cost lines and the three measures. Then the last two minutes for the top risks, each with an owner, and the dates of the two rescores.\n\nEnd by asking for the decision again. If you finish at eight minutes, you have left two for questions, which is where boards spend their attention."
+  },
+  {
+   "type": "table",
+   "title": "Two credentials for data professionals",
+   "header": [
+    "Credential",
+    "Format",
+    "Reported price",
+    "Check first"
+   ],
+   "rows": [
+    [
+     "DAMA CDMP",
+     "Exams on data management knowledge. Associate is one exam, Practitioner three.",
+     "About USD 311 per exam. Practitioner about USD 933.",
+     "Current fees on the DAMA site"
+    ],
+    [
+     "EDM Council DCAM v3 training",
+     "Two days of virtual training with a certification exam.",
+     "USD 1,370, for EDM Council members.",
+     "Membership and session dates"
+    ]
+   ],
+   "colw": [
+    2.6,
+    4.5,
+    3.0,
+    2.2
+   ],
+   "hl": [],
+   "caption": "Optional paths for individuals. Prices as reported in October 2026. This course issues no certificate.",
+   "notes": "A word on credentials, for the data colleagues at your table. This course issues no certificate. If someone wants a recognised credential in data management, two exist, and both are optional.\n\nThe first is the DAMA CDMP, the Certified Data Management Professional. It is exam based. The Associate level is one exam, and the Practitioner level is three. Third party guides, which cite DAMA, report about three hundred and eleven US dollars per exam with online proctoring, and about nine hundred and thirty three dollars in total for the Practitioner level.\n\nThe second is the EDM Council's DCAM training. DCAM version three is a data management maturity framework. The two day virtual training with a certification exam is listed at one thousand three hundred and seventy dollars, for EDM Council members.\n\nThese are prices reported in October 2026. Check the provider before anyone pays. Neither course teaches AI search or East African law, which is what this course adds."
+  },
+  {
+   "type": "flow",
+   "title": "What happens after the course",
+   "steps": [
+    {
+     "h": "This week",
+     "t": "Name the sponsor for the board paper"
+    },
+    {
+     "h": "Day 30",
+     "t": "Council named, owner for every source"
+    },
+    {
+     "h": "Month 6",
+     "t": "Rescore the baseline against the target",
+     "hot": true
+    },
+    {
+     "h": "Month 12",
+     "t": "Second rescore and report to the board"
+    }
+   ],
+   "caption": "The rescore is the measure of progress.",
+   "notes": "The course ends today. The plan starts this week.\n\nThis week, the leader at the table names who presents the board paper and who signs it. Without a name against it, the paper waits for a meeting that never happens.\n\nBy day thirty, the steering council exists and every source has an owner. That is W01, six person days, and the cheapest item on the plan.\n\nIn month six, you rescore. Use the same Readiness Scorecard, with the same evidence rule, and put the new numbers next to the baseline and the target. If a dimension is behind, month six is when you find out, and the plan can still change.\n\nIn month twelve you rescore again and report to the board. Rescoring is how this plan measures itself.\n\nYou already have the tools. A spreadsheet, the Roadmap Planner and the notebook. They cost nothing."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: build your roadmap and board paper",
+   "tool": "Roadmap Planner workbook, Board Paper Outline and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Open Roadmap Planner.xlsx and list up to 20 work items from your scorecard gaps",
+    "Give each item effort, value, dependency, start month and duration",
+    "Clear every Starts before dependency ends flag",
+    "Read the monthly effort and move work out of overloaded months",
+    "Set a target and a driving action for each dimension",
+    "Draft the six core sections of Board Paper Outline.docx",
+    "Present it in ten minutes to another team"
+   ],
+   "done": "A roadmap with no dependency flags, a cost line for each item, a rescoring target labelled as a target, and a board paper you can present in ten minutes.",
+   "notes": "Forty minutes, and it is the last workshop. Open Roadmap Planner dot xlsx. Start from the gaps on your Session 2 scorecard and list the work items that would close them, up to twenty. For each, fill in effort in person days, a value from one to five, the item it depends on, a start month and a duration.\n\nWhen you have entered them, read the Dependency check column and clear every flag. Then look at the effort per month under the table and move work out of any month that is overloaded.\n\nSet a target score and a driving action for each dimension on your Readiness Scorecard, and label the numbers as targets. Then open the Board Paper Outline and draft the six core sections.\n\nIn the last ten minutes, present to another team. Leaders, you do the presenting. Data colleagues, once your leader has a draft, run the team notebook on the Kitara plan. Call me over if a dependency flag will not clear."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Why can the plan not start with the item that has the best value for effort?",
+     "a": "An item may wait for another. W13 ranks fourth but waits for W07, which ranks last."
+    },
+    {
+     "q": "Kitara's plan projects a mean of 3.3. What is that number, and what tests it?",
+     "a": "A target, not a measurement. The rescores in month 6 and month 12 test it."
+    },
+    {
+     "q": "Who in your organisation presents the board paper, and which date do you commit to for the first rescore?",
+     "a": "A named executive. Month 6 of the plan, with the same scorecard and evidence rule."
+    }
+   ],
+   "notes": "Let's check the plan holds. Why can the plan not start with the item that has the best value for effort? Sit with it for a second.\n\nBecause an item may wait for another. W13, the permission filters, ranks fourth, but it waits for W07, the zones, which ranks last. Dependencies come first, and the ranking only chooses between items that can start together. Second question. Kitara's plan projects a mean of three point three. What is that number, and what tests it? Give that a moment.\n\nIt is a target and not a measurement. The rescores in month six and month twelve test it. Last question, for the leaders. Who in your organisation presents the board paper, and which date do you commit to for the first rescore? No rush.\n\nName one person and one date before you leave the room. A date written into the Roadmap Planner today gets kept far more often than one that only lives in conversation."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Quick wins keep the sponsor interested. Foundations carry the work that waits for them.",
+    "Kitara's plan has 16 items, 276 person-days and three 12-month chains that cannot slip.",
+    "The projected 3.3 is a target. Rescoring in month 6 and month 12 tests it."
+   ],
+   "next": "After the course: decide who presents the board paper this week, then rescore your baseline at month 6",
+   "notes": "Quick wins keep the sponsor interested, and foundations carry the work that waits for them. A good plan has both, in the right order.\n\nKitara's plan has sixteen items, two hundred and seventy six person days, and three chains of twelve months that cannot slip. The effort peaks at fifty three days a month in months four and five.\n\nThe projected three point three is a target. Benefits are hypotheses with a measure. The rescores in month six and month twelve test them.\n\nThat is the end of the twelve sessions. You came with a colleague and a question about AI. You leave with a scored baseline, a search pilot report, and a plan with dates. The next step is yours. Decide who presents this week, put the day thirty date in the diary, and rescore at month six. I would like to hear how the first rescore turns out. Thank you for the time you gave, and for the careful work on your own data."
+  }
+ ],
+ "lab": {
+  "intro": "Workshop (workpiece 3): build the Roadmap Planner and a board paper for your organisation, after checking the Kitara plan. The team notebook ranks the Kitara items, finds the critical chains, totals the effort per month, draws the Gantt chart and computes the projected rescored baseline.",
+  "workshop": [
+   {
+    "task": "Open Roadmap Planner.xlsx. List up to 20 work items that close your scorecard gaps. Give each an effort in person-days, a value from 1 to 5, a dependency, a start month and a duration.",
+    "example": "Kitara has 16 items. W01 Name the steering council and an owner for every source: 6 person-days, value 5, no dependency, month 1, 1 month, owner Chief Executive."
+   },
+   {
+    "task": "Read the Dependency check column and fix every Starts before dependency ends flag. Name the chain of dependent items that sets your end date.",
+    "example": "Moving W15 to month 6 triggers the flag because W12 ends after month 7. Three chains run to 12 months: W01 > W02 > W08 > W12 > W15 > W16, W01 > W02 > W07 > W13 > W15 > W16 and W01 > W04 > W07 > W13 > W15 > W16."
+   },
+   {
+    "task": "Read the effort per month under the table. Find the busiest month and say who covers it or which item moves.",
+    "example": "Months 4 and 5 need 53.3 person-days each. The total is 276 person-days. Months 11 and 12 need 4 each."
+   },
+   {
+    "task": "Set a target score for each dimension at month 12 on your Readiness Scorecard and write the driving action. Label the numbers as targets and say when you rescore.",
+    "example": "Kitara targets: Use cases 3.5, Data 3.0, Platform 3.5, Protection and law 3.5, People and governance 3.0. Mean 3.3 against 2.4 proposed and 2.01 evidence-adjusted. A target, tested by the rescores in month 6 (W11) and month 12 (W16)."
+   },
+   {
+    "task": "Draft the decision asked, the cost lines and three measures, and the top risks with an owner each, in Board Paper Outline.docx. Each benefit is a hypothesis with a baseline and a measure. No invented return on investment.",
+    "example": "Decision: approve a twelve month budget, priced from our own quotes, to move readiness from 2.01 evidence-adjusted to a target of 3.3. Measures: sources with no owner 4 of 14, risks scoring 15 or more 3 of 12, recall on the 60 question test set."
+   },
+   {
+    "task": "Present the paper in ten minutes to another team. The leader names the presenter and the date of the first rescore.",
+    "example": "Presenter: the Chief Executive. First rescore: month 6, item W11, owner the steering council."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Rank the items\nRead `roadmap_items.csv` into `items`. Add a column `priority` equal to value divided by effort_days times 10, rounded to 2 places. Store the ids of the three highest priorities, best first, in `top3`."
+   },
+   {
+    "code": "import pandas as pd\n\nitems = pd.read_csv('roadmap_items.csv')\nitems['priority'] = (items.value / items.effort_days * 10).round(2)\ntop3 = list(items.sort_values('priority', ascending=False).id.head(3))\nprint(top3)",
+    "starter": "import pandas as pd\n\n# Your turn: read roadmap_items.csv into items\n# Your turn: add priority = value / effort_days * 10, rounded to 2 places\n# Your turn: top3 is the list of the three ids with the highest priority\n"
+   },
+   {
+    "code": "assert len(items) == 16, 'There are 16 work items'\nassert top3 == ['W01', 'W11', 'W16'], 'Sort by priority, highest first, and take the first three ids'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. The chains that set the end date\nBuild `deps`, a dictionary from each id to the list of ids it waits for. Write a function `chains(i)` that returns every chain of items ending at `i`. Store the length in months of the longest chain ending at W16 in `longest`, and the number of chains with that length in `n_longest`."
+   },
+   {
+    "code": "deps = {r.id: str(r.depends_on).split(';') if r.depends_on == r.depends_on else []\n        for r in items.itertuples()}\nmonths = items.set_index('id').duration_months\n\ndef chains(i):\n    if not deps[i]:\n        return [[i]]\n    return [c + [i] for d in deps[i] for c in chains(d)]\n\nlengths = [int(sum(months[x] for x in p)) for p in chains('W16')]\nlongest = max(lengths)\nn_longest = lengths.count(longest)\nprint(longest, n_longest)",
+    "starter": "# Your turn: deps maps each id to the list of ids in depends_on (split on ;, empty list when blank)\nmonths = items.set_index('id').duration_months\n\ndef chains(i):\n    # Your turn: return a list of chains, each a list of ids ending at i\n    pass\n\n# Your turn: add up the months along each chain from chains('W16')\n# Your turn: store the longest length in longest and how many chains reach it in n_longest\n"
+   },
+   {
+    "code": "assert longest == 12, 'The longest chain to W16 takes 12 months'\nassert n_longest == 3, 'Three different chains reach 12 months'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Effort per month\nSpread each item's effort evenly over the months it runs. Store the effort of each month 1 to 12 in a Series `load` and the busiest month in `busiest`."
+   },
+   {
+    "code": "load = pd.Series(0.0, index=range(1, 13))\nfor r in items.itertuples():\n    for m in range(r.start_month, r.start_month + r.duration_months):\n        load[m] += r.effort_days / r.duration_months\nbusiest = load.idxmax()\nprint(load.round(1).to_dict())\nprint(busiest)",
+    "starter": "load = pd.Series(0.0, index=range(1, 13))\n# Your turn: for each item, add effort_days / duration_months to every month it runs\n# Your turn: busiest is the month with the largest load (use idxmax)\n"
+   },
+   {
+    "code": "assert round(load.sum()) == 276, 'The monthly loads add up to 276 person-days'\nassert busiest == 4 and round(load[4], 1) == 53.3, 'Month 4 needs 53.3 person-days'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Draw the roadmap\nDraw a horizontal bar chart with one bar per item, starting at `start_month` and running for `duration_months`. Store it in `ax`."
+   },
+   {
+    "code": "import matplotlib.pyplot as plt\n\nfig, ax = plt.subplots(figsize=(9, 5))\nax.barh(items.id, items.duration_months, left=items.start_month - 1)\nax.invert_yaxis()\nax.set_xlim(0, 12)\nax.axvline(6, linestyle='--')\nplt.tight_layout()\nplt.show()",
+    "starter": "import matplotlib.pyplot as plt\n\nfig, ax = plt.subplots(figsize=(9, 5))\n# Your turn: ax.barh(ids, durations, left=start_month - 1)\n# Your turn: invert the y axis, set the x limits from 0 to 12\n# Your turn: mark the month 6 rescore with ax.axvline(6, linestyle='--')\nplt.show()\n"
+   },
+   {
+    "code": "assert len(ax.patches) == 16, 'One bar for each of the 16 items'\nassert ax.get_xlim()[1] == 12, 'Set the x axis from 0 to 12 months'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. The projected rescored baseline\nRead `scorecard_after.csv`. Store the mean of `projected_score_month_12` in `target_mean` and the dimension with the largest `change_from_baseline` in `biggest`. Remember that the result is a target, not a measurement."
+   },
+   {
+    "code": "sc = pd.read_csv('scorecard_after.csv')\ntarget_mean = round(sc.projected_score_month_12.mean(), 2)\nbiggest = sc.loc[sc.change_from_baseline.idxmax(), 'dimension']\nprint(target_mean, biggest)",
+    "starter": "# Your turn: read scorecard_after.csv into sc\n# Your turn: target_mean is the mean of projected_score_month_12, rounded to 2 places\n# Your turn: biggest is the dimension with the largest change_from_baseline\n"
+   },
+   {
+    "code": "assert target_mean == 3.3, 'The mean of the five projected scores is 3.3'\nassert biggest == 'People and governance', 'People and governance gains most, 1.5'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. A question for the leader\nThe plan peaks at 53.3 person-days a month in months 4 and 5, and the projected 3.3 is a target. Who will you name to present the board paper, which month do you rescore, and what will you do if the month 6 score is behind the target? Write your answer in three sentences."
+   }
+  ]
+ }
+}

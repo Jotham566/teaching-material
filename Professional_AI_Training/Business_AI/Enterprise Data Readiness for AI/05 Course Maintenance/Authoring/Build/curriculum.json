@@ -1,0 +1,162 @@
+{
+ "title": "Enterprise Data Readiness for AI",
+ "dimensions": [
+  "Use cases and sponsorship",
+  "Data: inventory, quality and metadata",
+  "Platform and pipelines",
+  "Protection and law",
+  "People and governance"
+ ],
+ "levels": [
+  "Ad hoc",
+  "Developing",
+  "Defined",
+  "Managed",
+  "Optimised"
+ ],
+ "workpieces": [
+  2,
+  7,
+  12
+ ],
+ "modules": [
+  {
+   "name": "Start with a baseline",
+   "sessions": [
+    1,
+    2
+   ],
+   "what": "Name the AI uses you want and the data each needs. Score your organisation on five dimensions, with evidence for each score.",
+   "tools": "Spreadsheet scorecard",
+   "make": "A baseline scorecard and three use cases"
+  },
+  {
+   "name": "Know your data",
+   "sessions": [
+    3,
+    4
+   ],
+   "what": "List every data source with an owner and a sensitivity level. Write quality checks and a data contract for one dataset.",
+   "tools": "DataHub, OpenMetadata, Pandera, Great Expectations Core",
+   "make": "A data inventory and one data contract"
+  },
+  {
+   "name": "Make it searchable",
+   "sessions": [
+    5,
+    6,
+    7
+   ],
+   "what": "Turn PDFs and scans into clean text. Search by meaning, then test it on questions your staff really ask, with access rules on.",
+   "tools": "Docling, sentence-transformers, pgvector, Chroma, Ragas",
+   "make": "A working search over your own documents, and its test results"
+  },
+  {
+   "name": "Platform, law and cost",
+   "sessions": [
+    8,
+    9,
+    10
+   ],
+   "what": "Design the path from source to search with a check at each step. Map your data to four national laws. Price a hosting option.",
+   "tools": "DuckDB, Dagster, Presidio, Keycloak, Superset",
+   "make": "A reference architecture, a data protection map and a cost estimate"
+  },
+  {
+   "name": "Govern and plan",
+   "sessions": [
+    11,
+    12
+   ],
+   "what": "Set roles, a policy and a risk register using NIST and ISO 42001. Sequence a twelve-month plan and present it as a board paper.",
+   "tools": "NIST AI RMF, ISO/IEC 42001",
+   "make": "A twelve-month roadmap and a board presentation"
+  }
+ ],
+ "sessions": [
+  {
+   "n": 1,
+   "title": "What AI-ready data means",
+   "q": "Which AI uses do we want, and what data does each one need?",
+   "demo": "Ask a language model the same question over a folder with and without the current policy file, and see the stale answer.",
+   "make": "Three use cases with their data needs"
+  },
+  {
+   "n": 2,
+   "title": "Score your readiness",
+   "q": "Where do we stand today?",
+   "demo": "Score the case organisation on five dimensions and five levels, then defend each score with evidence.",
+   "make": "Baseline scorecard (workpiece 1)"
+  },
+  {
+   "n": 3,
+   "title": "Find, own and catalogue your data",
+   "q": "Who owns each source, and who may see it?",
+   "demo": "Scan a database and a shared folder into a data catalogue and read the lineage.",
+   "make": "Inventory of ten sources with owner and sensitivity"
+  },
+  {
+   "n": 4,
+   "title": "Quality, metadata and data contracts",
+   "q": "How do we know a dataset is fit for AI use?",
+   "demo": "Write checks against a customer table with seeded defects, then write the contract.",
+   "make": "Quality rules and a contract for one dataset"
+  },
+  {
+   "n": 5,
+   "title": "From documents to clean text",
+   "q": "Which of our documents can AI read, and what must be repaired first?",
+   "demo": "Parse PDFs, scans and spreadsheets, split them into chunks and attach metadata.",
+   "make": "Readiness table for 50 to 100 documents"
+  },
+  {
+   "n": 6,
+   "title": "Search by meaning",
+   "q": "What does search by meaning add to the keyword search we have?",
+   "demo": "Embed the chunks, store them in a vector index and combine keyword and meaning search.",
+   "make": "A working search over the sample documents"
+  },
+  {
+   "n": 7,
+   "title": "Test the search and control who sees what",
+   "q": "Can we trust the results, and does the search respect permissions?",
+   "demo": "Write 30 test questions, measure how often the right passage is found, then add permission filters.",
+   "make": "Search pilot report (workpiece 2)"
+  },
+  {
+   "n": 8,
+   "title": "Pipelines and platform design",
+   "q": "How does data travel from source to search, and who is told when it breaks?",
+   "demo": "Schedule ingest, check and embed steps, store files as Parquet and trace one record end to end.",
+   "make": "A reference architecture drawing"
+  },
+  {
+   "n": 9,
+   "title": "Privacy and East African law",
+   "q": "What does the law require when AI reads personal data?",
+   "demo": "Find and mask personal data in documents, then map the findings to four national laws.",
+   "make": "A data protection map for the organisation"
+  },
+  {
+   "n": 10,
+   "title": "Hosting, cost and licences",
+   "q": "Where should this run, and what will it cost?",
+   "demo": "Compare on-site, local data centre, South African cloud region and a local open model, and read the licence files.",
+   "make": "A costed hosting option and a licence register"
+  },
+  {
+   "n": 11,
+   "title": "Governance and AI risk",
+   "q": "Who decides, who answers for it, and what happens when it goes wrong?",
+   "demo": "Walk an incident through the four NIST functions and fill in a risk register.",
+   "make": "Roles, a policy and a risk register"
+  },
+  {
+   "n": 12,
+   "title": "Your twelve-month roadmap",
+   "q": "What do we do first, and what do we ask the board for?",
+   "demo": "Sequence the work against the baseline, price it and present it.",
+   "make": "Roadmap and board presentation (workpiece 3)"
+  }
+ ]
+}

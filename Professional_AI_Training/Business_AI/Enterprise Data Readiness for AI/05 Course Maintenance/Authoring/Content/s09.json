@@ -1,0 +1,550 @@
+{
+ "session": 9,
+ "notes_title": "Today's question is what the law requires when an AI system reads personal data. Kitara's thirty claims letters hold phone numbers, customer numbers and national identity numbers, and one letter holds a health detail. You'll watch a short program find that data and mask it, and then delete one customer's letter from the search index and prove it is gone. We also compare how Uganda, Kenya, Rwanda and Tanzania treat data that moves abroad. This session moves the protection and law dimension, and it leans on people and governance, because every rule here asks who answers for the data. Everything is a teaching summary and is not legal advice.",
+ "notes_outcomes": "Today ends with three abilities. You'll name the principles and rights in the Uganda Data Protection and Privacy Act, 2019, and say what each one means for a search index. You'll compare the rules on registration and on moving data abroad in four East African countries. And you'll find personal data with patterns, mask it, and check a list of chunks before anything enters the index. The live part runs on Kitara's claims letters and customer table. The workshop is your own data protection map, which shows where personal data sits, which law applies and what leaves the country.",
+ "notes_words": "Eight terms, and the first three come straight from the law. Personal data is information that identifies a living person. Special categories are kinds that the law treats with extra care, such as health. The controller is the organisation that decides why and how the data is used. A cross border transfer is storing or processing data in another country. Masking replaces a value with a labelled token. Data minimisation means using only what the purpose needs. An erasure request is a person asking for their data to be deleted. The data protection map is today's workpiece.",
+ "vocab": [
+  [
+   "Personal data",
+   "Information that identifies a living person, or could identify that person when combined with other data.",
+   "The 30 claims letters, documents D092 to D121"
+  ],
+  [
+   "Special categories",
+   "Kinds of personal data that the law treats with extra care, such as health details.",
+   "The dialysis detail in claims letter D102"
+  ],
+  [
+   "Controller",
+   "The organisation that decides why and how personal data is used. In Uganda it registers with the regulator.",
+   "Kitara Bank and Kitara Assurance"
+  ],
+  [
+   "Cross-border transfer",
+   "Storing or processing personal data in another country, including in a cloud region there.",
+   "The South African cloud option in hosting_options.csv"
+  ],
+  [
+   "Masking",
+   "Replacing personal data with a labelled token, such as the word PHONE in square brackets. The token stays and the value goes.",
+   "The masked claims letters in today's demonstration"
+  ],
+  [
+   "Data minimisation",
+   "Using only the data the purpose needs and leaving the rest out.",
+   "4 of the 14 columns of customers.csv, in Task 5"
+  ],
+  [
+   "Erasure request",
+   "A person's request to have their personal data deleted.",
+   "Letter 11 and customer KT-8782200"
+  ],
+  [
+   "Data protection map",
+   "A table of where personal data sits, which law applies and what leaves the country.",
+   "Today's workpiece, a page in the Participant Workbook"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 8",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "A nightly job failed halfway and was run again. What does idempotent mean, and how did the Kitara test show it?",
+     "a": "It means safe to run twice with the same result. With a key on txn_id the cleaned file held 19,700 rows after one run and after two. Without the key the second run gave 39,400."
+    },
+    {
+     "q": "The reference path had a personal data check before the serving zone. Why does it sit there?",
+     "a": "Anything that reaches the serving zone can reach the search index and the dashboards. Personal data has to be found and masked before that point."
+    }
+   ],
+   "notes": "Two questions about the pipeline from last session. A nightly job failed halfway and was run again. What does idempotent mean, and how did the Kitara test show it? Have a think.\n\nIt means safe to run twice and get the same result. With a key on the transaction number, the cleaned file held nineteen thousand seven hundred rows after one run and after two. Without the key, the second run gave thirty nine thousand four hundred. Second question. Our reference path had a personal data check before the serving zone. Why does it sit there? Let's hear your answer first.\n\nBecause anything that reaches the serving zone can reach the search index and the dashboards, so the data has to be found and masked before that point. The permission filter from Session 7 decides who sees a chunk. It says nothing about what the chunk contains. Today we find that data, mask it, and look at what the law says about it."
+  },
+  {
+   "type": "define",
+   "title": "Personal data",
+   "definition": "Personal data is any information that identifies a living person, or could identify that person when combined with other data. Some kinds, such as health details, need extra care.",
+   "example": "A claims letter holds a name, a customer number and often a phone and a national identity number. Letter 11 also holds a health detail: an illness and dialysis.",
+   "excel": "Which three kinds of personal data could a member of your staff paste into an AI tool tomorrow morning?",
+   "notes": "Start with the term that the whole law rests on. Personal data is any information that identifies a living person, or could identify that person when you put it together with other data. A name is obvious. A phone number, a customer number and a national identity number are just as clear. A date and a place can be enough when they sit side by side.\n\nSome kinds need extra care. Health details are the clearest case, and most laws list a few more. At Kitara, thirty of the thirty two flagged documents are claims letters. All thirty hold a customer number and a name. Twenty hold a national identity number. One of them, Letter 11, tells us about an illness and dialysis.\n\nNow think about your own organisation. Which three kinds of personal data could a member of your staff paste into an AI tool tomorrow morning?"
+  },
+  {
+   "type": "table",
+   "title": "Seven principles of the Uganda Act and a search index",
+   "header": [
+    "Principle",
+    "What it asks",
+    "For Kitara's index"
+   ],
+   "rows": [
+    [
+     "Accountability",
+     "Answer to the person",
+     "A named owner of the index"
+    ],
+    [
+     "Fair and lawful",
+     "A lawful reason to use it",
+     "A reason for each use of a letter"
+    ],
+    [
+     "Adequate, relevant, not excessive",
+     "Take only what the purpose needs",
+     "Index 4 customer columns, not 14"
+    ],
+    [
+     "Kept only as long as needed",
+     "A limit on how long",
+     "A retention date on every chunk"
+    ],
+    [
+     "Quality of information",
+     "Accurate and current",
+     "Correct the index when the source changes"
+    ],
+    [
+     "Transparency and participation",
+     "The person knows and can act",
+     "Tell customers how letters are used"
+    ],
+    [
+     "Safety and security",
+     "Protect against loss and misuse",
+     "Masking, permission filter, short log access"
+    ]
+   ],
+   "colw": [
+    3.6,
+    3.6,
+    4.8
+   ],
+   "caption": "A teaching summary of the Data Protection and Privacy Act, 2019. Not legal advice. Check the current text.",
+   "notes": "The Uganda Data Protection and Privacy Act, 2019 rests on seven principles. This is a teaching summary, so check the current text with your legal adviser. I've added the third column because a principle matters only when it changes what you build.\n\nThree of them hit a search index hardest. Collecting data that is adequate, relevant and not excessive means you don't index a customer table with fourteen columns when a product question needs four. Keeping data only as long as needed means every chunk carries a retention date. Safety and security means the permission filter you built last session, the masking you'll see today, and a log that few people can read.\n\nAccountability sits over the rest. Someone must answer to the person whose data it is. Who is that for your index? In the workshop you will write that name down."
+  },
+  {
+   "type": "concept",
+   "title": "Rights a person holds over their data",
+   "lead": "Each right becomes a task for whoever runs the search.",
+   "points": [
+    {
+     "h": "See it",
+     "t": "A person can ask what Kitara holds. You must be able to find every chunk that names them."
+    },
+    {
+     "h": "Stop it",
+     "t": "A person can prevent processing, and prevent use for direct marketing."
+    },
+    {
+     "h": "Fix or erase it",
+     "t": "Rectification, blocking, erasure and destruction. A deleted letter must leave the index too."
+    },
+    {
+     "h": "No machine alone",
+     "t": "Rights apply to automated decisions. Let the assistant draft and a claims officer decide."
+    }
+   ],
+   "notes": "The Act also gives people rights, and each one turns into a task for whoever runs the search. A person can ask to see their data, so you must be able to find every chunk that names them. A person can ask you to stop processing it, and to stop using it for direct marketing.\n\nA person can ask for correction, blocking, erasure and destruction. That one surprises teams. Deleting a letter from the shared drive does nothing to its copy in the index, and we test that in the demonstration.\n\nThe fourth right concerns automated decisions. A person has rights when a machine takes a decision about them. At Kitara a claims assistant can sort letters and draft replies. A claims officer decides. Design it that way from the start, and write down who the officer is."
+  },
+  {
+   "type": "flow",
+   "title": "Register, keep records, report breaches",
+   "steps": [
+    {
+     "h": "Register",
+     "t": "Controllers register with the Personal Data Protection Office, the PDPO, an independent office under NITA-U."
+    },
+    {
+     "h": "Keep records",
+     "t": "Processing or storage outside Uganda is reported to need equivalent protection or consent. Record the reason."
+    },
+    {
+     "h": "Report breaches",
+     "t": "Tell the PDPO promptly when personal data is lost or reached by the wrong people."
+    }
+   ],
+   "caption": "Teaching summary. Not legal advice. Check the current text and the PDPO guidance.",
+   "notes": "Three duties sit with the organisation, which the law calls the controller. For Kitara that means Kitara Bank and Kitara Assurance.\n\nThe first is to register. Controllers register with the Personal Data Protection Office, the PDPO, an independent office under NITA-U. The reach goes beyond Uganda. In July 2025 the PDPO was reported to have found Google in breach for not registering, as CIPESA and DLA Piper reported.\n\nThe second is to keep records. Processing or storage outside Uganda is reported to need equivalent protection or the person's consent. DLA Piper reports that the PDPO does not approve each transfer, and expects your reasons on file.\n\nThe third is to report breaches to the PDPO promptly. Kitara's own security policy says seventy two hours, and our document set holds a notice from a fictional regulator that says the same. Neither is the real law, so use the wording of the current Act and the PDPO guidance.\n\nPut all three on your map as questions. Are we registered, where are our reasons kept, and who files a breach report?"
+  },
+  {
+   "type": "table",
+   "title": "Four East African regimes compared",
+   "header": [
+    "Country and law",
+    "Registration",
+    "Moving data abroad",
+    "Notes, as reported"
+   ],
+   "rows": [
+    [
+     "Uganda: Act of 2019",
+     "Register with the PDPO",
+     "Equivalent protection or consent",
+     "Google found in breach in July 2025"
+    ],
+    [
+     "Kenya: Act of 2019",
+     "Register with the ODPC",
+     "Targeted localisation for some data",
+     "Cross-border guidance in 2026"
+    ],
+    [
+     "Rwanda: Law 058/2021",
+     "Register with the NCSA",
+     "Authorisation or another listed ground",
+     "Offshore storage needs a certificate"
+    ],
+    [
+     "Tanzania: Act of 2022",
+     "Mandatory, with the PDPC",
+     "Adequacy or safeguards, and a permit",
+     "Closure of the registration window reported"
+    ]
+   ],
+   "colw": [
+    2.9,
+    2.6,
+    3.4,
+    3.1
+   ],
+   "caption": "Reported from secondary sources in October 2026. Teaching summary, not legal advice. Check the current text.",
+   "notes": "Here are the four regimes side by side. Everything on the table comes from secondary sources, such as law firm notes and guidance pages, so check the current text before you rely on any row.\n\nUganda we have just covered. Controllers register, and data sent abroad needs equivalent protection or consent.\n\nKenya's Data Protection Act of 2019 has the Office of the Data Protection Commissioner as regulator. Registration is reported to be mandatory. A targeted localisation rule covers some categories of data, and the exact categories are unconfirmed. The office is reported to have issued cross border guidance in 2026.\n\nRwanda's Law fifty eight of 2021 sends transfers abroad through authorisation from the National Cyber Security Authority, or another listed ground. Offshore storage needs a registration certificate, and the Authority can suspend transfers.\n\nTanzania's Act of 2022 asks for adequacy or safeguards plus a permit from the Commission. Registration is mandatory, and its window is reported to have closed in April 2026, with enforcement after it. Check the current position."
+  },
+  {
+   "type": "table",
+   "title": "Data in a South African cloud region: what each country asks",
+   "header": [
+    "Country",
+    "Before the data sits in a South African region"
+   ],
+   "rows": [
+    [
+     "Uganda",
+     "Show equivalent protection in the destination, or get consent. Keep the record."
+    ],
+    [
+     "Kenya",
+     "Check whether any data must stay in Kenya, and read the 2026 guidance."
+    ],
+    [
+     "Rwanda",
+     "Hold a certificate that allows offshore storage, and the Authority's authorisation."
+    ],
+    [
+     "Tanzania",
+     "Obtain the Commission's permit. A bank is reported to need Bank of Tanzania approval too."
+    ]
+   ],
+   "colw": [
+    2.4,
+    9.6
+   ],
+   "caption": "Decision question: who signs off a transfer? Teaching summary. Check the current text of each law.",
+   "notes": "Kitara's hosting_options.csv lists a regional cloud in South Africa as one of four ways to run the search. It sits outside Uganda and Kenya, and the legal check written beside it reads: check the legal basis and safeguards for sending Ugandan and Kenyan personal data abroad. Session 10 prices that option. Today we ask what it needs in law.\n\nUganda wants equivalent protection or consent. Commentary reports that there is no list of approved countries, so a firm makes its own assessment and keeps it on file.\n\nFor Kenya, ask whether any of the data must stay in the country, and read the 2026 guidance for your route.\n\nRwanda and Tanzania matter once you serve customers there, and both ask for permission in advance. Rwanda wants a certificate and an authorisation. Tanzania wants a permit.\n\nFour countries give four different answers, and one question comes back to you. Who signs off a transfer? That person needs the authority to accept the legal risk, and should hear from your data protection officer first."
+  },
+  {
+   "type": "compare",
+   "title": "The EU AI Act and Article 10 for firms with European customers",
+   "left": {
+    "h": "What Article 10 asks",
+    "points": [
+     "Applies to high-risk AI systems",
+     "Written practices for collecting, labelling and cleaning data",
+     "Checks for bias in the data",
+     "Data that is relevant, representative and as complete and error free as possible"
+    ]
+   },
+   "right": {
+    "h": "Dates, as reported in October 2026",
+    "points": [
+     "Digital Omnibus on AI, reported as Regulation (EU) 2026/1744, in force 27 July 2026",
+     "Annex III high-risk duties moved to 2 December 2027",
+     "Product systems moved to 2 August 2028",
+     "Read the Official Journal text"
+    ]
+   },
+   "verdict": "It reaches Kitara only if it sells into the EU or runs a high-risk use there. Check the current text.",
+   "notes": "One more law, for firms with customers in Europe. The EU AI Act has an Article 10 on data and data governance. It matters to you only if you place a high-risk AI system on the European market, or use one there. A staff search over policies looks unlikely to count as high-risk, and your legal adviser should confirm it.\n\nOn the left is what Article 10 asks of high-risk systems. Written practices for how data is collected, labelled and cleaned. Checks for bias. And data sets that are relevant, representative, and as complete and error free as possible. It is good practice for any firm.\n\nOn the right are the dates, as reported. A law called the Digital Omnibus on AI, reported as Regulation 2026 slash 1744, came into force on 27 July 2026. It is reported to move the high-risk duties for the Annex III uses, which include Article 10, to 2 December 2027, and for product systems to 2 August 2028. Those dates come from law firm notes and other secondary sources, so read the text itself before you plan around them."
+  },
+  {
+   "type": "figure",
+   "title": "Kitara's claims letters: personal data found by pattern",
+   "fig": "pii_counts",
+   "look": [
+    "Phone numbers lead with 49 matches, then names after a title with 37.",
+    "Customer ids appear 30 times, once in each letter.",
+    "National ids appear 20 times, and emails never. Every letter holds at least one match."
+   ],
+   "caption": "Regular expressions on the text of the 30 claims letters. Names are a rough pattern.",
+   "alt": "Bar chart of personal data patterns found in the claims letters: 49 phone numbers, 37 names, 30 customer ids, 20 national ids and 0 emails.",
+   "notes": "Before we write any code, here is what a pattern search finds in the thirty claims letters. Letters 1 to 30, documents D092 to D121.\n\nPhone numbers lead with forty nine matches, and titled names such as Mr or Mrs come second with thirty seven. The name pattern is a rough one, and I'll come back to its limits.\n\nCustomer ids are next. Thirty matches, one in every letter. The clay bar is the national identity number, twenty matches. The twenty letters that contain one are the ones where a leak would hurt most, because a national identity number is the most sensitive of the five.\n\nEmails show zero. None of the letters gives an email address, and that zero is a finding. The pattern has nothing to catch here, and the emails sit in the customer table. customers.csv has three thousand three hundred and seventy seven emails in its five thousand rows, and four thousand four hundred and fifty national identity numbers. That table is why Task 5 in the notebook exists."
+  },
+  {
+   "type": "code",
+   "title": "Finding personal data with patterns",
+   "lang": "python",
+   "code": "import re\nimport pandas as pd\nimport kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nflag = corpus[corpus.contains_personal_data == 'Y']\nletters = flag[flag.format == 'text_pdf']\nPATTERNS = {\n    'PHONE': r'\\+25[46] ?700 ?0\\d\\d ?\\d{3}',\n    'NATIONAL_ID': r'KX\\d{12}',\n    'CUSTOMER_ID': r'KT-\\d{7}',\n    'EMAIL': r'[\\w.]+@[\\w.]+\\.\\w+',\n    'NAME': r'\\b(?:Mr|Mrs|Ms|Dr) [A-Z]\\w+(?: [A-Z]\\w+)*',\n}\nfor tag, rx in PATTERNS.items():\n    n = letters.text.str.count(rx)\n    m, k = n.sum(), (n > 0).sum()\n    print(f'{tag:12}{m:3} in {k:2}')\nsick = letters.text.str.contains('dialysis|kidney')\nprint('health', letters[sick].doc_id.tolist())",
+   "output": "PHONE        49 in 26\nNATIONAL_ID  20 in 20\nCUSTOMER_ID  30 in 30\nEMAIL         0 in  0\nNAME         37 in 30\nhealth ['D102']",
+   "says": [
+    "Keep the 32 flagged documents, and the 30 that are text letters.",
+    "Each pattern is a short rule that describes the shape of what to find.",
+    "Print matches, then letters with a match, then the health check."
+   ],
+   "notes": "This is the program behind the chart. It takes about twenty seconds, because eight of the documents are scans and the computer has to read them first.\n\nWe keep the documents that docs_metadata.csv flags as holding personal data. That's thirty two. Thirty of them are text letters, and the two scans come back later.\n\nEach pattern is a regular expression, a short rule that describes the shape of what we want. A Kitara phone number has a plus, 256 or 254, then 700 and six more digits. A national identity number is the letters KX and twelve digits. A customer id is KT, a hyphen and seven digits.\n\nWe print two numbers for each pattern, the matches and the letters with at least one. The phone line says forty nine matches in twenty six letters, so four letters give no phone number. The last two lines look for the health detail with two words, and find it in one letter, D102, which is Letter 11. A pattern is good at the shape of an identifier. It knows nothing about meaning."
+  },
+  {
+   "type": "code",
+   "title": "Mask first, then cut into chunks",
+   "lang": "python",
+   "code": "def mask(text, patterns):\n    names = set(re.findall(patterns['NAME'], text))\n    for who in sorted(names, key=lambda w: (-len(w), w)):\n        text = text.replace(who, '[NAME]')\n        text = text.replace(who.split(' ', 1)[1], '[NAME]')\n    for tag, rx in patterns.items():\n        text = re.sub(rx, f'[{tag}]', text)\n    return text\n\nsafe = flag.copy()\nsafe['text'] = flag.text.map(lambda t: mask(t, PATTERNS))\nsafe_chunks = ks.build_chunks(safe)\nprint(len(safe_chunks), 'chunks masked')\nprint(safe_chunks.text.iloc[2][:60])",
+   "output": "32 chunks masked\n[NAME] Bugolobi, Uganda Phone: [PHONE] 20 May 2026 The Claim",
+   "says": [
+    "mask replaces each titled name, and the same name elsewhere, with a name token.",
+    "Every other pattern is replaced by a token that carries its label.",
+    "Mask the 32 documents, chunk them and print the start of Letter 1."
+   ],
+   "notes": "Masking comes next, and the order matters. We mask the text first and cut it into chunks afterwards, so a number can never be split across two chunks and escape.\n\nThe mask function finds each titled name and replaces it with a name token. It does the same for that name without its title, which catches the signature at the bottom of a letter.\n\nEvery other pattern is replaced by a token that carries its label. A phone number becomes the word PHONE in square brackets, and an identity number becomes national id in the same way.\n\nWe run it on the thirty two documents and cut the result into thirty two chunks. The start of Letter 1 shows the name and the phone number gone. The claim number and the policy number lower down are still there, because a claims officer may need them to find the file. Keeping them is a decision, so write it down."
+  },
+  {
+   "type": "code",
+   "title": "A separate check stops two chunks",
+   "lang": "python",
+   "code": "LOOSE = {\n    'PHONE': r'\\+25[46] ?(?:[\\dO@]{3} ?){2}[\\dO@]{3}',\n    'NATIONAL_ID': r'(?i)kx ?\\d{12}',\n    'CUSTOMER_ID': r'(?i)kt-\\d{7}',\n    'EMAIL': PATTERNS['EMAIL'],\n}\ndef leaks(table):\n    ids = set()\n    for rx in LOOSE.values():\n        found = table.text.str.contains(rx)\n        ids |= set(table.chunk_id[found])\n    return sorted(ids)\n\nbad = leaks(safe_chunks)\nassert not bad, f'{len(bad)} chunks leak: {bad}'",
+   "output": "AssertionError: 2 chunks leak: ['D084-01', 'D087-01']",
+   "expect_error": true,
+   "says": [
+    "Looser patterns allow capitals and the slips a scanner makes, such as an at sign for a zero.",
+    "leaks lists every chunk that still matches any loose pattern.",
+    "assert stops the pipeline when the list is not empty."
+   ],
+   "notes": "This one fails on purpose, and the failure is the lesson.\n\nWe write the check separately from the masker, and we make it looser. It ignores capital letters. It also accepts a letter O or an at sign where a zero should be, because that's the kind of mistake OCR makes.\n\nThe leaks function goes through every chunk and collects the ids of those that still match. Then comes an assert, the check written as code. If the list isn't empty, stop.\n\nIt stopped. Two chunks leak, D084 and D087, which are the two scans. The scans were read with OCR, and OCR makes slips. The claim form's identity number came out in lower case, and a zero in its phone number became an at sign. The complaint letter's customer id begins with a lower case k. The strict masker did not see them. The looser check did, and so the index stayed closed. A masker and a check that use the same patterns would both have missed them."
+  },
+  {
+   "type": "code",
+   "title": "With looser patterns in the masker, the check passes",
+   "lang": "python",
+   "code": "MASKER = dict(PATTERNS, **LOOSE)\nsafe = flag.copy()\nsafe['text'] = flag.text.map(lambda t: mask(t, MASKER))\nsafe_chunks = ks.build_chunks(safe)\nprint('leaks:', leaks(safe_chunks))\ntok = safe_chunks.text.str.extractall(r'\\[([A-Z_]+)\\]')[0]\nprint(tok.value_counts().head(3).to_dict())\nd = safe_chunks[safe_chunks.doc_id == 'D102'].text.iloc[0]\nprint(d[208:268])",
+   "output": "leaks: []\n{'NAME': 62, 'PHONE': 51, 'CUSTOMER_ID': 32}\nlate Henry Kamya, policy LP-2024-75516, cover UGX 155,000,00",
+   "says": [
+    "Give the masker the looser patterns as well, then mask and chunk again.",
+    "The check finds no leaks. Count the tokens that replaced personal data.",
+    "Read the start of masked Letter 11 for yourself."
+   ],
+   "notes": "We give the masker the looser patterns too, and run it again.\n\nThe check finds no leaks in all thirty two chunks. The token count is something a leader can quote. Sixty two names, fifty one phone numbers and thirty two customer ids became tokens, and so did twenty one national ids.\n\nBecause the masker and the check now share patterns, a pass means only that those patterns are gone. That's the limit of the check, and the reason for reading a sample.\n\nRead the start of Letter 11 as it would sit in the index. The sender's name and phone are gone. The late husband's name and the policy number are still there, and the lines after them carry the amount and the illness. In the Data Classification Standard, a life claim with a medical report is confidential. I'd keep it out of the index and let a claims officer open it from the claims system."
+  },
+  {
+   "type": "trap",
+   "title": "Masked is not the same as anonymous",
+   "looks": "The check passes. The masked chunks hold no phone, no national id and no customer id, so the team calls the index anonymous.",
+   "why": "Patterns miss what has no fixed shape. Masked Letter 11 still names the late Henry Kamya and describes kidney failure and dialysis. The scanned form still names Ruth Nankya Kasozi.",
+   "fix": "Treat masked text as personal data with an owner and a retention date. Keep health letters out. Read a sample of masked chunks by eye.",
+   "notes": "This trap catches teams that did everything right up to this point.\n\nThe masking ran, the check passed, and the report says the index holds no personal data. Nothing in that sentence is false about phone numbers and identity numbers.\n\nThe patterns miss a lot. Letter 11 is a life claim. After masking, it still names the late Henry Kamya, and it still describes kidney failure and dialysis. The scanned claim form still carries Ruth Nankya Kasozi, because a name with no title in front of it has no fixed shape. Anyone who knows the family knows who this is.\n\nSo masked text is not anonymous text. It is personal data with the easy identifiers removed.\n\nThree steps repair it. Give the masked chunks an owner and a retention date, like any other personal data. Keep the health letters out of the index altogether. And have a person read twenty or thirty masked chunks, because the check can only confirm what you told it to look for."
+  },
+  {
+   "type": "code",
+   "title": "An erasure request: search before and after",
+   "lang": "python",
+   "code": "chunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\nwho = 'KT-8782200'\nq = 'dialysis twice a week kidney failure'\ndef top(s):\n    r = s.search(q, 'hybrid', k=1, user_groups='claims')\n    return r.chunk_id.iloc[0]\n\nhit = chunks[chunks.text.str.contains(who)]\nprint(who, 'sits in', hit.chunk_id.iloc[0])\nprint('before    ', top(search))\nchunks = chunks[~chunks.doc_id.isin(hit.doc_id)]\nprint('table     ', len(chunks), 'chunks')\nprint('old index ', top(search))\nsearch = ks.Searcher(chunks.reset_index(drop=True))\nprint('rebuilt   ', top(search))",
+   "output": "KT-8782200 sits in D102-01\nbefore     D102-01\ntable      138 chunks\nold index  D102-01\nrebuilt    D078-01",
+   "says": [
+    "Find the chunk that holds the customer's number and search for the illness.",
+    "Delete the document's rows from the chunk table. The old index still answers.",
+    "Rebuild the index from the smaller table and search again."
+   ],
+   "notes": "A customer asks for their data to be deleted. Here is what that takes in a search system.\n\nWe find every chunk that holds the customer number KT-8782200. It sits in one chunk, D102-01, which is Letter 11. We search for the illness, as a claims officer would, and the letter comes first.\n\nNow we delete that document's rows from the chunk table. A hundred and thirty eight chunks are left. We search again with the old index, and the letter still comes first. The index was built from a copy of the table, and deleting the rows did nothing to it.\n\nSo we rebuild the index from the smaller table and search a third time. The letter is gone, and an unrelated regulatory notice takes its place. That is the proof you can show a regulator.\n\nOne more caution. The source record may have to stay. The Data Retention Schedule keeps life claim files for fifteen years after settlement. Erasing it from the index is the part we control."
+  },
+  {
+   "type": "table",
+   "title": "An erasure request has to reach six places",
+   "header": [
+    "Place",
+    "What to do"
+   ],
+   "rows": [
+    [
+     "The source file",
+     "Keep or destroy as the retention schedule says"
+    ],
+    [
+     "The chunk table",
+     "Delete every chunk of the document"
+    ],
+    [
+     "The search index and vector store",
+     "Rebuild or delete the entries"
+    ],
+    [
+     "The query log",
+     "Delete entries that name the person, or let them expire"
+    ],
+    [
+     "Caches and exports",
+     "Clear them"
+    ],
+    [
+     "Backups",
+     "Remove on the same schedule as the source"
+    ]
+   ],
+   "colw": [
+    4.4,
+    7.6
+   ],
+   "caption": "Prove it with a search before and after, and file the result with the request.",
+   "notes": "The search system has more places than the one we cleaned. Here are six.\n\nThe source file is the original. The Data Retention Schedule says each head of department names a records owner, and that records owner signs the destruction list. A customer who asks for deletion is told which records the law makes you keep, and for how long.\n\nThe chunk table and the index are the AI copies, and they go first. The query log is easy to forget. A question such as what happened to my claim can carry a customer's name. Caches and exports, such as a spreadsheet of test results, hold copies too.\n\nBackups come last. The schedule says IT removes backups on the same timetable.\n\nWrite the six places on the request form, tick each one, and file the before and after search with it. A regulator will ask for evidence, and a before and after search is easy to produce."
+  },
+  {
+   "type": "code",
+   "title": "Presidio: a library that finds personal data for you",
+   "lang": "python",
+   "code": "from presidio_analyzer import AnalyzerEngine\nfrom presidio_analyzer import Pattern, PatternRecognizer\nfrom presidio_anonymizer import AnonymizerEngine\n\nkx = PatternRecognizer(\n    supported_entity='KX_IDENTITY',\n    patterns=[Pattern(\n        name='kx', regex=r'KX\\d{12}', score=0.9)])\nanalyzer = AnalyzerEngine()\nanalyzer.registry.add_recognizer(kx)\n\ntext = letters.text.iloc[0]\nfound = analyzer.analyze(text=text, language='en')\nfor f in found:\n    print(f.entity_type, f.score, text[f.start:f.end])\n\nanonymizer = AnonymizerEngine()\nmasked = anonymizer.anonymize(\n    text=text, analyzer_results=found)\nprint(masked.text)",
+   "says": [
+    "Teach the analyzer Kitara's KX identity number with one pattern.",
+    "Analyze a letter. Each finding has a type, a score and a position.",
+    "Anonymize the findings. By default each one is replaced by its type."
+   ],
+   "notes": "Presidio is a free library that finds and masks personal data. It's a good next step once the patterns in your own code get long. As of October twenty twenty six it carries the MIT licence. The project has moved from Microsoft to a community organisation called Data Privacy Stack, so check the repository for its current home. This code was not run on this machine. Read it as the shape of the calls.\n\nFirst we teach the analyzer Kitara's identity number with a pattern recognizer. It's the same regular expression as before, with a name and a score. By default the analyzer uses a language model to find names and places, and that model has to be downloaded first. Check the documentation for which one.\n\nWe analyze a letter. Each finding has a type, a score and a position in the text. The score is its confidence.\n\nThe anonymizer then replaces each finding, by default with its type. Detection is model based, so it misses some things and flags others wrongly. Keep the check and the sample reading."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: draw your data protection map",
+   "tool": "Data Inventory workbook, Participant Workbook and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Copy every source from Data Inventory.xlsx into the source column",
+    "Write the kinds of personal data each source holds, and flag special categories",
+    "Name the law that applies: where are the people, and where is the data processed",
+    "Write where it is stored, and mark Y or N for leaves the country",
+    "Write the legal basis or the check still needed, and name an owner",
+    "Pick the three riskiest rows and name who signs off each transfer"
+   ],
+   "done": "A data protection map with one row for every source that holds personal data, a Y or N for leaving the country, and a named owner and signer for the three riskiest rows.",
+   "notes": "The product of the next forty minutes is your data protection map. Open Data Inventory.xlsx, then open the page called Data protection map in the Participant Workbook. The columns are source, personal data kinds, law that applies, where stored, leaves the country, legal basis or check needed, and owner.\n\nStart from the inventory you built in Session 3. Copy every source onto the map. If the personal data column on a source is blank, write yes until someone proves otherwise. Leaders, you know where the customers are and which countries you serve. That decides which law applies.\n\nFor where it is stored, include the cloud region you are considering. Mark yes for leaves the country when the data crosses a border, even if it is only for a backup.\n\nYour data colleague can run the team notebook on Kitara's letters if you want to see the masking again. Finish with the three rows that worry you most, and write a name next to each transfer. I will come to each table and ask who signs your riskiest row."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A customer asks Kitara to delete their letter. Besides the file, where must the deletion reach in the search system?",
+     "a": "The chunk table, the index or vector store, the query log, caches and exports, and backups. Prove it with a search before and after."
+    },
+    {
+     "q": "The check on the masked chunks passes. Does that prove no personal data remains?",
+     "a": "No. It proves that the patterns you listed are gone. Names without a title and health details can remain, so read a sample."
+    },
+    {
+     "q": "Who in your organisation signs off that personal data may be stored in a cloud region in another country, and what must that person see first?",
+     "a": "A named executive who owns the data, advised by the data protection officer. They see the map row, the legal basis or consent, the registration and the provider contract."
+    }
+   ],
+   "notes": "A customer asks Kitara to delete their letter. Besides the file, where must the deletion reach in the search system? Think it over.\n\nThe chunk table, the index or vector store, the query log, caches and exports, and the backups. You prove it with a search before and after. Second question. The check on the masked chunks passes. Does that prove no personal data remains? Take your time.\n\nIt proves that the patterns you listed are gone and nothing more. Names with no title and health details can remain, so a person reads a sample. Last question, and it is for the leaders. Who in your organisation signs off that personal data may be stored in a cloud region in another country, and what must that person see first? No rush.\n\nIt should be a named executive who owns the data, advised by the data protection officer. Before signing, that person sees the row on your map, the legal basis or the consent, the registration, and the provider contract. If nobody can say who signs today, fix that first."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "The Uganda Act has seven principles and gives people rights to see, stop, correct and erase their data. Check the current text.",
+    "Kenya, Rwanda and Tanzania each set their own rules for registration and for moving data abroad.",
+    "Patterns find identifiers and masking replaces them. Masked text is still personal data, and an erasure must reach six places."
+   ],
+   "next": "Hosting, cost and licences",
+   "notes": "The Uganda Data Protection and Privacy Act has seven principles. It gives people rights to see, stop, correct and erase their data. It asks controllers to register with the PDPO and to report breaches. Kenya, Rwanda and Tanzania each set their own rules for registration and for moving data abroad, and none of the four answers is the same.\n\nOn Kitara's data, patterns found forty nine phone numbers, twenty national identity numbers and thirty customer ids in the claims letters. Masking replaced them, a check caught two scans that leaked, and the masked text still counted as personal data.\n\nAn erasure removed Letter 11 from the index, and we proved it with a search. Your workpiece is the data protection map, with an owner and a signer for the three riskiest rows. Next session we ask where the search system should run and what it will cost, and the map you drew today tells you which options are allowed."
+  }
+ ],
+ "lab": {
+  "intro": "Find and mask personal data in Kitara's claims letters, delete one customer's letter from the index, and look at the customer table. Then draw your own data protection map in Data Inventory.xlsx and the page 'Data protection map' of the Participant Workbook.",
+  "workshop": [
+   {
+    "task": "Open Data Inventory.xlsx and copy every source into the source column of the page 'Data protection map'. Write yes in the personal data column for any source where the cell is blank, until someone proves otherwise.",
+    "example": "Kitara's sources.csv has 14 sources. Personal data is Y for 8, N for 3 and blank for 3 (S08 call centre transcripts, S09 shared drive of policies, S12 email archive). The map starts with 11 rows, because the 3 blank sources count as yes."
+   },
+   {
+    "task": "For each row write the kinds of personal data held, and mark any special category such as health. Sample 10 documents or records from the source to be sure.",
+    "example": "S06 claims documents archive holds names, phone numbers, customer ids and national ids in the 30 claims letters, and a health detail (kidney failure and dialysis) in Letter 11, D102. S03 loan origination holds scanned national ID copies. The customer table S01 fills 5,000 names, 3,377 emails and 4,450 national ids."
+   },
+   {
+    "task": "Write the law that applies to each row: the country of the people and the country where the data is processed. Add the registration status with the regulator.",
+    "example": "Ugandan customers fall under the Data Protection and Privacy Act, 2019 and the PDPO. Data about customers of Kitara Kenya in Nairobi falls under the Kenya Data Protection Act 2019 and the ODPC. Each needs a registration check."
+   },
+   {
+    "task": "Write where each source is stored, and mark Y or N for leaves the country. Include the cloud region you are considering and any backup abroad.",
+    "example": "Kitara's hosting_options.csv lists the regional cloud in South Africa as outside Uganda and Kenya. If the search index runs there, every indexed source with personal data becomes Y. On the on-site data centre in Uganda the answer stays N."
+   },
+   {
+    "task": "Write the legal basis or the check still needed, and a named owner, for every Y row. Pick the three riskiest rows and write who signs off each transfer.",
+    "example": "S06 owner is recorded as IT while Claims also says it owns it, so the map names the Head of Claims as owner. The check for the South African region is equivalent protection or consent for Uganda, and the 2026 guidance for Nairobi data. Signer: the Head of Claims, advised by the data protection officer."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Setup: load the documents\nThis cell reads the Kitara documents, keeps the 32 flagged as holding personal data and picks the 30 text letters. It takes about twenty seconds because it reads the scans with OCR. Run it once."
+   },
+   {
+    "code": "import re\nimport pandas as pd\nimport kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nflag = corpus[corpus.contains_personal_data == 'Y']\nletters = flag[flag.format == 'text_pdf']\nprint(len(corpus), 'documents,', len(flag), 'flagged,', len(letters), 'text letters')"
+   },
+   {
+    "md": "## Task 1. Count what the patterns find\nThe dictionary `PATTERNS` holds five regular expressions. Fill in the national id, customer id and email patterns from the slides. Write `count_matches(texts, rx)` that returns two numbers: the matches, and the number of texts with at least one. Build `counts` for the five patterns on `letters.text`."
+   },
+   {
+    "code": "PATTERNS = {\n    'PHONE': r'\\+25[46] ?700 ?0\\d\\d ?\\d{3}',\n    'NATIONAL_ID': r'KX\\d{12}',\n    'CUSTOMER_ID': r'KT-\\d{7}',\n    'EMAIL': r'[\\w.]+@[\\w.]+\\.\\w+',\n    'NAME': r'\\b(?:Mr|Mrs|Ms|Dr) [A-Z]\\w+(?: [A-Z]\\w+)*',\n}\n\ndef count_matches(texts, rx):\n    n = texts.str.count(rx)\n    return int(n.sum()), int((n > 0).sum())\n\ncounts = {tag: count_matches(letters.text, rx) for tag, rx in PATTERNS.items()}\nprint(counts)",
+    "starter": "PATTERNS = {\n    'PHONE': r'\\+25[46] ?700 ?0\\d\\d ?\\d{3}',\n    # Your turn: NATIONAL_ID is the letters KX and 12 digits\n    # Your turn: CUSTOMER_ID is KT, a hyphen and 7 digits\n    # Your turn: EMAIL is word characters or dots, an at sign, then a domain\n    'NAME': r'\\b(?:Mr|Mrs|Ms|Dr) [A-Z]\\w+(?: [A-Z]\\w+)*',\n}\n\ndef count_matches(texts, rx):\n    # Your turn: use texts.str.count(rx), then return the sum and the number of texts above 0\n    pass\n\n# Your turn: counts = a dictionary with one (matches, letters) pair for each pattern\n"
+   },
+   {
+    "code": "assert counts['PHONE'] == (49, 26), 'Phone numbers: 49 matches in 26 letters'\nassert counts['NATIONAL_ID'] == (20, 20), 'National ids: 20 matches in 20 letters'\nassert counts['CUSTOMER_ID'] == (30, 30), 'Customer ids: 30 matches in 30 letters'\nassert counts['EMAIL'] == (0, 0), 'The letters hold no emails'\nassert counts['NAME'] == (37, 30), 'Titled names: 37 matches in 30 letters'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Mask the letters\nWrite `mask(text, patterns)`. It first finds each titled name and replaces it, and the same name without its title, with `[NAME]`. Then it replaces every pattern with a token carrying its label, such as `[PHONE]`. Build `masked` as the masked text of every letter and count the tokens in `token_counts`."
+   },
+   {
+    "code": "def mask(text, patterns):\n    names = set(re.findall(patterns['NAME'], text))\n    for who in sorted(names, key=lambda w: (-len(w), w)):\n        text = text.replace(who, '[NAME]')\n        text = text.replace(who.split(' ', 1)[1], '[NAME]')\n    for tag, rx in patterns.items():\n        text = re.sub(rx, f'[{tag}]', text)\n    return text\n\nmasked = letters.text.map(lambda t: mask(t, PATTERNS))\ntoken_counts = masked.str.extractall(r'\\[([A-Z_]+)\\]')[0].value_counts().to_dict()\nprint(token_counts)",
+    "starter": "def mask(text, patterns):\n    # Your turn: for each titled name from re.findall(patterns['NAME'], text), replace the full\n    #            name, and the name without its title, with '[NAME]'\n    # Your turn: for every pattern use re.sub to replace each match with '[' + the pattern's key + ']'\n    return text\n\nmasked = letters.text.map(lambda t: mask(t, PATTERNS))\n# Your turn: token_counts = how often each token appears in masked\n#            (str.extractall with r'\\[([A-Z_]+)\\]', then value_counts().to_dict())\n"
+   },
+   {
+    "code": "assert token_counts['PHONE'] == 49 and token_counts['NATIONAL_ID'] == 20 and token_counts['CUSTOMER_ID'] == 30, 'Expected 49 PHONE, 20 NATIONAL_ID and 30 CUSTOMER_ID tokens'\nassert not masked.str.contains(r'KX\\d{12}|KT-\\d{7}|\\+25[46] ?700').any(), 'A pattern is still in the masked text'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. A check that finds what the masker missed\nThe two scans in `flag` were read with OCR and carry spelling slips. Mask all 32 flagged documents with `PATTERNS`, cut them into chunks with `ks.build_chunks`, and write `leaks(table)` that returns the sorted chunk ids still matching any pattern in `LOOSE`. Store the result in `leaked`. Then mask again with `MASKER = dict(PATTERNS, **LOOSE)` and store the new result in `leaked_after`."
+   },
+   {
+    "code": "LOOSE = {\n    'PHONE': r'\\+25[46] ?(?:[\\dO@]{3} ?){2}[\\dO@]{3}',\n    'NATIONAL_ID': r'(?i)kx ?\\d{12}',\n    'CUSTOMER_ID': r'(?i)kt-\\d{7}',\n    'EMAIL': PATTERNS['EMAIL'],\n}\n\ndef leaks(table):\n    ids = set()\n    for rx in LOOSE.values():\n        found = table.text.str.contains(rx)\n        ids |= set(table.chunk_id[found])\n    return sorted(ids)\n\nsafe = flag.copy()\nsafe['text'] = flag.text.map(lambda t: mask(t, PATTERNS))\nleaked = leaks(ks.build_chunks(safe))\nMASKER = dict(PATTERNS, **LOOSE)\nsafe['text'] = flag.text.map(lambda t: mask(t, MASKER))\nleaked_after = leaks(ks.build_chunks(safe))\nprint(leaked, leaked_after)",
+    "starter": "LOOSE = {\n    'PHONE': r'\\+25[46] ?(?:[\\dO@]{3} ?){2}[\\dO@]{3}',\n    'NATIONAL_ID': r'(?i)kx ?\\d{12}',\n    'CUSTOMER_ID': r'(?i)kt-\\d{7}',\n    'EMAIL': PATTERNS['EMAIL'],\n}\n\ndef leaks(table):\n    # Your turn: collect the chunk_id of every row whose text matches any pattern in LOOSE\n    #            (table.text.str.contains(rx)), and return the ids as a sorted list\n    pass\n\n# Your turn: safe = flag with its text masked using PATTERNS; leaked = leaks(ks.build_chunks(safe))\n# Your turn: MASKER = dict(PATTERNS, **LOOSE); mask again; leaked_after = leaks(...) on the new chunks\n"
+   },
+   {
+    "code": "assert leaked == ['D084-01', 'D087-01'], 'The two scanned documents should leak: D084-01 and D087-01'\nassert leaked_after == [], 'With the looser patterns in the masker nothing should leak'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Erase one customer from the index\nThe customer with number `KT-8782200` asks for deletion. Build the chunks of the whole `corpus`, find the chunks that hold that number, remove every chunk of those documents from the table, and rebuild a `ks.Searcher`. Search for `dialysis twice a week kidney failure` (hybrid, top 3, `user_groups='claims'`) before and after. Store the two lists of chunk ids in `before` and `after`."
+   },
+   {
+    "code": "chunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\nq = 'dialysis twice a week kidney failure'\nbefore = list(search.search(q, 'hybrid', k=3, user_groups='claims').chunk_id)\nhit = chunks[chunks.text.str.contains('KT-8782200')]\nchunks = chunks[~chunks.doc_id.isin(hit.doc_id)].reset_index(drop=True)\nsearch = ks.Searcher(chunks)\nafter = list(search.search(q, 'hybrid', k=3, user_groups='claims').chunk_id)\nprint(before, after, len(chunks))",
+    "starter": "chunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\nq = 'dialysis twice a week kidney failure'\n# Your turn: before = the chunk ids of the top 3 hybrid results for q, with user_groups='claims'\n# Your turn: hit = the chunks whose text contains 'KT-8782200'\n# Your turn: remove every chunk whose doc_id is in hit.doc_id, reset the index, and rebuild search\n# Your turn: after = the top 3 chunk ids again\n"
+   },
+   {
+    "code": "assert before[0] == 'D102-01', 'Before the deletion Letter 11 (D102-01) should come first'\nassert 'D102-01' not in after, 'After the deletion no chunk of D102 may be returned. Rebuild the Searcher from the smaller table'\nassert len(chunks) == 138, 'One chunk should have been removed, leaving 138'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. The customer table and data minimisation\nRead `customers.csv` as text. Build `filled`, the number of non-blank values in each column of `PERSONAL`. Build `keep`, the four columns `product`, `segment`, `district` and `status`. Count the national ids that match `KX` and 12 digits in `kx_ok`."
+   },
+   {
+    "code": "cust = pd.read_csv('customers.csv', dtype=str)\nPERSONAL = ['full_name', 'date_of_birth', 'phone', 'email', 'national_id']\nfilled = cust[PERSONAL].notna().sum().to_dict()\nkeep = cust[['product', 'segment', 'district', 'status']]\nkx_ok = int(cust.national_id.dropna().str.match(r'KX\\d{12}$').sum())\nprint(filled, keep.shape[1], kx_ok)",
+    "starter": "cust = pd.read_csv('customers.csv', dtype=str)\nPERSONAL = ['full_name', 'date_of_birth', 'phone', 'email', 'national_id']\n# Your turn: filled = the count of non-blank values in each PERSONAL column, as a dictionary\n# Your turn: keep = cust with only product, segment, district and status\n# Your turn: kx_ok = how many non-blank national_id values match KX followed by 12 digits\n"
+   },
+   {
+    "code": "assert filled == {'full_name': 5000, 'date_of_birth': 4700, 'phone': 5000, 'email': 3377, 'national_id': 4450}, 'Check the counts of non-blank values'\nassert list(keep.columns) == ['product', 'segment', 'district', 'status'], 'Keep four columns'\nassert kx_ok == 4450, 'Every filled national id follows the KX pattern: 4450'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Optional: Presidio\nPresidio is not installed in the course notebook. On your own machine, install `presidio-analyzer` and `presidio-anonymizer` and download the language model named in its documentation first. The cell below shows the simplest form. Detection is model based and never complete, so keep the check from Task 3."
+   },
+   {
+    "code": "# pip install presidio-analyzer presidio-anonymizer   (and the language model named in its documentation)\nfrom presidio_analyzer import AnalyzerEngine\nfrom presidio_anonymizer import AnonymizerEngine\n\nanalyzer = AnalyzerEngine()\nanonymizer = AnonymizerEngine()\ntext = letters.text.iloc[0]\nfound = analyzer.analyze(text=text, language='en')\nprint([(f.entity_type, round(f.score, 2)) for f in found])\nprint(anonymizer.anonymize(text=text, analyzer_results=found).text)",
+    "starter": "# pip install presidio-analyzer presidio-anonymizer\n# Your turn: import AnalyzerEngine and AnonymizerEngine, analyze the first letter in English,\n#            and print the entity types and scores\n"
+   },
+   {
+    "md": "## For the leader\nLook at your results. The masked letters pass the check, yet they still carry a name without a title, a policy number and a health detail. Who in your organisation would sign off that masked letters may enter a search index, and who signs off that any personal data may be stored in a cloud region in another country? Write the two names, or write the gap, below."
+   }
+  ]
+ }
+}

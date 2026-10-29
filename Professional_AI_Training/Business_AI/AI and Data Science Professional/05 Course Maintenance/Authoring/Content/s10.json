@@ -1,0 +1,470 @@
+{
+ "session": 10,
+ "notes_title": "Session 10 moves from files to databases. Until now your data came as one file at a time. In a company it sits in a database, with many tables that link together, and you ask it questions in a language called SQL. Today you'll write SQL on the Lakeside Mart database, and for every idea we'll put the pandas version or the PivotTable beside it. By the end you'll have written queries and checked three of them in pandas.",
+ "notes_outcomes": "By the end you'll write SELECT, WHERE, GROUP BY and ORDER BY to ask a database a question. You'll write a join, and say which rows it keeps and which it loses. And you'll check a SQL answer against pandas. Most of the demonstration is SQL typed live, and in the lab you write ten queries and rebuild three of them in pandas.",
+ "notes_words": "Six words come with SQL. A database is a file that holds several tables, like a workbook with many sheets. A query is one question written in SQL. A clause is one part of a query, such as WHERE. NULL is how SQL writes an empty cell. A subquery is a query inside another query. An alias is a short name you give a column or a table. Each has a spreadsheet cousin, and the right-hand column names it.",
+ "vocab": [
+  [
+   "Database",
+   "A file that holds several tables linked by keys.",
+   "A workbook with many sheets"
+  ],
+  [
+   "Query",
+   "One question written in SQL and sent to a database.",
+   "A PivotTable or a filter you set up"
+  ],
+  [
+   "Clause",
+   "One part of a query, such as SELECT, WHERE or ORDER BY.",
+   "One box of the PivotTable field list"
+  ],
+  [
+   "NULL",
+   "SQL's value for an empty cell. It is unknown and equals nothing.",
+   "A blank cell"
+  ],
+  [
+   "Subquery",
+   "A query written inside brackets within another query.",
+   "A helper cell that holds an average"
+  ],
+  [
+   "Alias",
+   "A short name for a column or a table, given with AS.",
+   "A renamed column header"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 9",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "In Session 9, a join made revenue jump from 1.4 billion to 7.6 billion. What went wrong?",
+     "a": "Each order matched several order lines, so the order value was added once per line. Check row counts after every join."
+    },
+    {
+     "q": "Which spreadsheet tool is groupby in pandas?",
+     "a": "A PivotTable: group the rows, then summarise each group."
+    }
+   ],
+   "notes": "Two questions on Session 9, the joins and the groups, before we meet SQL.\n\nFirst. In Session 9 a join made our revenue jump from about one point four billion shillings to over seven billion. What went wrong? Have a think.\n\nEach order matched several order lines, and the order value was added once for every line. The lesson was to check the row count after every join. We'll meet that same trap again today, in a new language.\n\nSecond. Which spreadsheet tool is groupby in pandas? No rush.\n\nA PivotTable. You group the rows, then summarise each group. Today's new language does exactly the same job, and you'll see the two side by side."
+  },
+  {
+   "type": "erd",
+   "title": "A database is several tables that share keys",
+   "tables": [
+    {
+     "name": "branches",
+     "cols": [
+      "*branch_id",
+      "branch_name",
+      "region"
+     ]
+    },
+    {
+     "name": "orders",
+     "cols": [
+      "*order_id",
+      "branch_id",
+      "customer_id",
+      "order_value_ugx"
+     ]
+    },
+    {
+     "name": "customers",
+     "cols": [
+      "*customer_id",
+      "home_branch_id",
+      "loyalty_tier"
+     ]
+    },
+    {
+     "name": "returns",
+     "cols": [
+      "*return_id",
+      "order_id",
+      "reason"
+     ]
+    },
+    {
+     "name": "order_lines",
+     "cols": [
+      "*line_id",
+      "order_id",
+      "product_id",
+      "line_revenue_ugx"
+     ]
+    },
+    {
+     "name": "products",
+     "cols": [
+      "*product_id",
+      "category",
+      "unit_price_ugx"
+     ]
+    }
+   ],
+   "layout": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "links": [
+    [
+     "branches",
+     "orders",
+     ""
+    ],
+    [
+     "orders",
+     "customers",
+     ""
+    ],
+    [
+     "orders",
+     "order_lines",
+     ""
+    ],
+    [
+     "order_lines",
+     "products",
+     ""
+    ],
+    [
+     "returns",
+     "order_lines",
+     ""
+    ]
+   ],
+   "caption": "Think of one Excel workbook with many sheets. The database file holds nine tables, six shown here.",
+   "notes": "So far each file has been one table. A database is a file that holds several tables, and they connect through keys. Think of an Excel workbook with many sheets, where one sheet's ID column matches another's.\n\nHere are six of the nine Lakeside Mart tables. Branches holds one row per branch. Orders holds one row per till order, and it carries the branch ID, so each order can find its branch. Order lines holds one row per product on an order. Products holds the price and category.\n\nThe arrows show which tables link. The language that asks questions of a database is called SQL. We'll write it in SQLite, a small free database that lives inside Python, so there is nothing to install."
+  },
+  {
+   "type": "code",
+   "title": "SELECT picks columns, WHERE keeps rows",
+   "lang": "sql",
+   "code": "SELECT branch_name, region\nFROM branches\nWHERE region = 'Central'\nORDER BY branch_name",
+   "output": "branch_name region\nEntebbe Central\nKampala Central Central\nKampala Ntinda Central",
+   "says": [
+    "SELECT names the columns, like picking columns in a sheet.",
+    "FROM names the table. WHERE keeps matching rows, like AutoFilter.",
+    "ORDER BY sorts. We'll come back to why that line matters."
+   ],
+   "notes": "Let's write our first query. A query is one question that we send to a database, written in SQL.\n\nSELECT lists the columns we want, in the order we want them. It's the same as choosing which columns to look at in a sheet.\n\nFROM says which table to read. WHERE keeps only the rows that pass a test, exactly as AutoFilter does. Here we keep the branches in the Central region. Notice that a single equals sign is the test in SQL, and that text sits in single quotes.\n\nORDER BY sorts the result. Three branches come back, Entebbe and the two Kampala branches. Each part of a query, such as SELECT or WHERE, is called a clause, and we'll use that word all session."
+  },
+  {
+   "type": "code",
+   "title": "The same count in SQL and in pandas",
+   "lang": "python",
+   "code": "import sqlite3\nimport pandas as pd\n\ncon = sqlite3.connect('lakeside.db')\nq = \"SELECT COUNT(*) AS n FROM orders WHERE branch_id = 'B04'\"\nprint('SQL   ', pd.read_sql_query(q, con).n[0])\n\norders = pd.read_sql_query('SELECT * FROM orders', con)\nprint('pandas', (orders.branch_id == 'B04').sum())",
+   "output": "SQL    3562\npandas 3562",
+   "says": [
+    "connect opens the database file. read_sql_query runs SQL and returns a DataFrame.",
+    "The pandas filter from Session 7 gives the same answer."
+   ],
+   "notes": "Here's the habit for the whole session. Ask the question in SQL, ask it again in pandas, and compare.\n\nPython can talk to SQLite directly. connect opens the database file, and read_sql_query sends a query to it and hands back a DataFrame. Your Session 7 skills still work on that table.\n\nThe SQL query counts the orders from Jinja, branch B04, and gets three thousand five hundred and sixty two. The pandas filter from Session 7 gets three thousand five hundred and sixty two as well. When two languages agree, you can trust the number."
+  },
+  {
+   "type": "code",
+   "title": "SQL has no row order unless you write ORDER BY",
+   "lang": "sql",
+   "code": "SELECT order_id, order_value_ugx\nFROM orders\nORDER BY order_value_ugx DESC, order_id\nLIMIT 3",
+   "output": "order_id order_value_ugx\nO014303 3104000\nO029299 2795740\nO003810 2771200",
+   "says": [
+    "A database table is a set of rows. It has no first row and no last row.",
+    "ORDER BY is the only way to get a guaranteed order.",
+    "LIMIT keeps the first rows of the sorted result."
+   ],
+   "notes": "This is the one idea I most want you to keep from today. SQL has no concept of the order of rows. A table in a database is a pile of rows. Row two has no fixed place above row three, as it does in a sheet.\n\nIn Excel, the rows stay where you put them. In a database there's no first row and no last row. Today a query might happen to return rows in the order they were stored. Tomorrow, after the database reorganises itself, it may not.\n\nThe only way to be sure is ORDER BY. Write it whenever the order matters, and always when you use LIMIT. Without it, LIMIT three gives you any three rows.\n\nHere we sort by order value, largest first. The biggest order is O014303, at three million one hundred and four thousand shillings, the same order we found in Session 7. We add order_id as a second sort, so that two equal values still come out in the same order every time. LIMIT keeps the top three."
+  },
+  {
+   "type": "code",
+   "title": "GROUP BY is a PivotTable",
+   "lang": "sql",
+   "code": "SELECT branch_id,\n       COUNT(*) AS n_orders,\n       SUM(order_value_ugx) AS revenue\nFROM orders\nGROUP BY branch_id\nORDER BY revenue DESC",
+   "output": "branch_id n_orders revenue\nB01 5885 283331305\nB02 4830 238222000\nB04 3562 176738325",
+   "says": [
+    "GROUP BY makes one result row for each branch.",
+    "COUNT and SUM summarise each group, like PivotTable values.",
+    "AS gives a result column a short name."
+   ],
+   "notes": "Now the PivotTable. Which branch earns the most?\n\nGROUP BY branch_id makes one row for each branch. That's the same as dragging branch into the Rows box of a PivotTable.\n\nThen COUNT and SUM summarise each group. They're the Values box. Every column in SELECT must either be in the GROUP BY or be summarised.\n\nThe word AS gives a result column a short name, called an alias. We use revenue as an alias, and then ORDER BY can use it. Kampala Central leads with five thousand eight hundred and eighty five orders and about two hundred and eighty three million shillings. Remember, orders is a five percent sample, so these are sample figures."
+  },
+  {
+   "type": "code",
+   "title": "The same table with groupby",
+   "lang": "python",
+   "code": "by_branch = orders.groupby('branch_id').order_value_ugx.agg(['count', 'sum'])\nprint(by_branch.sort_values('sum', ascending=False).head(3))",
+   "output": "B01 5885 283331305\nB02 4830 238222000\nB04 3562 176738325",
+   "says": [
+    "groupby, then agg for two summaries. Same numbers as the SQL."
+   ],
+   "notes": "Here's the twin in pandas, from Session 9.\n\ngroupby on branch, then two summaries, the count and the sum. We sort the sum from largest to smallest and keep three rows.\n\nThe numbers match the SQL query line for line. You can write the question either way. SQL is what you'll meet in most company databases, and pandas is what you use once the data is in your notebook."
+  },
+  {
+   "type": "code",
+   "title": "HAVING filters groups, WHERE filters rows",
+   "lang": "sql",
+   "code": "SELECT branch_id,\n       COUNT(*) AS n_orders\nFROM orders\nGROUP BY branch_id\nHAVING COUNT(*) > 4000",
+   "output": "branch_id n_orders\nB01 5885\nB02 4830",
+   "says": [
+    "Rows are grouped first. Then HAVING keeps the groups that pass.",
+    "In pandas this is a filter on the grouped table."
+   ],
+   "notes": "Which branches have more than four thousand orders? That question is about groups, and it says nothing about single rows.\n\nWHERE can only look at one row at a time. To test a total such as a count, we need HAVING, which tests each group after the grouping is done.\n\nIn pandas you'd group first, then filter the grouped table. In a PivotTable it's the filter on a value. Two branches pass, Kampala Central and Kampala Ntinda."
+  },
+  {
+   "type": "code",
+   "title": "What happens if you put a total in WHERE",
+   "lang": "python",
+   "expect_error": true,
+   "code": "q = \"\"\"SELECT branch_id, COUNT(*) AS n\n       FROM orders\n       WHERE COUNT(*) > 4000\n       GROUP BY branch_id\"\"\"\npd.read_sql_query(q, con)",
+   "output": "misuse of aggregate: COUNT()",
+   "says": [
+    "The database reads WHERE before any group exists."
+   ],
+   "notes": "Here's the error you'll meet first. We put the count in WHERE.\n\nRead the end of the message, as we practised in Session 5. It says misuse of aggregate. An aggregate is a total such as COUNT or SUM. WHERE runs before any groups exist, so there's no count to test yet.\n\nThe cure is HAVING, as on the last slide. And that raises a question. In what order does the database really run the clauses?"
+  },
+  {
+   "type": "figure",
+   "title": "You write SQL in one order and the database runs it in another",
+   "fig": "sql_order",
+   "look": [
+    "FROM runs first. The database finds the table.",
+    "WHERE filters rows, then GROUP BY and HAVING work on groups.",
+    "SELECT runs fifth, so WHERE cannot see an alias."
+   ],
+   "caption": "Written: SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY. Run: FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY.",
+   "alt": "Two lists side by side: the written order of SQL clauses and the order the database actually runs them.",
+   "notes": "This picture explains the error we just saw. On the left is the order you write the clauses. On the right is the order the database runs them.\n\nThe database starts with FROM. It picks the table before it does anything else.\n\nThen WHERE throws away rows. After that GROUP BY makes the groups, and HAVING throws away groups. That's why HAVING can test a count, and WHERE can't.\n\nSELECT only runs fifth. That has a surprise. In standard SQL, a short name you create in SELECT doesn't exist yet when WHERE runs. SQLite is relaxed about this, but other databases will refuse, so don't rely on it. ORDER BY comes last, which is why it can use that name.\n\nKeep this picture. When a query gives a strange error, ask which clause ran before the thing it needs."
+  },
+  {
+   "type": "figure",
+   "title": "A join keeps different rows depending on its type",
+   "fig": "join_types",
+   "look": [
+    "Inner keeps only the rows that match on both sides.",
+    "Left keeps every row of table A, matched or not.",
+    "Right and full outer exist too. Swap the tables and a left join does the job of a right join."
+   ],
+   "caption": "Excel twin: VLOOKUP shows #N/A for no match. A left join keeps the row. An inner join drops it.",
+   "alt": "Four small Venn diagrams for inner, left, right and outer joins with the kept area shaded.",
+   "notes": "Now the idea that connects tables. A join glues two tables together using a matching column, such as branch_id in both orders and branches. The join type decides what happens to rows that find no match.\n\nAn inner join keeps only the rows that match on both sides. Rows with no partner disappear.\n\nA left join keeps every row from the first table, the left one, whether it matched or not. Where there's no match, the new columns are empty.\n\nA right join is the mirror image, and a full outer join keeps everything from both sides. In practice you can swap the table order and use a left join, so we'll use inner and left today.\n\nThink of VLOOKUP. When it finds no match you see an error. A left join keeps the row. An inner join quietly drops it, and that's the one to watch."
+  },
+  {
+   "type": "code",
+   "title": "INNER JOIN adds the branch name to every order",
+   "lang": "sql",
+   "code": "SELECT b.branch_name,\n       COUNT(*) AS n_orders,\n       SUM(o.order_value_ugx) AS revenue\nFROM orders AS o\nINNER JOIN branches AS b\n  ON o.branch_id = b.branch_id\nGROUP BY b.branch_name\nORDER BY revenue DESC",
+   "output": "branch_name n_orders revenue\nKampala Central 5885 283331305\nKampala Ntinda 4830 238222000\nJinja 3562 176738325",
+   "says": [
+    "o and b are short aliases for the two tables.",
+    "ON says which columns must match.",
+    "Same numbers as before, now with names instead of codes."
+   ],
+   "notes": "Let's join. The earlier result showed branch codes. A manager wants names.\n\nAfter FROM and INNER JOIN, we give each table a short alias, o for orders and b for branches. Then b dot branch_name means the branch_name column of the branches table.\n\nON says which columns must match. An order is joined to the branch whose branch_id is the same. In Excel, that's a VLOOKUP that brings the branch name next to each order.\n\nThe counts and revenues are identical to the earlier query. The join added names and lost no rows, because every order has a valid branch."
+  },
+  {
+   "type": "define",
+   "title": "NULL",
+   "definition": "The value SQL uses for an empty cell. NULL means unknown, and it equals nothing, even another NULL.",
+   "example": "Walk-in customers give no loyalty number. In orders, 9,171 of 30,229 rows have a NULL customer_id.",
+   "excel": "A blank cell. Test for it with IS NULL, the way you would use ISBLANK.",
+   "notes": "One word to hold on to before the next query. NULL.\n\nIn SQL an empty cell is called NULL. It means the value is unknown. Because it's unknown, it isn't equal to anything, and it isn't different from anything either. To find it you must write IS NULL.\n\nIn our orders, walk-in customers have no loyalty number, so the customer ID is NULL. That's nine thousand one hundred and seventy one orders out of thirty thousand two hundred and twenty nine.\n\nIn Excel it's a blank cell, and the test is ISBLANK. In SQL the test is IS NULL."
+  },
+  {
+   "type": "code",
+   "title": "LEFT JOIN keeps the walk-in orders",
+   "lang": "sql",
+   "code": "SELECT COUNT(*) AS all_orders,\n       COUNT(c.customer_id) AS matched\nFROM orders AS o\nLEFT JOIN customers AS c\n  ON o.customer_id = c.customer_id",
+   "output": "all_orders matched\n30229 21058",
+   "says": [
+    "LEFT JOIN keeps every order.",
+    "COUNT of one column skips NULLs, so it counts the matches.",
+    "An INNER JOIN here would keep only 21,058 rows."
+   ],
+   "notes": "Does every order belong to a loyalty customer? Let's find out with a left join.\n\nLEFT JOIN keeps every order, thirty thousand two hundred and twenty nine of them. For walk-ins, the customer columns come back as NULL.\n\nCOUNT of star counts rows. COUNT of one column counts only the rows where that column isn't NULL. So the second number, twenty one thousand and fifty eight, is the orders that matched a loyalty customer.\n\nHad we written INNER JOIN, we'd have kept twenty one thousand and fifty eight orders and lost over nine thousand without any warning. The pandas twin is merge with how equals left. Always ask which rows a join might silently remove."
+  },
+  {
+   "type": "code",
+   "title": "CASE is IF for a column",
+   "lang": "sql",
+   "code": "SELECT CASE WHEN order_value_ugx < 20000 THEN 'Small'\n            WHEN order_value_ugx < 100000 THEN 'Medium'\n            ELSE 'Large' END AS band,\n       COUNT(*) AS n\nFROM orders\nGROUP BY band\nORDER BY n DESC",
+   "output": "band n\nMedium 14486\nSmall 13529\nLarge 2214",
+   "says": [
+    "CASE tests each WHEN in order and uses the first that is true.",
+    "ELSE catches everything left."
+   ],
+   "notes": "Sometimes you need a label that isn't in the data. Here we sort orders into small, medium and large.\n\nCASE is the IF function from Session 6 and from Excel. It checks each WHEN in order and takes the first one that is true. Under twenty thousand shillings is small. Under a hundred thousand is medium.\n\nELSE catches whatever is left, which is large. Then we group by the new label and count.\n\nMedium has fourteen thousand four hundred and eighty six orders, small has thirteen thousand five hundred and twenty nine, and large has two thousand two hundred and fourteen. The pandas twin is a function called cut, which sorts numbers into bands. You'll try it in the lab."
+  },
+  {
+   "type": "code",
+   "title": "A subquery asks a question inside a question",
+   "lang": "sql",
+   "code": "SELECT COUNT(*) AS above_average\nFROM orders\nWHERE order_value_ugx >\n      (SELECT AVG(order_value_ugx) FROM orders)",
+   "output": "above_average\n7523",
+   "says": [
+    "The bracketed query runs first and returns one number, the average.",
+    "The outer query then counts orders above it."
+   ],
+   "notes": "How many orders are bigger than the average order? That takes two steps.\n\nFirst we need the average. Then we count the orders above it. A subquery lets you write both in one statement. It's a query inside brackets, and the database runs the inside first.\n\nThe inside query returns one number, the average order value, which is about forty seven thousand five hundred shillings. The outside query counts the orders above that number.\n\nThe answer is seven thousand five hundred and twenty three, about one order in four. In Excel you'd calculate the average in a cell, then use COUNTIF against that cell. A subquery does both at once."
+  },
+  {
+   "type": "trap",
+   "title": "A filter that quietly drops the walk-ins",
+   "looks": "You ask for all orders where customer_id is not C0495. Only 8 of 30,229 orders belong to C0495. The query returns 21,050 rows and shows no error.",
+   "why": "NULL is unknown, so the test NULL not equal to C0495 is never true. SQL drops every walk-in order, over nine thousand rows.",
+   "fix": "Test for blanks on purpose with IS NULL or IS NOT NULL. Compare the count with the table size before you trust a filter.",
+   "notes": "Here's a trap that runs without an error. We want all orders except the ones from customer C0495.\n\nYou write WHERE customer_id not equal to C0495. The query runs. It returns twenty one thousand and fifty rows, and nothing warns you. You'd expect thirty thousand two hundred and twenty one, since only eight orders belong to that customer.\n\nNULL is unknown. When the customer ID is unknown, the database can't say it differs from C0495, so the test isn't true and the row is dropped. Every walk-in order disappears.\n\nThe fix is to handle blanks on purpose. Write IS NULL or IS NOT NULL when they matter. And compare your row count with the size of the table. If nine thousand rows vanished, you'll see it. You'll check this one in the lab."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: eight tasks, three answers rebuilt in pandas",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 10 notebook and run the setup cell",
+    "Connect to lakeside.db and list its tables",
+    "Write the queries: WHERE, ORDER BY, GROUP BY, HAVING, CASE",
+    "Join orders to branches",
+    "Rebuild three answers in pandas and compare",
+    "Run the walk-in trap and explain the gap"
+   ],
+   "done": "Three SQL answers equal their pandas twins. You can say which rows a join dropped.",
+   "notes": "The lab is forty minutes in Google Colab. The first task is to open lakeside.db and ask SQLite to list its nine tables, so you see for yourself that a database is a workbook of sheets. Run the setup cell first.\n\nThe notebook has eight tasks and ten queries in all. Each task gives you a question, a blank for your query and a check cell.\n\nFor three of the tasks you write the answer twice, once in SQL and once in pandas, and the check cell compares them. That comparison is the skill we are building.\n\nThe last task is the walk-in trap, so you can watch nine thousand rows go missing. If a query fails, read the end of the error message and fix that clause first."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A query has no ORDER BY. Can you rely on the rows coming back in the same order?",
+     "a": "No. SQL has no row order unless you write ORDER BY."
+    },
+    {
+     "q": "You want branches with more than 4,000 orders. WHERE or HAVING?",
+     "a": "HAVING. WHERE runs before the groups exist."
+    },
+    {
+     "q": "Which join keeps the orders of walk-in customers who have no match?",
+     "a": "A LEFT JOIN from orders. An INNER JOIN drops them."
+    }
+   ],
+   "notes": "Three questions on SQL.\n\nQuestion one. A query has no ORDER BY. Can you rely on the rows coming back in the same order? Think it over.\n\nNo. SQL has no row order unless you write ORDER BY. Write it whenever order matters.\n\nQuestion two. You want the branches with more than four thousand orders. WHERE or HAVING? Give that a moment.\n\nHAVING. WHERE runs before the groups exist, so it can't test a total.\n\nQuestion three. Which join keeps the orders of walk-in customers who have no match in the customers table? Sit with it for a second.\n\nA left join, starting from orders. An inner join drops those orders, and it does so quietly."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A database is several tables. SELECT, FROM and WHERE pick columns and rows. GROUP BY and HAVING are a PivotTable.",
+    "SQL has no row order unless you write ORDER BY. The database runs FROM first and SELECT fifth.",
+    "A join type decides which rows survive. NULL is unknown, so a test on it can drop rows silently."
+   ],
+   "next": "Exploring and visualising with Python",
+   "notes": "One. A database is several tables joined by keys. SELECT, FROM and WHERE choose columns and rows, and GROUP BY with HAVING does the work of a PivotTable.\n\nTwo. SQL has no row order unless you write ORDER BY. And remember the run order, FROM first, SELECT fifth.\n\nThree. The join type decides which rows survive, and NULL is unknown, so a filter on it can drop rows without a warning. Always compare your row counts.\n\nNext session we make charts. Bring a question about the returns, and we'll see which branches look worst, and whether the answer changes when you count them differently."
+  }
+ ],
+ "lab": {
+  "intro": "Eight tasks and ten queries on the Lakeside Mart database. Write each query in SQL. For three tasks, rebuild the answer in pandas and compare.",
+  "cells": [
+   {
+    "md": "## Task 1. Connect and list the tables\nOpen `lakeside.db` with `sqlite3` as `con`, then run a query that lists the table names into `tables`. SQLite keeps them in `sqlite_master`. Then count the rows of `orders` with `SELECT COUNT(*)` and store the number in `n_orders`."
+   },
+   {
+    "code": "import sqlite3\nimport pandas as pd\n\ncon = sqlite3.connect('lakeside.db')\ntables = pd.read_sql_query(\"SELECT name FROM sqlite_master WHERE type = 'table'\", con)\nprint(tables)\nn_orders = pd.read_sql_query('SELECT COUNT(*) AS n FROM orders', con).n[0]\nprint(n_orders)",
+    "starter": "import sqlite3\nimport pandas as pd\n\n# Your turn: connect to lakeside.db and call it con\n# Then list the table names into tables\n# Your turn: SELECT COUNT(*) AS n FROM orders, then take the number into n_orders\n"
+   },
+   {
+    "code": "assert len(tables) == 9, 'There should be nine tables'\nassert n_orders == 30229, 'Count every row of orders'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. WHERE with two tests, then the biggest orders\nHow many orders were paid by `Card` at branch `B06` (Mbarara)? Store the count in `n_card`. Then list the three biggest orders, `order_id` and `order_value_ugx`, largest first, with `ORDER BY` and `LIMIT`, in `top3`."
+   },
+   {
+    "code": "q = \"\"\"SELECT COUNT(*) AS n FROM orders\n       WHERE branch_id = 'B06' AND payment_method = 'Card'\"\"\"\nn_card = pd.read_sql_query(q, con).n[0]\nprint(n_card)\n\nq = \"\"\"SELECT order_id, order_value_ugx FROM orders\n       ORDER BY order_value_ugx DESC, order_id LIMIT 3\"\"\"\ntop3 = pd.read_sql_query(q, con)\nprint(top3)",
+    "starter": "# Your turn: SELECT COUNT(*) AS n FROM orders WHERE two tests joined with AND\nq = \"\"\"\n\"\"\"\n\n# Your turn: the three biggest orders. ORDER BY ... DESC, then LIMIT 3\nq = \"\"\"\n\"\"\"\n"
+   },
+   {
+    "code": "assert n_card == 257, 'Use AND between the two tests and quote the text'\nassert list(top3.order_id) == ['O014303', 'O029299', 'O003810'], 'Sort by order_value_ugx DESC and keep three'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Revenue by region, SQL and pandas\nJoin `orders` to `branches` and total `order_value_ugx` by `region`, largest first. Then rebuild it in pandas with `merge` and `groupby`. Call the SQL result `by_region` and the pandas result `twin`. The two must agree."
+   },
+   {
+    "code": "q = \"\"\"SELECT b.region, SUM(o.order_value_ugx) AS revenue\n       FROM orders AS o\n       INNER JOIN branches AS b ON o.branch_id = b.branch_id\n       GROUP BY b.region\n       ORDER BY revenue DESC\"\"\"\nby_region = pd.read_sql_query(q, con)\n\norders = pd.read_sql_query('SELECT * FROM orders', con)\nbranches = pd.read_sql_query('SELECT * FROM branches', con)\ntwin = (orders.merge(branches, on='branch_id')\n              .groupby('region').order_value_ugx.sum()\n              .sort_values(ascending=False))\nprint(by_region)\nprint(twin)",
+    "starter": "# Your turn: SQL first. JOIN, GROUP BY b.region, SUM, ORDER BY revenue DESC\nq = \"\"\"\n\"\"\"\n\n# Your turn: the pandas twin with merge, groupby, sum, sort_values\n"
+   },
+   {
+    "code": "assert by_region.revenue[0] == 679043495 and by_region.region[0] == 'Central', 'Central should lead'\nassert list(by_region.revenue) == list(twin.values), 'SQL and pandas disagree'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. HAVING\nWhich return `reason` values appear more than 450 times in `returns`? Keep `reason` and the count `n`, largest first, in `common`."
+   },
+   {
+    "code": "q = \"\"\"SELECT reason, COUNT(*) AS n\n       FROM returns\n       GROUP BY reason\n       HAVING COUNT(*) > 450\n       ORDER BY n DESC\"\"\"\ncommon = pd.read_sql_query(q, con)\ncommon",
+    "starter": "# Your turn: GROUP BY reason, then HAVING COUNT(*) > 450, then ORDER BY n DESC\nq = \"\"\"\n\"\"\"\n"
+   },
+   {
+    "code": "assert list(common.reason) == ['Damaged', 'Wrong item', 'Expired'], 'Three reasons pass the HAVING test'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. CASE, SQL and pandas\nSort orders into `Small` (under 20,000), `Medium` (under 100,000) and `Large`, and count each band in SQL into `bands`. Then rebuild the counts with `pd.cut` into `twin_bands`."
+   },
+   {
+    "code": "q = \"\"\"SELECT CASE WHEN order_value_ugx < 20000 THEN 'Small'\n                   WHEN order_value_ugx < 100000 THEN 'Medium'\n                   ELSE 'Large' END AS band,\n              COUNT(*) AS n\n       FROM orders GROUP BY band\"\"\"\nbands = pd.read_sql_query(q, con).set_index('band').n\n\ncut = pd.cut(orders.order_value_ugx, [-1, 19999, 99999, 10**9],\n             labels=['Small', 'Medium', 'Large'])\ntwin_bands = cut.value_counts()\nprint(bands)\nprint(twin_bands)",
+    "starter": "# Your turn: CASE WHEN ... THEN ... ELSE ... END AS band, then COUNT(*) and GROUP BY band\nq = \"\"\"\n\"\"\"\n\n# Your turn: pd.cut on orders.order_value_ugx with three labels, then value_counts\n"
+   },
+   {
+    "code": "assert bands['Medium'] == 14486 and bands['Large'] == 2214, 'Check the cut points'\nassert all(bands[k] == twin_bands[k] for k in ['Small', 'Medium', 'Large']), 'SQL and pandas disagree'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Subquery, SQL and pandas\nHow many products cost more than the average `unit_price_ugx`? Use a subquery and store the count in `n_dear`, then check it with the pandas mean into `twin_n`."
+   },
+   {
+    "code": "q = \"\"\"SELECT COUNT(*) AS n FROM products\n       WHERE unit_price_ugx > (SELECT AVG(unit_price_ugx) FROM products)\"\"\"\nn_dear = pd.read_sql_query(q, con).n[0]\n\nproducts = pd.read_sql_query('SELECT * FROM products', con)\ntwin_n = (products.unit_price_ugx > products.unit_price_ugx.mean()).sum()\nprint(n_dear, twin_n)",
+    "starter": "# Your turn: WHERE unit_price_ugx > (a subquery that returns AVG(unit_price_ugx))\nq = \"\"\"\n\"\"\"\n\n# Your turn: the same count with products.unit_price_ugx.mean()\n"
+   },
+   {
+    "code": "assert n_dear == 20, 'The subquery goes in brackets after the greater-than sign'\nassert n_dear == twin_n, 'SQL and pandas disagree'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. The walk-in trap\nFirst count the orders whose `customer_id` is NULL, using `IS NULL`, into `walk_in`. Then count the orders where `customer_id <> 'C0495'` and store that count in `not_c0495`, and see how many rows the test drops."
+   },
+   {
+    "code": "walk_in = pd.read_sql_query('SELECT COUNT(*) AS n FROM orders WHERE customer_id IS NULL', con).n[0]\nq = \"SELECT COUNT(*) AS n FROM orders WHERE customer_id <> 'C0495'\"\nnot_c0495 = pd.read_sql_query(q, con).n[0]\nprint(walk_in, not_c0495, len(orders) - not_c0495)",
+    "starter": "# Your turn: count the NULL customer_id rows with IS NULL into walk_in\n# Your turn: count the rows where customer_id <> 'C0495' into not_c0495\n"
+   },
+   {
+    "code": "assert walk_in == 9171, 'Use IS NULL, and a plain equals sign will not find NULL'\nassert not_c0495 == 21050, 'The test drops every NULL row'\nassert len(orders) - not_c0495 == 9179, 'Eight C0495 orders plus the walk-ins'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Compare and reflect\nOpen `orders.csv` in Sheets. Build a PivotTable of orders and revenue by branch and match the Task 3 totals. Write one sentence: which of the three SQL and pandas pairs was easiest to read, and why?"
+   }
+  ]
+ }
+}

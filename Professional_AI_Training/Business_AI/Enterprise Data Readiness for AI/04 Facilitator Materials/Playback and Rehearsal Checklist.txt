@@ -1,0 +1,264 @@
+PLAYBACK AND REHEARSAL CHECKLIST
+
+Part 1, in PowerPoint on the machine you will teach from. Open each deck, choose Slide Show, and play every animated slide from the first click to the last. Confirm the parts appear in the order listed and nothing overlaps. Editing view shows the finished slide, so only Slide Show proves the build. Tick each line.
+Part 2, read the notes aloud once per session, timing yourself. The estimate is the speaking time of the notes alone at 130 words a minute, before pauses. The first paragraph is read before any click, then one paragraph per click, then any wrap-up.
+Part 3, run every cell that needs a heavy library once in Colab (sentence-transformers, chromadb, pgvector with psycopg2, pandera, great_expectations, presidio, dagster, duckdb with pyarrow, docling). run_all_labs.py in this folder runs everything else. Open the workbook named for each session and complete one workshop task with it.
+
+SESSION 1: What AI-ready data means
+  Notes read aloud: about 24 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up: your own data and AI, 2 clicks
+  [ ] Slide 6: Three jobs AI does with data, 3 clicks
+  [ ] Slide 7: Data that suits a report does not always suit AI, 2 clicks
+  [ ] Slide 8: Four ways data fails an AI use, 4 clicks
+  [ ] Slide 11: Three handbooks, three answers to one question, 3 clicks
+  [ ] Slide 12: Keyword search puts the old handbook first, 4 clicks
+  [ ] Slide 13: A confident answer from last year's handbook, 3 clicks
+  [ ] Slide 14: A check that stops on a missing owner, 2 clicks
+  [ ] Slide 17: Two numbers about the data itself, 2 clicks
+  [ ] Slide 18: What each Kitara use case needs, and what the files hold, 3 clicks
+  [ ] Slide 19: The use case canvas, filled top to bottom, 4 clicks
+  [ ] Slide 21: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Use Case Canvas.xlsx
+  [ ] Solution notebook runs in Colab: 01 - What AI-ready data means (solution).ipynb
+
+SESSION 2: Score your readiness
+  Notes read aloud: about 23 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 1, 2 clicks
+  [ ] Slide 7: Five levels, from ad hoc to optimised, 3 clicks
+  [ ] Slide 10: Load the evidence pack and count what is in it, 3 clicks
+  [ ] Slide 11: Baseline: the mean score of each dimension, 2 clicks
+  [ ] Slide 12: Scoring one dimension in five steps, 5 clicks
+  [ ] Slide 13: Leave out the self-reported items, 3 clicks
+  [ ] Slide 14: A high score that rests on one sentence, 3 clicks
+  [ ] Slide 15: Discounting self-reported items lowers every dimension, 3 clicks
+  [ ] Slide 17: Find the weakest dimensions and the gap to a target, 2 clicks
+  [ ] Slide 18: A check that refuses a score of 6, 1 click
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Readiness Scorecard (Kitara example).xlsx; Readiness Scorecard.xlsx
+  [ ] Solution notebook runs in Colab: 02 - Score your readiness (solution).ipynb
+
+SESSION 3: Find, own and catalogue your data
+  Notes read aloud: about 24 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 2, 2 clicks
+  [ ] Slide 5: Seven of Kitara's 14 sources lack a basic field, 3 clicks
+  [ ] Slide 8: IT recorded as the owner of two sources, 3 clicks
+  [ ] Slide 10: List the sources with no owner or no class, 2 clicks
+  [ ] Slide 11: A check that stops when a source has no owner, 1 click
+  [ ] Slide 12: Find classes that break Kitara's own standard, 2 clicks
+  [ ] Slide 15: Shadow data: count the shared drive by type and folder, 3 clicks
+  [ ] Slide 16: How many layouts must one analyst read?, 2 clicks
+  [ ] Slide 17: A spreadsheet or a catalogue for the inventory, 2 clicks
+  [ ] Slide 19: Lineage: where the board pack numbers come from, 3 clicks
+  [ ] Slide 21: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Data Inventory.xlsx
+  [ ] Solution notebook runs in Colab: 03 - Find, own and catalogue your data (solution).ipynb
+
+SESSION 4: Quality, metadata and data contracts
+  Notes read aloud: about 27 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 3, 2 clicks
+  [ ] Slide 7: What is wrong with the Kitara customer table, 4 clicks
+  [ ] Slide 8: Profile the table: how much is blank?, 3 clicks
+  [ ] Slide 9: Four rules with thresholds that run as code, 1 click
+  [ ] Slide 10: Duplicates: the rule has to normalise names first, 3 clicks
+  [ ] Slide 11: Reading the rules one at a time hides how many rows are bad, 3 clicks
+  [ ] Slide 12: The mobile money log: four rules, one day with a hole, 1 click
+  [ ] Slide 13: Six hours of silence on 17 September, 3 clicks
+  [ ] Slide 14: A gate that stops the load when a rule fails, 3 clicks
+  [ ] Slide 15: The same checks in SQL on the customer table, 2 clicks
+  [ ] Slide 16: Pandera: the rules written as a schema, 2 clicks
+  [ ] Slide 17: Great Expectations Core: one expectation on a batch, 2 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Run in Colab once: slide 16 (Pandera: the rules written as a schema) needs pandera
+  [ ] Run in Colab once: slide 17 (Great Expectations Core: one expectation on a batch) needs great_expectations
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Data Contract Template.xlsx
+  [ ] Solution notebook runs in Colab: 04 - Quality, metadata and data contracts (solution).ipynb
+
+SESSION 5: From documents to clean text
+  Notes read aloud: about 24 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 4, 2 clicks
+  [ ] Slide 5: Kitara's folder: 121 documents, 11 of them replaced, 3 clicks
+  [ ] Slide 7: Read a text PDF two ways, 3 clicks
+  [ ] Slide 8: A scan returns nothing until OCR reads it, 3 clicks
+  [ ] Slide 9: OCR on a faded scan misreads the amount, 3 clicks
+  [ ] Slide 10: Sort scans by how sure Tesseract is, 3 clicks
+  [ ] Slide 11: A table that a PDF reader scrambles, 3 clicks
+  [ ] Slide 12: Recover the rows with pdfplumber, 3 clicks
+  [ ] Slide 13: A clean extraction of an out of date document, 3 clicks
+  [ ] Slide 14: Cutting a document into overlapping chunks, 3 clicks
+  [ ] Slide 15: Chunk the handbook and look at the joins, 3 clicks
+  [ ] Slide 16: Where to cut: by word count or by heading, 2 clicks
+  [ ] Slide 17: Cut by numbered headings and drop the footers, 3 clicks
+  [ ] Slide 18: Attach labels to every chunk, 3 clicks
+  [ ] Slide 19: Count your own unstructured data, 3 clicks
+  [ ] Slide 20: Docling, a free converter to try on your hardest files, 2 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Run in Colab once: slide 20 (Docling, a free converter to try on your hardest files) needs docling
+  [ ] Run the OCR cells once in Colab (the setup installs Tesseract and poppler with apt-get)
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: no template file (Task 1 describes the sheet participants make)
+  [ ] Solution notebook runs in Colab: 05 - From documents to clean text (solution).ipynb
+
+SESSION 6: Search by meaning
+  Notes read aloud: about 30 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 5, 2 clicks
+  [ ] Slide 5: Two ways to find a passage, 2 clicks
+  [ ] Slide 6: Keyword scoring on three short passages, 3 clicks
+  [ ] Slide 7: Keyword search on the 139 Kitara chunks, 3 clicks
+  [ ] Slide 8: A question that shares no words with its answer, 3 clicks
+  [ ] Slide 10: A question lands near the passages that answer it, 3 clicks
+  [ ] Slide 11: The stand-in meaning scorer on one question, 3 clicks
+  [ ] Slide 13: Embeddings from a real model, syntax only, 3 clicks
+  [ ] Slide 14: Chroma: store the chunks and ask a question, syntax only, 3 clicks
+  [ ] Slide 15: pgvector: vectors in a PostgreSQL table, syntax only, 3 clicks
+  [ ] Slide 16: Fusion pulls the right passage back to third place, 3 clicks
+  [ ] Slide 18: Six Swahili questions, three methods, 3 clicks
+  [ ] Slide 19: A busy results page that holds no answer, 3 clicks
+  [ ] Slide 20: When keyword search is enough, 2 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Run in Colab once: slide 13 (Embeddings from a real model, syntax only) needs sentence-transformers
+  [ ] Run in Colab once: slide 14 (Chroma: store the chunks and ask a question, syntax only) needs chromadb
+  [ ] Run in Colab once: slide 15 (pgvector: vectors in a PostgreSQL table, syntax only) needs pgvector and psycopg2
+  [ ] Run in Colab once: notebook Task 5 needs sentence-transformers
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Search Test Sheet.xlsx
+  [ ] Solution notebook runs in Colab: 06 - Search by meaning (solution).ipynb
+
+SESSION 7: Test the search and control who sees what
+  Notes read aloud: about 25 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 6, 2 clicks
+  [ ] Slide 6: Build the test set and the search, 3 clicks
+  [ ] Slide 9: Score three searches on sixty questions, 3 clicks
+  [ ] Slide 10: Hybrid finds more at five, keyword leads at one, 3 clicks
+  [ ] Slide 11: One question shows why hybrid gains and loses, 3 clicks
+  [ ] Slide 12: Hybrid improves recall, and mean reciprocal rank slips, 2 clicks
+  [ ] Slide 13: Stale versions: the oldest handbook comes first, 3 clicks
+  [ ] Slide 14: Stale versions: how often the old one comes first, 3 clicks
+  [ ] Slide 15: A good average hides a wrong first answer, 3 clicks
+  [ ] Slide 16: Paraphrase questions and the failure list, 3 clicks
+  [ ] Slide 17: The permissions test with Kitara's test users, 3 clicks
+  [ ] Slide 18: With the filter, a salary table stays out of Winnie's results, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Search Test Sheet.xlsx; page Search pilot report outline in the Participant Workbook
+  [ ] Solution notebook runs in Colab: 07 - Test the search and control who sees what (solution).ipynb
+
+SESSION 8: Pipelines and platform design
+  Notes read aloud: about 27 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 7, 2 clicks
+  [ ] Slide 5: Kitara's data crosses 25 hops, and three are done by hand, 3 clicks
+  [ ] Slide 6: A path from source to search with a check on every arrow, 3 clicks
+  [ ] Slide 7: Batch copies everything, incremental copies what is new, 2 clicks
+  [ ] Slide 8: Step one, ingest: read both date formats, 3 clicks
+  [ ] Slide 9: Step two, check one: the schema, 3 clicks
+  [ ] Slide 10: Step two, check two: duplicates and freshness, 3 clicks
+  [ ] Slide 11: The check finds a 6.1 hour gap on 17 September, 3 clicks
+  [ ] Slide 12: Step three, publish: running it twice, 3 clicks
+  [ ] Slide 13: A re-run that counts every payment twice, 3 clicks
+  [ ] Slide 14: Break it on purpose: a renamed column, 3 clicks
+  [ ] Slide 16: Retries first, then an alert to one named owner, 4 clicks
+  [ ] Slide 17: The same three zones in SQL, 3 clicks
+  [ ] Slide 18: Parquet and DuckDB: the cleaned zone as a column file, 3 clicks
+  [ ] Slide 19: A scheduler runs the same steps: a Dagster asset, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Run in Colab once: slide 18 (Parquet and DuckDB: the cleaned zone as a column file) needs duckdb and pyarrow
+  [ ] Run in Colab once: slide 19 (A scheduler runs the same steps: a Dagster asset) needs dagster
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: page Pipeline map in the Participant Workbook
+  [ ] Solution notebook runs in Colab: 08 - Pipelines and platform design (solution).ipynb
+
+SESSION 9: Privacy and East African law
+  Notes read aloud: about 28 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 8, 2 clicks
+  [ ] Slide 8: Register, keep records, report breaches, 3 clicks
+  [ ] Slide 11: The EU AI Act and Article 10 for firms with European customers, 2 clicks
+  [ ] Slide 12: Kitara's claims letters: personal data found by pattern, 3 clicks
+  [ ] Slide 13: Finding personal data with patterns, 3 clicks
+  [ ] Slide 14: Mask first, then cut into chunks, 3 clicks
+  [ ] Slide 15: A separate check stops two chunks, 3 clicks
+  [ ] Slide 16: With looser patterns in the masker, the check passes, 3 clicks
+  [ ] Slide 17: Masked is not the same as anonymous, 3 clicks
+  [ ] Slide 18: An erasure request: search before and after, 3 clicks
+  [ ] Slide 20: Presidio: a library that finds personal data for you, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Run in Colab once: slide 20 (Presidio: a library that finds personal data for you) needs presidio
+  [ ] Run in Colab once: notebook Task 5 needs presidio
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Data Inventory.xlsx; page Data protection map in the Participant Workbook
+  [ ] Solution notebook runs in Colab: 09 - Privacy and East African law (solution).ipynb
+
+SESSION 10: Hosting, cost and licences
+  Notes read aloud: about 27 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up: what Session 9 said about moving data abroad, 2 clicks
+  [ ] Slide 8: The whole path from source to search needs a home, 3 clicks
+  [ ] Slide 9: Cost lines of a search system, by when you pay, 3 clicks
+  [ ] Slide 10: Build and buy both carry costs, 2 clicks
+  [ ] Slide 11: Kitara's licence register, summarised by type, 4 clicks
+  [ ] Slide 15: Flagging licence words in a LICENSE text, 3 clicks
+  [ ] Slide 16: Where keyword flagging fails, 2 clicks
+  [ ] Slide 17: The file says Apache, so the row gets a tick, 3 clicks
+  [ ] Slide 18: An exit plan answers four questions, 4 clicks
+  [ ] Slide 19: A total cost function that stops on a missing line, 2 clicks
+  [ ] Slide 20: A missing cost line stops the total, 2 clicks
+  [ ] Slide 21: Three options, and a check on the people line, 4 clicks
+  [ ] Slide 23: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Hosting Cost Model.xlsx; Licence Register.xlsx
+  [ ] Solution notebook runs in Colab: 10 - Hosting, cost and licences (solution).ipynb
+
+SESSION 11: Governance and AI risk
+  Notes read aloud: about 26 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 10, 2 clicks
+  [ ] Slide 6: Five roles, and the one decision each makes, 4 clicks
+  [ ] Slide 8: The four functions of the NIST AI Risk Management Framework, 4 clicks
+  [ ] Slide 9: NIST guidance and ISO/IEC 42001 side by side, 2 clicks
+  [ ] Slide 13: Scoring and ranking Kitara's twelve risks, 3 clicks
+  [ ] Slide 14: A check that stops on risks still open, 3 clicks
+  [ ] Slide 15: Where Kitara's twelve risks sit, 4 clicks
+  [ ] Slide 16: A circular went out, so the risk looks closed, 3 clicks
+  [ ] Slide 17: Incident drill: personal data found in the search index, 4 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Risk Register.xlsx
+  [ ] Solution notebook runs in Colab: 11 - Governance and AI risk (solution).ipynb
+
+SESSION 12: Your twelve-month roadmap
+  Notes read aloud: about 27 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 11, 2 clicks
+  [ ] Slide 5: Quick wins and foundations, 2 clicks
+  [ ] Slide 6: Rank the sixteen work items by value for effort, 3 clicks
+  [ ] Slide 7: Starting at the top of the ranking, 3 clicks
+  [ ] Slide 8: Record what each item waits for, 3 clicks
+  [ ] Slide 9: Find the chain of work that sets the end date, 3 clicks
+  [ ] Slide 10: A check that catches an item started too early, 2 clicks
+  [ ] Slide 11: The twelve month plan on one page, 3 clicks
+  [ ] Slide 12: Effort per month shows where the plan is overloaded, 3 clicks
+  [ ] Slide 15: The projected rescored baseline, 2 clicks
+  [ ] Slide 16: A target reported as a result, 3 clicks
+  [ ] Slide 19: Ten minutes in front of the board, 5 clicks
+  [ ] Slide 21: What happens after the course, 4 clicks
+  [ ] Slide 23: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Open and try: Board Paper Outline.docx; Readiness Scorecard.xlsx; Roadmap Planner.xlsx; page Board presentation outline in the Participant Workbook
+  [ ] Solution notebook runs in Colab: 12 - Your twelve-month roadmap (solution).ipynb
+
+TOOLS THAT NEED YOUR ACCOUNT OR A DOWNLOAD
+  [ ] Colab opens and runs a cell with a Google account
+  [ ] data.zip hosted, DATA_ZIP_URL given to participants (or they upload it)
+  [ ] sentence-transformers model downloads in Colab (Session 6)
+  [ ] Model cards and licence files read for every tool marked check in the Setup Guide

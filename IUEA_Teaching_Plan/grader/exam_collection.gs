@@ -175,6 +175,90 @@ function enableTestPortalCollection(){
  console.log('Test forms now require a matching private portal allocation. Existing collected attempts remain unchanged.');
 }
 
+/*
+ * Lecturer-only recovery for a genuine technical failure.
+ *
+ * Keep these functions in the private collector/gradebook Apps Script project.
+ * They must never be copied to Portal.gs or a public web-app project.  A retry
+ * does not delete the original form receipt, snapshot or Collection row: it
+ * marks any accepted receipt as superseded, revokes the old allocation code,
+ * clears the timer/notebook reference, and records the authorisation.  The
+ * student must then return to the normal entry page with the same details.
+ */
+var EXAM_RETRY_HEADERS=['authorised_at','assessment_key','registration_normalized','old_email','new_email','old_allocation_code','new_allocation_code','reason','authorised_by','form_responses_removed'];
+function examRetrySheet_(book){return examSheet_(book,'Test Retry Authorisations',EXAM_RETRY_HEADERS);}
+function examRetryEmail_(email){
+ email=String(email||'').trim().toLowerCase();
+ if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw Error('Enter a valid replacement Google email, or leave it blank to keep the existing email.');
+ return email;
+}
+function authoriseFreshTestAttempt(key,registration,reason,replacementEmail){
+ key=String(key||'').trim();
+ if(!/^CML311[123]\|TEST[12]$/.test(key))throw Error('Use an assessment key such as CML3111|TEST1.');
+ var reg=examRegistrationKey_(registration),why=String(reason||'').trim();
+ if(!reg)throw Error('Enter a Student ID/ Registration Number.');
+ if(why.length<8)throw Error('Record a short reason for the technical retry (at least 8 characters).');
+ var lock=LockService.getScriptLock();lock.waitLock(30000);
+ try{
+  var c=examConfig_(),book=SpreadsheetApp.openById(c.bookId),allocations=book.getSheetByName('Test allocations');
+  if(!allocations)throw Error('No Test allocations sheet exists yet.');
+  var rows=allocations.getDataRange().getValues(),matches=[];
+  rows.slice(1).forEach(function(row,index){if(row[0]===key&&examRegistrationKey_(row[1])===reg)matches.push({row:row,index:index+2});});
+  if(matches.length!==1)throw Error(matches.length?'More than one allocation matches this registration number. Resolve the duplicate first.':'No issued allocation matches this registration number for '+key+'.');
+  var match=matches[0],old=match.row,oldCode=String(old[3]||''),oldEmail=String(old[2]||'').trim().toLowerCase(),newEmail=examRetryEmail_(replacementEmail)||oldEmail;
+  if(!newEmail)throw Error('The allocation has no Google email. Supply the replacement email before authorising a retry.');
+  var form=c.forms&&c.forms[key];if(!form||!form.formId)throw Error('No submission form is configured for '+key+'.');
+  var collection=book.getSheetByName('Collection'),receiptRows=collection&&collection.getLastRow()>1?collection.getRange(2,1,collection.getLastRow()-1,15).getValues():[];
+  // Remove only this identity's prior form responses so Google Forms' one-response
+  // setting cannot block the approved retry. Collection rows remain as audit data.
+  var responseIds=[];receiptRows.forEach(function(r){
+   if(r[1]+'|'+r[2]===key&&examRegistrationKey_(r[6])===reg&&r[0])responseIds.push(String(r[0]));
+  });
+  var liveForm=FormApp.openById(form.formId),removed=0;
+  responseIds.forEach(function(id){try{liveForm.deleteResponse(id);removed++;}catch(e){throw Error('Could not clear the earlier form response '+id+'. No retry was authorised: '+String(e));}});
+  // Preserve the old receipt/snapshot; it cannot be exported as the active attempt.
+  if(collection&&receiptRows.length)receiptRows.forEach(function(r,index){
+   if(r[1]+'|'+r[2]===key&&examRegistrationKey_(r[6])===reg&&r[10]==='COLLECTED'){
+    collection.getRange(index+2,11).setValue('SUPERSEDED_FOR_RETRY');
+    collection.getRange(index+2,15).setValue('Superseded by authorised technical retry at '+new Date().toISOString()+'. Reason: '+why);
+   }
+  });
+  var newCode='T-'+Utilities.getUuid(),resetAt=new Date().toISOString();
+  // Same variant, new allocation code. Clearing start/deadline/notebook makes the
+  // portal issue one fresh timer and a fresh private notebook on the next visit.
+  old[2]=newEmail;old[3]=newCode;old[5]=resetAt;old[7]='';old[8]='';old[9]='';old[11]='DIRECT';
+  allocations.getRange(match.index,1,1,old.length).setValues([old]);
+  var actor='';try{actor=Session.getActiveUser().getEmail()||'';}catch(ignore){}
+  examRetrySheet_(book).appendRow([resetAt,key,reg,oldEmail,newEmail,oldCode,newCode,why,actor,removed]);
+  SpreadsheetApp.flush();
+  console.log('RETRY AUTHORISED '+JSON.stringify({key:key,registration:reg,email:newEmail,allocation:newCode,removed_form_responses:removed}));
+  return {assessment:key,registration:reg,email:newEmail,new_allocation_code:newCode,form_responses_removed:removed};
+ }finally{lock.releaseLock();}
+}
+// Convenience wrapper: provide only the registration number when it belongs to
+// exactly one currently open test. If it is ambiguous, use authoriseFreshTestAttempt.
+function authoriseFreshTestAttemptForRegistration(registration,reason,replacementEmail){
+ var reg=examRegistrationKey_(registration),c=examConfig_(),book=SpreadsheetApp.openById(c.bookId),sheet=book.getSheetByName('Test allocations');
+ if(!reg||!sheet)throw Error('Enter a registration number that has an issued test allocation.');
+ var now=Date.now(),keys={};sheet.getDataRange().getValues().slice(1).forEach(function(r){
+  if(examRegistrationKey_(r[1])!==reg)return;
+  var w=examWindow_(r[0],c);if(w.enabled&&now>=Date.parse(w.open)&&now<=Date.parse(w.close))keys[r[0]]=true;
+ });
+ var choices=Object.keys(keys);
+ if(choices.length!==1)throw Error(choices.length?'More than one open test matches this registration number. Use authoriseFreshTestAttempt with the assessment key.':'No single open test matches this registration number. Use authoriseFreshTestAttempt with the assessment key.');
+ return authoriseFreshTestAttempt(choices[0],registration,reason,replacementEmail);
+}
+// Run this from the private Apps Script editor. It asks only for the student ID
+// and reason, selects the single currently-open test, and logs the audit result.
+function promptAuthoriseFreshTestAttempt(){
+ var registration=Browser.inputBox('Authorise a fresh test attempt','Student ID / Registration Number:',Browser.Buttons.OK_CANCEL);
+ if(registration==='cancel')return;
+ var reason=Browser.inputBox('Authorise a fresh test attempt','Reason for this technical retry (recorded in the audit log):',Browser.Buttons.OK_CANCEL);
+ if(reason==='cancel')return;
+ var result=authoriseFreshTestAttemptForRegistration(registration,reason,'');
+ Browser.msgBox('Fresh attempt authorised for '+result.registration+'. The student should return to the entry page with the same Google email.');
+}
+
 // Keep the synthetic portal verification attempt in the audit, outside student batches.
 function archivePortalRehearsal(){
  var s=SpreadsheetApp.openById(examConfig_().bookId).getSheetByName('Collection');

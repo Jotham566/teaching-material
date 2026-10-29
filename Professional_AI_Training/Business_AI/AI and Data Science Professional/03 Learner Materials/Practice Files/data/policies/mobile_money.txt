@@ -1,0 +1,6 @@
+Lakeside Mart Mobile Money Payments. Customers can pay with MTN Mobile Money or Airtel Money at all
+eight branches. A payment request is sent to the customer's phone and must be approved with the
+customer's PIN. If the money leaves the wallet but the till shows no payment, the customer should
+keep the transaction message and ask the branch manager, who checks the daily settlement report.
+Failed payments are reversed by the provider, usually within 24 hours. Lakeside Mart never asks for
+a customer's PIN. Mobile money limits are set by the provider.

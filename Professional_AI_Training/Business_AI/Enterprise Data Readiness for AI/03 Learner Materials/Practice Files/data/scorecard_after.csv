@@ -1,0 +1,6 @@
+dimension,baseline_score,evidence_adjusted_score,projected_score_month_12,change_from_baseline,driving_action,roadmap_items
+Use cases and sponsorship,3.0,2.33,3.5,0.5,Board approves a written mandate and a budget owner for the first use case,W01;W15
+"Data: inventory, quality and metadata",2.0,1.33,3.0,1.0,"Every source has an owner, a steward and a class, and six quality rules run on the customer table",W02;W05;W06
+Platform and pipelines,2.5,2.4,3.5,1.0,"Raw, cleaned and serving zones run with freshness and schema alerts",W07;W14
+Protection and law,3.0,2.67,3.5,0.5,Personal data is masked before indexing and permission filters are tested,W12;W13
+People and governance,1.5,1.33,3.0,1.5,A steering council meets monthly and every dataset in the plan has a named owner,W01;W11

@@ -1,0 +1,468 @@
+{
+ "session": 4,
+ "notes_title": "Today is Session 4, quality, metadata and data contracts. Kitara wants to use its customer table for a churn model and an assistant, and the table has five thousand rows, a hundred and fifty duplicates and phone numbers in four formats. You and your colleague will learn to measure that, write rules a machine can check, and put an owner and a change rule in a contract. By the end you'll have six quality rules and one data contract for a dataset of your choice.",
+ "notes_outcomes": "By the end of today you'll measure completeness, validity and uniqueness on a real table. You'll write a rule that a machine can check, with a threshold a leader has signed, and a data contract with an owner and a change rule. The timetable is the usual one. Ten minutes of warm-up, thirty of teaching, twenty five of live demonstration, a short break, then forty minutes with the contract workbook on your own data, and ten minutes at the end for a decision about who stops a load.",
+ "notes_words": "Six words today. A dimension is one angle from which you measure quality, such as completeness. Profiling is a quick measured look at a table before you trust it. A rule is a column, a test and a threshold. The threshold is the share of rows that must pass, and a leader sets it. A schema lists the columns of a table with their types. A data contract is the written agreement between the team that makes a dataset and the teams that use it.",
+ "vocab": [
+  [
+   "Quality dimension",
+   "One angle from which data quality is measured, such as completeness or validity.",
+   "Six of them, applied to customers.csv"
+  ],
+  [
+   "Profiling",
+   "A quick measured look at a table before you trust it: counts, blanks, ranges.",
+   "Email is blank in 32.5% of customers"
+  ],
+  [
+   "Quality rule",
+   "A column, a test and a threshold that a machine can check.",
+   "Phone matches +256 7xxxxxxxx for 98% of rows"
+  ],
+  [
+   "Threshold",
+   "The share of rows that must pass a rule. A business decision.",
+   "National ID filled in for 99%"
+  ],
+  [
+   "Schema",
+   "The list of columns in a table with their types and allowed blanks.",
+   "The 14 columns of customers.csv"
+  ],
+  [
+   "Data contract",
+   "A written agreement between the team that produces a dataset and the teams that use it.",
+   "Data Contract Template.xlsx for the customer table"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 3",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Every source in the inventory has an owner, a steward and a custodian. How do the three differ?",
+     "a": "The owner answers for the data. The steward looks after its quality day to day. The custodian runs the system it sits in."
+    },
+    {
+     "q": "S03 holds scanned national ID copies and was recorded as internal. What class should it carry?",
+     "a": "Confidential. Kitara's four classes are public, internal, restricted and confidential."
+    }
+   ],
+   "notes": "Session 3 gave Kitara an inventory of fourteen data sources, and it showed that four of them have no owner. Two questions on it. Every source has an owner, a steward and a custodian. How do the three differ? Take your time.\n\nThe owner answers for the data and decides who may use it. The steward looks after its quality from day to day. The custodian runs the system it sits in. Second question. Source S03 holds scanned national ID copies, and the inventory recorded it as internal. What class should it carry? Have a think.\n\nConfidential. Scans of identity cards are personal data of the most sensitive kind. Last session we asked who owns the data. Today we ask whether the data is any good, and how a machine can tell."
+  },
+  {
+   "type": "table",
+   "title": "Six questions that measure data quality",
+   "header": [
+    "Dimension",
+    "The plain question",
+    "At Kitara"
+   ],
+   "rows": [
+    [
+     "Completeness",
+     "Is everything there?",
+     "Email blank in 32.5% of customers"
+    ],
+    [
+     "Validity",
+     "Is it in the allowed form?",
+     "2,490 phones not in +256 form"
+    ],
+    [
+     "Uniqueness",
+     "Is each thing recorded once?",
+     "150 customers entered twice"
+    ],
+    [
+     "Consistency",
+     "Does it say the same everywhere?",
+     "Gender coded eight ways"
+    ],
+    [
+     "Timeliness",
+     "Is it recent enough?",
+     "Six hours missing in the mobile money log"
+    ],
+    [
+     "Accuracy",
+     "Does it match the real world?",
+     "Needs a check against paper or the customer"
+    ]
+   ],
+   "colw": [
+    2.6,
+    4.4,
+    5.0
+   ],
+   "size": 19,
+   "notes": "Data quality means fit for the use you have in mind. A table that is fine for a monthly report can still be wrong for an AI. To make that measurable we split quality into six questions, called dimensions. A dimension is one angle from which you can measure a table.\n\nCompleteness asks whether everything is there. Email is blank for thirty two and a half percent of Kitara's customers. Validity asks whether a value has the allowed form. Two thousand four hundred and ninety phone numbers are not written in the plus two five six form. Uniqueness asks whether each customer appears once. A hundred and fifty appear twice.\n\nConsistency asks whether the same fact is written the same way. Gender is coded eight different ways. Timeliness asks whether the data is recent enough. The mobile money log has a six hour hole in one day. Accuracy asks whether the value matches the real world, and that is the one a rule cannot settle alone. Someone has to compare a sample with paper or with the customer."
+  },
+  {
+   "type": "concept",
+   "title": "Where the six words come from",
+   "lead": "The profession shares these words, and the published lists differ a little.",
+   "points": [
+    {
+     "h": "DAMA",
+     "t": "The DAMA UK working group's 2013 paper names these six. DAMA also publishes the DMBOK, a guide to data management."
+    },
+    {
+     "h": "ISO/IEC 5259",
+     "t": "A standards series from 2024 on data quality for analytics and machine learning. Its list includes credibility and currentness."
+    },
+    {
+     "h": "Our rule",
+     "t": "Pick one list, write each definition down and use the same words in every team."
+    }
+   ],
+   "notes": "Where do these words come from? The six we just used come from a 2013 paper by a working group of DAMA UK. DAMA is the international association for data management, and it also publishes the DMBOK, a reference guide to the whole field. Many data teams still use those six.\n\nA newer source is the ISO and IEC 5259 series, published from 2024, on data quality for analytics and machine learning. It uses a longer list. Besides accuracy, completeness and consistency, it names credibility and currentness. Standards bodies sell their texts, so read the edition your organisation holds before you quote it.\n\nYou do not need to settle which list is better. You need one list that everybody in your organisation uses, with each word defined in a sentence. Otherwise the data team says valid, the business says correct, and they mean different things."
+  },
+  {
+   "type": "figure",
+   "title": "What is wrong with the Kitara customer table",
+   "fig": "defect_profile",
+   "look": [
+    "Phone not in +256 form: 2,490 of 5,000 rows.",
+    "Gender not coded M or F: 1,462 rows.",
+    "Duplicate customers: 150 rows.",
+    "Impossible dates: 40 rows. Test accounts: 25."
+   ],
+   "alt": "Bar chart of eight defect types in the customer table, with phone not in +256 form the largest at 2,490 rows.",
+   "caption": "Counted from customers.csv. Some rows have more than one defect.",
+   "notes": "Kitara wants to use its customer table, customers.csv, for a churn model and a customer service assistant. Five thousand rows. Before anyone builds anything, the data team counted the defects, and this is what they found.\n\nThe longest bar is phone numbers. Two thousand four hundred and ninety rows hold a number that is not in the plus two five six form. They come as zero seven, as two five six without a plus, or with spaces and dashes.\n\nGender is coded eight ways in fourteen hundred and sixty two rows. F, Female, lower case f and the digit two all mean the same thing.\n\nA hundred and fifty rows are the same person entered twice. Each copy has its own customer id, so no id check will catch them.\n\nForty rows carry dates that cannot be real, such as a birth year of 1850. And twenty five rows are test accounts that never left production. A row can have more than one defect, so you cannot add the bars up."
+  },
+  {
+   "type": "code",
+   "title": "Profile the table: how much is blank?",
+   "lang": "python",
+   "code": "import pandas as pd\n\ncust = pd.read_csv('customers.csv')\nprint(len(cust), 'rows,', cust.customer_id.nunique(), 'distinct ids')\nblank = cust.isna().mean().mul(100).round(1)\nprint(blank[blank > 0].sort_values(ascending=False))",
+   "says": [
+    "Read the customer table. Count the rows and the distinct customer ids.",
+    "For every column, work out the percent of cells that are blank.",
+    "Keep only the columns with something missing, largest first."
+   ],
+   "output": "5000 rows, 5000 distinct ids\nemail            32.5\nnational_id      11.0\ndate_of_birth     6.0\ndtype: float64",
+   "notes": "Profiling means taking a quick measured look at a table before you trust it. Three lines do the first pass.\n\nWe read customers.csv and count the rows against the distinct customer ids. Five thousand rows and five thousand distinct ids. Every row has its own id. Remember that, because it means an id check says all is well while a hundred and fifty customers are listed twice.\n\nNext, for every column, we work out the percent of cells that are blank.\n\nThen we keep only the columns with something missing, longest first. Email is blank for thirty two and a half percent, the national ID for eleven percent, and date of birth for six. Every other column is complete.\n\nA profile only describes. It does not say whether eleven percent missing is acceptable. That needs a rule and a threshold, and the threshold is a business decision."
+  },
+  {
+   "type": "code",
+   "title": "Four rules with thresholds that run as code",
+   "lang": "python",
+   "code": "dob = pd.to_datetime(cust.date_of_birth)\nop = pd.to_datetime(cust.opened_date)\ndate_ok = (dob.isna() | dob.between('1900', '2026-10-29')) & (op <= '2026-10-29')\nrules = [\n ('national id filled', cust.national_id.notna(), 99),\n ('phone +256 7xxxxxxxx', cust.phone.str.match(r'^\\+2567\\d{8}$'), 98),\n ('dates in range', date_ok, 99.9),\n ('gender M or F', cust.gender.isin(['M', 'F']), 99)]\nfor name, ok, need in rules:\n    p = ok.mean() * 100\n    print(f'{name:<22}{p:5.1f}%  need {need}%', 'PASS' if p >= need else 'FAIL')\nprint('rows passing all four:', pd.concat([r[1] for r in rules], axis=1).all(axis=1).sum())",
+   "output": "national id filled     89.0%  need 99% FAIL\nphone +256 7xxxxxxxx   50.2%  need 98% FAIL\ndates in range         99.2%  need 99.9% FAIL\ngender M or F          70.8%  need 99% FAIL\nrows passing all four: 1557",
+   "notes": "A quality rule has three parts: a column, a test and a threshold. Written as code, a machine can run it every night. Here are four of the six rules for the customer table.\n\nEach rule is a test that gives true or false for every row, paired with the share of rows that must pass. The threshold is the number a leader signs.\n\nThe phone rule uses a pattern, a short code that describes the allowed shape: plus two five six, then a seven, then eight digits. The date rule checks that birth dates fall between nineteen hundred and today, and that no account opened in the future.\n\nRead the results. National ID is filled in for eighty nine percent, and the bank asked for ninety nine. Phones pass for fifty point two percent. Dates for ninety nine point two. Gender for seventy point eight.\n\nLast line. Only fifteen hundred and fifty seven rows pass all four rules at once. We come back to that number in a minute."
+  },
+  {
+   "type": "code",
+   "title": "Duplicates: the rule has to normalise names first",
+   "lang": "python",
+   "code": "d = cust[cust.date_of_birth.notna()]\nexact = d.duplicated(['full_name', 'date_of_birth']).sum()\nname = d.full_name.str.lower().str.split().str.join(' ')\nnorm = d.assign(name=name).duplicated(['name', 'date_of_birth']).sum()\nby_id = (cust.national_id.notna() & cust.duplicated('national_id')).sum()\nprint('exact', exact, '| normalised', norm, '| by national id', by_id)\nprint('distinct people:', len(cust) - norm)",
+   "says": [
+    "Keep customers with a birth date. A blank date would match every other blank.",
+    "Normalising means lower case and single spaces. Compare the two counts.",
+    "A second rule uses the national ID. Both rules should agree."
+   ],
+   "output": "exact 75 | normalised 150 | by national id 150\ndistinct people: 4850",
+   "notes": "Uniqueness is the next rule, one of the six for our customer table. Two copies of one customer will not share a customer id, so we match on what identifies the person: name and date of birth.\n\nWe first keep customers who have a birth date, because a blank date would match every other blank and give false duplicates.\n\nThen we compare the names exactly as typed, and we find seventy five pairs. Next we normalise the names, which means lower case and one space between words. Mercy Ssebunya and MERCY SSEBUNYA now match, and so do names with a double space or a trailing space. The count doubles to a hundred and fifty.\n\nA second rule, the national ID, finds the same hundred and fifty. When two independent rules agree, you can trust the count.\n\nKitara has five thousand rows and four thousand eight hundred and fifty distinct people."
+  },
+  {
+   "type": "trap",
+   "title": "Reading the rules one at a time hides how many rows are bad",
+   "looks": "Dates fail on 0.8 percent of rows. National ID fails on 11. Each looks like a small problem to fix later.",
+   "why": "Each rule counts rows on its own, and the failures fall on different rows. An AI reads whole rows. Only 1,557 of 5,000 rows, 31 percent, pass all four rules.",
+   "fix": "Report each rule and the share of rows that pass every rule. Decide which rules must hold before an AI may read the table.",
+   "notes": "A quality report lands on your desk with one line per rule, and nothing on it looks alarming.\n\nDates fail on under one percent of rows. The national ID is missing on eleven percent. Read down the list and each line looks like a small job to schedule for later.\n\nThe trouble is that each line counts rows for one rule alone, and the failures fall on different rows. An AI does not read a rule. It reads a row, with a phone, a gender, a date and an ID together. A row that fails any rule is a bad row for that purpose. Across the four rules, only fifteen hundred and fifty seven rows out of five thousand pass every one. That is thirty one percent.\n\nAsk for two numbers on every report: each rule, and the share of rows that pass all of them. Then decide which rules must hold before an AI may read the table. Phone format matters for a text message campaign. It may not matter for a churn model. That is a leader's call."
+  },
+  {
+   "type": "code",
+   "title": "The mobile money log: four rules, one day with a hole",
+   "lang": "python",
+   "code": "mm = pd.read_csv('mobile_money_log.csv')\niso = pd.to_datetime(mm.timestamp, format='%Y-%m-%d %H:%M:%S', errors='coerce')\nslash = pd.to_datetime(mm.timestamp, format='%d/%m/%Y %H:%M', errors='coerce')\nts = iso.fillna(slash).sort_values()\nprint('txn_id repeated:', mm.duplicated('txn_id').sum())\nprint('amount zero or below:', (mm.amount_ugx <= 0).sum())\nprint('second format:', iso.isna().sum(), 'unreadable:', ts.isna().sum())\nprint('longest silence:', ts.diff().max())",
+   "output": "txn_id repeated: 300\namount zero or below: 160\nsecond format: 1842 unreadable: 0\nlongest silence: 0 days 06:05:44",
+   "notes": "A second table, mobile_money_log.csv, holds twenty thousand transactions from September. The same dimensions apply.\n\nFirst the clock. Twelve agents record the time as day, month, year, while everyone else writes year, month, day. We read each format separately and combine them, so every row gets a proper time.\n\nThree hundred transaction ids appear twice, and that is a uniqueness failure. A hundred and sixty amounts are zero or below, and that is validity.\n\nA thousand eight hundred and forty two rows use the second timestamp format. That is a consistency problem. Reading both formats fixes it, and no timestamp is left unreadable.\n\nLast, timeliness. We sort by time and find the longest gap between two transactions. Six hours and five minutes. A busy log does not go quiet for six hours by accident, so something upstream stopped. Nobody got an alert."
+  },
+  {
+   "type": "figure",
+   "title": "Six hours of silence on 17 September",
+   "fig": "freshness_gap",
+   "look": [
+    "Transactions per hour on 17 September 2026.",
+    "A hatched block from 08:59 to 15:05 with no records.",
+    "About 40 transactions in the hour from 08:00 and about 50 from 15:00."
+   ],
+   "alt": "Bar chart of transactions per hour on one day with a hatched 6 hour stretch around midday where nothing was recorded.",
+   "caption": "The next longest gap in the month is 1.6 hours.",
+   "notes": "The same gap, drawn out for one day, the seventeenth of September.\n\nEach bar counts the transactions in one hour. The hatched block marks the stretch with no records, from eight fifty nine in the morning to five past three in the afternoon.\n\nAt the edges of the gap, in the hour before the gap, about forty transactions were recorded, and in the hour after it, about fifty. This is a working day, and customers were still using their phones. The data stopped arriving.\n\nA fraud model that learns from this log sees a quiet midday that never happened. A freshness rule would have caught it. The next longest silence in the whole month is one point six hours, so a rule that says no gap over three hours would have fired once, on this day, and an engineer would have been told within hours."
+  },
+  {
+   "type": "code",
+   "title": "A gate that stops the load when a rule fails",
+   "lang": "python",
+   "expect_error": true,
+   "code": "def gate(name, bad, limit):\n    pct = 100 * bad / len(mm)\n    assert pct <= limit, f'{name}: {bad} rows, {pct:.1f}% > {limit}%. Stopped.'\n    print(name, 'passed')\n\ngate('amount zero or below', (mm.amount_ugx <= 0).sum(), 1.0)\ngate('txn_id repeated', mm.duplicated('txn_id').sum(), 0.1)",
+   "says": [
+    "A gate counts bad rows and compares their share with the limit.",
+    "Amounts at zero or below are 0.8 percent against a limit of 1. It passes.",
+    "Repeated ids are 1.5 percent against 0.1. The gate stops the load."
+   ],
+   "output": "amount zero or below passed\nAssertionError: txn_id repeated: 300 rows, 1.5% > 0.1%. Stopped.",
+   "notes": "This one fails on purpose, and I'd like you to read the failure as a leader.\n\nA gate is a small function placed in front of a load. It counts the bad rows for one rule, works out the share, and stops the whole load when the share is over the limit.\n\nWe call it twice on the mobile money log. Amounts at zero or below are eight tenths of one percent, and the limit we set is one percent. It prints passed.\n\nRepeated transaction ids are one and a half percent against a limit of a tenth of one percent. The assert fails and the message says what happened, how many rows and which limit. The load stops.\n\nA failed gate is the system working. The cost of stopping is a delayed report. The cost of carrying on is three hundred transactions counted twice. Someone has to decide in advance, for each rule, whether a late report or a wrong one is worse."
+  },
+  {
+   "type": "code",
+   "title": "The same checks in SQL on the customer table",
+   "lang": "sql",
+   "code": "SELECT COUNT(*) AS ids_used_twice, SUM(n) AS rows_involved\nFROM (SELECT national_id, COUNT(*) AS n\n      FROM customers\n      WHERE national_id IS NOT NULL\n      GROUP BY national_id\n      HAVING COUNT(*) > 1)",
+   "says": [
+    "Group the customers by national ID and count the rows in each group.",
+    "Keep the groups with more than one row, then count the groups and the rows."
+   ],
+   "output": "ids_used_twice rows_involved\n150 300",
+   "notes": "Many of your data colleagues do this work in SQL, the query language of databases, so here is the duplicate rule in that form.\n\nThe inner query groups the customers by national ID and counts how many rows share each ID. It skips blanks, because a blank is not an identity. HAVING keeps only the groups where the count is above one.\n\nThe outer query counts those groups and adds up their rows. A hundred and fifty national IDs are used twice, and three hundred rows are involved. Delete one row from each pair and you remove a hundred and fifty, the same number the pandas rule found.\n\nIf your bank keeps its customers in a database, rules like this can run where the data already sits, with no export to a spreadsheet."
+  },
+  {
+   "type": "code",
+   "title": "Pandera: the rules written as a schema",
+   "lang": "python",
+   "code": "import pandera.pandas as pa\n\nschema = pa.DataFrameSchema({\n    'customer_id': pa.Column(str, pa.Check.str_matches(r'^KT-\\d{7}$'), unique=True),\n    'national_id': pa.Column(str, pa.Check.str_matches(r'^KX\\d{12}$'), nullable=True),\n    'gender': pa.Column(str, pa.Check.isin(['M', 'F'])),\n    'phone': pa.Column(str, pa.Check.str_matches(r'^\\+2567\\d{8}$')),\n})\nschema.validate(cust, lazy=True)",
+   "says": [
+    "A schema lists each column, its type and the checks it must pass.",
+    "lazy=True collects every failure into one report instead of stopping at the first."
+   ],
+   "notes": "Pandera is a free Python library, released under the MIT licence, that holds your rules in one readable object. We show the syntax only today, and the team will try it after the course.\n\nA schema lists each column with its type and its checks. Customer id must match the KT pattern and be unique. National ID may be blank, but when it is there it must have the KX form. Gender must be M or F. The phone must have the plus two five six form.\n\nThe last line validates the customer table. With lazy set to true, Pandera collects every failure into a single report, with the column, the check and the failing values, instead of stopping at the first one.\n\nThe rules read almost like the table of rules in a contract. A leader can read this and say yes, that is what we mean by valid. The colleague who installs it should check the current documentation, because the import path has changed between versions."
+  },
+  {
+   "type": "code",
+   "title": "Great Expectations Core: one expectation on a batch",
+   "lang": "python",
+   "code": "import great_expectations as gx\n\ncontext = gx.get_context()\nsource = context.data_sources.add_pandas('kitara')\nasset = source.add_dataframe_asset('customers')\nbatch_def = asset.add_batch_definition_whole_dataframe('whole table')\nbatch = batch_def.get_batch(batch_parameters={'dataframe': cust})\n\nrule = gx.expectations.ExpectColumnValuesToNotBeNull(column='national_id', mostly=0.99)\nprint(batch.validate(rule).success)",
+   "says": [
+    "Tell the tool where the table is and take the whole table as one batch.",
+    "An expectation is one rule. mostly=0.99 is the threshold: 99 percent must pass."
+   ],
+   "notes": "Great Expectations is the best known open source tool for this job. We use its Core library, version one point x, and again show syntax only.\n\nThe first lines tell the tool where the table lives and take the whole table as one batch. Then comes one expectation, which is the tool's word for a rule: the national ID column must not be null. The word mostly sets the threshold. Zero point nine nine means ninety nine percent of rows must pass.\n\nThe last line runs it and prints true or false. On Kitara's table it would print false, since only eighty nine percent are filled in.\n\nA caution about ownership. As of October 2026, the Great Expectations company says its commercial cloud product closed on the first of June, and that Fivetran now stewards the open source Core project. Core stays under the Apache licence. Tell your team to check which package and which licence they install before they build anything on it."
+  },
+  {
+   "type": "stat",
+   "title": "What the defects cost downstream at Kitara",
+   "stats": [
+    {
+     "n": "150",
+     "label": "customers entered twice: 5,000 rows are 4,850 people"
+    },
+    {
+     "n": "31,787,500",
+     "label": "UGX counted twice in the mobile money log"
+    },
+    {
+     "n": "2,490",
+     "label": "phones to repair before a text campaign"
+    },
+    {
+     "n": "550",
+     "label": "customers a KYC check cannot match, no national ID"
+    }
+   ],
+   "caption": "All computed from customers.csv and mobile_money_log.csv.",
+   "notes": "What does a defect cost once it is downstream? Four numbers from Kitara's own files.\n\nA duplicate rule would merge a hundred and fifty customer records. A board report that counts customers says five thousand. The real number of people is four thousand eight hundred and fifty, so the report is about three percent too high. A churn model sees the same person twice, and if one copy lands in training and the other in testing, the model looks smarter than it is.\n\nThe repeated transaction ids in the mobile money log carry thirty one million seven hundred and eighty seven thousand five hundred shillings. If a daily total includes them, that money is counted twice.\n\nTwo thousand four hundred and ninety phone numbers need repair before a text campaign can use them. And five hundred and fifty customers have no national ID, so an identity check has nothing to match.\n\nA rule that fires at the source costs one conversation with the owner. The same defect found after a model is live means retraining the model."
+  },
+  {
+   "type": "table",
+   "title": "A data contract has five fields",
+   "header": [
+    "Field",
+    "What it says",
+    "Kitara customer table"
+   ],
+   "rows": [
+    [
+     "Schema",
+     "Columns, types, allowed blanks",
+     "14 columns. national_id may be blank"
+    ],
+    [
+     "Quality",
+     "Rules with thresholds",
+     "National ID filled in for 99% of rows"
+    ],
+    [
+     "Freshness",
+     "How old the data may be",
+     "Daily load. Alert at 30 hours (proposed)"
+    ],
+    [
+     "Owner",
+     "Who answers and approves changes",
+     "Head of Retail Banking Operations"
+    ],
+    [
+     "Change policy",
+     "What counts as breaking, and notice",
+     "30 days notice to drop a column (proposed)"
+    ]
+   ],
+   "colw": [
+    2.4,
+    4.4,
+    5.2
+   ],
+   "size": 19,
+   "notes": "Rules that live in someone's notebook disappear when that person leaves. A data contract writes them down as an agreement between the team that produces a dataset and the teams that use it. Five fields cover most of it.\n\nThe schema lists the columns, their types and which may be blank. Quality holds the rules and thresholds we just ran. Freshness says how old the data may be before an alert goes to someone. For the customer table we propose a daily load and an alert at thirty hours.\n\nThe owner is the role that answers for the data and can say yes or no to a change. For the customer table, the inventory names the Head of Retail Banking Operations.\n\nThe change policy says what counts as a breaking change and how much notice consumers get. Thirty days to drop a column is our proposal, and you may choose differently. The owner and the change policy are leader decisions. Your technical colleagues cannot make them for you."
+  },
+  {
+   "type": "concept",
+   "title": "A contract in a standard format and in a workbook",
+   "lead": "You can write the same five fields in a public standard or in a spreadsheet.",
+   "points": [
+    {
+     "h": "Open Data Contract Standard",
+     "t": "A public format for contracts, written as YAML. Run by Bitol, a Linux Foundation AI and Data project. Version 3.1.0 came out in December 2025."
+    },
+    {
+     "h": "Data Contract Template.xlsx",
+     "t": "The same fields in a workbook. One contract per dataset. Cream cells are for your input."
+    },
+    {
+     "h": "Metadata",
+     "t": "Name, description, owner, sensitivity and column meanings let others find and reuse the table without asking."
+    }
+   ],
+   "notes": "Where do you write the contract? There are two practical routes.\n\nThe first is the Open Data Contract Standard, a public format for data contracts, written as a plain text file in a language called YAML. It is run by Bitol, a project hosted by the Linux Foundation's AI and Data group. Version three point one point zero was released in December 2025. Tools can read it and test your data against it, so the contract does not sit in a drawer.\n\nThe second is the Data Contract Template workbook in your folder. It carries the same fields as a spreadsheet: identity, schema, quality rules, freshness, change policy and sign-off. Most of you will start here, and that is fine. A signed workbook beats a perfect file that nobody wrote.\n\nBoth carry metadata, which is data about the data. The name, a description, the owner, the sensitivity class and the meaning of each column. Without them, a colleague finds a table called cust2 and has to guess what it holds."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: six rules and one contract",
+   "tool": "Data Contract Template workbook and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Choose one dataset you would feed to an AI use",
+    "Fill section 1: name, owner, steward, sensitivity class",
+    "List the columns in section 2 with type and allowed blanks",
+    "Write six rules in section 3: column, test and threshold",
+    "Check each rule on a sample and write the pass rate",
+    "Fill freshness, volume and change policy in sections 4 and 5",
+    "Name who signs for the owner and for the consumers in section 6"
+   ],
+   "done": "One dataset has six rules a machine can check and a contract with a named owner, a freshness limit and a change policy.",
+   "notes": "Forty minutes. Open Data Contract Template dot xlsx and choose one dataset your organisation would hand to an AI use. A customer table, a claims register or a transaction log all work. Pick one that you can open today.\n\nFill section one first, and write the owner and the steward as roles. Names change, roles stay. Then list the columns with a type and whether a blank is allowed. In section three, write six rules, each with a column, a test and a threshold. Cover at least four of the six dimensions. Open a sample of the data, a few hundred rows is enough, and write the pass rate beside each rule.\n\nLeaders, you set the thresholds and the change policy, and you decide who signs in section six. Data colleagues, once your leader is happy with the rules, open the team notebook and run the Kitara version. I'll be at your tables if a threshold or a column type has you stuck."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Kitara's customer id passes at 100 percent, yet 150 customers appear twice. Which dimension catches that, and how?",
+     "a": "Uniqueness. Match on the normalised name with the date of birth, or on the national ID."
+    },
+    {
+     "q": "Why report the share of rows that pass every rule as well as each rule?",
+     "a": "An AI reads whole rows. At Kitara only 1,557 of 5,000 rows pass all four rules."
+    },
+    {
+     "q": "Who in your organisation owns the dataset you chose, and which failed rule would you let stop a load?",
+     "a": "A named role that can say yes or no to a change. Often the rule behind a regulatory or money figure."
+    }
+   ],
+   "notes": "Questions to finish, and the third one is yours, leaders. First, Kitara's customer id is unique on every row, yet a hundred and fifty customers appear twice. Which dimension catches that, and how? Sit with it for a second.\n\nUniqueness. You match on the normalised name with the date of birth, or on the national ID, because the id column is different on each copy. Second question. Why report the share of rows that pass every rule, as well as each rule on its own? Let's hear your answer first.\n\nBecause an AI reads whole rows. At Kitara only fifteen hundred and fifty seven of five thousand rows pass all four rules, though no single rule looks bad. Last question, and it belongs to the leaders. Who in your organisation owns the dataset you chose, and which failed rule would you let stop a load? Think it over.\n\nName a role that can say yes or no to a change. A good candidate for the stopping rule is one behind a regulatory return or a money total, where a wrong number costs more than a late one."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Six dimensions turn fit for use into questions: completeness, validity, uniqueness, consistency, timeliness and accuracy.",
+    "A rule is a column, a test and a threshold a machine can run. Report the share of rows that pass every rule.",
+    "A data contract names the schema, quality rules, freshness, owner and change policy. Kitara's customer table passes all four rules on 1,557 of 5,000 rows."
+   ],
+   "next": "From documents to clean text",
+   "notes": "Six dimensions turn the question of fitness for use into six plain questions you can ask of any table.\n\nA quality rule has a column, a test and a threshold, and a machine can run it every night. Report each rule and also the share of rows that pass them all.\n\nA data contract writes down the schema, the quality rules, the freshness limit, the owner and the change policy, and someone signs it. Kitara's customer table passes all four rules on fifteen hundred and fifty seven of five thousand rows today, and the numbers in your own contract will say where to start.\n\nTables are only half of what AI reads. Next session we turn to documents, and find out which of Kitara's can be read, which are scans, and what must be repaired before a search can use them."
+  }
+ ],
+ "lab": {
+  "intro": "Workshop: write six quality rules and one data contract for a dataset of your choice in Data Contract Template.xlsx, using the Kitara customer table as the worked example. The team notebook profiles customers.csv, runs the rules and the duplicate check, then tests the mobile money log.",
+  "workshop": [
+   {
+    "task": "Choose one dataset you would feed to an AI use. In section 1 of Data Contract Template.xlsx write its name, owner role, steward role, producing system and sensitivity class.",
+    "example": "Customer table (customers.csv), extract of the core banking system S01. Owner: Head of Retail Banking Operations. Steward: Core Banking Data Analyst. Sensitivity: confidential. Contains personal data: Y."
+   },
+   {
+    "task": "List the columns in section 2 with type, description and whether a blank is allowed.",
+    "example": "14 columns. customer_id text, never blank. national_id text, blank allowed (11.0% blank today). date_of_birth date, blank allowed (6.0%). email text, blank allowed (32.5%)."
+   },
+   {
+    "task": "Write six rules in section 3 with dimension, column, test and threshold. Cover at least four dimensions.",
+    "example": "QR01 Validity customer_id matches KT- and 7 digits, 100%. QR02 Completeness national_id filled in, 99%. QR03 Validity phone matches +256 7xxxxxxxx, 98%. QR04 Validity dates between 1900-01-01 and today, 99.9%. QR05 Consistency gender is M or F, 99%. QR06 Uniqueness no repeated national_id, 99.5%."
+   },
+   {
+    "task": "Check each rule on a sample of your data and write the pass rate beside it. Mark each rule pass or fail.",
+    "example": "On all 5,000 rows: QR01 100.0% pass. QR02 89.0% fail. QR03 50.2% fail. QR04 99.2% fail. QR05 70.8% fail. QR06 97.0% fail. Five of six rules fail; 1,557 rows pass QR02 to QR05 together."
+   },
+   {
+    "task": "Fill sections 4 and 5: refresh schedule, latest acceptable delay, expected rows, who is alerted, what counts as a breaking change and the notice period.",
+    "example": "Daily load, 30 hours latest acceptable delay, 4,800 to 5,200 rows, alert to the Core Banking Data Analyst. Dropping or renaming a column is breaking. 30 days notice. Owner approves."
+   },
+   {
+    "task": "Name who signs for the owner and for the consumers, and which failed rule would stop a load. Give your reason in one sentence.",
+    "example": "Owner signs: Head of Retail Banking Operations. Consumer: Head of Customer Analytics. Stop the load on QR06 duplicates, because a repeated customer inflates every count the board sees."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Profile the customer table\nRead `customers.csv` into `cust`. Store the percent of blank cells in each column in `blank` (a number from 0 to 100 per column) and the percent blank in `national_id` in `nid_blank`."
+   },
+   {
+    "code": "import pandas as pd\n\ncust = pd.read_csv('customers.csv')\nblank = cust.isna().mean() * 100\nnid_blank = blank['national_id']\nprint(blank[blank > 0].round(1))",
+    "starter": "import pandas as pd\n\n# Your turn: read customers.csv into cust\n# Your turn: blank = percent of blank cells in each column\n# Your turn: nid_blank = the value for national_id\n"
+   },
+   {
+    "code": "assert len(cust) == 5000, 'customers.csv has 5,000 rows'\nassert round(nid_blank, 1) == 11.0, 'National ID should be 11.0 percent blank. Use cust.isna().mean() * 100'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Run the validity rules\nStore the percent of rows whose phone matches `^\\+2567\\d{8}$` in `phone_pct`, and the percent whose gender is M or F in `gender_pct`."
+   },
+   {
+    "code": "phone_pct = cust.phone.str.match(r'^\\+2567\\d{8}$').mean() * 100\ngender_pct = cust.gender.isin(['M', 'F']).mean() * 100\nprint(round(phone_pct, 1), round(gender_pct, 1))",
+    "starter": "# Your turn: phone_pct = percent of rows where cust.phone.str.match(...) is True\n# Your turn: gender_pct = percent of rows where gender is in ['M', 'F']\n"
+   },
+   {
+    "code": "assert round(phone_pct, 1) == 50.2, 'The phone rule should pass for 50.2 percent. Check the pattern'\nassert round(gender_pct, 1) == 70.8, 'Gender M or F should pass for 70.8 percent'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Find the duplicates\nKeep rows with a date of birth. Normalise `full_name` to lower case with single spaces. Store the number of repeated name and birth date rows in `dups` and the number of distinct people in `people`."
+   },
+   {
+    "code": "has = cust[cust.date_of_birth.notna()]\nname = has.full_name.str.lower().str.split().str.join(' ')\ndups = has.assign(name=name).duplicated(['name', 'date_of_birth']).sum()\npeople = len(cust) - dups\nprint(dups, people)",
+    "starter": "# Your turn: has = the rows of cust where date_of_birth is not blank\n# Your turn: name = full_name in lower case with single spaces (.str.lower().str.split().str.join(' '))\n# Your turn: dups = number of rows repeating the same name and date_of_birth (use .duplicated)\n# Your turn: people = len(cust) - dups\n"
+   },
+   {
+    "code": "assert dups == 150, 'There are 150 repeated rows once names are normalised. Did you lower case and remove double spaces?'\nassert people == 4850, 'Distinct people are 5,000 minus 150'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Check the mobile money log\nRead `mobile_money_log.csv` into `mm`. Store the number of repeated `txn_id` rows in `dup_txn`, the UGX amount in those repeated rows in `double_ugx`, and the number of rows with an amount of zero or below in `bad_amt`."
+   },
+   {
+    "code": "mm = pd.read_csv('mobile_money_log.csv')\ndup_rows = mm[mm.duplicated('txn_id')]\ndup_txn = len(dup_rows)\ndouble_ugx = dup_rows.amount_ugx.sum()\nbad_amt = (mm.amount_ugx <= 0).sum()\nprint(dup_txn, double_ugx, bad_amt)",
+    "starter": "# Your turn: mm = the mobile money log\n# Your turn: dup_rows = rows where txn_id repeats an earlier row (mm.duplicated('txn_id'))\n# Your turn: dup_txn = how many, double_ugx = their total amount_ugx\n# Your turn: bad_amt = rows with amount_ugx of zero or below\n"
+   },
+   {
+    "code": "assert dup_txn == 300, '300 transaction rows repeat an earlier txn_id'\nassert double_ugx == 31787500, 'The repeated rows carry 31,787,500 UGX'\nassert bad_amt == 160, '160 rows have an amount of zero or below (100 negative, 60 zero)'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. The timeliness rule\nThe log has two timestamp formats. Read both into one column `ts`, then store the longest gap between two transactions in hours, rounded to one decimal, in `gap_hours`."
+   },
+   {
+    "code": "iso = pd.to_datetime(mm.timestamp, format='%Y-%m-%d %H:%M:%S', errors='coerce')\nslash = pd.to_datetime(mm.timestamp, format='%d/%m/%Y %H:%M', errors='coerce')\nts = iso.fillna(slash)\ngap_hours = round(ts.sort_values().diff().max().total_seconds() / 3600, 1)\nprint(gap_hours)",
+    "starter": "# Your turn: iso = timestamps read with format '%Y-%m-%d %H:%M:%S' (errors='coerce')\n# Your turn: slash = timestamps read with format '%d/%m/%Y %H:%M' (errors='coerce')\n# Your turn: ts = iso.fillna(slash)\n# Your turn: gap_hours = longest gap in ts.sort_values().diff(), in hours, one decimal\n"
+   },
+   {
+    "code": "assert ts.isna().sum() == 0, 'Every timestamp should be readable once both formats are tried'\nassert gap_hours == 6.1, 'The longest silence is 6.1 hours. Convert with .total_seconds() / 3600'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. A question for the leader\nFive of Kitara's six rules fail today. Which one rule would you let stop the nightly load, who at Kitara is told when it fires, and what threshold would you sign? Write your answer in two sentences."
+   }
+  ]
+ }
+}

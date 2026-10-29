@@ -1,0 +1,478 @@
+PLAYBACK AND REHEARSAL CHECKLIST
+
+Part 1, in PowerPoint on the machine you will teach from. Open each deck, choose Slide Show, and play every animated slide from the first click to the last. Confirm the parts appear in the order listed and nothing overlaps. Editing view shows the finished slide, so only Slide Show proves the build. Tick each line.
+Part 2, read the notes aloud once per session, timing yourself. The estimate is the speaking time of the notes alone at 130 words a minute, before pauses. The notes are written to be read as they stand: the first paragraph before any click, then one paragraph per click, then any wrap-up.
+Part 3, run every lab solution in Colab (run_all_labs.py in this folder does this on a machine with the full library set) and tick it here. Sessions 1 to 4 also have Sheets tasks: work them once in Google Sheets and check yourself against Sheets Lab Answers.docx.
+
+SESSION 1: What data science is and how to think in it
+  Notes read aloud: about 19 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up: you and data, 2 clicks
+  [ ] Slide 7: The data science lifecycle, 6 clicks
+  [ ] Slide 8: Artificial intelligence, machine learning and deep learning, 3 clicks
+  [ ] Slide 9: A formula you write and a model that learns, 2 clicks
+  [ ] Slide 11: A business question worth asking, 2 clicks
+  [ ] Slide 13: A confident answer that nobody checked, 3 clicks
+  [ ] Slide 16: Your first Colab cell, 5 clicks
+  [ ] Slide 19: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+  [ ] Sheets tasks done once in Google Sheets with the workbook (answers are in Sheets Lab Answers.docx)
+
+SESSION 2: Data as tables: rows, columns and grain
+  Notes read aloud: about 21 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 1, 2 clicks
+  [ ] Slide 5: The parts of a table, 3 clicks
+  [ ] Slide 10: Counting lines and calling them orders, 3 clicks
+  [ ] Slide 15: Follow one order through four tabs, 4 clicks
+  [ ] Slide 21: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Sheets tasks done once in Google Sheets with the workbook (answers are in Sheets Lab Answers.docx)
+
+SESSION 3: Summarising and showing data honestly
+  Notes read aloud: about 23 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 2, 2 clicks
+  [ ] Slide 6: The workbook is a slice of the full file, 2 clicks
+  [ ] Slide 8: A few very large orders pull the mean up, 3 clicks
+  [ ] Slide 9: Reporting the mean as the typical order, 3 clicks
+  [ ] Slide 10: Reading a box plot, 3 clicks
+  [ ] Slide 13: Three shapes of data, 3 clicks
+  [ ] Slide 14: A pivot table is a GROUP BY, 2 clicks
+  [ ] Slide 16: Build the branch by month pivot table, 5 clicks
+  [ ] Slide 18: A line chart shows change over time, 3 clicks
+  [ ] Slide 19: Choosing a chart from the question, 3 clicks
+  [ ] Slide 20: The same four numbers on two axes, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Sheets tasks done once in Google Sheets with the workbook (answers are in Sheets Lab Answers.docx)
+
+SESSION 4: Uncertainty, samples and cause
+  Notes read aloud: about 22 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 3, 2 clicks
+  [ ] Slide 7: Build 200 samples of 30 in five steps, 5 clicks
+  [ ] Slide 9: 200 samples of 30 orders give 200 different means, 3 clicks
+  [ ] Slide 10: A bigger sample narrows the spread, 3 clicks
+  [ ] Slide 11: Your simulation changes every time you touch the sheet, 3 clicks
+  [ ] Slide 12: Busy weeks have more orders, 3 clicks
+  [ ] Slide 13: Wetter weeks have fewer orders, with a lot of scatter, 3 clicks
+  [ ] Slide 16: A hidden third factor can link two things that never touch, 3 clicks
+  [ ] Slide 18: Reading a correlation as a lever, 3 clicks
+  [ ] Slide 19: Two ways a sample misleads you, 2 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Sheets tasks done once in Google Sheets with the workbook (answers are in Sheets Lab Answers.docx)
+
+SESSION 5: Your first Python, next to the spreadsheet
+  Notes read aloud: about 21 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 4, 2 clicks
+  [ ] Slide 6: The same price sum in Excel and in Python, 2 clicks
+  [ ] Slide 7: Your first cell: store values with names, 3 clicks
+  [ ] Slide 8: Numbers, text and True or False, 3 clicks
+  [ ] Slide 10: Make a list and pick items from it, 3 clicks
+  [ ] Slide 11: Count, add up and average a list, 3 clicks
+  [ ] Slide 12: A dictionary is a row with labels, 3 clicks
+  [ ] Slide 13: A dictionary as a price list lookup, 3 clicks
+  [ ] Slide 14: List or dictionary: how will you find things?, 2 clicks
+  [ ] Slide 15: An error you will see often: a misspelt name, 2 clicks
+  [ ] Slide 16: How to read any error message, 4 clicks
+  [ ] Slide 17: A second error: adding a number and text, 2 clicks
+  [ ] Slide 18: A price in quotes that runs without an error, 3 clicks
+  [ ] Slide 20: The same lists, read from the products file, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 6: Decisions, repeats and functions
+  Notes read aloud: about 21 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 5, 2 clicks
+  [ ] Slide 6: IF in Excel and if in Python, 2 clicks
+  [ ] Slide 7: Decide a tier with if, elif and else, 3 clicks
+  [ ] Slide 8: A for loop is fill-down written as code, 3 clicks
+  [ ] Slide 9: Loop over a list of spending totals, 3 clicks
+  [ ] Slide 10: A loop with a running total, like SUM, 3 clicks
+  [ ] Slide 12: Writing a function in five steps, 5 clicks
+  [ ] Slide 13: The loyalty tier function, 3 clicks
+  [ ] Slide 15: Test the function on values you can check by hand, 3 clicks
+  [ ] Slide 16: A function that passes the easy cases and fails on the line, 3 clicks
+  [ ] Slide 17: An error you will meet: the spend arrives as text, 2 clicks
+  [ ] Slide 19: A colleague's function: trace one value by hand, 3 clicks
+  [ ] Slide 20: Asking an assistant to review your function (optional), 5 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 7: pandas I: load, look and filter
+  Notes read aloud: about 16 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 6, 2 clicks
+  [ ] Slide 6: The same five jobs in Excel and in pandas, 2 clicks
+  [ ] Slide 7: Load the file, then look before you ask, 3 clicks
+  [ ] Slide 8: Check the types and what is missing, 2 clicks
+  [ ] Slide 9: info and describe: two summaries in one line each, 3 clicks
+  [ ] Slide 10: The first five minutes with any new file, 5 clicks
+  [ ] Slide 12: Filter rows with a test, 3 clicks
+  [ ] Slide 13: Two conditions: use & and brackets, 2 clicks
+  [ ] Slide 14: What happens if you write and, 1 click
+  [ ] Slide 15: A filter that quietly drops the wrong rows, 3 clicks
+  [ ] Slide 16: Sort and keep the top five, 2 clicks
+  [ ] Slide 17: A few very large orders pull the average up, 3 clicks
+  [ ] Slide 20: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 8: pandas II: cleaning the mess
+  Notes read aloud: about 23 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 7, 2 clicks
+  [ ] Slide 5: Open the dirty export and look first, 3 clicks
+  [ ] Slide 7: Duplicates: Remove Duplicates in one line, 3 clicks
+  [ ] Slide 8: A price stored as text cannot be added, 1 click
+  [ ] Slide 9: Strip the text, then convert the type, 3 clicks
+  [ ] Slide 10: Two date formats, read one at a time, 3 clicks
+  [ ] Slide 11: A date read the wrong way round raises no error, 3 clicks
+  [ ] Slide 12: Text clean-up: branch and payment, 3 clicks
+  [ ] Slide 13: After the clean, three payment methods remain, 3 clicks
+  [ ] Slide 15: Four spellings of a blank customer become one, 3 clicks
+  [ ] Slide 16: Twelve lines with no quantity cannot be saved, 2 clicks
+  [ ] Slide 17: dropna on the whole table deletes a quarter of the file, 3 clicks
+  [ ] Slide 18: Outliers: check before you remove, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 9: pandas III: group, join and reshape
+  Notes read aloud: about 20 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 8, 2 clicks
+  [ ] Slide 6: Total revenue for each branch, 3 clicks
+  [ ] Slide 7: Several answers for each group, 2 clicks
+  [ ] Slide 8: VLOOKUP and merge, 2 clicks
+  [ ] Slide 9: Add the branch name to every order, 3 clicks
+  [ ] Slide 10: Four ways to join two tables, 3 clicks
+  [ ] Slide 11: Lost rows: an inner join drops the walk-ins, 3 clicks
+  [ ] Slide 12: Doubled rows: one order, two matches, 3 clicks
+  [ ] Slide 13: Join orders to order lines and add up the revenue, 3 clicks
+  [ ] Slide 14: A join that runs and inflates revenue, 3 clicks
+  [ ] Slide 15: A safe join: look up one row per key, 3 clicks
+  [ ] Slide 16: Ask pandas to guard the join, 1 click
+  [ ] Slide 17: Four checks around every join, 4 clicks
+  [ ] Slide 18: Turn text into dates first, 3 clicks
+  [ ] Slide 19: Revenue by month and by weekday, 2 clicks
+  [ ] Slide 20: pivot_table: the PivotTable, in code, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 10: SQL for analysts
+  Notes read aloud: about 19 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 9, 2 clicks
+  [ ] Slide 6: SELECT picks columns, WHERE keeps rows, 3 clicks
+  [ ] Slide 7: The same count in SQL and in pandas, 2 clicks
+  [ ] Slide 8: SQL has no row order unless you write ORDER BY, 3 clicks
+  [ ] Slide 9: GROUP BY is a PivotTable, 3 clicks
+  [ ] Slide 10: The same table with groupby, 1 click
+  [ ] Slide 11: HAVING filters groups, WHERE filters rows, 2 clicks
+  [ ] Slide 12: What happens if you put a total in WHERE, 1 click
+  [ ] Slide 13: You write SQL in one order and the database runs it in another, 3 clicks
+  [ ] Slide 14: A join keeps different rows depending on its type, 3 clicks
+  [ ] Slide 15: INNER JOIN adds the branch name to every order, 3 clicks
+  [ ] Slide 17: LEFT JOIN keeps the walk-in orders, 3 clicks
+  [ ] Slide 18: CASE is IF for a column, 2 clicks
+  [ ] Slide 19: A subquery asks a question inside a question, 2 clicks
+  [ ] Slide 20: A filter that quietly drops the walk-ins, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 11: Exploring and visualising with Python
+  Notes read aloud: about 20 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 10, 2 clicks
+  [ ] Slide 5: The EDA routine in six steps, 6 clicks
+  [ ] Slide 6: Load the orders and describe the order value, 3 clicks
+  [ ] Slide 8: Draw monthly revenue as a line, 3 clicks
+  [ ] Slide 10: seaborn: the shape of basket size, 3 clicks
+  [ ] Slide 11: seaborn: do bigger baskets cost more, 3 clicks
+  [ ] Slide 12: A wrong column name stops seaborn, 1 click
+  [ ] Slide 13: seaborn: revenue for each branch as bars, 2 clicks
+  [ ] Slide 14: Count the returns for each branch, 3 clicks
+  [ ] Slide 15: Divide by what was sold to get a rate, 2 clicks
+  [ ] Slide 16: The count and the rate name different branches, 3 clicks
+  [ ] Slide 17: A long bar can point at the wrong branch, 3 clicks
+  [ ] Slide 18: Revenue peaks every December, 3 clicks
+  [ ] Slide 19: Compare December with every other month, 3 clicks
+  [ ] Slide 23: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 12: Inference: is the difference real?
+  Notes read aloud: about 25 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 11, 2 clicks
+  [ ] Slide 5: Two groups, two averages, 3 clicks
+  [ ] Slide 6: One sample's average is a guess, 3 clicks
+  [ ] Slide 7: Bigger samples wobble less, 3 clicks
+  [ ] Slide 8: Standard error: the wobble, measured, 3 clicks
+  [ ] Slide 9: A 95 percent interval for the lift, 3 clicks
+  [ ] Slide 10: Each group's average with its own interval, 3 clicks
+  [ ] Slide 11: The lift with its interval, 3 clicks
+  [ ] Slide 12: The bootstrap: re-draw your own data, 3 clicks
+  [ ] Slide 14: A permutation test by shuffling labels, 3 clicks
+  [ ] Slide 15: A proportion test: did more customers come back?, 2 clicks
+  [ ] Slide 16: The same tests in SciPy and statsmodels, 3 clicks
+  [ ] Slide 19: A hundred fake tests and seven false alarms, 3 clicks
+  [ ] Slide 20: Peeking: stopping the test when it looks good, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 13: Regression: explaining and predicting a number
+  Notes read aloud: about 24 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 12, 2 clicks
+  [ ] Slide 6: Load the weekly file and see the link, 3 clicks
+  [ ] Slide 7: Least squares: the line with the smallest misses, 3 clicks
+  [ ] Slide 8: The line in numbers: slope and intercept, 3 clicks
+  [ ] Slide 9: Add promotion and rain: three predictors, 3 clicks
+  [ ] Slide 10: The same model in statsmodels, 3 clicks
+  [ ] Slide 11: Each coefficient with its 95 percent interval, 3 clicks
+  [ ] Slide 14: Residual check: is the cloud even?, 3 clicks
+  [ ] Slide 15: Categories become 0 and 1 columns, 3 clicks
+  [ ] Slide 16: Prediction and explanation, 2 clicks
+  [ ] Slide 17: Rain and footfall: do they move together?, 3 clicks
+  [ ] Slide 18: A coefficient read as a cause, 3 clicks
+  [ ] Slide 19: Why sales are noisier than orders, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 14: Machine learning: the workflow
+  Notes read aloud: about 22 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 13, 2 clicks
+  [ ] Slide 5: A rule you write, and a rule found from examples, 2 clicks
+  [ ] Slide 6: Meet the Nile Microfinance loans, 3 clicks
+  [ ] Slide 7: Only about one loan in eight defaults, 3 clicks
+  [ ] Slide 9: Fix the impossible ages first, 3 clicks
+  [ ] Slide 10: Fill missing incomes and remember which ones, 2 clicks
+  [ ] Slide 11: Build a feature: the repayment burden, 2 clicks
+  [ ] Slide 12: Default climbs steeply with repayment burden, 3 clicks
+  [ ] Slide 13: Choose features, leave one column out, 2 clicks
+  [ ] Slide 14: Hold back a test set before the model sees anything, 3 clicks
+  [ ] Slide 15: Split the data with train_test_split, 3 clicks
+  [ ] Slide 16: The baseline: always say no default, 3 clicks
+  [ ] Slide 17: Fit a first model and predict, 3 clicks
+  [ ] Slide 18: A high score that proves nothing, 3 clicks
+  [ ] Slide 19: A misspelt column name stops the build, 1 click
+  [ ] Slide 20: Today's steps on the workflow loop, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 15: Classification: yes or no questions
+  Notes read aloud: about 22 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 14, 2 clicks
+  [ ] Slide 6: Load the loans and build a repayment burden, 3 clicks
+  [ ] Slide 7: Default climbs with repayment burden, 3 clicks
+  [ ] Slide 8: Default rate differs by occupation, 3 clicks
+  [ ] Slide 9: The S curve turns any score into a probability, 3 clicks
+  [ ] Slide 10: Five scores, five probabilities, 3 clicks
+  [ ] Slide 11: Text in the inputs stops the model, 1 click
+  [ ] Slide 12: get_dummies gives each category its own column, 3 clicks
+  [ ] Slide 13: Fit a logistic regression and ask for probabilities, 3 clicks
+  [ ] Slide 14: A nested IF and a decision tree ask the same kind of question, 2 clicks
+  [ ] Slide 15: A decision tree is a set of yes or no questions, 3 clicks
+  [ ] Slide 16: Fit a small tree and print its rules, 2 clicks
+  [ ] Slide 17: Moving the threshold trades one error for the other, 3 clicks
+  [ ] Slide 19: The same sum in NumPy, 2 clicks
+  [ ] Slide 20: The default cutoff of 0.5 can fit the wrong business, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 16: Judging a model: metrics, leakage and imbalance
+  Notes read aloud: about 21 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 15, 2 clicks
+  [ ] Slide 5: A model that never works can score 87 percent, 2 clicks
+  [ ] Slide 6: Defaults are rare, so accuracy flatters, 3 clicks
+  [ ] Slide 7: The confusion matrix counts every kind of right and wrong, 4 clicks
+  [ ] Slide 8: Two mistakes with two different costs, 2 clicks
+  [ ] Slide 9: Precision and recall from the four counts, 3 clicks
+  [ ] Slide 11: Moving the threshold trades precision for recall, 3 clicks
+  [ ] Slide 13: An AUC of 0.995 should make you suspicious, 3 clicks
+  [ ] Slide 14: Defaulters have far more collection calls, 2 clicks
+  [ ] Slide 15: Every defaulter had at least one call, 3 clicks
+  [ ] Slide 16: Data leakage: the model that peeks at the answer, 3 clicks
+  [ ] Slide 17: Class weights and thresholds handle rare events, 3 clicks
+  [ ] Slide 18: Cross-validation tests the model five times, 3 clicks
+  [ ] Slide 19: Cross-validation in one line, 3 clicks
+  [ ] Slide 21: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 17: Forests, boosting and overfitting
+  Notes read aloud: about 25 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 16, 2 clicks
+  [ ] Slide 5: A curve with too many bends fails on new weeks, 3 clicks
+  [ ] Slide 6: Train error and test error for five curves, 3 clicks
+  [ ] Slide 7: Too simple and too wiggly are both wrong, 2 clicks
+  [ ] Slide 8: Get the loans ready, leaving out the leak, 3 clicks
+  [ ] Slide 9: A forest is many different trees asked to vote, 4 clicks
+  [ ] Slide 10: Fit a random forest on the loans, 3 clicks
+  [ ] Slide 11: A near perfect score on the training loans, 3 clicks
+  [ ] Slide 12: Boosting: each tree repairs the last one's mistakes, 4 clicks
+  [ ] Slide 13: Fit a gradient boosting model, 3 clicks
+  [ ] Slide 16: Tune two settings with cross-validation, 3 clicks
+  [ ] Slide 17: Logistic regression weights show direction and size, 3 clicks
+  [ ] Slide 18: Feature importance by shuffling a column, 3 clicks
+  [ ] Slide 20: When would you ship the simpler model?, 2 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 18: Finding structure without labels
+  Notes read aloud: about 25 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 17, 2 clicks
+  [ ] Slide 5: With an answer column and without one, 2 clicks
+  [ ] Slide 6: Keep only orders that name a customer, 3 clicks
+  [ ] Slide 8: Build recency, frequency and spend per customer, 3 clicks
+  [ ] Slide 9: Spend has a long tail, and a log squeezes it, 3 clicks
+  [ ] Slide 10: Scaling puts every column on the same footing, 3 clicks
+  [ ] Slide 11: k-means in scikit-learn: scale, fit and label, 3 clicks
+  [ ] Slide 12: What k-means does, in four moves, 4 clicks
+  [ ] Slide 13: Choosing k: look for the bend, 3 clicks
+  [ ] Slide 14: Four customer groups on recency and spend, 3 clicks
+  [ ] Slide 15: PCA: many columns, one flat picture, 3 clicks
+  [ ] Slide 16: What each segment is like, in one chart, 3 clicks
+  [ ] Slide 18: The groups look neat, so people treat them as facts, 3 clicks
+  [ ] Slide 19: Unusual orders with a simple rule: the top 1 percent, 3 clicks
+  [ ] Slide 20: IsolationForest flags customers who look strange as a whole, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 19: Forecasting and a first end-to-end model
+  Notes read aloud: about 21 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 18, 2 clicks
+  [ ] Slide 6: Malaria cases by calendar month, all districts, 2 clicks
+  [ ] Slide 7: Load the clinic file and total each year, 3 clicks
+  [ ] Slide 8: Seasonal naive: guess the same month last year, 3 clicks
+  [ ] Slide 9: Mbarara in 2025: forecast against what happened, 3 clicks
+  [ ] Slide 11: A random split lets the model peek at the future, 3 clicks
+  [ ] Slide 12: Last month's rain relates to malaria, this month's does not, 2 clicks
+  [ ] Slide 13: Lag features: bring last month's numbers into this row, 3 clicks
+  [ ] Slide 14: A lag that borrows from the wrong district, 3 clicks
+  [ ] Slide 15: Cut the calendar at 1 January 2025, 2 clicks
+  [ ] Slide 16: Fit on the past, test on 2025, 3 clicks
+  [ ] Slide 19: The Pipeline syntax in scikit-learn, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 20: Neural networks and deep learning, without the maths wall
+  Notes read aloud: about 22 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 19, 2 clicks
+  [ ] Slide 6: One neuron by hand with NumPy, 3 clicks
+  [ ] Slide 7: Activation functions bend the total, 3 clicks
+  [ ] Slide 9: Training is repeated small corrections, 4 clicks
+  [ ] Slide 10: A teaching toy: one weight learns, 3 clicks
+  [ ] Slide 11: Overfitting again: more flexibility, worse test, 3 clicks
+  [ ] Slide 14: A network in scikit-learn on the loan data, 3 clicks
+  [ ] Slide 15: A mistake that stops the network, 1 click
+  [ ] Slide 16: Network or forest on the loans table?, 2 clicks
+  [ ] Slide 18: Use a pretrained image classifier, 2 clicks
+  [ ] Slide 19: Where deep learning is worth using, 2 clicks
+  [ ] Slide 20: The network that scores 100 percent on training, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 21: Text as data and meaning as numbers
+  Notes read aloud: about 25 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 20, 2 clicks
+  [ ] Slide 6: Load the messages and look first, 3 clicks
+  [ ] Slide 7: Clean the text, then count the words, 3 clicks
+  [ ] Slide 8: Strip phone numbers before any analysis, 3 clicks
+  [ ] Slide 9: A bag of words for three messages, built by hand, 3 clicks
+  [ ] Slide 10: TF-IDF gives rare words more weight, 3 clicks
+  [ ] Slide 11: A sentiment classifier in six lines, 3 clicks
+  [ ] Slide 12: Strip the greeting and the closing line, 3 clicks
+  [ ] Slide 13: Reading the mistakes: spot the noisy labels, 3 clicks
+  [ ] Slide 14: Keyword search for queue, scored with the answer key, 3 clicks
+  [ ] Slide 15: A perfect precision score that hides the misses, 3 clicks
+  [ ] Slide 16: Embeddings place meaning in space, 3 clicks
+  [ ] Slide 17: Cosine similarity, by hand with numpy, 3 clicks
+  [ ] Slide 18: Semantic search with sentence-transformers, 3 clicks
+  [ ] Slide 19: Counting words cannot see the word not, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 22: Language models and building with them
+  Notes read aloud: about 21 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 21, 2 clicks
+  [ ] Slide 6: One answer is built one token at a time, 5 clicks
+  [ ] Slide 7: The same model with a vague prompt and a clear prompt, 2 clicks
+  [ ] Slide 9: A confident answer with no source, 3 clicks
+  [ ] Slide 10: Retrieval first, then the model answers, 3 clicks
+  [ ] Slide 11: Split eight policies into passages, 3 clicks
+  [ ] Slide 12: Score by shared words and return the best passage, 3 clicks
+  [ ] Slide 13: Tune the search: same meaning, rare words count more, 3 clicks
+  [ ] Slide 15: Search by meaning with sentence-transformers, 2 clicks
+  [ ] Slide 16: Let a small model write the answer, 3 clicks
+  [ ] Slide 21: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 23: Ship it: reproducible work, a small app and responsible use
+  Notes read aloud: about 24 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 22, 2 clicks
+  [ ] Slide 6: Same seed, same numbers, and the versions printed, 3 clicks
+  [ ] Slide 7: A notebook that only works in your order, 3 clicks
+  [ ] Slide 8: Save a trained model to a file and load it back, 3 clicks
+  [ ] Slide 10: What goes into a public repository, 2 clicks
+  [ ] Slide 12: Put the app on the internet for free, 5 clicks
+  [ ] Slide 14: Data drift: today's applicants stop matching the training data, 3 clicks
+  [ ] Slide 15: Default rate and flag rate for each group, 1 click
+  [ ] Slide 16: A rule that never sees gender can still treat the sexes differently, 3 clicks
+  [ ] Slide 17: Dropping the gender column does not make a rule fair, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Lab solution notebook runs top to bottom in Colab
+
+SESSION 24: Capstone presentations and your path from here
+  Notes read aloud: about 21 minutes.
+  [ ] Deck opens in PowerPoint and Slide Show runs from slide 1
+  [ ] Slide 4: Warm-up from Session 23, 2 clicks
+  [ ] Slide 7: Say the limits before the result, 2 clicks
+  [ ] Slide 8: A model that is 87.6 percent accurate, 3 clicks
+  [ ] Slide 11: Three questions on method, 3 clicks
+  [ ] Slide 12: Two questions on risk, 2 clicks
+  [ ] Slide 14: A public repository with real customer data, 3 clicks
+  [ ] Slide 18: Your six month learning path, 3 clicks
+  [ ] Slide 22: Questions to finish, 3 clicks
+  [ ] Notes read aloud once, wording changed where it does not sound like you
+  [ ] Rubric and presentation tasks read through once (Sheets Lab Sheets.docx, Session 24)
+
+TOOLS THAT NEED YOUR ACCOUNT OR A DOWNLOAD
+  [ ] Colab opens and runs a cell with a Google account
+  [ ] data.zip hosted, DATA_ZIP_URL set (or students will upload it)
+  [ ] sentence-transformers model downloads in Colab (Session 21 and 22)
+  [ ] Small language model licence read on its model card, and the model runs in Colab (Session 22, optional)
+  [ ] GitHub repository created and pushed; Streamlit Community Cloud app deploys (Session 23)
+  [ ] TensorFlow Playground opens (Session 20)

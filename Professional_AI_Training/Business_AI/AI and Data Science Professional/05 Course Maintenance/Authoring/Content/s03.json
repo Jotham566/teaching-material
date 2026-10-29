@@ -1,0 +1,512 @@
+{
+ "session": 3,
+ "notes_title": "Session 3 starts where Session 2 stopped. You know what one row means and how the tables link. Today we describe thousands of rows in one sentence and one chart, and we do it with no code, in Google Sheets. By the end you'll have a pivot table and two charts that don't mislead built from Lakeside Mart sales. You'll also meet a finding that surprises almost everyone. The average order is more than double the typical order.",
+ "notes_outcomes": "By the end of today you'll choose between the mean and the median and say why. You'll read a histogram, a box plot and a line chart, and you'll spot a misleading axis. Most of the teaching happens inside the workbook. I build the pivot table live in Sheets, and the lab asks you to build it again on your own copy, so keep the workbook open in your browser from the start.",
+ "notes_words": "Seven words today, and most of them live in the spreadsheet you already know. The median is the middle value, and Sheets gives it to you with one formula. A quartile is a cut point that splits sorted numbers into four groups. Standard deviation measures spread. Skew is a lopsided shape. A histogram counts values in bands. A pivot table groups rows and summarises each group. A truncated axis is a chart base that starts above zero. The right hand column shows the Sheets version of each.",
+ "vocab": [
+  [
+   "Median",
+   "The middle value when numbers are sorted. Half sit below it and half above.",
+   "=MEDIAN(range)"
+  ],
+  [
+   "Quartile",
+   "One of three cut points that split sorted numbers into four equal groups.",
+   "=QUARTILE(range, 1)"
+  ],
+  [
+   "Standard deviation",
+   "A typical distance of the values from the mean. Bigger means more spread out.",
+   "=STDEV(range)"
+  ],
+  [
+   "Skew",
+   "A lopsided shape with a long tail on one side.",
+   null
+  ],
+  [
+   "Histogram",
+   "A chart that counts how many values fall in each band of equal width.",
+   "Chart type: Histogram chart"
+  ],
+  [
+   "Pivot table",
+   "A table that groups the rows and summarises each group.",
+   "Insert, Pivot table"
+  ],
+  [
+   "Truncated axis",
+   "A chart axis that starts above zero, which makes differences look bigger.",
+   null
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 2",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "What does one row of the orders table stand for?",
+     "a": "One till order. That is the grain of the table."
+    },
+    {
+     "q": "How does an order know which branch it belongs to?",
+     "a": "Its branch_id matches the key in the branches table."
+    }
+   ],
+   "notes": "Let's recall grain and keys first, because every number today depends on them.\n\nFirst. What does one row of the orders table stand for? Think back to the grain. Have a think.\n\nOne row is one till order. That's the grain of the table, and it matters today, because every total and every average we make counts or adds those orders.\n\nSecond. How does an order know which branch it belongs to? No rush.\n\nEach order carries a branch_id, and that same code is the key in the branches table. Today you'll group orders by that code, and the pivot table will do the linking work for you."
+  },
+  {
+   "type": "table",
+   "title": "Six summary jobs, each one formula in Sheets",
+   "header": [
+    "Job",
+    "Formula",
+    "Workbook answer"
+   ],
+   "rows": [
+    [
+     "Count the orders",
+     "=COUNT(G2:G2001)",
+     "2,000"
+    ],
+    [
+     "Total revenue",
+     "=SUM(G2:G2001)",
+     "99,861,360"
+    ],
+    [
+     "Mean",
+     "=AVERAGE(G2:G2001)",
+     "49,931"
+    ],
+    [
+     "Median",
+     "=MEDIAN(G2:G2001)",
+     "24,800"
+    ],
+    [
+     "Smallest order",
+     "=MIN(G2:G2001)",
+     "1,140"
+    ],
+    [
+     "Largest order",
+     "=MAX(G2:G2001)",
+     "1,935,520"
+    ]
+   ],
+   "colw": [
+    4,
+    5,
+    3
+   ],
+   "caption": "Column G holds order_value_ugx. All amounts are in UGX.",
+   "notes": "Open the Lakeside Mart workbook in Google Sheets. Column G holds the value of each order, from row two down to row two thousand and one.\n\nYou already know most of these formulas. Count tells you how many orders there are, two thousand. Sum adds them up, ninety nine million eight hundred and sixty one thousand three hundred and sixty shillings. Mean is the average you've used all your working life. Add everything up and divide by how many there are.\n\nMedian is the new word. Sort the orders from smallest to largest and take the one in the middle. In this workbook that's twenty four thousand eight hundred shillings. The mean is about twice as big as the median. That gap is today's main story, and we'll spend some time on why it happens."
+  },
+  {
+   "type": "compare",
+   "title": "The workbook is a slice of the full file",
+   "left": {
+    "h": "Workbook, 2,000 orders",
+    "points": [
+     "Mean 49,931 UGX",
+     "Median 24,800 UGX",
+     "Mean is 2.01 times the median"
+    ]
+   },
+   "right": {
+    "h": "Full file, 30,229 orders",
+    "points": [
+     "Mean 47,491 UGX",
+     "Median 23,200 UGX",
+     "Mean is 2.05 times the median"
+    ]
+   },
+   "verdict": "A sample gives close numbers that are never identical. The story is the same.",
+   "notes": "The workbook you'll use has only two thousand orders. It's a sample, a slice, drawn from the full Lakeside Mart file of thirty thousand two hundred and twenty nine orders.\n\nOn the left are the workbook numbers. The mean is forty nine thousand nine hundred and thirty one shillings, and the median is twenty four thousand eight hundred.\n\nOn the right are the numbers from the full file. The mean is forty seven thousand four hundred and ninety one, and the median is twenty three thousand two hundred.\n\nSo your answers in Sheets will be close to the full file, and they will never match it exactly. In both, the mean is more than double the median. The finding is the same either way. Session 4 is all about why a sample differs from the whole."
+  },
+  {
+   "type": "define",
+   "title": "Median",
+   "definition": "The middle value when the numbers are sorted. Half the values sit below it and half above.",
+   "example": "Sort the 2,000 order values in the workbook. The middle sits at 24,800 UGX.",
+   "excel": "=MEDIAN(G2:G2001), or sort the column and look at the middle row.",
+   "notes": "One word to hold on to. The median.\n\nIn plain words, sort the numbers from smallest to largest and take the one in the middle. Half the values sit below it and half sit above it.\n\nIn our workbook, the middle order is worth twenty four thousand eight hundred shillings. So half of all orders are smaller than that.\n\nThat makes the median useful. Take away the biggest order in the workbook, over one and a half million shillings, and the median doesn't move at all. The mean drops by about nine hundred and forty three shillings. The median ignores how large the large values are. It only cares about their position in the line."
+  },
+  {
+   "type": "figure",
+   "title": "A few very large orders pull the mean up",
+   "fig": "order_value_hist",
+   "look": [
+    "Most orders are small. The tallest bars sit on the left.",
+    "A long tail of large orders runs to the right.",
+    "The mean sits far to the right of the median."
+   ],
+   "caption": "Full file. Median 23,200 UGX. Mean 47,491 UGX.",
+   "alt": "Histogram of order values. Most orders are small, a long tail runs right, and the mean lies to the right of the median.",
+   "notes": "This is a histogram. It's a chart that counts how many orders fall into each band of equal width. Each bar is one band of order value, and the bar's height is the number of orders in it. This one uses all thirty thousand orders in the full file.\n\nStart with the left side. Most orders are small, and the tallest bars sit there.\n\nThen follow the bars to the right. They get shorter and shorter, and a long thin tail of large orders runs out towards three hundred thousand.\n\nNow the two lines. The gold line is the median, twenty three thousand two hundred shillings. The red line is the mean, forty seven thousand four hundred and ninety one. The few large orders drag the mean to the right.\n\nSo here's a question. A manager asks what a typical order is worth. Which line would you give? Mull it over.\n\nThe gold one. The median. Hardly any orders look like the mean."
+  },
+  {
+   "type": "trap",
+   "title": "Reporting the mean as the typical order",
+   "looks": "You write: a typical Lakeside order is worth 49,931 UGX. The formula is correct and the sentence sounds sensible.",
+   "why": "Half the orders are under 24,800 and about three in four are under 50,000. A few huge orders pull the mean up, so few orders look like it.",
+   "fix": "Give the median beside the mean and say how many orders you counted. For money amounts, lead with the median.",
+   "notes": "Today's trap is one that Sheets will not warn you about.\n\nYou calculate the average order, forty nine thousand nine hundred and thirty one shillings, and write that a typical order is worth about fifty thousand. The formula is right. The sentence sounds sensible. A manager would nod.\n\nBut it's wrong as a description of a typical order. Half of all orders are worth less than twenty four thousand eight hundred, and about three in four are worth less than fifty thousand. The mean is the balance point, and a handful of very large orders drag that balance point upwards.\n\nSo put the median next to the mean, and say how many orders you counted. When the two numbers are far apart, lead with the median and tell the reader why."
+  },
+  {
+   "type": "figure",
+   "title": "Reading a box plot",
+   "fig": "boxplot_anatomy",
+   "look": [
+    "The box holds the middle half of the values.",
+    "The line inside the box is the median.",
+    "Dots far beyond the whiskers are outliers."
+   ],
+   "caption": "A drawing with made-up numbers, to learn the parts.",
+   "alt": "A box plot labelled with median, first and third quartile, whiskers and outliers.",
+   "notes": "Now the spread. The median tells us the middle. The spread tells us how widely the values are scattered around it. A box plot shows both in one small picture. This one is a drawing with made up numbers, so we can learn its parts.\n\nThe box holds the middle half of the values. Its left edge is the first quartile, with a quarter of the values below it. Its right edge is the third quartile, with three quarters below it. A quartile is one of the three cut points that split sorted numbers into four equal groups.\n\nThe line inside the box is the median, the middle cut point.\n\nThe whiskers reach out to the ordinary values. A common rule stops each whisker one and a half box lengths beyond the box. The dots beyond them are outliers. An outlier is a value far away from the rest. In the workbook, Sheets gives a first quartile of about ten thousand four hundred and a third quartile of about forty nine thousand four hundred. So the middle half of our orders fall between those two amounts."
+  },
+  {
+   "type": "define",
+   "title": "Standard deviation",
+   "definition": "A typical distance of the values from the mean. A bigger number means the values are more spread out.",
+   "example": "In the workbook it is 128,094 UGX. That is bigger than the mean of 49,931, a warning that a few huge orders stretch the data.",
+   "excel": "=STDEV(G2:G2001)",
+   "notes": "The second way to measure spread is the standard deviation.\n\nIn plain words, it's a typical distance of the values from the mean. If every order were close to the mean, it would be small. If orders were scattered far from the mean, it would be large.\n\nIn our workbook it's one hundred and twenty eight thousand and ninety four shillings. Compare that number with the mean of forty nine thousand nine hundred and thirty one. The spread is more than twice the average itself. That tells you a few huge orders are stretching the data, and the simple picture of an average order with a small wobble around it doesn't fit.\n\nIn Sheets it's one formula, STDEV, applied to the same column."
+  },
+  {
+   "type": "table",
+   "title": "Standard deviation and the middle half can disagree",
+   "header": [
+    "Branch",
+    "Middle half, Q1 to Q3",
+    "Standard deviation",
+    "Biggest order"
+   ],
+   "rows": [
+    [
+     "Jinja (B04)",
+     "9,598 to 54,510",
+     "215,195",
+     "1,935,520"
+    ],
+    [
+     "Mbale (B05)",
+     "8,575 to 49,185",
+     "68,569",
+     "441,600"
+    ]
+   ],
+   "colw": [
+    3,
+    4,
+    3,
+    3
+   ],
+   "caption": "Workbook, UGX. Huge orders inflate the standard deviation. The middle half barely moves.",
+   "notes": "Let's compare two branches in the workbook, Jinja and Mbale.\n\nStart with the middle half. In Jinja it runs from about nine thousand six hundred to fifty four thousand five hundred shillings. In Mbale it runs from about eight thousand six hundred to forty nine thousand two hundred. Those are close. On an ordinary day the two branches look alike.\n\nNow the standard deviation. Jinja is two hundred and fifteen thousand, and Mbale is sixty eight thousand. Jinja looks three times more spread out.\n\nThe reason is in the last column. Jinja holds the biggest order in the workbook, over one and a half million shillings, and Mbale's biggest is only about four hundred and forty thousand. One measure says the branches are alike, and the other says they're very different. When data has a long tail, the quartiles are the safer guide."
+  },
+  {
+   "type": "figure",
+   "title": "Three shapes of data",
+   "fig": "distribution_shapes",
+   "look": [
+    "Symmetric: the mean and median sit together.",
+    "Right-skewed: a long right tail pulls the mean past the median.",
+    "Two humps: the mean and median fall in the gap between them."
+   ],
+   "caption": "Shapes drawn from simulated data. Lakeside order values look like the middle one.",
+   "alt": "Three histograms: a symmetric one where mean and median match, a right-skewed one where the mean is larger, and a two-peaked one.",
+   "notes": "The shape of the histogram tells you which summary to trust. These three are drawn from simulated data, to show the patterns.\n\nOn the left is the symmetric shape. The two sides mirror each other. The mean and the median sit on top of each other, so either one is fine.\n\nIn the middle is a right-skewed shape. Skew means a lopsided shape with a long tail on one side. Here the tail runs to the right, and it pulls the mean past the median. Money amounts usually look like this, and Lakeside orders do too.\n\nOn the right are two humps. Both lines land in the empty gap between the humps, where almost no values live. Two humps usually mean two groups mixed together, so the fix is to split the data into its groups and summarise each one on its own."
+  },
+  {
+   "type": "compare",
+   "title": "A pivot table is a GROUP BY",
+   "left": {
+    "h": "Pivot table in Sheets",
+    "points": [
+     "Rows: branch_id",
+     "Values: SUM of order_value_ugx",
+     "One answer row per branch"
+    ]
+   },
+   "right": {
+    "h": "Database phrase",
+    "points": [
+     "GROUP BY branch_id",
+     "SUM(order_value_ugx)",
+     "One answer row per branch"
+    ]
+   },
+   "verdict": "Same idea. Split the rows into groups, then summarise each group.",
+   "notes": "Now the tool that does most of the work in everyday analysis. A pivot table is a table that groups your rows and summarises each group. You may have used one already.\n\nOn the left is what you do in Sheets. You drop branch_id into Rows, and you drop order_value_ugx into Values, set to add up. You get one row of answer for each branch.\n\nOn the right is the same job in the language that databases speak. The phrase GROUP BY says split the rows by branch, and the SUM says add up each group. Again, one answer row per branch.\n\nWe write that language ourselves in Session 10, so don't worry about it today. I'm showing it so that the word GROUP BY is already familiar when it comes. A pivot table and a GROUP BY are the same idea."
+  },
+  {
+   "type": "table",
+   "title": "One pivot table, three summaries by payment method",
+   "header": [
+    "Payment method",
+    "Orders",
+    "Mean",
+    "Median"
+   ],
+   "rows": [
+    [
+     "Card",
+     "143",
+     "71,130",
+     "26,440"
+    ],
+    [
+     "Cash",
+     "881",
+     "50,125",
+     "26,400"
+    ],
+    [
+     "Mobile money",
+     "976",
+     "46,649",
+     "23,800"
+    ]
+   ],
+   "colw": [
+    4,
+    2,
+    3,
+    3
+   ],
+   "hl": [
+    1
+   ],
+   "caption": "Workbook pivot table, UGX. Summarise by COUNT, AVERAGE and MEDIAN.",
+   "notes": "This pivot table comes from the workbook. Rows are payment methods. The values are the order count, the average and the median of the order value.\n\nBy the mean, card orders look much richer. They average seventy one thousand shillings, and mobile money orders average forty six thousand six hundred and forty nine. That's a gap of about twenty four thousand five hundred.\n\nNow read the median column. Card is twenty six thousand four hundred and forty, and mobile money is twenty three thousand eight hundred. The gap shrinks to about two thousand six hundred.\n\nSo most of the card advantage comes from a few huge card orders. There are only one hundred and forty three card orders in this workbook, so a few big ones go a long way. Always check the count and the median before you say that one group spends more."
+  },
+  {
+   "type": "flow",
+   "title": "Build the branch by month pivot table",
+   "steps": [
+    {
+     "h": "Month column",
+     "t": "In H2 type =LEFT(B2,7), fill down"
+    },
+    {
+     "h": "Insert",
+     "t": "Insert, Pivot table, new sheet"
+    },
+    {
+     "h": "Rows",
+     "t": "Add branch_id"
+    },
+    {
+     "h": "Columns",
+     "t": "Add month"
+    },
+    {
+     "h": "Values",
+     "t": "Add order_value_ugx, SUM"
+    }
+   ],
+   "caption": "Check: the grand total is 99,861,360 UGX.",
+   "notes": "Let's build the pivot table together, step by step.\n\nFirst we need a month column. The dates in this workbook are stored as text, like 2024 dash 01 dash 07. The formula LEFT takes the first seven characters, which gives the year and the month. Type it in the first empty column, header month, and fill it down.\n\nSecond, select all your data and choose Insert, then Pivot table, and put it in a new sheet.\n\nThird, add branch_id to Rows. Each branch gets a row.\n\nFourth, add month to Columns. Each month gets a column.\n\nFifth, add order_value_ugx to Values and make sure it says SUM. Sheets sometimes picks count, so check.\n\nThen run the safety check. The grand total in the corner must be ninety nine million eight hundred and sixty one thousand three hundred and sixty shillings. If it isn't, something is missing."
+  },
+  {
+   "type": "table",
+   "title": "Revenue by branch and month, first three months",
+   "header": [
+    "Branch",
+    "Jan 2024",
+    "Feb 2024",
+    "Mar 2024"
+   ],
+   "rows": [
+    [
+     "B01 Kampala Central",
+     "538,140",
+     "2,016,190",
+     "346,550"
+    ],
+    [
+     "B02 Kampala Ntinda",
+     "591,670",
+     "431,565",
+     "708,590"
+    ],
+    [
+     "B03 Entebbe",
+     "243,935",
+     "280,440",
+     "329,465"
+    ],
+    [
+     "B04 Jinja",
+     "474,465",
+     "514,675",
+     "2,340,250"
+    ],
+    [
+     "B05 Mbale",
+     "302,860",
+     "357,055",
+     "230,915"
+    ],
+    [
+     "B06 Mbarara",
+     "393,195",
+     "641,185",
+     "238,520"
+    ],
+    [
+     "B07 Fort Portal",
+     "110,530",
+     "327,645",
+     "202,000"
+    ],
+    [
+     "B08 Gulu",
+     "731,310",
+     "162,730",
+     "385,655"
+    ]
+   ],
+   "colw": [
+    4,
+    3,
+    3,
+    3
+   ],
+   "hl": [
+    4
+   ],
+   "caption": "Workbook, UGX. Jinja in March holds the single 1,935,520 UGX order.",
+   "notes": "This is the top left corner of your pivot table. Eight branches down, the first three months across, in shillings.\n\nCheck yours against this. Kampala Central in January is five hundred and thirty eight thousand one hundred and forty. Fort Portal in January is one hundred and ten thousand five hundred and thirty.\n\nNow look at the highlighted row. Jinja in March is two million three hundred and forty thousand two hundred and fifty. That's far above every other cell. It happens because the biggest order in the workbook, one million nine hundred and thirty five thousand five hundred and twenty shillings, was rung up in Jinja on the twenty eighth of March.\n\nOne order can make a whole cell look special. A pivot table of sums is sensitive to big orders, just as the mean is. Keep that in mind when you read the lab results."
+  },
+  {
+   "type": "figure",
+   "title": "A line chart shows change over time",
+   "fig": "revenue_by_month",
+   "look": [
+    "Revenue jumps every December, to about 89.5 million in 2024.",
+    "Other months stay between about 50 and 68 million.",
+    "Time runs left to right, so a line is the right chart."
+   ],
+   "caption": "Full file, UGX millions. December 2025 reached 72.8 million.",
+   "alt": "Line chart of monthly revenue across two years, peaking sharply every December.",
+   "notes": "When the question is about change over time, draw a line. Time runs from left to right, and the line joins one month to the next. It's the full file, so the figures are in millions of shillings.\n\nThe first thing you see is December. In December 2024 revenue reached about eighty nine and a half million. December 2025 reached about seventy three million.\n\nNow look at the other months. They stay in a band from about fifty to sixty eight million. So the December peak is real and large.\n\nThe axis starts at zero, so the heights can be compared fairly. Now a warning. In your workbook of two thousand orders, December 2024 comes only third among the months, even though it has the most orders, one hundred and sixteen. With about eighty orders a month, a few big baskets can reorder the months. That is the sample at work, and we meet it properly in Session 4."
+  },
+  {
+   "type": "figure",
+   "title": "Choosing a chart from the question",
+   "fig": "chart_choice",
+   "look": [
+    "One number across many rows: a histogram.",
+    "Groups side by side: a bar chart. Change over time: a line.",
+    "Two numbers together: a scatter plot."
+   ],
+   "caption": "Ask what the question is first. Then pick the chart.",
+   "alt": "Four mini charts with labels: histogram for one number, bar for a comparison, line for change over time, scatter for two numbers.",
+   "notes": "Choosing a chart is easy once you know your question. Four charts cover most of what you'll need.\n\nA histogram answers how a single number is spread out. We used it for order value.\n\nA bar chart compares groups, such as branches or payment methods. A line chart shows change over time, like revenue by month.\n\nA scatter plot puts two numbers on one picture, one on each axis, so you can see whether they move together. We'll use scatter plots in Session 4. So before you open the chart menu, say your question in one sentence. The sentence tells you the chart."
+  },
+  {
+   "type": "figure",
+   "title": "The same four numbers on two axes",
+   "fig": "bad_vs_good_axis",
+   "look": [
+    "Left: the axis starts at 94, so D looks three times as tall as A.",
+    "Right: the axis starts at zero and the bars look almost equal.",
+    "Both charts use the same four numbers."
+   ],
+   "caption": "Made-up values 96, 97, 98 and 100. A bar's length shows its size, so bars start at zero.",
+   "alt": "Two bar charts of the same data. With a cut axis the difference looks huge; from zero it is small.",
+   "notes": "Last idea for the lecture part. A chart can be accurate in every number and still mislead you, because of the axis. These are made up values, so no real branch is being accused.\n\nOn the left, the vertical axis starts at ninety four. Bar D, at one hundred, looks three times as tall as bar A, at ninety six. That's because we only see the part above ninety four.\n\nOn the right, the axis starts at zero. Now the four bars are almost the same height, which is the truth. The values are ninety six, ninety seven, ninety eight and one hundred.\n\nBars show size by their length, so the base of a bar chart should be zero. Sheets will sometimes choose a cut axis for you. You'll meet that in the lab, so check the axis every time you make a chart."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: pivot, histogram and a chart to fix",
+   "tool": "Google Sheets",
+   "time": "40 minutes",
+   "steps": [
+    "Open lakeside_for_sheets.xlsx in Google Sheets",
+    "Add a month column and build the branch by month pivot",
+    "Find the mean, median, quartiles, spread and whisker limit",
+    "Draw a histogram of order value",
+    "Chart the median by branch and fix its axis",
+    "Chart revenue by month as a line",
+    "Write one sentence on mean versus median"
+   ],
+   "done": "Your pivot grand total is 99,861,360 and every bar chart starts at zero.",
+   "notes": "The first task is a month column. Open the workbook, add the column, and build the branch by month pivot table we just made together. Forty minutes in Google Sheets.\n\nAfter that you'll find your summary numbers with formulas, including the limit where a box plot's whisker stops, and draw a histogram of order value. Then you'll make a branch chart with a cut axis on purpose and fix it. The last chart is a line of revenue by month.\n\nEvery task has an answer to check against. Your numbers will be close to the full file figures we saw, and they'll differ a little, because this workbook is a sample. That's expected.\n\nYou're done when your grand total reads ninety nine million eight hundred and sixty one thousand three hundred and sixty, and your bar charts start at zero. I'll be around. If something looks odd, ask me."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "The mean order is 49,931 and the median is 24,800. Which do you give as the typical order, and why?",
+     "a": "The median. A few huge orders pull the mean up, and half of all orders are below 24,800."
+    },
+    {
+     "q": "What does a pivot table do, in one sentence?",
+     "a": "It splits the rows into groups and summarises each group, as GROUP BY does in a database."
+    },
+    {
+     "q": "A bar chart's axis starts at 94. What is wrong with it?",
+     "a": "A bar's length shows its size, so cutting the axis exaggerates small gaps. Start at zero."
+    }
+   ],
+   "notes": "Let's put the mean and the median to work. The mean order is forty nine thousand nine hundred and thirty one and the median is twenty four thousand eight hundred. Which do you give as the typical order, and why? Sit with it for a second.\n\nThe median. A few huge orders pull the mean upwards, and half of all orders are below twenty four thousand eight hundred.\n\nNow the pivot table. What does it do, in one sentence? Picture it for a second.\n\nIt splits the rows into groups and summarises each group. In a database that's called GROUP BY.\n\nLast, a bar chart's axis starts at ninety four. What is wrong with it? Give that a moment.\n\nA bar's length shows its size. If you cut the axis, small gaps look huge. Start the bars at zero."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Mean and median answer different questions. When a few huge values exist, lead with the median.",
+    "Describe spread with quartiles as well as standard deviation, and read the shape first.",
+    "A pivot table is a GROUP BY. Choose the chart from the question, and start bars at zero."
+   ],
+   "next": "Uncertainty, samples and cause",
+   "notes": "One. The mean and the median answer different questions. When a few huge values pull the mean up, lead with the median and show both.\n\nTwo. Describe the spread with quartiles as well as the standard deviation, and look at the shape of the histogram before you trust any single number.\n\nThree. A pivot table is a GROUP BY, and the chart follows from your question. Bars start at zero.\n\nNext session, Uncertainty, samples and cause. You've seen your workbook give slightly different answers from the full file. Next time we find out exactly why, and how sure we can be about any number from a sample."
+  }
+ ],
+ "lab": {
+  "intro": "You will summarise the Lakeside Mart orders in Google Sheets. The workbook holds a sample of 2,000 orders from the full file of 30,229, so your answers will be close to the full file figures and will differ a little. Check each task against the answer given.",
+  "sheet_tasks": [
+   {
+    "task": "Open lakeside_for_sheets.xlsx in Google Sheets and go to the orders sheet. In H1 type month. In H2 type =LEFT(B2,7) and fill down to row 2001. Use =COUNTIF(H2:H2001,\"2024-12\") to count the orders in December 2024.",
+    "answer": "116 orders. If your dates show as real dates, use =TEXT(B2,\"yyyy-mm\") instead."
+   },
+   {
+    "task": "Build a pivot table with branch_id in Rows, month in Columns and the SUM of order_value_ugx in Values. Read off: Kampala Central (B01) in January 2024, Jinja (B04) in March 2024, Fort Portal (B07) in January 2024, the December 2024 column total and the grand total.",
+    "answer": "B01 Jan 2024 is 538,140. B04 Mar 2024 is 2,340,250, because it holds the single order of 1,935,520. B07 Jan 2024 is 110,530. The December 2024 total is 5,380,425. The grand total is 99,861,360 UGX."
+   },
+   {
+    "task": "On the orders sheet, use formulas on column G to find the mean, the median, the first quartile (=QUARTILE(G2:G2001,1)), the third quartile and the standard deviation (=STDEV). Then divide the mean by the median.",
+    "answer": "Mean 49,930.68. Median 24,800. First quartile 10,387.5. Third quartile 49,402.5. Standard deviation about 128,094. Mean over median is about 2.01. The full file gives a mean of 47,491 and a median of 23,200, a ratio of 2.05, so the workbook is close but not identical."
+   },
+   {
+    "task": "Use the quartiles from the last task to describe a box plot of order value. The box runs from the first to the third quartile. The upper whisker stops at the third quartile plus 1.5 times the gap between the quartiles. Work out that limit and count the orders above it with =COUNTIF(G2:G2001,\">107925\") (or your own limit).",
+    "answer": "The box runs from 10,387.5 to 49,402.5 with the median 24,800 inside. The gap between the quartiles is 39,015, so the limit is 107,925. 124 orders (6.2 percent) lie above it and would be drawn as dots, the largest at 1,935,520. The plot would show a short box and a long line of dots to the right."
+   },
+   {
+    "task": "Draw a histogram of order value: select column G, Insert, Chart, choose Histogram chart. In Customize, set the bucket size to 10,000 and the outlier percentile to 95. Then check with =COUNTIFS(G2:G2001,\"<=10000\") and =COUNTIFS(G2:G2001,\"<=50000\"), and count the orders above 100,000 with \"> 100000\".",
+    "answer": "491 orders are at or below 10,000, and 1,512 (75.6 percent) are at or below 50,000. 139 orders are above 100,000. The first bar is the tallest and the bars fall steadily to the right. Your first bar may differ from 491 by up to 3 orders depending on how Sheets treats the bucket edge."
+   },
+   {
+    "task": "Make a second pivot table with branch_id in Rows and the MEDIAN of order_value_ugx in Values. Insert a column chart of it and set the vertical axis minimum to 20,000. Which branch looks tallest, and how many times taller than the shortest does it look? Now fix the chart: set the minimum to 0, and add a title and axis labels. What does the fixed chart show?",
+    "answer": "Medians: B01 24,550. B02 22,500. B03 25,342.5. B04 27,800. B05 22,650. B06 27,035. B07 23,400. B08 26,940. On the cut axis Jinja (B04) rises 7,800 above the base and Kampala Ntinda (B02) only 2,500, so B04 looks about 3.1 times taller. From zero, B04 is about 24 percent taller than B02, a modest gap."
+   },
+   {
+    "task": "Make a third pivot table with month in Rows and the SUM of order_value_ugx in Values. Insert a line chart and start the vertical axis at 0. Which month is highest and which is lowest? Does December 2024 stand out the way it does in the full file chart?",
+    "answer": "Highest is September 2025 at 5,611,275 UGX and lowest is January 2025 at 2,711,425. December 2024 is 5,380,425, only third highest, so it does not stand out. The sample has about 83 orders a month, so a few large baskets can reorder the months. The full file shows a clear December peak in both years."
+   },
+   {
+    "task": "Write two sentences for a manager. One gives the typical order value and says how many orders you counted. The other says whether the branches differ much in their typical order.",
+    "answer": "Example: In a sample of 2,000 orders the typical order is worth 24,800 UGX (median), while the mean of 49,931 is pulled up by a few very large orders. Branch medians run from 22,500 to 27,800, so the typical order is similar everywhere. Any answer that leads with the median, states the count and says it is a sample is correct."
+   }
+  ]
+ }
+}

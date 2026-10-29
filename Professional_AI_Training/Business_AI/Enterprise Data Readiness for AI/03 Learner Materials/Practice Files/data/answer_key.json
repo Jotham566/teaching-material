@@ -1,0 +1,2701 @@
+{
+  "generated": "2026-10-29",
+  "case": "Kitara Group (fictional bank and insurer, Kampala, with Kitara Kenya in Nairobi)",
+  "sources": {
+    "count": 14,
+    "no_owner": 4,
+    "no_steward": 7,
+    "no_sensitivity_class": 5,
+    "personal_data_blank": 3,
+    "in_catalogue_Y": 0,
+    "in_catalogue_N": 14,
+    "no_quality_check_on_record": 6,
+    "no_owner_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S13"
+    ],
+    "no_steward_ids": [
+      "S02",
+      "S05",
+      "S06",
+      "S08",
+      "S09",
+      "S12",
+      "S13"
+    ],
+    "no_sensitivity_ids": [
+      "S06",
+      "S08",
+      "S09",
+      "S12",
+      "S13"
+    ],
+    "personal_data_blank_ids": [
+      "S08",
+      "S09",
+      "S12"
+    ],
+    "owner_recorded_as_IT_but_business_unit_also_claims": [
+      "S02",
+      "S06"
+    ],
+    "wrong_sensitivity": [
+      {
+        "source_id": "S03",
+        "recorded": "internal",
+        "should_be": "confidential",
+        "why": "holds scanned national ID copies"
+      },
+      {
+        "source_id": "S10",
+        "recorded": "restricted",
+        "should_be": "confidential",
+        "why": "holds salary data; the Data Classification Standard puts salary data in confidential"
+      }
+    ],
+    "expected_sensitivity_by_source": {
+      "S01": "confidential",
+      "S02": "restricted",
+      "S03": "confidential",
+      "S04": "restricted",
+      "S05": "restricted",
+      "S06": "confidential",
+      "S07": "restricted",
+      "S08": "confidential",
+      "S09": "internal",
+      "S10": "confidential",
+      "S11": "restricted",
+      "S12": "confidential",
+      "S13": "internal",
+      "S14": "restricted"
+    },
+    "sources_with_no_owner_and_no_class": [
+      "S08",
+      "S09",
+      "S12",
+      "S13"
+    ],
+    "rows_with_any_blank_key_field": 7
+  },
+  "readiness": {
+    "by_dimension": {
+      "Use cases and sponsorship": {
+        "items": 5,
+        "baseline_mean": 3.0,
+        "mean_without_self_reported": 2.33,
+        "change": -0.67,
+        "self_reported_items": 2
+      },
+      "Data: inventory, quality and metadata": {
+        "items": 5,
+        "baseline_mean": 2.0,
+        "mean_without_self_reported": 1.33,
+        "change": -0.67,
+        "self_reported_items": 2
+      },
+      "Platform and pipelines": {
+        "items": 6,
+        "baseline_mean": 2.5,
+        "mean_without_self_reported": 2.4,
+        "change": -0.1,
+        "self_reported_items": 1
+      },
+      "Protection and law": {
+        "items": 5,
+        "baseline_mean": 3.0,
+        "mean_without_self_reported": 2.67,
+        "change": -0.33,
+        "self_reported_items": 2
+      },
+      "People and governance": {
+        "items": 4,
+        "baseline_mean": 1.5,
+        "mean_without_self_reported": 1.33,
+        "change": -0.17,
+        "self_reported_items": 1
+      }
+    },
+    "overall_baseline": 2.4,
+    "overall_without_self_reported": 2.01,
+    "weakest_dimension": "People and governance",
+    "weakest_dimension_without_self_reported": "Data: inventory, quality and metadata",
+    "dimensions_moved_by_0_5_or_more": [
+      "Use cases and sponsorship",
+      "Data: inventory, quality and metadata"
+    ],
+    "evidence_items": 25,
+    "self_reported_items": 8
+  },
+  "customers": {
+    "rows": 5000,
+    "missing_national_id": 550,
+    "missing_date_of_birth": 300,
+    "impossible_dob": 25,
+    "impossible_opened_date": 15,
+    "impossible_dates_total": 40,
+    "lowercase_branch_code": 400,
+    "test_accounts": 25,
+    "phone_formats": {
+      "+256xxxxxxxxx": 2510,
+      "0xxxxxxxxx": 1372,
+      "256xxxxxxxxx": 692,
+      "spaces or dashes": 426
+    },
+    "gender_codes": {
+      "F": 1838,
+      "M": 1700,
+      "Male": 378,
+      "Female": 368,
+      "f": 259,
+      "m": 235,
+      "1": 112,
+      "2": 110
+    },
+    "district_kampala_spellings": {
+      "Kampala": 1727,
+      "KAMPALA": 237,
+      "Kla": 177
+    },
+    "district_wakiso_spellings": {
+      "Wakiso": 863,
+      "WAKISO": 88,
+      "Wak": 67
+    },
+    "duplicate_rows": 150,
+    "duplicate_exact": 75,
+    "duplicate_near": 75,
+    "duplicate_percent": 3.0,
+    "unique_people": 4850,
+    "missing_national_id_percent": 11.0,
+    "missing_dob_percent": 6.0,
+    "lowercase_branch_percent": 8.0,
+    "duplicate_pairs_first_10": [
+      [
+        "KT-7957684",
+        "KT-1026064",
+        "exact"
+      ],
+      [
+        "KT-1716497",
+        "KT-1064647",
+        "near"
+      ],
+      [
+        "KT-2321980",
+        "KT-1153332",
+        "exact"
+      ],
+      [
+        "KT-1498497",
+        "KT-1175139",
+        "near"
+      ],
+      [
+        "KT-4434674",
+        "KT-1299455",
+        "near"
+      ],
+      [
+        "KT-1890984",
+        "KT-1310397",
+        "near"
+      ],
+      [
+        "KT-6139689",
+        "KT-1315991",
+        "near"
+      ],
+      [
+        "KT-8318728",
+        "KT-1331267",
+        "near"
+      ],
+      [
+        "KT-8402807",
+        "KT-1344909",
+        "near"
+      ],
+      [
+        "KT-2694619",
+        "KT-1413160",
+        "near"
+      ]
+    ],
+    "duplicate_pairs_all": [
+      [
+        "KT-7957684",
+        "KT-1026064",
+        "exact"
+      ],
+      [
+        "KT-1716497",
+        "KT-1064647",
+        "near"
+      ],
+      [
+        "KT-2321980",
+        "KT-1153332",
+        "exact"
+      ],
+      [
+        "KT-1498497",
+        "KT-1175139",
+        "near"
+      ],
+      [
+        "KT-4434674",
+        "KT-1299455",
+        "near"
+      ],
+      [
+        "KT-1890984",
+        "KT-1310397",
+        "near"
+      ],
+      [
+        "KT-6139689",
+        "KT-1315991",
+        "near"
+      ],
+      [
+        "KT-8318728",
+        "KT-1331267",
+        "near"
+      ],
+      [
+        "KT-8402807",
+        "KT-1344909",
+        "near"
+      ],
+      [
+        "KT-2694619",
+        "KT-1413160",
+        "near"
+      ],
+      [
+        "KT-8971623",
+        "KT-1418443",
+        "near"
+      ],
+      [
+        "KT-1981908",
+        "KT-1429965",
+        "exact"
+      ],
+      [
+        "KT-1520680",
+        "KT-1462066",
+        "near"
+      ],
+      [
+        "KT-4659070",
+        "KT-1758461",
+        "near"
+      ],
+      [
+        "KT-1343797",
+        "KT-1791825",
+        "exact"
+      ],
+      [
+        "KT-6755431",
+        "KT-1819979",
+        "near"
+      ],
+      [
+        "KT-6459374",
+        "KT-1832863",
+        "exact"
+      ],
+      [
+        "KT-6169036",
+        "KT-1940101",
+        "near"
+      ],
+      [
+        "KT-3584465",
+        "KT-1956167",
+        "near"
+      ],
+      [
+        "KT-1962374",
+        "KT-1983898",
+        "near"
+      ],
+      [
+        "KT-5496248",
+        "KT-1995012",
+        "near"
+      ],
+      [
+        "KT-5095894",
+        "KT-2043029",
+        "exact"
+      ],
+      [
+        "KT-5545618",
+        "KT-2122335",
+        "exact"
+      ],
+      [
+        "KT-5347027",
+        "KT-2128732",
+        "exact"
+      ],
+      [
+        "KT-5604798",
+        "KT-2136817",
+        "exact"
+      ],
+      [
+        "KT-4524698",
+        "KT-2188149",
+        "exact"
+      ],
+      [
+        "KT-6820521",
+        "KT-2261087",
+        "near"
+      ],
+      [
+        "KT-7865874",
+        "KT-2287257",
+        "near"
+      ],
+      [
+        "KT-6492570",
+        "KT-2360971",
+        "exact"
+      ],
+      [
+        "KT-4984275",
+        "KT-2361642",
+        "near"
+      ],
+      [
+        "KT-2765477",
+        "KT-2515224",
+        "near"
+      ],
+      [
+        "KT-1815424",
+        "KT-2536663",
+        "exact"
+      ],
+      [
+        "KT-1388768",
+        "KT-2595535",
+        "near"
+      ],
+      [
+        "KT-3752362",
+        "KT-2599868",
+        "exact"
+      ],
+      [
+        "KT-4411741",
+        "KT-2673983",
+        "exact"
+      ],
+      [
+        "KT-7278227",
+        "KT-2705023",
+        "exact"
+      ],
+      [
+        "KT-3624755",
+        "KT-2706127",
+        "exact"
+      ],
+      [
+        "KT-8717821",
+        "KT-2734262",
+        "exact"
+      ],
+      [
+        "KT-4084057",
+        "KT-2746272",
+        "near"
+      ],
+      [
+        "KT-7995540",
+        "KT-2786232",
+        "exact"
+      ],
+      [
+        "KT-7773706",
+        "KT-2894282",
+        "exact"
+      ],
+      [
+        "KT-3723165",
+        "KT-2924724",
+        "exact"
+      ],
+      [
+        "KT-3697664",
+        "KT-2930737",
+        "near"
+      ],
+      [
+        "KT-4606206",
+        "KT-2952095",
+        "exact"
+      ],
+      [
+        "KT-6069720",
+        "KT-3023202",
+        "exact"
+      ],
+      [
+        "KT-3760849",
+        "KT-3066562",
+        "near"
+      ],
+      [
+        "KT-2017841",
+        "KT-3076899",
+        "near"
+      ],
+      [
+        "KT-3840106",
+        "KT-3192745",
+        "exact"
+      ],
+      [
+        "KT-4563441",
+        "KT-3195074",
+        "near"
+      ],
+      [
+        "KT-3422038",
+        "KT-3247489",
+        "near"
+      ],
+      [
+        "KT-6949964",
+        "KT-3269091",
+        "exact"
+      ],
+      [
+        "KT-6595999",
+        "KT-3356993",
+        "exact"
+      ],
+      [
+        "KT-7735142",
+        "KT-3365365",
+        "exact"
+      ],
+      [
+        "KT-5158219",
+        "KT-3518393",
+        "near"
+      ],
+      [
+        "KT-7000503",
+        "KT-3530116",
+        "exact"
+      ],
+      [
+        "KT-5901416",
+        "KT-3589761",
+        "near"
+      ],
+      [
+        "KT-8061745",
+        "KT-3616054",
+        "near"
+      ],
+      [
+        "KT-2414599",
+        "KT-3643402",
+        "near"
+      ],
+      [
+        "KT-4418427",
+        "KT-3685591",
+        "near"
+      ],
+      [
+        "KT-5989535",
+        "KT-3802093",
+        "exact"
+      ],
+      [
+        "KT-8366747",
+        "KT-3806197",
+        "exact"
+      ],
+      [
+        "KT-3835797",
+        "KT-3872908",
+        "exact"
+      ],
+      [
+        "KT-2887519",
+        "KT-3916091",
+        "near"
+      ],
+      [
+        "KT-7477276",
+        "KT-3979179",
+        "exact"
+      ],
+      [
+        "KT-4254789",
+        "KT-4011008",
+        "exact"
+      ],
+      [
+        "KT-4283688",
+        "KT-4036993",
+        "near"
+      ],
+      [
+        "KT-2826694",
+        "KT-4075272",
+        "near"
+      ],
+      [
+        "KT-8104398",
+        "KT-4122413",
+        "exact"
+      ],
+      [
+        "KT-8149039",
+        "KT-4172231",
+        "exact"
+      ],
+      [
+        "KT-8427507",
+        "KT-4229507",
+        "exact"
+      ],
+      [
+        "KT-5841148",
+        "KT-4237535",
+        "near"
+      ],
+      [
+        "KT-4573179",
+        "KT-4411337",
+        "exact"
+      ],
+      [
+        "KT-7348750",
+        "KT-4422353",
+        "near"
+      ],
+      [
+        "KT-8919621",
+        "KT-4460215",
+        "exact"
+      ],
+      [
+        "KT-2806944",
+        "KT-4618874",
+        "near"
+      ],
+      [
+        "KT-6028271",
+        "KT-4834782",
+        "near"
+      ],
+      [
+        "KT-7124749",
+        "KT-4858152",
+        "exact"
+      ],
+      [
+        "KT-3485094",
+        "KT-4921548",
+        "exact"
+      ],
+      [
+        "KT-7421752",
+        "KT-5343083",
+        "exact"
+      ],
+      [
+        "KT-8432593",
+        "KT-5346227",
+        "near"
+      ],
+      [
+        "KT-5458290",
+        "KT-5361309",
+        "near"
+      ],
+      [
+        "KT-7707093",
+        "KT-5385431",
+        "exact"
+      ],
+      [
+        "KT-2836426",
+        "KT-5417152",
+        "exact"
+      ],
+      [
+        "KT-5069582",
+        "KT-5420501",
+        "near"
+      ],
+      [
+        "KT-6525912",
+        "KT-5437330",
+        "exact"
+      ],
+      [
+        "KT-1912392",
+        "KT-5518203",
+        "near"
+      ],
+      [
+        "KT-1355803",
+        "KT-5598817",
+        "exact"
+      ],
+      [
+        "KT-7859832",
+        "KT-5604734",
+        "near"
+      ],
+      [
+        "KT-5863537",
+        "KT-5620240",
+        "exact"
+      ],
+      [
+        "KT-7824889",
+        "KT-5739528",
+        "near"
+      ],
+      [
+        "KT-2828292",
+        "KT-5759598",
+        "near"
+      ],
+      [
+        "KT-2767751",
+        "KT-5779975",
+        "near"
+      ],
+      [
+        "KT-3186304",
+        "KT-5788168",
+        "exact"
+      ],
+      [
+        "KT-8687193",
+        "KT-5810490",
+        "near"
+      ],
+      [
+        "KT-3441592",
+        "KT-5869882",
+        "exact"
+      ],
+      [
+        "KT-7072837",
+        "KT-5899825",
+        "exact"
+      ],
+      [
+        "KT-2308204",
+        "KT-5926721",
+        "exact"
+      ],
+      [
+        "KT-5205079",
+        "KT-5950453",
+        "exact"
+      ],
+      [
+        "KT-6204101",
+        "KT-6028702",
+        "near"
+      ],
+      [
+        "KT-1964330",
+        "KT-6050758",
+        "exact"
+      ],
+      [
+        "KT-3516226",
+        "KT-6086500",
+        "exact"
+      ],
+      [
+        "KT-5525799",
+        "KT-6144014",
+        "near"
+      ],
+      [
+        "KT-4231311",
+        "KT-6164980",
+        "exact"
+      ],
+      [
+        "KT-7277900",
+        "KT-6170620",
+        "exact"
+      ],
+      [
+        "KT-7160234",
+        "KT-6233012",
+        "near"
+      ],
+      [
+        "KT-3965023",
+        "KT-6244326",
+        "exact"
+      ],
+      [
+        "KT-8036439",
+        "KT-6347427",
+        "exact"
+      ],
+      [
+        "KT-7581229",
+        "KT-6372837",
+        "near"
+      ],
+      [
+        "KT-8286235",
+        "KT-6507846",
+        "near"
+      ],
+      [
+        "KT-7624315",
+        "KT-6542143",
+        "exact"
+      ],
+      [
+        "KT-7619453",
+        "KT-6542608",
+        "near"
+      ],
+      [
+        "KT-2317891",
+        "KT-6608211",
+        "exact"
+      ],
+      [
+        "KT-1057314",
+        "KT-6741981",
+        "near"
+      ],
+      [
+        "KT-6081405",
+        "KT-6816666",
+        "exact"
+      ],
+      [
+        "KT-8617923",
+        "KT-6864968",
+        "exact"
+      ],
+      [
+        "KT-2016857",
+        "KT-6876981",
+        "near"
+      ],
+      [
+        "KT-3186368",
+        "KT-6881239",
+        "exact"
+      ],
+      [
+        "KT-2547932",
+        "KT-6921248",
+        "exact"
+      ],
+      [
+        "KT-2272871",
+        "KT-6946015",
+        "exact"
+      ],
+      [
+        "KT-8286425",
+        "KT-6975101",
+        "exact"
+      ],
+      [
+        "KT-7402394",
+        "KT-6985371",
+        "near"
+      ],
+      [
+        "KT-6700670",
+        "KT-7031596",
+        "exact"
+      ],
+      [
+        "KT-2109892",
+        "KT-7153367",
+        "exact"
+      ],
+      [
+        "KT-7933290",
+        "KT-7158286",
+        "near"
+      ],
+      [
+        "KT-6756497",
+        "KT-7234535",
+        "exact"
+      ],
+      [
+        "KT-2848795",
+        "KT-7419563",
+        "exact"
+      ],
+      [
+        "KT-8204617",
+        "KT-7543885",
+        "near"
+      ],
+      [
+        "KT-2619878",
+        "KT-7577444",
+        "near"
+      ],
+      [
+        "KT-7663013",
+        "KT-7620671",
+        "exact"
+      ],
+      [
+        "KT-7918963",
+        "KT-7643455",
+        "exact"
+      ],
+      [
+        "KT-2054207",
+        "KT-7666547",
+        "near"
+      ],
+      [
+        "KT-8286176",
+        "KT-7772788",
+        "near"
+      ],
+      [
+        "KT-7434483",
+        "KT-7774350",
+        "near"
+      ],
+      [
+        "KT-3990032",
+        "KT-7893590",
+        "near"
+      ],
+      [
+        "KT-3990928",
+        "KT-8029831",
+        "near"
+      ],
+      [
+        "KT-4991350",
+        "KT-8056529",
+        "exact"
+      ],
+      [
+        "KT-1116649",
+        "KT-8096130",
+        "near"
+      ],
+      [
+        "KT-3823129",
+        "KT-8240661",
+        "exact"
+      ],
+      [
+        "KT-3903751",
+        "KT-8264077",
+        "near"
+      ],
+      [
+        "KT-2280174",
+        "KT-8286344",
+        "near"
+      ],
+      [
+        "KT-3657878",
+        "KT-8355785",
+        "exact"
+      ],
+      [
+        "KT-3880667",
+        "KT-8423525",
+        "near"
+      ],
+      [
+        "KT-5377533",
+        "KT-8555633",
+        "near"
+      ],
+      [
+        "KT-7069406",
+        "KT-8588005",
+        "near"
+      ],
+      [
+        "KT-1378904",
+        "KT-8592072",
+        "exact"
+      ],
+      [
+        "KT-7740586",
+        "KT-8710126",
+        "near"
+      ],
+      [
+        "KT-5363021",
+        "KT-8770773",
+        "near"
+      ],
+      [
+        "KT-8007663",
+        "KT-8782246",
+        "exact"
+      ],
+      [
+        "KT-3179488",
+        "KT-8828897",
+        "near"
+      ],
+      [
+        "KT-4303166",
+        "KT-8844987",
+        "near"
+      ]
+    ],
+    "national_id_present_N": 550,
+    "rule_hints": {
+      "phone_valid_after_cleaning": "digits only, 9 digits after 256, starts with 7",
+      "impossible_date_rule": "date_of_birth between 1900-01-01 and 2026-10-29; opened_date not after 2026-10-29",
+      "duplicate_rule": "same national_id (when present), or same lower-case name with the same date_of_birth, different customer_id"
+    },
+    "duplicates_found_by_national_id_rule": 150
+  },
+  "mobile_money_log": {
+    "rows": 20000,
+    "duplicate_txn_id_rows": 300,
+    "negative_amounts": 100,
+    "zero_amounts": 60,
+    "largest_gap_hours": 6.1,
+    "second_largest_gap_hours": 1.57,
+    "gap_starts": "2026-09-17 08:59:42",
+    "gap_ends": "2026-09-17 15:05:26",
+    "rows_in_slash_format": 1842,
+    "agents_in_slash_format": 12,
+    "duplicate_percent": 1.5,
+    "bad_amount_percent": 0.8,
+    "slash_format_agents": "AG0101 to AG0112",
+    "period": "2026-09-01 to 2026-09-30"
+  },
+  "lineage": {
+    "edges": 25,
+    "claims_chain_edges": 14,
+    "customer_chain_edges": 11,
+    "assets": 27,
+    "upstream_of_claims_turnaround_dashboard": [
+      "mart.claims_fact",
+      "clean.claims",
+      "clean.claim_payments",
+      "clean.policies",
+      "staging.claims_raw",
+      "staging.payments_raw",
+      "staging.policies_raw",
+      "claims_system.claims",
+      "claims_system.claim_payments",
+      "policy_admin.policies"
+    ],
+    "downstream_of_core_banking_customer": [
+      "staging.customer_raw",
+      "clean.customer",
+      "mart.customer_360",
+      "report.customer_base_dashboard",
+      "regulatory.bank_quarterly_return",
+      "board.quarterly_pack"
+    ]
+  },
+  "users": {
+    "count": 12
+  },
+  "branch_reports": [
+    {
+      "file": "Branch Report - Kampala Road - Sep 2026.xlsx",
+      "layout": "title merged over six columns; header on row 4; sub-total row inside the data; formulas; a note under the table"
+    },
+    {
+      "file": "Ntinda Branch Quarterly Return Q3.xlsx",
+      "layout": "months across the columns; merged group headers over three columns each; header on row 6; branch code in lower case"
+    },
+    {
+      "file": "Entebbe Sep26.xlsx",
+      "layout": "two sheets; amounts stored as text with the UGX prefix; three date formats in one column"
+    },
+    {
+      "file": "Jinja_main_branch_report_2026-09.xlsx",
+      "layout": "metrics down the rows with units in column B; blank rows and section headings; a footnote in the cells"
+    },
+    {
+      "file": "Mbarara Branch KPI.xlsx",
+      "layout": "different header names for the same measures; N/A and dash in numeric cells; a cell comment; formulas that return blank"
+    },
+    {
+      "file": "Nairobi Westlands - Branch Report Sept 2026.xlsx",
+      "layout": "Kenya shillings; a hidden column; header on row 3; unsigned check line"
+    }
+  ],
+  "scans": {
+    "count": 8,
+    "tool": "tesseract via pytesseract at 150 dpi, English",
+    "per_scan": [
+      {
+        "doc_id": "D084",
+        "file": "scans/Scan Motor Claim Form Signed.pdf",
+        "degradation": "normal",
+        "character_error_rate": 0.0188,
+        "seed": 183,
+        "ocr_characters": 906,
+        "source_characters": 906
+      },
+      {
+        "doc_id": "D085",
+        "file": "scans/Scan Circular 2016-021 Annual Leave.pdf",
+        "degradation": "normal",
+        "character_error_rate": 0.0118,
+        "seed": 184,
+        "ocr_characters": 761,
+        "source_characters": 762
+      },
+      {
+        "doc_id": "D086",
+        "file": "scans/Scan Branch Inspection Note Mbarara.pdf",
+        "degradation": "normal",
+        "character_error_rate": 0.0092,
+        "seed": 185,
+        "ocr_characters": 763,
+        "source_characters": 765
+      },
+      {
+        "doc_id": "D087",
+        "file": "scans/Scan Customer Complaint Letter by Post.pdf",
+        "degradation": "normal",
+        "character_error_rate": 0.012,
+        "seed": 186,
+        "ocr_characters": 584,
+        "source_characters": 584
+      },
+      {
+        "doc_id": "D088",
+        "file": "scans/Scan Board Resolution Extract 2019.pdf",
+        "degradation": "normal",
+        "character_error_rate": 0.0015,
+        "seed": 187,
+        "ocr_characters": 654,
+        "source_characters": 654
+      },
+      {
+        "doc_id": "D089",
+        "file": "scans/Scan Loan Committee Note 2018.pdf",
+        "degradation": "heavy",
+        "character_error_rate": 0.1305,
+        "seed": 105,
+        "ocr_characters": 633,
+        "source_characters": 659
+      },
+      {
+        "doc_id": "D090",
+        "file": "scans/Scan Regulator Notice Fax 2017.pdf",
+        "degradation": "heavy",
+        "character_error_rate": 0.1144,
+        "seed": 109,
+        "ocr_characters": 508,
+        "source_characters": 542
+      },
+      {
+        "doc_id": "D091",
+        "file": "scans/Scan Motor Policy Schedule 2015.pdf",
+        "degradation": "heavy",
+        "character_error_rate": 0.0937,
+        "seed": 109,
+        "ocr_characters": 589,
+        "source_characters": 587
+      }
+    ],
+    "normal_max_cer": 0.0188,
+    "heavy_min_cer": 0.0937,
+    "heavy_documents": [
+      "scans/Scan Loan Committee Note 2018.pdf",
+      "scans/Scan Regulator Notice Fax 2017.pdf",
+      "scans/Scan Motor Policy Schedule 2015.pdf"
+    ],
+    "note": "Character error rate = edit distance between OCR text and the known source text, after collapsing white space, divided by source length. Another Tesseract version can give slightly different values."
+  },
+  "table_pdfs": [
+    {
+      "file": "product guides/Tariff Schedule 2025.pdf",
+      "rows": 8,
+      "rows_kept_together_by_pypdf": 0,
+      "rows_recovered_by_pdfplumber": 8,
+      "pdfplumber_table_found": true
+    },
+    {
+      "file": "product guides/Motor Premium Rates 2025.pdf",
+      "rows": 6,
+      "rows_kept_together_by_pypdf": 0,
+      "rows_recovered_by_pdfplumber": 6,
+      "pdfplumber_table_found": true
+    }
+  ],
+  "search_evaluation": {
+    "method": {
+      "chunks": "about 200 words, 40 word overlap",
+      "chunk_count": 139,
+      "documents": 121,
+      "text_source": "pypdf for text PDFs, python-docx for .docx, plain read for .txt, Tesseract OCR for scans",
+      "bm25": "k1 1.5, b 0.75, lowercase tokens, short stopword list, chunks with no matching word are not returned",
+      "meaning": "stand-in: TF-IDF on word unigrams and character 4-grams, SVD to 64 dimensions, cosine similarity",
+      "hybrid": "reciprocal rank fusion, k 60, top 50 of each list",
+      "hit_rule": "a question is a hit at k when any of the top k chunks comes from the gold document (doc_id)"
+    },
+    "questions": 60,
+    "recall_at_5": {
+      "bm25": 0.633,
+      "meaning": 0.617,
+      "hybrid": 0.767
+    },
+    "hits_at_5": {
+      "bm25": 38,
+      "meaning": 37,
+      "hybrid": 46
+    },
+    "mrr_at_10": {
+      "bm25": 0.514,
+      "meaning": 0.485,
+      "hybrid": 0.474
+    },
+    "recall_at_3": {
+      "bm25": 0.55,
+      "meaning": 0.567,
+      "hybrid": 0.6
+    },
+    "hybrid_minus_better_single_method": 0.133,
+    "recall_at_5_by_question_kind": {
+      "plain": {
+        "bm25": 0.525,
+        "meaning": 0.525,
+        "hybrid": 0.725
+      },
+      "stale": {
+        "bm25": 1.0,
+        "meaning": 1.0,
+        "hybrid": 1.0
+      },
+      "swahili": {
+        "bm25": 0.5,
+        "meaning": 0.5,
+        "hybrid": 0.5
+      },
+      "restricted": {
+        "bm25": 1.0,
+        "meaning": 0.833,
+        "hybrid": 1.0
+      }
+    },
+    "recall_at_5_permitted_questions_with_permission_filter": {
+      "bm25": 0.648,
+      "meaning": 0.741,
+      "hybrid": 0.759
+    },
+    "stale_questions": {
+      "count": 8,
+      "bm25_rank1_chunk_is_superseded": 8,
+      "per_question": [
+        {
+          "q_id": "Q41",
+          "question": "How many days of annual leave am I entitled to each year?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 4,
+          "hybrid_rank_of_current": 4
+        },
+        {
+          "q_id": "Q42",
+          "question": "How long is the probation period for a new permanent employee?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 2,
+          "hybrid_rank_of_current": 2
+        },
+        {
+          "q_id": "Q43",
+          "question": "How many days a week may staff work remotely?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 4,
+          "hybrid_rank_of_current": 3
+        },
+        {
+          "q_id": "Q44",
+          "question": "How much can a member of staff claim as a single expense without written approval?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 4,
+          "hybrid_rank_of_current": 4
+        },
+        {
+          "q_id": "Q45",
+          "question": "What is the settlement timeframe for an accepted claim?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 2,
+          "hybrid_rank_of_current": 2
+        },
+        {
+          "q_id": "Q46",
+          "question": "Up to what amount can a Claims Officer approve a claim?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 4,
+          "hybrid_rank_of_current": 3
+        },
+        {
+          "q_id": "Q47",
+          "question": "What is the mileage rate for using a private vehicle on work?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 2,
+          "hybrid_rank_of_current": 2
+        },
+        {
+          "q_id": "Q48",
+          "question": "What are the Saturday opening hours of the branches?",
+          "bm25_top1_status": "superseded",
+          "bm25_rank_of_current": 2,
+          "hybrid_rank_of_current": 2
+        }
+      ]
+    },
+    "permission_test": {
+      "questions": 6,
+      "without_filter_gold_in_top5": {
+        "bm25": 6,
+        "hybrid": 6
+      },
+      "with_filter_gold_in_top10": 0,
+      "per_question": [
+        {
+          "q_id": "Q55",
+          "asker_group": "all_staff",
+          "gold_doc_id": "D004",
+          "found_without_filter_bm25": true,
+          "found_without_filter_hybrid": true
+        },
+        {
+          "q_id": "Q56",
+          "asker_group": "branch_ops",
+          "gold_doc_id": "D073",
+          "found_without_filter_bm25": true,
+          "found_without_filter_hybrid": true
+        },
+        {
+          "q_id": "Q57",
+          "asker_group": "claims",
+          "gold_doc_id": "D083",
+          "found_without_filter_bm25": true,
+          "found_without_filter_hybrid": true
+        },
+        {
+          "q_id": "Q58",
+          "asker_group": "hr",
+          "gold_doc_id": "D035",
+          "found_without_filter_bm25": true,
+          "found_without_filter_hybrid": true
+        },
+        {
+          "q_id": "Q59",
+          "asker_group": "branch_ops",
+          "gold_doc_id": "D102",
+          "found_without_filter_bm25": true,
+          "found_without_filter_hybrid": true
+        },
+        {
+          "q_id": "Q60",
+          "asker_group": "hr",
+          "gold_doc_id": "D069",
+          "found_without_filter_bm25": true,
+          "found_without_filter_hybrid": true
+        }
+      ]
+    },
+    "paraphrase": {
+      "definition": "question shares at most one word (after lowercasing and removing stopwords) with the passage that holds the answer",
+      "count": 23,
+      "bm25_recall_at_5": 0.174,
+      "meaning_recall_at_5": 0.348,
+      "hybrid_recall_at_5": 0.435,
+      "question_ids": [
+        "Q01",
+        "Q02",
+        "Q09",
+        "Q10",
+        "Q12",
+        "Q13",
+        "Q14",
+        "Q15",
+        "Q18",
+        "Q19",
+        "Q20",
+        "Q21",
+        "Q22",
+        "Q23",
+        "Q24",
+        "Q26",
+        "Q27",
+        "Q28",
+        "Q30",
+        "Q34",
+        "Q52",
+        "Q53",
+        "Q54"
+      ]
+    },
+    "swahili": {
+      "count": 6,
+      "bm25_hits": 3,
+      "meaning_hits": 3,
+      "hybrid_hits": 3,
+      "note": "Three questions are about Swahili circulars and every method finds them. Three are Swahili questions about English documents: keyword search finds 0 of them and the stand-in meaning search finds 0."
+    },
+    "questions_missed": {
+      "bm25": [
+        "Q01",
+        "Q02",
+        "Q10",
+        "Q11",
+        "Q14",
+        "Q15",
+        "Q18",
+        "Q19",
+        "Q20",
+        "Q21",
+        "Q22",
+        "Q23",
+        "Q24",
+        "Q25",
+        "Q26",
+        "Q27",
+        "Q28",
+        "Q29",
+        "Q30",
+        "Q52",
+        "Q53",
+        "Q54"
+      ],
+      "meaning": [
+        "Q03",
+        "Q06",
+        "Q07",
+        "Q08",
+        "Q09",
+        "Q10",
+        "Q11",
+        "Q14",
+        "Q16",
+        "Q17",
+        "Q21",
+        "Q22",
+        "Q23",
+        "Q24",
+        "Q26",
+        "Q27",
+        "Q28",
+        "Q30",
+        "Q34",
+        "Q52",
+        "Q53",
+        "Q54",
+        "Q60"
+      ],
+      "hybrid": [
+        "Q10",
+        "Q11",
+        "Q14",
+        "Q21",
+        "Q22",
+        "Q23",
+        "Q24",
+        "Q26",
+        "Q27",
+        "Q28",
+        "Q30",
+        "Q52",
+        "Q53",
+        "Q54"
+      ]
+    },
+    "per_question": [
+      {
+        "q_id": "Q01",
+        "kind": "plain",
+        "gold_doc_id": "D007",
+        "bm25_rank": 7,
+        "meaning_rank": 1,
+        "hybrid_rank": 3,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q02",
+        "kind": "plain",
+        "gold_doc_id": "D008",
+        "bm25_rank": 7,
+        "meaning_rank": 1,
+        "hybrid_rank": 4,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q03",
+        "kind": "plain",
+        "gold_doc_id": "D009",
+        "bm25_rank": 1,
+        "meaning_rank": 8,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q04",
+        "kind": "plain",
+        "gold_doc_id": "D021",
+        "bm25_rank": 2,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q05",
+        "kind": "plain",
+        "gold_doc_id": "D022",
+        "bm25_rank": 1,
+        "meaning_rank": 5,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q06",
+        "kind": "plain",
+        "gold_doc_id": "D020",
+        "bm25_rank": 1,
+        "meaning_rank": 6,
+        "hybrid_rank": 3,
+        "words_shared_with_gold_passage": 3
+      },
+      {
+        "q_id": "Q07",
+        "kind": "plain",
+        "gold_doc_id": "D017",
+        "bm25_rank": 1,
+        "meaning_rank": 7,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 3
+      },
+      {
+        "q_id": "Q08",
+        "kind": "plain",
+        "gold_doc_id": "D019",
+        "bm25_rank": 3,
+        "meaning_rank": 7,
+        "hybrid_rank": 5,
+        "words_shared_with_gold_passage": 3
+      },
+      {
+        "q_id": "Q09",
+        "kind": "plain",
+        "gold_doc_id": "D018",
+        "bm25_rank": 4,
+        "meaning_rank": 7,
+        "hybrid_rank": 5,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q10",
+        "kind": "plain",
+        "gold_doc_id": "D023",
+        "bm25_rank": 7,
+        "meaning_rank": 10,
+        "hybrid_rank": 8,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q11",
+        "kind": "plain",
+        "gold_doc_id": "D024",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q12",
+        "kind": "plain",
+        "gold_doc_id": "D030",
+        "bm25_rank": 3,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q13",
+        "kind": "plain",
+        "gold_doc_id": "D032",
+        "bm25_rank": 3,
+        "meaning_rank": 2,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q14",
+        "kind": "plain",
+        "gold_doc_id": "D061",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q15",
+        "kind": "plain",
+        "gold_doc_id": "D038",
+        "bm25_rank": 7,
+        "meaning_rank": 1,
+        "hybrid_rank": 3,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q16",
+        "kind": "plain",
+        "gold_doc_id": "D010",
+        "bm25_rank": 1,
+        "meaning_rank": 6,
+        "hybrid_rank": 3,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q17",
+        "kind": "plain",
+        "gold_doc_id": "D079",
+        "bm25_rank": 1,
+        "meaning_rank": 9,
+        "hybrid_rank": 5,
+        "words_shared_with_gold_passage": 3
+      },
+      {
+        "q_id": "Q18",
+        "kind": "plain",
+        "gold_doc_id": "D054",
+        "bm25_rank": 6,
+        "meaning_rank": 2,
+        "hybrid_rank": 4,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q19",
+        "kind": "plain",
+        "gold_doc_id": "D028",
+        "bm25_rank": 8,
+        "meaning_rank": 1,
+        "hybrid_rank": 4,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q20",
+        "kind": "plain",
+        "gold_doc_id": "D045",
+        "bm25_rank": 0,
+        "meaning_rank": 2,
+        "hybrid_rank": 4,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q21",
+        "kind": "plain",
+        "gold_doc_id": "D014",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q22",
+        "kind": "plain",
+        "gold_doc_id": "D043",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q23",
+        "kind": "plain",
+        "gold_doc_id": "D011",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q24",
+        "kind": "plain",
+        "gold_doc_id": "D016",
+        "bm25_rank": 10,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q25",
+        "kind": "plain",
+        "gold_doc_id": "D031",
+        "bm25_rank": 0,
+        "meaning_rank": 2,
+        "hybrid_rank": 4,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q26",
+        "kind": "plain",
+        "gold_doc_id": "D071",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q27",
+        "kind": "plain",
+        "gold_doc_id": "D075",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q28",
+        "kind": "plain",
+        "gold_doc_id": "D058",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q29",
+        "kind": "plain",
+        "gold_doc_id": "D068",
+        "bm25_rank": 8,
+        "meaning_rank": 2,
+        "hybrid_rank": 3,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q30",
+        "kind": "plain",
+        "gold_doc_id": "D015",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q31",
+        "kind": "plain",
+        "gold_doc_id": "D082",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q32",
+        "kind": "plain",
+        "gold_doc_id": "D059",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q33",
+        "kind": "plain",
+        "gold_doc_id": "D012",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 2
+      },
+      {
+        "q_id": "Q34",
+        "kind": "plain",
+        "gold_doc_id": "D015",
+        "bm25_rank": 1,
+        "meaning_rank": 0,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 1
+      },
+      {
+        "q_id": "Q35",
+        "kind": "plain",
+        "gold_doc_id": "D085",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 5
+      },
+      {
+        "q_id": "Q36",
+        "kind": "plain",
+        "gold_doc_id": "D086",
+        "bm25_rank": 1,
+        "meaning_rank": 2,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q37",
+        "kind": "plain",
+        "gold_doc_id": "D084",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 8
+      },
+      {
+        "q_id": "Q38",
+        "kind": "plain",
+        "gold_doc_id": "D092",
+        "bm25_rank": 1,
+        "meaning_rank": 2,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 8
+      },
+      {
+        "q_id": "Q39",
+        "kind": "plain",
+        "gold_doc_id": "D105",
+        "bm25_rank": 1,
+        "meaning_rank": 2,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 8
+      },
+      {
+        "q_id": "Q40",
+        "kind": "plain",
+        "gold_doc_id": "D112",
+        "bm25_rank": 1,
+        "meaning_rank": 2,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 8
+      },
+      {
+        "q_id": "Q41",
+        "kind": "stale",
+        "gold_doc_id": "D003",
+        "bm25_rank": 4,
+        "meaning_rank": 4,
+        "hybrid_rank": 4,
+        "words_shared_with_gold_passage": 6
+      },
+      {
+        "q_id": "Q42",
+        "kind": "stale",
+        "gold_doc_id": "D003",
+        "bm25_rank": 2,
+        "meaning_rank": 1,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q43",
+        "kind": "stale",
+        "gold_doc_id": "D003",
+        "bm25_rank": 4,
+        "meaning_rank": 2,
+        "hybrid_rank": 3,
+        "words_shared_with_gold_passage": 5
+      },
+      {
+        "q_id": "Q44",
+        "kind": "stale",
+        "gold_doc_id": "D003",
+        "bm25_rank": 4,
+        "meaning_rank": 4,
+        "hybrid_rank": 4,
+        "words_shared_with_gold_passage": 6
+      },
+      {
+        "q_id": "Q45",
+        "kind": "stale",
+        "gold_doc_id": "D006",
+        "bm25_rank": 2,
+        "meaning_rank": 2,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q46",
+        "kind": "stale",
+        "gold_doc_id": "D006",
+        "bm25_rank": 4,
+        "meaning_rank": 2,
+        "hybrid_rank": 3,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q47",
+        "kind": "stale",
+        "gold_doc_id": "D049",
+        "bm25_rank": 2,
+        "meaning_rank": 2,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q48",
+        "kind": "stale",
+        "gold_doc_id": "D051",
+        "bm25_rank": 2,
+        "meaning_rank": 2,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q49",
+        "kind": "swahili",
+        "gold_doc_id": "D065",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 7
+      },
+      {
+        "q_id": "Q50",
+        "kind": "swahili",
+        "gold_doc_id": "D066",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 10
+      },
+      {
+        "q_id": "Q51",
+        "kind": "swahili",
+        "gold_doc_id": "D067",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 9
+      },
+      {
+        "q_id": "Q52",
+        "kind": "swahili",
+        "gold_doc_id": "D024",
+        "bm25_rank": 0,
+        "meaning_rank": 8,
+        "hybrid_rank": 8,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q53",
+        "kind": "swahili",
+        "gold_doc_id": "D010",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q54",
+        "kind": "swahili",
+        "gold_doc_id": "D006",
+        "bm25_rank": 0,
+        "meaning_rank": 0,
+        "hybrid_rank": 0,
+        "words_shared_with_gold_passage": 0
+      },
+      {
+        "q_id": "Q55",
+        "kind": "restricted",
+        "gold_doc_id": "D004",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 4
+      },
+      {
+        "q_id": "Q56",
+        "kind": "restricted",
+        "gold_doc_id": "D073",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 6
+      },
+      {
+        "q_id": "Q57",
+        "kind": "restricted",
+        "gold_doc_id": "D083",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 7
+      },
+      {
+        "q_id": "Q58",
+        "kind": "restricted",
+        "gold_doc_id": "D035",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 6
+      },
+      {
+        "q_id": "Q59",
+        "kind": "restricted",
+        "gold_doc_id": "D102",
+        "bm25_rank": 1,
+        "meaning_rank": 1,
+        "hybrid_rank": 1,
+        "words_shared_with_gold_passage": 6
+      },
+      {
+        "q_id": "Q60",
+        "kind": "restricted",
+        "gold_doc_id": "D069",
+        "bm25_rank": 1,
+        "meaning_rank": 6,
+        "hybrid_rank": 2,
+        "words_shared_with_gold_passage": 6
+      }
+    ],
+    "note": "Rank 0 means the gold document is not in the top 10 chunks."
+  },
+  "documents": {
+    "total": 121,
+    "by_format": {
+      "text_pdf": 97,
+      "docx": 10,
+      "scanned_pdf": 8,
+      "txt": 6
+    },
+    "by_family": {
+      "policy": 31,
+      "claims_letter": 31,
+      "circular": 21,
+      "minutes": 11,
+      "product_guide": 10,
+      "regulatory_notice": 7,
+      "staff_handbook": 4,
+      "claims_sop": 2,
+      "branch_note": 2,
+      "claims_form": 1,
+      "policy_schedule": 1
+    },
+    "by_status": {
+      "current": 110,
+      "superseded": 11
+    },
+    "by_sensitivity": {
+      "internal": 54,
+      "restricted": 44,
+      "public": 15,
+      "confidential": 8
+    },
+    "by_language": {
+      "en": 118,
+      "sw": 3
+    },
+    "confidential_documents": [
+      "D004",
+      "D035",
+      "D060",
+      "D069",
+      "D073",
+      "D083",
+      "D088",
+      "D102"
+    ],
+    "containing_personal_data": 32,
+    "total_pages": 124,
+    "superseded_documents": [
+      "D001",
+      "D002",
+      "D005",
+      "D048",
+      "D050",
+      "D052",
+      "D085",
+      "D088",
+      "D089",
+      "D090",
+      "D091"
+    ],
+    "superseded_with_no_notice_in_text": [
+      "D001",
+      "D002",
+      "D048",
+      "D050",
+      "D052",
+      "D085",
+      "D088",
+      "D089",
+      "D091"
+    ],
+    "handbook_versions": {
+      "hb2019": "D001",
+      "hb2022": "D002",
+      "hb2025": "D003"
+    },
+    "claims_sop_versions": {
+      "sop3": "D005",
+      "sop4": "D006"
+    },
+    "two_column_pdfs": [
+      "policies/Data Retention Schedule.pdf",
+      "policies/Information Security Policy.pdf",
+      "policies/Complaints Handling Procedure.pdf",
+      "product guides/Home Insurance Guide.pdf",
+      "product guides/Savings Group Account Guide.pdf"
+    ],
+    "table_pdfs": [
+      "product guides/Tariff Schedule 2025.pdf",
+      "product guides/Motor Premium Rates 2025.pdf"
+    ],
+    "pdfs_with_header_footer_and_page_numbers": 67,
+    "text_pdfs_all_return_text_with_pypdf": true,
+    "scanned_pdfs_return_near_empty_text_with_pypdf": true,
+    "claims_letters": 30,
+    "swahili_documents": [
+      "D065",
+      "D066",
+      "D067"
+    ],
+    "stale_pairs": {
+      "annual_leave_days": {
+        "2019": 21,
+        "2022": 24,
+        "2025": 28
+      },
+      "probation_months": {
+        "2019": 6,
+        "2022": 4,
+        "2025": 3
+      },
+      "remote_days_per_week": {
+        "2019": 0,
+        "2022": 2,
+        "2025": 3
+      },
+      "expense_limit_ugx": {
+        "2019": 200000,
+        "2022": 350000,
+        "2025": 500000
+      },
+      "settlement_days": {
+        "SOP v3": 45,
+        "SOP v4": 30
+      },
+      "claims_officer_limit_ugx": {
+        "SOP v3": 5000000,
+        "SOP v4": 8000000
+      },
+      "mileage_ugx_per_km": {
+        "2023/017": 1900,
+        "2025/006": 2200
+      },
+      "saturday_hours": {
+        "2022/004": "9:00 am to 12:00 noon",
+        "2025/002": "9:00 am to 1:00 pm"
+      }
+    },
+    "letter_facts": [
+      {
+        "tag": "L01",
+        "type": "motor",
+        "name": "Kato Kiiza",
+        "cust_id": "KT-7354712",
+        "nid": "KX013637065918",
+        "phone": "+256 700 010 136",
+        "ref": "CL-2026-0753",
+        "amount": 23650000,
+        "date": "20 May 2026",
+        "town": "Bugolobi",
+        "note": "motor claim for Subaru Forester"
+      },
+      {
+        "tag": "L02",
+        "type": "motor",
+        "name": "Wambui Lakot",
+        "cust_id": "KT-7604249",
+        "nid": "KX055154444485",
+        "phone": "+256 700 095 855",
+        "ref": "CL-2026-0371",
+        "amount": 2650000,
+        "date": "18 July 2026",
+        "town": "Tororo",
+        "note": "motor claim for Subaru Forester"
+      },
+      {
+        "tag": "L03",
+        "type": "motor",
+        "name": "Kimani Namatovu",
+        "cust_id": "KT-1755490",
+        "nid": "KX993319545813",
+        "phone": "+256 700 054 930",
+        "ref": "CL-2026-0394",
+        "amount": 25900000,
+        "date": "9 June 2026",
+        "town": "Ntinda",
+        "note": "motor claim for Toyota Corolla"
+      },
+      {
+        "tag": "L04",
+        "type": "motor",
+        "name": "Namusoke Ssali",
+        "cust_id": "KT-2900087",
+        "nid": "KX569966929584",
+        "phone": "+256 700 003 802",
+        "ref": "CL-2026-0783",
+        "amount": 8150000,
+        "date": "23 January 2026",
+        "town": "Iganga",
+        "note": "motor claim for Toyota Hilux"
+      },
+      {
+        "tag": "L05",
+        "type": "motor",
+        "name": "Henry Kimani",
+        "cust_id": "KT-9274590",
+        "nid": "KX592170633604",
+        "phone": "+256 700 075 690",
+        "ref": "CL-2026-0910",
+        "amount": 17350000,
+        "date": "5 June 2026",
+        "town": "Kawempe",
+        "note": "motor claim for Toyota Premio"
+      },
+      {
+        "tag": "L06",
+        "type": "motor",
+        "name": "Akello Birungi",
+        "cust_id": "KT-3703549",
+        "nid": "KX064703086514",
+        "phone": "+256 700 084 757",
+        "ref": "CL-2026-0408",
+        "amount": 19350000,
+        "date": "3 May 2026",
+        "town": "Entebbe Road",
+        "note": "motor claim for Subaru Forester"
+      },
+      {
+        "tag": "L07",
+        "type": "home",
+        "name": "Mugisha Opio",
+        "cust_id": "KT-1346590",
+        "nid": "KX562065816273",
+        "phone": "+256 700 057 429",
+        "ref": "CL-2026-0508",
+        "amount": 19950000,
+        "date": "21 February 2026",
+        "town": "Kira"
+      },
+      {
+        "tag": "L08",
+        "type": "home",
+        "name": "Charles Nabukenya",
+        "cust_id": "KT-3970757",
+        "nid": "KX113051154674",
+        "phone": "+256 700 065 015",
+        "ref": "CL-2026-0351",
+        "amount": 12100000,
+        "date": "13 February 2026",
+        "town": "Nansana"
+      },
+      {
+        "tag": "L09",
+        "type": "home",
+        "name": "Moses Kisakye",
+        "cust_id": "KT-1334225",
+        "nid": "KX330557330262",
+        "phone": "+256 700 015 840",
+        "ref": "CL-2026-0548",
+        "amount": 9550000,
+        "date": "15 September 2026",
+        "town": "Kira"
+      },
+      {
+        "tag": "L10",
+        "type": "home",
+        "name": "Harriet Mutiso",
+        "cust_id": "KT-7503901",
+        "nid": "KX643670144578",
+        "phone": "+256 700 001 877",
+        "ref": "CL-2026-0302",
+        "amount": 18850000,
+        "date": "3 July 2026",
+        "town": "Kyambogo"
+      },
+      {
+        "tag": "L11",
+        "type": "life",
+        "name": "Juliet Kamya",
+        "cust_id": "KT-8782200",
+        "nid": "KX872833493866",
+        "phone": "+256 700 050 572",
+        "ref": "CL-2026-0645",
+        "amount": 155000000,
+        "date": "17 July 2026",
+        "town": "Kyambogo",
+        "health": "kidney failure and dialysis"
+      },
+      {
+        "tag": "L12",
+        "type": "life",
+        "name": "Winnie Twinomujuni",
+        "cust_id": "KT-6322777",
+        "nid": "KX456385990730",
+        "phone": "+256 700 063 858",
+        "ref": "CL-2026-0788",
+        "amount": 68750000,
+        "date": "6 July 2026",
+        "town": "Tororo"
+      },
+      {
+        "tag": "L13",
+        "type": "life",
+        "name": "Kenneth Kyomuhendo",
+        "cust_id": "KT-8538443",
+        "nid": "KX842515341661",
+        "phone": "+256 700 019 710",
+        "ref": "CL-2026-0412",
+        "amount": 54000000,
+        "date": "6 July 2026",
+        "town": "Nansana"
+      },
+      {
+        "tag": "L14",
+        "type": "approve",
+        "name": "Denis Birungi",
+        "cust_id": "KT-2387946",
+        "nid": "KX600777037134",
+        "phone": "+256 700 037 376",
+        "ref": "CL-2026-0590",
+        "amount": 1800000,
+        "date": "20 September 2026",
+        "town": "Nansana",
+        "days": 26
+      },
+      {
+        "tag": "L15",
+        "type": "approve",
+        "name": "Francis Wafula",
+        "cust_id": "KT-7105486",
+        "nid": "KX545222770438",
+        "phone": "+256 700 014 642",
+        "ref": "CL-2026-0823",
+        "amount": 3400000,
+        "date": "13 May 2026",
+        "town": "Mengo",
+        "days": 15
+      },
+      {
+        "tag": "L16",
+        "type": "approve",
+        "name": "Mary Atim",
+        "cust_id": "KT-6428775",
+        "nid": "KX073422574576",
+        "phone": "+256 700 003 878",
+        "ref": "CL-2026-0787",
+        "amount": 33600000,
+        "date": "9 January 2026",
+        "town": "Najjera",
+        "days": 28
+      },
+      {
+        "tag": "L17",
+        "type": "approve",
+        "name": "Agnes Namatovu",
+        "cust_id": "KT-2491055",
+        "nid": "KX276182916186",
+        "phone": "+256 700 098 075",
+        "ref": "CL-2026-0869",
+        "amount": 26550000,
+        "date": "8 June 2026",
+        "town": "Bweyogerere",
+        "days": 17
+      },
+      {
+        "tag": "L18",
+        "type": "repud",
+        "name": "Irene Kisakye",
+        "cust_id": "KT-2972093",
+        "nid": "KX764619344292",
+        "phone": "+256 700 007 264",
+        "ref": "CL-2026-0503",
+        "amount": 10250000,
+        "date": "19 March 2026",
+        "town": "Tororo",
+        "decision": "declined"
+      },
+      {
+        "tag": "L19",
+        "type": "repud",
+        "name": "Joseph Rukundo",
+        "cust_id": "KT-7301621",
+        "nid": "KX326399052544",
+        "phone": "+256 700 017 415",
+        "ref": "CL-2026-0641",
+        "amount": 13800000,
+        "date": "14 April 2026",
+        "town": "Entebbe Road",
+        "decision": "declined"
+      },
+      {
+        "tag": "L20",
+        "type": "repud",
+        "name": "Tonny Mwangi",
+        "cust_id": "KT-7563314",
+        "nid": "KX018431723853",
+        "phone": "+256 700 023 176",
+        "ref": "CL-2026-0374",
+        "amount": 2000000,
+        "date": "16 January 2026",
+        "town": "Tororo",
+        "decision": "declined"
+      },
+      {
+        "tag": "L21",
+        "type": "wallet",
+        "name": "Kenneth Nsubuga",
+        "cust_id": "KT-5641680",
+        "nid": "KX219072540155",
+        "phone": "+256 700 053 440",
+        "ref": "CL-2026-0850",
+        "amount": 2965000,
+        "date": "14 January 2026",
+        "town": "Bugolobi"
+      },
+      {
+        "tag": "L22",
+        "type": "wallet",
+        "name": "Winnie Atim",
+        "cust_id": "KT-6140452",
+        "nid": "KX004955240099",
+        "phone": "+256 700 021 819",
+        "ref": "CL-2026-0789",
+        "amount": 3130000,
+        "date": "19 August 2026",
+        "town": "Bugolobi"
+      },
+      {
+        "tag": "L23",
+        "type": "wallet",
+        "name": "Tonny Nalubega",
+        "cust_id": "KT-3480388",
+        "nid": "KX064297289096",
+        "phone": "+256 700 054 515",
+        "ref": "CL-2026-0753",
+        "amount": 1540000,
+        "date": "5 July 2026",
+        "town": "Tororo"
+      },
+      {
+        "tag": "L24",
+        "type": "wallet",
+        "name": "Odhiambo Wafula",
+        "cust_id": "KT-2063460",
+        "nid": "KX852526758128",
+        "phone": "+256 700 041 610",
+        "ref": "CL-2026-0727",
+        "amount": 2640000,
+        "date": "2 June 2026",
+        "town": "Iganga"
+      },
+      {
+        "tag": "L25",
+        "type": "loan",
+        "name": "Kimani Barasa",
+        "cust_id": "KT-4819353",
+        "nid": "KX227868464438",
+        "phone": "+256 700 044 663",
+        "ref": "CL-2026-0770",
+        "amount": 23100000,
+        "date": "7 May 2026",
+        "town": "Kyambogo"
+      },
+      {
+        "tag": "L26",
+        "type": "loan",
+        "name": "Tonny Mutiso",
+        "cust_id": "KT-7991570",
+        "nid": "KX306922045948",
+        "phone": "+256 700 003 714",
+        "ref": "CL-2026-0716",
+        "amount": 57400000,
+        "date": "8 March 2026",
+        "town": "Ntinda"
+      },
+      {
+        "tag": "L27",
+        "type": "loan",
+        "name": "Martin Namatovu",
+        "cust_id": "KT-8132065",
+        "nid": "KX725045495716",
+        "phone": "+256 700 052 628",
+        "ref": "CL-2026-0589",
+        "amount": 74300000,
+        "date": "14 February 2026",
+        "town": "Nansana"
+      },
+      {
+        "tag": "L28",
+        "type": "slow",
+        "name": "Mutua Kabuye",
+        "cust_id": "KT-3902151",
+        "nid": "KX921818015764",
+        "phone": "+256 700 071 662",
+        "ref": "CL-2026-0483",
+        "amount": 21300000,
+        "date": "16 March 2026",
+        "town": "Kawempe"
+      },
+      {
+        "tag": "L29",
+        "type": "slow",
+        "name": "Prossy Oryem",
+        "cust_id": "KT-1075849",
+        "nid": "KX464710602094",
+        "phone": "+256 700 030 354",
+        "ref": "CL-2026-0896",
+        "amount": 32800000,
+        "date": "3 January 2026",
+        "town": "Mengo"
+      },
+      {
+        "tag": "L30",
+        "type": "slow",
+        "name": "Eunice Waiswa",
+        "cust_id": "KT-1092320",
+        "nid": "KX933710910546",
+        "phone": "+256 700 097 370",
+        "ref": "CL-2026-0379",
+        "amount": 27350000,
+        "date": "3 June 2026",
+        "town": "Tororo"
+      }
+    ]
+  },
+  "evaluation_questions": {
+    "total": 60,
+    "plain": 40,
+    "stale": 8,
+    "swahili": 6,
+    "restricted": 6,
+    "permitted_N": 6,
+    "needs_current_version_Y": 9
+  },
+  "templates": {
+    "files": [
+      "Board Paper Outline.docx",
+      "Data Contract Template.xlsx",
+      "Data Inventory.xlsx",
+      "Hosting Cost Model.xlsx",
+      "Licence Register.xlsx",
+      "Readiness Scorecard (Kitara example).xlsx",
+      "Readiness Scorecard.xlsx",
+      "Risk Register.xlsx",
+      "Roadmap Planner.xlsx",
+      "Search Test Sheet.xlsx",
+      "Use Case Canvas.xlsx"
+    ],
+    "libreoffice_check": {
+      "status": "verified with LibreOffice",
+      "workbooks": 16,
+      "formulas": 787,
+      "errors": [],
+      "board_paper_opens": true,
+      "kitara_example_recalculated": {
+        "Use cases and sponsorship": [
+          3,
+          2.33
+        ],
+        "Data: inventory, quality and metadata": [
+          2,
+          1.33
+        ],
+        "Platform and pipelines": [
+          2.5,
+          2.4
+        ],
+        "Protection and law": [
+          3,
+          2.67
+        ],
+        "People and governance": [
+          1.5,
+          1.33
+        ]
+      }
+    }
+  },
+  "generator": {
+    "script": "05 Course Maintenance/Authoring/Build/build_teaching_data.py",
+    "seeds": {
+      "customers": 20261101,
+      "mobile_money": 20261102,
+      "branch_reports": 20261103,
+      "letters": 7731
+    },
+    "search_module": "05 Course Maintenance/Authoring/Build/kitara_search.py",
+    "failed_assertions": []
+  },
+  "extra": {
+    "note": "Added by build_extra_data.py. Every number here is computed from the five extra CSV files.",
+    "risk_register": {
+      "rows": 12,
+      "high_ge_15": 3,
+      "medium_8_to_14": 5,
+      "low_below_8": 4,
+      "high_ids": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "medium_ids": [
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09"
+      ],
+      "low_ids": [
+        "R04",
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "scores": {
+        "R01": 20,
+        "R02": 15,
+        "R03": 15,
+        "R04": 6,
+        "R05": 8,
+        "R06": 8,
+        "R07": 12,
+        "R08": 12,
+        "R09": 10,
+        "R10": 6,
+        "R11": 6,
+        "R12": 6
+      },
+      "top_risk": {
+        "id": "R01",
+        "risk": "Personal data enters the search index",
+        "score": 20
+      },
+      "mean_score": 10.33
+    },
+    "roadmap": {
+      "items": 16,
+      "critical_path_months": 12,
+      "critical_path_ids": [
+        "W01",
+        "W02",
+        "W08",
+        "W12",
+        "W15",
+        "W16"
+      ],
+      "last_month_used": 12,
+      "total_effort_days": 276,
+      "items_with_dependencies": 15,
+      "no_dependency_starts_before_prerequisite_ends": true,
+      "cannot_start_before_example": {
+        "item": "W15",
+        "waits_for": [
+          "W12",
+          "W13",
+          "W07"
+        ],
+        "earliest_start_month": 8,
+        "planned_start_month": 8
+      },
+      "rescore_items": [
+        "W11 (month 6)",
+        "W16 (months 11 and 12)"
+      ]
+    },
+    "hosting": {
+      "options": 4,
+      "prices_in_file": false,
+      "latency_low": [
+        "On-site data centre",
+        "Local colocation in Kampala"
+      ],
+      "latency_medium": [
+        "Regional cloud in South Africa",
+        "Managed software service"
+      ],
+      "latency_high": []
+    },
+    "licences": {
+      "tools": 15,
+      "by_type": {
+        "permissive": 10,
+        "copyleft": 1,
+        "source-available": 1,
+        "proprietary": 2,
+        "archived": 1
+      },
+      "free_Y": 6,
+      "free_N": 0,
+      "free_Check": 9,
+      "checked_on_filled": 0,
+      "source": "Research Notes.txt section 3 and curriculum.py TOOLS and AVOIDED; no licence file was read"
+    },
+    "scorecard_after": {
+      "targets": {
+        "Use cases and sponsorship": 3.5,
+        "Data: inventory, quality and metadata": 3.0,
+        "Platform and pipelines": 3.5,
+        "Protection and law": 3.5,
+        "People and governance": 3.0
+      },
+      "baseline": {
+        "Use cases and sponsorship": 3.0,
+        "Data: inventory, quality and metadata": 2.0,
+        "Platform and pipelines": 2.5,
+        "Protection and law": 3.0,
+        "People and governance": 1.5
+      },
+      "evidence_adjusted": {
+        "Use cases and sponsorship": 2.33,
+        "Data: inventory, quality and metadata": 1.33,
+        "Platform and pipelines": 2.4,
+        "Protection and law": 2.67,
+        "People and governance": 1.33
+      },
+      "change": {
+        "Use cases and sponsorship": 0.5,
+        "Data: inventory, quality and metadata": 1.0,
+        "Platform and pipelines": 1.0,
+        "Protection and law": 0.5,
+        "People and governance": 1.5
+      },
+      "projected_overall": 3.3,
+      "baseline_overall": 2.4,
+      "evidence_adjusted_overall": 2.01,
+      "biggest_gain": "People and governance"
+    }
+  }
+}

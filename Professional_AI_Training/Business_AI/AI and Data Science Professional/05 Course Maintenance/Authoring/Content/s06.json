@@ -1,0 +1,424 @@
+{
+ "session": 6,
+ "notes_title": "Your code has run straight down the page so far. Today it learns to decide and to repeat. By the end you'll have written a function that turns a customer's spending into a Lakeside Mart loyalty tier, tested it on the awkward values, and used it on a list of customers. Spreadsheets already do all of this. It's IF, fill down, and a formula you give a name. We'll write each one in Python beside the spreadsheet version.",
+ "notes_outcomes": "You'll write an if with its elif and else, a for loop, and a function with a name of your own. Then you'll test that function with answers you worked out by hand, including values that sit exactly on a boundary. We build one rule live, the tier table from the Lakeside Mart loyalty policy. In the lab you turn that rule into a function, run it over six customers' totals, and end by finding the fault in a colleague's version.",
+ "notes_words": "Six words today, each beside its spreadsheet cousin. A condition is the test inside an IF. A loop is fill down, written as code. A function is a formula you name yourself. An argument is the value you feed into it, and a return value is the answer it gives back. An edge case is a value sitting exactly on a boundary, like two million shillings in our loyalty rules. You've used these ideas for years. Today you learn the Python spelling.",
+ "vocab": [
+  [
+   "Condition",
+   "A test that is either True or False, such as points >= 2000.",
+   "The test inside IF()"
+  ],
+  [
+   "Loop",
+   "Code that repeats the same steps for each item in a list.",
+   "Dragging a formula down a column"
+  ],
+  [
+   "Function",
+   "A named set of steps that takes values in and gives one answer back.",
+   "A formula you name yourself"
+  ],
+  [
+   "Argument",
+   "The value you hand to a function when you call it.",
+   "The cell a formula points at"
+  ],
+  [
+   "Return value",
+   "The answer a function sends back.",
+   "The result shown in the formula's cell"
+  ],
+  [
+   "Edge case",
+   "A value exactly on a boundary, where the rule changes.",
+   "The value where an IF flips"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 5",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "An error ends with: NameError: name 'price' is not defined. Which line do you read first, and what does it tell you?",
+     "a": "The last line. Python has nothing stored under the name price: check the spelling, or run the cell that creates it."
+    },
+    {
+     "q": "A list and a dictionary both hold several values. How do you find one value in each?",
+     "a": "In a list by position, counting from zero. In a dictionary by its label, which Python calls the key."
+    }
+   ],
+   "notes": "Session 5 first. An error message ends with the line NameError, name price is not defined. Which line of an error do you read first, and what does it tell you? Take a second.\n\nYou read the last line first. Here it says Python has nothing stored under the name price. Either there's a spelling slip, or the cell that creates price hasn't been run yet.\n\nSecond. A list and a dictionary both hold several values. How do you find one value in each? Pause on that.\n\nIn a list you use the position, counting from zero. In a dictionary you use the label, which Python calls the key. Today a list carries customer spending, and in the lab a dictionary holds the orders of each customer."
+  },
+  {
+   "type": "table",
+   "title": "The rule we will code: Lakeside Mart loyalty tiers",
+   "header": [
+    "Tier",
+    "Points in 12 months",
+    "UGX spent in 12 months"
+   ],
+   "rows": [
+    [
+     "Basic",
+     "0 to 1,999",
+     "Under 2,000,000"
+    ],
+    [
+     "Silver",
+     "2,000 to 5,999",
+     "2,000,000 to 5,999,999"
+    ],
+    [
+     "Gold",
+     "6,000 or more",
+     "6,000,000 or more"
+    ]
+   ],
+   "caption": "1 point for every UGX 1,000 spent. Source: Lakeside Mart loyalty programme policy.",
+   "notes": "Here's the rule we'll code today. It comes from the Lakeside Mart loyalty programme policy, and it's the rule the programme itself states.\n\nEvery customer who gives a phone number joins as Basic. They earn one point for every thousand shillings they spend. Silver starts at two thousand points in twelve months, and Gold starts at six thousand points.\n\nThe last column turns points into shillings. Two thousand points is two million shillings spent. Six thousand points is six million. Keep those two numbers in your head. They're the boundaries we'll test, and one shilling either side of each is where a function most often goes wrong."
+  },
+  {
+   "type": "compare",
+   "title": "IF in Excel and if in Python",
+   "left": {
+    "h": "Excel or Sheets",
+    "points": [
+     "IF(B2>=2000, \"Silver\", \"Basic\")",
+     "A test, the answer if true, the answer if false",
+     "A third tier means an IF inside an IF"
+    ]
+   },
+   "right": {
+    "h": "Python",
+    "points": [
+     "if points >= 2000:",
+     "The answer goes on the next line, pushed in",
+     "elif adds a third tier on a line of its own"
+    ]
+   },
+   "verdict": "Same decision. Python writes each branch on its own line, and the indent shows what belongs to it.",
+   "notes": "You already make decisions in a spreadsheet. It's the IF function. Here it is on the left, with the Python version on the right.\n\nThe Excel formula has three parts. A test, the answer if the test is true, and the answer if it's false. We'll call the test a condition. Here the condition asks whether the points are two thousand or more.\n\nPython writes the same thing as if, then the condition, then a colon. The answer goes on the next line, pushed in a few spaces. That push is called the indent, and it tells Python which lines belong to the if.\n\nA third tier is where Excel gets untidy, with one IF inside another. Python adds a line that starts with elif, short for else if, and the code stays flat and easy to read.\n\nSame decision, written one branch to a line. You'll read it more easily after a long day than a nest of brackets."
+  },
+  {
+   "type": "code",
+   "title": "Decide a tier with if, elif and else",
+   "lang": "python",
+   "code": "points = 2450\nif points >= 6000:\n    tier = \"Gold\"\nelif points >= 2000:\n    tier = \"Silver\"\nelse:\n    tier = \"Basic\"\nprint(points, \"points is\", tier)",
+   "output": "2450 points is Silver",
+   "says": [
+    "Python checks the tests from the top and stops at the first True one.",
+    "elif means else if. It is asked only when the test above was False.",
+    "else catches everyone left. The indent shows which lines belong to which test."
+   ],
+   "notes": "Let's watch it run. We store a points value, then decide a tier.\n\nPython reads the tests from the top and takes the first one that's true. Two thousand four hundred and fifty points isn't six thousand or more, so Gold is skipped.\n\nThe elif asks a second question, but only because the first answer was false. This one is true, so the tier becomes Silver and Python jumps past the rest.\n\nThe else catches everyone left over. Notice the indent again. Every line pushed in belongs to the line above it. The print at the bottom sits at the left edge, so it runs once, whichever branch was taken."
+  },
+  {
+   "type": "figure",
+   "title": "A for loop is fill-down written as code",
+   "fig": "loop_vs_fill",
+   "look": [
+    "Left: one formula copied down, one box per row.",
+    "Right: for row in rows runs the same step on each item.",
+    "Five items or five thousand, the code stays the same."
+   ],
+   "caption": "Write the step once. Python repeats it.",
+   "alt": "Left: a spreadsheet column with a formula dragged down. Right: a Python for loop doing the same for each item.",
+   "notes": "Repeating comes next. In a spreadsheet you write a formula once, then drag it down the column. That's fill down, and it's the picture on the left.\n\nThe boxes on the left each hold a copy of the formula, one per row, with the row number moving along.\n\nOn the right is the Python version. A for loop says, for each row in the list, do this step. The step is written once.\n\nSo fill down becomes write it once and let Python repeat it. The list could hold five items or five thousand. The code doesn't change, and that's why we never copy a formula down five thousand rows by hand."
+  },
+  {
+   "type": "code",
+   "title": "Loop over a list of spending totals",
+   "lang": "python",
+   "code": "spends = [46660, 2388850, 82700, 2757805, 26650]\nfor spend in spends:\n    points = spend // 1000\n    print(spend, \"UGX is\", points, \"points\")",
+   "output": "46660 UGX is 46 points\n2388850 UGX is 2388 points\n82700 UGX is 82 points\n2757805 UGX is 2757 points\n26650 UGX is 26 points",
+   "says": [
+    "spends is a list. The loop takes one item at a time and calls it spend.",
+    "The indented lines run once for each item.",
+    "// divides and drops the remainder: one point per full UGX 1,000."
+   ],
+   "notes": "Here's a loop on actual numbers. These five are the 2025 spending totals of five Lakeside Mart customers from the orders file, in shillings.\n\nThe first line makes a list. The for line takes one item at a time out of the list and calls it spend. Say it as: for each spend in spends.\n\nEverything pushed in under the for line runs once for each item. Here that's two lines. We work out the points, and then we print a sentence.\n\nThe double slash is division that drops the leftover. Forty six thousand six hundred and sixty shillings divided by a thousand is forty six point six, and the double slash keeps the forty six. That matches the policy, which gives a point for each full thousand.\n\nFive lines of output from four lines of code. Dragging a formula down would give the same, and you'd redo it on tomorrow's list. Here you rerun the cell."
+  },
+  {
+   "type": "code",
+   "title": "A loop with a running total, like SUM",
+   "lang": "python",
+   "code": "orders = [2289600, 63300, 35950]\ntotal = 0\nfor value in orders:\n    total = total + value\nprint(total)",
+   "output": "2388850",
+   "says": [
+    "Start the running total at zero, like an empty cell.",
+    "Each pass adds one order, the way SUM walks down a column.",
+    "print sits at the left edge, so it runs once, after the loop."
+   ],
+   "notes": "Spreadsheets also add things up. SUM walks down a column. A loop can do the same, and it's the pattern behind a great deal of code.\n\nThese are the three 2025 orders of one customer. First we make a running total and set it to zero, like an empty cell.\n\nEach pass of the loop adds one order to the total. After the first pass it holds two million two hundred and eighty nine thousand six hundred. After the third it holds the full amount.\n\nThe print sits at the left edge, outside the loop, so it runs once at the end. The answer is two million three hundred and eighty eight thousand eight hundred and fifty shillings. That's already over the Silver line.\n\nPython also has a ready made sum function, and you're free to use it. Writing the loop once shows you what's happening inside."
+  },
+  {
+   "type": "define",
+   "title": "Function",
+   "definition": "A named set of steps. You hand it a value, it follows the steps, and it hands one answer back.",
+   "example": "loyalty_tier(2388850) hands back \"Silver\". The same function works for any customer's spend.",
+   "excel": "A formula you name yourself, such as =TIER(B2), that you can use on every row.",
+   "notes": "The next word is function.\n\nIn plain words, it's a named set of steps. You hand it a value, it follows the steps, and it hands one answer back.\n\nIn our work, loyalty tier is the name. Hand it a customer's spending, and it hands back Silver.\n\nYou already use named formulas. SUM and IF are functions that someone else wrote. Today you write one of your own. It's like making a formula called TIER that you can use on every row."
+  },
+  {
+   "type": "flow",
+   "title": "Writing a function in five steps",
+   "steps": [
+    {
+     "h": "def",
+     "t": "def and a name that says what it does"
+    },
+    {
+     "h": "Argument",
+     "t": "The input goes in brackets"
+    },
+    {
+     "h": "Body",
+     "t": "The steps, pushed in with the indent"
+    },
+    {
+     "h": "return",
+     "t": "Send the answer back"
+    },
+    {
+     "h": "Call",
+     "t": "Use the name with a value in brackets"
+    }
+   ],
+   "caption": "Define it once. Call it as often as you like.",
+   "notes": "Five steps to write a function, and the lab follows them.\n\nFirst, the word def, then the name you choose. Pick a name that says what the function does, such as loyalty tier.\n\nSecond, the argument. That's the name in brackets after the function name. An argument is the value you feed in. In a spreadsheet formula it's the cell you point at.\n\nThird, the body. These are the steps, pushed in with the indent. Everything in the indent belongs to the function.\n\nFourth, return. This sends the answer back to whoever called the function. A function that only prints shows the answer but can't hand it to the next step.\n\nFifth, you call it. Write the name with a value in brackets, and the answer comes back."
+  },
+  {
+   "type": "code",
+   "title": "The loyalty tier function",
+   "lang": "python",
+   "code": "def loyalty_tier(spend_ugx):\n    points = spend_ugx // 1000\n    if points >= 6000:\n        return \"Gold\"\n    elif points >= 2000:\n        return \"Silver\"\n    else:\n        return \"Basic\"\n\nprint(loyalty_tier(2388850))\nprint(loyalty_tier(46660))",
+   "output": "Silver\nBasic",
+   "says": [
+    "def names the function. spend_ugx is the argument, a placeholder for the value passed in.",
+    "return sends the answer back and ends the function.",
+    "Call it by name with a value in brackets, like a formula."
+   ],
+   "notes": "This is the loyalty tier function, written from the policy.\n\nThe def line gives the name and one argument, spend_ugx. That's a placeholder. It stands for whatever value we pass in later. Inside, the first step turns shillings into points.\n\nThen the tests, largest first. Two thousand points is the line for Silver, six thousand for Gold. Each branch uses return, which sends the answer back and ends the function.\n\nNow we call it. We write the name and give it a value in brackets. Two million three hundred and eighty eight thousand eight hundred and fifty shillings comes back as Silver. Forty six thousand six hundred and sixty comes back as Basic.\n\nThe function only runs when we call it. Defining it is like writing a formula and not yet putting it in a cell."
+  },
+  {
+   "type": "define",
+   "title": "Edge case",
+   "definition": "A value that sits exactly on a boundary, where the rule changes.",
+   "example": "UGX 1,999,999 is Basic and UGX 2,000,000 is Silver. One shilling apart, two different tiers.",
+   "excel": "The cell where an IF flips. You try the formula right on the flip value.",
+   "notes": "The word that matters most in testing is edge case.\n\nIt's a value sitting exactly on a boundary, where the rule changes. In our policy, the boundary for Silver is two million shillings.\n\nWhich two spends, one shilling apart, give two different tiers? Sit with it for a second.\n\nOne million nine hundred and ninety nine thousand nine hundred and ninety nine shillings is Basic. Two million shillings is Silver. One shilling apart, two different tiers. Gold has the same pair at six million.\n\nIn a spreadsheet it's the cell where an IF flips. When you build an IF you try it right on the flip point. A function deserves the same treatment."
+  },
+  {
+   "type": "code",
+   "title": "Test the function on values you can check by hand",
+   "lang": "python",
+   "code": "tests = [\n    (0, \"Basic\"),\n    (1999999, \"Basic\"),\n    (2000000, \"Silver\"),\n    (5999999, \"Silver\"),\n    (6000000, \"Gold\"),\n]\nfor spend, expected in tests:\n    got = loyalty_tier(spend)\n    if got == expected:\n        print(spend, got, \"ok\")\n    else:\n        print(spend, got, \"WRONG, expected\", expected)",
+   "output": "0 Basic ok\n1999999 Basic ok\n2000000 Silver ok\n5999999 Silver ok\n6000000 Gold ok",
+   "says": [
+    "Each test is a pair: the spend, and the tier you worked out from the policy.",
+    "The loop calls the function on every pair and keeps the result as got.",
+    "Zero, then both sides of each boundary. All five say ok."
+   ],
+   "notes": "Testing means running the function on cases where you already know the answer. You work out the answers by hand first, from the policy, and only then run the code.\n\nEach test is a pair, with the spend and the tier it should give. Here are five. Zero spend, then the values beside the two boundaries.\n\nThe loop takes one pair at a time. The for line names both parts, spend and expected, and Python fills them in from each pair. We call the function and keep what came back as got.\n\nThen an if compares got with expected. If they match, we print ok. Otherwise we print the word wrong, and the answer we expected. All five say ok, so the function agrees with the policy at every boundary.\n\nThis list is worth keeping. You can rerun it any time you touch the function."
+  },
+  {
+   "type": "trap",
+   "title": "A function that passes the easy cases and fails on the line",
+   "looks": "You write points > 2000 instead of points >= 2000. Every spend you try gives the right tier, and no error appears.",
+   "why": "A customer with exactly 2,000 points has earned Silver. The greater-than test sends them to Basic. Typical values almost never land on the boundary, so nothing warns you.",
+   "fix": "Test the shilling before and the shilling on each boundary, with answers taken from the policy.",
+   "notes": "This one runs without a single error.\n\nYou write the Silver test with a greater than sign, where the policy needs greater than or equal to. You try forty six thousand shillings. You try two million three hundred thousand. Everything is right, and the function looks finished.\n\nBut the policy says Silver starts at two thousand points. A customer with exactly two thousand points has earned it, and the greater than test sends that customer to Basic. Typical values almost never land on the boundary, so nothing warns you. A customer finds out at the till.\n\nTo catch it, test the shilling before and the shilling on each boundary, with answers taken from the policy and never from the function itself."
+  },
+  {
+   "type": "code",
+   "title": "An error you will meet: the spend arrives as text",
+   "lang": "python",
+   "code": "spend = \"2,388,850\"\nprint(loyalty_tier(spend))",
+   "expect_error": true,
+   "output": "TypeError: unsupported operand type(s) for //: 'str' and 'int'",
+   "says": [
+    "The last line says text was divided by a number.",
+    "Remove the commas, then int() turns the text into a number."
+   ],
+   "notes": "You'll meet this error when data comes from a spreadsheet. The value arrives as text, with commas in it, because someone typed it as 2,388,850.\n\nWe pass that text into the function, and Python stops. Read the last line first, as we did in Session 5. It says unsupported operand types for the double slash, str and int. In plain words, you can't divide text by a number.\n\nThe fix is to turn the text into a number before it goes in. Remove the commas, then use int. Your function was fine. The data had the wrong type.\n\nWhen a good function fails, look at what you fed it."
+  },
+  {
+   "type": "concept",
+   "title": "Reading code someone else wrote",
+   "lead": "Start with three questions before the first line of code.",
+   "points": [
+    {
+     "h": "What goes in?",
+     "t": "Read the def line. The names in brackets are the inputs."
+    },
+    {
+     "h": "What comes out?",
+     "t": "Find every return. Each one is a possible answer."
+    },
+    {
+     "h": "Try one example by hand",
+     "t": "Follow one value line by line, like Trace Precedents in Excel."
+    }
+   ],
+   "notes": "Sooner or later you'll read code someone else wrote. A colleague's notebook, a tutorial, something an assistant produced. Reading code is a skill of its own, and three questions get you through most of it.\n\nFirst, what goes in? Look at the def line. The names in brackets are the inputs.\n\nSecond, what comes out? Find every return. Each one is a possible answer, so count them.\n\nThird, try one example by hand. Pick a value and follow it down the lines, the way Trace Precedents follows a cell in Excel. Write down what each line does to it. You don't need to understand every symbol to do that."
+  },
+  {
+   "type": "code",
+   "title": "A colleague's function: trace one value by hand",
+   "lang": "python",
+   "code": "def tier_v1(spend_ugx):\n    points = spend_ugx // 1000\n    if points >= 2000:\n        return \"Silver\"\n    elif points >= 6000:\n        return \"Gold\"\n    else:\n        return \"Basic\"\n\nprint(tier_v1(7500000))",
+   "output": "Silver",
+   "says": [
+    "Three returns, so three possible answers.",
+    "7,500,000 is 7,500 points. It passes the first test, so Silver comes back.",
+    "The Gold line can never run. The biggest threshold goes first."
+   ],
+   "notes": "Let's use the three questions on a colleague's function. It's meant to do the same job as ours.\n\nWhat goes in? One argument, the spend in shillings. What comes out? Three possible answers, Silver, Gold and Basic, so it looks complete.\n\nNow trace one value. Seven million five hundred thousand shillings is seven thousand five hundred points. That passes the first test, because it's above two thousand, so Silver comes back at once. Python never reaches the Gold line.\n\nThe Gold branch can never run. A customer who has spent seven and a half million is told Silver. The function ran without an error and gave a wrong answer. Put the largest threshold first, as ours does.\n\nTracing took a minute. A test on six million would have caught it too."
+  },
+  {
+   "type": "flow",
+   "title": "Asking an assistant to review your function (optional)",
+   "steps": [
+    {
+     "h": "Paste",
+     "t": "Only the function. No customer names or phone numbers."
+    },
+    {
+     "h": "Ask",
+     "t": "What could go wrong at the boundaries?"
+    },
+    {
+     "h": "Read",
+     "t": "The reply may be right, partly right or wrong."
+    },
+    {
+     "h": "Test",
+     "t": "Run your edge cases on any change it suggests."
+    },
+    {
+     "h": "Decide",
+     "t": "Keep a change only if every test passes."
+    }
+   ],
+   "caption": "A free chat assistant is optional help. Your tests have the last word.",
+   "notes": "One last skill, and it's optional. You can ask a free chat assistant to review your function. Some of you already do. Here's a routine that keeps you in charge.\n\nFirst, paste only the function. Leave out customer names, phone numbers and any customer records. The Data Protection and Privacy Act of 2019 covers personal data, and a chat window is the wrong place for it.\n\nSecond, ask a specific question, such as what could go wrong at the boundaries.\n\nThird, read the reply with care. It might be right, partly right, or confidently wrong, and it sounds the same in every case.\n\nFourth, run your own edge tests on any change it suggests.\n\nFifth, decide. Keep a change only if every test still passes.\n\nIf you don't use an assistant, nothing in this course needs one."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: write, test and apply the loyalty tier function",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 6 notebook and run the setup cell",
+    "Write loyalty_tier from the policy",
+    "Test it on five edge cases in a loop",
+    "Total six customers' orders in a loop",
+    "Apply the function to every total",
+    "Find and fix the faulty function",
+    "Rebuild the rule as a nested IF in Sheets"
+   ],
+   "done": "Every check cell says correct, and Sheets gives the same tiers as Python.",
+   "notes": "The lab is forty minutes in Google Colab, and the first task is to write loyalty_tier from the policy table.\n\nOpen the Session 6 notebook and run the setup cell. Then work down the notebook. Each task has a starter with a blank for you, then a check cell that tells you whether you've got it.\n\nAfter the function you test it on the boundary values in a loop. Then you total six customers' orders with another loop, and apply your function to those totals. You'll find the fault in a colleague's function, and finish by building the same rule as a nested IF in Sheets.\n\nWhen an error appears, the last line tells you where to look. Call me over if it doesn't. You're done when every check cell says correct."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Which spend values do you test first on a tier function, and why?",
+     "a": "Values on each boundary and one shilling either side, because that is where a wrong sign hides."
+    },
+    {
+     "q": "What does a for loop replace in a spreadsheet, and what does a function replace?",
+     "a": "A loop replaces dragging a formula down. A function replaces a formula you name and reuse."
+    },
+    {
+     "q": "An assistant suggests a change to your function. What decides whether you keep it?",
+     "a": "Your tests. Rerun the edge cases and keep the change only if every one passes."
+    }
+   ],
+   "notes": "Testing comes first. Which spend values do you test first on a tier function, and why? Take your time.\n\nValues on each boundary, and one shilling either side. That's where a wrong sign hides, and typical values will never show it.\n\nNext, the two new tools. What does a for loop replace in a spreadsheet, and what does a function replace? No rush.\n\nA loop replaces dragging a formula down the column. A function replaces a formula that you name once and use again and again.\n\nLast, outside advice. An assistant suggests a change to your function. What decides whether you keep it? Work it out.\n\nYour tests. Rerun the edge cases, and keep the change only if every one still passes."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "if, elif and else are IF(). A for loop is fill down. A function is a formula you name.",
+    "Test a function on answers you worked out by hand, including values on the boundary.",
+    "Read code with three questions, and let your tests judge any assistant's advice."
+   ],
+   "next": "pandas I: load, look and filter",
+   "notes": "If, elif and else are IF. A for loop is fill down. A function is a formula you give a name. You knew all of this from the spreadsheet already.\n\nTest every function on answers you worked out by hand, and include the values sitting on each boundary. One shilling can change a tier.\n\nRead code with three questions. What goes in, what comes out, and what happens to one example. If an assistant offers advice, let your tests judge it.\n\nNext session is pandas, a table library that applies a calculation to a whole column at once and opens a file of thirty thousand rows in one line. Your loyalty tier function will come in useful there."
+  }
+ ],
+ "lab": {
+  "intro": "Write the Lakeside Mart loyalty tier function, test it on its edge cases, then apply it to customer totals computed in a loop. The orders come from orders.csv, 2025 only, so the totals are much smaller than a customer's full spending at the till.",
+  "cells": [
+   {
+    "md": "## Task 1. Write the function\nThe policy gives 1 point for every UGX 1,000 spent. Silver starts at 2,000 points and Gold at 6,000 points. Write `loyalty_tier(spend_ugx)` so that it **returns** `'Basic'`, `'Silver'` or `'Gold'`."
+   },
+   {
+    "code": "def loyalty_tier(spend_ugx):\n    points = spend_ugx // 1000\n    if points >= 6000:\n        return 'Gold'\n    elif points >= 2000:\n        return 'Silver'\n    else:\n        return 'Basic'\n\nprint(loyalty_tier(2388850))",
+    "starter": "def loyalty_tier(spend_ugx):\n    # Your turn: work out the points (1 point for every UGX 1,000 spent)\n    # Return 'Gold' from 6,000 points, 'Silver' from 2,000 points, otherwise 'Basic'\n    pass\n"
+   },
+   {
+    "code": "assert loyalty_tier(46660) == 'Basic', 'A small spend should be Basic'\nassert loyalty_tier(2388850) == 'Silver', 'Use return, not print, and check the 2,000 points line'\nassert loyalty_tier(7500000) == 'Gold', 'Test Gold before Silver'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Test the edges\nBuild a list `tests` of five pairs `(spend, expected tier)`: zero, one shilling below Silver, exactly Silver, one shilling below Gold, exactly Gold. Loop over it. Put every pair that fails into a list called `failures`."
+   },
+   {
+    "code": "tests = [\n    (0, 'Basic'),\n    (1999999, 'Basic'),\n    (2000000, 'Silver'),\n    (5999999, 'Silver'),\n    (6000000, 'Gold'),\n]\nfailures = []\nfor spend, expected in tests:\n    got = loyalty_tier(spend)\n    if got != expected:\n        failures.append((spend, expected, got))\nprint(len(failures), 'failures')",
+    "starter": "tests = [\n    (0, 'Basic'),\n    # Your turn: add the other four pairs\n]\nfailures = []\n# Your turn: loop over tests, call loyalty_tier, and append any pair that fails\nprint(len(failures), 'failures')\n"
+   },
+   {
+    "code": "spends_tested = [t[0] for t in tests]\nfor edge in (1999999, 2000000, 5999999, 6000000):\n    assert edge in spends_tested, f'Add the test for {edge}'\nassert failures == [], 'A boundary value failed: check >= in loyalty_tier'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Total each customer in a loop\n`orders_2025` holds the real 2025 order values of six customers from the sample file. Use a `for` loop with a running total to fill a dictionary `totals` that maps each customer id to the sum of their orders."
+   },
+   {
+    "code": "orders_2025 = {\n    'C0009': [18400, 18060, 10200],\n    'C0010': [7000, 35000, 40700],\n    'C0021': [7800, 7000, 11850],\n    'C1322': [2289600, 63300, 35950],\n    'C0947': [2733305, 24500],\n    'C0230': [7000, 16600, 48475, 2035530, 92040],\n}\nprint(len(orders_2025), 'customers')",
+    "starter": "orders_2025 = {\n    'C0009': [18400, 18060, 10200],\n    'C0010': [7000, 35000, 40700],\n    'C0021': [7800, 7000, 11850],\n    'C1322': [2289600, 63300, 35950],\n    'C0947': [2733305, 24500],\n    'C0230': [7000, 16600, 48475, 2035530, 92040],\n}\nprint(len(orders_2025), 'customers')"
+   },
+   {
+    "code": "totals = {}\nfor customer in orders_2025:\n    total = 0\n    for value in orders_2025[customer]:\n        total = total + value\n    totals[customer] = total\nprint(totals)",
+    "starter": "totals = {}\nfor customer in orders_2025:\n    # Your turn: start total at 0, add each order value, then store it in totals\n    pass\nprint(totals)\n"
+   },
+   {
+    "code": "assert len(totals) == 6, 'One total per customer'\nassert totals['C1322'] == 2388850, 'Add up all three orders of C1322'\nassert totals['C0009'] == 46660, 'Start total at 0 inside the customer loop'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Apply the function to every total\nLoop over `totals`. Store each customer's tier in a dictionary `tiers`, and count customers per tier in a dictionary `counts` that starts as `{'Basic': 0, 'Silver': 0, 'Gold': 0}`."
+   },
+   {
+    "code": "tiers = {}\ncounts = {'Basic': 0, 'Silver': 0, 'Gold': 0}\nfor customer in totals:\n    tier = loyalty_tier(totals[customer])\n    tiers[customer] = tier\n    counts[tier] = counts[tier] + 1\nprint(tiers)\nprint(counts)",
+    "starter": "tiers = {}\ncounts = {'Basic': 0, 'Silver': 0, 'Gold': 0}\nfor customer in totals:\n    # Your turn: call loyalty_tier on the total, store it in tiers, add 1 to counts\n    pass\nprint(tiers)\nprint(counts)\n"
+   },
+   {
+    "code": "assert counts == {'Basic': 3, 'Silver': 3, 'Gold': 0}, 'Expect 3 Basic, 3 Silver, 0 Gold'\nassert tiers['C0947'] == 'Silver', 'C0947 spent 2,757,805, so the tier should be Silver'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Fix a colleague's function\nRun the cell below. `tier_v1(7500000)` should be Gold. Write `tier_v2` that fixes the fault, and check it on your five tests."
+   },
+   {
+    "code": "def tier_v1(spend_ugx):\n    points = spend_ugx // 1000\n    if points >= 2000:\n        return 'Silver'\n    elif points >= 6000:\n        return 'Gold'\n    else:\n        return 'Basic'\n\nprint(tier_v1(7500000))",
+    "starter": "def tier_v1(spend_ugx):\n    points = spend_ugx // 1000\n    if points >= 2000:\n        return 'Silver'\n    elif points >= 6000:\n        return 'Gold'\n    else:\n        return 'Basic'\n\nprint(tier_v1(7500000))"
+   },
+   {
+    "code": "def tier_v2(spend_ugx):\n    points = spend_ugx // 1000\n    if points >= 6000:\n        return 'Gold'\n    elif points >= 2000:\n        return 'Silver'\n    else:\n        return 'Basic'\n\nprint(tier_v2(7500000))",
+    "starter": "def tier_v2(spend_ugx):\n    # Your turn: write the corrected function\n    pass\n"
+   },
+   {
+    "code": "assert tier_v1(7500000) == 'Silver', 'tier_v1 should still show the fault'\nfor spend, expected in tests:\n    assert tier_v2(spend) == expected, f'tier_v2 fails at {spend}'\nassert tier_v2(7500000) == 'Gold', 'tier_v2(7500000) should be Gold'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Check against Sheets\nPut the six totals from `totals` in cells A2 to A7 of a Google Sheet. In B2 write `=IF(A2>=6000000,\"Gold\",IF(A2>=2000000,\"Silver\",\"Basic\"))` and fill down. Do the six tiers match `tiers`? Write one sentence below: if the policy moved Silver to 2,500 points, which version would be quicker to change, and why?"
+   }
+  ]
+ }
+}

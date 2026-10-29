@@ -1,0 +1,3874 @@
+{
+ "course": {
+  "title": "Enterprise Data Readiness for AI",
+  "sessions": 12,
+  "hours_per_session": 2,
+  "total_hours": 24,
+  "start": "A leader and a data or IT colleague from one organisation. No coding needed for leaders. Teams should be comfortable with spreadsheets and databases.",
+  "end": "A scored baseline, a tested search over the organisation's own documents, and a twelve-month plan presented as a board paper."
+ },
+ "shape": [
+  [
+   "Case and recall",
+   10
+  ],
+  [
+   "Teaching",
+   30
+  ],
+  [
+   "Live demonstration",
+   25
+  ],
+  [
+   "Break",
+   5
+  ],
+  [
+   "Workshop on your organisation",
+   40
+  ],
+  [
+   "Decision and wrap-up",
+   10
+  ]
+ ],
+ "dimensions": [
+  "Use cases and sponsorship",
+  "Data: inventory, quality and metadata",
+  "Platform and pipelines",
+  "Protection and law",
+  "People and governance"
+ ],
+ "levels": [
+  "Ad hoc",
+  "Developing",
+  "Defined",
+  "Managed",
+  "Optimised"
+ ],
+ "workpieces": {
+  "2": "Baseline scorecard",
+  "7": "Search pilot report",
+  "12": "Roadmap and board presentation"
+ },
+ "modules": [
+  [
+   "A",
+   "Start with a baseline",
+   [
+    1,
+    2
+   ],
+   "Use cases, data needs and a scored baseline."
+  ],
+  [
+   "B",
+   "Know your data",
+   [
+    3,
+    4
+   ],
+   "Inventory, ownership, quality and contracts."
+  ],
+  [
+   "C",
+   "Make it searchable",
+   [
+    5,
+    6,
+    7
+   ],
+   "Parse documents, search by meaning, test and secure the search."
+  ],
+  [
+   "D",
+   "Platform, law and cost",
+   [
+    8,
+    9,
+    10
+   ],
+   "Pipelines, privacy law, hosting, cost and licences."
+  ],
+  [
+   "E",
+   "Govern and plan",
+   [
+    11,
+    12
+   ],
+   "Roles, policy, risk and the twelve-month plan."
+  ]
+ ],
+ "tools": [
+  {
+   "name": "Google Colab",
+   "use": "Run notebooks in the browser. Nothing to install.",
+   "cost": "Free tier with a free Google account. Limits are not published.",
+   "status": "verified"
+  },
+  {
+   "name": "Spreadsheet (Google Sheets, Excel or LibreOffice)",
+   "use": "The scorecard, inventory, risk register and roadmap templates.",
+   "cost": "Free. Any spreadsheet works.",
+   "status": "verified"
+  },
+  {
+   "name": "Python with pandas, pypdf, pdfplumber, matplotlib",
+   "use": "Profile data, extract text, score searches.",
+   "cost": "Free, open source.",
+   "status": "verified"
+  },
+  {
+   "name": "Tesseract OCR",
+   "use": "Read scanned pages.",
+   "cost": "Free, Apache-2.0.",
+   "status": "verified"
+  },
+  {
+   "name": "sentence-transformers",
+   "use": "Embeddings for meaning search.",
+   "cost": "Library Apache-2.0. Read the model card licence for each model.",
+   "status": "check"
+  },
+  {
+   "name": "Chroma and PostgreSQL with pgvector",
+   "use": "Store and search vectors.",
+   "cost": "Free. Apache-2.0 and PostgreSQL licence.",
+   "status": "check"
+  },
+  {
+   "name": "DuckDB and Parquet",
+   "use": "Fast analytical SQL on files.",
+   "cost": "Free. MIT and Apache-2.0.",
+   "status": "check"
+  },
+  {
+   "name": "Pandera and Great Expectations Core",
+   "use": "Quality rules a machine checks.",
+   "cost": "Free. MIT and Apache-2.0.",
+   "status": "check"
+  },
+  {
+   "name": "DataHub and OpenMetadata",
+   "use": "Data catalogue and lineage, shown by the tutor.",
+   "cost": "Free. DataHub Apache-2.0. Read the OpenMetadata licence files.",
+   "status": "check"
+  },
+  {
+   "name": "Dagster or Apache Airflow",
+   "use": "Schedule pipeline steps, shown by the tutor.",
+   "cost": "Free. Apache-2.0.",
+   "status": "check"
+  },
+  {
+   "name": "Microsoft Presidio",
+   "use": "Find and mask personal data.",
+   "cost": "Free. MIT. Confirm the current repository.",
+   "status": "check"
+  },
+  {
+   "name": "Ragas",
+   "use": "Optional retrieval metrics.",
+   "cost": "Free. Apache-2.0.",
+   "status": "check"
+  }
+ ],
+ "avoided": [
+  [
+   "Docker Desktop",
+   "Free for individuals, education and businesses under 250 staff and USD 10 million revenue. Larger firms and government bodies need a paid subscription. Use Python packages, Colab or Podman."
+  ],
+  [
+   "MinIO",
+   "Reported unmaintained or archived in 2026. Teach any S3-compatible object store."
+  ],
+  [
+   "Soda Core 4 and Airbyte",
+   "Source-available under the Elastic License 2.0. Free to run internally and not open source."
+  ],
+  [
+   "dbt v2",
+   "The free binary carries some proprietary code. Check which artefact is installed."
+  ],
+  [
+   "Amundsen",
+   "Repository reported archived in September 2026."
+  ],
+  [
+   "Metabase for embedding",
+   "The open edition is AGPLv3, and embedding needs a paid licence."
+  ],
+  [
+   "Paid AI APIs and hosted inference",
+   "Any lab needing a key would break the no-cost rule, and documents would leave the organisation."
+  ]
+ ],
+ "templates": [
+  "Board Paper Outline.docx",
+  "Data Contract Template.xlsx",
+  "Data Inventory.xlsx",
+  "Hosting Cost Model.xlsx",
+  "Licence Register.xlsx",
+  "Readiness Scorecard (Kitara example).xlsx",
+  "Readiness Scorecard.xlsx",
+  "Risk Register.xlsx",
+  "Roadmap Planner.xlsx",
+  "Search Test Sheet.xlsx",
+  "Use Case Canvas.xlsx"
+ ],
+ "vocab": [
+  {
+   "term": "Use case",
+   "meaning": "One job you want AI to do, with a person who answers for the result.",
+   "example": "Staff policy question answering on the shared drive",
+   "session": 1
+  },
+  {
+   "term": "AI-ready data",
+   "meaning": "Data that is relevant, current, owned, readable by the system and allowed to be used.",
+   "example": "The 2025 Staff Handbook, but not the shared drive around it",
+   "session": 1
+  },
+  {
+   "term": "Structured data",
+   "meaning": "Data in rows and columns with fixed fields.",
+   "example": "The core banking system, S01",
+   "session": 1
+  },
+  {
+   "term": "Unstructured data",
+   "meaning": "Free text, scans, audio and email with no fixed fields.",
+   "example": "The 121 documents and the claims archive, S06",
+   "session": 1
+  },
+  {
+   "term": "Stale data",
+   "meaning": "Data that exists but is out of date.",
+   "example": "The 2019 handbook says 21 days of leave",
+   "session": 1
+  },
+  {
+   "term": "Superseded",
+   "meaning": "Replaced by a newer version. The old file usually stays in the folder.",
+   "example": "11 of 121 documents, recorded in docs_metadata.csv",
+   "session": 1
+  },
+  {
+   "term": "Forecast",
+   "meaning": "A prediction by analysts about what will happen. Nobody has counted it yet.",
+   "example": "Gartner's 60 percent figure",
+   "session": 1
+  },
+  {
+   "term": "Readiness dimension",
+   "meaning": "One area of readiness that is scored on its own, such as data or people.",
+   "example": "Kitara is scored on five dimensions, from use cases and sponsorship to people and governance.",
+   "session": 2
+  },
+  {
+   "term": "Maturity level",
+   "meaning": "One step on the five step scale: ad hoc, developing, defined, managed, optimised.",
+   "example": "Kitara's overall mean of 2.4 sits between developing and defined.",
+   "session": 2
+  },
+  {
+   "term": "Evidence rule",
+   "meaning": "Every score needs one piece of evidence that someone outside the team could check.",
+   "example": "The registration certificate was never seen, so that row breaks the rule.",
+   "session": 2
+  },
+  {
+   "term": "Self-reported item",
+   "meaning": "A score that rests on what someone said, with no evidence seen by anyone outside the team.",
+   "example": "8 of Kitara's 25 evidence rows.",
+   "session": 2
+  },
+  {
+   "term": "Evidence-adjusted score",
+   "meaning": "The average that leaves out the self-reported items.",
+   "example": "Kitara falls from 2.4 to 2.01.",
+   "session": 2
+  },
+  {
+   "term": "Target level",
+   "meaning": "The level a dimension should reach, chosen by a leader.",
+   "example": "Kitara's workbook starts every dimension at 3, defined.",
+   "session": 2
+  },
+  {
+   "term": "Data owner",
+   "meaning": "Decides who may use a source and its class.",
+   "example": "S03: the Head of SME Lending. Four sources have none.",
+   "session": 3
+  },
+  {
+   "term": "Data steward",
+   "meaning": "Looks after a source's quality day to day.",
+   "example": "Seven of the 14 sources have none.",
+   "session": 3
+  },
+  {
+   "term": "Data custodian",
+   "meaning": "Runs the system: storage, backup, access.",
+   "example": "IT, wrongly recorded as owner of S02 and S06.",
+   "session": 3
+  },
+  {
+   "term": "Sensitivity class",
+   "meaning": "How carefully data is handled: public, internal, restricted, confidential.",
+   "example": "S03 and S10 are one class too low.",
+   "session": 3
+  },
+  {
+   "term": "Metadata",
+   "meaning": "Data about the data: what, where, who, when checked.",
+   "example": "Every column of sources.csv.",
+   "session": 3
+  },
+  {
+   "term": "Data catalogue",
+   "meaning": "Software that holds the inventory and lets staff search it.",
+   "example": "None yet. in_catalogue is N on all 14.",
+   "session": 3
+  },
+  {
+   "term": "Lineage",
+   "meaning": "Where a number came from, and each step on the way.",
+   "example": "lineage_edges.csv: 25 steps, 3 by hand.",
+   "session": 3
+  },
+  {
+   "term": "Shadow data",
+   "meaning": "Data that sits outside any inventory.",
+   "example": "S09, the shared drive of 14,000 files.",
+   "session": 3
+  },
+  {
+   "term": "Quality dimension",
+   "meaning": "One angle from which data quality is measured, such as completeness or validity.",
+   "example": "Six of them, applied to customers.csv",
+   "session": 4
+  },
+  {
+   "term": "Profiling",
+   "meaning": "A quick measured look at a table before you trust it: counts, blanks, ranges.",
+   "example": "Email is blank in 32.5% of customers",
+   "session": 4
+  },
+  {
+   "term": "Quality rule",
+   "meaning": "A column, a test and a threshold that a machine can check.",
+   "example": "Phone matches +256 7xxxxxxxx for 98% of rows",
+   "session": 4
+  },
+  {
+   "term": "Threshold",
+   "meaning": "The share of rows that must pass a rule. A business decision.",
+   "example": "National ID filled in for 99%",
+   "session": 4
+  },
+  {
+   "term": "Schema",
+   "meaning": "The list of columns in a table with their types and allowed blanks.",
+   "example": "The 14 columns of customers.csv",
+   "session": 4
+  },
+  {
+   "term": "Data contract",
+   "meaning": "A written agreement between the team that produces a dataset and the teams that use it.",
+   "example": "Data Contract Template.xlsx for the customer table",
+   "session": 4
+  },
+  {
+   "term": "Text layer",
+   "meaning": "The characters stored inside a PDF that a program can copy. A scan has none.",
+   "example": "97 Kitara PDFs have one. The 8 scans do not.",
+   "session": 5
+  },
+  {
+   "term": "OCR",
+   "meaning": "Optical character recognition: software that reads the picture of a page and returns text.",
+   "example": "Tesseract on the 8 scans in docs/scans",
+   "session": 5
+  },
+  {
+   "term": "Parsing",
+   "meaning": "Turning a file into clean text that a program can use.",
+   "example": "pypdf, pdfplumber and python-docx on the Kitara folder",
+   "session": 5
+  },
+  {
+   "term": "Chunk",
+   "meaning": "A piece of a document, a few hundred words, that a search returns on its own.",
+   "example": "The Staff Handbook 2025 becomes 3 chunks",
+   "session": 5
+  },
+  {
+   "term": "Overlap",
+   "meaning": "Words repeated at the join of two chunks so a sentence is not cut in half.",
+   "example": "40 words between chunks",
+   "session": 5
+  },
+  {
+   "term": "Cutting by headings",
+   "meaning": "Splitting a document where its own headings fall, so each chunk is one section.",
+   "example": "The handbook's 9 numbered sections",
+   "session": 5
+  },
+  {
+   "term": "BM25",
+   "meaning": "The standard keyword scoring method. It rewards rare words that a question and a passage share.",
+   "example": "Q03 CCTV: the Data Retention Schedule scores 5.91",
+   "session": 6
+  },
+  {
+   "term": "Embedding",
+   "meaning": "A list of numbers that stands for the meaning of a text. Similar meanings get lists that sit close together.",
+   "example": "64 numbers for each of the 139 chunks in the stand-in scorer",
+   "session": 6
+  },
+  {
+   "term": "Nearest neighbour search",
+   "meaning": "Finding the stored items whose number lists are closest to the question's list.",
+   "example": "Cosine score 0.554 for D008-01 on Q02",
+   "session": 6
+  },
+  {
+   "term": "Vector store",
+   "meaning": "A database or library that keeps embeddings and returns the nearest ones quickly.",
+   "example": "pgvector, Chroma, Qdrant, FAISS, OpenSearch",
+   "session": 6
+  },
+  {
+   "term": "Hybrid search",
+   "meaning": "Running keyword and meaning search together and combining the two result lists.",
+   "example": "Q01: right document 7th by keyword, 3rd by hybrid",
+   "session": 6
+  },
+  {
+   "term": "Reciprocal rank fusion",
+   "meaning": "Adding 1 divided by (60 plus place) for each list a chunk appears in, then sorting by the total.",
+   "example": "D007-01: 1/67 + 1/62 = 0.0311",
+   "session": 6
+  },
+  {
+   "term": "Re-ranking",
+   "meaning": "A second, slower model that reorders the top few results by reading question and passage together.",
+   "example": "Not used in the Kitara pilot",
+   "session": 6
+  },
+  {
+   "term": "Test set",
+   "meaning": "A list of real questions, each with the right document marked before the search is run.",
+   "example": "The 60 rows of eval_questions.csv",
+   "session": 7
+  },
+  {
+   "term": "Gold document",
+   "meaning": "The document that holds the right answer to one test question.",
+   "example": "The gold_doc_id column in eval_questions.csv",
+   "session": 7
+  },
+  {
+   "term": "Recall at k",
+   "meaning": "The share of test questions where the gold document is among the top k results.",
+   "example": "Hybrid search: 0.767 at 5",
+   "session": 7
+  },
+  {
+   "term": "Mean reciprocal rank",
+   "meaning": "The average, over all questions, of 1 divided by the position of the gold document. First place scores 1, second 0.5, missing 0.",
+   "example": "Keyword search: 0.514",
+   "session": 7
+  },
+  {
+   "term": "Permission filter",
+   "meaning": "A rule inside the search that removes documents the person may not see, applied before the results are ranked.",
+   "example": "The user_groups setting in kitara_search",
+   "session": 7
+  },
+  {
+   "term": "Pilot report",
+   "meaning": "A short report on a trial of the search: test set, scores, failures, permission test and limits.",
+   "example": "Workpiece 2, built on Search Test Sheet.xlsx",
+   "session": 7
+  },
+  {
+   "term": "Pipeline",
+   "meaning": "The ordered steps that move data from a source to the place it is used, each step with a check.",
+   "example": "mobile_money.switch_log to the customer base dashboard, five stops",
+   "session": 8
+  },
+  {
+   "term": "Zone",
+   "meaning": "One store in a pipeline with one rule about what may change: raw, cleaned or serving.",
+   "example": "staging.mm_raw, clean.mm_transactions, mart.customer_360",
+   "session": 8
+  },
+  {
+   "term": "Incremental load",
+   "meaning": "Copying only the rows that are new since the last run.",
+   "example": "The hourly mobile money file drop",
+   "session": 8
+  },
+  {
+   "term": "Idempotent",
+   "meaning": "Safe to run twice. The second run leaves the same result as the first.",
+   "example": "19,700 rows after one run and after two",
+   "session": 8
+  },
+  {
+   "term": "Orchestrator",
+   "meaning": "The tool that runs pipeline steps in order, retries failures and sends alerts.",
+   "example": "Dagster or Apache Airflow",
+   "session": 8
+  },
+  {
+   "term": "Schema drift",
+   "meaning": "A change in the column names or types of a source that nobody announced.",
+   "example": "agent_id renamed to agent",
+   "session": 8
+  },
+  {
+   "term": "Freshness",
+   "meaning": "How recently the newest data arrived, or the longest silence between records.",
+   "example": "6.1 hours with no records on 17 September",
+   "session": 8
+  },
+  {
+   "term": "Alert owner",
+   "meaning": "The named person or role who is told when a check fails, and who acts.",
+   "example": "Switch operations for freshness, platform lead for schema",
+   "session": 8
+  },
+  {
+   "term": "Personal data",
+   "meaning": "Information that identifies a living person, or could identify that person when combined with other data.",
+   "example": "The 30 claims letters, documents D092 to D121",
+   "session": 9
+  },
+  {
+   "term": "Special categories",
+   "meaning": "Kinds of personal data that the law treats with extra care, such as health details.",
+   "example": "The dialysis detail in claims letter D102",
+   "session": 9
+  },
+  {
+   "term": "Controller",
+   "meaning": "The organisation that decides why and how personal data is used. In Uganda it registers with the regulator.",
+   "example": "Kitara Bank and Kitara Assurance",
+   "session": 9
+  },
+  {
+   "term": "Cross-border transfer",
+   "meaning": "Storing or processing personal data in another country, including in a cloud region there.",
+   "example": "The South African cloud option in hosting_options.csv",
+   "session": 9
+  },
+  {
+   "term": "Masking",
+   "meaning": "Replacing personal data with a labelled token, such as the word PHONE in square brackets. The token stays and the value goes.",
+   "example": "The masked claims letters in today's demonstration",
+   "session": 9
+  },
+  {
+   "term": "Data minimisation",
+   "meaning": "Using only the data the purpose needs and leaving the rest out.",
+   "example": "4 of the 14 columns of customers.csv, in Task 5",
+   "session": 9
+  },
+  {
+   "term": "Erasure request",
+   "meaning": "A person's request to have their personal data deleted.",
+   "example": "Letter 11 and customer KT-8782200",
+   "session": 9
+  },
+  {
+   "term": "Data protection map",
+   "meaning": "A table of where personal data sits, which law applies and what leaves the country.",
+   "example": "Today's workpiece, a page in the Participant Workbook",
+   "session": 9
+  },
+  {
+   "term": "Cost line",
+   "meaning": "One named item in the bill for a system, such as hosting, engineers or support.",
+   "example": "The 12 rows of Hosting Cost Model.xlsx",
+   "session": 10
+  },
+  {
+   "term": "Total cost of ownership",
+   "meaning": "Every cost line added up over the years you run the system.",
+   "example": "Three years in the workbook",
+   "session": 10
+  },
+  {
+   "term": "Vendor lock-in",
+   "meaning": "When leaving a supplier costs so much in money, time or lost data that you stay.",
+   "example": "Managed software service: exit difficulty High in hosting_options.csv",
+   "session": 10
+  },
+  {
+   "term": "Exit plan",
+   "meaning": "A written and tested way to leave a supplier: what you take, in which format, how fast and at what cost.",
+   "example": "The exit and data return cost line",
+   "session": 10
+  },
+  {
+   "term": "Permissive licence",
+   "meaning": "A licence that lets you use, change and include the software in your own product with few conditions.",
+   "example": "10 of the 15 tools in licence_register_sample.csv",
+   "session": 10
+  },
+  {
+   "term": "Copyleft",
+   "meaning": "A licence that asks you to share your changes on the same terms. The AGPL reaches network users too.",
+   "example": "Metabase open edition",
+   "session": 10
+  },
+  {
+   "term": "Source-available",
+   "meaning": "You can read the code, but the licence limits what you may do with it. Not open source.",
+   "example": "Soda Core 4, Elastic License 2.0",
+   "session": 10
+  },
+  {
+   "term": "Open-weight model",
+   "meaning": "A language model whose trained values you can download and run yourself, under a licence that may still limit use.",
+   "example": "",
+   "session": 10
+  },
+  {
+   "term": "Steering council",
+   "meaning": "A small group of senior people that decides which AI uses go ahead and can stop one.",
+   "example": "Owner of risk R07, with no chair yet",
+   "session": 11
+  },
+  {
+   "term": "Risk register",
+   "meaning": "A list of risks, each with a score, an owner, a control and a status.",
+   "example": "risk_register.csv, 12 risks",
+   "session": 11
+  },
+  {
+   "term": "Risk score",
+   "meaning": "Likelihood times impact, each from 1 to 5. 15 or more is high, 8 to 14 medium, below 8 low.",
+   "example": "R01 scores 20",
+   "session": 11
+  },
+  {
+   "term": "Control",
+   "meaning": "Something in place that lowers a risk, such as a rule, a test or a filter.",
+   "example": "R02 has the control None",
+   "session": 11
+  },
+  {
+   "term": "Shadow AI",
+   "meaning": "Staff using AI tools that nobody approved.",
+   "example": "Two staff pasted complaint emails into a public chatbot in April 2026",
+   "session": 11
+  },
+  {
+   "term": "Human oversight",
+   "meaning": "A named person can see what an AI system did and can stop it.",
+   "example": "Staff must check every result under the generative AI policy",
+   "session": 11
+  },
+  {
+   "term": "Incident drill",
+   "meaning": "A rehearsal of what the organisation does when something goes wrong.",
+   "example": "Personal data found in the search index",
+   "session": 11
+  },
+  {
+   "term": "Quick win",
+   "meaning": "A piece of work with small effort and a result people can see soon.",
+   "example": "W01, naming the council and an owner for every source: 6 person-days.",
+   "session": 12
+  },
+  {
+   "term": "Foundation",
+   "meaning": "Work that takes effort and that other work waits for.",
+   "example": "W07, the raw, cleaned and serving zones: 40 person-days.",
+   "session": 12
+  },
+  {
+   "term": "Dependency",
+   "meaning": "A work item that cannot start until another has finished.",
+   "example": "W15, the pilot, waits for W12, W13 and W07.",
+   "session": 12
+  },
+  {
+   "term": "Critical path",
+   "meaning": "The longest chain of dependent items. If one slips, the end date slips.",
+   "example": "Three chains of 12 months in Kitara's plan.",
+   "session": 12
+  },
+  {
+   "term": "Priority score",
+   "meaning": "Value divided by effort in person-days, times ten. It helps choose between items that can start together.",
+   "example": "W01 scores 8.33 and W07 scores 1.0.",
+   "session": 12
+  },
+  {
+   "term": "Projected score",
+   "meaning": "The score the plan aims for at month 12. It is a target and not a measurement.",
+   "example": "Kitara's mean target is 3.3.",
+   "session": 12
+  },
+  {
+   "term": "Board paper",
+   "meaning": "A short document that asks the board for a decision and shows the baseline, plan, costs, risks and measures.",
+   "example": "Board Paper Outline.docx has ten sections.",
+   "session": 12
+  }
+ ],
+ "levels_guide": [
+  [
+   "1",
+   "Ad hoc",
+   "Done by individuals when needed. Nothing written down. Different answers from different people.",
+   "A person's account only. No documents."
+  ],
+  [
+   "2",
+   "Developing",
+   "Some written practice in some places. Not applied across the organisation.",
+   "A document or list that covers part of the organisation, with gaps you can name."
+  ],
+  [
+   "3",
+   "Defined",
+   "A standard exists and most units know it. Owners are named. Gaps are known.",
+   "An approved policy, a complete list, a named owner, one report that uses them."
+  ],
+  [
+   "4",
+   "Managed",
+   "The standard is measured. Someone reviews the numbers and acts on them.",
+   "Monthly figures, a log of actions, minutes showing decisions."
+  ],
+  [
+   "5",
+   "Optimised",
+   "The measures drive regular improvement. Changes are tested before they are rolled out.",
+   "A year of trend data and a record of improvements made from it."
+  ]
+ ],
+ "sessions": [
+  {
+   "no": 1,
+   "module": "A",
+   "notebook": "01 - What AI-ready data means (student).ipynb",
+   "solution_notebook": "01 - What AI-ready data means (solution).ipynb",
+   "deck_file": "01 - What AI-ready data means.pptx",
+   "title": "What AI-ready data means",
+   "question": "Which AI uses do we want, and what data does each one need?",
+   "result": "Three use cases, each with the data it needs, where that data lives and who owns it.",
+   "outcomes": [
+    "Name an AI use and the data it depends on",
+    "Explain how stale, missing or unreachable data produces a wrong answer",
+    "Say where structured and unstructured data live in your organisation"
+   ],
+   "lab": "Workshop: write three AI use cases on the canvas and list the data each needs. Team notebook: find three conflicting versions of one policy in the Kitara document set.",
+   "intro": "Write three AI uses for your own organisation on Use Case Canvas.xlsx, with the data each needs, where it lives and who owns it. The data colleague runs the team notebook to find three conflicting handbook editions and the stale search answer.",
+   "workpiece": null,
+   "slides": 22,
+   "clicks": 35,
+   "animated": 12,
+   "minutes_spoken": 24,
+   "words": 3138,
+   "vocab": [
+    {
+     "term": "Use case",
+     "meaning": "One job you want AI to do, with a person who answers for the result.",
+     "example": "Staff policy question answering on the shared drive"
+    },
+    {
+     "term": "AI-ready data",
+     "meaning": "Data that is relevant, current, owned, readable by the system and allowed to be used.",
+     "example": "The 2025 Staff Handbook, but not the shared drive around it"
+    },
+    {
+     "term": "Structured data",
+     "meaning": "Data in rows and columns with fixed fields.",
+     "example": "The core banking system, S01"
+    },
+    {
+     "term": "Unstructured data",
+     "meaning": "Free text, scans, audio and email with no fixed fields.",
+     "example": "The 121 documents and the claims archive, S06"
+    },
+    {
+     "term": "Stale data",
+     "meaning": "Data that exists but is out of date.",
+     "example": "The 2019 handbook says 21 days of leave"
+    },
+    {
+     "term": "Superseded",
+     "meaning": "Replaced by a newer version. The old file usually stays in the folder.",
+     "example": "11 of 121 documents, recorded in docs_metadata.csv"
+    },
+    {
+     "term": "Forecast",
+     "meaning": "A prediction by analysts about what will happen. Nobody has counted it yet.",
+     "example": "Gartner's 60 percent figure"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Name three AI uses on the canvas and give each a business owner you could name out loud.",
+     "example": "Kitara: staff policy question answering (owner would be the Head of Human Resources), claims triage (Head of Claims), agent fraud detection on mobile money. All three come from the candidates column of sources.csv."
+    },
+    {
+     "task": "Write the problem today for each use, with a number if you have one, and mark the AI task as predict, search or generate.",
+     "example": "Policy assistant, search: the 2019, 2022 and 2025 handbooks give 21, 24 and 28 days of annual leave and sit in one folder. Claims triage, predict: 96,000 claim records in S05. Fraud detection, predict: 46 million log lines in S02."
+    },
+    {
+     "task": "List the data each use needs, one line per data set, and where each lives.",
+     "example": "Policy assistant: policy documents on the shared drive S09 (14,000 documents, refresh unknown). Claims triage: claims system S05 and claims archive S06 (310,000 files). Fraud: mobile money log S02."
+    },
+    {
+     "task": "Name the data owner for each line as a role, then record the sensitivity class and whether it holds personal data.",
+     "example": "S09 has no owner, no class and personal data not decided. S05 is owned by the Head of Claims, restricted, personal data Y, no steward. S02 is recorded as owned by IT while Digital Channels also claims it. restricted, personal data Y."
+    },
+    {
+     "task": "Test every data line against missing, stale, unowned and unreachable, and write the main risk for each use.",
+     "example": "Policy assistant: stale (three editions) and unowned (S09). Claims triage: no known outcome field, and S06 holds scanned images. Fraud: no fraud flag in the log, so nothing to learn from."
+    },
+    {
+     "task": "Score effort and value from 1 to 5 and read the priority. Write the decision you need from your sponsor under each use.",
+     "example": "Illustrative scores: policy assistant effort 2, value 4, priority 2.0. Claims triage effort 4, value 5, priority 1.25. Fraud detection effort 5, value 5, priority 1.0. Decision for the first: name an owner for S09 and agree that old editions are retired."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Annual leave in three handbooks",
+    "Task 2. A second conflict",
+    "Task 3. The stale answer",
+    "Task 4. Sources with no owner",
+    "Task 5. Documents a text reader cannot read"
+   ],
+   "workbooks": [
+    "Use Case Canvas.xlsx"
+   ],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up: your own data and AI"
+    },
+    {
+     "no": 5,
+     "type": "stat",
+     "title": "Kitara Group, the case for all twelve sessions"
+    },
+    {
+     "no": 6,
+     "type": "flow",
+     "title": "Three jobs AI does with data"
+    },
+    {
+     "no": 7,
+     "type": "compare",
+     "title": "Data that suits a report does not always suit AI"
+    },
+    {
+     "no": 8,
+     "type": "figure",
+     "title": "Four ways data fails an AI use"
+    },
+    {
+     "no": 9,
+     "type": "table",
+     "title": "Where Kitara's data sits"
+    },
+    {
+     "no": 10,
+     "type": "define",
+     "title": "AI-ready data"
+    },
+    {
+     "no": 11,
+     "type": "code",
+     "title": "Three handbooks, three answers to one question"
+    },
+    {
+     "no": 12,
+     "type": "code",
+     "title": "Keyword search puts the old handbook first"
+    },
+    {
+     "no": 13,
+     "type": "trap",
+     "title": "A confident answer from last year's handbook"
+    },
+    {
+     "no": 14,
+     "type": "code",
+     "title": "A check that stops on a missing owner"
+    },
+    {
+     "no": 15,
+     "type": "table",
+     "title": "Four figures quoted about stalled AI projects"
+    },
+    {
+     "no": 16,
+     "type": "table",
+     "title": "What to remember about each figure"
+    },
+    {
+     "no": 17,
+     "type": "compare",
+     "title": "Two numbers about the data itself"
+    },
+    {
+     "no": 18,
+     "type": "figure",
+     "title": "What each Kitara use case needs, and what the files hold"
+    },
+    {
+     "no": 19,
+     "type": "flow",
+     "title": "The use case canvas, filled top to bottom"
+    },
+    {
+     "no": 20,
+     "type": "steps",
+     "title": "Workshop: three AI uses on the canvas"
+    },
+    {
+     "no": 21,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 22,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 11,
+     "title": "Three handbooks, three answers to one question",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 12,
+     "title": "Keyword search puts the old handbook first",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 14,
+     "title": "A check that stops on a missing owner",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "Kitara's search put the 2019 handbook first. Which of the four ways data fails is that?",
+     "a": "Stale. The data exists and is out of date. Its status sat in a spreadsheet the search never read."
+    },
+    {
+     "q": "Gartner says 60% of AI projects without AI-ready data will be abandoned. What kind of figure is that?",
+     "a": "A forecast. Nobody has counted what happened."
+    },
+    {
+     "q": "Who in your organisation signs off your first AI use, and who answers for the data it reads?",
+     "a": "Two named people. If you cannot name them, that is your first finding."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation signs off your first AI use, and who answers for the data it reads?",
+    "a": "Two named people. If you cannot name them, that is your first finding."
+   }
+  },
+  {
+   "no": 2,
+   "module": "A",
+   "notebook": "02 - Score your readiness (student).ipynb",
+   "solution_notebook": "02 - Score your readiness (solution).ipynb",
+   "deck_file": "02 - Score your readiness.pptx",
+   "title": "Score your readiness",
+   "question": "Where do we stand today?",
+   "result": "A baseline scorecard: five dimensions scored one to five, each with one piece of evidence. Workpiece 1.",
+   "outcomes": [
+    "Score an organisation on five dimensions and five levels",
+    "Back each score with evidence that someone outside the team could check",
+    "Find the weakest dimension and say what it blocks"
+   ],
+   "lab": "Workshop (workpiece 1): score Kitara from its evidence pack, then score your own organisation. Team notebook: compute the scorecard in pandas and chart it.",
+   "intro": "Workshop: score Kitara with the Readiness Scorecard (Kitara example).xlsx, then score your own organisation in Readiness Scorecard.xlsx. The team notebook reproduces the Kitara scorecard from readiness_evidence.csv in pandas and charts it.",
+   "workpiece": "Baseline scorecard",
+   "slides": 23,
+   "clicks": 30,
+   "animated": 11,
+   "minutes_spoken": 23,
+   "words": 2957,
+   "vocab": [
+    {
+     "term": "Readiness dimension",
+     "meaning": "One area of readiness that is scored on its own, such as data or people.",
+     "example": "Kitara is scored on five dimensions, from use cases and sponsorship to people and governance."
+    },
+    {
+     "term": "Maturity level",
+     "meaning": "One step on the five step scale: ad hoc, developing, defined, managed, optimised.",
+     "example": "Kitara's overall mean of 2.4 sits between developing and defined."
+    },
+    {
+     "term": "Evidence rule",
+     "meaning": "Every score needs one piece of evidence that someone outside the team could check.",
+     "example": "The registration certificate was never seen, so that row breaks the rule."
+    },
+    {
+     "term": "Self-reported item",
+     "meaning": "A score that rests on what someone said, with no evidence seen by anyone outside the team.",
+     "example": "8 of Kitara's 25 evidence rows."
+    },
+    {
+     "term": "Evidence-adjusted score",
+     "meaning": "The average that leaves out the self-reported items.",
+     "example": "Kitara falls from 2.4 to 2.01."
+    },
+    {
+     "term": "Target level",
+     "meaning": "The level a dimension should reach, chosen by a leader.",
+     "example": "Kitara's workbook starts every dimension at 3, defined."
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Open Readiness Scorecard (Kitara example).xlsx. Read the summary table and find the overall mean, the evidence-adjusted mean and the level the adjusted mean rounds to.",
+     "example": "Overall mean 2.4. Evidence-adjusted mean 2.01. Level: Developing (level 2)."
+    },
+    {
+     "task": "In Readiness Scorecard.xlsx enter your organisation and today's date, then write one evidence item per row, up to six per dimension. Name who could verify each item.",
+     "example": "Protection and law, row 1: Registration and data protection officer. What exists: Kitara says it is registered and has named an officer, certificate not seen. Verifier: Head of Legal and Compliance."
+    },
+    {
+     "task": "Score every item from 1 to 5 using the Levels guide tab. Set Evidence seen to Y only where someone outside your team has seen the evidence.",
+     "example": "Breach procedure scored 3, defined, evidence seen Y (the Information Security Policy sets 1 hour internally and 72 hours to the regulator). Registration scored 4, evidence seen N."
+    },
+    {
+     "task": "Read the summary under the scorecard. Write down each dimension's mean and evidence-adjusted mean, the overall level, and your weakest dimension. If two tie, name both.",
+     "example": "Baseline 3.0, 2.0, 2.5, 3.0, 1.5. Adjusted 2.33, 1.33, 2.40, 2.67, 1.33. Data and People and governance tie at 1.33."
+    },
+    {
+     "task": "Set a target level for each dimension and read the gap to target.",
+     "example": "Target 3 everywhere. Gaps: Use cases 0.67, Data 1.67, Platform 0.60, Protection and law 0.33, People 1.67. Largest gap: Data and People and governance."
+    },
+    {
+     "task": "Write one sentence on what your weakest dimension blocks for your first AI use. Name the executive who signs off the scorecard.",
+     "example": "Data blocks document search: 4 of Kitara's 14 sources have no owner and none is in a catalogue, so nobody can say which documents the search may read. Sign-off: the Chair of the IT Steering Committee, who approved the pilot budget."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Load the evidence pack",
+    "Task 2. The baseline",
+    "Task 3. Leave out the self-reported items",
+    "Task 4. The weakest dimensions and the gap",
+    "Task 5. Chart the scorecard",
+    "Task 6. A question for the leader"
+   ],
+   "workbooks": [
+    "Readiness Scorecard (Kitara example).xlsx",
+    "Readiness Scorecard.xlsx"
+   ],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 1"
+    },
+    {
+     "no": 5,
+     "type": "concept",
+     "title": "Kitara's board asks where the group stands"
+    },
+    {
+     "no": 6,
+     "type": "table",
+     "title": "Five dimensions cover what AI needs"
+    },
+    {
+     "no": 7,
+     "type": "figure",
+     "title": "Five levels, from ad hoc to optimised"
+    },
+    {
+     "no": 8,
+     "type": "table",
+     "title": "Five published scales and the one we use"
+    },
+    {
+     "no": 9,
+     "type": "define",
+     "title": "The evidence rule"
+    },
+    {
+     "no": 10,
+     "type": "code",
+     "title": "Load the evidence pack and count what is in it"
+    },
+    {
+     "no": 11,
+     "type": "code",
+     "title": "Baseline: the mean score of each dimension"
+    },
+    {
+     "no": 12,
+     "type": "flow",
+     "title": "Scoring one dimension in five steps"
+    },
+    {
+     "no": 13,
+     "type": "code",
+     "title": "Leave out the self-reported items"
+    },
+    {
+     "no": 14,
+     "type": "trap",
+     "title": "A high score that rests on one sentence"
+    },
+    {
+     "no": 15,
+     "type": "figure",
+     "title": "Discounting self-reported items lowers every dimension"
+    },
+    {
+     "no": 16,
+     "type": "stat",
+     "title": "Kitara's average hides its weakest dimension"
+    },
+    {
+     "no": 17,
+     "type": "code",
+     "title": "Find the weakest dimensions and the gap to a target"
+    },
+    {
+     "no": 18,
+     "type": "code",
+     "title": "A check that refuses a score of 6"
+    },
+    {
+     "no": 19,
+     "type": "concept",
+     "title": "Four habits that cut bias in a self-score"
+    },
+    {
+     "no": 20,
+     "type": "concept",
+     "title": "Set a target level and read the gap"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: score your own organisation"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 10,
+     "title": "Load the evidence pack and count what is in it",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 11,
+     "title": "Baseline: the mean score of each dimension",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 13,
+     "title": "Leave out the self-reported items",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 17,
+     "title": "Find the weakest dimensions and the gap to a target",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 18,
+     "title": "A check that refuses a score of 6",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "Name the five dimensions of readiness.",
+     "a": "Use cases and sponsorship, data, platform and pipelines, protection and law, people and governance."
+    },
+    {
+     "q": "Kitara's sponsor row scored 4 on a statement in interviews. What does the evidence rule do to it?",
+     "a": "It marks the row self-reported, so the adjusted mean leaves it out. Overall, 2.4 falls to 2.01."
+    },
+    {
+     "q": "Who in your organisation signs off the scorecard, and what target level will they accept for your weakest dimension?",
+     "a": "A named executive outside the scoring team. Level 3, defined, is a common first target."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation signs off the scorecard, and what target level will they accept for your weakest dimension?",
+    "a": "A named executive outside the scoring team. Level 3, defined, is a common first target."
+   }
+  },
+  {
+   "no": 3,
+   "module": "B",
+   "notebook": "03 - Find, own and catalogue your data (student).ipynb",
+   "solution_notebook": "03 - Find, own and catalogue your data (solution).ipynb",
+   "deck_file": "03 - Find, own and catalogue your data.pptx",
+   "title": "Find, own and catalogue your data",
+   "question": "Who owns each source, and who may see it?",
+   "result": "An inventory of ten sources, each with an owner, a steward and a sensitivity class.",
+   "outcomes": [
+    "List data sources with the fields an inventory needs",
+    "Tell an owner from a steward and a custodian",
+    "Classify sources by sensitivity and spot personal data"
+   ],
+   "lab": "Workshop: complete the Kitara source list, then list ten of your own sources. Team notebook: scan a folder tree and find sources with no owner or no class.",
+   "intro": "Workshop: complete the Kitara source list in Data Inventory.xlsx, then list ten of your own sources. The team notebook scans a folder tree, finds the sources with no owner or no class and traces lineage.",
+   "workpiece": null,
+   "slides": 22,
+   "clicks": 26,
+   "animated": 11,
+   "minutes_spoken": 24,
+   "words": 3068,
+   "vocab": [
+    {
+     "term": "Data owner",
+     "meaning": "Decides who may use a source and its class.",
+     "example": "S03: the Head of SME Lending. Four sources have none."
+    },
+    {
+     "term": "Data steward",
+     "meaning": "Looks after a source's quality day to day.",
+     "example": "Seven of the 14 sources have none."
+    },
+    {
+     "term": "Data custodian",
+     "meaning": "Runs the system: storage, backup, access.",
+     "example": "IT, wrongly recorded as owner of S02 and S06."
+    },
+    {
+     "term": "Sensitivity class",
+     "meaning": "How carefully data is handled: public, internal, restricted, confidential.",
+     "example": "S03 and S10 are one class too low."
+    },
+    {
+     "term": "Metadata",
+     "meaning": "Data about the data: what, where, who, when checked.",
+     "example": "Every column of sources.csv."
+    },
+    {
+     "term": "Data catalogue",
+     "meaning": "Software that holds the inventory and lets staff search it.",
+     "example": "None yet. in_catalogue is N on all 14."
+    },
+    {
+     "term": "Lineage",
+     "meaning": "Where a number came from, and each step on the way.",
+     "example": "lineage_edges.csv: 25 steps, 3 by hand."
+    },
+    {
+     "term": "Shadow data",
+     "meaning": "Data that sits outside any inventory.",
+     "example": "S09, the shared drive of 14,000 files."
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Open Data Inventory.xlsx. Paste the 14 rows of sources.csv into the Inventory tab. Read the Missing fields column and the total under the table.",
+     "example": "19 blank cells in owner, steward, sensitivity and personal data. 7 of the 14 rows have at least one blank."
+    },
+    {
+     "task": "Fix the two sources recorded one class too low. Say who may lower or raise a class.",
+     "example": "S03 loan origination: internal to confidential (scanned national ID copies). S10 HR system: restricted to confidential (salary data). The owner may raise a class at any time. Lowering needs Legal and Compliance in writing."
+    },
+    {
+     "task": "Resolve the two sources where IT is recorded as owner. Name a business owner and keep IT as custodian.",
+     "example": "S06 claims documents archive: proposed owner Head of Claims, custodian IT. S02 mobile money switch log: owner to be agreed between Digital Channels and IT leadership, custodian IT. The row stays open until the claimants agree in writing."
+    },
+    {
+     "task": "Propose an owner, a steward and a class for each source with no owner, and set the personal data flag. Mark each as a proposal.",
+     "example": "S08 call centre transcripts: owner Head of Customer Service, steward Customer Service Analyst, class confidential, personal data Y until reviewed. S09 shared drive: class internal, owner the head of each department folder. S12 email archive: confidential, personal data Y. S13 branch spreadsheets: internal, personal data N."
+    },
+    {
+     "task": "List ten sources of your own organisation, one row each, with an owner, a steward and a sensitivity class. Leave a blank where you cannot name a person.",
+     "example": "Kitara has 10 of 14 sources with an owner, 7 with a steward and 9 with a class. Your count of blanks is the finding."
+    },
+    {
+     "task": "Write one sentence naming who will settle a dispute when two heads claim one source, and who signs off a class change.",
+     "example": "The Chair of the IT Steering Committee settles ownership disputes. Legal and Compliance signs off any lowered class, as the Data Classification Standard requires."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Scan the folder tree",
+    "Task 2. Find the gaps in the inventory",
+    "Task 3. Count the blanks per source",
+    "Task 4. Catch classes that break the standard",
+    "Task 5. Follow the lineage",
+    "Task 6. A question for the leader"
+   ],
+   "workbooks": [
+    "Data Inventory.xlsx"
+   ],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 2"
+    },
+    {
+     "no": 5,
+     "type": "figure",
+     "title": "Seven of Kitara's 14 sources lack a basic field"
+    },
+    {
+     "no": 6,
+     "type": "define",
+     "title": "A data owner answers for the data"
+    },
+    {
+     "no": 7,
+     "type": "table",
+     "title": "Owner, steward and custodian do three different jobs"
+    },
+    {
+     "no": 8,
+     "type": "trap",
+     "title": "IT recorded as the owner of two sources"
+    },
+    {
+     "no": 9,
+     "type": "table",
+     "title": "Four sensitivity classes, from public to confidential"
+    },
+    {
+     "no": 10,
+     "type": "code",
+     "title": "List the sources with no owner or no class"
+    },
+    {
+     "no": 11,
+     "type": "code",
+     "title": "A check that stops when a source has no owner"
+    },
+    {
+     "no": 12,
+     "type": "code",
+     "title": "Find classes that break Kitara's own standard"
+    },
+    {
+     "no": 13,
+     "type": "concept",
+     "title": "Personal data hides where nobody has looked"
+    },
+    {
+     "no": 14,
+     "type": "concept",
+     "title": "Metadata is data about the data"
+    },
+    {
+     "no": 15,
+     "type": "code",
+     "title": "Shadow data: count the shared drive by type and folder"
+    },
+    {
+     "no": 16,
+     "type": "code",
+     "title": "How many layouts must one analyst read?"
+    },
+    {
+     "no": 17,
+     "type": "compare",
+     "title": "A spreadsheet or a catalogue for the inventory"
+    },
+    {
+     "no": 18,
+     "type": "table",
+     "title": "Two free catalogues and what to check on their licences"
+    },
+    {
+     "no": 19,
+     "type": "figure",
+     "title": "Lineage: where the board pack numbers come from"
+    },
+    {
+     "no": 20,
+     "type": "steps",
+     "title": "Workshop: build your inventory of ten sources"
+    },
+    {
+     "no": 21,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 22,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 10,
+     "title": "List the sources with no owner or no class",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 11,
+     "title": "A check that stops when a source has no owner",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 12,
+     "title": "Find classes that break Kitara's own standard",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 15,
+     "title": "Shadow data: count the shared drive by type and folder",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 16,
+     "title": "How many layouts must one analyst read?",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "Kitara records IT as the owner of the claims document archive. Which role is IT really, and who should own it?",
+     "a": "IT is the custodian. The Head of Claims, or whoever Kitara's leaders agree, should own it."
+    },
+    {
+     "q": "Which two Kitara sources have the wrong sensitivity class, and what should it be?",
+     "a": "S03 loan origination and S10 HR system. Both should be confidential."
+    },
+    {
+     "q": "Who in your organisation will name the owner of each data source, and settle a dispute when two heads claim one?",
+     "a": "A named senior leader, such as the chief data officer or the executive who chairs the data council."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation will name the owner of each data source, and settle a dispute when two heads claim one?",
+    "a": "A named senior leader, such as the chief data officer or the executive who chairs the data council."
+   }
+  },
+  {
+   "no": 4,
+   "module": "B",
+   "notebook": "04 - Quality, metadata and data contracts (student).ipynb",
+   "solution_notebook": "04 - Quality, metadata and data contracts (solution).ipynb",
+   "deck_file": "04 - Quality, metadata and data contracts.pptx",
+   "title": "Quality, metadata and data contracts",
+   "question": "How do we know a dataset is fit for AI use?",
+   "result": "Six quality rules and one data contract for a dataset of your choice.",
+   "outcomes": [
+    "Measure completeness, validity and uniqueness on a real table",
+    "Write a quality rule that a machine can check",
+    "Write a data contract with an owner and a change rule"
+   ],
+   "lab": "Workshop: write six rules and a contract for one dataset. Team notebook: profile the Kitara customer table and run your rules.",
+   "intro": "Workshop: write six quality rules and one data contract for a dataset of your choice in Data Contract Template.xlsx, using the Kitara customer table as the worked example. The team notebook profiles customers.csv, runs the rules and the duplicate check, then tests the mobile money log.",
+   "workpiece": null,
+   "slides": 23,
+   "clicks": 32,
+   "animated": 13,
+   "minutes_spoken": 27,
+   "words": 3452,
+   "vocab": [
+    {
+     "term": "Quality dimension",
+     "meaning": "One angle from which data quality is measured, such as completeness or validity.",
+     "example": "Six of them, applied to customers.csv"
+    },
+    {
+     "term": "Profiling",
+     "meaning": "A quick measured look at a table before you trust it: counts, blanks, ranges.",
+     "example": "Email is blank in 32.5% of customers"
+    },
+    {
+     "term": "Quality rule",
+     "meaning": "A column, a test and a threshold that a machine can check.",
+     "example": "Phone matches +256 7xxxxxxxx for 98% of rows"
+    },
+    {
+     "term": "Threshold",
+     "meaning": "The share of rows that must pass a rule. A business decision.",
+     "example": "National ID filled in for 99%"
+    },
+    {
+     "term": "Schema",
+     "meaning": "The list of columns in a table with their types and allowed blanks.",
+     "example": "The 14 columns of customers.csv"
+    },
+    {
+     "term": "Data contract",
+     "meaning": "A written agreement between the team that produces a dataset and the teams that use it.",
+     "example": "Data Contract Template.xlsx for the customer table"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Choose one dataset you would feed to an AI use. In section 1 of Data Contract Template.xlsx write its name, owner role, steward role, producing system and sensitivity class.",
+     "example": "Customer table (customers.csv), extract of the core banking system S01. Owner: Head of Retail Banking Operations. Steward: Core Banking Data Analyst. Sensitivity: confidential. Contains personal data: Y."
+    },
+    {
+     "task": "List the columns in section 2 with type, description and whether a blank is allowed.",
+     "example": "14 columns. customer_id text, never blank. national_id text, blank allowed (11.0% blank today). date_of_birth date, blank allowed (6.0%). email text, blank allowed (32.5%)."
+    },
+    {
+     "task": "Write six rules in section 3 with dimension, column, test and threshold. Cover at least four dimensions.",
+     "example": "QR01 Validity customer_id matches KT- and 7 digits, 100%. QR02 Completeness national_id filled in, 99%. QR03 Validity phone matches +256 7xxxxxxxx, 98%. QR04 Validity dates between 1900-01-01 and today, 99.9%. QR05 Consistency gender is M or F, 99%. QR06 Uniqueness no repeated national_id, 99.5%."
+    },
+    {
+     "task": "Check each rule on a sample of your data and write the pass rate beside it. Mark each rule pass or fail.",
+     "example": "On all 5,000 rows: QR01 100.0% pass. QR02 89.0% fail. QR03 50.2% fail. QR04 99.2% fail. QR05 70.8% fail. QR06 97.0% fail. Five of six rules fail; 1,557 rows pass QR02 to QR05 together."
+    },
+    {
+     "task": "Fill sections 4 and 5: refresh schedule, latest acceptable delay, expected rows, who is alerted, what counts as a breaking change and the notice period.",
+     "example": "Daily load, 30 hours latest acceptable delay, 4,800 to 5,200 rows, alert to the Core Banking Data Analyst. Dropping or renaming a column is breaking. 30 days notice. Owner approves."
+    },
+    {
+     "task": "Name who signs for the owner and for the consumers, and which failed rule would stop a load. Give your reason in one sentence.",
+     "example": "Owner signs: Head of Retail Banking Operations. Consumer: Head of Customer Analytics. Stop the load on QR06 duplicates, because a repeated customer inflates every count the board sees."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Profile the customer table",
+    "Task 2. Run the validity rules",
+    "Task 3. Find the duplicates",
+    "Task 4. Check the mobile money log",
+    "Task 5. The timeliness rule",
+    "Task 6. A question for the leader"
+   ],
+   "workbooks": [
+    "Data Contract Template.xlsx"
+   ],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 3"
+    },
+    {
+     "no": 5,
+     "type": "table",
+     "title": "Six questions that measure data quality"
+    },
+    {
+     "no": 6,
+     "type": "concept",
+     "title": "Where the six words come from"
+    },
+    {
+     "no": 7,
+     "type": "figure",
+     "title": "What is wrong with the Kitara customer table"
+    },
+    {
+     "no": 8,
+     "type": "code",
+     "title": "Profile the table: how much is blank?"
+    },
+    {
+     "no": 9,
+     "type": "code",
+     "title": "Four rules with thresholds that run as code"
+    },
+    {
+     "no": 10,
+     "type": "code",
+     "title": "Duplicates: the rule has to normalise names first"
+    },
+    {
+     "no": 11,
+     "type": "trap",
+     "title": "Reading the rules one at a time hides how many rows are bad"
+    },
+    {
+     "no": 12,
+     "type": "code",
+     "title": "The mobile money log: four rules, one day with a hole"
+    },
+    {
+     "no": 13,
+     "type": "figure",
+     "title": "Six hours of silence on 17 September"
+    },
+    {
+     "no": 14,
+     "type": "code",
+     "title": "A gate that stops the load when a rule fails"
+    },
+    {
+     "no": 15,
+     "type": "code",
+     "title": "The same checks in SQL on the customer table"
+    },
+    {
+     "no": 16,
+     "type": "code",
+     "title": "Pandera: the rules written as a schema"
+    },
+    {
+     "no": 17,
+     "type": "code",
+     "title": "Great Expectations Core: one expectation on a batch"
+    },
+    {
+     "no": 18,
+     "type": "stat",
+     "title": "What the defects cost downstream at Kitara"
+    },
+    {
+     "no": 19,
+     "type": "table",
+     "title": "A data contract has five fields"
+    },
+    {
+     "no": 20,
+     "type": "concept",
+     "title": "A contract in a standard format and in a workbook"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: six rules and one contract"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 8,
+     "title": "Profile the table: how much is blank?",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 9,
+     "title": "Four rules with thresholds that run as code",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 10,
+     "title": "Duplicates: the rule has to normalise names first",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 12,
+     "title": "The mobile money log: four rules, one day with a hole",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 14,
+     "title": "A gate that stops the load when a rule fails",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 15,
+     "title": "The same checks in SQL on the customer table",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 16,
+     "title": "Pandera: the rules written as a schema",
+     "libs": [
+      "pandera"
+     ],
+     "syntax_only": false
+    },
+    {
+     "no": 17,
+     "title": "Great Expectations Core: one expectation on a batch",
+     "libs": [
+      "great_expectations"
+     ],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "Kitara's customer id passes at 100 percent, yet 150 customers appear twice. Which dimension catches that, and how?",
+     "a": "Uniqueness. Match on the normalised name with the date of birth, or on the national ID."
+    },
+    {
+     "q": "Why report the share of rows that pass every rule as well as each rule?",
+     "a": "An AI reads whole rows. At Kitara only 1,557 of 5,000 rows pass all four rules."
+    },
+    {
+     "q": "Who in your organisation owns the dataset you chose, and which failed rule would you let stop a load?",
+     "a": "A named role that can say yes or no to a change. Often the rule behind a regulatory or money figure."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation owns the dataset you chose, and which failed rule would you let stop a load?",
+    "a": "A named role that can say yes or no to a change. Often the rule behind a regulatory or money figure."
+   }
+  },
+  {
+   "no": 5,
+   "module": "C",
+   "notebook": "05 - From documents to clean text (student).ipynb",
+   "solution_notebook": "05 - From documents to clean text (solution).ipynb",
+   "deck_file": "05 - From documents to clean text.pptx",
+   "title": "From documents to clean text",
+   "question": "Which of our documents can AI read, and what must be repaired first?",
+   "result": "A readiness table for 50 to 100 documents: format, text quality, version status, sensitivity and chunk plan.",
+   "outcomes": [
+    "Tell a text PDF from a scan and extract text from each",
+    "Split a document into chunks that keep their meaning",
+    "Attach metadata that lets a search filter by version and access"
+   ],
+   "lab": "Workshop: sample 50 of your own documents and fill the readiness table. Team notebook: extract, OCR and chunk the Kitara documents.",
+   "intro": "You build a readiness table for 50 of your own documents on a sheet with six named columns. The team notebook builds the same table for all 121 Kitara documents so you can compare.",
+   "workpiece": null,
+   "slides": 23,
+   "clicks": 48,
+   "animated": 17,
+   "minutes_spoken": 24,
+   "words": 3171,
+   "vocab": [
+    {
+     "term": "Text layer",
+     "meaning": "The characters stored inside a PDF that a program can copy. A scan has none.",
+     "example": "97 Kitara PDFs have one. The 8 scans do not."
+    },
+    {
+     "term": "OCR",
+     "meaning": "Optical character recognition: software that reads the picture of a page and returns text.",
+     "example": "Tesseract on the 8 scans in docs/scans"
+    },
+    {
+     "term": "Parsing",
+     "meaning": "Turning a file into clean text that a program can use.",
+     "example": "pypdf, pdfplumber and python-docx on the Kitara folder"
+    },
+    {
+     "term": "Chunk",
+     "meaning": "A piece of a document, a few hundred words, that a search returns on its own.",
+     "example": "The Staff Handbook 2025 becomes 3 chunks"
+    },
+    {
+     "term": "Overlap",
+     "meaning": "Words repeated at the join of two chunks so a sentence is not cut in half.",
+     "example": "40 words between chunks"
+    },
+    {
+     "term": "Cutting by headings",
+     "meaning": "Splitting a document where its own headings fall, so each chunk is one section.",
+     "example": "The handbook's 9 numbered sections"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Choose 50 non-confidential documents from one shared drive: old and new, long and short, PDFs, scans and Word files. Make a sheet with six columns named file, format, text quality, version status, sensitivity and chunk plan, and list the files.",
+     "example": "The Kitara folder has 121 documents: 97 text PDFs, 8 scanned PDFs, 10 Word files and 6 text files."
+    },
+    {
+     "task": "Fill in format and text quality. Open every PDF and try to select a line of text. If you cannot, it is a scan. Mark each row good, repair or unreadable, and mark PDFs that hold a table.",
+     "example": "8 PDFs have no text layer. Five scans have Tesseract confidence 91 to 95 and are good. Three score 67 to 75 (Loan Committee Note 2018, Regulator Notice Fax 2017, Motor Policy Schedule 2015) and have 9 to 13 percent of characters wrong, so they need repair. Two text PDFs hold tables: Tariff Schedule 2025 and Motor Premium Rates 2025."
+    },
+    {
+     "task": "Fill in version status: current, superseded or unknown. Find the other versions of each family of documents. Where nobody can say, write unknown and name who could say.",
+     "example": "11 of the 121 documents are superseded, and 9 of those carry no notice in their own text. The three Staff Handbooks (2019, 2022, 2025) say 21, 24 and 28 days of annual leave."
+    },
+    {
+     "task": "Fill in sensitivity with the four classes from Session 3 and mark which documents hold personal data.",
+     "example": "Kitara: 54 internal, 44 restricted, 15 public and 8 confidential documents. 32 documents contain personal data, mostly claims letters."
+    },
+    {
+     "task": "Choose a chunk plan for each row: whole document, fixed 200 words with 40 overlap, by headings, table rows, or repair first.",
+     "example": "Kitara: 100 documents fit one chunk, 16 need fixed chunks, 2 need table rows and 3 need repair first. In all they give 139 chunks."
+    },
+    {
+     "task": "Give every row a verdict: ready, filter first (superseded, confidential or personal data) or repair first. Count the verdicts, choose your three most urgent repairs and name an owner for each.",
+     "example": "Kitara: 70 ready, 46 filter first, 5 repair first. The five repairs are the 3 faded scans and the 2 table PDFs. Owners could be the records manager for the scans and the product team for the two rate tables."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Find the scans",
+    "Task 2. How well does OCR read each scan?",
+    "Task 3. Which old documents say nothing about being old?",
+    "Task 4. Chunk plan",
+    "Task 5. The readiness table"
+   ],
+   "workbooks": [],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 4"
+    },
+    {
+     "no": 5,
+     "type": "figure",
+     "title": "Kitara's folder: 121 documents, 11 of them replaced"
+    },
+    {
+     "no": 6,
+     "type": "table",
+     "title": "Four kinds of file, four ways to read them"
+    },
+    {
+     "no": 7,
+     "type": "code",
+     "title": "Read a text PDF two ways"
+    },
+    {
+     "no": 8,
+     "type": "code",
+     "title": "A scan returns nothing until OCR reads it"
+    },
+    {
+     "no": 9,
+     "type": "figure",
+     "title": "OCR on a faded scan misreads the amount"
+    },
+    {
+     "no": 10,
+     "type": "code",
+     "title": "Sort scans by how sure Tesseract is"
+    },
+    {
+     "no": 11,
+     "type": "figure",
+     "title": "A table that a PDF reader scrambles"
+    },
+    {
+     "no": 12,
+     "type": "code",
+     "title": "Recover the rows with pdfplumber"
+    },
+    {
+     "no": 13,
+     "type": "trap",
+     "title": "A clean extraction of an out of date document"
+    },
+    {
+     "no": 14,
+     "type": "figure",
+     "title": "Cutting a document into overlapping chunks"
+    },
+    {
+     "no": 15,
+     "type": "code",
+     "title": "Chunk the handbook and look at the joins"
+    },
+    {
+     "no": 16,
+     "type": "compare",
+     "title": "Where to cut: by word count or by heading"
+    },
+    {
+     "no": 17,
+     "type": "code",
+     "title": "Cut by numbered headings and drop the footers"
+    },
+    {
+     "no": 18,
+     "type": "code",
+     "title": "Attach labels to every chunk"
+    },
+    {
+     "no": 19,
+     "type": "code",
+     "title": "Count your own unstructured data"
+    },
+    {
+     "no": 20,
+     "type": "code",
+     "title": "Docling, a free converter to try on your hardest files"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: the readiness table for 50 documents"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 7,
+     "title": "Read a text PDF two ways",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 8,
+     "title": "A scan returns nothing until OCR reads it",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 10,
+     "title": "Sort scans by how sure Tesseract is",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 12,
+     "title": "Recover the rows with pdfplumber",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 15,
+     "title": "Chunk the handbook and look at the joins",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 17,
+     "title": "Cut by numbered headings and drop the footers",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 18,
+     "title": "Attach labels to every chunk",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 19,
+     "title": "Count your own unstructured data",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 20,
+     "title": "Docling, a free converter to try on your hardest files",
+     "libs": [
+      "docling"
+     ],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "A PDF returns an empty string from pypdf. What is it and what do you do?",
+     "a": "A scan with no text layer. Run OCR, then check its confidence or error rate before you trust the text."
+    },
+    {
+     "q": "Why does a price table read by pypdf give wrong answers?",
+     "a": "pypdf lists every service, then every charge, so a price lands nine lines from its name. pdfplumber keeps each row together."
+    },
+    {
+     "q": "Who in your organisation signs off which documents may feed an AI search, and what error rate on scans will you accept?",
+     "a": "Name a role, such as the owner of the document family with the records lead. Accept a higher rate only where answers show their source page."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation signs off which documents may feed an AI search, and what error rate on scans will you accept?",
+    "a": "Name a role, such as the owner of the document family with the records lead. Accept a higher rate only where answers show their source page."
+   }
+  },
+  {
+   "no": 6,
+   "module": "C",
+   "notebook": "06 - Search by meaning (student).ipynb",
+   "solution_notebook": "06 - Search by meaning (solution).ipynb",
+   "deck_file": "06 - Search by meaning.pptx",
+   "title": "Search by meaning",
+   "question": "What does search by meaning add to the keyword search we already have?",
+   "result": "A working search over the Kitara documents that combines keyword and meaning search.",
+   "outcomes": [
+    "Explain keyword search, embeddings and vector search in plain words",
+    "Run a keyword search and a meaning search on the same question and compare",
+    "Combine two ranked lists with reciprocal rank fusion"
+   ],
+   "lab": "Workshop: write ten questions your staff ask and note where the answer lives. Team notebook: build keyword, meaning and hybrid search over the Kitara documents.",
+   "intro": "You write ten real staff questions on the Tests sheet of Search Test Sheet.xlsx and find where each answer lives. The team notebook runs keyword, stand-in meaning and hybrid search on the first ten Kitara questions.",
+   "workpiece": null,
+   "slides": 23,
+   "clicks": 42,
+   "animated": 15,
+   "minutes_spoken": 30,
+   "words": 3867,
+   "vocab": [
+    {
+     "term": "BM25",
+     "meaning": "The standard keyword scoring method. It rewards rare words that a question and a passage share.",
+     "example": "Q03 CCTV: the Data Retention Schedule scores 5.91"
+    },
+    {
+     "term": "Embedding",
+     "meaning": "A list of numbers that stands for the meaning of a text. Similar meanings get lists that sit close together.",
+     "example": "64 numbers for each of the 139 chunks in the stand-in scorer"
+    },
+    {
+     "term": "Nearest neighbour search",
+     "meaning": "Finding the stored items whose number lists are closest to the question's list.",
+     "example": "Cosine score 0.554 for D008-01 on Q02"
+    },
+    {
+     "term": "Vector store",
+     "meaning": "A database or library that keeps embeddings and returns the nearest ones quickly.",
+     "example": "pgvector, Chroma, Qdrant, FAISS, OpenSearch"
+    },
+    {
+     "term": "Hybrid search",
+     "meaning": "Running keyword and meaning search together and combining the two result lists.",
+     "example": "Q01: right document 7th by keyword, 3rd by hybrid"
+    },
+    {
+     "term": "Reciprocal rank fusion",
+     "meaning": "Adding 1 divided by (60 plus place) for each list a chunk appears in, then sorting by the total.",
+     "example": "D007-01: 1/67 + 1/62 = 0.0311"
+    },
+    {
+     "term": "Re-ranking",
+     "meaning": "A second, slower model that reorders the top few results by reading question and passage together.",
+     "example": "Not used in the Kitara pilot"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Collect ten questions your staff really ask, from the help desk, an HR mailbox or branch calls. Write each in the words staff type. Put them in column B of the Tests sheet in Search Test Sheet.xlsx.",
+     "example": "Kitara Q01 to Q10, for example Q03 'How long is CCTV retained in the branch?' and Q01 'What check happens on each borrower before a decision?'."
+    },
+    {
+     "task": "For each question find the document that holds the answer. Write its id in column C, copy a phrase from the right passage into column D, and note its owner and format.",
+     "example": "Kitara: Q01 is D007 Loan Approval Policy (Risk), Q02 is D008 Know Your Customer Procedure (Legal and Compliance), Q03 is D009 Data Retention Schedule (Legal and Compliance). All ten answers are in text PDFs."
+    },
+    {
+     "task": "Mark each question as shares words or paraphrase. Count the paraphrases, which share at most one word with the answer passage.",
+     "example": "Of the first ten Kitara questions, 4 are paraphrases: Q01, Q02, Q09 and Q10. Across all 60, 23 are paraphrases and 37 share two or more words."
+    },
+    {
+     "task": "Mark questions in another language, restricted ones and ones where an old version gives a different answer. Add a note for each.",
+     "example": "Kitara has 6 Swahili questions (3 about English documents), 8 stale and 6 restricted questions in the full set. None of the first ten are in these groups."
+    },
+    {
+     "task": "Run a keyword search on your own system if you have one, or use the Kitara notebook, and write the rank of the right document in column E.",
+     "example": "Keyword ranks for Q01 to Q10: 7, 7, 1, 2, 1, 1, 1, 3, 4, 7. Q01, Q02 and Q10 are outside the top five."
+    },
+    {
+     "task": "Name an owner for every document that holds an answer. List the questions whose answer has no owner or no known home.",
+     "example": "Every Kitara answer has an owner department in docs_metadata.csv. Your own list will probably have gaps, and each gap is a finding."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Keyword ranks for the first ten questions",
+    "Task 2. Where does meaning search help?",
+    "Task 3. Fusion by hand for Q01",
+    "Task 4. The Swahili questions",
+    "Task 5. A real embedding model (needs a download, run it last)"
+   ],
+   "workbooks": [
+    "Search Test Sheet.xlsx"
+   ],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 5"
+    },
+    {
+     "no": 5,
+     "type": "compare",
+     "title": "Two ways to find a passage"
+    },
+    {
+     "no": 6,
+     "type": "code",
+     "title": "Keyword scoring on three short passages"
+    },
+    {
+     "no": 7,
+     "type": "code",
+     "title": "Keyword search on the 139 Kitara chunks"
+    },
+    {
+     "no": 8,
+     "type": "code",
+     "title": "A question that shares no words with its answer"
+    },
+    {
+     "no": 9,
+     "type": "define",
+     "title": "Embedding"
+    },
+    {
+     "no": 10,
+     "type": "figure",
+     "title": "A question lands near the passages that answer it"
+    },
+    {
+     "no": 11,
+     "type": "code",
+     "title": "The stand-in meaning scorer on one question"
+    },
+    {
+     "no": 12,
+     "type": "table",
+     "title": "Where the vectors are kept: five free options"
+    },
+    {
+     "no": 13,
+     "type": "code",
+     "title": "Embeddings from a real model, syntax only"
+    },
+    {
+     "no": 14,
+     "type": "code",
+     "title": "Chroma: store the chunks and ask a question, syntax only"
+    },
+    {
+     "no": 15,
+     "type": "code",
+     "title": "pgvector: vectors in a PostgreSQL table, syntax only"
+    },
+    {
+     "no": 16,
+     "type": "figure",
+     "title": "Fusion pulls the right passage back to third place"
+    },
+    {
+     "no": 17,
+     "type": "concept",
+     "title": "Re-ranking: a slower second look at the top results"
+    },
+    {
+     "no": 18,
+     "type": "code",
+     "title": "Six Swahili questions, three methods"
+    },
+    {
+     "no": 19,
+     "type": "trap",
+     "title": "A busy results page that holds no answer"
+    },
+    {
+     "no": 20,
+     "type": "compare",
+     "title": "When keyword search is enough"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: ten questions and where each answer lives"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 6,
+     "title": "Keyword scoring on three short passages",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 7,
+     "title": "Keyword search on the 139 Kitara chunks",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 8,
+     "title": "A question that shares no words with its answer",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 11,
+     "title": "The stand-in meaning scorer on one question",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 13,
+     "title": "Embeddings from a real model, syntax only",
+     "libs": [
+      "sentence-transformers"
+     ],
+     "syntax_only": true
+    },
+    {
+     "no": 14,
+     "title": "Chroma: store the chunks and ask a question, syntax only",
+     "libs": [
+      "chromadb"
+     ],
+     "syntax_only": true
+    },
+    {
+     "no": 15,
+     "title": "pgvector: vectors in a PostgreSQL table, syntax only",
+     "libs": [
+      "pgvector and psycopg2"
+     ],
+     "syntax_only": true
+    },
+    {
+     "no": 18,
+     "title": "Six Swahili questions, three methods",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [
+    {
+     "where": "Task 5",
+     "libs": [
+      "sentence-transformers"
+     ]
+    }
+   ],
+   "exit_questions": [
+    {
+     "q": "A staff member asks how long before I get my money, and the search returns a mobile money circular. Why?",
+     "a": "Keyword search follows words. The question shares only one word with the claims procedure, and money matches the mobile money documents."
+    },
+    {
+     "q": "What does reciprocal rank fusion add up for one chunk?",
+     "a": "One divided by sixty plus its place, for every list it appears in. A chunk that both lists rank well scores highest."
+    },
+    {
+     "q": "Who in your organisation signs off whether the first pilot is keyword only or hybrid, and which questions must it answer correctly before you fund it?",
+     "a": "Name a role, such as the sponsor with the data lead. Ask for your ten real questions, including some paraphrases and some in Swahili, and fund meaning search where keyword search misses them."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation signs off whether the first pilot is keyword only or hybrid, and which questions must it answer correctly before you fund it?",
+    "a": "Name a role, such as the sponsor with the data lead. Ask for your ten real questions, including some paraphrases and some in Swahili, and fund meaning search where keyword search misses them."
+   }
+  },
+  {
+   "no": 7,
+   "module": "C",
+   "notebook": "07 - Test the search and control who sees what (student).ipynb",
+   "solution_notebook": "07 - Test the search and control who sees what (solution).ipynb",
+   "deck_file": "07 - Test the search and control who sees what.pptx",
+   "title": "Test the search and control who sees what",
+   "question": "Can we trust the results, and does the search respect permissions?",
+   "result": "A search pilot report with at least 30 test questions, recall at k, a failure list and a permissions test. Workpiece 2.",
+   "outcomes": [
+    "Build a test set with the right passage marked for every question",
+    "Score a search with recall at k and mean reciprocal rank",
+    "Apply permission filters and prove a restricted document stays hidden"
+   ],
+   "lab": "Workshop (workpiece 2): test your own search on 30 questions and write the pilot report. Team notebook: score three searches and run the permissions test.",
+   "intro": "Score Kitara's three searches on its sixty test questions, find the stale and paraphrase failures, and run the permissions test with the users in users.csv. Then use Search Test Sheet.xlsx for your own thirty questions.",
+   "workpiece": "Search pilot report",
+   "slides": 23,
+   "clicks": 37,
+   "animated": 13,
+   "minutes_spoken": 25,
+   "words": 3246,
+   "vocab": [
+    {
+     "term": "Test set",
+     "meaning": "A list of real questions, each with the right document marked before the search is run.",
+     "example": "The 60 rows of eval_questions.csv"
+    },
+    {
+     "term": "Gold document",
+     "meaning": "The document that holds the right answer to one test question.",
+     "example": "The gold_doc_id column in eval_questions.csv"
+    },
+    {
+     "term": "Recall at k",
+     "meaning": "The share of test questions where the gold document is among the top k results.",
+     "example": "Hybrid search: 0.767 at 5"
+    },
+    {
+     "term": "Mean reciprocal rank",
+     "meaning": "The average, over all questions, of 1 divided by the position of the gold document. First place scores 1, second 0.5, missing 0.",
+     "example": "Keyword search: 0.514"
+    },
+    {
+     "term": "Permission filter",
+     "meaning": "A rule inside the search that removes documents the person may not see, applied before the results are ranked.",
+     "example": "The user_groups setting in kitara_search"
+    },
+    {
+     "term": "Pilot report",
+     "meaning": "A short report on a trial of the search: test set, scores, failures, permission test and limits.",
+     "example": "Workpiece 2, built on Search Test Sheet.xlsx"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Write 30 test questions on the Tests sheet of Search Test Sheet.xlsx, in the words your staff use. For each, copy the id of the right document and a phrase from its passage. Include at least 3 questions where an old version gives a different answer and some where the staff would use none of the document's words.",
+     "example": "Kitara Q03 'How long is CCTV retained in the branch?' has gold document D009 and the phrase 'CCTV footage in branches: 90 days'. Kitara's own set has 60 questions: 40 plain (20 of them paraphrases), 8 stale, 6 Swahili and 6 restricted."
+    },
+    {
+     "task": "Run every question through your search and type the rank of the right document into column E (blank if it is not in the top 10). Read the recall at 3, recall at 5 and mean reciprocal rank that the sheet computes.",
+     "example": "Kitara Q01 to Q30 with keyword search: recall at 3 is 0.333, recall at 5 is 0.367 and mean reciprocal rank is 0.295. These first 30 questions are all plain and 19 of them are paraphrases, so they score lower than the full 60 (recall at 5 is 0.633 and mean reciprocal rank 0.514). The mix of questions changes the headline, so write the mix in the report."
+    },
+    {
+     "task": "Group your misses in the Failure type column (stale version, paraphrase, other language, wrong passage, missing document) and write one fix for each group.",
+     "example": "Keyword search misses 11 of Kitara's first 30 questions in the top 10: Q11, Q14, Q20 to Q23, Q25 to Q28 and Q30. Nine of the eleven are paraphrases, so the fix is meaning search plus better chunks. Q11 (shopkeeper and secret number against 'agents cannot reset a PIN') needs a human read. For all 60 questions, hybrid misses 12: 9 paraphrase, 2 Swahili on English documents, 1 other."
+    },
+    {
+     "task": "On the Permission test sheet list 5 or more questions that a named user must not be able to answer. Run each with and without the permission filter and enter Y or N for 'appeared in top 5'. A pass is N with the filter on.",
+     "example": "Kitara Q55 to Q60 with users from users.csv, hybrid search, top 5: the restricted document appears without a filter for 6 of 6 and with the filter for 0 of 6, so the sheet shows 6 passes. For Q55 Winnie Atim (all_staff) must not see D004, the salary bands, which are open to hr and executive."
+    },
+    {
+     "task": "Write the one page pilot report: scope, test set, scores for each method, failure list, permission test, logging and retention, limits, and the named person who approves production.",
+     "example": "Kitara: 'Hybrid search over 121 documents, 60 questions. Recall at 5 is 0.767 and mean reciprocal rank 0.474. Keyword search puts a superseded document first on 8 of 8 stale questions. All 6 restricted documents stayed hidden with the filter. Limits: a hit counts when the right document appears, and the meaning search was a stand-in. Not yet ready for production. Approver: the Head of Legal and Compliance as owner of the policy documents, with the data protection officer confirming the permission test.'"
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Where does the right document rank?",
+    "Task 2. Score the three searches",
+    "Task 3. Stale versions",
+    "Task 4. The failure list",
+    "Task 5. The permissions test"
+   ],
+   "workbooks": [
+    "Search Test Sheet.xlsx"
+   ],
+   "pages": [
+    "Search pilot report outline"
+   ],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 6"
+    },
+    {
+     "no": 5,
+     "type": "table",
+     "title": "What the Kitara test set contains"
+    },
+    {
+     "no": 6,
+     "type": "code",
+     "title": "Build the test set and the search"
+    },
+    {
+     "no": 7,
+     "type": "define",
+     "title": "Recall at k"
+    },
+    {
+     "no": 8,
+     "type": "table",
+     "title": "Five questions, scored by hand"
+    },
+    {
+     "no": 9,
+     "type": "code",
+     "title": "Score three searches on sixty questions"
+    },
+    {
+     "no": 10,
+     "type": "figure",
+     "title": "Hybrid finds more at five, keyword leads at one"
+    },
+    {
+     "no": 11,
+     "type": "figure",
+     "title": "One question shows why hybrid gains and loses"
+    },
+    {
+     "no": 12,
+     "type": "compare",
+     "title": "Hybrid improves recall, and mean reciprocal rank slips"
+    },
+    {
+     "no": 13,
+     "type": "figure",
+     "title": "Stale versions: the oldest handbook comes first"
+    },
+    {
+     "no": 14,
+     "type": "code",
+     "title": "Stale versions: how often the old one comes first"
+    },
+    {
+     "no": 15,
+     "type": "trap",
+     "title": "A good average hides a wrong first answer"
+    },
+    {
+     "no": 16,
+     "type": "code",
+     "title": "Paraphrase questions and the failure list"
+    },
+    {
+     "no": 17,
+     "type": "code",
+     "title": "The permissions test with Kitara's test users"
+    },
+    {
+     "no": 18,
+     "type": "figure",
+     "title": "With the filter, a salary table stays out of Winnie's results"
+    },
+    {
+     "no": 19,
+     "type": "concept",
+     "title": "Chunks and logs hold personal data too"
+    },
+    {
+     "no": 20,
+     "type": "table",
+     "title": "What a pilot report must contain"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: test your search and write the pilot report"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 6,
+     "title": "Build the test set and the search",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 9,
+     "title": "Score three searches on sixty questions",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 14,
+     "title": "Stale versions: how often the old one comes first",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 16,
+     "title": "Paraphrase questions and the failure list",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 17,
+     "title": "The permissions test with Kitara's test users",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "The right document comes fourth. Is that a hit at 3? What is its reciprocal rank?",
+     "a": "No, it is a hit at 5 and not at 3. The reciprocal rank is 1 divided by 4, which is 0.25."
+    },
+    {
+     "q": "Hybrid search has the higher recall at 5 and the lower mean reciprocal rank. What do you tell the board?",
+     "a": "It finds the right document in the top five more often and puts it first less often. With 60 questions the gap in mean reciprocal rank is small."
+    },
+    {
+     "q": "Who in your organisation signs off that a search pilot may go to production, and which results must that person see first?",
+     "a": "A named business owner of the documents who did not build the search. They see recall by kind of question, the failure list and a permission test where every restricted question passed."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation signs off that a search pilot may go to production, and which results must that person see first?",
+    "a": "A named business owner of the documents who did not build the search. They see recall by kind of question, the failure list and a permission test where every restricted question passed."
+   }
+  },
+  {
+   "no": 8,
+   "module": "D",
+   "notebook": "08 - Pipelines and platform design (student).ipynb",
+   "solution_notebook": "08 - Pipelines and platform design (solution).ipynb",
+   "deck_file": "08 - Pipelines and platform design.pptx",
+   "title": "Pipelines and platform design",
+   "question": "How does data travel from source to search, and who is told when it breaks?",
+   "result": "A reference architecture drawing with a check at every step and an owner for every alert.",
+   "outcomes": [
+    "Describe the path from source to search as ordered steps with checks",
+    "Explain batch, incremental loads and why a step must be safe to re-run",
+    "Say what to monitor: freshness, volume and schema change"
+   ],
+   "lab": "Workshop: draw your pipeline from source to search and mark each check and owner. Team notebook: run a three-step pipeline with checks and break it on purpose.",
+   "intro": "Build the three step pipeline for the Kitara mobile money log, break it with a renamed column, and fill the three zones with SQL. Then draw your own pipeline map on the page Pipeline map of the Participant Workbook.",
+   "workpiece": null,
+   "slides": 23,
+   "clicks": 47,
+   "animated": 16,
+   "minutes_spoken": 27,
+   "words": 3509,
+   "vocab": [
+    {
+     "term": "Pipeline",
+     "meaning": "The ordered steps that move data from a source to the place it is used, each step with a check.",
+     "example": "mobile_money.switch_log to the customer base dashboard, five stops"
+    },
+    {
+     "term": "Zone",
+     "meaning": "One store in a pipeline with one rule about what may change: raw, cleaned or serving.",
+     "example": "staging.mm_raw, clean.mm_transactions, mart.customer_360"
+    },
+    {
+     "term": "Incremental load",
+     "meaning": "Copying only the rows that are new since the last run.",
+     "example": "The hourly mobile money file drop"
+    },
+    {
+     "term": "Idempotent",
+     "meaning": "Safe to run twice. The second run leaves the same result as the first.",
+     "example": "19,700 rows after one run and after two"
+    },
+    {
+     "term": "Orchestrator",
+     "meaning": "The tool that runs pipeline steps in order, retries failures and sends alerts.",
+     "example": "Dagster or Apache Airflow"
+    },
+    {
+     "term": "Schema drift",
+     "meaning": "A change in the column names or types of a source that nobody announced.",
+     "example": "agent_id renamed to agent"
+    },
+    {
+     "term": "Freshness",
+     "meaning": "How recently the newest data arrived, or the longest silence between records.",
+     "example": "6.1 hours with no records on 17 September"
+    },
+    {
+     "term": "Alert owner",
+     "meaning": "The named person or role who is told when a check fails, and who acts.",
+     "example": "Switch operations for freshness, platform lead for schema"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Pick one AI use in your organisation and write each step of the path from the source system to the search or model, one row per step, on the page Pipeline map of the Participant Workbook.",
+     "example": "Kitara's mobile money chain from lineage_edges.csv has five stops: mobile_money.switch_log to staging.mm_raw (hourly file drop), to clean.mm_transactions (remove duplicate txn_id, parse both timestamp formats), to mart.customer_360 (monthly activity per customer), to report.customer_base_dashboard (daily refresh at 06:30)."
+    },
+    {
+     "task": "For every step write the input it reads and the check that guards it: schema, quality, freshness or volume.",
+     "example": "Step clean.mm_transactions: input staging.mm_raw. Checks: schema (7 expected columns), duplicates (300 repeated txn_id go to rejects), freshness (limit 4 hours, the log shows 6.1 on 17 September), volume (389 rows on 17 September against a median of 679)."
+    },
+    {
+     "task": "Name the owner of each alert by role, and say when that person is told: at once, within the hour or the next morning. Give every alert one owner and not a team mailbox.",
+     "example": "Freshness: switch operations, at once. Schema drift: platform lead, within the hour. Duplicates and low volume: data steward in Digital Channels, next morning. sources.csv records IT as owner of S02 while Digital Channels also claims it, so the leaders must settle one owner first."
+    },
+    {
+     "task": "Write what happens on failure at each step: retry how many times, stop and publish nothing, or keep using the last good file.",
+     "example": "A locked file: retry 3 times with a wait. A renamed column: stop, publish nothing, keep yesterday's clean file, alert the platform lead. A 6.1 hour silence: publish what arrived and alert switch operations."
+    },
+    {
+     "task": "Mark every step that a person does by hand and test whether each step is safe to run twice. Write the idempotence test next to it.",
+     "example": "Kitara has 3 manual steps: the claims ratio copied by hand into the insurance quarterly return and two dashboards pasted as screenshots into the board pack. Test for publish: run it twice on the same input, expect 19,700 rows both times. Without the txn_id key the second run gives 39,400."
+    },
+    {
+     "task": "Decide, as the leader, the freshness limit your business accepts for the most important feed and who signs it off.",
+     "example": "Kitara proposal: a live mobile money feed may be silent for 4 hours before switch operations is called. The Head of Digital Channels signs the limit, and the platform lead is the deputy for schema alerts."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. One date format",
+    "Task 2. Duplicates, freshness and volume",
+    "Task 3. A schema alert",
+    "Task 4. Publish twice",
+    "Task 5. The zones in SQL"
+   ],
+   "workbooks": [],
+   "pages": [
+    "Pipeline map"
+   ],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 7"
+    },
+    {
+     "no": 5,
+     "type": "figure",
+     "title": "Kitara's data crosses 25 hops, and three are done by hand"
+    },
+    {
+     "no": 6,
+     "type": "figure",
+     "title": "A path from source to search with a check on every arrow"
+    },
+    {
+     "no": 7,
+     "type": "compare",
+     "title": "Batch copies everything, incremental copies what is new"
+    },
+    {
+     "no": 8,
+     "type": "code",
+     "title": "Step one, ingest: read both date formats"
+    },
+    {
+     "no": 9,
+     "type": "code",
+     "title": "Step two, check one: the schema"
+    },
+    {
+     "no": 10,
+     "type": "code",
+     "title": "Step two, check two: duplicates and freshness"
+    },
+    {
+     "no": 11,
+     "type": "figure",
+     "title": "The check finds a 6.1 hour gap on 17 September"
+    },
+    {
+     "no": 12,
+     "type": "code",
+     "title": "Step three, publish: running it twice"
+    },
+    {
+     "no": 13,
+     "type": "trap",
+     "title": "A re-run that counts every payment twice"
+    },
+    {
+     "no": 14,
+     "type": "code",
+     "title": "Break it on purpose: a renamed column"
+    },
+    {
+     "no": 15,
+     "type": "table",
+     "title": "Watch three things, and name who is told"
+    },
+    {
+     "no": 16,
+     "type": "flow",
+     "title": "Retries first, then an alert to one named owner"
+    },
+    {
+     "no": 17,
+     "type": "code",
+     "title": "The same three zones in SQL"
+    },
+    {
+     "no": 18,
+     "type": "code",
+     "title": "Parquet and DuckDB: the cleaned zone as a column file"
+    },
+    {
+     "no": 19,
+     "type": "code",
+     "title": "A scheduler runs the same steps: a Dagster asset"
+    },
+    {
+     "no": 20,
+     "type": "table",
+     "title": "Pipeline tool licences to check before you commit"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: draw the pipeline map from source to search"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 8,
+     "title": "Step one, ingest: read both date formats",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 9,
+     "title": "Step two, check one: the schema",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 10,
+     "title": "Step two, check two: duplicates and freshness",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 12,
+     "title": "Step three, publish: running it twice",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 14,
+     "title": "Break it on purpose: a renamed column",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 17,
+     "title": "The same three zones in SQL",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 18,
+     "title": "Parquet and DuckDB: the cleaned zone as a column file",
+     "libs": [
+      "duckdb",
+      "pyarrow"
+     ],
+     "syntax_only": false
+    },
+    {
+     "no": 19,
+     "title": "A scheduler runs the same steps: a Dagster asset",
+     "libs": [
+      "dagster"
+     ],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "A step failed halfway and was run again. The row count doubled. What was missing, and how do you test for it?",
+     "a": "The load was not keyed or idempotent. Run the pipeline twice on the same input and check the row counts match."
+    },
+    {
+     "q": "Name the three things to monitor, and the Kitara problem each one catches.",
+     "a": "Freshness: the 6.1 hour gap on 17 September. Volume: 389 rows on a day when the median is 679. Schema drift: agent_id renamed to agent."
+    },
+    {
+     "q": "Who in your organisation is woken up when your most important feed goes quiet for six hours, and what delay is acceptable?",
+     "a": "A named person by role, with a deputy, agreed in writing by the owner of the data. The acceptable delay is set by the business, such as four hours for a live payment feed."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation is woken up when your most important feed goes quiet for six hours, and what delay is acceptable?",
+    "a": "A named person by role, with a deputy, agreed in writing by the owner of the data. The acceptable delay is set by the business, such as four hours for a live payment feed."
+   }
+  },
+  {
+   "no": 9,
+   "module": "D",
+   "notebook": "09 - Privacy and East African law (student).ipynb",
+   "solution_notebook": "09 - Privacy and East African law (solution).ipynb",
+   "deck_file": "09 - Privacy and East African law.pptx",
+   "title": "Privacy and East African law",
+   "question": "What does the law require when AI reads personal data?",
+   "result": "A data protection map for your organisation: where personal data sits, which law applies, what moves abroad.",
+   "outcomes": [
+    "Name the principles and rights in the Uganda Data Protection and Privacy Act, 2019",
+    "Compare transfer and registration rules in Uganda, Kenya, Rwanda and Tanzania",
+    "Find and mask personal data before it enters a search index"
+   ],
+   "lab": "Workshop: map where your personal data sits, which law applies and what leaves the country. Team notebook: find and mask personal data in the Kitara claims letters.",
+   "intro": "Find and mask personal data in Kitara's claims letters, delete one customer's letter from the index, and look at the customer table. Then draw your own data protection map in Data Inventory.xlsx and the page 'Data protection map' of the Participant Workbook.",
+   "workpiece": null,
+   "slides": 23,
+   "clicks": 34,
+   "animated": 12,
+   "minutes_spoken": 28,
+   "words": 3628,
+   "vocab": [
+    {
+     "term": "Personal data",
+     "meaning": "Information that identifies a living person, or could identify that person when combined with other data.",
+     "example": "The 30 claims letters, documents D092 to D121"
+    },
+    {
+     "term": "Special categories",
+     "meaning": "Kinds of personal data that the law treats with extra care, such as health details.",
+     "example": "The dialysis detail in claims letter D102"
+    },
+    {
+     "term": "Controller",
+     "meaning": "The organisation that decides why and how personal data is used. In Uganda it registers with the regulator.",
+     "example": "Kitara Bank and Kitara Assurance"
+    },
+    {
+     "term": "Cross-border transfer",
+     "meaning": "Storing or processing personal data in another country, including in a cloud region there.",
+     "example": "The South African cloud option in hosting_options.csv"
+    },
+    {
+     "term": "Masking",
+     "meaning": "Replacing personal data with a labelled token, such as the word PHONE in square brackets. The token stays and the value goes.",
+     "example": "The masked claims letters in today's demonstration"
+    },
+    {
+     "term": "Data minimisation",
+     "meaning": "Using only the data the purpose needs and leaving the rest out.",
+     "example": "4 of the 14 columns of customers.csv, in Task 5"
+    },
+    {
+     "term": "Erasure request",
+     "meaning": "A person's request to have their personal data deleted.",
+     "example": "Letter 11 and customer KT-8782200"
+    },
+    {
+     "term": "Data protection map",
+     "meaning": "A table of where personal data sits, which law applies and what leaves the country.",
+     "example": "Today's workpiece, a page in the Participant Workbook"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Open Data Inventory.xlsx and copy every source into the source column of the page 'Data protection map'. Write yes in the personal data column for any source where the cell is blank, until someone proves otherwise.",
+     "example": "Kitara's sources.csv has 14 sources. Personal data is Y for 8, N for 3 and blank for 3 (S08 call centre transcripts, S09 shared drive of policies, S12 email archive). The map starts with 11 rows, because the 3 blank sources count as yes."
+    },
+    {
+     "task": "For each row write the kinds of personal data held, and mark any special category such as health. Sample 10 documents or records from the source to be sure.",
+     "example": "S06 claims documents archive holds names, phone numbers, customer ids and national ids in the 30 claims letters, and a health detail (kidney failure and dialysis) in Letter 11, D102. S03 loan origination holds scanned national ID copies. The customer table S01 fills 5,000 names, 3,377 emails and 4,450 national ids."
+    },
+    {
+     "task": "Write the law that applies to each row: the country of the people and the country where the data is processed. Add the registration status with the regulator.",
+     "example": "Ugandan customers fall under the Data Protection and Privacy Act, 2019 and the PDPO. Data about customers of Kitara Kenya in Nairobi falls under the Kenya Data Protection Act 2019 and the ODPC. Each needs a registration check."
+    },
+    {
+     "task": "Write where each source is stored, and mark Y or N for leaves the country. Include the cloud region you are considering and any backup abroad.",
+     "example": "Kitara's hosting_options.csv lists the regional cloud in South Africa as outside Uganda and Kenya. If the search index runs there, every indexed source with personal data becomes Y. On the on-site data centre in Uganda the answer stays N."
+    },
+    {
+     "task": "Write the legal basis or the check still needed, and a named owner, for every Y row. Pick the three riskiest rows and write who signs off each transfer.",
+     "example": "S06 owner is recorded as IT while Claims also says it owns it, so the map names the Head of Claims as owner. The check for the South African region is equivalent protection or consent for Uganda, and the 2026 guidance for Nairobi data. Signer: the Head of Claims, advised by the data protection officer."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Count what the patterns find",
+    "Task 2. Mask the letters",
+    "Task 3. A check that finds what the masker missed",
+    "Task 4. Erase one customer from the index",
+    "Task 5. The customer table and data minimisation"
+   ],
+   "workbooks": [
+    "Data Inventory.xlsx"
+   ],
+   "pages": [
+    "Data protection map"
+   ],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 8"
+    },
+    {
+     "no": 5,
+     "type": "define",
+     "title": "Personal data"
+    },
+    {
+     "no": 6,
+     "type": "table",
+     "title": "Seven principles of the Uganda Act and a search index"
+    },
+    {
+     "no": 7,
+     "type": "concept",
+     "title": "Rights a person holds over their data"
+    },
+    {
+     "no": 8,
+     "type": "flow",
+     "title": "Register, keep records, report breaches"
+    },
+    {
+     "no": 9,
+     "type": "table",
+     "title": "Four East African regimes compared"
+    },
+    {
+     "no": 10,
+     "type": "table",
+     "title": "Data in a South African cloud region: what each country asks"
+    },
+    {
+     "no": 11,
+     "type": "compare",
+     "title": "The EU AI Act and Article 10 for firms with European customers"
+    },
+    {
+     "no": 12,
+     "type": "figure",
+     "title": "Kitara's claims letters: personal data found by pattern"
+    },
+    {
+     "no": 13,
+     "type": "code",
+     "title": "Finding personal data with patterns"
+    },
+    {
+     "no": 14,
+     "type": "code",
+     "title": "Mask first, then cut into chunks"
+    },
+    {
+     "no": 15,
+     "type": "code",
+     "title": "A separate check stops two chunks"
+    },
+    {
+     "no": 16,
+     "type": "code",
+     "title": "With looser patterns in the masker, the check passes"
+    },
+    {
+     "no": 17,
+     "type": "trap",
+     "title": "Masked is not the same as anonymous"
+    },
+    {
+     "no": 18,
+     "type": "code",
+     "title": "An erasure request: search before and after"
+    },
+    {
+     "no": 19,
+     "type": "table",
+     "title": "An erasure request has to reach six places"
+    },
+    {
+     "no": 20,
+     "type": "code",
+     "title": "Presidio: a library that finds personal data for you"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: draw your data protection map"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 13,
+     "title": "Finding personal data with patterns",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 14,
+     "title": "Mask first, then cut into chunks",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 15,
+     "title": "A separate check stops two chunks",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 16,
+     "title": "With looser patterns in the masker, the check passes",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 18,
+     "title": "An erasure request: search before and after",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 20,
+     "title": "Presidio: a library that finds personal data for you",
+     "libs": [
+      "presidio"
+     ],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [
+    {
+     "where": "Task 5",
+     "libs": [
+      "presidio"
+     ]
+    }
+   ],
+   "exit_questions": [
+    {
+     "q": "A customer asks Kitara to delete their letter. Besides the file, where must the deletion reach in the search system?",
+     "a": "The chunk table, the index or vector store, the query log, caches and exports, and backups. Prove it with a search before and after."
+    },
+    {
+     "q": "The check on the masked chunks passes. Does that prove no personal data remains?",
+     "a": "No. It proves that the patterns you listed are gone. Names without a title and health details can remain, so read a sample."
+    },
+    {
+     "q": "Who in your organisation signs off that personal data may be stored in a cloud region in another country, and what must that person see first?",
+     "a": "A named executive who owns the data, advised by the data protection officer. They see the map row, the legal basis or consent, the registration and the provider contract."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation signs off that personal data may be stored in a cloud region in another country, and what must that person see first?",
+    "a": "A named executive who owns the data, advised by the data protection officer. They see the map row, the legal basis or consent, the registration and the provider contract."
+   }
+  },
+  {
+   "no": 10,
+   "module": "D",
+   "notebook": "10 - Hosting, cost and licences (student).ipynb",
+   "solution_notebook": "10 - Hosting, cost and licences (solution).ipynb",
+   "deck_file": "10 - Hosting, cost and licences.pptx",
+   "title": "Hosting, cost and licences",
+   "question": "Where should this run, and what will it cost?",
+   "result": "A costed hosting option and a licence register for the tools you would use.",
+   "outcomes": [
+    "Compare hosting options on residency, latency, capacity and cost",
+    "List the cost lines of a search system beyond the licence",
+    "Read a licence file and classify a tool as open, source-available or restricted"
+   ],
+   "lab": "Workshop: price one hosting option from your own quotes and complete the licence register. Team notebook: compute total cost for three options and check licences from a list.",
+   "intro": "Price one hosting option from your own quotes on Hosting Cost Model.xlsx and complete Licence Register.xlsx with the licence files you have read. The data colleague runs the team notebook to summarise the register, total three options in cost units and flag words in licence text.",
+   "workpiece": null,
+   "slides": 24,
+   "clicks": 37,
+   "animated": 13,
+   "minutes_spoken": 27,
+   "words": 3472,
+   "vocab": [
+    {
+     "term": "Cost line",
+     "meaning": "One named item in the bill for a system, such as hosting, engineers or support.",
+     "example": "The 12 rows of Hosting Cost Model.xlsx"
+    },
+    {
+     "term": "Total cost of ownership",
+     "meaning": "Every cost line added up over the years you run the system.",
+     "example": "Three years in the workbook"
+    },
+    {
+     "term": "Vendor lock-in",
+     "meaning": "When leaving a supplier costs so much in money, time or lost data that you stay.",
+     "example": "Managed software service: exit difficulty High in hosting_options.csv"
+    },
+    {
+     "term": "Exit plan",
+     "meaning": "A written and tested way to leave a supplier: what you take, in which format, how fast and at what cost.",
+     "example": "The exit and data return cost line"
+    },
+    {
+     "term": "Permissive licence",
+     "meaning": "A licence that lets you use, change and include the software in your own product with few conditions.",
+     "example": "10 of the 15 tools in licence_register_sample.csv"
+    },
+    {
+     "term": "Copyleft",
+     "meaning": "A licence that asks you to share your changes on the same terms. The AGPL reaches network users too.",
+     "example": "Metabase open edition"
+    },
+    {
+     "term": "Source-available",
+     "meaning": "You can read the code, but the licence limits what you may do with it. Not open source.",
+     "example": "Soda Core 4, Elastic License 2.0"
+    },
+    {
+     "term": "Open-weight model",
+     "meaning": "A language model whose trained values you can download and run yourself, under a licence that may still limit use.",
+     "example": null
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Choose one hosting option from the four in hosting_options.csv and write why. Fill the rows on residency, latency, capacity and who can see the data in Hosting Cost Model.xlsx.",
+     "example": "Kitara chooses the regional cloud in South Africa for the pilot. Data stays in the country: N, so the transfer rule from Session 9 applies. Latency from Kampala is to be measured, capacity risk is low, and the provider's staff can see the data unless it is encrypted. The pilot indexes 121 documents."
+    },
+    {
+     "task": "Enter each cost line for your option from a quote or an invoice you hold, with the right basis. Leave a cell blank if you have no quote. Do not copy list prices from a web page.",
+     "example": "Kitara fills hosting or rent from a supplier quote, engineers from the HR salary band, and training from the last course invoice. Evaluation and exit and data return have no quote yet, so those cells stay blank."
+    },
+    {
+     "task": "Read the Inputs missing row. Write the number of blank cells next to the total, and say which lines you will chase.",
+     "example": "Kitara's sheet shows 3 inputs missing for the regional cloud option (evaluation, exit and data return, and the line called Other), so the total is a lower bound. Procurement is asked for the exit and data return terms in writing."
+    },
+    {
+     "task": "Change the engineers line to half and to one and a half times. Write which option is cheapest in each case and whether the answer changes.",
+     "example": "In the notebook's invented cost units regional cloud is cheapest as quoted, and the local data centre wins when the people line is halved. Kitara records that the ranking depends on who runs the system."
+    },
+    {
+     "task": "On Licence Register.xlsx, list every tool and model you would use. Open the licence file of each, write the licence as the file gives it, choose the class, and fill where you read it, the date and who read it.",
+     "example": "Docker Desktop: Docker subscription terms, class Restricted or commercial. Kitara has about 1,800 staff, so allowed for internal use is Ask. MinIO: AGPLv3, reported archived in 2026, class Open source (copyleft) with archived in the notes."
+    },
+    {
+     "task": "Answer the decision question in one sentence for your chosen option: what is our exit if the vendor changes terms, and who signs it off?",
+     "example": "Kitara: export all documents and the index in an open format once a quarter, keep prompts and pipelines in Kitara's own repository, and the Head of IT signs the exit plan before any contract."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. The register by licence type",
+    "Task 2. Tools that need a check",
+    "Task 3. Total cost of three options, in cost units",
+    "Task 4. How much does the people line matter?",
+    "Task 5. Flag words in licence texts"
+   ],
+   "workbooks": [
+    "Hosting Cost Model.xlsx",
+    "Licence Register.xlsx"
+   ],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up: what Session 9 said about moving data abroad"
+    },
+    {
+     "no": 5,
+     "type": "table",
+     "title": "Four ways to host the search system"
+    },
+    {
+     "no": 6,
+     "type": "table",
+     "title": "What exists nearby, as reported in October 2026"
+    },
+    {
+     "no": 7,
+     "type": "concept",
+     "title": "Four questions to ask before any quote"
+    },
+    {
+     "no": 8,
+     "type": "figure",
+     "title": "The whole path from source to search needs a home"
+    },
+    {
+     "no": 9,
+     "type": "flow",
+     "title": "Cost lines of a search system, by when you pay"
+    },
+    {
+     "no": 10,
+     "type": "compare",
+     "title": "Build and buy both carry costs"
+    },
+    {
+     "no": 11,
+     "type": "code",
+     "title": "Kitara's licence register, summarised by type"
+    },
+    {
+     "no": 12,
+     "type": "table",
+     "title": "Five licence classes and what each allows"
+    },
+    {
+     "no": 13,
+     "type": "table",
+     "title": "Licence and support changes reported in 2025 and 2026"
+    },
+    {
+     "no": 14,
+     "type": "concept",
+     "title": "Open-weight models carry their own licence"
+    },
+    {
+     "no": 15,
+     "type": "code",
+     "title": "Flagging licence words in a LICENSE text"
+    },
+    {
+     "no": 16,
+     "type": "code",
+     "title": "Where keyword flagging fails"
+    },
+    {
+     "no": 17,
+     "type": "trap",
+     "title": "The file says Apache, so the row gets a tick"
+    },
+    {
+     "no": 18,
+     "type": "flow",
+     "title": "An exit plan answers four questions"
+    },
+    {
+     "no": 19,
+     "type": "code",
+     "title": "A total cost function that stops on a missing line"
+    },
+    {
+     "no": 20,
+     "type": "code",
+     "title": "A missing cost line stops the total"
+    },
+    {
+     "no": 21,
+     "type": "code",
+     "title": "Three options, and a check on the people line"
+    },
+    {
+     "no": 22,
+     "type": "steps",
+     "title": "Workshop: price one hosting option and complete the licence register"
+    },
+    {
+     "no": 23,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 24,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 11,
+     "title": "Kitara's licence register, summarised by type",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 15,
+     "title": "Flagging licence words in a LICENSE text",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 16,
+     "title": "Where keyword flagging fails",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 19,
+     "title": "A total cost function that stops on a missing line",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 20,
+     "title": "A missing cost line stops the total",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 21,
+     "title": "Three options, and a check on the people line",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "Kitara's register has 15 tools and 10 are permissive. Which five need a closer look first, and why?",
+     "a": "Colab and Docker Desktop (proprietary), Soda Core 4 (source-available), MinIO (archived) and Metabase open edition (copyleft)."
+    },
+    {
+     "q": "In the invented cost units, regional cloud was cheapest as quoted. What happened when the people line was halved?",
+     "a": "The local data centre became cheapest. When options are close, the people line decides, so quote the sensitivity."
+    },
+    {
+     "q": "Who in your organisation signs off a hosting option, and what is our exit if the vendor changes terms?",
+     "a": "A named owner and a written exit plan with a tested data export. Without both, the option is not fully costed."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation signs off a hosting option, and what is our exit if the vendor changes terms?",
+    "a": "A named owner and a written exit plan with a tested data export. Without both, the option is not fully costed."
+   }
+  },
+  {
+   "no": 11,
+   "module": "E",
+   "notebook": "11 - Governance and AI risk (student).ipynb",
+   "solution_notebook": "11 - Governance and AI risk (solution).ipynb",
+   "deck_file": "11 - Governance and AI risk.pptx",
+   "title": "Governance and AI risk",
+   "question": "Who decides, who answers for it, and what happens when it goes wrong?",
+   "result": "Roles, a short policy set and a scored risk register for your first AI use.",
+   "outcomes": [
+    "Set up owners, stewards and a decision forum for data and AI",
+    "Walk an incident through the four NIST AI RMF functions",
+    "Score risks by likelihood and impact and assign an owner to each"
+   ],
+   "lab": "Workshop: draft your roles, three policies and ten risks. Team notebook: score and rank the Kitara risk register.",
+   "intro": "In the workshop you name the five roles, draft the three policies and score ten risks for your first AI use on Risk Register.xlsx. The data colleague runs the team notebook, which scores and ranks Kitara's twelve risks and lists the weak spots.",
+   "workpiece": null,
+   "slides": 23,
+   "clicks": 32,
+   "animated": 10,
+   "minutes_spoken": 26,
+   "words": 3364,
+   "vocab": [
+    {
+     "term": "Steering council",
+     "meaning": "A small group of senior people that decides which AI uses go ahead and can stop one.",
+     "example": "Owner of risk R07, with no chair yet"
+    },
+    {
+     "term": "Risk register",
+     "meaning": "A list of risks, each with a score, an owner, a control and a status.",
+     "example": "risk_register.csv, 12 risks"
+    },
+    {
+     "term": "Risk score",
+     "meaning": "Likelihood times impact, each from 1 to 5. 15 or more is high, 8 to 14 medium, below 8 low.",
+     "example": "R01 scores 20"
+    },
+    {
+     "term": "Control",
+     "meaning": "Something in place that lowers a risk, such as a rule, a test or a filter.",
+     "example": "R02 has the control None"
+    },
+    {
+     "term": "Shadow AI",
+     "meaning": "Staff using AI tools that nobody approved.",
+     "example": "Two staff pasted complaint emails into a public chatbot in April 2026"
+    },
+    {
+     "term": "Human oversight",
+     "meaning": "A named person can see what an AI system did and can stop it.",
+     "example": "Staff must check every result under the generative AI policy"
+    },
+    {
+     "term": "Incident drill",
+     "meaning": "A rehearsal of what the organisation does when something goes wrong.",
+     "example": "Personal data found in the search index"
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Name the five roles (steering council, data owner, data steward, data custodian, data user) for your first AI use, by job title.",
+     "example": "Kitara, staff policy assistant: owner Head of Human Resources, steward not yet named, custodian IT, user all staff. Four of 14 sources have no owner and seven have no steward."
+    },
+    {
+     "task": "Write the council: chair, members, meeting rhythm and what it can stop before go-live.",
+     "example": "Chair: deputy chief executive (illustrative). Meets monthly for one hour. May stop any go-live with no named owner, no control on a high risk or no retention period. Risk R07 already names the council as owner."
+    },
+    {
+     "task": "For data classification, acceptable AI use and retention, list what exists and write the gap an AI use would expose.",
+     "example": "Classification: standard exists, 5 of 14 sources have no class. AI use: policy in force from 1 June 2026, silent on in-house builds. Retention: schedule exists, no line for a search index, chunks or prompt log."
+    },
+    {
+     "task": "List ten risks for your first AI use as cause, event and effect. Score likelihood and impact from 1 to 5 and read the rating.",
+     "example": "Kitara's twelve: three high (R01 20, R02 15, R03 15), five medium, four low. Mean score 10.33."
+    },
+    {
+     "task": "Give every high risk one owner as a role, one action and a date.",
+     "example": "R01, Data protection officer: run the masking rule on the 31 claims letters flagged as personal data, by the end of next month (illustrative). R02, Head of Human Resources: mark the current handbook in the search. R03, Head of IT: test the permission filter for all groups."
+    },
+    {
+     "task": "Write the review dates: monthly for high risks, quarterly for the register, yearly for each policy and for one incident drill.",
+     "example": "Council reviews R01 to R03 each month. Records owner signs the destruction list every April. Rescore the readiness scorecard at month 6 and month 12."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Score and rate the risks",
+    "Task 2. Rank and count",
+    "Task 3. Weak spots",
+    "Task 4. Who carries the most risks",
+    "Task 5. Gaps in the data sources"
+   ],
+   "workbooks": [
+    "Risk Register.xlsx"
+   ],
+   "pages": [],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 10"
+    },
+    {
+     "no": 5,
+     "type": "stat",
+     "title": "Kitara Group today: risks, owners and an April incident"
+    },
+    {
+     "no": 6,
+     "type": "figure",
+     "title": "Five roles, and the one decision each makes"
+    },
+    {
+     "no": 7,
+     "type": "table",
+     "title": "Three policies Kitara already has, and what AI adds"
+    },
+    {
+     "no": 8,
+     "type": "flow",
+     "title": "The four functions of the NIST AI Risk Management Framework"
+    },
+    {
+     "no": 9,
+     "type": "compare",
+     "title": "NIST guidance and ISO/IEC 42001 side by side"
+    },
+    {
+     "no": 10,
+     "type": "concept",
+     "title": "Shadow AI: staff using tools nobody approved"
+    },
+    {
+     "no": 11,
+     "type": "table",
+     "title": "Six questions to ask an AI supplier"
+    },
+    {
+     "no": 12,
+     "type": "concept",
+     "title": "Human oversight: before, during and after"
+    },
+    {
+     "no": 13,
+     "type": "code",
+     "title": "Scoring and ranking Kitara's twelve risks"
+    },
+    {
+     "no": 14,
+     "type": "code",
+     "title": "A check that stops on risks still open"
+    },
+    {
+     "no": 15,
+     "type": "figure",
+     "title": "Where Kitara's twelve risks sit"
+    },
+    {
+     "no": 16,
+     "type": "trap",
+     "title": "A circular went out, so the risk looks closed"
+    },
+    {
+     "no": 17,
+     "type": "flow",
+     "title": "Incident drill: personal data found in the search index"
+    },
+    {
+     "no": 18,
+     "type": "concept",
+     "title": "Reporting a breach to the PDPO in Uganda"
+    },
+    {
+     "no": 19,
+     "type": "table",
+     "title": "How often each piece is reviewed"
+    },
+    {
+     "no": 20,
+     "type": "concept",
+     "title": "Who chairs the council and what it can stop"
+    },
+    {
+     "no": 21,
+     "type": "steps",
+     "title": "Workshop: roles, three policies and ten risks"
+    },
+    {
+     "no": 22,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 23,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 13,
+     "title": "Scoring and ranking Kitara's twelve risks",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 14,
+     "title": "A check that stops on risks still open",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "R02, a stale policy returned as the current answer, has likelihood 5 and impact 3. What is its score and band?",
+     "a": "15, which is high. Likelihood times impact, and 15 or more is the high band."
+    },
+    {
+     "q": "Name the four functions of the NIST AI Risk Management Framework. Which one applies across the whole organisation?",
+     "a": "Govern, Map, Measure and Manage. Govern applies across the organisation."
+    },
+    {
+     "q": "Who in your organisation chairs the steering council, and what can it stop before an AI use goes live?",
+     "a": "One name and one list of stop conditions. If you cannot give both, that is your first action."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation chairs the steering council, and what can it stop before an AI use goes live?",
+    "a": "One name and one list of stop conditions. If you cannot give both, that is your first action."
+   }
+  },
+  {
+   "no": 12,
+   "module": "E",
+   "notebook": "12 - Your twelve-month roadmap (student).ipynb",
+   "solution_notebook": "12 - Your twelve-month roadmap (solution).ipynb",
+   "deck_file": "12 - Your twelve-month roadmap.pptx",
+   "title": "Your twelve-month roadmap",
+   "question": "What do we do first, and what do we ask the board for?",
+   "result": "A sequenced twelve-month roadmap, a budget line, a rescoring target and a board presentation. Workpiece 3.",
+   "outcomes": [
+    "Sequence work by dependency, value and effort",
+    "Turn the baseline gaps into a costed plan with measures",
+    "Present the plan to a board in ten minutes"
+   ],
+   "lab": "Workshop (workpiece 3): build your roadmap and present it in ten minutes. Team notebook: chart a roadmap and compute the projected rescored baseline.",
+   "intro": "Workshop (workpiece 3): build the Roadmap Planner and a board paper for your organisation, after checking the Kitara plan. The team notebook ranks the Kitara items, finds the critical chains, totals the effort per month, draws the Gantt chart and computes the projected rescored baseline.",
+   "workpiece": "Roadmap and board presentation",
+   "slides": 24,
+   "clicks": 41,
+   "animated": 14,
+   "minutes_spoken": 27,
+   "words": 3463,
+   "vocab": [
+    {
+     "term": "Quick win",
+     "meaning": "A piece of work with small effort and a result people can see soon.",
+     "example": "W01, naming the council and an owner for every source: 6 person-days."
+    },
+    {
+     "term": "Foundation",
+     "meaning": "Work that takes effort and that other work waits for.",
+     "example": "W07, the raw, cleaned and serving zones: 40 person-days."
+    },
+    {
+     "term": "Dependency",
+     "meaning": "A work item that cannot start until another has finished.",
+     "example": "W15, the pilot, waits for W12, W13 and W07."
+    },
+    {
+     "term": "Critical path",
+     "meaning": "The longest chain of dependent items. If one slips, the end date slips.",
+     "example": "Three chains of 12 months in Kitara's plan."
+    },
+    {
+     "term": "Priority score",
+     "meaning": "Value divided by effort in person-days, times ten. It helps choose between items that can start together.",
+     "example": "W01 scores 8.33 and W07 scores 1.0."
+    },
+    {
+     "term": "Projected score",
+     "meaning": "The score the plan aims for at month 12. It is a target and not a measurement.",
+     "example": "Kitara's mean target is 3.3."
+    },
+    {
+     "term": "Board paper",
+     "meaning": "A short document that asks the board for a decision and shows the baseline, plan, costs, risks and measures.",
+     "example": "Board Paper Outline.docx has ten sections."
+    }
+   ],
+   "workshop": [
+    {
+     "task": "Open Roadmap Planner.xlsx. List up to 20 work items that close your scorecard gaps. Give each an effort in person-days, a value from 1 to 5, a dependency, a start month and a duration.",
+     "example": "Kitara has 16 items. W01 Name the steering council and an owner for every source: 6 person-days, value 5, no dependency, month 1, 1 month, owner Chief Executive."
+    },
+    {
+     "task": "Read the Dependency check column and fix every Starts before dependency ends flag. Name the chain of dependent items that sets your end date.",
+     "example": "Moving W15 to month 6 triggers the flag because W12 ends after month 7. Three chains run to 12 months: W01 > W02 > W08 > W12 > W15 > W16, W01 > W02 > W07 > W13 > W15 > W16 and W01 > W04 > W07 > W13 > W15 > W16."
+    },
+    {
+     "task": "Read the effort per month under the table. Find the busiest month and say who covers it or which item moves.",
+     "example": "Months 4 and 5 need 53.3 person-days each. The total is 276 person-days. Months 11 and 12 need 4 each."
+    },
+    {
+     "task": "Set a target score for each dimension at month 12 on your Readiness Scorecard and write the driving action. Label the numbers as targets and say when you rescore.",
+     "example": "Kitara targets: Use cases 3.5, Data 3.0, Platform 3.5, Protection and law 3.5, People and governance 3.0. Mean 3.3 against 2.4 proposed and 2.01 evidence-adjusted. A target, tested by the rescores in month 6 (W11) and month 12 (W16)."
+    },
+    {
+     "task": "Draft the decision asked, the cost lines and three measures, and the top risks with an owner each, in Board Paper Outline.docx. Each benefit is a hypothesis with a baseline and a measure. No invented return on investment.",
+     "example": "Decision: approve a twelve month budget, priced from our own quotes, to move readiness from 2.01 evidence-adjusted to a target of 3.3. Measures: sources with no owner 4 of 14, risks scoring 15 or more 3 of 12, recall on the 60 question test set."
+    },
+    {
+     "task": "Present the paper in ten minutes to another team. The leader names the presenter and the date of the first rescore.",
+     "example": "Presenter: the Chief Executive. First rescore: month 6, item W11, owner the steering council."
+    }
+   ],
+   "notebook_tasks": [
+    "Task 1. Rank the items",
+    "Task 2. The chains that set the end date",
+    "Task 3. Effort per month",
+    "Task 4. Draw the roadmap",
+    "Task 5. The projected rescored baseline",
+    "Task 6. A question for the leader"
+   ],
+   "workbooks": [
+    "Board Paper Outline.docx",
+    "Readiness Scorecard.xlsx",
+    "Roadmap Planner.xlsx"
+   ],
+   "pages": [
+    "Board presentation outline"
+   ],
+   "slide_list": [
+    {
+     "no": 4,
+     "type": "check",
+     "title": "Warm-up from Session 11"
+    },
+    {
+     "no": 5,
+     "type": "compare",
+     "title": "Quick wins and foundations"
+    },
+    {
+     "no": 6,
+     "type": "code",
+     "title": "Rank the sixteen work items by value for effort"
+    },
+    {
+     "no": 7,
+     "type": "trap",
+     "title": "Starting at the top of the ranking"
+    },
+    {
+     "no": 8,
+     "type": "code",
+     "title": "Record what each item waits for"
+    },
+    {
+     "no": 9,
+     "type": "code",
+     "title": "Find the chain of work that sets the end date"
+    },
+    {
+     "no": 10,
+     "type": "code",
+     "title": "A check that catches an item started too early"
+    },
+    {
+     "no": 11,
+     "type": "figure",
+     "title": "The twelve month plan on one page"
+    },
+    {
+     "no": 12,
+     "type": "code",
+     "title": "Effort per month shows where the plan is overloaded"
+    },
+    {
+     "no": 13,
+     "type": "concept",
+     "title": "What can push the plan off course"
+    },
+    {
+     "no": 14,
+     "type": "table",
+     "title": "Thirty days, ninety days, three hundred and sixty five days"
+    },
+    {
+     "no": 15,
+     "type": "code",
+     "title": "The projected rescored baseline"
+    },
+    {
+     "no": 16,
+     "type": "trap",
+     "title": "A target reported as a result"
+    },
+    {
+     "no": 17,
+     "type": "table",
+     "title": "Benefits are hypotheses with a measure"
+    },
+    {
+     "no": 18,
+     "type": "table",
+     "title": "The board paper in six answers"
+    },
+    {
+     "no": 19,
+     "type": "flow",
+     "title": "Ten minutes in front of the board"
+    },
+    {
+     "no": 20,
+     "type": "table",
+     "title": "Two credentials for data professionals"
+    },
+    {
+     "no": 21,
+     "type": "flow",
+     "title": "What happens after the course"
+    },
+    {
+     "no": 22,
+     "type": "steps",
+     "title": "Workshop: build your roadmap and board paper"
+    },
+    {
+     "no": 23,
+     "type": "check",
+     "title": "Questions to finish"
+    },
+    {
+     "no": 24,
+     "type": "summary",
+     "title": "Summary"
+    }
+   ],
+   "demo": [
+    {
+     "no": 6,
+     "title": "Rank the sixteen work items by value for effort",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 8,
+     "title": "Record what each item waits for",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 9,
+     "title": "Find the chain of work that sets the end date",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 10,
+     "title": "A check that catches an item started too early",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 12,
+     "title": "Effort per month shows where the plan is overloaded",
+     "libs": [],
+     "syntax_only": false
+    },
+    {
+     "no": 15,
+     "title": "The projected rescored baseline",
+     "libs": [],
+     "syntax_only": false
+    }
+   ],
+   "heavy_cells": [],
+   "exit_questions": [
+    {
+     "q": "Why can the plan not start with the item that has the best value for effort?",
+     "a": "An item may wait for another. W13 ranks fourth but waits for W07, which ranks last."
+    },
+    {
+     "q": "Kitara's plan projects a mean of 3.3. What is that number, and what tests it?",
+     "a": "A target, not a measurement. The rescores in month 6 and month 12 test it."
+    },
+    {
+     "q": "Who in your organisation presents the board paper, and which date do you commit to for the first rescore?",
+     "a": "A named executive. Month 6 of the plan, with the same scorecard and evidence rule."
+    }
+   ],
+   "decision": {
+    "q": "Who in your organisation presents the board paper, and which date do you commit to for the first rescore?",
+    "a": "A named executive. Month 6 of the plan, with the same scorecard and evidence rule."
+   }
+  }
+ ],
+ "totals": {
+  "slides": 276,
+  "clicks": 441,
+  "animated": 157,
+  "words": 40335,
+  "vocab": 84,
+  "workshop_tasks": 70,
+  "notebook_tasks": 64,
+  "code_slides": 71
+ }
+}

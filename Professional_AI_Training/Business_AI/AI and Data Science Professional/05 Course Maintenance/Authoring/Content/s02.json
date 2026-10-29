@@ -1,0 +1,586 @@
+{
+ "session": 2,
+ "notes_title": "Last time we drew the map of the whole journey. Today we walk into the second stage of it, the data itself. You'll open the Lakeside Mart workbook in Google Sheets, with no code at all, and learn to read a table the way a data scientist does. By the end you'll be able to say exactly what one row means, how one tab connects to another, and what messy data looks like before it causes trouble.",
+ "notes_outcomes": "Today has one long stretch where we read the Lakeside Mart workbook together, tab by tab, and the lab lets you do the same on your own copy. By the end you'll state the grain of a table, which is a plain sentence saying what one row stands for. You'll tell numbers, categories, dates and text apart, because each one allows different questions. And you'll link two tables through a key. In the lab you'll write the grain and key for every tab and find three problems, each with a number.",
+ "notes_words": "Grain, primary key, foreign key, variable type and data dictionary. Five words, and each one names something careful Excel users already do. Grain is the sentence that says what one row stands for. A primary key is a column that never repeats, like an invoice number. A foreign key is a column that holds the key of another table, like the lookup value you give VLOOKUP. A variable type says whether a column holds numbers, categories, dates or text. And a data dictionary is the legend that explains every column.",
+ "vocab": [
+  [
+   "Grain",
+   "The meaning of one row in a table, written as one sentence.",
+   "The note you write above a sheet: each row is one invoice"
+  ],
+  [
+   "Primary key",
+   "A column whose value is different in every row, so it names exactly one row.",
+   "An invoice number or ID column that never repeats"
+  ],
+  [
+   "Foreign key",
+   "A column that holds the key of another table, so a row can point to a row there.",
+   "The lookup value you give VLOOKUP"
+  ],
+  [
+   "Variable type",
+   "The kind of thing a column holds: number, category, date or text.",
+   "The format of a column: number, date or plain text"
+  ],
+  [
+   "Data dictionary",
+   "A short document that explains each table and column: meaning, type and key.",
+   "A legend or notes tab beside the data"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 1",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "In the data science lifecycle, which step comes straight after the business question?",
+     "a": "Data. You must know what data you have and what it means before you do anything else."
+    },
+    {
+     "q": "In Session 1 you ran your first cell in Google Colab. What did it show?",
+     "a": "A sentence and a sum, printed under the cell."
+    }
+   ],
+   "notes": "Let's bring back the lifecycle from Session 1 with two questions.\n\nFirst. In the data science lifecycle, which step comes straight after the business question? Have a think.\n\nThe step is data. You can't answer a question until you know what data you have and what it means. That's exactly where we are today.\n\nSecond. In Session 1 you ran your first cell in Colab. What did it show? No rush.\n\nIt printed a sentence and a sum. Today we stay out of Colab. Everything happens in Google Sheets, because the best way to understand a table is to see it laid out like the sheets you already know."
+  },
+  {
+   "type": "figure",
+   "title": "The parts of a table",
+   "fig": "dataframe_anatomy",
+   "look": [
+    "Column names run across the top.",
+    "Each row is one order.",
+    "One cell is where a row meets a column."
+   ],
+   "caption": "The first five rows of Lakeside Mart orders. Sheets uses the same parts.",
+   "alt": "A small table of the first orders with arrows naming the column names, the row labels and a single cell.",
+   "notes": "You already know every part of this table. It's the start of the Lakeside Mart orders, the same kind of table you'd see in a Sheets tab.\n\nAcross the top are the column names. Each column holds one kind of fact about every order, such as the branch or the payment method.\n\nEach row is one order. The numbers down the left edge just label the rows, and here they start at zero. In Sheets the first data row is row two, because the header sits in row one.\n\nAnd one cell is the single value where a row meets a column. The red box is the branch of the fifth order.\n\nA table is rows and columns and cells. The skill for today is knowing what one row means. Your workbook is a sample of the full file, so its first rows will differ from these. The full file is itself a five percent sample of the chain's till transactions, which keeps the files small."
+  },
+  {
+   "type": "table",
+   "title": "The orders tab in your workbook",
+   "header": [
+    "order_id",
+    "order_date",
+    "branch_id",
+    "customer_id",
+    "payment_method",
+    "order_value_ugx"
+   ],
+   "rows": [
+    [
+     "O000003",
+     "2024-01-07",
+     "B01",
+     "(blank)",
+     "Cash",
+     "66,200"
+    ],
+    [
+     "O000046",
+     "2024-01-02",
+     "B01",
+     "(blank)",
+     "Mobile money",
+     "3,100"
+    ],
+    [
+     "O000054",
+     "2024-01-02",
+     "B01",
+     "C0229",
+     "Cash",
+     "52,200"
+    ],
+    [
+     "O000061",
+     "2024-01-08",
+     "B01",
+     "C0362",
+     "Cash",
+     "79,830"
+    ],
+    [
+     "O000064",
+     "2024-01-09",
+     "B01",
+     "(blank)",
+     "Cash",
+     "6,500"
+    ]
+   ],
+   "caption": "Each row is one till order. Three of these five have no customer_id.",
+   "notes": "Now your own workbook. Open it and look at the first tab, called orders. These are its first five rows.\n\nRead across the first row. Order O000003, on the seventh of January 2024, at branch B01, paid in cash, for sixty six thousand two hundred shillings. One row, one order.\n\nIn the customer column, three of these five rows are empty. Hold that thought, because we'll come back to it. For now, notice something simple. Before you add or average anything in this tab, you can say in one sentence what a row is. That sentence has a name, and it's the next word."
+  },
+  {
+   "type": "define",
+   "title": "Grain",
+   "definition": "The meaning of one row in a table, written as one sentence.",
+   "example": "In the orders tab, one row is one till order. In the order_lines tab, one row is one product on one order.",
+   "excel": "The note you would write above a sheet: each row is one invoice.",
+   "notes": "The first word of the day is grain.\n\nGrain is the meaning of one row, written as one sentence. If you can't finish the sentence each row is one something, you don't yet understand the table.\n\nIn the Lakeside Mart workbook, one tab has one row per till order. Another has one row per product on an order. Both are about sales, yet they have different grains.\n\nYou already do this in Excel when you write a note above a sheet that says each row is one invoice. Data scientists write it down every time, because every count and every total depends on it."
+  },
+  {
+   "type": "table",
+   "title": "One grain for each tab",
+   "header": [
+    "Tab",
+    "One row is",
+    "Rows"
+   ],
+   "rows": [
+    [
+     "orders",
+     "one till order",
+     "2,000"
+    ],
+    [
+     "order_lines",
+     "one product on one order",
+     "6,590"
+    ],
+    [
+     "products",
+     "one product",
+     "150"
+    ],
+    [
+     "branches",
+     "one branch",
+     "8"
+    ],
+    [
+     "customers",
+     "one loyalty customer",
+     "2,500"
+    ],
+    [
+     "branch_weeks",
+     "one branch in one week",
+     "832"
+    ]
+   ],
+   "colw": [
+    3.0,
+    6.0,
+    2.0
+   ],
+   "caption": "The workbook holds a 2,000-order sample of the full Lakeside Mart file.",
+   "notes": "Here are the six data tabs in your workbook, each with its grain.\n\nOrders has one row per till order, two thousand of them. Order lines has one row per product on an order, six thousand five hundred and ninety. Products has one row per product, a hundred and fifty. Branches has eight rows, one for each shop. Customers has twenty five hundred loyalty customers. And branch weeks has one row for each branch in each week, eight hundred and thirty two in all.\n\nThere's also a seventh tab, called READ ME, with a short note. It isn't data.\n\nOne warning. Two thousand orders is a sample, which means a slice of the full Lakeside file, and that file has over thirty thousand orders. Your totals will differ from the full file, and in Session 4 we'll see why that's expected."
+  },
+  {
+   "type": "table",
+   "title": "One order, two grains",
+   "header": [
+    "Tab",
+    "Row",
+    "What the row says"
+   ],
+   "rows": [
+    [
+     "orders",
+     "O000003",
+     "Order total 66,200 UGX"
+    ],
+    [
+     "order_lines",
+     "L000009",
+     "4 of product P117, 58,400 UGX"
+    ],
+    [
+     "order_lines",
+     "L000010",
+     "1 of product P043, 7,800 UGX"
+    ]
+   ],
+   "colw": [
+    2.8,
+    2.6,
+    5.6
+   ],
+   "hl": [
+    1
+   ],
+   "caption": "58,400 plus 7,800 is 66,200. One order, one row in orders, two rows in order_lines.",
+   "notes": "Let's see why grain matters, using one order. It's the first order in the orders tab, O000003.\n\nIn the orders tab it's a single row, with a total of sixty six thousand two hundred shillings.\n\nIn the order lines tab the same order is two rows. The customer bought four of product P117 for fifty eight thousand four hundred, and one of product P043 for seven thousand eight hundred. Add those two lines and you get sixty six thousand two hundred, the order total.\n\nSame sale, two grains. Whenever you count rows, you need to know which of these two you're counting."
+  },
+  {
+   "type": "trap",
+   "title": "Counting lines and calling them orders",
+   "looks": "You select the order_lines tab and see 6,590 rows. You report that Lakeside sold 6,590 orders. Nothing warns you.",
+   "why": "One order can have many lines. A basket of five items adds five rows. The orders tab has 2,000 orders, and the lines average about three per order.",
+   "fix": "Say the grain first. Count order_id in the orders tab, or count each order_id once in order_lines.",
+   "notes": "Today's trap gives no error at all, and it's a very common counting mistake.\n\nSomeone opens the order lines tab. Sheets says six thousand five hundred and ninety rows at the bottom. They write in a report that Lakeside sold six thousand five hundred and ninety orders. It looks reasonable. Sit with it for a second.\n\nThe problem is the grain. A row in that tab is one product on an order. A basket with five items adds five rows. The same sample has two thousand orders, so the lines average a little over three per order.\n\nSo say the grain out loud before you count. Then count in the tab where one row is one order, or count each order number once."
+  },
+  {
+   "type": "concept",
+   "title": "Four kinds of column",
+   "lead": "A variable is one column: the same fact for every row. Its type decides what you may do with it.",
+   "points": [
+    {
+     "h": "Number",
+     "t": "order_value_ugx. You can add, average and compare."
+    },
+    {
+     "h": "Category",
+     "t": "payment_method. A few labels. You count them, and an average means nothing."
+    },
+    {
+     "h": "Date",
+     "t": "order_date. It has an order, so you can sort and group by month."
+    },
+    {
+     "h": "Text",
+     "t": "product_name. Free words. Good to read, hard to analyse."
+    }
+   ],
+   "notes": "Now a second idea. Every column has a type. A column is what data people call a variable, which just means the same fact recorded for every row.\n\nThe type decides what you may do with it.\n\nA number, such as the order value in shillings, can be added, averaged and compared.\n\nA category, such as the payment method, has a small set of labels, here cash, mobile money and card. You count categories. Averaging cash and card means nothing.\n\nA date, such as the order date, has a natural order, so you can sort it and group it by month.\n\nAnd text, such as a product name, is free words. It's useful for a person to read and hard to analyse.\n\nIf you pick the wrong type for a column, the questions you ask of it will be wrong too."
+  },
+  {
+   "type": "table",
+   "title": "The type of each column in orders",
+   "header": [
+    "Column",
+    "Type",
+    "Watch for"
+   ],
+   "rows": [
+    [
+     "order_id",
+     "ID code",
+     "A label. Never add it."
+    ],
+    [
+     "order_date",
+     "Date",
+     "Stored as text in this file"
+    ],
+    [
+     "branch_id",
+     "Category",
+     "Eight values, B01 to B08"
+    ],
+    [
+     "customer_id",
+     "ID code",
+     "Blank for walk-ins"
+    ],
+    [
+     "payment_method",
+     "Category",
+     "Cash, Mobile money, Card"
+    ],
+    [
+     "promo_week",
+     "Yes or no flag",
+     "1 if a promotion ran that week"
+    ],
+    [
+     "order_value_ugx",
+     "Number",
+     "Whole shillings"
+    ]
+   ],
+   "colw": [
+    3.2,
+    2.6,
+    5.2
+   ],
+   "caption": "An ID code can look like a number. It is still only a label.",
+   "notes": "Let's classify every column in the orders tab.\n\nThe order ID and the customer ID are ID codes. They're labels that happen to look like numbers or codes. You'd never add them up.\n\nThe branch and the payment method are categories. The promo week column holds zeros and ones, so it looks like a number, but it's really a yes or no flag, one if the branch ran a promotion that week.\n\nThe order value is a proper number, in whole shillings.\n\nThen the date. In this file the order dates are stored as text. You can check it yourself. Pick a date cell and test it with ISNUMBER, and Sheets says false. Text dates sit on the left of their cells, and they won't sort or group by month properly until they're converted. We fix that in Session 8."
+  },
+  {
+   "type": "define",
+   "title": "Primary key",
+   "definition": "A column whose value is different in every row, so it names exactly one row.",
+   "example": "order_id in the orders tab. O000003 is one order and no other row has that value.",
+   "excel": "The invoice number or ID column that you never let repeat.",
+   "notes": "Next word. Primary key.\n\nA primary key is a column whose value is different in every row. It names exactly one row, and no other.\n\nIn the orders tab, the order ID is the key. O000003 is one order, and no other row in the tab carries that number.\n\nIn Excel you know this as the invoice number or ID column. It's the one you'd never let repeat, because a repeat would mean two rows claiming to be the same thing.\n\nYou can test a key in Sheets. Count the values in the column, then count the unique ones. If the two counts match, the column is a key. We'll do that in the lab."
+  },
+  {
+   "type": "erd",
+   "title": "How the tabs link",
+   "tables": [
+    {
+     "name": "order_lines",
+     "cols": [
+      "*line_id",
+      "order_id",
+      "product_id",
+      "quantity"
+     ]
+    },
+    {
+     "name": "orders",
+     "cols": [
+      "*order_id",
+      "branch_id",
+      "customer_id",
+      "order_value_ugx"
+     ]
+    },
+    {
+     "name": "branches",
+     "cols": [
+      "*branch_id",
+      "branch_name",
+      "region"
+     ]
+    },
+    {
+     "name": "products",
+     "cols": [
+      "*product_id",
+      "product_name",
+      "category",
+      "unit_price_ugx"
+     ]
+    },
+    {
+     "name": "customers",
+     "cols": [
+      "*customer_id",
+      "home_branch_id",
+      "age_band",
+      "loyalty_tier"
+     ]
+    }
+   ],
+   "layout": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "links": [
+    [
+     "order_lines",
+     "orders",
+     "order_id"
+    ],
+    [
+     "orders",
+     "branches",
+     "branch_id"
+    ],
+    [
+     "order_lines",
+     "products",
+     "product_id"
+    ],
+    [
+     "orders",
+     "customers",
+     "customer_id"
+    ]
+   ],
+   "caption": "KEY marks each tab's primary key. An arrow points from the many side to the one side.",
+   "notes": "Now the workbook as a map. Each box is a tab with its main columns, and KEY marks the primary key of each.\n\nThe arrows show how the tabs link. Start with order lines on the left. Its order ID points to the orders tab. Many lines belong to one order.\n\nOrders points right to branches through the branch ID. Many orders belong to one branch. Orders also points down to customers through the customer ID.\n\nAnd order lines points down to products through the product ID. Many lines can be for the same product.\n\nSo a single order can be followed from the till, to its lines, to the product names and prices, and to the branch. The full Lakeside file also has a returns table, which links to orders in the same way. Your workbook doesn't include it, so we'll leave it out."
+  },
+  {
+   "type": "flow",
+   "title": "Follow one order through four tabs",
+   "steps": [
+    {
+     "h": "orders",
+     "t": "O000003, branch B01, no customer_id"
+    },
+    {
+     "h": "order_lines",
+     "t": "Two lines, for P117 and P043"
+    },
+    {
+     "h": "products",
+     "t": "P117 is Household item 117, 14,600 UGX"
+    },
+    {
+     "h": "branches",
+     "t": "B01 is Kampala Central"
+    }
+   ],
+   "caption": "Each hop uses a shared column, the same job VLOOKUP does.",
+   "notes": "Let's use the links. We'll follow one order, O000003, from the till all the way to a shop name.\n\nWe start in the orders tab. The order is at branch B01, and its customer cell is empty.\n\nNext we go to the order lines tab and look for the same order ID. We find two lines, one for product P117 and one for product P043.\n\nThen we take product P117 to the products tab. It's Household item 117, at fourteen thousand six hundred shillings a unit.\n\nLast, we take branch B01 to the branches tab. It's Kampala Central.\n\nEvery hop used one shared column. If you've ever used VLOOKUP, you've done exactly this. Data scientists call that move a join, and we do it in Python in Session 9."
+  },
+  {
+   "type": "define",
+   "title": "Foreign key",
+   "definition": "A column that holds the key of another table, so a row can point to a row there.",
+   "example": "product_id in order_lines holds a value such as P117. Look P117 up in products to find its name and price.",
+   "excel": "The lookup value you give VLOOKUP or XLOOKUP.",
+   "notes": "That shared column has a name. A foreign key.\n\nA foreign key is a column that holds the key of another table. It lets a row point to a row somewhere else.\n\nThe product ID in the order lines tab is a foreign key. It holds a value such as P117. In the products tab that same column is the primary key. Same column, two roles, in two tabs.\n\nIn Excel it's the lookup value you give VLOOKUP. The relationship between the tabs is the match between that value and the key.\n\nA useful test is to ask which side repeats. Many lines can share one product, so the product ID repeats in order lines and appears once in products."
+  },
+  {
+   "type": "concept",
+   "title": "Messy data you will meet",
+   "lead": "Every real file has some. Find it before you trust a total.",
+   "points": [
+    {
+     "h": "Blanks",
+     "t": "customer_id is empty on 580 of the 2,000 orders."
+    },
+    {
+     "h": "Dates as text",
+     "t": "order_date will not sort or group by month until converted."
+    },
+    {
+     "h": "Extreme values",
+     "t": "One order is 1,935,520 UGX. The median order is 24,800."
+    },
+    {
+     "h": "Gaps in numbering",
+     "t": "Orders jump from O000003 to O000046. The file is a sample."
+    }
+   ],
+   "notes": "Now the part that saves you later. Real data always has some mess, and these four kinds are the ones you'll meet again and again.\n\nFirst, blanks. The customer ID is empty on five hundred and eighty of the two thousand orders.\n\nSecond, dates stored as text, which we saw a moment ago.\n\nThird, extreme values. The largest order in the workbook is one million nine hundred and thirty five thousand five hundred and twenty shillings, at Jinja. The typical order, the median, is twenty four thousand eight hundred. That's about seventy eight times bigger. It may be real, and it still needs a second look before it goes into an average.\n\nFourth, gaps in the numbering. The order numbers jump from three to forty six because we only have a sample.\n\nLook for each of these before you trust a total."
+  },
+  {
+   "type": "stat",
+   "title": "A blank customer_id means a walk-in",
+   "stats": [
+    {
+     "n": "580",
+     "label": "orders with no customer_id"
+    },
+    {
+     "n": "29%",
+     "label": "of the 2,000 orders"
+    },
+    {
+     "n": "1,082",
+     "label": "different customers in the other 1,420 orders"
+    },
+    {
+     "n": "2,500",
+     "label": "customers in the customers tab"
+    }
+   ],
+   "caption": "The blank carries information. Ask what it means before you fill it or delete it.",
+   "notes": "Let's look closer at that first blank, because it teaches a good lesson.\n\nFive hundred and eighty orders have no customer ID. That's twenty nine percent of the sample.\n\nIs that an error? The data dictionary answers it. These are walk-in customers, people who bought something without giving a loyalty number. The blank is a fact about how the shop works.\n\nThe other fourteen hundred and twenty orders come from one thousand and eighty two different customers, so some customers bought more than once. The customers tab lists twenty five hundred, and most of them have no order in this sample.\n\nIf you filled the blanks or deleted those rows, you'd erase nearly three in ten orders from every later answer."
+  },
+  {
+   "type": "define",
+   "title": "Data dictionary",
+   "definition": "A short document that explains each table and column: its meaning, type and key.",
+   "example": "The Lakeside dictionary says promo_week is 1 if the branch ran a promotion that week, and customer_id is blank for a walk-in.",
+   "excel": "A legend or notes tab that sits beside the data.",
+   "notes": "Last word before the lab. Data dictionary.\n\nA data dictionary explains each table and each column. It gives the meaning, the type and the key, and often the odd cases, such as what a blank means.\n\nThe Lakeside Mart dictionary is a short text file in your practice folder. It's where we learned that a blank customer ID means a walk-in, and that promo week is one when the branch ran a promotion that week.\n\nYou know the Excel version. It's the legend or notes tab that someone adds beside the data. When you receive a file at work with no dictionary, ask for one. If nobody has it, write your own as you explore. That's the result for this session."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: grain, key and three problems",
+   "tool": "Google Sheets",
+   "time": "40 minutes",
+   "steps": [
+    "Open lakeside_for_sheets.xlsx in Google Sheets",
+    "Start a dictionary tab with one line per data tab: its grain",
+    "Add each tab's key and test it with COUNTA and UNIQUE",
+    "Label each orders column: number, category, date or text",
+    "Follow order O000003 through the tabs",
+    "Find the three problems and note a number for each",
+    "Write one question you would ask the data owner"
+   ],
+   "done": "Your dictionary tab has a grain and a key for six tabs, and you have three problems, each with a number.",
+   "notes": "The first task is to open the Lakeside workbook and start a new tab called dictionary. Forty minutes in Google Sheets, and no code today.\n\nGo tab by tab through the six data tabs. For each one, write the grain as one sentence on its own line in the dictionary tab, and name its key. Then test the key. Count the cells in the column, count the unique values, and see if the two numbers match.\n\nNext, follow order O000003 across the tabs, the way we did together.\n\nThen find three problems, and write down a number for each. We talked about a blank customer ID, the dates and the very large order. You'll prove each one with a count or a formula.\n\nYou're done when each tab has a grain and a key in your dictionary and you have three problems with numbers. I'll be around. If a formula fights you, show me and we'll read it together."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A colleague says Lakeside sold 6,590 orders because order_lines has 6,590 rows. What is wrong?",
+     "a": "That tab has one row per product on an order. Orders are counted in the orders tab: 2,000."
+    },
+    {
+     "q": "Which column links order_lines to products? What is it called on each side?",
+     "a": "product_id. It is a foreign key in order_lines and the primary key in products."
+    },
+    {
+     "q": "customer_id is blank on 580 orders. What does the blank tell you?",
+     "a": "The customer was a walk-in with no loyalty number. Read the dictionary before you fix a blank."
+    }
+   ],
+   "notes": "Let's test the main ideas against real numbers. A colleague says Lakeside sold six thousand five hundred and ninety orders because the order lines tab has that many rows. What's wrong? Take your time.\n\nThat tab has one row per product on an order, so a basket adds several rows. Orders are counted in the orders tab, where the answer is two thousand.\n\nNow a question about links. Which column connects order lines to products, and what is it called on each side? Think it over.\n\nIt's the product ID. In order lines it's a foreign key. In products it's the primary key.\n\nLast, the customer ID is blank on five hundred and eighty orders. What does the blank tell you? Give that a moment.\n\nThose were walk-in customers with no loyalty number. Read the dictionary before you fix or delete a blank, because it may carry a fact."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Say the grain first: one sentence for what one row means.",
+    "Every column has a type, and the type decides what you can do with it.",
+    "Keys link tabs. Check for blanks, text dates and extreme values before you trust a total."
+   ],
+   "next": "Summarising and showing data honestly",
+   "notes": "One. Say the grain first. Write one sentence for what a single row means, before you count or add anything.\n\nTwo. Every column has a type, number, category, date or text, and the type decides what you can ask of it.\n\nThree. Keys link the tabs. A primary key names one row, and a foreign key points to a row in another tab. And before you trust a total, look for blanks, dates stored as text and extreme values.\n\nNext session we turn these tables into answers. We'll use a pivot table to summarise Lakeside sales, and learn which chart to choose without misleading anyone. Bring your finished grain and key notes."
+  }
+ ],
+ "lab": {
+  "intro": "Open lakeside_for_sheets.xlsx in Google Sheets. Add a new tab called dictionary and write your grain and key answers there, one line per tab. Work through the tasks below and write each answer in your own words before you check it.",
+  "sheet_tasks": [
+   {
+    "task": "Orders tab. Write the grain and the key. Test the key: count the order_id cells, then count the unique ones.",
+    "answer": "Grain: one row is one till order. Key: order_id. =COUNTA(A2:A2001) gives 2000 and =COUNTA(UNIQUE(A2:A2001)) also gives 2000, so the counts match and order_id is a key. branch_id and customer_id are foreign keys."
+   },
+   {
+    "task": "Orders tab. In your dictionary tab, label each of the seven columns as a number, a category, a date or text, and say which of the three problems below you expect to find.",
+    "answer": "order_id: text (an identifier, not a quantity). order_date: a date, but stored as text in this workbook. branch_id: category. customer_id: text identifier, with blanks. payment_method: category (Cash, Mobile money, Card). promo_week: category, a 0 or 1 flag. order_value_ugx: number. Anything that sorts or adds belongs to number, anything that names a group to category."
+   },
+   {
+    "task": "Order_lines tab. Write the grain and the key, and name the two foreign keys. How many rows are there, and how many different orders do they cover?",
+    "answer": "Grain: one row is one product on one order. Key: line_id. Foreign keys: order_id (to orders) and product_id (to products). 6,590 rows covering 2,000 different orders, about 3.3 lines per order. The largest basket has 19 lines."
+   },
+   {
+    "task": "Products, branches and customers tabs. Write the grain and key of each and count its rows.",
+    "answer": "products: one product, key product_id, 150 rows. branches: one branch, key branch_id, 8 rows. customers: one loyalty customer, key customer_id, 2,500 rows (home_branch_id is a foreign key to branches)."
+   },
+   {
+    "task": "Branch_weeks tab. Write the grain. No single column is unique. Which two columns together are the key? Check that the row count fits.",
+    "answer": "Grain: one branch in one week. Key: branch_id and week_start together. 8 branches times 104 weeks (1 January 2024 to 22 December 2025) gives 832 rows, which matches the tab."
+   },
+   {
+    "task": "Is customer_id a key of the orders tab? Test it, and say what you find.",
+    "answer": "No. 1,420 orders have a customer_id but only 1,082 different customers appear, so the value repeats. 797 customers ordered once, 241 twice, 35 three times and 9 four times. It is a foreign key to customers."
+   },
+   {
+    "task": "Follow order O000003 across the tabs. Which two products does it contain, what are they called, and at which branch was it sold?",
+    "answer": "Two lines: 4 of P117 (Household item 117, 14,600 UGX each, 58,400 UGX) and 1 of P043 (Staples item 043, 7,800 UGX). The lines add up to 66,200 UGX, the order total. It was sold at B01, Kampala Central, with no customer_id."
+   },
+   {
+    "task": "Problem 1. How many orders have a blank customer_id, and what share of all orders is that? What does the dictionary say it means?",
+    "answer": "580 orders, which is 29 percent of 2,000. The data dictionary says customer_id is blank for a walk-in customer, so the blank records a fact about the shopper."
+   },
+   {
+    "task": "Problem 2. Is order_date a real date in this workbook? Test one cell with ISNUMBER and say what the left alignment tells you.",
+    "answer": "=ISNUMBER(B2) returns FALSE. The dates are stored as text (such as 2024-01-07), which is why they sit on the left of the cell. They will not group by month until they are converted."
+   },
+   {
+    "task": "Problem 3. Sort order_value_ugx from largest to smallest. Which order is largest, at which branch, and how many times larger than the median order is it?",
+    "answer": "The largest is O014474 at branch B04 (Jinja), 1,935,520 UGX, paid by card with a blank customer_id. The median order is 24,800 UGX, so it is about 78 times larger. The second largest is O017035, also at B04, at 1,934,200 UGX."
+   },
+   {
+    "task": "Write one question you would send to the owner of this data before using it for a report.",
+    "answer": "Any clear question is fine. Good examples: Is the 1,935,520 UGX order at Jinja a real sale or a typing error? Can the order dates be exported as real dates? How are walk-in customers meant to be counted?"
+   }
+  ]
+ }
+}

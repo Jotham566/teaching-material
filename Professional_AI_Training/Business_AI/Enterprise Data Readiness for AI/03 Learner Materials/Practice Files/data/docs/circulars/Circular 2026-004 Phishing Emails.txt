@@ -1,0 +1,16 @@
+KITARA GROUP
+Circular 2026/004: Phishing emails: what to do
+
+Ref: 2026/004
+Date: 2026-02-09
+Subject: Phishing emails: what to do
+
+
+To: All staff
+From: IT Security
+
+In January we received 214 phishing emails that got past the filter. Five staff clicked the link. No money was lost.
+
+If an email asks for your password, a payment, or to open an attachment you did not expect, do not click it. Forward it to phishing@kitaragroup.example and delete it. If you have already clicked, switch off your wifi and call the IT service desk on extension 4100 at once.
+
+IT will never ask for your password by email or phone.

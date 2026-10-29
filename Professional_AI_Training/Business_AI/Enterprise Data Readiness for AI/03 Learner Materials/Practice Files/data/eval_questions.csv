@@ -1,0 +1,61 @@
+q_id,question,gold_doc_id,gold_chunk_hint,answer,language,needs_current_version,asker_group,permitted,note
+Q01,What check happens on each borrower before a decision?,D007,Every application is checked against the credit reference bureau,A credit reference bureau check on every application,en,N,branch_ops,Y,plain; paraphrase
+Q02,Who must approve an account for a politician?,D008,written approval of the Head of Compliance before it is opened,"The Head of Compliance, in writing, before the account is opened (a politically exposed person)",en,N,branch_ops,Y,plain; paraphrase
+Q03,How long is CCTV retained in the branch?,D009,CCTV footage in branches: 90 days,90 days,en,N,all_staff,Y,plain
+Q04,For how long can a home loan be taken?,D021,The loan runs for up to 20 years,Up to 20 years,en,N,all_staff,Y,plain
+Q05,What is the ceiling on the amount a customer can take to pay tuition?,D022,"Loans from UGX 500,000 up to UGX 15,000,000","UGX 15,000,000",en,N,all_staff,Y,plain
+Q06,How much is deducted at the time the loan money is released?,D020,The processing fee is 1.5 percent of the loan,"A processing fee of 1.5 percent of the loan, paid at disbursement",en,N,all_staff,Y,plain
+Q07,How much does the customer contribute on a motor claim?,D017,excess of 10 percent of each claim,"10 percent of each claim, with a minimum of UGX 200,000 (15 percent for a driver under 23)",en,N,all_staff,Y,plain
+Q08,How many months before dying of sickness counts on a life policy?,D019,Death from illness is covered after a waiting period of six months,Six months,en,N,all_staff,Y,plain
+Q09,How is the rate for a house structure calculated?,D018,premium for buildings cover is 0.25 percent of the sum insured,0.25 percent of the sum insured a year,en,N,all_staff,Y,plain; paraphrase
+Q10,Which people have to authorise removing funds from the club account?,D023,Any withdrawal needs two of the three signatories,Two of the three signatories,en,N,all_staff,Y,plain; paraphrase
+Q11,Can a shopkeeper change a customer's secret number?,D024,Agents cannot reset a PIN,"No. Only a branch can reset a PIN, with the customer's original identity card.",en,N,all_staff,Y,plain
+Q12,How much cash can a cashier keep at the counter?,D030,"A teller may hold up to UGX 15,000,000 in the drawer","UGX 15,000,000",en,N,branch_ops,Y,plain; paraphrase
+Q13,What does an agent earn when customers withdraw?,D032,0.5 percent of the value of each cash-out,0.5 percent of the value of each cash-out,en,N,branch_ops,Y,plain; paraphrase
+Q14,What should I do with a scam message?,D061,Forward it to phishing@kitaragroup.example and delete it,Do not click anything. Forward it to phishing@kitaragroup.example and delete it.,en,N,all_staff,Y,plain; paraphrase
+Q15,Can I paste client details into a free online assistant to summarise a letter?,D038,"Do not enter customer names, account numbers, national identity numbers",No. Customer data must not be entered into a public AI tool.,en,N,all_staff,Y,plain; paraphrase
+Q16,By when must a stolen device be declared to IT?,D010,reported to the IT service desk within two hours,Within two hours,en,N,all_staff,Y,plain
+Q17,"By when must an insurance company pay an agreed claim, by law?",D079,must pay an accepted claim within 60 days,"Within 60 days of receiving the last document it asked for (notice IRO/2025/01, a fictional notice)",en,N,all_staff,Y,plain
+Q18,When did everyone have to register for two-step sign-in?,D054,register for multi-factor authentication by 31 March 2026,By 31 March 2026,en,N,all_staff,Y,plain; paraphrase
+Q19,How many written quotes are needed for a medium-sized purchase?,D028,need at least three written quotations,"At least three written quotations for a purchase above UGX 5,000,000",en,N,all_staff,Y,plain; paraphrase
+Q20,After how long does an account become inactive with no deposits or withdrawals?,D045,no deposit or withdrawal for 12 months,12 months,en,N,all_staff,Y,plain; paraphrase
+Q21,How much is the allowance for overnight lodging when travelling for work?,D014,"Hotel: UGX 350,000 per night, bed and breakfast included","UGX 350,000 per night, bed and breakfast included",en,N,all_staff,Y,plain; paraphrase
+Q22,How early must a holiday request be lodged?,D043,at least 14 days before the first day of leave,At least 14 days before the first day of leave,en,N,all_staff,Y,plain; paraphrase
+Q23,Who looks again at an outcome when the client disputes the result?,D011,ask the Head of Customer Service to review the decision,The Head of Customer Service,en,N,all_staff,Y,plain; paraphrase
+Q24,How soon should the main banking platform be back after an outage?,D016,Core banking system: restored within four hours,Within four hours (data loss no more than 15 minutes),en,N,all_staff,Y,plain; paraphrase
+Q25,Who receives the report first when staff suspect theft by a colleague?,D031,reported to the Head of Risk within 24 hours,"The Head of Risk, within 24 hours",en,N,risk,Y,plain
+Q26,What was the reason for declining the large loan request?,D071,because the monthly repayment would be 52 percent of net income,"The repayment would have been 52 percent of net income, above the 40 percent limit",en,N,risk,Y,plain; paraphrase
+Q27,What share of premiums was paid out as claims in Q2?,D075,claims ratio of 58 percent for Kitara Assurance,58 percent (budget 55 percent),en,N,executive,Y,plain; paraphrase
+Q28,When does the bank shut on Christmas Eve?,D058,Branches close at 1:00 pm on 24 December 2025,At 1:00 pm,en,N,branch_ops,Y,plain; paraphrase
+Q29,Which towns will the Kenyan subsidiary open new outlets in?,D068,"approved two new branches for Kitara Kenya, in Mombasa and Kisumu",Mombasa and Kisumu,en,N,executive,Y,plain
+Q30,Can a person raise a concern without giving their name?,D015,Reports can be anonymous,Yes. Reports can be anonymous.,en,N,all_staff,Y,plain; paraphrase
+Q31,In which languages must a Kenyan institution publish how to complain?,D082,publish the complaints procedure in English and in Swahili,"English and Swahili (notice CSAK/2026/01, a fictional notice)",en,N,legal_compliance,Y,plain
+Q32,Which staff were lent to Claims to clear the motor backlog?,D059,Six claims officers from Underwriting and Customer Service,Six claims officers from Underwriting and Customer Service,en,N,claims,Y,plain
+Q33,Can a teller inform the person that a laundering report is being sent?,D012,Staff must not tell the customer that a report has been made,No. Staff must not tell the customer that a report has been made.,en,N,branch_ops,Y,plain
+Q34,How soon do investigators begin looking into a report of wrongdoing?,D015,starts the review within seven working days,Within seven working days,en,N,all_staff,Y,plain; paraphrase
+Q35,Since which year has annual leave been 21 days?,D085,rises from 18 working days to 21 working days,"From 1 January 2017 (Circular 2016/021, a scanned page)",en,N,all_staff,Y,plain; scan
+Q36,What did the inspector find wrong in the Mbarara vault and cash handling?,D086,The vault log was not signed on three days,Vault log unsigned on three days; teller cash over the limit; expired fire extinguisher,en,N,branch_ops,Y,plain; scan
+Q37,What is the garage estimate on the signed motor claim form for the Toyota Premio?,D084,Damage estimate from garage,"UGX 4,850,000 (claim CL-2026-0388, a scanned form)",en,N,claims,Y,plain; scan
+Q38,What repair cost did the customer report in motor claim CL-2026-0753?,D092,"the repair at UGX 23,650,000","UGX 23,650,000",en,N,claims,Y,plain
+Q39,Within how many days did Kitara promise to pay claim CL-2026-0590?,D105,within 26 days of the date of this letter,26 days,en,N,claims,Y,plain
+Q40,How much did the customer say was deducted twice from the wallet in complaint CL-2026-0850?,D112,"Please refund UGX 2,965,000","UGX 2,965,000",en,N,claims,Y,plain
+Q41,How many days of annual leave am I entitled to each year?,D003,Staff earn 28 working days of annual leave,28 working days (2019 edition: 21; 2022 edition: 24),en,Y,all_staff,Y,stale; stale: 2019 and 2022 handbooks give a different number
+Q42,How long is the probation period for a new permanent employee?,D003,probation period of three months,Three months (2019: six months; 2022: four months),en,Y,all_staff,Y,stale; stale: older handbooks differ
+Q43,How many days a week may staff work remotely?,D003,may work remotely for up to three days a week,Three days a week (2022: two days; 2019: not allowed),en,Y,all_staff,Y,stale; stale: 2022 handbook says two days
+Q44,How much can a member of staff claim as a single expense without written approval?,D003,"A single expense claim above UGX 500,000 needs the written approval","UGX 500,000 (2022: 350,000; 2019: 200,000)",en,Y,all_staff,Y,stale; stale: older handbooks have lower limits
+Q45,What is the settlement timeframe for an accepted claim?,D006,settles an accepted claim within 30 calendar days,30 calendar days (SOP v3: 45 days),en,Y,claims,Y,stale; stale: SOP v3 says 45 days
+Q46,Up to what amount can a Claims Officer approve a claim?,D006,"Claims Officer: up to UGX 8,000,000","UGX 8,000,000 (SOP v3: UGX 5,000,000)",en,Y,claims,Y,"stale; stale: SOP v3 says UGX 5,000,000"
+Q47,What is the mileage rate for using a private vehicle on work?,D049,"mileage rate paid to staff who use a private vehicle on official business is UGX 2,200 per kilometre","UGX 2,200 per kilometre (Circular 2023/017: UGX 1,900)",en,Y,all_staff,Y,stale; stale: Circular 2023/017 is superseded
+Q48,What are the Saturday opening hours of the branches?,D051,On Saturday branches open from 9:00 am to 1:00 pm,9:00 am to 1:00 pm (Circular 2022/004: to 12:00 noon),en,Y,all_staff,Y,stale; stale: Circular 2022/004 is superseded
+Q49,Matawi ya Kitara Kenya hufunguliwa saa ngapi siku ya Jumamosi?,D065,saa 3:00 asubuhi hadi saa 7:00 mchana,Saa 3:00 asubuhi hadi saa 7:00 mchana (9:00 am to 1:00 pm),sw,N,all_staff,Y,swahili
+Q50,"Mfanyakazi aripoti ulaghai wa pesa kwa simu kwa idara gani, na ndani ya muda gani?",D066,Idara ya Usalama wa Mifumo ndani ya saa mbili,"Idara ya Usalama wa Mifumo, ndani ya saa mbili",sw,N,all_staff,Y,swahili
+Q51,Wafanyakazi wa Kenya wana siku ngapi za likizo ya mwaka?,D067,siku 26 za kazi za likizo ya mwaka,Siku 26 za kazi,sw,N,all_staff,Y,swahili
+Q52,Mteja anaweza kuweka kiasi gani cha juu kwenye pochi ya simu?,D024,"The most you can hold in the wallet is UGX 10,000,000","UGX 10,000,000",sw,N,all_staff,Y,swahili; paraphrase; Swahili question about an English document
+Q53,Neno la siri linapaswa kuwa na herufi ngapi angalau?,D010,Passwords have at least 12 characters,Herufi 12 (12 characters),sw,N,all_staff,Y,swahili; paraphrase; Swahili question about an English document
+Q54,Dai la bima ya gari hulipwa baada ya siku ngapi?,D006,settles an accepted claim within 30 calendar days,Siku 30 (30 calendar days),sw,Y,claims,Y,swahili; paraphrase; Swahili question about an English document
+Q55,What are the monthly salary bands for each grade?,D004,"Grade G5 (branch manager, senior claims officer)","G5 is UGX 3,400,000 to 5,200,000",en,N,all_staff,N,restricted; gold is confidential to hr and executive
+Q56,How much does a non-executive director get paid for each board sitting?,D073,"UGX 3,500,000 for each Board sitting","UGX 3,500,000 from 1 April 2026",en,N,branch_ops,N,restricted; gold is confidential to hr and executive
+Q57,What penalty did the regulator impose on Kitara Bank for filing its returns late?,D083,"A penalty of UGX 12,000,000 is imposed","UGX 12,000,000",en,N,claims,N,restricted; gold is confidential to legal_compliance and executive
+Q58,How much of each risk does Kitara keep under the reinsurance programme?,D035,"Kitara retains the first UGX 500,000,000 on any one risk","The first UGX 500,000,000",en,N,hr,N,"restricted; gold is confidential to underwriting, finance and executive"
+Q59,Which customer's relative had dialysis and what was claimed under the life policy?,D102,kidney failure and had been on dialysis,Health detail in a confidential life claim letter,en,N,branch_ops,N,"restricted; gold is a confidential life claim letter, claims only"
+Q60,"What was the payment of UGX 86,000,000 to a supplier that does not exist?",D069,"payment of UGX 86,000,000 made to a supplier that does not exist",A suspected fraud investigated by the Special Investigations Unit,en,N,hr,N,restricted; gold is confidential to executive and legal_compliance

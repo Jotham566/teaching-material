@@ -5,7 +5,8 @@ const RealDate=Date;class Clock extends Date {constructor(x){super(x===undefined
 const range=(row,col=1,height=1,width=1)=>({getValues:()=>rows.slice(row-1,row-1+height).map(r=>r.slice(col-1,col-1+width)),setValues(v){v.forEach((r,i)=>{rows[row-1+i]??=[];r.forEach((x,j)=>rows[row-1+i][col-1+j]=x);});},setRichTextValues(v){this.setValues(v)},setValue(v){this.setValues([[v]])}});
 const sheet={getDataRange:()=>({getValues:()=>rows}),getLastRow:()=>rows.length,getRange:range};
 const windowRows=()=>[['key','open','close','enabled','duration'],[windowKey,'2026-10-23T16:00:00Z',new Date(end).toISOString(),'YES',180]];
-const book={getSheetByName:n=>n==='Test windows'?{getDataRange:()=>({getValues:windowRows})}:sheet};
+let portalReceipts=[['headers']];
+const book={getSheetByName:n=>n==='Collection'?{getDataRange:()=>({getValues:()=>portalReceipts})}:n==='Test windows'?{getDataRange:()=>({getValues:windowRows})}:sheet};
 let driveCalls=[];let props={};const ctx={Date:Clock,Math,JSON,console,SpreadsheetApp:{openById:()=>book,newRichTextValue:()=>({setText(v){this.v=v;return this},build(){return this.v}})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},PropertiesService:{getScriptProperties:()=>({getProperty:k=>props[k],setProperty:(k,v)=>props[k]=v})},Utilities:{getUuid:()=> 'synthetic-code',formatDate:d=>d.toISOString(),newBlob:b=>b},ScriptApp:{getOAuthToken:()=> 'never-real'},UrlFetchApp:{fetch:(url,options)=>{driveCalls.push({url,options});return {getResponseCode:()=>200}}},DriveApp:{createFolder:()=>({getId:()=> 'private-folder'}),getFolderById:()=>({createFile:()=>{const id='file-'+(++fileCount);return {getId:()=>id};}})}};
 vm.createContext(ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Portal.gs','utf8'),ctx);vm.runInContext(fs.readFileSync('IUEA_Teaching_Plan/test_portal/Packets.gs','utf8'),ctx);
 const input={test:'CML3111|TEST1',registration:'DEMO / Timed',email:'synthetic@example.com',name:'Synthetic learner'};
@@ -72,3 +73,13 @@ vm.runInNewContext(timerScript,timerContext);assert.equal(timerText.textContent,
 timerNow=Date.parse('2026-10-23T18:40:00Z');timerTick();assert.match(timerReminder.textContent,/complete the submission form/);
 timerNow+=3600000;timerTick();assert.match(timerText.textContent,/Time has ended/);
 console.log('PASS countdown ticking, rerun without reset and expiry.');
+
+// Completed attempts cannot resume, even with a different email or differently spaced ID.
+const before=JSON.stringify(rows),beforeFiles=fileCount;
+portalReceipts=[['headers'],['receipt',windowKey.split('|')[0],'TEST1','A','Synthetic',input.email,'DEMO / TIMED','','','','COLLECTED']];
+assert.throws(()=>ctx.requestTestFiles({...input,test:windowKey}),/already has an accepted submission/);
+assert.throws(()=>ctx.requestTestFiles({...input,test:windowKey,email:'other@example.com',registration:'demo/timed'}),/already has an accepted submission/);
+assert.equal(JSON.stringify(rows),before);assert.equal(fileCount,beforeFiles);
+portalReceipts[1][10]='COLLECTION_ERROR';
+assert.equal(ctx.requestTestFiles({...input,test:windowKey}).personalDeadline,legacy.personalDeadline);
+console.log('PASS accepted-submission messaging, alternate email blocked, no allocation/file mutations, unresolved receipt does not restart timer.');

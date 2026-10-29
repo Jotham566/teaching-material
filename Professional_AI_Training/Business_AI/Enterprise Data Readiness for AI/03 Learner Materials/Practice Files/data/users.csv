@@ -1,0 +1,13 @@
+user_id,name,department,groups,role
+U01,Brian Opio,Claims,all_staff;claims,Claims Officer
+U02,Agnes Namukasa,Claims,all_staff;claims;underwriting,Senior Claims Officer
+U03,Esther Mutesi,Human Resources,all_staff;hr,HR Officer
+U04,Samuel Kyalo,Branch Operations,all_staff;branch_ops,"Branch Manager, Mbarara"
+U05,Winnie Atim,Customer Service,all_staff,Customer Service Agent (general staff)
+U06,Moses Ssali,Legal and Compliance,all_staff;legal_compliance;risk,Internal Auditor
+U07,Patricia Lubega,Executive Office,all_staff;executive,"General Manager, Strategy"
+U08,Charles Mwangi,Finance,all_staff;finance,Finance Officer
+U09,Doreen Nabirye,Underwriting,all_staff;underwriting,Underwriter
+U10,Hassan Kigozi,Risk,all_staff;risk,Risk Analyst
+U11,Faith Wambui,Branch Operations,all_staff;branch_ops,"Branch Officer, Kitara Kenya"
+U12,Denis Waiswa,IT,all_staff,IT Security Analyst

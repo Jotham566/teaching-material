@@ -1,0 +1,433 @@
+{
+ "session": 5,
+ "notes_title": "Tonight you write your first Python. It's gentler than it sounds, because every idea arrives next to the spreadsheet thing you already know. We'll build a small price list for Lakeside Mart, make a few mistakes on purpose, and learn to read what Python says back. By the end you'll have a notebook of your own that runs from top to bottom.",
+ "notes_outcomes": "By the end you'll be able to run, edit and save a notebook in Colab, store numbers, text and lists in named places the way a sheet keeps them in cells, and read an error message from its last line. The longest stretch of the evening is the live part, where we build a price list and then break it twice. The lab repeats that on your own notebook, with one cell that arrives already broken, and ends with the same sums in Sheets.",
+ "notes_words": "Six words tonight. A notebook is a workbook where each cell holds code or a note. A variable is a name for a value, like a cell address that you choose yourself. A string is text. A list is a column of values in order. A dictionary is a lookup table with labels. And an error message is the note Python gives you when it can't carry on. The right-hand column gives the spreadsheet cousin of each.",
+ "vocab": [
+  [
+   "Notebook",
+   "A document made of cells. Some cells hold Python code and some hold notes.",
+   "A workbook"
+  ],
+  [
+   "Variable",
+   "A name that stands for a value you stored.",
+   "A cell address, with a name you choose"
+  ],
+  [
+   "String",
+   "Text in quotes, such as 'Staples'. Python calls text a string.",
+   "A text cell"
+  ],
+  [
+   "List",
+   "Several values in order, inside square brackets.",
+   "A column of values"
+  ],
+  [
+   "Dictionary",
+   "Values stored under labels, so you find each one by its label.",
+   "A lookup table used with VLOOKUP"
+  ],
+  [
+   "Error message",
+   "The note Python prints when it cannot run a line. Its last line says what went wrong.",
+   "An error such as #REF! or #NAME?"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 4",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "You drew 200 samples of 30 baskets. Why were the 200 averages not all the same?",
+     "a": "Each sample holds different baskets, so each lands a little away from the true average. That gap is sampling error."
+    },
+    {
+     "q": "A survey asks only the customers who come to the till on Saturday. What goes wrong?",
+     "a": "Selection bias. Customers who never shop on Saturday are left out, so the sample does not stand for everyone."
+    }
+   ],
+   "notes": "Session 4 first. You drew two hundred samples of thirty baskets in Sheets. Why were the two hundred averages not all the same? Have a think.\n\nBecause each sample holds different baskets. Each average lands a little away from the true one, and that gap is called sampling error. The spread was no mistake in your sheet. It's how samples behave.\n\nSecond. A survey asks only the customers who come to the till on a Saturday. What goes wrong? No rush.\n\nThat's selection bias. People who never shop on a Saturday are left out, so the sample doesn't stand for everyone. Keep that question handy, because it applies to every file you'll open from here on."
+  },
+  {
+   "type": "concept",
+   "title": "A notebook is a workbook with cells for code and notes",
+   "lead": "You will write Python in Google Colab. It opens in your browser and needs nothing installed.",
+   "points": [
+    {
+     "h": "Code cell",
+     "t": "Type Python, press the play button, and the answer appears below."
+    },
+    {
+     "h": "Text cell",
+     "t": "Headings and notes for people. Python ignores it."
+    },
+    {
+     "h": "Order matters",
+     "t": "Cells run from the top. A later cell can use what an earlier one stored."
+    },
+    {
+     "h": "Save",
+     "t": "File, Save a copy in Drive. An idle session ends."
+    }
+   ],
+   "notes": "Your Python lives in a notebook, and a notebook is very close to a workbook.\n\nIn a spreadsheet a cell holds a number or a formula. In a notebook a cell holds a few lines of Python, or a note written in plain words. A code cell has a play button on its left. Press it, and the answer appears right underneath. A text cell is for people. You use it for headings and notes to your future self, and Python skips it.\n\nCells run in order, from the top. If a later cell needs a value, an earlier cell must have stored it first. When something goes odd, the cure is often to run the notebook again from the top.\n\nLast, save your work. A Colab session ends after it has sat idle for a while, and everything in memory goes with it. Use File, then Save a copy in Drive, and the notebook is yours to reopen."
+  },
+  {
+   "type": "compare",
+   "title": "The same price sum in Excel and in Python",
+   "left": {
+    "h": "Excel or Sheets",
+    "points": [
+     "B2 holds 3200",
+     "B3 holds 12",
+     "B4 is =B2*B3",
+     "B4 shows 38400"
+    ]
+   },
+   "right": {
+    "h": "Python",
+    "points": [
+     "price_p001 = 3200",
+     "quantity = 12",
+     "line_total = price_p001 * quantity",
+     "print(line_total)"
+    ]
+   },
+   "verdict": "Same sum. In Python you choose the names, so the formula reads like a sentence.",
+   "notes": "Here's a sum you could do in your sleep. Twelve units of product P001, at three thousand two hundred shillings each. On the left is the spreadsheet. On the right is Python.\n\nIn the spreadsheet, the price sits in a cell, B2. Python stores it under a name instead. You pick the name, so price_p001 says what it holds.\n\nThe quantity goes in the same way. Twelve, under the name quantity.\n\nThe formula is the same multiplication. In Excel it points at B2 and B3. In Python it uses the two names, and anyone can read it.\n\nAnd print shows the answer, thirty eight thousand four hundred shillings, just as B4 would. A name tells the reader what the number means, which B2 can't."
+  },
+  {
+   "type": "code",
+   "title": "Your first cell: store values with names",
+   "lang": "python",
+   "code": "price_p001 = 3200\nquantity = 12\nline_total = price_p001 * quantity\nprint(line_total)",
+   "says": [
+    "A name on the left, an equals sign, a value on the right.",
+    "Python works out the right side first, then stores the result.",
+    "print shows the answer under the cell."
+   ],
+   "output": "38400",
+   "notes": "Let's type it for real. This is the first cell of the evening.\n\nRead each line left to right. The name goes on the left, then an equals sign, then the value. The equals sign here doesn't ask a question. It means store this value under that name. A variable is simply a name that stands for a value.\n\nThe third line shows how it works. Python works out the right side first, which is the price times the quantity, and stores the result under line_total.\n\nThe last line prints it. Thirty eight thousand four hundred. Change the quantity to fifteen and run the cell again, and you'll see a new answer. Edit, run, read is how you'll work all evening."
+  },
+  {
+   "type": "code",
+   "title": "Numbers, text and True or False",
+   "lang": "python",
+   "code": "product_name = 'Staples item 001'\nin_stock = True\nprint(type(price_p001))\nprint(type(product_name))\nprint(type(in_stock))\nprint(price_p001 > 5000)",
+   "says": [
+    "int is a whole number, str is a string, bool is True or False.",
+    "Quotes make text. No quotes make a number.",
+    "A comparison gives True or False, like =B2>5000."
+   ],
+   "output": "<class 'int'>\n<class 'str'>\n<class 'bool'>\nFalse",
+   "notes": "Python keeps three kinds of simple value apart, and you'll meet all three every day.\n\nA whole number such as three thousand two hundred is called int. Text in quotes is called a string, shortened to str. And a value that is either True or False is called bool. The type function tells you which kind a value is.\n\nThe quotes decide it. Put quotes around 3200 and Python reads it as text. Remember that. It will bite us in a few minutes.\n\nThe last line is a question. Is the price above five thousand? In a sheet you'd write equals B2 greater than 5000 and get FALSE. Python gives the same answer, False, because three thousand two hundred is below five thousand."
+  },
+  {
+   "type": "concept",
+   "title": "A list is one column of a table",
+   "lead": "A spreadsheet holds many values in a column. Python holds many values in a list.",
+   "points": [
+    {
+     "h": "List",
+     "t": "Values in order, inside square brackets, with commas between."
+    },
+    {
+     "h": "Counting from zero",
+     "t": "The first item is number 0. The index on the left of the picture does the same."
+    },
+    {
+     "h": "Dictionary",
+     "t": "Each value has a label, like a header, and you ask for it by label."
+    }
+   ],
+   "fig": "dataframe_anatomy",
+   "alt": "The first five orders in a table. Column names run across the top, the row numbers 0 to 4 run down the left, and one cell is boxed.",
+   "notes": "Now two ways to hold many values at once. The table on the right is the first five Lakeside Mart orders. You'll open a table like it properly in Session 7. For now, look at one column of it, say branch_id. A column is a run of values in order. Python calls that a list.\n\nA list sits inside square brackets, with commas between the items. Look at the numbers down the left side of the table. The first one is zero. A list counts the same way. The first item is number zero. That surprises everyone once.\n\nA dictionary is the other idea. Instead of a position, each value has a label. Think of the headers across the top. You'd ask for the payment method by its name. We'll build both in a moment."
+  },
+  {
+   "type": "code",
+   "title": "Make a list and pick items from it",
+   "lang": "python",
+   "code": "prices = [3200, 8400, 8700, 7000, 6300]\nprint(prices)\nprint(prices[0])\nprint(prices[4])",
+   "says": [
+    "Square brackets hold the list. Commas separate the items.",
+    "Counting starts at zero, so prices[0] is the first price.",
+    "The fifth price is number 4."
+   ],
+   "output": "[3200, 8400, 8700, 7000, 6300]\n3200\n6300",
+   "notes": "These are the first five Lakeside Mart prices in shillings, taken from the products file.\n\nThe list goes inside square brackets with commas between the items. We store it under the name prices, and print shows it back exactly as we typed it.\n\nTo pick one item, write the name and then a number in square brackets. The number is the position, and it starts at zero. So prices with zero gives the first price, three thousand two hundred.\n\nThe fifth price sits at position four. Six thousand three hundred. If the count feels off by one, that's normal. It's the commonest slip in a first week of Python, and the errors we read later will help you spot it."
+  },
+  {
+   "type": "code",
+   "title": "Count, add up and average a list",
+   "lang": "python",
+   "code": "print(len(prices))\nprint(sum(prices))\nprint(max(prices))\naverage = sum(prices) / len(prices)\nprint(average)",
+   "says": [
+    "len counts items, like COUNT. sum adds, like SUM.",
+    "max finds the largest, like MAX.",
+    "Divide the sum by the count to get AVERAGE."
+   ],
+   "output": "5\n33600\n8700\n6720.0",
+   "notes": "Now the jobs you do on a column all day. Each has a short Python word.\n\nlen counts the items, as COUNT does. We have five. sum adds them up, as SUM does. The five prices come to thirty three thousand six hundred shillings. And max finds the largest, eight thousand seven hundred.\n\nPlain Python has no single word for the average, so we build it. Add up with sum, divide by the count with len. The slash means divide. The answer is six thousand seven hundred and twenty.\n\nThe output reads 6720 point 0. Python shows a decimal point whenever you divide. In Sheets, put these five prices in B2 to B6 and use AVERAGE. You should get the same answer."
+  },
+  {
+   "type": "code",
+   "title": "A dictionary is a row with labels",
+   "lang": "python",
+   "code": "product = {'id': 'P001', 'category': 'Staples', 'price': 3200}\nprint(product['price'])\nprint(product['category'])\nprint(product['price'] * quantity)",
+   "says": [
+    "Curly brackets hold the dictionary. Each entry is a label, a colon, a value.",
+    "Ask by label, in square brackets.",
+    "A looked-up value can go straight into a sum."
+   ],
+   "output": "3200\nStaples\n38400",
+   "notes": "A dictionary stores values under labels. Here is one product, like a single row of the products sheet, with its labels as the headers.\n\nThe entries sit in curly brackets. Each one is a label, a colon, then the value. Notice the labels are in quotes, because they are text.\n\nTo get a value, write the dictionary name and the label in square brackets. So product with price gives three thousand two hundred, and product with category gives Staples.\n\nThe last line uses a looked-up value in a sum. Price times the quantity we stored earlier gives thirty eight thousand four hundred again. The answer matches the first cell, which is exactly what we want. Two routes, one result."
+  },
+  {
+   "type": "code",
+   "title": "A dictionary as a price list lookup",
+   "lang": "python",
+   "code": "price_list = {'P001': 3200, 'P002': 8400, 'P003': 8700}\nprint(price_list['P003'])\nprice_list['P004'] = 7000\nprint(len(price_list))",
+   "says": [
+    "The product code is the label. The price is the value.",
+    "Asking by code does the job of VLOOKUP.",
+    "Add a new entry by assigning to a new label."
+   ],
+   "output": "8700\n4",
+   "notes": "Here's the use you'll like most. A price list. The product code is the label and the price is the value.\n\nAsk for P003 and Python hands back eight thousand seven hundred. If you've used VLOOKUP, you've done this job before. You give it a code and it finds the matching price. The dictionary does it without a table range or a column number to count.\n\nTo add a product, assign a value to a new label. We put P004 in at seven thousand shillings. Then len counts the entries and says four.\n\nOne warning. If you ask for a code that isn't in the dictionary, Python gives an error called KeyError. That's the same idea as the NA you see in a lookup that finds nothing."
+  },
+  {
+   "type": "compare",
+   "title": "List or dictionary: how will you find things?",
+   "left": {
+    "h": "List",
+    "points": [
+     "Values in order",
+     "Find by position: prices[0]",
+     "Like a column of values"
+    ]
+   },
+   "right": {
+    "h": "Dictionary",
+    "points": [
+     "Values with labels",
+     "Find by label: price_list['P003']",
+     "Like a table you VLOOKUP"
+    ]
+   },
+   "verdict": "Ask yourself: do I find it by its place, or by its name?",
+   "notes": "Two containers, and you'll need to choose between them. Here is how.\n\nThe list keeps values in order. You find an item by its position, and it behaves like a column of values in a sheet. It suits a run of numbers you want to add up or count.\n\nThe dictionary keeps values with labels. You find an item by its label. It behaves like a lookup table, the kind you'd search with VLOOKUP. It suits a price list, where you know the code and want the price.\n\nSo the question to ask is this. Do I find it by its place, or by its name? If you can answer that, you've chosen correctly."
+  },
+  {
+   "type": "code",
+   "title": "An error you will see often: a misspelt name",
+   "lang": "python",
+   "expect_error": true,
+   "code": "total = prise_p001 * quantity",
+   "output": "NameError: name 'prise_p001' is not defined",
+   "says": [
+    "Read the last line first. It names the kind of error and the word.",
+    "Python has never heard of prise_p001. We typed prise for price."
+   ],
+   "notes": "Time to break something on purpose. Here the price name has a typing slip. It says prise instead of price.\n\nWhen you run it, Python prints a long message with arrows and file names. Skip the top and go straight to the last line. It reads, NameError, name prise_p001 is not defined.\n\nThat last line carries two facts. The kind of error is NameError, which means a name Python doesn't know. And the word it doesn't know is prise_p001.\n\nSpot the slip and the fix is one letter. A NameError almost always means a misspelling, or a cell you forgot to run. In a spreadsheet the same thing shows as hash NAME. Read the last line and you'll solve most errors in under a minute."
+  },
+  {
+   "type": "flow",
+   "title": "How to read any error message",
+   "steps": [
+    {
+     "h": "Last line",
+     "t": "The kind of error and the word it dislikes."
+    },
+    {
+     "h": "Line number",
+     "t": "Python shows the line where it stopped."
+    },
+    {
+     "h": "Look nearby",
+     "t": "A quote, a bracket or a spelling slip."
+    },
+    {
+     "h": "Fix one thing",
+     "t": "Change one item, then run again."
+    }
+   ],
+   "caption": "Read the last line first. Most errors are small.",
+   "notes": "Four steps for every error you'll meet.\n\nFirst, read the last line. It names the kind of error and usually the word that caused it. Everything above it is the trail Python followed to get there.\n\nSecond, find the line number. Python tells you which line it stopped on, so you don't have to hunt.\n\nThird, look around that line. Most slips are a missing quote, a missing bracket, or a misspelt name. The slip is often on the line itself or just above it.\n\nFourth, fix one thing and run again. Change one item at a time, so you know which change helped. An error is Python telling you exactly where it got stuck."
+  },
+  {
+   "type": "code",
+   "title": "A second error: adding a number and text",
+   "lang": "python",
+   "expect_error": true,
+   "code": "basket = [3200, 8400, '8700']\nprint(sum(basket))",
+   "output": "TypeError: unsupported operand type(s) for +: 'int' and 'str'",
+   "says": [
+    "Last line: Python tried to add a whole number and a string.",
+    "The culprit is '8700'. Its quotes make it text."
+   ],
+   "notes": "One more, so you can practise the routine. Here we add up a basket of three prices.\n\nRun it and read the last line. TypeError, unsupported operand type for plus, int and str. In plain words, Python tried to add a whole number to a piece of text and doesn't know how.\n\nNow look at the list. Two of the prices are plain numbers. The third, eight thousand seven hundred, has quotes around it, so Python reads it as text. Remember the quotes decide the type.\n\nTake the quotes off and the sum works. A sheet sometimes does this to you too, when a number is stored as text and sits on the left of its cell. The fix there is also to turn the text back into a number."
+  },
+  {
+   "type": "trap",
+   "title": "A price in quotes that runs without an error",
+   "looks": "You type the price as '3200', with quotes, and multiply it by 3. Python prints 320032003200. There is no error message.",
+   "why": "Quotes make the price text. Text times 3 means repeat the text three times, and Python obeys without complaint.",
+   "fix": "Type prices without quotes. When an answer looks odd, print type() of the value and check it says int.",
+   "notes": "This one gives you no error at all, which is what makes it dangerous.\n\nYou type the price with quotes around it, then multiply by three. You expect nine thousand six hundred. Python prints the digits three two zero zero, repeated three times.\n\nWhy? The quotes made the price a piece of text. And in Python, text times three means repeat that text three times. Python did what you asked, and it told you nothing was wrong.\n\nSo type prices without quotes. When an answer looks odd, ask what kind of value you have, using the type function. If it says str where you expected int, you've found the cause."
+  },
+  {
+   "type": "concept",
+   "title": "A free chat assistant can explain an error, if you check it",
+   "lead": "It is optional. Every lab today works without one.",
+   "points": [
+    {
+     "h": "Paste little",
+     "t": "The last line of the error and the one line of code. Never customer names or phone numbers."
+    },
+    {
+     "h": "Ask plainly",
+     "t": "What does this error mean, and what is the smallest fix?"
+    },
+    {
+     "h": "Check the answer",
+     "t": "Run the fix. The result decides if it was right."
+    }
+   ],
+   "notes": "If you already have a free chat assistant, you can use it to explain an error. It's optional. Nothing in this course needs it, and every lab runs without one.\n\nIf you do use it, paste only what is needed. The last line of the error and the one line of code are plenty. Never paste customer names, phone numbers or anything personal. The Data Protection and Privacy Act of 2019 puts a duty on you to look after that kind of data, and a chat window is the wrong place for it.\n\nAsk a plain question. What does this error mean, and what is the smallest fix?\n\nThen check what it says. Assistants can sound sure and be wrong. Run the fix. If the cell works and the answer matches what you worked out in Sheets, good. If not, go back to the four steps we just learned. You are still the one who decides."
+  },
+  {
+   "type": "code",
+   "title": "The same lists, read from the products file",
+   "lang": "python",
+   "code": "import pandas as pd\n\nproducts = pd.read_csv('products.csv')\nall_prices = products['unit_price_ugx'].tolist()\nprint(len(all_prices))\nprint(max(all_prices))\nprint(round(sum(all_prices) / len(all_prices), 2))",
+   "says": [
+    "read_csv opens the file, like File, Open in a sheet.",
+    "Pick one column by name and turn it into a list.",
+    "The same len, max and sum, on 150 products."
+   ],
+   "output": "150\n381600\n11523.33",
+   "notes": "Typing five prices is fine for learning. A full price list has many more, so let's read the whole file. This is a preview of Session 7, so don't worry about the details yet.\n\nThe first line brings in pandas, the table library. read_csv opens the products file, as File and Open would in a sheet.\n\nThen we pick the unit price column by its name and turn it into a list. Same idea as before, only now it holds every price.\n\nNow len, max and the average work on one hundred and fifty products. The largest price is three hundred and eighty one thousand six hundred, a phones and electronics item. That single price pulls the average up to eleven thousand five hundred and twenty three shillings. The middle price, the median, is only three thousand five hundred. You met this in Session 3. A few big values bend an average."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: a price list in Python, then break it",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 5 notebook and run the setup cell",
+    "Store a price and a quantity in variables",
+    "Build a list of five prices. Total and average it",
+    "Look up P003 in a dictionary, then test a price",
+    "Fix a cell that gives an error",
+    "Read the prices from products.csv",
+    "Repeat the sums in Sheets and compare"
+   ],
+   "done": "Every check cell prints correct, and the Sheets answers match.",
+   "notes": "Lab time, forty minutes in Google Colab. The first task is the sum you saw at the start, twelve units at three thousand two hundred, stored under names.\n\nOpen the Session 5 notebook and run the setup cell. It puts the data files in your notebook. Then work down. Each task has a short blank for you to fill, and a check cell underneath that tells you if you've got it right.\n\nThe fifth task gives you a cell that already has an error. Run it, read the last line, and fix it. That's the skill of the evening.\n\nThe last step is to do the same sums in Sheets and compare. When Python and Sheets disagree, find out why. You're done when every check says correct. If you get stuck, call me over."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "What does the line price = 3200 do, and what is the spreadsheet equivalent?",
+     "a": "It stores 3200 under the name price. In a sheet it is typing 3200 in a cell, with a name you choose instead of B2."
+    },
+    {
+     "q": "An error message is long. Which line do you read first, and what does it tell you?",
+     "a": "The last line. It gives the kind of error and the word or value that caused it."
+    },
+    {
+     "q": "When would you use a dictionary and not a list?",
+     "a": "When you find values by a label, such as a product code, as with VLOOKUP."
+    }
+   ],
+   "notes": "Start with a stored value. What does the line price equals 3200 do, and what is the spreadsheet equivalent? Take your time.\n\nIt stores the number under the name price. In a sheet it's like typing the number into a cell, except that you pick the name, instead of getting B2.\n\nThen an error. An error message is long. Which line do you read first, and what does it tell you? Think it over.\n\nThe last line. It gives the kind of error and the word or value that caused it.\n\nFinally, a choice of container. When would you use a dictionary and not a list? Give that a moment.\n\nWhen you find values by a label, such as a product code. That's the job VLOOKUP does in a sheet. A list is for values you reach by position."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A variable is a named cell. Numbers, text and True or False are the three simple kinds, and quotes make text.",
+    "A list is a column of values in order. A dictionary is a lookup table with labels.",
+    "Read an error from its last line. Check any help you get, from anyone, by running it."
+   ],
+   "next": "Decisions, repeats and functions",
+   "notes": "A variable is a named cell. Numbers, text and True or False are the three simple kinds, and quotes turn a number into text.\n\nA list is a column of values in order, counted from zero. A dictionary is a lookup table where you ask by label.\n\nRead an error from its last line. And when you get help from a person, a book or a chat assistant, check it by running it and comparing with what you know.\n\nNext session is Decisions, repeats and functions. You'll teach Python to choose with if, and to repeat a job without copying a formula down five thousand rows. Bring one rule from your own work that goes, if this, then that."
+  }
+ ],
+ "lab": {
+  "intro": "Build a small Lakeside Mart price list in Python. Use the same five prices and 12 units as the slides, and compare each answer with a sheet.",
+  "cells": [
+   {
+    "md": "## Task 1. Store a price and a quantity\nStore 3200 in `price_p001` and 12 in `quantity`. Multiply them into `line_total` and print it."
+   },
+   {
+    "code": "price_p001 = 3200\nquantity = 12\nline_total = price_p001 * quantity\nprint(line_total)",
+    "starter": "# Your turn: store 3200 in price_p001 and 12 in quantity\n# Then line_total = price times quantity, and print it\n"
+   },
+   {
+    "code": "assert line_total == 38400, 'Multiply the price by the quantity: 3200 * 12'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. A list of prices\nMake a list called `prices` with 3200, 8400, 8700, 7000, 6300. Store the sum in `total` and the average in `average`."
+   },
+   {
+    "code": "prices = [3200, 8400, 8700, 7000, 6300]\ntotal = sum(prices)\naverage = sum(prices) / len(prices)\nprint(total, average)",
+    "starter": "# Your turn: make the list prices with the five numbers (no quotes)\n# total = the sum, average = the sum divided by how many items\n"
+   },
+   {
+    "code": "assert total == 33600, 'Use sum(prices)'\nassert average == 6720, 'Divide the sum by len(prices)'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. A dictionary price list\nMake `price_list` with the codes P001 to P005 as labels and the same five prices as values. Look up P003 into `p003`. Add P006 with the price 3600."
+   },
+   {
+    "code": "price_list = {'P001': 3200, 'P002': 8400, 'P003': 8700, 'P004': 7000, 'P005': 6300}\np003 = price_list['P003']\nprice_list['P006'] = 3600\nprint(p003, len(price_list))",
+    "starter": "# Your turn: build price_list with labels 'P001' to 'P005'\n# p003 = the price for 'P003'\n# then add a new entry: price_list['P006'] = 3600\n"
+   },
+   {
+    "code": "assert p003 == 8700, 'Look up the label P003 in square brackets'\nassert len(price_list) == 6, 'Add P006 so the list has six entries'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. True or False\nIs the price of P002 above 8000? Store the answer in `p002_dear`. It should be a True or False value."
+   },
+   {
+    "code": "p002_dear = price_list['P002'] > 8000\nprint(p002_dear)",
+    "starter": "# Your turn: compare the P002 price with 8000 and store the result in p002_dear\n"
+   },
+   {
+    "code": "assert p002_dear is True, 'Look up P002, then use > 8000'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Fix the error\nThe starter cell adds up a basket and fails. Run it, read the last line, and write in a text cell what it says. Then fix the basket so `basket_total` is 20300. A chat assistant may help you read the message, but check its answer by running it."
+   },
+   {
+    "code": "basket = [3200, 8400, 8700]\nbasket_total = sum(basket)\nprint(basket_total)",
+    "starter": "basket = [3200, 8400, '8700']\nbasket_total = sum(basket)\nprint(basket_total)\n# Your turn: run this, read the last line, then fix the list"
+   },
+   {
+    "code": "assert basket_total == 20300, 'Take the quotes off 8700 so it is a number'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Read the real prices\nRead `products.csv`. Put the `unit_price_ugx` column into a list called `all_prices`. Store the largest price in `top_price`."
+   },
+   {
+    "code": "import pandas as pd\n\nproducts = pd.read_csv('products.csv')\nall_prices = products['unit_price_ugx'].tolist()\ntop_price = max(all_prices)\nprint(len(all_prices), top_price)",
+    "starter": "import pandas as pd\n\n# Your turn: read products.csv into a DataFrame called products\n# Put the unit_price_ugx column into a list called all_prices\n# top_price is the largest value in that list\n"
+   },
+   {
+    "code": "assert len(all_prices) == 150, 'There are 150 products'\nassert all_prices[:5] == prices, 'The first five prices should match your list'\nassert top_price == 381600, 'Use max(all_prices)'\nassert round(sum(all_prices) / len(all_prices), 2) == 11523.33, 'all_prices should hold every unit_price_ugx value from products.csv'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Check against Sheets\nOpen `products.csv` in Google Sheets. Use SUM and AVERAGE on the five prices in B2 to B6 of a new sheet, and MAX on the whole unit price column. Write one sentence below on whether they match Python, and what you did when an error appeared."
+   }
+  ]
+ }
+}

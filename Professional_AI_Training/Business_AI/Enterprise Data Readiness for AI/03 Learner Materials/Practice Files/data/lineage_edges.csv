@@ -1,0 +1,26 @@
+from_asset,to_asset,step
+claims_system.claims,staging.claims_raw,Nightly extract at 01:00
+claims_system.claim_payments,staging.payments_raw,Nightly extract at 01:10
+policy_admin.policies,staging.policies_raw,Nightly extract at 01:20
+staging.claims_raw,clean.claims,Remove test claims; standardise dates
+staging.payments_raw,clean.claim_payments,Drop re-sent payment records
+staging.policies_raw,clean.policies,Standardise vehicle class and sum insured
+clean.claims,mart.claims_fact,Join to policy; compute days_to_settle
+clean.claim_payments,mart.claims_fact,Sum payments per claim
+clean.policies,mart.claims_fact,Join on policy number
+mart.claims_fact,report.claims_turnaround_dashboard,Daily refresh at 06:00
+mart.claims_fact,report.monthly_claims_ratio,Monthly query run by Finance
+report.monthly_claims_ratio,regulatory.insurance_quarterly_return,Copied by hand into the return workbook
+claims_doc_archive.files,ocr.claims_text,OCR on scanned pages; text read from PDFs
+ocr.claims_text,search.claims_index,"Chunk, attach metadata and index"
+core_banking.customer,staging.customer_raw,Nightly extract at 00:30
+staging.customer_raw,clean.customer,Fix phone format; remove test accounts; merge duplicates
+clean.customer,mart.customer_360,Join customer to products
+crm.contacts,mart.customer_360,Match on phone number
+mobile_money.switch_log,staging.mm_raw,Hourly file drop
+staging.mm_raw,clean.mm_transactions,Remove duplicate txn_id; parse both timestamp formats
+clean.mm_transactions,mart.customer_360,Monthly activity per customer
+mart.customer_360,report.customer_base_dashboard,Daily refresh at 06:30
+mart.customer_360,regulatory.bank_quarterly_return,Quarterly query run by Regulatory Reporting
+report.claims_turnaround_dashboard,board.quarterly_pack,Screenshot pasted into the pack
+report.customer_base_dashboard,board.quarterly_pack,Screenshot pasted into the pack

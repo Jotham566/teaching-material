@@ -1,0 +1,438 @@
+RESEARCH NOTES: ENTERPRISE DATA READINESS FOR AI
+Benchmark for a 12-session x 2 h executive programme, East African enterprises
+Compiled 2026-10-29
+
+METHOD AND RELIABILITY (read first)
+- Every item was "seen 2026-10-29" via WebSearch result summaries. Fetching primary pages was blocked for almost every host (github.com, eur-lex, iso.org, oxfordinsights.com, newvision.co.ug and others). So nearly all facts are secondary: a search snippet or a third-party page, not the primary document.
+- Where a figure rests on one secondary source it is marked "single source". Anything not confirmed is marked UNCONFIRMED. No figures were invented.
+- Before any figure goes onto a slide or into a handout, open the primary URL and check the wording. Licence statements especially need a look at each repo's LICENSE file.
+- Predictions (Gartner) are forecasts, not measurements. Survey statistics (Cisco, Deloitte, Accenture, S&P) come from vendor or analyst surveys with their own samples.
+
+==========================================================================
+SECTION 1. READINESS FRAMEWORKS AND WHAT EACH MEASURES
+==========================================================================
+
+1.1 Gartner, AI-ready data
+- Press release 26 Feb 2025, "Lack of AI-Ready Data Puts AI Projects at Risk" (Q&A with Roxane Edjlali).
+- Claim: "through 2026, organizations will abandon 60% of AI projects unsupported by AI-ready data." It is a prediction. The release also cites a Q3 2024 survey of 248 data management leaders: 63% said they lack, or are unsure they have, the right data management practices for AI. It recommends enterprise governance of AI (EGoAI). Gartner's message: AI-ready data needs practices that differ from traditional data management.
+- Exact wording came from a search summary and was not checked against the page. The 60% figure is widely repeated with no new evidence behind the repeats.
+- URL: https://www.gartner.com/en/newsroom/press-releases/2025-02-26-lack-of-ai-ready-data-puts-ai-projects-at-risk (seen 2026-10-29)
+
+1.2 McKinsey, State of AI
+- Newest edition reported: "The state of AI in 2026: On the road to ROI", published 25 Aug 2026. Survey 4 May to 8 Jun 2026, 1,719 participants, 97 countries. Reported findings: 89% of organisations use AI; 44% scaling enterprise-wide (38% in 2025); 37% report positive EBIT impact (unchanged from 2025); about 6% attribute 5% or more of EBIT to AI; about one in five say AI operating costs are starting to constrain use.
+- These figures come from third-party summaries (kanerika.com, digitalstrategy-ai.com), so check them against McKinsey's page.
+- Previous edition: "The state of AI in 2025: Agents, innovation, and transformation", survey 25 Jun to 29 Jul 2025, 1,993 participants, 105 countries. 88% used AI in at least one function; nearly two-thirds had not begun scaling; 23% scaling an agentic system, 39% experimenting; 39% reported enterprise-level EBIT impact.
+- Takeaway: adoption is broad and enterprise financial value is concentrated in a small group of high performers.
+- URL: https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai (seen 2026-10-29)
+
+1.3 DAMA-DMBOK2 (2017)
+- 11 knowledge areas, with Data Governance at the centre of the DAMA wheel: Data Governance; Data Architecture; Data Modeling and Design; Data Storage and Operations; Data Security; Data Integration and Interoperability; Document and Content Management; Reference and Master Data; Data Warehousing and Business Intelligence; Metadata Management; Data Quality. DMBOK2 added Data Integration and Interoperability to the first edition's 10.
+- Sogeti's list differs (it includes Data Lifecycle Management); treat as non-standard. A claim that a 2024 revision left the areas unchanged is single source, UNCONFIRMED.
+- DAMA maturity: no official DAMA maturity model was found. UNCONFIRMED. DMBOK is a body of knowledge (vocabulary and scope map). Maturity scoring is usually done with DCAM or CMMI DMM.
+- URLs: https://www.dataversity.net/data-concepts/what-is-the-data-management-body-of-knowledge-dmbok/ ; https://labs.sogeti.com/data-governance-frameworks-the-dama-dmbok/ (seen 2026-10-29)
+
+1.4 EDM Council DCAM
+- DCAM v3 announced 30 Jun 2025; the EDM Council 2026 benchmark report treats v3.1 as current. v3 has 8 components, 34 capabilities, 101 sub-capabilities (v2.2 had 38 capabilities and 136 sub-capabilities). Changes: Business Data Knowledge added as a component; two architecture components merged; Data Control Environment widened to include data management operations; new AI and cloud guidance.
+- Scoring: six levels, Not Initiated (1), Conceptual, Developmental, Defined, Achieved, Enhanced (6). One source says five levels; the EDM report and others say six.
+- UNCONFIRMED: the full list of all 8 v3 component names.
+- Takeaway: a capability scorecard for governing data across the organisation.
+- URLs: https://www.projectivegroup.com/dcam-v3-1-the-future-ready-framework-for-strategic-data-management/ ; https://edmcouncil.org/wp-content/uploads/2026/05/EDMA-Global-Data-Management-Benchmark-Report_2026.pdf (seen 2026-10-29)
+
+1.5 CMMI Data Management Maturity (DMM)
+- Launched by CMMI Institute in 2014. ISACA and CMMI merged in 2016, so ISACA owns it. Six categories, 25 process areas: Data Management Strategy; Data Governance; Data Quality; Data Operations; Platform and Architecture; Supporting Processes. Levels 1 to 5: Performed, Managed, Defined, Measured, Optimized (one source says six levels; the standard list is five).
+- UNCONFIRMED: current DMM version number (no "DMM 2.0" found). CMMI 2.0 (2018) and 3.0 (2023) are the general model, not the DMM.
+- Takeaway: a process-based maturity ladder.
+- URLs: https://www.dataversity.net/articles/case-data-management-maturity/ ; https://www.actian.com/what-is-data-management-maturity/ (seen 2026-10-29)
+
+1.6 Microsoft Cloud Adoption Framework for AI
+- AI adoption guide covers Plan, Ready, Govern, Secure, Manage; governance follows NIST AI RMF. A separate AI agent guide has four areas (plan, govern and secure, build, manage); its plan step includes a data architecture article built around Microsoft Fabric OneLake and governed data products.
+- Takeaway: an adoption lifecycle for the Azure platform with no scored data-maturity model.
+- URLs: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai/strategy ; https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai-agents/ (seen 2026-10-29)
+
+1.7 Google Cloud AI Adoption Framework
+- An older whitepaper. No current official readiness assessment page was found; whether it is still maintained is UNCONFIRMED. Four areas (people, process, technology, data), six themes (Learn, Lead, Access, Scale, Automate, Secure), three maturity levels (Tactical, Strategic, Transformational).
+- URL: https://services.google.com/fh/files/misc/ai_adoption_framework_whitepaper.pdf (seen 2026-10-29)
+
+1.8 AWS Cloud Adoption Framework for AI, ML and Generative AI
+- Six perspectives: Business, People, Governance, Platform, Security, Operations. A third-party summary adds four transformation stages (Envision, Align, Launch, Scale). The whitepaper page is marked "for historical reference only".
+- URL: https://docs.aws.amazon.com/whitepapers/latest/aws-caf-for-ai/aws-caf-for-ai.html (seen 2026-10-29)
+
+1.9 Databricks
+- Databricks AI Security Framework (DASF) 2.0, announced 12 Feb 2025 per coverage: 12 AI system components, 62 risks, 64 controls, plus a compendium mapping to MITRE ATLAS, OWASP, NIST, ISO 42001 and the EU AI Act. It is a security risk catalogue and not a data-readiness score.
+- Databricks AI Governance Maturity Model: data, process and people, five levels (Ad Hoc, Developing, Defined, Managed, Optimized).
+- A "Databricks AI Maturity Model" assessment appears in its AI toolkit; stage names UNCONFIRMED.
+- URLs: https://www.databricks.com/blog/announcing-databricks-ai-security-framework-20 ; https://www.databricks.com/blog/ai-governance-maturity-model (seen 2026-10-29)
+
+1.10 Snowflake
+- No single readiness report. Snowflake and Enterprise Strategy Group, "Radical ROI of Generative AI", 15 Apr 2025, 1,900 leaders surveyed: 92% said AI pays for itself; 58% said making data AI-ready is a challenge.
+- An open "AI-Ready Data Framework" in Snowflake-Labs scores data assets on six factors; only four confirmed: Clean, Contextual, Consumable, Current. The other two UNCONFIRMED.
+- URLs: https://www.snowflake.com/en/news/press-releases/snowflake-research-reveals-that-92-percent-of-early-adopters-see-roi-from-ai-investments/ ; https://github.com/Snowflake-Labs/ai-ready-data (seen 2026-10-29)
+
+1.11 Cisco AI Readiness Index 2025
+- Third annual edition, released 14 Oct 2025. Double-blind survey of 8,000 senior leaders at companies with more than 500 employees in 26 industries. Six pillars: Strategy, Infrastructure, Data, Governance, Talent, Culture.
+- Tiers by score: Pacesetters above 86 (13% of organisations, same share three years running); Chasers 61-85 (36%); Followers 31-60 (48%); Laggards 0-30 (3%).
+- Headlines: Pacesetters are 4x more likely to move pilots into production; 15% have AI-ready networks; 19% have fully centralised data infrastructure; 83% plan to deploy agents.
+- UNCONFIRMED: whether a 2026 edition exists (not checked).
+- URL: https://investor.cisco.com/news/news-details/2025/Cisco-AI-Research-The-Most-AI-ready-Companies-Outpace-Peers-in-the-Race-to-Value/default.aspx (seen 2026-10-29)
+
+1.12 MIT CISR
+- No formal data maturity model found. Work centres on data monetisation and data liquidity (Wixom and colleagues). Data liquidity is the ease of reusing and recombining data assets. Five data monetisation capabilities: data asset, data platform, data governance, data science, customer understanding. 2024 survey (N=349): high-liquidity organisations reported data sharing 28% easier and monetisation impact 24% greater.
+- URLs: https://cisr.mit.edu/publication/2025_1101_DataLiquidityLevers_WixomRodriguezPiccoliBeath ; https://cisr.mit.edu/publication/DataMonetization_Framework (seen 2026-10-29)
+
+1.13 Deloitte, State of AI in the Enterprise 2026: The Untapped Edge
+- Published Jan 2026; 3,235 leaders, 24 countries, fieldwork Aug-Sep 2025. Worker access to sanctioned AI tools grew from under 40% to about 60%; 25% have moved 40% or more of experiments into production; 34% are reimagining products or business models; 21% have proper governance for agents. Self-rated high preparedness: strategy about 40%, governance 30%, infrastructure 43%, data management 40%, talent 20% (these preparedness figures come from secondary coverage at hpcwire.com/bigdatawire, UNCONFIRMED against the PDF).
+- URL: https://www.deloitte.com/content/dam/assets-shared/docs/about/2025/state-of-ai-2026-global.pdf (seen 2026-10-29)
+
+1.14 Accenture
+- "The front-runners' guide to scaling AI" (6 May 2025), 2,000 companies: 15% reinvention-ready, 8% front-runners; front-runners had 7% higher revenue growth in 2023 than companies only experimenting.
+- Earlier "Reinventing Enterprise Operations" (2024): 61% of companies say their data assets are not ready for GenAI; 70% find it hard to scale projects using proprietary data.
+- URLs: https://www.accenture.com/content/dam/accenture/final/accenture-com/document-3/Accenture-Front-Runners-Guide-Scaling-AI-2025-POV.pdf ; https://www.accenture.com/content/dam/accenture/final/accenture-com/document-3/Reinventing_Enterprise_Operations.pdf (seen 2026-10-29)
+
+1.15 FAIR principles
+- Wilkinson et al., Scientific Data 3:160018 (2016): 15 principles in four groups. Findable (F1-F4), Accessible (A1, A1.1, A1.2, A2), Interoperable (I1-I3), Reusable (R1-R1.3). Origin is research data; it is a principle set and no enterprise maturity scale.
+- The sub-principle detail in the search results was partly from the agent's own memory; confirm against the paper before citing.
+- URL: https://www.nature.com/articles/sdata201618 (seen 2026-10-29)
+
+1.16 Share of enterprise data that is unstructured
+- No primary source found. Nearly every page repeats the claim without a citation. Variants seen:
+  * Gartner-attributed: "80-90% of new enterprise data" is unstructured (paraphrases drop "new").
+  * A Gartner analyst (Mark Beyer, 2026) cited at 70-90% of organisational data.
+  * IDC: 92.9% of data generated worldwide in 2023 was unstructured, falling below 83% by 2028. This models all data generated worldwide and not data held by organisations.
+  * An August 2023 IDC white paper sponsored by Box says 90% of an organisation's data is unstructured.
+  * One analysis traces "80%" to a 1998 Merrill Lynch report that said only that some estimates ran as high as 80%.
+  * IDC forecasts structured data growing 49.3% a year against 21.4% for unstructured through 2028.
+- Nobody counts files, so every figure is an estimate. Suggested wording for the course: "analysts estimate 80-90%", naming report, year and what is measured. UNCONFIRMED: the original Gartner or IDC document.
+- URLs: https://www.docsumo.com/blog/unstructured-data-statistics ; https://automationhero.ai/blog/making-sense-of-the-rise-of-unstructured-data/ (seen 2026-10-29)
+
+1.17 GenAI pilot failure statistics, with caveats
+a) MIT NANDA, "The GenAI Divide: State of AI in Business 2025" (July 2025)
+- Headline: 95% of organisations get zero return despite an estimated 30-40 billion USD enterprise GenAI investment; only about 5% of custom enterprise AI tools reach production.
+- Evidence base: review of 300+ public AI initiatives, interviews with 52 organisations, 153 survey responses from senior leaders at four industry conferences. Research ran Jan to Jun 2025. The report is labelled preliminary. Success was defined narrowly (a marked, sustained productivity or P&L gain); the full wording was cut off in the search result.
+- Critiques (sourced): small non-random conference sample; self-selected interviewees; six-month window; "no P&L impact", "never reached production" and "failure" are conflated; Fortune inflated the sample size; a working paper judged the statistics descriptive and not inferential.
+- Suggested use: "preliminary MIT NANDA research", never "a pilot failure rate". UNCONFIRMED: exact report wording of the 95% sentence.
+- URLs: https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf (mirror) ; https://80000hours.org/podcast/episodes/ai-workplace-mit-study/ ; https://www.researchgate.net/publication/395385899_Working_Paper_-_Reassessing_AI_Pilot_Failure_Rates_A_Scoping_Review_and_Managerial_Implications (seen 2026-10-29)
+
+b) Gartner, 29 Jul 2024: "30% of Generative AI Projects Will Be Abandoned After Proof of Concept By End of 2025"
+- Causes named: poor data quality, inadequate risk controls, escalating costs, unclear business value. Analyst Rita Sallam. Deployment cost cited as 5-20 million USD. A forecast. UNCONFIRMED: no source found that checks whether the 30% happened.
+- URL: https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025 (as cited by Informatica; seen 2026-10-29). Mirror: https://www.hpcwire.com/bigdatawire/this-just-in/gartner-predicts-30-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025/
+
+c) Gartner, 25 Jun 2025: "Over 40% of Agentic AI Projects Will Be Canceled by End of 2027"
+- Reasons: escalating costs, unclear business value, inadequate risk controls. Analyst Anushree Verma. Poll: Jan 2025, 3,412 webinar attendees (19% significant investment, 42% conservative, 8% none, 31% waiting or unsure). Gartner says "agent washing" is common, with only about 130 of thousands of agentic vendors real.
+- URL: https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027 (seen 2026-10-29)
+
+d) S&P Global Market Intelligence (451 Research, Voice of the Enterprise: AI and Machine Learning, Use Cases 2025)
+- Share of companies abandoning most AI initiatives before production rose from 17% to 42%; the average organisation scrapped 46% of proofs of concept before production. 1,006 respondents in North America and Europe, fielded 21 Oct to 25 Nov 2024. Top obstacles: cost, data privacy and security risks. Some secondary sources wrongly say 42% abandoned AI altogether, or credit Deloitte.
+- URLs: https://www.spglobal.com/market-intelligence/en/news-insights/research/2025/10/generative-ai-shows-rapid-growth-but-yields-mixed-results ; https://www.ciodive.com/news/AI-project-fail-data-SPGlobal/742590/ (CIO Dive, 14 Mar 2025) (seen 2026-10-29)
+
+==========================================================================
+SECTION 2. GOVERNANCE, RISK AND LEGAL STANDARDS
+==========================================================================
+Note: EUR-Lex, ISO and ULII fetches were blocked. Nothing here was read from primary text.
+
+2.1 NIST AI RMF 1.0 (NIST AI 100-1)
+- Published 26 Jan 2023. Voluntary. Four functions: Govern, Map, Measure, Manage. Govern applies across the organisation; the other three apply per AI system.
+- Per-function category and subcategory counts (6/19, 5/18, 4/18, 4/13) come from one vendor page: UNCONFIRMED.
+- URL: https://www.nist.gov/itl/ai-risk-management-framework ; https://nexurion.io/frameworks/nist-ai-rmf (seen 2026-10-29)
+
+2.2 NIST AI 600-1, Generative AI Profile
+- Released 26 Jul 2024. Extends the RMF with generative-AI risks and suggested actions; no new functions. Lists 12 risks including confabulation, data privacy and value-chain risks. The count of 211 actions is from a single secondary source (others say "200+"): UNCONFIRMED. The link to Executive Order 14110 is single source: UNCONFIRMED.
+- URL: https://www.cyberarrow.io/blog/nist-ai-rmf-generative-ai-profile/ (seen 2026-10-29)
+
+2.3 ISO/IEC 42001:2023
+- Published 18 Dec 2023 (one catalogue says 17 Dec). First AI management system standard. Uses the harmonised structure (clauses 4 to 10), so it integrates with ISO 27001. Certificates last three years. ISO/IEC 42006 (for bodies that audit AI management systems), July 2025, single source: UNCONFIRMED.
+- URLs: https://www.scrut.io/post/ultimate-guide-to-iso-42001-2023 ; https://standards.iteh.ai/catalog/standards/iso/bd05d78b-c39b-4578-b771-cf7c184d9410/iso-iec-42001-2023 ; https://www.konfirmity.com/blog/iso-42001 (seen 2026-10-29)
+
+2.4 ISO/IEC 27001:2022
+- Third edition, published Oct 2022. Annex A has 93 controls (11 new, 24 merged, 58 updated). Transition deadline for certified clients was 31 Oct 2025, so 2013-edition certificates have lapsed.
+- URL: https://en.wikipedia.org/wiki/ISO/IEC_27001 (seen 2026-10-29)
+
+2.5 ISO/IEC 5259 series (data quality for analytics and ML)
+- Part 1 (overview, terminology, examples): 2024-07-02. Part 2 (data quality measures): Nov 2024. Parts 3 (management requirements and guidelines) and 4 (process framework) listed as 2024; Part 5 (governance framework) listed as 2025; exact dates for 3 to 5 UNCONFIRMED. Part 6 (visualisation framework, Technical Report) reportedly May 2026, single blog: UNCONFIRMED. Some national adoptions carry 2025 dates (for example BS EN ISO/IEC 5259-1:2025 to -4:2025); these are adoption dates.
+- URLs: https://www.iso.org/standard/81088.html ; https://cdn.standards.iteh.ai/samples/81860/6ac019c359644309afa716572bb73edc/ISO-IEC-5259-2-2024.pdf ; https://www.iso.org/publication/PUB200525.html ; https://blog.pebblous.ai/project/ISO5259/5259-6-visualization-framework/en/ (seen 2026-10-29)
+
+2.6 ISO 8000 (data quality)
+- ISO 8000-61:2016 data quality management process reference model (confirmed 2022). ISO 8000-110:2021 master data exchange (published 2021-11-15, replaces the 2009 edition). ISO 8000-8:2015 (year from a list source: UNCONFIRMED). ISO 8000-1 (2022), 8000-2 (2020) and 8000-64 (2022) from a secondary overview: dates UNCONFIRMED.
+- URLs: https://www.iso.org/standard/63086.html ; https://www.iso.org/standard/78501.html ; https://quality.arc42.org/standards/iso-8000 (seen 2026-10-29)
+
+2.7 EU AI Act Article 10 (data and data governance)
+- Applies to high-risk systems that train models; paragraphs 2 to 5 cover training, validation and testing data. If a system does not train models, they apply to testing data only.
+- 10(2): governance and management practices for design choices, annotation, labelling, cleaning, enrichment, aggregation. 10(2)(f) and (g): examine data for bias and take measures to detect, prevent, mitigate. 10(3): data sets relevant, sufficiently representative, as error-free and complete as possible, with appropriate statistical properties. 10(5): exceptional processing of special-category personal data for bias correction, with safeguards.
+- URLs: https://ai-act-law.eu/article/10/ ; https://www.artificial-intelligence-act.com/Artificial_Intelligence_Act_Article_10.html (seen 2026-10-29)
+
+2.8 EU AI Act timeline and the Digital Omnibus (status as reported for Oct 2026)
+- Commission proposed the Digital Omnibus on AI on 19 Nov 2025. Council position 13 Mar 2026. Political agreement 7 May 2026. Parliament adopted 16 Jun 2026; Council 29 Jun 2026.
+- Reported as Regulation (EU) 2026/1744, dated 8 Jul 2026, published in the Official Journal 24 Jul 2026, in force 27 Jul 2026. It amends Regulations 2024/1689, 2018/1139 and 2023/1230.
+- Annex III high-risk obligations (Chapter III Sections 1 to 3, which include Article 10) move from 2 Aug 2026 to 2 Dec 2027. Annex I product-embedded high-risk systems move to 2 Aug 2028 (seen in the Dutch EUR-Lex snippet and secondary sources; recheck in the English text). The final text uses fixed dates; the proposed trigger tied to availability of standards was dropped.
+- Other changes: Article 50(2) machine-readable marking grace period to 2 Dec 2026 for systems on the market before 2 Aug 2026; new Article 5 prohibitions (non-consensual intimate imagery, child sexual abuse material) from 2 Dec 2026; national sandboxes to 2 Aug 2027; SME relief extended to small mid-caps.
+- Chronology and details rest on secondary sources, and the EUR-Lex page was seen as a snippet only.
+- URLs: https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng ; https://lawandtechnology.eu/en/digital-omnibus-on-ai-official-journal-regulation-2026-1744/ ; https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/ ; https://www.technology.org/2026/10/13/eu-ai-act-deadlines-after-the-digital-omnibus-what-applies-from-december-2026-to-august-2028/ (seen 2026-10-29)
+
+2.9 OECD AI Principles
+- Adopted 22 May 2019 (Council Recommendation OECD/LEGAL/0449). "AI system" definition revised 8 Nov 2023. Further revision 3 May 2024 (general-purpose and generative AI, environmental sustainability, safety, traceability and risk management under accountability). Non-binding. Number of adherents UNCONFIRMED (sources conflict: 47 versus 50 plus the EU).
+- URLs: https://oecd.ai/en/ai-principles ; https://www.dataguidance.com/news/international-oecd-updates-ai-principles (seen 2026-10-29)
+
+2.10 African Union Continental AI Strategy
+- Endorsed by the AU Executive Council at its 45th Ordinary Session, Accra, 18-19 Jul 2024. Non-binding. Five focus areas, 15 action areas. Implementation 2025 to 2030; Phase I (2025-2026) covers governance, national strategies and capacity.
+- URLs: https://au.int/en/documents/20240809/continental-artificial-intelligence-strategy ; https://www.whitecase.com/insight-our-thinking/ai-watch-global-regulatory-tracker-african-union (seen 2026-10-29)
+
+2.11 Uganda Data Protection and Privacy Act 2019 and Regulations 2021
+- Act commenced 3 May 2019; Regulations in effect 12 Mar 2021. The Personal Data Protection Office (PDPO) sits under NITA-U, operationalised Aug 2021.
+- Section 19: processing or storage outside Uganda is allowed if the destination offers at least equivalent protection, or the data subject consents. Regulation 30 bars onward transfer to a third country without consent. The "appropriate safeguards" wording is commentary: UNCONFIRMED. DLA Piper reports the PDPO says no per-transfer approval is needed but organisations must keep records of legal basis and safeguards; there is no SCC or adequacy-list mechanism.
+- Registration with the PDPO. July 2025: PDPO found Google in breach of section 29 (registration) and section 19, rejecting the argument that section 19 covers only controllers based in Uganda. A Feb 2026 action against WhatsApp/Meta appears in a search summary only: UNCONFIRMED at primary level.
+- Breach notification: "immediately" to the PDPO under section 23(1) and Regulation 33, on the prescribed form; no fixed hour limit; the PDPO decides whether data subjects must be told (section 23(3)); registered entities file annual breach reports. Designation of a DPO (section 6) comes from a secondary source: UNCONFIRMED against the statute; no appointment criteria found.
+- URLs: https://dataprotection.gi/jurisdictions/uganda/ ; https://globallawexperts.com/international-data-transfers-uganda/ ; https://cipesa.org/2025/07/ugandan-regulator-finds-google-in-breach-of-countrys-data-protection-law-orders-local-registration/ ; https://www.cliffedekkerhofmeyr.com/en/news/publications/2025/Sectors/Technology-Communications/technology-and-communications-alert-13-august-to-register-or-not-to-register-the-ugandan-personal-data-protection-offices-decision-on-the-registration-of-data-controllers ; https://amstelconsulting.ng/blog/uganda-data-breach-notification.html ; https://privacymatters.dlapiper.com/2025/08/uganda-data-protection-regulator-clarifies-compliance-requirements-for-offshore-entities/ (seen 2026-10-29)
+
+2.12 Kenya Data Protection Act 2019
+- Localisation: section 50 and Regulation 26 of the 2021 General Regulations. One source says controllers must keep at least one serving copy in Kenya and strategic-interest data must be processed in Kenya; exact categories UNCONFIRMED. The ODPC issued cross-border transfer guidance in 2026 (full text not read).
+- Penalty under section 63: up to KES 5 million or 1% of turnover. Whether it is "whichever is lower" is UNCONFIRMED (sources differ).
+- Enforcement figures (more than 9,000 complaints, over 350 determinations, 134 enforcement notices, 20 penalty notices) are from a law-firm blog: UNCONFIRMED. Status of the Compliance Audit Regulations (gazetted or draft) UNCONFIRMED. A Data Protection (Amendment) Bill 2025 adding AI governance and cross-border controls: single blog, UNCONFIRMED.
+- URLs: https://servercore.com/blog/articles/kenya-data-protection-act-data-residency/ ; https://tangaraadvocates.co.ke/data-protection-compliance-in-kenya/ ; https://globallawexperts.com/kenyas-dataprotection-enforcement-turn-2026-audits/ ; https://www.odpc.go.ke/wp-content/uploads/2026/04/Guidance-Note-on-Cross-border-Data-Transfers.pdf (seen 2026-10-29)
+
+2.13 Rwanda Law 058/2021
+- Article 48 allows transfers abroad with National Cyber Security Authority (NCSA) authorisation (after proving safeguards), consent, contractual necessity or other listed grounds. Article 50 allows storage outside Rwanda only with a valid registration certificate authorising offshore storage. NCSA may suspend transfers.
+- URLs: https://rwandalii.org/akn/rw/act/law/2021/58/eng@2021-10-15 ; https://dpo.gov.rw/faqs ; https://digitalpolicyalert.org/change/12073 (seen 2026-10-29)
+
+2.14 Tanzania Personal Data Protection Act 2022
+- In force 1 May 2023 (GN 326 of 2023, one source). PDPC fully operational 3 Apr 2024. Regulations of 12 May 2023 include the Processing Regulations (GN 449C). Registration mandatory, five-year term. Registration reportedly closed Apr 2026 after extensions, followed by enforcement (secondary source: UNCONFIRMED). Cross-border transfer needs adequacy or safeguards plus a PDPC permit (Regulation 20).
+- URLs: https://www.dlapiperdataprotection.com/?c=TZ&t=l ; https://www.afriwise.com/blog/legal-and-compliance-requirements-for-cross-border-personal-data-transfers-under-tanzanias-personal-data-protection-framework (seen 2026-10-29)
+
+2.15 Uganda national AI and data strategy status
+- National Data Strategy 2026/27 to 2030/31 launched 20 Oct 2026 by State Minister Joyce Nabbosa Ssebugwawo, with UNDP and UN Global Pulse. Three pillars: data governance, data infrastructure, strategic data utilisation. UBC reports an investment of about UGX 1.663 trillion. UBOS has publicly called the strategy illegal, saying it overlaps with the bureau's statutory mandate.
+- The Permanent Secretary called it the "bedrock for the upcoming" National AI Strategy, which implies the AI strategy is not yet published. No published national AI strategy was found: UNCONFIRMED.
+- Ministry of ICT held stakeholder consultations on a National AI and Emerging Technologies Strategy in Mar 2026. A NITA-U terms of reference dated Aug 2026 mentions reviewing that strategy. Chambers 2026 says the Ministry is weighing a standalone AI Act against a sector-led approach, decision pending.
+- UNCONFIRMED: status of the Uganda Digital Transformation Roadmap (not searched).
+- URLs: https://ubc.go.ug/2026/10/20/uganda-launches-ugx-1-663-trillion-national-data-strategy-to-drive-digital-economy-and-public-planning ; https://allafrica.com/stories/202610220531.html ; https://pctechmag.com/2026/10/ministry-of-ict-launches-the-uganda-national-data-strategy/ ; https://ict.go.ug/media/news/ministry-engages-stakeholders-on-ugandas-national-emerging-technologies-strategy ; https://www.nita.go.ug/sites/default/files/2026-08/Terms_of_Reference_for_a_Development_of_a_National_Digital_Skills_Final_0.pdf ; https://practiceguides.chambers.com/practice-guides/artificial-intelligence-2026/uganda (seen 2026-10-29)
+
+2.16 Sector regulators
+- Bank of Uganda: Cyber and Technology Risk Management Guidelines took effect 1 Dec 2024 (PwC Uganda post); whether they address cloud or AI is UNCONFIRMED. A Uganda Bankers' Association reform report refers to BoU outsourcing guidelines needing clarification on "major part of data processing function"; the guidelines text was not found, so any cloud-specific rule is UNCONFIRMED. No BoU AI-specific rule found; per Chambers 2026 BoU supervises AI through existing prudential tools.
+- IRA: Insurance (Licensing and Governance) Regulations 2020 reportedly require IRA approval of outsourcing (secondary source, UNCONFIRMED). No IRA AI guidance found.
+- UCC: Minimum Cybersecurity Guidelines (June 2025) per Chambers. No UCC AI guidance found.
+- Comparison, Tanzania: Bank of Tanzania Cloud Computing Guidelines for financial service providers (2023, reported reissued 2025) require prior written approval, and mission-critical systems cannot sit in a primary data centre outside Tanzania.
+- Kenya CBK: 2025 AI-in-banking survey (about 50% of respondents had some AI implementation; 65% of those used it for credit risk; 93-95% asked for guidance). CBK said in Nov 2025 it was finalising an AI Guidance Note; no final note found, UNCONFIRMED. Revised draft risk-management and prudential instruments released 10 Sep 2026, comments due 7 Nov 2026, touching model risk and data governance, not AI-specific (not verified in the original).
+- Kenya National AI Strategy 2025-2030 launched 27 Mar 2025 (CS William Kabogo), three pillars, implementation budget about KSh 152 billion. A draft Kenya AI and Emerging Technologies Policy 2026 and draft AI Bill reported by a single blog: UNCONFIRMED.
+- Rwanda: Cabinet approved the National AI Policy on 20 Apr 2023 (MINICT and RURA led drafting).
+- URLs: https://x.com/PwC_UG/status/1857412449156186140 ; https://ugandabankers.org/Banking-Sector-Regulatory-Reform-Report%20(1).pdf ; https://practiceguides.chambers.com/practice-guides/tmt-2026/uganda ; https://www.bot.go.tz/webdocs/Feedback/en/2023022309152169.pdf ; https://www.centralbank.go.ke/uploads/banking_sector_annual_reports/1241268828_ANNUAL%20REPORT%202025.pdf ; https://peopledaily.digital/business/cbk-calls-for-responsible-innovation-in-kenyas-financial-sector ; https://vellum.co.ke/cbk-sets-new-expectations-for-ai-risk-management-in-the-banking-sector/ ; https://bowmanslaw.com/insights/kenya-unveiling-of-the-national-ai-strategy-2025-2030-a-bold-step-into-the-future/ ; https://taristudio.africa/blog/kenya-national-ai-strategy-progress ; https://thefuturesociety.org/cabinet-of-rwanda-approves-national-ai-policy/ (seen 2026-10-29)
+
+==========================================================================
+SECTION 3. TECHNICAL PRACTICE FOR SEMANTIC SEARCH AND RAG READINESS
+==========================================================================
+IMPORTANT: web_fetch was blocked for every host, so no LICENSE file was read. Licences below come from search summaries and third-party pages. Before legal sign-off, open each repo's LICENSE file. All seen 2026-10-29. "Free commercial" means free to use in a commercial setting; paid managed or enterprise offerings are noted separately.
+
+3.1 Vector stores and search
+- pgvector: adds vector similarity search to PostgreSQL. PostgreSQL License (permissive, OSI-approved). Free commercial. GitHub's detector shows NOASSERTION because it does not recognise the text. https://github.com/pgvector/pgvector/blob/master/LICENSE ; https://formulae.brew.sh/formula/pgvector
+- Qdrant: Rust vector database. Apache-2.0. Free commercial. Qdrant Cloud is a separate managed service (terms not checked). Licence of any enterprise builds UNCONFIRMED. https://github.com/qdrant/qdrant ; https://dbdb.io/db/qdrant
+- Chroma: embedding database (embedded, single-node or distributed). Apache-2.0 per third-party summaries. Free commercial. Chroma Cloud is separate. https://en.wikipedia.org/wiki/Chroma_(vector_database)
+- OpenSearch: search and vector engine forked from Elasticsearch in 2021. Apache-2.0. Free commercial. Since 16 Sep 2024 governed by the OpenSearch Software Foundation under the Linux Foundation; licence unchanged. https://www.linuxfoundation.org/blog/how-the-opensearch-software-foundation-will-ensure-long-term-sustainability-of-the-opensearch-project ; https://opensearch.org/foundation/
+- FAISS: similarity-search library from Meta. MIT (history: CC-BY-NC, then BSD 2017, BSD+Patents, then MIT from v1.5.2, 2019). Free commercial. https://github.com/facebookresearch/faiss ; https://en.wikipedia.org/wiki/FAISS
+- Milvus: distributed vector database. Apache-2.0. Free commercial. LF AI and Data Graduated project (June 2021). Zilliz sells Zilliz Cloud. A registry check dated 2026-08-13 found no separately licensed enterprise directory. A Milvus 3.0 article (Aug 2026) exists; its licence is UNCONFIRMED. https://github.com/milvus-io/milvus ; https://en.wikipedia.org/wiki/Milvus_(vector_database) ; https://www.opensourceforu.com/2026/08/milvus-3-0-brings-lake-native-ai-retrieval-to-open-data/
+- Elasticsearch (contrast only): Apache-2.0 until 7.11 (2021), then SSPL plus Elastic License v2 (not OSI open source). On 29 Aug 2024 Elastic added AGPLv3 as a third option for Elasticsearch and Kibana (Elastic FAQ dates it Sep 2024). Default distributions remain ELv2; commercial features are paid. https://ir.elastic.co/News--Events/news/news-details/2024/Elastic-Announces-Open-Source-License-for-Elasticsearch-and-Kibana-Source-Code/default.aspx ; https://www.elastic.co/pricing/faq/licensing ; https://www.devclass.com/databases/2024/09/02/elasticsearch-will-be-open-source-again-as-cto-declares-changed-landscape/1618331
+
+3.2 RAG frameworks
+- LlamaIndex: data and RAG framework. MIT. Free commercial. LlamaCloud and LlamaParse are paid. LlamaIndexTS archived 30 Apr 2026. https://github.com/run-llama/llama_index ; https://developers.llamaindex.ai/python/framework/
+- LangChain and LangGraph: LLM orchestration libraries. MIT. Free commercial. LangSmith is paid; LangGraph Platform folded into LangSmith Deployment around Oct 2025. https://www.langchain.com/langchain ; https://www.zenml.io/blog/langgraph-pricing
+- Haystack (deepset): pipeline and RAG framework. Apache-2.0. Free commercial. Haystack Enterprise is a separate paid tier in a private repo. https://github.com/deepset-ai/haystack ; https://www.aipotluck.org/org/deepset
+
+3.3 Document parsing
+- Docling: converts documents for gen AI. MIT; hosted in LF AI and Data. Free commercial. Model weights carry their own licences (Granite-Docling-258M is Apache-2.0). A claim it moved to the Agentic AI Foundation is UNCONFIRMED. https://github.com/docling-project/docling ; https://docling.org/about/
+- Unstructured: document ETL library. Apache-2.0 (library and unstructured-api repo). Free commercial. Paid hosted platform is separate; its feature differences UNCONFIRMED. https://github.com/Unstructured-IO/unstructured ; https://github.com/Unstructured-IO/unstructured-api
+- Apache Tika: detects file types, extracts text and metadata. Apache-2.0. Free commercial. 4.0.0 shipped 23 Aug 2026; 4.1.0 reported latest; 3.x gets fixes only. https://tika.apache.org/download.html ; https://mvnrepository.com/artifact/org.apache.tika/tika-core
+
+3.4 Embeddings
+- sentence-transformers: embedding library. Apache-2.0, kept after moving to Hugging Face. Free commercial. https://github.com/huggingface/sentence-transformers/blob/main/LICENSE ; https://huggingface.co/blog/sentence-transformers-joins-hf
+- BAAI/bge-m3: MIT, from a derivative repo citing inheritance; model card field not seen: UNCONFIRMED. https://huggingface.co/BAAI/bge-m3
+- intfloat/multilingual-e5-large: MIT per arXiv paper; base and small variants not checked: UNCONFIRMED. https://arxiv.org/pdf/2212.03533
+- Fine-tuned derivatives can carry a different licence from the base model; check each model card.
+- No multilingual evaluation for Luganda, Swahili or Kinyarwanda retrieval was searched. UNCONFIRMED for course use; test locally.
+
+3.5 RAG evaluation
+- Ragas: RAG evaluation metrics. Apache-2.0. Free commercial. Repo moved from explodinggradients to the vibrantlabsai org; one tracker shows last release v0.4.3 on 2026-01-13. https://github.com/explodinggradients/ragas/blob/main/LICENSE ; https://futureagi.com/blog/best-open-source-eval-frameworks-2026/
+- TruLens: LLM app evaluation and tracing. MIT. Free commercial. Stewarded by Snowflake since the TruEra acquisition (May 2024). https://futureagi.com/blog/best-llm-eval-libraries-2026/
+- DeepEval: LLM test framework. Apache-2.0 per README (one guide wrongly says MIT). Free commercial. Confident AI is the paid platform. https://github.com/confident-ai/deepeval ; https://inference.net/content/llm-evaluation-tools-comparison/
+
+3.6 Catalogue and lineage
+- OpenMetadata: metadata catalogue, lineage, quality. Apache-2.0 per README. One comparison (datatrail.ai, licence files read 21 Sep 2026) says the ingestion framework and UI ship under a Collate Community Licence 1.0 that bars running it as a competing hosted service. Single source: UNCONFIRMED; check repo files. https://github.com/open-metadata/openmetadata ; https://datatrail.ai/blog/openmetadata-vs-datahub
+- DataHub: metadata platform. Apache-2.0. Free commercial. DataHub Cloud (formerly Acryl) is open-core; some features may not reach the open repo. https://datapace.ai/blog/openmetadata-vs-datahub
+- Apache Atlas: metadata and governance for the Hadoop ecosystem. Apache-2.0. https://atlas.apache.org/
+- Amundsen: data discovery. ARCHIVED. Repo archived 10 Sep 2026 "due to inactivity" per Atlan (vendor source); last release databuilder 7.5.1 on 14 Aug 2024. LF AI and Data page still lists it as incubation without noting this. Do not recommend. https://github.com/amundsen-io/amundsen/issues/2350 ; https://lfaidata.foundation/projects/amundsen/ ; https://atlan.com/amundsen-vs-datahub/
+- OpenLineage: open lineage event standard. Apache-2.0. LF AI and Data Graduated project. https://github.com/OpenLineage/openlineage
+- Marquez: OpenLineage reference implementation. Apache-2.0. LF AI and Data Graduated (blog 7 Feb 2024). One tracker says maintenance mode since 2025, last tag 0.51.1 in Mar 2025, not archived: single source. https://github.com/MarquezProject/marquez ; https://lfaidata.foundation/blog/2024/02/07/lf-ai-data-foundation-announces-graduation-of-marquez-project/
+
+3.7 Data quality and transformation
+- Great Expectations (GX Core): data validation. Apache-2.0 per official site. Free commercial. Reported: GX Cloud discontinued 1 Jun 2026 after an acquisition (one source says FICO); Fivetran reported steward of GX Core (announced 13 May 2026). These come from third-party sites: UNCONFIRMED. https://greatexpectations.io/ ; https://datatrail.ai/great-expectations-pricing ; https://datastackindex.com/data-observability/tools/great-expectations/
+- Soda Core: data quality checks. LICENCE CHANGE. v3 Apache-2.0; v4 (about Jan 2026) moved to Elastic License 2.0 (source-available). Free for internal production use; cannot be offered as a managed service. Third parties disagree (one page still says Apache-2.0; one review says the repo reports NOASSERTION). Soda Core 4.25.0 released Oct 2026. https://soda.io/blog/soda-core-license-update-moving-to-elastic-license ; https://docs.soda.io/release-notes/soda-core ; https://hysenlabs.com/projects/sodadata-soda-core
+- dbt Core: SQL transformation and tests. Apache-2.0 for v1.x per dbt docs. Fivetran and dbt Labs completed their all-stock merger on 1 Jun 2026 (announced 13 Oct 2025). Fusion engine entered public beta 28 May 2025 under ELv2. On 1 Jun 2026 the runtime moved into the dbt-core repo under Apache-2.0 and dbt-fusion was archived. v2 reached general availability about 15-16 Sep 2026; the Fusion engine is now called dbt and the Apache-2.0 distribution is called dbt OSS. The free v2 binary ships under the dbt Product Licensing Agreement and contains some proprietary code; one commentator says dbt's docs describe v2 as proprietary. Check which artefact you install. https://docs.getdbt.com/blog/dbt-core-v2-is-here ; https://www.getdbt.com/blog/fivetran-dbt-20-future ; https://wiki.licenseware.io/wiki/dbt-open-source-and-product-licensing/ ; https://www.techzine.eu/news/analytics/141758/fivetran-and-dbt-labs-complete-merger-data-infrastructure-for-reliable-agentic-ai/
+- Pandera: DataFrame schema validation. MIT. Free commercial. Union.ai sponsors. https://github.com/unionai-oss/pandera/blob/main/LICENSE.txt ; https://github.com/unionai-oss/pandera
+
+3.8 Orchestration and ingestion
+- Apache Airflow: workflow orchestration. Apache-2.0. Latest stable 3.3.0 (6 Jul 2026). https://en.wikipedia.org/wiki/Apache_Airflow
+- Dagster: asset-based orchestration. Apache-2.0. Dagster+ is commercial. One comparison says Prefect acquired Dagster Labs on 13 Jul 2026: single source, UNCONFIRMED. https://github.com/dagster-io/dagster
+- Prefect: Python workflow orchestration. Apache-2.0. https://www.prefect.io/opensource/
+- Airbyte: ELT connectors. Core under Elastic License 2.0 (source-available, not OSI open source) since 0.30.0 (2021). Current docs say connectors and public repos are also ELv2 except airbyte-protocol (MIT); third-party guides saying connectors are MIT look outdated. Self-hosting is free; cannot offer as a managed service. Cloud, Enterprise and Agents need a commercial licence. https://docs.airbyte.com/platform/developer-guides/licenses/ ; https://airbyte.com/blog/move-to-elv2
+- Apache NiFi: dataflow routing and transformation. Apache-2.0. Latest 2.12.0 (13 Sep 2026). https://github.com/apache/nifi/releases ; https://cwiki.apache.org/confluence/spaces/NIFI/pages/60624477/Release+Notes
+
+3.9 Storage formats and engines
+- Parquet: columnar file format. Apache-2.0. https://projects.apache.org/project.html?parquet=
+- Apache Iceberg and Apache Hudi: lakehouse table formats. Apache-2.0 (ASF). https://www.dremio.com/blog/comparison-of-data-lake-table-formats-apache-iceberg-apache-hudi-and-delta-lake/
+- Delta Lake: lakehouse table format. Apache-2.0 under the Linux Foundation. A claim that some Databricks tooling (Delta Sharing server) is BSL: single source, UNCONFIRMED. https://risingwave.com/blog/apache-iceberg-vs-delta-lake-vs-hudi-comparison/
+- DuckDB: in-process analytical SQL engine. MIT. The DuckDB Foundation holds IP and trademarks and its statutes keep the project MIT. No enterprise edition. https://duckdb.org/faq
+- PostgreSQL: relational database. PostgreSQL License (permissive, OSI-approved). That statement is from the agent's own knowledge and not a retrieved source: UNCONFIRMED here (the pgvector sources describe it as permissive).
+
+3.10 MinIO and alternatives (take care: status changed in 2025-26)
+- Licence did not change: server code AGPLv3 since 2021 (Apache-2.0 before). Sources: https://en.wikipedia.org/wiki/MinIO ; https://itsfoss.com/news/minio-moves-away-from-open-source/
+- Timeline from secondary sources, which disagree on some dates: May 2025, admin console features and LDAP/OIDC login removed from the community UI and moved to paid AIStor (https://blocksandfiles.com/2025/06/19/minio-removes-management-features-from-basic-community-edition-object-storage-code/). Oct 2025, Docker images and prebuilt binaries stopped; last community tag 15 Oct 2025. 3 Dec 2025, maintenance mode. 12 Feb 2026, marked "no longer maintained". Archived 25 Apr 2026 per one source (https://pinggy.io/blog/minio_archived_self_hosted_s3_alternatives/); another says Feb 2026.
+- AIStor Free is a proprietary single-node licence (https://whichdevtool.com/tools/minio/).
+- Forks: pgsty/minio (AGPL fork restoring console and binaries, backporting CVE fixes; https://blog.vonng.com/en/db/minio-resurrect/); OpenMaxIO (console-only, looks dormant; https://github.com/OpenMaxIO/openmaxio-object-browser); opens3/console (community console fork).
+- Alternatives: Garage (AGPLv3); SeaweedFS (Apache-2.0); Ceph RGW (LGPL, 2.1 or 2.1/3); RustFS (Apache-2.0, reported GA 16 Sep 2026). https://rilavek.com/resources/self-hosted-s3-compatible-object-storage-2026 ; https://www.gigenet.com/blog/minio-alternatives/
+- AGPL matters mainly if you modify the software and expose it over a network.
+- Course implication: do not build the demo stack around MinIO without checking current status; the safer teaching position is "any S3-compatible store" with a named alternative.
+
+3.11 BI, identity, access control, privacy
+- Apache Superset: BI and dashboards. Apache-2.0, ASF top-level project since 21 Jan 2021. No paid feature tier; embedding is free. https://news.apache.org/foundation/entry/the-apache-software-foundation-announces70 ; https://www.basedash.com/blog/metabase-vs-apache-superset-2026-self-hosting-rls-embedding-ai-compared
+- Metabase: BI. Open-source edition AGPLv3; paid features under a commercial licence. Embedding the open edition means AGPL compliance or buying a licence. Modular and React SDK embedding is Pro/Enterprise only; open edition shows a "Powered by Metabase" badge; sandboxing and audit logs are paid. From a blog: check Metabase's own licence page. Same basedash URL.
+- Keycloak: identity and access management. Apache-2.0. Joined the CNCF in Apr 2023 as incubating (one review wrongly says sandbox). Red Hat is upstream sponsor. https://github.com/keycloak/keycloak ; https://github.com/cncf/foundation/issues/749
+- Microsoft Presidio: PII detection and anonymisation. MIT. One source says it moved to a data-privacy-stack GitHub org and is no longer a Microsoft project: UNCONFIRMED; check the repo. ML-based, so detection is not guaranteed complete. https://pypi.org/project/presidio/ ; https://hub.docker.com/r/microsoft/presidio-anonymizer
+- OpenFGA: relationship-based authorisation. Apache-2.0. CNCF accepted 14 Sep 2022; Incubating 28 Oct 2025. https://www.cncf.io/projects/openfga/
+- Open Policy Agent: policy engine. Apache-2.0, CNCF Graduated (29 Jan 2021). The OPA creators and Styra team joined Apple (OPA blog says no governance or licence change). One 2026 source says Styra wound down: UNCONFIRMED. https://www.openpolicyagent.org/blog ; https://www.heise.de/en/news/Apple-acquires-developer-of-the-Open-Policy-Agent-10574287.html
+
+3.12 Data contracts and MLOps
+- Open Data Contract Standard (ODCS, Bitol): data contract spec. Apache-2.0. Bitol is an LF AI and Data project, reported Graduated Jul 2026 (single source). v3.0.0 Oct 2024; v3.1.0 8 Dec 2025. https://github.com/bitol-io ; https://github.com/bitol-io/open-data-contract-standard/blob/main/README.md ; https://www.datapro.news/p/odcs-v3-1-0-settles-the-data-contract-format-without-settling-enforcement
+- datacontract-cli: tests data against contracts, builds on ODCS. MIT. https://github.com/datacontract/datacontract-cli
+- MLflow: experiment tracking and model registry. Apache-2.0; under Linux Foundation stewardship (donation date not given in sources). https://mlflow.org/ ; https://www.infoworld.com/article/2258614/mlflow-is-now-a-linux-foundation-project.html
+
+3.13 Local and open-weight models (brief)
+- Ollama: local model runner. MIT. https://en.wikipedia.org/wiki/Ollama
+- Llama Community Licence: requires a separate Meta licence above 700 million monthly active users; OSI said in Feb 2025 it is not open source. https://intuitionlabs.ai/articles/open-weight-ai-model-licenses
+- Qwen: most current sizes Apache-2.0; one source claims some Qwen3 sizes have a 100M MAU clause; sources conflict, check each checkpoint's licence file.
+- Mistral: most open-weight models Apache-2.0; some use a modified MIT requiring a commercial licence above 20 million USD monthly revenue, or MNPL/MRL licences. https://blog.promise.legal/open-weight-ai-license-trap-startups/ ; https://bestllmfor.com/guides/llm-license-commercial-use/
+
+3.14 Technical practice references
+- Hybrid search and RRF: Cormack, Clarke and Buttcher, "Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods", SIGIR 2009. Score is the sum of 1/(k + rank) across lists, k = 60. Only secondary summaries seen. https://bigdataboutique.com/blog/reciprocal-rank-fusion-how-it-works-and-when-to-use-it ; https://spice.ai/learn/reciprocal-rank-fusion. A vendor-doc citation (Elasticsearch or Azure AI Search RRF page) is UNCONFIRMED.
+- Retrieval benchmarks: BEIR (Thakur et al., NeurIPS Datasets and Benchmarks 2021, arXiv 2104.08663) found BM25 a strong zero-shot baseline; main metric nDCG@10. MTEB (Muennighoff et al., arXiv 2210.07316, EACL 2023): 8 tasks, 58 datasets, 112 languages, 33 models benchmarked; reuses BEIR for retrieval. https://arxiv.org/pdf/2210.07316 ; https://www.researchgate.net/publication/350992153_BEIR_A_Heterogenous_Benchmark_for_Zero-shot_Evaluation_of_Information_Retrieval_Models
+- Recall@k and MRR: no authoritative source found in this pass. They are standard definitions but UNCONFIRMED here.
+- Chunking: Azure AI Search docs say start at 512 tokens with 25% overlap (128 tokens); Weaviate suggests 512 tokens with 50-100 tokens overlap; both say to test on your own questions. https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents ; https://weaviate.io/blog/chunking-strategies-for-rag
+- Permission-aware retrieval: common pattern is to attach ACL metadata (tenant, groups, sensitivity) to each chunk at ingestion, convert the user's identity into a filter inside the vector search at query time, and re-sync source ACL changes. Pinecone's guide uses a SpiceDB post-filter; other sources say pre-filtering is safer. OpenFGA documents a list-objects pattern. https://www.pinecone.io/learn/rag-access-control/ ; https://techcommunity.microsoft.com/blog/integrationsonazureblog/%F0%9F%94%90secure-ai-agent-knowledge-retrieval---introducing-security-filters-in-agent-lo/4467561. Primary docs for document-level security in Azure AI Search, Qdrant, Elastic and OpenSearch were not retrieved: UNCONFIRMED.
+- Knowledge graphs and ontologies: not researched in this pass. UNCONFIRMED.
+
+3.15 Items to verify first before teaching from them
+Soda Core v4 licence; Airbyte connector licence; Great Expectations acquisition and Fivetran stewardship; Presidio org move; OpenMetadata Collate licence split; Dagster and Prefect deal; Milvus 3.0 licence; MinIO status; dbt v2 artefact licence.
+
+==========================================================================
+SECTION 4. AFRICAN AND EAST AFRICAN CONTEXT
+==========================================================================
+Primary pages (oxfordinsights.com, newvision.co.ug) were not fetchable. Everything below is secondary unless stated.
+
+4.1 Hyperscale cloud regions
+- AWS Africa (Cape Town) af-south-1: 3 availability zones, opt-in. Azure South Africa North (Johannesburg) and South Africa West (Cape Town, restricted to specific scenarios). Google africa-south1 (Johannesburg) live Jan 2024, official opening Mar 2025. Oracle af-johannesburg-1 opened 2022. Aggregator-level, not vendor-confirmed. https://zop.dev/cloud-cost-optimization/south-africa ; https://www.connectingafrica.com/cloud-networking/google-officially-opens-its-cloud-region-in-johannesburg
+- GPUs in South Africa (June 2026 analysis, single source): Azure has an 8-GPU H100 node in South Africa North; AWS af-south-1 has no listed modern GPU families; Google Johannesburg has no GPU or TPU. UNCONFIRMED against vendor pages. https://npu-labs.com/articles/the-south-african-gpu-map
+- Microsoft and G42 Kenya (Olkaria, about 1 billion USD): stalled. Around 6-8 May 2026 President Ruto announced a suspension citing power. Phase one 100 MW, full build about 1 GW, against national installed capacity of about 3 GW. DCD noted no Microsoft East Africa region listed. Citizen Digital (23 May 2026) called it "in limbo" and officials dispute a formal suspension. No restart found. A TechCentral item says the project may move to Nairobi (single source, UNCONFIRMED). https://www.datacenterdynamics.com/en/news/microsoft-and-g42-data-center-in-kenya-stalled-due-to-lack-of-power-capacity/ ; https://khusoko.com/2026/05/08/kenya-microsoft-g42-data-centre-suspended-power-capacity/ ; https://datacenterindex.ai/projects/microsoft-g42-olkaria-geothermal-data-center-kenya ; https://techcentral.co.za/sub-saharan-data-centre-roll-out-slows-as-smaller-players-falter/280682/
+- Oracle Nairobi: iXAfrica named host partner 27 Jan 2026 (NBOX1 campus, Mombasa Road). As of 29 Jul 2026 Oracle still showed the region as "coming soon". A Dignited headline says "opened" but the July report contradicts it. Go-live date UNCONFIRMED. https://www.datacenterdynamics.com/en/news/ixafrica-to-host-oracle-cloud-region-in-nairobi-kenya/ ; https://www.dignited.com/119582/oracle-opens-first-east-african-cloud-region-in-nairobi-through-ixafrica-partnership/
+
+4.2 Data centres in East Africa
+- Raxio Uganda UG1: opened May 2021, Namanve (Kampala Industrial and Business Park). Uptime Tier III, carrier-neutral, 1.5 MW IT power. Racks: 400 per Raxio, up to 250 per DCD. Launch carriers included Airtel, MTN, Liquid, SEACOM, Csquared, NITA-U; hosts a UIXP instance. Equity Bank Uganda is migrating its data centre operations there (DCD). No new 2026 Kampala facility found. https://www.raxiogroup.com/data-centres/uganda/ ; https://www.datacenterdynamics.com/en/news/equity-bank-uganda-migrates-data-center-operations-to-raxio-data-center-in-namanve-uganda/
+- NITA-U National Data Centre: Tier III facility in Jinja (Nakasero could not be linked to it). Hosts the MyUG government cloud, built 2017-2019 with World Bank funding. A 2025 report says it serves 132 government institutions. June 2026 five-year strategy targets raising utilisation from 70% to 83%. A NITA-U market study lays groundwork for an AI-ready third national data centre. A Feb 2026 allAfrica piece describes a shortage of Tier III capacity in Uganda. https://techjaja.com/tier-3-national-data-centre-unveiled/ ; https://allafrica.com/stories/202606180424.html ; https://www.nita.go.ug/news-updates/nita-u-launches-data-center-market-study-report-guide-expansion-national-ict ; https://allafrica.com/stories/202602240674.html
+- iXAfrica Nairobi: NBOX1.1 is 4.5 MW; planned NBOX1.2 adds 18 MW (Baxtel estimates Q1 2027); NBOX2 in Tilisi was pre-construction at last report. Safaricom partners with iXAfrica because its own 2.8 MW Limuru site is limited. Airtel Africa's Nxtra is building a 44 MW GPU-ready hub at Tatu City, due early 2027. MTN Business has a Nairobi data centre at Parkside Towers. https://techcentral.co.za/sub-saharan-data-centre-roll-out-slows-as-smaller-players-falter/280682/ ; https://www.datacentermap.com/kenya/nairobi/
+- Africa Data Centres (Cassava/Liquid group) Nairobi NBO1 lists 7.5 MW available site capacity; whether the second and third Nairobi sites announced in 2021 were built is UNCONFIRMED. Teraco (Digital Realty) about 189 MW across Johannesburg, Cape Town, Durban (Isando 70 MW). No Liquid or ADC Kampala figures found. A claimed 50 MW Liquid Nairobi facility looks doubtful. https://nairametrics.com/2026/07/27/africas-data-centre-capacity-exceeds-500-mw-with-890-mw-in-pipeline-report/ ; https://www.ecofinagency.com/news-infrastructures/1011-50319-teraco-boosts-energy-capacity-of-its-data-centres-in-south-africa
+- Continental totals differ: Fortren (Jul 2026) over 500 MW operational and 890 MW in development, South Africa over 60% of capacity; Africa Data Centres Association and Rising Advisory (Feb 2026) 360 MW active, 238 MW under construction, 656 MW planned. Kenya about 40 MW IT load (African Energy Chamber, Feb 2026), reported in the Nairametrics piece.
+- Cassava AI factory (Nvidia): launched Mar 2026 in South Africa, Cape Town first and Johannesburg (20 MW) next (sources conflict on which is first). Plans 12,000-13,000 GPUs across the continent, sells H200 GPU-as-a-service, reported investment about 720 million USD. Kenya, Nigeria, Egypt, Morocco are plans only; no Nairobi site or date confirmed. https://www.itweb.co.za/article/cassava-plans-ai-factory-in-joburg-as-cape-town-goes-live/6GxRKMYQbWnMb3Wj ; https://www.connectingafrica.com/ai/cassava-deploys-ai-factory-in-sa-more-countries-in-the-pipeline
+
+4.3 Connectivity and cost
+- Mobile data price per GB in Uganda varies by source: 1.11 USD (cable.co.uk-based ranking, possibly carried over from 2023); 1.34 USD (UCC 2023, second cheapest in the EAC after Rwanda at 0.76); about 1.56 USD (A4AI 2024, cited secondhand). A 0.02 USD figure from Intelpoint looks like a bundle artefact. A secondary source says Ugandans spend about 8% of average monthly income on internet versus an African average of 7%. https://lesafriques.com/en/2026/10/mobile-data-costs-across-africa-full-53-country-ranking-0-38-to-43-75-per-gb/ ; https://businessfocus.co.ug/uganda-has-2nd-cheapest-internet-data-in-eac-ucc-report/
+- GSMA State of Mobile Internet Connectivity (2026, end-2025 data): sub-Saharan Africa has a 66% usage gap and 9% coverage gap, against 21% and 1% for Europe and Central Asia. GSMA/PDAA roadmap (21 Sep 2026): about 906 million Africans covered but not using mobile internet; about 122 million uncovered. https://www.telefonica.com/en/communication-room/blog/coverage-usage-gsma-state-mobile-connectivity-2026/ ; https://tech.africa/gsma-pdaa-africa-usage-gap/
+- UNCONFIRMED: Mobile Connectivity Index scores for Uganda and Kenya; latency from Kampala or Nairobi to Johannesburg or Cape Town (no data found; measure with RIPE Atlas or CloudPing).
+
+4.4 Data residency pressure
+- Uganda: no blanket localisation rule; section 19 transfer conditions (see 2.11). Kenya: targeted localisation (see 2.12). Rwanda: authorisation for offshore transfer and storage (2.13). Tanzania: permit for transfer (2.14), plus Bank of Tanzania cloud guidelines (2.16).
+- GSMA mobile money report: 24% of surveyed providers cited cross-border data transfer rules as a barrier.
+- https://privacymatters.dlapiper.com/2025/08/uganda-data-protection-regulator-clarifies-compliance-requirements-for-offshore-entities/ ; https://ksandk.com/privacy-review/map/uganda/
+
+4.5 Mobile money and fintech data
+- GSMA State of the Industry Report on Mobile Money 2026 (24 Mar 2026, covers 2025): over 2 trillion USD processed, up 23%; registered accounts up 268 million to 2.3 billion; 30-day active accounts up 15% to 593 million (25.7% activity rate); merchant payments up 42% to 155 billion USD; Africa processed 1.4 trillion USD. "2.1 trillion" and "89 providers in 59 countries" appear only in secondary sources. https://www.gsma.com/newsroom/press-release/mobile-money-accounted-for-2-trillion-in-transactions-in-2025-doubling-since-2021-as-active-accounts-continue-to-grow/ ; https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/gsma_resources/the-state-of-the-industry-report-on-mobile-money-2026/
+- MTN Uganda MoMo FY2025: 14.7 million active fintech users (up 6.5%), 5.0 billion transactions (up 16.8%), value UGX 195.5 trillion (up 23.3%), 241,100 agents, 114,800 merchants. Via Pulse Uganda; primary results PDF not opened: https://www.pulse.ug/story/mtn-uganda-2025-financial-results-a-look-at-revenue-profits-users-and-more-figures-2026031317391055483 ; https://www.oldmutual.co.ug/om-docs/blt1d9d82545943e68d/MTN_Uganda_Limited_Annual_financial_results_for_the_year_ended_31_December_2025.pdf
+- Uganda market (Bank of Uganda, all providers): UGX 263 trillion (71.4 billion USD) in the first seven months of 2026, 72% of all of 2025; 5.8 billion transactions; 59.8 million registered customers, 38 million active in 90 days. The source notes July 2025 data appears copied from June, so treat with care. https://ugbusiness.com/2026/10/digital-economy/mobile-money-value-reaches-72-per-cent-of-2025-total
+- Group level: MTN MoMo about 69.5 million monthly active users and just over 500 billion USD processed in 2025; M-Pesa just over 50 million users across seven countries. Secondary: https://realjohnivan.substack.com/p/mtn-uganda-vs-airtel-uganda-which ; https://mobileecosystemforum.com/2026/05/19/airtel-money-africa-unit-closer-to-mobile-money-landmark-ipo/
+- Airtel Uganda FY2025: 19.2 million subscribers, 8.7 million data users. https://www.pulse.ug/story/2025-financial-results-comparing-mtn-and-airtel-uganda-revenue-profits-other-key-figures-2026031415214390137
+- UNCONFIRMED: Airtel Money Uganda users and transactions; M-Pesa Kenya-specific figures.
+
+4.6 Readiness indices
+- Oxford Insights Government AI Readiness Index 2025: 8th edition, 195 countries, 69 indicators, 14 dimensions, six pillars. Published about Jan or Feb 2026 (PDF path /2026/01/). Method redesigned, so scores are not comparable with 2024. https://oxfordinsights.com/ai-readiness/government-ai-readiness-index-2025/ ; https://oxfordinsights.com/wp-content/uploads/2026/01/2025-Government-AI-Readiness-Index-Report_01_26.pdf
+- Uganda: score 35.8, 15th in sub-Saharan Africa; world average 42.5, regional average 29.1 (New Vision: https://www.newvision.co.ug/category/science/new-partnership-set-to-shift-ugandas-ai-readi-NV_234861_062026). Global rank UNCONFIRMED.
+- Kenya: top three in sub-Saharan Africa with South Africa and Nigeria. Global rank 65 (one secondary site) or 68 (Mauritius government table); these conflict. Overall score UNCONFIRMED. Another source lists South Africa first, Mauritius second, Kenya third regionally. https://indicators.govmu.org/ictindicators/?p=703 ; https://scape.yellomind.com/the-government-ai-readiness-index-2025/
+- Rwanda: 48.54 per one analysis, rank 75 per a secondary table; both UNCONFIRMED. https://www.workandplaycompany.com/post/rwanda-the-state-is-ai-ready-the-economy-is-wiring-up. 2024 scores for comparison: Mauritius 53.94, South Africa 52.91, Rwanda 51.25.
+- Mauritius reported at global rank 71 and third in sub-Saharan Africa by its own government page, which conflicts with the Kenya-third reading. Top regional scores for 2025 UNCONFIRMED.
+- UNCONFIRMED, not searched or not found: Smart Africa, UNECA and Research ICT Africa AI readiness indices.
+
+==========================================================================
+SECTION 5. COMPARABLE COURSES AND CERTIFICATIONS FOR LEADERS
+==========================================================================
+Common gap for all of them: none is East Africa-contextualised, and none is hands-on with an enterprise's own data or ends in a readiness assessment. Item-specific gaps are listed below. All seen 2026-10-29 via search snippets.
+
+- DAMA CDMP: audience data management professionals. Each exam 300 USD, online proctoring adds 11 USD (311 USD); retake 200 USD plus 11 USD. Associate is one exam (pass 60%); Practitioner three exams (70%); Master three exams plus a 50 USD experience assessment (80%). Practitioner and Master need two specialist exams, each 100 questions in 90 minutes. Exams valid 3 years. Totals about 311, 933 and 983 USD. Duration depends on self-study. Gap: exam-based, practitioner audience, no AI readiness, no hands-on. https://www.learnsignal.com/blog/cdmp-certified-data-management-professional-explained/ ; https://cdmp.info/faqs/ (FAQ not opened)
+- EDM Council DCAM v3: two-day virtual training plus certification exam, 1,370 USD, members only. Membership separate (a third-party guide cites 2,750 to 37,500 USD per year: UNCONFIRMED). The 2025 v2.2 non-member price was 1,825 USD. Sessions 17-18 Nov 2026 (Americas) and 15-16 Dec 2026 (APAC). Gap: framework and maturity-assessment course for governance teams; price tied to membership. https://edmcouncil.org/trainings/the-dcam-v3-framework-virtual-training-with-certification-amer-2/
+- MIT Sloan, AI: Implications for Business Strategy: 6 weeks online, 6-8 hours per week, 3,850 USD, 2.0 EEUs, next cohort 18 Nov 2026 to 2 Feb 2027. Managers and executives. Gap: strategy-level, not centred on data readiness. A MIT "Professional Certificate" mention was not verified. https://executive.mit.edu/course/artificial-intelligence/a056g00000URaa3AAD.html ; https://www.getsmarter.com/products/mit-sloan-artificial-intelligence-implications-for-business-strategy-online-program
+- Stanford Online AI Professional Program: 2,045 USD per course per Stanford's page (one snippet on the same page gives 1,595; other sources 1,950): UNCONFIRMED. Each course 10 weeks at 10-15 hours per week; certificate needs 3 courses (about 6,135 USD at the higher price). Technical, not executive. Cheaper: Generative AI: Technology, Business, and Society, 1,045 USD per course or 3,135 USD for a year of all-access. Stanford GSB executive AI programmes not found. https://online.stanford.edu/programs/artificial-intelligence-professional-program ; https://online.stanford.edu/programs/generative-ai-technology-business-and-society-program
+- Oxford Said Oxford Artificial Intelligence Programme: 6 weeks online, 7-10 hours per week, 2,450 GBP (GetSmarter shows 3,264 USD), starts 11 Nov 2026. Related: Generative and Agentic AI 1,500 GBP; Leading AI Implementation 1,950 GBP (starts 27 Jan 2027); AI Ethics, Regulation and Compliance 1,750 GBP. Gap: general business-leader AI strategy. https://www.sbs.ox.ac.uk/programmes/online-learning/oxford-artificial-intelligence-programme ; https://www.getsmarter.com/products/oxford-artificial-intelligence-programme
+- Google Cloud Generative AI Leader: 99 USD, 90 minutes, 50-60 multiple choice, online-proctored or Pearson VUE, no prerequisites, valid 3 years, free official prep path, retake after 14 days. Renewal discount UNCONFIRMED. Gap: Google-product-centred, conceptual, no data-readiness assessment. https://cloud.google.com/blog/topics/training-certifications/new-google-cloud-certification-in-generative-ai/ ; https://howtoai.com/google-generative-ai-leader-exam-cost/
+- Microsoft AI Business School: free, built with INSEAD, four modules (strategy, culture, responsible AI, technology) plus industry paths. A related "Introduction to AI technology for business leaders" path shows as no longer offered on Class Central. Duration UNCONFIRMED. Gap: Microsoft-oriented, not hands-on. AI-900 is 99 USD but one 2026 guide says it was replaced by AI-901; conflicting, check Microsoft Learn. https://news.microsoft.com/source/features/ai/ai-business-school/ ; https://www.classcentral.com/course/microsoft-learn-introduction-to-ai-technology-for-business-leaders-62430 ; https://passitexams.com/articles/ai-900-certification-cost/
+- AWS Certified AI Practitioner (AIF-C01): 100 USD (50% voucher with another AWS cert, giving 50 USD), 65 questions in 90 minutes, pass 700/1000, valid 3 years, free Skill Builder prep. Gap: AWS-specific, wider than executive audience, no local or data-readiness focus. https://cramhq.com/articles/aws-aif-c01-exam-cost ; https://howtoai.com/aws-ai-practitioner-exam-cost/
+- Databricks Academy: Generative AI Fundamentals free, about 60 minutes, 80% pass mark badge. Certification exams 200 USD (third-party), valid 2 years. Data+AI Summit attendance fee not researched: UNCONFIRMED. Gap: vendor platform training, not leader-oriented. https://www.databricks.com/learn/training/home ; https://www.brickster.ai/articles/databricks-certification-cost-full-list
+- DeepLearning.AI: AI for Everyone 6 h 54 min (about 4 weeks at 2-3 h per week), Coursera certificate 49 USD (180 days). Generative AI for Everyone 5 h 1 min (about 3 weeks), Coursera pricing around 49 USD per month (sources conflict). DeepLearning.AI Pro 25 USD per month annual or 30 USD monthly. Gap: awareness level, no governance or data content. https://www.deeplearning.ai/courses/generative-ai-for-everyone ; https://bestaicertifications.com/reviews/ai-for-everyone/
+- Coursera and edX data governance: no Duke or Colorado governance specialisation found. IBM Data Management Professional Certificate runs 3-6 months and includes a 9-hour governance course (Data Privacy, Security, Governance, Risk and Compliance); Coursera Plus about 239 USD per year on that page. Michigan Total Data Quality Specialization (1-3 months). Current per-course prices UNCONFIRMED. edX not checked. Gap: practitioner-level, self-paced, no executive or regional framing. https://www.coursera.org/professional-certificates/ibm-data-manager ; https://www.classcentral.com/subject/data-governance
+
+East African programmes found
+- Strathmore: no SBS executive AI programme found. Nearest: AI Essentials at iLabAfrica (3 weeks, 9 live online sessions, KSh 27,500, EC-Council exam, early-career audience) and a 4-month AI Policy Hub at CIPIT for policymakers (no fee found). SBS Global CEO Africa is KSh 2.8M and not AI-specific. https://ilabafrica.strathmore.edu/artificial-intelligence-essentials-aie/ ; https://sbs.strathmore.edu/programme/global-ceo-africa-programme/
+- ESAMI (Arusha): AI for health (14-18 Dec 2026), AI for Executive Administrative Assistants (2 weeks), Cyber Security and AI, AI for Fraud Detection and Risk Management, Tableau/Power BI (2-13 Nov 2026). No fees or data-governance leader course found. https://esami-africa.org/short-courses-calendar/ ; https://esami-africa.org/executive-programmes/
+- Makerere and Uganda Management Institute: no executive AI or data governance short course found. MUBS offers a Postgraduate Diploma in Business Intelligence and Data Analytics (full programme; fee UNCONFIRMED): https://mubs.ac.ug/program/postgraduate-diploma-in-business-intelligence-and-data-analytics/. UMI search returned nothing.
+- CMU-Africa: free six-course online Certificate in AI for Africa; applications 15 Oct to 15 Nov 2026; cohort starts 17 Jan 2027; by invitation. No paid executive course found. https://www.africa.engineering.cmu.edu/academics/ai-certificate/index.html
+- Net finding: the East African offerings found are technical, policy or general management courses. No vendor-neutral, hands-on, data-readiness-for-AI executive programme in the region was found. This is a negative search result and not proof of absence.
+
+==========================================================================
+SECTION 6. WHAT A READINESS ASSESSMENT USUALLY CONTAINS; COMMON FAILURE PATTERNS
+==========================================================================
+Caveat: this section was not searched as a separate topic. It is assembled from the sourced items above. Anything not tied to a source in this file is flagged UNCONFIRMED as a claim about "the literature".
+
+6.1 Dimensions seen in published assessments (from Sections 1 and 2)
+- Cisco AI Readiness Index (6): Strategy, Infrastructure, Data, Governance, Talent, Culture.
+- AWS CAF-AI (6 perspectives): Business, People, Governance, Platform, Security, Operations.
+- Google AI Adoption Framework: people, process, technology, data; themes Learn, Lead, Access, Scale, Automate, Secure.
+- Microsoft CAF for AI: Plan, Ready, Govern, Secure, Manage.
+- CMMI DMM (6 categories): Strategy, Governance, Quality, Operations, Platform and Architecture, Supporting Processes.
+- DCAM v3: 8 components, 34 capabilities (names of all components UNCONFIRMED).
+- DAMA-DMBOK2: 11 knowledge areas.
+- Snowflake AI-Ready Data Framework: Clean, Contextual, Consumable, Current (two more factors UNCONFIRMED).
+- Deloitte self-rating: strategy, governance, infrastructure, data management, talent.
+
+6.2 Scoring scales seen
+- DCAM: 6 levels (Not Initiated to Enhanced). CMMI DMM: 5 levels (Performed to Optimized). Databricks AI Governance Maturity Model: 5 levels (Ad Hoc to Optimized). Google: 3 levels (Tactical, Strategic, Transformational). Cisco: 0-100 score into 4 tiers (Laggard, Follower, Chaser, Pacesetter).
+- Self-scoring caveat: Deloitte and Cisco results are self-reported by leaders.
+
+6.3 Typical outputs
+- UNCONFIRMED as a literature claim: the usual deliverables are a scored profile per dimension, a peer comparison, a gap list and a prioritised roadmap. Cisco's tiering and DCAM's capability scoring are consistent with this, but no source in this pass describes the full deliverable set.
+
+6.4 Failure patterns with a source in this file
+- Poor data management practice: 63% of data management leaders lack, or are unsure they have, the right practices for AI (Gartner Q3 2024 survey, n=248; 1.1).
+- Data not ready: 61% say their data assets are not ready for GenAI and 70% find scaling with proprietary data hard (Accenture 2024; 1.14). 58% say making data AI-ready is a challenge (Snowflake/ESG; 1.10).
+- Data fragmentation: only 19% have fully centralised data infrastructure (Cisco 2025; 1.11).
+- Causes of abandonment named: poor data quality, inadequate risk controls, escalating costs, unclear business value (Gartner 2024; 1.17b); cost, data privacy and security risks (S&P; 1.17d).
+- Governance gap: 21% have proper governance for agents (Deloitte; 1.13). Unsanctioned tool use is implied by the rise in sanctioned-tool access (under 40% to about 60%) but "shadow AI" prevalence was not measured in any source here: UNCONFIRMED.
+- Weak path to production: 5% of custom tools reach production (MIT NANDA, preliminary and contested; 1.17a).
+- East Africa specific: regulator registration and transfer rules (2.11 to 2.14), limited in-region cloud and GPU capacity (4.1, 4.2).
+
+6.5 Failure patterns that need a citation before use in teaching
+- Data silos, no data ownership, poor metadata, PII in documents, no retrieval evaluation set: these are widely stated in practice, but no source in this pass states them as measured findings. UNCONFIRMED as "literature" claims. The Gartner, Accenture and Cisco figures above support the general point (poor data practice, low centralisation) but not each named pattern.
+
+==========================================================================
+SYNTHESIS FOR COURSE DESIGN
+==========================================================================
+1. Data, governance, infrastructure, talent and strategy recur across Cisco, AWS, Google, Microsoft, Deloitte, DCAM and CMMI DMM. A 12-session programme covering those five plus a security and risk thread matches the market.
+2. Maturity ladders have 3, 5 or 6 levels depending on the source. Nobody agrees on a standard scale, so the course should pick one (five levels is the most common) and say why.
+3. The sources disagree on how bad failure is: MIT NANDA 95% (preliminary, contested), S&P 42% abandoning most initiatives, Gartner 30% post-POC and 60% abandonment of projects without AI-ready data. Each measures something different, so teach the definitions and not the headline numbers.
+4. The "80-90% unstructured" figure has no traceable primary source. Teach it as an analyst estimate and have participants count their own document stores instead.
+5. Frameworks from vendors (Microsoft, AWS, Google, Databricks, Snowflake) are platform adoption guides. DAMA, DCAM and CMMI are vendor-neutral but predate generative AI or were only recently extended, so none ties data practice to RAG and semantic search directly.
+6. Standards sit apart from frameworks: NIST AI RMF, ISO 42001, ISO/IEC 5259 and EU AI Act Article 10 cover governance and data quality. The EU high-risk dates moved to 2 Dec 2027 (Annex III) and 2 Aug 2028 (Annex I) as reported, so East African firms with EU exposure have more time. Recheck the Official Journal text before teaching dates.
+7. East African law is the strongest local gap: four national regimes with different transfer rules (Uganda consent or equivalence, Kenya targeted localisation, Rwanda authorisation, Tanzania permit). No AI-specific rule from Bank of Uganda, IRA or UCC was found, and Uganda's AI strategy is still pending as of the 20 Oct 2026 data strategy launch.
+8. In-region infrastructure is thin: Raxio Kampala at 1.5 MW, Tier III capacity short in Uganda, Microsoft-G42 Kenya stalled, Oracle Nairobi not live, and hyperscale regions only in South Africa. Demos should run on a laptop or local server, and the course should teach residency options with real numbers.
+9. The free-tool stack is moving fast: MinIO archived or unmaintained, Soda Core and Airbyte source-available, dbt v2 partly proprietary, Amundsen archived, Great Expectations ownership changing. A licence check should be a taught skill and a handout, and demos should name alternatives.
+10. Vector search is a commodity (pgvector, Qdrant, Chroma, OpenSearch, FAISS, Milvus are all permissive). The hard parts are parsing, metadata, permission-aware retrieval and an evaluation set, and those are where existing offerings are thinnest.
+11. Existing leader courses (MIT, Oxford, Stanford, Google, Microsoft, AWS, DeepLearning.AI) are strategy or product awareness, 99 to 3,850 USD, and none gives a readiness assessment of the participant's own organisation. DCAM and CDMP cover data management without AI retrieval or local law.
+12. Genuinely missing in what was found: a vendor-neutral, hands-on programme for mixed executive and technical teams that ends in a scored readiness assessment, uses East African law and infrastructure, and runs on free tools. No such East African offering was found; that is a negative search result.
+13. Open verification list before launch: primary reading of Gartner 60% wording, MIT NANDA 95% wording, Oxford Insights ranks for Kenya and Rwanda, ODPC and PDPO current practice, each tool's LICENSE file, and the recall@k and MRR definitions.

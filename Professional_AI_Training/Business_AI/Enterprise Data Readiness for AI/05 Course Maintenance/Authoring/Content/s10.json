@@ -1,0 +1,580 @@
+{
+ "session": 10,
+ "notes_title": "Where should the search system run, and what will it cost? That is today's question, and Session 10 is where it gets a number and a name. We'll compare four ways to host it, list the cost lines that sit beside the licence, and read the licence of every tool we plan to use. You'll see Kitara's register of fifteen tools, a small function that totals three hosting options, and a script that flags words in a licence file. By the end you'll hold a costed hosting option and a licence register for your own organisation. No prices appear on any slide today. The quotes will be yours.",
+ "notes_outcomes": "By the end of today you'll do three things. You'll compare hosting options on where the data sits, how fast it answers, how much room there is and what it costs. You'll list the cost lines of a search system and name the ones that are easy to forget. And you'll read a licence file and say whether a tool is open, source-available or restricted. The two hours run as before. Ten minutes of recall on Session 9, thirty of teaching, twenty five of live demonstration, a short break, forty minutes with the two workbooks, and ten minutes at the end for the exit plan question.",
+ "notes_words": "Eight words today. A cost line is one named item in the bill. Total cost of ownership is every cost line added up over the years you run the system. Vendor lock-in is what you have when leaving costs more than staying. An exit plan is the written way out. Then three licence words. A permissive licence allows use and reuse with few conditions. Copyleft asks you to share your changes on the same terms. Source-available means you can read the code but the licence limits its use. And an open-weight model is a language model you can download and run yourself.",
+ "vocab": [
+  [
+   "Cost line",
+   "One named item in the bill for a system, such as hosting, engineers or support.",
+   "The 12 rows of Hosting Cost Model.xlsx"
+  ],
+  [
+   "Total cost of ownership",
+   "Every cost line added up over the years you run the system.",
+   "Three years in the workbook"
+  ],
+  [
+   "Vendor lock-in",
+   "When leaving a supplier costs so much in money, time or lost data that you stay.",
+   "Managed software service: exit difficulty High in hosting_options.csv"
+  ],
+  [
+   "Exit plan",
+   "A written and tested way to leave a supplier: what you take, in which format, how fast and at what cost.",
+   "The exit and data return cost line"
+  ],
+  [
+   "Permissive licence",
+   "A licence that lets you use, change and include the software in your own product with few conditions.",
+   "10 of the 15 tools in licence_register_sample.csv"
+  ],
+  [
+   "Copyleft",
+   "A licence that asks you to share your changes on the same terms. The AGPL reaches network users too.",
+   "Metabase open edition"
+  ],
+  [
+   "Source-available",
+   "You can read the code, but the licence limits what you may do with it. Not open source.",
+   "Soda Core 4, Elastic License 2.0"
+  ],
+  [
+   "Open-weight model",
+   "A language model whose trained values you can download and run yourself, under a licence that may still limit use.",
+   null
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up: what Session 9 said about moving data abroad",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "A bank in Kampala wants to send customer letters to a cloud region in Cape Town so an AI search can read them. What does the Uganda Data Protection and Privacy Act, 2019 reportedly need first?",
+     "a": "Processing or storage outside Uganda is reported to need an equivalent level of protection, or the person's consent. A teaching summary, not legal advice."
+    },
+    {
+     "q": "Which office regulates this, and what must a company holding personal data do with it?",
+     "a": "The Personal Data Protection Office, under NITA-U. Controllers register with it and report breaches to it promptly."
+    }
+   ],
+   "notes": "Welcome back. Last session was privacy and East African law, and today's question builds on it. Here is the first one. A bank in Kampala wants to send customer letters to a cloud region in Cape Town so that an AI search can read them. What does the Uganda Data Protection and Privacy Act, 2019 reportedly need before that happens? Have a think.\n\nProcessing or storage outside Uganda is reported to need an equivalent level of protection, or the person's consent. Remember that this is a teaching summary and never legal advice. Second question. Which office regulates this, and what must a company that holds personal data do with it? No rush.\n\nThat is the Personal Data Protection Office, an independent office under NITA-U. Controllers register with it, and they report breaches to it promptly. Hold on to both answers. Today the same cloud region turns up as one of four hosting options, and the transfer rule decides what Kitara must have in place before it can use it."
+  },
+  {
+   "type": "table",
+   "title": "Four ways to host the search system",
+   "header": [
+    "Option",
+    "Where the data sits",
+    "Latency to Kampala",
+    "Exit difficulty"
+   ],
+   "rows": [
+    [
+     "On-site data centre",
+     "Uganda, on Kitara premises",
+     "Low",
+     "Medium: hardware owned, skills scarce"
+    ],
+    [
+     "Local colocation in Kampala",
+     "Uganda, a provider's building, Kitara's machines",
+     "Low",
+     "Medium: notice period, moving hardware"
+    ],
+    [
+     "Regional cloud in South Africa",
+     "Outside Uganda and Kenya",
+     "Medium",
+     "Medium to high: built on provider features"
+    ],
+    [
+     "Managed software service",
+     "Set by the provider, often abroad",
+     "Medium",
+     "High: data in the provider's format"
+    ]
+   ],
+   "colw": [
+    3.1,
+    3.9,
+    1.9,
+    3.1
+   ],
+   "size": 18,
+   "notes": "Kitara's board has asked two things about the first search system, the one that answers staff questions over the policy documents. Where should it run, and what will it cost? The group's file describes four ways to host it, and the descriptions carry no prices on purpose. The picture comes first.\n\nOn-site means servers in Kitara's own building. The data stays in Uganda and the link is fast. Kitara runs everything, including power and cooling, and engineers who can do that are hard to find. Local colocation means Kitara's own machines in a rack in a provider's building in Kampala. Still in Uganda, still fast, and the provider looks after the building.\n\nThe regional cloud in South Africa gives capacity when you need it, with medium latency. The data leaves Uganda and Kenya, which brings back last session's transfer question. A managed software service is the quickest to start. Kitara sees the product and nothing underneath it, and the data sits in the provider's format, so leaving is hardest.\n\nRead the last column twice. Exit difficulty decides whether a cheap option stays cheap."
+  },
+  {
+   "type": "table",
+   "title": "What exists nearby, as reported in October 2026",
+   "header": [
+    "Facility",
+    "What is reported"
+   ],
+   "rows": [
+    [
+     "Raxio, Namanve near Kampala",
+     "Opened May 2021. Uptime Tier III, 1.5 MW of IT power"
+    ],
+    [
+     "NITA-U national data centre, Jinja",
+     "Government-owned Tier III, launched 2019, hosts the government cloud"
+    ],
+    [
+     "AWS Cape Town, Azure South Africa North, Google Johannesburg",
+     "Cloud regions in South Africa. Google's opened in 2024"
+    ],
+    [
+     "Microsoft and G42, Kenya",
+     "Reported stalled in May 2026 over power"
+    ],
+    [
+     "Oracle, Nairobi",
+     "Host partner named in January 2026. No go-live date found"
+    ]
+   ],
+   "colw": [
+    5.0,
+    7.0
+   ],
+   "size": 18,
+   "notes": "Here is what exists nearby. Everything in this table is as reported by news and industry sources in October 2026, so check each item with the provider before you rely on it.\n\nIn Uganda, Raxio opened a data centre at Namanve, near Kampala, in May 2021. It is certified Tier III by the Uptime Institute, with one and a half megawatts of IT power. NITA-U runs a government owned Tier III data centre in Jinja, launched in 2019, which hosts the government cloud.\n\nFor the big cloud names, the nearest regions are in South Africa. Amazon in Cape Town, Microsoft in Johannesburg with a restricted region in Cape Town, and Google in Johannesburg, which opened in 2024.\n\nTwo names are on the list because people ask about them. The Microsoft and G42 data centre in Kenya was reported stalled in May 2026 over power. Oracle named a host partner for a Nairobi region in January 2026, and I found no go-live date. Plan around what exists today."
+  },
+  {
+   "type": "concept",
+   "title": "Four questions to ask before any quote",
+   "lead": "Where the data sits, how far it travels and what your users can rely on.",
+   "points": [
+    {
+     "h": "Residency",
+     "t": "No blanket rule to keep data in Uganda is reported. Transfers abroad need equivalent protection or consent."
+    },
+    {
+     "h": "Latency",
+     "t": "The delay before an answer. We found no published figures for Kampala to Cape Town. Measure from your own office."
+    },
+    {
+     "h": "Connection",
+     "t": "GSMA reports a 66 percent mobile internet usage gap in sub-Saharan Africa at the end of 2025."
+    },
+    {
+     "h": "Capacity",
+     "t": "Ask for free rack space and power in writing, for today and for twelve months ahead."
+    }
+   ],
+   "notes": "Four questions come before any quote. Where will the data sit, how long will an answer take, what can your users rely on, and how much room is there to grow?\n\nOn residency, no blanket rule to keep data inside Uganda is reported. What the Act reportedly asks for is equivalent protection, or the person's consent, when data goes abroad. Your sector regulator may add rules for a bank or an insurer, so ask it directly.\n\nOn latency, which is the delay between a question and an answer, I found no published figures for Kampala to Cape Town. Measure it from your own office at a busy hour.\n\nOn the connection, GSMA's 2026 connectivity report, with data to the end of 2025, puts the usage gap in sub-Saharan Africa at sixty six percent. Two thirds of people live within mobile coverage and still do not use mobile internet. Do not assume every customer or agent is online.\n\nCapacity is the last one. Get the provider to put free rack space and power in writing."
+  },
+  {
+   "type": "figure",
+   "title": "The whole path from source to search needs a home",
+   "fig": "pipeline_zones",
+   "look": [
+    "Five zones: sources, raw copy, cleaned, serving, and the search index with dashboards.",
+    "A check sits on every arrow: shape of the data, quality, personal data.",
+    "Scheduling, lineage and monitoring run underneath. Access control runs across the top."
+   ],
+   "caption": "Illustrative reference architecture, not a Kitara system. Every box and check runs somewhere and costs something.",
+   "alt": "A path of five boxes from sources to search index, each arrow carrying a named check, with access control above and orchestration, lineage and monitoring below.",
+   "notes": "Before the cost lines, a picture of what you are asking someone to host. This is a reference path, an illustration and never a Kitara system.\n\nFive boxes run from left to right. The sources as they are, a raw copy, a cleaned zone, a serving zone, and finally the search index and dashboards. Many quotes price only that last box.\n\nOn every arrow there is a check, for the shape of the data, its quality and personal data. Each check is software, and software has to run somewhere.\n\nUnderneath, a scheduler runs every step, a lineage record shows where each table and chunk came from, and monitoring watches freshness. Across the top, access control decides who sees what. So hosting is a decision about the whole path, and a quote should say which parts it covers."
+  },
+  {
+   "type": "flow",
+   "title": "Cost lines of a search system, by when you pay",
+   "steps": [
+    {
+     "h": "Pay once",
+     "t": "Hardware and set-up. Evaluation and testing. Training. Security review."
+    },
+    {
+     "h": "Pay every month or year",
+     "t": "Hosting or rent. Connectivity. Licences. Engineers. Support. Backup."
+    },
+    {
+     "h": "Pay when you leave",
+     "t": "Exit and data return. The line quotes most often leave blank."
+    }
+   ],
+   "caption": "Hosting Cost Model.xlsx names these lines. The licence is one of twelve.",
+   "notes": "Hosting Cost Model.xlsx has twelve lines, and the licence is one of them. I sort them by when you pay.\n\nPay once. Hardware and set-up, evaluation and testing, training and the security review. Evaluation is the one people skip. You need money to test the search against real questions before you trust it.\n\nPay every month or every year. Hosting or rent, connectivity, licences, the engineers, support and backup. The engineers line is usually the largest, and it is the one we stress in a few minutes.\n\nPay when you leave. Exit and data return. Quotes leave this line blank, and the workbook counts a blank as zero. So a total is only a lower bound until the sheet shows no missing inputs."
+  },
+  {
+   "type": "compare",
+   "title": "Build and buy both carry costs",
+   "left": {
+    "h": "Build",
+    "points": [
+     "Your people choose and run the parts",
+     "Engineers on the payroll every month",
+     "You own the security review and support",
+     "Slow to start, easy to adapt"
+    ]
+   },
+   "right": {
+    "h": "Buy",
+    "points": [
+     "A supplier runs it for a fee",
+     "Fast to start",
+     "Their format and their terms",
+     "The exit risk is yours to manage"
+    ]
+   },
+   "verdict": "The cost moves from one line to another. Decide which parts you must control.",
+   "notes": "Every option on the table sits somewhere between build and buy. Which parts will you run yourselves, and which will you rent?\n\nBuild means your own people choose and run the parts. You control the choices and you grow the skills. The cost sits on your payroll every month, and the security review and the support are yours as well. It starts slowly and it adapts easily.\n\nBuy means a supplier runs it for a fee. You start fast. You also accept their format and their terms, and the exit risk becomes yours to manage.\n\nNeither side is free. The cost moves from one line to another. The useful question is which parts you must control, such as your documents and your access rules, and which parts you can safely rent."
+  },
+  {
+   "type": "code",
+   "title": "Kitara's licence register, summarised by type",
+   "lang": "python",
+   "code": "import pandas as pd\n\nreg = pd.read_csv('licence_register_sample.csv')\nprint(reg.licence_type.value_counts().to_dict())\nprint('marked Check:', (reg.free_for_commercial_use == 'Check').sum())\nprint('licence files read:', reg.checked_on.notna().sum())\nprint(reg[reg.licence_type != 'permissive'].tool.tolist())",
+   "says": [
+    "Count the 15 tools by licence type.",
+    "Count the tools whose free commercial use is still marked Check.",
+    "Count how many have a date showing a licence file was read.",
+    "List every tool that is not permissive. These go to the top of the checking pile."
+   ],
+   "output": "{'permissive': 10, 'proprietary': 2, 'source-available': 1, 'archived': 1, 'copyleft': 1}\nmarked Check: 9\nlicence files read: 0\n['Google Colab', 'Soda Core 4', 'MinIO', 'Metabase open edition', 'Docker Desktop']",
+   "notes": "Back to the register. Kitara's file lists fifteen tools and what research found about each licence. Let's summarise it.\n\nFirst we read the file with pandas and count the rows by licence type. Ten permissive, two proprietary, and one each of copyleft, source-available and archived.\n\nSecond, how many tools does the file mark Check? Nine. Nine of fifteen cannot be called free for commercial use yet.\n\nThird, how many licence files have actually been read? Zero. Every date is blank, because the facts came from search summaries and third party pages.\n\nLast, the tools that are not permissive. Colab and Docker Desktop are proprietary, Soda Core 4 is source-available, MinIO is archived and Metabase's open edition is copyleft. Those five go to the top of the checking pile."
+  },
+  {
+   "type": "table",
+   "title": "Five licence classes and what each allows",
+   "header": [
+    "Class",
+    "What it allows",
+    "In the register"
+   ],
+   "rows": [
+    [
+     "Permissive",
+     "Use, change and include in your product, few conditions",
+     "Tesseract, Apache-2.0"
+    ],
+    [
+     "Copyleft",
+     "Share your changes on the same terms. AGPL reaches network users",
+     "Metabase open edition"
+    ],
+    [
+     "Source-available",
+     "Read the code. Use inside the firm. Not sold on as a service",
+     "Soda Core 4, Elastic License 2.0"
+    ],
+    [
+     "Proprietary",
+     "The vendor sets the terms, often paid above a size",
+     "Docker Desktop"
+    ],
+    [
+     "Archived",
+     "Code stays open. Nobody maintains it",
+     "MinIO"
+    ]
+   ],
+   "colw": [
+    2.4,
+    6.0,
+    3.6
+   ],
+   "size": 18,
+   "notes": "Five words describe nearly every licence in the register. Permissive licences, such as Apache-2.0 and MIT, let you use the software, change it and include it in your own product with few conditions. Tesseract, the tool that reads scans, is an example.\n\nCopyleft asks you to share your changes on the same terms. The AGPL goes further and reaches people who use the software over a network. Metabase's open edition is under it.\n\nSource-available means you can read the code, but the licence limits what you may do. Soda Core 4 uses the Elastic License 2.0. You may run it inside the firm. You may not sell it on as a service.\n\nProprietary means the vendor sets the terms. Archived describes the project's status. The code stays open and nobody maintains it, so security fixes stop. The Licence Register workbook has five classes of its own, so record archived in its notes column."
+  },
+  {
+   "type": "table",
+   "title": "Licence and support changes reported in 2025 and 2026",
+   "header": [
+    "Tool",
+    "What was reported",
+    "What it means"
+   ],
+   "rows": [
+    [
+     "Docker Desktop",
+     "Paid for firms of 250 or more staff or USD 10 million or more revenue, and for government bodies",
+     "Kitara has about 1,800 staff, so it needs a subscription"
+    ],
+    [
+     "Soda Core 4 and Airbyte",
+     "Elastic License 2.0",
+     "Free inside the firm. Not open source"
+    ],
+    [
+     "MinIO",
+     "Unmaintained or archived in 2026. Sources differ on the date",
+     "Any S3-compatible store will do"
+    ],
+    [
+     "dbt v2",
+     "Two builds: dbt OSS under Apache-2.0, and a free binary with proprietary code",
+     "Check which one you install"
+    ],
+    [
+     "Amundsen",
+     "Reported archived in September 2026",
+     "No new work on it"
+    ]
+   ],
+   "colw": [
+    2.4,
+    5.6,
+    4.0
+   ],
+   "size": 16,
+   "notes": "Several popular names changed terms in the last two years. Each is as reported, and your team should read the file itself.\n\nDocker Desktop is paid for firms with two hundred and fifty or more staff, or ten million dollars or more in revenue, and for government bodies, according to Docker's published terms. Kitara has about eighteen hundred staff, so Kitara needs a subscription. That is why no lab in this course asks for it.\n\nSoda Core 4 and Airbyte use the Elastic License 2.0. MinIO, an object store, was reported unmaintained or archived in 2026, and sources disagree on the date. Dbt version two shipped two builds in September 2026, so check which one you install. Amundsen, a data catalogue, was reported archived in September 2026.\n\nThe pattern repeats. People had already built on each tool when its licence or its support changed."
+  },
+  {
+   "type": "concept",
+   "title": "Open-weight models carry their own licence",
+   "lead": "A model you download and run yourself answers the residency question and brings a licence to read.",
+   "points": [
+    {
+     "h": "Llama",
+     "t": "Meta community licence. Above 700 million monthly users a separate licence is needed. The Open Source Initiative says it is not open source."
+    },
+    {
+     "h": "Qwen",
+     "t": "Most sizes reported as Apache-2.0. Some carry a user threshold. Read each checkpoint."
+    },
+    {
+     "h": "Mistral",
+     "t": "Many models are Apache-2.0. Others use a modified MIT with a revenue limit, or a separate licence."
+    },
+    {
+     "h": "Copies",
+     "t": "A fine-tuned copy can carry different terms from the base model. Read the model card."
+    }
+   ],
+   "notes": "Language models you can download and run yourself are called open-weight models. Running one inside your own walls answers the residency question. It also brings a licence you have to read.\n\nMeta's Llama uses its own community licence. Companies above seven hundred million monthly users need a separate licence from Meta, and the Open Source Initiative says it is not open source. For a bank in Kampala that threshold will not bite. The other conditions in the licence deserve a read.\n\nQwen and Mistral publish many models under Apache-2.0, though the licence is set model by model. Some Qwen sizes are reported to carry a user threshold, and some Mistral models use a modified MIT or a separate licence. Sources conflict, so open the licence file on the model's own page.\n\nA copy fine-tuned by someone else can carry different terms again. Record the licence from the model card, and record the library's licence beside it."
+  },
+  {
+   "type": "code",
+   "title": "Flagging licence words in a LICENSE text",
+   "lang": "python",
+   "code": "import re\nKEYS = {'AGPL': r'\\bAGPL', 'Elastic License': r'Elastic License', 'SSPL': r'\\bSSPL\\b',\n        'Apache': r'\\bApache\\b', 'MIT': r'\\bMIT\\b', 'Business Source': r'Business Source'}\ndef flag(text):\n    return [k for k, pattern in KEYS.items() if re.search(pattern, text)]\n\nprint(flag('MIT License. Permission is hereby granted, free of charge.'))\nprint(flag('Apache License 2.0. The bundled console is under the AGPL v3.'))",
+   "says": [
+    "Six patterns, one per licence name. The backslash b marks a word edge, so MIT cannot match inside permit.",
+    "A function returns the names whose pattern appears in the text.",
+    "Two short texts written for this lesson. With a real file you would read it with open and pass the text in."
+   ],
+   "output": "['MIT']\n['AGPL', 'Apache']",
+   "notes": "A licence file is long, and nobody reads every word the first time. A short script can point you to the lines that matter. It never replaces reading.\n\nFirst, a dictionary of six patterns: AGPL, Elastic License, SSPL, Apache, MIT and Business Source. The backslash b marks the edge of a word, so MIT matches the word MIT and no part of permit or limitation.\n\nSecond, a function that returns every name whose pattern appears in the text.\n\nThird, two sample texts that I wrote for this lesson. With a real file you would read it with open and pass the text in. The first is flagged MIT. The second is flagged for both Apache and AGPL, which means one project carrying two licences. Both lines are useful. Next, where it goes wrong."
+  },
+  {
+   "type": "code",
+   "title": "Where keyword flagging fails",
+   "lang": "python",
+   "code": "samples = {\n 'B': 'Elastic License 2.0. No hosted service. These limitations apply.',\n 'D': 'GNU Affero General Public License, version 3.',\n}\nfor name, text in samples.items():\n    print(name, flag(text), 'naive mit match:', 'mit' in text.lower())",
+   "says": [
+    "Two more texts. B is the Elastic License. D is the AGPL written out in full.",
+    "Print the flags, and beside them a naive search for the three letters mit."
+   ],
+   "output": "B ['Elastic License'] naive mit match: True\nD [] naive mit match: False",
+   "notes": "Two more texts. B is the Elastic License, in a few words. D is the AGPL written out in full.\n\nFirst, the dictionary of two texts.\n\nSecond, a loop prints the flags, and beside them a naive search for the three letters mit.\n\nB is flagged Elastic License, which is right. The naive search says true, because the word limitations contains the letters mit. That is why the patterns mark word edges. D flags nothing, although it is the full name of the AGPL.\n\nKeyword flagging has limits. It finds names. It misses licences written out in full, it cannot tell which part of a project a licence covers, and it cannot read the conditions. A flag is a reason to look. A blank is no answer."
+  },
+  {
+   "type": "trap",
+   "title": "The file says Apache, so the row gets a tick",
+   "looks": "A data engineer opens the repository, sees Apache-2.0 and writes Y in the register. Everyone is satisfied.",
+   "why": "The library, the hosted service, the models it downloads and the connectors can each carry another licence. Soda Core was Apache-2.0 in version 3 and Elastic License 2.0 in version 4.",
+   "fix": "Record the version, the file you read, the date and who read it. Give each part its own row. Review once a year.",
+   "notes": "A mistake that looks finished. Picture the licence register six months from now.\n\nThe tidy version. A data engineer opens the repository, sees Apache-2.0 and writes Y in the register. Everyone is satisfied, and the row is never looked at again.\n\nThe hidden problem. The library, the hosted service, the models it downloads and the connectors can each carry a different licence. Soda Core is a clear case. It was Apache-2.0 in version three and moved to the Elastic License 2.0 in version four. A tick with no version and no date goes out of date without a sound.\n\nThe repair has four parts. Record the version, the exact file you read, the date and the person who read it. Give each part its own row. The Licence Register workbook has the columns, and it flags a row for review after one year."
+  },
+  {
+   "type": "flow",
+   "title": "An exit plan answers four questions",
+   "steps": [
+    {
+     "h": "Data out",
+     "t": "Can you export every document, index and log in an open format, and how long does it take?"
+    },
+    {
+     "h": "Settings and code",
+     "t": "Are prompts, pipelines and rules held in your own repository?"
+    },
+    {
+     "h": "Skills",
+     "t": "Who in your team can run the replacement?"
+    },
+    {
+     "h": "Contract",
+     "t": "Notice period, return and deletion of data, fees for leaving."
+    }
+   ],
+   "caption": "Run the exit once on a small copy before you sign.",
+   "notes": "Vendor lock-in is what you have when leaving costs more than staying, so you stay on terms you would not choose today. An exit plan is the written answer to one question. What is our exit if the vendor changes terms?\n\nFirst, the data. Can you export every document, index and log in an open format, and how long does the export take? The managed service in Kitara's file keeps data in the provider's format, which is why its exit difficulty reads high.\n\nSecond, settings and code. Are your prompts, pipelines and rules held in your own repository, or only inside the vendor's console?\n\nThird, skills. Who in your team could run the replacement on a Monday morning?\n\nFourth, the contract. The notice period, the return and deletion of your data, and any fee for leaving. The workbook has a line for exit and data return so that this cost is visible before you sign.\n\nThen run the exit once on a small copy, and write down how long it took."
+  },
+  {
+   "type": "code",
+   "title": "A total cost function that stops on a missing line",
+   "lang": "python",
+   "code": "BASIS = dict(hardware='once', hosting='month', connectivity='month', licences='year',\n             engineers='month', evaluation='once', support='year', training='once',\n             backup='year', security='once', exit='once')\n\ndef tco(lines, years=3):\n    missing = [k for k in BASIS if lines.get(k) is None]\n    if missing:\n        raise ValueError(f'cost lines not filled in: {missing}')\n    times = {'once': 1, 'month': 12 * years, 'year': years}\n    return sum(lines[k] * times[BASIS[k]] for k in BASIS)",
+   "says": [
+    "Each cost line is paid once, every month or every year, as in the workbook.",
+    "The function turns each line into a total over the years chosen. It stops and names any line that is missing."
+   ],
+   "output": "",
+   "notes": "Some numbers next. Every value in this code is a cost unit that I invented for the demonstration. They are not shillings, they are not dollars and they are not a quote from anyone. Your own quotes go into the workbook.\n\nFirst, each cost line has a basis. It is paid once, every month or every year, as in the workbook. The workbook also has a twelfth line called Other, which this sketch leaves out.\n\nSecond, the function turns every line into a total over the years you choose. A monthly line is multiplied by twelve times the years. A yearly line is multiplied by the years. A once line stays as it is. If a line is missing, the function stops and names it. Let's try it on one option."
+  },
+  {
+   "type": "code",
+   "title": "A missing cost line stops the total",
+   "lang": "python",
+   "code": "onsite = dict(zip(BASIS, [600, 8, 5, 4, 30, 40, 12, 10, 10, 20, 8]))\nprint('on-site, 3 years:', tco(onsite), 'cost units')\nonsite['exit'] = None\nprint(tco(onsite))",
+   "says": [
+    "Eleven invented cost units for the on-site option give one total.",
+    "Blank the exit line and run again. It stops and names the line."
+   ],
+   "output": "on-site, 3 years: 2304 cost units\nValueError: cost lines not filled in: ['exit']",
+   "notes": "Back to the function. We run it on one option, and then break it on purpose.\n\nEleven invented values for the on-site option give a total of two thousand three hundred and four cost units over three years.\n\nNow I blank the exit line and run it again. It stops at once and names the line. The workbook adds a blank as zero and counts the gaps. Here the code refuses, because a total that quietly leaves out the exit line looks cheaper than it is. In a real quote, exit and data return is the line most likely to be blank.",
+   "expect_error": true
+  },
+  {
+   "type": "code",
+   "title": "Three options, and a check on the people line",
+   "lang": "python",
+   "code": "options = {'On-site': [600, 8, 5, 4, 30, 40, 12, 10, 10, 20, 8],\n           'Local data centre': [450, 14, 6, 4, 24, 40, 10, 10, 8, 20, 12],\n           'Regional cloud': [40, 30, 8, 4, 16, 40, 8, 10, 6, 25, 30]}\noptions = {n: dict(zip(BASIS, v)) for n, v in options.items()}\nfor scale in (0.5, 1.0, 1.5):\n    tot = {n: tco({**l, 'engineers': l['engineers'] * scale}) for n, l in options.items()}\n    row = ', '.join(f'{n} {t:.0f}' for n, t in tot.items())\n    print(f'x{scale}: {row} -> {min(tot, key=tot.get)}')",
+   "says": [
+    "Three options, each a list of the eleven invented cost units in the same order.",
+    "Pair each list with the line names.",
+    "Run the total three times: people line halved, as quoted, and one and a half times.",
+    "Print each total and name the cheapest."
+   ],
+   "output": "x0.5: On-site 1764, Local data centre 1750, Regional cloud 1855 -> Local data centre\nx1.0: On-site 2304, Local data centre 2182, Regional cloud 2143 -> Regional cloud\nx1.5: On-site 2844, Local data centre 2614, Regional cloud 2431 -> Regional cloud",
+   "notes": "Three options, the same eleven lines, and the same invented units. On-site, a local data centre and regional cloud. The managed service goes into your workshop. The question for a leader is how much the answer depends on the people line.\n\nFirst, three lists of eleven values, in the order of the cost lines.\n\nSecond, each list is paired with the line names.\n\nThird, a loop runs the total three times. People cost halved, as quoted, and one and a half times as much.\n\nFourth, it prints each total and names the cheapest.\n\nAs quoted, regional cloud is cheapest, but all three sit within about eight percent of each other. Halve the people line and the local data centre wins, with on-site close behind. Raise it and regional cloud pulls further ahead. When options sit this close, the people line decides, and it is the line a vendor quote is least likely to contain. So ask who will run it, and what they cost. Quote totals only with that sensitivity beside them."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: price one hosting option and complete the licence register",
+   "tool": "Hosting Cost Model and Licence Register workbooks and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Choose one hosting option to price first",
+    "Enter each cost line from a quote or invoice you hold",
+    "Leave unknown lines blank, read Inputs missing, then halve and raise the engineers line",
+    "Fill residency, latency, capacity and who sees the data",
+    "List your tools on the Licence Register and open each licence file",
+    "Write the licence as the file gives it, then the class",
+    "Data colleague: run the three notebook tasks. Leader: write your exit plan answer"
+   ],
+   "done": "One hosting option is costed from your own quotes, with its gaps counted, and the register shows what you read, when and who read it.",
+   "notes": "Forty minutes, in two parts. Pick the one hosting option your team would realistically choose first, and open Hosting Cost Model.xlsx. Fill each cost line from a quote or an invoice you actually hold. If a figure is a guess, leave the cell blank and let the sheet count the gap. Then change the engineers line to half and to one and a half times, and see whether the cheapest option changes. Please do not copy list prices from a web page. They change, and they differ by country and by contract.\n\nFill in the other rows too. Does the data stay in the country, what is the round trip delay, what capacity will you need in a year, and who can see the data?\n\nThen open Licence Register.xlsx. List the tools you would use, open each licence file, write the licence the way the file gives it and choose the class from the drop-down. For a model, read the model card.\n\nThe data colleague also runs the team notebook, which totals three options, tests the people line and flags words in licence text. The leader finishes with the exit question for the chosen option, written in one sentence."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Kitara's register has 15 tools and 10 are permissive. Which five need a closer look first, and why?",
+     "a": "Colab and Docker Desktop (proprietary), Soda Core 4 (source-available), MinIO (archived) and Metabase open edition (copyleft)."
+    },
+    {
+     "q": "In the invented cost units, regional cloud was cheapest as quoted. What happened when the people line was halved?",
+     "a": "The local data centre became cheapest. When options are close, the people line decides, so quote the sensitivity."
+    },
+    {
+     "q": "Who in your organisation signs off a hosting option, and what is our exit if the vendor changes terms?",
+     "a": "A named owner and a written exit plan with a tested data export. Without both, the option is not fully costed."
+    }
+   ],
+   "notes": "Let's close with three questions. Kitara's register has fifteen tools and ten are permissive. Which five need a closer look first, and why? Let's hear your answer first.\n\nColab and Docker Desktop are proprietary, Soda Core 4 is source-available, MinIO is archived and Metabase's open edition is copyleft. None of them is banned. Each needs its licence file read before anyone builds on it.\n\nSecond. In our invented cost units, regional cloud was cheapest as quoted. What happened when the people line was halved? Sit with it for a second.\n\nThe local data centre became cheapest. When options are this close, the people line decides, so quote a total together with its sensitivity.\n\nThe last question is for the leaders. Who in your organisation signs off a hosting option, and what is our exit if the vendor changes terms? Give that a moment.\n\nYou need a named owner and a written exit plan, with a data export someone has tested. Without both, the option is only partly costed."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Four ways to host. Compare residency, latency, capacity, control and exit before price.",
+    "A search system has twelve cost lines. Quotes often leave out evaluation and exit.",
+    "Read the licence file, record the version and date, and give each part its own row.",
+    "Lock-in is the cost of leaving. Write and test the exit plan before you sign."
+   ],
+   "next": "Governance and AI risk",
+   "notes": "Four ways to host the search system, and they differ on residency, latency, capacity, control and exit. Compare them in words before anyone asks for a price.\n\nA search system has twelve cost lines, and the licence is only one. Quotes often leave out evaluation and exit, and the people line moves the answer more than most.\n\nFor licences, read the file, record the version and the date, and give each part of a tool its own row. Several well known names changed terms or stopped being maintained in the last two years.\n\nLock-in is the cost of leaving, so write the exit plan and test it before you sign. Keep your cost model and register. The risk register in the next session uses both.\n\nNext session is Governance and AI risk. Who decides, who answers for it, and what happens when it goes wrong."
+  }
+ ],
+ "lab": {
+  "intro": "Price one hosting option from your own quotes on Hosting Cost Model.xlsx and complete Licence Register.xlsx with the licence files you have read. The data colleague runs the team notebook to summarise the register, total three options in cost units and flag words in licence text.",
+  "workshop": [
+   {
+    "task": "Choose one hosting option from the four in hosting_options.csv and write why. Fill the rows on residency, latency, capacity and who can see the data in Hosting Cost Model.xlsx.",
+    "example": "Kitara chooses the regional cloud in South Africa for the pilot. Data stays in the country: N, so the transfer rule from Session 9 applies. Latency from Kampala is to be measured, capacity risk is low, and the provider's staff can see the data unless it is encrypted. The pilot indexes 121 documents."
+   },
+   {
+    "task": "Enter each cost line for your option from a quote or an invoice you hold, with the right basis. Leave a cell blank if you have no quote. Do not copy list prices from a web page.",
+    "example": "Kitara fills hosting or rent from a supplier quote, engineers from the HR salary band, and training from the last course invoice. Evaluation and exit and data return have no quote yet, so those cells stay blank."
+   },
+   {
+    "task": "Read the Inputs missing row. Write the number of blank cells next to the total, and say which lines you will chase.",
+    "example": "Kitara's sheet shows 3 inputs missing for the regional cloud option (evaluation, exit and data return, and the line called Other), so the total is a lower bound. Procurement is asked for the exit and data return terms in writing."
+   },
+   {
+    "task": "Change the engineers line to half and to one and a half times. Write which option is cheapest in each case and whether the answer changes.",
+    "example": "In the notebook's invented cost units regional cloud is cheapest as quoted, and the local data centre wins when the people line is halved. Kitara records that the ranking depends on who runs the system."
+   },
+   {
+    "task": "On Licence Register.xlsx, list every tool and model you would use. Open the licence file of each, write the licence as the file gives it, choose the class, and fill where you read it, the date and who read it.",
+    "example": "Docker Desktop: Docker subscription terms, class Restricted or commercial. Kitara has about 1,800 staff, so allowed for internal use is Ask. MinIO: AGPLv3, reported archived in 2026, class Open source (copyleft) with archived in the notes."
+   },
+   {
+    "task": "Answer the decision question in one sentence for your chosen option: what is our exit if the vendor changes terms, and who signs it off?",
+    "example": "Kitara: export all documents and the index in an open format once a quarter, keep prompts and pipelines in Kitara's own repository, and the Head of IT signs the exit plan before any contract."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. The register by licence type\nRead `licence_register_sample.csv`. Store the number of tools of each licence type in a dictionary called `by_type`."
+   },
+   {
+    "code": "import pandas as pd\n\nreg = pd.read_csv('licence_register_sample.csv')\nby_type = reg.licence_type.value_counts().to_dict()\nprint(by_type)",
+    "starter": "import pandas as pd\n\nreg = pd.read_csv('licence_register_sample.csv')\n# Your turn: by_type = the count of tools for each licence_type, as a dictionary\n# Hint: value_counts() then to_dict()\n"
+   },
+   {
+    "code": "assert by_type == {'permissive': 10, 'proprietary': 2, 'source-available': 1, 'archived': 1, 'copyleft': 1}, 'Count the rows for each licence_type, as a dictionary'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Tools that need a check\nStore the names of tools marked `Check` in `needs_check`, the names of tools whose type is not permissive in `not_permissive`, and the number of tools with no `checked_on` date in `unread`."
+   },
+   {
+    "code": "needs_check = reg[reg.free_for_commercial_use == 'Check'].tool.tolist()\nnot_permissive = reg[reg.licence_type != 'permissive'].tool.tolist()\nunread = int(reg.checked_on.isna().sum())\nprint(len(needs_check), not_permissive, unread)",
+    "starter": "# Your turn: needs_check = list of tool names where free_for_commercial_use is 'Check'\n# Your turn: not_permissive = list of tool names where licence_type is not 'permissive'\n# Your turn: unread = how many rows have a blank checked_on (try .isna().sum())\n"
+   },
+   {
+    "code": "assert len(needs_check) == 9 and 'Docker Desktop' in needs_check, 'Nine tools are marked Check'\nassert sorted(not_permissive) == ['Docker Desktop', 'Google Colab', 'Metabase open edition', 'MinIO', 'Soda Core 4'], 'Five tools are not permissive'\nassert unread == 15, 'No licence file has been read yet, so all 15 dates are blank'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Total cost of three options, in cost units\nThe values below are invented cost units, not currency. Finish `tco` so it returns the total over `years`: a `once` line counts once, a `month` line counts 12 times the years, a `year` line counts the years. It must raise `ValueError` if any line is `None`. Then store each option's total in `totals`."
+   },
+   {
+    "code": "BASIS = dict(hardware='once', hosting='month', connectivity='month', licences='year',\n             engineers='month', evaluation='once', support='year', training='once',\n             backup='year', security='once', exit='once')\noptions = {\n    'On-site': [600, 8, 5, 4, 30, 40, 12, 10, 10, 20, 8],\n    'Local data centre': [450, 14, 6, 4, 24, 40, 10, 10, 8, 20, 12],\n    'Regional cloud': [40, 30, 8, 4, 16, 40, 8, 10, 6, 25, 30],\n}\noptions = {n: dict(zip(BASIS, v)) for n, v in options.items()}\n\ndef tco(lines, years=3):\n    missing = [k for k in BASIS if lines.get(k) is None]\n    if missing:\n        raise ValueError(f'cost lines not filled in: {missing}')\n    times = {'once': 1, 'month': 12 * years, 'year': years}\n    return sum(lines[k] * times[BASIS[k]] for k in BASIS)\n\ntotals = {n: tco(l) for n, l in options.items()}\nprint(totals)",
+    "starter": "BASIS = dict(hardware='once', hosting='month', connectivity='month', licences='year',\n             engineers='month', evaluation='once', support='year', training='once',\n             backup='year', security='once', exit='once')\noptions = {\n    'On-site': [600, 8, 5, 4, 30, 40, 12, 10, 10, 20, 8],\n    'Local data centre': [450, 14, 6, 4, 24, 40, 10, 10, 8, 20, 12],\n    'Regional cloud': [40, 30, 8, 4, 16, 40, 8, 10, 6, 25, 30],\n}\noptions = {n: dict(zip(BASIS, v)) for n, v in options.items()}\n\ndef tco(lines, years=3):\n    # Your turn: raise ValueError if any line in BASIS is missing or None\n    # Your turn: times = {'once': 1, 'month': 12 * years, 'year': years}\n    # Your turn: return the sum of lines[k] * times[BASIS[k]] over the lines in BASIS\n    pass\n\n# Your turn: totals = the tco of each option, as a dictionary keyed by option name\n"
+   },
+   {
+    "code": "assert totals == {'On-site': 2304, 'Local data centre': 2182, 'Regional cloud': 2143}, 'Check the multipliers: month lines count 12 x years, year lines count years'\ntry:\n    tco({**options['On-site'], 'exit': None})\n    raise AssertionError('tco should raise ValueError when a line is missing')\nexcept ValueError:\n    pass\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. How much does the people line matter?\nMultiply the `engineers` line of every option by 0.5, 1.0 and 1.5. For each multiplier store the name of the cheapest option in `cheapest`, keyed by the multiplier."
+   },
+   {
+    "code": "cheapest = {}\nfor scale in (0.5, 1.0, 1.5):\n    tot = {n: tco({**l, 'engineers': l['engineers'] * scale}) for n, l in options.items()}\n    cheapest[scale] = min(tot, key=tot.get)\nprint(cheapest)",
+    "starter": "cheapest = {}\n# Your turn: loop over scale in (0.5, 1.0, 1.5)\n# Your turn: total each option with its engineers value multiplied by scale ({**l, 'engineers': l['engineers'] * scale})\n# Your turn: cheapest[scale] = the name of the lowest total (min(tot, key=tot.get))\n"
+   },
+   {
+    "code": "assert cheapest == {0.5: 'Local data centre', 1.0: 'Regional cloud', 1.5: 'Regional cloud'}, 'Total every option at each multiplier and keep the name of the lowest'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Flag words in licence texts\nFinish `flag` so it returns the names from `KEYS` whose pattern appears in a text. Store the flags for each sample in `found`, and the sample names that return no flag in `missed`."
+   },
+   {
+    "code": "import re\n\nKEYS = {'AGPL': r'\\bAGPL', 'Elastic License': r'Elastic License', 'SSPL': r'\\bSSPL\\b',\n        'Apache': r'\\bApache\\b', 'MIT': r'\\bMIT\\b', 'Business Source': r'Business Source'}\nsamples = {\n    'A': 'MIT License. Permission is hereby granted, free of charge, to any person.',\n    'B': 'Elastic License 2.0. You may not provide the software as a hosted service. These limitations apply.',\n    'C': 'Licensed under Apache License 2.0. The bundled console is under the AGPL v3.',\n    'D': 'GNU Affero General Public License, version 3. You must offer the source to network users.',\n}\n\ndef flag(text):\n    return [k for k, pattern in KEYS.items() if re.search(pattern, text)]\n\nfound = {n: flag(t) for n, t in samples.items()}\nmissed = [n for n, f in found.items() if not f]\nprint(found, missed)",
+    "starter": "import re\n\nKEYS = {'AGPL': r'\\bAGPL', 'Elastic License': r'Elastic License', 'SSPL': r'\\bSSPL\\b',\n        'Apache': r'\\bApache\\b', 'MIT': r'\\bMIT\\b', 'Business Source': r'Business Source'}\nsamples = {\n    'A': 'MIT License. Permission is hereby granted, free of charge, to any person.',\n    'B': 'Elastic License 2.0. You may not provide the software as a hosted service. These limitations apply.',\n    'C': 'Licensed under Apache License 2.0. The bundled console is under the AGPL v3.',\n    'D': 'GNU Affero General Public License, version 3. You must offer the source to network users.',\n}\n\ndef flag(text):\n    # Your turn: return the keys of KEYS whose pattern is found in text with re.search\n    return []\n\n# Your turn: found = the flags for each sample, as a dictionary keyed by sample name\n# Your turn: missed = the sample names whose flags list is empty\n"
+   },
+   {
+    "code": "assert found == {'A': ['MIT'], 'B': ['Elastic License'], 'C': ['AGPL', 'Apache'], 'D': []}, 'Use re.search with each pattern in KEYS'\nassert missed == ['D'], 'Sample D names the AGPL in full, so no keyword catches it'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## For the leader\nLook at your results. Which of the five tools that are not permissive would you refuse to build on until its licence file has been read, and who in your organisation signs that decision? What is our exit if the vendor changes terms? Write your answer in two sentences below."
+   }
+  ]
+ }
+}

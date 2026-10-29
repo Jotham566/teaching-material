@@ -1,0 +1,471 @@
+{
+ "session": 4,
+ "notes_title": "So far we've described the data we hold. Today we ask how sure we can be. If you look at thirty orders, how far can their average sit from the truth? We'll find out by simulating it in Google Sheets, with no code at all. We'll also look at correlation, at why two things that move together may have nothing to do with each other, and at the ways a sample can quietly mislead you. By the end you'll have built two hundred samples yourself and watched the spread appear.",
+ "notes_outcomes": "The simulation is the centre of today. I build it live in Sheets, and then you run it yourself for forty minutes. By the end you'll explain why a sample differs from the whole file, and how a bigger sample narrows that gap. You'll read a correlation and say what it does not show. And you'll name two sources of bias, selection and survivorship. There's no code today. Every formula is one you can type into a cell.",
+ "notes_words": "Here are the eight words for today, each with a spreadsheet cousin. Probability is a share that settles down over many tries, like a COUNTIF divided by the row count. A sample is a few rows from the whole file. Sampling error is the gap between the two. A simulation is a fill down of random picks. Correlation is the number CORREL gives you. A confounder is a hidden column you never added. Selection bias is a filter you didn't choose. Survivorship bias is a table where the failures were deleted. Each one is a formula or a habit you could already use in Sheets.",
+ "vocab": [
+  [
+   "Probability",
+   "The share you get over many tries.",
+   "COUNTIF divided by rows"
+  ],
+  [
+   "Sample",
+   "A few rows from the whole file.",
+   "30 rows of 2,000"
+  ],
+  [
+   "Sampling error",
+   "The gap between a sample and the whole.",
+   "Two AVERAGEs that differ"
+  ],
+  [
+   "Simulation",
+   "Many random draws done by computer.",
+   "RANDBETWEEN filled down"
+  ],
+  [
+   "Correlation",
+   "A number from -1 to 1 for two columns moving together.",
+   "CORREL"
+  ],
+  [
+   "Confounder",
+   "A hidden factor that drives two things.",
+   "A column never added"
+  ],
+  [
+   "Selection bias",
+   "Rows chosen by something other than chance.",
+   "A forgotten filter"
+  ],
+  [
+   "Survivorship bias",
+   "Studying only what stayed.",
+   "Deleted failed rows"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 3",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "A few very large orders sit in your column. Mean or median for a typical order, and why?",
+     "a": "The median. Big orders pull the mean up: 47,491 against 23,200 UGX."
+    },
+    {
+     "q": "A bar chart makes a small gap look huge. What do you check first?",
+     "a": "Whether the axis starts at zero."
+    }
+   ],
+   "notes": "Let's recall the mean, the median and the cut axis from Session 3.\n\nFirst. A few very large orders sit in your column. Which do you report for a typical order, the mean or the median, and why? Have a think.\n\nThe median. A few huge orders pull the mean up. At Lakeside Mart the mean is forty seven thousand four hundred and ninety one shillings and the median is twenty three thousand two hundred. The median describes the order most customers actually place.\n\nSecond. A bar chart makes a small difference look enormous. What do you check first? No rush.\n\nWhether the axis starts at zero. A cut axis stretches small gaps. Today we ask a harder question about numbers like these. How much can they wobble just because of which rows we happened to look at?"
+  },
+  {
+   "type": "concept",
+   "title": "Probability is the share you get over many tries",
+   "lead": "Count the large orders in the 2,000 order workbook. Then count them in the full file.",
+   "points": [
+    {
+     "h": "In the workbook",
+     "t": "139 of 2,000 orders are above 100,000 UGX. That is 6.95 percent."
+    },
+    {
+     "h": "In the full file",
+     "t": "2,214 of 30,229 orders are above 100,000 UGX. That is 7.32 percent."
+    },
+    {
+     "h": "The long run",
+     "t": "The more orders you count, the more steadily the share settles."
+    },
+    {
+     "h": "One order",
+     "t": "The share cannot say if the next order is large. It speaks for many."
+    }
+   ],
+   "notes": "Let's start with probability, in plain words. Probability is the share you get when you repeat something many times.\n\nLet's count one. In the workbook you'll use today there are two thousand orders. COUNTIF finds how many are above a hundred thousand shillings. It's a hundred and thirty nine. Divide by two thousand and you get six point nine five percent.\n\nNow look at the full file of thirty thousand two hundred and twenty nine orders. There the share is seven point three two percent. The more orders you count, the more steadily the share settles. Statisticians call that the long run.\n\nA share can't tell you whether the next order will be large. It describes what happens over many orders."
+  },
+  {
+   "type": "table",
+   "title": "The Sheets formulas for a simulation",
+   "header": [
+    "Job",
+    "Formula",
+    "What you get"
+   ],
+   "rows": [
+    [
+     "A random decimal",
+     "=RAND()",
+     "A number from 0 to 1, new on every recalculation"
+    ],
+    [
+     "A random row number",
+     "=RANDBETWEEN(1,2000)",
+     "A whole number from 1 to 2000"
+    ],
+    [
+     "One random order",
+     "=INDEX(orders!$G$2:$G$2001, RANDBETWEEN(1,2000))",
+     "The order value in that random row"
+    ],
+    [
+     "A sample of 30",
+     "Fill that formula across A2:AD2",
+     "Thirty random orders in one row"
+    ],
+    [
+     "The sample mean",
+     "=AVERAGE(A2:AD2)",
+     "One mean for the row"
+    ],
+    [
+     "Share of the sample above 100,000",
+     "=COUNTIF(A2:AD2,\">100000\")/30",
+     "One share for the row"
+    ]
+   ],
+   "caption": "Fill the row down 200 times to get 200 samples.",
+   "notes": "Here are the formulas for the whole simulation. Each one is short.\n\nRAND gives a random decimal between zero and one. It changes every time the sheet recalculates. RANDBETWEEN gives a random whole number between two limits we choose. Here we choose one and two thousand, so it picks a row number.\n\nThe third row joins them. INDEX looks into the order values and returns the one in that random row. That's one random order. Fill the formula across thirty cells and you have a sample of thirty. AVERAGE gives its mean, and COUNTIF with a hundred thousand tells you what share of the thirty are large.\n\nOnly RANDBETWEEN and INDEX are new to you. We'll build it together in a minute."
+  },
+  {
+   "type": "flow",
+   "title": "Build 200 samples of 30 in five steps",
+   "steps": [
+    {
+     "h": "Pick",
+     "t": "One random order in A2 with INDEX and RANDBETWEEN"
+    },
+    {
+     "h": "Fill right",
+     "t": "Drag to AD2 for thirty orders"
+    },
+    {
+     "h": "Average",
+     "t": "AE2 is =AVERAGE(A2:AD2)"
+    },
+    {
+     "h": "Fill down",
+     "t": "Down to row 201 for 200 samples"
+    },
+    {
+     "h": "Chart",
+     "t": "A histogram of column AE"
+    }
+   ],
+   "caption": "Freeze the numbers before you chart them.",
+   "notes": "Building two hundred samples takes five steps, and you'll repeat them in the lab.\n\nFirst, pick one random order. In cell A2 on a new sheet, type the INDEX formula with RANDBETWEEN inside it. One cell, one random order.\n\nSecond, fill right. Drag the cell across to column AD and you have thirty random orders in a single row. That row is one sample.\n\nThird, average it. In AE2 type AVERAGE of A2 to AD2. That's the sample mean.\n\nFourth, fill down. Select the whole row and drag down to row two hundred and one. Now you have two hundred samples and two hundred means.\n\nFifth, chart column AE as a histogram, the same chart you made in Session 3. Before you chart it, freeze the numbers. I'll show you why in a moment."
+  },
+  {
+   "type": "define",
+   "title": "Sampling error",
+   "definition": "The gap between what a sample shows and what the whole file shows, caused only by which rows were drawn.",
+   "example": "The workbook holds 2,000 orders with a mean of 49,931 UGX. The full file of 30,229 orders has 47,491. The gap of about 2,439 UGX is sampling error.",
+   "excel": "The gap between AVERAGE of the rows you picked and AVERAGE of the whole column.",
+   "notes": "One term to fix in your mind. Sampling error.\n\nIn plain words, it's the gap between what a sample shows and what the whole file would show, caused only by which rows happened to be drawn. Nobody made a mistake.\n\nOur workbook is itself a sample of two thousand orders from the thirty thousand. Its mean is forty nine thousand nine hundred and thirty one shillings. The full file's mean is forty seven thousand four hundred and ninety one. The gap, about two thousand four hundred and thirty nine shillings, is sampling error.\n\nIn Sheets it's the gap between the AVERAGE of the rows you picked and the AVERAGE of the whole column. Same formula, different rows, different answer."
+  },
+  {
+   "type": "figure",
+   "title": "200 samples of 30 orders give 200 different means",
+   "fig": "sampling_means",
+   "alt": "Histogram of 200 sample means, each from 30 random orders, centred near the true mean and spread out around it.",
+   "look": [
+    "The means run from about 22,000 to 146,000 UGX.",
+    "139 of the 200 samples fall below the true mean of 47,491.",
+    "A long tail to the right, the skew from Session 3."
+   ],
+   "caption": "Each bar counts samples. The red line is the mean of the full file.",
+   "notes": "Two hundred samples look like this. Each one is thirty random orders from the full file, and each gives one mean. This chart counts those means.\n\nStart with the spread across the bottom. The means run from about twenty two thousand to about a hundred and forty six thousand. Same file, same method, and the answers differ that much.\n\nNow the red line, the true mean of forty seven thousand four hundred and ninety one. A hundred and thirty nine of the two hundred samples fall below it. A typical sample of thirty tends to miss the biggest orders.\n\nThe bars lean to the left and a long tail runs to the right. That's the same skew you met in Session 3. When a few big orders land in a sample, they drag its mean far to the right."
+  },
+  {
+   "type": "figure",
+   "title": "A bigger sample narrows the spread",
+   "fig": "sampling_n_compare",
+   "alt": "Three histograms of sample means for sample sizes 5, 30 and 200. The spread narrows as the sample grows.",
+   "look": [
+    "n = 5: spread 64.4k. The means are all over the place.",
+    "n = 30: spread 22.8k.",
+    "n = 200: spread 8.4k. The bars bunch round the true mean."
+   ],
+   "caption": "Spread is the standard deviation of the sample means, in UGX thousands.",
+   "notes": "Now the question everyone asks. Does a bigger sample help? Three panels, same file, three sample sizes. Each panel shows four hundred sample means, and the red line is the true mean.\n\nWith five orders in a sample, the spread is sixty four thousand four hundred shillings. That's the standard deviation of the sample means, the same spread measure from Session 3. The means are all over the place.\n\nWith thirty orders it drops to twenty two thousand eight hundred.\n\nWith two hundred orders it's eight thousand four hundred, and the bars bunch around the red line.\n\nA bigger sample narrows the spread, though each gain costs more. Going from five to thirty cuts the spread by about two thirds, and that takes twenty five more orders. Going from thirty to two hundred cuts it by about two thirds again, and that takes a hundred and seventy more."
+  },
+  {
+   "type": "trap",
+   "title": "Your simulation changes every time you touch the sheet",
+   "looks": "You build 200 samples and note the spread. Then you type in any cell, and every number in the grid changes.",
+   "why": "RAND and RANDBETWEEN recalculate on every edit. The sheet never remembers the draw.",
+   "fix": "Copy the block, then Paste special, Values only. Report numbers from the frozen copy.",
+   "notes": "You'll meet this trap in the lab, and it gives you no error at all.\n\nYou build your two hundred samples and read off the spread. Then you type a note in any cell, and every number in the grid changes. Your chart no longer matches what you wrote down.\n\nThe reason is that RAND and RANDBETWEEN recalculate whenever the sheet changes. The sheet doesn't remember the draw. It makes a fresh one each time.\n\nThe fix is to freeze. Select the block, copy it, then use Paste special and choose Values only. The formulas turn into plain numbers that stay put. Do this before you chart, and write down your results from the frozen copy."
+  },
+  {
+   "type": "figure",
+   "title": "Busy weeks have more orders",
+   "fig": "footfall_orders_scatter",
+   "alt": "Scatter plot of weekly orders against footfall for each branch-week with an upward fitted line.",
+   "look": [
+    "Each dot is one branch in one week. There are 832.",
+    "The dots climb. More people through the door, more orders.",
+    "The correlation r is 0.84."
+   ],
+   "caption": "Footfall is the door counter. Orders are the orders recorded that week.",
+   "notes": "Two columns at once now. It's the weekly branch file. Across the bottom is footfall, the door counter. Up the side is the number of orders recorded that week.\n\nEach dot is one branch in one week. There are eight hundred and thirty two of them.\n\nThe dots climb from lower left to upper right. Weeks with more people through the door tend to have more orders. The red line is the trendline you can add to any Sheets scatter chart.\n\nThe number in the corner, r equals zero point eight four, is the correlation. We define it next. Zero point eight four is a strong link."
+  },
+  {
+   "type": "figure",
+   "title": "Wetter weeks have fewer orders, with a lot of scatter",
+   "fig": "rain_orders_scatter",
+   "alt": "Scatter plot of weekly orders against rainfall with a gently downward fitted line and a lot of scatter.",
+   "look": [
+    "The line slopes gently down.",
+    "The correlation r is minus 0.22, a weak link.",
+    "Dry weeks run from very few orders to very many."
+   ],
+   "caption": "Same 832 branch weeks, now against rainfall in millimetres.",
+   "notes": "Now the same weeks against rainfall.\n\nThe red line slopes gently down. Wetter weeks tend to have fewer orders.\n\nThe correlation is minus zero point two two. That's a weak link, and the picture shows why. The dots form a wide cloud around the line.\n\nThe dry weeks on the left vary a lot. Some have very few orders and some have very many. Rain alone can't predict a week's orders. In Session 13 you'll learn to weigh footfall and rain together."
+  },
+  {
+   "type": "define",
+   "title": "Correlation",
+   "definition": "One number from minus 1 to plus 1 that says how closely two columns rise and fall together.",
+   "example": "Footfall and orders give 0.84. Rainfall and orders give minus 0.22. Zero means no straight line link.",
+   "excel": "=CORREL(C2:C833, F2:F833) on the branch_weeks sheet, where C is footfall and F is orders.",
+   "notes": "Time for the word. Correlation. In plain words, it's one number between minus one and plus one that says how closely two columns rise and fall together.\n\nPlus one means they climb in perfect step. Minus one means one rises exactly as the other falls. Zero means no straight line link at all.\n\nFootfall and orders give zero point eight four. Rainfall and orders give minus zero point two two.\n\nIn Sheets you already have it. CORREL, with the two columns inside the brackets. On the branch weeks sheet, footfall is column C and orders is column F."
+  },
+  {
+   "type": "concept",
+   "title": "What a correlation does not show",
+   "lead": "A correlation summarises a picture, and a summary leaves things out.",
+   "points": [
+    {
+     "h": "Cause",
+     "t": "Two columns can move together while neither pushes the other."
+    },
+    {
+     "h": "Size",
+     "t": "0.84 says the dots hug the line. It does not say how many orders 1,000 more visitors bring."
+    },
+    {
+     "h": "Shape",
+     "t": "It measures straight line links only. Draw the scatter before you trust the number."
+    }
+   ],
+   "notes": "A correlation is a summary of a picture, and a summary leaves things out. Three limits to keep with you.\n\nFirst, cause. Two columns can move together while neither one pushes the other. We look at that next.\n\nSecond, size. Zero point eight four says the dots hug the line. It doesn't tell you how many extra orders a thousand more visitors would bring. That's how steeply the line climbs, and it's a different question.\n\nThird, shape. Correlation only measures straight line links. A curve can have a correlation near zero. So draw the scatter first, then read the number."
+  },
+  {
+   "type": "figure",
+   "title": "A hidden third factor can link two things that never touch",
+   "fig": "confounding",
+   "alt": "Diagram with a hidden factor, hot weather, pointing to both ice cream sales and drownings, which look linked but are not causal.",
+   "look": [
+    "Hot weather lifts cold drink sales.",
+    "Hot weather also sends more people swimming, so accidents rise.",
+    "Drinks and accidents look linked. Neither causes the other."
+   ],
+   "caption": "The hidden factor is called a confounder.",
+   "notes": "This picture matters most today. Hot weather sits at the top. Two things sit below it, cold drink sales and swimming accidents.\n\nHot weather lifts cold drink sales. More people buy a cold drink when it's hot.\n\nHot weather also puts more people in the water, so swimming accidents rise too.\n\nNow look at the dashed line between the two boxes at the bottom. Drink sales and accidents rise together, so their correlation is high. Yet a cold drink never pushed anyone into a lake. The hidden factor above them drives both. That hidden factor has a name. It's called a confounder."
+  },
+  {
+   "type": "table",
+   "title": "Branch size lifts both footfall and orders",
+   "header": [
+    "Branch",
+    "Average weekly footfall",
+    "Average weekly orders",
+    "Correlation inside the branch"
+   ],
+   "rows": [
+    [
+     "Kampala Central",
+     "2,958",
+     "56.6",
+     "0.70"
+    ],
+    [
+     "Kampala Ntinda",
+     "2,433",
+     "46.4",
+     "0.55"
+    ],
+    [
+     "Entebbe",
+     "1,683",
+     "32.2",
+     "0.53"
+    ],
+    [
+     "Jinja",
+     "1,852",
+     "34.2",
+     "0.57"
+    ],
+    [
+     "Mbale",
+     "1,505",
+     "29.2",
+     "0.71"
+    ],
+    [
+     "Mbarara",
+     "1,914",
+     "37.0",
+     "0.66"
+    ],
+    [
+     "Fort Portal",
+     "1,310",
+     "26.8",
+     "0.73"
+    ],
+    [
+     "Gulu",
+     "1,489",
+     "28.2",
+     "0.55"
+    ]
+   ],
+   "caption": "All 832 weeks together: r = 0.84. Inside one branch: 0.53 to 0.73.",
+   "notes": "Our own data has a confounder too. Branch size.\n\nThe middle columns show each branch's average weekly footfall and average weekly orders. Kampala Central is the biggest. Almost three thousand people a week, and about fifty seven orders a week. Fort Portal is the smallest, with about thirteen hundred people and under twenty seven orders. Big branches have more of both.\n\nLine up the eight branch averages and the correlation is nearly perfect, zero point nine nine seven. Much of that comes from branch size pushing both columns up together.\n\nThe last column is the check. Take one branch at a time and the correlation falls to between zero point five three and zero point seven three. The link is still real, and it's weaker than the zero point eight four we saw when we pooled every branch."
+  },
+  {
+   "type": "trap",
+   "title": "Reading a correlation as a lever",
+   "looks": "Footfall and orders correlate at 0.84. So you pay for flyers to lift footfall and expect orders to follow.",
+   "why": "The 0.84 mixes two things. Big branches have more of both, and busy weeks inside a branch have more of both. Flyers change neither.",
+   "fix": "Compare inside one branch, name the hidden factors, and test the change small before you spend.",
+   "notes": "This trap costs real money.\n\nYou see that footfall and orders correlate at zero point eight four. So you pay for flyers to push footfall up, and you expect orders to follow.\n\nThe zero point eight four mixes two things. Big branches have more of both. And busy weeks inside one branch also have more of both. Flyers change neither of those. The pooled number overstates what a change at one branch would bring.\n\nThe fix is to compare inside one branch, name the hidden factors you can think of, and test the change on a small scale before you spend. In Session 12 we'll learn how to run that test properly."
+  },
+  {
+   "type": "compare",
+   "title": "Two ways a sample misleads you",
+   "left": {
+    "h": "Selection bias",
+    "points": [
+     "Something other than chance chose the rows",
+     "Example: only customers who gave a loyalty number",
+     "Fix: compare your rows with the missing rows"
+    ]
+   },
+   "right": {
+    "h": "Survivorship bias",
+    "points": [
+     "You see only what stayed",
+     "Example: studying only branches still open",
+     "Fix: ask who or what is missing, and why"
+    ]
+   },
+   "verdict": "Before you trust a sample, ask how each row got into it.",
+   "notes": "Two ways a sample misleads you. Neither one shows up as an error.\n\nOn the left, selection bias. Something other than chance decided which rows you see. Say you study only customers who gave a loyalty number. The walk in customers have gone missing from your table. The fix is to compare the rows you have with the rows you don't.\n\nOn the right, survivorship bias. You only see what stayed. Think of studying only the branches that are still open. The ones that closed can't speak. A well known story from the Second World War is told about the statistician Abraham Wald. The military studied the bullet holes on bombers that came back, and the obvious idea was to armour those spots. Wald's point was that the planes that never returned had been hit elsewhere, so the places with no holes were the ones to protect. The fix is to ask who or what is missing, and why.\n\nBefore you trust a sample, ask how each row got into it."
+  },
+  {
+   "type": "stat",
+   "title": "Checking our own data for bias",
+   "stats": [
+    {
+     "n": "47,432",
+     "label": "Mean order value, loyalty orders (70% of all orders)"
+    },
+    {
+     "n": "47,628",
+     "label": "Mean order value, walk in orders"
+    },
+    {
+     "n": "8.43",
+     "label": "Orders per customer, all 2,499 customers"
+    },
+    {
+     "n": "8.70",
+     "label": "Orders per customer, the 2,224 still ordering in late 2025"
+    }
+   ],
+   "caption": "Both gaps are small, so the bias is mild here. You only know after you check.",
+   "notes": "Let's check our own data for bias, with numbers from the full file.\n\nAbout seventy percent of orders carry a loyalty number, twenty one thousand and fifty eight of the thirty thousand two hundred and twenty nine. If we looked only at those, would we get a different picture of order value? The mean is forty seven thousand four hundred and thirty two shillings for loyalty orders and forty seven thousand six hundred and twenty eight for walk in orders. Almost identical.\n\nNow the survivors. Of the two thousand four hundred and ninety nine customers with orders, two thousand two hundred and twenty four still ordered from July twenty twenty five onward. Those still ordering average eight point seven orders each, against eight point four three for everyone. A small gap.\n\nBoth gaps are small, so the bias is mild here. You only know that because you checked. Make the check a habit."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: 200 samples and a confounding trap",
+   "tool": "Google Sheets",
+   "time": "40 minutes",
+   "steps": [
+    "Open lakeside_for_sheets.xlsx and find the mean of all 2,000 orders",
+    "Build 200 samples of 30 orders and average each one",
+    "Freeze the numbers, then find the mean, spread, smallest, largest and count below 47,491",
+    "Draw a histogram, then repeat with samples of 5",
+    "Find CORREL for footfall and for rainfall, then for one branch",
+    "Compare loyalty and walk in order values",
+    "Write three sentences on the confounding trap"
+   ],
+   "done": "Your numbers fall inside the ranges on the lab sheet, and you can say why they differ from your neighbour's.",
+   "notes": "The first task is quick. Open the Lakeside workbook, find the mean of all two thousand orders, and compare it with the full file mean of forty seven thousand four hundred and ninety one. Forty minutes in Google Sheets, and no code.\n\nThen build your two hundred samples of thirty. Freeze them before you do anything else. Once they're frozen, find the average, the spread, the smallest and the largest of your two hundred means, and draw the histogram. Repeat with just the first five columns to see the spread widen.\n\nAfter that, calculate the two correlations, and one more for a single branch. Then compare the order values of loyalty customers and walk in customers, which is the bias check we just did on the full file.\n\nThe last step is three sentences about the confounding trap. Your numbers will differ from your neighbour's, and that's expected. The lab sheet gives ranges so you can see whether yours are sensible."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Your sample of 30 orders has a mean of 41,000 UGX. The full file says 47,491. Has someone made a mistake?",
+     "a": "No. That gap is sampling error. Another sample would differ, and a bigger one would land closer."
+    },
+    {
+     "q": "Footfall and orders have r = 0.84. Does that show more visitors cause more orders?",
+     "a": "It shows they move together. Branch size and other hidden factors lie behind part of it. Test a change before you act."
+    },
+    {
+     "q": "You study only customers who stayed two years. What bias is that, and what do you ask?",
+     "a": "Survivorship bias. Ask who left and how they differ."
+    }
+   ],
+   "notes": "Let's check the ideas from today against some realistic cases. Your sample of thirty orders has a mean of forty one thousand shillings, and the full file says forty seven thousand four hundred and ninety one. Has someone made a mistake? Think it over.\n\nNo. That gap is sampling error. Another sample of thirty would give another mean, and a bigger sample would land closer.\n\nNext, footfall and orders have a correlation of zero point eight four. Does that show more visitors cause more orders? Give that a moment.\n\nIt shows they move together. Branch size and other hidden factors lie behind part of that, so test a change before you act on it.\n\nLast, you study only the customers who stayed with Lakeside for two years. What bias is that, and what do you ask? Sit with it for a second.\n\nSurvivorship bias. Ask who left, and how they differ from the ones who stayed."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A sample differs from the whole by chance alone, and a bigger sample narrows the gap.",
+    "A correlation shows two columns moving together. It does not show cause or size.",
+    "Ask how rows got into a sample, who is missing, and what hidden factor drives both columns."
+   ],
+   "next": "Your first Python, next to the spreadsheet",
+   "notes": "One. A sample differs from the whole file by chance alone. A bigger sample narrows the gap, and a simulation in Sheets lets you see it happen.\n\nTwo. A correlation shows two columns moving together. It says nothing about cause, and nothing about how much one changes when the other does.\n\nThree. Before you trust a sample, ask how the rows got in, who is missing, and what hidden factor could drive both columns.\n\nThat finishes the first module, thinking with data. Next session we meet Python for the first time. Much of what you did today with INDEX and AVERAGE will have a Python twin, and we'll put them side by side."
+  }
+ ],
+ "lab": {
+  "intro": "Work in Google Sheets with lakeside_for_sheets.xlsx, a 2,000 order sample. Your random numbers will differ from everyone else's. Check yours against the ranges given.",
+  "sheet_tasks": [
+   {
+    "task": "On the orders sheet, find the mean of all 2,000 order values with AVERAGE, and the share of orders above 100,000 UGX with COUNTIF. Compare the mean with the full file mean of 47,491 UGX from the answer key. How big is the gap?",
+    "answer": "Mean 49,931 UGX (49,930.68). COUNTIF gives 139 orders above 100,000, a share of 6.95 percent. The workbook mean is about 2,439 UGX above the full file mean of 47,491. That gap is sampling error: the workbook is itself a sample."
+   },
+   {
+    "task": "Add a new sheet. In A2 put =INDEX(orders!$G$2:$G$2001, RANDBETWEEN(1,2000)). Fill right to AD2, put =AVERAGE(A2:AD2) in AE2, then fill A2:AE2 down to row 201. Copy the block and Paste special, Values only. Draw a histogram of column AE.",
+    "answer": "Column AE holds 200 sample means. Yours will differ from anyone else's. Ranges in this task and the next three come from simulating the whole exercise 5,000 times on this workbook and keeping the middle 98 percent of results. Expect the smallest mean between about 16,000 and 25,000 and the largest between about 112,000 and 214,000. The histogram leans left with a long tail to the right, as in the sampling_means figure."
+   },
+   {
+    "task": "In a spare cell find the AVERAGE, STDEV, MIN and MAX of the 200 sample means. Compare the average with 47,491 and the workbook mean 49,931.",
+    "answer": "Average of the means: between about 46,000 and 54,000, close to the order mean 49,931 because sample means centre on it. STDEV: between about 19,000 and 28,000, typically near 23,000. MIN: about 16,000 to 25,000. MAX: about 112,000 to 214,000. Any single sample can sit far from the true mean, yet the 200 means centre on it."
+   },
+   {
+    "task": "Use =COUNTIF(AE2:AE201,\"<47491\") to count how many of your 200 sample means fall below the full file mean. Say why it is more than half.",
+    "answer": "Expect between about 107 and 139 of the 200, most runs near 115 to 133. Order values are skewed to the right, so most samples of 30 miss the few very large orders and give a mean below the true mean, while the few samples that catch them give a very high mean."
+   },
+   {
+    "task": "In AF2 put =AVERAGE(A2:E2) (the first 5 orders only) and fill down to row 201. Copy the column and Paste special, Values only. Then find the STDEV of column AF and compare it with the STDEV of column AE.",
+    "answer": "STDEV of the n = 5 means: between about 36,000 and 79,000, typically near 56,000. That is about 1.6 to 3.3 times the n = 30 spread (usually near 2.4 times). Samples of 5 wobble far more than samples of 30."
+   },
+   {
+    "task": "On the branch_weeks sheet find =CORREL(C2:C833, F2:F833) for footfall and orders, and =CORREL(D2:D833, F2:F833) for rainfall and orders. Then use only Kampala Central (B01, rows 2 to 105) and repeat both.",
+    "answer": "All 832 weeks: footfall and orders r = 0.84 (0.8401), rainfall and orders r = minus 0.22 (minus 0.2159). Kampala Central only (B01, rows 2 to 105): footfall and orders r = 0.70 (0.696), rainfall and orders r = minus 0.27 (minus 0.267). The footfall link is weaker inside one branch. The eight branches on their own give 0.53 to 0.73."
+   },
+   {
+    "task": "Compare orders with a loyalty number and walk in orders. Use =AVERAGEIFS(G2:G2001,D2:D2001,\"<>\") and =AVERAGEIFS(G2:G2001,D2:D2001,\"\") for the means, and =COUNTIF(D2:D2001,\"\") for the blanks. Which bias would you introduce by reporting only loyalty orders? Does it matter here?",
+    "answer": "Loyalty orders: 1,420 with a mean of 48,672. Walk in orders: 580 with a mean of 53,013, lifted by the single 1,935,520 order, which has no customer_id. The medians are closer (25,468 and 22,800). Reporting only loyalty orders would be selection bias. In the full file the two means are almost equal (47,432 and 47,628), so the effect is mild, but you only know that after you check."
+   },
+   {
+    "task": "A manager sees r = 0.84 between footfall and orders and wants to fund flyers to raise footfall. Write three sentences: name one confounder in this data, say what the inside-one-branch figures tell you, and suggest how to test the idea.",
+    "answer": "Model answer: Branch size is a confounder, because large branches such as Kampala Central (about 2,958 visitors and 56.6 orders a week) have more of both and Fort Portal (about 1,310 and 26.8) has less of both. Inside a single branch the correlation is lower, between 0.53 and 0.73, so part of the 0.84 comes from branch size. Test flyers at a few branches for some weeks against similar branches without them before spending widely."
+   }
+  ]
+ }
+}

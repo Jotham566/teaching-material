@@ -1,0 +1,117 @@
+{
+  "maturity_levels": {
+    "description": "A five step staircase drawn as one ink line, rising left to right: 1 Ad hoc, 2 Developing, 3 Defined, 4 Managed, 5 Optimised. Each step has one plain line on what the organisation can show; level 3 reads \"Written down, owned, and checked at least once a year\". A clay triangle under the staircase marks Kitara today at 2.4, the mean of the five dimension scores in readiness_evidence.csv. The scale itself is illustrative.",
+    "alt": "A staircase of five maturity levels from ad hoc to optimised with Kitara marked at 2.4, between developing and defined.",
+    "width_in": 12.4
+  },
+  "baseline_scores": {
+    "description": "Horizontal bars for the five Kitara dimension scores computed from readiness_evidence.csv (mean of proposed_score): Use cases and sponsorship 3.00; Data: inventory, quality and metadata 2.00; Platform and pipelines 2.50; Protection and law 3.00; People and governance 1.50. A hollow circle on each row shows the score after the 8 self-reported items are removed: 2.33; 1.33; 2.40; 2.67; 1.33. The weakest dimension by baseline, People and governance, is clay. Numbers at the bar ends read baseline then (adjusted).",
+    "alt": "Bar chart of five readiness scores with People and governance lowest at 1.5, and hollow markers showing lower scores once self-reported evidence is removed.",
+    "width_in": 7.0
+  },
+  "use_case_data_map": {
+    "description": "A grid of four Kitara use cases (staff policy assistant, claims letter triage, customer churn prediction, fraud flagging on mobile money) against six data needs, each cell marked available (moss dot), partly (half dot) or missing (clay ring), or left as not needed. Judgements rest on the files: 31 policy documents and 30 text claims letters exist; superseded status (11 documents) is held only in docs_metadata.csv; the shared drive S09 has no owner and the claims archive S06 and mobile money log S02 are owned by \"IT\" with a business unit also claiming them; no file holds a claim outcome or a fraud flag; the transaction log carries hashed phone numbers so it cannot be matched to customers.csv; customers.csv has a status column (Active, Dormant, Closed) but no dated churn flag.",
+    "alt": "A grid of four AI use cases against the data each needs, marked available, partly or missing, with missing outcome labels and owners standing out in clay.",
+    "width_in": 12.4
+  },
+  "data_failure_modes": {
+    "description": "Four columns, Missing, Stale, Unowned and Unreachable, each with a one line definition and a Kitara example computed from the files. Missing: 550 of 5,000 customers have no national ID. Stale: the 2019 Staff Handbook says 21 working days of annual leave and the 2025 one says 28 (2022: 24), and all three sit in the same folder. Unowned: 4 of 14 sources have no owner (S08, S09, S12, S13). Unreachable: 8 scanned PDFs return no text through pypdf; the claims archive S06 holds PDF and scanned images.",
+    "alt": "Four columns naming the ways data fails an AI use: missing, stale, unowned and unreachable, each with a Kitara example and a number.",
+    "width_in": 12.4
+  },
+  "source_status": {
+    "description": "A grid of the 14 rows of sources.csv (S01 to S14) against five fields: owner, steward, sensitivity class, personal data flag and last quality check. A filled charcoal dot means the field is filled in; a clay ring means it is blank. The bottom row counts the gaps: Owner 4, Steward 7, Sensitivity class 5, Personal data flag 3, Quality check 6.",
+    "alt": "A fourteen row grid showing which data sources have an owner, steward, sensitivity class, personal data flag and quality check, with missing entries ringed in clay.",
+    "width_in": 12.4
+  },
+  "defect_profile": {
+    "description": "Horizontal bars of defect counts in customers.csv, sorted high to low and computed from the file: Phone not in +256 form 2,490; Gender not coded M or F 1,462; District spelled other ways 569; Missing national ID 550; Missing date of birth 300; Duplicate customers 150; Impossible dates 40; Test accounts 25. The largest bar is clay. Counts are rows affected out of 5,000; a row can have more than one defect. Duplicates use the national ID or name plus date of birth rule.",
+    "alt": "Bar chart of eight defect types in the customer table, with phone not in +256 form the largest at 2,490 rows.",
+    "width_in": 7.0
+  },
+  "missing_by_column": {
+    "description": "Horizontal bars of the percent of blank cells in each of the 14 columns of customers.csv, sorted high to low and computed from the file: email 32.5%; national_id 11.0%; date_of_birth 6.0%; every other column 0. The largest, email, is clay.",
+    "alt": "Bar chart of percent missing by customer column: email highest at 32 percent, national_id 11 percent and date_of_birth 6 percent, others none.",
+    "width_in": 7.0
+  },
+  "corpus_makeup": {
+    "description": "Four horizontal bars of the 121 Kitara documents by format (Text PDF 97, Scanned PDF 8, Word document 10, Text file 6), each split into current (charcoal) and superseded (clay) from docs_metadata.csv. 11 documents are superseded; 5 of the 8 scanned PDFs are superseded. Counts are written after each bar.",
+    "alt": "Bar chart of documents by format, with 11 superseded documents highlighted and most scanned PDFs among them.",
+    "width_in": 7.0
+  },
+  "ocr_example": {
+    "description": "Left: a real crop of the heavy scan \"Scan Loan Committee Note 2018.pdf\" (doc D089), rendered from the PDF at 150 dpi. Right: the text Tesseract returns for that same crop, with the 13 of 31 words that differ from the known source text in clay (difflib on words), then up to four pairs of source phrase and what was read. The whole page has a character error rate of 13.1% in answer_key.json.",
+    "alt": "A faded scanned note on the left and the text a reader program extracted on the right, with 13 wrongly read words in clay.",
+    "width_in": 12.4
+  },
+  "table_scramble": {
+    "description": "One real table page, \"Tariff Schedule 2025.pdf\". Left: the page image from pdftoppm cropped to the table. Middle: the pypdf text in file order (first services, then the Charge header and values, then Notes), showing that the services are listed first and the charges after, 9 lines apart for \"Cash withdrawal at branch\" and its charge \"2,500\" (clay). Right: the same table as rows from pdfplumber, 8 data rows with service and charge kept together.",
+    "alt": "A table page shown with its scrambled pypdf text in the middle and the clean rows recovered by pdfplumber on the right.",
+    "width_in": 12.4
+  },
+  "chunking_overlap": {
+    "description": "One real document, \"Kitara Group Staff Handbook 2025\" (436 words), split by chunk_text with 200 word chunks and 40 words of overlap into 3 chunks. Each chunk is a charcoal bar placed at its word span on a shared 0 to 436 word axis; the 40 words shared with the previous chunk are clay. The first chunk's opening words are printed underneath.",
+    "alt": "Bars showing one document of 436 words cut into 3 overlapping chunks, with the repeated stretch of 40 words in clay.",
+    "width_in": 12.4
+  },
+  "embedding_map": {
+    "description": "A two-dimensional map (first two SVD components of the 64-number stand-in vectors from kitara_search.MeaningScorer, 37% of the spread) of 12 real chunks (charcoal dots, labelled with document id) and 4 real eval questions (Q01, Q02, Q15, Q19; clay diamonds Q1 to Q4). Hairlines join each question to its three nearest chunks. A list on the right gives each question and the document of its nearest chunk. Labelled as stand-in vectors; real embeddings differ.",
+    "alt": "A scatter map where four question markers sit near the document passages that answer them, joined by thin lines.",
+    "width_in": 12.4
+  },
+  "rrf_fusion": {
+    "description": "For eval question Q01 (\"What check happens on each borrower before a decision?\"), three ranked lists of the top 5 chunks from the real search: keyword search (BM25), the stand-in meaning search, and the fused list where each chunk scores the sum of 1/(60 + rank) over the lists it appears in. The chunk from the gold document D007 (Loan Approval Policy) is clay in each list. Gold ranks: BM25 7, meaning 1, fused 3; these match answer_key.json.",
+    "alt": "Three ranked lists for one question showing the correct document missing from the keyword top five, first in meaning search, and third after fusion.",
+    "width_in": 12.4
+  },
+  "recall_by_method": {
+    "description": "Grouped bars of recall at 1, 3, 5 and 10 on the 60 questions in eval_questions.csv, computed by running the three searches in kitara_search.py (hit when any of the top k chunks comes from the gold document): BM25 @1 42%, @3 55%, @5 63%, @10 77%; Stand-in @1 33%, @3 57%, @5 62%, @10 78%; Hybrid @1 30%, @3 60%, @5 77%, @10 80%. Hybrid is clay. Methods are labelled inside the first group of bars. At 5 the values match answer_key.json (0.633, 0.617, 0.767).",
+    "alt": "Grouped bar chart of search recall at top 1, 3, 5 and 10 for keyword, stand-in meaning and hybrid search, with hybrid highest at 77 percent at 5.",
+    "width_in": 7.0
+  },
+  "stale_version": {
+    "description": "The annual leave answer in the three real Staff Handbooks side by side (2019: 21 days, 2022: 24 days, 2025: 28 days, with the sentence from each, extracted from the files), and the real keyword (BM25) result for eval question Q41: the first chunk returned comes from the 2019 handbook, marked superseded in docs_metadata.csv, shown in clay, and the first current chunk appears at rank 4.",
+    "alt": "Three handbook versions giving 21, 24 and 28 days of annual leave, with the oldest one returned first by keyword search.",
+    "width_in": 12.4
+  },
+  "permission_filter": {
+    "description": "One real eval question (Q55: \"What are the monthly salary bands for each grade?\") run through hybrid search twice for the user Winnie Atim (Customer Service Agent (general staff), groups all_staff), who may not see the gold document D004 (Staff Handbook 2025, Appendix B: Salary Bands, confidential, open to hr;executive). Left: top 5 results with no filter, with every result the user may not see crossed out in clay. Right: top 5 with the permission filter applied before ranking, where none of them appear.",
+    "alt": "Two result lists for one question: without a filter a restricted salary document is in the top five crossed out, and with the filter it is gone.",
+    "width_in": 12.4
+  },
+  "pipeline_zones": {
+    "description": "A diagram (illustrative, labelled as such) of a reference architecture: boxes for Sources, Raw zone, Cleaned zone, Serving zone and Search index and dashboards joined by four arrows, with a clay check on each arrow (schema check, quality check, personal data check, schema and quality check). An access control band runs across the top. Three bands underneath: orchestration, lineage and monitoring. Not drawn from data.",
+    "alt": "A pipeline diagram from sources through raw, cleaned and serving zones to a search index, with a check on every arrow and bands for access control, orchestration, lineage and monitoring.",
+    "width_in": 12.4
+  },
+  "lineage_graph": {
+    "description": "The 27 assets and 25 edges of lineage_edges.csv laid out left to right in 6 columns by their longest path from a source system (source systems, staging, cleaned, marts, reports, returns and board pack). Nodes are dots with their asset names; edges are curved hairlines. The 3 edges whose step says it is done by hand or pasted are dashed. The document chain claims_doc_archive.files to ocr.claims_text to search.claims_index is clay.",
+    "alt": "A left to right graph of the Kitara data assets from source systems to reports and the board pack, with the document search chain in clay and manual copy steps dashed.",
+    "width_in": 12.4
+  },
+  "freshness_gap": {
+    "description": "Bars of transactions per hour (distinct txn_id) for 2026-09-17 from mobile_money_log.csv, after parsing both timestamp formats. The largest gap between consecutive transactions in the month, 6.1 hours from 08:59:42 to 15:05:26, is shaded with a hairline hatch and labelled in clay.",
+    "alt": "Bar chart of transactions per hour on one day with a hatched 6 hour stretch around midday where nothing was recorded.",
+    "width_in": 12.4
+  },
+  "pii_counts": {
+    "description": "Horizontal bars of personal data pattern matches found by regular expression in the text (pypdf) of the 30 claims letters: Phone numbers 49; Names after Mr, Mrs, Ms, Dr 37; Customer ids KT- 30; National ids KX 20; Emails 0; 136 matches in all. 30 of 30 letters contain at least one. National ids are clay as the most sensitive pattern. Name matches use a title plus capitalised words pattern and are approximate.",
+    "alt": "Bar chart of personal data patterns found in the claims letters, with all 30 letters affected.",
+    "width_in": 7.0
+  },
+  "risk_matrix": {
+    "description": "A 5 by 5 grid, likelihood up the side and impact along the bottom, with the 12 risks of risk_register.csv as numbered dots (number = the id R01 to R12). Dots scoring 15 or more are clay (3 risks); 5 score 8 to 14 and 4 score below 8 (charcoal). A list on the right gives each risk name and score, highest first.",
+    "alt": "A likelihood by impact grid with twelve numbered risk dots, three in clay for scores of 15 or more.",
+    "width_in": 12.4
+  },
+  "roadmap_gantt": {
+    "description": "A Gantt chart of the 16 work items in roadmap_items.csv across 12 months (M1 to M12): one bar per item from its start_month for its duration_months, thin elbow lines from the end of each prerequisite to the start of the item that depends on it, and a vertical dashed marker after month 6 labelled \"rescore\". The longest dependency chain (W01 > W02 > W08 > W12 > W15 > W16, 12 months) is clay. A check confirms no item starts before its prerequisite ends.",
+    "alt": "A twelve month Gantt chart of sixteen work items with dependency lines, a rescore marker after month six and the 12 month critical chain in clay.",
+    "width_in": 12.4
+  },
+  "governance_roles": {
+    "description": "Typography only, with hairlines: five roles stacked top to bottom (steering council, data owner, data steward, data custodian, data user), each with the one decision it makes. Under the data owner, in clay, the Kitara fact from sources.csv that 4 of 14 sources name no owner. The role split is illustrative.",
+    "alt": "Five data roles listed one above the other, each with the single decision it is responsible for.",
+    "width_in": 7.0
+  }
+}

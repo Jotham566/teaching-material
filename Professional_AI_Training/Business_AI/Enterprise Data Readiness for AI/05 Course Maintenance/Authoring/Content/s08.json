@@ -1,0 +1,494 @@
+{
+ "session": 8,
+ "notes_title": "Last session you tested a search and proved that it respected permissions. Today we follow the data back to where it comes from. A month of Kitara's mobile money log holds three hundred repeated transactions, two date formats and a six hour silence on one afternoon. We build a three step pipeline that catches all of it, run it twice to see if it is safe, and then break it on purpose with a renamed column. You leave with a map of your own pipeline and a name against every alert.",
+ "notes_outcomes": "Your three outcomes today are practical. You'll describe the path from source to search as ordered steps with a check on each one. You'll explain batch and incremental loads, and why every step must be safe to run twice. And you'll say what to monitor, which is freshness, volume and schema change, and who is told when each one fails. The live part runs the Kitara pipeline and breaks it. The workshop is the pipeline map for your own organisation, with an owner on every alert.",
+ "notes_words": "Eight words, and each one points at something in the Kitara pipeline. A pipeline is the ordered steps that move data to where it is used. A zone is one store in that path with one rule about what may change. An incremental load copies only new rows. Idempotent means safe to run twice. An orchestrator runs the steps and sends alerts. Schema drift is a column change nobody announced. Freshness is how recently data arrived. The alert owner is the named person who acts when a check fails.",
+ "vocab": [
+  [
+   "Pipeline",
+   "The ordered steps that move data from a source to the place it is used, each step with a check.",
+   "mobile_money.switch_log to the customer base dashboard, five stops"
+  ],
+  [
+   "Zone",
+   "One store in a pipeline with one rule about what may change: raw, cleaned or serving.",
+   "staging.mm_raw, clean.mm_transactions, mart.customer_360"
+  ],
+  [
+   "Incremental load",
+   "Copying only the rows that are new since the last run.",
+   "The hourly mobile money file drop"
+  ],
+  [
+   "Idempotent",
+   "Safe to run twice. The second run leaves the same result as the first.",
+   "19,700 rows after one run and after two"
+  ],
+  [
+   "Orchestrator",
+   "The tool that runs pipeline steps in order, retries failures and sends alerts.",
+   "Dagster or Apache Airflow"
+  ],
+  [
+   "Schema drift",
+   "A change in the column names or types of a source that nobody announced.",
+   "agent_id renamed to agent"
+  ],
+  [
+   "Freshness",
+   "How recently the newest data arrived, or the longest silence between records.",
+   "6.1 hours with no records on 17 September"
+  ],
+  [
+   "Alert owner",
+   "The named person or role who is told when a check fails, and who acts.",
+   "Switch operations for freshness, platform lead for schema"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 7",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Hybrid search had the higher recall at 5 and the lower mean reciprocal rank. What do you report?",
+     "a": "Both numbers and the size of the test. Recall at 5 was 0.767 for hybrid against 0.633 for keyword. The mean reciprocal rank was 0.474 against 0.514, on 60 questions."
+    },
+    {
+     "q": "Why did the pilot apply the permission filter before ranking, and what did it show for the six restricted questions?",
+     "a": "A filter after ranking can leave a person with fewer results or none. Without the filter the restricted document appeared for 6 of 6 questions. With it, 0 of 6."
+    }
+   ],
+   "notes": "Two questions from the search pilot. Hybrid search had the higher recall at five and the lower mean reciprocal rank. What do you report to your leaders? Give that a moment.\n\nYou report both numbers and the size of the test. Recall at five was zero point seven six seven for hybrid and zero point six three three for keyword. The mean reciprocal rank went the other way, zero point four seven four against zero point five one four, on sixty questions. Second question. Why did we apply the permission filter before ranking, and what did it show for the six restricted questions? Think it over.\n\nA filter after ranking can leave a person with fewer results, or with none at all. Without any filter, the restricted document appeared for all six questions. With the filter, for none. Today we follow the data on its way in."
+  },
+  {
+   "type": "figure",
+   "title": "Kitara's data crosses 25 hops, and three are done by hand",
+   "fig": "lineage_graph",
+   "look": [
+    "27 assets and 25 edges, read from lineage_edges.csv.",
+    "Three dashed edges are a person copying by hand or pasting a screenshot.",
+    "The clay chain is the document path behind the search index."
+   ],
+   "caption": "OpenLineage is the open standard for recording each run of a job as a lineage event.",
+   "alt": "A left to right graph of the Kitara data assets from source systems to reports and the board pack, with the document search chain in clay and manual copy steps dashed.",
+   "notes": "This is Kitara's data estate drawn as a map. Twenty seven assets, joined by twenty five steps. Every line is one row of lineage_edges.csv, and lineage means a record of where each table came from and where it goes.\n\nThree of the lines are dashed. The claims ratio is copied by hand into the insurance quarterly return, and two dashboards are pasted as screenshots into the board pack. At those three points no program checks anything. If a number is wrong, a person has to notice.\n\nThe clay line is the one we care about today. Claims documents are read by OCR, then chunked and indexed, and that is the path behind the search you tested last session.\n\nLineage is worth recording in a standard form. OpenLineage is an open standard for that, and it sits under the LF AI and Data Foundation. A pipeline tool sends an event each time a job runs, saying which datasets it read and wrote."
+  },
+  {
+   "type": "figure",
+   "title": "A path from source to search with a check on every arrow",
+   "fig": "pipeline_zones",
+   "look": [
+    "Five boxes: sources, raw zone, cleaned zone, serving zone, search index and dashboards.",
+    "A clay check sits on every arrow between them.",
+    "Three bands underneath: orchestration, lineage and monitoring."
+   ],
+   "caption": "An illustrative reference architecture, not a Kitara system. Any S3-compatible store can hold the zones.",
+   "alt": "A pipeline diagram from sources through raw, cleaned and serving zones to a search index, with a check on every arrow and bands for access control, orchestration, lineage and monitoring.",
+   "notes": "This is the reference path for the whole session. Data starts at the sources on the left and ends at the search index and dashboards on the right.\n\nIn the middle sit three zones, three stores with different rules. The raw zone holds an untouched copy of what the source sent. At Kitara the hourly mobile money file lands in staging.mm_raw. The cleaned zone holds the fixed and checked version, clean.mm_transactions, with duplicates out and one date format. The serving zone, mart.customer_360, is shaped for the readers.\n\nEach arrow carries a check, drawn in clay. A schema check on the way in, a quality check between raw and cleaned, a personal data check before serving, and a final check before the index. That personal data check is the topic of Session 9.\n\nUnder the boxes sit three bands. Orchestration runs each step and alerts a named owner. Lineage records where everything came from. Monitoring watches freshness, volume and schema change.\n\nKitara loads the raw copy first and cleans it later inside its own stores. That order is called ELT. The older order, ETL, tidies the data before it lands. Any S3 compatible object store can hold the zones."
+  },
+  {
+   "type": "compare",
+   "title": "Batch copies everything, incremental copies what is new",
+   "left": {
+    "h": "Batch",
+    "points": [
+     "Copy the whole source on every run",
+     "Kitara: the nightly customer extract at 00:30",
+     "Simple. The run takes longer as the data grows"
+    ]
+   },
+   "right": {
+    "h": "Incremental",
+    "points": [
+     "Copy only what is new since the last run",
+     "Kitara: the hourly mobile money file drop",
+     "Fast. Needs a key such as txn_id, so a re-sent row is not counted twice"
+    ]
+   },
+   "verdict": "Pick by how fresh the data must be and how big it is. Either way a step must give the same result when it runs twice.",
+   "notes": "There are two ways to move data, and Kitara uses both.\n\nA batch load copies the whole source every time. The core banking customer table is extracted every night at half past midnight. It is simple, and you never wonder what was missed. The cost is that the run takes longer every year as the table grows.\n\nAn incremental load copies only what is new since the last run. The mobile money switch drops a file every hour. A month holds twenty thousand rows, about six hundred and fifty new ones a day after the duplicates are removed, so copying the lot every hour would be wasteful. The price is that you need a key, like the transaction number, so the pipeline can tell a new row from one it already holds.\n\nWhichever you choose, one rule applies. A step must be safe to run twice. Pipelines fail halfway and get run again, and the second run must not change the answer."
+  },
+  {
+   "type": "code",
+   "title": "Step one, ingest: read both date formats",
+   "lang": "python",
+   "code": "import pandas as pd\nISO, DMY = '%Y-%m-%d %H:%M:%S', '%d/%m/%Y %H:%M'\n\ndef ingest(path):\n    return pd.read_csv(path, dtype=str)\n\ndef parse_times(df):\n    t = df.timestamp\n    iso = pd.to_datetime(t, format=ISO, errors='coerce')\n    dmy = pd.to_datetime(t, format=DMY, errors='coerce')\n    return df.assign(ts=iso.fillna(dmy))\n\nraw = ingest('mobile_money_log.csv')\nlog = parse_times(raw)\nprint(len(raw), 'rows', log.ts.isna().sum(), 'bad times')\nprint(raw.timestamp.str.contains('/').sum(), 'day first')",
+   "says": [
+    "Read everything as text, so nothing is guessed on the way in.",
+    "Try the ISO format first, then the day first format for the rest.",
+    "Count the rows, the unreadable times and the date range."
+   ],
+   "output": "20000 rows 0 bad times\n1842 day first",
+   "notes": "Time to build the pipeline. It has three steps, ingest, check and publish, and it reads mobile_money_log.csv, a month of agent transactions from the Kitara switch.\n\nThe first rule of ingest is to read every column as text. The computer then guesses nothing, and a phone hash or a transaction number can never be turned into a number by accident.\n\nThe data has a trap in its dates. Most rows look like year, month, day. Twelve agents, from AG0101 to AG0112, send day, month, year with a slash. We try the first format, and where that fails we try the second. A date such as zero one slash zero nine could be the first of September or the ninth of January, so we never let the program guess.\n\nThe result. Twenty thousand rows, no unreadable times, eighteen hundred and forty two rows in the slash format, and a range from the first to the thirtieth of September."
+  },
+  {
+   "type": "code",
+   "title": "Step two, check one: the schema",
+   "lang": "python",
+   "code": "WANT = ('txn_id timestamp msisdn_hash agent_id '\n        'amount_ugx type status').split()\n\nclass SchemaDrift(Exception):\n    pass\n\ndef alert(kind, owner, text):\n    return f'ALERT {kind} | {owner} | {text}'\n\ndef check_schema(raw):\n    gone = [c for c in WANT if c not in raw.columns]\n    if gone:\n        raise SchemaDrift(alert('schema', 'platform lead',\n                                f'{gone[0]} is missing'))\n\ncheck_schema(raw)\nprint('schema ok')",
+   "says": [
+    "WANT is the list of seven columns the pipeline expects.",
+    "An alert has a kind, an owner and one plain sentence.",
+    "A missing column raises SchemaDrift and stops the run."
+   ],
+   "output": "schema ok",
+   "notes": "The check step looks at the data and either passes it on, sets some of it aside, or raises an alert. We build it in two parts. First, the schema.\n\nThe schema just means the column names. WANT is the list of seven names the pipeline expects, written down once. This is a small data contract, the kind you drafted in Session 4.\n\nEvery alert has the same three parts. A kind, an owner and one plain sentence. An alert that names its owner leaves nobody guessing who should act.\n\nIf an expected column is missing, the check raises SchemaDrift and the run stops at once, with nothing published. On the Kitara file the check passes and prints schema ok."
+  },
+  {
+   "type": "code",
+   "title": "Step two, check two: duplicates and freshness",
+   "lang": "python",
+   "code": "def check(raw):\n    check_schema(raw)\n    log = parse_times(raw)\n    dup = log.duplicated('txn_id')\n    gap = log.ts.sort_values().diff().max()\n    hrs = gap.total_seconds() / 3600\n    msgs = []\n    if hrs > 4:\n        msgs.append(alert('freshness', 'switch operations',\n                          f'{hrs:.1f} hours silent'))\n    if dup.any():\n        msgs.append(alert('duplicates', 'data steward',\n                          f'{dup.sum()} repeated txn_id'))\n    return log[~dup], log[dup], msgs\n\nclean, rejects, msgs = check(raw)\nprint(len(clean), 'clean,', len(rejects), 'rejected')\nprint(len(msgs), 'alerts')",
+   "says": [
+    "A repeated txn_id is set aside. The first copy stays.",
+    "Freshness is the longest silence between two transactions.",
+    "The function returns clean rows, rejects and alerts."
+   ],
+   "output": "19700 clean, 300 rejected\n2 alerts",
+   "notes": "Now the other two checks, duplicates and freshness, inside one function.\n\nFirst duplicates. When the switch resends a transaction, the same txn_id arrives again a few seconds later. We keep the first copy and send the repeat to a rejects file, so someone can look at it later. That is three hundred rows.\n\nThen freshness. We sort the times and find the longest silence between two transactions. It is six point one hours, over our limit of four, so the check raises an alert addressed to switch operations. The duplicates raise a warning for the data steward.\n\nThe function hands back three things. The clean rows, the rejected rows and the alerts. Nineteen thousand seven hundred clean, three hundred rejected, two alerts. The limit of four hours is a choice, and somebody has to own that number. We come back to who."
+  },
+  {
+   "type": "figure",
+   "title": "The check finds a 6.1 hour gap on 17 September",
+   "fig": "freshness_gap",
+   "look": [
+    "Bars show transactions per hour on 17 September 2026.",
+    "Nothing is recorded from 08:59 to 15:05.",
+    "The gap is 6.1 hours. The next longest gap in the month is 1.57 hours."
+   ],
+   "caption": "Freshness check on mobile_money_log.csv, after both timestamp formats are parsed.",
+   "alt": "Bar chart of transactions per hour on one day with a hatched 6 hour stretch around midday where nothing was recorded.",
+   "notes": "The freshness check found this gap, and here it is drawn as a chart. Each bar is the number of transactions in one hour of the seventeenth of September.\n\nMornings build up as agents open. Then at eight fifty nine the bars stop. Nothing is recorded until five past three in the afternoon. That is six point one hours of silence on a day when midday should be busy.\n\nThe next longest gap in the whole month is one point five seven hours. So a limit of four hours catches this gap and leaves ordinary quiet nights alone.\n\nDid the agents stop trading, or did the feed stop sending? From the data alone you cannot tell. That is why the alert names an owner who can look at the switch itself."
+  },
+  {
+   "type": "code",
+   "title": "Step three, publish: running it twice",
+   "lang": "python",
+   "code": "import tempfile, pathlib\n\ndef publish(clean, rejects, zone, keyed=True):\n    f = pathlib.Path(zone) / 'clean.csv'\n    if f.exists():\n        old = pd.read_csv(f, dtype=str)\n        clean = pd.concat([old, clean])\n        if keyed:\n            clean = clean.drop_duplicates(\n                'txn_id', keep='last')\n    clean.sort_values('txn_id').to_csv(f, index=False)\n    rejects.to_csv(f.with_name('rejects.csv'), index=False)\n    return len(clean)\n\nfor keyed in (False, True):\n    z = tempfile.mkdtemp()\n    rows = [publish(clean, rejects, z, keyed)\n            for _ in (1, 2)]\n    print('keyed =', keyed, rows)",
+   "says": [
+    "Publish writes the clean file and the rejects file.",
+    "Keyed: merge on txn_id, so a repeated row replaces its twin.",
+    "Run it twice, with and without the key, and count the rows."
+   ],
+   "output": "keyed = False [19700, 39400]\nkeyed = True [19700, 19700]",
+   "notes": "The last step writes two files, a cleaned file and a rejects file. The important part is what happens when we run it twice.\n\nThe function reads any cleaned file that already exists, adds the new rows, and sorts by transaction number. The keyed version also removes repeated transaction numbers, keeping the latest row for each one.\n\nRun it twice, with the key and without. Without the key, the first run holds nineteen thousand seven hundred rows. The second run holds thirty nine thousand four hundred. Every payment is there twice.\n\nWith the key, nineteen thousand seven hundred rows after the first run and nineteen thousand seven hundred after the second. The pipeline is idempotent, a word that means running it again gives the same result. That property lets you retry a failed step without fear."
+  },
+  {
+   "type": "trap",
+   "title": "A re-run that counts every payment twice",
+   "looks": "The nightly job fails at step three. An engineer runs it again and the log says success.",
+   "why": "The publish step only appended rows. The second run added all 19,700 again, so the cleaned file holds 39,400 and every dashboard shows double volume.",
+   "fix": "Key every load on txn_id, or rewrite the whole output. Test it: run the pipeline twice and compare the row counts.",
+   "notes": "Anyone who has run nightly jobs has met this trap. Nothing in it looks wrong.\n\nA nightly job stops at step three, the publish step, perhaps because a disk was full. In the morning an engineer runs it again. It finishes. The log says success, and everyone moves on.\n\nBut the publish step only added rows to the end of the file. The first run had already written part of the data, and the second run wrote all of it again. In our test the cleaned file holds thirty nine thousand four hundred rows where it should hold nineteen thousand seven hundred. The mobile money volume on the dashboard doubles, and nobody is told.\n\nThe fix is to key the load on the transaction number, or to rewrite the whole output each time. And write the test. Run the pipeline twice on the same input and compare the row counts. It takes one minute and you do it once per pipeline."
+  },
+  {
+   "type": "code",
+   "title": "Break it on purpose: a renamed column",
+   "lang": "python",
+   "code": "def run(table, zone):\n    try:\n        clean, rejects, msgs = check(table)\n    except SchemaDrift as e:\n        return [str(e), 'run stopped, nothing published']\n    publish(clean, rejects, zone)\n    return msgs + [f'published {len(clean)} rows']\n\nzone = tempfile.mkdtemp()\nbad = raw.rename(columns={'agent_id': 'agent'})\nprint(*run(raw, zone), sep='\\n')\nprint(*run(bad, zone), sep='\\n')",
+   "says": [
+    "run() wraps the three steps. A schema alert stops everything.",
+    "The first run is the real file: two alerts, and it publishes.",
+    "The second run has agent_id renamed to agent. Nothing is published."
+   ],
+   "output": "ALERT freshness | switch operations | 6.1 hours silent\nALERT duplicates | data steward | 300 repeated txn_id\npublished 19700 rows\nALERT schema | platform lead | agent_id is missing\nrun stopped, nothing published",
+   "notes": "Now we break the pipeline on purpose, the way a source system breaks it on an ordinary Tuesday. A developer on the switch team renames one column and tells nobody.\n\nThe run function wraps the three steps. If the schema check raises an alert, the run stops and publishes nothing.\n\nFirst the Kitara file. It passes, publishes nineteen thousand seven hundred rows, and raises two alerts on the way, the freshness one for switch operations and the duplicates warning for the data steward.\n\nThen the broken file, with agent_id renamed to agent. The alert reads, schema, platform lead, agent_id is missing. The run stopped and nothing was published, so yesterday's good file is still in the cleaned zone. A message with a kind, an owner and the column name beats a stack trace at two in the morning."
+  },
+  {
+   "type": "table",
+   "title": "Watch three things, and name who is told",
+   "header": [
+    "Watch",
+    "The plain question",
+    "Kitara reading",
+    "Who is told, and when"
+   ],
+   "rows": [
+    [
+     "Freshness",
+     "Is new data still arriving?",
+     "6.1 hours with no records on 17 September",
+     "Switch operations, at once, by phone"
+    ],
+    [
+     "Volume",
+     "Is the amount of data normal?",
+     "389 rows that day, against 679 on a median day",
+     "Data steward, Digital Channels, next morning"
+    ],
+    [
+     "Schema drift",
+     "Did the columns change?",
+     "agent_id renamed to agent stops the run",
+     "Platform lead, within the hour"
+    ]
+   ],
+   "colw": [
+    2.0,
+    3.2,
+    3.9,
+    3.7
+   ],
+   "hl": [
+    1
+   ],
+   "caption": "The owners and the times are proposals. Your leaders set them.",
+   "notes": "Three things are worth watching on every pipeline. Freshness asks whether new data is still arriving. Volume asks whether the amount is normal. Schema drift asks whether the shape of the data changed.\n\nOn Kitara's log, freshness shows the six point one hour gap. Volume is a plain count per day. The median day has six hundred and seventy nine rows, and the seventeenth of September has only three hundred and eighty nine, a drop of more than forty percent, which is the same gap seen from another side. Schema drift is the renamed column.\n\nThe last column is the decision for the leaders in the room. Every alert needs one named owner and an agreed time. A freshness alert on a live payment feed is worth a phone call. A low volume on one day can wait until the morning. So ask who gets woken up.\n\nIn sources.csv, the mobile money switch log has two claimants. IT is recorded as owner, and Digital Channels says it owns the source too. An alert sent to both is read by neither. Someone has to be chosen."
+  },
+  {
+   "type": "flow",
+   "title": "Retries first, then an alert to one named owner",
+   "steps": [
+    {
+     "h": "Run",
+     "t": "The scheduler starts each step only when the one before it succeeded."
+    },
+    {
+     "h": "Retry",
+     "t": "A busy server or a locked file often clears. Try again up to three times, with a wait."
+    },
+    {
+     "h": "Stop",
+     "t": "A renamed column will not clear. Stop, publish nothing, keep the last good file."
+    },
+    {
+     "h": "Alert",
+     "t": "One message, one named owner: what broke, in which step, which file.",
+     "hot": true
+    }
+   ],
+   "caption": "An orchestrator is the tool that runs the steps in order, retries them and sends the alerts.",
+   "notes": "Running a pipeline by hand does not last. An orchestrator is the tool that runs the steps in order, retries them and sends alerts. Dagster and Apache Airflow are the two best known free ones.\n\nIt starts each step only when the step before it has succeeded, so the publish step never runs on a failed check.\n\nThen retries. Many failures clear alone, a busy server or a file still being written. So the orchestrator tries again, say three times with a pause. In Airflow that is the retries setting on the task. In Dagster it is a retry policy on the asset.\n\nSome failures never clear. A renamed column will not repair itself in three tries. So the pipeline stops, publishes nothing, and keeps yesterday's good file in place.\n\nLast, the alert. One message that says what broke, in which step and on which file, sent to one named person. In Airflow a failure callback sends it. Whether your orchestrator sends an alert on its own depends on the edition, so check the documentation before you promise your leaders anything."
+  },
+  {
+   "type": "code",
+   "title": "The same three zones in SQL",
+   "lang": "sql",
+   "code": "WITH raw AS (SELECT rowid AS rid, * FROM mobile_money_log),\nclean AS (SELECT * FROM raw WHERE rid IN\n          (SELECT MIN(rid) FROM raw GROUP BY txn_id)),\nserving AS (SELECT type, COUNT(*) AS txns,\n                   SUM(amount_ugx) AS value_ugx\n            FROM clean\n            WHERE status = 'success' AND amount_ugx > 0\n            GROUP BY type)\nSELECT * FROM serving ORDER BY txns DESC",
+   "says": [
+    "Raw: every row, with its position in the file as an id.",
+    "Cleaned: keep the first row for each txn_id.",
+    "Serving: successful, positive amounts, counted by type."
+   ],
+   "output": "type txns value_ugx\ncash_out 6542 675647500\ncash_in 5525 574153500\ntransfer 2740 276379500\nbill_pay 2293 243057000\nairtime 1512 63977500",
+   "notes": "The same three zones also work as plain SQL, which many of your analysts already know. This runs on SQLite, a small free database that needs no server.\n\nThe raw part takes every row of the log and gives it an id from its place in the file.\n\nThe cleaned part keeps the first row for each transaction number. That is the same duplicate rule as in the Python pipeline.\n\nThe serving part keeps only successful transactions with a positive amount, and counts them by type. Cash out is the biggest, with six thousand five hundred and forty two transactions, and airtime the smallest.\n\nThe amount and status rules are business rules, the same kind as the quality rules from Session 4. A production pipeline would write each zone as its own table, so raw stays untouched and a dashboard reads only the serving table."
+  },
+  {
+   "type": "code",
+   "title": "Parquet and DuckDB: the cleaned zone as a column file",
+   "lang": "python",
+   "code": "# pip install pyarrow duckdb\nimport duckdb\n\nclean.to_parquet('clean.parquet', index=False)\n\nduckdb.sql('''\n    SELECT type, COUNT(*) AS txns\n    FROM read_parquet('clean.parquet')\n    GROUP BY type\n''').show()",
+   "says": [
+    "to_parquet writes a compressed column file. It needs the pyarrow package.",
+    "DuckDB reads the file in place with read_parquet.",
+    "Both are free and need no server."
+   ],
+   "notes": "Everything so far wrote CSV files, which are fine for teaching. In practice cleaned and serving zones are often stored as Parquet, a free column based file format.\n\nA column file stores each column together. A query that needs only the type column does not read the other six. The files are also smaller, and they carry their column types with them.\n\nIn pandas it is one line, to parquet. It needs a helper package, pyarrow, which you install once. We show this code but do not run it in the session, because pyarrow and DuckDB are not installed on the teaching machine. The calls follow the pandas and DuckDB documentation.\n\nDuckDB is a free database that runs inside your own program. It reads a Parquet file in place, with read parquet in the from clause, and answers an ordinary SQL question. You need neither a server nor an account. For a team starting out, this pair is often all the platform you need."
+  },
+  {
+   "type": "code",
+   "title": "A scheduler runs the same steps: a Dagster asset",
+   "lang": "python",
+   "code": "import dagster as dg\n\n@dg.asset\ndef raw_mm():\n    ...   # copy the hourly file, untouched\n\n@dg.asset(deps=[raw_mm],\n          retry_policy=dg.RetryPolicy(\n              max_retries=3, delay=60))\ndef clean_mm():\n    ...   # run check(), then publish()\n\nif __name__ == '__main__':\n    dg.materialize([raw_mm, clean_mm])",
+   "says": [
+    "Each asset is one function that produces one dataset.",
+    "deps says clean_mm waits for raw_mm.",
+    "RetryPolicy tries a failed asset up to three times."
+   ],
+   "notes": "This is the shape of the same pipeline in Dagster. I will not run it today, because Dagster is not installed on the teaching machine, so treat it as syntax to show your data colleague.\n\nIn Dagster each dataset is an asset, a Python function with a decorator. The raw asset copies the hourly file. The cleaned asset says it depends on the raw one, so Dagster runs them in that order and draws the dependency as a graph.\n\nThe retry policy on the cleaned asset says try again up to three times, waiting sixty seconds between attempts. That is the retry step from the flow we saw.\n\nApache Airflow does the same job with a different shape. You write a DAG, a set of tasks in order, with retries and a failure callback in its default arguments. Both are Apache two point zero licensed and free. Dagster also sells a hosted product called Dagster plus, and that part is commercial."
+  },
+  {
+   "type": "table",
+   "title": "Pipeline tool licences to check before you commit",
+   "header": [
+    "Tool",
+    "Use in a pipeline",
+    "Licence as reported, October 2026",
+    "What to do"
+   ],
+   "rows": [
+    [
+     "Airbyte",
+     "Move data in",
+     "Elastic License 2.0, source-available",
+     "Free to run inside your firm. Not open source"
+    ],
+    [
+     "Soda Core 4",
+     "Quality checks",
+     "Elastic License 2.0 since version 4",
+     "Same. Version 3 was Apache-2.0"
+    ],
+    [
+     "MinIO",
+     "Object store",
+     "AGPLv3. Repository archived in April 2026",
+     "Teach any S3-compatible store"
+    ],
+    [
+     "dbt v2",
+     "SQL transforms",
+     "Free binary under a product licence. dbt OSS is Apache-2.0",
+     "Check which one you install"
+    ],
+    [
+     "Dagster, Airflow, OpenLineage, Parquet",
+     "Run, record, store",
+     "Apache-2.0",
+     "Use. DuckDB is MIT"
+    ]
+   ],
+   "colw": [
+    2.6,
+    2.3,
+    4.2,
+    3.7
+   ],
+   "hl": [
+    3
+   ],
+   "caption": "From vendor pages and news reports, October 2026. Read each licence file before you rely on it.",
+   "notes": "Free tools change their terms quickly. Four names in the pipeline world carry terms that surprise people, and some changed only this year. Hear them from me before a vendor tells you.\n\nAirbyte, which moves data from sources, publishes its platform and connectors under the Elastic License two point zero. That is source available. You may run it inside your own organisation, but you may not sell it as a hosted service, and it is not open source in the strict sense. Soda Core moved to the same licence with version four. Version three was Apache two point zero.\n\nMinIO was a popular free object store. Most sources say its community repository was archived in April twenty twenty six, which means no more fixes. So we teach any S3 compatible store. SeaweedFS is one example under Apache two point zero, but test it yourself.\n\ndbt version two, a SQL transformation tool, has a free binary under the dbt product licence with some closed code, and a separate Apache licensed package called dbt OSS. These terms are as reported in October twenty twenty six, from vendor pages and news reports. Open the licence file of anything you install."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: draw the pipeline map from source to search",
+   "tool": "Participant Workbook, page Pipeline map, and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Pick one AI use and write each step from source to search, one per row",
+    "For each step write the input it reads",
+    "Write the check on that step: schema, quality, freshness or volume",
+    "Name the owner of each alert by role, when that person is told, and the delay the business accepts",
+    "Write what happens on failure: retry, stop, or use the last good file",
+    "Mark the steps done by hand and test whether each can run twice",
+    "Data colleague: run the three step pipeline and break it in the notebook"
+   ],
+   "done": "A pipeline map with a check on every step, an owner for every alert and a failure rule for every step.",
+   "notes": "Pick one AI use, and the next forty minutes turn it into a pipeline map. Open the Participant Workbook at the page called Pipeline map. It has five columns. Step, input, check, owner of the alert, and what happens on failure.\n\nLeaders, choose the AI use you care most about, perhaps the search over claims documents or a fraud model on mobile money. Write the steps from the source system to the search, one row each. Kitara's mobile money chain has five stops. The switch log, the raw file, the cleaned transactions, the customer 360 table and the dashboard.\n\nFor each row, say what comes in and what check guards it. Then the column that matters most. Who gets the alert, by role, and when are they told? If the answer is IT, push for a name. Add the delay your business will accept when the feed goes quiet. Then write what the pipeline does when the step fails.\n\nMark any step that a person does by hand, like Kitara's pasted screenshots, and ask whether it could run twice without harm. Your data colleague runs the notebook. I will stop at each table to look at your owner column."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A step failed halfway and was run again. The row count doubled. What was missing, and how do you test for it?",
+     "a": "The load was not keyed or idempotent. Run the pipeline twice on the same input and check the row counts match."
+    },
+    {
+     "q": "Name the three things to monitor, and the Kitara problem each one catches.",
+     "a": "Freshness: the 6.1 hour gap on 17 September. Volume: 389 rows on a day when the median is 679. Schema drift: agent_id renamed to agent."
+    },
+    {
+     "q": "Who in your organisation is woken up when your most important feed goes quiet for six hours, and what delay is acceptable?",
+     "a": "A named person by role, with a deputy, agreed in writing by the owner of the data. The acceptable delay is set by the business, such as four hours for a live payment feed."
+    }
+   ],
+   "notes": "A step failed halfway and was run again, and the row count doubled. What was missing, and how do you test for it? Work it through before I answer.\n\nThe load was not keyed, so it was not safe to run twice. You test it by running the pipeline twice on the same input and comparing the row counts. Second question. Name the three things to monitor and the Kitara problem each one catches. See what you come up with.\n\nFreshness caught the six point one hour gap. Volume caught the seventeenth of September with three hundred and eighty nine rows against a normal six hundred and seventy nine. Schema drift caught the renamed agent column. Last question, and it belongs to the leaders. Who in your organisation is woken up when your most important feed goes quiet for six hours, and what delay is acceptable? Say it out loud if it helps.\n\nA named person by role, with a deputy, written down and agreed by the owner of the data. The acceptable delay comes from the business and not from IT. A live payment feed may tolerate four hours. A monthly regulatory return can tolerate a day. Without that agreement the alert goes to a mailbox nobody reads."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Move data through raw, cleaned and serving zones, with a check on every step.",
+    "Make every step safe to run twice. Key loads on the transaction number.",
+    "Watch freshness, volume and schema drift, and give every alert one named owner."
+   ],
+   "next": "Privacy and East African law",
+   "notes": "Data travels from the source through a raw copy, a cleaned version and a serving table to the search. Each step has a check, and each check has an owner who is told when it fails.\n\nOn Kitara's mobile money log the pipeline found three hundred duplicate rows, two date formats and a six point one hour gap. Run twice with a key, the row count stayed at nineteen thousand seven hundred. Without a key it doubled. A renamed column stopped the run with a message naming the column and the owner.\n\nThe pipeline map is what you take from the workshop. Parquet, DuckDB, Dagster and Airflow are free, and four tools in this space need a licence check before you commit. Next session we turn to the law, and ask what the Uganda Data Protection and Privacy Act means for the personal data that moves along these pipelines."
+  }
+ ],
+ "lab": {
+  "intro": "Build the three step pipeline for the Kitara mobile money log, break it with a renamed column, and fill the three zones with SQL. Then draw your own pipeline map on the page Pipeline map of the Participant Workbook.",
+  "workshop": [
+   {
+    "task": "Pick one AI use in your organisation and write each step of the path from the source system to the search or model, one row per step, on the page Pipeline map of the Participant Workbook.",
+    "example": "Kitara's mobile money chain from lineage_edges.csv has five stops: mobile_money.switch_log to staging.mm_raw (hourly file drop), to clean.mm_transactions (remove duplicate txn_id, parse both timestamp formats), to mart.customer_360 (monthly activity per customer), to report.customer_base_dashboard (daily refresh at 06:30)."
+   },
+   {
+    "task": "For every step write the input it reads and the check that guards it: schema, quality, freshness or volume.",
+    "example": "Step clean.mm_transactions: input staging.mm_raw. Checks: schema (7 expected columns), duplicates (300 repeated txn_id go to rejects), freshness (limit 4 hours, the log shows 6.1 on 17 September), volume (389 rows on 17 September against a median of 679)."
+   },
+   {
+    "task": "Name the owner of each alert by role, and say when that person is told: at once, within the hour or the next morning. Give every alert one owner and not a team mailbox.",
+    "example": "Freshness: switch operations, at once. Schema drift: platform lead, within the hour. Duplicates and low volume: data steward in Digital Channels, next morning. sources.csv records IT as owner of S02 while Digital Channels also claims it, so the leaders must settle one owner first."
+   },
+   {
+    "task": "Write what happens on failure at each step: retry how many times, stop and publish nothing, or keep using the last good file.",
+    "example": "A locked file: retry 3 times with a wait. A renamed column: stop, publish nothing, keep yesterday's clean file, alert the platform lead. A 6.1 hour silence: publish what arrived and alert switch operations."
+   },
+   {
+    "task": "Mark every step that a person does by hand and test whether each step is safe to run twice. Write the idempotence test next to it.",
+    "example": "Kitara has 3 manual steps: the claims ratio copied by hand into the insurance quarterly return and two dashboards pasted as screenshots into the board pack. Test for publish: run it twice on the same input, expect 19,700 rows both times. Without the txn_id key the second run gives 39,400."
+   },
+   {
+    "task": "Decide, as the leader, the freshness limit your business accepts for the most important feed and who signs it off.",
+    "example": "Kitara proposal: a live mobile money feed may be silent for 4 hours before switch operations is called. The Head of Digital Channels signs the limit, and the platform lead is the deputy for schema alerts."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Setup: read the mobile money log\nThis cell reads `mobile_money_log.csv` as text. Run it once. A month of agent transactions, 20,000 rows, with duplicates, two date formats and one long silence."
+   },
+   {
+    "code": "import pandas as pd, sqlite3, tempfile, pathlib\nraw = pd.read_csv('mobile_money_log.csv', dtype=str)\nprint(len(raw), 'rows,', list(raw.columns))"
+   },
+   {
+    "md": "## Task 1. One date format\nTwo date formats sit in the `timestamp` column: `2026-09-01 00:06:29` and `01/09/2026 04:56` (day first). Write `parse_times(df)` that returns the table with a new column `ts` holding real dates. Try the first format, then the second for the rows that failed. Store the result in `log`."
+   },
+   {
+    "code": "def parse_times(df):\n    iso = pd.to_datetime(df.timestamp, errors='coerce', format='%Y-%m-%d %H:%M:%S')\n    dmy = pd.to_datetime(df.timestamp, errors='coerce', format='%d/%m/%Y %H:%M')\n    return df.assign(ts=iso.fillna(dmy))\n\nlog = parse_times(raw)\nprint(log.ts.isna().sum(), 'unreadable;', log.ts.min(), 'to', log.ts.max())",
+    "starter": "def parse_times(df):\n    # Your turn: iso = pd.to_datetime(df.timestamp, errors='coerce', format='%Y-%m-%d %H:%M:%S')\n    # Your turn: dmy = the same with format='%d/%m/%Y %H:%M'\n    # Your turn: return df.assign(ts=...) using iso and fillna with dmy\n    pass\n\nlog = parse_times(raw)\n"
+   },
+   {
+    "code": "assert log.ts.notna().all(), 'Every row should have a time. Try the second format where the first fails (fillna)'\nassert str(log.ts.min()) == '2026-09-01 00:06:29', 'The first transaction is at 2026-09-01 00:06:29'\nassert raw.timestamp.str.contains('/').sum() == 1842, 'There are 1,842 rows in the slash format'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Duplicates, freshness and volume\nCount the rows that repeat an earlier `txn_id` (keep the first copy) in `n_dup`. Find the longest silence between two transactions, in hours, in `gap_hours` (use `log.ts.sort_values().diff()`). Then count distinct transactions per day and find the day with the fewest in `low_day`, with its count in `low_n`."
+   },
+   {
+    "code": "dup = log.duplicated('txn_id')\nn_dup = int(dup.sum())\ngap_hours = round(log.ts.sort_values().diff().max().total_seconds() / 3600, 1)\nper_day = log[~dup].groupby(log.ts.dt.date).size()\nlow_day, low_n = str(per_day.idxmin()), int(per_day.min())\nprint(n_dup, gap_hours, low_day, low_n, int(per_day.median()))",
+    "starter": "# Your turn: dup = log.duplicated('txn_id')   (True for the second and later copies)\n# Your turn: n_dup = how many rows are duplicates\n# Your turn: gap_hours = the largest difference between sorted times, in hours, rounded to 1 decimal\n# Your turn: per_day = rows per day among the non duplicates (group by log.ts.dt.date)\n# Your turn: low_day (as text) and low_n for the day with the fewest rows\n"
+   },
+   {
+    "code": "assert n_dup == 300, 'There are 300 repeated txn_id rows'\nassert gap_hours == 6.1, 'The longest silence is 6.1 hours'\nassert low_day == '2026-09-17' and low_n == 389, 'The quietest day is 17 September with 389 rows'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. A schema alert\nWrite `check_schema(df)`. It raises `ValueError` with the text `ALERT schema | platform lead | <name> is missing` when an expected column is absent. Test it on `raw.rename(columns={'agent_id': 'agent'})` and store the alert text in `msg`."
+   },
+   {
+    "code": "WANT = ['txn_id', 'timestamp', 'msisdn_hash', 'agent_id', 'amount_ugx', 'type', 'status']\n\ndef check_schema(df):\n    gone = [c for c in WANT if c not in df.columns]\n    if gone:\n        raise ValueError(f'ALERT schema | platform lead | {gone[0]} is missing')\n\ncheck_schema(raw)\ntry:\n    check_schema(raw.rename(columns={'agent_id': 'agent'}))\n    msg = ''\nexcept ValueError as e:\n    msg = str(e)\nprint(msg)",
+    "starter": "WANT = ['txn_id', 'timestamp', 'msisdn_hash', 'agent_id', 'amount_ugx', 'type', 'status']\n\ndef check_schema(df):\n    # Your turn: gone = the names in WANT that are not in df.columns\n    # Your turn: if gone, raise ValueError with the alert text from the task\n    pass\n\ncheck_schema(raw)\n# Your turn: call check_schema on the renamed table inside try/except ValueError and keep the text in msg\nmsg = ''\n"
+   },
+   {
+    "code": "assert msg == 'ALERT schema | platform lead | agent_id is missing', 'The alert should name the kind, the owner and the missing column exactly as in the task'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Publish twice\nWrite `publish(clean, folder, keyed)` that adds the new rows to `clean.csv` in the folder, sorts by `txn_id`, and when `keyed` is True drops repeated `txn_id` (keep the last). It returns the number of rows in the file. Run it twice on `clean = log[~dup]` for each setting. Store the two row counts in `keyed_rows` and `unkeyed_rows`."
+   },
+   {
+    "code": "clean = log[~dup]\n\ndef publish(clean, folder, keyed=True):\n    f = pathlib.Path(folder) / 'clean.csv'\n    if f.exists():\n        clean = pd.concat([pd.read_csv(f, dtype=str), clean])\n        if keyed:\n            clean = clean.drop_duplicates('txn_id', keep='last')\n    clean.sort_values('txn_id').to_csv(f, index=False)\n    return len(clean)\n\nz = tempfile.mkdtemp(); keyed_rows = [publish(clean, z, True), publish(clean, z, True)]\nz = tempfile.mkdtemp(); unkeyed_rows = [publish(clean, z, False), publish(clean, z, False)]\nprint(keyed_rows, unkeyed_rows)",
+    "starter": "clean = log[~dup]\n\ndef publish(clean, folder, keyed=True):\n    f = pathlib.Path(folder) / 'clean.csv'\n    # Your turn: if f exists, read it (dtype=str) and pd.concat it with clean\n    # Your turn: if keyed, drop_duplicates('txn_id', keep='last')\n    # Your turn: write clean sorted by txn_id to f without the index, and return len(clean)\n    pass\n\n# Your turn: run publish twice into one new folder (tempfile.mkdtemp()) with keyed=True: keyed_rows = [first, second]\n# Your turn: the same with keyed=False: unkeyed_rows\n"
+   },
+   {
+    "code": "assert keyed_rows == [19700, 19700], 'A keyed load should give 19700 rows after both runs'\nassert unkeyed_rows == [19700, 39400], 'Without a key the second run doubles the rows to 39400'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. The zones in SQL\nBuild three tables in an in-memory SQLite database: `raw_mm` (all rows), `clean_mm` (first row per `txn_id`) and `serving_mm` (successful transactions with a positive amount, one row per type with `txns` and `value_ugx`). Store the row counts of the first two in `n_raw` and `n_clean`, and the number of cash_out transactions in `n_cash_out`."
+   },
+   {
+    "code": "con = sqlite3.connect(':memory:')\nraw.assign(amount_ugx=raw.amount_ugx.astype(int)).to_sql('raw_mm', con, index=False)\ncon.execute('CREATE TABLE clean_mm AS SELECT * FROM raw_mm WHERE rowid IN (SELECT MIN(rowid) FROM raw_mm GROUP BY txn_id)')\ncon.execute(\"CREATE TABLE serving_mm AS SELECT type, COUNT(*) AS txns, SUM(amount_ugx) AS value_ugx FROM clean_mm WHERE status = 'success' AND amount_ugx > 0 GROUP BY type\")\nn_raw = con.execute('SELECT COUNT(*) FROM raw_mm').fetchone()[0]\nn_clean = con.execute('SELECT COUNT(*) FROM clean_mm').fetchone()[0]\nn_cash_out = con.execute(\"SELECT txns FROM serving_mm WHERE type = 'cash_out'\").fetchone()[0]\nprint(n_raw, n_clean, n_cash_out)",
+    "starter": "con = sqlite3.connect(':memory:')\nraw.assign(amount_ugx=raw.amount_ugx.astype(int)).to_sql('raw_mm', con, index=False)\n# Your turn: con.execute('CREATE TABLE clean_mm AS SELECT ... FROM raw_mm WHERE rowid IN (SELECT MIN(rowid) ... GROUP BY txn_id)')\n# Your turn: con.execute(\"CREATE TABLE serving_mm AS SELECT type, COUNT(*) AS txns, SUM(amount_ugx) AS value_ugx FROM clean_mm WHERE ... GROUP BY type\")\n# Your turn: n_raw, n_clean and n_cash_out from SELECT queries (fetchone()[0])\n"
+   },
+   {
+    "code": "assert n_raw == 20000 and n_clean == 19700, 'raw_mm holds 20000 rows and clean_mm 19700'\nassert n_cash_out == 6542, 'Successful cash_out transactions with a positive amount: 6542'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## For the leader\nLook at what the pipeline caught: 300 duplicates, a 6.1 hour silence and a renamed column that stops the run. For your most important feed, who is woken up at night when it goes quiet, who is told the next morning, and what delay will your business accept? Write the names (roles) and the numbers below."
+   }
+  ]
+ }
+}

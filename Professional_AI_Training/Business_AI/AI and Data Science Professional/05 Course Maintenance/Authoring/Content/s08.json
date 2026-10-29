@@ -1,0 +1,498 @@
+{
+ "session": 8,
+ "notes_title": "The file in front of you today is dirty. Exports from a till system come with copies of the same line, dates in two formats, prices that are text and spellings that wander. In Session 8 I'll show you how to clean all of it, one defect at a time, and the habit that makes a cleaned file trustworthy: the cleaning log, a table of every change with the row count before and after. This session is Checkpoint 1 of the course, so the lab counts toward your mark.",
+ "notes_outcomes": "You'll fix types, dates and text, handle missing values and duplicates under a rule you state, and write a cleaning log. The live demonstration is the whole cleaning job, one defect at a time, and the lab repeats it on the same file. Your pass mark comes from reconciling revenue. Your cleaned total lands a small distance from the till system's total, and you explain that distance in a sentence.",
+ "notes_words": "Seven words today. A duplicate is a line that repeats another. A missing value is an empty cell. A data type says whether a column holds numbers, text or dates. A string method is an action for text columns. An outlier is a value far from the rest. The cleaning log records every change. And the residual is the gap left when you reconcile. You already use most of these ideas in Excel, and the right-hand column shows which.",
+ "vocab": [
+  [
+   "Duplicate",
+   "A line that repeats another line exactly.",
+   "What Remove Duplicates deletes"
+  ],
+  [
+   "Missing value",
+   "An empty cell where a value should be.",
+   "A blank cell"
+  ],
+  [
+   "Data type",
+   "What kind of value a column holds: whole number, decimal, text or date.",
+   "Format Cells: Number, Text, Date"
+  ],
+  [
+   "String method",
+   "An action for text columns, written after .str, such as strip.",
+   "TRIM, PROPER and SUBSTITUTE"
+  ],
+  [
+   "Outlier",
+   "A value far from the rest. Check it before you remove it.",
+   "A number that stands out in a sorted column"
+  ],
+  [
+   "Cleaning log",
+   "A table of every change, with row counts before and after, and why.",
+   "A notes tab listing your edits"
+  ],
+  [
+   "Residual",
+   "The gap left between your total and the known total, once everything explained is explained.",
+   "The difference cell on a reconciliation"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 7",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Which line counts the empty cells in each column of a DataFrame?",
+     "a": "orders.isna().sum(). isna marks the empty cells and sum counts them per column."
+    },
+    {
+     "q": "You report an average from a filtered table. What must sit beside it?",
+     "a": "The row count, so the reader knows how many rows the figure covers."
+    }
+   ],
+   "notes": "Session 7 gave us a line for finding blanks. Which line counts the empty cells in each column of a DataFrame? Think back to the lab.\n\nIt's isna followed by sum. The isna part marks every empty cell, and the sum part counts them column by column. Today that line gets plenty of use, because the file we open has a lot of empty cells and a lot of other problems too.\n\nSecond. When you report an average from a filtered table, what must sit beside it? No rush.\n\nThe row count. It tells the reader how many rows the figure covers. Today the row count does even more work. We'll write down the count before and after every change, so anyone can see exactly what we did."
+  },
+  {
+   "type": "code",
+   "title": "Open the dirty export and look first",
+   "lang": "python",
+   "code": "import pandas as pd\n\nraw = pd.read_csv('orders_raw.csv')\nprint(raw.shape)\nprint(raw.dtypes)\nraw.head(3)",
+   "says": [
+    "raw is the file exactly as the till system exported it.",
+    "qty is a decimal number and unit_price is object, which means text.",
+    "head shows three lines. Look at the branch and payment columns."
+   ],
+   "output": "(41259, 10)\nline_id          object\norder_date       object\nqty             float64\nunit_price       object\ndiscount_pct      int64",
+   "notes": "Last session you opened a tidy file. Today's file is the kind that arrives in daily life, an export straight from the till system. We'll call it raw, and we never edit raw. We make a copy and clean the copy.\n\nFirst, the size. Forty one thousand two hundred and fifty nine rows, ten columns. Each row is one product on one order, so we call it a line.\n\nNow the types. The qty column is a decimal number, float64, because some cells are empty. And unit_price says object, which is Python's word for text. A price stored as text can't be added up. That's our first clue that the file is dirty.\n\nThen head shows three lines. The branch and payment columns already look uneven in their spelling. In a moment we'll count exactly how uneven."
+  },
+  {
+   "type": "table",
+   "title": "Eight defects hide in this file",
+   "header": [
+    "Defect",
+    "What you see",
+    "Fix"
+   ],
+   "rows": [
+    [
+     "Exact duplicates",
+     "80 repeated lines",
+     "drop_duplicates"
+    ],
+    [
+     "Two date formats",
+     "04/09/2025 and 2025-09-04",
+     "Read each format"
+    ],
+    [
+     "Price as text",
+     "UGX 7,800",
+     "Strip, convert"
+    ],
+    [
+     "Payment spellings",
+     "MM, CASH, card",
+     "One spelling"
+    ],
+    [
+     "Branch spellings",
+     "JINJA, Entebe",
+     "Trim, case, typos"
+    ],
+    [
+     "Blank customers",
+     "blank, N/A, NULL, walk-in",
+     "One label"
+    ],
+    [
+     "Returns",
+     "Negative quantity",
+     "Keep and check"
+    ],
+    [
+     "Blank quantity",
+     "12 lines",
+     "Name the gap"
+    ]
+   ],
+   "colw": [
+    3.4,
+    4.4,
+    3.0
+   ],
+   "caption": "Dates with slashes are day, month, year. Dates with dashes are year, month, day.",
+   "notes": "The table lists the problems, and I'll tell you now that the file has eight of them. Each one has a fix, and today we do all eight in order.\n\nSome you can see at once. The same payment method is spelled many ways, and the branch names have capital letters, spaces and a couple of typos. Others hide. Eighty lines are exact copies of other lines. Prices come as text with the letters UGX in them.\n\nThe dates use two formats. A date with slashes is day, month, year, so four slash nine is the fourth of September. A date with dashes is year, month, day. Remember that rule, because a wrong guess here doesn't raise an error.\n\nCustomers are blank in four different spellings. Returns are lines with a negative quantity. And twelve lines have no quantity at all. That last one can't be fixed, and I'll show you what we do instead."
+  },
+  {
+   "type": "code",
+   "title": "Duplicates: Remove Duplicates in one line",
+   "lang": "python",
+   "code": "print(raw.duplicated().sum())\nclean = raw.drop_duplicates()\nprint(len(raw), len(clean))\nprint(clean.line_id.is_unique)",
+   "says": [
+    "duplicated marks a line that repeats an earlier one. sum counts them.",
+    "drop_duplicates keeps the first copy of each line.",
+    "line_id is the key. After the clean it has no repeats."
+   ],
+   "output": "80\n41259 41179\nTrue",
+   "notes": "First fix, duplicates. In Excel you'd select the data and press Remove Duplicates. In pandas it's one line.\n\nThe duplicated method marks any line that is an exact copy of a line above it. Summing the marks gives eighty.\n\nThen drop_duplicates keeps the first copy of each line and removes the others. We go from forty one thousand two hundred and fifty nine lines to forty one thousand one hundred and seventy nine.\n\nLast, the check. Each line has a line_id that should appear only once. That's the key of this table, a column that identifies a row. After the clean, is_unique says True. These eighty copies matter. They would have added six hundred and ninety thousand nine hundred and fifty five shillings of revenue that never happened."
+  },
+  {
+   "type": "code",
+   "title": "A price stored as text cannot be added",
+   "lang": "python",
+   "expect_error": true,
+   "code": "raw.unit_price.astype(float)",
+   "output": "ValueError: could not convert string to float: 'UGX 7,800'",
+   "says": [
+    "astype asks Python to change the type of a column."
+   ],
+   "notes": "Next, types. Let's try the obvious fix and watch it fail. The astype method asks Python to change a column to a new type, here a decimal number.\n\nPython stops. Read the last line, as we always do. It could not convert the string to a float, and it shows us the value it choked on, UGX seven thousand eight hundred. The letters and the comma are the problem.\n\nSo the error is useful. It names the very value to fix. A quarter of the prices have this form, and the rest are plain numbers like seven thousand. Next we strip the extras away first, and then convert."
+  },
+  {
+   "type": "code",
+   "title": "Strip the text, then convert the type",
+   "lang": "python",
+   "code": "clean = clean.copy()\nprice = clean.unit_price.str.replace('UGX', '').str.replace(',', '')\nclean['unit_price'] = price.str.strip().astype(int)\nprint(clean.unit_price.dtype)\nclean.unit_price.describe()",
+   "says": [
+    "str.replace works like Find and Replace on a whole column.",
+    "strip removes spaces at the ends. astype then converts.",
+    "describe confirms it is now a real number."
+   ],
+   "output": "int64\ncount    41179.000000\nmean      7938.539061\nmin        800.000000\nmax     381600.000000",
+   "notes": "Now the fix. The text methods live behind a dot str. That's a string method, an action for text columns. It's the same idea as the Excel functions SUBSTITUTE and TRIM, applied to the whole column at once.\n\nFirst we replace the letters UGX with nothing, then the commas with nothing. That's Find and Replace, twice.\n\nSecond, strip removes the spaces at the ends of each value. Then astype turns the result into whole numbers. The type now reads int64.\n\nThird, describe confirms it. Forty one thousand one hundred and seventy nine prices, an average near seven thousand nine hundred, the cheapest eight hundred shillings and the dearest three hundred and eighty one thousand six hundred. That last number looks huge. Hold on to it, because we'll come back and decide whether it's a mistake."
+  },
+  {
+   "type": "code",
+   "title": "Two date formats, read one at a time",
+   "lang": "python",
+   "code": "iso = pd.to_datetime(clean.order_date, format='%Y-%m-%d', errors='coerce')\nuk = pd.to_datetime(clean.order_date, format='%d/%m/%Y', errors='coerce')\nprint(iso.isna().sum(), uk.isna().sum())\nclean['order_date'] = iso.fillna(uk)\nprint(clean.order_date.isna().sum())\nprint(clean.order_date.min().date(), clean.order_date.max().date())",
+   "says": [
+    "The format says what each part means. %d is day, %m month, %Y year.",
+    "errors='coerce' turns a value that does not fit into an empty date.",
+    "fillna uses the second reading where the first failed."
+   ],
+   "output": "12383 28796\n0\n2024-01-01 2025-12-28",
+   "notes": "Dates are the trickiest fix, so we go slowly. Each date is text, in one of two shapes.\n\nThe first line reads every date as year, month, day, the dash shape. The format code says what each piece means. Capital Y is a four digit year, m is the month, d is the day. The second line reads every date as day, month, year, the slash shape.\n\nThe setting errors equals coerce says that when a value doesn't fit the shape, make it empty and carry on. So each line fails on the other shape. The dash reading fails on twelve thousand three hundred and eighty three slash dates. The slash reading fails on twenty eight thousand seven hundred and ninety six dash dates.\n\nThen fillna fills the gaps of the first reading with the second reading. Afterwards no dates are empty, and they run from the first of January 2024 to the twenty eighth of December 2025. Every line has exactly one valid reading, and that's the check."
+  },
+  {
+   "type": "trap",
+   "title": "A date read the wrong way round raises no error",
+   "looks": "You read the slash dates as month, day, year, the American order. The code runs and most dates look like dates.",
+   "why": "A date such as 04/09/2025 is valid both ways. Read as month first, it becomes the ninth of April instead of the fourth of September. About 4,600 of the slash dates change silently. About 7,400 more become empty.",
+   "fix": "Find the source rule first, then write the format to match. Afterwards check the range of dates and the count of empty dates.",
+   "notes": "This one runs without any error at all.\n\nSuppose you guessed the slash dates are month first, the American order, and wrote the format that way. Python reads the file happily and most of what comes out looks like proper dates.\n\nIt looks fine because a date like four slash nine slash twenty twenty five is valid both ways. Read month first, it becomes the ninth of April. Our own rule says it's the fourth of September. About four thousand six hundred lines silently get the wrong month. Another seven thousand four hundred or so, with a day above twelve, become empty.\n\nSo learn the rule from whoever made the file, then write the format to match. Afterwards check the earliest date, the latest date and the count of empty dates."
+  },
+  {
+   "type": "code",
+   "title": "Text clean-up: branch and payment",
+   "lang": "python",
+   "code": "fix = {'Kampala Cntral': 'Kampala Central', 'Entebe': 'Entebbe'}\nclean['branch'] = clean.branch.str.strip().str.title().replace(fix)\npay = clean.payment.str.strip().str.lower()\nclean['payment'] = pay.replace({'mm': 'mobile money'}).str.capitalize()\nprint(clean.branch.nunique(), clean.payment.nunique())\nclean.payment.value_counts()",
+   "says": [
+    "Before: 26 spellings of 8 branches and 11 of 3 payment methods.",
+    "strip, then title case, fixes spaces and capitals. A small dictionary fixes the two typos.",
+    "After: 8 branches and 3 payment methods."
+   ],
+   "output": "8 3\nMobile money    19689\nCash            18663\nCard             2827",
+   "notes": "Text columns next. The count tells the story before we touch anything. Twenty six different spellings for eight branches, and eleven spellings for three ways of paying.\n\nThe branch fix has two steps. Strip removes stray spaces, and title turns every name into capital letter first, so JINJA and jinja both become Jinja. Two spellings are typos, Kampala Cntral and Entebe, so a small dictionary maps them to the right names. In Excel that's PROPER, TRIM and a lookup table.\n\nPayment works the same way. Lower case everything, then change the abbreviation MM to mobile money, then capitalise the first letter.\n\nCount again. Eight branches and three payment methods. Mobile money has nineteen thousand six hundred and eighty nine lines, cash eighteen thousand six hundred and sixty three, and card two thousand eight hundred and twenty seven. Counting again after every clean tells you it worked."
+  },
+  {
+   "type": "figure",
+   "title": "After the clean, three payment methods remain",
+   "fig": "payment_split",
+   "look": [
+    "Mobile money and cash are close to equal.",
+    "Card is the small one, about seven in every hundred.",
+    "Before the clean, the same three methods looked like eleven."
+   ],
+   "caption": "Shares of orders from the clean orders file. Our cleaned lines give about 48, 45 and 7 percent.",
+   "alt": "Bar chart of the share of orders paid by mobile money, cash and card.",
+   "notes": "Here's what the payment column should look like once it's clean. This chart comes from the tidy orders file and counts orders, so it will differ a little from our line counts.\n\nMobile money and cash are close to equal, each a little under half of the orders.\n\nCard is the small one, about seven in every hundred.\n\nAnd before the clean, these same three methods looked like eleven. Any chart or pivot made from the raw column would have scattered the cash orders across four bars and made mobile money look smaller than it is. Our cleaned lines give about forty eight, forty five and seven percent, which agrees closely."
+  },
+  {
+   "type": "concept",
+   "title": "A blank cell has three possible fixes",
+   "lead": "First ask what the blank means. Then pick the fix and write it down.",
+   "points": [
+    {
+     "h": "Drop",
+     "t": "Remove the line. Use it when the line is useless without the value."
+    },
+    {
+     "h": "Fill",
+     "t": "Put in a stated value, such as walk-in for a missing customer."
+    },
+    {
+     "h": "Flag",
+     "t": "Keep the line and add a column that says the value was missing."
+    }
+   ],
+   "notes": "Missing values need a decision, and there are three choices. Think of a blank cell in Excel, and ask what it means.\n\nYou can drop the line. That's right when the line is useless without the value. A sale with no quantity can't be priced.\n\nYou can fill the blank with a stated value. A blank customer means the shopper didn't give a loyalty number, so we fill with the label walk-in. The line stays, and the label says what the blank meant.\n\nOr you can flag it. You keep the line and add a column that says this value was missing, so you can count or exclude those lines later.\n\nWhichever you pick, the rule goes in your cleaning log. A blank filled silently is a change nobody can check."
+  },
+  {
+   "type": "code",
+   "title": "Four spellings of a blank customer become one",
+   "lang": "python",
+   "code": "print(clean.customer_id.isna().sum())\nprint((clean.customer_id == 'walk-in').sum())\nclean['customer_id'] = clean.customer_id.fillna('walk-in')\nprint((clean.customer_id == 'walk-in').sum())",
+   "says": [
+    "read_csv already turned blank, N/A and NULL into empty cells.",
+    "walk-in was real text, so it was not counted as empty.",
+    "fillna gives all four spellings the same label."
+   ],
+   "output": "10626\n1830\n12456",
+   "notes": "Customers first. The file spells a missing customer four ways. Blank, N slash A, NULL, and the words walk-in. Let's count them.\n\nWhen read_csv opened the file, it quietly treated the first three as empty cells. That's a helpful habit of pandas, and it's good to know about. So ten thousand six hundred and twenty six cells count as empty.\n\nThe words walk-in were ordinary text, so another one thousand eight hundred and thirty are separate.\n\nThe fillna method puts one label into every empty cell. Now count walk-in again. Twelve thousand four hundred and fifty six lines, and that's the sum of the two counts. Four spellings, one label, and the numbers add up."
+  },
+  {
+   "type": "code",
+   "title": "Twelve lines with no quantity cannot be saved",
+   "lang": "python",
+   "code": "lost = clean[clean.qty.isna()]\nprint(len(lost))\nclean = clean.dropna(subset=['qty'])\nprint(len(clean))\nlost[['line_id', 'unit_price']].head(3)",
+   "says": [
+    "Keep the 12 lines in their own table so they are not forgotten.",
+    "dropna with subset looks only at the qty column."
+   ],
+   "output": "12\n41167\nline_id unit_price\nL095920 2100\nL049147 3100\nL020650 2000",
+   "notes": "Now the blank quantities. There are twelve of them, and the quantity can't be recovered from anywhere else in the file. Without a quantity we don't know the revenue of the line.\n\nSo the rule is drop. But watch how. First we keep the twelve lines in their own table, called lost, so they're never forgotten. They're evidence for the log.\n\nThen dropna, with the subset setting, only looks at the qty column. We're left with forty one thousand one hundred and sixty seven lines. The three examples show the unit price is known, which means we know what one unit would have cost, only not how many were bought."
+  },
+  {
+   "type": "trap",
+   "title": "dropna on the whole table deletes a quarter of the file",
+   "looks": "To be safe you write dropna with no settings, straight after dropping the duplicates. It runs with no error and returns a smaller table.",
+   "why": "dropna removes any line with any empty cell. Most walk-in lines have an empty customer, so 10,638 lines, about one in four, vanish together with their revenue.",
+   "fix": "Name the column that matters, dropna(subset=['qty']). Print the row count before and after, and write both in the log.",
+   "notes": "A second trap, and a tempting one. Your table has blanks, you want it tidy, so you call dropna with nothing inside the brackets.\n\nIt runs. There's no error. You get a smaller table with no blanks anywhere, and it feels clean.\n\nBut dropna removes a line if any cell on it is empty. Most walk-in customers have an empty customer cell. So ten thousand six hundred and thirty eight lines disappear, about one in every four, and every shilling they brought in goes with them. Your revenue would be a quarter too small, and nothing warns you.\n\nName the one column that matters, as we did with qty. Then print the row count before and after, and write both numbers in the log."
+  },
+  {
+   "type": "code",
+   "title": "Outliers: check before you remove",
+   "lang": "python",
+   "code": "prod = pd.read_csv('products.csv')\nchk = clean.merge(prod, on='product_id')\nprint((chk.unit_price != chk.unit_price_ugx).sum())\nprint((clean.unit_price > 100000).sum())\nprint((clean.qty < 0).sum(), clean.qty.min(), clean.qty.max())",
+   "says": [
+    "Compare every price with the price list. Zero differ.",
+    "220 lines have a price over 100,000. They are phones and electronics.",
+    "1,179 lines have a negative quantity. Those are returns."
+   ],
+   "output": "0\n220\n1179 -8.0 8.0",
+   "notes": "Last cleaning topic, outliers. An outlier is a value far from the rest. The rule is simple. Check before you remove.\n\nWe saw a price of three hundred and eighty one thousand six hundred, and it looked wrong. So we check against the product list, which is the source of truth. We join our lines to products.csv, which is a VLOOKUP on the product id, and count the lines where the price disagrees. Zero. Every price in the file matches the price list.\n\nThe two hundred and twenty lines over a hundred thousand shillings are phones and electronics. They're real, so they stay.\n\nQuantities run from minus eight to eight. The negative ones, one thousand one hundred and seventy nine lines, are returns. A return is a customer bringing goods back, which did happen. We keep them, because net revenue needs them. Nothing here gets removed, and we write that in the log too."
+  },
+  {
+   "type": "table",
+   "title": "The cleaning log: every change with its row counts",
+   "header": [
+    "Step",
+    "Rows before",
+    "Rows after",
+    "Why"
+   ],
+   "rows": [
+    [
+     "Drop exact duplicates",
+     "41,259",
+     "41,179",
+     "80 identical lines"
+    ],
+    [
+     "Price text to number",
+     "41,179",
+     "41,179",
+     "UGX and commas removed"
+    ],
+    [
+     "Two date formats to dates",
+     "41,179",
+     "41,179",
+     "Slashes read day first"
+    ],
+    [
+     "Branch and payment text",
+     "41,179",
+     "41,179",
+     "26 to 8, 11 to 3"
+    ],
+    [
+     "Blank customers to walk-in",
+     "41,179",
+     "41,179",
+     "12,456 lines labelled"
+    ],
+    [
+     "Drop blank quantity",
+     "41,179",
+     "41,167",
+     "12 lines, no recovery"
+    ],
+    [
+     "Keep returns",
+     "41,167",
+     "41,167",
+     "1,179 negative lines"
+    ]
+   ],
+   "colw": [
+    3.8,
+    1.9,
+    1.9,
+    3.4
+   ],
+   "hl": [
+    1,
+    6
+   ],
+   "caption": "Anyone can now see what changed, and the counts prove nothing else did.",
+   "notes": "Today's product is the cleaning log. It's a table with one row for every change you make, the row count before, the row count after, and a one line reason.\n\nRead down the rows. Duplicates take us from forty one thousand two hundred and fifty nine to forty one thousand one hundred and seventy nine. Then five steps change values and leave the count alone. Equal counts there are good news, because they prove we edited cells and lost no lines. The blank quantities take us down to forty one thousand one hundred and sixty seven. Returns stay.\n\nWhy bother? A manager asks how you got your figure. A colleague runs your notebook next month. You answer with this table. In Excel the log lives in a notes tab, if it lives anywhere at all. In code we build it as we go."
+  },
+  {
+   "type": "stat",
+   "title": "Reconciliation: the clean file lands within a named gap",
+   "stats": [
+    {
+     "n": "561,288,435",
+     "label": "Cleaned net revenue, UGX"
+    },
+    {
+     "n": "561,421,125",
+     "label": "True net revenue, UGX"
+    },
+    {
+     "n": "132,690",
+     "label": "Residual, UGX"
+    },
+    {
+     "n": "12",
+     "label": "Lines with no quantity"
+    }
+   ],
+   "caption": "The residual has one cause: 12 lines whose quantity is blank. About two units each would explain it.",
+   "notes": "The test of any cleaning job is whether it reconciles. To reconcile means to compare your total with a known total, and explain any gap.\n\nQuantity times price, less the discount, summed over every cleaned line, gives net revenue of five hundred and sixty one million two hundred and eighty eight thousand four hundred and thirty five shillings. Returns are already inside it as negative lines. The till system's own total is five hundred and sixty one million four hundred and twenty one thousand one hundred and twenty five.\n\nThey differ by one hundred and thirty two thousand six hundred and ninety shillings. We call that gap the residual, the amount left over after everything we can explain is explained. And we can explain it. It's the twelve lines with no quantity. At the prices on those lines, one unit each would be about sixty seven thousand shillings, so the gap means about two units a line, which is believable.\n\nA residual with a name and a cause is a good result. A gap you can't explain needs more digging."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: clean the dirty export and reconcile",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 8 notebook and run the setup cell",
+    "Load orders_raw.csv and drop the duplicates",
+    "Fix prices, dates, branches and payments",
+    "Fill blank customers and drop blank quantities",
+    "Check outliers and keep the returns",
+    "Reconcile net revenue and name the residual"
+   ],
+   "done": "Every check passes and the log has 7 rows. This is Checkpoint 1: clean and reconcile.",
+   "notes": "This lab is Checkpoint 1, worth fifteen percent of your mark. It runs forty minutes in Google Colab, and the first task is to load orders_raw.csv and make a working copy to clean.\n\nOpen the Session 8 notebook and run the setup cell. Then work down it. Every task has a check cell, and the checks say things like duplicates removed equals eighty. If a check fails, the message tells you where to look.\n\nAdd a line to the log after each step, with the counts before and after. At the end you reconcile your net revenue against the known total, and you write one sentence that names the residual and its cause.\n\nYou're done when every check passes and the log has seven rows. If an error stops you, read its last line, then call me."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Why do we keep a copy called raw and clean a separate table?",
+     "a": "So the original export stays untouched and every change can be repeated and checked."
+    },
+    {
+     "q": "What does a cleaning log record for each change?",
+     "a": "What changed, the row count before and after, and why."
+    },
+    {
+     "q": "Your clean total is 132,690 below the true total. What do you do?",
+     "a": "Name the residual and its cause. Here it is 12 lines with no quantity."
+    }
+   ],
+   "notes": "Start with the copy. Why do we keep a copy called raw and clean a separate table? Whenever you're ready.\n\nSo the original export stays untouched. Then every change can be repeated and checked against the starting point.\n\nNow the log. What does a cleaning log record for each change? Work it out.\n\nWhat changed, the row count before and after, and the reason. Three things, one row.\n\nAnd a gap in the total. Your clean total is a hundred and thirty two thousand shillings below the true total. What do you do? Pause on that.\n\nYou name the residual and its cause. You don't force the numbers to match, and you don't hide the gap. Here the cause is twelve lines with no quantity, and saying so is the pass mark."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Keep raw as it arrived. Clean a copy, one defect at a time, and count again after each step.",
+    "A blank has three fixes: drop, fill or flag. Check an outlier before you remove it.",
+    "Write the cleaning log, and reconcile to a known total. Name any residual and its cause."
+   ],
+   "next": "pandas III: group, join and reshape",
+   "notes": "Keep raw exactly as it arrived. Clean a copy, one defect at a time, and count the rows again after each step.\n\nA blank has three fixes. Drop it, fill it or flag it, and write down which. An unusual value gets checked against a trusted source before you remove it. In our file the huge prices and the negative quantities both turned out to be real.\n\nWrite the cleaning log, and reconcile your result to a known total. When a gap remains, name it and name its cause.\n\nNext session is pandas three. We group revenue by branch and month, join orders to customers, products and order lines, and catch a join that quietly doubles revenue."
+  }
+ ],
+ "lab": {
+  "intro": "Clean the dirty export of Lakeside Mart order lines. Each task has a check. At the end the cleaned net revenue must reconcile to the till system's total, with a named residual.",
+  "cells": [
+   {
+    "md": "## Task 1. Load and keep the raw file\nRead `orders_raw.csv` into `raw` and print its shape. Make a copy called `df` to clean. The `note` function that fills the cleaning log is given to you."
+   },
+   {
+    "code": "import pandas as pd\n\nraw = pd.read_csv('orders_raw.csv')\nprint(raw.shape)\ndf = raw.copy()\n\nlog = []\ndef note(step, before, after, why):\n    log.append({'step': step, 'rows_before': before, 'rows_after': after, 'why': why})",
+    "starter": "import pandas as pd\n\n# Your turn: read orders_raw.csv into raw and print its shape\n# Then make a copy of raw called df, and clean df only\n\nlog = []\ndef note(step, before, after, why):\n    log.append({'step': step, 'rows_before': before, 'rows_after': after, 'why': why})\n"
+   },
+   {
+    "code": "assert raw.shape == (41259, 10), 'Check the file name'\nassert len(df) == 41259, 'df should be a copy of raw'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Duplicates\nDrop the exact duplicate lines from `df`. Store the number removed in `removed`, print it, and log the step."
+   },
+   {
+    "code": "before = len(df)\ndf = df.drop_duplicates()\nremoved = before - len(df)\nprint('duplicates removed =', removed)\nnote('Drop exact duplicates', before, len(df), 'identical lines')",
+    "starter": "# Your turn: remember the row count in before, then drop the exact duplicate lines from df\n# Store the number removed in removed and print it\n# Log the step with note(...)\n"
+   },
+   {
+    "code": "assert removed == 80, 'Use df.drop_duplicates() and compare the lengths'\nassert df.line_id.is_unique, 'line_id should now appear once each'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Prices and dates\nConvert `unit_price` to whole numbers (remove `UGX` and commas first). Then convert `order_date` to real dates: dashes are year-month-day, slashes are day/month/year. Log both steps."
+   },
+   {
+    "code": "before = len(df)\nprice = df.unit_price.str.replace('UGX', '').str.replace(',', '')\ndf['unit_price'] = price.str.strip().astype(int)\nnote('Price text to number', before, len(df), 'UGX and commas removed')\n\niso = pd.to_datetime(df.order_date, format='%Y-%m-%d', errors='coerce')\nuk = pd.to_datetime(df.order_date, format='%d/%m/%Y', errors='coerce')\ndf['order_date'] = iso.fillna(uk)\nnote('Two date formats to dates', before, len(df), 'slashes read day first')\nprint(df.unit_price.dtype, df.order_date.dtype)",
+    "starter": "# Your turn, prices: take the text UGX and the commas out of unit_price, then make it whole numbers\n\n# Your turn, dates: some dates are year-month-day and some are day/month/year\n# Read the column once with each format, so each reading is blank where it does not fit,\n# then fill the blanks of the first reading from the second\n\n# Log both steps with note(...)\n"
+   },
+   {
+    "code": "assert df.unit_price.dtype == 'int64', 'unit_price should be whole numbers'\nassert df.order_date.isna().sum() == 0, 'Every date should have one valid reading'\nassert df.order_date.min() == pd.Timestamp('2024-01-01'), 'Earliest date is 1 January 2024'\nassert df.order_date.max() == pd.Timestamp('2025-12-28'), 'Latest date is 28 December 2025'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Branch and payment text\nTrim, fix the case and fix the two typos in `branch` (`Kampala Cntral`, `Entebe`). Make `payment` one of `Mobile money`, `Cash`, `Card`. Log the step."
+   },
+   {
+    "code": "before = len(df)\ndf['branch'] = df.branch.str.strip().str.title()\ndf['branch'] = df.branch.replace({'Kampala Cntral': 'Kampala Central', 'Entebe': 'Entebbe'})\npay = df.payment.str.strip().str.lower()\ndf['payment'] = pay.replace({'mm': 'mobile money'}).str.capitalize()\nnote('Branch and payment text', before, len(df), '26 branch spellings to 8, 11 payment spellings to 3')\nprint(df.branch.nunique(), df.payment.nunique())",
+    "starter": "# Your turn: in branch, remove stray spaces, fix the capital letters, then correct the two typos\n# Your turn: in payment, remove stray spaces, use lower case, change 'mm' to 'mobile money', then capitalise the first letter\n# Log the step with note(...)\n"
+   },
+   {
+    "code": "assert df.branch.nunique() == 8, 'There are eight branches'\nassert sorted(df.payment.unique()) == ['Card', 'Cash', 'Mobile money'], 'Three payment methods'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Missing customers and missing quantities\nFill every blank customer with `walk-in` (read_csv already made some of them empty). Then drop the lines with no quantity, keeping them in `lost`. Log both steps."
+   },
+   {
+    "code": "before = len(df)\ndf['customer_id'] = df.customer_id.fillna('walk-in')\nnote('Blank customers to walk-in', before, len(df), 'blank, N/A, NULL and walk-in become one label')\nn_walkin = (df.customer_id == 'walk-in').sum()\n\nlost = df[df.qty.isna()]\ndf = df.dropna(subset=['qty'])\nnote('Drop blank quantity', before, len(df), '12 lines, quantity cannot be recovered')\nprint(n_walkin, len(lost), len(df))",
+    "starter": "# Your turn: fill the blank customer_id values with 'walk-in', then count the walk-in lines into n_walkin\n# Your turn: keep the lines with no qty in lost, then drop them from df\n# Log both steps with note(...)\n"
+   },
+   {
+    "code": "assert n_walkin == 12456, 'Fill customer_id with walk-in and count it'\nassert len(lost) == 12, 'Twelve lines have no quantity'\nassert len(df) == 41167, 'Drop only the blank quantities, using subset'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Outliers: check before you remove\nCount the lines whose price differs from `products.csv` (`n_mismatch`), and the lines with a negative quantity (`n_returns`). Remove nothing, and log that."
+   },
+   {
+    "code": "prod = pd.read_csv('products.csv')\nchk = df.merge(prod, on='product_id')\nn_mismatch = (chk.unit_price != chk.unit_price_ugx).sum()\nn_returns = (df.qty < 0).sum()\nnote('Keep returns', len(df), len(df), 'checked and kept, they are real')\nprint(n_mismatch, n_returns)",
+    "starter": "# Your turn: join df to products.csv on product_id\n# n_mismatch = the number of lines whose unit_price differs from the price list unit_price_ugx\n# n_returns = the number of lines with a negative qty\n# Remove nothing. Log the step with note(...)\n"
+   },
+   {
+    "code": "assert n_mismatch == 0, 'Every price should match the price list'\nassert n_returns == 1179, 'Count qty below zero'\nassert len(df) == 41167, 'Nothing should be removed in this task'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Reconcile\nAdd `revenue = qty * unit_price * (1 - discount_pct / 100)` and sum it into `net`. The till system's own total for the same lines is 561,421,125 UGX, stored as `true_net`. Compute `residual = true_net - net`, then print the cleaning log."
+   },
+   {
+    "code": "df['revenue'] = df.qty * df.unit_price * (1 - df.discount_pct / 100)\nnet = int(round(df.revenue.sum()))\ntrue_net = 561421125\nresidual = true_net - net\nprint('net =', net)\nprint('residual =', residual)\npd.DataFrame(log)",
+    "starter": "true_net = 561421125\n\n# Your turn: add a revenue column, sum it into net and round to a whole number\n# Your turn: work out residual from true_net and net, then print both\n# Make the last line of the cell the log as a table\n"
+   },
+   {
+    "code": "assert net == 561288435, 'Check the revenue formula and that returns are kept'\nassert residual == 132690, 'residual = true_net - net'\nassert len(log) == 7, 'The log should have 7 rows'\nassert log[-1]['rows_after'] == 41167, 'Last row count should be 41167'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Name the residual\nIn one sentence in this cell, say what the residual is and what causes it. Then save your work with `df.to_csv('orders_clean.csv', index=False)` and write one line on how you would explain the cleaning log to a manager. This notebook is Checkpoint 1: it passes when every check passes and the residual is named."
+   }
+  ]
+ }
+}

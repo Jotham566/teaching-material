@@ -1,0 +1,533 @@
+{
+ "session": 7,
+ "notes_title": "Last session we built a search that finds things by meaning as well as by keyword. Today we find out whether it has earned your trust. Kitara has sixty test questions, each with the right document marked in advance, and three searches to score. You'll see how often the right answer turns up, which questions fail every time, and whether Winnie Atim in customer service can reach a salary table that Winnie may not read. By the end you have the shape of your second workpiece, the search pilot report.",
+ "notes_outcomes": "There are three outcomes today. You'll build a test set where every question has the right passage marked before the search runs. You'll score a search with recall at k and mean reciprocal rank, and know what each number says and what it leaves out. And you'll apply a permission filter and prove that a restricted document stays out of the results. The live part scores keyword, meaning and hybrid search on Kitara's sixty questions. The workshop is your own thirty questions and your own report.",
+ "notes_words": "Six words to carry out of today. A test set is the list of questions with the right answers marked. The gold document is the one that holds the right answer to a question. Recall at k asks how often the gold document is in the top k results. The mean reciprocal rank averages one divided by the position where the gold document first appears. A permission filter hides documents the person may not see. The pilot report is the short document that tells your leaders what the test found.",
+ "vocab": [
+  [
+   "Test set",
+   "A list of real questions, each with the right document marked before the search is run.",
+   "The 60 rows of eval_questions.csv"
+  ],
+  [
+   "Gold document",
+   "The document that holds the right answer to one test question.",
+   "The gold_doc_id column in eval_questions.csv"
+  ],
+  [
+   "Recall at k",
+   "The share of test questions where the gold document is among the top k results.",
+   "Hybrid search: 0.767 at 5"
+  ],
+  [
+   "Mean reciprocal rank",
+   "The average, over all questions, of 1 divided by the position of the gold document. First place scores 1, second 0.5, missing 0.",
+   "Keyword search: 0.514"
+  ],
+  [
+   "Permission filter",
+   "A rule inside the search that removes documents the person may not see, applied before the results are ranked.",
+   "The user_groups setting in kitara_search"
+  ],
+  [
+   "Pilot report",
+   "A short report on a trial of the search: test set, scores, failures, permission test and limits.",
+   "Workpiece 2, built on Search Test Sheet.xlsx"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 6",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Keyword search missed Q01, 'What check happens on each borrower before a decision?', and meaning search found it. Why?",
+     "a": "The passage says every application is checked against the credit reference bureau. It shares almost no words with the question, and meaning search does not need the same words."
+    },
+    {
+     "q": "How does reciprocal rank fusion combine a keyword list and a meaning list?",
+     "a": "Each chunk scores 1 divided by (60 plus its rank) in every list where it appears. The scores are added and the chunks are sorted by the total."
+    }
+   ],
+   "notes": "Two questions from Session 6 before we start. Keyword search missed the question about what check happens on each borrower before a decision, and meaning search found it. Why did that happen? Take your time.\n\nThe right passage says every application is checked against the credit reference bureau. It shares almost no words with the question. Keyword search needs the same words. Meaning search, even our stand-in version, can match related ideas. Second question. How does reciprocal rank fusion combine a keyword list and a meaning list? Have a think.\n\nEach chunk gets a score of one divided by sixty plus its rank, in every list where it appears. You add the scores for each chunk and sort by the total. A chunk that sits high in both lists wins. Today we measure how well the combined search does."
+  },
+  {
+   "type": "table",
+   "title": "What the Kitara test set contains",
+   "header": [
+    "Kind",
+    "Questions",
+    "Why it is there"
+   ],
+   "rows": [
+    [
+     "Plain",
+     "40",
+     "Everyday staff questions. Half use other words than the document."
+    ],
+    [
+     "Stale",
+     "8",
+     "An older version of the document gives a different answer."
+    ],
+    [
+     "Swahili",
+     "6",
+     "Three on Swahili circulars, three in Swahili on English documents."
+    ],
+    [
+     "Restricted",
+     "6",
+     "The person asking may not see the right document."
+    ],
+    [
+     "Total",
+     "60",
+     "Each row names the right document and a phrase from the right passage."
+    ]
+   ],
+   "colw": [
+    2.2,
+    1.8,
+    8.0
+   ],
+   "hl": [
+    5
+   ],
+   "caption": "Your own test set needs at least 30 questions, written the way your staff ask them.",
+   "notes": "Kitara's test set is a file called eval_questions.csv. It holds sixty questions, and every row names the document that holds the right answer and a phrase from the right passage. We wrote those down before we ran any search, and the order matters. If you mark the answers after you've seen the results, you end up marking whatever the search happened to find.\n\nForty questions are plain, and half of those use different words from the document. Eight have an older version that gives a different answer, like the three staff handbooks. Six involve Swahili. Six come from people who may not see the answer.\n\nFor your own pilot you need at least thirty questions, in the words your staff really use. Take them from the help desk, from emails to HR, from what branch managers ask. Questions you invent at your desk flatter the search."
+  },
+  {
+   "type": "code",
+   "title": "Build the test set and the search",
+   "lang": "python",
+   "code": "import pandas as pd\nimport kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nchunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\n\ntests = pd.read_csv('eval_questions.csv')\ntests['kind'] = tests.note.str.split(';').str[0]\nprint(len(corpus), len(chunks), len(tests))\nprint(tests.kind.value_counts().to_dict())",
+   "says": [
+    "Load the documents, read the 8 scans with OCR and cut everything into chunks.",
+    "Build one searcher that runs keyword, meaning or hybrid search.",
+    "Read the 60 questions and count them by kind."
+   ],
+   "notes": "Let's build the test set and the search in one block. It takes about fifteen seconds, because eight of the documents are scans and the computer has to read them first.\n\nThe first lines load the hundred and twenty one documents and cut them into a hundred and thirty nine chunks, the pieces we made in Session 5.\n\nThen we make one searcher. It can run keyword, meaning or hybrid search, and every result carries the document it came from.\n\nLast, we read the sixty questions and count them by kind. Forty plain, eight stale, six Swahili and six restricted, the same mix as the table we just saw. Every score from here on comes from this one test set.",
+   "output": "121 139 60\n{'plain': 40, 'stale': 8, 'swahili': 6, 'restricted': 6}"
+  },
+  {
+   "type": "define",
+   "title": "Recall at k",
+   "definition": "Recall at k is the share of test questions where the right document appears among the top k results.",
+   "example": "Keyword search, k = 5: the right document is in the top five for 38 of 60 questions. Recall at 5 is 38 / 60 = 0.633.",
+   "excel": "How many results will your staff really read? Write your target for recall at that k before you test.",
+   "notes": "The first score is recall at k. In plain words, it asks how often the right document is among the top k results. Pick k as the number of results a person will really read. If your staff assistant shows five passages, k is five.\n\nTake keyword search on Kitara's sixty questions. For thirty eight of them the right document is somewhere in the top five. Thirty eight over sixty is about sixty three percent.\n\nOne rule before you test. Write down the recall you would accept. If your staff would lose faith when the answer is missing one time in three, a target of sixty percent is too low. Decide the number first, so the results can't talk you into a lower one."
+  },
+  {
+   "type": "table",
+   "title": "Five questions, scored by hand",
+   "header": [
+    "Question",
+    "Rank of right document",
+    "Hit at 1",
+    "Hit at 3",
+    "Hit at 5",
+    "1 / rank"
+   ],
+   "rows": [
+    [
+     "Q03 CCTV retention",
+     "1",
+     "1",
+     "1",
+     "1",
+     "1.00"
+    ],
+    [
+     "Q04 Home loan term",
+     "2",
+     "0",
+     "1",
+     "1",
+     "0.50"
+    ],
+    [
+     "Q09 House cover rate",
+     "4",
+     "0",
+     "0",
+     "1",
+     "0.25"
+    ],
+    [
+     "Q01 Borrower check",
+     "7",
+     "0",
+     "0",
+     "0",
+     "0.14"
+    ],
+    [
+     "Q11 Agent PIN reset",
+     "not in top 10",
+     "0",
+     "0",
+     "0",
+     "0.00"
+    ],
+    [
+     "Average of the five",
+     "",
+     "0.20",
+     "0.40",
+     "0.60",
+     "0.379"
+    ]
+   ],
+   "colw": [
+    3.6,
+    2.6,
+    1.3,
+    1.3,
+    1.3,
+    1.6
+   ],
+   "hl": [
+    6
+   ],
+   "caption": "The last column averaged is the mean reciprocal rank. Ranks are from keyword search.",
+   "notes": "Here are five Kitara questions, with the rank that keyword search gave the right document. Rank one means it came first.\n\nRecall at one counts only first place. One question out of five, so zero point two. At three, the home loan question joins in, so two out of five. At five, the house cover question joins, so three out of five. The borrower check came seventh and the agent PIN question never appeared in the top ten, so neither counts.\n\nThe second score uses the position. For each question, divide one by the rank. First place gives one. Second gives a half. Fourth gives a quarter. Seventh gives about a seventh, and a missing document gives zero. Average the five and you get zero point three seven nine. That's the mean reciprocal rank. It rewards a search for putting the right document high, and it gives nothing for a miss."
+  },
+  {
+   "type": "code",
+   "title": "Score three searches on sixty questions",
+   "lang": "python",
+   "code": "runs = {}\nfor m in ['bm25', 'meaning', 'hybrid']:\n    runs[m] = [list(search.search(q, m, k=10).doc_id)\n               for q in tests.question]\nprint('method      @1    @3    @5   @10   MRR')\nfor m, f in runs.items():\n    p = list(zip(f, tests.gold_doc_id))\n    r = [sum(ks.recall_at_k(a, b, k) for a, b in p) / 60\n         for k in (1, 3, 5, 10)]\n    mr = sum(ks.mrr(a, b) for a, b in p) / 60\n    print(f'{m:8}', *[f'{x:.3f}' for x in r], f'{mr:.3f}')\n    tests[m] = [a.index(b) + 1 if b in a else 0\n                for a, b in p]",
+   "says": [
+    "Run each search on every question and keep the document ids of the top ten chunks.",
+    "recall_at_k and mrr are the two scoring helpers in kitara_search.",
+    "Print recall at 1, 3, 5 and 10, then the mean reciprocal rank."
+   ],
+   "notes": "These are the scores for all three searches on all sixty questions. The meaning search is a stand-in, so that everyone gets the same numbers. Your embedding model will differ.\n\nWe run each search and keep the document ids of the top ten chunks. That's the list a person would see.\n\nkitara_search has two helpers. recall_at_k answers yes or no for one question, and mrr gives one divided by the rank. We add them up over the sixty questions and divide by sixty.\n\nRead the table. Keyword search gets forty two percent at one, sixty three at five and seventy seven at ten. Hybrid gets only thirty at one, and seventy seven at five. Then look at the last column. We come back to it in a minute.",
+   "output": "method      @1    @3    @5   @10   MRR\nbm25     0.417 0.550 0.633 0.767 0.514\nmeaning  0.333 0.567 0.617 0.783 0.485\nhybrid   0.300 0.600 0.767 0.800 0.474"
+  },
+  {
+   "type": "figure",
+   "title": "Hybrid finds more at five, keyword leads at one",
+   "fig": "recall_by_method",
+   "look": [
+    "At top 1, keyword leads with 42, against 33 and 30.",
+    "At top 5, hybrid leads with 77, against 63 and 62.",
+    "At top 10 all three sit between 77 and 80."
+   ],
+   "caption": "Recall on 60 questions. The meaning search is a stand-in, so your embedding model will differ.",
+   "alt": "Grouped bar chart of search recall at top 1, 3, 5 and 10 for keyword, stand-in meaning and hybrid search, with hybrid highest at 77 percent at 5.",
+   "notes": "The same numbers as a chart. Dark is keyword search, grey is the stand-in meaning search, and the clay bar is hybrid.\n\nAt the top place, keyword search leads. Forty two percent, against thirty three and thirty.\n\nAt five, hybrid pulls ahead with seventy seven percent. Keyword and meaning sit at sixty three and sixty two. That is eight more questions answered somewhere in the first five results.\n\nBy ten the three are close, between seventy seven and eighty. A search allowed ten results finds the right document for about four questions in five. The remaining fifth is where the failure list starts."
+  },
+  {
+   "type": "figure",
+   "title": "One question shows why hybrid gains and loses",
+   "fig": "rrf_fusion",
+   "look": [
+    "Keyword search puts the right document at rank 7, outside the top five.",
+    "Meaning search puts it first.",
+    "Fusion puts it third: rescued, and no longer first."
+   ],
+   "caption": "Q01 over 139 chunks. Clay marks the passage from the right document.",
+   "alt": "Three ranked lists for one question showing the correct document missing from the keyword top five, first in meaning search, and third after fusion.",
+   "notes": "Why does hybrid gain at five and slip at one? One question shows it. This is Q01, the borrower check question from our warm-up.\n\nKeyword search puts the Loan Approval Policy, the right document, at rank seven. It never reaches the top five.\n\nMeaning search puts it first.\n\nFusion adds one over sixty plus rank for each list, and the Loan Approval Policy lands third. It's rescued from seventh place and it's no longer first. Reciprocal rank fusion comes from a 2009 paper by Cormack, Clarke and Buttcher, and sixty is the constant they used. Fusion trusts neither list completely. That helps when one list is lost and costs a place when one list was right."
+  },
+  {
+   "type": "compare",
+   "title": "Hybrid improves recall, and mean reciprocal rank slips",
+   "left": {
+    "h": "Recall at 5",
+    "points": [
+     "Hybrid 0.767, keyword 0.633",
+     "Right document in the top five: 46 questions against 38",
+     "Eight more staff questions get a useful answer"
+    ]
+   },
+   "right": {
+    "h": "Mean reciprocal rank",
+    "points": [
+     "Hybrid 0.474, keyword 0.514",
+     "Right document first: 18 questions against 25",
+     "Hybrid wins on 14, keyword on 13, 33 tie"
+    ]
+   },
+   "verdict": "Hybrid finds more. Keyword puts the right one first more often. Report both, and say how the answers will be read.",
+   "notes": "Two numbers seem to disagree, so let's read them carefully.\n\nOn the left, recall at five. Hybrid finds the right document in the top five for forty six questions. Keyword search finds it for thirty eight. That's eight more staff questions that get a useful answer.\n\nOn the right, mean reciprocal rank. Hybrid scores zero point four seven four and keyword zero point five one four. Hybrid puts the right document first on eighteen questions, and keyword search on twenty five. Across all sixty, hybrid did better on fourteen, keyword did better on thirteen, and thirty three came out the same.\n\nWhat do you report? Both numbers, and the size of the test. Moving one answer from first place to second costs about zero point zero zero eight. The gap of zero point zero four is about five answers sliding down one place, and sixty questions are too few to settle that. If a person reads five results, recall at five matters most. If a model takes only the first passage, the first place matters most. Your team and the business owner decide that together."
+  },
+  {
+   "type": "figure",
+   "title": "Stale versions: the oldest handbook comes first",
+   "fig": "stale_version",
+   "look": [
+    "Three handbooks give three answers: 21, 24 and 28 days.",
+    "Keyword search returned the 2019 handbook first.",
+    "The current handbook came fourth."
+   ],
+   "caption": "The text of a handbook does not say it is out of date. Status sits only in docs_metadata.csv.",
+   "alt": "Three handbook versions giving 21, 24 and 28 days of annual leave, with the oldest one returned first by keyword search.",
+   "notes": "The next eight questions are the ones where the answer changed over time. Kitara has three staff handbooks, from 2019, 2022 and 2025, in the same folder.\n\nAsk how many days of annual leave a person gets, and the three documents give three answers. Twenty one, twenty four and twenty eight working days.\n\nKeyword search returned the 2019 handbook first. That's the oldest, and it's out of date.\n\nThe current handbook came fourth. Nothing in the handbook text says the old one is old. The word superseded lives only in docs_metadata.csv. A staff member who trusts the first result plans leave with seven days too few."
+  },
+  {
+   "type": "code",
+   "title": "Stale versions: how often the old one comes first",
+   "lang": "python",
+   "code": "stale = tests[tests.kind == 'stale']\nstatus = dict(zip(corpus.doc_id, corpus.status))\nfor m in ['bm25', 'meaning', 'hybrid']:\n    old = sum(status[runs[m][i][0]] == 'superseded'\n              for i in stale.index)\n    print(m, 'old version first:', old, 'of 8')\nkw = dict(k=3, current_only=True)\ncur = [list(search.search(q, 'bm25', **kw).doc_id)\n       for q in stale.question]\npairs = list(zip(stale.gold_doc_id, cur))\nprint('filtered, top 3:', sum(g in c for g, c in pairs))\nprint('filtered, first:', sum(c[0] == g for g, c in pairs))",
+   "says": [
+    "Build a lookup from document id to status. The status comes from docs_metadata.csv.",
+    "Count how often the first result is a superseded document, for each method.",
+    "Switch on current_only, which removes superseded documents before ranking."
+   ],
+   "notes": "Let's measure it on all eight stale questions.\n\nThe status of every document is in docs_metadata.csv, so we build a lookup from document id to status.\n\nFor each method we look at the first result and count how often it is a superseded document. Keyword search gives the old version first on eight of eight. Meaning search does it on six, and hybrid on seven.\n\nThen the fix. The searcher has a switch called current_only, which drops superseded documents before ranking. The right document is now in the top three for all eight, and first for five. Three questions still show a different current document first, so they go on the failure list. A status filter fixes one problem and exposes the next. It also works only while somebody keeps the status column true, and that somebody needs a name.",
+   "output": "bm25 old version first: 8 of 8\nmeaning old version first: 6 of 8\nhybrid old version first: 7 of 8\nfiltered, top 3: 8\nfiltered, first: 5"
+  },
+  {
+   "type": "trap",
+   "title": "A good average hides a wrong first answer",
+   "looks": "The pilot reports 77 percent recall at 5 for hybrid search. The figure is true and the room is pleased.",
+   "why": "An average over 60 questions can hide a kind that fails every time. On the 8 stale questions hybrid search still put a superseded document first on 7.",
+   "fix": "Report recall for each kind of question. Read the failure list before the average.",
+   "notes": "This trap catches careful teams, because nothing in it is false.\n\nThe report says hybrid search finds the right document in the top five for seventy seven percent of questions. The room is pleased. It's a good number.\n\nThe number is an average, and an average can hide a whole kind of question that fails. On the eight stale questions, hybrid search put an out of date document first on seven of them. Recall counts each of those as a success, because the right document was somewhere in the top five. A person or a language model that trusts the first result still gives the old answer.\n\nReport recall for each kind of question, and read the failure list before you read the average. It costs one extra column in your Search Test Sheet and it changes the conversation with your leaders."
+  },
+  {
+   "type": "code",
+   "title": "Paraphrase questions and the failure list",
+   "lang": "python",
+   "code": "import numpy as np\n\ntests['para'] = tests.note.str.contains('paraphrase')\nfor m in ['bm25', 'meaning', 'hybrid']:\n    hit5 = (tests[m] > 0) & (tests[m] <= 5)\n    print(f'{m:8}', f'{hit5[tests.para].mean():.3f}',\n          f'{hit5[~tests.para].mean():.3f}')\nmissed = tests[tests.hybrid == 0]\nkinds = np.where(missed.language == 'sw', 'swahili',\n        np.where(missed.para, 'paraphrase', 'other'))\nvc = pd.Series(kinds).value_counts().to_dict()\nprint(len(missed), vc)",
+   "says": [
+    "Tag the 23 paraphrase questions. They share at most one word with the right passage.",
+    "Compare recall at 5 for paraphrase questions and for all the others.",
+    "List the questions hybrid search misses in the top ten and give each a failure type."
+   ],
+   "notes": "Two failure families. First, the paraphrase questions. Twenty three of the sixty share at most one word with the passage that holds the answer. Someone asks who must approve an account for a politician, and the document talks about a politically exposed person.\n\nKeyword search finds the right document in the top five for only about seventeen percent of them. Meaning search does better with thirty five, and hybrid does best at about forty three and a half. On the other thirty seven questions, keyword and hybrid search both find the right document in the top five for more than nine in ten.\n\nMeaning search helps with the very questions keyword search cannot touch. Even so, hybrid misses more than half of them.\n\nThen the failure list. Hybrid misses twelve questions in the top ten. Nine are paraphrases. Two are Swahili questions about English documents. One asks about a shopkeeper changing a secret number, where the document says agents cannot reset a PIN, and that one needs a person to read it. Each type has its own fix. Paraphrases need better chunks and a better embedding model. Swahili needs a multilingual model, tested on your own text. The last one needs a human look. Two more types deserve a column in your own sheet. One is the right document with the wrong chunk on top, which a score by document cannot see. The other is a question whose answer sits in no document at all.",
+   "output": "bm25     0.174 0.919\nmeaning  0.348 0.784\nhybrid   0.435 0.973\n12 {'paraphrase': 9, 'swahili': 2, 'other': 1}"
+  },
+  {
+   "type": "code",
+   "title": "The permissions test with Kitara's test users",
+   "lang": "python",
+   "code": "users = pd.read_csv('users.csv').set_index('user_id')\nwho = {'all_staff': 'U05', 'branch_ops': 'U04',\n       'claims': 'U01', 'hr': 'U03'}\nbefore, after, kept = 0, 0, []\nfor r in tests[tests.kind == 'restricted'].itertuples():\n    g = users.loc[who[r.asker_group], 'groups']\n    q = r.question\n    raw = search.search(q, 'hybrid', k=5)\n    safe = search.search(q, 'hybrid', k=5, user_groups=g)\n    before += r.gold_doc_id in set(raw.doc_id)\n    after += r.gold_doc_id in set(safe.doc_id)\n    ok = raw.access_groups.map(\n        lambda a: ks.user_can_see(a, g))\n    kept.append(int(ok.sum()))\nprint(before, after, kept)",
+   "says": [
+    "Four test users from users.csv stand for the four asker groups.",
+    "Run the same question without and with the user's groups. The filter works before ranking.",
+    "Print how often the restricted document appeared, then how many allowed results survive a search-first filter."
+   ],
+   "notes": "The permissions test comes next. Six questions where the person asking may not see the right document. Salary bands, committee minutes, claims files. For each one, the right document is the one that must stay hidden.\n\nEach asker group gets a test user from users.csv. Winnie Atim, general staff, stands for everyone with no special group.\n\nThen we run the same question twice. The first two numbers on the output line. Without a filter, the restricted document shows up in the top five for six of six. With the permission filter inside the search, it shows up for none.\n\nThe list on the end tries the cheaper way. Search first, then throw away what the user may not see. That also hides the document, but the person gets fewer results. For two of the six questions all five of the best results were off limits, and the person got nothing at all. Filtering before the ranking gives a full page of allowed results. Vendors disagree on which to use. For a pilot, filter before.",
+   "output": "6 0 [3, 0, 3, 4, 0, 2]"
+  },
+  {
+   "type": "figure",
+   "title": "With the filter, a salary table stays out of Winnie's results",
+   "fig": "permission_filter",
+   "look": [
+    "Without a filter, the top two results are confidential salary documents.",
+    "Winnie Atim is general staff and belongs to all_staff only.",
+    "With the filter applied before ranking, five allowed results fill the list."
+   ],
+   "caption": "Q55. The right document D004 is open to hr and executive only.",
+   "alt": "Two result lists for one question: without a filter a restricted salary document is in the top five crossed out, and with the filter it is gone.",
+   "notes": "Here is one of the six, drawn out. Winnie Atim works in customer service and belongs to the all staff group only. Winnie asks what the monthly salary bands are for each grade.\n\nOn the left, no filter. The first two results are confidential, the salary appendix of the staff handbook and the remuneration committee minutes. Both are crossed out because Winnie may not read them. Without a filter, the search hands them over.\n\nThe filter changes who is allowed to be found. Winnie's groups are all staff, and the salary documents are open to hr and executive.\n\nOn the right, the filter is applied before ranking. Nothing confidential appears, and five allowed documents fill the list. The test passes when this holds for every restricted question you write."
+  },
+  {
+   "type": "concept",
+   "title": "Chunks and logs hold personal data too",
+   "lead": "A search system keeps what people wrote and what people asked.",
+   "points": [
+    {
+     "h": "In the chunks",
+     "t": "32 of Kitara's 139 chunks come from documents flagged as holding personal data, mostly claims letters."
+    },
+    {
+     "h": "In the log",
+     "t": "Record who asked, when, the question and the documents returned. A question can name a customer."
+    },
+    {
+     "h": "Keep it short",
+     "t": "Set a retention period for the log, limit who reads it, and state both in the report."
+    }
+   ],
+   "notes": "Two places hold personal data that people forget. The chunks, and the log.\n\nThirty two of Kitara's hundred and thirty nine chunks come from documents flagged as holding personal data, nearly all claims letters. If they go into the index unmasked, anyone whose search reaches them reads a customer's complaint. Session 9 shows how to find and mask that data before it enters the index.\n\nThe log is the second place. You want to record who asked what, when, and which documents came back, because without it you can't investigate a problem. But a question such as what happened to my claim can name a customer. The Uganda Data Protection and Privacy Act, 2019 asks for data that is relevant and not excessive, kept only as long as needed, and kept safe. Take that as a teaching summary and check the current text with your legal adviser. So set a retention period for the log, limit who may read it, and say so in the pilot report."
+  },
+  {
+   "type": "table",
+   "title": "What a pilot report must contain",
+   "header": [
+    "Section",
+    "What it states",
+    "Where it comes from"
+   ],
+   "rows": [
+    [
+     "Scope",
+     "Documents, users, date, search settings",
+     "Your setup notes"
+    ],
+    [
+     "Test set",
+     "30 or more questions, by kind, right document marked",
+     "Tests sheet, columns A to D"
+    ],
+    [
+     "Scores",
+     "Recall at 3 and 5, mean reciprocal rank, per method",
+     "Tests sheet formulas"
+    ],
+    [
+     "Failure list",
+     "Each miss with a type, grouped, with a fix",
+     "Failure type column"
+    ],
+    [
+     "Permission test",
+     "Restricted questions asked, passes counted",
+     "Permission test sheet"
+    ],
+    [
+     "Limits and decision",
+     "What the test does not show, who approves",
+     "You write it"
+    ]
+   ],
+   "colw": [
+    2.6,
+    6.0,
+    3.4
+   ],
+   "caption": "Search Test Sheet.xlsx holds the first five rows. You write the last row.",
+   "notes": "This is the report your leaders will read. It runs to one or two pages, and each part has a home in Search Test Sheet.xlsx.\n\nScope says which documents and which users the test covered, so nobody reads it as a claim about everything. The test set lists your thirty questions by kind. Scores are recall at three and five and the mean reciprocal rank, which the sheet works out by formula once you type in the ranks. The failure list groups each miss under a type and names a fix. The permission test counts the passes.\n\nThe last row is yours. State what the test does not show. Ours counts a hit when the right document appears, even if the chunk shown does not hold the answer. Say who approves the pilot for production, and what that person must have seen. Leaders trust a report more when it says what was left untested."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: test your search and write the pilot report",
+   "tool": "Search Test Sheet.xlsx and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Write 30 questions your staff really ask, in their words",
+    "Mark the right document and a phrase from its passage",
+    "Run each question and write the rank, blank if beyond 10",
+    "Group the misses and name each failure type",
+    "Write 5 questions a user must not answer and run the permission test",
+    "Write the one page report and name the approver"
+   ],
+   "done": "The sheet shows recall at 3 and 5, mean reciprocal rank, a grouped failure list and a permission test, with a one page report.",
+   "notes": "Your own thirty questions come first, and the product is your pilot report. Open Search Test Sheet.xlsx and start on the Tests sheet. Write thirty questions in the words your staff use. Leaders, this part is yours. You know what people ask.\n\nFor each question, find the document that holds the answer and copy its id and a phrase from the passage. Then your data colleague runs each question through the search and types the rank into column E. Leave it blank if the document isn't in the top ten. The sheet works out the rest.\n\nGroup the misses by type before you suggest any fix. Then write five questions that a given user must not be able to answer, and run them on the Permission test sheet. The team notebook scores Kitara's three searches if you want to see the code first. Finish with the one page report. I will stop at each table and read your failure list with you."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "The right document comes fourth. Is that a hit at 3? What is its reciprocal rank?",
+     "a": "No, it is a hit at 5 and not at 3. The reciprocal rank is 1 divided by 4, which is 0.25."
+    },
+    {
+     "q": "Hybrid search has the higher recall at 5 and the lower mean reciprocal rank. What do you tell the board?",
+     "a": "It finds the right document in the top five more often and puts it first less often. With 60 questions the gap in mean reciprocal rank is small."
+    },
+    {
+     "q": "Who in your organisation signs off that a search pilot may go to production, and which results must that person see first?",
+     "a": "A named business owner of the documents who did not build the search. They see recall by kind of question, the failure list and a permission test where every restricted question passed."
+    }
+   ],
+   "notes": "A search returns the right document in fourth place. Is that a hit at three, and what is its reciprocal rank? Sit with it for a second.\n\nIt isn't a hit at three. It's a hit at five. The reciprocal rank is one over four, which is zero point two five. Second question. Hybrid search has the higher recall at five and the lower mean reciprocal rank. What do you tell the board? Let's hear your answer first.\n\nIt finds the right document in the top five more often, and it puts it first less often. With sixty questions the gap in mean reciprocal rank is small, so you report both numbers and the size of the test. Last one, and it belongs to the leaders. Who in your organisation signs off that a search pilot may go to production, and which results must that person see first? No rush.\n\nA named business owner for the documents, someone who did not build the search. Before signing, that person sees recall by kind of question, the failure list, and a permission test where every restricted question passed. The data protection officer confirms the permission test and the log retention. The team that built the search presents. The owner decides."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Test a search on questions with the right document marked in advance. Score it with recall at k and mean reciprocal rank.",
+    "Read failures by kind. Stale versions, paraphrases and other languages each fail in their own way.",
+    "Filter by permission before ranking, and prove it with questions the user must not be able to answer."
+   ],
+   "next": "Pipelines and platform design",
+   "notes": "A test set is sixty questions with the right document written down first. Recall at k says how often it appears in the top k, and mean reciprocal rank says how high it sits. On Kitara, hybrid search found it in the top five for seventy seven percent of questions, and keyword search put it first more often.\n\nThe averages hide the failures. Keyword search put an old handbook first on eight of eight stale questions, and paraphrases and Swahili questions about English documents stay hard.\n\nA permission filter applied before ranking kept every restricted document out for six of six. Your workpiece is the pilot report, with its limits and a named approver. Next session we follow the path of a document from its source to the search, and ask who gets told when a step in that path breaks."
+  }
+ ],
+ "lab": {
+  "intro": "Score Kitara's three searches on its sixty test questions, find the stale and paraphrase failures, and run the permissions test with the users in users.csv. Then use Search Test Sheet.xlsx for your own thirty questions.",
+  "workshop": [
+   {
+    "task": "Write 30 test questions on the Tests sheet of Search Test Sheet.xlsx, in the words your staff use. For each, copy the id of the right document and a phrase from its passage. Include at least 3 questions where an old version gives a different answer and some where the staff would use none of the document's words.",
+    "example": "Kitara Q03 'How long is CCTV retained in the branch?' has gold document D009 and the phrase 'CCTV footage in branches: 90 days'. Kitara's own set has 60 questions: 40 plain (20 of them paraphrases), 8 stale, 6 Swahili and 6 restricted."
+   },
+   {
+    "task": "Run every question through your search and type the rank of the right document into column E (blank if it is not in the top 10). Read the recall at 3, recall at 5 and mean reciprocal rank that the sheet computes.",
+    "example": "Kitara Q01 to Q30 with keyword search: recall at 3 is 0.333, recall at 5 is 0.367 and mean reciprocal rank is 0.295. These first 30 questions are all plain and 19 of them are paraphrases, so they score lower than the full 60 (recall at 5 is 0.633 and mean reciprocal rank 0.514). The mix of questions changes the headline, so write the mix in the report."
+   },
+   {
+    "task": "Group your misses in the Failure type column (stale version, paraphrase, other language, wrong passage, missing document) and write one fix for each group.",
+    "example": "Keyword search misses 11 of Kitara's first 30 questions in the top 10: Q11, Q14, Q20 to Q23, Q25 to Q28 and Q30. Nine of the eleven are paraphrases, so the fix is meaning search plus better chunks. Q11 (shopkeeper and secret number against 'agents cannot reset a PIN') needs a human read. For all 60 questions, hybrid misses 12: 9 paraphrase, 2 Swahili on English documents, 1 other."
+   },
+   {
+    "task": "On the Permission test sheet list 5 or more questions that a named user must not be able to answer. Run each with and without the permission filter and enter Y or N for 'appeared in top 5'. A pass is N with the filter on.",
+    "example": "Kitara Q55 to Q60 with users from users.csv, hybrid search, top 5: the restricted document appears without a filter for 6 of 6 and with the filter for 0 of 6, so the sheet shows 6 passes. For Q55 Winnie Atim (all_staff) must not see D004, the salary bands, which are open to hr and executive."
+   },
+   {
+    "task": "Write the one page pilot report: scope, test set, scores for each method, failure list, permission test, logging and retention, limits, and the named person who approves production.",
+    "example": "Kitara: 'Hybrid search over 121 documents, 60 questions. Recall at 5 is 0.767 and mean reciprocal rank 0.474. Keyword search puts a superseded document first on 8 of 8 stale questions. All 6 restricted documents stayed hidden with the filter. Limits: a hit counts when the right document appears, and the meaning search was a stand-in. Not yet ready for production. Approver: the Head of Legal and Compliance as owner of the policy documents, with the data protection officer confirming the permission test.'"
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Setup: build the search\nThis cell loads the Kitara documents, cuts them into chunks and builds one searcher. It takes about fifteen seconds because it reads the scans with OCR. Run it once."
+   },
+   {
+    "code": "import pandas as pd\nimport kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nchunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\ntests = pd.read_csv('eval_questions.csv')\ntests['kind'] = tests.note.str.split(';').str[0]\nmeta = corpus.set_index('doc_id')\nprint(len(tests), 'questions,', len(chunks), 'chunks')"
+   },
+   {
+    "md": "## Task 1. Where does the right document rank?\nWrite `rank_of(method, question, gold)`. It runs the search for the top 10 chunks and returns the 1-based position of the first chunk from the gold document, or 0 when it is not in the top 10. Fill `tests['bm25']` with the rank for every question."
+   },
+   {
+    "code": "def rank_of(method, question, gold):\n    found = list(search.search(question, method, k=10).doc_id)\n    return found.index(gold) + 1 if gold in found else 0\n\ntests['bm25'] = [rank_of('bm25', q, g) for q, g in zip(tests.question, tests.gold_doc_id)]\nprint((tests.bm25 == 1).sum(), 'questions answered first')",
+    "starter": "def rank_of(method, question, gold):\n    # Your turn: run search.search(question, method, k=10) and make a list of its .doc_id\n    # Your turn: return the position of gold in that list (counting from 1), or 0 if it is missing\n    pass\n\n# Your turn: fill tests['bm25'] with rank_of for every question (zip tests.question and tests.gold_doc_id)\n"
+   },
+   {
+    "code": "assert tests.bm25.tolist().count(1) == 25, 'Keyword search should rank the right document first for 25 questions. Count positions from 1 and return 0 when it is missing'\nassert ((tests.bm25 > 0) & (tests.bm25 <= 5)).sum() == 38, 'The right document should be in the top 5 for 38 questions'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Score the three searches\nFill `tests['meaning']` and `tests['hybrid']` the same way. Then write `recall_at(col, k)` and `mrr_of(col)` and build a small table `scores` with recall at 3, recall at 5 and mean reciprocal rank for the three methods."
+   },
+   {
+    "code": "for m in ['meaning', 'hybrid']:\n    tests[m] = [rank_of(m, q, g) for q, g in zip(tests.question, tests.gold_doc_id)]\n\ndef recall_at(col, k):\n    r = tests[col]\n    return ((r > 0) & (r <= k)).mean()\n\ndef mrr_of(col):\n    r = tests[col]\n    return (1 / r.where(r > 0)).fillna(0).mean()\n\nscores = pd.DataFrame({m: {'recall@3': recall_at(m, 3), 'recall@5': recall_at(m, 5), 'MRR': mrr_of(m)} for m in ['bm25', 'meaning', 'hybrid']}).round(3)\nprint(scores)",
+    "starter": "# Your turn: fill tests['meaning'] and tests['hybrid'] with rank_of, as you did for bm25\n\ndef recall_at(col, k):\n    # Your turn: the share of questions where the rank is above 0 and at most k\n    pass\n\ndef mrr_of(col):\n    # Your turn: the mean of 1 / rank, counting a rank of 0 as a score of 0\n    pass\n\n# Your turn: build scores, a table with rows recall@3, recall@5, MRR and a column for each method\n"
+   },
+   {
+    "code": "assert abs(scores.loc['recall@5', 'hybrid'] - 0.767) < 0.001, 'Hybrid recall at 5 should be 0.767'\nassert abs(scores.loc['MRR', 'bm25'] - 0.514) < 0.001, 'Keyword mean reciprocal rank should be 0.514. A rank of 0 must count as 0, not 1 / 0'\nassert scores.loc['MRR', 'hybrid'] < scores.loc['MRR', 'bm25'], 'Hybrid has the lower mean reciprocal rank on this test set'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Stale versions\nFor the 8 stale questions, count how many times keyword search returns a superseded document first and store it in `n_old_first`. Then switch on `current_only=True` and count how many questions have the right document in the top 3, in `n_fixed`."
+   },
+   {
+    "code": "stale = tests[tests.kind == 'stale']\nstatus = meta.status\nn_old_first = sum(status[search.search(q, 'bm25', k=1).doc_id.iloc[0]] == 'superseded' for q in stale.question)\nn_fixed = sum(g in list(search.search(q, 'bm25', k=3, current_only=True).doc_id) for q, g in zip(stale.question, stale.gold_doc_id))\nprint(n_old_first, n_fixed)",
+    "starter": "stale = tests[tests.kind == 'stale']\nstatus = meta.status   # document id -> current or superseded\n# Your turn: n_old_first = how many stale questions get a superseded document as the first keyword result\n# Your turn: n_fixed = how many have the gold document in the top 3 with current_only=True\n"
+   },
+   {
+    "code": "assert n_old_first == 8, 'Keyword search should return a superseded document first for all 8 stale questions'\nassert n_fixed == 8, 'With current_only=True the right document should be in the top 3 for all 8'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. The failure list\nHybrid search misses some questions in the top 10 (rank 0). Give each one a failure type: `Swahili`, `paraphrase` (the note column contains the word paraphrase) or `other`. Count the types in `failures`."
+   },
+   {
+    "code": "tests['paraphrase'] = tests.note.str.contains('paraphrase')\nmissed = tests[tests.hybrid == 0]\ndef why(r):\n    if r.language == 'sw':\n        return 'Swahili'\n    return 'paraphrase' if r.paraphrase else 'other'\nfailures = missed.apply(why, axis=1).value_counts()\nprint(failures)",
+    "starter": "tests['paraphrase'] = tests.note.str.contains('paraphrase')\nmissed = tests[tests.hybrid == 0]\n# Your turn: write why(r) so it returns 'Swahili' when r.language is 'sw', else 'paraphrase' or 'other'\n# Your turn: failures = the count of each type among the missed questions\n"
+   },
+   {
+    "code": "assert len(missed) == 12, 'Hybrid search misses 12 questions in the top 10'\nassert failures['paraphrase'] == 9 and failures['Swahili'] == 2 and failures['other'] == 1, 'Expected 9 paraphrase, 2 Swahili and 1 other'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. The permissions test\nFor each of the 6 restricted questions pick a user from `users.csv` whose groups are `all_staff` plus the asker group. Run hybrid search without and with `user_groups`. Count how many times the right document appears in the top 5 in each case: `unfiltered` and `filtered`."
+   },
+   {
+    "code": "users = pd.read_csv('users.csv')\nunfiltered = filtered = 0\nfor r in tests[tests.kind == 'restricted'].itertuples():\n    want = 'all_staff' if r.asker_group == 'all_staff' else 'all_staff;' + r.asker_group\n    groups = users[users.groups == want].iloc[0]['groups']\n    unfiltered += r.gold_doc_id in list(search.search(r.question, 'hybrid', k=5).doc_id)\n    filtered += r.gold_doc_id in list(search.search(r.question, 'hybrid', k=5, user_groups=groups).doc_id)\nprint(unfiltered, filtered)",
+    "starter": "users = pd.read_csv('users.csv')\nunfiltered = filtered = 0\nfor r in tests[tests.kind == 'restricted'].itertuples():\n    want = 'all_staff' if r.asker_group == 'all_staff' else 'all_staff;' + r.asker_group\n    # Your turn: take the groups of the first user in users whose groups equal want\n    # Your turn: add 1 to unfiltered when the gold document is in the top 5 of a search with no user_groups\n    # Your turn: add 1 to filtered when it is in the top 5 of a search with user_groups=groups\n    pass\nprint(unfiltered, filtered)"
+   },
+   {
+    "code": "assert unfiltered == 6, 'Without a filter the restricted document should appear in the top 5 for all 6 questions'\nassert filtered == 0, 'With the filter no restricted document may appear. Pass user_groups=groups to search.search'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## For the leader\nLook at your results. The permission filter kept all six restricted documents out, and the stale and paraphrase failures remain. Who in your organisation would sign off this pilot for production, and which of these five results would you want to see before they do? Write your answer below."
+   }
+  ]
+ }
+}

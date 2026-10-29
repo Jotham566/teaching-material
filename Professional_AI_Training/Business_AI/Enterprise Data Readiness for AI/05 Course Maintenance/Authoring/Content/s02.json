@@ -1,0 +1,503 @@
+{
+ "session": 2,
+ "notes_title": "Kitara Group's board has asked a plain question. Where do we stand on AI? Today you answer it twice. First for Kitara, with twenty five pieces of evidence and a score for each of five dimensions. Then for your own organisation, on the same spreadsheet. That scorecard is your first workpiece. Along the way we look at why the number you want to write down and the number you can defend are often different, and what to do about the gap.",
+ "notes_outcomes": "Today's skills are scoring an organisation on five dimensions and five levels, backing every score with evidence that someone outside your team could check, and finding the weakest dimension and saying what it blocks. The first half hour teaches the scale. In the live part we load Kitara's evidence pack and compute the scores in Python, then watch them fall when we leave out what nobody has seen. After the break you score your own organisation. The last ten minutes go to a decision only the leader at your table can take.",
+ "notes_words": "Six terms today. A readiness dimension is one area that gets its own score, such as data or people. A maturity level is a step on the five step scale from ad hoc to optimised. The evidence rule says every score needs something an outsider could check. A self reported item is a score that rests on what someone told you. The evidence adjusted score leaves those items out. And a target level is where a leader decides a dimension should be. Each of them comes back on the scorecard.",
+ "vocab": [
+  [
+   "Readiness dimension",
+   "One area of readiness that is scored on its own, such as data or people.",
+   "Kitara is scored on five dimensions, from use cases and sponsorship to people and governance."
+  ],
+  [
+   "Maturity level",
+   "One step on the five step scale: ad hoc, developing, defined, managed, optimised.",
+   "Kitara's overall mean of 2.4 sits between developing and defined."
+  ],
+  [
+   "Evidence rule",
+   "Every score needs one piece of evidence that someone outside the team could check.",
+   "The registration certificate was never seen, so that row breaks the rule."
+  ],
+  [
+   "Self-reported item",
+   "A score that rests on what someone said, with no evidence seen by anyone outside the team.",
+   "8 of Kitara's 25 evidence rows."
+  ],
+  [
+   "Evidence-adjusted score",
+   "The average that leaves out the self-reported items.",
+   "Kitara falls from 2.4 to 2.01."
+  ],
+  [
+   "Target level",
+   "The level a dimension should reach, chosen by a leader.",
+   "Kitara's workbook starts every dimension at 3, defined."
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 1",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Session 1 named four ways data fails an AI use. Can you name them?",
+     "a": "Missing, stale, unowned and unreachable."
+    },
+    {
+     "q": "Kitara keeps three Staff Handbooks in one folder. Which failure is that?",
+     "a": "Stale. The 2019 edition gives 21 days of annual leave and the 2025 edition gives 28."
+    }
+   ],
+   "notes": "Session 1 first. We met four ways data fails an AI use. Can you name them? Have a think.\n\nMissing, stale, unowned and unreachable. Missing means the data was never captured. Stale means it was true once. Unowned means nobody answers for it. Unreachable means it exists, but the system cannot open it, like a scanned page. Second question. Kitara keeps three editions of the Staff Handbook in one folder. Which of the four failures is that? Give that a moment.\n\nStale. The 2019 edition gives twenty one working days of annual leave. The 2025 edition gives twenty eight. A search tool that picks the wrong edition gives a confident wrong answer. Those were single failures in single files. Today we step back and score the whole organisation."
+  },
+  {
+   "type": "concept",
+   "title": "Kitara's board asks where the group stands",
+   "lead": "The chief executive calls AI a board priority. Nobody has a number yet.",
+   "points": [
+    {
+     "h": "The question",
+     "t": "Where do we stand today, on data and on AI?"
+    },
+    {
+     "h": "The evidence pack",
+     "t": "25 items from interviews, files and system screens, in readiness_evidence.csv."
+    },
+    {
+     "h": "The catch",
+     "t": "8 of the 25 scores rest on what someone said."
+    }
+   ],
+   "notes": "Kitara Group has a list of eleven AI ideas, a pilot budget of thirty eight million shillings and a chief executive who calls AI a board priority. What it does not have is a score. The board wants to know where the group stands today.\n\nAn assessor gathered twenty five pieces of evidence from interviews, files and system screens. Each one sits in a row of readiness_evidence.csv, with a proposed score from one to five and the name of a person who could verify it.\n\nEight of those scores rest on what someone said. Nobody outside the team has seen the evidence behind them. Keep that number in mind. It matters in about twenty minutes."
+  },
+  {
+   "type": "table",
+   "title": "Five dimensions cover what AI needs",
+   "header": [
+    "Dimension",
+    "The question it asks",
+    "A Kitara fact"
+   ],
+   "rows": [
+    [
+     "Use cases and sponsorship",
+     "Who wants this, and who pays?",
+     "Pilot budget of UGX 38 million"
+    ],
+    [
+     "Data: inventory, quality and metadata",
+     "Do we know our data and can we trust it?",
+     "14 sources, 4 with no owner"
+    ],
+    [
+     "Platform and pipelines",
+     "Does data reach the AI reliably?",
+     "Jobs run on cron with no alerts"
+    ],
+    [
+     "Protection and law",
+     "Are we allowed, and is it safe?",
+     "72 hours to report a breach to the regulator"
+    ],
+    [
+     "People and governance",
+     "Who decides, and who does the work?",
+     "Two analysts and no data engineer"
+    ]
+   ],
+   "colw": [
+    3.9,
+    4.0,
+    4.4
+   ],
+   "caption": "Search over documents is scored inside the data and platform dimensions.",
+   "notes": "Five dimensions, and each one is a question you can put to your own organisation. Use cases and sponsorship asks who wants this and who pays. Data asks whether you know what you hold and can trust it. Platform and pipelines, the jobs that move data around, asks whether data reaches the AI reliably. Protection and law asks whether you are allowed to do this and whether it is safe. People and governance asks who decides and who does the work.\n\nOn the right is one Kitara fact for each. A pilot budget of thirty eight million shillings. Fourteen data sources, four of them with no owner. Scheduled jobs on cron, the plain timer that runs a job at set times, with no alerts. A breach rule that gives seventy two hours to report to the regulator. Two analysts and no data engineer.\n\nThese five come from what the published frameworks have in common. Strategy, data, infrastructure, governance and talent keep turning up. Search over documents has no row of its own. It is scored inside data and platform."
+  },
+  {
+   "type": "figure",
+   "title": "Five levels, from ad hoc to optimised",
+   "fig": "maturity_levels",
+   "look": [
+    "Level 1, ad hoc: done by a few people, from memory.",
+    "Level 3, defined: written down, owned and checked at least once a year.",
+    "Kitara's mean of 2.4 sits between developing and defined."
+   ],
+   "caption": "An illustrative scale. Each framework words its levels differently.",
+   "alt": "A staircase of five maturity levels from ad hoc to optimised with Kitara marked at 2.4, between developing and defined.",
+   "notes": "Here are the five levels. One is ad hoc, two is developing, three is defined, four is managed and five is optimised.\n\nAd hoc means a few people do it from memory. Ask two of them and you get two different answers.\n\nDefined sits in the middle. It is written down, someone owns it and it is checked at least once a year. For most organisations defined is a sensible first target, and we come back to targets near the end.\n\nKitara's average is two point four. The marker sits between developing and defined, a little closer to developing. In a few minutes we build that number from the evidence, so you can see exactly where it comes from."
+  },
+  {
+   "type": "table",
+   "title": "Five published scales and the one we use",
+   "header": [
+    "Source",
+    "How it scores",
+    "Levels"
+   ],
+   "rows": [
+    [
+     "Cisco AI Readiness Index",
+     "0 to 100, six pillars",
+     "4 tiers, Laggard to Pacesetter"
+    ],
+    [
+     "DCAM, EDM Council",
+     "Each capability",
+     "6 levels, not initiated to enhanced"
+    ],
+    [
+     "CMMI Data Management Maturity",
+     "Six categories",
+     "5 levels, performed to optimized"
+    ],
+    [
+     "Databricks AI Governance Maturity",
+     "Data, process, people",
+     "5 levels, ad hoc to optimized"
+    ],
+    [
+     "Google AI Adoption Framework",
+     "Four areas, six themes",
+     "3 levels, tactical to transformational"
+    ],
+    [
+     "This course",
+     "Five dimensions",
+     "5 levels, ad hoc to optimised"
+    ]
+   ],
+   "colw": [
+    4.2,
+    3.3,
+    4.8
+   ],
+   "hl": [
+    6
+   ],
+   "caption": "No standard exists. We use five levels because CMMI and Databricks do.",
+   "notes": "Where do these scales come from? Five published ones, and they disagree. Cisco's AI Readiness Index, in its 2025 edition, scores companies out of one hundred across six pillars and sorts them into four tiers. Pacesetters score about eighty six or more, Chasers sixty one to eighty five, Followers thirty one to sixty and Laggards up to thirty. Cisco reported that about thirteen percent of the organisations in its survey of eight thousand leaders were Pacesetters, and those results are self rated by the leaders.\n\nThe EDM Council's DCAM scores each capability on six levels, from not initiated to enhanced. Some summaries list five, so check the version you read. The CMMI Data Management Maturity model, now held by ISACA, has five levels from performed to optimized. Databricks publishes an AI governance maturity model with five levels, from ad hoc to optimized. Google's older AI adoption white paper has three phases, tactical, strategic and transformational.\n\nThree levels, five and six all exist, and nothing settles it. We use five, and the level names come from the Databricks model."
+  },
+  {
+   "type": "define",
+   "title": "The evidence rule",
+   "definition": "Every score needs one piece of evidence that someone outside your team could check.",
+   "example": "Legal says Kitara is registered with the data protection regulator. That scored 4. Nobody saw the certificate, so the row is self-reported.",
+   "excel": "Pick one score you would give today. Who outside your team could check it, and what would they look at?",
+   "notes": "The most important rule on the scorecard is the evidence rule. In plain words, every score needs one piece of evidence that someone outside your team could check. A policy document, a catalogue entry, a test result, a system screen.\n\nHere is Kitara. Legal and Compliance says the group is registered with the data protection regulator and has a named officer. That earned a four, managed. Nobody has seen the certificate. So the row is marked self reported, and the evidence adjusted score leaves it out.\n\nThink about your own organisation. Pick one score you would give today. Who outside your team could check it, and what would they look at? Sit with it for a second.\n\nThat is the question you will ask of every row in the workshop."
+  },
+  {
+   "type": "code",
+   "title": "Load the evidence pack and count what is in it",
+   "lang": "python",
+   "code": "import pandas as pd\n\nev = pd.read_csv('readiness_evidence.csv')\nprint(ev.shape)\nprint(ev.groupby('dimension', sort=False).size())\nprint(ev.self_reported.value_counts())",
+   "says": [
+    "Read the evidence pack into a table called ev.",
+    "Count the evidence rows in each dimension.",
+    "Count the scores that rest on what someone said. Y is self-reported."
+   ],
+   "output": "(25, 8)\ndimension\nUse cases and sponsorship                5\nData: inventory, quality and metadata    5\nPlatform and pipelines                   6\nProtection and law                       5\nPeople and governance                    4\nN    17\nY     8",
+   "notes": "Let's load the evidence pack. This is the file the assessor filled in for Kitara.\n\nread_csv reads readiness_evidence.csv into a table that we call ev. The shape is twenty five rows and eight columns. Twenty five pieces of evidence.\n\nNext, how many rows each dimension has. Five for use cases, five for data, six for platform, five for protection and law, and four for people and governance. People has the fewest rows, which is a small finding of its own.\n\nLast, the column called self_reported holds a Y or an N. Eight Y and seventeen N. Those eight Y rows are the scores that rest on what someone said."
+  },
+  {
+   "type": "code",
+   "title": "Baseline: the mean score of each dimension",
+   "lang": "python",
+   "code": "base = ev.groupby('dimension', sort=False).proposed_score.mean().round(2)\nprint(base)\nprint('Overall mean:', round(base.mean(), 2))",
+   "says": [
+    "Group the rows by dimension and average the proposed scores.",
+    "The overall mean is the average of the five dimension means."
+   ],
+   "output": "dimension\nUse cases and sponsorship                3.0\nData: inventory, quality and metadata    2.0\nPlatform and pipelines                   2.5\nProtection and law                       3.0\nPeople and governance                    1.5\nOverall mean: 2.4",
+   "notes": "Now the baseline, which is the score as the assessor proposed it.\n\nWe group the rows by dimension and take the mean of the proposed scores. Use cases comes out at three point oh. Data at two. Platform and pipelines at two and a half. Protection and law at three. People and governance at one and a half.\n\nThe overall mean is the average of those five, and it is two point four. That is the marker you saw on the staircase. It rounds to level two, developing, and the people row is the lowest bar by a clear margin."
+  },
+  {
+   "type": "flow",
+   "title": "Scoring one dimension in five steps",
+   "steps": [
+    {
+     "h": "List",
+     "t": "Five items for Protection and law"
+    },
+    {
+     "h": "Read",
+     "t": "What exists, in one sentence"
+    },
+    {
+     "h": "Score",
+     "t": "Pick 1 to 5 from the levels guide"
+    },
+    {
+     "h": "Check",
+     "t": "Seen by an outsider? Y or N"
+    },
+    {
+     "h": "Average",
+     "t": "Mean 3.0, adjusted 2.67",
+     "hot": true
+    }
+   ],
+   "caption": "Scores 4, 3, 3, 3, 2 average 3.0. Leave out the two unseen rows and 3, 3, 2 average 2.67.",
+   "notes": "Let's take one dimension all the way through, using Protection and law.\n\nStep one, list the items. There are five. Registration and a named officer, the breach procedure, the classification scheme, the retention schedule, and cross border data flows.\n\nStep two, read what exists for each, in one sentence. The Information Security Policy sets one hour to report a breach internally and seventy two hours to report it to the regulator. That is written and approved.\n\nStep three, pick a level from the levels guide. A written, approved policy with a named owner is level three, defined. The breach procedure gets a three.\n\nStep four, decide whether anyone outside the team has seen the evidence. The policy was read, so yes. The registration certificate was not seen, and nor was a destruction list for the retention schedule, so those two get an N.\n\nStep five, average. Four, three, three, three and two give three point oh. Leave out the two unseen rows and you have three, three and two, which give two point six seven."
+  },
+  {
+   "type": "code",
+   "title": "Leave out the self-reported items",
+   "lang": "python",
+   "code": "seen = ev[ev.self_reported == 'N']\nadj = seen.groupby('dimension', sort=False).proposed_score.mean()\nprint(adj.round(2))\nprint('Overall adjusted:', round(adj.mean(), 2))",
+   "says": [
+    "Keep only the rows where nobody is relying on someone's word.",
+    "Average again by dimension. Compare with the baseline.",
+    "The overall mean falls from 2.4 to 2.01."
+   ],
+   "output": "dimension\nUse cases and sponsorship                2.33\nData: inventory, quality and metadata    1.33\nPlatform and pipelines                   2.40\nProtection and law                       2.67\nPeople and governance                    1.33\nOverall adjusted: 2.01",
+   "notes": "Before I run this, a question. Which two dimensions do you expect to fall furthest when we leave out the self reported rows? Let's hear your answer first.\n\nThe first line keeps only the rows marked N, where the evidence has been seen. Seventeen rows are left.\n\nUse cases and Data fall furthest, each by two thirds of a point. Use cases goes from three to two point three three, and Data from two to one point three three. Two of the five rows in each of those dimensions rest on someone's word. Platform and pipelines barely moves, from two and a half to two point four, because only one of its six rows was self reported. Protection and law drops to two point six seven, and People and governance from one and a half to one point three three.\n\nThe overall mean falls from two point four to two point oh one. Still developing, and about four tenths of a point lower than the number the group would have quoted."
+  },
+  {
+   "type": "trap",
+   "title": "A high score that rests on one sentence",
+   "looks": "The chief executive tells interviewers that AI is a board priority. The assessor scores Named executive sponsor at 4, managed.",
+   "why": "Managed means someone measures the practice and acts on the numbers. Kitara has no written mandate and no budget owner. The score of 4 claims a practice that nobody has shown.",
+   "fix": "Mark the row self-reported until a mandate or a budget line is shown. The evidence-adjusted mean then leaves it out.",
+   "notes": "Read this one as the assessor would.\n\nThe chief executive tells interviewers that AI is a board priority. The assessor scores Named executive sponsor at four, managed. It sounds reasonable, because the chief executive clearly cares.\n\nBut managed means someone measures the practice and acts on the numbers. At Kitara there is no written mandate and no budget owner. An interview statement shows intent. A mandate and a budget line show a practice. The score of four claims a practice that nobody has shown.\n\nThe fix is to mark the row self reported until a mandate or a budget line is on paper. The evidence adjusted average then leaves it out. If you must score it, a lower number is easier to defend, and you can raise it the day the document exists."
+  },
+  {
+   "type": "figure",
+   "title": "Discounting self-reported items lowers every dimension",
+   "fig": "baseline_scores",
+   "look": [
+    "People and governance is lowest as proposed, at 1.5.",
+    "Every hollow circle sits left of its bar. Discounting only lowers a score.",
+    "Data and People both fall to 1.33 and tie for lowest."
+   ],
+   "caption": "Bar: score as proposed. Circle: evidence-adjusted.",
+   "alt": "Bar chart of five readiness scores with People and governance lowest at 1.5, and hollow markers showing lower scores once self-reported evidence is removed.",
+   "notes": "Here is the same table as a chart. The dark bars are the scores as proposed. The hollow circles are the scores once the self reported items come out.\n\nPeople and governance is the lowest bar, at one and a half. Two analysts and no data engineer. Ten of fourteen sources have an owner. A data council that meets informally and keeps no minutes.\n\nEvery circle sits to the left of its bar. Discounting can only lower a score, and here it lowers all five. Use cases and Data drop by two thirds of a point each. Platform and pipelines hardly moves.\n\nAfter discounting, Data falls to one point three three and so does People. They tie for lowest. The spreadsheet flags both as weakest, and its summary line names Data first only because it picks the first match. Do not read a ranking into a tie. Treat both as the weak ones."
+  },
+  {
+   "type": "stat",
+   "title": "Kitara's average hides its weakest dimension",
+   "stats": [
+    {
+     "n": "2.4",
+     "label": "Overall mean as proposed. Between developing and defined."
+    },
+    {
+     "n": "2.01",
+     "label": "Overall mean after discounting. Level 2, developing."
+    },
+    {
+     "n": "1.33",
+     "label": "Data, and People and governance, tied for lowest."
+    }
+   ],
+   "caption": "An AI use needs all five dimensions. The lowest ones limit what Kitara can start safely.",
+   "notes": "Three numbers to hold. Two point four is the overall mean as proposed, between developing and defined. Two point oh one is the overall mean after discounting, which rounds to level two, developing. And one point three three is where Data, and People and governance, land. They tie for lowest.\n\nAn average hides that. An organisation can average two point four while one dimension sits at one point three. An AI use needs all five dimensions, and the lowest ones limit what Kitara can safely start. The first pilot is document search over policies. It needs a clean inventory and named owners, which is why Data matters first."
+  },
+  {
+   "type": "code",
+   "title": "Find the weakest dimensions and the gap to a target",
+   "lang": "python",
+   "code": "target = 3\ngap = (target - adj).clip(lower=0).round(2)\nprint(gap)\nlow = adj.round(2) == adj.round(2).min()\nprint('Weakest:', list(adj[low].index))",
+   "says": [
+    "The gap is the target minus the adjusted mean, never below zero.",
+    "Find every dimension that matches the lowest adjusted mean."
+   ],
+   "output": "Use cases and sponsorship 0.67\nData: inventory, quality and metadata 1.67\nPlatform and pipelines 0.60\nProtection and law 0.33\nPeople and governance 1.67\nWeakest: ['Data: inventory, quality and metadata', 'People and governance']",
+   "notes": "Now we compare the scores with a target. Say the group decides every dimension should reach level three, defined.\n\nThe gap is the target minus the evidence adjusted mean, and we never let it go below zero. Data and People are each one point six seven short. Use cases is zero point six seven, Platform is zero point six, and Protection and law is a third of a point.\n\nThe last two lines ask which dimensions match the lowest adjusted mean. The answer is two dimensions, Data and People and governance. Code that returned only one name would have hidden the tie, so always print every dimension that matches."
+  },
+  {
+   "type": "code",
+   "title": "A check that refuses a score of 6",
+   "lang": "python",
+   "expect_error": true,
+   "code": "bad = pd.concat([ev, ev.iloc[[0]].assign(proposed_score=6)])\nassert bad.proposed_score.between(1, 5).all(), 'scores must be 1 to 5'",
+   "says": [
+    "Add a row with a score of 6, then check every score is between 1 and 5."
+   ],
+   "output": "AssertionError: scores must be 1 to 5",
+   "notes": "A scorecard passes through many hands, and one of them will type a six.\n\nWe copy the first row, change its score to six and add it to the table. Then the assert line asks whether every score sits between one and five. It does not, so Python stops with an AssertionError and our own message.\n\nThat stop is useful. A wrong score caught at once costs nothing. A wrong score that reaches the board paper costs a lot more."
+  },
+  {
+   "type": "concept",
+   "title": "Four habits that cut bias in a self-score",
+   "lead": "Teams score their own organisation kindly. These habits keep the number defensible enough to plan on.",
+   "points": [
+    {
+     "h": "Name a verifier",
+     "t": "Every row names a person who could check it."
+    },
+    {
+     "h": "Score what you saw",
+     "t": "Documents, reports and system screens count. A promise gets an N."
+    },
+    {
+     "h": "Use an outsider",
+     "t": "Ask someone outside the team to look at the evidence."
+    },
+    {
+     "h": "Show both numbers",
+     "t": "Report the mean and the evidence-adjusted mean side by side."
+    }
+   ],
+   "notes": "Teams tend to score their own organisation kindly. Nobody means to. We remember the policy we wrote and forget that few people follow it. Four habits cut that down.\n\nName a verifier on every row. If you cannot name someone, the score is a guess. Score what you saw, which means documents, reports and system screens. A promise in a meeting gets an N. Ask someone outside the team to look at the evidence, such as a colleague from internal audit or another department. And report both numbers side by side. The gap between them shows how much of your score is opinion.\n\nThe big industry surveys have the same weakness. Cisco's index, for one, rests on leaders rating their own organisations."
+  },
+  {
+   "type": "concept",
+   "title": "Set a target level and read the gap",
+   "lead": "Kitara's workbook starts every dimension at a target of 3, defined.",
+   "points": [
+    {
+     "h": "Target",
+     "t": "Chosen for each dimension. Level 3 is a common first goal."
+    },
+    {
+     "h": "Gap",
+     "t": "Target minus the evidence-adjusted mean. Never below zero."
+    },
+    {
+     "h": "Largest gap",
+     "t": "Data and People, each 1.67 below the target."
+    },
+    {
+     "h": "Who decides",
+     "t": "The leader sets the target. The team supplies the gap."
+    }
+   ],
+   "notes": "A score tells you where you are. A target tells you where you mean to be, and that is a leader's decision. Kitara's workbook starts every dimension at three, defined, which is a sensible first goal for most organisations. Defined means written down, owned and checked each year.\n\nThe gap is the target minus the evidence adjusted mean. Data and People each sit one point six seven below. Platform is point six below, and Protection and law is a third of a point below.\n\nThe team can compute the gap. Only the leader can say whether three is enough, or whether one dimension needs four. Higher targets cost more and take longer, which is why the workpiece in Session 12 turns these gaps into a plan."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: score your own organisation",
+   "tool": "Readiness Scorecard workbook and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Kitara example and read its summary",
+    "In Readiness Scorecard.xlsx enter your organisation and the date",
+    "Write one evidence item per row, with who could verify it",
+    "Score each item 1 to 5 with the Levels guide",
+    "Set Evidence seen to Y only if an outsider has seen it",
+    "Read the summary: means, weakest dimension, gap, target",
+    "Write what your weakest dimension blocks, and who signs off"
+   ],
+   "done": "Five dimensions are scored, each row has evidence and a verifier, and you can name your weakest dimension.",
+   "notes": "Start the forty minutes with Kitara. Open Readiness Scorecard (Kitara example) dot xlsx and read the summary under the table. You should find an overall mean of two point four, an evidence adjusted mean of two point oh one, and a level of developing.\n\nThen open Readiness Scorecard dot xlsx and fill in your organisation and today's date. Work one dimension at a time. Write one evidence item on each row, up to six per dimension, and name the person who could verify it. Give a score from one to five with the Levels guide tab open beside you.\n\nSet Evidence seen to Y only when someone outside your team has seen the item. A blank row is better than a guess. When all five dimensions are filled, read the summary table, set a target for each dimension, and write one sentence on what your weakest dimension blocks for your first AI use.\n\nLeaders, you hold the pen on scores and targets, because you know what the organisation can really show. Data colleagues, once your leader is happy, open the team notebook and reproduce Kitara's numbers. If a row has you stuck, wave and I'll come over."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Name the five dimensions of readiness.",
+     "a": "Use cases and sponsorship, data, platform and pipelines, protection and law, people and governance."
+    },
+    {
+     "q": "Kitara's sponsor row scored 4 on a statement in interviews. What does the evidence rule do to it?",
+     "a": "It marks the row self-reported, so the adjusted mean leaves it out. Overall, 2.4 falls to 2.01."
+    },
+    {
+     "q": "Who in your organisation signs off the scorecard, and what target level will they accept for your weakest dimension?",
+     "a": "A named executive outside the scoring team. Level 3, defined, is a common first target."
+    }
+   ],
+   "notes": "First, name the five dimensions of readiness. Take your time.\n\nUse cases and sponsorship, data, platform and pipelines, protection and law, and people and governance. Second question. Kitara's sponsor row scored four on a statement in interviews. What does the evidence rule do to it? No rush.\n\nIt marks the row self reported, so the evidence adjusted mean leaves it out. Across the whole scorecard that moves Kitara from two point four to two point oh one. Last question, and this one belongs to the leaders. Who in your organisation signs off the scorecard, and what target level will they accept for your weakest dimension? Think it over.\n\nPick a named executive, ideally one outside the team that did the scoring, so the number carries weight. Level three, defined, is a common first target. If your leader at the table cannot name that person today, that is the first thing to settle."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Five dimensions and five levels give each area of readiness its own score.",
+    "Every score needs evidence an outsider could check. Self-reported items come out of the adjusted mean.",
+    "Kitara scores 2.4 as proposed and 2.01 with evidence. Data, and People and governance, tie for lowest at 1.33."
+   ],
+   "next": "Find, own and catalogue your data",
+   "notes": "Five dimensions and five levels give every area of readiness its own score.\n\nEvery score needs evidence that an outsider could check. The self reported items come out of the adjusted mean, and the gap between the two averages shows how much of a score is opinion.\n\nKitara scores two point four as proposed and two point oh one with evidence. Data, and People and governance, tie for lowest at one point three three. Your own scorecard is the first of three workpieces.\n\nNext session we take the weakest dimension at Kitara and build an inventory of ten data sources, each with an owner, a steward and a sensitivity class."
+  }
+ ],
+ "lab": {
+  "intro": "Workshop: score Kitara with the Readiness Scorecard (Kitara example).xlsx, then score your own organisation in Readiness Scorecard.xlsx. The team notebook reproduces the Kitara scorecard from readiness_evidence.csv in pandas and charts it.",
+  "workshop": [
+   {
+    "task": "Open Readiness Scorecard (Kitara example).xlsx. Read the summary table and find the overall mean, the evidence-adjusted mean and the level the adjusted mean rounds to.",
+    "example": "Overall mean 2.4. Evidence-adjusted mean 2.01. Level: Developing (level 2)."
+   },
+   {
+    "task": "In Readiness Scorecard.xlsx enter your organisation and today's date, then write one evidence item per row, up to six per dimension. Name who could verify each item.",
+    "example": "Protection and law, row 1: Registration and data protection officer. What exists: Kitara says it is registered and has named an officer, certificate not seen. Verifier: Head of Legal and Compliance."
+   },
+   {
+    "task": "Score every item from 1 to 5 using the Levels guide tab. Set Evidence seen to Y only where someone outside your team has seen the evidence.",
+    "example": "Breach procedure scored 3, defined, evidence seen Y (the Information Security Policy sets 1 hour internally and 72 hours to the regulator). Registration scored 4, evidence seen N."
+   },
+   {
+    "task": "Read the summary under the scorecard. Write down each dimension's mean and evidence-adjusted mean, the overall level, and your weakest dimension. If two tie, name both.",
+    "example": "Baseline 3.0, 2.0, 2.5, 3.0, 1.5. Adjusted 2.33, 1.33, 2.40, 2.67, 1.33. Data and People and governance tie at 1.33."
+   },
+   {
+    "task": "Set a target level for each dimension and read the gap to target.",
+    "example": "Target 3 everywhere. Gaps: Use cases 0.67, Data 1.67, Platform 0.60, Protection and law 0.33, People 1.67. Largest gap: Data and People and governance."
+   },
+   {
+    "task": "Write one sentence on what your weakest dimension blocks for your first AI use. Name the executive who signs off the scorecard.",
+    "example": "Data blocks document search: 4 of Kitara's 14 sources have no owner and none is in a catalogue, so nobody can say which documents the search may read. Sign-off: the Chair of the IT Steering Committee, who approved the pilot budget."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Load the evidence pack\nRead `readiness_evidence.csv` into a table called `ev`. Store the number of evidence rows in `items` and the number of self-reported rows (`self_reported` is `Y`) in `n_self`."
+   },
+   {
+    "code": "import pandas as pd\n\nev = pd.read_csv('readiness_evidence.csv')\nitems = len(ev)\nn_self = (ev.self_reported == 'Y').sum()\nprint(items, n_self)",
+    "starter": "import pandas as pd\n\n# Your turn: read readiness_evidence.csv into a table called ev\n# Your turn: store the number of rows in items\n# Your turn: store the number of rows where self_reported is Y in n_self\n"
+   },
+   {
+    "code": "assert items == 25, 'There are 25 evidence rows. Use len(ev)'\nassert n_self == 8, 'Count the rows where self_reported equals the text Y'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. The baseline\nCompute the mean `proposed_score` for each dimension into `baseline`, and the overall mean of those five means into `overall`."
+   },
+   {
+    "code": "baseline = ev.groupby('dimension', sort=False).proposed_score.mean()\noverall = baseline.mean()\nprint(baseline.round(2))\nprint(round(overall, 2))",
+    "starter": "# Your turn: group ev by dimension and take the mean of proposed_score into baseline\n# Your turn: the overall mean is the mean of the five numbers in baseline\n"
+   },
+   {
+    "code": "assert abs(baseline['People and governance'] - 1.5) < 0.001, 'People and governance should average 1.5'\nassert round(overall, 2) == 2.4, 'The overall mean is the mean of the five dimension means, 2.4'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Leave out the self-reported items\nKeep only the rows where `self_reported` is `N`. Compute the mean for each dimension into `adjusted` and the overall mean into `overall_adj`."
+   },
+   {
+    "code": "seen = ev[ev.self_reported == 'N']\nadjusted = seen.groupby('dimension', sort=False).proposed_score.mean()\noverall_adj = adjusted.mean()\nprint(adjusted.round(2))\nprint(round(overall_adj, 2))",
+    "starter": "# Your turn: keep the rows where self_reported is N, call the result seen\n# Your turn: group seen by dimension and take the mean of proposed_score into adjusted\n# Your turn: store the mean of adjusted in overall_adj\n"
+   },
+   {
+    "code": "assert abs(adjusted['Use cases and sponsorship'] - 7/3) < 0.001, 'Use cases should average 2.33 once the two self-reported rows are removed'\nassert round(overall_adj, 2) == 2.01, 'The overall adjusted mean should be 2.01'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. The weakest dimensions and the gap\nUse a target level of 3. Store the gap for each dimension (target minus adjusted mean, never below zero) in `gap`. Store a list of every dimension that matches the lowest adjusted mean in `weakest`."
+   },
+   {
+    "code": "target = 3\ngap = (target - adjusted).clip(lower=0)\nlow = adjusted.round(2) == adjusted.round(2).min()\nweakest = list(adjusted[low].index)\nprint(gap.round(2))\nprint(weakest)",
+    "starter": "target = 3\n# Your turn: gap is target minus adjusted, with no value below zero (use .clip(lower=0))\n# Your turn: find every dimension whose adjusted mean equals the lowest one, and store their names in weakest\n"
+   },
+   {
+    "code": "assert abs(gap['People and governance'] - 5/3) < 0.01, 'The gap for People and governance should be about 1.67'\nassert sorted(weakest) == ['Data: inventory, quality and metadata', 'People and governance'], 'Two dimensions tie for lowest. Keep both'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Chart the scorecard\nDraw a horizontal bar chart with two bars for each dimension: `baseline` and `adjusted`. Store the chart in `ax`."
+   },
+   {
+    "code": "import matplotlib.pyplot as plt\n\ntable = pd.DataFrame({'baseline': baseline, 'adjusted': adjusted})\nax = table.plot.barh(figsize=(8, 4))\nax.set_xlim(0, 5)\nplt.tight_layout()\nplt.show()",
+    "starter": "import matplotlib.pyplot as plt\n\n# Your turn: build a table with two columns, baseline and adjusted\n# Your turn: draw it with .plot.barh() and store the result in ax\n# Your turn: set the x axis from 0 to 5 with ax.set_xlim(0, 5)\nplt.show()\n"
+   },
+   {
+    "code": "assert len(ax.patches) == 10, 'The chart needs 5 dimensions x 2 bars = 10 bars'\nassert ax.get_xlim()[1] == 5, 'Set the x axis limit to 5 with ax.set_xlim(0, 5)'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. A question for the leader\nLook at the gap table and the two weakest dimensions. Which dimension would you ask the board to fund first, who at Kitara would own the target, and what level would you accept for it? Write your answer in two sentences."
+   }
+  ]
+ }
+}

@@ -1,0 +1,15 @@
+source_id,name,system_type,format,approx_records,refresh,owner,steward,sensitivity,personal_data,in_catalogue,last_quality_check,ai_use_case_candidates,notes
+S01,Core banking system,Database,Relational tables,640000,daily,Head of Retail Banking Operations,Core Banking Data Analyst,confidential,Y,N,2026-03-14,Customer 360; churn and dormancy prediction,
+S02,Mobile money switch log,Log files and database,CSV and database,46000000,daily,IT,,restricted,Y,N,,Agent fraud and anomaly detection,Owner recorded as IT. Digital Channels also says it owns this source.
+S03,Loan origination system,Workflow application,Database and scanned attachments,58000,daily,Head of SME Lending,Credit Operations Analyst,internal,Y,N,2025-11-20,Loan document search; credit memo drafting,Holds scanned national ID copies.
+S04,Policy administration system,Database,Relational tables,210000,daily,Head of Underwriting,Underwriting Systems Analyst,restricted,Y,N,2026-01-30,Renewal prediction; underwriting assistant,
+S05,Claims system,Database,Relational tables,96000,daily,Head of Claims,,restricted,Y,N,2026-02-10,Claims triage; days-to-settle prediction,
+S06,Claims documents archive,File store,PDF and scanned images,310000,ad hoc,IT,,,Y,N,,Claims document search and summary,Owner recorded as IT. Claims Department also says it owns this source.
+S07,CRM and tickets,Software as a service,Application database and exports,1200000,daily,Head of Customer Service,Customer Service Analyst,restricted,Y,N,2026-01-15,Complaint classification; response drafting,
+S08,Call centre transcripts,Audio and text files,Text and audio,380000,weekly,,,,,N,,Call summaries; complaint themes,Nobody has reviewed what the transcripts contain.
+S09,Shared drive: policies and procedures,File shares,"Word, PDF and text",14000,unknown,,,,,N,,Staff policy question answering,Several versions of the same policy sit in one folder.
+S10,HR system,Software as a service,Application database,1800,monthly,Head of Human Resources,HR Systems Officer,restricted,Y,N,2025-12-05,HR policy assistant (not staff records),Holds salary data.
+S11,Finance ledger,Enterprise resource planning,Relational tables,8400000,daily,Chief Finance Officer,Finance Systems Accountant,restricted,N,N,2026-04-02,Anomaly detection in journals,
+S12,Email archive,Mail archive,Email messages,22000000,daily,,,,,N,,Not proposed. Too broad.,No owner. Holds mixed personal and business content.
+S13,Branch report spreadsheets,File shares,Excel workbooks,2300,ad hoc,,,,N,N,,Branch performance summary,Six layouts seen in a sample of six branches.
+S14,Regulatory returns archive,File store,PDF and Excel,1900,monthly,Head of Regulatory Reporting,Compliance Officer,restricted,N,N,2026-02-27,Return preparation checks,

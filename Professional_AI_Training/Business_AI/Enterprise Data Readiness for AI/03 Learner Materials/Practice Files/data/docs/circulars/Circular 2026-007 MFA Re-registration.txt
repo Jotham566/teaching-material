@@ -1,0 +1,12 @@
+KITARA GROUP
+Circular 2026/007: Re-registration of multi-factor devices
+
+Ref: 2026/007
+Date: 2026-08-03
+Subject: Re-registration of multi-factor devices
+
+
+To: All staff
+From: Head of IT
+
+Staff who changed their phone since registering for multi-factor authentication must register the new phone by 30 November 2026. A lost phone is reported to the IT service desk within two hours, as the Information Security Policy requires. IT will remove the old device and issue a temporary code valid for 24 hours.

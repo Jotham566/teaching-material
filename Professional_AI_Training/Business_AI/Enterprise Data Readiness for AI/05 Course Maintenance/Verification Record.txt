@@ -1,0 +1,30 @@
+VERIFICATION RECORD, 29 OCTOBER 2026
+Enterprise Data Readiness for AI: 12 sessions, 276 slides (157 animated, 441 click reveals), 84 vocabulary terms, 70 workshop tasks, 12 student and 12 solution notebooks. The counts were read from the built decks and content files by export_docs_data.py on the day of the final rebuild.
+
+CHECKED, AND HOW
+Builds. python3 build_course.py data was run once at the end, then build all. All 12 decks and notebooks build with 0 HARD problems and 0 warnings. The slide engine measures text and refuses a slide whose text does not fit at its minimum size.
+Course check. python3 check_course.py reports no course-level problems: no duplicate vocabulary term, no repeated sentence beyond the limit, no unknown figure name, no title ending in a full stop.
+Validator. The PowerPoint schema validator passes on all 12 decks and on the roadmap deck.
+Code on slides and in notebooks. Every pandas, numpy, matplotlib and SQLite block was run on the Kitara data and the slide output compared with the real output. Blocks that need a heavy library were syntax-checked only.
+Labs. run_all_labs.py with --allow-missing-libs ran all 12 solution notebooks to the end. Cells needing sentence-transformers (Session 6, Task 5 and its check) and presidio (Session 9) were skipped. The runner was corrected during this pass: a check cell that depends on a skipped download cell is now skipped as well. No notebook failed, so no content file needed a fix.
+Documents. The Participant Workbook, Course Plan and Tutor Guide, Glossary, Setup Guide and Benchmark and Design Report were rendered to PDF with LibreOffice and their pages were viewed. Layout faults found (ruled answer lines merging into one line, a landscape map table running onto a second page, a numbered list continuing across sections, duplicated text) were fixed in make_docs.js. Totals in the documents are computed from the files.
+Data. The Kitara folder holds 121 documents, 14 sources, 5,000 customers, 20,000 mobile money rows and 60 test questions, counted from the files.
+Figures. The figures were reviewed when each session was written. 23 figures are in the catalogue.
+
+CHECKED BY WEB SEARCH ONLY
+Surveys, forecasts, framework details, laws, regulator actions, tool licences, hosting facts, course prices and dates quoted in the decks and the Benchmark and Design Report come from search results and third-party pages, with dates seen in Research Notes.txt. They were not read in the primary document.
+
+NOT VERIFIED
+1 Heavy-library code was never executed here: sentence-transformers, chromadb, pgvector with psycopg2, pandera, great_expectations, presidio, dagster, duckdb with pyarrow and docling. It was read against the documentation. Run each cell once in Colab.
+2 Primary legal texts were not read: the Uganda Data Protection and Privacy Act, 2019 and its regulations, the Kenya, Rwanda and Tanzania laws and the Kenya cross-border guidance note. Session 9 is a teaching summary and not legal advice.
+3 Licence files were not read. Open the LICENSE file or model card of each tool marked check before relying on it.
+4 PowerPoint playback of the animations was not tested. LibreOffice shows the finished slide only.
+5 Nothing was rehearsed aloud.
+6 Google Colab was not used to run the notebooks, so the setup cell, the apt-get install of Tesseract and the file upload are untested there.
+7 Spreadsheet formulas in the workpiece templates were not run in Excel or Google Sheets here.
+
+OPEN VERIFICATION LIST (Benchmark and Design Report, section 10)
+Open and read before teaching: the Gartner 60 percent wording; the MIT NANDA 95 percent wording; the Uganda Data Protection and Privacy Act sections 19 and 23 and its regulations; the Kenya cross-border guidance note; the Official Journal text of Regulation (EU) 2026/1744; the LICENSE file of every tool in section 5 of the report; the Oxford Insights ranks for Kenya and Rwanda; and the definitions of recall at k and mean reciprocal rank. The Colab and pgvector demonstrations are untested.
+
+IF THE DATA GENERATOR CHANGES
+Run python3 build_course.py check N for every session. A slide output that no longer matches the real output is an error, and the content file must then be updated. Do not run build_teaching_data.py on its own, because it overwrites the zip without kitara_search.py. Use build_course.py data.

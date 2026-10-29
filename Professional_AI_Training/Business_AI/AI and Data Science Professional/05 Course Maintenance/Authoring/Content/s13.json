@@ -1,0 +1,454 @@
+{
+ "session": 13,
+ "notes_title": "Twelve sessions in, you can load data, clean it, ask questions in SQL, draw charts and test whether a gap is more than luck. Today's question is bigger. When footfall rises, rainfall changes or a promotion runs, how many more orders does a branch get? That's regression. By the end you'll have fitted a line through the Lakeside Mart weekly data, read every number in it as a plain sentence, and said what it does not prove.",
+ "notes_outcomes": "You'll fit a linear regression and read each coefficient as a sentence a manager can use. You'll check the residuals, which are the misses, to see whether the line is a fair fit. And you'll say what a regression cannot prove. I fit the model twice live, first by hand in numpy and then in statsmodels, and you repeat both in the lab. Today is also Checkpoint 2, the one page analysis report, and you write your capstone question before you leave.",
+ "notes_words": "Seven words today. Regression is a trendline with a reading attached. A predictor is an input column. A coefficient is the slope for one predictor. The intercept is the starting level of the line. Least squares is the way the line is chosen. R squared is the share of the ups and downs the model accounts for. And a dummy variable is a yes or no helper column, such as is this week at Jinja. Every one of them has a cousin in a spreadsheet, and you'll meet them there too.",
+ "vocab": [
+  [
+   "Regression",
+   "A method that fits a line to the data and reads how one number moves with others.",
+   "A trendline on a scatter chart"
+  ],
+  [
+   "Predictor",
+   "A column used to explain or predict the outcome.",
+   "An input column"
+  ],
+  [
+   "Coefficient",
+   "The number a predictor is multiplied by. It says how much the outcome changes for one step in that predictor.",
+   "The slope from SLOPE"
+  ],
+  [
+   "Intercept",
+   "The model's starting level, where the line crosses the axis when every predictor is zero.",
+   "The INTERCEPT function"
+  ],
+  [
+   "Least squares",
+   "Choosing the line that makes the total of the squared misses as small as possible.",
+   "The method behind a trendline"
+  ],
+  [
+   "R squared",
+   "The share of the outcome's ups and downs that the model accounts for, from 0 to 1.",
+   "RSQ or the trendline box"
+  ],
+  [
+   "Dummy variable",
+   "A column of 0 and 1 that stands for one category, such as one branch.",
+   "A Yes or No helper column"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 12",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "The 95 percent interval for a lift includes zero. What do you tell the manager?",
+     "a": "We cannot tell yet whether the lift is real. The data fits a gain, no change and a loss."
+    },
+    {
+     "q": "A p-value is tiny. Does that make the effect big?",
+     "a": "No. The p-value says the gap is probably real. The effect size says whether it matters."
+    }
+   ],
+   "notes": "Two ideas from Session 12 come back today, so let's check them first.\n\nFirst. The ninety five percent interval for a lift includes zero. What do you tell the manager? Have a think.\n\nYou say you can't tell yet whether the lift is real. The data fits a gain, no change and even a small loss. That answer keeps the manager from acting on luck.\n\nSecond. A p-value is tiny. Does that make the effect big? No rush.\n\nIt doesn't. A tiny p-value says the gap is probably real. The effect size tells you whether the gap is large enough to matter. Every regression coefficient comes with an interval and a size, so you'll use both ideas again in a few minutes."
+  },
+  {
+   "type": "concept",
+   "title": "Regression draws a line through a cloud",
+   "lead": "Each dot is one branch in one week. Footfall runs across, orders run up.",
+   "points": [
+    {
+     "h": "The cloud",
+     "t": "832 branch weeks. Busy weeks sit high and right."
+    },
+    {
+     "h": "The line",
+     "t": "The straight line that sits closest to all the dots."
+    },
+    {
+     "h": "The slope",
+     "t": "How many more orders each extra person brings."
+    }
+   ],
+   "fig": "footfall_orders_scatter",
+   "alt": "Scatter of weekly orders against footfall with an upward fitted line.",
+   "notes": "Today we answer a question you meet at work all the time. When one thing goes up, how much does another thing change?\n\nIn Excel you would draw a scatter chart and add a trendline. That trendline is regression. Regression is the method that finds the best straight line through a cloud of dots, and then reads that line as a rule.\n\nIn the picture, each dot is one Lakeside Mart branch in one week. Footfall, the count at the door, runs across the bottom. Orders run up the side. Busy weeks sit high and to the right.\n\nThe line is the average story. For each footfall it says how many orders you would usually expect. Its slope is the number we care about, because it says how many more orders each extra person brings."
+  },
+  {
+   "type": "code",
+   "title": "Load the weekly file and see the link",
+   "lang": "python",
+   "code": "import pandas as pd\n\nbw = pd.read_csv('branch_weeks.csv')\nprint(bw.shape)\nprint(bw[['footfall', 'promo_on', 'orders']].head(2))\nprint(bw.orders.corr(bw.footfall).round(2))",
+   "says": [
+    "Each row is one branch in one week.",
+    "Door count, promotion flag and orders.",
+    "The correlation is 0.84, strong and upward."
+   ],
+   "notes": "Let's look at the data before we fit any model.\n\nWe read branch_weeks.csv into a table called bw. Each row is one branch in one week. Eight branches over a hundred and four weeks give eight hundred and thirty two rows.\n\nThe next line shows three of the columns. Footfall is the door counter. The column promo_on holds a one in weeks when a promotion ran and a zero when it didn't. And orders is the number of orders that week. There's a rainfall column too, in millimetres.\n\nThe last line is the correlation you met in Session 4. It's point eight four, strong and upward. Correlation gives one number for the link. Regression goes further and tells us how much orders change.",
+   "output": "(832, 7)\n   footfall  promo_on  orders\n0      2672         0      55\n1      3004         0      51\n0.84"
+  },
+  {
+   "type": "figure",
+   "title": "Least squares: the line with the smallest misses",
+   "fig": "regression_fit",
+   "look": [
+    "The red line is the best straight fit.",
+    "Each gold bar is a residual: actual orders minus the line.",
+    "Least squares picks the line with the smallest total of squared misses."
+   ],
+   "caption": "Three residuals are drawn. The line is chosen so that all 832 misses, squared and added, are as small as possible.",
+   "alt": "Scatter with a fitted line and vertical segments from three points to the line showing residuals.",
+   "notes": "How does the computer choose the line? By a picture you can hold in your head.\n\nTry any line you like through the cloud. Every dot sits a little above or a little below it. The gold bars show three of those gaps. Each gap is called a residual. It is the actual orders minus the orders the line predicted. You met this word in Session 8 for the gap left on a reconciliation. The idea is the same. It's what is left over after the model has said its piece.\n\nThe method is called least squares. For each candidate line you take every gap, square it so that misses above and below both count, and add them up. The line with the smallest total wins.\n\nThat's all the method does. The computer does the searching, and a spreadsheet does it too, when you add a trendline."
+  },
+  {
+   "type": "code",
+   "title": "The line in numbers: slope and intercept",
+   "lang": "python",
+   "code": "import numpy as np\n\nslope, intercept = np.polyfit(bw.footfall, bw.orders, 1)\nprint(round(slope, 4), round(intercept, 2))\nprint(round(slope * 1000, 1))",
+   "says": [
+    "polyfit with 1 fits a straight line.",
+    "The slope: orders gained for each extra person.",
+    "Times 1,000 gives a number that is easy to say."
+   ],
+   "notes": "We'll write the line as two numbers. We import numpy as np, the same library we use for arithmetic on whole columns.\n\nThe function polyfit takes the x column, then the y column, then the word one, which means a straight line. It returns two numbers. The slope and the intercept.\n\nThe slope is point zero one eight five. That's orders gained for each extra person at the door. A number that small is hard to say aloud, so we multiply by a thousand. A thousand more people through the door goes with about eighteen point five more orders.\n\nThe intercept is one point two three. It's where the line meets the left edge, at zero footfall. In Sheets these two numbers come from the SLOPE and INTERCEPT functions, and you can check this on your own file.",
+   "output": "0.0185 1.23\n18.5"
+  },
+  {
+   "type": "code",
+   "title": "Add promotion and rain: three predictors",
+   "lang": "python",
+   "code": "X = np.column_stack([np.ones(len(bw)), bw.footfall, bw.promo_on, bw.rainfall_mm])\ny = bw.orders.values\ncoef, *_ = np.linalg.lstsq(X, y, rcond=None)\nmiss = y - X @ coef\nr2 = 1 - miss.var() / y.var()\nprint(coef.round(4))\nprint(round(r2, 3), round(miss.std(), 2))",
+   "says": [
+    "A column of ones lets the line start away from zero.",
+    "lstsq solves least squares for all columns at once.",
+    "R squared is 0.795. A typical miss is about 6 orders."
+   ],
+   "notes": "A week has more going on than footfall. So we give the model three things to learn from. Footfall, whether a promotion ran, and rainfall. A thing we use to explain the outcome is called a predictor.\n\nWe stack the columns into one table of numbers, X. The first column is all ones. That gives the model its starting level, the intercept. The orders go in y.\n\nThen np.linalg.lstsq does least squares for all the columns at once. It returns the coefficients in the same order as the columns. A coefficient is the number that multiplies a predictor.\n\nRead the result. The intercept is two point three eight. Footfall is point zero one eight eight. Promotion is six point seven nine nine. Rain is minus point one one eight. And the last line gives R squared of point seven nine five, and a typical miss of about six orders. I'll explain both in a moment.",
+   "output": "[ 2.3785  0.0188  6.7986 -0.1183]\n0.795 6.07"
+  },
+  {
+   "type": "code",
+   "title": "The same model in statsmodels",
+   "lang": "python",
+   "code": "import statsmodels.formula.api as smf\n\nformula = 'orders ~ footfall + promo_on + rainfall_mm'\nmodel = smf.ols(formula, data=bw).fit()\nprint(model.summary())",
+   "says": [
+    "The formula reads: orders explained by these three.",
+    "ols is ordinary least squares, the same method.",
+    "summary prints coefficients, intervals and R squared."
+   ],
+   "notes": "In practice most analysts use a library called statsmodels. It gives the same answer as our numpy lines and adds the extras a report needs.\n\nThe formula is the nice part. Orders, then a tilde, which you read as explained by, then the predictors joined with plus signs. It reads like a sentence. You never build the column of ones. The library adds it for you.\n\nThe function ols stands for ordinary least squares. That's the method we just ran by hand. Fit does the work.\n\nThen summary prints a long table. The coefficients match what numpy gave us, to every decimal. The table also gives each coefficient's interval, using the idea from Session 12. Colab has statsmodels already installed, so you'll run this one in the lab. We're only learning the shape of it here."
+  },
+  {
+   "type": "figure",
+   "title": "Each coefficient with its 95 percent interval",
+   "fig": "coef_forest",
+   "look": [
+    "Footfall: about 18.8 more orders for each extra 1,000 people.",
+    "Promotion: about 6.8 more orders in a promotion week.",
+    "Rain: about 1.2 fewer orders for each extra 10 mm."
+   ],
+   "caption": "Dots are the coefficients. The bars are 95 percent intervals. None of the bars touches zero.",
+   "alt": "Dot-and-interval plot of three regression coefficients: footfall up, promotion up, rain down.",
+   "notes": "Here are the three coefficients drawn with their ninety five percent intervals. The red dashed line is zero, which means no effect.\n\nFootfall sits far to the right. For each extra thousand people at the door, the model gives about eighteen point eight more orders in the week.\n\nPromotion is next. In a week with a promotion, about six point eight more orders, even when footfall and rain stay the same.\n\nRain sits just left of zero. Each extra ten millimetres of rain goes with about one point two fewer orders. Its interval is very short, so it's a small effect, measured well.\n\nNotice that none of the bars touches zero. You read intervals here the way you did in Session 12. If zero were inside a bar, you would say you can't tell whether that predictor matters."
+  },
+  {
+   "type": "table",
+   "title": "Reading each coefficient in one plain sentence",
+   "header": [
+    "Predictor",
+    "Coefficient",
+    "In a sentence"
+   ],
+   "rows": [
+    [
+     "Footfall",
+     "0.0188",
+     "1,000 more people: about 19 more orders"
+    ],
+    [
+     "Promotion on",
+     "6.80",
+     "A promotion week: about 7 more orders"
+    ],
+    [
+     "Rainfall (mm)",
+     "-0.118",
+     "10 mm more rain: about 1 fewer order"
+    ],
+    [
+     "Intercept",
+     "2.38",
+     "The starting level. Not a real week"
+    ]
+   ],
+   "caption": "Read each sentence with the other two held the same.",
+   "colw": [
+    2.6,
+    2.0,
+    6.0
+   ],
+   "notes": "The skill you'll use most is turning each number into a sentence a manager can use.\n\nThe pattern is always the same. When this predictor goes up by one step, the outcome changes by this much, with the others held the same. Keep that last phrase in every sentence you write. Each coefficient is read with everything else in the model kept fixed.\n\nSo footfall. A thousand more people, about nineteen more orders. Promotion. A promotion week, about seven more orders. Rain. Ten more millimetres, about one fewer order. Always choose a step that makes sense. One millimetre is too small to talk about, and a thousand people is easy to picture.\n\nThe intercept is the model's starting level. It is where the line sits when every predictor is zero, and that week never happens at Lakeside. A shop is never empty for a whole week. So we keep the intercept in the model and leave it out of the report."
+  },
+  {
+   "type": "define",
+   "title": "R squared",
+   "definition": "The share of the ups and downs in the outcome that the model accounts for. It runs from 0 to 1.",
+   "example": "Here R squared is 0.795. The three predictors account for about 80 percent of the weekly swings in orders. The other 20 percent is left unexplained.",
+   "excel": "The RSQ function, or the R squared box on a chart trendline.",
+   "notes": "One more number from the summary. R squared.\n\nIn plain words, it's the share of the ups and downs in the outcome that your model accounts for. It runs from zero to one. Zero means the model explains nothing. One means it explains every week exactly.\n\nOur model scores point seven nine five. Orders go up and down from week to week, and our three predictors account for about eighty percent of that movement. The other twenty percent is what the model can't see, such as a school event or a road closure.\n\nIn Excel you've seen this already. Add a trendline to a scatter chart, tick the box that says show R squared, and the same number appears.\n\nR squared only says how tight the cloud sits around the line. A high value leaves open whether the model's story is right, and a low value can still give a useful prediction."
+  },
+  {
+   "type": "figure",
+   "title": "Residual check: is the cloud even?",
+   "fig": "residual_plot",
+   "look": [
+    "Dots scatter evenly above and below zero.",
+    "No curve or bend. The straight line was a fair choice.",
+    "A few big misses at the top. Look at those weeks."
+   ],
+   "caption": "Residuals against fitted orders. A healthy plot looks like an even cloud with no shape.",
+   "alt": "Scatter of residuals against fitted values forming an even cloud around zero.",
+   "notes": "A good analyst always checks the misses. This picture puts each week's residual against the orders the model fitted for it. Zero is the red line.\n\nFirst, the dots sit evenly above and below zero. The model is not too high in some weeks and too low in others.\n\nSecond, there is no bend. If the dots curved like a smile, a straight line would be the wrong shape, and we would try something else.\n\nThird, a few weeks sit high, with residuals near twenty five. Those are weeks when orders ran far above what the model expected. A good habit is to look up those weeks in the file and ask what happened.\n\nThe spread grows a little for busy weeks. That is common and fine here. A strong pattern would be a warning, and this one is mild."
+  },
+  {
+   "type": "code",
+   "title": "Categories become 0 and 1 columns",
+   "lang": "python",
+   "code": "dummies = pd.get_dummies(bw.branch_id, drop_first=True, dtype=float)\nXb = np.column_stack([X, dummies.values])\ncb, *_ = np.linalg.lstsq(Xb, y, rcond=None)\nr2b = 1 - (y - Xb @ cb).var() / y.var()\nprint(list(dummies.columns))\nprint(round(r2b, 3))",
+   "says": [
+    "Seven new 0 and 1 columns. B01 is the baseline.",
+    "Add them to the same least squares fit.",
+    "R squared barely moves, 0.795 to 0.796."
+   ],
+   "notes": "A regression can only multiply numbers. So how do we use a category such as the branch name? We turn it into columns of zeros and ones. Each one is called a dummy variable. It answers a yes or no question, such as is this week at Jinja.\n\nThe pandas function get_dummies builds them. We drop the first one, B01, so that B01 becomes the baseline and each other branch is compared with it. That's why you see only seven names.\n\nWe add those seven columns next to our three predictors and run the same least squares. And look at R squared. It goes from point seven nine five to point seven nine six. That's tiny.\n\nThe reason is useful. Branch size already shows in the footfall. A bigger branch has more people at the door, so the branch name adds almost nothing. In statsmodels the formula for this is a plus C of branch_id at the end. The library builds the dummy columns for you.",
+   "output": "['B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08']\n0.796"
+  },
+  {
+   "type": "compare",
+   "title": "Prediction and explanation",
+   "left": {
+    "h": "Prediction",
+    "points": [
+     "Question: how many orders will next week bring?",
+     "A week with 2,000 people, a promotion and 20 mm of rain gives about 44 orders.",
+     "Judge it on the size of the miss, about 6 orders."
+    ]
+   },
+   "right": {
+    "h": "Explanation",
+    "points": [
+     "Question: what changes orders, and by how much?",
+     "Read each coefficient with the others held the same.",
+     "Judge it on the interval, and on what the model leaves out."
+    ]
+   },
+   "verdict": "The same model serves both jobs. The questions and the cautions differ.",
+   "notes": "There are two reasons to fit a regression, and they ask different things of you.\n\nThe first is prediction. You want next week's orders for planning staff and stock. Put in two thousand people, a promotion and twenty millimetres of rain. The model gives about forty four orders. That figure comes from the intercept plus each coefficient times its value.\n\nYou judge a prediction by its miss. Our typical miss is about six orders, so a good statement is about forty four, give or take twelve. You don't need to know why the model works to use it that way.\n\nThe second is explanation. You want to know what moves orders and by how much. You read each coefficient and its interval, with the others held the same. Here the cautions are different. You must ask what the model leaves out.\n\nSo the same model serves both jobs, and the next slides show why explanation needs more care."
+  },
+  {
+   "type": "code",
+   "title": "Rain and footfall: do they move together?",
+   "lang": "python",
+   "code": "print(bw.footfall.corr(bw.rainfall_mm).round(3))\nXr = np.column_stack([np.ones(len(bw)), bw.rainfall_mm])\nrain_only, *_ = np.linalg.lstsq(Xr, y, rcond=None)\nprint(rain_only.round(4))\nprint(coef.round(4)[3])",
+   "says": [
+    "Footfall and rain have almost no link here.",
+    "Rain alone: minus 0.1249 orders for each mm.",
+    "Rain beside the other two: minus 0.1183. Hardly changed."
+   ],
+   "notes": "Rain keeps shoppers at home, so you'd expect wet weeks to have fewer people at the door. If that were so, rain and footfall would be linked, and each would carry part of the other's effect. That's the idea of a confounder from Session 4. So we check.\n\nThe first line gives the correlation between footfall and rain. It is minus point zero zero four. Essentially none. In this file the door counter doesn't move with the weather.\n\nSecond, we fit orders on rain alone. The coefficient is minus point one two four nine. Third, we print the rain coefficient from the full model, minus point one one eight three.\n\nThey are close. When predictors don't overlap, adding others barely changes a coefficient. In a messier shop, where weather and footfall moved together, that number would shift a lot, and that shift is your warning that the predictors share the credit.",
+   "output": "-0.004\n[39.5564 -0.1249]\n-0.1183"
+  },
+  {
+   "type": "trap",
+   "title": "A coefficient read as a cause",
+   "looks": "You report that every extra 10 mm of rain costs the branch 1.2 orders. The model ran with no error, the interval is short, and the sentence sounds firm.",
+   "why": "Regression shows how the data moves together. It cannot show what would happen if you changed one thing. Something left out, such as pay day or school term, can move rain weeks and order counts together. And weeks with promotions may not have been picked by chance.",
+   "fix": "Say goes with or linked to. Name what the model leaves out. Test a real cause with an experiment, as in Session 12.",
+   "notes": "Today's trap is another one with no error message.\n\nYou report that each extra ten millimetres of rain costs the branch one point two orders. The model ran. The interval is short. The sentence sounds firm, and a manager may plan around it.\n\nThe problem is what a regression can see. It sees weeks in which rain and orders moved together. It can't see what would happen if you changed one and held everything else still. Something it left out, such as pay day or the school term, could move rain weeks and order counts together. And the weeks with promotions weren't picked by a coin toss, so the promotion coefficient may carry the effect of whatever made managers choose those weeks.\n\nThe fix is in your wording. Say the model links ten more millimetres to about one fewer order. Name what the model leaves out. And when you need to know the cause, run an experiment, like the offer test from last session."
+  },
+  {
+   "type": "code",
+   "title": "Why sales are noisier than orders",
+   "lang": "python",
+   "code": "for target in ['orders', 'sales_ugx']:\n    t = bw[target].values\n    c, *_ = np.linalg.lstsq(X, t, rcond=None)\n    print(target, round(1 - (t - X @ c).var() / t.var(), 3))\nprint(bw.sales_ugx.max(), int(bw.sales_ugx.median()))",
+   "says": [
+    "Same three predictors, two different targets.",
+    "Orders: R squared 0.795. Sales: only 0.357.",
+    "The biggest week of sales is nearly five times the median."
+   ],
+   "notes": "The lab models weekly orders. Let me show you why weekly sales would be a poorer target.\n\nThe loop fits the same three predictors to two different targets. First the number of orders. Then the value of those orders in shillings.\n\nThe model explains about eighty percent of the movement in orders, but only about thirty six percent of the movement in sales. The sales target is much noisier.\n\nThe reason is the shape of baskets. Remember the histogram from Session 3. Most baskets are small, and a few are very large. One basket of three million shillings adds one to the order count, but it adds three million to the sales for that week. Footfall can't predict who walks in with such a basket.\n\nThe last line shows the effect. The best week of sales is over seven million shillings, nearly five times the median week. When the target is dominated by a few big values, pick a steadier target, or report the median.",
+   "output": "orders 0.795\nsales_ugx 0.357\n7236315 1478305"
+  },
+  {
+   "type": "concept",
+   "title": "Checkpoint 2 and your capstone question",
+   "lead": "Today you hand in a one page analysis report and write your capstone question.",
+   "points": [
+    {
+     "h": "The report",
+     "t": "One question, one model, one sentence per coefficient, R squared, one limit."
+    },
+    {
+     "h": "The capstone question",
+     "t": "One sentence that names what you want to explain or predict."
+    },
+    {
+     "h": "Your dataset",
+     "t": "You choose it in Session 14: Lakeside Mart, Nile loans, District Clinics or feedback."
+    }
+   ],
+   "notes": "Two things happen today besides the lab. This is Checkpoint 2.\n\nFirst, the report. You write one page about the weekly orders model. It has your question, your model, one plain sentence for each coefficient, R squared in words, and one limit, such as what the model leaves out. A manager should be able to read it in two minutes.\n\nSecond, you write your capstone question. The capstone is the project you build toward in Sessions 19 to 23 and present in Session 24, so today's job is to shrink the idea until it fits. Write one sentence for the question, and say which column you want to explain or predict.\n\nYou choose the dataset next session, in Session 14. Your options are the Lakeside Mart tables, the Nile Microfinance loans, the District Clinics visits or the Lakeside Mart feedback. Pick the question that sounds most interesting to you, because you'll live with it for weeks."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: model weekly orders and explain it",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 13 notebook and run the setup cell",
+    "Fit the line for orders on footfall",
+    "Fit all three predictors with least squares",
+    "Read R squared and plot the residuals",
+    "Predict one week; test the rain link",
+    "Add the branch as a category; try statsmodels",
+    "Compare sales with orders, then write it up"
+   ],
+   "done": "Every check cell says correct, and your report has a sentence for each coefficient and one limit.",
+   "notes": "The first task is the quick look we took together. You load branch_weeks.csv and check the correlation between orders and footfall. Run the setup cell in the Session 13 notebook first.\n\nAfter that you fit the line with polyfit, then the three predictor model with least squares, and you read R squared and the typical miss. You plot the residuals, predict one week, and test whether rain and footfall are linked. Later tasks add the branch as a category and run the same model in statsmodels, where the coefficients should agree with numpy to a few decimals. Task nine compares orders with sales.\n\nThe last task is the write-up. Give each coefficient one plain sentence, add one limit, and write your capstone question in one sentence. You have forty minutes, and I'm around when an error stops you."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "The footfall coefficient is 0.0188. Say it as a sentence for a manager.",
+     "a": "A thousand more people at the door goes with about 19 more orders in the week, with promotion and rain held the same."
+    },
+    {
+     "q": "R squared is 0.795. What does that say?",
+     "a": "The model accounts for about 80 percent of the weekly ups and downs in orders."
+    },
+    {
+     "q": "Why can the model not tell you that rain causes fewer orders?",
+     "a": "It only sees how the numbers move together. Something it leaves out could move both."
+    }
+   ],
+   "notes": "Footfall first, then R squared, then a limit. Answer each in your head before I give mine.\n\nQuestion one. The footfall coefficient is point zero one eight eight. Say it as a sentence for a manager. Sit with it for a second.\n\nA thousand more people at the door goes with about nineteen more orders in the week, with promotion and rain held the same.\n\nQuestion two. R squared is point seven nine five. What does that say? Think it over.\n\nThe model accounts for about eighty percent of the ups and downs in weekly orders.\n\nQuestion three. Why can the model not tell you that rain causes fewer orders? Give that a moment.\n\nIt only sees how the numbers move together. Something it leaves out, such as pay day, could move both rain weeks and orders."
+  },
+  {
+   "type": "summary",
+   "points": [
+    "Regression draws the best straight line through a cloud. Least squares keeps the misses, the residuals, small.",
+    "Read each coefficient as a sentence with the others held the same. R squared says how much of the movement the model accounts for.",
+    "Prediction is judged by its miss. Explanation needs care: the model shows what goes with what, never what causes what."
+   ],
+   "next": "Machine learning: the workflow",
+   "notes": "One. Regression draws the best straight line through a cloud of dots. Least squares keeps the misses, the residuals, as small as it can.\n\nTwo. Read each coefficient as a sentence, with the other predictors held the same. And read R squared as the share of the movement your model accounts for.\n\nThree. A prediction is judged by the size of its miss. An explanation needs more care, because a regression shows what goes with what and cannot show what causes what.\n\nNext session we begin machine learning. We use the Nile Microfinance loans to teach a model from examples, and we hold some loans back so we can test it fairly. That session is also where you choose your capstone dataset, so bring your one sentence question.",
+   "title": "Summary"
+  }
+ ],
+ "lab": {
+  "intro": "Model weekly orders for the Lakeside Mart branches. Fit it with numpy, read each coefficient in a sentence, then see the same model in statsmodels.",
+  "cells": [
+   {
+    "md": "## Task 1. Load the weeks\nRead `branch_weeks.csv` into `bw`. Print its shape and store the correlation between `orders` and `footfall` in `r`."
+   },
+   {
+    "code": "import pandas as pd\nimport numpy as np\n\nbw = pd.read_csv('branch_weeks.csv')\nprint(bw.shape)\nr = bw.orders.corr(bw.footfall)\nprint(round(r, 2))",
+    "starter": "import pandas as pd\nimport numpy as np\n\n# Your turn: read branch_weeks.csv into bw and print its shape\n# Your turn: r = the correlation of orders with footfall, then print it\n"
+   },
+   {
+    "code": "assert bw.shape == (832, 7), 'Check the file name'\nassert 0.80 <= r <= 0.88, 'Use bw.orders.corr(bw.footfall)'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. One predictor\nFit a straight line of `orders` on `footfall` with `np.polyfit`. Keep the results in `slope` and `intercept`."
+   },
+   {
+    "code": "import numpy as np\n\nslope, intercept = np.polyfit(bw.footfall, bw.orders, 1)\nprint(round(slope, 4), round(intercept, 2))",
+    "starter": "# Your turn: slope, intercept = np.polyfit(x column, y column, 1)\n"
+   },
+   {
+    "code": "assert 0.017 <= slope <= 0.020, 'The slope should be near 0.0185'\nassert 0.5 <= intercept <= 2.0, 'The intercept should be near 1.2'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Three predictors\nBuild `X` with a column of ones, then footfall, promo_on and rainfall_mm. Put the orders in `y`. Solve with `np.linalg.lstsq` into `coef`. The answer key says the footfall coefficient is 0.0188, promotion 6.80 and rain -0.118."
+   },
+   {
+    "code": "X = np.column_stack([np.ones(len(bw)), bw.footfall, bw.promo_on, bw.rainfall_mm])\ny = bw.orders.values\ncoef, *_ = np.linalg.lstsq(X, y, rcond=None)\nprint(coef.round(4))",
+    "starter": "# Your turn: build X with np.column_stack from a column of ones and the three predictors\n# Your turn: y = the orders values\n# Your turn: solve with np.linalg.lstsq into coef (it returns four things, so write coef, *_ =)\n"
+   },
+   {
+    "code": "assert abs(coef[1] - 0.0188) < 0.0005, 'Footfall should be near 0.0188'\nassert abs(coef[2] - 6.80) < 0.3, 'Promotion should be near 6.8'\nassert abs(coef[3] + 0.118) < 0.01, 'Rain should be near -0.118'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. R squared, the typical miss and a residual plot\nCompute the residuals `miss` (actual minus fitted), then `r2` as 1 minus the variance of the misses divided by the variance of `y`. Compute `typical`, the standard deviation of the misses. Then plot the misses against the fitted orders and look for a bend."
+   },
+   {
+    "code": "miss = y - X @ coef\nr2 = 1 - miss.var() / y.var()\ntypical = miss.std()\nprint(round(r2, 3), round(typical, 2))\n\nimport matplotlib.pyplot as plt\nplt.scatter(X @ coef, miss, s=8)\nplt.axhline(0, color='red')\nplt.xlabel('Fitted orders')\nplt.ylabel('Miss')\nplt.show()",
+    "starter": "import matplotlib.pyplot as plt\n\n# Your turn: miss = actual minus fitted (X @ coef gives the fitted values)\n# Your turn: r2 from the variances, as in the task\n# Your turn: typical = the standard deviation of the misses\n# Your turn: scatter the misses against the fitted values, add a line at zero, then plt.show()\n"
+   },
+   {
+    "code": "assert 0.78 <= r2 <= 0.81, 'R squared should be near 0.795'\nassert 5.5 <= typical <= 6.6, 'The typical miss should be near 6 orders'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Predict one week\nA branch expects 2,000 people, a promotion and 20 mm of rain. Compute `pred`, the model's orders for that week."
+   },
+   {
+    "code": "week = np.array([1, 2000, 1, 20])\npred = week @ coef\nprint(round(pred, 1))",
+    "starter": "# Your turn: week = one row like a row of X: the 1, then footfall, promo_on and rain for this week\n# Your turn: pred = that row times coef\n"
+   },
+   {
+    "code": "assert 43 <= pred <= 46, 'The prediction should be near 44'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Are rain and footfall linked?\nCompute `link`, the correlation of `footfall` with `rainfall_mm`. Then fit orders on rain alone and keep its slope in `rain_slope`. Compare it with the rain coefficient in `coef`."
+   },
+   {
+    "code": "link = bw.footfall.corr(bw.rainfall_mm)\nXr = np.column_stack([np.ones(len(bw)), bw.rainfall_mm])\nrain_only, *_ = np.linalg.lstsq(Xr, y, rcond=None)\nrain_slope = rain_only[1]\nprint(round(link, 3), round(rain_slope, 4), round(coef[3], 4))",
+    "starter": "# Your turn: link = correlation of footfall with rainfall_mm\n# Your turn: fit orders on rain alone (a column of ones and rainfall_mm) with lstsq,\n# then keep the slope in rain_slope\n"
+   },
+   {
+    "code": "assert abs(link) < 0.05, 'The link should be close to zero'\nassert abs(rain_slope - coef[3]) < 0.02, 'The two rain numbers should be close'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. The branch as a category\nTurn `branch_id` into 0 and 1 columns with `pd.get_dummies(..., drop_first=True, dtype=float)`. Add them to `X`, refit, and keep the new R squared in `r2b`."
+   },
+   {
+    "code": "dummies = pd.get_dummies(bw.branch_id, drop_first=True, dtype=float)\nXb = np.column_stack([X, dummies.values])\ncb, *_ = np.linalg.lstsq(Xb, y, rcond=None)\nr2b = 1 - (y - Xb @ cb).var() / y.var()\nprint(round(r2b, 3))",
+    "starter": "# Your turn: make the dummy columns from branch_id as in the task\n# Your turn: add them to X as Xb, refit with lstsq, then compute r2b the same way as r2\n"
+   },
+   {
+    "code": "assert 0.79 <= r2b <= 0.81, 'R squared should barely change'\nassert r2b >= r2 - 1e-9, 'Adding columns cannot lower R squared'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. The same model in statsmodels\nFit the formula version into `model`, with orders explained by footfall, promo_on and rainfall_mm. Colab has statsmodels. The coefficients should match your numpy answer."
+   },
+   {
+    "code": "import statsmodels.formula.api as smf\n\nmodel = smf.ols('orders ~ footfall + promo_on + rainfall_mm', data=bw).fit()\nprint(model.params.round(4))\nprint(round(model.rsquared, 3))",
+    "starter": "import statsmodels.formula.api as smf\n\n# Your turn: model = smf.ols('orders ~ ...', data=bw).fit()\n# Your turn: print model.params and model.rsquared\n"
+   },
+   {
+    "code": "assert abs(model.params['footfall'] - coef[1]) < 0.001, 'Footfall should match numpy'\nassert 0.78 <= model.rsquared <= 0.81, 'R squared should be near 0.795'\nprint('Task 8 correct')"
+   },
+   {
+    "md": "## Task 9. Why is weekly sales noisier than orders?\nFit the same three predictors to `sales_ugx` instead of orders. Keep the R squared in `r2_sales` and compare it with `r2`."
+   },
+   {
+    "code": "t = bw.sales_ugx.values\ncs, *_ = np.linalg.lstsq(X, t, rcond=None)\nr2_sales = 1 - (t - X @ cs).var() / t.var()\nprint(round(r2, 3), round(r2_sales, 3))",
+    "starter": "# Your turn: t = the sales_ugx values\n# Your turn: solve least squares for t with the same X, then compute r2_sales\n"
+   },
+   {
+    "code": "assert 0.30 <= r2_sales <= 0.42, 'R squared for sales should be near 0.357'\nassert r2_sales < r2 - 0.2, 'Sales should be much noisier than orders'\nprint('Task 9 correct')"
+   },
+   {
+    "md": "## Task 10. Write it up and write your capstone question\nOn a page, write: your question, one plain sentence for each coefficient (footfall per 1,000 people, promotion, rain per 10 mm), R squared in words, and one limit. Then check the footfall slope in Sheets with `=SLOPE(orders_range, footfall_range)` and `=RSQ(orders_range, footfall_range)`. Finally write your capstone question in one sentence, and name the column you want to explain or predict. You choose the dataset in Session 14."
+   }
+  ]
+ }
+}

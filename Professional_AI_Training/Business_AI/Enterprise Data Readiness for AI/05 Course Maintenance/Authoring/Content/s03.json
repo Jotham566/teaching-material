@@ -1,0 +1,472 @@
+{
+ "session": 3,
+ "notes_title": "Fourteen data sources, and four of them have nobody who answers for them. That is Kitara's position today, and it blocks the first AI use. In this session you give every source an owner, a steward and a sensitivity class. We find where personal data hides, look at a folder tree and six branch spreadsheets, and see what a data catalogue adds. By the end you have an inventory of ten sources from your own organisation.",
+ "notes_outcomes": "By the end you can list data sources with the fields an inventory needs, tell an owner from a steward and a custodian, classify sources by sensitivity and spot personal data. The first half hour teaches the roles and the classes. In the live part we find Kitara's gaps in code, scan a shared drive and read six branch reports. The catalogue tools come after that. Then you work on your own sources, and the last ten minutes belong to a decision about who names the owners.",
+ "notes_words": "Eight terms today. A data owner decides who may use a source. A data steward looks after its quality day to day. A data custodian runs the system. A sensitivity class says how carefully the data is handled. Metadata is data about the data. A data catalogue is software that holds the inventory and lets staff search it. Lineage records where a number came from. And shadow data is data that sits outside any inventory. Each one comes back in the inventory workbook.",
+ "vocab": [
+  [
+   "Data owner",
+   "Decides who may use a source and its class.",
+   "S03: the Head of SME Lending. Four sources have none."
+  ],
+  [
+   "Data steward",
+   "Looks after a source's quality day to day.",
+   "Seven of the 14 sources have none."
+  ],
+  [
+   "Data custodian",
+   "Runs the system: storage, backup, access.",
+   "IT, wrongly recorded as owner of S02 and S06."
+  ],
+  [
+   "Sensitivity class",
+   "How carefully data is handled: public, internal, restricted, confidential.",
+   "S03 and S10 are one class too low."
+  ],
+  [
+   "Metadata",
+   "Data about the data: what, where, who, when checked.",
+   "Every column of sources.csv."
+  ],
+  [
+   "Data catalogue",
+   "Software that holds the inventory and lets staff search it.",
+   "None yet. in_catalogue is N on all 14."
+  ],
+  [
+   "Lineage",
+   "Where a number came from, and each step on the way.",
+   "lineage_edges.csv: 25 steps, 3 by hand."
+  ],
+  [
+   "Shadow data",
+   "Data that sits outside any inventory.",
+   "S09, the shared drive of 14,000 files."
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 2",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Session 2 asked for evidence behind every score. What does the evidence rule say?",
+     "a": "Every score needs one piece of evidence that someone outside your team could check."
+    },
+    {
+     "q": "Which two dimensions tied for lowest at Kitara, and what was the evidence-adjusted overall mean?",
+     "a": "Data and People and governance, each at 1.33. The overall adjusted mean was 2.01."
+    }
+   ],
+   "notes": "Two questions from Session 2 first. The scorecard asked for evidence behind every score. What does the evidence rule say? Take your time.\n\nEvery score needs one piece of evidence that someone outside your team could check. A policy, a catalogue entry, a test result. Second question. Two dimensions tied for lowest at Kitara after the self reported rows came out. Which two, and what was the overall adjusted mean? Have a think.\n\nData, and People and governance, each at one point three three. The overall adjusted mean was two point oh one. Today we open the first of those two. Data scored low partly because nobody could say who owns what, and we have a list of fourteen sources to prove it."
+  },
+  {
+   "type": "figure",
+   "title": "Seven of Kitara's 14 sources lack a basic field",
+   "fig": "source_status",
+   "look": [
+    "Four sources have no owner: S08, S09, S12 and S13.",
+    "Seven have no steward, and five have no sensitivity class.",
+    "Six have no quality check on record."
+   ],
+   "caption": "Each ring is a blank cell in sources.csv. S08, S09 and S12 also have no personal data flag.",
+   "alt": "A fourteen row grid showing which data sources have an owner, steward, sensitivity class, personal data flag and quality check, with missing entries ringed in clay.",
+   "notes": "This is Kitara's data inventory as it stands today. Fourteen sources, one row each, and five basic questions about every one. A filled dot means somebody wrote an answer. A ring means the cell is blank.\n\nThe first column is the owner. Four sources have none. The call centre transcripts, the shared drive of policies, the email archive and the branch report spreadsheets. If nobody answers for a source, nobody can say whether an AI may read it.\n\nThe second and third columns hold the steward and the sensitivity class. Seven sources have no steward, and five have no class. Hold on to those words. In ten minutes you can use them precisely.\n\nThe last column is the quality check. Six sources have no check on record at all. Seven of the fourteen rows have at least one gap, and that is the finding your workshop will reproduce on your own list."
+  },
+  {
+   "type": "define",
+   "title": "A data owner answers for the data",
+   "definition": "The data owner is the person with the authority to decide who may use a data source, and at what sensitivity class. One named role with a job title.",
+   "example": "S03, the loan origination system, has an owner: the Head of SME Lending. S08, the call centre transcripts, has none.",
+   "excel": "Pick one data source you rely on. Who could say yes or no if an AI project asked to read it?",
+   "notes": "Let's start with the word owner, because everything else hangs from it. The data owner is the person with the authority to decide who may use a data source, and what sensitivity class it carries. Authority is the key word. The owner is one named person with a job title.\n\nAt Kitara the loan origination system has an owner. It is the Head of SME Lending, and when an AI team wants loan documents, that is who says yes or no. The call centre transcripts have no owner. Three hundred and eighty thousand records, and nobody can give permission.\n\nPick one data source you rely on in your own organisation. Who could say yes or no if an AI project asked to read it? Have a guess before you look at the person next to you.\n\nIf the answer takes more than a few seconds, you've found your first gap."
+  },
+  {
+   "type": "table",
+   "title": "Owner, steward and custodian do three different jobs",
+   "header": [
+    "Role",
+    "What it decides or does",
+    "At Kitara, loan origination (S03)"
+   ],
+   "rows": [
+    [
+     "Owner",
+     "Who may use the data, and its class",
+     "Head of SME Lending"
+    ],
+    [
+     "Steward",
+     "Looks after quality day to day",
+     "Credit Operations Analyst"
+    ],
+    [
+     "Custodian",
+     "Runs the system: storage, backup, access",
+     "IT"
+    ]
+   ],
+   "colw": [
+    2.6,
+    5.4,
+    4.3
+   ],
+   "hl": [
+    1
+   ],
+   "caption": "Three roles on every source. One person can hold two, but each job needs a name.",
+   "notes": "Three roles, and they get mixed up all the time. Here they are on one Kitara source, the loan origination system.\n\nThe owner decides who may use the data and what class it carries. At Kitara that is the Head of SME Lending. It is a business decision, so a business leader holds it.\n\nThe steward looks after quality from day to day. They notice when a field is empty, chase the fix and keep the definitions straight. For this source it is the Credit Operations Analyst. Seven of Kitara's fourteen sources have no steward, so on those the quality work has no home.\n\nThe custodian runs the technology. Storage, backups and who can log in. At Kitara that is IT. A custodian looks after the data safely. It does not decide who may see it."
+  },
+  {
+   "type": "trap",
+   "title": "IT recorded as the owner of two sources",
+   "looks": "The mobile money switch log (S02) and the claims document archive (S06) both show IT as owner. The inventory has an owner for each, so the row looks complete.",
+   "why": "IT runs both systems, which makes it the custodian. Digital Channels also says it owns S02, and the Claims Department says it owns S06. Two parties claim each source, and none has signed.",
+   "fix": "Name the business head as owner and keep IT as custodian. Leave the row open until the claimants agree in writing.",
+   "notes": "Read the inventory the way an auditor would.\n\nThe mobile money switch log and the claims document archive each show IT as owner. The cell is filled, so the row counts as complete. Nobody flags it.\n\nBut IT runs both systems. That makes it the custodian, which is a different job. The notes column says Digital Channels also claims the mobile money log, and the Claims Department claims the archive. Each source has two parties who say it is theirs and nobody who has signed.\n\nThe fix is simple to say and hard to do. Name the business head as the owner and keep IT as the custodian. If two heads claim one source, a senior leader settles it, in writing. An AI team that asks for the claims archive then has one person to ask."
+  },
+  {
+   "type": "table",
+   "title": "Four sensitivity classes, from public to confidential",
+   "header": [
+    "Class",
+    "Who may see it",
+    "Kitara example"
+   ],
+   "rows": [
+    [
+     "Public",
+     "Anyone",
+     "Product guides"
+    ],
+    [
+     "Internal",
+     "Kitara staff",
+     "Circulars and procedures"
+    ],
+    [
+     "Restricted",
+     "Named departments",
+     "Customer account data, claims files"
+    ],
+    [
+     "Confidential",
+     "Named people",
+     "Salary data, national ID numbers in bulk"
+    ]
+   ],
+   "colw": [
+    2.7,
+    3.8,
+    5.8
+   ],
+   "caption": "From Kitara's Data Classification Standard. No class? Treat it as restricted until the owner decides.",
+   "notes": "A sensitivity class says how carefully a source must be handled. Kitara's Data Classification Standard uses four.\n\nPublic is information meant for the public, such as the product guides. Internal is for staff only, such as circulars and procedures. Restricted is limited to named departments. That covers customer account data, claims files and loan files. Confidential is limited to named people. Salary data sits there, and so do national identity numbers held in bulk.\n\nThree rules in the standard matter for AI. The owner chooses the class, and when in doubt chooses the higher one. Lowering a class needs the written agreement of Legal and Compliance. And a data set that mixes classes takes the highest class of any field in it.\n\nA source with no class is treated as restricted until the owner decides. For an AI project, restricted means a permission list, which is the subject of Session 7."
+  },
+  {
+   "type": "code",
+   "title": "List the sources with no owner or no class",
+   "lang": "python",
+   "code": "import pandas as pd\nsrc = pd.read_csv('sources.csv')\ngaps = src[src.owner.isna() | src.sensitivity.isna()]\nshow = gaps[['source_id', 'owner', 'sensitivity']]\nprint(show.fillna('-').to_string(index=False))",
+   "says": [
+    "Read the source list and keep the rows where the owner or the class is blank.",
+    "Show three columns. A dash marks a blank cell."
+   ],
+   "output": "source_id owner sensitivity\n      S06    IT           -\n      S08     -           -\n      S09     -           -\n      S12     -           -\n      S13     -           -",
+   "notes": "Let's find the gaps in code. This is the inventory your data colleague would run in a minute, and the result matches the grid we saw.\n\nThe first line reads sources dot csv into a table called src. Then we keep the rows where the owner is blank, or the sensitivity is blank. The vertical bar means or. Five sources come out.\n\nWe print three columns, and the dash marks a blank cell. The claims document archive has an owner, recorded as IT, but no class. The other four, the call centre transcripts, the shared drive, the email archive and the branch spreadsheets, have neither owner nor class.\n\nThose five rows match the rings on the grid, and this time the file produced them. The workshop notebook counts the blanks column by column."
+  },
+  {
+   "type": "code",
+   "title": "A check that stops when a source has no owner",
+   "lang": "python",
+   "expect_error": true,
+   "code": "assert src.owner.notna().all(), f\"{src.owner.isna().sum()} sources have no owner\"",
+   "says": [
+    "Insist that every source has an owner. If not, stop and say how many are missing."
+   ],
+   "output": "AssertionError: 4 sources have no owner",
+   "notes": "Here is a check that fails on purpose, and it's one a leader can ask for.\n\nThe line says every source must have an owner. The assert word makes Python test that claim. If it is false, Python stops and prints our own message, with the number of missing owners worked out for us.\n\nIt stops with four. Four sources have no owner.\n\nImagine this running every Monday on your inventory. Nobody has to read a spreadsheet to know the list is incomplete. The check goes red until every source has a named owner, and a leader can ask to see it go green before an AI project starts."
+  },
+  {
+   "type": "code",
+   "title": "Find classes that break Kitara's own standard",
+   "lang": "python",
+   "code": "risky = src[src.notes.str.contains('salary|national ID', case=False, na=False)]\nprint(risky[['source_id', 'name', 'sensitivity']].to_string(index=False))\nprint(src.personal_data.fillna('undecided').value_counts().to_dict())",
+   "says": [
+    "Find sources whose notes mention salary data or national ID copies.",
+    "Count how many sources hold personal data: yes, no or undecided."
+   ],
+   "output": "source_id                    name sensitivity\n      S03 Loan origination system    internal\n      S10               HR system  restricted\n{'Y': 8, 'undecided': 3, 'N': 3}",
+   "notes": "The inventory also holds classes that someone wrote down and that are wrong. Which two sources do you expect the standard to catch? No rush.\n\nThe Data Classification Standard says salary data and national identity numbers held in bulk are confidential. The first line searches the notes column for the words salary or national ID. It returns two rows. The loan origination system is recorded as internal, yet its notes say it holds scanned national ID copies. The HR system is recorded as restricted, yet it holds salary data.\n\nBoth should be confidential. Lowering a class needs Legal and Compliance, but raising it needs only the owner, so both owners can fix their rows today.\n\nThe second line counts personal data. Eight sources say yes, three say no, and three are undecided. We look at the undecided ones next."
+  },
+  {
+   "type": "concept",
+   "title": "Personal data hides where nobody has looked",
+   "lead": "Personal data is any information that identifies a living person. Eight of Kitara's sources say yes. Three have not been decided.",
+   "points": [
+    {
+     "h": "Call centre transcripts (S08)",
+     "t": "380,000 records. Nobody has reviewed what they contain."
+    },
+    {
+     "h": "Email archive (S12)",
+     "t": "22 million messages, with personal and business content mixed."
+    },
+    {
+     "h": "Shared drive (S09)",
+     "t": "14,000 files. 32 of the 121 documents in our docs folder carry personal data."
+    },
+    {
+     "h": "Scans inside systems (S03)",
+     "t": "National ID copies sit inside a loan system recorded as internal."
+    }
+   ],
+   "notes": "Personal data is any information that identifies a living person. A name, a phone number, a national identity number, a voice on a recording. Uganda's Data Protection and Privacy Act, 2019 applies to anyone who collects, holds or uses personal data in Uganda, and the Personal Data Protection Office is the regulator. This is a teaching summary and not legal advice.\n\nWhere does it hide at Kitara? In the call centre transcripts, where nobody has reviewed the content. In the email archive, which mixes personal and business messages. On the shared drive. In our document set, thirty two of the one hundred and twenty one documents carry personal data. And inside systems, like the scanned national ID copies in the loan system.\n\nYou cannot protect, or keep to a retention period, data you have not found. An undecided flag is acceptable on day one. It should not stay undecided."
+  },
+  {
+   "type": "concept",
+   "title": "Metadata is data about the data",
+   "lead": "Each inventory column is one piece of metadata. It comes in three kinds.",
+   "points": [
+    {
+     "h": "Business metadata",
+     "t": "Name, owner, steward, sensitivity class, AI use case. Kitara has 4 owners missing."
+    },
+    {
+     "h": "Technical metadata",
+     "t": "System type, format, record count. S01 holds 640,000 relational records."
+    },
+    {
+     "h": "Operational metadata",
+     "t": "How often it refreshes and when it was last checked. Six sources have no quality check."
+    }
+   ],
+   "notes": "Metadata is data about the data. It does not hold a customer's balance. It tells you what the balance table is, where it lives, who owns it and when it was last checked.\n\nIt comes in three kinds. Business metadata is what a manager needs. The name, the owner, the steward, the sensitivity class and the AI use in mind. Technical metadata is what an engineer needs. The type of system, the file format, the number of records. The core banking system is a relational database with six hundred and forty thousand records.\n\nOperational metadata says how the data behaves. How often it refreshes, and when anyone last checked its quality. Six of Kitara's fourteen sources have no quality check on record, which means nobody knows if the data is any good.\n\nEvery column in your inventory is one of these three kinds. Session 4 returns to metadata that makes data easy to find."
+  },
+  {
+   "type": "code",
+   "title": "Shadow data: count the shared drive by type and folder",
+   "lang": "python",
+   "code": "import os\nfrom collections import Counter\n\ntypes, folders = Counter(), Counter()\nfor folder, _, files in os.walk('docs'):\n    for f in files:\n        types[os.path.splitext(f)[1]] += 1\n        folders[os.path.basename(folder)] += 1\nprint(sum(types.values()), dict(types))\nprint(folders.most_common(3))",
+   "says": [
+    "Walk through every folder under docs. Tally each file by its type and its folder.",
+    "Print the total, then the count by type. Most are PDF.",
+    "Print the three largest folders."
+   ],
+   "output": "121 {'.pdf': 105, '.txt': 6, '.docx': 10}\n[('policies', 37), ('claims letters', 30), ('circulars', 20)]",
+   "notes": "Shadow data is data that lives outside any inventory, such as files on a shared drive that nobody listed and nobody owns. A shared drive is where it grows. Let's count what sits in one folder tree, the docs folder of Kitara's shared drive.\n\nThe function os dot walk visits every folder and sub folder for us. For each file we note its type, from the ending of its name, and the name of the folder it sits in. Counter is a tally sheet. We keep one for types and one for folders.\n\nThe total is one hundred and twenty one files. By type, one hundred and five PDFs, ten Word files and six text files. Eight of those PDFs are scans, which Session 5 deals with.\n\nBy folder, the three largest are thirty seven policies, thirty claims letters and twenty circulars. This is a first, rough map of a shared drive. Your colleague can run it on your own drive in a few minutes, and the totals will probably surprise you."
+  },
+  {
+   "type": "code",
+   "title": "How many layouts must one analyst read?",
+   "lang": "python",
+   "code": "import glob, openpyxl\nfor path in sorted(glob.glob('branch_reports/*.xlsx')):\n    ws = openpyxl.load_workbook(path).worksheets[0]\n    dims = ws.column_dimensions\n    hid = [c for c in dims if dims[c].hidden]\n    m = len(ws.merged_cells.ranges)\n    print(path[15:35], ws.dimensions, m, hid)",
+   "says": [
+    "Open the first sheet of each branch report. Print its used area, merged blocks and hidden columns.",
+    "Six files, six different layouts."
+   ],
+   "output": "Branch Report - Kamp A1:F16 1 []\nEntebbe Sep26.xlsx A1:D15 0 []\nJinja_main_branch_re A1:C20 0 []\nMbarara Branch KPI.x A1:F8 0 []\nNairobi Westlands -  A1:E13 1 ['B']\nNtinda Branch Quarte A1:G14 2 []",
+   "notes": "The branch report spreadsheets are the fourth source with no owner. Each branch sends a monthly workbook. How different can they be? Let's look.\n\nThe code opens every Excel file in the branch reports folder. For each one it prints a piece of the file name, the used area of the first sheet, how many merged blocks there are, and a list of hidden columns.\n\nSix files and six different shapes. Entebbe is a small block of four columns. Kampala Road merges its title across six columns. Nairobi Westlands hides column B, which shows in the list, and reports in Kenyan shillings. Ntinda's quarterly return merges two blocks of columns. Jinja runs down in sections and Mbarara is a short table with formulas in it. Entebbe also has a second sheet for loans.\n\nOne analyst has to read six layouts to build one group report, and a seventh arrives with every new branch. With no owner to say what the standard layout is, that work repeats every month. This is the cost of a source with no owner."
+  },
+  {
+   "type": "compare",
+   "title": "A spreadsheet or a catalogue for the inventory",
+   "left": {
+    "h": "Spreadsheet",
+    "points": [
+     "One person types and updates it",
+     "Free, and ready this afternoon",
+     "Goes stale the week after it is filled",
+     "Enough for Kitara's 14 sources"
+    ]
+   },
+   "right": {
+    "h": "Data catalogue",
+    "points": [
+     "Software that reads system details itself",
+     "Staff search it by name or topic",
+     "Owner and class sit on each entry",
+     "Worth it when no one person can keep up"
+    ]
+   },
+   "verdict": "Start with the spreadsheet. Move to a catalogue when the list outgrows the person who keeps it.",
+   "notes": "Many of you will ask whether you need a catalogue. A data catalogue is software that holds the inventory, and reads details from your systems itself, so the list does not depend on one person typing.\n\nOn the left, the spreadsheet. One person types and updates it. It costs nothing and you can start this afternoon. Its weakness is age. A spreadsheet is accurate on the day it is filled and starts to drift the week after. For fourteen sources it is enough.\n\nOn the right, the catalogue. Connectors read table names and columns from your systems, as the vendors describe it. Staff search it by name or topic. The owner and the class sit on every entry, and lineage can be drawn from it. The price is somebody to install it and run it.\n\nIn a moment I'll show you the two open source ones. First, the choice. A catalogue helps most when the list grows past what one person can keep current."
+  },
+  {
+   "type": "table",
+   "title": "Two free catalogues and what to check on their licences",
+   "header": [
+    "Tool",
+    "What it is",
+    "Licence, as reported in October 2026"
+   ],
+   "rows": [
+    [
+     "DataHub",
+     "Open source metadata platform",
+     "Apache 2.0. The repository's LICENSE file says so"
+    ],
+    [
+     "OpenMetadata",
+     "Open source catalogue with lineage and quality",
+     "Apache 2.0 at the root. Ingestion and UI folders reported under the Collate Community Licence"
+    ]
+   ],
+   "colw": [
+    2.6,
+    4.5,
+    5.2
+   ],
+   "caption": "Read the LICENSE files in each repository yourself before you install. Paid hosted versions exist. We use none.",
+   "notes": "These are the two open source catalogues I'll show you. Both are free to run yourselves. DataHub started at LinkedIn. OpenMetadata is built by a company called Collate.\n\nDataHub's repository says it is released under the Apache License, version two, and GitHub identifies the licence file the same way. That allows commercial use.\n\nOpenMetadata is less simple, so read carefully. Its repository says Apache two at the root. But reports, from the project's own folders and from a vendor comparison, say the ingestion folder and the user interface folder carry a separate Collate Community Licence, version one. The reported restriction is on offering the software as a competing hosted service. The sources I found disagree on details, so treat this as reported.\n\nMy advice is the same for any tool. Open the LICENSE files in the folders you will use, and read them before you install. A paid hosted version exists for each, and we do not use either."
+  },
+  {
+   "type": "figure",
+   "title": "Lineage: where the board pack numbers come from",
+   "fig": "lineage_graph",
+   "look": [
+    "Reading left to right: source systems, staging, cleaned tables, a mart, reports and the board pack.",
+    "Dashed lines are steps where a person copies the numbers by hand.",
+    "The clay line, the claims documents chain, is the only path into a search index."
+   ],
+   "caption": "27 assets and 25 edges from lineage_edges.csv.",
+   "alt": "A left to right graph of the Kitara data assets from source systems to reports and the board pack, with the document search chain in clay and manual copy steps dashed.",
+   "notes": "Lineage is the record of where a number came from and every step it went through. Here is Kitara's, drawn from lineage_edges.csv. Twenty seven assets and twenty five steps.\n\nRead it from left to right. Source systems on the left, like the claims system and core banking. Then staging copies, cleaned tables, a mart that joins them, then reports and returns, and last the quarterly board pack.\n\nThe dashed lines are steps where a person copies the numbers by hand. The monthly claims ratio is copied into the insurance return. Two dashboard screenshots are pasted into the board pack. Three hand steps, and this file is the only record of them.\n\nThe clay line is the claims document chain. It runs from the archive, through OCR, which is software that reads scanned pages, into a search index, the list a search tool looks things up in. It starts at an archive whose owner is still in dispute. If an owner changes a source, lineage shows what breaks downstream."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: build your inventory of ten sources",
+   "tool": "Data Inventory workbook and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Open Data Inventory.xlsx and load the 14 Kitara rows from sources.csv",
+    "Read the Missing fields column and the summary under the table",
+    "Fix the two wrong classes and the two doubled owners",
+    "Propose an owner, steward and class for each unowned source",
+    "List ten of your own sources with an owner, a steward and a class",
+    "Write who settles a dispute when two heads claim one source",
+    "Count your blanks, and run the notebook on a folder of yours"
+   ],
+   "done": "The inventory lists ten of your sources, each with an owner, a steward and a sensitivity class, and you know your blank count.",
+   "notes": "You have forty minutes. Open Data Inventory dot xlsx. Start with Kitara. Type or paste the fourteen rows from sources dot csv into the Inventory tab, and read the Missing fields column. It counts the blanks in owner, steward, class and personal data for you.\n\nThen fix what we found. Raise the two wrong classes, name a business owner for the two sources where IT is recorded, and propose a person for the four unowned sources. Then turn to your own organisation. List ten sources, one row each, with an owner, a steward and a class. Use a blank for a name you cannot give. A blank is the finding. Finish with one sentence naming who settles a dispute when two heads claim one source.\n\nLeaders, you hold the pen on owners and classes. Data colleagues, once the list is drafted, run the team notebook on a folder of your own. I'll be circulating, so call me over if an owner or a class has you stuck."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Kitara records IT as the owner of the claims document archive. Which role is IT really, and who should own it?",
+     "a": "IT is the custodian. The Head of Claims, or whoever Kitara's leaders agree, should own it."
+    },
+    {
+     "q": "Which two Kitara sources have the wrong sensitivity class, and what should it be?",
+     "a": "S03 loan origination and S10 HR system. Both should be confidential."
+    },
+    {
+     "q": "Who in your organisation will name the owner of each data source, and settle a dispute when two heads claim one?",
+     "a": "A named senior leader, such as the chief data officer or the executive who chairs the data council."
+    }
+   ],
+   "notes": "Kitara records IT as the owner of the claims document archive. Which role is IT really, and who should own it? Say it out loud.\n\nIT is the custodian. It runs the system. The owner should be a business head, most likely the Head of Claims, once the claimants agree in writing. Second question. Two Kitara sources have the wrong sensitivity class. Which two, and what should the class be? Give that a moment.\n\nThe loan origination system and the HR system. One holds scanned national ID copies and the other holds salary data. Both should be confidential. Last question, for the leaders. Who in your organisation will name the owner of each data source, and settle it when two heads claim one? Sit with it for a second.\n\nPick one named person. A chief data officer, or the executive who chairs your data council. If you cannot name that person today, the inventory will stay full of blanks."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "An inventory lists every source with an owner, a steward and a sensitivity class. Kitara's has 4 owners, 7 stewards and 5 classes missing.",
+    "The owner decides who may use the data. The steward looks after quality. The custodian runs the system.",
+    "Two Kitara classes break its own standard. Personal data hides in transcripts, email and scans.",
+    "A spreadsheet is enough for 14 sources. A catalogue helps when the list outgrows one person."
+   ],
+   "next": "Quality, metadata and data contracts",
+   "notes": "An inventory lists every source with an owner, a steward and a sensitivity class. Kitara's has four owners, seven stewards and five classes missing.\n\nThe owner decides who may use the data. The steward looks after its quality day to day. The custodian runs the system and keeps it safe.\n\nTwo of Kitara's classes break its own standard, and personal data hides in places nobody has looked, like call transcripts, email and scans.\n\nA spreadsheet is enough for fourteen sources. A catalogue starts to pay when the list outgrows one person.\n\nNext session we ask how you know a dataset is fit for AI use. You will measure completeness, validity and uniqueness on a real table, and write a data contract for it."
+  }
+ ],
+ "lab": {
+  "intro": "Workshop: complete the Kitara source list in Data Inventory.xlsx, then list ten of your own sources. The team notebook scans a folder tree, finds the sources with no owner or no class and traces lineage.",
+  "workshop": [
+   {
+    "task": "Open Data Inventory.xlsx. Paste the 14 rows of sources.csv into the Inventory tab. Read the Missing fields column and the total under the table.",
+    "example": "19 blank cells in owner, steward, sensitivity and personal data. 7 of the 14 rows have at least one blank."
+   },
+   {
+    "task": "Fix the two sources recorded one class too low. Say who may lower or raise a class.",
+    "example": "S03 loan origination: internal to confidential (scanned national ID copies). S10 HR system: restricted to confidential (salary data). The owner may raise a class at any time. Lowering needs Legal and Compliance in writing."
+   },
+   {
+    "task": "Resolve the two sources where IT is recorded as owner. Name a business owner and keep IT as custodian.",
+    "example": "S06 claims documents archive: proposed owner Head of Claims, custodian IT. S02 mobile money switch log: owner to be agreed between Digital Channels and IT leadership, custodian IT. The row stays open until the claimants agree in writing."
+   },
+   {
+    "task": "Propose an owner, a steward and a class for each source with no owner, and set the personal data flag. Mark each as a proposal.",
+    "example": "S08 call centre transcripts: owner Head of Customer Service, steward Customer Service Analyst, class confidential, personal data Y until reviewed. S09 shared drive: class internal, owner the head of each department folder. S12 email archive: confidential, personal data Y. S13 branch spreadsheets: internal, personal data N."
+   },
+   {
+    "task": "List ten sources of your own organisation, one row each, with an owner, a steward and a sensitivity class. Leave a blank where you cannot name a person.",
+    "example": "Kitara has 10 of 14 sources with an owner, 7 with a steward and 9 with a class. Your count of blanks is the finding."
+   },
+   {
+    "task": "Write one sentence naming who will settle a dispute when two heads claim one source, and who signs off a class change.",
+    "example": "The Chair of the IT Steering Committee settles ownership disputes. Legal and Compliance signs off any lowered class, as the Data Classification Standard requires."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Scan the folder tree\nUse `os.walk` to count the files under `docs`. Store the total in `n_files`, the count by file ending in `by_type` and the count by folder name in `by_folder`."
+   },
+   {
+    "code": "import os\nfrom collections import Counter\n\nby_type = Counter()\nby_folder = Counter()\nfor folder, _, files in os.walk('docs'):\n    for name in files:\n        by_type[os.path.splitext(name)[1]] += 1\n        by_folder[os.path.basename(folder)] += 1\nn_files = sum(by_type.values())\nprint(n_files, dict(by_type))\nprint(by_folder.most_common(3))",
+    "starter": "import os\nfrom collections import Counter\n\nby_type = Counter()\nby_folder = Counter()\n# Your turn: loop over os.walk('docs'). For each file name add 1 to by_type[its ending] and 1 to by_folder[its folder name]\n# Your turn: store the total number of files in n_files\n"
+   },
+   {
+    "code": "assert n_files == 121, 'Docs holds 121 files. Add up by_type'\nassert by_type['.pdf'] == 105, 'There are 105 PDF files. Use os.path.splitext(name)[1]'\nassert by_folder['policies'] == 37, 'The policies folder holds 37 files'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Find the gaps in the inventory\nRead `sources.csv`. Store the ids of the sources with no owner in `no_owner`, and the ids with no sensitivity class in `no_class`, each as a list."
+   },
+   {
+    "code": "import pandas as pd\n\nsrc = pd.read_csv('sources.csv')\nno_owner = src[src.owner.isna()].source_id.tolist()\nno_class = src[src.sensitivity.isna()].source_id.tolist()\nprint(no_owner)\nprint(no_class)",
+    "starter": "import pandas as pd\n\nsrc = pd.read_csv('sources.csv')\n# Your turn: no_owner is the list of source_id where owner is blank (.isna())\n# Your turn: no_class is the list of source_id where sensitivity is blank\n"
+   },
+   {
+    "code": "assert no_owner == ['S08', 'S09', 'S12', 'S13'], 'Four sources have no owner. Filter with src.owner.isna()'\nassert no_class == ['S06', 'S08', 'S09', 'S12', 'S13'], 'Five sources have no class'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Count the blanks per source\nCount the blank cells in `owner`, `steward`, `sensitivity` and `personal_data` for each row, as the workbook's Missing fields column does. Store the total in `total_blanks` and the number of rows with at least one blank in `rows_with_gap`."
+   },
+   {
+    "code": "key = src[['owner', 'steward', 'sensitivity', 'personal_data']]\nper_row = key.isna().sum(axis=1)\ntotal_blanks = int(per_row.sum())\nrows_with_gap = int((per_row > 0).sum())\nprint(total_blanks, rows_with_gap)",
+    "starter": "key = src[['owner', 'steward', 'sensitivity', 'personal_data']]\n# Your turn: per_row counts blanks in each row (key.isna().sum(axis=1))\n# Your turn: total_blanks is the sum of per_row. rows_with_gap counts rows where per_row is above 0\n"
+   },
+   {
+    "code": "assert total_blanks == 19, 'The four columns hold 19 blanks in total'\nassert rows_with_gap == 7, 'Seven rows have at least one blank'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Catch classes that break the standard\nThe Data Classification Standard puts salary data and bulk national ID numbers in confidential. Find the sources whose `notes` mention `salary` or `national ID` and whose class is not confidential. Store their ids in `wrong_class`."
+   },
+   {
+    "code": "hits = src[src.notes.str.contains('salary|national ID', case=False, na=False)]\nwrong_class = hits[hits.sensitivity != 'confidential'].source_id.tolist()\nprint(wrong_class)",
+    "starter": "# Your turn: hits are the rows where notes contains 'salary' or 'national ID' (str.contains with na=False)\n# Your turn: wrong_class is the list of source_id in hits whose sensitivity is not confidential\n"
+   },
+   {
+    "code": "assert wrong_class == ['S03', 'S10'], 'Two sources are recorded below confidential: S03 and S10'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Follow the lineage\nRead `lineage_edges.csv`. Starting at `claims_system.claims`, follow the edges and store every asset downstream in `downstream`. Store the number of steps that a person does by hand (the step text contains `by hand` or `pasted`) in `hand_steps`."
+   },
+   {
+    "code": "edges = pd.read_csv('lineage_edges.csv')\ntodo, downstream = ['claims_system.claims'], []\nwhile todo:\n    a = todo.pop()\n    for b in edges[edges.from_asset == a].to_asset:\n        if b not in downstream:\n            downstream.append(b)\n            todo.append(b)\nhand_steps = int(edges.step.str.contains('by hand|pasted').sum())\nprint(len(downstream), hand_steps)",
+    "starter": "edges = pd.read_csv('lineage_edges.csv')\ntodo, downstream = ['claims_system.claims'], []\n# Your turn: while todo is not empty, take one asset a with todo.pop()\n# Your turn: for each to_asset b on edges whose from_asset is a, if b is not in downstream, add it to downstream and to todo\n# Your turn: hand_steps counts the edges whose step contains 'by hand' or 'pasted'\n"
+   },
+   {
+    "code": "assert len(downstream) == 7, 'Seven assets sit downstream of claims_system.claims'\nassert 'board.quarterly_pack' in downstream, 'The board pack is reached through the dashboard'\nassert hand_steps == 3, 'Three edges are done by hand or pasted'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. A question for the leader\nLook at the four sources with no owner and the three steps copied by hand into the board pack and returns. Who at Kitara should be named owner of the call centre transcripts and the shared drive, and who settles it if two heads claim one source? Answer in two sentences."
+   }
+  ]
+ }
+}

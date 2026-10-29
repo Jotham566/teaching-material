@@ -1,0 +1,122 @@
+doc_id,file,title,family,version,status,effective_date,owner_department,sensitivity,access_groups,language,format,pages,contains_personal_data
+D001,policies/Staff Handbook 2019.docx,Kitara Group Staff Handbook 2019,staff_handbook,2019,superseded,2019-01-01,HR,internal,all_staff,en,docx,1,N
+D002,policies/Staff Handbook 2022.docx,Kitara Group Staff Handbook 2022,staff_handbook,2022,superseded,2022-03-01,HR,internal,all_staff,en,docx,1,N
+D003,policies/Staff Handbook 2025.pdf,Kitara Group Staff Handbook 2025,staff_handbook,2025,current,2025-07-01,HR,internal,all_staff,en,text_pdf,2,N
+D004,policies/Staff Handbook 2025 Appendix B Salary Bands.pdf,"Staff Handbook 2025, Appendix B: Salary Bands",staff_handbook,2025,current,2025-07-01,HR,confidential,hr;executive,en,text_pdf,1,N
+D005,policies/Claims Handling SOP v3.pdf,"Claims Handling SOP, Version 3",claims_sop,3,superseded,2021-06-01,Claims,internal,claims;underwriting;legal_compliance;executive,en,text_pdf,1,N
+D006,policies/Claims Handling SOP v4.pdf,"Claims Handling SOP, Version 4",claims_sop,4,current,2025-03-01,Claims,internal,claims;underwriting;legal_compliance;executive,en,text_pdf,1,N
+D007,policies/Loan Approval Policy.pdf,Loan Approval Policy,policy,2025,current,2025-01-01,Risk,restricted,branch_ops;risk;finance;executive,en,text_pdf,1,N
+D008,policies/KYC Procedure.pdf,Know Your Customer (KYC) Procedure,policy,2024,current,2024-09-01,Legal and Compliance,internal,all_staff,en,text_pdf,1,N
+D009,policies/Data Retention Schedule.pdf,Data Retention Schedule,policy,2024,current,2024-04-01,Legal and Compliance,internal,all_staff,en,text_pdf,1,N
+D010,policies/Information Security Policy.pdf,Information Security Policy,policy,2025,current,2025-02-01,IT,internal,all_staff,en,text_pdf,1,N
+D011,policies/Complaints Handling Procedure.pdf,Complaints Handling Procedure,policy,2024,current,2024-11-01,Customer Service,internal,all_staff,en,text_pdf,1,N
+D012,policies/Anti-Money-Laundering Summary.pdf,Anti-Money-Laundering Policy: Summary,policy,2025,current,2025-05-01,Legal and Compliance,restricted,legal_compliance;branch_ops;risk;executive,en,text_pdf,1,N
+D013,policies/Remote Work Policy.docx,Remote Work Policy,policy,2025,current,2025-07-01,HR,internal,all_staff,en,docx,1,N
+D014,policies/Expense Policy.docx,Expense Policy,policy,2025,current,2025-07-01,Finance,internal,all_staff,en,docx,1,N
+D015,policies/Whistleblowing Policy.docx,Whistleblowing Policy,policy,2023,current,2023-10-01,Legal and Compliance,internal,all_staff,en,docx,1,N
+D016,policies/Business Continuity Plan Summary.pdf,Business Continuity Plan: Summary,policy,2025,current,2025-08-01,Risk,internal,all_staff,en,text_pdf,1,N
+D017,product guides/Motor Insurance Guide.pdf,Motor Insurance Product Guide,product_guide,2025,current,2025-01-01,Underwriting,public,all_staff,en,text_pdf,1,N
+D018,product guides/Home Insurance Guide.pdf,Home Insurance Product Guide,product_guide,2025,current,2025-01-01,Underwriting,public,all_staff,en,text_pdf,1,N
+D019,product guides/Life Insurance Guide.pdf,Life Insurance Product Guide,product_guide,2025,current,2025-01-01,Underwriting,public,all_staff,en,text_pdf,1,N
+D020,product guides/SME Loan Guide.pdf,SME Loan Product Guide,product_guide,2025,current,2025-01-01,SME Lending,public,all_staff,en,text_pdf,1,N
+D021,product guides/Mortgage Guide.pdf,Mortgage Product Guide,product_guide,2025,current,2025-01-01,Retail Banking,public,all_staff,en,text_pdf,1,N
+D022,product guides/School Fees Loan Guide.pdf,School Fees Loan Product Guide,product_guide,2025,current,2025-01-01,Retail Banking,public,all_staff,en,text_pdf,1,N
+D023,product guides/Savings Group Account Guide.pdf,Savings Group Account Product Guide,product_guide,2025,current,2025-01-01,Retail Banking,public,all_staff,en,text_pdf,1,N
+D024,product guides/Mobile Wallet Guide.pdf,Kitara Mobile Wallet Guide,product_guide,2025,current,2025-01-01,Retail Banking,public,all_staff,en,text_pdf,1,N
+D025,product guides/Tariff Schedule 2025.pdf,Kitara Bank Tariff Schedule 2025,product_guide,2025,current,2025-01-01,Retail Banking,public,all_staff,en,text_pdf,1,N
+D026,product guides/Motor Premium Rates 2025.pdf,Motor Premium Rates 2025,product_guide,2025,current,2025-01-01,Underwriting,internal,underwriting;branch_ops;executive,en,text_pdf,1,N
+D027,policies/Code of Conduct.docx,Code of Conduct,policy,2024,current,2024-01-01,HR,internal,all_staff,en,docx,1,N
+D028,policies/Procurement Policy.docx,Procurement Policy,policy,2025,current,2025-01-01,Finance,internal,all_staff,en,docx,1,N
+D029,policies/Records Management Procedure.pdf,Records Management Procedure,policy,2024,current,2024-04-01,Legal and Compliance,internal,all_staff,en,text_pdf,2,N
+D030,policies/Branch Cash Handling Procedure.pdf,Branch Cash Handling Procedure,policy,2024,current,2024-06-01,Branch Operations,internal,branch_ops;executive,en,text_pdf,1,N
+D031,policies/Fraud Response Plan.pdf,Fraud Response Plan,policy,2025,current,2025-03-01,Risk,restricted,legal_compliance;risk;executive,en,text_pdf,1,N
+D032,policies/Agent Banking Guidelines.pdf,Agent Banking Guidelines,policy,2025,current,2025-04-01,Branch Operations,internal,branch_ops;executive,en,text_pdf,1,N
+D033,policies/Mobile Money Agent Manual.pdf,Mobile Money Agent Manual,policy,2025,current,2025-04-01,Branch Operations,internal,branch_ops;executive,en,text_pdf,1,N
+D034,policies/Motor Underwriting Guidelines.pdf,Motor Underwriting Guidelines,policy,2025,current,2025-01-01,Underwriting,restricted,underwriting;executive,en,text_pdf,1,N
+D035,policies/Reinsurance Programme Summary.pdf,Reinsurance Programme Summary,policy,2025,current,2025-01-01,Underwriting,confidential,underwriting;finance;executive,en,text_pdf,1,N
+D036,policies/Customer Charter.pdf,Customer Charter,policy,2024,current,2024-01-01,Customer Service,public,all_staff,en,text_pdf,1,N
+D037,policies/Password and Access Standard.pdf,Password and Access Standard,policy,2025,current,2025-02-01,IT,internal,all_staff,en,text_pdf,1,N
+D038,policies/Acceptable Use of Generative AI Tools.pdf,Acceptable Use of Generative AI Tools,policy,2026,current,2026-06-01,IT,internal,all_staff,en,text_pdf,1,N
+D039,policies/Vendor Management Procedure.pdf,Vendor Management Procedure,policy,2024,current,2024-08-01,Finance,internal,finance;risk;legal_compliance;executive,en,text_pdf,1,N
+D040,policies/IT Change Management Procedure.pdf,IT Change Management Procedure,policy,2024,current,2024-05-01,IT,internal,all_staff,en,text_pdf,1,N
+D041,policies/Training and Development Policy.docx,Training and Development Policy,policy,2024,current,2024-01-01,HR,internal,all_staff,en,docx,1,N
+D042,policies/Performance Appraisal Procedure.docx,Performance Appraisal Procedure,policy,2024,current,2024-01-01,HR,internal,all_staff,en,docx,1,N
+D043,policies/Leave Application Procedure.docx,Leave Application Procedure,policy,2025,current,2025-07-01,HR,internal,all_staff,en,docx,1,N
+D044,policies/Branch Opening and Closing Procedure.pdf,Branch Opening and Closing Procedure,policy,2024,current,2024-06-01,Branch Operations,internal,branch_ops;executive,en,text_pdf,1,N
+D045,policies/Dormant Accounts Procedure.pdf,Dormant Accounts Procedure,policy,2024,current,2024-04-01,Retail Banking,internal,all_staff,en,text_pdf,1,N
+D046,policies/Data Classification Standard.pdf,Data Classification Standard,policy,2025,current,2025-02-01,IT,internal,all_staff,en,text_pdf,2,N
+D047,policies/Document Naming and Versioning Guide.pdf,Document Naming and Versioning Guide,policy,2024,current,2024-04-01,Legal and Compliance,internal,all_staff,en,text_pdf,1,N
+D048,circulars/Circular 2023-017 Mileage Rate.pdf,Circular 2023/017: Mileage rate for private vehicles,circular,2023/017,superseded,2023-09-01,Finance,internal,all_staff,en,text_pdf,1,N
+D049,circulars/Circular 2025-006 Mileage Rate.pdf,Circular 2025/006: Mileage rate for private vehicles,circular,2025/006,current,2025-07-01,Finance,internal,all_staff,en,text_pdf,1,N
+D050,circulars/Circular 2022-004 Branch Opening Hours.pdf,Circular 2022/004: Branch opening hours,circular,2022/004,superseded,2022-02-01,Branch Operations,internal,all_staff,en,text_pdf,1,N
+D051,circulars/Circular 2025-002 Branch Opening Hours.pdf,Circular 2025/002: Branch opening hours,circular,2025/002,current,2025-01-06,Branch Operations,internal,all_staff,en,text_pdf,1,N
+D052,circulars/Circular 2024-010 Agent Float Limit.pdf,Circular 2024/010: Daily float cap for mobile money agents,circular,2024/010,superseded,2024-05-02,Branch Operations,internal,branch_ops;executive,en,text_pdf,1,N
+D053,circulars/Circular 2025-015 Agent Float Limit.pdf,Circular 2025/015: Daily float cap for mobile money agents,circular,2025/015,current,2025-04-14,Branch Operations,internal,branch_ops;executive,en,text_pdf,1,N
+D054,circulars/Circular 2025-009 Multi-Factor Authentication.pdf,Circular 2025/009: Multi-factor authentication for all staff,circular,2025/009,current,2025-06-10,IT,internal,all_staff,en,text_pdf,1,N
+D055,circulars/Circular 2025-020 Identification Documents.pdf,Circular 2025/020: Identification documents for new accounts,circular,2025/020,current,2025-10-06,Legal and Compliance,internal,all_staff,en,text_pdf,1,N
+D056,circulars/Circular 2025-011 Procurement Thresholds.pdf,Circular 2025/011: Procurement quotation thresholds,circular,2025/011,current,2025-01-20,Finance,internal,all_staff,en,text_pdf,1,N
+D057,circulars/Circular 2026-011 Generative AI Tools.pdf,Circular 2026/011: Use of generative AI tools,circular,2026/011,current,2026-05-25,IT,internal,all_staff,en,text_pdf,1,N
+D058,circulars/Circular 2025-021 December Opening.pdf,Circular 2025/021: Branch opening over the December holidays,circular,2025/021,current,2025-11-17,Branch Operations,internal,all_staff,en,text_pdf,1,N
+D059,circulars/Circular 2026-009 Claims Backlog.pdf,Circular 2026/009: Motor claims backlog in the third quarter,circular,2026/009,current,2026-09-14,Claims,restricted,claims;branch_ops;executive,en,text_pdf,1,N
+D060,circulars/Circular 2025-018 Disciplinary Procedure.pdf,Circular 2025/018: Changes to the disciplinary procedure,circular,2025/018,current,2025-08-12,HR,confidential,hr;executive,en,text_pdf,1,N
+D061,circulars/Circular 2026-004 Phishing Emails.txt,Circular 2026/004: Phishing emails: what to do,circular,2026/004,current,2026-02-09,IT,internal,all_staff,en,txt,1,N
+D062,circulars/Circular 2026-002 Year-End Close.txt,Circular 2026/002: Year-end close timetable,circular,2026/002,current,2026-01-12,Finance,internal,all_staff,en,txt,1,N
+D063,circulars/Circular 2025-013 Staff Wellness Day.txt,Circular 2025/013: Staff wellness day,circular,2025/013,current,2025-08-25,HR,internal,all_staff,en,txt,1,N
+D064,circulars/Circular 2026-007 MFA Re-registration.txt,Circular 2026/007: Re-registration of multi-factor devices,circular,2026/007,current,2026-08-03,IT,internal,all_staff,en,txt,1,N
+D065,circulars/Mzunguko KK-2026-003 Saa za Kazi.pdf,Mzunguko KK/2026/003: Saa za kazi za matawi ya Kitara Kenya,circular,KK/2026/003,current,2026-01-12,Branch Operations,internal,all_staff,sw,text_pdf,1,N
+D066,circulars/Mzunguko KK-2026-005 Ulaghai wa Pesa kwa Simu.pdf,Mzunguko KK/2026/005: Kuripoti ulaghai wa pesa kwa simu,circular,KK/2026/005,current,2026-03-02,Risk,internal,all_staff,sw,text_pdf,1,N
+D067,circulars/Mzunguko KK-2026-008 Likizo ya Mwaka.pdf,Mzunguko KK/2026/008: Likizo ya mwaka kwa wafanyakazi wa Kitara Kenya,circular,KK/2026/008,current,2026-04-20,HR,internal,all_staff,sw,text_pdf,1,N
+D068,minutes/Board Minutes Extract March 2026.pdf,"Board of Directors: Minutes Extract, 26 March 2026",minutes,1,current,2026-03-26,Company Secretary,restricted,executive,en,text_pdf,1,N
+D069,minutes/Audit Committee Minutes Extract February 2026.pdf,"Audit Committee: Minutes Extract, 18 February 2026",minutes,1,current,2026-02-18,Internal Audit,confidential,executive;legal_compliance,en,text_pdf,1,N
+D070,minutes/Risk Committee Minutes Extract April 2026.pdf,"Risk Committee: Minutes Extract, 14 April 2026",minutes,1,current,2026-04-14,Risk,restricted,risk;executive;legal_compliance,en,text_pdf,1,N
+D071,minutes/Credit Committee Minutes Extract January 2026.pdf,"Head Office Credit Committee: Minutes Extract, 13 January 2026",minutes,1,current,2026-01-13,Risk,restricted,risk;finance;executive;branch_ops,en,text_pdf,1,N
+D072,minutes/Claims Committee Minutes Extract May 2026.pdf,"Claims Committee: Minutes Extract, 21 May 2026",minutes,1,current,2026-05-21,Claims,restricted,claims;executive,en,text_pdf,1,N
+D073,minutes/Remuneration Committee Minutes Extract February 2026.pdf,"Remuneration Committee: Minutes Extract, 24 February 2026",minutes,1,current,2026-02-24,HR,confidential,hr;executive,en,text_pdf,1,N
+D074,minutes/IT Steering Committee Minutes Extract June 2026.txt,"IT Steering Committee: Minutes Extract, 9 June 2026",minutes,1,current,2026-06-09,IT,internal,all_staff,en,txt,1,N
+D075,minutes/Executive Committee Minutes Extract July 2026.pdf,"Executive Committee: Minutes Extract, 7 July 2026",minutes,1,current,2026-07-07,Company Secretary,restricted,executive,en,text_pdf,1,N
+D076,minutes/Kitara Kenya Board Minutes Extract April 2026.pdf,"Kitara Kenya Board: Minutes Extract, 16 April 2026",minutes,1,current,2026-04-16,Company Secretary,restricted,executive;finance,en,text_pdf,1,N
+D077,minutes/Customer Experience Forum Minutes Extract August 2026.txt,"Customer Experience Forum: Minutes Extract, 19 August 2026",minutes,1,current,2026-08-19,Customer Service,internal,all_staff,en,txt,1,N
+D078,regulatory/Regulatory Notice UFSA 2025-03 Cash Reporting.pdf,Regulatory Notice UFSA/2025/03: Cash transaction reporting,regulatory_notice,UFSA/2025/03,current,2025-02-17,Legal and Compliance,public,all_staff,en,text_pdf,1,N
+D079,regulatory/Regulatory Notice IRO 2025-01 Claims Settlement.pdf,Regulatory Notice IRO/2025/01: Time to settle insurance claims,regulatory_notice,IRO/2025/01,current,2025-01-13,Legal and Compliance,public,all_staff,en,text_pdf,1,N
+D080,regulatory/Regulatory Notice PDPO 2025-02 Breach Notification.pdf,Regulatory Notice PDPO/2025/02: Personal data breach notification,regulatory_notice,PDPO/2025/02,current,2025-03-03,Legal and Compliance,public,all_staff,en,text_pdf,1,N
+D081,regulatory/Regulatory Notice UFSA 2024-07 Mobile Money Agents.pdf,Regulatory Notice UFSA/2024/07: Mobile money agent identification,regulatory_notice,UFSA/2024/07,current,2024-07-08,Legal and Compliance,public,all_staff,en,text_pdf,1,N
+D082,regulatory/Regulatory Notice CSAK 2026-01 Customer Complaints.pdf,Regulatory Notice CSAK/2026/01: Customer complaints in Kenya,regulatory_notice,CSAK/2026/01,current,2026-01-19,Legal and Compliance,public,all_staff,en,text_pdf,1,N
+D083,regulatory/Regulatory Letter UFSA Late Returns Penalty.pdf,Regulatory Notice UFSA/ENF/2026/02: Penalty for late filing of returns,regulatory_notice,UFSA/ENF/2026/02,current,2026-03-30,Legal and Compliance,confidential,legal_compliance;executive,en,text_pdf,1,N
+D084,scans/Scan Motor Claim Form Signed.pdf,Motor Claim Form (signed scan),claims_form,1,current,2026-03-11,Claims,restricted,claims,en,scanned_pdf,1,Y
+D085,scans/Scan Circular 2016-021 Annual Leave.pdf,Circular 2016/021: Annual leave from 2017,circular,2016/021,superseded,2016-11-15,HR,internal,all_staff,en,scanned_pdf,1,N
+D086,scans/Scan Branch Inspection Note Mbarara.pdf,"Branch Inspection Note: Mbarara Branch, 2024",branch_note,1,current,2024-08-22,Branch Operations,internal,branch_ops;executive,en,scanned_pdf,1,N
+D087,scans/Scan Customer Complaint Letter by Post.pdf,Customer complaint letter received by post,claims_letter,1,current,2026-05-06,Customer Service,restricted,claims;legal_compliance,en,scanned_pdf,1,Y
+D088,scans/Scan Board Resolution Extract 2019.pdf,"Board resolution extract, 2019",minutes,2019,superseded,2019-09-18,Company Secretary,confidential,executive;legal_compliance,en,scanned_pdf,1,N
+D089,scans/Scan Loan Committee Note 2018.pdf,"Loan committee approval note, 2018",branch_note,1,superseded,2018-04-10,Risk,restricted,risk;branch_ops;executive,en,scanned_pdf,1,N
+D090,scans/Scan Regulator Notice Fax 2017.pdf,"Regulator notice received by fax, 2017",regulatory_notice,UFSA/2017/11,superseded,2017-06-02,Legal and Compliance,internal,all_staff,en,scanned_pdf,1,N
+D091,scans/Scan Motor Policy Schedule 2015.pdf,"Motor policy schedule, 2015",policy_schedule,1,superseded,2015-03-20,Underwriting,restricted,underwriting;claims,en,scanned_pdf,1,N
+D092,claims letters/Letter 01 CL-2026-0753 Kiiza.pdf,Claim letter CL-2026-0753 (motor),claims_letter,1,current,2026-05-20,Claims,restricted,claims,en,text_pdf,1,Y
+D093,claims letters/Letter 02 CL-2026-0371 Lakot.pdf,Claim letter CL-2026-0371 (motor),claims_letter,1,current,2026-07-18,Claims,restricted,claims,en,text_pdf,1,Y
+D094,claims letters/Letter 03 CL-2026-0394 Namatovu.pdf,Claim letter CL-2026-0394 (motor),claims_letter,1,current,2026-06-09,Claims,restricted,claims,en,text_pdf,1,Y
+D095,claims letters/Letter 04 CL-2026-0783 Ssali.pdf,Claim letter CL-2026-0783 (motor),claims_letter,1,current,2026-01-23,Claims,restricted,claims,en,text_pdf,1,Y
+D096,claims letters/Letter 05 CL-2026-0910 Kimani.pdf,Claim letter CL-2026-0910 (motor),claims_letter,1,current,2026-06-05,Claims,restricted,claims,en,text_pdf,1,Y
+D097,claims letters/Letter 06 CL-2026-0408 Birungi.pdf,Claim letter CL-2026-0408 (motor),claims_letter,1,current,2026-05-03,Claims,restricted,claims,en,text_pdf,1,Y
+D098,claims letters/Letter 07 CL-2026-0508 Opio.pdf,Claim letter CL-2026-0508 (home),claims_letter,1,current,2026-02-21,Claims,restricted,claims,en,text_pdf,1,Y
+D099,claims letters/Letter 08 CL-2026-0351 Nabukenya.pdf,Claim letter CL-2026-0351 (home),claims_letter,1,current,2026-02-13,Claims,restricted,claims,en,text_pdf,1,Y
+D100,claims letters/Letter 09 CL-2026-0548 Kisakye.pdf,Claim letter CL-2026-0548 (home),claims_letter,1,current,2026-09-15,Claims,restricted,claims,en,text_pdf,1,Y
+D101,claims letters/Letter 10 CL-2026-0302 Mutiso.pdf,Claim letter CL-2026-0302 (home),claims_letter,1,current,2026-07-03,Claims,restricted,claims,en,text_pdf,1,Y
+D102,claims letters/Letter 11 CL-2026-0645 Kamya.pdf,Claim letter CL-2026-0645 (life),claims_letter,1,current,2026-07-17,Claims,confidential,claims,en,text_pdf,1,Y
+D103,claims letters/Letter 12 CL-2026-0788 Twinomujuni.pdf,Claim letter CL-2026-0788 (life),claims_letter,1,current,2026-07-06,Claims,restricted,claims,en,text_pdf,1,Y
+D104,claims letters/Letter 13 CL-2026-0412 Kyomuhendo.pdf,Claim letter CL-2026-0412 (life),claims_letter,1,current,2026-07-06,Claims,restricted,claims,en,text_pdf,1,Y
+D105,claims letters/Letter 14 CL-2026-0590 Birungi.pdf,Claim letter CL-2026-0590 (approve),claims_letter,1,current,2026-09-20,Claims,restricted,claims,en,text_pdf,1,Y
+D106,claims letters/Letter 15 CL-2026-0823 Wafula.pdf,Claim letter CL-2026-0823 (approve),claims_letter,1,current,2026-05-13,Claims,restricted,claims,en,text_pdf,1,Y
+D107,claims letters/Letter 16 CL-2026-0787 Atim.pdf,Claim letter CL-2026-0787 (approve),claims_letter,1,current,2026-01-09,Claims,restricted,claims,en,text_pdf,1,Y
+D108,claims letters/Letter 17 CL-2026-0869 Namatovu.pdf,Claim letter CL-2026-0869 (approve),claims_letter,1,current,2026-06-08,Claims,restricted,claims,en,text_pdf,1,Y
+D109,claims letters/Letter 18 CL-2026-0503 Kisakye.pdf,Claim letter CL-2026-0503 (repud),claims_letter,1,current,2026-03-19,Claims,restricted,claims,en,text_pdf,1,Y
+D110,claims letters/Letter 19 CL-2026-0641 Rukundo.pdf,Claim letter CL-2026-0641 (repud),claims_letter,1,current,2026-04-14,Claims,restricted,claims,en,text_pdf,1,Y
+D111,claims letters/Letter 20 CL-2026-0374 Mwangi.pdf,Claim letter CL-2026-0374 (repud),claims_letter,1,current,2026-01-16,Claims,restricted,claims,en,text_pdf,1,Y
+D112,claims letters/Letter 21 CL-2026-0850 Nsubuga.pdf,Complaint CL-2026-0850 (wallet),claims_letter,1,current,2026-01-14,Customer Service,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D113,claims letters/Letter 22 CL-2026-0789 Atim.pdf,Complaint CL-2026-0789 (wallet),claims_letter,1,current,2026-08-19,Customer Service,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D114,claims letters/Letter 23 CL-2026-0753 Nalubega.pdf,Complaint CL-2026-0753 (wallet),claims_letter,1,current,2026-07-05,Customer Service,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D115,claims letters/Letter 24 CL-2026-0727 Wafula.pdf,Complaint CL-2026-0727 (wallet),claims_letter,1,current,2026-06-02,Customer Service,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D116,claims letters/Letter 25 CL-2026-0770 Barasa.pdf,Complaint CL-2026-0770 (loan),claims_letter,1,current,2026-05-07,Customer Service,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D117,claims letters/Letter 26 CL-2026-0716 Mutiso.pdf,Complaint CL-2026-0716 (loan),claims_letter,1,current,2026-03-08,Customer Service,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D118,claims letters/Letter 27 CL-2026-0589 Namatovu.pdf,Complaint CL-2026-0589 (loan),claims_letter,1,current,2026-02-14,Customer Service,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D119,claims letters/Letter 28 CL-2026-0483 Kabuye.pdf,Complaint CL-2026-0483 (slow),claims_letter,1,current,2026-03-16,Claims,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D120,claims letters/Letter 29 CL-2026-0896 Oryem.pdf,Complaint CL-2026-0896 (slow),claims_letter,1,current,2026-01-03,Claims,restricted,claims;legal_compliance,en,text_pdf,1,Y
+D121,claims letters/Letter 30 CL-2026-0379 Waiswa.pdf,Complaint CL-2026-0379 (slow),claims_letter,1,current,2026-06-03,Claims,restricted,claims;legal_compliance,en,text_pdf,1,Y

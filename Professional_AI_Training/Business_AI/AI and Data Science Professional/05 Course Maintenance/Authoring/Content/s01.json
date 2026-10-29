@@ -1,0 +1,460 @@
+{
+ "session": 1,
+ "notes_title": "Welcome, everyone, and well done for coming after a full day of work. Over the next twenty four sessions you'll learn how people turn data into decisions. You'll start in a spreadsheet, which you already know, and you'll finish with a tested model and a small app that a colleague can open. Today is the map. We look at what a data scientist does, how the work is organised, and which free tools we'll use. Then you open a workbook and run your first line of Python.",
+ "notes_outcomes": "By the end of today you'll be able to do three things. You'll describe the data science lifecycle, from a question to a decision. You'll tell data science, machine learning and artificial intelligence apart by what each one produces. And you'll open Colab and run a cell. Today is the lightest session of the course. The first part is pictures and plain talk, the live part is a look at the real Lakeside Mart workbook, and the lab starts in Sheets before it moves to your first notebook.",
+ "notes_words": "Here are the six words for today, and each has a spreadsheet cousin. Data science is the whole way of working, from question to decision. Machine learning is a computer finding a rule from examples. Artificial intelligence is the wide umbrella over it. A dataset is your workbook with its tabs. A model is a rule found from data. A lifecycle is the route a piece of work follows from start to finish. Look at the right hand column and you'll see you already know most of these ideas.",
+ "vocab": [
+  [
+   "Data science",
+   "Using data, tools and careful thinking to answer a question and support a decision.",
+   "Analysing a workbook to advise your manager"
+  ],
+  [
+   "Machine learning",
+   "A computer finding a rule from examples, instead of a person writing the rule.",
+   "A trend line that Sheets fits for you"
+  ],
+  [
+   "Artificial intelligence",
+   "Any software that does something we would call smart. Machine learning is one way to build it.",
+   null
+  ],
+  [
+   "Dataset",
+   "A collection of data about one subject, arranged in tables of rows and columns.",
+   "A workbook with its tabs"
+  ],
+  [
+   "Model",
+   "A rule, found from data, that turns inputs into a prediction or an explanation.",
+   "A formula, but one found from past data"
+  ],
+  [
+   "Lifecycle",
+   "The stages a data project passes through, from the question to the decision and the follow up.",
+   "The steps from a blank sheet to a report"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up: you and data",
+   "kicker": "Warm-up",
+   "questions": [
+    {
+     "q": "Name one task you would trust an AI tool with, and one you would always check.",
+     "a": "Trust it with first drafts, summaries and ideas. Check every number, name, date and legal claim it gives you."
+    },
+    {
+     "q": "When did a number last decide something at your work? Where did it come from?",
+     "a": "Often a spreadsheet that someone built. You will learn to build that evidence and test it yourself."
+    }
+   ],
+   "notes": "Before I teach anything, two questions about your own experience with AI tools and with numbers at work.\n\nFirst. Name one task you would happily trust an AI tool with, and one task where you would always check its answer. Have a think.\n\nMost people say they trust it with a first draft of an email, a summary of a long document, or a list of ideas. And most people check anything with a number, a name, a date or a law in it. Hold on to that instinct. A good data scientist has the same instinct, and we'll build on it all course.\n\nSecond. When did a number last decide something at your work, and where did that number come from? No rush.\n\nFor most of you the answer is a spreadsheet that somebody built, sometimes years ago. In this course you'll learn to build that evidence yourself, and to test it before anyone relies on it."
+  },
+  {
+   "type": "concept",
+   "title": "Data science turns a question and data into a decision",
+   "lead": "It's a way of working. Someone asks, data answers, and a person decides.",
+   "points": [
+    {
+     "h": "Question",
+     "t": "It starts with a decision someone has to make."
+    },
+    {
+     "h": "Data",
+     "t": "Rows and columns that record what happened."
+    },
+    {
+     "h": "Method",
+     "t": "Counting, charts, tests and sometimes a model."
+    },
+    {
+     "h": "Decision",
+     "t": "It ends with advice a manager can act on."
+    }
+   ],
+   "notes": "So what is data science? My answer is simple. It's a way of working that turns a question and some data into a decision.\n\nIt starts with a decision somebody has to make. Should we open a new branch? Should we change the price? Then you find the data that records what happened. That means rows and columns, the same as in your spreadsheets.\n\nThen comes the method. Mostly that's counting, charts and careful comparisons. Sometimes it's a model, and we'll meet that word in a few minutes.\n\nThe work ends with advice that a manager can act on. A chart that nobody uses has failed. Keep that last box in mind, because it's the one people forget."
+  },
+  {
+   "type": "define",
+   "title": "Dataset",
+   "definition": "A collection of data about one subject, arranged in tables of rows and columns.",
+   "example": "The Lakeside Mart workbook holds orders, order lines, branches, products and customers for eight shops in Uganda.",
+   "excel": "A workbook, with each tab as one table.",
+   "notes": "Your first word. A dataset.\n\nIn plain words, it's a collection of data about one subject, arranged in tables of rows and columns.\n\nWe'll use a dataset for the whole course. Lakeside Mart is a fictional chain of eight shops across Uganda. Its dataset has tables for orders, the products on each order, the branches, the products and the customers. All of it is generated, so no real person or company appears in it.\n\nYou already know this idea. In Excel or Sheets, it's a workbook, and each tab is one table. When someone says dataset, picture a workbook."
+  },
+  {
+   "type": "cycle",
+   "title": "The data science lifecycle",
+   "steps": [
+    {
+     "h": "Question",
+     "t": "Name the decision and the question behind it."
+    },
+    {
+     "h": "Data",
+     "t": "Find the tables that could answer it."
+    },
+    {
+     "h": "Clean and explore",
+     "t": "Fix errors, then look at the shape of the data."
+    },
+    {
+     "h": "Model",
+     "t": "Test an idea or build a prediction."
+    },
+    {
+     "h": "Deliver",
+     "t": "Explain the result to the person who decides."
+    },
+    {
+     "h": "Monitor",
+     "t": "Check later that it still works."
+    }
+   ],
+   "center": "Lifecycle",
+   "notes": "The map for the whole course is a circle. We call it the lifecycle, which is the route a piece of work follows from start to finish.\n\nStage one is the question. You name the decision and the question behind it. A vague question wastes every stage after it.\n\nStage two is data. Which tables could answer the question, and can you actually get them?\n\nStage three is clean and explore. You fix the errors, then you look at the shape of the data. Expect this to take more of your time than anything else.\n\nStage four is the model. You test an idea, or you build a prediction.\n\nStage five is deliver. You explain the result to the person who decides, in words they use.\n\nStage six is monitor. Weeks later you check that the answer still holds, and that sends you back to a new question. Every session in this course sits somewhere on this circle."
+  },
+  {
+   "type": "figure",
+   "title": "Artificial intelligence, machine learning and deep learning",
+   "fig": "ai_ml_dl",
+   "look": [
+    "Artificial intelligence is the biggest circle. It holds any software that does something we call smart.",
+    "Machine learning sits inside it. These programs find rules from examples.",
+    "Deep learning is the smallest circle. Data science overlaps all of them."
+   ],
+   "caption": "Data science is a way of working. Machine learning is one tool it uses.",
+   "alt": "Nested circles showing deep learning inside machine learning inside artificial intelligence, with data science overlapping them.",
+   "notes": "You hear three big words in the news. Artificial intelligence, machine learning and deep learning. One picture shows how they fit together.\n\nThe largest circle is artificial intelligence. It holds any software that does something we'd call smart. A spam filter counts. So does a chatbot.\n\nInside it sits machine learning. These are programs that find their own rules from examples, instead of a programmer typing every rule.\n\nThe smallest circle is deep learning. These are very large networks of simple calculations. They power voice recognition and image tools, and we meet them in Session 20.\n\nNow look at the gold circle. Data science overlaps all of them, because it's a way of working. A data scientist uses machine learning when a model helps, and uses plain counting and charts when that's enough. Often it's enough."
+  },
+  {
+   "type": "compare",
+   "title": "A formula you write and a model that learns",
+   "left": {
+    "h": "Spreadsheet formula",
+    "points": [
+     "You write the rule",
+     "Price times quantity gives revenue",
+     "Same input, same output"
+    ]
+   },
+   "right": {
+    "h": "Machine learning model",
+    "points": [
+     "The computer finds the rule",
+     "Past loans show which ones defaulted",
+     "Better examples give a better rule"
+    ]
+   },
+   "verdict": "A model is a rule found from data. You build your first one in Session 14.",
+   "notes": "Let me make machine learning feel ordinary. Compare a formula with a model.\n\nOn the left, a spreadsheet formula. You know the rule, so you write it. Price times quantity gives revenue. Same input, same answer, every time.\n\nFirst point on the right. With machine learning, you don't know the rule, so the computer finds it. You give it examples, and it works out the pattern.\n\nTake a microfinance lender. It has records of past loans, and each one is marked as repaid or defaulted. No person can write the exact rule that separates them. A model studies the records and finds a rule that does a reasonable job.\n\nAnd the quality of the rule depends on the quality of the examples. Poor records give a poor rule. That's why most of this course is about data.\n\nSo a model is a rule found from data. In Session 14 you'll build one."
+  },
+  {
+   "type": "concept",
+   "title": "Three roles on a data team",
+   "lead": "Small organisations often give one person all three jobs. You will practise the first two.",
+   "points": [
+    {
+     "h": "Analyst",
+     "t": "Answers questions about the past with tables and charts."
+    },
+    {
+     "h": "Data scientist",
+     "t": "Tests ideas and builds models that explain or predict."
+    },
+    {
+     "h": "ML engineer",
+     "t": "Puts a model into a product and keeps it running."
+    }
+   ],
+   "notes": "Who does all this work? On a larger team, three different roles.\n\nThe analyst answers questions about the past. How many orders did Jinja take last month? Which products sell best? The tools are tables, pivots, SQL and charts. Many of you do part of this job already.\n\nThe data scientist goes further. This person tests ideas, such as whether a promotion really lifted sales, and builds models that explain or predict.\n\nThe machine learning engineer takes a working model and puts it into a product, then keeps it running and watches it. That person makes sure a model keeps working for a whole team, every day.\n\nIn many Ugandan organisations, one person does all three jobs. So we'll practise the analyst and data scientist work properly, and we'll touch the engineer work in Session 23."
+  },
+  {
+   "type": "compare",
+   "title": "A business question worth asking",
+   "left": {
+    "h": "Weak: Tell me about sales",
+    "points": [
+     "No decision attached",
+     "No number to find",
+     "No sign of when you are done"
+    ]
+   },
+   "right": {
+    "h": "Strong: Which branch needs help?",
+    "points": [
+     "Names what to measure",
+     "Names the decision it feeds",
+     "Needs data you can get"
+    ]
+   },
+   "verdict": "Write the decision first. Then write the question.",
+   "notes": "Now a skill that needs no code at all. Asking a good question.\n\nOn the left, a weak question. Tell me about sales. It could take a week, and at the end nobody knows if you answered it.\n\nUnder it, the first problem is that no decision is attached. Nobody knows what they'd do with the answer. There's also no particular number to find, and no sign of when you're finished.\n\nOn the right, a strong question. Which branch should the regional manager visit first? It names what to measure, and it names the decision it feeds. And it needs data that we can actually get.\n\nSo write down the decision first, then write the question. At the end of today's lab, you'll write a question of your own from your own work."
+  },
+  {
+   "type": "stat",
+   "title": "Real data first: the Lakeside Mart workbook",
+   "stats": [
+    {
+     "n": "2,000",
+     "label": "orders on the orders tab"
+    },
+    {
+     "n": "6,590",
+     "label": "order lines on the order_lines tab"
+    },
+    {
+     "n": "8",
+     "label": "branches across Uganda"
+    },
+    {
+     "n": "150",
+     "label": "products on the products tab"
+    }
+   ],
+   "caption": "A 2,000-order sample, so it opens quickly in Sheets. All of it is fictional.",
+   "notes": "Here is the workbook you'll open in the lab.\n\nIt holds two thousand orders. Each order has one or more lines, one for every product bought, and there are six thousand five hundred and ninety lines in all. There are eight branches across Uganda and a hundred and fifty products.\n\nThis is a sample of the full Lakeside Mart data, so it opens fast in Sheets. The full files have thirty thousand orders, and we'll use those in Python later. Because of that, answers from this sample will differ a little from answers from the full files. That difference is the topic of Session 4.\n\nEvery name and number is made up. Nobody's real shop, customer or till receipt is in here."
+  },
+  {
+   "type": "trap",
+   "title": "A confident answer that nobody checked",
+   "looks": "You ask a chat assistant what share of customers pay by mobile money. It replies with a clean percentage in a friendly tone. You paste it into your report.",
+   "why": "A chat assistant predicts likely words. It can state a figure it never calculated, and nothing in its tone tells you which figures are real.",
+   "fix": "Ask it for the method. Work out the number yourself from your own data, and write the source beside it.",
+   "notes": "Today's trap connects to your warm-up answers. A trap is a mistake that runs without any error.\n\nYou ask a free chat assistant what share of customers pay by mobile money. It gives you a tidy percentage, politely. You paste it into your report. Nothing warns you.\n\nThe reason is how these tools work. They predict likely words. A figure that looks right is a likely sequence of words, whether or not anyone calculated it. Its tone is equally confident when it's right and when it's wrong.\n\nSo ask it for the method. Then calculate the number from your own data, and write the source next to the figure. We'll use assistants through the course for explaining errors and suggesting code, and we'll always check them."
+  },
+  {
+   "type": "table",
+   "title": "The free toolset",
+   "header": [
+    "Tool",
+    "What you use it for",
+    "Cost"
+   ],
+   "rows": [
+    [
+     "Google Colab",
+     "Python notebooks in your browser",
+     "Free, with a Google account"
+    ],
+    [
+     "Sheets, Excel or LibreOffice",
+     "Tables, pivots and charts",
+     "Free, or what you own"
+    ],
+    [
+     "pandas, scikit-learn, matplotlib",
+     "Data work, models and charts",
+     "Free, open source"
+    ],
+    [
+     "SQLite",
+     "Questions to a database",
+     "Free, inside Python"
+    ],
+    [
+     "GitHub",
+     "Save and share your work",
+     "Free account"
+    ],
+    [
+     "Streamlit Community Cloud",
+     "A small web app for your model",
+     "Free for public apps"
+    ]
+   ],
+   "caption": "Every tool here is free for you and for the tutor.",
+   "colw": [
+    3.8,
+    4.2,
+    3.4
+   ],
+   "notes": "Now the tools. Everything here is free, for you and for me.\n\nGoogle Colab runs Python in your browser, so Windows and Mac laptops behave the same. You need a free Google account and nothing to install.\n\nFor spreadsheets, use Google Sheets, or Excel or LibreOffice if you have them. Any one of them works.\n\nThe Python libraries do the data work. pandas handles tables, scikit-learn builds models, and matplotlib draws charts. SQLite lets you question a database with no server. GitHub keeps and shares your work, and Streamlit Community Cloud turns a model into a small web app.\n\nEvery item on this list costs you nothing. If you ever see a step that asks for a credit card, tell me, because it doesn't belong in this course."
+  },
+  {
+   "type": "concept",
+   "title": "Colab is free, and it has limits",
+   "lead": "Plan for the limits from day one and a lost session costs you very little.",
+   "points": [
+    {
+     "h": "Idle time",
+     "t": "A free session ends after you stop working for a while."
+    },
+    {
+     "h": "Length",
+     "t": "A session ends after about 12 hours at most."
+    },
+    {
+     "h": "Quota",
+     "t": "Google does not publish the limits, and they can change."
+    },
+    {
+     "h": "Save",
+     "t": "Keep your notebooks in Drive or on GitHub."
+    }
+   ],
+   "notes": "Free tools have limits, and it's better you hear them from me than discover them at ten at night.\n\nFirst, idle time. If you stop working for a while, Colab ends your session, and the values in memory vanish.\n\nSecond, length. Even if you keep working, a free session ends after about twelve hours at most. We won't come close in class.\n\nThird, quota. Google doesn't publish exact limits for free users, and they can change from week to week. So if a session misbehaves, it may be the quota, and your code may be fine.\n\nThe answer to all three is the same. Save your notebooks in Google Drive, or on GitHub when we get there. Save your work often. Anything saved to Drive comes back when you open it again. Anything you only held in memory does not."
+  },
+  {
+   "type": "flow",
+   "title": "Your first Colab cell",
+   "steps": [
+    {
+     "h": "Open",
+     "t": "Open the Session 1 notebook in Colab."
+    },
+    {
+     "h": "Run",
+     "t": "Press the play button beside a cell."
+    },
+    {
+     "h": "Read",
+     "t": "The answer appears under the cell."
+    },
+    {
+     "h": "Edit",
+     "t": "Change a word or number and run again."
+    },
+    {
+     "h": "Save",
+     "t": "Save a copy to your Drive."
+    }
+   ],
+   "caption": "A cell is a box of Python. Run it, read it, change it, save it.",
+   "notes": "Let me show you the rhythm of a notebook before you try it. A notebook is made of cells, and a cell is a box that holds a few lines of Python. Think of it as one cell of a spreadsheet that can hold a whole instruction.\n\nFirst you open the notebook. I'll give you the link for Session 1.\n\nThen you run a cell by pressing the play button on its left. Python reads the lines and does what they say.\n\nThe result appears right under the cell. Read it. If something is wrong, Python tells you there, in words.\n\nThen you edit. Change a word or a number and run the cell again. You can't break anything by doing that. The worst case is an error message, and we'll learn to read those in Session 5.\n\nFinally, save a copy to your own Drive, so the work is yours and survives the idle timeout."
+  },
+  {
+   "type": "stat",
+   "title": "This course covers a path through the field",
+   "stats": [
+    {
+     "n": "48 hours",
+     "label": "This course: 24 sessions of 2 hours"
+    },
+    {
+     "n": "About 150 to 240 hours",
+     "label": "Each Google or IBM data certificate"
+    }
+   ],
+   "caption": "So we choose the working core: Sheets, Python, SQL, inference, models and one small app.",
+   "notes": "You'll meet other courses online, so let me put this one beside them. The Google and IBM data certificates each ask for somewhere between a hundred and fifty and two hundred and forty hours, depending on the source. This course is forty eight.\n\nThat gap is a choice. We can't cover everything in forty eight hours, so we cover a path. It's the working core. You'll get Sheets for thinking, Python and pandas for handling data, SQL for databases, enough statistics to say whether a difference is real, machine learning for prediction, and one small app to show it.\n\nWhat we leave out, we say so. In Session 24 we list what the course skipped, and you build a six month plan with free courses to fill your own gaps."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: open the workbook and run your first cell",
+   "tool": "Google Sheets and Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open lakeside_for_sheets.xlsx in Sheets",
+    "On each tab, find the number of rows and columns",
+    "Name the grain of each tab: what is one row?",
+    "Open the Session 1 notebook in Colab and run the setup cell",
+    "Print a sentence, add two numbers, store a list, save a copy",
+    "Write your own business question"
+   ],
+   "done": "You have a table of rows, columns and grain, three working cells, and one question of your own.",
+   "notes": "The first task is in Sheets. Open the Lakeside Mart workbook and find how many rows and columns each tab has, then write down its grain. Grain is a short word for what one row stands for. On the orders tab, one row is one till order. Do the same for every tab, and don't count the header row as data.\n\nThe second part is in Colab. Open the Session 1 notebook and run the setup cell first. Then do three small tasks. Print a sentence, add two numbers, and store a list. Each task has a check cell under it that tells you whether you got it right.\n\nFinish by writing a business question from your own work, with the decision it would feed. I'll come round and read a few. If you get stuck, ask me."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Name the six stages of the lifecycle, in order.",
+     "a": "Question, data, clean and explore, model, deliver, monitor."
+    },
+    {
+     "q": "How do artificial intelligence, machine learning and deep learning fit together?",
+     "a": "Machine learning sits inside artificial intelligence. Deep learning sits inside machine learning."
+    },
+    {
+     "q": "Why did this course choose a path of 48 hours?",
+     "a": "Certificates run about 150 to 240 hours. We cover the working core and list what we left out."
+    }
+   ],
+   "notes": "Let's test the map. Name the six stages of the lifecycle, in order. Take your time.\n\nQuestion, data, clean and explore, model, deliver, and monitor. Then it loops back to a new question.\n\nNext, how do artificial intelligence, machine learning and deep learning fit together? Think it over.\n\nMachine learning sits inside artificial intelligence, and deep learning sits inside machine learning. Data science overlaps all three.\n\nLast, why is this course forty eight hours when the certificates run a hundred and fifty to two hundred and forty, depending on the source? Give that a moment.\n\nBecause it covers a path. It teaches the working core and tells you plainly what it leaves out."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Data science runs a lifecycle: question, data, clean and explore, model, deliver, monitor.",
+    "Machine learning is one tool inside artificial intelligence. A model is a rule found from data.",
+    "Write the decision first, then the question. Check any number you did not calculate."
+   ],
+   "next": "Data as tables: rows, columns and grain",
+   "notes": "One. Data science runs a lifecycle, from a question to a decision, and then a check that it still works.\n\nTwo. Machine learning is one tool inside the wider world of artificial intelligence, and a model is a rule that was found from data.\n\nThree. Write the decision first, then the question. And check any number that you didn't calculate yourself.\n\nNext session we go deeper into tables. We ask exactly what one row means, how one table connects to another, and how to read a data dictionary. Today's grain exercise was the first taste of it. Please bring your notes from the Sheets part of the lab."
+  }
+ ],
+ "lab": {
+  "intro": "Part one is in Sheets with lakeside_for_sheets.xlsx. Part two is this notebook: three tiny cells, each followed by a check.",
+  "sheet_tasks": [
+   {
+    "task": "Open lakeside_for_sheets.xlsx. How many tabs does it have, and what are their names?",
+    "answer": "Seven tabs: orders, order_lines, branches, products, customers, branch_weeks and READ ME."
+   },
+   {
+    "task": "On the orders tab, how many rows of data and how many columns are there? Leave out the header row.",
+    "answer": "2,000 rows and 7 columns. In Sheets the last row number is 2001 because of the header."
+   },
+   {
+    "task": "On the order_lines tab, how many rows of data and how many columns are there?",
+    "answer": "6,590 rows and 7 columns."
+   },
+   {
+    "task": "Write the grain of the orders tab and of the order_lines tab. What is one row?",
+    "answer": "orders: one till order. order_lines: one product on one order."
+   },
+   {
+    "task": "Find the size of branches, products, customers and branch_weeks. Write the grain of each.",
+    "answer": "branches: 8 rows, one branch. products: 150 rows, one product. customers: 2,500 rows, one loyalty customer. branch_weeks: 832 rows, one branch in one week."
+   },
+   {
+    "task": "On the orders tab, count the rows where customer_id is blank. What do you think they are?",
+    "answer": "580 blank customer_id cells. They are walk-in customers without a loyalty number."
+   },
+   {
+    "task": "Write one business question from your own work, with the decision it would feed.",
+    "answer": "Open answer. A good one names a thing to measure, a decision, and data you could get."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Print a sentence\nStore a sentence in a name called `message` and print it. Press the play button to run the cell."
+   },
+   {
+    "code": "message = 'Hello from Lakeside Mart analytics'\nprint(message)",
+    "starter": "# Your turn: put a sentence in quotes into message, then print it\nmessage = ''\n"
+   },
+   {
+    "code": "assert isinstance(message, str) and len(message) > 0, 'Put some text between the quotes'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Add two numbers\nA kilo of rice costs 4500 UGX and a kilo of sugar costs 2800 UGX. Store the total in `total` and print it."
+   },
+   {
+    "code": "total = 4500 + 2800\nprint(total)",
+    "starter": "# Your turn: add the two prices and store the answer in total, then print it\ntotal = 0\n"
+   },
+   {
+    "code": "assert total == 7300, 'Add 4500 and 2800'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Store a list\nA list holds several items in order, inside square brackets. Store three Lakeside Mart branch names in `branches`: Kampala Central, Jinja and Gulu."
+   },
+   {
+    "code": "branches = ['Kampala Central', 'Jinja', 'Gulu']\nprint(branches)\nprint(len(branches))",
+    "starter": "# Your turn: write the three names as text in quotes, separated by commas, inside [ ]\nbranches = []\n"
+   },
+   {
+    "code": "assert len(branches) == 3 and 'Jinja' in branches, 'Use three names and spell Jinja as shown'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Save and reflect\nChoose File, then Save a copy in Drive. In a text cell below, write two things. First, one sentence on which stage of the lifecycle was hardest to picture, and why. Second, one line each on what data science, machine learning and AI produce."
+   }
+  ]
+ }
+}

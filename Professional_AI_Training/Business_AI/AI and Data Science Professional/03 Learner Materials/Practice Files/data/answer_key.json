@@ -1,0 +1,121 @@
+{
+ "seed": 20261028,
+ "dirty_export": {
+  "file": "orders_raw.csv",
+  "rows": 41259,
+  "seeded_defects": 8,
+  "true_net_revenue_ugx": 561421125,
+  "unrecoverable_lines": 12,
+  "residual_ugx": 132690,
+  "pipeline_net_revenue_ugx": 561288435,
+  "note": "A correct clean lands on true_net minus the 12 lines whose quantity is blank. Naming that gap and its cause is the pass mark.",
+  "exact_duplicates": 80,
+  "mixed_date_share": 0.3,
+  "price_text_share": 0.25,
+  "date_rule": "A date with slashes is dd/mm/yyyy; a date with dashes is yyyy-mm-dd."
+ },
+ "loans": {
+  "rows": 8000,
+  "default_rate": 0.1255,
+  "missing_income": 379,
+  "impossible_ages": 2,
+  "leakage_column": "collection_calls",
+  "note": "collection_calls exists only after a loan goes bad.",
+  "honest_auc_logistic_numpy": 0.76,
+  "leaky_auc_logistic_numpy": 0.995,
+  "baseline_accuracy_all_no": 0.8745,
+  "default_rate_by_district": {
+   "Fort Portal": 0.106,
+   "Gulu": 0.119,
+   "Jinja": 0.122,
+   "Kampala": 0.134,
+   "Lira": 0.109,
+   "Masaka": 0.148,
+   "Mbale": 0.11,
+   "Mbarara": 0.138,
+   "Mukono": 0.138,
+   "Wakiso": 0.123
+  },
+  "default_rate_by_gender": {
+   "F": 0.121,
+   "M": 0.131
+  }
+ },
+ "clinics": {
+  "rows": 720,
+  "districts": 12,
+  "months": 60,
+  "missing_total_visits": 18,
+  "peak_month_malaria": 12,
+  "trough_month_malaria": 9,
+  "corr_malaria_rain_lag0": 0.004,
+  "corr_malaria_rain_lag1": 0.365
+ },
+ "lakeside": {
+  "orders": 30229,
+  "order_lines": 98066,
+  "customers": 2500,
+  "products": 150,
+  "returns": 2056,
+  "revenue_ugx": 1435614185,
+  "mean_order_value_ugx": 47491,
+  "median_order_value_ugx": 23200,
+  "mean_over_median": 2.05,
+  "december_over_february_2024": 1.55,
+  "december_over_february_2025": 1.46,
+  "returns_count_by_branch": {
+   "B01": 321,
+   "B02": 266,
+   "B03": 204,
+   "B04": 264,
+   "B05": 231,
+   "B06": 256,
+   "B07": 293,
+   "B08": 221
+  },
+  "returns_rate_by_branch": {
+   "B01": 0.0167,
+   "B02": 0.0171,
+   "B03": 0.0188,
+   "B04": 0.0225,
+   "B05": 0.0235,
+   "B06": 0.0208,
+   "B07": 0.0318,
+   "B08": 0.0236
+  },
+  "most_returns_branch": "B01",
+  "highest_rate_branch": "B07"
+ },
+ "offer_test": {
+  "n_offer": 1245,
+  "n_control": 1255,
+  "mean_spend_offer": 66704,
+  "mean_spend_control": 61660,
+  "difference_ugx": 5044,
+  "ci95_low": 2054,
+  "ci95_high": 8035,
+  "return_rate_offer": 0.4514,
+  "return_rate_control": 0.4295,
+  "rate_diff": 0.0219,
+  "rate_ci95": [
+   -0.017,
+   0.0608
+  ]
+ },
+ "regression_weekly_orders": {
+  "formula": "orders ~ footfall + promo_on + rainfall_mm",
+  "intercept": 2.38,
+  "footfall": 0.0188,
+  "promo_on": 6.8,
+  "rainfall_mm": -0.118,
+  "r_squared": 0.795
+ },
+ "regression_weekly_sales": {
+  "formula": "sales_ugx ~ footfall + promo_on + rainfall_mm",
+  "intercept": 41109.54,
+  "footfall": 926.0574,
+  "promo_on": 311210.53,
+  "rainfall_mm": -5281.889,
+  "r_squared": 0.357
+ }
+}

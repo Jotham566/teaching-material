@@ -22,6 +22,17 @@ function portalWindow_(book,key) {
  return {open:new Date(r[1]).toISOString(),close:new Date(r[2]).toISOString(),minutes:Number(r[4])||0,label:Utilities.formatDate(new Date(r[2]),'Africa/Kampala','d MMM yyyy HH:mm')+' Kampala time'};
 }
 function portalRegistrationKey_(value){return String(value||'').toUpperCase().replace(/\s+/g,'');}
+// Read-only receipt check. Never modify an issued notebook, allocation or receipt.
+function portalAssertNotSubmitted_(book,key,email,registration) {
+ var sheet=book.getSheetByName('Collection');
+ if(!sheet)throw Error('This test submission status is temporarily unavailable. Retry with the same details; your existing timer is unchanged.');
+ var parts=key.split('|');
+ var accepted=sheet.getDataRange().getValues().slice(1).some(function(r){
+  return r[1]===parts[0]&&r[2]===parts[1]&&r[10]==='COLLECTED'&&
+   (String(r[5]||'').trim().toLowerCase()===email||portalRegistrationKey_(r[6])===portalRegistrationKey_(registration));
+ });
+ if(accepted)throw Error('This test already has an accepted submission for these details. You cannot submit again or replace your work. Your original submission is retained. Contact your lecturer if a correction is needed.');
+}
 function requestTestFiles(input) {
  input=input||{};var key=String(input.test||'');
  if(!/^(CML3111|CML3112|CML3113)\|TEST[12]$/.test(key))throw Error('Use your lecturer’s test link.');
@@ -31,6 +42,7 @@ function requestTestFiles(input) {
  var lock=LockService.getScriptLock();if(!lock.tryLock(15000))throw Error('The page is busy. Wait a few seconds and try again.');
  var record,resumed=false;
  try {
+  portalAssertNotSubmitted_(book,key,email,normalized);
   var sheet=book.getSheetByName('Test allocations');
   if(!sheet){sheet=book.insertSheet('Test allocations');sheet.appendRow(PORTAL_ALLOCATION_HEADERS);sheet.setFrozenRows(1);}
   if(w.minutes)sheet.getRange(1,1,1,PORTAL_ALLOCATION_HEADERS.length).setValues([PORTAL_ALLOCATION_HEADERS]);
@@ -56,7 +68,7 @@ function requestTestFiles(input) {
    if(!record[9])record[11]='DIRECT';
    if(record[11]===undefined)record[11]='COPY';
    if(!isFinite(Date.parse(record[7]))||!isFinite(Date.parse(record[8])))throw Error('This test timer needs lecturer review.');
-   if(Date.now()>Math.min(Date.parse(record[8]),Date.parse(w.close)))throw Error('This test has reached your personal deadline. Your timer cannot restart. Contact your lecturer.');
+   if(Date.now()>Math.min(Date.parse(record[8]),Date.parse(w.close)))throw Error('This test has reached your personal deadline. Submission is closed and your timer cannot restart. Contact your lecturer if you experienced a technical problem.');
    sheet.getRange(rowNumber,1,1,PORTAL_ALLOCATION_HEADERS.length).setRichTextValues([record.map(function(v){return SpreadsheetApp.newRichTextValue().setText(String(v||'')).build();})]);
    record._row=rowNumber;
   }

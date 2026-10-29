@@ -1,0 +1,492 @@
+{
+ "session": 1,
+ "notes_title": "Welcome to Enterprise Data Readiness for AI. Over twelve sessions you and a colleague from your organisation will build a scored baseline, a tested search over your own documents, and a twelve month plan for the board. Today is Session 1, what AI-ready data means. You'll meet Kitara Group, a bank and insurer in Kampala with a subsidiary in Nairobi, and you'll find three versions of one leave policy sitting in the same folder. By the end you'll have three AI uses written down, each with the data it needs, where it lives and who owns it.",
+ "notes_outcomes": "By closing time you'll be able to name an AI use and say which data it depends on. You'll explain, in plain words, how data that is old, missing or out of reach produces a wrong answer, and say where your structured and unstructured data live. The timetable is simple. Ten minutes of warm-up, thirty of teaching, twenty five of live demonstration, a short break, then forty minutes on your own organisation with the canvas, and ten minutes at the end for one decision that only the leader can make.",
+ "notes_words": "Seven words today, each with an example from Kitara. A use case is one job you want AI to do. AI-ready data is data the AI can safely read, which means relevant, current, owned, readable and allowed. Structured data sits in rows and columns. Unstructured data is documents, scans, audio and email. Stale data exists but is out of date, and superseded means a newer version has replaced it. A forecast is a prediction by analysts, which matters when we look at published figures.",
+ "vocab": [
+  [
+   "Use case",
+   "One job you want AI to do, with a person who answers for the result.",
+   "Staff policy question answering on the shared drive"
+  ],
+  [
+   "AI-ready data",
+   "Data that is relevant, current, owned, readable by the system and allowed to be used.",
+   "The 2025 Staff Handbook, but not the shared drive around it"
+  ],
+  [
+   "Structured data",
+   "Data in rows and columns with fixed fields.",
+   "The core banking system, S01"
+  ],
+  [
+   "Unstructured data",
+   "Free text, scans, audio and email with no fixed fields.",
+   "The 121 documents and the claims archive, S06"
+  ],
+  [
+   "Stale data",
+   "Data that exists but is out of date.",
+   "The 2019 handbook says 21 days of leave"
+  ],
+  [
+   "Superseded",
+   "Replaced by a newer version. The old file usually stays in the folder.",
+   "11 of 121 documents, recorded in docs_metadata.csv"
+  ],
+  [
+   "Forecast",
+   "A prediction by analysts about what will happen. Nobody has counted it yet.",
+   "Gartner's 60 percent figure"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up: your own data and AI",
+   "kicker": "Warm-up",
+   "questions": [
+    {
+     "q": "Where is someone in your organisation already using AI, even a free chatbot, and what data goes into it?",
+     "a": "Whatever you name, the data it touches is today's subject."
+    },
+    {
+     "q": "Think of the last wrong answer a system or document gave you. Where did that answer come from?",
+     "a": "Usually an old version, a record never captured, or a source nobody looks after."
+    }
+   ],
+   "notes": "Welcome. Before we meet any case study, I'd like to hear from you. First question. Where in your organisation is someone already using AI today? It might be a chatbot on a phone, a fraud rule, a tool in the call centre. And what data goes into it? Take your time.\n\nWhatever you named, the data it touches is our subject today. Often I hear that staff paste customer text into a free chatbot, and nobody has asked what that text contains. Second question. Think of the last time a system or a document gave you an answer that turned out to be wrong. Where did that answer come from? No rush.\n\nMost of the time it comes from an old version, a record that was never captured, or a source nobody looks after. Those are the failures we'll name today, and we'll watch one happen on Kitara's own files."
+  },
+  {
+   "type": "stat",
+   "title": "Kitara Group, the case for all twelve sessions",
+   "stats": [
+    {
+     "n": "About 1,800",
+     "label": "staff in Kampala and Nairobi"
+    },
+    {
+     "n": "47",
+     "label": "branches: 38 in Uganda and 9 in Kenya"
+    },
+    {
+     "n": "14",
+     "label": "data sources in the inventory, sources.csv"
+    },
+    {
+     "n": "121",
+     "label": "documents in the shared set, 11 of them replaced by newer ones"
+    }
+   ],
+   "caption": "A bank and an insurer with a Kenyan subsidiary. Fictional, built for this course.",
+   "notes": "Here is the organisation we'll work with for all twelve sessions. Kitara Group is a bank and an insurer in Kampala, with a subsidiary in Nairobi. About eighteen hundred staff, thirty eight branches in Uganda and nine in Kenya. It is fictional, so we can open every file without worrying about anyone's privacy.\n\nBehind those numbers sit fourteen data sources in the inventory and a shared set of one hundred and twenty one documents. Eleven of those documents have been replaced by newer ones, and the documents themselves don't say so. Keep that in mind. It explains the trouble we'll find in a few minutes."
+  },
+  {
+   "type": "flow",
+   "title": "Three jobs AI does with data",
+   "steps": [
+    {
+     "h": "Predict",
+     "t": "Learns from past records to estimate what comes next. At Kitara, how long a claim will take to settle."
+    },
+    {
+     "h": "Search",
+     "t": "Finds the passage or record that answers a question. At Kitara, the annual leave rule."
+    },
+    {
+     "h": "Generate",
+     "t": "Writes new text from what it is given. At Kitara, a draft reply to a complaint letter."
+    }
+   ],
+   "caption": "Each job reads different data. The data decides how good the output is.",
+   "notes": "Before we talk about data, let's be clear about what AI does with it. I find it helps to sort every proposal into one of three jobs.\n\nThe first is to predict. The system studies past records and estimates what comes next. For Kitara that could be how long a claim will take to settle. It needs many past cases with the outcome written down.\n\nThe second is to search. Someone asks a question and the system finds the passage or record that answers it. A staff member asks about annual leave and gets the handbook paragraph. It needs documents that are readable and current.\n\nThe third is to generate. The system writes new text from what it is given, such as a draft reply to a complaint letter. It needs the right letter and the right policy in front of it.\n\nWhen someone in your organisation says we want AI, ask which of the three they mean. The answer tells you which data to look at first."
+  },
+  {
+   "type": "compare",
+   "title": "Data that suits a report does not always suit AI",
+   "left": {
+    "h": "Ready for analytics",
+    "points": [
+     "Rows and columns in one system",
+     "Totals that reconcile",
+     "An analyst spots the odd chart",
+     "One report owner keeps it honest"
+    ]
+   },
+   "right": {
+    "h": "Ready for AI",
+    "points": [
+     "The exact records or passages it reads",
+     "The current version, marked as current",
+     "A named owner and a known sensitivity",
+     "Text a machine can read"
+    ]
+   },
+   "verdict": "A report can hide old data inside a total. An AI answers straight from it, in a confident sentence.",
+   "notes": "Many of you already have data that is good enough for reports. For AI the standard is higher. On the left, data that is ready for analytics. It sits in a system as rows and columns, the totals reconcile, and an analyst looks at the chart and notices when something is odd. One report owner is enough to keep it honest.\n\nOn the right, data that is ready for AI. The AI reads the actual records or passages, down to the line. So it needs the current version marked as current, a named owner, a known sensitivity, and text that a machine can read. Nobody stands beside it to notice a flaw.\n\nThe difference shows up in old data. A report can hide it inside a total. An AI answers straight from it, in a confident sentence."
+  },
+  {
+   "type": "figure",
+   "title": "Four ways data fails an AI use",
+   "fig": "data_failure_modes",
+   "look": [
+    "Missing: 550 of 5,000 customer records have no national ID.",
+    "Stale: 21 days of leave in the 2019 handbook, 28 in 2025, one folder.",
+    "Unowned: 4 of 14 sources name no owner.",
+    "Unreachable: 8 scanned documents return no text."
+   ],
+   "alt": "Four columns naming the ways data fails an AI use: missing, stale, unowned and unreachable, each with a Kitara example and a number.",
+   "notes": "This is the list I'd like you to carry out of the room. Four ways data fails an AI use, each taken from Kitara's files.\n\nMissing. The data the use needs was never captured. In the customer table, five hundred and fifty of five thousand records have no national ID. A model that checks identity cannot learn from a blank.\n\nStale. The data exists but is out of date. The 2019 Staff Handbook gives twenty one days of annual leave and the 2025 edition gives twenty eight. All the editions sit in one folder. We'll watch that one fail in a few minutes.\n\nUnowned. Nobody answers for the data. Four of Kitara's fourteen sources name no owner, and one of them is the shared drive of policies. When it goes wrong, nobody is asked to fix it.\n\nUnreachable. The data exists but the system cannot read it. Eight scanned documents return no text at all to a text reader.\n\nWhen an AI use disappoints, ask which of these four it is. It's usually one of them."
+  },
+  {
+   "type": "table",
+   "title": "Where Kitara's data sits",
+   "header": [
+    "Kind",
+    "What it looks like",
+    "At Kitara"
+   ],
+   "rows": [
+    [
+     "Structured",
+     "Rows and columns, fixed fields",
+     "Core banking S01: 640,000 records"
+    ],
+    [
+     "Semi-structured",
+     "Some labels, no fixed table",
+     "Mobile money log S02: 46 million lines. Branch spreadsheets S13"
+    ],
+    [
+     "Unstructured",
+     "Free text, scans, audio, email",
+     "Claims archive S06: 310,000 files. Shared drive S09: 14,000 documents"
+    ]
+   ],
+   "colw": [
+    2.6,
+    4.2,
+    5.2
+   ],
+   "notes": "Where does all this sit? Data comes in three broad kinds. Structured data is rows and columns with fixed fields. The core banking system is the clearest case, six hundred and forty thousand records, each with the same fields.\n\nSemi-structured data has some labels but no fixed table. The mobile money log holds forty six million lines. The branch report spreadsheets look alike, yet in a sample of six branches we found six different layouts.\n\nUnstructured data is free text, scans, audio and email. The claims archive holds three hundred and ten thousand files. The call centre has three hundred and eighty thousand transcripts, and the shared drive holds fourteen thousand policy documents. Search and generate uses read this third kind, so most of today's examples come from it."
+  },
+  {
+   "type": "define",
+   "title": "AI-ready data",
+   "definition": "Data that is relevant to the use, current, owned, readable by the system, and allowed to be used.",
+   "example": "The 2025 Staff Handbook passes the tests. The shared drive around it has no owner and still holds the 2019 and 2022 editions.",
+   "excel": "Pick the first AI use you want. Which of the five tests would your data pass today?",
+   "notes": "The phrase AI-ready data gets used loosely, so here is the working definition for this course. Data that is relevant to the use, current, owned, readable by the system, and allowed to be used. Five tests.\n\nAt Kitara, take the staff policy assistant. The 2025 Staff Handbook passes the first tests. But the shared drive around it has no owner and still holds the 2019 and 2022 editions, so the data as a whole is not ready.\n\nThink about your own first AI use. Which of the five tests would your data pass today? Say it out loud if it helps. Most tables find at least one test they can't answer, and that's a useful discovery to make before spending money."
+  },
+  {
+   "type": "code",
+   "title": "Three handbooks, three answers to one question",
+   "lang": "python",
+   "code": "import re, pandas as pd, kitara_search as ks\n\nmeta = pd.read_csv('docs_metadata.csv').set_index('file')\nfor y, ext in [(2019, 'docx'), (2022, 'docx'), (2025, 'pdf')]:\n    f = f'policies/Staff Handbook {y}.{ext}'\n    text = ks.extract_text('docs/' + f, ocr=False)\n    days = re.search(r'(\\d+) working days of annual', text).group(1)\n    print(y, days, meta.loc[f, 'status'])",
+   "says": [
+    "Read the table of document facts. The status of each file is held only here.",
+    "Pull the words out of each handbook, whether it is Word or PDF.",
+    "A pattern finds the number before the words working days of annual leave."
+   ],
+   "output": "2019 21 superseded\n2022 24 superseded\n2025 28 current",
+   "notes": "Let's check that claim on the files themselves. Three handbook editions, one question: how many days of annual leave?\n\nThe first lines bring in the tools and read docs_metadata.csv, the spreadsheet that records each document's status. Remember that file.\n\nThe loop opens each handbook and pulls the text out, whether it's a Word file or a PDF.\n\nThen a pattern finds the number just before the words working days of annual leave, and we print it with the document's status.\n\nTwenty one, twenty four and twenty eight. Three answers to one question, and the two oldest are marked superseded only in that spreadsheet. The handbooks themselves don't say so."
+  },
+  {
+   "type": "code",
+   "title": "Keyword search puts the old handbook first",
+   "lang": "python",
+   "code": "corpus = ks.load_corpus('.', ocr=False)\nsearch = ks.Searcher(ks.build_chunks(corpus))\nq = 'How many days of annual leave am I entitled to?'\nfor cur in (False, True):\n    rows = search.search(q, 'bm25', k=3, current_only=cur)\n    print('current only:', cur, list(rows.chunk_id))",
+   "says": [
+    "Read every document and cut it into passages. The scans give no text yet.",
+    "Ask the question as an employee would. Keep the top three passages.",
+    "First run, everything. D001, the 2019 handbook, ranks first.",
+    "Second run, current documents only. D003, the 2025 handbook, ranks first."
+   ],
+   "output": "current only: False ['D001-01', 'D002-01', 'D003-01']\ncurrent only: True ['D003-01', 'D041-01', 'D043-01']",
+   "notes": "Let's ask a search system the question an employee would type. This is keyword search, which ranks passages by the words they share with the question.\n\nThe first two lines read every document and cut the text into passages. The eight scanned files give back no text yet. That's a problem for Session 5.\n\nThen we ask the question and keep the top three passages. A keyword search has no idea that one handbook is older than another. It only counts words.\n\nFirst run, on everything. D001, the 2019 handbook, comes first, and D002, the 2022 one, second. The current handbook, D003, comes third. An employee who reads only the top answer is told twenty one days.\n\nSecond run, with a filter that keeps only current documents. D003, the 2025 handbook, comes first and the old editions are gone. The filter works because the status sits in the spreadsheet and someone wired it in.\n\nA document's own text never says it is stale. Someone has to record that fact, and someone has to answer for the record."
+  },
+  {
+   "type": "trap",
+   "title": "A confident answer from last year's handbook",
+   "looks": "The assistant says you get 21 days of annual leave and quotes a handbook. It reads well, so nobody checks.",
+   "why": "Search matches words. The 2019 handbook uses almost the same words as the 2025 one, and its status sits in a spreadsheet the search never reads.",
+   "fix": "Mark the current version. Keep old editions out of the search. Give the shared drive an owner who retires old editions.",
+   "notes": "Picture the staff policy assistant six months from now, live on the intranet.\n\nAn employee asks about annual leave and the assistant answers, you get twenty one days, and quotes a handbook. It reads well. Few people check a quotation, so nobody does.\n\nThe search matches words, and the 2019 handbook uses almost the same words as the 2025 one. Whether a document is still in force is held in a spreadsheet that the search never reads. So the old answer can rise to the top, in a confident sentence.\n\nThree repairs. Mark which version is current. Keep superseded editions out of what the search can reach. And give the shared drive an owner who retires old editions when new ones arrive. Your data colleague can do the first two. The third is a decision for you."
+  },
+  {
+   "type": "code",
+   "title": "A check that stops on a missing owner",
+   "lang": "python",
+   "expect_error": true,
+   "code": "import pandas as pd\n\nsources = pd.read_csv('sources.csv')\nno_owner = sources[sources.owner.isna()].source_id.tolist()\nprint(no_owner)\nassert not no_owner, f'{len(no_owner)} sources have no named owner: {no_owner}'",
+   "says": [
+    "Read the inventory and list the sources whose owner is blank.",
+    "An assert is a check written as code. It stops the program when the statement is false."
+   ],
+   "output": "['S08', 'S09', 'S12', 'S13']\nAssertionError: 4 sources have no named owner: ['S08', 'S09', 'S12', 'S13']",
+   "notes": "This one fails on purpose, and I'd like you to read the failure the way a leader should.\n\nWe read the source inventory, sources.csv, and list every source whose owner column is blank. Four come back. The call centre transcripts, the shared drive of policies, the email archive and the branch report spreadsheets.\n\nThen comes an assert, which is a check written as code. It says the list of ownerless sources must be empty. If it isn't, stop and say why.\n\nIt stopped. Four sources have no named owner, and that message is the finding. We'll build checks like this properly in Session 4. A failed check is useful. A pipeline that carries on without one will feed these four sources to an AI without anyone asking who answers for them."
+  },
+  {
+   "type": "table",
+   "title": "Four figures quoted about stalled AI projects",
+   "header": [
+    "Figure",
+    "Source",
+    "What it is"
+   ],
+   "rows": [
+    [
+     "60% of AI projects without AI-ready data abandoned through 2026",
+     "Gartner, Feb 2025",
+     "A forecast"
+    ],
+    [
+     "30% of generative AI projects abandoned after proof of concept by end of 2025",
+     "Gartner, Jul 2024",
+     "A forecast"
+    ],
+    [
+     "42% of companies abandoned most AI initiatives before production",
+     "S&P Global Market Intelligence",
+     "A survey of about 1,000 people in North America and Europe"
+    ],
+    [
+     "95% of organisations see no return on generative AI",
+     "MIT NANDA, Jul 2025",
+     "Preliminary research: 153 survey responses, 52 interviews"
+    ]
+   ],
+   "colw": [
+    5.4,
+    3.0,
+    3.6
+   ],
+   "size": 19,
+   "notes": "You'll hear numbers about stalled AI projects in board rooms and conference talks. Four of them come up again and again, so let's put each in its place.\n\nGartner, in February 2025, forecast that through 2026 organisations will abandon sixty percent of AI projects that lack AI-ready data. That's a forecast. Gartner, in July 2024, forecast that thirty percent of generative AI projects would be abandoned after the proof of concept by the end of 2025. Also a forecast.\n\nS&P Global Market Intelligence surveyed about a thousand people in North America and Europe. It reported that forty two percent of companies had abandoned most of their AI initiatives before production. That's a survey.\n\nMIT's NANDA group said in July 2025 that ninety five percent of organisations saw no return on generative AI. It labels itself preliminary research, with a hundred and fifty three survey responses and fifty two interviews. Each figure measures something different, and the next table says what to watch for."
+  },
+  {
+   "type": "table",
+   "title": "What to remember about each figure",
+   "header": [
+    "Figure",
+    "Caution"
+   ],
+   "rows": [
+    [
+     "Gartner 60%",
+     "A prediction, repeated widely. The same release cites a survey in which 63% of data management leaders lack, or are unsure they have, the right data practices."
+    ],
+    [
+     "Gartner 30%",
+     "A prediction. No source found that checks whether it happened."
+    ],
+    [
+     "S&P 42%",
+     "A share of companies. Often misreported as 42% abandoning AI altogether."
+    ],
+    [
+     "MIT NANDA 95%",
+     "Preliminary, from a small conference sample. Critics say it counts no profit impact as failure."
+    ]
+   ],
+   "colw": [
+    2.6,
+    9.4
+   ],
+   "size": 20,
+   "notes": "Here is how I'd use each one. The Gartner sixty percent is a prediction, and it's repeated far more often than it's checked. The more useful part of that release is a survey of data management leaders. Sixty three percent said they lack, or are unsure they have, the right data practices for AI. Reports quote the sample as two hundred and forty eight leaders in one place and one thousand two hundred and three in another, so check the release before you repeat a sample size.\n\nGartner's thirty percent is also a prediction, and I found nothing that checks whether it came true.\n\nThe S&P number is a share of companies, and it's often repeated as forty two percent abandoning AI altogether. What the companies said was that they abandoned most of their initiatives before production.\n\nMIT's ninety five percent comes from a small group of conference attendees, and critics say it treats no profit impact as failure. Call it preliminary research and never quote it as a failure rate. If someone quotes any of these in your board room, ask what it measured and who was asked. Then show them your own files."
+  },
+  {
+   "type": "compare",
+   "title": "Two numbers about the data itself",
+   "left": {
+    "h": "Cisco AI Readiness Index, 2025",
+    "points": [
+     "A survey of 8,000 senior leaders at companies of over 500 staff",
+     "19% said their data infrastructure is fully centralised",
+     "Leaders rated themselves, in a vendor's survey"
+    ]
+   },
+   "right": {
+    "h": "80 to 90% of data is unstructured",
+    "points": [
+     "An estimate credited to Gartner and IDC",
+     "No original document found",
+     "IDC figures, as reported, cover all data created worldwide",
+     "Nobody counts files"
+    ]
+   },
+   "verdict": "Use both as context. Your own inventory is the evidence.",
+   "notes": "Two more numbers, both about data itself. Cisco's AI Readiness Index, published in October 2025, surveyed about eight thousand senior leaders at companies with more than five hundred staff. Nineteen percent said their data infrastructure was fully centralised. The leaders rated themselves, in a vendor's survey, so read it as a self-assessment. Cisco also reported that the thirteen percent of organisations it calls Pacesetters were about four times as likely to move pilots into production.\n\nThe second is the claim that eighty to ninety percent of enterprise data is unstructured. You'll see it credited to Gartner and to IDC. I could find no original document behind it, and the IDC figures I found, as reported, cover all data created worldwide, which differs from what one company holds. Nobody counts files, so treat it as an estimate.\n\nIn Session 5 you'll count your own documents. Until then, use both numbers as context and treat your own inventory as the evidence."
+  },
+  {
+   "type": "figure",
+   "title": "What each Kitara use case needs, and what the files hold",
+   "fig": "use_case_data_map",
+   "look": [
+    "Staff policy assistant: the text exists. A named owner is missing.",
+    "Claims triage and fraud flagging: no known outcomes to learn from.",
+    "Churn prediction: transactions cannot be matched to customers."
+   ],
+   "alt": "A grid of four AI uses against the data each needs, marked available, partly or missing.",
+   "notes": "Let's connect the failures to four AI uses Kitara could pick. Each column is a use case and each row is something the use needs. A filled dot means it's there, a half dot means there but with a known flaw, and a ring means it's missing.\n\nThe staff policy assistant has the text. The version question is only partly answered, and nobody owns the shared drive.\n\nClaims triage and fraud flagging both need known outcomes to learn from, and no file holds a claim outcome or a fraud flag. A model with no outcomes has nothing to be taught with, however many letters we have.\n\nChurn prediction has an owner for its data. It cannot link the transaction log to customers, because the phone numbers in the log are hashed.\n\nNone of these is ruled out. The grid tells us what to repair first, and the canvas is where you'll draw the same grid for your own organisation."
+  },
+  {
+   "type": "flow",
+   "title": "The use case canvas, filled top to bottom",
+   "steps": [
+    {
+     "h": "The problem",
+     "t": "Name, business owner, problem today, who feels it, predict or search or generate."
+    },
+    {
+     "h": "The data",
+     "t": "Each data set, where it lives, owner, sensitivity, personal data, quality needed."
+    },
+    {
+     "h": "The measure",
+     "t": "One success measure, the number today, the target and the date."
+    },
+    {
+     "h": "The decision",
+     "t": "Effort and value from 1 to 5, main risk, what you need from your sponsor."
+    }
+   ],
+   "caption": "Priority is value divided by effort. A higher number is a better first use.",
+   "notes": "Here is the Use Case Canvas, the workbook called Use Case Canvas dot xlsx that you'll fill in during the workshop. One column per use case, three columns in all, filled from top to bottom in four blocks. Today moves the first of our five dimensions, use cases and sponsorship, and touches the second, data.\n\nFirst, the problem. Give the use case a name your board would recognise. Name the business owner who answers for the result, and write what goes wrong today, with a number if you have one. Say whether the AI task is predict, search or generate.\n\nSecond, the data. List each data set the use needs, where it lives and who owns it. Then its sensitivity, which is how carefully it must be handled, and whether it holds personal data. If you're unsure about personal data, write yes.\n\nThird, the measure. One success measure with a unit, the number today, and the target.\n\nFourth, the decision. Score effort and value from one to five. The sheet divides value by effort to give a priority, and a higher number is a better first use. Then name the main risk and what you need from your sponsor.\n\nSpend most of your forty minutes on the second block. Most of the surprises turn up there."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: three AI uses on the canvas",
+   "tool": "Use Case Canvas workbook and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Name three AI uses and a business owner each",
+    "Write the problem today, with a number, and mark it predict, search or generate",
+    "List the data each needs and where it lives",
+    "Name the data owner, sensitivity, personal data",
+    "Test each data line against the four failures",
+    "Score effort and value, read the priority",
+    "Data colleague: run the handbook tasks in the notebook"
+   ],
+   "done": "Three use cases sit on the canvas, each with its data, where it lives and who owns it. Gaps are written down.",
+   "notes": "This is your forty minutes, and it is about your own organisation. Open the Use Case Canvas workbook and give each of your three uses a business owner you could name out loud.\n\nWrite the problem with a number if you have one, and mark whether the job is predict, search or generate. Then list the data each use needs, one line per data set, with where it lives and who owns it. If you can't name an owner, write unknown. An unknown owner is a finding. Next, test every data line against the four failures, missing, stale, unowned and unreachable, and write the main risk under each use.\n\nWhile the leader and the data colleague fill the canvas, the data colleague also opens the team notebook. It walks through the three handbook editions, the stale search answer, the four sources with no owner and the eight scans. Whoever finishes first helps the other.\n\nI'll be around the room. Call me over if a data line has you stuck."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Kitara's search put the 2019 handbook first. Which of the four ways data fails is that?",
+     "a": "Stale. The data exists and is out of date. Its status sat in a spreadsheet the search never read."
+    },
+    {
+     "q": "Gartner says 60% of AI projects without AI-ready data will be abandoned. What kind of figure is that?",
+     "a": "A forecast. Nobody has counted what happened."
+    },
+    {
+     "q": "Who in your organisation signs off your first AI use, and who answers for the data it reads?",
+     "a": "Two named people. If you cannot name them, that is your first finding."
+    }
+   ],
+   "notes": "Kitara's search put the 2019 handbook first. Which of the four ways data fails is that? Have a think.\n\nStale. The data exists and is out of date, and its status sat in a spreadsheet the search never read.\n\nSecond. Gartner says sixty percent of AI projects without AI-ready data will be abandoned. What kind of figure is that? Sit with it for a second.\n\nA forecast. It's a prediction by analysts, and nobody has counted what happened.\n\nLast, and this one is for the leaders. Who in your organisation signs off your first AI use, and who answers for the data it reads? Think it over.\n\nTwo named people, who may or may not be the same person. If you can't name them yet, that's your first finding, and Session 2 is where we start turning findings like that into scores."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "AI does three jobs with data: predict, search and generate. Each reads different data.",
+    "Data fails in four ways: missing, stale, unowned and unreachable.",
+    "Published figures are forecasts, surveys and estimates. Ask what each one measured.",
+    "The canvas ties each use to its data, where it lives and who owns it."
+   ],
+   "next": "Score your readiness",
+   "notes": "AI does three jobs with data. It predicts, it searches and it generates, and each one reads different data.\n\nData fails in four ways. It's missing, stale, unowned or unreachable. Kitara showed us all four in its own files, and the 2019 handbook came first in the search.\n\nThe published figures are forecasts, surveys and estimates, so ask what each one measured and who was asked.\n\nAnd the canvas ties each use to its data, where it lives and who owns it. Keep it close, because the first dimension on next session's scorecard asks about these uses.\n\nNext session we score where your organisation stands today, on five dimensions and five levels, with evidence behind every score. It's the first of your three workpieces."
+  }
+ ],
+ "lab": {
+  "intro": "Write three AI uses for your own organisation on Use Case Canvas.xlsx, with the data each needs, where it lives and who owns it. The data colleague runs the team notebook to find three conflicting handbook editions and the stale search answer.",
+  "workshop": [
+   {
+    "task": "Name three AI uses on the canvas and give each a business owner you could name out loud.",
+    "example": "Kitara: staff policy question answering (owner would be the Head of Human Resources), claims triage (Head of Claims), agent fraud detection on mobile money. All three come from the candidates column of sources.csv."
+   },
+   {
+    "task": "Write the problem today for each use, with a number if you have one, and mark the AI task as predict, search or generate.",
+    "example": "Policy assistant, search: the 2019, 2022 and 2025 handbooks give 21, 24 and 28 days of annual leave and sit in one folder. Claims triage, predict: 96,000 claim records in S05. Fraud detection, predict: 46 million log lines in S02."
+   },
+   {
+    "task": "List the data each use needs, one line per data set, and where each lives.",
+    "example": "Policy assistant: policy documents on the shared drive S09 (14,000 documents, refresh unknown). Claims triage: claims system S05 and claims archive S06 (310,000 files). Fraud: mobile money log S02."
+   },
+   {
+    "task": "Name the data owner for each line as a role, then record the sensitivity class and whether it holds personal data.",
+    "example": "S09 has no owner, no class and personal data not decided. S05 is owned by the Head of Claims, restricted, personal data Y, no steward. S02 is recorded as owned by IT while Digital Channels also claims it. restricted, personal data Y."
+   },
+   {
+    "task": "Test every data line against missing, stale, unowned and unreachable, and write the main risk for each use.",
+    "example": "Policy assistant: stale (three editions) and unowned (S09). Claims triage: no known outcome field, and S06 holds scanned images. Fraud: no fraud flag in the log, so nothing to learn from."
+   },
+   {
+    "task": "Score effort and value from 1 to 5 and read the priority. Write the decision you need from your sponsor under each use.",
+    "example": "Illustrative scores: policy assistant effort 2, value 4, priority 2.0. Claims triage effort 4, value 5, priority 1.25. Fraud detection effort 5, value 5, priority 1.0. Decision for the first: name an owner for S09 and agree that old editions are retired."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Annual leave in three handbooks\nThe three Staff Handbook editions sit in one folder. Read each one and store the number of working days of annual leave in a dictionary called `leave`, keyed by year, with whole numbers as values."
+   },
+   {
+    "code": "import re\nimport pandas as pd\nimport kitara_search as ks\n\nhandbooks = [('2019', 'Staff Handbook 2019.docx'), ('2022', 'Staff Handbook 2022.docx'), ('2025', 'Staff Handbook 2025.pdf')]\nleave = {}\nfor year, f in handbooks:\n    text = ks.extract_text('docs/policies/' + f, ocr=False)\n    leave[year] = int(re.search(r'(\\d+) working days of annual leave', text).group(1))\nprint(leave)",
+    "starter": "import re\nimport pandas as pd\nimport kitara_search as ks\n\nhandbooks = [('2019', 'Staff Handbook 2019.docx'), ('2022', 'Staff Handbook 2022.docx'), ('2025', 'Staff Handbook 2025.pdf')]\nleave = {}\n# Your turn: for each handbook, read its text with ks.extract_text('docs/policies/' + f, ocr=False)\n# Your turn: find the number before 'working days of annual leave' with re.search and store it in leave[year] as a whole number\nprint(leave)\n"
+   },
+   {
+    "code": "assert leave == {'2019': 21, '2022': 24, '2025': 28}, 'Look for the number just before the words working days of annual leave in each handbook'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. A second conflict\nThe expense approval limit also changed between editions. Find the amount in shillings after the words `above UGX` in each handbook and store it in `expense`, keyed by year, as whole numbers."
+   },
+   {
+    "code": "expense = {}\nfor year, f in handbooks:\n    text = ks.extract_text('docs/policies/' + f, ocr=False)\n    expense[year] = int(re.search(r'above UGX ([\\d,]+)', text).group(1).replace(',', ''))\nprint(expense)",
+    "starter": "expense = {}\n# Your turn: repeat the loop from Task 1, but search for the amount after 'above UGX'\n# Hint: the amount has commas, such as 200,000. Remove them before you make it a whole number.\nprint(expense)\n"
+   },
+   {
+    "code": "assert expense == {'2019': 200000, '2022': 350000, '2025': 500000}, 'The amount follows the words above UGX. Remove the commas before int()'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. The stale answer\nSearch all documents for the leave question with keyword search. Store the first result in `first` and the first result from current documents only in `first_current`."
+   },
+   {
+    "code": "corpus = ks.load_corpus('.', ocr=False)\nsearch = ks.Searcher(ks.build_chunks(corpus))\nq = 'How many days of annual leave am I entitled to each year?'\nfirst = search.search(q, 'bm25', k=1).iloc[0]\nfirst_current = search.search(q, 'bm25', k=1, current_only=True).iloc[0]\nprint(first.doc_id, first.status, first_current.doc_id)",
+    "starter": "corpus = ks.load_corpus('.', ocr=False)\nsearch = ks.Searcher(ks.build_chunks(corpus))\nq = 'How many days of annual leave am I entitled to each year?'\n# Your turn: first = the top result of search.search(q, 'bm25', k=1), taken with .iloc[0]\n# Your turn: first_current = the same search with current_only=True\n"
+   },
+   {
+    "code": "assert first.doc_id == 'D001', 'Without a filter the 2019 handbook (D001) should come first'\nassert first_current.doc_id == 'D003', 'With current_only=True the 2025 handbook (D003) should come first'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Sources with no owner\nRead `sources.csv`. Store the ids of sources with a blank owner in `no_owner`, and the number of sources with a blank owner, steward or sensitivity class in `n_gap`."
+   },
+   {
+    "code": "sources = pd.read_csv('sources.csv')\nno_owner = sources[sources.owner.isna()].source_id.tolist()\nn_gap = int(sources[['owner', 'steward', 'sensitivity']].isna().any(axis=1).sum())\nprint(no_owner, n_gap)",
+    "starter": "sources = pd.read_csv('sources.csv')\n# Your turn: no_owner = the source_id values where owner is blank (use .isna()), as a list\n# Your turn: n_gap = how many rows have a blank in owner, steward or sensitivity (try .isna().any(axis=1).sum())\n"
+   },
+   {
+    "code": "assert no_owner == ['S08', 'S09', 'S12', 'S13'], 'Four sources have a blank owner'\nassert n_gap == 7, 'Count the rows with a blank in any of owner, steward and sensitivity'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Documents a text reader cannot read\nA scanned PDF returns almost no text. Find the documents whose text is shorter than 40 characters, store them in `no_text`, and count how many of them are superseded in `n_old`."
+   },
+   {
+    "code": "no_text = corpus[corpus.text.str.len() < 40]\nn_old = int((no_text.status == 'superseded').sum())\nprint(len(no_text), n_old)",
+    "starter": "# Your turn: no_text = the rows of corpus whose text is shorter than 40 characters\n# Your turn: n_old = how many of those rows have status 'superseded'\n"
+   },
+   {
+    "code": "assert len(no_text) == 8, 'Eight scanned documents return no text'\nassert n_old == 5, 'Five of the eight scans are superseded'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## For the leader\nLook at your results. Who should own the policy shared drive (S09), and what rule would keep the 2019 and 2022 handbooks away from an AI search? Write your answer in one sentence below."
+   }
+  ]
+ }
+}

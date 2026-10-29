@@ -1,0 +1,40 @@
+ENTERPRISE DATA READINESS FOR AI
+12 sessions of 2 hours | 24 hours | free tools only | for a decision maker and a data or IT colleague from the same organisation
+
+A leader and a data or IT colleague from one organisation. No coding needed for leaders. Teams should be comfortable with spreadsheets and databases. They finish with a scored baseline, a tested search over the organisation's own documents and a twelve-month plan presented as a board paper. Delivery is either a cohort of organisations or in house for one organisation. Pairing a decision maker with a data colleague is preferred. KLAi issues no certificate for the course.
+
+STATUS: built. 276 slides, 12 team notebooks with solutions, the Kitara Group case data, the workpiece templates and the handouts exist. See 05 Course Maintenance/Verification Record.txt for what is and is not checked.
+
+01 Course Overview
+Course Roadmap (one page).pdf is the page to share with participants. The .pptx beside it is the editable version.
+
+02 Class Slides
+One PowerPoint per session, numbered in teaching order. 276 slides in all: 157 are animated (441 click reveals), and every slide has speaker notes written as a script to read aloud (about 5.2 hours in all). 71 slides carry code for the live demonstration. Play the animated slides in Slide Show mode.
+
+03 Learner Materials
+Setup Guide.docx: what to bring and do before Session 1. Send it before the course starts.
+Participant Workbook.docx: how to use the course, the five dimensions and levels, the three workpieces, a task page for each session with ruled answer space, the decision questions, the vocabulary, and the pages Pipeline map, Data protection map, Search pilot report outline and Board presentation outline.
+Glossary.docx: all 84 vocabulary terms with their plain meaning and where they appear.
+Workpiece Templates: Board Paper Outline.docx, Data Contract Template.xlsx, Data Inventory.xlsx, Hosting Cost Model.xlsx, Licence Register.xlsx, Readiness Scorecard (Kitara example).xlsx, Readiness Scorecard.xlsx, Risk Register.xlsx, Roadmap Planner.xlsx, Search Test Sheet.xlsx, Use Case Canvas.xlsx.
+Practice Files/data: the Kitara Group files (see DATA DICTIONARY.txt). Practice Files/data.zip is the same set for participants to upload. Practice Files/notebooks: the student team notebook for each session. Open them in Google Colab.
+
+04 Facilitator Materials
+Course Plan and Tutor Guide.docx: course shape, how a pair attends, before the course, timetable, a page for each session with the workshop answer key and decision answer, workpiece checklists, room and confidentiality.
+Benchmark and Design Report.docx: the evidence, frameworks, law, tool licences, East African context, comparator courses and the design.
+Lab Solutions: the solution notebook for each session (tutor only).
+run_all_labs.py: runs every solution notebook top to bottom. Use --allow-missing-libs on a machine without the heavy libraries.
+Playback and Rehearsal Checklist.txt: every animated slide with its click count, the cells to run once in Colab and the workbook to open for each session.
+
+05 Course Maintenance
+Authoring: everything needed to rebuild the decks, notebooks, data, figures and documents. Read Authoring/README - Read First.txt.
+Research/Research Notes.txt: every external fact with its source and what is unconfirmed.
+Verification Record.txt: what was checked, what could not be, and what to do before the first class.
+
+BEFORE THE FIRST CLASS
+1 Upload data.zip where participants can reach it.
+2 Send the Setup Guide and ask each participant to run the first notebook cell in Colab.
+3 Run run_all_labs.py in 04 Facilitator Materials, then run the heavy-library cells once in Colab (the Playback and Rehearsal Checklist lists them).
+4 Play every animated slide in PowerPoint.
+5 Read the notes aloud once per session.
+6 Collect from each participant the written approval that their 50 documents are non-confidential (needed by Session 5).
+7 Read the primary sources listed in section 10 of the Benchmark and Design Report.

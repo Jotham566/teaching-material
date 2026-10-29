@@ -1,0 +1,13 @@
+id,risk,likelihood,impact,owner_role,current_control,status
+R01,Personal data enters the search index,4,5,Data protection officer,Masking rule drafted; not yet run on the claims letters,Open
+R02,Stale policy returned as the current answer,5,3,Head of Human Resources,None. Superseded status is held only in the metadata file,Open
+R03,Restricted documents exposed through search,3,5,Head of IT,Permission filter built in the pilot; not tested on all groups,Mitigating
+R04,Vendor lock-in to one hosting or search supplier,2,3,Head of IT,Exit plan requested in the supplier questions,Open
+R05,Model licence changes after we build on it,2,4,Head of IT,Licence register started; no model checked yet,Open
+R06,Scanned documents unreadable by the text reader,4,2,Head of Claims,OCR run on a sample of eight scans,Mitigating
+R07,No owner for claims data,3,4,Steering council,Owner named on paper for the claims system; archive still unowned,Open
+R08,Shadow use of public chatbots with customer data,4,3,Head of Risk,Circular on generative AI tools issued; no monitoring,Mitigating
+R09,Cross-border transfer without a legal basis,2,5,Head of Legal and Compliance,Legal review planned before any foreign hosting,Open
+R10,Pipeline fails silently and the index goes stale,2,3,Head of IT,Nightly extracts exist; no freshness alert,Open
+R11,Embedding model weak on Swahili,3,2,Head of Kitara Kenya operations,Six Swahili test questions kept in the test set,Accepted
+R12,Staff leave with the knowledge of how the data fits together,3,2,Head of Human Resources,Lineage drawn for two chains; nothing written for the rest,Open

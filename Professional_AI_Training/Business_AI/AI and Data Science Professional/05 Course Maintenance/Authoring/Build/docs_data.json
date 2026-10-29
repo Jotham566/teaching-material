@@ -1,0 +1,2483 @@
+{
+ "vocab": [
+  {
+   "term": "Data science",
+   "meaning": "Using data, tools and careful thinking to answer a question and support a decision.",
+   "sheet": "Analysing a workbook to advise your manager",
+   "session": 1
+  },
+  {
+   "term": "Machine learning",
+   "meaning": "A computer finding a rule from examples, instead of a person writing the rule.",
+   "sheet": "A trend line that Sheets fits for you",
+   "session": 1
+  },
+  {
+   "term": "Artificial intelligence",
+   "meaning": "Any software that does something we would call smart. Machine learning is one way to build it.",
+   "sheet": "",
+   "session": 1
+  },
+  {
+   "term": "Dataset",
+   "meaning": "A collection of data about one subject, arranged in tables of rows and columns.",
+   "sheet": "A workbook with its tabs",
+   "session": 1
+  },
+  {
+   "term": "Model",
+   "meaning": "A rule, found from data, that turns inputs into a prediction or an explanation.",
+   "sheet": "A formula, but one found from past data",
+   "session": 1
+  },
+  {
+   "term": "Lifecycle",
+   "meaning": "The stages a data project passes through, from the question to the decision and the follow up.",
+   "sheet": "The steps from a blank sheet to a report",
+   "session": 1
+  },
+  {
+   "term": "Grain",
+   "meaning": "The meaning of one row in a table, written as one sentence.",
+   "sheet": "The note you write above a sheet: each row is one invoice",
+   "session": 2
+  },
+  {
+   "term": "Primary key",
+   "meaning": "A column whose value is different in every row, so it names exactly one row.",
+   "sheet": "An invoice number or ID column that never repeats",
+   "session": 2
+  },
+  {
+   "term": "Foreign key",
+   "meaning": "A column that holds the key of another table, so a row can point to a row there.",
+   "sheet": "The lookup value you give VLOOKUP",
+   "session": 2
+  },
+  {
+   "term": "Variable type",
+   "meaning": "The kind of thing a column holds: number, category, date or text.",
+   "sheet": "The format of a column: number, date or plain text",
+   "session": 2
+  },
+  {
+   "term": "Data dictionary",
+   "meaning": "A short document that explains each table and column: meaning, type and key.",
+   "sheet": "A legend or notes tab beside the data",
+   "session": 2
+  },
+  {
+   "term": "Median",
+   "meaning": "The middle value when numbers are sorted. Half sit below it and half above.",
+   "sheet": "=MEDIAN(range)",
+   "session": 3
+  },
+  {
+   "term": "Quartile",
+   "meaning": "One of three cut points that split sorted numbers into four equal groups.",
+   "sheet": "=QUARTILE(range, 1)",
+   "session": 3
+  },
+  {
+   "term": "Standard deviation",
+   "meaning": "A typical distance of the values from the mean. Bigger means more spread out.",
+   "sheet": "=STDEV(range)",
+   "session": 3
+  },
+  {
+   "term": "Skew",
+   "meaning": "A lopsided shape with a long tail on one side.",
+   "sheet": "",
+   "session": 3
+  },
+  {
+   "term": "Histogram",
+   "meaning": "A chart that counts how many values fall in each band of equal width.",
+   "sheet": "Chart type: Histogram chart",
+   "session": 3
+  },
+  {
+   "term": "Pivot table",
+   "meaning": "A table that groups the rows and summarises each group.",
+   "sheet": "Insert, Pivot table",
+   "session": 3
+  },
+  {
+   "term": "Truncated axis",
+   "meaning": "A chart axis that starts above zero, which makes differences look bigger.",
+   "sheet": "",
+   "session": 3
+  },
+  {
+   "term": "Probability",
+   "meaning": "The share you get over many tries.",
+   "sheet": "COUNTIF divided by rows",
+   "session": 4
+  },
+  {
+   "term": "Sample",
+   "meaning": "A few rows from the whole file.",
+   "sheet": "30 rows of 2,000",
+   "session": 4
+  },
+  {
+   "term": "Sampling error",
+   "meaning": "The gap between a sample and the whole.",
+   "sheet": "Two AVERAGEs that differ",
+   "session": 4
+  },
+  {
+   "term": "Simulation",
+   "meaning": "Many random draws done by computer.",
+   "sheet": "RANDBETWEEN filled down",
+   "session": 4
+  },
+  {
+   "term": "Correlation",
+   "meaning": "A number from -1 to 1 for two columns moving together.",
+   "sheet": "CORREL",
+   "session": 4
+  },
+  {
+   "term": "Confounder",
+   "meaning": "A hidden factor that drives two things.",
+   "sheet": "A column never added",
+   "session": 4
+  },
+  {
+   "term": "Selection bias",
+   "meaning": "Rows chosen by something other than chance.",
+   "sheet": "A forgotten filter",
+   "session": 4
+  },
+  {
+   "term": "Survivorship bias",
+   "meaning": "Studying only what stayed.",
+   "sheet": "Deleted failed rows",
+   "session": 4
+  },
+  {
+   "term": "Notebook",
+   "meaning": "A document made of cells. Some cells hold Python code and some hold notes.",
+   "sheet": "A workbook",
+   "session": 5
+  },
+  {
+   "term": "Variable",
+   "meaning": "A name that stands for a value you stored.",
+   "sheet": "A cell address, with a name you choose",
+   "session": 5
+  },
+  {
+   "term": "String",
+   "meaning": "Text in quotes, such as 'Staples'. Python calls text a string.",
+   "sheet": "A text cell",
+   "session": 5
+  },
+  {
+   "term": "List",
+   "meaning": "Several values in order, inside square brackets.",
+   "sheet": "A column of values",
+   "session": 5
+  },
+  {
+   "term": "Dictionary",
+   "meaning": "Values stored under labels, so you find each one by its label.",
+   "sheet": "A lookup table used with VLOOKUP",
+   "session": 5
+  },
+  {
+   "term": "Error message",
+   "meaning": "The note Python prints when it cannot run a line. Its last line says what went wrong.",
+   "sheet": "An error such as #REF! or #NAME?",
+   "session": 5
+  },
+  {
+   "term": "Condition",
+   "meaning": "A test that is either True or False, such as points >= 2000.",
+   "sheet": "The test inside IF()",
+   "session": 6
+  },
+  {
+   "term": "Loop",
+   "meaning": "Code that repeats the same steps for each item in a list.",
+   "sheet": "Dragging a formula down a column",
+   "session": 6
+  },
+  {
+   "term": "Function",
+   "meaning": "A named set of steps that takes values in and gives one answer back.",
+   "sheet": "A formula you name yourself",
+   "session": 6
+  },
+  {
+   "term": "Argument",
+   "meaning": "The value you hand to a function when you call it.",
+   "sheet": "The cell a formula points at",
+   "session": 6
+  },
+  {
+   "term": "Return value",
+   "meaning": "The answer a function sends back.",
+   "sheet": "The result shown in the formula's cell",
+   "session": 6
+  },
+  {
+   "term": "Edge case",
+   "meaning": "A value exactly on a boundary, where the rule changes.",
+   "sheet": "The value where an IF flips",
+   "session": 6
+  },
+  {
+   "term": "DataFrame",
+   "meaning": "A table held in Python's memory, with named columns and numbered rows.",
+   "sheet": "A worksheet",
+   "session": 7
+  },
+  {
+   "term": "Series",
+   "meaning": "One column of a DataFrame.",
+   "sheet": "A column",
+   "session": 7
+  },
+  {
+   "term": "Index",
+   "meaning": "The row labels down the left edge of a DataFrame.",
+   "sheet": "The row numbers",
+   "session": 7
+  },
+  {
+   "term": "Boolean mask",
+   "meaning": "A column of True and False values used to choose rows.",
+   "sheet": "A helper column saying Keep or Drop",
+   "session": 7
+  },
+  {
+   "term": "Method",
+   "meaning": "An action attached to an object, written with a dot and brackets, such as head().",
+   "sheet": "A menu command",
+   "session": 7
+  },
+  {
+   "term": "Attribute",
+   "meaning": "A fact stored on an object, written without brackets, such as shape.",
+   "sheet": "A value in the status bar",
+   "session": 7
+  },
+  {
+   "term": "Duplicate",
+   "meaning": "A line that repeats another line exactly.",
+   "sheet": "What Remove Duplicates deletes",
+   "session": 8
+  },
+  {
+   "term": "Missing value",
+   "meaning": "An empty cell where a value should be.",
+   "sheet": "A blank cell",
+   "session": 8
+  },
+  {
+   "term": "Data type",
+   "meaning": "What kind of value a column holds: whole number, decimal, text or date.",
+   "sheet": "Format Cells: Number, Text, Date",
+   "session": 8
+  },
+  {
+   "term": "String method",
+   "meaning": "An action for text columns, written after .str, such as strip.",
+   "sheet": "TRIM, PROPER and SUBSTITUTE",
+   "session": 8
+  },
+  {
+   "term": "Outlier",
+   "meaning": "A value far from the rest. Check it before you remove it.",
+   "sheet": "A number that stands out in a sorted column",
+   "session": 8
+  },
+  {
+   "term": "Cleaning log",
+   "meaning": "A table of every change, with row counts before and after, and why.",
+   "sheet": "A notes tab listing your edits",
+   "session": 8
+  },
+  {
+   "term": "Residual",
+   "meaning": "The gap left between your total and the known total, once everything explained is explained.",
+   "sheet": "The difference cell on a reconciliation",
+   "session": 8
+  },
+  {
+   "term": "groupby",
+   "meaning": "Split a table into groups by one or more columns.",
+   "sheet": "The rows box of a PivotTable",
+   "session": 9
+  },
+  {
+   "term": "Aggregation",
+   "meaning": "One calculation that turns many values into one.",
+   "sheet": "The values box of a PivotTable",
+   "session": 9
+  },
+  {
+   "term": "Merge",
+   "meaning": "Join two tables by matching a shared column, returning every match.",
+   "sheet": "VLOOKUP, but with every match",
+   "session": 9
+  },
+  {
+   "term": "Left join",
+   "meaning": "A merge that keeps every row of the first table.",
+   "sheet": "VLOOKUP with IFERROR around it",
+   "session": 9
+  },
+  {
+   "term": "Fan out",
+   "meaning": "One row matching several rows, so the result gains rows.",
+   "sheet": "A lookup list with repeated keys",
+   "session": 9
+  },
+  {
+   "term": "pivot_table",
+   "meaning": "A pandas command that lays groups out as a grid.",
+   "sheet": "A PivotTable",
+   "session": 9
+  },
+  {
+   "term": "Database",
+   "meaning": "A file that holds several tables linked by keys.",
+   "sheet": "A workbook with many sheets",
+   "session": 10
+  },
+  {
+   "term": "Query",
+   "meaning": "One question written in SQL and sent to a database.",
+   "sheet": "A PivotTable or a filter you set up",
+   "session": 10
+  },
+  {
+   "term": "Clause",
+   "meaning": "One part of a query, such as SELECT, WHERE or ORDER BY.",
+   "sheet": "One box of the PivotTable field list",
+   "session": 10
+  },
+  {
+   "term": "NULL",
+   "meaning": "SQL's value for an empty cell. It is unknown and equals nothing.",
+   "sheet": "A blank cell",
+   "session": 10
+  },
+  {
+   "term": "Subquery",
+   "meaning": "A query written inside brackets within another query.",
+   "sheet": "A helper cell that holds an average",
+   "session": 10
+  },
+  {
+   "term": "Alias",
+   "meaning": "A short name for a column or a table, given with AS.",
+   "sheet": "A renamed column header",
+   "session": 10
+  },
+  {
+   "term": "EDA",
+   "meaning": "Exploratory data analysis: a fixed routine of looks, summaries and charts you run on a new file before you model or report.",
+   "sheet": "Scrolling, filtering and pivoting a new sheet to get to know it",
+   "session": 11
+  },
+  {
+   "term": "Axes",
+   "meaning": "The chart area of a matplotlib figure, where the line or bars are drawn and labelled.",
+   "sheet": "The plot area of a chart",
+   "session": 11
+  },
+  {
+   "term": "Hue",
+   "meaning": "A seaborn setting that colours the marks by the values of a column.",
+   "sheet": "One colour per group in a chart legend",
+   "session": 11
+  },
+  {
+   "term": "Rate",
+   "meaning": "A count divided by what could have happened, such as returns per 100 lines sold.",
+   "sheet": "A calculated column that divides one column by another",
+   "session": 11
+  },
+  {
+   "term": "Seasonality",
+   "meaning": "A pattern that comes back at the same time every year, such as a December peak.",
+   "sheet": "The same bump in a line chart each year",
+   "session": 11
+  },
+  {
+   "term": "Finding",
+   "meaning": "One sentence that states a number, a comparison and a limit.",
+   "sheet": "The sentence you type under a chart before you send it",
+   "session": 11
+  },
+  {
+   "term": "Standard error",
+   "meaning": "How much a sample average wobbles from one sample to the next. It shrinks as the sample grows.",
+   "sheet": "STDEV.S of a column divided by SQRT of COUNT",
+   "session": 12
+  },
+  {
+   "term": "Confidence interval",
+   "meaning": "A range built from the data to catch the true value most of the time, usually at 95 percent.",
+   "sheet": "A low and a high column either side of the average",
+   "session": 12
+  },
+  {
+   "term": "Bootstrap",
+   "meaning": "Re-drawing your own data many times, putting each row back after it is picked, to see how much a result wobbles.",
+   "sheet": "Re-drawing rows with RAND thousands of times",
+   "session": 12
+  },
+  {
+   "term": "Null hypothesis",
+   "meaning": "The starting claim that nothing is going on, so any gap is luck.",
+   "sheet": "A zero in the difference column",
+   "session": 12
+  },
+  {
+   "term": "p-value",
+   "meaning": "How often luck alone would give a gap at least this big if the null hypothesis were true.",
+   "sheet": "The result of the T.TEST function",
+   "session": 12
+  },
+  {
+   "term": "Effect size",
+   "meaning": "The size of the gap in units a person can feel, such as shillings or percent.",
+   "sheet": "The difference column itself",
+   "session": 12
+  },
+  {
+   "term": "Multiple testing",
+   "meaning": "Running many tests so that some look like findings by luck alone.",
+   "sheet": "",
+   "session": 12
+  },
+  {
+   "term": "Regression",
+   "meaning": "A method that fits a line to the data and reads how one number moves with others.",
+   "sheet": "A trendline on a scatter chart",
+   "session": 13
+  },
+  {
+   "term": "Predictor",
+   "meaning": "A column used to explain or predict the outcome.",
+   "sheet": "An input column",
+   "session": 13
+  },
+  {
+   "term": "Coefficient",
+   "meaning": "The number a predictor is multiplied by. It says how much the outcome changes for one step in that predictor.",
+   "sheet": "The slope from SLOPE",
+   "session": 13
+  },
+  {
+   "term": "Intercept",
+   "meaning": "The model's starting level, where the line crosses the axis when every predictor is zero.",
+   "sheet": "The INTERCEPT function",
+   "session": 13
+  },
+  {
+   "term": "Least squares",
+   "meaning": "Choosing the line that makes the total of the squared misses as small as possible.",
+   "sheet": "The method behind a trendline",
+   "session": 13
+  },
+  {
+   "term": "R squared",
+   "meaning": "The share of the outcome's ups and downs that the model accounts for, from 0 to 1.",
+   "sheet": "RSQ or the trendline box",
+   "session": 13
+  },
+  {
+   "term": "Dummy variable",
+   "meaning": "A column of 0 and 1 that stands for one category, such as one branch.",
+   "sheet": "A Yes or No helper column",
+   "session": 13
+  },
+  {
+   "term": "Feature",
+   "meaning": "An input column the model learns from, such as loan amount or age.",
+   "sheet": "An input column",
+   "session": 14
+  },
+  {
+   "term": "Target",
+   "meaning": "The column we want to predict. In the loans file it is default, 1 or 0.",
+   "sheet": "The column you wish you could fill in",
+   "session": 14
+  },
+  {
+   "term": "Training set",
+   "meaning": "The rows the model is allowed to learn from.",
+   "sheet": "The rows you study",
+   "session": 14
+  },
+  {
+   "term": "Test set",
+   "meaning": "Rows kept hidden until the end, then used once to score the model.",
+   "sheet": "Rows covered with a sheet of paper",
+   "session": 14
+  },
+  {
+   "term": "Baseline",
+   "meaning": "The score of a guesser that learns nothing, such as always saying no default.",
+   "sheet": "Forecasting next month with this month's number",
+   "session": 14
+  },
+  {
+   "term": "Class imbalance",
+   "meaning": "One answer is far more common than the other.",
+   "sheet": "A pivot table where one count dwarfs the other",
+   "session": 14
+  },
+  {
+   "term": "Classification",
+   "meaning": "Predicting which category a case belongs to, such as default or repaid.",
+   "sheet": "A Yes or No column you want to fill in",
+   "session": 15
+  },
+  {
+   "term": "Predicted probability",
+   "meaning": "The model's chance, from 0 to 1, that a case is a yes.",
+   "sheet": "A percentage beside each row",
+   "session": 15
+  },
+  {
+   "term": "Sigmoid curve",
+   "meaning": "The S shaped curve that squeezes any score into a number between 0 and 1.",
+   "sheet": "A trendline bent to stay between 0 and 100 percent",
+   "session": 15
+  },
+  {
+   "term": "Logistic regression",
+   "meaning": "A model that builds a score from a line, then bends it with the sigmoid curve to give a probability.",
+   "sheet": "A trendline that returns a chance",
+   "session": 15
+  },
+  {
+   "term": "Decision tree",
+   "meaning": "A model made of yes or no questions that end in a verdict.",
+   "sheet": "A nested IF formula the computer writes",
+   "session": 15
+  },
+  {
+   "term": "Threshold",
+   "meaning": "The probability at or above which we say yes.",
+   "sheet": "The cutoff in an IF formula on a score column",
+   "session": 15
+  },
+  {
+   "term": "One hot encoding",
+   "meaning": "Turning each category into its own column of 1 and 0.",
+   "sheet": "A helper column for each category",
+   "session": 15
+  },
+  {
+   "term": "Confusion matrix",
+   "meaning": "A count table of right and wrong answers.",
+   "sheet": "A COUNTIFS table",
+   "session": 16
+  },
+  {
+   "term": "Precision",
+   "meaning": "Of the loans flagged, the share that defaulted.",
+   "sheet": "Hits divided by flags",
+   "session": 16
+  },
+  {
+   "term": "Recall",
+   "meaning": "Of the loans that defaulted, the share flagged.",
+   "sheet": "Hits divided by defaults",
+   "session": 16
+  },
+  {
+   "term": "ROC curve",
+   "meaning": "Defaults caught against false alarms, at every threshold.",
+   "sheet": "",
+   "session": 16
+  },
+  {
+   "term": "AUC",
+   "meaning": "The area under the ROC curve. 0.5 is a coin flip.",
+   "sheet": "",
+   "session": 16
+  },
+  {
+   "term": "Class weight",
+   "meaning": "A setting that makes rare cases count more as the model learns.",
+   "sheet": "",
+   "session": 16
+  },
+  {
+   "term": "Data leakage",
+   "meaning": "A column that hides the answer.",
+   "sheet": "A Paid column predicting payment",
+   "session": 16
+  },
+  {
+   "term": "Cross-validation",
+   "meaning": "Testing several times on different parts.",
+   "sheet": "",
+   "session": 16
+  },
+  {
+   "term": "Overfitting",
+   "meaning": "A model that fits the data it studied very well and does worse on new data.",
+   "sheet": "A trendline with so many bends it passes through every dot",
+   "session": 17
+  },
+  {
+   "term": "Bias and variance",
+   "meaning": "Bias is error from a model too simple to see the pattern. Variance is error from a model so wiggly it follows the noise.",
+   "sheet": "",
+   "session": 17
+  },
+  {
+   "term": "Bagging",
+   "meaning": "Training many models on random resamples of the data and averaging their answers.",
+   "sheet": "Asking twenty colleagues for a forecast and averaging",
+   "session": 17
+  },
+  {
+   "term": "Random forest",
+   "meaning": "Bagging applied to decision trees, each seeing a few columns at a time.",
+   "sheet": "A committee of many different trees voting",
+   "session": 17
+  },
+  {
+   "term": "Boosting",
+   "meaning": "Adding small trees one after another, each aimed at the mistakes of the ones before.",
+   "sheet": "A new column that corrects the errors in the last column",
+   "session": 17
+  },
+  {
+   "term": "Hyperparameter",
+   "meaning": "A setting you choose before the model learns, such as the depth of a tree.",
+   "sheet": "The number of periods in a moving average",
+   "session": 17
+  },
+  {
+   "term": "Permutation importance",
+   "meaning": "The drop in score when one column is shuffled, used to see which columns a model relies on.",
+   "sheet": "Blank out one column and see how much the forecast gets worse",
+   "session": 17
+  },
+  {
+   "term": "Unsupervised learning",
+   "meaning": "Learning with no answer column. The computer finds groups or odd rows.",
+   "sheet": "Sorting and colouring a list by eye",
+   "session": 18
+  },
+  {
+   "term": "RFM",
+   "meaning": "Recency, frequency and spend: three numbers per customer.",
+   "sheet": "A PivotTable per customer",
+   "session": 18
+  },
+  {
+   "term": "Log transform",
+   "meaning": "Replace each value by its logarithm to shrink a long tail.",
+   "sheet": "A log scale on a chart",
+   "session": 18
+  },
+  {
+   "term": "Standard scaling",
+   "meaning": "Rewrite a column to average 0 and spread 1.",
+   "sheet": "The z score",
+   "session": 18
+  },
+  {
+   "term": "k-means",
+   "meaning": "Splits rows into k groups, called clusters, around k centre points.",
+   "sheet": "",
+   "session": 18
+  },
+  {
+   "term": "Elbow",
+   "meaning": "The bend in the spread-against-k chart. A hint for choosing k.",
+   "sheet": "",
+   "session": 18
+  },
+  {
+   "term": "PCA",
+   "meaning": "Mixes many columns into two axes for a flat chart.",
+   "sheet": "Best angle to photograph a statue",
+   "session": 18
+  },
+  {
+   "term": "Anomaly",
+   "meaning": "A row very different from the rest. Needs a human look.",
+   "sheet": "A cell coloured red by a rule",
+   "session": 18
+  },
+  {
+   "term": "Time series",
+   "meaning": "A number recorded at regular times, such as cases each month.",
+   "sheet": "A column of monthly figures with dates beside it",
+   "session": 19
+  },
+  {
+   "term": "Seasonal naive",
+   "meaning": "A forecast that copies the same period from last year.",
+   "sheet": "A formula that points twelve rows up",
+   "session": 19
+  },
+  {
+   "term": "Lag feature",
+   "meaning": "A column holding an earlier value, placed beside today's row.",
+   "sheet": "Typing =B2 into row 3 so each row shows the row above",
+   "session": 19
+  },
+  {
+   "term": "Forecast horizon",
+   "meaning": "How far ahead the forecast looks, such as one month.",
+   "sheet": "How many rows below the last date you fill",
+   "session": 19
+  },
+  {
+   "term": "Pipeline",
+   "meaning": "A list of steps that always run in the same order, packed into one object.",
+   "sheet": "A recorded macro",
+   "session": 19
+  },
+  {
+   "term": "Mean absolute error",
+   "meaning": "The average size of the misses, with the sign ignored, in the units of the target.",
+   "sheet": "AVERAGE of the ABS of actual minus forecast",
+   "session": 19
+  },
+  {
+   "term": "Neuron",
+   "meaning": "A small calculation that multiplies inputs by weights, adds them and bends the total.",
+   "sheet": "One SUMPRODUCT cell",
+   "session": 20
+  },
+  {
+   "term": "Weight",
+   "meaning": "A number that says how much one input counts. Training adjusts it.",
+   "sheet": "The multiplier beside each input",
+   "session": 20
+  },
+  {
+   "term": "Activation function",
+   "meaning": "The bend applied to a neuron's total, such as sigmoid or ReLU.",
+   "sheet": "An IF or MAX wrapped around a formula",
+   "session": 20
+  },
+  {
+   "term": "Hidden layer",
+   "meaning": "A row of neurons between the inputs and the output.",
+   "sheet": "Helper columns between the data and the answer",
+   "session": 20
+  },
+  {
+   "term": "Loss",
+   "meaning": "One number that says how wrong the guesses are. Training tries to shrink it.",
+   "sheet": "The total of an error column",
+   "session": 20
+  },
+  {
+   "term": "Learning rate",
+   "meaning": "How big a step each correction takes.",
+   "sheet": "How far you move a cell on each try",
+   "session": 20
+  },
+  {
+   "term": "Epoch",
+   "meaning": "One full pass through all the training data.",
+   "sheet": "One pass down the whole sheet",
+   "session": 20
+  },
+  {
+   "term": "Pretrained model",
+   "meaning": "A model already trained by someone else, used as it is.",
+   "sheet": "A filled in template workbook",
+   "session": 20
+  },
+  {
+   "term": "Sentiment",
+   "meaning": "The mood of a message: positive, negative or neutral.",
+   "sheet": "A Good or Bad column",
+   "session": 21
+  },
+  {
+   "term": "Regular expression",
+   "meaning": "A pattern that describes text to find or replace.",
+   "sheet": "Find and Replace with wildcards",
+   "session": 21
+  },
+  {
+   "term": "Bag of words",
+   "meaning": "A table of word counts per message, ignoring word order.",
+   "sheet": "One COUNTIF column per word",
+   "session": 21
+  },
+  {
+   "term": "TF-IDF",
+   "meaning": "Word counts weighted so that rare words count more.",
+   "sheet": "A weight column",
+   "session": 21
+  },
+  {
+   "term": "Embedding",
+   "meaning": "A list of numbers that stands for the meaning of a phrase.",
+   "sheet": "A row of scores",
+   "session": 21
+  },
+  {
+   "term": "Cosine similarity",
+   "meaning": "A score for how closely two lists of numbers point the same way.",
+   "sheet": "SUMPRODUCT over the lengths",
+   "session": 21
+  },
+  {
+   "term": "Semantic search",
+   "meaning": "Finding items close in meaning, even when the words differ.",
+   "sheet": "Ctrl F that knows meaning",
+   "session": 21
+  },
+  {
+   "term": "Token",
+   "meaning": "A word or piece of a word that a language model reads and writes, one at a time.",
+   "sheet": "One cell in a long row of text",
+   "session": 22
+  },
+  {
+   "term": "Prompt",
+   "meaning": "The instruction and text you give a language model to answer.",
+   "sheet": "The input cell you type into",
+   "session": 22
+  },
+  {
+   "term": "Context",
+   "meaning": "Everything the model can see when it answers: your prompt, any pasted text and the answer so far.",
+   "sheet": "The range a formula is allowed to read",
+   "session": 22
+  },
+  {
+   "term": "Hallucination",
+   "meaning": "A fluent answer that no fact in the context supports, and that may be false.",
+   "sheet": "A formula that returns a clean number with no data behind it",
+   "session": 22
+  },
+  {
+   "term": "Retrieval",
+   "meaning": "Finding the passages most relevant to a question before anything answers it.",
+   "sheet": "A lookup that runs before the formula",
+   "session": 22
+  },
+  {
+   "term": "Passage",
+   "meaning": "A short piece of a document, such as one sentence, kept with its file name.",
+   "sheet": "One row from a table of text",
+   "session": 22
+  },
+  {
+   "term": "Use log",
+   "meaning": "A small table recording what an assistant was asked, what it gave and how you checked it.",
+   "sheet": "A change log or Track Changes history",
+   "session": 22
+  },
+  {
+   "term": "Reproducibility",
+   "meaning": "The same notebook gives the same result to anyone who runs it.",
+   "sheet": "Pasting RAND as values and noting the file version",
+   "session": 23
+  },
+  {
+   "term": "Repository",
+   "meaning": "A project folder tracked by Git, kept online on GitHub.",
+   "sheet": "A shared Drive folder with version history",
+   "session": 23
+  },
+  {
+   "term": "Commit",
+   "meaning": "One saved version of a repository, with a message saying what changed.",
+   "sheet": "A named version in Version history",
+   "session": 23
+  },
+  {
+   "term": "Model card",
+   "meaning": "A one page note on what a model is for, its data, its scores, its limits and who reviews it.",
+   "sheet": "The notes tab that explains a workbook",
+   "session": 23
+  },
+  {
+   "term": "Data drift",
+   "meaning": "A change over time in the data coming in, which can make an old model wrong.",
+   "sheet": "A monthly average that moves away from the one you built on",
+   "session": 23
+  },
+  {
+   "term": "Proxy variable",
+   "meaning": "A column that carries information about another column, such as gender.",
+   "sheet": "A postcode column standing in for income",
+   "session": 23
+  },
+  {
+   "term": "Personal data",
+   "meaning": "Information from which a person can be identified.",
+   "sheet": "The name and phone columns of a customer list",
+   "session": 23
+  },
+  {
+   "term": "Data subject",
+   "meaning": "The person that personal data is about.",
+   "sheet": "The person on each row of the list",
+   "session": 23
+  },
+  {
+   "term": "Capstone",
+   "meaning": "The larger project that ends a course and shows what you can do with it.",
+   "sheet": "The final workbook that uses every skill",
+   "session": 24
+  },
+  {
+   "term": "Limitation",
+   "meaning": "Something your result cannot tell you, such as who the data left out.",
+   "sheet": "A note under a table saying what it excludes",
+   "session": 24
+  },
+  {
+   "term": "Executive summary",
+   "meaning": "A short opening paragraph with the answer and the decision, for a busy reader.",
+   "sheet": "The summary cell at the top of a report sheet",
+   "session": 24
+  },
+  {
+   "term": "Portfolio",
+   "meaning": "A small set of your projects that others can open and judge.",
+   "sheet": "A folder of your best workbooks",
+   "session": 24
+  },
+  {
+   "term": "Rubric",
+   "meaning": "A marking guide that lists what good work looks like for each criterion.",
+   "sheet": "A checklist column beside a task list",
+   "session": 24
+  },
+  {
+   "term": "Learning path",
+   "meaning": "A plan of what to study next, in order, with time set aside.",
+   "sheet": "A project plan with dates",
+   "session": 24
+  }
+ ],
+ "sheets": {
+  "1": {
+   "intro": "Part one is in Sheets with lakeside_for_sheets.xlsx. Part two is this notebook: three tiny cells, each followed by a check.",
+   "tasks": [
+    {
+     "task": "Open lakeside_for_sheets.xlsx. How many tabs does it have, and what are their names?",
+     "answer": "Seven tabs: orders, order_lines, branches, products, customers, branch_weeks and READ ME."
+    },
+    {
+     "task": "On the orders tab, how many rows of data and how many columns are there? Leave out the header row.",
+     "answer": "2,000 rows and 7 columns. In Sheets the last row number is 2001 because of the header."
+    },
+    {
+     "task": "On the order_lines tab, how many rows of data and how many columns are there?",
+     "answer": "6,590 rows and 7 columns."
+    },
+    {
+     "task": "Write the grain of the orders tab and of the order_lines tab. What is one row?",
+     "answer": "orders: one till order. order_lines: one product on one order."
+    },
+    {
+     "task": "Find the size of branches, products, customers and branch_weeks. Write the grain of each.",
+     "answer": "branches: 8 rows, one branch. products: 150 rows, one product. customers: 2,500 rows, one loyalty customer. branch_weeks: 832 rows, one branch in one week."
+    },
+    {
+     "task": "On the orders tab, count the rows where customer_id is blank. What do you think they are?",
+     "answer": "580 blank customer_id cells. They are walk-in customers without a loyalty number."
+    },
+    {
+     "task": "Write one business question from your own work, with the decision it would feed.",
+     "answer": "Open answer. A good one names a thing to measure, a decision, and data you could get."
+    }
+   ]
+  },
+  "2": {
+   "intro": "Open lakeside_for_sheets.xlsx in Google Sheets. Add a new tab called dictionary and write your grain and key answers there, one line per tab. Work through the tasks below and write each answer in your own words before you check it.",
+   "tasks": [
+    {
+     "task": "Orders tab. Write the grain and the key. Test the key: count the order_id cells, then count the unique ones.",
+     "answer": "Grain: one row is one till order. Key: order_id. =COUNTA(A2:A2001) gives 2000 and =COUNTA(UNIQUE(A2:A2001)) also gives 2000, so the counts match and order_id is a key. branch_id and customer_id are foreign keys."
+    },
+    {
+     "task": "Orders tab. In your dictionary tab, label each of the seven columns as a number, a category, a date or text, and say which of the three problems below you expect to find.",
+     "answer": "order_id: text (an identifier, not a quantity). order_date: a date, but stored as text in this workbook. branch_id: category. customer_id: text identifier, with blanks. payment_method: category (Cash, Mobile money, Card). promo_week: category, a 0 or 1 flag. order_value_ugx: number. Anything that sorts or adds belongs to number, anything that names a group to category."
+    },
+    {
+     "task": "Order_lines tab. Write the grain and the key, and name the two foreign keys. How many rows are there, and how many different orders do they cover?",
+     "answer": "Grain: one row is one product on one order. Key: line_id. Foreign keys: order_id (to orders) and product_id (to products). 6,590 rows covering 2,000 different orders, about 3.3 lines per order. The largest basket has 19 lines."
+    },
+    {
+     "task": "Products, branches and customers tabs. Write the grain and key of each and count its rows.",
+     "answer": "products: one product, key product_id, 150 rows. branches: one branch, key branch_id, 8 rows. customers: one loyalty customer, key customer_id, 2,500 rows (home_branch_id is a foreign key to branches)."
+    },
+    {
+     "task": "Branch_weeks tab. Write the grain. No single column is unique. Which two columns together are the key? Check that the row count fits.",
+     "answer": "Grain: one branch in one week. Key: branch_id and week_start together. 8 branches times 104 weeks (1 January 2024 to 22 December 2025) gives 832 rows, which matches the tab."
+    },
+    {
+     "task": "Is customer_id a key of the orders tab? Test it, and say what you find.",
+     "answer": "No. 1,420 orders have a customer_id but only 1,082 different customers appear, so the value repeats. 797 customers ordered once, 241 twice, 35 three times and 9 four times. It is a foreign key to customers."
+    },
+    {
+     "task": "Follow order O000003 across the tabs. Which two products does it contain, what are they called, and at which branch was it sold?",
+     "answer": "Two lines: 4 of P117 (Household item 117, 14,600 UGX each, 58,400 UGX) and 1 of P043 (Staples item 043, 7,800 UGX). The lines add up to 66,200 UGX, the order total. It was sold at B01, Kampala Central, with no customer_id."
+    },
+    {
+     "task": "Problem 1. How many orders have a blank customer_id, and what share of all orders is that? What does the dictionary say it means?",
+     "answer": "580 orders, which is 29 percent of 2,000. The data dictionary says customer_id is blank for a walk-in customer, so the blank records a fact about the shopper."
+    },
+    {
+     "task": "Problem 2. Is order_date a real date in this workbook? Test one cell with ISNUMBER and say what the left alignment tells you.",
+     "answer": "=ISNUMBER(B2) returns FALSE. The dates are stored as text (such as 2024-01-07), which is why they sit on the left of the cell. They will not group by month until they are converted."
+    },
+    {
+     "task": "Problem 3. Sort order_value_ugx from largest to smallest. Which order is largest, at which branch, and how many times larger than the median order is it?",
+     "answer": "The largest is O014474 at branch B04 (Jinja), 1,935,520 UGX, paid by card with a blank customer_id. The median order is 24,800 UGX, so it is about 78 times larger. The second largest is O017035, also at B04, at 1,934,200 UGX."
+    },
+    {
+     "task": "Write one question you would send to the owner of this data before using it for a report.",
+     "answer": "Any clear question is fine. Good examples: Is the 1,935,520 UGX order at Jinja a real sale or a typing error? Can the order dates be exported as real dates? How are walk-in customers meant to be counted?"
+    }
+   ]
+  },
+  "3": {
+   "intro": "You will summarise the Lakeside Mart orders in Google Sheets. The workbook holds a sample of 2,000 orders from the full file of 30,229, so your answers will be close to the full file figures and will differ a little. Check each task against the answer given.",
+   "tasks": [
+    {
+     "task": "Open lakeside_for_sheets.xlsx in Google Sheets and go to the orders sheet. In H1 type month. In H2 type =LEFT(B2,7) and fill down to row 2001. Use =COUNTIF(H2:H2001,\"2024-12\") to count the orders in December 2024.",
+     "answer": "116 orders. If your dates show as real dates, use =TEXT(B2,\"yyyy-mm\") instead."
+    },
+    {
+     "task": "Build a pivot table with branch_id in Rows, month in Columns and the SUM of order_value_ugx in Values. Read off: Kampala Central (B01) in January 2024, Jinja (B04) in March 2024, Fort Portal (B07) in January 2024, the December 2024 column total and the grand total.",
+     "answer": "B01 Jan 2024 is 538,140. B04 Mar 2024 is 2,340,250, because it holds the single order of 1,935,520. B07 Jan 2024 is 110,530. The December 2024 total is 5,380,425. The grand total is 99,861,360 UGX."
+    },
+    {
+     "task": "On the orders sheet, use formulas on column G to find the mean, the median, the first quartile (=QUARTILE(G2:G2001,1)), the third quartile and the standard deviation (=STDEV). Then divide the mean by the median.",
+     "answer": "Mean 49,930.68. Median 24,800. First quartile 10,387.5. Third quartile 49,402.5. Standard deviation about 128,094. Mean over median is about 2.01. The full file gives a mean of 47,491 and a median of 23,200, a ratio of 2.05, so the workbook is close but not identical."
+    },
+    {
+     "task": "Use the quartiles from the last task to describe a box plot of order value. The box runs from the first to the third quartile. The upper whisker stops at the third quartile plus 1.5 times the gap between the quartiles. Work out that limit and count the orders above it with =COUNTIF(G2:G2001,\">107925\") (or your own limit).",
+     "answer": "The box runs from 10,387.5 to 49,402.5 with the median 24,800 inside. The gap between the quartiles is 39,015, so the limit is 107,925. 124 orders (6.2 percent) lie above it and would be drawn as dots, the largest at 1,935,520. The plot would show a short box and a long line of dots to the right."
+    },
+    {
+     "task": "Draw a histogram of order value: select column G, Insert, Chart, choose Histogram chart. In Customize, set the bucket size to 10,000 and the outlier percentile to 95. Then check with =COUNTIFS(G2:G2001,\"<=10000\") and =COUNTIFS(G2:G2001,\"<=50000\"), and count the orders above 100,000 with \"> 100000\".",
+     "answer": "491 orders are at or below 10,000, and 1,512 (75.6 percent) are at or below 50,000. 139 orders are above 100,000. The first bar is the tallest and the bars fall steadily to the right. Your first bar may differ from 491 by up to 3 orders depending on how Sheets treats the bucket edge."
+    },
+    {
+     "task": "Make a second pivot table with branch_id in Rows and the MEDIAN of order_value_ugx in Values. Insert a column chart of it and set the vertical axis minimum to 20,000. Which branch looks tallest, and how many times taller than the shortest does it look? Now fix the chart: set the minimum to 0, and add a title and axis labels. What does the fixed chart show?",
+     "answer": "Medians: B01 24,550. B02 22,500. B03 25,342.5. B04 27,800. B05 22,650. B06 27,035. B07 23,400. B08 26,940. On the cut axis Jinja (B04) rises 7,800 above the base and Kampala Ntinda (B02) only 2,500, so B04 looks about 3.1 times taller. From zero, B04 is about 24 percent taller than B02, a modest gap."
+    },
+    {
+     "task": "Make a third pivot table with month in Rows and the SUM of order_value_ugx in Values. Insert a line chart and start the vertical axis at 0. Which month is highest and which is lowest? Does December 2024 stand out the way it does in the full file chart?",
+     "answer": "Highest is September 2025 at 5,611,275 UGX and lowest is January 2025 at 2,711,425. December 2024 is 5,380,425, only third highest, so it does not stand out. The sample has about 83 orders a month, so a few large baskets can reorder the months. The full file shows a clear December peak in both years."
+    },
+    {
+     "task": "Write two sentences for a manager. One gives the typical order value and says how many orders you counted. The other says whether the branches differ much in their typical order.",
+     "answer": "Example: In a sample of 2,000 orders the typical order is worth 24,800 UGX (median), while the mean of 49,931 is pulled up by a few very large orders. Branch medians run from 22,500 to 27,800, so the typical order is similar everywhere. Any answer that leads with the median, states the count and says it is a sample is correct."
+    }
+   ]
+  },
+  "4": {
+   "intro": "Work in Google Sheets with lakeside_for_sheets.xlsx, a 2,000 order sample. Your random numbers will differ from everyone else's. Check yours against the ranges given.",
+   "tasks": [
+    {
+     "task": "On the orders sheet, find the mean of all 2,000 order values with AVERAGE, and the share of orders above 100,000 UGX with COUNTIF. Compare the mean with the full file mean of 47,491 UGX from the answer key. How big is the gap?",
+     "answer": "Mean 49,931 UGX (49,930.68). COUNTIF gives 139 orders above 100,000, a share of 6.95 percent. The workbook mean is about 2,439 UGX above the full file mean of 47,491. That gap is sampling error: the workbook is itself a sample."
+    },
+    {
+     "task": "Add a new sheet. In A2 put =INDEX(orders!$G$2:$G$2001, RANDBETWEEN(1,2000)). Fill right to AD2, put =AVERAGE(A2:AD2) in AE2, then fill A2:AE2 down to row 201. Copy the block and Paste special, Values only. Draw a histogram of column AE.",
+     "answer": "Column AE holds 200 sample means. Yours will differ from anyone else's. Ranges in this task and the next three come from simulating the whole exercise 5,000 times on this workbook and keeping the middle 98 percent of results. Expect the smallest mean between about 16,000 and 25,000 and the largest between about 112,000 and 214,000. The histogram leans left with a long tail to the right, as in the sampling_means figure."
+    },
+    {
+     "task": "In a spare cell find the AVERAGE, STDEV, MIN and MAX of the 200 sample means. Compare the average with 47,491 and the workbook mean 49,931.",
+     "answer": "Average of the means: between about 46,000 and 54,000, close to the order mean 49,931 because sample means centre on it. STDEV: between about 19,000 and 28,000, typically near 23,000. MIN: about 16,000 to 25,000. MAX: about 112,000 to 214,000. Any single sample can sit far from the true mean, yet the 200 means centre on it."
+    },
+    {
+     "task": "Use =COUNTIF(AE2:AE201,\"<47491\") to count how many of your 200 sample means fall below the full file mean. Say why it is more than half.",
+     "answer": "Expect between about 107 and 139 of the 200, most runs near 115 to 133. Order values are skewed to the right, so most samples of 30 miss the few very large orders and give a mean below the true mean, while the few samples that catch them give a very high mean."
+    },
+    {
+     "task": "In AF2 put =AVERAGE(A2:E2) (the first 5 orders only) and fill down to row 201. Copy the column and Paste special, Values only. Then find the STDEV of column AF and compare it with the STDEV of column AE.",
+     "answer": "STDEV of the n = 5 means: between about 36,000 and 79,000, typically near 56,000. That is about 1.6 to 3.3 times the n = 30 spread (usually near 2.4 times). Samples of 5 wobble far more than samples of 30."
+    },
+    {
+     "task": "On the branch_weeks sheet find =CORREL(C2:C833, F2:F833) for footfall and orders, and =CORREL(D2:D833, F2:F833) for rainfall and orders. Then use only Kampala Central (B01, rows 2 to 105) and repeat both.",
+     "answer": "All 832 weeks: footfall and orders r = 0.84 (0.8401), rainfall and orders r = minus 0.22 (minus 0.2159). Kampala Central only (B01, rows 2 to 105): footfall and orders r = 0.70 (0.696), rainfall and orders r = minus 0.27 (minus 0.267). The footfall link is weaker inside one branch. The eight branches on their own give 0.53 to 0.73."
+    },
+    {
+     "task": "Compare orders with a loyalty number and walk in orders. Use =AVERAGEIFS(G2:G2001,D2:D2001,\"<>\") and =AVERAGEIFS(G2:G2001,D2:D2001,\"\") for the means, and =COUNTIF(D2:D2001,\"\") for the blanks. Which bias would you introduce by reporting only loyalty orders? Does it matter here?",
+     "answer": "Loyalty orders: 1,420 with a mean of 48,672. Walk in orders: 580 with a mean of 53,013, lifted by the single 1,935,520 order, which has no customer_id. The medians are closer (25,468 and 22,800). Reporting only loyalty orders would be selection bias. In the full file the two means are almost equal (47,432 and 47,628), so the effect is mild, but you only know that after you check."
+    },
+    {
+     "task": "A manager sees r = 0.84 between footfall and orders and wants to fund flyers to raise footfall. Write three sentences: name one confounder in this data, say what the inside-one-branch figures tell you, and suggest how to test the idea.",
+     "answer": "Model answer: Branch size is a confounder, because large branches such as Kampala Central (about 2,958 visitors and 56.6 orders a week) have more of both and Fort Portal (about 1,310 and 26.8) has less of both. Inside a single branch the correlation is lower, between 0.53 and 0.73, so part of the 0.84 comes from branch size. Test flyers at a few branches for some weeks against similar branches without them before spending widely."
+    }
+   ]
+  },
+  "24": {
+   "intro": "Prepare and rehearse the ten minute presentation of your capstone, then give and receive feedback with the rubric. No code today.",
+   "tasks": [
+    {
+     "task": "Write the outline of your presentation: five slides, one sentence each, with minutes beside each slide.",
+     "answer": "Five rows: question, data, evidence, risk and decision, each with one sentence about your own capstone. The minutes add up to ten, for example 1, 2, 3, 2, 2."
+    },
+    {
+     "task": "Rehearse aloud with a timer. Note the time and which slide ran longest.",
+     "answer": "A finishing time between nine and eleven minutes. One sentence cut from the slide that ran longest."
+    },
+    {
+     "task": "Prepare three answers: one question on method, one on the metric, one on risk. Write each in two sentences.",
+     "answer": "Method: the answer names the test data or the baseline the result was judged against. Metric: it names the cost behind the number, for example what a missed default costs. Risk: it names one risk with an owner and a review date. An answer that says a check is not finished counts as a good answer."
+    },
+    {
+     "task": "Present to a partner for ten minutes. Score them 1 to 3 on each of the four rubric rows (question and evidence, metric and baseline, limits and fairness, clarity) and write one comment per row. Then swap.",
+     "answer": "Four scores, one per rubric row, and four comments. Each comment points to a named slide, and at least one says what to keep."
+    },
+    {
+     "task": "Write your six month learning path: three blocks of two months, one named free course in each, and hours per week.",
+     "answer": "Three blocks for months 1 to 2, 3 to 4 and 5 to 6. Each has one named course from the gap list, a weekly hour budget the student can keep, and a note that the current terms were checked."
+    }
+   ]
+  }
+ },
+ "rubric": {
+  "header": [
+   "Criterion",
+   "Strong work looks like"
+  ],
+  "rows": [
+   [
+    "Question and evidence",
+    "A one sentence question. Every claim points to data."
+   ],
+   [
+    "Metric and baseline",
+    "A metric chosen for the cost, on unseen data, beside a simple baseline."
+   ],
+   [
+    "Limits and fairness",
+    "Limits stated first. Risks named. Groups compared. Data duties checked."
+   ],
+   [
+    "Clarity",
+    "Five slides, ten minutes, plain words, one decision."
+   ]
+  ]
+ },
+ "capstone": {
+  "header": [
+   "Session",
+   "Capstone step"
+  ],
+  "rows": [
+   [
+    "13",
+    "Write and scope the question"
+   ],
+   [
+    "14",
+    "Choose the dataset"
+   ],
+   [
+    "19",
+    "Baseline and tested model (Checkpoint 3)"
+   ],
+   [
+    "23",
+    "Publish the app and the model card"
+   ],
+   [
+    "24",
+    "Present for ten minutes"
+   ]
+  ]
+ },
+ "course": {
+  "title": "AI and Data Science Professional",
+  "sessions": 24,
+  "hours_per_session": 2,
+  "total_hours": 48,
+  "start": "Confident in Excel or Google Sheets. No code. No statistics.",
+  "end": "Can take a business question from raw data to a tested model or analysis, explain it to a manager, and run it as a small app, using only free tools."
+ },
+ "shape": [
+  [
+   "Recall and warm-up",
+   10
+  ],
+  [
+   "Concepts and explanation",
+   30
+  ],
+  [
+   "Live demonstration",
+   25
+  ],
+  [
+   "Break",
+   5
+  ],
+  [
+   "Guided lab",
+   40
+  ],
+  [
+   "Check and wrap-up",
+   10
+  ]
+ ],
+ "modules": [
+  [
+   "A",
+   "Think with data",
+   [
+    1,
+    2,
+    3,
+    4
+   ],
+   "No code. Sheets and reasoning."
+  ],
+  [
+   "B",
+   "Python for data",
+   [
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "Python, pandas and first SQL in the browser."
+  ],
+  [
+   "C",
+   "Analyse and explain",
+   [
+    10,
+    11,
+    12,
+    13
+   ],
+   "SQL, charts, inference and regression."
+  ],
+  [
+   "D",
+   "Machine learning",
+   [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "Build, test and judge models."
+  ],
+  [
+   "E",
+   "Neural networks and text",
+   [
+    20,
+    21,
+    22
+   ],
+   "Neural networks, text, embeddings and language models."
+  ],
+  [
+   "F",
+   "Ship it and present",
+   [
+    23,
+    24
+   ],
+   "Save a model, publish a small app, govern it and present."
+  ]
+ ],
+ "tools": [
+  {
+   "name": "Google Colab",
+   "use": "Run Python notebooks in the browser. Nothing to install.",
+   "cost": "Free tier. Needs a free Google account. GPU not needed for this course.",
+   "status": "verified",
+   "note": "Google does not publish its limits; reports give an idle disconnect of about 90 minutes and a longest session of about 12 hours. Save to Drive or GitHub."
+  },
+  {
+   "name": "Google Sheets (or Excel, or LibreOffice Calc)",
+   "use": "Sessions 1 to 4 and every Excel comparison.",
+   "cost": "Free. Any spreadsheet works.",
+   "status": "verified",
+   "note": "Excel is used if students already own it."
+  },
+  {
+   "name": "Python 3 with pandas, NumPy, SciPy, statsmodels, scikit-learn, matplotlib, seaborn",
+   "use": "The data science stack.",
+   "cost": "Free, open source (BSD or PSF licences).",
+   "status": "verified",
+   "note": "All preinstalled in Colab."
+  },
+  {
+   "name": "SQLite (inside Python)",
+   "use": "SQL practice with no server.",
+   "cost": "Free, public domain.",
+   "status": "verified",
+   "note": "Included in Python. DB Browser for SQLite is optional."
+  },
+  {
+   "name": "Git and GitHub Free",
+   "use": "Save work, share a portfolio, deploy the app.",
+   "cost": "Free account.",
+   "status": "verified",
+   "note": "Public repositories for the course."
+  },
+  {
+   "name": "Streamlit and Streamlit Community Cloud",
+   "use": "Turn a model into a small web app.",
+   "cost": "Free for public apps.",
+   "status": "verified",
+   "note": "Apps sleep after 12 hours without visitors."
+  },
+  {
+   "name": "TensorFlow Playground",
+   "use": "See a neural network learn, in the browser.",
+   "cost": "Free, Apache licence, no login.",
+   "status": "verified",
+   "note": "Web page only."
+  },
+  {
+   "name": "sentence-transformers (all-MiniLM-L6-v2)",
+   "use": "Turn text into vectors for search and similarity.",
+   "cost": "Free. Apache 2.0.",
+   "status": "verified",
+   "note": "Downloads about 90 MB once in Colab. No API key, no hosted service."
+  },
+  {
+   "name": "A small open language model run inside Colab (for example Qwen2.5-0.5B-Instruct)",
+   "use": "Show how a language model answers, with nothing sent to a vendor.",
+   "cost": "Free.",
+   "status": "check",
+   "note": "Confirm the licence on the model card before class. Optional; the session still works with embeddings alone."
+  },
+  {
+   "name": "Any free chat assistant the student already has",
+   "use": "Explain errors, suggest code, critique drafts.",
+   "cost": "Free tiers; limits change.",
+   "status": "check",
+   "note": "Never required. Every lab runs without one."
+  },
+  {
+   "name": "Visual Studio Code (optional local setup)",
+   "use": "Local editing once students outgrow Colab.",
+   "cost": "Free to use.",
+   "status": "verified",
+   "note": "Optional only."
+  }
+ ],
+ "avoided": [
+  [
+   "Anaconda Distribution and Miniconda",
+   "Free for individuals, but organisations with 200 or more staff need a paid licence under the 2024 terms, which includes government and non-profits. Miniconda's installer is free, but its default package channel falls under the same terms. Use Colab, or python.org with venv, or Miniforge."
+  ],
+  [
+   "Hugging Face hosted inference",
+   "Free accounts stopped receiving included monthly inference credits on 7 October 2026 (reported by several sources). Models are downloaded and run inside Colab instead."
+  ],
+  [
+   "Power BI Desktop",
+   "Windows only, which fails on mixed laptops. Charts are made in Python and Sheets; a free browser dashboard tool is optional."
+  ],
+  [
+   "Docker Desktop and paid cloud GPUs",
+   "Not needed. Deployment uses Streamlit Community Cloud."
+  ],
+  [
+   "Paid AI APIs",
+   "Any lab needing a paid key would break the no-cost rule."
+  ]
+ ],
+ "coverage": [
+  [
+   "Mathematics",
+   "Intuition only: slope, area, vectors, matrices as tables. No proofs, no hand calculation.",
+   [
+    4,
+    13,
+    20
+   ],
+   "light"
+  ],
+  [
+   "Statistics",
+   "Distributions, sampling, confidence intervals, hypothesis tests, A/B tests, correlation.",
+   [
+    3,
+    4,
+    12
+   ],
+   "core"
+  ],
+  [
+   "Econometrics",
+   "Linear and logistic regression, time series and forecasting basics.",
+   [
+    13,
+    15,
+    19
+   ],
+   "core"
+  ],
+  [
+   "Coding",
+   "Python, pandas, SQL. Data structures and interview algorithms are left out on purpose.",
+   [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "core"
+  ],
+  [
+   "Exploratory data analysis",
+   "Cleaning, charts, summary, communication.",
+   [
+    2,
+    3,
+    8,
+    11
+   ],
+   "core"
+  ],
+  [
+   "Machine learning",
+   "Supervised, unsupervised, ensembles, evaluation, leakage.",
+   [
+    14,
+    15,
+    16,
+    17,
+    18
+   ],
+   "core"
+  ],
+  [
+   "Deep learning",
+   "Neural networks, one pretrained model. No training from scratch on images.",
+   [
+    20
+   ],
+   "light"
+  ],
+  [
+   "MLOps",
+   "Save a model, version code, deploy an app, watch for drift. No Docker or cloud.",
+   [
+    23
+   ],
+   "light"
+  ],
+  [
+   "AI engineering",
+   "Text vectors, search, a retrieval pattern with a small local model.",
+   [
+    21,
+    22
+   ],
+   "core"
+  ],
+  [
+   "AI-assisted coding",
+   "An assistant is used and its code is checked in Sessions 5, 6 and 22. It is never required.",
+   [
+    5,
+    6,
+    22
+   ],
+   "core"
+  ]
+ ],
+ "assessment": [
+  [
+   "Weekly check at the end of each session",
+   "ungraded, instant feedback"
+  ],
+  [
+   "Three checkpoints (sessions 8, 13, 19)",
+   "15% each = 45%"
+  ],
+  [
+   "Capstone (scoped in session 13, built through sessions 19 to 23, presented in session 24)",
+   "40%"
+  ],
+  [
+   "Notebook completion and participation",
+   "15%"
+  ]
+ ],
+ "sessions": [
+  {
+   "no": 1,
+   "module": "A",
+   "title": "What data science is and how to think in it",
+   "question": "What does a data scientist do, and what will you be able to do after 24 sessions?",
+   "result": "A working Colab account, a mapped lifecycle and one business question of your own.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Sheets",
+    "Google Colab"
+   ],
+   "code": false,
+   "outcomes": [
+    "Describe the data science lifecycle from question to decision.",
+    "Separate data science, machine learning and AI by what each produces.",
+    "Open Colab and run one cell."
+   ],
+   "slides": 20,
+   "clicks": 26,
+   "animated": 8,
+   "vocab": [
+    "Data science",
+    "Machine learning",
+    "Artificial intelligence",
+    "Dataset",
+    "Model",
+    "Lifecycle"
+   ],
+   "lab": "Write your own question; open Colab; run a cell that prints a sentence and a sum.",
+   "lab_tasks": 4,
+   "minutes_spoken": 19,
+   "maps": {
+    "roadmap": "Intro",
+    "ibm": "What is Data Science? and Tools for Data Science",
+    "google": "Foundations of Data Science",
+    "other": "AI for Everyone weeks 1 and 2"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 2,
+   "module": "A",
+   "title": "Data as tables: rows, columns and grain",
+   "question": "What exactly is one row, and how does one table connect to another?",
+   "result": "A data dictionary for the Lakeside Mart tables and one grain statement per table.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Sheets"
+   ],
+   "code": false,
+   "outcomes": [
+    "State the grain of a table.",
+    "Tell numeric, category, date and text columns apart.",
+    "Link two tables through a key."
+   ],
+   "slides": 22,
+   "clicks": 15,
+   "animated": 5,
+   "vocab": [
+    "Grain",
+    "Primary key",
+    "Foreign key",
+    "Variable type",
+    "Data dictionary"
+   ],
+   "lab": "Open the six Lakeside Mart tables in Sheets; write the grain and key for each; spot three problems.",
+   "lab_tasks": 11,
+   "minutes_spoken": 21,
+   "maps": {
+    "roadmap": "EDA",
+    "ibm": "Data Science Methodology",
+    "google": "Ask Questions to Make Data-Driven Decisions",
+    "other": "Kaggle Learn: Data Cleaning (concepts)"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 3,
+   "module": "A",
+   "title": "Summarising and showing data honestly",
+   "question": "How do we describe thousands of rows in one sentence and one chart without misleading anyone?",
+   "result": "A pivot table and two clear charts from Lakeside Mart sales.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Sheets"
+   ],
+   "code": false,
+   "outcomes": [
+    "Choose mean or median and say why.",
+    "Read a histogram, a box plot and a line chart.",
+    "Spot a misleading axis."
+   ],
+   "slides": 23,
+   "clicks": 35,
+   "animated": 12,
+   "vocab": [
+    "Median",
+    "Quartile",
+    "Standard deviation",
+    "Skew",
+    "Histogram",
+    "Pivot table",
+    "Truncated axis"
+   ],
+   "lab": "Pivot revenue by branch and month; build a histogram of basket size; fix a deliberately bad chart.",
+   "lab_tasks": 8,
+   "minutes_spoken": 23,
+   "maps": {
+    "roadmap": "Statistics, EDA",
+    "ibm": "What is Data Science? (analysis)",
+    "google": "Share Data Through the Art of Visualization",
+    "other": "Kaggle Learn: Data Visualization (ideas)"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 4,
+   "module": "A",
+   "title": "Uncertainty, samples and cause",
+   "question": "How sure can we be, and when does a pattern mean one thing caused another?",
+   "result": "A simulation in Sheets that shows sample error, and three sentences on cause versus correlation.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Sheets"
+   ],
+   "code": false,
+   "outcomes": [
+    "Explain why a sample differs from the whole.",
+    "Read a correlation and say what it does not show.",
+    "Name two sources of bias."
+   ],
+   "slides": 23,
+   "clicks": 33,
+   "animated": 11,
+   "vocab": [
+    "Probability",
+    "Sample",
+    "Sampling error",
+    "Simulation",
+    "Correlation",
+    "Confounder",
+    "Selection bias",
+    "Survivorship bias"
+   ],
+   "lab": "Draw 200 samples of 30 baskets; plot the spread of their means; discuss an ice-cream and drowning style trap in sales data.",
+   "lab_tasks": 8,
+   "minutes_spoken": 22,
+   "maps": {
+    "roadmap": "Mathematics, Statistics",
+    "ibm": "Data Science Methodology",
+    "google": "The Power of Statistics (first weeks)",
+    "other": "Elements of AI chapters 3 and 4"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 5,
+   "module": "B",
+   "title": "Your first Python, next to the spreadsheet",
+   "question": "What does the same task look like in Excel and in Python?",
+   "result": "A notebook that stores values, makes lists and does sums, with an Excel comparison.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Run, edit and save a notebook.",
+    "Use variables, numbers, text and lists.",
+    "Read the last line of an error message."
+   ],
+   "slides": 23,
+   "clicks": 41,
+   "animated": 15,
+   "vocab": [
+    "Notebook",
+    "Variable",
+    "String",
+    "List",
+    "Dictionary",
+    "Error message"
+   ],
+   "lab": "Rebuild a small price list calculation in Python; break it on purpose; fix it from the error.",
+   "lab_tasks": 7,
+   "minutes_spoken": 21,
+   "maps": {
+    "roadmap": "Coding",
+    "ibm": "Python for Data Science, AI and Development",
+    "google": "Introduction to Data Analysis Using Python",
+    "other": "CS50P week 0; Kaggle Learn: Python"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 6,
+   "module": "B",
+   "title": "Decisions, repeats and functions",
+   "question": "How do we make Python repeat and decide so we never copy a formula down 5,000 rows?",
+   "result": "A notebook with a loop, a condition and one function you wrote.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Write an if and a for.",
+    "Wrap steps in a function.",
+    "Test a function with three cases."
+   ],
+   "slides": 23,
+   "clicks": 43,
+   "animated": 14,
+   "vocab": [
+    "Condition",
+    "Loop",
+    "Function",
+    "Argument",
+    "Return value",
+    "Edge case"
+   ],
+   "lab": "Write a function that gives a loyalty tier from spend; test it on edge cases.",
+   "lab_tasks": 6,
+   "minutes_spoken": 21,
+   "maps": {
+    "roadmap": "Coding",
+    "ibm": "Python Project for Data Science",
+    "google": "Introduction to Data Analysis Using Python",
+    "other": "CS50P weeks 1 to 3"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 7,
+   "module": "B",
+   "title": "pandas I: load, look and filter",
+   "question": "How do we open a file of 30,229 rows and ask the first questions of it?",
+   "result": "A notebook that loads Lakeside Mart, inspects it and answers six filter questions.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Load a CSV into a DataFrame.",
+    "Inspect shape, types and missing values.",
+    "Select columns and filter rows."
+   ],
+   "slides": 21,
+   "clicks": 34,
+   "animated": 13,
+   "vocab": [
+    "DataFrame",
+    "Series",
+    "Index",
+    "Boolean mask",
+    "Method",
+    "Attribute"
+   ],
+   "lab": "Answer six questions about orders using filters; compare each with the Sheets answer.",
+   "lab_tasks": 6,
+   "minutes_spoken": 16,
+   "maps": {
+    "roadmap": "Coding, EDA",
+    "ibm": "Data Analysis with Python",
+    "google": "Introduction to Data Analysis Using Python",
+    "other": "Kaggle Learn: Pandas"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 8,
+   "module": "B",
+   "title": "pandas II: cleaning the mess",
+   "question": "How do we make a raw export trustworthy, and prove what we changed?",
+   "result": "A cleaning notebook with a log of every change and a before and after row count. Checkpoint 1.",
+   "dataset": "Lakeside Mart raw exports",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Fix types, dates and text.",
+    "Handle missing values and duplicates with a stated rule.",
+    "Write a cleaning log."
+   ],
+   "slides": 23,
+   "clicks": 38,
+   "animated": 14,
+   "vocab": [
+    "Duplicate",
+    "Missing value",
+    "Data type",
+    "String method",
+    "Outlier",
+    "Cleaning log",
+    "Residual"
+   ],
+   "lab": "Clean the raw orders file with eight seeded defects; reconcile revenue to the answer within a stated residual.",
+   "lab_tasks": 8,
+   "minutes_spoken": 23,
+   "maps": {
+    "roadmap": "EDA",
+    "ibm": "Data Analysis with Python",
+    "google": "Process Data from Dirty to Clean",
+    "other": "Kaggle Learn: Data Cleaning"
+   },
+   "checkpoint": "Checkpoint 1: clean a raw file and reconcile"
+  },
+  {
+   "no": 9,
+   "module": "B",
+   "title": "pandas III: group, join and reshape",
+   "question": "How do we answer questions that need several tables and several groups?",
+   "result": "A notebook that joins orders to customers and products and reports revenue by group.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Group and aggregate.",
+    "Join tables on a key and check row counts.",
+    "Make a pivot table in code."
+   ],
+   "slides": 23,
+   "clicks": 46,
+   "animated": 17,
+   "vocab": [
+    "groupby",
+    "Aggregation",
+    "Merge",
+    "Left join",
+    "Fan out",
+    "pivot_table"
+   ],
+   "lab": "Revenue by branch, category and month; find the join that silently doubled revenue.",
+   "lab_tasks": 8,
+   "minutes_spoken": 20,
+   "maps": {
+    "roadmap": "Coding, EDA",
+    "ibm": "Data Analysis with Python",
+    "google": "Introduction to Data Analysis Using Python",
+    "other": "Kaggle Learn: Pandas"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 10,
+   "module": "C",
+   "title": "SQL for analysts",
+   "question": "How do we ask a database the same questions in the language every employer uses?",
+   "result": "Ten SQL queries against an SQLite copy of Lakeside Mart, each checked against pandas.",
+   "dataset": "Lakeside Mart (SQLite)",
+   "tools": [
+    "Google Colab",
+    "SQLite"
+   ],
+   "code": true,
+   "outcomes": [
+    "Write SELECT, WHERE, GROUP BY and ORDER BY.",
+    "Write a JOIN and say what it keeps.",
+    "Check a SQL result against pandas."
+   ],
+   "slides": 23,
+   "clicks": 39,
+   "animated": 16,
+   "vocab": [
+    "Database",
+    "Query",
+    "Clause",
+    "NULL",
+    "Subquery",
+    "Alias"
+   ],
+   "lab": "Ten queries; for three, reproduce the answer in pandas and compare.",
+   "lab_tasks": 8,
+   "minutes_spoken": 19,
+   "maps": {
+    "roadmap": "Coding",
+    "ibm": "Databases and SQL for Data Science with Python",
+    "google": "Ask Questions; Prepare Data for Exploration (SQL)",
+    "other": "Kaggle Learn: Intro to SQL"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 11,
+   "module": "C",
+   "title": "Exploring and visualising with Python",
+   "question": "How do we explore an unfamiliar dataset in one sitting and find what is worth reporting?",
+   "result": "An exploration notebook with six charts and three findings written in plain words.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Run a repeatable EDA routine.",
+    "Make histograms, scatter, bar and line charts with matplotlib and seaborn.",
+    "Write a finding that states a number and a limit."
+   ],
+   "slides": 24,
+   "clicks": 43,
+   "animated": 15,
+   "vocab": [
+    "EDA",
+    "Axes",
+    "Hue",
+    "Rate",
+    "Seasonality",
+    "Finding"
+   ],
+   "lab": "Explore returns and basket size; find a rate-versus-count reversal between branches.",
+   "lab_tasks": 8,
+   "minutes_spoken": 20,
+   "maps": {
+    "roadmap": "EDA",
+    "ibm": "Data Visualization with Python",
+    "google": "Share Data Through the Art of Visualization",
+    "other": "Kaggle Learn: Data Visualization"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 12,
+   "module": "C",
+   "title": "Inference: is the difference real?",
+   "question": "When two groups differ, how do we know it is not just luck?",
+   "result": "A confidence interval and an A/B test on a Lakeside Mart promotion, with a decision.",
+   "dataset": "Lakeside Mart promotions",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Build and read a confidence interval.",
+    "Run and read a t test and a proportion test.",
+    "State a decision with effect size and uncertainty."
+   ],
+   "slides": 23,
+   "clicks": 43,
+   "animated": 15,
+   "vocab": [
+    "Standard error",
+    "Confidence interval",
+    "Bootstrap",
+    "Null hypothesis",
+    "p-value",
+    "Effect size",
+    "Multiple testing"
+   ],
+   "lab": "Did the shelf promotion lift basket size? Report the lift, the interval and the decision.",
+   "lab_tasks": 8,
+   "minutes_spoken": 25,
+   "maps": {
+    "roadmap": "Statistics",
+    "ibm": "Machine Learning with Python (foundations)",
+    "google": "The Power of Statistics",
+    "other": "Khan-style intuition; CS50 Data Science ideas"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 13,
+   "module": "C",
+   "title": "Regression: explaining and predicting a number",
+   "question": "How much does one thing change when another changes, and how well can we predict?",
+   "result": "A regression with a plain-language interpretation and a one-page analysis report. Checkpoint 2.",
+   "dataset": "Lakeside Mart",
+   "tools": [
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Fit a linear regression and read each coefficient.",
+    "Check residuals.",
+    "Say what the model does not prove."
+   ],
+   "slides": 23,
+   "clicks": 40,
+   "animated": 14,
+   "vocab": [
+    "Regression",
+    "Predictor",
+    "Coefficient",
+    "Intercept",
+    "Least squares",
+    "R squared",
+    "Dummy variable"
+   ],
+   "lab": "Model branch weekly orders from footfall, promotion and rainfall, see why weekly sales is noisier, and interpret each term in a sentence.",
+   "lab_tasks": 10,
+   "minutes_spoken": 24,
+   "maps": {
+    "roadmap": "Econometrics, Statistics",
+    "ibm": "Machine Learning with Python (regression)",
+    "google": "Regression Analysis",
+    "other": "DeepLearning.AI ML Specialization course 1 week 1 to 2"
+   },
+   "checkpoint": "Checkpoint 2: an analysis report"
+  },
+  {
+   "no": 14,
+   "module": "D",
+   "title": "Machine learning: the workflow",
+   "question": "What does it mean for a computer to learn from examples, and how do we know it did?",
+   "result": "A first model on Nile Microfinance loans with a train and test split.",
+   "dataset": "Nile Microfinance",
+   "tools": [
+    "Google Colab",
+    "scikit-learn"
+   ],
+   "code": true,
+   "outcomes": [
+    "Name features, target, training and test data.",
+    "Split data and fit a model with scikit-learn.",
+    "Compare a model to a naive baseline."
+   ],
+   "slides": 23,
+   "clicks": 44,
+   "animated": 17,
+   "vocab": [
+    "Feature",
+    "Target",
+    "Training set",
+    "Test set",
+    "Baseline",
+    "Class imbalance"
+   ],
+   "lab": "Predict loan default with a first model; beat the baseline or explain why not.",
+   "lab_tasks": 8,
+   "minutes_spoken": 22,
+   "maps": {
+    "roadmap": "Machine learning",
+    "ibm": "Machine Learning with Python",
+    "google": "The Nuts and Bolts of Machine Learning",
+    "other": "DeepLearning.AI ML Spec course 1; Google MLCC"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 15,
+   "module": "D",
+   "title": "Classification: yes or no questions",
+   "question": "How do we predict a category, and what does the model's confidence mean?",
+   "result": "Logistic regression and a decision tree on loan default, compared.",
+   "dataset": "Nile Microfinance",
+   "tools": [
+    "Google Colab",
+    "scikit-learn"
+   ],
+   "code": true,
+   "outcomes": [
+    "Fit logistic regression and a decision tree.",
+    "Read predicted probabilities.",
+    "Choose a threshold from costs."
+   ],
+   "slides": 23,
+   "clicks": 42,
+   "animated": 16,
+   "vocab": [
+    "Classification",
+    "Predicted probability",
+    "Sigmoid curve",
+    "Logistic regression",
+    "Decision tree",
+    "Threshold",
+    "One hot encoding"
+   ],
+   "lab": "Fit both models; draw the tree; pick a threshold using the cost of a missed default.",
+   "lab_tasks": 8,
+   "minutes_spoken": 22,
+   "maps": {
+    "roadmap": "Machine learning, Econometrics",
+    "ibm": "Machine Learning with Python",
+    "google": "Regression Analysis (logistic)",
+    "other": "DeepLearning.AI ML Spec course 1 week 3"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 16,
+   "module": "D",
+   "title": "Judging a model: metrics, leakage and imbalance",
+   "question": "How do we tell a model that works from one that merely looks good?",
+   "result": "A confusion matrix, precision, recall and ROC for the loan model, and a leaked column found and removed.",
+   "dataset": "Nile Microfinance",
+   "tools": [
+    "Google Colab",
+    "scikit-learn"
+   ],
+   "code": true,
+   "outcomes": [
+    "Read a confusion matrix.",
+    "Choose precision, recall or AUC for a business cost.",
+    "Find and remove leakage; use cross-validation."
+   ],
+   "slides": 22,
+   "clicks": 42,
+   "animated": 15,
+   "vocab": [
+    "Confusion matrix",
+    "Precision",
+    "Recall",
+    "ROC curve",
+    "AUC",
+    "Class weight",
+    "Data leakage",
+    "Cross-validation"
+   ],
+   "lab": "Find the column that leaks the answer; compare metrics before and after; cross-validate.",
+   "lab_tasks": 8,
+   "minutes_spoken": 21,
+   "maps": {
+    "roadmap": "Machine learning",
+    "ibm": "Machine Learning with Python",
+    "google": "The Nuts and Bolts of Machine Learning",
+    "other": "Google MLCC: classification and data modules"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 17,
+   "module": "D",
+   "title": "Forests, boosting and overfitting",
+   "question": "How do we get a stronger model without fooling ourselves?",
+   "result": "A random forest and a gradient boosting model tuned with cross-validation; feature importance read with care.",
+   "dataset": "Nile Microfinance",
+   "tools": [
+    "Google Colab",
+    "scikit-learn"
+   ],
+   "code": true,
+   "outcomes": [
+    "Explain bias, variance and overfitting from a curve.",
+    "Fit a forest and a boosted model.",
+    "Read feature importance without over-claiming."
+   ],
+   "slides": 23,
+   "clicks": 44,
+   "animated": 15,
+   "vocab": [
+    "Overfitting",
+    "Bias and variance",
+    "Bagging",
+    "Random forest",
+    "Boosting",
+    "Hyperparameter",
+    "Permutation importance"
+   ],
+   "lab": "Tune a forest; plot train versus test score; decide whether complexity paid.",
+   "lab_tasks": 8,
+   "minutes_spoken": 25,
+   "maps": {
+    "roadmap": "Machine learning",
+    "ibm": "Machine Learning with Python",
+    "google": "The Nuts and Bolts of Machine Learning",
+    "other": "DeepLearning.AI ML Spec course 2 week 4"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 18,
+   "module": "D",
+   "title": "Finding structure without labels",
+   "question": "How do we group customers or spot odd cases when nobody gave us the answers?",
+   "result": "Customer segments from Lakeside Mart and a short list of anomalies, each described in business words.",
+   "dataset": "Lakeside Mart customers",
+   "tools": [
+    "Google Colab",
+    "scikit-learn"
+   ],
+   "code": true,
+   "outcomes": [
+    "Build recency, frequency and spend features.",
+    "Run k-means and choose k with evidence.",
+    "Describe each segment for a manager."
+   ],
+   "slides": 23,
+   "clicks": 47,
+   "animated": 16,
+   "vocab": [
+    "Unsupervised learning",
+    "RFM",
+    "Log transform",
+    "Standard scaling",
+    "k-means",
+    "Elbow",
+    "PCA",
+    "Anomaly"
+   ],
+   "lab": "Segment customers; name and describe each segment; flag unusual baskets.",
+   "lab_tasks": 8,
+   "minutes_spoken": 25,
+   "maps": {
+    "roadmap": "Machine learning",
+    "ibm": "Machine Learning with Python (clustering)",
+    "google": "The Nuts and Bolts of Machine Learning",
+    "other": "DeepLearning.AI ML Spec course 3 week 1"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 19,
+   "module": "D",
+   "title": "Forecasting and a first end-to-end model",
+   "question": "How do we predict next month, and how do we package a whole modelling job?",
+   "result": "A seasonal baseline forecast and a scikit-learn pipeline on clinic visits or Lakeside sales. Checkpoint 3.",
+   "dataset": "Clinic visits and Lakeside Mart",
+   "tools": [
+    "Google Colab",
+    "scikit-learn"
+   ],
+   "code": true,
+   "outcomes": [
+    "Split time series by time, never at random.",
+    "Beat a seasonal naive forecast.",
+    "Build a Pipeline that cleans, encodes and models."
+   ],
+   "slides": 23,
+   "clicks": 35,
+   "animated": 13,
+   "vocab": [
+    "Time series",
+    "Seasonal naive",
+    "Lag feature",
+    "Forecast horizon",
+    "Pipeline",
+    "Mean absolute error"
+   ],
+   "lab": "Hold back 2025, forecast it from the earlier years, report the error in cases and decide if the model beats the baseline.",
+   "lab_tasks": 7,
+   "minutes_spoken": 21,
+   "maps": {
+    "roadmap": "Econometrics, Machine learning",
+    "ibm": "Applied Data Science Capstone",
+    "google": "Capstone",
+    "other": "DeepLearning.AI ML Spec course 2 week 3"
+   },
+   "checkpoint": "Checkpoint 3: a tested model"
+  },
+  {
+   "no": 20,
+   "module": "E",
+   "title": "Neural networks and deep learning, without the maths wall",
+   "question": "What is a neural network, and when is one the right tool?",
+   "result": "A small network trained in TensorFlow Playground and in scikit-learn, and one pretrained image model used in Colab.",
+   "dataset": "Playground and small image sample",
+   "tools": [
+    "TensorFlow Playground",
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Describe layers, weights and training in plain words.",
+    "Train a small network and see it overfit.",
+    "Say when a simpler model is better."
+   ],
+   "slides": 23,
+   "clicks": 34,
+   "animated": 13,
+   "vocab": [
+    "Neuron",
+    "Weight",
+    "Activation function",
+    "Hidden layer",
+    "Loss",
+    "Learning rate",
+    "Epoch",
+    "Pretrained model"
+   ],
+   "lab": "Playground challenges; MLPClassifier on the loan data; compare with the forest.",
+   "lab_tasks": 10,
+   "minutes_spoken": 22,
+   "maps": {
+    "roadmap": "Deep learning",
+    "ibm": "Machine Learning with Python (overview)",
+    "google": "(not covered)",
+    "other": "fast.ai lesson 1 idea; DeepLearning.AI ML Spec course 2 weeks 1 and 2"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 21,
+   "module": "E",
+   "title": "Text as data and meaning as numbers",
+   "question": "How can a computer compare customer messages when it only understands numbers?",
+   "result": "A bag-of-words sentiment classifier and a meaning-based search over customer feedback using embeddings.",
+   "dataset": "Lakeside feedback messages",
+   "tools": [
+    "Google Colab",
+    "scikit-learn",
+    "sentence-transformers"
+   ],
+   "code": true,
+   "outcomes": [
+    "Turn text into counts and into embeddings.",
+    "Train a sentiment classifier and read its mistakes.",
+    "Search by meaning."
+   ],
+   "slides": 23,
+   "clicks": 47,
+   "animated": 16,
+   "vocab": [
+    "Sentiment",
+    "Regular expression",
+    "Bag of words",
+    "TF-IDF",
+    "Embedding",
+    "Cosine similarity",
+    "Semantic search"
+   ],
+   "lab": "Classify feedback; search 'long queue at the till' and find messages with different words.",
+   "lab_tasks": 9,
+   "minutes_spoken": 25,
+   "maps": {
+    "roadmap": "AI engineering",
+    "ibm": "Generative AI: Elevate Your Data Science Career",
+    "google": "Accelerate Your Job Search with AI (tools)",
+    "other": "Hugging Face NLP course ideas; Google MLCC embeddings"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 22,
+   "module": "E",
+   "title": "Language models and building with them",
+   "question": "What does a language model do, how do we test one, and how do we make it answer from our own documents?",
+   "result": "A retrieval pattern: embed the documents, find the closest passages, and ask a small local model to answer from them, with a test sheet.",
+   "dataset": "Lakeside policy documents",
+   "tools": [
+    "Google Colab",
+    "sentence-transformers",
+    "small local model"
+   ],
+   "code": true,
+   "outcomes": [
+    "Explain tokens, context and next-word prediction.",
+    "Build retrieval over a handful of documents.",
+    "Test answers against a checked list and record failures."
+   ],
+   "slides": 22,
+   "clicks": 32,
+   "animated": 11,
+   "vocab": [
+    "Token",
+    "Prompt",
+    "Context",
+    "Hallucination",
+    "Retrieval",
+    "Passage",
+    "Use log"
+   ],
+   "lab": "Build the pipeline; write twelve test questions; score the answers; list failures.",
+   "lab_tasks": 8,
+   "minutes_spoken": 21,
+   "maps": {
+    "roadmap": "AI engineering, AI-assisted coding",
+    "ibm": "Generative AI: Elevate Your Data Science Career",
+    "google": "Google AI Essentials",
+    "other": "DeepLearning.AI short courses; Google MLCC LLM module"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 23,
+   "module": "F",
+   "title": "Ship it: reproducible work, a small app and responsible use",
+   "question": "How do we turn a notebook into something a colleague can use and trust?",
+   "result": "A GitHub repository, a saved model and a Streamlit app, with a model card and a data-protection checklist.",
+   "dataset": "Capstone data",
+   "tools": [
+    "GitHub",
+    "Streamlit",
+    "Google Colab"
+   ],
+   "code": true,
+   "outcomes": [
+    "Save and reload a model.",
+    "Publish code and a small app for free.",
+    "Write a model card and check data-protection duties."
+   ],
+   "slides": 23,
+   "clicks": 31,
+   "animated": 11,
+   "vocab": [
+    "Reproducibility",
+    "Repository",
+    "Commit",
+    "Model card",
+    "Data drift",
+    "Proxy variable",
+    "Personal data",
+    "Data subject"
+   ],
+   "lab": "Deploy the capstone model as an app; write the model card.",
+   "lab_tasks": 8,
+   "minutes_spoken": 24,
+   "maps": {
+    "roadmap": "MLOps",
+    "ibm": "Data Scientist Career Guide",
+    "google": "Capstone",
+    "other": "fast.ai lesson 2 (deploy)"
+   },
+   "checkpoint": null
+  },
+  {
+   "no": 24,
+   "module": "F",
+   "title": "Capstone presentations and your path from here",
+   "question": "Can you explain what you built, what it can and cannot do, and what you will learn next?",
+   "result": "A ten-minute presentation and a personal 6-month learning path.",
+   "dataset": "Capstone data",
+   "tools": [
+    "Google Colab",
+    "GitHub"
+   ],
+   "code": false,
+   "outcomes": [
+    "Present a result with its limits.",
+    "Answer questions on method and risk.",
+    "Choose next free courses from a gap list."
+   ],
+   "slides": 23,
+   "clicks": 21,
+   "animated": 8,
+   "vocab": [
+    "Capstone",
+    "Limitation",
+    "Executive summary",
+    "Portfolio",
+    "Rubric",
+    "Learning path"
+   ],
+   "lab": "Present; give and receive structured feedback.",
+   "lab_tasks": 5,
+   "minutes_spoken": 21,
+   "maps": {
+    "roadmap": "Portfolio",
+    "ibm": "Capstone and career",
+    "google": "Capstone",
+    "other": "Free next courses: Kaggle Learn, Google MLCC, fast.ai, CS50P"
+   },
+   "checkpoint": null
+  }
+ ],
+ "totals": {
+  "slides": 545,
+  "clicks": 895,
+  "animated": 320,
+  "words": 68157,
+  "vocab": 161
+ }
+}

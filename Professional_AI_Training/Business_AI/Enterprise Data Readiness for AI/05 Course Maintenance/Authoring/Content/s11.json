@@ -1,0 +1,563 @@
+{
+ "session": 11,
+ "notes_title": "Today is Session 11, governance and AI risk. Kitara has a classification standard, an AI use policy and a retention schedule, yet four of its fourteen sources have no owner, and two of the three highest risks in its register are still open. We'll set up the roles, read the four functions of the NIST framework, score twelve risks and walk an incident through the whole thing. By the end you'll have roles, three draft policies and ten scored risks for your first AI use.",
+ "notes_outcomes": "You'll leave with three abilities. You'll set up owners, stewards and a place where decisions are made for data and AI. You'll walk an incident through the four NIST functions, with names against each step. And you'll score risks by likelihood and impact and give each one an owner. Ten minutes of recall, thirty of teaching, twenty five of demonstration, a short break, then forty minutes on your own register, and ten minutes at the end for a decision about the council that only a leader can make.",
+ "notes_words": "Seven words today. A steering council is the small group that decides which AI uses go ahead. A risk register is the list of risks, and a risk score is likelihood times impact. A control is whatever lowers a risk. Shadow AI is staff using tools nobody approved. Human oversight means a named person can see what the system did and stop it. And an incident drill is a rehearsal of what you do when something goes wrong.",
+ "vocab": [
+  [
+   "Steering council",
+   "A small group of senior people that decides which AI uses go ahead and can stop one.",
+   "Owner of risk R07, with no chair yet"
+  ],
+  [
+   "Risk register",
+   "A list of risks, each with a score, an owner, a control and a status.",
+   "risk_register.csv, 12 risks"
+  ],
+  [
+   "Risk score",
+   "Likelihood times impact, each from 1 to 5. 15 or more is high, 8 to 14 medium, below 8 low.",
+   "R01 scores 20"
+  ],
+  [
+   "Control",
+   "Something in place that lowers a risk, such as a rule, a test or a filter.",
+   "R02 has the control None"
+  ],
+  [
+   "Shadow AI",
+   "Staff using AI tools that nobody approved.",
+   "Two staff pasted complaint emails into a public chatbot in April 2026"
+  ],
+  [
+   "Human oversight",
+   "A named person can see what an AI system did and can stop it.",
+   "Staff must check every result under the generative AI policy"
+  ],
+  [
+   "Incident drill",
+   "A rehearsal of what the organisation does when something goes wrong.",
+   "Personal data found in the search index"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 10",
+   "kicker": "Warm-up",
+   "questions": [
+    {
+     "q": "The hosting file rated four options on latency to Kampala. Which two came out low?",
+     "a": "The on-site data centre and local colocation in Kampala. The regional cloud and the managed service came out medium."
+    },
+    {
+     "q": "Nine of the fifteen tools in the sample licence register still say Check. Why?",
+     "a": "The facts came from search summaries. Nobody has opened a licence file yet, so Check is the correct entry."
+    }
+   ],
+   "notes": "Welcome back. Last session was about where the system runs and what it costs, so two quick questions from it. First. The hosting file rated four options on how quickly each answers in Kampala. Which two came out low? Have a think.\n\nThe on-site data centre, and local colocation in Kampala. The regional cloud in South Africa and the managed software service both came out medium. Second question. The sample licence register lists fifteen tools, and nine of them still say Check in the column that asks if the tool is free for commercial use. Why do they say Check? No rush.\n\nBecause the facts came from search summaries and third party pages, and nobody has opened a licence file yet. Until someone reads the file, Check is the correct entry. Today we move from where the system runs to who answers for it, and what happens when it goes wrong."
+  },
+  {
+   "type": "stat",
+   "title": "Kitara Group today: risks, owners and an April incident",
+   "stats": [
+    {
+     "n": "12",
+     "label": "risks in the register, 3 of them scoring 15 or more"
+    },
+    {
+     "n": "4 of 14",
+     "label": "data sources name no owner"
+    },
+    {
+     "n": "32 of 121",
+     "label": "documents are flagged as holding personal data"
+    },
+    {
+     "n": "2",
+     "label": "staff pasted customer emails into a public chatbot in April 2026"
+    }
+   ],
+   "caption": "The risk register, sources.csv, docs_metadata.csv and Circular 2026/011. Fictional, built for this course.",
+   "notes": "Here is Kitara as we meet it today. The risk register holds twelve risks, and three of them score fifteen or more. We'll compute those scores in a few minutes.\n\nFour of the fourteen data sources name no owner. They're the same four we found in Session 1, the call centre transcripts, the shared drive, the email archive and the branch spreadsheets. Thirty two of the hundred and twenty one documents are flagged as holding personal data, and thirty one of those are claims letters.\n\nAnd in April, two staff members pasted customer complaint emails into a public chatbot. The emails held names and phone numbers. Kitara treated both as security incidents, and no customer was harmed. The policy and the circular came after the event. Today is about deciding earlier."
+  },
+  {
+   "type": "figure",
+   "title": "Five roles, and the one decision each makes",
+   "fig": "governance_roles",
+   "look": [
+    "Steering council: which AI uses go ahead, and what they may spend.",
+    "Data owner: who may use this data, and for what. Kitara: 4 of 14 sources have none.",
+    "Data steward: what good enough quality means, and who is told when it fails.",
+    "Data custodian and data user: how data is protected, and whether a result is good enough to act on."
+   ],
+   "caption": "Illustrative. Job titles vary. Each decision needs one name against it.",
+   "alt": "Five data roles listed one above the other, each with the single decision it is responsible for.",
+   "notes": "Governance sounds heavy. At its smallest it is five roles and one decision for each. The picture lists them. The split is an illustration, and your job titles will differ. What matters is that every decision has one name against it.\n\nThe steering council decides which AI uses go ahead and what they may spend. It's a small group of senior people, and in a few minutes we'll talk about who should chair it.\n\nThe data owner decides who may use a data set and for what. At Kitara, four of the fourteen sources have no owner, and the claims archive has two departments that each say it's theirs. When something leaks, the owner is the person we call.\n\nThe data steward decides what good enough quality means, and who is told when it fails. Seven of Kitara's fourteen sources have no steward.\n\nThe custodian looks after storage, backup and protection. The user decides whether a result is good enough to act on. The user is the person at the screen, and that person needs to know the decision is theirs."
+  },
+  {
+   "type": "table",
+   "title": "Three policies Kitara already has, and what AI adds",
+   "header": [
+    "Policy",
+    "What Kitara has",
+    "What AI adds"
+   ],
+   "rows": [
+    [
+     "Data classification",
+     "Standard with four classes. The owner picks the class. No class means restricted.",
+     "5 of 14 sources have no class. The loan system holds personal data and is marked internal."
+    ],
+    [
+     "Acceptable AI use",
+     "Policy and Circular 2026/011, in force from 1 June 2026. A registered sandbox.",
+     "Silent on who approves a new AI use built inside Kitara."
+    ],
+    [
+     "Retention",
+     "Schedule from 90 days for branch camera footage to 15 years for life claims. Board minutes are kept for good.",
+     "No line for a search index, a chunk store or a prompt log."
+    ]
+   ],
+   "colw": [
+    2.6,
+    4.7,
+    4.7
+   ],
+   "size": 18,
+   "notes": "Three short policies carry most of the weight, and Kitara already has all three on the shared drive. The Data Classification Standard has four classes, public, internal, restricted and confidential. The owner chooses the class, and a data set with no class is treated as restricted. Five of the fourteen sources still have no class, and the loan system, which holds personal data, is marked only internal.\n\nThe Acceptable Use of Generative AI Tools policy took effect on the first of June 2026. It lists what staff may not paste into a public tool, and it offers a sandbox that staff register for. It says nothing yet about who approves a new AI use built inside Kitara.\n\nThe Data Retention Schedule runs from ninety days for branch camera footage to fifteen years for life insurance claims files, and board minutes are kept permanently. It has no line for a search index, a store of text chunks or a prompt log. An index is a copy of your data, and a copy needs a retention period too."
+  },
+  {
+   "type": "flow",
+   "title": "The four functions of the NIST AI Risk Management Framework",
+   "steps": [
+    {
+     "h": "Govern",
+     "t": "Policies, roles and who answers, across the whole organisation. At Kitara, the council and three policies."
+    },
+    {
+     "h": "Map",
+     "t": "What one AI system is, what data it reads and who it affects. The staff policy assistant and its sources."
+    },
+    {
+     "h": "Measure",
+     "t": "Test and track the risks you found. Search tests, permission tests, risk scores."
+    },
+    {
+     "h": "Manage",
+     "t": "Decide, respond, monitor and review. Every risk gets an owner and a next action."
+    }
+   ],
+   "caption": "NIST AI RMF 1.0, January 2023. Voluntary. The Generative AI Profile, NIST AI 600-1, followed in July 2024.",
+   "notes": "You don't have to invent the structure. The US National Institute of Standards and Technology published its AI Risk Management Framework in January 2023. It's voluntary guidance, so nobody can certify you against it. It has four functions.\n\nGovern applies across the whole organisation. It means policies, roles and who answers. At Kitara that's the steering council and the three policies we just saw.\n\nMap looks at one AI system at a time. What is it, what data does it read, and who could it affect? For the staff policy assistant, that means its sources and the people who ask it questions.\n\nMeasure tests and tracks the risks you found. For Kitara that's the search tests, the permission tests and the risk scores we compute today.\n\nManage is what you do about them. Decide, respond, monitor and review. A risk gets an owner and a next action, and an incident gets a response.\n\nIn July 2024 NIST added a Generative AI Profile, NIST AI 600-1. It covers risks that come with generative AI, such as confabulation, where the system states something false with confidence. It adds no new functions."
+  },
+  {
+   "type": "compare",
+   "title": "NIST guidance and ISO/IEC 42001 side by side",
+   "left": {
+    "h": "NIST AI RMF 1.0",
+    "points": [
+     "Published January 2023",
+     "Voluntary guidance with four functions",
+     "No certificate exists",
+     "Generative AI Profile added July 2024"
+    ]
+   },
+   "right": {
+    "h": "ISO/IEC 42001:2023",
+    "points": [
+     "Published December 2023",
+     "The first AI management system standard",
+     "Same clause structure as ISO/IEC 27001",
+     "An auditor can certify an organisation"
+    ]
+   },
+   "verdict": "Work with the NIST functions. Look at ISO/IEC 42001 when a partner or regulator asks for a certificate.",
+   "notes": "Two names come up when boards ask about AI governance. They do different jobs.\n\nNIST's framework is guidance. It's voluntary, it has four functions, and no auditor issues a certificate for it. You use it to organise your work, and the Generative AI Profile adds the risks that come with text generating systems.\n\nISO/IEC 42001 was published in December 2023 and is the first management system standard for AI. A management system is a set of roles, policies and checks that an auditor can examine, and the standard allows a certificate. It uses the same clause structure as ISO/IEC 27001, the information security standard, so an organisation that already holds 27001 will find familiar ground.\n\nFor Kitara I'd start with the four NIST functions as the working method. Look at ISO 42001 when a customer, a partner or a regulator asks for a certificate. As of October 2026 we found no Ugandan rule that requires either one."
+  },
+  {
+   "type": "concept",
+   "title": "Shadow AI: staff using tools nobody approved",
+   "lead": "Kitara knows two cases. It has no way to see the rest.",
+   "points": [
+    {
+     "h": "What happened",
+     "t": "In April two staff pasted complaint emails with names and phone numbers into a public chatbot. Both were handled as security incidents."
+    },
+    {
+     "h": "What is unknown",
+     "t": "R08 scores 12. The control is a circular, with no monitoring. No source we found measured how common shadow AI is, so we quote no number."
+    },
+    {
+     "h": "What helps",
+     "t": "An approved option. Kitara offers a sandbox that staff register for, and training on the first Wednesday of each month."
+    }
+   ],
+   "notes": "Shadow AI is staff using AI tools that nobody approved. Often a person only wants a draft written faster. At Kitara two staff members pasted customer complaint emails into a public chatbot in April. The emails held names and phone numbers. Both were handled as security incidents, and no customer was harmed.\n\nRisk R08 in the register is this problem. Likelihood four, impact three, a score of twelve. The control is a circular and a policy. There's no monitoring, so nobody could tell you today how often it happens.\n\nHow common is shadow AI? I looked for a measured figure in the sources we use and found none, so I won't give you one. Count it in your own organisation. Ask staff, ask IT what traffic goes to public AI sites, and ask in a way that doesn't punish people for answering.\n\nWhat helps most is an approved option. Kitara's answer is an internal sandbox, registered through IT Security."
+  },
+  {
+   "type": "table",
+   "title": "Six questions to ask an AI supplier",
+   "header": [
+    "Question",
+    "A good answer gives",
+    "Kitara risk"
+   ],
+   "rows": [
+    [
+     "Where is our data stored and processed?",
+     "A named country and site",
+     "R09"
+    ],
+    [
+     "Is our data used to train your models?",
+     "A written no, in the contract",
+     "R01"
+    ],
+    [
+     "Who else touches our data?",
+     "A list. Changes only with our written consent",
+     "R03"
+    ],
+    [
+     "How fast do you tell us of an incident?",
+     "A number of hours. Kitara's procedure says 24",
+     "R01"
+    ],
+    [
+     "How do we leave?",
+     "Data returned in a standard format, copies destroyed, a certificate",
+     "R04"
+    ],
+    [
+     "What if the model or its licence changes?",
+     "Notice, and the right to stay on the old version",
+     "R05"
+    ]
+   ],
+   "colw": [
+    4.8,
+    5.4,
+    1.8
+   ],
+   "size": 17,
+   "notes": "When AI comes from a supplier, six questions belong in the contract talks. Kitara's Vendor Management Procedure already asks for some of them, so you may only need to extend it.\n\nWhere is our data stored and processed? You want a named country, because the Uganda Act is reported to need equivalent protection or consent when data goes abroad. Is our data used to train your models? You want a written no. Who else touches our data? Kitara's procedure allows a subcontractor only with the contract owner's written consent.\n\nHow fast do you tell us about an incident? The procedure says within twenty four hours. How do we leave? Data returned in a standard format, copies destroyed, and a certificate of destruction. That answers risk R04, vendor lock in.\n\nAnd what happens when the model or its licence changes? Ask for notice and the right to stay on the old version. That's risk R05, and Session 10's licence register is where you track it."
+  },
+  {
+   "type": "concept",
+   "title": "Human oversight: before, during and after",
+   "lead": "A named person can see what the system did, and can stop it.",
+   "points": [
+    {
+     "h": "Before",
+     "t": "An owner approves the use and the data it reads. The council records the decision."
+    },
+    {
+     "h": "During",
+     "t": "A person checks each answer before acting on it. Kitara's AI policy already says staff must check every result."
+    },
+    {
+     "h": "After",
+     "t": "Someone can pause the system. A log shows what it answered, and to whom."
+    }
+   ],
+   "notes": "Human oversight means a named person can see what the system did and can stop it. Three moments matter. Before it starts, an owner approves the use and the data it reads. While it runs, a person checks each answer before acting on it. Kitara's generative AI policy already says staff must check every result before using it in work. Afterwards, someone can pause the system, and a log shows what it answered and to whom.\n\nThe test I use is simple. Pick one answer the system gave last week. Who read it, and who could have stopped it? If the answer is nobody, the oversight exists on paper only.\n\nDecisions about customers need the most care. A loan refusal or a claim rejection made by a model with no person checking is where the Act's rights on automated decision taking apply. Session 9 covered them."
+  },
+  {
+   "type": "code",
+   "title": "Scoring and ranking Kitara's twelve risks",
+   "lang": "python",
+   "code": "import pandas as pd\nr = pd.read_csv('risk_register.csv')\nr['score'] = r.likelihood * r.impact\nnames = ['low', 'medium', 'high']\nr['band'] = pd.cut(r.score, [0, 7, 14, 25], labels=names)\ntop = r.sort_values('score', ascending=False).head(3)\nprint(top[['id', 'score', 'band']].to_string(index=False))\nprint(r.band.value_counts().to_dict())",
+   "output": " id  score band\nR01     20 high\nR02     15 high\nR03     15 high\n{'medium': 5, 'low': 4, 'high': 3}",
+   "says": [
+    "Read the register. The score is not stored, so multiply likelihood by impact.",
+    "Cut the score into three bands: below 8 is low, 8 to 14 is medium, 15 and above is high.",
+    "Show the three highest and count each band."
+   ],
+   "notes": "Let's score the register ourselves. The file risk_register.csv has twelve risks, each with a likelihood and an impact from one to five. The score isn't stored, and a leader should know why. A stored number can go out of date. Computing it keeps it matched to the inputs.\n\nThe first lines read the file and multiply likelihood by impact into a new column called score.\n\nThe next line cuts the score into three bands, low below eight, medium from eight to fourteen, and high from fifteen up. Those are the bands the course uses and the bands in the Risk Register workbook.\n\nThen we show the three highest and count each band. R01, personal data entering the search index, scores twenty. R02 and R03 score fifteen. Three high, five medium, four low. The counts come out as a dictionary, which is why the order looks odd."
+  },
+  {
+   "type": "code",
+   "title": "A check that stops on risks still open",
+   "lang": "python",
+   "expect_error": true,
+   "code": "import pandas as pd\nr = pd.read_csv('risk_register.csv')\nr['score'] = r.likelihood * r.impact\nprint(r.owner_role.isna().sum(), 'risks with no owner')\nnone = r[r.current_control.str.startswith('None')]\nprint(none.id.tolist(), 'have no control')\nopen_high = r[(r.score >= 15) & (r.status == 'Open')].id.tolist()\nassert not open_high, f'{len(open_high)} high risks still open: {open_high}'",
+   "output": "0 risks with no owner\n['R02'] have no control\nAssertionError: 2 high risks still open: ['R01', 'R02']",
+   "says": [
+    "Count risks with no owner, and risks whose control reads None.",
+    "Keep the high risks and list those whose status is still Open.",
+    "The assert stops the run when any high risk is still open."
+   ],
+   "notes": "This one fails on purpose, and it's the kind of check a council can ask for every month.\n\nThe first two lines after the score ask two plain questions. Which risks have no owner? None. All twelve name a role. Which have no control? One. R02, the stale policy answer, has the control None, because the superseded status is held only in the metadata file.\n\nThen we keep the high risks whose status is still Open.\n\nThe assert says that list must be empty, and it isn't. R01 and R02 are both high and both open. R03 is high too, but it's being mitigated. The message is the finding. Two of Kitara's three highest risks are still open. A council that reads that line every month will not let it sit."
+  },
+  {
+   "type": "figure",
+   "title": "Where Kitara's twelve risks sit",
+   "fig": "risk_matrix",
+   "look": [
+    "R01, personal data enters the search index, sits alone at the top with a score of 20.",
+    "R02 and R03 score 15: stale policy answers, and restricted documents exposed through search.",
+    "Five risks score 8 to 14, and four score below 8.",
+    "R07, no owner for claims data, scores 12. Its owner is the steering council."
+   ],
+   "caption": "Likelihood times impact. Clay dots score 15 or more.",
+   "alt": "A likelihood by impact grid with twelve numbered risk dots, three in clay for scores of 15 or more.",
+   "notes": "The same twelve risks on a grid. Likelihood runs up the side, impact along the bottom, and the three clay dots are the high ones.\n\nR01 sits alone near the top right. Personal data entering the search index, likelihood four and impact five. A leak of customer data does the most damage, and the grid puts it first.\n\nR02 and R03 both score fifteen, but they get there differently. A stale policy answer is almost certain and a moderate harm. Restricted documents showing up in search are less likely and a severe harm.\n\nFive risks sit in the middle band and four are low. Those four include the Swahili weakness and the knowledge that leaves with staff.\n\nLook at R07, in the middle band. Its owner is the steering council. A council can own a risk only if it exists, has a chair, and meets. That brings us to the decision at the end."
+  },
+  {
+   "type": "trap",
+   "title": "A circular went out, so the risk looks closed",
+   "looks": "R08, shadow use of public chatbots, shows status Mitigating. A circular and a policy are in force. The register looks calm.",
+   "why": "A circular tells people what to do. Nothing checks that they do it. The control column itself says no monitoring, and two staff pasted customer emails before the circular existed.",
+   "fix": "Pair each control with a test or a report. Count sandbox registrations and reported incidents each month, and give the number to the council.",
+   "notes": "Here is a risk that looks handled, and it sits in Kitara's own register.\n\nR08 is the shadow use of public chatbots with customer data. Its status is Mitigating, there's a circular, and there's a policy that took effect in June. Anyone scanning the register sees a risk under control.\n\nIt isn't, because a circular tells people what to do and nothing checks that they do it. The control column says so itself, no monitoring. And the April incident happened before the circular existed, so we have no evidence yet of what changed afterwards.\n\nPair every control with a test or a report. For R08 that could be the count of sandbox registrations and the count of reported incidents, brought to the council each month. A control you can't measure is a hope, and the register should say which of the two it holds."
+  },
+  {
+   "type": "flow",
+   "title": "Incident drill: personal data found in the search index",
+   "steps": [
+    {
+     "h": "Govern",
+     "t": "IT Security tells Legal and Compliance within 4 hours. The data protection officer leads. The council chair is told."
+    },
+    {
+     "h": "Map",
+     "t": "Which index, which documents, which questions returned them. 32 of 121 documents hold personal data, 31 are claims letters."
+    },
+    {
+     "h": "Measure",
+     "t": "Count the passages and the log entries. The Head of Claims confirms what the letters contain."
+    },
+    {
+     "h": "Manage",
+     "t": "Take the index offline, remove the passages, rebuild with masking. Report to the PDPO. Write down the cause."
+    }
+   ],
+   "caption": "Drill it once a year. Roles come from Kitara's Information Security Policy and the register.",
+   "notes": "Let's walk one incident through the four NIST functions. Imagine a staff member searches the new assistant and gets back a claims letter with a customer's name, phone number and national ID.\n\nGovern. Who is in charge? Kitara's Information Security Policy says IT Security tells the Head of Legal and Compliance within four hours when personal data may be affected. Risk R01 names the data protection officer as its owner, so that person leads, and the council chair is told the same day.\n\nMap. What exactly is exposed? Which index, which documents, and which questions returned them. Thirty two of the hundred and twenty one documents are flagged as holding personal data, and thirty one are claims letters.\n\nMeasure. Count the passages involved and the log entries, so you know who saw what. The Head of Claims confirms what the letters contain.\n\nManage. Take the index offline, remove the passages, rebuild it with masking, report to the regulator, and write down the cause.\n\nIf nobody can answer the first question in the first hour, the drill has taught you something."
+  },
+  {
+   "type": "concept",
+   "title": "Reporting a breach to the PDPO in Uganda",
+   "lead": "A teaching summary. It is not legal advice.",
+   "points": [
+    {
+     "h": "The Act",
+     "t": "Those who hold personal data must report a breach to the Personal Data Protection Office, on its form. As reported, the standard is immediately, with no fixed hour limit."
+    },
+    {
+     "h": "The people affected",
+     "t": "As reported, the Office decides whether the people affected must be told. Registered entities also file annual breach reports."
+    },
+    {
+     "h": "Kitara's policy",
+     "t": "It gives 72 hours. Ask Legal and Compliance whether that wording is quick enough."
+    }
+   ],
+   "notes": "A teaching summary. It is not legal advice. Check the current text with your own counsel.\n\nUnder the Uganda Data Protection and Privacy Act, 2019, those who hold or process personal data report a breach to the Personal Data Protection Office, the PDPO, which sits under NITA-U. As reported by law firms, the standard is immediately, on a prescribed form. No fixed number of hours appears in the sources we read. The PDPO decides whether the affected people must be told, and registered organisations also file annual breach reports.\n\nKitara's own Information Security Policy says a breach of personal data is reported within seventy two hours. That's a common figure in other countries, and it may sit uneasily with a law that says immediately. The drill should answer a question. Who in your organisation can decide, on the day, that something is a breach, and who files the form?"
+  },
+  {
+   "type": "table",
+   "title": "How often each piece is reviewed",
+   "header": [
+    "Item",
+    "How often",
+    "Who"
+   ],
+   "rows": [
+    [
+     "High risks",
+     "Monthly, at the council",
+     "Risk owner reports"
+    ],
+    [
+     "The whole register",
+     "Every quarter, rescored",
+     "Risk owners"
+    ],
+    [
+     "Data classes",
+     "Every year, and when a data set changes",
+     "Data owner"
+    ],
+    [
+     "Destruction list",
+     "Every April",
+     "Records owner"
+    ],
+    [
+     "Incident drill",
+     "Once a year",
+     "Legal and IT Security"
+    ],
+    [
+     "Readiness scorecard",
+     "Month 6 and month 12",
+     "Council"
+    ]
+   ],
+   "colw": [
+    3.6,
+    5.4,
+    3.0
+   ],
+   "size": 18,
+   "notes": "Governance that is not reviewed decays. Here is a rhythm you can adjust.\n\nHigh risks come to the council every month. The owner says what changed. The whole register is rescored every quarter by the risk owners, because a likelihood of two can become four when a pilot becomes live.\n\nSome cycles already exist at Kitara. The Data Classification Standard says the owner reviews each class every year and whenever the data set changes. The Records Management Procedure has the records owner signing the destruction list each April. Use those instead of inventing new ones.\n\nAdd a drill once a year, like the one we just walked through. And rescore the readiness scorecard from Session 2 at month six and month twelve. That's the plan Session 12 will build. The rhythm is a suggestion, and your own calendar decides the dates."
+  },
+  {
+   "type": "concept",
+   "title": "Who chairs the council and what it can stop",
+   "lead": "Two choices decide whether the council matters. They belong to the leader.",
+   "points": [
+    {
+     "h": "The chair",
+     "t": "Needs authority over the business and IT, and does not hold the budget for the AI use being judged. Candidates: deputy chief executive, chief risk officer, chief operating officer."
+    },
+    {
+     "h": "What it can stop",
+     "t": "Any go-live with no named owner, no control on a high risk, or no retention period for its copy of the data."
+    },
+    {
+     "h": "How it works",
+     "t": "Monthly, one hour, minutes kept. R07 names the council as owner, so it must exist first."
+    }
+   ],
+   "notes": "Here is the decision that only a leader can make. A council exists on paper in many organisations and does nothing. Two choices decide whether yours matters.\n\nThe first is the chair. The chair needs authority over both the business and IT, and shouldn't be the person asking for money for the AI use being judged. A deputy chief executive, a chief risk officer or a chief operating officer can do that. Who would it be in your organisation? Let's hear your answer first.\n\nThe second is what the council can stop. I'd suggest this. Any go live with no named owner, no control on a high risk, or no retention period for its copy of the data. If the council can only advise, people will treat it as optional.\n\nOne more point from Kitara's own register. R07, no owner for claims data, names the steering council as its owner. The risk can't be managed until the council has a chair, a date and a rule for what it stops."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: roles, three policies and ten risks",
+   "tool": "Risk Register workbook and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Name the five roles for your first AI use",
+    "Write the council's chair, members and what it can stop",
+    "List what exists for classification, AI use and retention",
+    "Draft the gap in each of the three policies",
+    "List ten risks as cause, event and effect",
+    "Score likelihood and impact, read the rating",
+    "Give each high risk an owner, an action and a date",
+    "Data colleague: run the scoring tasks in the notebook"
+   ],
+   "done": "Five roles have names, three policies have a draft or a gap list, and ten risks are scored with an owner and a dated action for each high one.",
+   "notes": "Forty minutes, and the work is on your own organisation. Open Risk Register dot xlsx, the workbook for today.\n\nStart with the roles, because the rest hangs from them. Write a name or a job title against each of the five decisions. Leave a blank where you don't know. A blank is a finding.\n\nThen the three policies. For classification, AI use and retention, write what already exists, and then the gap an AI use would expose.\n\nThen ten risks, written as a cause, an event and an effect. Score likelihood and impact from one to five and the workbook gives you the rating and the rank. Every high risk needs an owner, one action and a date.\n\nThe data colleague runs the notebook, which scores and ranks Kitara's twelve risks and lists the weak spots. Compare your register with Kitara's and see how many of your high risks have nothing in place yet."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "R02, a stale policy returned as the current answer, has likelihood 5 and impact 3. What is its score and band?",
+     "a": "15, which is high. Likelihood times impact, and 15 or more is the high band."
+    },
+    {
+     "q": "Name the four functions of the NIST AI Risk Management Framework. Which one applies across the whole organisation?",
+     "a": "Govern, Map, Measure and Manage. Govern applies across the organisation."
+    },
+    {
+     "q": "Who in your organisation chairs the steering council, and what can it stop before an AI use goes live?",
+     "a": "One name and one list of stop conditions. If you cannot give both, that is your first action."
+    }
+   ],
+   "notes": "Let's see what stuck. R02, a stale policy returned as the current answer, has likelihood five and impact three. What is its score and band? Take your time.\n\nFifteen, which is high. Likelihood times impact, and fifteen or more is the high band.\n\nSecond. Name the four functions of the NIST AI Risk Management Framework, and say which one applies across the whole organisation. Think it over.\n\nGovern, Map, Measure and Manage. Govern is the one that applies across the organisation, and the other three apply to each AI system.\n\nLast, and this one is for the leaders. Who in your organisation chairs the steering council, and what can it stop before an AI use goes live? Give that a moment.\n\nOne name, and a list of stop conditions. If you can give only one of the two, you know where to begin on Monday. Next session is the last, and it turns all of this into a twelve month plan."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Five roles each own one decision. Three short policies set the rules.",
+    "NIST gives the working method: Govern, Map, Measure, Manage. ISO/IEC 42001 is the certificate route.",
+    "A risk score is likelihood times impact. Each high risk needs an owner, a control and a date.",
+    "The council needs a chair and the power to stop a go-live."
+   ],
+   "next": "Your twelve-month roadmap",
+   "notes": "Five roles each own one decision, and three short policies set the rules. Kitara had the policies and no owner for four of its fourteen sources.\n\nNIST gives you a working method in four functions, Govern, Map, Measure and Manage. ISO/IEC 42001 is there when someone asks for a certificate.\n\nA risk score is likelihood times impact. Kitara's register has three high risks, and two of them are still open. Each high risk needs an owner, a control and a date.\n\nAnd the council needs a chair and the power to stop a go live.\n\nNext session is the last. You'll take the baseline, the pilot and today's register, and turn them into a sequenced twelve month roadmap, a budget line and a ten minute presentation for your board."
+  }
+ ],
+ "lab": {
+  "intro": "In the workshop you name the five roles, draft the three policies and score ten risks for your first AI use on Risk Register.xlsx. The data colleague runs the team notebook, which scores and ranks Kitara's twelve risks and lists the weak spots.",
+  "workshop": [
+   {
+    "task": "Name the five roles (steering council, data owner, data steward, data custodian, data user) for your first AI use, by job title.",
+    "example": "Kitara, staff policy assistant: owner Head of Human Resources, steward not yet named, custodian IT, user all staff. Four of 14 sources have no owner and seven have no steward."
+   },
+   {
+    "task": "Write the council: chair, members, meeting rhythm and what it can stop before go-live.",
+    "example": "Chair: deputy chief executive (illustrative). Meets monthly for one hour. May stop any go-live with no named owner, no control on a high risk or no retention period. Risk R07 already names the council as owner."
+   },
+   {
+    "task": "For data classification, acceptable AI use and retention, list what exists and write the gap an AI use would expose.",
+    "example": "Classification: standard exists, 5 of 14 sources have no class. AI use: policy in force from 1 June 2026, silent on in-house builds. Retention: schedule exists, no line for a search index, chunks or prompt log."
+   },
+   {
+    "task": "List ten risks for your first AI use as cause, event and effect. Score likelihood and impact from 1 to 5 and read the rating.",
+    "example": "Kitara's twelve: three high (R01 20, R02 15, R03 15), five medium, four low. Mean score 10.33."
+   },
+   {
+    "task": "Give every high risk one owner as a role, one action and a date.",
+    "example": "R01, Data protection officer: run the masking rule on the 31 claims letters flagged as personal data, by the end of next month (illustrative). R02, Head of Human Resources: mark the current handbook in the search. R03, Head of IT: test the permission filter for all groups."
+   },
+   {
+    "task": "Write the review dates: monthly for high risks, quarterly for the register, yearly for each policy and for one incident drill.",
+    "example": "Council reviews R01 to R03 each month. Records owner signs the destruction list every April. Rescore the readiness scorecard at month 6 and month 12."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Score and rate the risks\nRead `risk_register.csv`. Add a `score` column (likelihood times impact) and a `band` column holding `low` (below 8), `medium` (8 to 14) or `high` (15 and above)."
+   },
+   {
+    "code": "import pandas as pd\n\nr = pd.read_csv('risk_register.csv')\nr['score'] = r.likelihood * r.impact\nr['band'] = pd.cut(r.score, [0, 7, 14, 25], labels=['low', 'medium', 'high'])\nprint(r[['id', 'score', 'band']].to_string(index=False))",
+    "starter": "import pandas as pd\n\nr = pd.read_csv('risk_register.csv')\n# Your turn: r['score'] = likelihood times impact\n# Your turn: r['band'] = pd.cut(r.score, bins, labels=['low', 'medium', 'high'])\n# Hint: bins [0, 7, 14, 25] put 8 to 14 in the middle band\n"
+   },
+   {
+    "code": "assert r.set_index('id').score.to_dict()['R01'] == 20, 'R01 has likelihood 4 and impact 5'\nassert r.set_index('id').band.astype(str).to_dict()['R02'] == 'high', 'A score of 15 is high'\nassert r.set_index('id').band.astype(str).to_dict()['R05'] == 'medium', 'A score of 8 is medium'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Rank and count\nStore the id of the highest risk in `top_id`, the number of risks in each band in a dictionary `counts` (keys `high`, `medium`, `low`), and the mean score rounded to 2 decimals in `mean_score`."
+   },
+   {
+    "code": "top_id = r.sort_values('score', ascending=False).id.iloc[0]\ncounts = {b: int((r.band == b).sum()) for b in ['high', 'medium', 'low']}\nmean_score = round(float(r.score.mean()), 2)\nprint(top_id, counts, mean_score)",
+    "starter": "# Your turn: top_id = the id of the row with the largest score (sort_values, then take the first)\n# Your turn: counts = how many risks sit in each band, as a dictionary\n# Your turn: mean_score = the average score, rounded to 2 decimals\n"
+   },
+   {
+    "code": "assert top_id == 'R01', 'The highest score is 20, risk R01'\nassert counts == {'high': 3, 'medium': 5, 'low': 4}, 'Count the rows in each band'\nassert mean_score == 10.33, 'Use r.score.mean() and round to 2 decimals'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Weak spots\nStore in `no_control` the ids of risks whose current control starts with `None`, and in `open_high` the ids of high risks whose status is `Open`."
+   },
+   {
+    "code": "no_control = r[r.current_control.str.startswith('None')].id.tolist()\nopen_high = r[(r.score >= 15) & (r.status == 'Open')].id.tolist()\nprint(no_control, open_high)",
+    "starter": "# Your turn: no_control = ids where current_control starts with 'None' (use .str.startswith)\n# Your turn: open_high = ids where score is 15 or more and status is 'Open'\n"
+   },
+   {
+    "code": "assert no_control == ['R02'], 'Only R02 has the control None'\nassert open_high == ['R01', 'R02'], 'R03 is high but its status is Mitigating'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Who carries the most risks\nStore in `load` the number of risks per owner role, and in `busiest` the role with the most."
+   },
+   {
+    "code": "load = r.owner_role.value_counts()\nbusiest = load.idxmax()\nprint(busiest, int(load.max()))",
+    "starter": "# Your turn: load = r.owner_role.value_counts()\n# Your turn: busiest = the owner role with the highest count (try load.idxmax())\n"
+   },
+   {
+    "code": "assert busiest == 'Head of IT', 'Head of IT owns R03, R04, R05 and R10'\nassert int(load.max()) == 4, 'The busiest owner holds four risks'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Gaps in the data sources\nRead `sources.csv`. Store in `gaps` the number of sources with a blank owner, steward and sensitivity as a dictionary with keys `owner`, `steward` and `sensitivity`."
+   },
+   {
+    "code": "sources = pd.read_csv('sources.csv')\ngaps = {c: int(sources[c].isna().sum()) for c in ['owner', 'steward', 'sensitivity']}\nprint(gaps)",
+    "starter": "sources = pd.read_csv('sources.csv')\n# Your turn: gaps = {'owner': ..., 'steward': ..., 'sensitivity': ...}, each the count of blank cells (.isna().sum())\n"
+   },
+   {
+    "code": "assert gaps == {'owner': 4, 'steward': 7, 'sensitivity': 5}, 'Count blanks column by column with isna().sum()'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## For the leader\nLook at the results. Two of Kitara's three high risks are still open and one risk is owned by a council that has no chair. Who chairs yours, and what can it stop before an AI use goes live? Write your answer in two sentences below."
+   }
+  ]
+ }
+}

@@ -1,0 +1,456 @@
+{
+ "session": 6,
+ "notes_title": "Ask the Kitara search how long before I get my money, and it answers with a mobile money circular. The right passage is in the claims procedure and shares one word with the question. Today we find out why, and what meaning search adds. You will see keyword scoring worked on three short passages, then run on the 139 Kitara chunks. You will see a map where questions land near their answers, five free places to keep the vectors, and two lists joined by a sum you can do by hand. Then you write ten questions from your own staff.",
+ "notes_outcomes": "By the end you can explain keyword search, embeddings and vector search in plain words. You will run keyword and meaning search on the same question and see where they differ, including a Swahili question that neither one can answer. You will combine two ranked lists by hand with reciprocal rank fusion. The workshop turns your own staff questions into the first ten rows of a test sheet. Near the end the leaders decide whether a first pilot is keyword only or hybrid, and what it must prove.",
+ "notes_words": "Seven words today. BM25 is the standard way of scoring a keyword match. An embedding is a list of numbers that stands for the meaning of a text. Nearest neighbour search finds the stored lists closest to the question. A vector store keeps them. Hybrid search runs keyword and meaning search together. Reciprocal rank fusion joins the two lists with a simple sum. Re-ranking is a second reader that reorders the top results.",
+ "vocab": [
+  [
+   "BM25",
+   "The standard keyword scoring method. It rewards rare words that a question and a passage share.",
+   "Q03 CCTV: the Data Retention Schedule scores 5.91"
+  ],
+  [
+   "Embedding",
+   "A list of numbers that stands for the meaning of a text. Similar meanings get lists that sit close together.",
+   "64 numbers for each of the 139 chunks in the stand-in scorer"
+  ],
+  [
+   "Nearest neighbour search",
+   "Finding the stored items whose number lists are closest to the question's list.",
+   "Cosine score 0.554 for D008-01 on Q02"
+  ],
+  [
+   "Vector store",
+   "A database or library that keeps embeddings and returns the nearest ones quickly.",
+   "pgvector, Chroma, Qdrant, FAISS, OpenSearch"
+  ],
+  [
+   "Hybrid search",
+   "Running keyword and meaning search together and combining the two result lists.",
+   "Q01: right document 7th by keyword, 3rd by hybrid"
+  ],
+  [
+   "Reciprocal rank fusion",
+   "Adding 1 divided by (60 plus place) for each list a chunk appears in, then sorting by the total.",
+   "D007-01: 1/67 + 1/62 = 0.0311"
+  ],
+  [
+   "Re-ranking",
+   "A second, slower model that reorders the top few results by reading question and passage together.",
+   "Not used in the Kitara pilot"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 5",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Last session you cut documents into chunks. Which labels did every chunk carry, and what do they let a search do?",
+     "a": "Status, access groups and sensitivity. A search can leave out superseded documents and keep confidential ones from people who may not see them."
+    },
+    {
+     "q": "Why do neighbouring chunks share 40 words?",
+     "a": "So a sentence at the join is not cut in half. Both chunks keep the whole rule."
+    }
+   ],
+   "notes": "Two questions about chunks before we put them to work. Today the 139 chunks from last session finally get searched.\n\nLast session you cut documents into chunks. Which labels did every chunk carry, and what do they let a search do? Give that a moment.\n\nEvery chunk carried a status, its access groups and a sensitivity. With those, a search can leave out the superseded documents, and it can keep a confidential chunk away from someone who may not see it.\n\nSecond question. Why do neighbouring chunks share forty words? Take your time.\n\nSo that a sentence at the join is not cut in half. Both chunks keep the whole rule. The Kitara chunks are ready, and the question for today is how to find the right one when somebody asks."
+  },
+  {
+   "type": "compare",
+   "title": "Two ways to find a passage",
+   "left": {
+    "h": "Keyword search",
+    "points": [
+     "Counts the words a question and a passage share",
+     "Rare words count for more",
+     "Shows which words matched",
+     "Misses a passage that says it in other words"
+    ]
+   },
+   "right": {
+    "h": "Meaning search",
+    "points": [
+     "Turns text into numbers that place similar ideas close",
+     "Finds a passage in other words",
+     "Cannot say why it matched",
+     "Needs a model that someone must choose and test"
+    ]
+   },
+   "verdict": "Kitara needs both. Used together they are called hybrid search.",
+   "notes": "A staff member types a question into a search box. There are two ways to answer it.\n\nOn the left, keyword search. It counts the words the question and a passage have in common. A rare word counts for more than a common one. You can always see which words matched, and that makes it easy to explain. Its weakness is a passage that says the same thing in other words.\n\nOn the right, meaning search. Software turns each piece of text into a list of numbers, so that passages about similar ideas get lists that sit close together. It can find the passage that uses other words. It cannot tell you why it matched, and it depends on a model that somebody must pick and test.\n\nKitara needs both. Used together they are called hybrid search, and by the end of this session you will have built one."
+  },
+  {
+   "type": "code",
+   "title": "Keyword scoring on three short passages",
+   "lang": "python",
+   "code": "import pandas as pd\nimport kitara_search as ks\n\ntexts = ['Leave request: lodge it 14 days before leave',\n         'Holiday photos are on the intranet',\n         'Salary is paid on the 25th']\nbm = ks.BM25(pd.DataFrame({'text': texts}))\nfor w in ['holiday', 'request', 'leave']:\n    print(w, round(float(bm.idf[bm.vocab[w]]), 2))\nprint(bm.scores('holiday request').round(2))\nprint(bm.scores('leave request').round(2))",
+   "says": [
+    "Three passages: a leave rule, a note about holiday photos, and a salary date.",
+    "Each word gets a weight for how rare it is. Here all three words appear in one passage only, so each weighs the same.",
+    "Holiday request scores the photos highest. Leave request scores the real rule."
+   ],
+   "output": "holiday 0.98\nrequest 0.98\nleave 0.98\n[0.77 1.14 0.  ]\n[1.94 0.   0.  ]",
+   "notes": "Keyword search has a name, BM25, and it is older than most of the tools in this course. Let me show you how it scores, on three short passages you can read in a breath.\n\nThe first passage is a leave rule. The second is a note about holiday photos on the intranet. The third is about the day salary is paid.\n\nBM25 gives every word a weight for how rare it is. A word found in most passages tells you little. A word found in one passage tells you a lot. Here holiday, request and leave each sit in one passage only, so each weighs nought point nine eight.\n\nNext, the scores. Someone asks for a holiday request. Passage two, the photos, scores one point one four, and the real leave rule scores nought point seven seven. The photos win because they contain the word holiday. Change the question to leave request and the rule scores one point nine four, with the other two at zero. A passage also scores a little less when it is long, so a short one that matches has an edge. Keyword search follows the words you type."
+  },
+  {
+   "type": "code",
+   "title": "Keyword search on the 139 Kitara chunks",
+   "lang": "python",
+   "code": "import kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nchunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\n\nq = 'How long is CCTV retained in the branch?'\nprint(ks.tokenise(q))\nscore = search.bm25.scores(q)\nfor i in score.argsort()[::-1][:3]:\n    c = chunks.loc[i]\n    print(round(float(score[i]), 2), c.chunk_id, c.title)",
+   "says": [
+    "Load the 121 documents, cut them into 139 chunks and build one searcher. It takes about twenty seconds because the eight scans need OCR.",
+    "The question is split into words, and common words such as is, the and in are dropped.",
+    "The three best chunks. The Data Retention Schedule leads by a clear margin."
+   ],
+   "output": "['long', 'cctv', 'retained', 'branch']\n5.91 D009-01 Data Retention Schedule\n4.53 D040-02 IT Change Management Procedure\n4.41 D102-01 Claim letter CL-2026-0645 (life)",
+   "notes": "The same method runs on the Kitara chunks. This is question three in the test set. How long is CCTV retained in the branch?\n\nFirst the setup. The block loads the hundred and twenty one documents, reads the eight scans with OCR, and cuts everything into a hundred and thirty nine chunks. Then it builds one searcher. That takes about twenty seconds, and we only do it once.\n\nThe question is broken into words, and the small common words are dropped. Four are left. Long, CCTV, retained and branch.\n\nThe three best chunks come with their scores. The Data Retention Schedule scores five point nine one and comes first. That is the right answer. The other two are weaker. The IT change procedure and a claim letter score about four and a half, only because they contain words like long and branch. Keyword search is very good when the question uses the words of the document. CCTV is a rare word, so it counted for a lot."
+  },
+  {
+   "type": "code",
+   "title": "A question that shares no words with its answer",
+   "lang": "python",
+   "code": "q = 'how long before I get my money'\nfor method in ['bm25', 'meaning']:\n    top = search.search(q, method, k=50)\n    ids = list(top.doc_id)\n    print(method, '| first:', top.title.iloc[0], '| claims SOP at place', ids.index('D006') + 1)\ngold = chunks[chunks.doc_id == 'D006'].text.str.cat(sep=' ')\nprint('shared words:', sorted(set(ks.tokenise(q)) & set(ks.tokenise(gold))))",
+   "says": [
+    "A person asks the way a person talks. The answer is in the Claims Handling SOP, which says an accepted claim is settled in 30 days.",
+    "Keyword and the stand-in meaning scorer each return a list. We print the first title and the place of the claims procedure.",
+    "The question and the claims procedure share one word, before."
+   ],
+   "output": "bm25 | first: Circular 2024/010: Daily float cap for mobile money agents | claims SOP at place 47\nmeaning | first: Mobile Money Agent Manual | claims SOP at place 27\nshared words: ['before']",
+   "notes": "This gap is what made meaning search popular. A claimant, or a staff member helping one, asks how long before I get my money.\n\nThe answer sits in the Claims Handling procedure, which says an accepted claim is settled within thirty calendar days. It never uses the word money, and it never says get.\n\nThe block runs the question through keyword search and through our stand-in for meaning search. The words money and long match mobile money documents, so both searches put a mobile money circular or manual first. The claims procedure comes forty seventh in the keyword list and twenty seventh in the meaning list. Nobody reads that far.\n\nThe last line shows why. The question and the whole claims procedure share one word, before.\n\nThis question is not in the test set. Others like it are. Who must approve an account for a politician, where the document says politically exposed person, is ranked seventh by keyword search and first by the stand in. A question about a holiday request, where the document says leave, is missed by both within the top ten. A stand in is a simple model, and a real embedding model may do better on questions like these. You find out by testing it on yours."
+  },
+  {
+   "type": "define",
+   "title": "Embedding",
+   "definition": "An embedding is a list of numbers that stands for the meaning of a piece of text. Texts with similar meaning get lists that sit close together.",
+   "example": "The stand-in scorer gives each of the 139 chunks a list of 64 numbers. A question gets a list too, and the closest chunks are the likely answers.",
+   "excel": "Which ten questions would your staff ask in words your documents never use?",
+   "notes": "Meaning search rests on the embedding. An embedding is a list of numbers that stands for the meaning of a piece of text.\n\nThink of a map. Every chunk gets a position on the map, and chunks about similar ideas land near each other. A question gets a position too. Searching then means finding the chunks closest to the question. The word for that is nearest neighbour search, and the distance is usually measured by an angle called cosine similarity. A score of one means the two point the same way.\n\nA real embedding model uses hundreds of numbers for each text. The stand in we use in this course uses sixty four, so that every one of you gets the same result without downloading anything.\n\nWrite down for yourself a question your staff ask in words your own documents never use. We come back to that in the workshop."
+  },
+  {
+   "type": "figure",
+   "title": "A question lands near the passages that answer it",
+   "fig": "embedding_map",
+   "look": [
+    "Each dot is a chunk. Four diamonds Q1 to Q4 are test questions.",
+    "Q1, the borrower check, sits beside D007, the Loan Approval Policy. Q2, a politician's account, sits beside D008, the KYC procedure.",
+    "Q3 lands at D038, the AI tools policy, and Q4 at D028, the procurement policy."
+   ],
+   "caption": "Stand-in vectors with 64 numbers flattened to 2, so distances are approximate. A real embedding model will differ.",
+   "alt": "A scatter map where four question markers sit near the document passages that answer them, joined by thin lines.",
+   "notes": "The same map idea, drawn from the Kitara chunks. Each dark dot is a chunk. Sixty four numbers per chunk are flattened to two, so the picture is approximate. The clay diamonds are four of our test questions.\n\nQuestion one asks what check happens on each borrower before a decision. It sits beside the Loan Approval Policy, document D007. Question two, who must approve an account for a politician, sits beside D008, the KYC procedure. The lines join each question to its nearest chunks.\n\nQuestion three is about pasting client details into a free online assistant. Its nearest chunk is D038, the acceptable use policy for generative AI tools. Question four asks how many quotes a medium purchase needs. It lands beside D028, the procurement policy.\n\nOne thing to remember. These are stand in vectors, so the numbers are reproducible. A real embedding model places things differently, usually better. The picture shows the idea, and your own model decides the quality."
+  },
+  {
+   "type": "code",
+   "title": "The stand-in meaning scorer on one question",
+   "lang": "python",
+   "code": "ms = search.meaning\nprint(ms.E.shape)\nq = 'Who must approve an account for a politician?'\nsim = ms.scores(q)\nfor i in sim.argsort()[::-1][:3]:\n    c = chunks.loc[i]\n    print(round(float(sim[i]), 3), c.chunk_id, c.title)\nd8 = chunks[chunks.chunk_id == 'D008-01'].text.iloc[0]\nprint('shared:', set(ks.tokenise(q)) & set(ks.tokenise(d8)))",
+   "says": [
+    "139 chunks, 64 numbers each. This stand-in is built from word and word piece counts, so every run gives the same result.",
+    "Each chunk gets a cosine score against the question. One is a perfect match.",
+    "The right chunk shares only the word account with the question. It still comes first."
+   ],
+   "output": "(139, 64)\n0.554 D008-01 Know Your Customer (KYC) Procedure\n0.516 D008-02 Know Your Customer (KYC) Procedure\n0.452 D023-01 Savings Group Account Product Guide\nshared: {'account'}",
+   "notes": "The stand in goes to work on the politician question.\n\nThe first line prints the shape. A hundred and thirty nine rows, one per chunk, and sixty four numbers in each. This stand in is built from counts of whole words and of word pieces, squeezed down to sixty four numbers. It is a teaching tool so that all of you get the same numbers. A real embedding model is different and usually understands more, so do not expect your model to reproduce these figures.\n\nThe question goes through the same process, and every chunk gets a cosine score against it. The two best are both from the KYC procedure, at nought point five five four and nought point five one six. Third comes the savings group product guide.\n\nThe last line is the interesting one. The right chunk shares only one word with the question, account. The stand in still ranks it first, because politician and politically exposed share word pieces. A real model goes further and links the ideas themselves. Keep that difference in mind when the results look too good or too bad."
+  },
+  {
+   "type": "table",
+   "title": "Where the vectors are kept: five free options",
+   "header": [
+    "Tool",
+    "What it is",
+    "Licence as reported",
+    "Fits when"
+   ],
+   "rows": [
+    [
+     "pgvector",
+     "An add-on that puts vectors in a column of PostgreSQL",
+     "PostgreSQL licence",
+     "You already run PostgreSQL"
+    ],
+    [
+     "Chroma",
+     "A small vector store that runs inside your Python program",
+     "Apache-2.0",
+     "A pilot or a notebook"
+    ],
+    [
+     "Qdrant",
+     "A separate vector database server",
+     "Apache-2.0",
+     "A dedicated search service"
+    ],
+    [
+     "FAISS",
+     "A library from Meta that searches vectors in memory",
+     "MIT",
+     "A fast index inside another tool"
+    ],
+    [
+     "OpenSearch",
+     "A search engine with keyword and vector search",
+     "Apache-2.0",
+     "You already run it"
+    ]
+   ],
+   "colw": [
+    1.9,
+    4.4,
+    2.3,
+    3.4
+   ],
+   "caption": "Licences as reported in October 2026. Open each project's LICENSE file before you rely on it.",
+   "notes": "Once the numbers exist, they have to be kept somewhere that can find the nearest ones quickly. That place is called a vector store. There are many. Here are five that are free to use.\n\npgvector is an add on for PostgreSQL. The vectors live in a column of an ordinary table, next to the other columns, and one query can filter by status or access group. If your bank already runs PostgreSQL, that is the lowest effort start.\n\nChroma is a small store that runs inside your Python program and saves to a folder. It suits a pilot. Qdrant is a separate database server built only for vectors. FAISS is a library from Meta. It keeps the vectors in memory and finds neighbours very fast, and it is often found inside other products. OpenSearch is a search engine that does keyword and vector search together.\n\nAs reported in October 2026, pgvector uses the PostgreSQL licence, FAISS is MIT, and the other three are Apache two point oh. All permit commercial use. Open each project's licence file before you rely on it. Vector search itself has become a commodity. The hard parts are the ones from Session 5 and the test in Session 7."
+  },
+  {
+   "type": "code",
+   "title": "Embeddings from a real model, syntax only",
+   "lang": "python",
+   "code": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')\ntexts = ['Every application is checked against the credit reference bureau',\n         'Branches close at 1:00 pm on 24 December']\nvectors = model.encode(texts, normalize_embeddings=True)\nquery = model.encode('What check happens on each borrower?', normalize_embeddings=True)\nprint(vectors.shape)\nprint(vectors @ query)\n# For English and Swahili together, try 'intfloat/multilingual-e5-small'.\n# It expects 'query: ' before a question and 'passage: ' before each chunk.",
+   "says": [
+    "Load an English model. It downloads once, about the size of a large photo, and then runs on a laptop without a graphics card.",
+    "Encode two sentences and the question. Each becomes a list of 384 numbers.",
+    "Multiply to get the cosine scores. The credit check sentence should score higher."
+   ],
+   "notes": "With a real model, the same job looks like this. We have not run it here today, so I will show you the shape of the code and no output. Your data colleague runs it in the team notebook.\n\nThe library is called sentence transformers. It is free, and its licence is Apache two point oh. The first line loads a model. This one is all mini L M L six v two, a small English model. It downloads once, and then it runs on a normal laptop without a graphics card.\n\nThe next lines encode two sentences and the question. Every text becomes a list of three hundred and eighty four numbers. Because the lists are normalised, multiplying them gives the cosine score directly. The sentence about the credit reference bureau should score higher than the one about Christmas Eve.\n\nThe two comment lines name a second model for English and Swahili together, multilingual e five small. It reports to cover about ninety four languages, and it needs the words query and passage typed in front of the text. Before you choose either model, read its model card, which states the licence, the languages and the limits. As of October 2026 the cards list all mini L M as Apache two point oh and multilingual e five small as MIT. Check the card again on the day you choose."
+  },
+  {
+   "type": "code",
+   "title": "Chroma: store the chunks and ask a question, syntax only",
+   "lang": "python",
+   "code": "import chromadb\n\nclient = chromadb.PersistentClient(path='kitara_chroma')\ncol = client.get_or_create_collection('kitara_chunks')\ncol.add(ids=list(chunks.chunk_id), documents=list(chunks.text),\n        metadatas=[{'status': s} for s in chunks.status])\nhit = col.query(query_texts=['What check happens on each borrower?'],\n                n_results=3, where={'status': 'current'})\nprint(hit['ids'][0])",
+   "says": [
+    "Open a store that saves to a folder, and create a collection for the chunks.",
+    "Add each chunk with its id, its text and its status label. Chroma makes the embeddings.",
+    "Ask for the three nearest chunks among the current ones only."
+   ],
+   "notes": "Chroma is the easiest store to start with, so we show it in six lines. This is syntax only too, so the code is not run today.\n\nThe first two lines open a store that saves to a folder called kitara chroma and create a collection, which is like a table. The word get or create means the same code can run twice without an error.\n\nThe add call stores each chunk with its id, its text, and a label, here the status we attached in Session 5. Chroma makes the embeddings itself. By default it uses a small English model that downloads on first use, so read that model's card too.\n\nThe query asks for the three nearest chunks to the question, and the where part keeps only current documents. This is where the labels pay off. A superseded handbook never reaches the results. Next session we do the same for access groups. The result comes back as lists of lists, with one list per question, so we print the first."
+  },
+  {
+   "type": "code",
+   "title": "pgvector: vectors in a PostgreSQL table, syntax only",
+   "lang": "python",
+   "code": "import psycopg2\n\ncon = psycopg2.connect('dbname=kitara')\ncur = con.cursor()\ncur.execute('CREATE EXTENSION IF NOT EXISTS vector')\ncur.execute('CREATE TABLE chunks (id text PRIMARY KEY, '\n            'body text, status text, embedding vector(384))')\ncon.commit()\ncur.execute(\"SELECT id FROM chunks WHERE status = 'current' \"\n            \"ORDER BY embedding <=> %s::vector LIMIT 3\",\n            (str(query.tolist()),))\nprint(cur.fetchall())",
+   "says": [
+    "Switch on the extension once for the database, then make a table with a column that holds 384 numbers.",
+    "The operator that looks like an arrow with an equals sign is cosine distance. Smaller means closer.",
+    "Filter by status and take the three nearest chunks in one query."
+   ],
+   "notes": "The same job inside a database. The Python is only a way to send commands to PostgreSQL, and what matters is the SQL in the quotes.\n\nFirst, one command switches on the pgvector extension in a database. Then we make a table. The last column is of type vector, and the three hundred and eighty four in brackets is how many numbers each embedding holds. That has to match your model.\n\nThe query is the interesting part. The odd symbol, a less than, an equals sign and a greater than, is the cosine distance operator. The smaller the distance, the closer the chunk is to the question. Distance and similarity are two sides of one number. Similarity is one minus distance.\n\nThe query also says status equals current, so the filter and the search happen in one statement, inside the database your bank already runs and secures. For larger tables you add an index, and pgvector documents two kinds, called hnsw and ivfflat. Without an index it checks every row, which is exact and fine for a pilot."
+  },
+  {
+   "type": "figure",
+   "title": "Fusion pulls the right passage back to third place",
+   "fig": "rrf_fusion",
+   "look": [
+    "Keyword list: the Loan Approval Policy, part 1 comes 7th. It is not in the top five.",
+    "Meaning list: part 2 is first and part 1 is second. Part 1 scores 1/62 = 0.0161.",
+    "Fused list: part 1 adds 1/67 and 1/62 to reach 0.0311, third overall."
+   ],
+   "caption": "Question Q01, real search over 139 chunks. Gold document rank: keyword 7, meaning 1, fused 3.",
+   "alt": "Three ranked lists for one question showing the correct document missing from the keyword top five, first in meaning search, and third after fusion.",
+   "notes": "Next we combine the two searches. The method is called reciprocal rank fusion, and you can do it with a pencil.\n\nThe rule is short. For every list a chunk appears in, take one divided by sixty plus its place in that list. Then add up the scores for each chunk and sort by the total. Sixty is a constant that keeps the first place from counting too much.\n\nThis is question one. Keyword search puts the loan policy seventh, so out of sight. Its score from that list is one over sixty seven, which is nought point oh one four nine.\n\nThe meaning list has two chunks of the Loan Approval Policy at the top. Part one is second, worth one over sixty two, nought point oh one six one.\n\nAdd the two and part one reaches nought point oh three one one. That puts it third overall. A claim letter takes first place because it sits third in both lists. A chunk that both searches like beats one that only one search loves. The right document went from seventh to third. Fusion does not always put it first, and that is why we measure in Session 7."
+  },
+  {
+   "type": "concept",
+   "title": "Re-ranking: a slower second look at the top results",
+   "lead": "A second reader puts a short list in a better order.",
+   "points": [
+    {
+     "h": "What it does",
+     "t": "Takes the top 20 from the first search and scores each question and passage together."
+    },
+    {
+     "h": "Why add it",
+     "t": "The first search is fast and rough. The second is careful, so it sees only a short list."
+    },
+    {
+     "h": "What it costs",
+     "t": "A model to host, extra delay on every question and one more part to test."
+    },
+    {
+     "h": "When to try it",
+     "t": "When the right passage is in the top ten but not in the top three."
+    }
+   ],
+   "notes": "One more idea, and only one slide for it. It is called re-ranking.\n\nThe first search has to look at every chunk, so it must be fast, and fast means rough. A re-ranker is a second, slower reader. It takes the top twenty or so results and reads each question together with each passage, then scores the pair. The model type used for this is often called a cross encoder, and it sees both texts at once. It puts the list in a better order.\n\nThis costs something. You host another model, every question waits a little longer, and you have one more part to test.\n\nFor your pilot I would leave it out. Build the hybrid search, run your test questions, and look at where the right passage lands. If it is usually somewhere in the top ten and not in the top three, that is the moment to try re-ranking. If it is missing altogether, a re-ranker cannot help, because it only reorders what the first search found."
+  },
+  {
+   "type": "code",
+   "title": "Six Swahili questions, three methods",
+   "lang": "python",
+   "code": "tests = pd.read_csv('eval_questions.csv')\nsw = tests[tests.language == 'sw']\n\ndef place(r, m):\n    ids = list(search.search(r.question, m, k=10).doc_id)\n    g = r.gold_doc_id\n    return ids.index(g) + 1 if g in ids else '-'\n\nfor r in sw.itertuples():\n    p = [place(r, m) for m in ('bm25', 'meaning', 'hybrid')]\n    print(r.q_id, *p, r.gold_doc_id)",
+   "says": [
+    "Pick the six questions in Swahili. Three are about the Swahili circulars of Kitara Kenya. Three are about English documents.",
+    "For keyword, meaning and hybrid in that order, print the place of the right document in the top ten, or a dash.",
+    "The circulars are found in first place. The three English documents are never in the top five."
+   ],
+   "output": "Q49 1 1 1 D065\nQ50 1 1 1 D066\nQ51 1 1 1 D067\nQ52 - 8 8 D024\nQ53 - - - D010\nQ54 - - - D006",
+   "notes": "Kitara has a subsidiary in Nairobi, so some staff will ask in Swahili. Six of our sixty test questions are in Swahili.\n\nThree of them ask about the Swahili circulars from Kitara Kenya, for example when the branches open on Saturday. Three ask in Swahili about documents written in English, for example how many characters a password needs.\n\nThe block runs every question through the three methods and prints the place of the right document in the top ten. A dash means it is missing.\n\nThe first three questions score a one in every column. The words in the question and in the circular are the same words, so any method finds it.\n\nThe last three are the problem. Question fifty two reaches eighth place with the stand in and with the hybrid. Fifty three and fifty four never appear in the top ten. Nothing in the stand in links a Swahili word to its English meaning, and keyword search cannot either. A real multilingual model is trained to place the same idea in different languages close together. That is what multilingual e five small is built for, and you test it on Swahili questions from your own staff."
+  },
+  {
+   "type": "trap",
+   "title": "A busy results page that holds no answer",
+   "looks": "A staff member asks in Swahili how many characters a password needs. The search returns three Swahili circulars at the top. The page looks full and confident.",
+   "why": "The answer is in an English IT policy. The words differ, and a keyword or word piece search cannot cross languages. All three Swahili questions about English documents miss the top five.",
+   "fix": "Test a multilingual model on Swahili questions from your own staff. Keep Swahili questions in the test set, and show the source of every answer.",
+   "notes": "A busy page can still hold no answer.\n\nA staff member asks in Swahili how many characters a password needs. Back come three Swahili circulars from Kitara Kenya. The page is full, the titles look official, and nobody sees an error.\n\nThe answer sits in the English IT security policy, which says passwords have at least twelve characters. The Swahili question shares no words with it, and our stand in knows nothing about Swahili. The three circulars come back because they are written in Swahili. All three Swahili questions about English documents missed the top five.\n\nThree habits protect you. Test a multilingual model on questions your own staff write in Swahili, and expect to read the results yourself. Keep Swahili questions in the test set from the first day. And show the source document next to every answer, so a person can see where it came from."
+  },
+  {
+   "type": "compare",
+   "title": "When keyword search is enough",
+   "left": {
+    "h": "Keyword search is enough when",
+    "points": [
+     "Staff use the words of the document: 37 of Kitara's 60 questions share two or more",
+     "They search for a claim number or a form code: Q38, Q39 and Q40 rank first",
+     "The set is small and written in one language"
+    ]
+   },
+   "right": {
+    "h": "Add meaning search when",
+    "points": [
+     "Staff ask in their own words: 23 of the 60 share at most one",
+     "Documents or questions come in Swahili and English",
+     "The failure list shows right passages missed"
+    ]
+   },
+   "verdict": "Start with keyword search, count what it misses on your own questions, and add meaning search for those misses.",
+   "notes": "You do not always need meaning search. It costs a model, a store and some testing, so it should earn its place.\n\nOn the left, when keyword search is enough. Staff use the words of the document. In Kitara's test set, thirty seven of the sixty questions share two or more words with the right passage. Or staff search for an identifier. Questions three eight, three nine and four zero ask about a claim number, and keyword search puts the right document first for all three. A claim number has no synonyms. And the set is small and in one language.\n\nOn the right, when to add meaning search. Staff ask in their own words. Twenty three of the sixty share at most one word with the passage that answers them. Documents or questions arrive in two languages. Or you have run your questions and the failure list shows right passages missed.\n\nThe verdict is a way to work. Start with keyword search. Count what it misses on your own questions. Add meaning search for those misses. That is what the workshop starts today and Session 7 finishes."
+  },
+  {
+   "type": "steps",
+   "title": "Workshop: ten questions and where each answer lives",
+   "tool": "Search Test Sheet workbook and team notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Collect ten real questions from the help desk, an HR mailbox or branch calls",
+    "Write each in the words staff type, not the words of the document",
+    "Name the document that holds each answer, its owner and its format",
+    "Copy its id and one phrase from the right passage into the Tests sheet",
+    "Mark each question: shares words with the answer, or a paraphrase",
+    "Mark questions in another language, restricted or version sensitive",
+    "Write the keyword rank in column E and name an owner for every answer"
+   ],
+   "done": "Ten rows at the start of Search Test Sheet.xlsx, each with its right document and phrase, the paraphrases marked and an owner for every answer.",
+   "notes": "For the next forty minutes you write the first ten rows of your own search test. Real questions, and the place where each answer lives.\n\nStart with the help desk, the HR mailbox, or the branch managers. Ask what staff really ask, and copy the words they use. Questions you invent at your desk will use the words of the document, and that flatters the search. Write each question as a person would type it.\n\nThen find the answer. Open the Search Test Sheet workbook and fill in the Tests sheet. For each question write the document that holds the answer, copy its id, and copy a short phrase from the right passage. Put the owner and the format in the note column.\n\nNext, mark the questions. Does the question share words with the answer, or is it a paraphrase? Is it in another language, restricted, or sensitive to the version?\n\nIf you have a search running, put the rank of the right document in column E. If you do not, the data colleague runs the team notebook alongside you and sees what keyword and meaning search do with the Kitara questions. At the end the leader looks at the owner column. An answer with no owner is a finding."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A staff member asks how long before I get my money, and the search returns a mobile money circular. Why?",
+     "a": "Keyword search follows words. The question shares only one word with the claims procedure, and money matches the mobile money documents."
+    },
+    {
+     "q": "What does reciprocal rank fusion add up for one chunk?",
+     "a": "One divided by sixty plus its place, for every list it appears in. A chunk that both lists rank well scores highest."
+    },
+    {
+     "q": "Who in your organisation signs off whether the first pilot is keyword only or hybrid, and which questions must it answer correctly before you fund it?",
+     "a": "Name a role, such as the sponsor with the data lead. Ask for your ten real questions, including some paraphrases and some in Swahili, and fund meaning search where keyword search misses them."
+    }
+   ],
+   "notes": "Here are the questions to finish, and the third is for the leaders.\n\nA staff member asks how long before I get my money, and the search returns a mobile money circular. Why? Think it over.\n\nKeyword search follows words. The question shares only one word with the claims procedure, and the word money matches the mobile money documents. Meaning search helps with exactly that gap, though our stand in did not close it.\n\nSecond. What does reciprocal rank fusion add up for one chunk? No rush.\n\nFor every list the chunk appears in, one divided by sixty plus its place. The scores are added. A chunk that both lists rank well comes out on top.\n\nThird, for the leaders. Who in your organisation signs off whether the first pilot is keyword only or hybrid, and which questions must it answer correctly before you fund it? Sit with it for a second.\n\nName one role. It is usually the business sponsor together with the data lead. A fair test is the ten questions you wrote today, with some paraphrases and some in Swahili. If keyword search answers them, you have saved money. If it misses them, you now know what the money buys."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Keyword search follows words. It is fast, shows why it matched and misses paraphrases.",
+    "An embedding places text on a map by meaning. A vector store finds the nearest chunks.",
+    "Fusing both lists with 1 over 60 plus rank gave Q01 its third place. Test before you trust."
+   ],
+   "next": "Test the search and control who sees what",
+   "notes": "You can now explain two ways of searching and combine them.\n\nKeyword search follows the words. It is quick, it shows which words matched, and it is hard to beat for rare terms and claim numbers. It misses a passage that says the same thing in other words.\n\nAn embedding is a list of numbers that places a text on a map by meaning, and a vector store finds the nearest chunks. We have five free ones, and pgvector is the easiest if you run PostgreSQL. Every model has its own licence, so read the model card.\n\nReciprocal rank fusion combines the lists with a sum you can do by hand. For question one it moved the right passage from seventh to third.\n\nThe ten questions you wrote today are the start of the test. Next session we score the search on sixty questions, find out what fails, and check that a restricted document stays hidden."
+  }
+ ],
+ "lab": {
+  "intro": "You write ten real staff questions on the Tests sheet of Search Test Sheet.xlsx and find where each answer lives. The team notebook runs keyword, stand-in meaning and hybrid search on the first ten Kitara questions.",
+  "workshop": [
+   {
+    "task": "Collect ten questions your staff really ask, from the help desk, an HR mailbox or branch calls. Write each in the words staff type. Put them in column B of the Tests sheet in Search Test Sheet.xlsx.",
+    "example": "Kitara Q01 to Q10, for example Q03 'How long is CCTV retained in the branch?' and Q01 'What check happens on each borrower before a decision?'."
+   },
+   {
+    "task": "For each question find the document that holds the answer. Write its id in column C, copy a phrase from the right passage into column D, and note its owner and format.",
+    "example": "Kitara: Q01 is D007 Loan Approval Policy (Risk), Q02 is D008 Know Your Customer Procedure (Legal and Compliance), Q03 is D009 Data Retention Schedule (Legal and Compliance). All ten answers are in text PDFs."
+   },
+   {
+    "task": "Mark each question as shares words or paraphrase. Count the paraphrases, which share at most one word with the answer passage.",
+    "example": "Of the first ten Kitara questions, 4 are paraphrases: Q01, Q02, Q09 and Q10. Across all 60, 23 are paraphrases and 37 share two or more words."
+   },
+   {
+    "task": "Mark questions in another language, restricted ones and ones where an old version gives a different answer. Add a note for each.",
+    "example": "Kitara has 6 Swahili questions (3 about English documents), 8 stale and 6 restricted questions in the full set. None of the first ten are in these groups."
+   },
+   {
+    "task": "Run a keyword search on your own system if you have one, or use the Kitara notebook, and write the rank of the right document in column E.",
+    "example": "Keyword ranks for Q01 to Q10: 7, 7, 1, 2, 1, 1, 1, 3, 4, 7. Q01, Q02 and Q10 are outside the top five."
+   },
+   {
+    "task": "Name an owner for every document that holds an answer. List the questions whose answer has no owner or no known home.",
+    "example": "Every Kitara answer has an owner department in docs_metadata.csv. Your own list will probably have gaps, and each gap is a finding."
+   }
+  ],
+  "cells": [
+   {
+    "md": "## Task 1. Keyword ranks for the first ten questions\nBuild the searcher. For each of the first ten questions in `eval_questions.csv`, find the place of the right document in the top ten keyword results (0 if it is missing) and keep it in the dictionary `bm25_rank`."
+   },
+   {
+    "code": "import pandas as pd\nimport kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nchunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\ntests = pd.read_csv('eval_questions.csv').head(10)\n\ndef rank_of_gold(question, gold, method):\n    ids = list(search.search(question, method, k=10).doc_id)\n    return ids.index(gold) + 1 if gold in ids else 0\n\nbm25_rank = {r.q_id: rank_of_gold(r.question, r.gold_doc_id, 'bm25') for r in tests.itertuples()}\nprint(bm25_rank)",
+    "starter": "import pandas as pd\nimport kitara_search as ks\n\ncorpus = ks.load_corpus('.')\nchunks = ks.build_chunks(corpus)\nsearch = ks.Searcher(chunks)\ntests = pd.read_csv('eval_questions.csv').head(10)\n\ndef rank_of_gold(question, gold, method):\n    # Your turn: search.search(question, method, k=10) returns the top chunks; their doc_id column\n    # names the documents. Return the place (starting at 1) of gold, or 0 if it is missing\n    pass\n\n# Your turn: bm25_rank = {q_id: rank, ...} for the ten questions, using method 'bm25'\n"
+   },
+   {
+    "code": "assert bm25_rank['Q01'] == 7 and bm25_rank['Q03'] == 1, 'Q01 should be 7 and Q03 should be 1 with keyword search'\nassert sum(1 for v in bm25_rank.values() if v == 0) == 0, 'All ten right documents appear in the top ten'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Where does meaning search help?\nDo the same with the stand-in meaning search into `meaning_rank`. Then list in `rescued` the questions where keyword search puts the right document outside the top five (or misses it) and meaning search puts it inside the top five."
+   },
+   {
+    "code": "meaning_rank = {r.q_id: rank_of_gold(r.question, r.gold_doc_id, 'meaning') for r in tests.itertuples()}\nrescued = [q for q in bm25_rank if (bm25_rank[q] == 0 or bm25_rank[q] > 5) and 0 < meaning_rank[q] <= 5]\nprint(meaning_rank)\nprint(rescued)",
+    "starter": "# Your turn: meaning_rank like bm25_rank but with method 'meaning'\n# Your turn: rescued = the q_ids where keyword rank is 0 or above 5 and meaning rank is between 1 and 5\n"
+   },
+   {
+    "code": "assert meaning_rank['Q01'] == 1 and meaning_rank['Q02'] == 1, 'Meaning search should put Q01 and Q02 first'\nassert rescued == ['Q01', 'Q02'], f'Expected Q01 and Q02 to be rescued, got {rescued}'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Fusion by hand for Q01\nThe right chunk for Q01 is `D007-01`. Find its place in the keyword list and in the meaning list (use `k=50`), add the two scores 1 / (60 + place), round to four decimals into `fused`, and find the place of the right document in the hybrid search into `hybrid_rank`."
+   },
+   {
+    "code": "q = tests.question.iloc[0]\ndef chunk_place(method):\n    ids = list(search.search(q, method, k=50).chunk_id)\n    return ids.index('D007-01') + 1\nplace_kw, place_mn = chunk_place('bm25'), chunk_place('meaning')\nfused = round(1 / (60 + place_kw) + 1 / (60 + place_mn), 4)\nhybrid_rank = rank_of_gold(q, 'D007', 'hybrid')\nprint(place_kw, place_mn, fused, hybrid_rank)",
+    "starter": "q = tests.question.iloc[0]\ndef chunk_place(method):\n    # Your turn: the place (starting at 1) of chunk 'D007-01' in the top 50 chunk_id values for this method\n    pass\n# Your turn: place_kw and place_mn, then fused = round(1/(60+place_kw) + 1/(60+place_mn), 4)\n# Your turn: hybrid_rank = rank_of_gold(q, 'D007', 'hybrid')\n"
+   },
+   {
+    "code": "assert (place_kw, place_mn) == (7, 2), f'Expected places 7 and 2, got {place_kw} and {place_mn}'\nassert fused == 0.0311, f'fused should be 0.0311, got {fused}'\nassert hybrid_rank == 3, 'The right document is third in the hybrid search'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. The Swahili questions\nFor the six questions with `language` equal to `sw` in `eval_questions.csv`, find the place of the right document in the top ten of the hybrid search (0 if missing) into `sw_hybrid`. Put the questions found in the top five into `found`."
+   },
+   {
+    "code": "all_tests = pd.read_csv('eval_questions.csv')\nsw = all_tests[all_tests.language == 'sw']\nsw_hybrid = {r.q_id: rank_of_gold(r.question, r.gold_doc_id, 'hybrid') for r in sw.itertuples()}\nfound = sorted(q for q, r in sw_hybrid.items() if 0 < r <= 5)\nprint(sw_hybrid)\nprint(found)",
+    "starter": "all_tests = pd.read_csv('eval_questions.csv')\n# Your turn: sw = the rows where language is 'sw'\n# Your turn: sw_hybrid = {q_id: place of the right document with method 'hybrid'}\n# Your turn: found = sorted q_ids with a place from 1 to 5\n"
+   },
+   {
+    "code": "assert len(sw_hybrid) == 6, 'There are six Swahili questions'\nassert found == ['Q49', 'Q50', 'Q51'], f'Only the three questions on Swahili circulars are found, got {found}'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. A real embedding model (needs a download, run it last)\nThis cell downloads a small English model the first time and needs the internet. Embed all 139 chunks and check the shape. The rest of the notebook does not depend on it. Read the model card for the licence before you use it in your organisation."
+   },
+   {
+    "code": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')\nvectors = model.encode(list(chunks.text), normalize_embeddings=True)\nquery_vector = model.encode(q, normalize_embeddings=True)\nnearest = list((vectors @ query_vector).argsort()[::-1][:3])\nprint(vectors.shape, list(chunks.chunk_id[nearest]))",
+    "starter": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')\n# Your turn: vectors = model.encode(list(chunks.text), normalize_embeddings=True)\n# Your turn: query_vector = the same for the question q\n# Your turn: nearest = the positions of the three highest scores of vectors @ query_vector\n"
+   },
+   {
+    "code": "assert vectors.shape == (139, 384), f'Expected (139, 384), got {vectors.shape}'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Question for the leader\nOn the first ten Kitara questions keyword search put 3 of the 10 right documents outside the top five, and meaning search rescued 2 of those. On your own ten questions, how many would keyword search miss, who would you ask to confirm that, and what number would make you fund meaning search? Write your answer in two sentences."
+   }
+  ]
+ }
+}

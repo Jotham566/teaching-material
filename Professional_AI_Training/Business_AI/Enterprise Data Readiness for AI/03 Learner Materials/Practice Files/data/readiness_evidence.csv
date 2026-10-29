@@ -1,0 +1,26 @@
+evidence_id,dimension,item,level_name,what_exists,who_could_verify,proposed_score,self_reported
+E01,Use cases and sponsorship,Named executive sponsor,Managed,The chief executive says in interviews that AI is a board priority. No written mandate or budget owner.,Company Secretary (board papers),4,Y
+E02,Use cases and sponsorship,List of candidate use cases,Managed,Eleven ideas were listed on one workshop slide in May 2026. No owners or data needs.,Head of IT,4,Y
+E03,Use cases and sponsorship,Business case for the first use,Defined,"A one-page case for document search over policies, with a pilot budget approved by IT Steering on 9 June 2026.",Chair of IT Steering Committee,3,N
+E04,Use cases and sponsorship,Funded budget,Developing,"UGX 38,000,000 pilot budget approved. No multi-year budget.",Chief Finance Officer,2,N
+E05,Use cases and sponsorship,Success measures,Developing,No baseline for time to find an answer or days to settle a claim. Only the claims ratio is reported.,Head of Claims,2,N
+E06,"Data: inventory, quality and metadata",Source inventory,Developing,"A spreadsheet of 14 sources compiled for IT Steering. Four have no owner, five have no sensitivity class, none is in a catalogue.",IT Steering Committee secretary,2,N
+E07,"Data: inventory, quality and metadata",Quality monitoring,Defined,Finance says customer data is checked every month. No rule list or result log was provided.,Head of Retail Banking Operations,3,Y
+E08,"Data: inventory, quality and metadata",Metadata and catalogue,Ad hoc,No catalogue. Column meanings are in two PDF files from the core banking vendor.,Core Banking Data Analyst,1,N
+E09,"Data: inventory, quality and metadata",Document version control,Ad hoc,"The shared drive holds about 14,000 files. Three editions of the staff handbook sit in one folder.",Head of Legal and Compliance,1,N
+E10,"Data: inventory, quality and metadata",Customer master data,Defined,The head of retail says one customer ID is used across systems. The Risk Committee noted two regulatory returns corrected because of duplicate customer records.,Head of Risk,3,Y
+E11,Platform and pipelines,Core data extract,Defined,Nightly extract from core banking to a reporting database. Run log kept for 90 days.,IT operations lead,3,N
+E12,Platform and pipelines,Backup and recovery,Defined,Business Continuity Plan sets four hours for core banking. A recovery test is held each March.,Head of Risk,3,N
+E13,Platform and pipelines,Analytics platform,Defined,IT reports a reporting database and a data lake 'in progress'. No access was shown to the assessor.,Head of IT,3,Y
+E14,Platform and pipelines,Pipeline orchestration,Developing,"Scheduled jobs on two servers using cron. No dependency, retry or alert logic.",IT operations lead,2,N
+E15,Platform and pipelines,Monitoring of data freshness,Developing,No freshness or volume alerts. A six-hour gap in the mobile money log was found by hand.,IT operations lead,2,N
+E16,Platform and pipelines,Environment for AI work,Developing,An internal AI sandbox pilot is approved. It is not yet built.,Head of IT,2,N
+E17,Protection and law,Registration and data protection officer,Managed,Kitara says it is registered with the data protection regulator and has named an officer. The certificate was not seen.,Head of Legal and Compliance,4,Y
+E18,Protection and law,Breach procedure,Defined,The Information Security Policy sets one hour to report internally and 72 hours to report to the regulator.,Head of IT Security,3,N
+E19,Protection and law,Classification scheme,Defined,The Data Classification Standard has four classes. Two sources in the inventory carry the wrong class.,Head of Legal and Compliance,3,N
+E20,Protection and law,Retention schedule,Defined,A retention schedule exists. Legal says it is applied. No destruction list was provided.,Head of Legal and Compliance,3,Y
+E21,Protection and law,Cross-border data flows,Developing,Kitara Kenya data is processed in Kampala. No transfer assessment is on file.,Head of Legal and Compliance,2,N
+E22,People and governance,Named data owners,Ad hoc,Ten of 14 sources have an owner. Two owners are recorded as IT while a business unit also claims the source.,Head of IT,1,N
+E23,People and governance,Data governance forum,Developing,The heads say a data council meets informally. There are no minutes.,Company Secretary,2,Y
+E24,People and governance,Policies for data and AI,Developing,"Classification, retention and acceptable AI use policies exist and were published in 2024 to 2026.",Head of Legal and Compliance,2,N
+E25,People and governance,Data and AI skills,Ad hoc,Two analysts in Finance and Risk. No data engineer. No AI training for staff.,Head of Human Resources,1,N
