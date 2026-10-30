@@ -221,7 +221,11 @@ function authoriseFreshTestAttempt(key,registration,reason,replacementEmail){
    if(r[1]+'|'+r[2]===key&&examRegistrationKey_(r[6])===reg&&r[0])responseIds.push(String(r[0]));
   });
   var liveForm=FormApp.openById(form.formId),removed=0;
-  responseIds.forEach(function(id){try{liveForm.deleteResponse(id);removed++;}catch(e){throw Error('Could not clear the earlier form response '+id+'. No retry was authorised: '+String(e));}});
+  responseIds.forEach(function(id){try{liveForm.deleteResponse(id);removed++;}catch(e){
+   // A response removed by an earlier reset is already gone; any other failure blocks the retry.
+   var gone=false;try{liveForm.getResponse(id);}catch(missing){gone=true;}
+   if(!gone)throw Error('Could not clear the earlier form response '+id+'. No retry was authorised: '+String(e));
+  }});
   // Preserve the old receipt/snapshot; it cannot be exported as the active attempt.
   if(collection&&receiptRows.length)receiptRows.forEach(function(r,index){
    if(r[1]+'|'+r[2]===key&&examRegistrationKey_(r[6])===reg&&r[10]==='COLLECTED'){
