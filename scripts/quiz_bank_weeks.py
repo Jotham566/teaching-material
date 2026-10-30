@@ -2797,203 +2797,190 @@ BANKS[12] = [
 ]
 
 # ==========================================================================
-# QUIZ 12 — Week 13. Reproducibility. Integrative.
+# QUIZ 12 — Week 13. Regularisation, nearest neighbours, reproducibility.
 # Mix: 2 diagnosis, 1 traceback, 1 interpretation, 1 judgement.
-# Two of the five deliberately revisit earlier weeks.
+# The tables in questions 1 and 2 are the Week 13 deck's own reference numbers
+# (week_reference_numpy.bundle13) and are re-checked by verify_quiz_arithmetic.py.
+# The traceback and the judgement revisit the reproducibility slides.
 # ==========================================================================
 BANKS[13] = [
-    # ---- 1. diagnosis: a path that exists on one machine
-    {
-        "kind": "diagnosis",
-        "stem": ("This runs perfectly on the machine it was written on. What "
-                 "is wrong with it?"),
-        "pre_by": {
-            "CML3112":
-                "df = pd.read_csv(\n"
-                "    \"C:/Users/Jotham/Desktop/concrete_final_v3.csv\")",
-            "CML3113":
-                "df = pd.read_csv(\n"
-                "    \"C:/Users/Jotham/Desktop/flotation_final_v3.csv\")",
-            "CML3111":
-                "df = pd.read_csv(\n"
-                "    \"C:/Users/Jotham/Desktop/motor_log_FINAL.csv\")",
-        },
-        "options": [
-            ("It names a location that exists on exactly one computer, so "
-             "the notebook cannot run anywhere else", True,
-             "Correct. Keep the data inside the project and read it by a "
-             "relative path such as data/… so the notebook works for anyone "
-             "who has the folder. The version marker in the file name is a "
-             "second warning: it suggests there are other copies and no "
-             "record of which is current."),
-            ("The file should be read with a different pandas function",
-             False,
-             "read_csv is the right function for a CSV. The path is the "
-             "problem."),
-            ("Backslashes should have been used for a Windows path", False,
-             "Forward slashes work on Windows in Python and avoid the escape "
-             "problems backslashes cause. This is the better of the two "
-             "styles and the location is still wrong."),
-            ("Nothing, as long as you send the file with the notebook",
-             False,
-             "The recipient would have to recreate your user name and your "
-             "desktop for the path to resolve. A relative path inside the "
-             "project removes the problem entirely."),
-        ],
-    },
-    # ---- 2. diagnosis: an unseeded result that moves
-    {
-        "kind": "diagnosis",
-        "stem": ("You run the same notebook twice, changing nothing, and get "
-                 "these two numbers. What is going on, and what should you "
-                 "do?"),
-        "pre_by": {
-            "CML3112":
-                "run 1:   MAE 4.1 MPa\n"
-                "run 2:   MAE 4.6 MPa",
-            "CML3113":
-                "run 1:   MAE 0.31 pts\n"
-                "run 2:   MAE 0.36 pts",
-            "CML3111":
-                "run 1:   recall 0.74\n"
-                "run 2:   recall 0.69",
-        },
-        "options": [
-            ("The split and the model involve randomness that was never "
-             "pinned down", True,
-             "Correct. Without a seed, the rows that land in the test set "
-             "and the internal choices a forest makes change every run. Set "
-             "random_state on the split and on the model, and write the "
-             "number in the notebook so a reader can reproduce your figure "
-             "exactly."),
-            ("The data file is being modified between runs", False,
-             "Nothing here writes to the file. Unseeded randomness explains "
-             "this without needing the data to change."),
-            ("The second run is the more trustworthy of the two", False,
-             "Neither is more trustworthy. That two runs differ by this much "
-             "is itself the finding, and it says your single reported figure "
-             "carries this much uncertainty."),
-            ("Report the average of the two runs", False,
-             "An average of two arbitrary draws is still arbitrary. Seed the "
-             "randomness, and if you want a figure with a spread, "
-             "cross-validate deliberately."),
-        ],
-    },
-    # ---- 3. traceback: the file is not where the notebook expects
-    {
-        "kind": "traceback",
-        "stem": ("A classmate clones your repository and gets this on the "
-                 "first cell. What is the cause?"),
-        "pre_by": {
-            "CML3112":
-                "Traceback (most recent call last):\n"
-                "  File \"<ipython-input-1-3e4f5a>\", line 1, in <module>\n"
-                "    df = pd.read_csv(\"concrete_strength.csv\")\n"
-                "FileNotFoundError: [Errno 2] No such file or directory:\n"
-                "'concrete_strength.csv'",
-            "CML3113":
-                "Traceback (most recent call last):\n"
-                "  File \"<ipython-input-1-3e4f5a>\", line 1, in <module>\n"
-                "    df = pd.read_csv(\"flotation_subset.csv\")\n"
-                "FileNotFoundError: [Errno 2] No such file or directory:\n"
-                "'flotation_subset.csv'",
-            "CML3111":
-                "Traceback (most recent call last):\n"
-                "  File \"<ipython-input-1-3e4f5a>\", line 1, in <module>\n"
-                "    df = pd.read_csv(\"ai4i2020.csv\")\n"
-                "FileNotFoundError: [Errno 2] No such file or directory:\n"
-                "'ai4i2020.csv'",
-        },
-        "options": [
-            ("The data file was never committed, or sits elsewhere", True,
-             "Correct, and both halves are worth checking. Data is often "
-             "left out of a repository deliberately because of size or "
-             "licence, in which case the README has to say where to get it "
-             "and where to put it. Otherwise the path needs to match the "
-             "folder layout."),
-            ("The classmate is missing a package", False,
-             "A missing package reports itself as ModuleNotFoundError. This "
-             "message is about a file."),
-            ("The file name has the wrong extension", False,
-             "The extension matches a CSV read. The file is simply not at "
-             "that location."),
-            ("The repository was cloned incorrectly", False,
-             "A clone that failed would leave you with no notebook to run. "
-             "The notebook arrived and its data did not."),
-        ],
-    },
-    # ---- 4. interpretation: which figure caption does its job
+    # ---- 1. interpretation: a penalty that is too strong
     {
         "kind": "interpretation",
-        "stem": ("Two captions for the same chart. Which one does the job a "
-                 "caption exists to do, and why?"),
+        "stem": ("The same degree-6 curve was fitted three times with a "
+                 "different ridge penalty. What does the alpha 100 row tell "
+                 "you?"),
         "pre_by": {
             "CML3112":
-                "A:  Figure 3: strength against cement content.\n"
-                "\n"
-                "B:  Figure 3: strength rises with cement content and\n"
-                "    flattens above 400 kg/m3, so going from 450 to\n"
-                "    500 kg/m3 buys about 1 MPa.",
+                "model          train    valid\n"
+                "none            2.91     3.32\n"
+                "alpha 1         3.01     3.05\n"
+                "alpha 100       3.97     4.68\n"
+                "(errors are MAE in kW; degree-6 curve on load alone)",
             "CML3113":
-                "A:  Figure 3: silica against starch flow.\n"
-                "\n"
-                "B:  Figure 3: concentrate silica falls as starch dose\n"
-                "    rises to about 900 g per tonne of feed and flattens\n"
-                "    after that.",
+                "model          train    valid\n"
+                "none            0.84     0.98\n"
+                "alpha 1         0.88     0.99\n"
+                "alpha 100       1.18     1.48\n"
+                "(errors are MAE in kWh/t; degree-6 curve on load alone)",
             "CML3111":
-                "A:  Figure 3: failures against tool wear.\n"
-                "\n"
-                "B:  Figure 3: the failure rate rises sharply above 200\n"
-                "    minutes of tool wear, from 2 per cent to 11 per cent.",
+                "model          train    valid\n"
+                "none            4.02     4.60\n"
+                "alpha 1         4.16     4.20\n"
+                "alpha 100       5.82     6.87\n"
+                "(errors are MAE in deg C; degree-6 curve on load alone)",
         },
         "options": [
-            ("B, because it states the finding and its size, so a reader who "
-             "only reads the captions still learns the result", True,
-             "Correct. A caption is often the only part of your work that "
-             "gets read. B carries the conclusion and the magnitude, which "
-             "is what makes it useful and also what makes it checkable "
-             "against the chart."),
-            ("A, because a caption should describe the chart and let the "
-             "reader draw the conclusion", False,
-             "A describes the axes, which the axis labels already do. It "
-             "leaves the reader to rediscover something you already know."),
-            ("A, because B might be wrong and the caption would then be "
-             "misleading", False,
-             "A claim you can check is a feature. If B is wrong the chart "
-             "will show it, whereas A cannot be wrong because it says "
-             "nothing."),
-            ("Neither; captions should give the data source instead", False,
-             "The source belongs in the caption or nearby and does not "
-             "replace the finding. B plus a source is the target."),
+            ("The penalty is too strong: both errors are the worst of the "
+             "three, so the curve has been flattened until it underfits",
+             True,
+             "Correct. Ridge shrinks the coefficients, and a very large alpha "
+             "shrinks them so far that the curve can no longer follow the "
+             "real pattern. Training error and validation error both get "
+             "worse. That is underfitting, the opposite problem from the "
+             "wild curve with no penalty."),
+            ("Alpha 100 is the safest choice, because a larger penalty "
+             "always prevents overfitting", False,
+             "A larger penalty reduces overfitting only up to a point. Past "
+             "that point the model cannot learn the pattern at all, and the "
+             "validation error shows it."),
+            ("The training error went up, so alpha 100 must be the best "
+             "model", False,
+             "A higher training error is not a reward. It is the price of "
+             "the penalty. The penalty is worth paying only if the "
+             "validation error falls, and here it rises."),
+            ("Nothing can be concluded until the sealed test rows are scored",
+             False,
+             "The validation rows exist for exactly this decision. The test "
+             "rows are kept for one final check of the model you chose, not "
+             "for choosing alpha."),
         ],
     },
-    # ---- 5. judgement: three cells that all assign df
+    # ---- 2. judgement: choosing k
     {
         "kind": "judgement",
-        "stem": ("Your notebook has three separate cells that each assign "
-                 "df, and nobody wrote down the order they should run in. "
-                 "Submission is tomorrow. What do you do?"),
+        "stem": ("A nearest-neighbours model was scored on the validation "
+                 "rows for three values of k, the number of neighbours that "
+                 "vote. Which choice does the table support, and what should "
+                 "you add when you report it?"),
+        "pre_by": {
+            "CML3112":
+                "k      valid\n"
+                "1       1.69\n"
+                "3       1.16\n"
+                "20      3.72\n"
+                "(validation MAE in kW)",
+            "CML3113":
+                "k      valid\n"
+                "1       0.94\n"
+                "3       0.63\n"
+                "20      1.37\n"
+                "(validation MAE in kWh/t)",
+            "CML3111":
+                "k      valid\n"
+                "1       2.42\n"
+                "3       1.58\n"
+                "20      5.55\n"
+                "(validation MAE in deg C)",
+        },
         "options": [
-            ("Restart and Run All, then fix whatever breaks until it runs "
-             "clean from top to bottom", True,
-             "Correct, and do it before you are tired. That single action "
-             "converts a notebook that works on your screen into one that "
-             "works from an empty memory, which is the only version anyone "
-             "else can use. Consolidating the three assignments into one "
-             "clear sequence is usually the fix."),
-            ("Add a comment above each cell saying what order to run them "
-             "in", False,
-             "Instructions to run cells out of order are a description of "
-             "the problem. Anyone who follows them slightly differently gets "
-             "a different answer."),
-            ("Leave it, since you know the right order", False,
-             "That knowledge is not in the file, so it does not survive you. "
-             "It also will not survive next week for you either."),
-            ("Delete two of the three cells and hope the notebook still "
-             "runs", False,
-             "Each of them may be doing something needed. Running from a "
-             "clean state tells you what is required rather than leaving you "
-             "to guess."),
+            ("k = 3, the lowest validation error. Add that k was chosen on "
+             "these rows, so the figure is slightly optimistic", True,
+             "Correct. k = 1 follows the noise in a single neighbour and "
+             "k = 20 averages in rows that are not really alike. k = 3 sits "
+             "between them. Because the validation rows picked k, they have "
+             "helped the model a little, so say so."),
+            ("k = 20, because averaging more rows is always more reliable",
+             False,
+             "Averaging more rows smooths noise, but too many neighbours "
+             "blur the pattern. This table shows k = 20 with the largest "
+             "error of the three."),
+            ("k = 1, because it matches the training data most closely",
+             False,
+             "k = 1 copies the nearest row, noise included. Matching the "
+             "training data closely is not the goal; predicting new rows "
+             "is."),
+            ("Any of them, since the three errors are about the same", False,
+             "They are not about the same. The best and the worst differ by "
+             "a large factor, which is the whole reason to try several "
+             "values."),
+        ],
+    },
+    # ---- 3. diagnosis: nearest neighbours without scaling
+    {
+        "kind": "diagnosis",
+        "stem": ("A nearest-neighbours model uses two inputs, load in "
+                 "per cent (spread of about 25) and ambient temperature in "
+                 "degrees C (spread of about 3). It finds neighbours of a "
+                 "row with load 60 and ambient 30 by measuring plain "
+                 "distance on the raw numbers. Which row does it call "
+                 "nearer, and is that sensible?"),
+        "pre": ("row A:  load 63   ambient 36   raw distance 6.7\n"
+                "row B:  load 67   ambient 30   raw distance 7.0"),
+        "options": [
+            ("Row A, because load numbers are large and swamp the ambient "
+             "difference. After scaling, row B is clearly nearer", True,
+             "Correct. A 6 degree gap is twice the usual ambient spread, "
+             "while a 7 per cent load gap is a quarter of the usual load "
+             "spread. In scaled units row A is about 2.0 away and row B "
+             "about 0.3. A StandardScaler before the distance puts every "
+             "input on a common ruler."),
+            ("Row B, because 7.0 is a bigger distance than 6.7", False,
+             "The smaller distance is the nearer row, so the raw numbers "
+             "pick row A. The real issue is that the raw numbers are not "
+             "comparable between the two inputs."),
+            ("Row A, and that is right, because distance should always be "
+             "measured on raw units", False,
+             "Raw units are an accident of how each column happens to be "
+             "measured. Distance in them lets the input with the biggest "
+             "numbers decide."),
+            ("The two rows are tied, so the order of the table decides",
+             False,
+             "They are not tied on the raw numbers (6.7 against 7.0), and "
+             "after scaling they are far apart."),
+        ],
+    },
+    # ---- 4. traceback: the data file is not where the notebook looks
+    {
+        "kind": "traceback",
+        "stem": "What should you check first?",
+        "pre": ("pd.read_csv(\"data/raw/engineering_data.csv\")\n"
+                "FileNotFoundError"),
+        "options": [
+            ("The working folder, the relative path and the supplied file "
+             "name", True,
+             "Correct. The message is about a file, not a package or a "
+             "model. Confirm the file sits at the path the notebook uses, "
+             "and that the README says where to put it."),
+            ("Rewrite the analysis using csv.DictReader", False,
+             "Changing the reading tool does not create a missing file."),
+            ("Delete all the other files in the folder", False,
+             "That removes evidence and still does not put the file where "
+             "the notebook looks."),
+            ("Change the model settings", False,
+             "Model settings have no effect on finding a file."),
+        ],
+    },
+    # ---- 5. diagnosis: a saved output that fresh code cannot reproduce
+    {
+        "kind": "diagnosis",
+        "stem": "What is wrong with trusting a saved output?",
+        "pre": "A notebook displays a chart but fails after Restart and Run All.",
+        "options": [
+            ("The chart may be left over from an earlier session", True,
+             "Correct, so it proves nothing about the code as it stands. Saved "
+             "outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files "
+             "and in the README's order, is the test that the notebook "
+             "produces its own results."),
+            ("The chart proves the current code works", False,
+             "It may have been saved before the code changed. A chart that "
+             "will not rebuild is a warning, not a proof."),
+            ("Restarting changes the dataset by itself", False,
+             "Restarting clears variables in memory. The usual cause is a "
+             "step or a file that only existed in the old session."),
+            ("Only the chart title matters", False,
+             "A title cannot make a missing step run. Reproducibility needs "
+             "executable steps and the data."),
         ],
     },
 ]

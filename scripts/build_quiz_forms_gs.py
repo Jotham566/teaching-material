@@ -1972,6 +1972,49 @@ function rebuildAllForms() {
              + 'exact steps.');
 }
 
+/** Replace the questions on the EXISTING forms of one quiz week, keeping each form's link, ID, QR code and
+ *  response sheet. Used when a week's bank is rewritten after the forms were built. Only the multiple-choice
+ *  items are replaced; the registration-number item and every form setting are left alone. A form that already
+ *  has responses is skipped, because replacing its questions would orphan them.
+ *  Run replaceWeek13Questions() once, then check each form with auditForm(13, code). */
+function replaceQuestionsForWeek_(week) {
+  var links = loadLinks_(), done = 0, skipped = 0;
+  for (var code in QUIZ_DATA) {
+    var wk = null, weeks = QUIZ_DATA[code].weeks;
+    for (var i = 0; i < weeks.length; i++) { if (weeks[i].week === week) { wk = weeks[i]; } }
+    var L = links[code + '|' + week];
+    if (!wk || !L) { Logger.log('no form recorded for ' + code + ' week ' + week); skipped++; continue; }
+    var form = FormApp.openById(L.formId);
+    var n = form.getResponses().length;
+    if (n > 0) { Logger.log('SKIPPED ' + code + ' week ' + week + ': it already has ' + n + ' responses.'); skipped++; continue; }
+    var items = form.getItems();
+    for (var d = items.length - 1; d >= 0; d--) {
+      if (items[d].getType() === FormApp.ItemType.MULTIPLE_CHOICE) { form.deleteItem(items[d]); }
+    }
+    form.setTitle(wk.title);
+    form.setDescription(wk.intro);
+    for (var j = 0; j < wk.questions.length; j++) {
+      var q = wk.questions[j];
+      var item = form.addMultipleChoiceItem();
+      item.setTitle(q.n + '. ' + q.title);
+      if (q.help) { item.setHelpText(q.help); }
+      var choices = [];
+      for (var k = 0; k < q.choices.length; k++) { choices.push(item.createChoice(q.choices[k].text, q.choices[k].correct)); }
+      item.setChoices(choices);
+      item.setPoints(1);
+      item.setRequired(true);
+      if (q.fbCorrect) { item.setFeedbackForCorrect(FormApp.createFeedback().setText(q.fbCorrect).build()); }
+      if (q.fbWrong) { item.setFeedbackForIncorrect(FormApp.createFeedback().setText(q.fbWrong).build()); }
+    }
+    L.title = wk.title;
+    done++;
+    Logger.log('replaced the questions on ' + wk.title);
+  }
+  saveLinks_(links);
+  Logger.log('done: ' + done + ' forms replaced, ' + skipped + ' skipped. Links and QR codes are unchanged.');
+}
+function replaceWeek13Questions() { replaceQuestionsForWeek_(13); }
+
 function responseSpreadsheet_(code, fold) {
   var name = 'IUEA ML Quiz Responses \u2014 ' + code;
   var found = fold.getFilesByName(name);

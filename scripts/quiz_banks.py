@@ -333,10 +333,11 @@ _TOPICS = {
          "Whether a difference between two models is real given the fold "
          "spread, and which model a stated client constraint selects. TWO of "
          "the five are drawn from the Week 1-10 banks."),
-    13: ("Reproducibility (integrative)", None,
-         "A notebook that will not run on another machine, a hard-coded path, "
-         "and a seed that was never set. TWO of the five are drawn from "
-         "earlier banks."),
+    13: ("Regularisation, neighbours and reproducibility (integrative)", None,
+         "What a ridge penalty that is too strong looks like, how to choose k, "
+         "why nearest neighbours need scaled inputs, a missing data file, and "
+         "Restart and Run All. The last two revisit the reproducibility "
+         "slides."),
 }
 
 _DEFAULT_MIX = ("2 diagnosis of a silently wrong answer, 1 traceback, "

@@ -1775,51 +1775,129 @@ var QUIZ_DATA = {
       {
         "week": 13,
         "number": 12,
-        "title": "CML3112 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "title": "CML3112 \u00b7 Weekly Quiz 12 \u2014 Regularisation, neighbours and reproducibility (integrative)",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
             "kind": "interpretation",
-            "title": "Why use a relative CSV path?",
-            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")",
+            "title": "The same degree-6 curve was fitted three times with a different ridge penalty. What does the alpha 100 row tell you?",
+            "help": "model          train    valid\nnone            2.91     3.32\nalpha 1         3.01     3.05\nalpha 100       3.97     4.68\n(errors are MAE in kW; degree-6 curve on load alone)",
             "choices": [
               {
-                "text": "It can work on another computer with the same project structure",
+                "text": "The penalty is too strong: both errors are the worst of the three, so the curve has been flattened until it underfits",
                 "correct": true
               },
               {
-                "text": "It encrypts the data",
+                "text": "The training error went up, so alpha 100 must be the best model",
                 "correct": false
               },
               {
-                "text": "It downloads the file automatically",
+                "text": "Alpha 100 is the safest choice, because a larger penalty always prevents overfitting",
                 "correct": false
               },
               {
-                "text": "It makes raw data safe to overwrite",
+                "text": "Nothing can be concluded until the sealed test rows are scored",
                 "correct": false
               }
             ],
-            "fbCorrect": "Document the working folder and include the expected data layout.",
-            "fbWrong": "THE ANSWER: It can work on another computer with the same project structure. Document the working folder and include the expected data layout.\n\nWhy the others are wrong. \u201cIt encrypts the data\u201d \u2014 Path choice does not provide encryption.  \u201cIt downloads the file automatically\u201d \u2014 A local relative path does not fetch missing files.  \u201cIt makes raw data safe to overwrite\u201d \u2014 Raw data should still be preserved."
+            "fbCorrect": "Correct. Ridge shrinks the coefficients, and a very large alpha shrinks them so far that the curve can no longer follow the real pattern. Training error and validation error both get worse. That is underfitting, the opposite problem from the wild curve with no penalty.",
+            "fbWrong": "THE ANSWER: The penalty is too strong: both errors are the worst of the three, so the curve has been flattened until it underfits. Ridge shrinks the coefficients, and a very large alpha shrinks them so far that the curve can no longer follow the real pattern. Training error and validation error both get worse. That is underfitting, the opposite problem from the wild curve with no penalty.\n\nWhy the others are wrong. \u201cThe training error went up, so alpha 100 must be the best model\u201d \u2014 A higher training error is not a reward. It is the price of the penalty. The penalty is worth paying only if the validation error falls, and here it rises.  \u201cAlpha 100 is the safest choice, because a larger penalty always prevents overfitting\u201d \u2014 A larger penalty reduces overfitting only up to a point. Past that point the model cannot learn the pattern at all, and the validation error shows it.  \u201cNothing can be concluded until the sealed test rows are scored\u201d \u2014 The validation rows exist for exactly this decision. The test rows are kept for one final check of the model you chose, not for choosing alpha."
           },
           {
             "n": 2,
+            "kind": "judgement",
+            "title": "A nearest-neighbours model was scored on the validation rows for three values of k, the number of neighbours that vote. Which choice does the table support, and what should you add when you report it?",
+            "help": "k      valid\n1       1.69\n3       1.16\n20      3.72\n(validation MAE in kW)",
+            "choices": [
+              {
+                "text": "k = 20, because averaging more rows is always more reliable",
+                "correct": false
+              },
+              {
+                "text": "k = 1, because it matches the training data most closely",
+                "correct": false
+              },
+              {
+                "text": "k = 3, the lowest validation error. Add that k was chosen on these rows, so the figure is slightly optimistic",
+                "correct": true
+              },
+              {
+                "text": "Any of them, since the three errors are about the same",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. k = 1 follows the noise in a single neighbour and k = 20 averages in rows that are not really alike. k = 3 sits between them. Because the validation rows picked k, they have helped the model a little, so say so.",
+            "fbWrong": "THE ANSWER: k = 3, the lowest validation error. Add that k was chosen on these rows, so the figure is slightly optimistic. K = 1 follows the noise in a single neighbour and k = 20 averages in rows that are not really alike. k = 3 sits between them. Because the validation rows picked k, they have helped the model a little, so say so.\n\nWhy the others are wrong. \u201ck = 20, because averaging more rows is always more reliable\u201d \u2014 Averaging more rows smooths noise, but too many neighbours blur the pattern. This table shows k = 20 with the largest error of the three.  \u201ck = 1, because it matches the training data most closely\u201d \u2014 k = 1 copies the nearest row, noise included. Matching the training data closely is not the goal; predicting new rows is.  \u201cAny of them, since the three errors are about the same\u201d \u2014 They are not about the same. The best and the worst differ by a large factor, which is the whole reason to try several values."
+          },
+          {
+            "n": 3,
+            "kind": "diagnosis",
+            "title": "A nearest-neighbours model uses two inputs, load in per cent (spread of about 25) and ambient temperature in degrees C (spread of about 3). It finds neighbours of a row with load 60 and ambient 30 by measuring plain distance on the raw numbers. Which row does it call nearer, and is that sensible?",
+            "help": "row A:  load 63   ambient 36   raw distance 6.7\nrow B:  load 67   ambient 30   raw distance 7.0",
+            "choices": [
+              {
+                "text": "Row B, because 7.0 is a bigger distance than 6.7",
+                "correct": false
+              },
+              {
+                "text": "The two rows are tied, so the order of the table decides",
+                "correct": false
+              },
+              {
+                "text": "Row A, because load numbers are large and swamp the ambient difference. After scaling, row B is clearly nearer",
+                "correct": true
+              },
+              {
+                "text": "Row A, and that is right, because distance should always be measured on raw units",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. A 6 degree gap is twice the usual ambient spread, while a 7 per cent load gap is a quarter of the usual load spread. In scaled units row A is about 2.0 away and row B about 0.3. A StandardScaler before the distance puts every input on a common ruler.",
+            "fbWrong": "THE ANSWER: Row A, because load numbers are large and swamp the ambient difference. After scaling, row B is clearly nearer. A 6 degree gap is twice the usual ambient spread, while a 7 per cent load gap is a quarter of the usual load spread. In scaled units row A is about 2.0 away and row B about 0.3. A StandardScaler before the distance puts every input on a common ruler.\n\nWhy the others are wrong. \u201cRow B, because 7.0 is a bigger distance than 6.7\u201d \u2014 The smaller distance is the nearer row, so the raw numbers pick row A. The real issue is that the raw numbers are not comparable between the two inputs.  \u201cThe two rows are tied, so the order of the table decides\u201d \u2014 They are not tied on the raw numbers (6.7 against 7.0), and after scaling they are far apart.  \u201cRow A, and that is right, because distance should always be measured on raw units\u201d \u2014 Raw units are an accident of how each column happens to be measured. Distance in them lets the input with the biggest numbers decide."
+          },
+          {
+            "n": 4,
+            "kind": "traceback",
+            "title": "What should you check first?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
+            "choices": [
+              {
+                "text": "Change the model settings",
+                "correct": false
+              },
+              {
+                "text": "Rewrite the analysis using csv.DictReader",
+                "correct": false
+              },
+              {
+                "text": "Delete all the other files in the folder",
+                "correct": false
+              },
+              {
+                "text": "The working folder, the relative path and the supplied file name",
+                "correct": true
+              }
+            ],
+            "fbCorrect": "Correct. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
+            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file.  \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks."
+          },
+          {
+            "n": 5,
             "kind": "diagnosis",
             "title": "What is wrong with trusting a saved output?",
             "help": "A notebook displays a chart but fails after Restart and Run All.",
             "choices": [
               {
-                "text": "The chart proves the current code works",
-                "correct": false
-              },
-              {
                 "text": "Restarting changes the dataset by itself",
                 "correct": false
               },
               {
-                "text": "The visible output may come from an earlier session",
+                "text": "The chart proves the current code works",
+                "correct": false
+              },
+              {
+                "text": "The chart may be left over from an earlier session",
                 "correct": true
               },
               {
@@ -1827,86 +1905,8 @@ var QUIZ_DATA = {
                 "correct": false
               }
             ],
-            "fbCorrect": "A fresh run checks whether the saved code and supplied files reproduce it.",
-            "fbWrong": "THE ANSWER: The visible output may come from an earlier session. A fresh run checks whether the saved code and supplied files reproduce it.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed.  \u201cRestarting changes the dataset by itself\u201d \u2014 The issue may be missing state or files, not a changed dataset.  \u201cOnly the chart title matters\u201d \u2014 Reproducibility needs executable steps and data."
-          },
-          {
-            "n": 3,
-            "kind": "traceback",
-            "title": "What should be checked first?",
-            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
-            "choices": [
-              {
-                "text": "Rewrite the analysis using csv.DictReader",
-                "correct": false
-              },
-              {
-                "text": "Change the model hyperparameters",
-                "correct": false
-              },
-              {
-                "text": "The working folder, relative path and supplied filename",
-                "correct": true
-              },
-              {
-                "text": "Delete all other files",
-                "correct": false
-              }
-            ],
-            "fbCorrect": "Confirm the file is present at the path used by the notebook.",
-            "fbWrong": "THE ANSWER: The working folder, relative path and supplied filename. Confirm the file is present at the path used by the notebook.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing libraries does not repair a missing file.  \u201cChange the model hyperparameters\u201d \u2014 Model settings do not affect file discovery.  \u201cDelete all other files\u201d \u2014 That does not create the required file."
-          },
-          {
-            "n": 4,
-            "kind": "interpretation",
-            "title": "What does index=False do?",
-            "help": "clean.to_csv(\"cleaned_data.csv\", index=False)",
-            "choices": [
-              {
-                "text": "It fills missing values",
-                "correct": false
-              },
-              {
-                "text": "It removes the first observation",
-                "correct": false
-              },
-              {
-                "text": "It prevents saving",
-                "correct": false
-              },
-              {
-                "text": "It omits pandas row labels from the exported CSV columns",
-                "correct": true
-              }
-            ],
-            "fbCorrect": "The data columns remain in the file.",
-            "fbWrong": "THE ANSWER: It omits pandas row labels from the exported CSV columns. The data columns remain in the file.\n\nWhy the others are wrong. \u201cIt fills missing values\u201d \u2014 Export options do not perform imputation.  \u201cIt removes the first observation\u201d \u2014 It controls row labels, not the first data row.  \u201cIt prevents saving\u201d \u2014 to_csv still writes the file."
-          },
-          {
-            "n": 5,
-            "kind": "judgement",
-            "title": "What belongs in a reproducible handover?",
-            "help": "Another person must run the work from a fresh session.",
-            "choices": [
-              {
-                "text": "Only the final score",
-                "correct": false
-              },
-              {
-                "text": "Only screenshots",
-                "correct": false
-              },
-              {
-                "text": "Data paths, dependencies, run order, units and limitations",
-                "correct": true
-              },
-              {
-                "text": "Private machine paths with no instructions",
-                "correct": false
-              }
-            ],
-            "fbCorrect": "These explain what is needed and what the results support.",
-            "fbWrong": "THE ANSWER: Data paths, dependencies, run order, units and limitations. These explain what is needed and what the results support.\n\nWhy the others are wrong. \u201cOnly the final score\u201d \u2014 A score does not explain data, methods or limitations.  \u201cOnly screenshots\u201d \u2014 Screenshots cannot reproduce the calculations.  \u201cPrivate machine paths with no instructions\u201d \u2014 Those paths generally fail on another computer."
+            "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
+            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning, not a proof.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data."
           }
         ]
       }
@@ -3439,138 +3439,138 @@ var QUIZ_DATA = {
       {
         "week": 13,
         "number": 12,
-        "title": "CML3113 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "title": "CML3113 \u00b7 Weekly Quiz 12 \u2014 Regularisation, neighbours and reproducibility (integrative)",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
             "kind": "interpretation",
-            "title": "Why use a relative CSV path?",
-            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")",
+            "title": "The same degree-6 curve was fitted three times with a different ridge penalty. What does the alpha 100 row tell you?",
+            "help": "model          train    valid\nnone            0.84     0.98\nalpha 1         0.88     0.99\nalpha 100       1.18     1.48\n(errors are MAE in kWh/t; degree-6 curve on load alone)",
             "choices": [
               {
-                "text": "It makes raw data safe to overwrite",
+                "text": "Nothing can be concluded until the sealed test rows are scored",
                 "correct": false
               },
               {
-                "text": "It can work on another computer with the same project structure",
+                "text": "The penalty is too strong: both errors are the worst of the three, so the curve has been flattened until it underfits",
                 "correct": true
               },
               {
-                "text": "It downloads the file automatically",
+                "text": "Alpha 100 is the safest choice, because a larger penalty always prevents overfitting",
                 "correct": false
               },
               {
-                "text": "It encrypts the data",
+                "text": "The training error went up, so alpha 100 must be the best model",
                 "correct": false
               }
             ],
-            "fbCorrect": "Document the working folder and include the expected data layout.",
-            "fbWrong": "THE ANSWER: It can work on another computer with the same project structure. Document the working folder and include the expected data layout.\n\nWhy the others are wrong. \u201cIt makes raw data safe to overwrite\u201d \u2014 Raw data should still be preserved.  \u201cIt downloads the file automatically\u201d \u2014 A local relative path does not fetch missing files.  \u201cIt encrypts the data\u201d \u2014 Path choice does not provide encryption."
+            "fbCorrect": "Correct. Ridge shrinks the coefficients, and a very large alpha shrinks them so far that the curve can no longer follow the real pattern. Training error and validation error both get worse. That is underfitting, the opposite problem from the wild curve with no penalty.",
+            "fbWrong": "THE ANSWER: The penalty is too strong: both errors are the worst of the three, so the curve has been flattened until it underfits. Ridge shrinks the coefficients, and a very large alpha shrinks them so far that the curve can no longer follow the real pattern. Training error and validation error both get worse. That is underfitting, the opposite problem from the wild curve with no penalty.\n\nWhy the others are wrong. \u201cNothing can be concluded until the sealed test rows are scored\u201d \u2014 The validation rows exist for exactly this decision. The test rows are kept for one final check of the model you chose, not for choosing alpha.  \u201cAlpha 100 is the safest choice, because a larger penalty always prevents overfitting\u201d \u2014 A larger penalty reduces overfitting only up to a point. Past that point the model cannot learn the pattern at all, and the validation error shows it.  \u201cThe training error went up, so alpha 100 must be the best model\u201d \u2014 A higher training error is not a reward. It is the price of the penalty. The penalty is worth paying only if the validation error falls, and here it rises."
           },
           {
             "n": 2,
+            "kind": "judgement",
+            "title": "A nearest-neighbours model was scored on the validation rows for three values of k, the number of neighbours that vote. Which choice does the table support, and what should you add when you report it?",
+            "help": "k      valid\n1       0.94\n3       0.63\n20      1.37\n(validation MAE in kWh/t)",
+            "choices": [
+              {
+                "text": "k = 20, because averaging more rows is always more reliable",
+                "correct": false
+              },
+              {
+                "text": "Any of them, since the three errors are about the same",
+                "correct": false
+              },
+              {
+                "text": "k = 3, the lowest validation error. Add that k was chosen on these rows, so the figure is slightly optimistic",
+                "correct": true
+              },
+              {
+                "text": "k = 1, because it matches the training data most closely",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. k = 1 follows the noise in a single neighbour and k = 20 averages in rows that are not really alike. k = 3 sits between them. Because the validation rows picked k, they have helped the model a little, so say so.",
+            "fbWrong": "THE ANSWER: k = 3, the lowest validation error. Add that k was chosen on these rows, so the figure is slightly optimistic. K = 1 follows the noise in a single neighbour and k = 20 averages in rows that are not really alike. k = 3 sits between them. Because the validation rows picked k, they have helped the model a little, so say so.\n\nWhy the others are wrong. \u201ck = 20, because averaging more rows is always more reliable\u201d \u2014 Averaging more rows smooths noise, but too many neighbours blur the pattern. This table shows k = 20 with the largest error of the three.  \u201cAny of them, since the three errors are about the same\u201d \u2014 They are not about the same. The best and the worst differ by a large factor, which is the whole reason to try several values.  \u201ck = 1, because it matches the training data most closely\u201d \u2014 k = 1 copies the nearest row, noise included. Matching the training data closely is not the goal; predicting new rows is."
+          },
+          {
+            "n": 3,
+            "kind": "diagnosis",
+            "title": "A nearest-neighbours model uses two inputs, load in per cent (spread of about 25) and ambient temperature in degrees C (spread of about 3). It finds neighbours of a row with load 60 and ambient 30 by measuring plain distance on the raw numbers. Which row does it call nearer, and is that sensible?",
+            "help": "row A:  load 63   ambient 36   raw distance 6.7\nrow B:  load 67   ambient 30   raw distance 7.0",
+            "choices": [
+              {
+                "text": "The two rows are tied, so the order of the table decides",
+                "correct": false
+              },
+              {
+                "text": "Row A, because load numbers are large and swamp the ambient difference. After scaling, row B is clearly nearer",
+                "correct": true
+              },
+              {
+                "text": "Row B, because 7.0 is a bigger distance than 6.7",
+                "correct": false
+              },
+              {
+                "text": "Row A, and that is right, because distance should always be measured on raw units",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. A 6 degree gap is twice the usual ambient spread, while a 7 per cent load gap is a quarter of the usual load spread. In scaled units row A is about 2.0 away and row B about 0.3. A StandardScaler before the distance puts every input on a common ruler.",
+            "fbWrong": "THE ANSWER: Row A, because load numbers are large and swamp the ambient difference. After scaling, row B is clearly nearer. A 6 degree gap is twice the usual ambient spread, while a 7 per cent load gap is a quarter of the usual load spread. In scaled units row A is about 2.0 away and row B about 0.3. A StandardScaler before the distance puts every input on a common ruler.\n\nWhy the others are wrong. \u201cThe two rows are tied, so the order of the table decides\u201d \u2014 They are not tied on the raw numbers (6.7 against 7.0), and after scaling they are far apart.  \u201cRow B, because 7.0 is a bigger distance than 6.7\u201d \u2014 The smaller distance is the nearer row, so the raw numbers pick row A. The real issue is that the raw numbers are not comparable between the two inputs.  \u201cRow A, and that is right, because distance should always be measured on raw units\u201d \u2014 Raw units are an accident of how each column happens to be measured. Distance in them lets the input with the biggest numbers decide."
+          },
+          {
+            "n": 4,
+            "kind": "traceback",
+            "title": "What should you check first?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
+            "choices": [
+              {
+                "text": "Rewrite the analysis using csv.DictReader",
+                "correct": false
+              },
+              {
+                "text": "Delete all the other files in the folder",
+                "correct": false
+              },
+              {
+                "text": "The working folder, the relative path and the supplied file name",
+                "correct": true
+              },
+              {
+                "text": "Change the model settings",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
+            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks.  \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file."
+          },
+          {
+            "n": 5,
             "kind": "diagnosis",
             "title": "What is wrong with trusting a saved output?",
             "help": "A notebook displays a chart but fails after Restart and Run All.",
             "choices": [
               {
-                "text": "The chart proves the current code works",
+                "text": "Restarting changes the dataset by itself",
                 "correct": false
+              },
+              {
+                "text": "The chart may be left over from an earlier session",
+                "correct": true
               },
               {
                 "text": "Only the chart title matters",
                 "correct": false
               },
               {
-                "text": "The visible output may come from an earlier session",
-                "correct": true
-              },
-              {
-                "text": "Restarting changes the dataset by itself",
+                "text": "The chart proves the current code works",
                 "correct": false
               }
             ],
-            "fbCorrect": "A fresh run checks whether the saved code and supplied files reproduce it.",
-            "fbWrong": "THE ANSWER: The visible output may come from an earlier session. A fresh run checks whether the saved code and supplied files reproduce it.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed.  \u201cOnly the chart title matters\u201d \u2014 Reproducibility needs executable steps and data.  \u201cRestarting changes the dataset by itself\u201d \u2014 The issue may be missing state or files, not a changed dataset."
-          },
-          {
-            "n": 3,
-            "kind": "traceback",
-            "title": "What should be checked first?",
-            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
-            "choices": [
-              {
-                "text": "Change the model hyperparameters",
-                "correct": false
-              },
-              {
-                "text": "The working folder, relative path and supplied filename",
-                "correct": true
-              },
-              {
-                "text": "Rewrite the analysis using csv.DictReader",
-                "correct": false
-              },
-              {
-                "text": "Delete all other files",
-                "correct": false
-              }
-            ],
-            "fbCorrect": "Confirm the file is present at the path used by the notebook.",
-            "fbWrong": "THE ANSWER: The working folder, relative path and supplied filename. Confirm the file is present at the path used by the notebook.\n\nWhy the others are wrong. \u201cChange the model hyperparameters\u201d \u2014 Model settings do not affect file discovery.  \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing libraries does not repair a missing file.  \u201cDelete all other files\u201d \u2014 That does not create the required file."
-          },
-          {
-            "n": 4,
-            "kind": "interpretation",
-            "title": "What does index=False do?",
-            "help": "clean.to_csv(\"cleaned_data.csv\", index=False)",
-            "choices": [
-              {
-                "text": "It removes the first observation",
-                "correct": false
-              },
-              {
-                "text": "It prevents saving",
-                "correct": false
-              },
-              {
-                "text": "It omits pandas row labels from the exported CSV columns",
-                "correct": true
-              },
-              {
-                "text": "It fills missing values",
-                "correct": false
-              }
-            ],
-            "fbCorrect": "The data columns remain in the file.",
-            "fbWrong": "THE ANSWER: It omits pandas row labels from the exported CSV columns. The data columns remain in the file.\n\nWhy the others are wrong. \u201cIt removes the first observation\u201d \u2014 It controls row labels, not the first data row.  \u201cIt prevents saving\u201d \u2014 to_csv still writes the file.  \u201cIt fills missing values\u201d \u2014 Export options do not perform imputation."
-          },
-          {
-            "n": 5,
-            "kind": "judgement",
-            "title": "What belongs in a reproducible handover?",
-            "help": "Another person must run the work from a fresh session.",
-            "choices": [
-              {
-                "text": "Only the final score",
-                "correct": false
-              },
-              {
-                "text": "Data paths, dependencies, run order, units and limitations",
-                "correct": true
-              },
-              {
-                "text": "Private machine paths with no instructions",
-                "correct": false
-              },
-              {
-                "text": "Only screenshots",
-                "correct": false
-              }
-            ],
-            "fbCorrect": "These explain what is needed and what the results support.",
-            "fbWrong": "THE ANSWER: Data paths, dependencies, run order, units and limitations. These explain what is needed and what the results support.\n\nWhy the others are wrong. \u201cOnly the final score\u201d \u2014 A score does not explain data, methods or limitations.  \u201cPrivate machine paths with no instructions\u201d \u2014 Those paths generally fail on another computer.  \u201cOnly screenshots\u201d \u2014 Screenshots cannot reproduce the calculations."
+            "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
+            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning, not a proof."
           }
         ]
       }
@@ -5103,49 +5103,119 @@ var QUIZ_DATA = {
       {
         "week": 13,
         "number": 12,
-        "title": "CML3111 \u00b7 Weekly Quiz 12 \u2014 Reproducibility (integrative)",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "title": "CML3111 \u00b7 Weekly Quiz 12 \u2014 Regularisation, neighbours and reproducibility (integrative)",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
             "kind": "interpretation",
-            "title": "Why use a relative CSV path?",
-            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")",
+            "title": "The same degree-6 curve was fitted three times with a different ridge penalty. What does the alpha 100 row tell you?",
+            "help": "model          train    valid\nnone            4.02     4.60\nalpha 1         4.16     4.20\nalpha 100       5.82     6.87\n(errors are MAE in deg C; degree-6 curve on load alone)",
             "choices": [
               {
-                "text": "It can work on another computer with the same project structure",
+                "text": "The penalty is too strong: both errors are the worst of the three, so the curve has been flattened until it underfits",
                 "correct": true
               },
               {
-                "text": "It makes raw data safe to overwrite",
+                "text": "Nothing can be concluded until the sealed test rows are scored",
                 "correct": false
               },
               {
-                "text": "It encrypts the data",
+                "text": "The training error went up, so alpha 100 must be the best model",
                 "correct": false
               },
               {
-                "text": "It downloads the file automatically",
+                "text": "Alpha 100 is the safest choice, because a larger penalty always prevents overfitting",
                 "correct": false
               }
             ],
-            "fbCorrect": "Document the working folder and include the expected data layout.",
-            "fbWrong": "THE ANSWER: It can work on another computer with the same project structure. Document the working folder and include the expected data layout.\n\nWhy the others are wrong. \u201cIt makes raw data safe to overwrite\u201d \u2014 Raw data should still be preserved.  \u201cIt encrypts the data\u201d \u2014 Path choice does not provide encryption.  \u201cIt downloads the file automatically\u201d \u2014 A local relative path does not fetch missing files."
+            "fbCorrect": "Correct. Ridge shrinks the coefficients, and a very large alpha shrinks them so far that the curve can no longer follow the real pattern. Training error and validation error both get worse. That is underfitting, the opposite problem from the wild curve with no penalty.",
+            "fbWrong": "THE ANSWER: The penalty is too strong: both errors are the worst of the three, so the curve has been flattened until it underfits. Ridge shrinks the coefficients, and a very large alpha shrinks them so far that the curve can no longer follow the real pattern. Training error and validation error both get worse. That is underfitting, the opposite problem from the wild curve with no penalty.\n\nWhy the others are wrong. \u201cNothing can be concluded until the sealed test rows are scored\u201d \u2014 The validation rows exist for exactly this decision. The test rows are kept for one final check of the model you chose, not for choosing alpha.  \u201cThe training error went up, so alpha 100 must be the best model\u201d \u2014 A higher training error is not a reward. It is the price of the penalty. The penalty is worth paying only if the validation error falls, and here it rises.  \u201cAlpha 100 is the safest choice, because a larger penalty always prevents overfitting\u201d \u2014 A larger penalty reduces overfitting only up to a point. Past that point the model cannot learn the pattern at all, and the validation error shows it."
           },
           {
             "n": 2,
+            "kind": "judgement",
+            "title": "A nearest-neighbours model was scored on the validation rows for three values of k, the number of neighbours that vote. Which choice does the table support, and what should you add when you report it?",
+            "help": "k      valid\n1       2.42\n3       1.58\n20      5.55\n(validation MAE in deg C)",
+            "choices": [
+              {
+                "text": "k = 1, because it matches the training data most closely",
+                "correct": false
+              },
+              {
+                "text": "k = 3, the lowest validation error. Add that k was chosen on these rows, so the figure is slightly optimistic",
+                "correct": true
+              },
+              {
+                "text": "k = 20, because averaging more rows is always more reliable",
+                "correct": false
+              },
+              {
+                "text": "Any of them, since the three errors are about the same",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. k = 1 follows the noise in a single neighbour and k = 20 averages in rows that are not really alike. k = 3 sits between them. Because the validation rows picked k, they have helped the model a little, so say so.",
+            "fbWrong": "THE ANSWER: k = 3, the lowest validation error. Add that k was chosen on these rows, so the figure is slightly optimistic. K = 1 follows the noise in a single neighbour and k = 20 averages in rows that are not really alike. k = 3 sits between them. Because the validation rows picked k, they have helped the model a little, so say so.\n\nWhy the others are wrong. \u201ck = 1, because it matches the training data most closely\u201d \u2014 k = 1 copies the nearest row, noise included. Matching the training data closely is not the goal; predicting new rows is.  \u201ck = 20, because averaging more rows is always more reliable\u201d \u2014 Averaging more rows smooths noise, but too many neighbours blur the pattern. This table shows k = 20 with the largest error of the three.  \u201cAny of them, since the three errors are about the same\u201d \u2014 They are not about the same. The best and the worst differ by a large factor, which is the whole reason to try several values."
+          },
+          {
+            "n": 3,
+            "kind": "diagnosis",
+            "title": "A nearest-neighbours model uses two inputs, load in per cent (spread of about 25) and ambient temperature in degrees C (spread of about 3). It finds neighbours of a row with load 60 and ambient 30 by measuring plain distance on the raw numbers. Which row does it call nearer, and is that sensible?",
+            "help": "row A:  load 63   ambient 36   raw distance 6.7\nrow B:  load 67   ambient 30   raw distance 7.0",
+            "choices": [
+              {
+                "text": "Row A, because load numbers are large and swamp the ambient difference. After scaling, row B is clearly nearer",
+                "correct": true
+              },
+              {
+                "text": "The two rows are tied, so the order of the table decides",
+                "correct": false
+              },
+              {
+                "text": "Row B, because 7.0 is a bigger distance than 6.7",
+                "correct": false
+              },
+              {
+                "text": "Row A, and that is right, because distance should always be measured on raw units",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. A 6 degree gap is twice the usual ambient spread, while a 7 per cent load gap is a quarter of the usual load spread. In scaled units row A is about 2.0 away and row B about 0.3. A StandardScaler before the distance puts every input on a common ruler.",
+            "fbWrong": "THE ANSWER: Row A, because load numbers are large and swamp the ambient difference. After scaling, row B is clearly nearer. A 6 degree gap is twice the usual ambient spread, while a 7 per cent load gap is a quarter of the usual load spread. In scaled units row A is about 2.0 away and row B about 0.3. A StandardScaler before the distance puts every input on a common ruler.\n\nWhy the others are wrong. \u201cThe two rows are tied, so the order of the table decides\u201d \u2014 They are not tied on the raw numbers (6.7 against 7.0), and after scaling they are far apart.  \u201cRow B, because 7.0 is a bigger distance than 6.7\u201d \u2014 The smaller distance is the nearer row, so the raw numbers pick row A. The real issue is that the raw numbers are not comparable between the two inputs.  \u201cRow A, and that is right, because distance should always be measured on raw units\u201d \u2014 Raw units are an accident of how each column happens to be measured. Distance in them lets the input with the biggest numbers decide."
+          },
+          {
+            "n": 4,
+            "kind": "traceback",
+            "title": "What should you check first?",
+            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
+            "choices": [
+              {
+                "text": "Rewrite the analysis using csv.DictReader",
+                "correct": false
+              },
+              {
+                "text": "Change the model settings",
+                "correct": false
+              },
+              {
+                "text": "The working folder, the relative path and the supplied file name",
+                "correct": true
+              },
+              {
+                "text": "Delete all the other files in the folder",
+                "correct": false
+              }
+            ],
+            "fbCorrect": "Correct. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
+            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks."
+          },
+          {
+            "n": 5,
             "kind": "diagnosis",
             "title": "What is wrong with trusting a saved output?",
             "help": "A notebook displays a chart but fails after Restart and Run All.",
             "choices": [
-              {
-                "text": "Restarting changes the dataset by itself",
-                "correct": false
-              },
-              {
-                "text": "The visible output may come from an earlier session",
-                "correct": true
-              },
               {
                 "text": "The chart proves the current code works",
                 "correct": false
@@ -5153,88 +5223,18 @@ var QUIZ_DATA = {
               {
                 "text": "Only the chart title matters",
                 "correct": false
-              }
-            ],
-            "fbCorrect": "A fresh run checks whether the saved code and supplied files reproduce it.",
-            "fbWrong": "THE ANSWER: The visible output may come from an earlier session. A fresh run checks whether the saved code and supplied files reproduce it.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 The issue may be missing state or files, not a changed dataset.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed.  \u201cOnly the chart title matters\u201d \u2014 Reproducibility needs executable steps and data."
-          },
-          {
-            "n": 3,
-            "kind": "traceback",
-            "title": "What should be checked first?",
-            "help": "pd.read_csv(\"data/raw/engineering_data.csv\")\nFileNotFoundError",
-            "choices": [
+              },
               {
-                "text": "The working folder, relative path and supplied filename",
+                "text": "The chart may be left over from an earlier session",
                 "correct": true
               },
               {
-                "text": "Change the model hyperparameters",
-                "correct": false
-              },
-              {
-                "text": "Rewrite the analysis using csv.DictReader",
-                "correct": false
-              },
-              {
-                "text": "Delete all other files",
+                "text": "Restarting changes the dataset by itself",
                 "correct": false
               }
             ],
-            "fbCorrect": "Confirm the file is present at the path used by the notebook.",
-            "fbWrong": "THE ANSWER: The working folder, relative path and supplied filename. Confirm the file is present at the path used by the notebook.\n\nWhy the others are wrong. \u201cChange the model hyperparameters\u201d \u2014 Model settings do not affect file discovery.  \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing libraries does not repair a missing file.  \u201cDelete all other files\u201d \u2014 That does not create the required file."
-          },
-          {
-            "n": 4,
-            "kind": "interpretation",
-            "title": "What does index=False do?",
-            "help": "clean.to_csv(\"cleaned_data.csv\", index=False)",
-            "choices": [
-              {
-                "text": "It removes the first observation",
-                "correct": false
-              },
-              {
-                "text": "It fills missing values",
-                "correct": false
-              },
-              {
-                "text": "It omits pandas row labels from the exported CSV columns",
-                "correct": true
-              },
-              {
-                "text": "It prevents saving",
-                "correct": false
-              }
-            ],
-            "fbCorrect": "The data columns remain in the file.",
-            "fbWrong": "THE ANSWER: It omits pandas row labels from the exported CSV columns. The data columns remain in the file.\n\nWhy the others are wrong. \u201cIt removes the first observation\u201d \u2014 It controls row labels, not the first data row.  \u201cIt fills missing values\u201d \u2014 Export options do not perform imputation.  \u201cIt prevents saving\u201d \u2014 to_csv still writes the file."
-          },
-          {
-            "n": 5,
-            "kind": "judgement",
-            "title": "What belongs in a reproducible handover?",
-            "help": "Another person must run the work from a fresh session.",
-            "choices": [
-              {
-                "text": "Only screenshots",
-                "correct": false
-              },
-              {
-                "text": "Private machine paths with no instructions",
-                "correct": false
-              },
-              {
-                "text": "Data paths, dependencies, run order, units and limitations",
-                "correct": true
-              },
-              {
-                "text": "Only the final score",
-                "correct": false
-              }
-            ],
-            "fbCorrect": "These explain what is needed and what the results support.",
-            "fbWrong": "THE ANSWER: Data paths, dependencies, run order, units and limitations. These explain what is needed and what the results support.\n\nWhy the others are wrong. \u201cOnly screenshots\u201d \u2014 Screenshots cannot reproduce the calculations.  \u201cPrivate machine paths with no instructions\u201d \u2014 Those paths generally fail on another computer.  \u201cOnly the final score\u201d \u2014 A score does not explain data, methods or limitations."
+            "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
+            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning, not a proof.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session."
           }
         ]
       }
@@ -6790,6 +6790,49 @@ function rebuildAllForms() {
              + 'scripts folder. Section 1.6 of the operations guide has the '
              + 'exact steps.');
 }
+
+/** Replace the questions on the EXISTING forms of one quiz week, keeping each form's link, ID, QR code and
+ *  response sheet. Used when a week's bank is rewritten after the forms were built. Only the multiple-choice
+ *  items are replaced; the registration-number item and every form setting are left alone. A form that already
+ *  has responses is skipped, because replacing its questions would orphan them.
+ *  Run replaceWeek13Questions() once, then check each form with auditForm(13, code). */
+function replaceQuestionsForWeek_(week) {
+  var links = loadLinks_(), done = 0, skipped = 0;
+  for (var code in QUIZ_DATA) {
+    var wk = null, weeks = QUIZ_DATA[code].weeks;
+    for (var i = 0; i < weeks.length; i++) { if (weeks[i].week === week) { wk = weeks[i]; } }
+    var L = links[code + '|' + week];
+    if (!wk || !L) { Logger.log('no form recorded for ' + code + ' week ' + week); skipped++; continue; }
+    var form = FormApp.openById(L.formId);
+    var n = form.getResponses().length;
+    if (n > 0) { Logger.log('SKIPPED ' + code + ' week ' + week + ': it already has ' + n + ' responses.'); skipped++; continue; }
+    var items = form.getItems();
+    for (var d = items.length - 1; d >= 0; d--) {
+      if (items[d].getType() === FormApp.ItemType.MULTIPLE_CHOICE) { form.deleteItem(items[d]); }
+    }
+    form.setTitle(wk.title);
+    form.setDescription(wk.intro);
+    for (var j = 0; j < wk.questions.length; j++) {
+      var q = wk.questions[j];
+      var item = form.addMultipleChoiceItem();
+      item.setTitle(q.n + '. ' + q.title);
+      if (q.help) { item.setHelpText(q.help); }
+      var choices = [];
+      for (var k = 0; k < q.choices.length; k++) { choices.push(item.createChoice(q.choices[k].text, q.choices[k].correct)); }
+      item.setChoices(choices);
+      item.setPoints(1);
+      item.setRequired(true);
+      if (q.fbCorrect) { item.setFeedbackForCorrect(FormApp.createFeedback().setText(q.fbCorrect).build()); }
+      if (q.fbWrong) { item.setFeedbackForIncorrect(FormApp.createFeedback().setText(q.fbWrong).build()); }
+    }
+    L.title = wk.title;
+    done++;
+    Logger.log('replaced the questions on ' + wk.title);
+  }
+  saveLinks_(links);
+  Logger.log('done: ' + done + ' forms replaced, ' + skipped + ' skipped. Links and QR codes are unchanged.');
+}
+function replaceWeek13Questions() { replaceQuestionsForWeek_(13); }
 
 function responseSpreadsheet_(code, fold) {
   var name = 'IUEA ML Quiz Responses \u2014 ' + code;

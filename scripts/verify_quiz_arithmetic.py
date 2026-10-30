@@ -490,6 +490,28 @@ intro_bad = [f"{code} W{w['week']}" for code, c in payload.items()
 ok("every form tells students to tap View score", not intro_bad,
    "; ".join(intro_bad[:5]))
 
+
+# --- W13 (Quiz 12): the two tables are the Week 13 deck's reference numbers, and the scaling example is computed.
+import numpy as _np
+import week_reference_numpy as _R
+for _code in ("CML3112", "CML3113", "CML3111"):
+    _b = _R.bundle13(_code); _q = QB.QUIZ[13]["q"]
+    _t1 = QB.pre_for(_q[0], _code); _t2 = QB.pre_for(_q[1], _code)
+    for _r in _b["ridge_rows"]:
+        ok(f"W13 {_code} ridge row {_r['name']} printed", f"{_r['train']:7.2f}  {_r['valid']:7.2f}" in _t1, _t1)
+    _rr = _b["ridge_rows"]
+    ok(f"W13 {_code} alpha 100 is worst on train and on validation",
+       _rr[2]["train"] > max(_rr[0]["train"], _rr[1]["train"]) and _rr[2]["valid"] > max(_rr[0]["valid"], _rr[1]["valid"]))
+    for _r in _b["knn"]:
+        ok(f"W13 {_code} k={_r['k']} printed", f"{_r['valid']:8.2f}" in _t2, _t2)
+    _kv = {r["k"]: r["valid"] for r in _b["knn"]}
+    ok(f"W13 {_code} k=3 is the lowest and the others are far apart",
+       _kv[3] < _kv[1] < _kv[20] and _kv[1] / _kv[3] > 1.4)
+_qq, _A, _B, _sd = _np.array([60, 30.]), _np.array([63, 36.]), _np.array([67, 30.]), _np.array([25, 3.])
+_raw = (_np.linalg.norm(_qq - _A), _np.linalg.norm(_qq - _B)); _sc = (_np.linalg.norm((_qq - _A) / _sd), _np.linalg.norm((_qq - _B) / _sd))
+ok("W13 scaling example: raw says A (6.7 v 7.0)", round(_raw[0], 1) == 6.7 and round(_raw[1], 1) == 7.0 and _raw[0] < _raw[1], str(_raw))
+ok("W13 scaling example: scaled says B (2.0 v 0.3)", round(_sc[0], 1) == 2.0 and round(_sc[1], 1) == 0.3 and _sc[1] < _sc[0], str(_sc))
+
 print()
 if FAILED:
     print(f"  {len(FAILED)} FAILED")
