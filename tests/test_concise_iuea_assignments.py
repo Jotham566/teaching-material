@@ -12,7 +12,7 @@ class ClearAssignments(unittest.TestCase):
   self.assertEqual(set(data),{r['key'] for r in records() if r['cohort']!='DA'})
   for key,row in data.items():
    self.assertLessEqual(len(row['brief'].split()),200,key)
-   self.assertIn('WHAT TO UPLOAD',row['brief'])
+   if 'NOT ASSIGNED' not in row['brief']:self.assertIn('WHAT TO UPLOAD',row['brief'])  # A6 is waived
    self.assertNotIn('Award ',row['brief'])
    if key.endswith(('W03','W04','W05')):self.assertIn('No separate report',row['brief'])
  def test_every_written_mark_has_a_student_prompt(self):
@@ -29,9 +29,14 @@ class ClearAssignments(unittest.TestCase):
  def test_packages_have_the_same_current_instructions(self):
   for cohort in ['CML3111','CML3112','CML3113']:
    for week in [2,3,4,5,6,8,9,10,11,12]:
+    if week==6:continue  # A6 is waived for every cohort
     with zipfile.ZipFile(B/'student_packages'/f'{cohort}_W{week:02}_student.zip') as z:
      guide=(B/'student_guides'/cohort/f'W{week:02}.md').read_text()
-     self.assertEqual(z.read('ASSIGNMENT_INSTRUCTIONS.txt').decode(),guide)
+     if week>=8:
+      self.assertEqual(z.read('START_HERE.md').decode(),guide)
+      self.assertEqual(set(z.namelist())&{'ASSIGNMENT_INSTRUCTIONS.txt','ASSIGNMENT_INSTRUCTIONS.md','TASKS.md','STUDENT_HOW_TO.md','00_START_HERE.txt','SUBMIT_HERE.txt'},set())
+      self.assertLess(len(guide.split()),400)
+     else:self.assertEqual(z.read('ASSIGNMENT_INSTRUCTIONS.txt').decode(),guide)
      self.assertNotIn('READ_INSTRUCTIONS_FIRST.txt',z.namelist())
      self.assertFalse(any('/hidden/' in n or '_hidden.py' in n or 'solution' in n.lower() for n in z.namelist()))
      allowed_scripts={'hello_engineering.py'} if week==2 else set()

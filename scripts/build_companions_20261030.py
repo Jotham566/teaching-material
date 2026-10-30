@@ -81,7 +81,7 @@ def main():
             z = BASE / "student_packages" / f"{code}_W{week:02d}_student.zip"
             if z.exists():
                 if not (zbackup / z.name).exists(): shutil.copy2(z, zbackup / z.name)
-                src = zbackup / z.name; tmp = z.with_suffix(".tmp")
+                src = z; tmp = z.with_suffix(".tmp")
                 with zipfile.ZipFile(src) as zi, zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zo:
                     for item in zi.infolist():
                         zo.writestr(item, json.dumps(nb, indent=1, ensure_ascii=False) if item.filename == "guided_practice.ipynb" else zi.read(item.filename))

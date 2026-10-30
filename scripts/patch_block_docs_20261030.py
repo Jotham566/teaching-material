@@ -97,15 +97,7 @@ The guided practice notebook for each week is for practice in class and is not s
 
 def main():
     for code in COHORTS:
-        for w in WEEK_BLOCK:
-            g = BASE / "student_guides" / code / f"W{w:02d}.md"
-            if g.exists(): g.write_text(patch_text(g.read_text(), code, w))
-            d = BASE / "assessment_banks" / f"W{w:02d}" / code / "A"
-            if d.exists(): patch_dir(d, code, w)
-            z = BASE / "student_packages" / f"{code}_W{w:02d}_student.zip"
-            if z.exists(): patch_zip(z, code, w)
-            u = BASE / "student_packages" / f"{code}_W{w:02d}_student"
-            if u.is_dir(): patch_dir(u, code, w)
+        # Week 8-12 guides, banks, notebooks and ZIPs are built by build_block_packages_20261030.py
         for b in POL["blocks"]:
             (BASE / "student_guides" / code / f"{b['id']}.md").write_text(block_guide(code, b))
     idx = BASE / "Assignment_Instructions_Index.md"; t = idx.read_text()
