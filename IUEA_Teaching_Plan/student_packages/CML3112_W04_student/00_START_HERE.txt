@@ -1,8 +1,0 @@
-CML3112 WEEK 4
-
-1. Extract this ZIP. Keep the files together.
-2. For the ASSIGNMENT, open W04_student.ipynb and follow its opening instructions and task cells.
-3. For LESSON PRACTICE, open guided_practice.ipynb. It is not submitted.
-4. Submit the completed assignment notebook using SUBMIT_HERE.txt.
-
-ASSIGNMENT_INSTRUCTIONS.txt is a separate copy of the notebook instructions, not extra work. TASKS.md, when present, repeats the notebook questions for reference. STUDENT_HOW_TO.md is help only when needed.

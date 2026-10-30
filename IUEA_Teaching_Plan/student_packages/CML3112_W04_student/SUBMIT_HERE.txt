@@ -1,9 +1,0 @@
-CML3112 — Week 4 assignment submission
-
-https://docs.google.com/forms/d/e/1FAIpQLSeZymY0jwFhuwihprLiqEaq2DqmLZD3nIYht1IkN4OcPGeTFg/viewform
-
-Opens: 2026-09-29T11:00:00+03:00
-Closes: 2026-10-06T11:00:00+03:00
-Times include the Uganda UTC+03:00 offset.
-
-Enter your own Student Registration Number exactly as on your university record in the form and notebook STUDENT_ID value. The assignment form accepts any registration-number format and the field remains required. In filenames only, replace slashes with underscores. Sign in with the Google account registered on your class roster. Upload the files required in the assignment brief. Keep your submission confirmation. If you resubmit before the deadline, include the complete set of files again; the latest on-time submission replaces the earlier packet.

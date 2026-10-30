@@ -1,12 +1,12 @@
-# CML3111 A6 — Cleaning and quality
+# CML3111 A7 — Regression and baseline
 
 **Submit:** ONE completed assignment notebook (.ipynb).
 
-**Deadline:** 23 October 2026, 11:00 Kampala. The live form shows any later change.
+**Deadline:** 06 November 2026, 11:00 Kampala. The live form shows any later change.
 
 ## 1. Start
 
-Open **W06_student.ipynb**. Keep these supporting files beside it: engineering_data.csv.
+Open **W08_student.ipynb**. Keep these supporting files beside it: engineering_data.csv.
 
 In Colab: File → Open notebook → Upload. Add any supplied CSV files through the Files sidebar. Save your own copy in Drive.
 
@@ -17,9 +17,11 @@ In Colab: File → Open notebook → Upload. Add any supplied CSV files through 
 
 3. Answer the **Written questions** in the notebook’s **My written evidence** cell. Use your own words. The prompts show the marks.
 
+The written questions use the supplied scenario. Label these as supplied results, not measurements you computed.
+
 ## 3. Check and save
 
-Restart and run all cells from the top. Fix errors, then download/save the completed notebook. For the filename only, replace slashes in your registration number with underscores and add _W06.ipynb.
+Restart and run all cells from the top. Fix errors, then download/save the completed notebook. For the filename only, replace slashes in your registration number with underscores and add _W08.ipynb.
 
 ## 4. Hand in
 
@@ -29,7 +31,7 @@ For individual work, leave Team ID blank. Each file must be at most 10 MB. A rep
 
 **Do not submit:** the ZIP, guided_practice.ipynb, raw CSVs or helper scripts.
 
-**Submission link:** https://docs.google.com/forms/d/e/1FAIpQLSfcvyIDBXQG0fnr8EYsAHCsFatx8MDwAjzct3kPMz2JgAPxZQ/viewform
+**Submission link:** https://docs.google.com/forms/d/e/1FAIpQLSeAVNyokX8n-TQXwu2hQtJJkeKsQcU8katFAhghZmQH4HJreA/viewform
 
 ## Help only if needed
 

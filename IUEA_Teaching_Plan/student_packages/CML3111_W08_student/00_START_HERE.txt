@@ -1,7 +1,7 @@
-CML3113 WEEK 4
+CML3111 WEEK 8
 
 1. Extract this ZIP. Keep the files together.
-2. For the ASSIGNMENT, open W04_student.ipynb and follow its opening instructions and task cells.
+2. For the ASSIGNMENT, open W08_student.ipynb and follow its opening instructions and task cells.
 3. For LESSON PRACTICE, open guided_practice.ipynb. It is not submitted.
 4. Submit the completed assignment notebook using SUBMIT_HERE.txt.
 
