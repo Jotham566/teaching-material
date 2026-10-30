@@ -167,7 +167,7 @@ The slide lists the components and their weights, and together they add up to on
 
 Weekly in Weeks 1 to 6. Every three classes from Week 8.
 
-Weeks 1 to 6: a quiz and an assignment each week. The best 4 of the 6 count.
+Weeks 1 to 5: a quiz and an assignment each week, and the best 3 of the 5 count. Week 6 is waived.
 Block 1 is Weeks 8 to 10 and Block 2 is Weeks 11 to 13. Each block has one assignment pack and one quiz.
 A block counts in full and cannot be dropped. Together the two blocks carry about 60 percent of the quiz and assignment marks.
 
