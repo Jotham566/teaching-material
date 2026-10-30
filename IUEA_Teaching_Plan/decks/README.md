@@ -1,5 +1,7 @@
 # PowerPoint teaching decks
 
+**30 October 2026 rebuild:** Weeks 8 to 13 have new explain-before-use slides, vocabulary tables and worked examples, and Week 13 is a new deck (regularisation, nearest neighbours, reproducibility). Every deck in Weeks 1 to 15 now carries a spoken-script note on each slide. The lecturer-notes Markdown, guided notebooks and Week 8 to 12 student ZIPs were regenerated from these decks. Originals are in `_backup_2026-10-30/`. See `../Weeks8-12_Rebuild_Log_and_Industry_Coverage_2026-10-30.md`.
+
 **15 October revision:** Weeks 6–15 continue the pandas workflow introduced in Week 5. Use the matching lecturer notes and current student ZIPs. Check the live forms for current deadlines and Teaching_Progress.md for cohort pacing.
 
 **Pandas explanations:** Each CSV code example now follows explanations of its operations. Presenter View and the matching lecturer companion give line-by-line walkthroughs and interpretations of the supplied data results.

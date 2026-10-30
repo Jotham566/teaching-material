@@ -1,609 +1,836 @@
 # CML3113 Week 10
 
+Each slide shows its text, then the spoken script the lecturer reads aloud.
+
 ## Slide 1: Honest validation and leakage
 
-Honest validation and leakage
-Explanation to give
-Connect evaluation to intended use. Decide how to hold out observations before fitting either preprocessing or the linear_model.
-
-Worked illustration / lecturer answer
-When testing new equipment, all observations from equipment A stay in one partition. Training must not learn its missing-value replacements from held-out equipment.
-
-Misconception to address
-Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
-
-On this slide
 Mining and Petroleum Engineering
+
+Friday 13 November 2026
+Friday 08:00–11:00, Room 105
+
+**Spoken script**
+
+Welcome to Week 10.
+
+This week is about honest validation. We learn how to check a model so that its score really tells us how it will behave on new equipment, and how to spot leakage, which is a score that looks good for the wrong reason.
 
 ## Slide 2: Today’s learning
 
-Core practice precedes the assessment brief. Give the class one consistent data-handling approach: pandas for tables, scikit-learn for models, matplotlib for figures.
+WHAT WE WILL DO
+Watch a model memorise its training rows, learn to check it on several held-back groups, and find four ways a score can leak. Learn the words overfitting, cross-validation and data leakage.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+HOW YOU WILL SHOW IT
+You can explain why training error cannot be trusted, and how you would tell that a score is leaking. You can split by equipment group and report an error with its spread.
 
-## Slide 3: The supplied file
+**Spoken script**
 
-Uploading a notebook does not upload its modelling_data. Check the exact filename and column headings. Each cohort has its own data, so numerical results can differ.
+Last week we scored classifiers. This week we ask whether any score deserves trust. We will watch a model memorise its training rows, then learn to check a model on several held-back groups of equipment, and then meet four ways a score can leak. By the end you can explain why training error cannot be trusted, split the data by equipment group, and report an error together with its spread.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 3: Words for today: fitting and fairness
 
-## Slide 4: Operations for the next example
+**Spoken script**
 
-Import and short names
-import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
+Six words that describe the central problem of machine learning. Generalisation is how well a model does on rows it has never seen. That is what matters most in practice, because nobody needs a prediction for a row whose answer they already have.
 
-Reading a CSV
-pd.read_csv("practice_filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
+Underfitting means the model is too simple and misses the pattern. Overfitting means the model has memorised the training rows, noise included, and does worse on new rows. The validation set is the group of rows we keep back to compare models and settings. The test set stays sealed until the very end. A hyperparameter is a setting we choose before training, such as the depth of a tree.
 
-Counting dimensions
-equipment_data.shape gives (number of rows, number of columns). shape is a property, so it has no parentheses.
+Today we watch these words happen in our own data.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 4: The supplied file
 
-## Slide 5: Operations for the next example
+Extract this week’s student ZIP. Upload engineering_data.csv into Colab using the Files panel, or keep them beside the notebook locally.
 
-Column data types
-equipment_data.dtypes reports each column’s stored type. int64 means integers, float64 means decimal numbers, and object often contains text. Numeric blanks commonly appear as NaN.
+The examples below read this file. Run the cells in slide order. Keep the original CSV unchanged.
 
-A preview of rows
-equipment_data.head() returns the first five rows. It leaves the table unchanged. A preview is not the entire dataset.
+**Spoken script**
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Every example this week reads one file, called engineering_data dot csv. It arrives inside this week's student ZIP, so the first job is to extract the ZIP on our computer.
 
-## Slide 6: Reading the code syntax
+In Colab we open the Files panel on the left and upload the CSV there. If we work locally, we keep the CSV in the same folder as the notebook. Uploading a notebook does not upload its data, so the CSV needs its own upload.
 
-= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
-Explain these operations before running the following example.
+We check the file name and the column headings carefully, because pandas only finds a file whose name matches exactly.
 
-## Slide 7: Loading the supplied observations
+We run the cells in the order the slides show them, since later cells use names that earlier cells create. We never edit the original CSV. Each cohort has its own data, so the numbers on your screen can differ from your neighbour's.
 
-= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
+## Slide 5: Loading the supplied observations
 
-Step-by-step explanation
+raw_data: original CSV table; keep it unchanged so the analysis can be checked.
 
+Run the cell and read the output below it.
+
+```python
 import pandas as pd
-Load the named tools. Importing a model class does not train a model.
-
-raw_data = pd.read_csv('engineering_data.csv')
-raw_data stores original CSV table; keep it unchanged so the analysis can be checked.
-
+raw_data = pd.read_csv("engineering_data.csv")
 print(raw_data.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(raw_data.shape)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(raw_data.dtypes)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-record_id equipment_id  load_pct  ambient_c  target
-0          1           E1     59.15      31.71  14.001
-1          2           E2     77.46      29.97  15.147
-2          3           E3     69.60      19.87  13.005
-3          4           E4     75.98      22.29     NaN
-4          5           E5     57.62      23.40  12.554
-(91, 5)
-record_id         int64
-equipment_id     object
-load_pct        float64
-ambient_c       float64
-target          float64
-dtype: object
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+We start the notebook by loading the data. The first line imports pandas and gives it the short name pd, as we have done since the early weeks.
 
-## Slide 8: Three sets have different jobs
+The second line calls pd dot read underscore csv with the file name in quotes. It reads the file and returns a table, a DataFrame, which we store under the name raw underscore data. This is our original copy. We keep it unchanged so that anyone can check our analysis later.
 
-Three sets have different jobs
-Explanation to give
-Training observations teach the linear_model. Validation observations help choose among models and settings. The final test is reserved for evaluating the chosen method after those choices are fixed.
+Then we print three things. Dot head shows the first five rows, so we can see the column names and what a row looks like. Dot shape gives two numbers, the count of rows and then the count of columns. Dot dtypes lists the type of each column, for example whole numbers, decimals or text.
 
-Worked illustration / lecturer answer
-Compare two models using the same validation observations, choose a method, then evaluate it once on the held-out test_data. Imagine the test as a sealed examination paper.
+We read the output and ask three questions. Do the columns match what we expected? Does the row count look sensible? Are the numeric columns really numeric?
 
-Misconception to address
-Repeatedly checking the test while selecting features or settings makes it part of the selection process, so it no longer gives an independent final check.
+## Slide 6: Three sets have different jobs
 
-On this slide
 Which set must stay sealed until choices are fixed?
 
-## Slide 9: Rows used for modelling
+**Spoken script**
 
-This follows the issued data rules. Filtering observed targets is different from estimating missing targets. Deduplicate before filtering, so an invalid first occurrence is not replaced by its later duplicate.
+We split our rows into three sets, and each set has one job.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+The training rows teach the model. This is where it learns its numbers. The validation rows help us choose. We compare two models, or two settings of one model, and keep the one that scores better on validation. The test rows are saved for the end. We look at them once, after every choice is fixed, to get a final fair mark.
 
-## Slide 10: Operations for the next example
+Picture the test set as a sealed exam paper. If we open it while we are still choosing features or settings, we start adjusting our work to fit that paper. The final score then comes from rows that influenced our decisions, so it is no longer an independent check.
 
-Reading chained operations
-Read a chain from left to right. In equipment_data["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s result.
+The answer to the question on the slide is the test set. It stays sealed until our choices are fixed.
 
-A separate working table
-equipment_data.copy() creates a working copy. Assigning columns on this copy preserves the source table, so you can compare before and after.
+## Slide 7: Rows used for modelling
 
-Finding recorded cells
-notna() returns True where a value is present. Use it to retain observations with a recorded target before modelling.
+Keep the first occurrence of each record_id. Retain recorded targets and load_pct within 0–100. Then separate E1–E4 for training, E5 for validation and E6 for the final test_data.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Fill missing input values using training data only. Keep final-test targets out of model selection.
 
-## Slide 11: Operations for the next example
+**Spoken script**
 
-An inclusive range
-series.between(0, 100) is True for values from 0 through 100, including both limits. The resulting mask helps select valid rows.
+Before we model, we decide which rows are allowed in. We follow three rules in this order.
 
-Selecting columns
-equipment_data["column"] returns one labelled column, a Series. equipment_data[["a", "b"]] returns a DataFrame containing those named columns in that order.
+First, we remove duplicates. record underscore id names one observation, so if the same record_id appears twice, we keep only the first occurrence. We do this before any filtering, so an invalid first copy is never replaced by a later duplicate.
 
-Selecting rows with a mask
-A column comparison produces one True or False per row. equipment_data[mask] keeps the True rows. & combines masks: both conditions must hold. Parenthesise each comparison.
+Second, we keep rows whose target was actually recorded, and whose load percentage lies between zero and one hundred. A load percentage outside that range is a data error. Removing rows that have no recorded target is a different job from filling a missing input value, and we handle missing inputs later.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Third, we split by equipment. E1 to E4 give the training rows, E5 gives the validation rows, and E6 gives the final test rows.
 
-## Slide 12: Operations for the next example
+When we fill missing inputs, we calculate the fill value from training data only. The targets of the test rows take no part in choosing a model.
 
-Keeping the first observation
-equipment_data.drop_duplicates("record_id") returns rows with the first occurrence of each ID, preserving their order. It does not overwrite the source unless you assign the result.
+## Slide 8: Preparing the supplied modelling rows: step 1
 
-Membership in a group list
-series.isin(["E1", "E2"]) returns True for entries matching either listed label. equipment_data[that_mask] keeps all observations belonging to those groups.
+modelling_data: copied observations after duplicate and validity checks.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Run the cell and read the output below it.
 
-## Slide 13: Prepare valid observations
-
-First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
-
-## Slide 14: Preparing the supplied modelling rows — step 1
-
-First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
-
-Step-by-step explanation
-
-modelling_data = raw_data.drop_duplicates('record_id').copy()
-modelling_data stores copied observations after duplicate and validity checks.
-
-target_is_recorded = modelling_data['target'].notna()
-target_is_recorded stores the result of the displayed expression.
-
-load_is_valid = modelling_data['load_pct'].between(0, 100)
-load_is_valid stores the result of the displayed expression.
-
+```python
+modelling_data = raw_data.drop_duplicates("record_id").copy()
+target_is_recorded = modelling_data["target"].notna()
+load_is_valid = modelling_data["load_pct"].between(0, 100)
 rows_to_keep = target_is_recorded & load_is_valid
-rows_to_keep stores the result of the displayed expression.
-
 print(target_is_recorded.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(load_is_valid.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 modelling_data = modelling_data[rows_to_keep].copy()
-modelling_data stores copied observations after duplicate and validity checks.
-
 print(len(raw_data), len(modelling_data))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-0     True
-1     True
-2     True
-3    False
-4     True
-Name: target, dtype: bool
-0    True
-1    True
-2    True
-3    True
-4    True
-Name: load_pct, dtype: bool
-91 88
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This cell cleans the table in four moves. Everything here uses ideas from earlier weeks.
 
-## Slide 15: Choose groups before choosing rows
+The first line takes raw underscore data, calls drop underscore duplicates on the record_id column, which keeps the first row for each record_id, and then makes a copy. We call the result modelling underscore data.
 
-isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+The next line asks of each row, is the target recorded? Dot notna gives True when a value is present and False when it is missing. The line after that asks, is the load between zero and one hundred? Dot between gives True when the value lies in that range, ends included.
 
-## Slide 16: Preparing the supplied modelling rows — step 2
+Then we join the two questions with an ampersand. A row is kept only when both answers are True.
 
-isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+We print the first five answers of each question to see them in action. Then we use the combined mask to filter the table, and copy again.
 
-Step-by-step explanation
+The last line prints two counts, the rows we started with and the rows we kept. The kept count can be smaller, and the difference tells us how many rows were removed.
 
-is_training_equipment = modelling_data['equipment_id'].isin(['E1', 'E2', 'E3', 'E4'])
-is_training_equipment stores the result of the displayed expression.
+## Slide 9: Choose groups before choosing rows
 
-is_validation_equipment = modelling_data['equipment_id'].isin(['E5'])
-is_validation_equipment stores the result of the displayed expression.
+isin(list_of_labels) answers True when a row’s equipment ID appears in the list.
 
-is_test_equipment = modelling_data['equipment_id'].isin(['E6'])
-is_test_equipment stores the result of the displayed expression.
+Here E1–E4 supply training rows, E5 validation rows and E6 test rows.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+The groups stay separate so one equipment group cannot appear on both sides.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+**Spoken script**
 
-## Slide 17: Preparing the supplied modelling rows — step 3
+We split by equipment group first, and only then pick the rows. A group here is all the observations that came from one piece of equipment.
 
-training_data: rows used to learn model settings; only these rows may determine imputation values.
+The tool is a pandas method called isin. We give it a list of labels, and for each row it answers True when that row's equipment ID appears in the list.
 
-validation_data: separate rows used to compare models without fitting on them.
+E1 to E4 supply the training rows. E5 supplies the validation rows. E6 supplies the test rows.
 
-## Slide 18: Preparing the supplied modelling rows — step 3
+We keep the groups separate on purpose. If rows from one machine sat on both sides of the split, the model would meet that machine during training and again during checking, and the score would flatter it. By keeping each machine on one side, the check asks the question we care about, which is how the model does on equipment it has never seen.
 
-training_data: rows used to learn model settings; only these rows may determine imputation values.
+## Slide 10: Preparing the supplied modelling rows: step 2
 
-validation_data: separate rows used to compare models without fitting on them.
+modelling_data: copied observations after duplicate and validity checks.
 
-Step-by-step explanation
+Run the cell and read the output below it.
 
+```python
+is_training_equipment = modelling_data["equipment_id"].isin(
+    ["E1", "E2", "E3", "E4"]
+)
+is_validation_equipment = modelling_data["equipment_id"].isin(
+    ["E5"]
+)
+is_test_equipment = modelling_data["equipment_id"].isin(["E6"])
+```
+
+**Spoken script**
+
+This cell builds three masks. A mask is a column of True and False values, one per row, and we used masks for filtering in the pandas weeks.
+
+The first line takes the equipment ID column and calls isin with the list E1, E2, E3, E4. The result, stored as is underscore training underscore equipment, is True for every row from those four machines.
+
+The second line does the same with a list holding only E5, and stores the answer as is underscore validation underscore equipment. The third line does it for E6 and stores is underscore test underscore equipment.
+
+The line breaks inside the brackets only make the code easier to read. Python treats it as one long line.
+
+This cell prints nothing, because it only stores the three masks. The next cell uses them to cut the table into pieces.
+
+## Slide 11: Preparing the supplied modelling rows: step 3
+
+modelling_data: copied observations after duplicate and validity checks.
+
+Run the cell and read the output below it.
+
+```python
 training_data = modelling_data[is_training_equipment].copy()
-training_data stores rows used to learn model settings; only these rows may determine imputation values.
-
 validation_data = modelling_data[is_validation_equipment].copy()
-validation_data stores separate rows used to compare models without fitting on them.
-
 test_data = modelling_data[is_test_equipment].copy()
-test_data stores held-out rows kept aside until the final evaluation.
-
-feature_columns = ['load_pct', 'ambient_c']
-feature_columns stores the list of input column names supplied to the model.
-
+feature_columns = ["load_pct", "ambient_c"]
 print(len(training_data), len(validation_data), len(test_data))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-58 15 15
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Now we use the three masks to cut the cleaned table into three tables.
 
-## Slide 19: Training-only filling
+The first line puts the mask inside square brackets after modelling underscore data. That keeps only the rows where the mask is True, and dot copy gives us an independent table. We call it training underscore data. The next two lines do the same and give validation underscore data and test underscore data.
 
-Even preprocessing without target labels can leak information about evaluation distributions.
+Then we write down the features, the input columns the model will use. feature underscore columns is a list holding load underscore pct and ambient underscore c.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+The final line prints the number of rows in each of the three tables, using len, the counter we know from earlier weeks.
 
-## Slide 20: Operations for the next example
+We check that all three counts are above zero, and that training is the largest. Because the groups were assigned by equipment, each row lands in exactly one of the three tables.
 
-Middle recorded value
-series.median() sorts known values conceptually and returns the middle one. With an even count, it averages the two middle values. Missing entries do not enter the calculation.
+## Slide 12: Training-only filling
 
-Replacing missing entries
-series.fillna(value) returns a column whose missing entries contain value. Recorded values stay unchanged. Assign the returned column to retain the fill.
+median ignores missing values. Calculate it from training input values and reuse it for validation gaps.
 
-Rounded display
-series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
+Do not calculate a new median from validation or test observations. A pipeline keeps this rule with the model.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+**Spoken script**
 
-## Slide 21: Operations for the next example
+Some input values are missing, and we need to fill them. The rule is that every fill value comes from the training rows only.
 
-Adding values and counting True
-series.sum() adds its values. For a Boolean mask, True counts as 1 and False as 0. equipment_data.isna().sum() therefore counts missing cells separately for each column.
+We use the median, the middle value of a column once the values are sorted. It ignores missing entries. We calculate it from the training input values, and then we reuse that same number to fill gaps in the validation rows.
 
-Finding missing cells
-isna() returns True for missing entries such as NaN and None. It returns False for a recorded zero. A DataFrame gives a mask for every cell; a Series gives one mask value per row.
+We never calculate a fresh median from the validation or test rows. If we did, information about those rows would flow into our preparation, and the later score would no longer be a fair check. Even a harmless looking step like this can leak.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Think of the validation rows as arriving later, like new equipment turning up after the model was built. When we get such equipment, we cannot calculate anything from it in advance. We can only use what we learned from the training rows.
 
-## Slide 22: Training median from the actual ambient readings
+A pipeline, the chain of steps from Week 8, keeps this rule together with the model. It learns the fill value from training data every time and applies it to whatever it is given.
+
+## Slide 13: Operations for the next example
+
+01
+
+Middle recorded value: series.median() sorts known values conceptually and returns the middle one. With an even count, it averages the two middle values. Missing entries do not enter the calculation.
+
+02
+
+Replacing missing entries: series.fillna(value) returns a column whose missing entries contain value. Recorded values stay unchanged. Assign the returned column to retain the fill.
+
+03
+
+Rounded display: series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
+
+**Spoken script**
+
+Three small pandas tools appear in the next example.
+
+The first is dot median. On a column it returns the middle recorded value. Python sorts the known values in its head and picks the one in the centre. When the count is even, it averages the two middle values. Missing entries are skipped.
+
+The second is dot fillna. We give it a value, and it returns a column in which every missing entry holds that value. The recorded values stay as they were. The original column is untouched until we assign the returned column to a name, so we assign it if we want to keep the fill.
+
+The third is rounding for display. Dot round with the number three, on a column, rounds every value to three decimal places. The plain Python function round, with a number and a three, does the same for a single number. We round only to make printing tidy. In calculations we keep the unrounded values.
+
+## Slide 14: Operations for the next example
 
 Adding values and counting True: series.sum() adds its values. For a Boolean mask, True counts as 1 and False as 0. equipment_data.isna().sum() therefore counts missing cells separately for each column.
 
 Finding missing cells: isna() returns True for missing entries such as NaN and None. It returns False for a recorded zero. A DataFrame gives a mask for every cell; a Series gives one mask value per row.
 
-Step-by-step explanation
+**Spoken script**
 
-training_ambient_median = training_data['ambient_c'].median()
-training_ambient_median stores median ambient temperature calculated only from training rows.
+Two more tools help us check for missing values.
 
-filled_validation_ambient = validation_data['ambient_c'].fillna(training_ambient_median)
-filled_validation_ambient stores validation ambient column with gaps filled using the training median.
+Dot isna asks each entry whether it is missing. It returns True for blanks, such as NaN, and False for everything else. A recorded zero is a real value, so isna gives False for it. On a whole DataFrame, isna returns a True or False for every cell. On a single column, it returns one answer per row.
 
+Dot sum adds values up. When the values are True and False, Python counts True as one and False as zero, so the sum becomes a count of the True answers.
+
+Put the two together. equipment underscore data dot isna dot sum counts the missing cells separately for each column. It gives us a quick report of where the gaps are.
+
+We use this check before filling anything, so we know how much filling there is to do, and afterwards to confirm the gaps are gone.
+
+## Slide 15: Training median from the actual ambient readings
+
+training_ambient_median: median ambient temperature calculated only from training rows.
+
+Run the cell and read the output below it.
+
+```python
+training_ambient_median = training_data["ambient_c"].median()
+filled_validation_ambient = validation_data["ambient_c"].fillna(
+    training_ambient_median
+)
 print(round(float(training_ambient_median), 3))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
-print(validation_data['ambient_c'].isna().sum())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
+print(validation_data["ambient_c"].isna().sum())
 print(filled_validation_ambient.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-26.07
-0
-4     23.40
-10    33.98
-16    34.28
-22    30.81
-28    21.33
-Name: ambient_c, dtype: float64
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This cell fills gaps in the validation rows with a median taken from the training rows.
 
-## Slide 23: Training a model with missing inputs
+The first line takes the ambient underscore c column of the training data and calls dot median. The answer is one number, the typical ambient temperature in the training rows. We store it as training underscore ambient underscore median.
 
-A model object exists before training. X is two-dimensional and y is one-dimensional. Select inputs in the same order during prediction. A validation target must never enter fit.
+The second line takes the validation ambient column and calls fillna with that training median. Every blank in the validation column receives the training value. The result is stored as filled underscore validation underscore ambient.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Then three prints. The first prints the median, with float turning it into a plain Python number and round keeping three decimals. The second counts the blanks in the original validation column. In this cohort the validation rows happen to have none, so the count is zero. The third prints the first five entries of the filled column. With no blanks to fill, these five values are the originals. If a blank had been there, we would see the training median in its place. The one blank in this data sits in a training row, and the pipeline fills it in the same way.
 
-## Slide 24: Operations for the next example
+The point to remember is that the validation rows borrow a number from training and never contribute to it.
 
-Returning plain values
-series.tolist() or array.tolist() returns a Python list of values, without pandas row labels. Preserve their order when pairing actual values and validation_predictions.
+## Slide 16: Preparing X and y, with a filled copy for tree experiments
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+X holds the input columns. y holds the answers. The raw X keeps its blanks for pipelines.
+median() is worked out from the training rows only.
+The filled copies put that same median into any blank, in both tables.
 
-## Slide 25: A sequence of model steps / Filling model inputs
+The validation rows borrow the training median and never contribute to it.
 
-make_pipeline(imputer, estimator) links preprocessing and prediction. fit learns the imputer and estimator on training rows. predict applies the learned steps to new rows in the same order.
-
-SimpleImputer(strategy="median") learns a median for each input column during fit. It uses those training medians to fill gaps later. Never learn replacement values from validation or test rows.
-Explain these operations before running the following example.
-
-## Slide 26: Creating linear regression / Learning from training examples
-
-LinearRegression() creates an unfitted model. It will learn coefficients and an intercept from training examples. Creating it alone does not train it or make predictions.
-
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
-Explain these operations before running the following example.
-
-## Slide 27: Predicting new targets / Selecting a short preview
-
-model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
-
-values[:5] selects positions 0 through 4, or fewer if the sequence is shorter. The stop position is excluded. This preview does not change the full array stored in the variable.
-Explain these operations before running the following example.
-
-## Slide 28: Standard names for model inputs
-
-These are common machine-learning conventions. Some tutorials write train_x and train_y instead. The names are chosen by the programmer, not special Python keywords. Keep training_data as the full table; selecting X_train must exclude target. Rows in X and y must stay paired. fit uses training pairs; predict receives only X_valid. Compare predictions with y_valid afterwards.
-
-## Slide 29: Separate inputs from answers
-
-X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
-
-## Slide 30: Training and predicting on the supplied data — step 1
-
-X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
-
-Step-by-step explanation
-
+```python
 X_train = training_data[feature_columns]
-X_train stores training input columns, excluding the target.
-
-y_train = training_data['target']
-y_train stores observed training targets in matching row order.
-
+y_train = training_data["target"]
 X_valid = validation_data[feature_columns]
-X_valid stores validation input columns in training-column order.
+y_valid = validation_data["target"]
+fill_values = X_train.median()
+X_train_filled = X_train.fillna(fill_values)
+X_valid_filled = X_valid.fillna(fill_values)
+print(X_train.shape, X_valid.shape)
+```
 
-y_valid = validation_data['target']
-y_valid stores observed validation targets, used only for evaluation.
+Output on the slide:
 
-from sklearn.impute import SimpleImputer
-Load the named tools. Importing a model class does not train a model.
+```text
+(58, 2) (15, 2)
+```
 
+**Spoken script**
+
+We need two tables and two columns of answers for the experiments that follow. X train holds the inputs for the training rows. Y train holds their targets. X valid and y valid do the same for the validation rows. These raw tables keep their blanks, because a pipeline fills blanks by itself.
+
+Some of today's experiments use a tree on its own, and we want the blank filled before it sees the data. So we also make filled copies. Look at the line with median. The medians come from the training rows only. Then fill na puts those medians into any blank, in the training copy and in the validation copy. The validation rows borrow a number from the training rows and add nothing back.
+
+The shape printout confirms the sizes: 58 training rows and 15 validation rows, two feature columns each.
+
+## Slide 17: A flexible model can memorise the training rows
+
+Same dots, three trees. Depth 1 is too simple. Depth 12 chases every dot, noise included.
+
+**Spoken script**
+
+Here are the same training rows with three different trees. On the left the tree may ask only one question, so it draws a single step. It misses the rising pattern. We call that underfitting.
+
+On the right the tree may ask twelve questions in a row. Look how it jumps up and down to touch every dot. It has memorised the training rows, including their random wobble. That is overfitting. In the middle the tree is flexible enough to follow the trend and calm enough to ignore the wobble.
+
+Some books call the left problem bias, meaning too simple, and the right problem variance, meaning too jumpy. You will see those two words in other courses. In Semester 2 we add tools that hold a flexible model back.
+
+## Slide 18: Training error keeps falling while validation error stalls
+
+The loop tries three tree depths.
+mean_absolute_error(actual, predicted) is the MAE you computed by hand.
+We score the same tree twice: on rows it learned from, and on rows it never saw.
+
+Errors are in kWh/t. The deeper tree fits its training rows almost perfectly.
+
+```python
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_absolute_error
+print("depth train valid")
+for depth in [1, 4, 8]:
+    tree = DecisionTreeRegressor(
+        max_depth=depth, random_state=17)
+    tree.fit(X_train_filled, y_train)
+    train_pred = tree.predict(X_train_filled)
+    valid_pred = tree.predict(X_valid_filled)
+    train_mae = mean_absolute_error(y_train, train_pred)
+    valid_mae = mean_absolute_error(y_valid, valid_pred)
+    print(depth, round(train_mae, 2), round(valid_mae, 2))
+```
+
+Output on the slide:
+
+```text
+depth train valid
+1 1.33 1.56
+4 0.48 1.18
+8 0.03 1.26
+```
+
+**Spoken script**
+
+Now the numbers behind the picture. The loop trains three trees, with one, four and eight questions in a row allowed. For each tree we print two errors. The first is the error on the training rows the tree learned from. The second is the error on the validation rows it has never seen.
+
+Read the output. The training error falls steadily, from 1.33 down to 0.03. The validation error improves at first and then stops improving; at depth eight it is 1.26. The gap between the two columns is the sign of overfitting.
+
+This is why we never report the training error as the result of a model. A model always looks good on rows it has already seen.
+
+## Slide 19: The gap between training and validation error is the warning sign
+
+Depth 1 to 10, computed from this cohort's rows. The orange line is the honest score.
+
+**Spoken script**
+
+Here is the same experiment for every depth from one to ten. The dark line is the error on the training rows. It falls all the way to zero, because a deep tree can memorise every row. The orange line is the error on the validation rows. It falls, flattens, and then wobbles around the same level.
+
+The orange line is the honest score. We choose the depth where it stops improving. The dark line reaching zero tells us nothing about new rows. Deeper trees past that point cost more to run and explain, and they deliver no gain. Fifteen rows from one machine give a rough warning, so we look at the overall shape of the two lines.
+
+One more fact to notice. Even the best tree here is worse than the straight line from Week 8, which scored 0.67 kWh/t on these same rows. A tree predicts the average of the training rows that land in each leaf, so it cannot continue a rising trend, and these rows rise in a nearly straight path.
+
+## Slide 20: One validation group can mislead
+
+THE PROBLEM
+Our validation group, E5, has only 15 rows. One odd machine or one lucky stretch of data can make a model look better or worse than it is.
+
+THE REMEDY
+Score the model several times, each time holding back a different group. Report the average error and how far the scores spread. That is cross-validation.
+
+**Spoken script**
+
+Our validation group has only 15 rows. That is a small sample. One odd machine, or one lucky stretch of data, can make a model look better or worse than it really is.
+
+The remedy is to score the model several times, each time holding back a different group of equipment. We then report the average error and how far the scores spread. That is cross-validation. The next slides show how scikit-learn does it, and why we keep whole equipment groups together.
+
+## Slide 21: Words for today: repeated checks and leaks
+
+**Spoken script**
+
+Five words for the second half of today. A fold is one turn of a repeated check, with one group of equipment held back. Cross-validation means scoring the model on several folds in turn. The spread tells us how far the fold scores differ from each other. A group split keeps whole equipment groups on one side, so one machine never sits on both sides of the line. Data leakage means information from outside the training rows reaches the model. We will meet leakage in detail after the cross-validation slides.
+
+## Slide 22: The Week 8 pipeline, ready to be scored on several folds
+
+This is the Week 8 pipeline: fill blanks with the median, then fit a line.
+Nothing is fitted yet. The pipeline is a recipe.
+Each fold will fit a fresh copy of this recipe on its own training groups.
+
+A fresh median is learned inside every fold, so no fold borrows from its held-back group.
+
+```python
 from sklearn.pipeline import make_pipeline
-Load the named tools. Importing a model class does not train a model.
-
+from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression
-Load the named tools. Importing a model class does not train a model.
+linear_model = make_pipeline(
+    SimpleImputer(strategy="median"),
+    LinearRegression(),
+)
+```
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+Output on the slide:
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+```text
+(nothing printed)
+```
 
-## Slide 31: Create, then train, then predict
+**Spoken script**
 
-Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
+Cross-validation needs a model to score, so we bring back the pipeline from Week 8. It lists two steps: fill blanks with the median, then fit a straight line. Writing it does not train anything. It is a recipe.
 
-## Slide 32: Training and predicting on the supplied data — step 2
+That detail matters for fairness. In each fold, scikit-learn fits a fresh copy of the recipe on that fold's training groups. The median is learned again inside every fold, so a held-back group never lends a number to its own score.
 
-Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
+## Slide 23: Each fold takes a turn at validation
 
-Step-by-step explanation
+An illustration from another engineering field (strength in MPa). Our own fold errors follow on later slides.
 
-linear_model = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
-linear_model stores the linear regression estimator or imputation-and-regression pipeline.
+**Spoken script**
 
-linear_model.fit(X_train, y_train)
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+This figure shows cross-validation. The data is cut into pieces called folds. Each fold takes a turn as the validation piece, while the other folds are used for training. Every turn gives one error score, and together the scores show how steady the model is.
 
-validation_predictions = linear_model.predict(X_valid)
-validation_predictions stores one predicted target for each validation row, in the same order.
+The example in the picture comes from another engineering field and measures the strength of a material in megapascals. The numbers belong to that illustration and are not ours. We use it only to see the shape of the idea.
 
-print(validation_predictions[:5].round(3).tolist())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+A standard deviation is a single number describing how far the scores spread around their average. A small value means the folds agree with each other. A large value means the score changes a lot depending on which piece was held back.
 
-Verified result with the supplied CSV
-[11.79, 9.69, 14.015, 8.537, 10.471]
+The spread describes these particular folds. Our own fold errors, in our own unit, follow on the next slides.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+## Slide 24: Cross-validation within training data
 
-## Slide 33: Each fold takes a turn at validation
+GroupKFold keeps each equipment group within one fold. Each fold takes a turn as validation while the remaining folds train the pipeline.
 
-Each fold takes a turn at validation
-Explanation to give
-A parameter is learned during fit. A hyperparameter is chosen as a setting. Cross-validation repeats fitting with different held-out portions of the development data to assess choices more steadily.
+cross_val_score reports one score per fold. neg_mean_absolute_error returns negative MAE, so negate the scores before reporting the fold errors.
 
-Worked illustration / lecturer answer
-If validation errors are 2, 3 and 4, the mean is 3. Their spread indicates sensitivity to the held-out portion. A standard deviation describes that spread; it is not automatically a confidence interval.
+**Spoken script**
 
-Misconception to address
-Fit preprocessing separately within each training fold. Keep groups or time order intact where required. The final test remains separate from tuning.
+Now we run cross-validation, using only the training rows. The validation group E5 and the test group E6 stay outside this calculation.
 
-On this slide
-Illustrated spread: population SD 0.39 MPa, not a confidence interval.
+We use a splitting tool called GroupKFold. It keeps every row of an equipment group inside one fold. So when a group is held out, none of its rows leaked into training. Each fold takes a turn as validation while the remaining folds train the model.
 
-## Slide 34: Cross-validation within training data
+The scoring function is cross underscore val underscore score. It does the repeated fitting for us and hands back one score per fold.
 
-Use only the E1–E4 training partition here. E5 remains the separate validation partition and E6 the final test_data. The imputer is refitted within each training fold.
+There is one oddity. scikit-learn assumes that a bigger score is a better score. Error is the opposite, because smaller error is better. To keep the rule consistent, the scoring name neg underscore mean underscore absolute underscore error gives the mean absolute error with a minus sign in front. So the numbers come back negative. We flip the sign afterwards to get ordinary positive errors, which we call fold underscore absolute underscore errors in the notebook.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 25: Operations for the next example
 
-## Slide 35: Operations for the next example
+01
 
-A labelled column
-pd.Series(values) creates a one-dimensional labelled sequence. With an array of fold errors, the default labels are 0, 1, 2 and so on.
+A labelled column: pd.Series(values) creates a one-dimensional labelled sequence. With an array of fold errors, the default labels are 0, 1, 2 and so on.
 
-Mean of recorded values
-series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
+02
 
-Spread of fold errors
-series.std(ddof=0) measures how far values spread around their mean. ddof=0 divides squared deviations by the number of values. This describes these folds, not a confidence interval.
+Mean of recorded values: series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+03
 
-## Slide 36: Keeping groups together / Scoring repeated splits
+Spread of fold errors: series.std(ddof=0) measures how far values spread around their mean. ddof=0 divides squared deviations by the number of values. This describes these folds, not a confidence interval.
+
+**Spoken script**
+
+Three more pandas tools help us summarise the fold errors.
+
+The first is pd dot Series. We give it a list or array of values, and it returns a Series, a one-dimensional column with labels. For an array of fold errors the labels are zero, one, two and so on.
+
+The second is dot mean. It adds up the recorded values and divides by how many there are. Missing values are skipped by default. The result is in the same unit as the column, so for errors it is in kWh/t.
+
+The third is dot std with ddof equal to zero. Std is the standard deviation, one number for how far the values spread around their mean. ddof is a setting for the divisor. With ddof equal to zero, we divide by the number of values, which is the right choice when we are describing exactly these folds and nothing more.
+
+This spread describes exactly our folds and nothing more.
+
+## Slide 26: Keeping groups together / Scoring repeated splits
 
 GroupKFold(n_splits=4) creates four train/validation splits. All rows of an equipment group stay on one side of each split. Four splits require at least four distinct training groups.
 
 cross_val_score fits a fresh model for each split and scores its held-out rows. groups identifies the equipment groups and cv supplies the split rule. neg_mean_absolute_error returns negative MAE; negate it to report positive errors.
-Explain these operations before running the following example.
 
-## Slide 37: Repeat evaluation without mixing groups
+**Spoken script**
 
-Four folds means four held-out group turns. In each turn, learn a fresh pipeline on the other training groups and score the held-out group. This uses training_data only; validation and test tables stay outside this calculation.
+Two tools do the work here.
 
-## Slide 38: Fold errors calculated from the supplied training rows — step 1
+GroupKFold with n underscore splits equal to four creates four splits of the training rows. In each split some groups are set aside for validation and the rest are used for training. All rows of one equipment group stay on the same side. Four splits need at least four different groups in the training data. We have E1 to E4, so each group gets one turn on the validation side.
 
-Four folds means four held-out group turns. In each turn, learn a fresh pipeline on the other training groups and score the held-out group. This uses training_data only; validation and test tables stay outside this calculation.
+Then cross underscore val underscore score takes over. For each split it fits a fresh copy of the model on the training side, so nothing carries over between folds, and then scores the held-out rows.
 
-Step-by-step explanation
+We give it three extra items. groups tells it which equipment group each row belongs to. cv supplies the split rule, which is our GroupKFold. And scoring says which error to use. The name neg underscore mean underscore absolute underscore error gives negative MAE, so we negate the answers to report positive errors.
 
+## Slide 27: Repeat evaluation without mixing groups
+
+Four folds means four held-out group turns.
+
+In each turn, learn a fresh pipeline on the other training groups and score the held-out group.
+
+This uses training_data only; validation and test tables stay outside this calculation.
+
+**Spoken script**
+
+Four folds mean four turns, and in each turn one equipment group is held out.
+
+In turn one we learn from three groups and score on the fourth. In turn two a different group is held out, and so on, until every group has been the unseen one. Each turn starts with a fresh model, so what it learned earlier cannot help it later.
+
+That gives us four separate error scores. Each one answers the same question: how well does the model do on a machine it was never trained on?
+
+All of this uses training underscore data only. The validation table and the test table stay outside the calculation. They are kept for later jobs, so nothing about them can affect how we judge these folds.
+
+## Slide 28: Fold errors calculated from the supplied training rows: step 1
+
+grouped_folds: the split rule that keeps observations from one equipment group together.
+
+Run the cell and read the output below it.
+
+```python
 from sklearn.model_selection import GroupKFold, cross_val_score
-Load the named tools. Importing a model class does not train a model.
-
 grouped_folds = GroupKFold(n_splits=4)
-grouped_folds stores the split rule that keeps observations from one equipment group together.
+```
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This short cell prepares the splitter.
 
-## Slide 39: Read the scoring convention
+The first line imports two tools from the scikit-learn module model underscore selection. GroupKFold is the rule for cutting data into folds while keeping groups together. cross underscore val underscore score is the function that runs the repeated fit and score. Importing them only makes them available. Nothing is trained yet.
 
-scikit-learn uses larger scores as better. neg_mean_absolute_error therefore returns negative errors. Negate the returned scores to recover ordinary positive MAE; lower MAE is better.
+The second line creates a GroupKFold with n underscore splits equal to four and stores it as grouped underscore folds. That name stands for the split rule. It keeps all observations from one equipment group together and makes four folds.
 
-## Slide 40: Fold errors calculated from the supplied training rows — step 2
+The cell prints nothing, because it only stores the rule for the next cell.
 
-scikit-learn uses larger scores as better. neg_mean_absolute_error therefore returns negative errors. Negate the returned scores to recover ordinary positive MAE; lower MAE is better.
+## Slide 29: Read the scoring convention
 
-Step-by-step explanation
+scikit-learn uses larger scores as better. neg_mean_absolute_error therefore returns negative errors.
 
-negative_error_scores = cross_val_score(linear_model, X_train, y_train, groups=training_data['equipment_id'], cv=grouped_folds, scoring='neg_mean_absolute_error')
-negative_error_scores stores negative mean absolute errors returned by scikit-learn’s scoring convention.
+Negate the returned scores to recover ordinary positive MAE; lower MAE is better.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+A small convention in scikit-learn can confuse us, so we say it clearly.
 
-## Slide 41: Report typical error and variation
+In scikit-learn, larger scores are always better. That works well for accuracy, where more is good. It would work badly for error, where less is good. To keep the rule the same for every score, scikit-learn reports error with a minus sign. The scoring name neg underscore mean underscore absolute underscore error therefore returns negative errors.
 
-Each value is the MAE of one held-out fold. mean gives average error. std(ddof=0) describes spread across these four errors; it is not a confidence interval. A large spread suggests performance depends on the held-out equipment.
+So a result like minus two is actually an error of two. Of two negative scores, the one closer to zero is the better one.
 
-## Slide 42: Fold errors calculated from the supplied training rows — step 3
+To get back to the ordinary mean absolute error, we negate the returned scores by putting a minus sign in front. Then the numbers are positive again and the usual reading holds. A lower MAE is better.
 
-Each value is the MAE of one held-out fold. mean gives average error. std(ddof=0) describes spread across these four errors; it is not a confidence interval. A large spread suggests performance depends on the held-out equipment.
+## Slide 30: Fold errors calculated from the supplied training rows: step 2
 
-Step-by-step explanation
+grouped_folds: the split rule that keeps observations from one equipment group together.
 
+Run the cell and read the output below it.
+
+```python
+negative_error_scores = cross_val_score(
+    linear_model,
+    X_train,
+    y_train,
+    groups=training_data["equipment_id"],
+    cv=grouped_folds,
+    scoring="neg_mean_absolute_error",
+)
+```
+
+**Spoken script**
+
+This is the cell that does the repeated fitting. It is one function call written over several lines, with one item on each line.
+
+The first item is linear underscore model, the model we built in Week 8. cross underscore val underscore score fits a fresh copy of it in every fold.
+
+The next two items are X underscore train and y underscore train, the input features and the target values from the training rows.
+
+Then groups equals the equipment ID column of the training data. This tells the function which machine each row came from, so rows from one machine stay together.
+
+Then cv equals grouped underscore folds, the rule from the last cell. And scoring equals neg underscore mean underscore absolute underscore error, which asks for negative MAE.
+
+The returned array is stored as negative underscore error underscore scores, with one entry per fold. Nothing prints here. The next cell turns the scores into positive errors and summarises them.
+
+## Slide 31: Report typical error and variation
+
+Each value is the MAE of one held-out fold. mean gives average error. std(ddof=0) describes the spread across these four errors only.
+
+A large spread suggests performance depends on the held-out equipment.
+
+**Spoken script**
+
+We summarise the four fold errors with two numbers.
+
+Each value is the mean absolute error of one held-out fold, so it is in kWh/t. The mean of the four tells us the typical error across the folds. It is a rough guide, based on four machines, to how wrong the model tends to be on equipment it has not seen.
+
+The standard deviation, written std with ddof equal to zero, tells us the spread across these four errors. It is the usual distance of a fold's error from the mean. It describes these four folds only. A confidence interval is a different tool that we do not use here.
+
+How do we read the two together? When the spread is small compared with the mean, the folds agree and the model behaves consistently. When the spread is large, performance depends on which equipment is held out. That is useful to know before anyone trusts the model on a new machine.
+
+We report both numbers, the mean and the spread, with their unit.
+
+## Slide 32: Fold errors calculated from the supplied training rows: step 3
+
+grouped_folds: the split rule that keeps observations from one equipment group together.
+
+Run the cell and read the output below it.
+
+```python
 fold_absolute_errors = pd.Series(-negative_error_scores)
-fold_absolute_errors stores positive mean absolute error for each validation fold.
-
 print(fold_absolute_errors.round(4).tolist())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(round(float(fold_absolute_errors.mean()), 4))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(round(float(fold_absolute_errors.std(ddof=0)), 4))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-[0.5657, 0.7333, 0.7221, 0.7835]
-0.7012
-0.0815
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This cell turns the raw scores into a report.
 
-## Slide 43: Pandas inside the required function
+The first line puts a minus sign in front of negative underscore error underscore scores, which gives positive errors, and wraps them in pd dot Series. We store that as fold underscore absolute underscore errors, one error per fold.
 
-Keep the original function names and return types. Do not read a fixed CSV inside the assessed function: hidden tests supply different equipment_records. The separate calling cell reads the CSV.
+The first print rounds the four values to four decimal places and turns them into a plain list. We read one error for each held-out equipment group.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+The second print gives the mean. We wrap it in float and round it to four decimals. This is the typical error across the folds, in kWh/t.
 
-## Slide 44: Operations for the next example
+The third print gives the standard deviation with ddof equal to zero. This is the spread of the four errors around their mean.
 
-Returning a dictionary
-series.to_dict() maps Series labels to values. equipment_data.to_dict("records") instead returns a list of row dictionaries. Choose the form required by the assignment.
+When we read the output, we compare the four values with each other. If they are close, the model is steady. If one is far from the rest, one equipment group is behaving differently, and the spread will show it.
 
-A table from Python values
-pd.DataFrame(records) builds a table from row dictionaries. With a dictionary of column lists, keys become column names and each list supplies that column’s values.
+## Slide 33: Leakage makes a score look better than it is
 
-Grouping rows
-equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
+Data leakage: information the model should not have reaches the model during training.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Think of an exam. If the exam paper is on your desk the night before, a high mark proves nothing about what you learned.
+A leaky score is a mark earned with the paper in hand. It looks wonderful and it fails in real use.
+Leakage is common and quiet: the code runs, the score is high, and nothing warns you.
 
-## Slide 45: Defining and calling a function
+**Spoken script**
+
+Leakage is one of the most common serious mistakes in machine learning. Think of an exam. If the exam paper is on your desk the night before, a high mark proves nothing about what you learned. A leaky score is a mark earned with the paper in hand.
+
+What makes leakage dangerous is that it is quiet. The code runs. The score is high. Nothing warns you. Only a careful look at how the data was prepared reveals it. So we learn the four usual ways it happens, and a guard for each.
+
+## Slide 34: Four ways leakage happens, and a guard for each
+
+Each guard is a habit you can apply while preparing the data.
+
+**Spoken script**
+
+Here are four ways leakage usually happens. One, copies across the split. The same observation sits in the training rows and again in the validation rows, for example a repeated record ID. Two, preparing before splitting. If you work out a median or a scale from all the rows, the validation rows have already influenced the model. Three, the same group on both sides. If rows from one machine sit in training and in the test, the model recognises the machine and the score is inflated. Four, a column that holds the answer. An input that is only known after the outcome, such as a repair record written after a fault.
+
+Each box has a guard. Remove repeated IDs. Fit imputers and scalers on the training rows only. Keep whole equipment groups together. Use only inputs that you will really have at the moment of prediction.
+
+## Slide 35: A leaky score looks wonderful
+
+concat stacks two tables on top of each other.
+The first score is honest: the tree never saw the validation rows.
+The second score is leaky: we put the validation rows into training first.
+
+Both scores are validation errors in kWh/t. Only the second one is invalid.
+
+```python
+import pandas as pd
+leaky_X = pd.concat([X_train_filled, X_valid_filled])
+leaky_y = pd.concat([y_train, y_valid])
+tree = DecisionTreeRegressor(
+    max_depth=10, random_state=17)
+tree.fit(X_train_filled, y_train)
+pred = tree.predict(X_valid_filled)
+print("honest", round(mean_absolute_error(y_valid, pred), 2))
+tree.fit(leaky_X, leaky_y)
+pred = tree.predict(X_valid_filled)
+print("leaky ", round(mean_absolute_error(y_valid, pred), 2))
+```
+
+Output on the slide:
+
+```text
+honest 1.26
+leaky  0.01
+```
+
+**Spoken script**
+
+Let us leak on purpose and watch what it does. First we score a deep tree honestly: it trains on the training rows and is scored on the validation rows.
+
+Then we cheat. We stack the validation rows into the training table with concat, train again, and score on the same validation rows. The honest error is 1.26 kWh/t. The leaky error is 0.01. A model that has the answers in front of it looks perfect.
+
+No warning appeared. That is why leakage is so dangerous, and why the habits on the previous slide matter.
+
+## Slide 36: Pandas inside the required function
+
+The assignment caller supplies equipment_records. pd.DataFrame(records) gives those records named columns. Calculate with pandas, then return the published Python type.
+
+to_dict("records") makes a list of row dictionaries. Series.tolist() makes a list of values. A grouped Series.to_dict() maps group labels to validation_results.
+
+**Spoken script**
+
+In the assignment, our code lives inside a function, and the function receives its data from outside. The caller gives us a list called equipment underscore records. Each record is a small dictionary for one row.
+
+Inside the function, pd dot DataFrame with the records turns that list into a table with named columns. After that we calculate with the pandas tools we already know, such as masks, groupby and mean.
+
+The last step is returning the answer in exactly the Python type the task publishes. Three conversions help. to underscore dict with the word records in quotes makes a list of row dictionaries. Dot tolist on a Series makes an ordinary list of its values. And on a Series made by grouping, dot to underscore dict makes a dictionary that maps each group label to its result, such as the validation results for that group.
+
+In the assessed function we do not read a CSV. The hidden tests supply different records every time, so the function must work from whatever it is given.
+
+## Slide 37: Operations for the next example
+
+01
+
+Returning a dictionary: series.to_dict() maps Series labels to values. equipment_data.to_dict("records") instead returns a list of row dictionaries. Choose the form required by the assignment.
+
+02
+
+A table from Python values: pd.DataFrame(records) builds a table from row dictionaries. With a dictionary of column lists, keys become column names and each list supplies that column’s values.
+
+03
+
+Grouping rows: equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
+
+**Spoken script**
+
+Three pandas operations appear in the function example.
+
+First, returning a dictionary. Dot to underscore dict on a Series gives a dictionary in which each label maps to its value. Calling to underscore dict on a DataFrame with the word records gives something else, a list of row dictionaries, one per row. We always choose the form that the assignment asks for.
+
+Second, building a table from Python values. pd dot DataFrame with a list of row dictionaries gives a table. With a dictionary of column lists instead, each key becomes a column name and each list supplies the values of that column.
+
+Third, grouping rows. We write the table, then groupby with a label column, then the value column in square brackets. Python collects the value column into one bundle per label. Then we apply mean or sum and get one result per group. Rows whose group label is missing are left out by default.
+
+## Slide 38: Defining and calling a function
 
 def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
-Explain these operations before running the following example.
 
-## Slide 46: A function called with the supplied records
+**Spoken script**
 
-def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+A function is a named block of code that we can run whenever we need it. We make one with the word def, followed by a name and a pair of brackets holding the inputs. The inputs are called parameters.
 
-Step-by-step explanation
+The indented lines below the def line are the body. They do not run when Python reads the definition. They run each time we call the function by writing its name and giving it values.
 
+The word return sends a result back to whoever called the function. After that call we can store the result in a name or use it in another calculation.
+
+print is different. It shows a value on the screen for us to read, and the function gives nothing back to the program. An assignment function must return its answer, because the grader collects the returned value and never reads what we print.
+
+So when we write a function for the assignment, the last line of the body is a return.
+
+## Slide 39: A function called with the supplied records
+
+equipment_records: the input list of row dictionaries supplied to the function.
+
+Run the cell and read the output below it.
+
+```python
 def mean_load_by_equipment(equipment_records):
     equipment_data = pd.DataFrame(equipment_records)
-    mean_load_by_equipment_group = equipment_data.groupby('equipment_id')['load_pct'].mean()
+    mean_load_by_equipment_group = equipment_data.groupby(
+        "equipment_id"
+    )["load_pct"].mean()
     return mean_load_by_equipment_group.to_dict()
-Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
-
-equipment_records = raw_data.to_dict('records')
-equipment_records stores the input list of row dictionaries supplied to the function.
-
+equipment_records = modelling_data.to_dict("records")
 print(mean_load_by_equipment(equipment_records))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-{'E1': 54.9475, 'E2': 61.326, 'E3': 53.46933333333333, 'E4': 66.854, 'E5': 48.10133333333333, 'E6': 51.54}
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This cell defines a function and then calls it.
 
-## Slide 47: Your issued task
+The function is called mean underscore load underscore by underscore equipment, and it takes one parameter, equipment underscore records. Inside, the first line builds a DataFrame from the records. The second line groups the rows by equipment ID, picks the load percentage column and takes its mean. That gives one average load for each equipment group. The last line returns that result as a dictionary, with each equipment ID mapped to its average load.
 
-Your issued task
-Explanation to give
-Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
+Nothing has run yet, because a definition only stores the function.
 
-Worked illustration / lecturer answer
-Explain record_id as the identifier of an observation, load_pct as load expressed in percent and ambient_c as temperature in degrees Celsius. The target records the known answer in training data.
+The next line makes the input. raw underscore data dot to underscore dict with records in quotes turns our table into a list of row dictionaries. That is the shape of data the assignment functions receive.
 
-Misconception to address
-These are synthetic examples for learning. They do not establish a calibrated physical relationship or justify operation of real equipment.
+The last line calls the function with that list and prints what it returns. We expect one entry for each equipment group, with a load percentage as its value.
 
-On this slide
+## Slide 40: Words from today
+
+**Spoken script**
+
+Six words to keep. Overfitting is memorising the training rows, noise included. Underfitting is a model too simple for the pattern. Generalisation is doing well on rows never seen. Cross-validation scores the model on several held-back groups in turn, and the spread tells us how stable the result is. Data leakage is information reaching the model that should not. Notice that every one of these words is about trust. In the assignment you will build the group split and report errors that an engineer could rely on.
+
+## Slide 41: Your issued task
+
+01
+
 Investigate crusher energy demand.
+
+02
 
 Target units: kWh/t.
 
-These are synthetic teaching records, not measurements suitable for deployment.
+03
+
+These are synthetic teaching records for practice.
+
+04
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-## Slide 48: group_split(records)
+**Spoken script**
 
-Required interface: group_split(records)
+Here is the setting for your own work. In this cohort we investigate crusher energy demand, and its unit is kWh/t.
+
+Each row in the data is one operating observation. record underscore id is the identifier of that observation. load underscore pct is the load in percent, and ambient underscore c is the surrounding temperature in degrees Celsius. The target holds the known answer, and we use it in training.
+
+equipment underscore id repeats across rows, because one machine produces many observations. That is the reason we split by equipment group.
+
+These are synthetic teaching records. They do not describe a calibrated physical relationship, and they are not suitable for running real equipment. We practise the method on them, and we do not rely on the numbers.
+
+## Slide 42: group_split(records)
 
 Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test.
 
@@ -611,11 +838,21 @@ Return train, validation and test lists of record_id in input order.
 
 Do not use target values to choose membership.
 
-Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+Keep the exact names and outputs. Check types, units and the issued brief.
 
-## Slide 49: predict_regression(training_records, feature_records)
+**Spoken script**
 
-Required interface: predict_regression(training_records, feature_records)
+The first required function is group underscore split, which takes the argument records.
+
+It must decide which observations go to training, validation and test, and it does so by whole equipment groups. Every observation from E1, E2, E3 and E4 goes to training. Every observation from E5 goes to validation. Every observation from E6 goes to test.
+
+The function returns three lists under the names train, validation and test. Each list holds record underscore id values, and they must appear in the same order as in the input.
+
+The function must not look at target values to decide membership. The equipment ID alone decides.
+
+We keep the function name and the output names exactly as published, because the grader looks for those names. We also check the types, the units and the issued brief before we submit.
+
+## Slide 43: predict_regression(training_records, feature_records)
 
 Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only.
 
@@ -625,109 +862,157 @@ Feature records have no target.
 
 Fit preprocessing only on training data.
 
-Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+Keep the exact names and outputs. Check types, units and the issued brief.
 
-## Slide 50: Written evidence
+**Spoken script**
 
-Written evidence
-Explanation to give
-Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
+The second required function is predict underscore regression. It takes two inputs, training underscore records and feature underscore records.
 
-Worked illustration / lecturer answer
-A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+Inside, we fit three models on the training records. The first is a baseline that always predicts the training mean. The second is a linear regression. The third is a decision tree with max underscore depth equal to four and random underscore state equal to seventeen. All three use load underscore pct and ambient underscore c as their only inputs.
 
-Misconception to address
-Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+Any filling of missing input values must be learned from the training records only, exactly as we practised.
 
-On this slide
+Then we predict for the feature records. These records have no target column, because they stand for new observations. The function returns three lists of predictions, one list for each model, under the names baseline, linear and tree.
+
+As always, we keep the function name and these output names exactly, and we check types, units and the issued brief.
+
+## Slide 44: Written evidence
+
+01
+
 Use the cell headed “My written evidence”.
+
+02
 
 Explain the supplied scenario in your own words.
 
+03
+
 State target units, reasons and limitations.
+
+04
 
 Submit one complete notebook containing code and written evidence.
 
-## Slide 51: Validation and trust submission
+**Spoken script**
 
-Validation and trust submission
-Explanation to give
-This slide hands over CML3113 W10. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
+Along with the code, we write down our reasoning. The notebook has a cell headed My written evidence, and that is where the writing goes.
 
-Worked illustration / lecturer answer
-The recorded cutoff for this form is 2026-11-20T08:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+In it we explain the supplied scenario in our own words. We state the target and its unit, which is kWh/t for crusher energy demand. We give our reasons for the choices we made, and we state the limitations of what we found.
 
-Misconception to address
-Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+A good explanation ties a decision to a result. For example, we can say why a median learned from the training rows alone keeps evaluation information out of the preparation.
 
-On this slide
+We describe the scenario figures as supplied. They are given to us, so we do not present them as measurements we made.
+
+We submit one complete notebook that holds both the code and the written evidence.
+
+## Slide 45: Validation and trust submission
+
+01
+
 Opens: 13 Nov 2026, 08:00 Kampala
+
+02
 
 Deadline: 20 Nov 2026, 08:00 Kampala
 
+03
+
 Use your full Student Registration Number in the form.
+
+04
 
 Keep the submitted files and confirmation.
 
-## Slide 52: Week 10 quiz
+Open W10 assignment form
 
-Week 10 quiz
-Explanation to give
-This is the CML3113 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3113 when ready and read the logged closing time.
+https://docs.google.com/forms/d/e/1FAIpQLSd0PIGgcund5zKvqtctB1dz7pekt8hubl0ZUrFL-BJc9bKGlQ/viewform
 
-Worked illustration / lecturer answer
-Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+**Spoken script**
 
-Misconception to address
-Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+This slide covers the Week 10 assignment submission. Please look at the slide for the opening time and the deadline, and check the form for the current details.
 
-On this slide
+In the form we enter our full Student Registration Number. We upload the completed notebook, and we wait until the file name shows before pressing Submit.
+
+After submitting, we keep the files and the confirmation. A notebook saved in Drive or on GitHub is not a submission until it has gone through the form.
+
+## Slide 46: Week 10 quiz
+
+01
+
 Answer individually after the lecturer activates the quiz.
+
+02
 
 Available for 24 hours from activation.
 
+03
+
 Use your Student Registration Number and registered account.
+
+04
 
 Check the announced quiz closing time.
 
-## Slide 53: Revision and submission checklist
+Open this week’s quiz
 
-Revision and submission checklist
-Explanation to give
-Connect evaluation to intended use. Decide how to hold out observations before fitting either preprocessing or the linear_model.
+https://forms.gle/LQPALyRC3uRvZqDJ8
 
-Worked illustration / lecturer answer
-When testing new equipment, all observations from equipment A stay in one partition. Training must not learn its missing-value replacements from held-out equipment.
+**Spoken script**
 
-Misconception to address
-Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+The Week 10 quiz is answered individually. It opens when the lecturer activates it, and then it stays open for twenty-four hours.
 
-On this slide
-You can identify which records may influence preprocessing and model selection.
+We use our Student Registration Number and the account we registered with. We check the announced closing time on the slide and in the form, so we know when it shuts.
 
-Save your work and check the required submission files.
+The link on the slide opens the response form. The quiz becomes available only after the lecturer activates it.
 
-## Slide 54: Optional revision video
+## Slide 47: Revision and submission checklist
 
-Optional revision video
-Explanation to give
-Give the viewing question before playing the excerpt: Why evaluate using observations not used to fit that particular model?
+Explain to a classmate how you would tell that a model is overfitting, and give one way leakage could creep into your own data preparation.
 
-Worked illustration / lecturer answer
-Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
+Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
 
-Misconception to address
-The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
+Point to your evidence. Save your work.
 
-On this slide
+**Spoken script**
+
+Here is a check we do individually before leaving.
+
+First, we explain to a classmate how we would tell that a model is overfitting. Then we give one way that leakage could creep into our own data preparation. If we can say both in plain words, we have the main ideas of the week.
+
+Then the practical items. We keep the raw data unchanged. Before we submit the assignment notebook, we restart the session and run all cells from the top, to confirm that the notebook works from start to finish.
+
+We point to our evidence for each claim, and we save our work.
+
+## Slide 48: Optional revision video
+
+01
+
 For revision after class.
+
+02
 
 StatQuest with Josh Starmer
 Machine Learning Fundamentals Cross Validation
 
+03
+
 Opening up to 04:00, optional preview-selected excerpt
+
+04
 
 Listening question: Why evaluate using observations not used to fit that particular model?
 
-Reference / existing resource
+Open explainer video
+
 https://www.youtube.com/watch?v=fSytzGwwBVw
+
+**Spoken script**
+
+This video is for revision after class, and it is optional.
+
+It is from StatQuest with Josh Starmer and it is called Machine Learning Fundamentals, Cross Validation. We watch the opening, up to the four minute mark.
+
+We watch with one question in mind. Why do we evaluate a model using observations that were not used to fit that particular model?
+
+After watching, we try to answer in our own words, using the ideas from today. The link is on the slide.

@@ -1,671 +1,664 @@
 # CML3113 Week 12
 
+Each slide shows its text, then the spoken script the lecturer reads aloud.
+
 ## Slide 1: Choosing and explaining a model
 
-Choosing and explaining a model
-Explanation to give
-A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
-
-Worked illustration / lecturer answer
-A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidate_models.
-
-Misconception to address
-Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
-
-On this slide
 Mining and Petroleum Engineering
+
+Friday 27 November 2026
+Friday 08:00–11:00, Room 105
+
+**Spoken script**
+
+Welcome to Week 12. Over the past weeks we built models, scored them and checked them for overfitting and leakage.
+
+Today we answer the question an engineer faces next. Several models are available, so which one do we recommend? We compare them on the same rows, apply an error limit and a speed limit, and explain our choice in plain words.
 
 ## Slide 2: Today’s learning
 
-Core practice precedes the assessment brief. Give the class one consistent data-handling approach: pandas for tables, scikit-learn for models, matplotlib for figures.
+WHAT WE WILL DO
+Compare candidate models on the same rows, apply the limits an engineer sets, and explain the choice. Meet random forests and boosting, and write the limits of a model in plain words.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+HOW YOU WILL SHOW IT
+You can select a model that meets stated limits, say who is affected when it is wrong, and describe its purpose, data, scores and limits on one page.
 
-## Slide 3: The supplied file
+**Spoken script**
 
-Uploading a notebook does not upload its modelling_data. Check the exact filename and column headings. Each cohort has its own data, so numerical results can differ.
+This week we choose. Several models can do the job, so we compare them on the same rows, apply the limits an engineer sets, such as error and speed, and explain the choice. We also meet two more families, random forests and boosting. And we finish with the human side: who is affected when a model is wrong. By the end you can select a model that meets stated limits and describe its purpose, data, scores and limits on one page.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 3: Words for today: choosing a model
 
-## Slide 4: Operations for the next example
+**Spoken script**
 
-Import and short names
-import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
+Six words for choosing a model. A candidate is a model being considered for the job. A constraint is a limit a candidate must meet before it is allowed, for example an error limit or a speed limit. Latency is the time one prediction takes. An ensemble is many models whose answers are combined. A random forest is an ensemble of many trees that each see different rows, and their answers are averaged. Boosting adds small models one after another, each one fixing the mistakes of the last. We only name boosting today, and we study it in Semester 2.
 
-Reading a CSV
-pd.read_csv("practice_filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
+## Slide 4: The supplied file
 
-Counting dimensions
-equipment_data.shape gives (number of rows, number of columns). shape is a property, so it has no parentheses.
+Extract this week’s student ZIP. Upload engineering_data.csv into Colab using the Files panel, or keep them beside the notebook locally.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+The examples below read this file. Run the cells in slide order. Keep the original CSV unchanged.
 
-## Slide 5: Operations for the next example
+**Spoken script**
 
-Column data types
-equipment_data.dtypes reports each column’s stored type. int64 means integers, float64 means decimal numbers, and object often contains text. Numeric blanks commonly appear as NaN.
+Every example today reads one file called engineering_data dot csv. It comes inside this week's student ZIP, so first we extract the ZIP.
 
-A preview of rows
-equipment_data.head() returns the first five rows. It leaves the table unchanged. A preview is not the entire dataset.
+In Colab we open the Files panel on the left and upload engineering_data dot csv there. If we work on our own computer, we keep the file in the same folder as the notebook. Uploading a notebook alone does not upload the data, so the file must be placed separately.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+The examples that follow run in slide order, so each cell can use the names made by the cell before it. We never edit the original CSV. It stays exactly as supplied, and all our changes happen on copies inside Python.
 
-## Slide 6: Reading the code syntax
+## Slide 5: Loading the supplied observations
 
-= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
-Explain these operations before running the following example.
+raw_data: original CSV table; keep it unchanged so the analysis can be checked.
 
-## Slide 7: Loading the supplied observations
+Run the cell and read the output below it.
 
-= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
-
-Step-by-step explanation
-
+```python
 import pandas as pd
-Load the named tools. Importing a model class does not train a model.
-
-raw_data = pd.read_csv('engineering_data.csv')
-raw_data stores original CSV table; keep it unchanged so the analysis can be checked.
-
+raw_data = pd.read_csv("engineering_data.csv")
 print(raw_data.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(raw_data.shape)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(raw_data.dtypes)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-record_id equipment_id  load_pct  ambient_c  target
-0          1           E1     59.15      31.71  14.001
-1          2           E2     77.46      29.97  15.147
-2          3           E3     69.60      19.87  13.005
-3          4           E4     75.98      22.29     NaN
-4          5           E5     57.62      23.40  12.554
-(91, 5)
-record_id         int64
-equipment_id     object
-load_pct        float64
-ambient_c       float64
-target          float64
-dtype: object
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This cell loads the data and takes a first look at it.
 
-## Slide 8: Rows used for modelling
+The first line imports pandas and gives it the short name pd, as we have done since Week 3. The second line calls pd dot read underscore csv with the file name. It reads the file and returns a table, which we store under the name raw underscore data. This is our untouched original.
 
-This follows the issued data rules. Filtering observed targets is different from estimating missing targets. Deduplicate before filtering, so an invalid first occurrence is not replaced by its later duplicate.
+Then we print three things. Dot head shows the first five rows, so we see the column names and a few example values. Dot shape gives two numbers, the count of rows and then the count of columns. Dot dtypes lists each column with its data type, so we can see which columns hold numbers and which hold text.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+We compare what prints with the explanation in the notebook. If the column names or the types look wrong, we fix that before going further.
 
-## Slide 9: Operations for the next example
+## Slide 6: Preparing the supplied modelling rows: step 1
 
-Reading chained operations
-Read a chain from left to right. In equipment_data["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s result.
+modelling_data: copied observations after duplicate and validity checks.
 
-A separate working table
-equipment_data.copy() creates a working copy. Assigning columns on this copy preserves the source table, so you can compare before and after.
+Run the cell and read the output below it.
 
-Finding recorded cells
-notna() returns True where a value is present. Use it to retain observations with a recorded target before modelling.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 10: Operations for the next example
-
-An inclusive range
-series.between(0, 100) is True for values from 0 through 100, including both limits. The resulting mask helps select valid rows.
-
-Selecting columns
-equipment_data["column"] returns one labelled column, a Series. equipment_data[["a", "b"]] returns a DataFrame containing those named columns in that order.
-
-Selecting rows with a mask
-A column comparison produces one True or False per row. equipment_data[mask] keeps the True rows. & combines masks: both conditions must hold. Parenthesise each comparison.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 11: Operations for the next example
-
-Keeping the first observation
-equipment_data.drop_duplicates("record_id") returns rows with the first occurrence of each ID, preserving their order. It does not overwrite the source unless you assign the result.
-
-Membership in a group list
-series.isin(["E1", "E2"]) returns True for entries matching either listed label. equipment_data[that_mask] keeps all observations belonging to those groups.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 12: Prepare valid observations
-
-First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
-
-## Slide 13: Preparing the supplied modelling rows — step 1
-
-First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
-
-Step-by-step explanation
-
-modelling_data = raw_data.drop_duplicates('record_id').copy()
-modelling_data stores copied observations after duplicate and validity checks.
-
-target_is_recorded = modelling_data['target'].notna()
-target_is_recorded stores the result of the displayed expression.
-
-load_is_valid = modelling_data['load_pct'].between(0, 100)
-load_is_valid stores the result of the displayed expression.
-
+```python
+modelling_data = raw_data.drop_duplicates("record_id").copy()
+target_is_recorded = modelling_data["target"].notna()
+load_is_valid = modelling_data["load_pct"].between(0, 100)
 rows_to_keep = target_is_recorded & load_is_valid
-rows_to_keep stores the result of the displayed expression.
-
 print(target_is_recorded.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(load_is_valid.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 modelling_data = modelling_data[rows_to_keep].copy()
-modelling_data stores copied observations after duplicate and validity checks.
-
 print(len(raw_data), len(modelling_data))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-0     True
-1     True
-2     True
-3    False
-4     True
-Name: target, dtype: bool
-0    True
-1    True
-2    True
-3    True
-4    True
-Name: load_pct, dtype: bool
-91 88
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Now we clean the table into modelling data. The first line drops duplicate rows. Dot drop underscore duplicates with record underscore id keeps only the first row for each record ID. Dot copy gives us a separate table, so later changes cannot touch raw underscore data.
 
-## Slide 14: Choose groups before choosing rows
+Next we ask two yes or no questions about every row. Dot notna on the target column answers True where a target value was recorded. Dot between with zero and one hundred answers True where load percent lies from zero up to one hundred, including both ends.
 
-isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+The ampersand combines the two answers. A row gets True only when both checks pass. We print the first few answers of each check to see the True and False values.
 
-## Slide 15: Preparing the supplied modelling rows — step 2
+Then we use the combined answers to keep only the passing rows, and copy again. The last line prints the row count before and after cleaning. The second number should be the same or smaller, and the gap tells us how many rows failed a check.
 
-isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+## Slide 7: Choose groups before choosing rows
 
-Step-by-step explanation
+isin(list_of_labels) answers True when a row’s equipment ID appears in the list.
 
-is_training_equipment = modelling_data['equipment_id'].isin(['E1', 'E2', 'E3', 'E4'])
-is_training_equipment stores the result of the displayed expression.
+Here E1–E4 supply training rows, E5 validation rows and E6 test rows.
 
-is_validation_equipment = modelling_data['equipment_id'].isin(['E5'])
-is_validation_equipment stores the result of the displayed expression.
+The groups stay separate so one equipment group cannot appear on both sides.
 
-is_test_equipment = modelling_data['equipment_id'].isin(['E6'])
-is_test_equipment stores the result of the displayed expression.
+**Spoken script**
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+Before we split the data, we decide which equipment goes where. The tool for this is the isin method. We give it a list of labels, and for each row it answers True when that row's equipment ID appears in the list.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+In this lesson equipment E1 to E4 supply the training rows. Equipment E5 supplies the validation rows, and equipment E6 supplies the test rows.
 
-## Slide 16: Preparing the supplied modelling rows — step 3
+We keep the groups completely separate. Each machine sits on one side only. If the same machine appeared in both training and validation, the model could recognise it and the score would look better than it deserves. This is the leakage idea from Week 10 applied to whole machines.
+
+## Slide 8: Preparing the supplied modelling rows: step 2
+
+modelling_data: copied observations after duplicate and validity checks.
+
+Run the cell and read the output below it.
+
+```python
+is_training_equipment = modelling_data["equipment_id"].isin(
+    ["E1", "E2", "E3", "E4"]
+)
+is_validation_equipment = modelling_data["equipment_id"].isin(
+    ["E5"]
+)
+is_test_equipment = modelling_data["equipment_id"].isin(["E6"])
+```
+
+**Spoken script**
+
+This cell builds three True and False columns, one for each group. Nothing prints, because we are only storing answers for the next cell.
+
+The first line takes the equipment ID column and calls isin with the list E1, E2, E3 and E4. Each row gets True if its machine is in that list. We store the result as is underscore training underscore equipment.
+
+The second line does the same with a list holding only E5, giving is underscore validation underscore equipment. The third line uses E6 to make is underscore test underscore equipment.
+
+Notice that each machine appears in exactly one list. That guarantees no row can be both a training row and a test row. The long first line is written across three lines for readability, and Python reads it as one statement because the brackets are still open.
+
+## Slide 9: Preparing the supplied modelling rows: step 3
 
 training_data: rows used to learn model settings; only these rows may determine imputation values.
 
 validation_data: separate rows used to compare models without fitting on them.
 
-## Slide 17: Preparing the supplied modelling rows — step 3
+**Spoken script**
 
-training_data: rows used to learn model settings; only these rows may determine imputation values.
+Two names matter on this slide. Training underscore data holds the rows the model learns from. Every setting we learn, including the values an imputer uses to fill gaps, comes from these rows only. Using other rows would let outside information leak in.
 
-validation_data: separate rows used to compare models without fitting on them.
+Validation underscore data holds separate rows that we use to compare models. We score on them, but we never fit on them. That makes the comparison fair, because every candidate meets rows it has never seen.
 
-Step-by-step explanation
+There is also a third table, test underscore data. We keep it locked away until the choice is fixed.
 
+## Slide 10: Preparing the supplied modelling rows: step 3
+
+modelling_data: copied observations after duplicate and validity checks.
+
+Run the cell and read the output below it.
+
+```python
 training_data = modelling_data[is_training_equipment].copy()
-training_data stores rows used to learn model settings; only these rows may determine imputation values.
-
 validation_data = modelling_data[is_validation_equipment].copy()
-validation_data stores separate rows used to compare models without fitting on them.
-
 test_data = modelling_data[is_test_equipment].copy()
-test_data stores held-out rows kept aside until the final evaluation.
-
-feature_columns = ['load_pct', 'ambient_c']
-feature_columns stores the list of input column names supplied to the model.
-
+feature_columns = ["load_pct", "ambient_c"]
 print(len(training_data), len(validation_data), len(test_data))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-58 15 15
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Now we turn the True and False columns into three real tables. Putting a True and False column inside square brackets keeps only the rows marked True. So the first line gives training underscore data, the second gives validation underscore data, and the third gives test underscore data. Each ends with dot copy so the tables are independent.
 
-## Slide 18: Training a model with missing inputs
+Then we name the inputs. Feature underscore columns is a list holding load underscore pct and ambient underscore c. These are the columns the model will use to predict crusher energy demand.
 
-A model object exists before training. X is two-dimensional and y is one-dimensional. Select inputs in the same order during prediction. A validation target must never enter fit.
+The last line prints three row counts, in the order training, validation, test. We check that training is the largest and that none of the three is empty. A model cannot be scored on an empty table.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 11: The Week 8 line, rebuilt in a few lines
 
-## Slide 19: Operations for the next example
+Every line repeats Week 8: split into X and y, fit the pipeline, predict, score.
+The names X_valid, linear_model and mae are used again in the next cells.
+The printed number is the validation MAE of the line.
 
-Returning plain values
-series.tolist() or array.tolist() returns a Python list of values, without pandas row labels. Preserve their order when pairing actual values and validation_predictions.
+The same rows, the same pipeline, the same MAE as Week 8.
 
-Rounded display
-series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 20: A sequence of model steps / Filling model inputs
-
-make_pipeline(imputer, estimator) links preprocessing and prediction. fit learns the imputer and estimator on training rows. predict applies the learned steps to new rows in the same order.
-
-SimpleImputer(strategy="median") learns a median for each input column during fit. It uses those training medians to fill gaps later. Never learn replacement values from validation or test rows.
-Explain these operations before running the following example.
-
-## Slide 21: Creating linear regression / Learning from training examples
-
-LinearRegression() creates an unfitted model. It will learn coefficients and an intercept from training examples. Creating it alone does not train it or make predictions.
-
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
-Explain these operations before running the following example.
-
-## Slide 22: Predicting new targets / Selecting a short preview
-
-model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
-
-values[:5] selects positions 0 through 4, or fewer if the sequence is shorter. The stop position is excluded. This preview does not change the full array stored in the variable.
-Explain these operations before running the following example.
-
-## Slide 23: Standard names for model inputs
-
-These are common machine-learning conventions. Some tutorials write train_x and train_y instead. The names are chosen by the programmer, not special Python keywords. Keep training_data as the full table; selecting X_train must exclude target. Rows in X and y must stay paired. fit uses training pairs; predict receives only X_valid. Compare predictions with y_valid afterwards.
-
-## Slide 24: Separate inputs from answers
-
-X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
-
-## Slide 25: Training and predicting on the supplied data — step 1
-
-X_train contains the input columns; y_train contains their observed targets. X_valid contains the same input columns for validation; y_valid holds the answers for checking predictions. Never include target among the inputs.
-
-Step-by-step explanation
-
-X_train = training_data[feature_columns]
-X_train stores training input columns, excluding the target.
-
-y_train = training_data['target']
-y_train stores observed training targets in matching row order.
-
-X_valid = validation_data[feature_columns]
-X_valid stores validation input columns in training-column order.
-
-y_valid = validation_data['target']
-y_valid stores observed validation targets, used only for evaluation.
-
-from sklearn.impute import SimpleImputer
-Load the named tools. Importing a model class does not train a model.
-
+```python
 from sklearn.pipeline import make_pipeline
-Load the named tools. Importing a model class does not train a model.
-
+from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression
-Load the named tools. Importing a model class does not train a model.
-
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
-
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
-
-## Slide 26: Create, then train, then predict
-
-Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
-
-## Slide 27: Training and predicting on the supplied data — step 2
-
-Creating an estimator sets up an empty model. fit learns settings from training inputs and their targets. predict uses those learned settings on new inputs; it does not learn from the validation targets.
-
-Step-by-step explanation
-
-linear_model = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
-linear_model stores the linear regression estimator or imputation-and-regression pipeline.
-
+from sklearn.metrics import mean_absolute_error
+X_train = training_data[feature_columns]
+y_train = training_data["target"]
+X_valid = validation_data[feature_columns]
+linear_model = make_pipeline(
+    SimpleImputer(strategy="median"), LinearRegression())
 linear_model.fit(X_train, y_train)
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
-
 validation_predictions = linear_model.predict(X_valid)
-validation_predictions stores one predicted target for each validation row, in the same order.
+mae = mean_absolute_error(
+    validation_data["target"], validation_predictions)
+print(round(mae, 4))
+```
 
-print(validation_predictions[:5].round(3).tolist())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+Output on the slide:
 
-Verified result with the supplied CSV
-[11.79, 9.69, 14.015, 8.537, 10.471]
+```text
+0.6732
+```
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+**Spoken script**
 
-## Slide 28: Matching actual values and predictions
+Choosing a model starts with having the candidates ready, so we rebuild the line from Week 8 in a few lines. We split the rows into X and y, fit the pipeline of an imputer and a line on the training rows, predict on the validation rows, and score the predictions with mean absolute error.
 
-RMSE reacts more strongly to large baseline_errors. Neither metric is a maximum guaranteed error. Pair by row order before calculation. R² is a separate regression measure and can be negative.
+Nothing here is new. We repeat it because the next cells reuse three names from it: X valid, linear model and mae. The number printed at the end is the validation MAE of the line. It is the same number that appears in the three-candidates table on the next slide.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 12: Three candidates on the same validation rows
 
-## Slide 29: Operations for the next example
+All three were scored on the same rows, in the same unit.
+Speed comes next: a candidate must also be fast enough.
 
-Adding or replacing a column
-equipment_data["name"] = values assigns that column. An array follows row order. A Series aligns by row label, so keep labels paired with the intended observations.
+**Spoken script**
 
-Column arithmetic
-Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
+Choosing a model means comparing candidates fairly. We score three of them on the same validation rows, so the comparison is fair. The average guess has an error of 2.71 kWh/t. The straight line has 0.67. The tree has 1.18.
 
-Mean of recorded values
-series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
+The right column applies one constraint from this week's classroom decision: error at most ten. Notice that error is only one of the things an engineer checks. The next slides add speed, and then the full selection rule.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 13: Candidate evidence and latency
 
-## Slide 30: Operations for the next example
+The CSV supplies observations. We build the table of candidates and timings ourselves. Calculate validation MAE from its held-out observations.
 
-Magnitude of each error
-series.abs() makes negative values positive while leaving nonnegative values unchanged. Averaging these magnitudes gives mean absolute error.
+Measure prediction time on this computer. Timing varies by machine and repeated run, so record the measurement conditions.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+**Spoken script**
 
-## Slide 31: Squared error and square root
+To choose between models we need two kinds of evidence for each one. The first is error. The second is speed.
 
-error ** 2 squares each error. After averaging, ** 0.5 takes the square root. This gives root mean squared error, which penalises large errors more strongly than mean absolute error.
-Explain these operations before running the following example.
+The CSV file only holds observations. It does not contain a ready table of models and their timings, so we build that table ourselves.
 
-## Slide 32: Line up observations and predictions
+For error, we fit each model on the training rows, predict the validation rows, and calculate the validation MAE. That is the average size of the mistakes, measured in kWh/t.
 
-Copy record IDs and observed targets from validation rows. Add predictions in that same order. Each row now pairs one observation with its own predicted value.
+For speed, we measure latency. Latency is how long one prediction takes, and we state it in milliseconds. A millisecond is one thousandth of a second.
 
-## Slide 33: Errors from the supplied validation observations — step 1
+Timing depends on the computer and changes a little from run to run. So we write down the conditions of our measurement, such as which machine we used.
 
-Copy record IDs and observed targets from validation rows. Add predictions in that same order. Each row now pairs one observation with its own predicted value.
+## Slide 14: Operations for the next example
 
-Step-by-step explanation
+A table from Python values: pd.DataFrame(records) builds a table from row dictionaries. With a dictionary of column lists, keys become column names and each list supplies that column’s values.
 
-validation_results = validation_data[['record_id', 'target']].copy()
-validation_results stores actual and predicted targets paired with each record ID.
+**Spoken script**
 
-validation_results['predicted'] = validation_predictions
-validation_results stores actual and predicted targets paired with each record ID.
+The next example builds a small table directly from Python values, so we meet that tool first. The function is pd dot DataFrame, and a DataFrame is simply the pandas table we already know.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+One way to call it is with a list of records, where each record is a dictionary describing one row.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+The other way is with a dictionary of columns. Each key becomes a column name, and the list stored under that key supplies the values of that column. For example, a key called name with a list of model names gives us a name column.
 
-## Slide 34: Measure how far predictions missed
+In our example every list will hold exactly one value, so we get a table with one row. Later we can add more rows for more models.
 
-Subtract predicted from observed values. Positive errors mean underprediction; negative errors mean overprediction. abs removes signs for MAE. Squaring before averaging and taking a square root gives RMSE.
+## Slide 15: Measuring elapsed time
 
-## Slide 35: Errors from the supplied validation observations — step 2
+perf_counter() reads a high-resolution clock in seconds. Subtract the earlier reading from the later one, then multiply by 1000 for milliseconds. One measured run is an illustration and varies from run to run.
 
-Subtract predicted from observed values. Positive errors mean underprediction; negative errors mean overprediction. abs removes signs for MAE. Squaring before averaging and taking a square root gives RMSE.
+**Spoken script**
 
-Step-by-step explanation
+To measure speed we need a stopwatch inside Python. It is called perf underscore counter, and we import it from the time module.
 
-prediction_errors = validation_results['target'] - validation_results['predicted']
-prediction_errors stores actual targets minus predictions; signs indicate under- or over-prediction.
+Each time we call perf underscore counter, it reads a very precise clock and gives the reading in seconds. A single reading means little. The useful part is the difference between two readings.
 
-mae = prediction_errors.abs().mean()
-mae stores mean absolute error in the target unit.
+So we read the clock before the work and read it again after the work. Subtracting the earlier reading from the later one gives the elapsed seconds.
 
-rmse = (prediction_errors ** 2).mean() ** 0.5
-rmse stores root mean squared error in the target unit.
+Seconds are too large for something this fast, so we multiply by one thousand to get milliseconds.
 
-print(validation_results.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+One measured run only illustrates the idea. A reliable speed claim needs repeated measurements.
 
-print(round(float(mae), 4), round(float(rmse), 4))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+## Slide 16: Time the prediction step
 
-Verified result with the supplied CSV
-record_id  target  predicted
-4           5  12.554  11.790394
-10         11   7.620   9.689703
-16         17  13.616  14.014617
-22         23   8.196   8.536859
-28         29  10.187  10.471133
-0.6732 0.8148
+perf_counter reads seconds from a high-resolution clock.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Read it immediately before and after predict.
 
-## Slide 36: Candidate evidence and latency
+Convert elapsed seconds to milliseconds and divide by row count.
 
-perf_counter reads a high-resolution clock. Elapsed seconds times 1000 gives milliseconds. This classroom timing is a demonstration, not a production benchmark.
+One timing is illustrative: repeated measurements are needed for a reliable speed claim.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+**Spoken script**
 
-## Slide 37: Operations for the next example
+Our speed limit concerns the time a trained model takes to answer. So the stopwatch wraps the predict call alone. Predict is the method that takes input rows and returns one prediction for each row.
 
-A table from Python values
-pd.DataFrame(records) builds a table from row dictionaries. With a dictionary of column lists, keys become column names and each list supplies that column’s values.
+We read perf underscore counter immediately before predict and immediately after it. The difference is the elapsed time in seconds. We multiply by one thousand to get milliseconds.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Then we divide by the number of rows. The batch is small, and the limit applies to one row, so dividing gives the mean time per row in this batch. It is a rough guide to the time for a single prediction, since a batch shares some fixed overhead.
 
-## Slide 38: Measuring elapsed time
+One timing is only an illustration. If we want to claim that a model is fast enough, we repeat the measurement several times and look at the results together.
 
-perf_counter() reads a high-resolution clock in seconds. Subtract the earlier reading from the later one, then multiply by 1000 for milliseconds. One measured run is an illustration, not a reliable performance benchmark.
-Explain these operations before running the following example.
+## Slide 17: A measured candidate from the supplied validation data: step 1
 
-## Slide 39: Time prediction, not training
+prediction_start_time: timer reading immediately before predicting the batch.
 
-perf_counter reads seconds from a high-resolution clock. Read it immediately before and after predict. Convert elapsed seconds to milliseconds and divide by row count. One timing is illustrative: repeated measurements are needed for a reliable speed claim.
+Run the cell and read the output below it.
 
-## Slide 40: A measured candidate from the supplied validation data — step 1
-
-perf_counter reads seconds from a high-resolution clock. Read it immediately before and after predict. Convert elapsed seconds to milliseconds and divide by row count. One timing is illustrative: repeated measurements are needed for a reliable speed claim.
-
-Step-by-step explanation
-
+```python
 from time import perf_counter
-Load the named tools. Importing a model class does not train a model.
-
 prediction_start_time = perf_counter()
-prediction_start_time stores timer reading immediately before predicting the batch.
-
 linear_model.predict(X_valid)
-model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
+prediction_time_ms = (
+    (perf_counter() - prediction_start_time)
+    * 1000
+    / len(validation_data)
+)
+```
 
-prediction_time_ms = (perf_counter() - prediction_start_time) * 1000 / len(validation_data)
-prediction_time_ms stores measured batch time in milliseconds divided by validation-row count.
+**Spoken script**
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+This cell times the linear model, the straight line we fitted earlier.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+The first line imports perf underscore counter. The second line reads the clock and stores that reading as prediction underscore start underscore time.
 
-## Slide 41: A measured candidate from the supplied validation data — step 2
+The third line asks linear underscore model to predict for X underscore valid, which holds the validation inputs. We have no name on the left, because we only care about how long it takes. Predict uses what the model already learned and does not refit it.
+
+The last statement reads the clock again and subtracts the start reading. That gives seconds. Multiplying by one thousand gives milliseconds. Dividing by len of validation underscore data spreads the time over the rows, so we get milliseconds per row. The result is stored as prediction underscore time underscore ms.
+
+Nothing prints here. We use the stored value in the next cell.
+
+## Slide 18: A measured candidate from the supplied validation data: step 2
 
 candidate_models: table of model names, measured validation errors and prediction times.
 
-## Slide 42: A measured candidate from the supplied validation data — step 2
+**Spoken script**
 
-candidate_models: table of model names, measured validation errors and prediction times.
+Here we gather the evidence for each model into one table called candidate underscore models. Each row describes one model.
 
-Step-by-step explanation
+The table has three columns. Name holds the model's name. Validation underscore mae holds its error on the validation rows, in kWh/t. Latency underscore ms holds the time for one prediction, in milliseconds.
 
-candidate_models = pd.DataFrame({'name': ['linear'], 'validation_mae': [float(mae)], 'latency_ms': [prediction_time_ms]})
-candidate_models stores table of model names, measured validation errors and prediction times.
+Having everything in one table is useful because the next steps, filtering and ranking, are things pandas does very well. We apply the limits to the columns and let pandas sort out the winner.
 
+Right now the table has the linear model only. Other models, such as the decision tree, can be added as extra rows in the same way.
+
+## Slide 19: A measured candidate from the supplied validation data: step 2
+
+candidate_models: one row per model, with its name, validation error and prediction time.
+
+Run the cell and read the output below it.
+
+```python
+candidate_models = pd.DataFrame(
+    {
+        "name": ["linear"],
+        "validation_mae": [float(mae)],
+        "latency_ms": [prediction_time_ms],
+    }
+)
 print(candidate_models)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-name  validation_mae  latency_ms
-0  linear        0.673223    0.022194
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This cell builds the candidate table and prints it.
 
-## Slide 43: Constraints and tie-breaks
+We call pd dot DataFrame with a dictionary of three keys. The key name has a list holding the word linear. The key validation underscore mae has a list holding the error we calculated earlier. We wrap it in float, which turns it into a plain decimal number. The key latency underscore ms holds the per row time we just measured.
 
-These limits illustrate a decision rule, not an engineering safety standard. The assessment passes its own candidates and limits, which the function must use.
+Each list has one entry, so the table has one row. We store it as candidate underscore models and print it.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+In the printout we read across the row. We see the model's name, then its error in kWh/t, then its latency in milliseconds. The left column of plain numbers is the row label that pandas adds automatically.
 
-## Slide 44: Operations for the next example
+## Slide 20: The same recipe gives one row per candidate
 
-Checking for no rows
-equipment_data.empty is True when the filtered table has no entries. Check it before attempting to select a first row. empty is a property, without parentheses.
+Same recipe for every row: fit, predict, score the MAE, time the prediction.
+Latency depends on your computer, so each student measures it.
 
-Sorting by several columns
-equipment_data.sort_values(["validation_mae", "latency_ms", "name"]) sorts ascending by error first. Equal errors use latency, then alphabetical name as tie-breaks.
+**Spoken script**
 
-Selecting by row position
-equipment_data.iloc[0] selects the first row by its position, not its label. ["name"] then selects that row’s name field. An empty table has no row at position zero.
+The table on the previous slide has one row, because we measured only the line. The recipe does not change for other candidates. Fit the candidate on the training rows, predict on the validation rows, score its mean absolute error, and time its predict call. Then add one row to the table.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Here is the table we aim for, with three rows. The error column comes from the same validation rows we used all term. The latency column depends on your computer and on the moment you run it, so we fill it in by measuring in the notebook. In the assignment, the candidate table is handed to you, and your job is to apply the limits and choose.
 
-## Slide 45: Checking a condition before calculating
+## Slide 21: Constraints and tie-breaks
+
+For this classroom decision, use MAE at most 10 target units and mean latency at most 10 ms per observation. These are stated practice requirements.
+
+Filter both limits inclusively. sort_values ranks eligible rows by validation_mae, then latency_ms, then name. empty detects no eligible rows.
+
+**Spoken script**
+
+A good model for engineers must pass practical limits, and it must win a fair ranking. We handle those as two separate steps.
+
+For this classroom decision the limits are fixed. The MAE may be at most 10 kWh/t, and the mean latency may be at most 10 milliseconds for one observation. These are practice requirements set for the exercise.
+
+The limits are inclusive. A model that scores exactly the limit still qualifies.
+
+After filtering we rank the survivors with sort underscore values. Sort underscore values orders the rows of a table by the columns we name. We name validation underscore mae first, then latency underscore ms, then name. So the smallest error wins, equal errors are settled by speed, and equal speeds by alphabetical name.
+
+Finally, empty tells us whether the filtered table has no rows. That happens when no model qualifies.
+
+## Slide 22: Operations for the next example
+
+01
+
+Checking for no rows: equipment_data.empty is True when the filtered table has no entries. Check it before attempting to select a first row. empty is a property, without parentheses.
+
+02
+
+Sorting by several columns: equipment_data.sort_values(["validation_mae", "latency_ms", "name"]) sorts ascending by error first. Equal errors use latency, then alphabetical name as tie-breaks.
+
+03
+
+Selecting by row position: equipment_data.iloc[0] selects the first row by its position. ["name"] then selects that row’s name field. An empty table has no row at position zero.
+
+**Spoken script**
+
+Three small pandas tools appear in the next example.
+
+First, dot empty. It is True when a table has no rows. It is a property, so we write it without parentheses. We check it before picking a first row.
+
+Second, sort underscore values. We pass it a list of column names. It sorts upward, smallest first, by the first column. When two rows tie there, the second column decides, and the third column decides after that. In our case that means error, then latency, then name in alphabetical order.
+
+Third, dot iloc. It picks a row by its position in the table, counting from zero. So iloc with zero in square brackets gives the first row. Putting the word name in square brackets after it gives that row's name entry.
+
+A table with no rows has no position zero, which is why we test for empty first.
+
+## Slide 23: Checking a condition before calculating
 
 if condition: runs its indented statements only when the condition is True. else: handles the other case. Check for a nonzero denominator before division, and for a nonempty table before selecting its first row.
-Explain these operations before running the following example.
 
-## Slide 46: Selection from the measured candidate table — step 1
+**Spoken script**
 
-if condition: runs its indented statements only when the condition is True. else: handles the other case. Check for a nonzero denominator before division, and for a nonempty table before selecting its first row.
+Sometimes code must choose between two paths. We do that with if and else, which we met in the first weeks.
 
-Step-by-step explanation
+The word if is followed by a condition. If the condition is True, Python runs the indented lines underneath it. If it is False, Python skips them. The word else covers the other case, and its indented lines run instead.
 
-error_is_acceptable = candidate_models['validation_mae'] <= 10
-error_is_acceptable stores the result of the displayed expression.
+This protects us from errors. Before dividing, we check that the number we divide by is nonzero. Before taking the first row of a table, we check that the table has some rows.
 
-time_is_acceptable = candidate_models['latency_ms'] <= 10
-time_is_acceptable stores the result of the displayed expression.
+In the next examples we use exactly this pattern. If the table of acceptable models is empty, we choose nothing. Otherwise we pick the first row.
 
+## Slide 24: Selection from the measured candidate table: step 1
+
+eligible_models: candidates satisfying both stated limits.
+
+Run the cell and read the output below it.
+
+```python
+error_is_acceptable = candidate_models["validation_mae"] <= 10
+time_is_acceptable = candidate_models["latency_ms"] <= 10
 model_is_eligible = error_is_acceptable & time_is_acceptable
-model_is_eligible stores the result of the displayed expression.
+```
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This cell finds which models meet the limits. It stores three True and False columns and prints nothing.
 
-## Slide 47: Apply both model-selection rules
+The first line compares the validation underscore mae column with ten using less than or equal to. Every row gets True if its error is at most the limit. The second line does the same with latency underscore ms and the ten millisecond limit.
 
-A candidate must satisfy both the error limit and the time limit. Compare each column with its limit first, then combine the True/False answers with &. Filtering can return no rows.
+The third line joins the two with an ampersand. The ampersand means and. A model gets True only when its error and its speed are both within the limits. If either one fails, the model gets False.
 
-## Slide 48: Selection from the measured candidate table — step 2
+The result, model underscore is underscore eligible, is a mask. We used masks in the early pandas weeks to pick rows. The next cell applies this mask to the table.
 
-A candidate must satisfy both the error limit and the time limit. Compare each column with its limit first, then combine the True/False answers with &. Filtering can return no rows.
+## Slide 25: Apply both model-selection rules
 
-Step-by-step explanation
+A candidate must satisfy both the error limit and the time limit.
 
+Compare each column with its limit first, then combine the True/False answers with &.
+
+Filtering can return no rows.
+
+**Spoken script**
+
+A candidate has to satisfy two rules together. A low error alone is not enough, because a very accurate model might take too long to answer. A fast model alone is also not enough, because it might make mistakes that are too large.
+
+So we handle each rule on its own first. We compare one column with its limit, and that gives a column of True and False answers. We do the same for the other column.
+
+Then we combine the two columns of answers with the ampersand. A row survives only if both answers are True.
+
+It is possible that no row survives. If every model breaks at least one limit, the filtered table comes back with zero rows. We need to expect that case and plan for it.
+
+## Slide 26: Selection from the measured candidate table: step 2
+
+eligible_models: candidates satisfying both stated limits.
+
+Run the cell and read the output below it.
+
+```python
 eligible_models = candidate_models[model_is_eligible]
-eligible_models stores candidates satisfying both stated limits.
+```
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+This is a short but important cell. We take candidate underscore models and put model underscore is underscore eligible inside square brackets. The brackets keep only the rows where the mask says True, exactly like the row filtering we practised earlier.
 
-## Slide 49: Choose only if an eligible model exists
+The result is stored as eligible underscore models. It holds every model that meets both limits, and nothing else.
 
-sort_values orders by error, then time, then name. empty answers whether no rows remain. Check it before iloc[0], which requests the first row by position. Return None when no candidate qualifies.
+Nothing prints, so we see no output. The table is waiting for the next step, which ranks it.
 
-## Slide 50: Selection from the measured candidate table — step 3
+If no model met both limits, eligible underscore models is simply a table with no rows. It is still a valid table, so Python gives no error here.
 
-sort_values orders by error, then time, then name. empty answers whether no rows remain. Check it before iloc[0], which requests the first row by position. Return None when no candidate qualifies.
+## Slide 27: Choose only if an eligible model exists
 
-Step-by-step explanation
+sort_values orders by error, then time, then name. empty answers whether no rows remain.
 
-ranked_models = eligible_models.sort_values(['validation_mae', 'latency_ms', 'name'])
-ranked_models stores eligible candidates sorted by error, time and name, in that order.
+Check it before iloc[0], which requests the first row by position.
 
+Return None when no candidate qualifies.
+
+**Spoken script**
+
+Now we pick the winner from the models that passed. First we rank them with sort underscore values, using error, then time, then name. The best candidate moves to the top.
+
+Then we need the first row. The iloc tool picks a row by position, and position zero is the top row. But if the table has no rows at all, asking for position zero causes an error.
+
+So we ask first. Dot empty answers True when no rows remain. If it is True, no model qualified, and we give back None, which is Python's value for nothing here. Otherwise we take the first row and read its name.
+
+This gives a clear and honest answer in every case. Either we name one model, or we report that nobody met the requirements.
+
+## Slide 28: Selection from the measured candidate table: step 3
+
+eligible_models: candidates satisfying both stated limits.
+
+Run the cell and read the output below it.
+
+```python
+ranked_models = eligible_models.sort_values(
+    ["validation_mae", "latency_ms", "name"]
+)
 if ranked_models.empty:
     selected_model_name = None
 else:
-    selected_model_name = ranked_models.iloc[0]['name']
-Check the condition first, then run only the matching branch. This avoids invalid division or selecting a row that does not exist.
-
+    selected_model_name = ranked_models.iloc[0]["name"]
 print(selected_model_name)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-linear
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Here is the full selection logic.
 
-## Slide 51: Interpreting the recommendation
+The first statement sorts eligible underscore models by validation underscore mae, then latency underscore ms, then name, and stores the ranked table.
 
-One candidate demonstrates eligibility, not superiority over untested alternatives. A local explanation does not establish causation.
+Then comes the if. If ranked underscore models dot empty is True, there are no rows, so we set selected underscore model underscore name to None. In the else branch, at least one model exists. We take iloc zero, the top row, and read its name field.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+The last line prints the answer. The output is either the name of a model, or the word None.
 
-## Slide 52: Pandas inside the required function
+We read it as our recommendation. A name means that this model passed both limits and had the smallest error among those that passed. None means we must report that no candidate meets the requirements.
 
-Keep the original function names and return types. Do not read a fixed CSV inside the assessed function: hidden tests supply different equipment_records. The separate calling cell reads the CSV.
+## Slide 29: Interpreting the recommendation
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+State the data, split, metric, timing method and constraints. Report when the measured model fails a requirement.
 
-## Slide 53: Operations for the next example
+Tune hyperparameters using validation or cross-validation. Preserve the final test until the choice is fixed.
 
-Returning a dictionary
-series.to_dict() maps Series labels to values. equipment_data.to_dict("records") instead returns a list of row dictionaries. Choose the form required by the assignment.
+**Spoken script**
 
-Grouping rows
-equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
+A recommendation is only useful when others can check how we reached it. So we state the data we used, how we split it, which metric we scored with, how we measured the timing, and what limits we applied.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+We also report honestly when the model we measured fails a requirement. A result of None is a finding, and it belongs in the report.
 
-## Slide 54: Defining and calling a function
+When we tune hyperparameters, which are the settings we choose before training, we do that using the validation rows or using cross-validation. We never use the test rows for it.
 
-def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
-Explain these operations before running the following example.
+The test rows are kept until the choice is fixed. Then we score once on them and report the number. If we peeked earlier, that final number would no longer be an honest estimate.
 
-## Slide 55: A function called with the supplied records
+## Slide 30: A random forest averages many trees
 
-def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+Illustrative numbers. Each tree sees different rows, and the forest averages their answers.
 
-Step-by-step explanation
+**Spoken script**
 
-def mean_load_by_equipment(equipment_records):
-    equipment_data = pd.DataFrame(equipment_records)
-    mean_load_by_equipment_group = equipment_data.groupby('equipment_id')['load_pct'].mean()
-    return mean_load_by_equipment_group.to_dict()
-Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
+One tree can be jumpy. A random forest builds many trees, each trained on a different random sample of the rows, and averages their answers. In the picture, five trees give five different predictions. The forest reports their average. Averaging smooths out the jumpiness of any single tree.
 
-equipment_records = raw_data.to_dict('records')
-equipment_records stores the input list of row dictionaries supplied to the function.
+The numbers in this picture are invented to show the idea. In scikit-learn the class is called RandomForestRegressor, and it follows the same create, fit, predict pattern you already know. The setting n estimators is the number of trees. You will try it in the notebook, and you may find that on a clean straight pattern like ours the plain line is hard to beat. A forest earns its place when the pattern is curved or the inputs interact.
 
-print(mean_load_by_equipment(equipment_records))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+## Slide 31: A forest uses the same create, fit, predict pattern
 
-Verified result with the supplied CSV
-{'E1': 54.9475, 'E2': 61.326, 'E3': 53.46933333333333, 'E4': 66.854, 'E5': 48.10133333333333, 'E6': 51.54}
+RandomForestRegressor(
+    n_estimators=100,
+    random_state=17)
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+n_estimators is the number of trees. random_state fixes the random choices so everyone gets the same forest.
+Use it exactly like the other models: forest.fit(X_train, y_train), then forest.predict(X_valid).
+Score it with the same MAE on the same validation rows, and compare it with the baseline and the line.
 
-## Slide 56: Your issued task
+**Spoken script**
 
-Your issued task
-Explanation to give
-Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
+Here is the whole forest in one line. N estimators is the number of trees, and random state fixes the random choices so everyone gets the same forest. After that it behaves like every model you have used. Fit on the training rows, predict on the validation rows, and score it with the same MAE.
 
-Worked illustration / lecturer answer
-Explain record_id as the identifier of an observation, load_pct as load expressed in percent and ambient_c as temperature in degrees Celsius. The target records the known answer in training data.
+In the notebook, run it and put its error beside the baseline, the line and the tree. Fair comparison, same rows.
 
-Misconception to address
-These are synthetic examples for learning. They do not establish a calibrated physical relationship or justify operation of real equipment.
+## Slide 32: Boosting adds small trees that fix what is still wrong
 
-On this slide
+Illustrative numbers. Named here and taught in Semester 2.
+
+**Spoken script**
+
+Gradient boosting is another way to combine trees. Instead of many trees averaging at once, it adds small trees one after another. Each new tree is trained to fix what the earlier ones still get wrong. In the picture, the first stage predicts seventy when the truth is eighty, so ten is still missing. The second stage moves the prediction to seventy-seven. The third moves it to seventy-nine point one.
+
+Boosting is behind many winning entries in data competitions, which is why we name it today. These numbers are invented. We study the real thing in Semester 2, after gradient descent, which you previewed in Week 8.
+
+## Slide 33: A model card puts the evidence on one page
+
+**Spoken script**
+
+A model card is a one page note that travels with a model. It answers five questions. What decision does the model support? What rows trained and tested it? How well does it do, beside a baseline? Where should it not be trusted? Who checks it, and when?
+
+The example on the right is for the model we have built. Writing this card is excellent practice for the written evidence in your project, because it forces you to state the limits next to the score.
+
+## Slide 34: Who is affected when a model is wrong
+
+A MISSED ALERT (FALSE NEGATIVE)
+Suppose an alert fires when the predicted crusher energy demand passes a limit we choose. If a real problem goes unwarned, equipment can be damaged and people nearby can be put at risk.
+Check that the training data looks like where the model will run. A new machine may behave differently from E1 to E4.
+
+A FALSE ALARM (FALSE POSITIVE)
+Inspections are wasted, and operators learn to ignore the alerts. A model nobody trusts protects nobody.
+Choose the threshold with the people who live with the consequences.
+
+**Spoken script**
+
+Every model makes mistakes, and the mistakes land on someone. Suppose an alert fires when the predicted value passes a limit we choose. A missed alert means a real problem goes unwarned. Equipment can be damaged and people nearby can be put at risk. A false alarm wastes inspections, and operators who hear too many false alarms learn to ignore the alerts. A model nobody trusts protects nobody.
+
+Two habits follow. Choose the threshold together with the people who live with the consequences. And check that the training data looks like the place where the model will run. A new machine may behave differently from the ones we trained on, and a model trained on one fleet can fail on another.
+
+## Slide 35: Take care with data about people
+
+MACHINE DATA
+Sensor readings from a motor, a building plant or a crusher carry little personal risk.
+Data about workers, drivers or customers is different. It can identify a person.
+
+WHAT TO DO
+Uganda's Data Protection and Privacy Act, 2019 protects personal data. Collect only what you need, keep it safe, and say what it is used for.
+This is a summary for learning and is not legal advice.
+
+**Spoken script**
+
+Most of our data comes from machines, and machine data carries little personal risk. Data about workers, drivers or customers is different, because it can identify a person.
+
+Uganda's Data Protection and Privacy Act of 2019 protects personal data. The habits that follow are simple. Collect only what you need. Keep it safe. And say what it will be used for. This is a learning summary and is not legal advice, so for a real project, ask for qualified advice.
+
+## Slide 36: Your issued task
+
+01
+
 Investigate crusher energy demand.
+
+02
 
 Target units: kWh/t.
 
-These are synthetic teaching records, not measurements suitable for deployment.
+03
+
+These are synthetic teaching records for practice.
+
+04
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-## Slide 57: select_model(candidates, max_mae, max_ms)
+**Spoken script**
 
-Required interface: select_model(candidates, max_mae, max_ms)
+This slide gives your own task for the week. We are investigating crusher energy demand.
+
+The unit of the target is kWh/t. Use that unit whenever you write about errors and results.
+
+The records are synthetic teaching data. They are made for learning and are not measurements that could be used to run real equipment.
+
+Each record is one operating observation. A column such as equipment underscore id can repeat, because one machine appears in many observations. Record underscore id identifies each single observation, and the target column holds the known answer that the model learns to predict.
+
+## Slide 37: select_model(candidates, max_mae, max_ms)
 
 Candidates have name, validation_mae and latency_ms.
 
@@ -675,138 +668,201 @@ Return the selected name or None.
 
 Never use test scores for selection.
 
-Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+Keep the exact names and outputs. Check types, units and the issued brief.
 
-## Slide 58: regression_errors(actual, predicted)
+**Spoken script**
 
-Required interface: regression_errors(actual, predicted)
+The first required function is select underscore model. It takes three inputs. Candidates is a table with columns name, validation underscore mae and latency underscore ms. Max underscore mae is the error limit, and max underscore ms is the speed limit.
+
+Inside, the function keeps the rows that meet both limits, and the comparison is inclusive, so a value equal to the limit passes. Among those, it picks the one with the smallest validation underscore mae. If errors tie, the smaller latency underscore ms wins. If that ties too, the alphabetically first name wins.
+
+The function returns the chosen name, or None when no candidate qualifies.
+
+It works only with validation scores. Test scores are never used to select. Keep the function name and the output exactly as written, and check the types and units against your issued brief.
+
+## Slide 38: regression_errors(actual, predicted)
 
 Return mae and rmse, calculated over the same paired observations, with full precision.
 
-Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+Keep the exact names and outputs. Check types, units and the issued brief.
 
-## Slide 59: Written evidence
+**Spoken script**
 
-Written evidence
-Explanation to give
-Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
+The second required function is regression underscore errors. It takes two inputs. Actual holds the true values of crusher energy demand, and predicted holds what the model said for the same observations. They must line up, so the first actual value pairs with the first predicted value, and so on.
 
-Worked illustration / lecturer answer
-A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+The function returns two numbers. MAE is the mean absolute error, the average size of the mistakes. RMSE is the root mean squared error, which punishes large mistakes more heavily. Both are measured in kWh/t, as in Week 8.
 
-Misconception to address
-Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+Both must be calculated over the same paired observations. Give the results with full precision and do not round them. Keep the exact names, mae and rmse, because the grader looks for them.
 
-On this slide
+## Slide 39: Written evidence
+
+01
+
 Use the cell headed “My written evidence”.
+
+02
 
 Explain the supplied scenario in your own words.
 
+03
+
 State target units, reasons and limitations.
+
+04
 
 Submit one complete notebook containing code and written evidence.
 
-## Slide 60: Model recommendation submission
+**Spoken script**
 
-Model recommendation submission
-Explanation to give
-This slide hands over CML3113 W12. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
+Your notebook holds more than code. It also holds your written reasoning.
 
-Worked illustration / lecturer answer
-The recorded cutoff for this form is 2026-11-27T11:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+Find the cell headed My written evidence. In that cell you explain the supplied scenario in your own words. Copying the prompts or the code comments does not count, because we want to read what you understood.
 
-Misconception to address
-Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+Your explanation should state the target units, give your reasons for the choice you made, and name the limitations of the result. A limitation might be the small data size, or the fact that the data is synthetic.
 
-On this slide
+Then you submit one complete notebook that contains both your code and your written evidence.
+
+## Slide 40: Model recommendation submission
+
+01
+
 Opens: 27 Nov 2026, 08:00 Kampala
+
+02
 
 Deadline: 27 Nov 2026, 11:00 Kampala
 
+03
+
 Use your full Student Registration Number in the form.
+
+04
 
 Keep the submitted files and confirmation.
 
-## Slide 61: Project preparation
+Open W12 assignment form
 
-Project preparation
-Explanation to give
-Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
+https://docs.google.com/forms/d/e/1FAIpQLSfSPtMfaziLgaLKx4v0Lla4vYcA58pDDv_b_w33OfZsj0aVHA/viewform
 
-Worked illustration / lecturer answer
-Name a file, function or chart and the decision behind it. Match that entry to meaningful repository history. Disclose AI assistance according to the assessment policy.
+**Spoken script**
 
-Misconception to address
-Many commits do not necessarily mean substantial work, and a seed does not establish accuracy. Both are supporting evidence, not replacements for the analysis.
+This slide covers the submission for this week's assignment. Check the opening time and the deadline on the slide, and plan your work around them.
 
-On this slide
+Open the form from the link and look at the form title before uploading. Enter your full Student Registration Number exactly as it is registered.
+
+Upload your single completed notebook file. Wait until the file name appears, then press Submit.
+
+Keep the files you submitted and the confirmation you receive. A file saved only in Drive or GitHub has not been submitted until you complete the form.
+
+## Slide 41: Project preparation
+
+01
+
 Use the published machine learning project brief.
+
+02
 
 Build the evidence gradually in your project notebook.
 
+03
+
 Keep raw data, labelled charts, run instructions and individual contributions.
+
+04
 
 Published deadline: 18 Dec 2026, 08:00 Kampala
 
-## Slide 62: Week 12 quiz
+**Spoken script**
 
-Week 12 quiz
-Explanation to give
-This is the CML3113 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3113 when ready and read the logged closing time.
+Your machine learning project starts now, and the work builds up gradually.
 
-Worked illustration / lecturer answer
-Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+Use the published project brief as your guide. Keep a project notebook, and add evidence to it as you go. Do it in small steps over the weeks, so that nothing has to be rebuilt at the end.
 
-Misconception to address
-Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+Keep the raw data unchanged, your labelled charts, the instructions for running your work, and a record of what each team member did. For the contributions, name a specific file, function or chart and the decision behind it.
 
-On this slide
+Check the project deadline shown on the slide and plan backwards from it.
+
+## Slide 42: Words from today
+
+**Spoken script**
+
+Six words to keep. A candidate is a model being considered. A constraint is a limit it must meet. A random forest averages many trees. Boosting adds small trees that fix earlier mistakes, and we study it in Semester 2. A model card records purpose, data, scores and limits on one page. A false negative is a missed alert, usually the costly mistake. In the assignment you apply the constraints and choose a model, and you explain the choice in your own words.
+
+## Slide 43: Week 12 quiz
+
+01
+
 Answer individually after the lecturer activates the quiz.
+
+02
 
 Available for 24 hours from activation.
 
+03
+
 Use your Student Registration Number and registered account.
+
+04
 
 Check the announced quiz closing time.
 
-## Slide 63: Revision and submission checklist
+Open this week’s quiz
 
-Revision and submission checklist
-Explanation to give
-A recommendation must satisfy the practical limits before it wins on a ranking metric. Explain eligibility and tie-breaking separately.
+https://forms.gle/XFcLpe6ugzvnoL3s6
 
-Worked illustration / lecturer answer
-A model at 4 error units and 12 ms fails a 10 ms limit even if its error is attractive. Test exact boundaries before ranking eligible candidate_models.
+**Spoken script**
 
-Misconception to address
-Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+The Week 12 quiz is taken individually. It opens when the lecturer activates it, and once activated it stays open for 24 hours.
 
-On this slide
-You can justify a valid candidate with evidence and a stated limitation.
+Use the link on the slide to reach the quiz form. Sign in with your registered account, and enter your Student Registration Number in the form.
 
-Save your work and check the required submission files.
+Check the closing time that is announced after activation, so you do not miss it. The quiz may take only a few minutes to answer, but the form stays available for the whole 24 hours.
 
-## Slide 64: Optional revision video
+## Slide 44: Revision and submission checklist
 
-Optional revision video
-Explanation to give
-Give the viewing question before playing the excerpt: Why evaluate using observations not used to fit that particular model?
+Explain to a classmate how you would choose between two models, and name one limit you would write on a model card.
 
-Worked illustration / lecturer answer
-Use the adjacent worked example as the explanation if the video cannot load. Pause after the relevant example and connect its terms to the names and units already used in this lesson. Preview the displayed link and excerpt before class.
+Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
 
-Misconception to address
-The video is supporting revision, not a replacement for defining the symbols or a requirement to watch a full tutorial during limited class time.
+Point to your evidence. Save your work.
 
-On this slide
+**Spoken script**
+
+Before we finish, here is a short check to do on your own.
+
+Explain to a classmate how you would choose between two models. Start from the limits, then the ranking. Then name one limit you would write on a model card, such as the data it was trained on or where it may not work well.
+
+Before submitting, remember two habits. Keep the raw data unchanged. Then restart the notebook and run all cells from the top, so you know the whole notebook runs cleanly.
+
+As you work, point to your evidence for each claim, and save your work.
+
+## Slide 45: Optional revision video
+
+01
+
 For revision after class.
+
+02
 
 StatQuest with Josh Starmer
 Machine Learning Fundamentals Cross Validation
 
+03
+
 Opening up to 04:00, optional preview-selected excerpt
+
+04
 
 Listening question: Why evaluate using observations not used to fit that particular model?
 
-Reference / existing resource
+Open explainer video
+
 https://www.youtube.com/watch?v=fSytzGwwBVw
+
+**Spoken script**
+
+This video is optional and is meant for revision after class. It comes from StatQuest with Josh Starmer and is called Machine Learning Fundamentals, Cross Validation.
+
+Watch the opening, up to the four minute mark. Use the link on the slide.
+
+While you watch, keep one question in mind. Why do we evaluate a model on observations that were not used to fit that particular model? Try to answer it in your own words after the video ends.

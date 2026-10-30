@@ -1,628 +1,656 @@
 # CML3111 Week 11
 
+Each slide shows its text, then the spoken script the lecturer reads aloud.
+
 ## Slide 1: Creating and testing a useful feature
 
-Creating and testing a useful feature
-Explanation to give
-Explain why a calculated input may help and test the idea under an unchanged validation protocol.
-
-Worked illustration / lecturer answer
-If validation MAE falls from 5 to 4 after adding one feature, the reduction is 1 target unit, or 20%. A comparison on a different split cannot isolate that change.
-
-Misconception to address
-Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
-
-On this slide
 Communications, Electrical, Mechatronics and Robotics Engineering
+
+Friday 20 November 2026
+Friday 11:00–14:00, Room 115
+
+**Spoken script**
+
+Welcome to Week 11. This week we build new input columns from the columns we already have, and we test whether each new column makes our predictions better.
+
+We also learn to read which input moves a prediction more. By the end of the session you will be able to add a column, compare two models fairly, and decide from the numbers whether the column stays.
 
 ## Slide 2: Today’s learning
 
-Core practice precedes the assessment brief. Give the class one consistent data-handling approach: pandas for tables, scikit-learn for models, matplotlib for figures.
+WHAT WE WILL DO
+Build new input columns from the ones we have, test whether each one helps, and read which input moves a prediction more. Learn the words feature engineering, interaction and ablation.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+HOW YOU WILL SHOW IT
+You can build a derived feature, compare models with and without it on the same rows, and decide from the evidence whether to keep it.
 
-## Slide 3: The supplied file
+**Spoken script**
 
-Uploading a notebook does not upload its modelling_data. Check the exact filename and column headings. Each cohort has its own data, so numerical results can differ.
+Last week we learned how to trust a score. This week we try to improve the model by giving it better inputs. We will build new columns from the ones we have, test whether each one really helps, and learn to read which input moves a prediction more. By the end you can build a derived feature, compare models with and without it on the same rows, and decide from the evidence whether to keep it.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 3: Words for today: making inputs more useful
 
-## Slide 4: Operations for the next example
+**Spoken script**
 
-Import and short names
-import pandas as pd loads pandas and gives it the short name pd. pd.read_csv refers to a function in that library.
+Six words for today. Feature engineering means building new input columns from the columns you already have. A derived feature is one column calculated from others, such as load divided by one hundred. An interaction multiplies two inputs together, for example load times ambient temperature. Scaling puts inputs on a common ruler, and you used it in Week 9. Ablation means adding or removing one piece and comparing the scores. Available at prediction time is the rule that every input must be something you will really have when the model is used.
 
-Reading a CSV
-pd.read_csv("practice_filename.csv") reads the named file into a DataFrame: a table with labelled columns and row labels. The file must exist in the working folder.
+Today is where your engineering knowledge beats a better programmer. You know which combinations of measurements mean something physically.
 
-Counting dimensions
-equipment_data.shape gives (number of rows, number of columns). shape is a property, so it has no parentheses.
+## Slide 4: The supplied file
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Extract this week’s student ZIP. Upload engineering_data.csv into Colab using the Files panel, or keep them beside the notebook locally.
 
-## Slide 5: Operations for the next example
+The examples below read this file. Run the cells in slide order. Keep the original CSV unchanged.
 
-Column data types
-equipment_data.dtypes reports each column’s stored type. int64 means integers, float64 means decimal numbers, and object often contains text. Numeric blanks commonly appear as NaN.
+**Spoken script**
 
-A preview of rows
-equipment_data.head() returns the first five rows. It leaves the table unchanged. A preview is not the entire dataset.
+Every example today reads one file called engineering_data dot csv. A CSV file is a table saved as plain text, one row per line, with commas between the columns.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Extract this week's student ZIP folder first. If you work in Colab, open the Files panel and upload engineering_data dot csv there. If you work on your own computer, keep the file in the same folder as your notebook.
 
-## Slide 6: Reading the code syntax
+The notebook and the data file travel separately, so uploading the notebook does not upload the data. Check that the filename and the column headings match what the code expects.
 
-= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
-Explain these operations before running the following example.
+Run the cells in the order the slides show them, because each cell uses names created by the one before. We never edit the original CSV. It stays as the untouched record, and every change we make happens on copies inside Python.
 
-## Slide 7: Loading the supplied observations
+## Slide 5: Loading the supplied observations
 
-= assigns a value to a name; == compares values. Parentheses pass inputs or continue an expression across lines. print displays a value; len counts entries. int and float convert to integer and decimal numeric values.
+raw_data: original CSV table; keep it unchanged so the analysis can be checked.
 
-Step-by-step explanation
+Run the cell and read the output below it.
 
+```python
 import pandas as pd
-Load the named tools. Importing a model class does not train a model.
-
-raw_data = pd.read_csv('engineering_data.csv')
-raw_data stores original CSV table; keep it unchanged so the analysis can be checked.
-
+raw_data = pd.read_csv("engineering_data.csv")
 print(raw_data.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(raw_data.shape)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(raw_data.dtypes)
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-record_id equipment_id  load_pct  ambient_c  target
-0          1           E1     59.15      31.71  76.847
-1          2           E2     77.46      29.97  87.047
-2          3           E3     69.60      19.87  71.256
-3          4           E4     75.98      22.29     NaN
-4          5           E5     57.62      23.40  67.034
-(91, 5)
-record_id         int64
-equipment_id     object
-load_pct        float64
-ambient_c       float64
-target          float64
-dtype: object
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+We start by loading the data. The first line imports pandas and gives it the short name pd, as we did in earlier weeks.
 
-## Slide 8: Rows used for modelling
+The second line calls pd dot read_csv with the filename. It reads the file and returns a DataFrame, which is a table, and we store it under the name raw_data. This table is the original, so we keep it unchanged and can always return to it when we want to check our work.
 
-This follows the issued data rules. Filtering observed targets is different from estimating missing targets. Deduplicate before filtering, so an invalid first occurrence is not replaced by its later duplicate.
+The next three lines print things about the table. Dot head shows the first five rows, so we can see the column names and a few values. Dot shape gives two numbers, the count of rows and then the count of columns. Dot dtypes lists the type of each column, for example whole numbers, decimals or text.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Look for three things. The column names should match the brief. The row count should look reasonable. And the numeric columns should show as numbers and not as text, because text cannot go into a model.
 
-## Slide 9: Operations for the next example
+## Slide 6: Preparing the supplied modelling rows: step 1
 
-Reading chained operations
-Read a chain from left to right. In equipment_data["target"].mean(), select the target Series first, then calculate its mean. Each step uses the previous step’s result.
+modelling_data: copied observations after duplicate and validity checks.
 
-A separate working table
-equipment_data.copy() creates a working copy. Assigning columns on this copy preserves the source table, so you can compare before and after.
+Run the cell and read the output below it.
 
-Finding recorded cells
-notna() returns True where a value is present. Use it to retain observations with a recorded target before modelling.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 10: Operations for the next example
-
-An inclusive range
-series.between(0, 100) is True for values from 0 through 100, including both limits. The resulting mask helps select valid rows.
-
-Selecting columns
-equipment_data["column"] returns one labelled column, a Series. equipment_data[["a", "b"]] returns a DataFrame containing those named columns in that order.
-
-Selecting rows with a mask
-A column comparison produces one True or False per row. equipment_data[mask] keeps the True rows. & combines masks: both conditions must hold. Parenthesise each comparison.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 11: Operations for the next example
-
-Keeping the first observation
-equipment_data.drop_duplicates("record_id") returns rows with the first occurrence of each ID, preserving their order. It does not overwrite the source unless you assign the result.
-
-Membership in a group list
-series.isin(["E1", "E2"]) returns True for entries matching either listed label. equipment_data[that_mask] keeps all observations belonging to those groups.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 12: Prepare valid observations
-
-First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
-
-## Slide 13: Preparing the supplied modelling rows — step 1
-
-First keep the first record ID. Then ask two questions for each remaining row: is the target recorded, and is load between 0 and 100? Only a row passing both checks stays. Missing inputs are handled later using training data only.
-
-Step-by-step explanation
-
-modelling_data = raw_data.drop_duplicates('record_id').copy()
-modelling_data stores copied observations after duplicate and validity checks.
-
-target_is_recorded = modelling_data['target'].notna()
-target_is_recorded stores the result of the displayed expression.
-
-load_is_valid = modelling_data['load_pct'].between(0, 100)
-load_is_valid stores the result of the displayed expression.
-
+```python
+modelling_data = raw_data.drop_duplicates("record_id").copy()
+target_is_recorded = modelling_data["target"].notna()
+load_is_valid = modelling_data["load_pct"].between(0, 100)
 rows_to_keep = target_is_recorded & load_is_valid
-rows_to_keep stores the result of the displayed expression.
-
 print(target_is_recorded.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 print(load_is_valid.head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
 modelling_data = modelling_data[rows_to_keep].copy()
-modelling_data stores copied observations after duplicate and validity checks.
-
 print(len(raw_data), len(modelling_data))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-0     True
-1     True
-2     True
-3    False
-4     True
-Name: target, dtype: bool
-0    True
-1    True
-2    True
-3    True
-4    True
-Name: load_pct, dtype: bool
-91 88
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Now we clean the table before modelling. We keep only rows we can trust.
 
-## Slide 14: Choose groups before choosing rows
+The first line calls drop_duplicates on record_id. If the same record appears twice, only the first copy is kept. Dot copy then makes an independent table called modelling_data, so changes to it never touch raw_data.
 
-isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+The next line asks of every row, is the target recorded. Dot notna gives True where a value is present and False where it is missing. A row with no known answer cannot teach or test a model.
 
-## Slide 15: Preparing the supplied modelling rows — step 2
+The line after that uses dot between with zero and one hundred. It gives True when load_pct is a valid percentage between those limits.
 
-isin(list_of_labels) answers True when a row’s equipment ID appears in the list. Here E1–E4 supply training rows, E5 validation rows and E6 test rows. The groups stay separate so one equipment group cannot appear on both sides.
+The and symbol, the ampersand, combines the two checks. A row is kept only when both are True.
 
-Step-by-step explanation
+We print the first few True and False values to see the checks working, and look for any False. Then we keep the passing rows and print two lengths. The second length is the count after cleaning, and it can only be the same or smaller than the first. The gap shows how many rows we removed.
 
-is_training_equipment = modelling_data['equipment_id'].isin(['E1', 'E2', 'E3', 'E4'])
-is_training_equipment stores the result of the displayed expression.
+## Slide 7: Choose groups before choosing rows
 
-is_validation_equipment = modelling_data['equipment_id'].isin(['E5'])
-is_validation_equipment stores the result of the displayed expression.
+isin(list_of_labels) answers True when a row’s equipment ID appears in the list.
 
-is_test_equipment = modelling_data['equipment_id'].isin(['E6'])
-is_test_equipment stores the result of the displayed expression.
+Here E1–E4 supply training rows, E5 validation rows and E6 test rows.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+The groups stay separate so one equipment group cannot appear on both sides.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+**Spoken script**
 
-## Slide 16: Preparing the supplied modelling rows — step 3
+Before we pick rows, we decide which equipment goes where. The method isin takes a list of labels and answers True for every row whose equipment ID appears in that list, and False for the others.
+
+We use it to split by equipment. Equipment E1 to E4 supply the training rows, E5 supplies the validation rows, and E6 supplies the test rows.
+
+The groups stay separate for a reason we met in Week 10. If one machine appeared on both sides, the model would be checked on a machine it had already studied, and the score would look better than it deserves. Keeping each machine on one side only means validation and test measure how the model copes with equipment it has never seen.
+
+## Slide 8: Preparing the supplied modelling rows: step 2
+
+modelling_data: copied observations after duplicate and validity checks.
+
+Run the cell and read the output below it.
+
+```python
+is_training_equipment = modelling_data["equipment_id"].isin(
+    ["E1", "E2", "E3", "E4"]
+)
+is_validation_equipment = modelling_data["equipment_id"].isin(
+    ["E5"]
+)
+is_test_equipment = modelling_data["equipment_id"].isin(["E6"])
+```
+
+**Spoken script**
+
+This cell builds three True and False columns, one for each group of equipment.
+
+The first line takes the equipment_id column of modelling_data and applies isin with the list E1, E2, E3 and E4. It stores the answers as is_training_equipment. A row is True when its machine is one of those four.
+
+The second line does the same for the list holding only E5, and calls the result is_validation_equipment.
+
+The third line does the same for E6 and calls the result is_test_equipment.
+
+The lists are written over several lines only to make them easy to read. Python treats the brackets as one expression.
+
+This cell prints nothing. It only stores three sets of answers, and the next cell uses them to pick the actual rows.
+
+## Slide 9: Preparing the supplied modelling rows: step 3
 
 training_data: rows used to learn model settings; only these rows may determine imputation values.
 
 validation_data: separate rows used to compare models without fitting on them.
 
-## Slide 17: Preparing the supplied modelling rows — step 3
+**Spoken script**
 
-training_data: rows used to learn model settings; only these rows may determine imputation values.
+Two of the tables we are about to create need a clear meaning before we build them.
 
-validation_data: separate rows used to compare models without fitting on them.
+training_data holds the rows the model learns from. Whatever the model learns, including the medians that the imputer uses to fill missing values, comes only from these rows.
 
-Step-by-step explanation
+validation_data holds separate rows. We use them to compare models, so they are never used for fitting. They act like an exam the model has not seen the questions for.
 
+A third table, the test data, stays aside until the final check.
+
+## Slide 10: Preparing the supplied modelling rows: step 3
+
+modelling_data: copied observations after duplicate and validity checks.
+
+Run the cell and read the output below it.
+
+```python
 training_data = modelling_data[is_training_equipment].copy()
-training_data stores rows used to learn model settings; only these rows may determine imputation values.
-
 validation_data = modelling_data[is_validation_equipment].copy()
-validation_data stores separate rows used to compare models without fitting on them.
-
 test_data = modelling_data[is_test_equipment].copy()
-test_data stores held-out rows kept aside until the final evaluation.
-
-feature_columns = ['load_pct', 'ambient_c']
-feature_columns stores the list of input column names supplied to the model.
-
+feature_columns = ["load_pct", "ambient_c"]
 print(len(training_data), len(validation_data), len(test_data))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-58 15 15
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Here we turn the three True and False columns into three tables.
 
-## Slide 18: A physical relationship can form a feature
+The first line puts the mask is_training_equipment inside square brackets after modelling_data. Python keeps the rows where the mask is True. Dot copy makes the result its own table, called training_data. The next two lines do the same for validation_data and test_data.
 
-A physical relationship can form a feature
-Explanation to give
-A derived feature is a new input calculated from known inputs. Explain its physical or operational reason and its units before presenting it to a linear_model. An interaction allows one input's effect to depend on another.
+Then we write feature_columns, a list holding the two input names, load_pct and ambient_c. These are the inputs our model will use first.
 
-Worked illustration / lecturer answer
-For load_pct 50 and ambient_c 30, the course interaction load_pct * ambient_c is 1500. Separately, load_pct / 100 gives the fraction 0.5. These are different derived quantities. The interaction is a hypothesis to test, not a measured law.
+The last line prints three lengths, the number of rows in training, in validation and in test. Check that none of them is zero, and that training has the most rows. If one is zero, the equipment labels or the masks above are wrong.
 
-Misconception to address
-A plausible physical story does not guarantee an improvement. Do not use the target or information that would only become available after the prediction.
+## Slide 11: A physical relationship can form a feature
 
-On this slide
-Explain each quantity and the unit of the result.
+Explain each quantity in the relationship and its unit before reading the pattern.
 
-## Slide 19: Derived features from existing inputs
+**Spoken script**
 
-An interaction has combined units. It is not a new measured physical quantity. Use information available at prediction time.
+A derived feature is a new input column that we calculate from inputs we already have. We build one when we have a reason to think it will help.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Take load_pct divided by 100. It turns a percentage into a fraction between zero and one. The information is the same, written in different units.
 
-## Slide 20: Operations for the next example
+Take load_pct times ambient_c. This is an interaction, which means the effect of one input depends on the other. A hot room together with a heavy load may matter more than either one alone. The units of this new column are percent times degrees Celsius, so we always say what a derived column measures before we use it.
 
-Adding or replacing a column
-equipment_data["name"] = values assigns that column. An array follows row order. A Series aligns by row label, so keep labels paired with the intended observations.
+An interaction is an idea we test, and it is not a measured law. A sensible story does not guarantee an improvement.
 
-Column arithmetic
-Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
+And we only use values we would have at the moment we make a prediction. We never build a feature from the target.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+## Slide 12: A straight line misses a curve, and a new feature repairs it
 
-## Slide 21: Defining and calling a function
+Invented data. Adding x squared as a feature lets the same linear model follow the curve.
+
+**Spoken script**
+
+Why build new features at all? Here is an invented example. The dots follow a curve. On the left, a straight line through x misses the curve at both ends, and its MAE on these points is 2.41. On the right we gave the same linear model one extra input, x squared. That column is a derived feature. Now the fitted line bends with the dots and the MAE on the same points drops to 0.77.
+
+The model type did not change. We changed what the model could see. That is feature engineering. In engineering data the useful new columns are often physical: a ratio, a product, a difference, a rate.
+
+## Slide 13: Derived features from existing inputs
+
+load_pct / 100 gives load_fraction. Multiplying load_pct by ambient_c gives the load_ambient interaction.
+
+equipment_data["new_name"] = expression adds a column. Apply the same formulas to training and validation rows, without changing raw data.
+
+**Spoken script**
+
+We add two derived columns to our table.
+
+The first is load_fraction. We take load_pct and divide it by 100, so a load of fifty percent becomes zero point five.
+
+The second is load_ambient. We multiply load_pct by ambient_c. This is the interaction from the last slide.
+
+In pandas we add a column by writing the table name, then the new column name in square brackets and quotes, then an equals sign, then the expression. If the name is new, pandas creates the column. If it exists, pandas replaces it.
+
+Two rules matter here. We use the same formulas on the training rows and the validation rows, so the model sees the same kind of input in both. And we never change raw_data. We calculate on a copy.
+
+## Slide 14: Operations for the next example
+
+Adding or replacing a column: equipment_data["name"] = values assigns that column. An array follows row order. A Series aligns by row label, so keep labels paired with the intended observations.
+
+Column arithmetic: Arithmetic on columns calculates one result per row. Series align by row label. Divide only where the denominator is valid and keep actual and predicted observations paired.
+
+**Spoken script**
+
+Three small operations appear in the next example, and we check each one first.
+
+The first is adding or replacing a column. Writing a table, a column name in brackets, an equals sign and some values stores those values as that column. If the values are a plain array, they go in row order. If they are a Series, pandas matches them to rows by the row label, so the labels must belong to the right observations.
+
+The second is column arithmetic. When we divide or multiply columns, pandas does the calculation on every row and returns one result per row. When two Series are combined, pandas again lines them up by row label.
+
+Divide only where the bottom number is valid. Dividing by one hundred is always fine, but dividing by a column that could hold zero would not be. And keep each actual value paired with its own predicted value.
+
+## Slide 15: Defining and calling a function
 
 def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
-Explain these operations before running the following example.
 
-## Slide 22: Features from the supplied load and ambient columns (1/2)
+**Spoken script**
 
-def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+A function is a block of code with a name that we can run again and again.
 
-Step-by-step explanation
+The word def starts the definition. After it comes the function name and, in brackets, the parameters. A parameter is a name for an input that the function will receive when someone calls it.
 
+The indented lines below are the body. They do nothing when we define the function. They run each time we call it.
+
+The word return sends a result back to whoever called the function. The word print is different. It only shows something on the screen, and the value is lost afterwards unless we return it too.
+
+In the next example we write one function that adds our new columns. Then we call it once on the training table and once on the validation table, so both get exactly the same calculation.
+
+## Slide 16: Features from the supplied load and ambient columns (1/2)
+
+Use the inputs and operations defined in the preceding slides.
+
+Continue in the same code cell.
+
+```python
 def add_features(equipment_data):
     extended_data = equipment_data.copy()
-    extended_data['load_fraction'] = extended_data['load_pct'] / 100
-    extended_data['load_ambient'] = extended_data['load_pct'] * extended_data['ambient_c']
+    extended_data["load_fraction"] = (
+        extended_data["load_pct"] / 100
+    )
+    extended_data["load_ambient"] = (
+        extended_data["load_pct"] * extended_data["ambient_c"]
+    )
+```
+
+**Spoken script**
+
+We define a function called add_features. It takes one input, a table, which we call equipment_data inside the function.
+
+The first line of the body makes a copy of that table and names it extended_data. Everything we change happens on the copy, so the table that was passed in stays as it was.
+
+The next statement creates a column called load_fraction. It takes the load_pct column and divides it by 100. Every row gets its own answer.
+
+The statement after it creates a column called load_ambient. It multiplies the load_pct column by the ambient_c column, row by row. That is our interaction feature.
+
+The long expressions are split over several lines with brackets just to fit the slide. The code continues in the same cell on the next slide, where we send the finished table back.
+
+## Slide 17: Features from the supplied load and ambient columns (2/2)
+
+Use the inputs and operations defined in the preceding slides.
+
+Run the cell and read the output below it.
+
+```python
     return extended_data
-Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
-
 training_features = add_features(training_data)
-training_features stores training table containing the engineered feature columns.
-
 validation_features = add_features(validation_data)
-validation_features stores validation table with the same feature calculations applied.
+print(
+    training_features[
+        ["load_pct", "load_fraction", "load_ambient"]
+    ].head()
+)
+```
 
-print(training_features[['load_pct', 'load_fraction', 'load_ambient']].head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+**Spoken script**
 
-Verified result with the supplied CSV
-load_pct  load_fraction  load_ambient
-0     59.15         0.5915     1875.6465
-1     77.46         0.7746     2321.4762
-2     69.60         0.6960     1382.9520
-6     24.66         0.2466      784.4346
-7     72.92         0.7292     2005.3000
+The cell continues with the last line of the function, return extended_data. This hands the table with the two new columns back to the caller.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Then we use the function. Calling add_features on training_data gives training_features. Calling it on validation_data gives validation_features. Both tables get the same two formulas, so the training and validation inputs are built the same way.
 
-## Slide 23: Features from the supplied load and ambient columns (2/2)
+The final statement prints the first five rows of three columns, load_pct, load_fraction and load_ambient. We use it to check our work. Look at one row and test it in your head. The load_fraction value should equal the load percentage divided by one hundred. The load_ambient value should equal the load percentage multiplied by the ambient temperature. If either check fails, the formula has a mistake.
 
-def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
+## Slide 18: Which input moves the prediction more?
 
-Step-by-step explanation
+effect of one spread = slope × standard deviation
+Slopes come from the linear model fitted on the training rows. Spreads are the population standard deviation of the same rows, as StandardScaler calculates it.
 
-def add_features(equipment_data):
-    extended_data = equipment_data.copy()
-    extended_data['load_fraction'] = extended_data['load_pct'] / 100
-    extended_data['load_ambient'] = extended_data['load_pct'] * extended_data['ambient_c']
-    return extended_data
-Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
+**Spoken script**
 
-training_features = add_features(training_data)
-training_features stores training table containing the engineered feature columns.
+The two slopes in our model are in different units, so comparing them directly is unfair. A slope of 1.05 for ambient temperature looks bigger than 0.69 for load, yet the load swings over a far wider range.
 
-validation_features = add_features(validation_data)
-validation_features stores validation table with the same feature calculations applied.
+A fair comparison multiplies each slope by the typical spread of its input, the standard deviation. The result says how much the prediction changes when the input moves by one typical amount.
 
-print(training_features[['load_pct', 'load_fraction', 'load_ambient']].head())
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+Here, one typical swing of load changes the prediction by 15.8 deg C, and one typical swing of ambient temperature changes it by 4.8 deg C. Load matters more. This is how scaling helps us read a model, as well as train it.
 
-Verified result with the supplied CSV
-load_pct  load_fraction  load_ambient
-0     59.15         0.5915     1875.6465
-1     77.46         0.7746     2321.4762
-2     69.60         0.6960     1382.9520
-6     24.66         0.2466      784.4346
-7     72.92         0.7292     2005.3000
+## Slide 19: Ablation compares the same observations
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Fit one linear model using load_pct and ambient_c. Fit a second using those columns plus load_ambient.
 
-## Slide 24: Ablation compares the same observations
+Compare both on the same validation targets. Improvement equals baseline MAE minus extended MAE.
 
-A positive improvement means lower error for the extended linear_model. The four-column make_features output also includes load_fraction, but the ablation comparison uses the three specified extended columns.
+**Spoken script**
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Ablation is a fair test of one feature. We take a model, remove the feature we want to judge, and compare the two versions.
 
-## Slide 25: Operations for the next example
+Our first model, the base model, is a linear regression using load_pct and ambient_c. The second model, the extended model, is a linear regression using those two columns plus load_ambient. Only one thing differs between them.
 
-Rounded display
-series.round(3) returns values rounded to three decimal places. Python round(number, 3) rounds one number. Keep unrounded calculations for returned assessment answers.
+Both models are scored on the same validation targets. The score is the MAE we know from Week 8, the average size of the miss in deg C.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Improvement equals the base MAE minus the extended MAE. Lower error is better, so a positive improvement means the extra feature helped. A value near zero means it made almost no difference, and a negative value means the extra feature made predictions worse.
 
-## Slide 26: A sequence of model steps / Comparing two prediction sets
+## Slide 20: Change one feature set at a time
 
-make_pipeline(imputer, estimator) links preprocessing and prediction. fit learns the imputer and estimator on training rows. predict applies the learned steps to new rows in the same order.
+The base inputs are load and ambient temperature.
 
-mean_absolute_error(actual, predicted) averages the absolute differences of paired values. Lower is better. Both lists must have the same length and row order; the answer has the target’s unit.
-Explain these operations before running the following example.
+The extended inputs also include their product.
 
-## Slide 27: Filling model inputs / Creating linear regression
+Train separate pipelines on the same rows and compare on the same validation rows.
 
-SimpleImputer(strategy="median") learns a median for each input column during fit. It uses those training medians to fill gaps later. Never learn replacement values from validation or test rows.
+This isolates the effect of adding the feature.
 
-LinearRegression() creates an unfitted model. It will learn coefficients and an intercept from training examples. Creating it alone does not train it or make predictions.
-Explain these operations before running the following example.
+**Spoken script**
 
-## Slide 28: Learning from training examples / Predicting new targets
+To know what a feature does, we change one thing and keep everything else the same.
 
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+The base inputs are the load and the ambient temperature. The extended inputs are those same two plus their product.
 
-model.predict(input_table) returns one prediction per input row. Use the same feature columns and order as during training. Prediction uses learned settings; it does not refit the model.
-Explain these operations before running the following example.
+We train two separate pipelines on exactly the same training rows. A pipeline is a chain of steps that run in order, here an imputer followed by a regression. Then we compare them on exactly the same validation rows.
 
-## Slide 29: Change one feature set at a time
+Because the rows, the model type and the scoring are all identical, any change in the error can be traced to the extra feature. If we also changed the rows or the split, we could not say what caused the difference.
 
-The base inputs are load and ambient temperature. The extended inputs also include their product. Train separate pipelines on the same rows and compare on the same validation rows. This isolates the effect of adding the feature.
+## Slide 21: Paired ablation using the supplied CSV: step 1
 
-## Slide 30: Paired ablation using the supplied CSV — step 1
+base_feature_columns: input columns for the simpler comparison pipeline.
 
-The base inputs are load and ambient temperature. The extended inputs also include their product. Train separate pipelines on the same rows and compare on the same validation rows. This isolates the effect of adding the feature.
+Run the cell and read the output below it.
 
-Step-by-step explanation
-
+```python
 from sklearn.impute import SimpleImputer
-Load the named tools. Importing a model class does not train a model.
-
 from sklearn.pipeline import make_pipeline
-Load the named tools. Importing a model class does not train a model.
-
 from sklearn.linear_model import LinearRegression
-Load the named tools. Importing a model class does not train a model.
-
 from sklearn.metrics import mean_absolute_error
-Load the named tools. Importing a model class does not train a model.
+base_feature_columns = ["load_pct", "ambient_c"]
+extended_feature_columns = base_feature_columns + ["load_ambient"]
+```
 
-base_feature_columns = ['load_pct', 'ambient_c']
-base_feature_columns stores input columns for the simpler comparison pipeline.
+**Spoken script**
 
-extended_feature_columns = base_feature_columns + ['load_ambient']
-extended_feature_columns stores base columns plus the interaction feature being tested.
+This cell prepares the tools and the two lists of input columns. It prints nothing.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+The first line imports SimpleImputer, which fills missing values using a rule we choose. The second imports make_pipeline, which chains steps together. The third imports LinearRegression, the straight-line model from Week 8. The fourth imports mean_absolute_error, the function that calculates MAE. Importing only makes these tools available. No model is trained yet.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+Then we write base_feature_columns, a list with load_pct and ambient_c. These are the inputs of the simpler model.
 
-## Slide 31: Fit both alternatives fairly
+The last line makes extended_feature_columns by taking the base list and adding a list that contains load_ambient. The plus sign joins the two lists into one longer list. So the extended list holds the base inputs and the feature we are testing.
 
-Each pipeline learns its own training medians and regression settings. The base model sees only base columns; the extended model sees the additional feature. Neither uses validation targets while learning.
+## Slide 22: Fit both alternatives fairly
 
-## Slide 32: Paired ablation using the supplied CSV — step 2 (1/2)
+Each pipeline learns its own training medians and regression settings.
 
-Each pipeline learns its own training medians and regression settings. The base model sees only base columns; the extended model sees the additional feature. Neither uses validation targets while learning.
+The base model sees only base columns; the extended model sees the additional feature.
 
-Step-by-step explanation
+Neither uses validation targets while learning.
 
-base_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
-base_pipeline stores imputer and regression model using only the base columns.
+**Spoken script**
 
-extended_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
-extended_pipeline stores a separate imputer and regression model using the extended columns.
+Each pipeline learns by itself. The imputer inside a pipeline works out its own medians from the training rows it receives, and the regression inside learns its own settings from the same rows.
 
-base_pipeline.fit(training_features[base_feature_columns], training_data['target'])
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+The base pipeline is shown only the base columns. The extended pipeline is shown the extra feature as well.
 
-extended_pipeline.fit(training_features[extended_feature_columns], training_data['target'])
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+Neither pipeline looks at the validation targets while it learns. Those answers are kept hidden until we score the predictions. If a model could see them in advance, we would have the leakage problem from Week 10, and the validation score would no longer tell us anything honest.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+Fitting each model on the same training rows gives both of them the same starting point.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+## Slide 23: Paired ablation using the supplied CSV: step 2 (1/2)
 
-## Slide 33: Paired ablation using the supplied CSV — step 2 (2/2)
+base_feature_columns: input columns for the simpler comparison pipeline.
 
-Each pipeline learns its own training medians and regression settings. The base model sees only base columns; the extended model sees the additional feature. Neither uses validation targets while learning.
+Continue in the same code cell.
 
-Step-by-step explanation
+```python
+base_pipeline = make_pipeline(
+    SimpleImputer(strategy="median"), LinearRegression()
+)
+extended_pipeline = make_pipeline(
+    SimpleImputer(strategy="median"), LinearRegression()
+)
+```
 
-base_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
-base_pipeline stores imputer and regression model using only the base columns.
+**Spoken script**
 
-extended_pipeline = make_pipeline(SimpleImputer(strategy='median'), LinearRegression())
-extended_pipeline stores a separate imputer and regression model using the extended columns.
+We now build the two pipelines. Building a pipeline does not train it. It only describes the steps.
 
-base_pipeline.fit(training_features[base_feature_columns], training_data['target'])
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+The function make_pipeline takes the steps in order. The first step is SimpleImputer with strategy set to the word median. It fills any missing input with the median of its column, and the median is taken from the training rows when we fit. The second step is LinearRegression, which fits the straight-line model.
 
-extended_pipeline.fit(training_features[extended_feature_columns], training_data['target'])
-model.fit(input_table, observed_targets) learns model settings from paired rows. The two inputs must describe the same observations in the same order. Call fit before predict.
+We save the first pipeline as base_pipeline. Then we write the same recipe again and save it as extended_pipeline.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+We need two pipelines because they will learn different things. One will see two input columns and the other will see three. The code that makes them is identical, and the difference arrives when we give each one its columns to fit.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+## Slide 24: Paired ablation using the supplied CSV: step 2 (2/2)
 
-## Slide 34: Compare errors on the same rows
+base_feature_columns: input columns for the simpler comparison pipeline.
 
-Predict both alternatives on matching validation rows. mean_absolute_error compares each prediction with its observed target. Base MAE minus extended MAE is positive when the extra feature helped on this validation set.
+Run the cell and read the output below it.
 
-## Slide 35: Paired ablation using the supplied CSV — step 3
+```python
+base_pipeline.fit(
+    training_features[base_feature_columns],
+    training_data["target"],
+)
+extended_pipeline.fit(
+    training_features[extended_feature_columns],
+    training_data["target"],
+)
+```
 
-Predict both alternatives on matching validation rows. mean_absolute_error compares each prediction with its observed target. Base MAE minus extended MAE is positive when the extra feature helped on this validation set.
+**Spoken script**
 
-Step-by-step explanation
+Training comes next. We train both pipelines. The method dot fit takes two inputs, a table of input columns and the matching known answers. It learns from them, and the rows of the two inputs must describe the same observations in the same order.
 
-base_predictions = base_pipeline.predict(validation_features[base_feature_columns])
-base_predictions stores validation predictions from the base pipeline.
+For the base pipeline we pass the training rows, restricted to base_feature_columns, and the training target column. For the extended pipeline we pass the training rows with extended_feature_columns, and the same target column.
 
-base_absolute_error = mean_absolute_error(validation_data['target'], base_predictions)
-base_absolute_error stores validation mean absolute error for the base pipeline.
+So the only difference between the two calls is the list of columns. The answers are the same and the rows are the same.
 
-Verified result with the supplied CSV
-This cell stores values for the next example; it does not print a result.
+The cell prints nothing. Each pipeline has now learned its medians and its line from training rows only. The validation rows have not been touched. We must call fit before predict, and the next cell uses predict.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+## Slide 25: Compare errors on the same rows
 
-## Slide 36: Paired ablation using the supplied CSV — step 4
+Predict both alternatives on matching validation rows. mean_absolute_error compares each prediction with its observed target.
+
+Base MAE minus extended MAE is positive when the extra feature helped on this validation set.
+
+**Spoken script**
+
+Next we test both pipelines on the validation rows.
+
+The method dot predict takes input columns and returns one predicted value of motor temperature for every row, in deg C. We call it on each pipeline with its own columns, using the same validation rows for both.
+
+Then mean_absolute_error compares each prediction with the observed target and averages the size of the misses. The answer is the MAE in deg C. Lower means the predictions are closer to the truth.
+
+We get one MAE for the base pipeline and one for the extended pipeline. We subtract the extended MAE from the base MAE. If the result is positive, the extra feature helped on this validation set. If it is zero or negative, it did not.
+
+## Slide 26: Paired ablation using the supplied CSV: step 3
+
+base_feature_columns: input columns for the simpler comparison pipeline.
+
+Run the cell and read the output below it.
+
+```python
+base_predictions = base_pipeline.predict(
+    validation_features[base_feature_columns]
+)
+base_absolute_error = mean_absolute_error(
+    validation_data["target"], base_predictions
+)
+```
+
+**Spoken script**
+
+This cell scores the base pipeline.
+
+The first statement calls base_pipeline dot predict on the validation rows. We select only the base_feature_columns from validation_features, because that pipeline was trained on those columns and needs the same ones. The result is a predicted value of motor temperature for each validation row, saved as base_predictions.
+
+The second statement calls mean_absolute_error. We give it the true targets from validation_data first and our predictions second. It compares them row by row and averages the size of the differences. We save the answer as base_absolute_error.
+
+Nothing prints here. The value waits for the comparison in the next cell, and it is measured in deg C.
+
+## Slide 27: Paired ablation using the supplied CSV: step 4
 
 extended_predictions: validation predictions from the extended pipeline.
 
 extended_absolute_error: validation mean absolute error for the extended pipeline.
 
-## Slide 37: Paired ablation using the supplied CSV — step 4 (1/2)
+**Spoken script**
 
-extended_predictions: validation predictions from the extended pipeline.
+Two new names appear in the next cell, and we should know what each one holds.
 
-extended_absolute_error: validation mean absolute error for the extended pipeline.
+extended_predictions is the list of predicted values of motor temperature that the extended pipeline gives for the validation rows. It is the counterpart of base_predictions.
 
-Step-by-step explanation
+extended_absolute_error is the mean absolute error of those predictions, measured against the real validation targets. It is the counterpart of base_absolute_error.
 
-extended_predictions = extended_pipeline.predict(validation_features[extended_feature_columns])
-extended_predictions stores validation predictions from the extended pipeline.
+With these two error values in hand we can compare the two models directly.
 
-extended_absolute_error = mean_absolute_error(validation_data['target'], extended_predictions)
-extended_absolute_error stores validation mean absolute error for the extended pipeline.
+## Slide 28: Paired ablation using the supplied CSV: step 4 (1/2)
 
-print(round(base_absolute_error, 4), round(extended_absolute_error, 4))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+base_feature_columns: input columns for the simpler comparison pipeline.
 
+Continue in the same code cell.
+
+```python
+extended_predictions = extended_pipeline.predict(
+    validation_features[extended_feature_columns]
+)
+extended_absolute_error = mean_absolute_error(
+    validation_data["target"], extended_predictions
+)
+```
+
+**Spoken script**
+
+This cell repeats the scoring for the extended pipeline.
+
+We call extended_pipeline dot predict on the validation rows. Here we select extended_feature_columns, the three inputs, because this pipeline learned from three. We save the answers as extended_predictions.
+
+Then mean_absolute_error compares the real validation targets with extended_predictions, and the average miss is saved as extended_absolute_error.
+
+The cell continues on the next slide with the lines that print. Both errors come from the same validation rows and the same scoring function, so the comparison is fair. The only difference is the extra column the extended pipeline was allowed to use.
+
+## Slide 29: Paired ablation using the supplied CSV: step 4 (2/2)
+
+base_feature_columns: input columns for the simpler comparison pipeline.
+
+Run the cell and read the output below it.
+
+```python
+print(
+    round(base_absolute_error, 4),
+    round(extended_absolute_error, 4),
+)
 print(round(base_absolute_error - extended_absolute_error, 4))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+```
 
-Verified result with the supplied CSV
-0.7775 0.7992
--0.0217
+**Spoken script**
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+These last statements print the result.
 
-## Slide 38: Paired ablation using the supplied CSV — step 4 (2/2)
+The first print shows two numbers, the base error and then the extended error. Round with four decimal places keeps them short enough to read. Both numbers are in deg C, and the smaller one belongs to the better model.
 
-extended_predictions: validation predictions from the extended pipeline.
+The second print takes the base error minus the extended error. If this is positive, the extended model made smaller errors, so the feature helped on the validation rows. If it is negative, the feature made things worse. If it is close to zero, the two models are practically equal.
 
-extended_absolute_error: validation mean absolute error for the extended pipeline.
+Before we decide to keep the feature, we ask how big the gain is compared with the size of the error, and whether it is large enough to matter in practice. Your own cohort's data produces its own numbers.
 
-Step-by-step explanation
+## Slide 30: A feature earns its place only if it helps
 
-extended_predictions = extended_pipeline.predict(validation_features[extended_feature_columns])
-extended_predictions stores validation predictions from the extended pipeline.
+Base error 0.7775 deg C. With load × ambient 0.7992 deg C.
 
-extended_absolute_error = mean_absolute_error(validation_data['target'], extended_predictions)
-extended_absolute_error stores validation mean absolute error for the extended pipeline.
+The extra feature changed the validation error by +0.0217 deg C. The error went up.
+A derived feature inherits the blanks of the columns it is built from. One training row has a blank ambient temperature, so its product is blank and the imputer fills it with a typical value.
+With only 15 validation rows the comparison is rough. A feature that adds a column and gives no clear gain should be dropped. Keep the simpler model.
 
-print(round(base_absolute_error, 4), round(extended_absolute_error, 4))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+**Spoken script**
 
-print(round(base_absolute_error - extended_absolute_error, 4))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
+Here is the honest result of the ablation on our own data. The base model, using load and ambient temperature, has a validation error of 0.7775 deg C. Adding the interaction, load times ambient, gives 0.7992. The change is +0.0217. The error went up, so the extra feature did not help.
 
-Verified result with the supplied CSV
-0.7775 0.7992
--0.0217
+Why might the new column struggle? A derived feature inherits the blanks of the columns it comes from. One training row has a blank ambient temperature, so its product is blank as well, and the imputer fills it with a typical product that has nothing to do with that row. We built the product before filling the blank, and the order matters.
 
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
+We have only fifteen validation rows, so the comparison is rough, and a new feature also adds a column to maintain and one more thing that can go wrong. Our rule is that a feature earns its place only when the improvement is clear. Here it is not, so we keep the simpler model. That is a real engineering judgement, and it is the kind of reasoning that earns marks in your written evidence.
 
-## Slide 39: Pandas inside the required function
+## Slide 31: Use only inputs you will have at prediction time
 
-Keep the original function names and return types. Do not read a fixed CSV inside the assessed function: hidden tests supply different equipment_records. The separate calling cell reads the CSV.
+ALLOWED
+Load now. Ambient temperature now. A value calculated from those two, such as load divided by 100.
+Anything the sensor could report at the moment the prediction is requested.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+LEAKS THE ANSWER
+The measured target itself. A repair note written after the fault. A monthly average that includes next week.
+A feature like these makes training look wonderful and fails in service.
 
-## Slide 40: Operations for the next example
+**Spoken script**
 
-Returning a dictionary
-series.to_dict() maps Series labels to values. equipment_data.to_dict("records") instead returns a list of row dictionaries. Choose the form required by the assignment.
+One rule applies to every feature you build. You must have it at the moment the prediction is requested. Load now and ambient temperature now are fine. A value calculated from those two, such as load divided by one hundred, is fine too.
 
-A table from Python values
-pd.DataFrame(records) builds a table from row dictionaries. With a dictionary of column lists, keys become column names and each list supplies that column’s values.
+Be suspicious of anything that is known only afterwards: the measured target itself, a repair note written after a fault, or a monthly average that includes next week. These leak the answer. The model looks wonderful in training and fails in service. Last week's leakage guard number four is this rule.
 
-Mean of recorded values
-series.mean() adds known values and divides by their count. pandas skips missing values by default. The result has the same unit as the original column.
+## Slide 32: Your issued task
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+01
 
-## Slide 41: Operations for the next example
-
-Grouping rows
-equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
-
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
-
-## Slide 42: A function called with the supplied records
-
-Grouping rows: equipment_data.groupby("label")["value"] groups the value column by matching labels. Apply mean() or sum() to calculate one result per group. Missing group labels are excluded by default.
-
-Step-by-step explanation
-
-def mean_load_by_equipment(equipment_records):
-    equipment_data = pd.DataFrame(equipment_records)
-    mean_load_by_equipment_group = equipment_data.groupby('equipment_id')['load_pct'].mean()
-    return mean_load_by_equipment_group.to_dict()
-Define the function. Explain each input before the call. Its body runs only when called; return supplies the computed value.
-
-equipment_records = raw_data.to_dict('records')
-equipment_records stores the input list of row dictionaries supplied to the function.
-
-print(mean_load_by_equipment(equipment_records))
-Display these values in the order written. Read their labels and units; displaying them does not alter the stored calculation.
-
-Verified result with the supplied CSV
-{'E1': 54.9475, 'E2': 61.326, 'E3': 53.46933333333333, 'E4': 66.854, 'E5': 48.10133333333333, 'E6': 51.54}
-
-Run this complete example after the preceding examples. Continuation slides belong to the same notebook cell.
-
-## Slide 43: Your issued task
-
-Your issued task
-Explanation to give
-Name this cohort’s target and its unit exactly as displayed. Each row is one operating observation, while equipment_id can repeat across several observations.
-
-Worked illustration / lecturer answer
-Explain record_id as the identifier of an observation, load_pct as load expressed in percent and ambient_c as temperature in degrees Celsius. The target records the known answer in training data.
-
-Misconception to address
-These are synthetic examples for learning. They do not establish a calibrated physical relationship or justify operation of real equipment.
-
-On this slide
 Investigate motor winding temperature.
+
+02
 
 Target units: deg C.
 
-These are synthetic teaching records, not measurements suitable for deployment.
+03
+
+These are synthetic teaching records for practice.
+
+04
 
 Each record is one operating observation; equipment_id repeats across observations.
 
-## Slide 44: make_features(feature_records)
+**Spoken script**
 
-Required interface: make_features(feature_records)
+This slide states your task for this week. You are investigating motor temperature, and its unit is deg C. Say the target and the unit exactly as they appear on the slide.
+
+Each row of the data is one operating observation. The equipment_id column repeats, because the same machine is observed many times. The record_id column is the identifier of each observation. The load_pct column is the load in percent, and ambient_c is the surrounding temperature in degrees Celsius. In the training rows the target holds the known answer.
+
+These are synthetic teaching records, made up for learning. They are not measurements that could be used to operate real equipment, and the relationships we find in them are not calibrated physical laws.
+
+## Slide 33: make_features(feature_records)
 
 Return one feature row per input, in order: [load_pct, ambient_c, load_pct/100, load_pct*ambient_c].
 
 Use inputs available at prediction time only.
 
-Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+Keep the exact names and outputs. Check types, units and the issued brief.
 
-## Slide 45: ablation_metrics(training_records, validation_records)
+**Spoken script**
 
-Required interface: ablation_metrics(training_records, validation_records)
+Your first required function is called make_features, and it takes one input, feature_records. Use the exact function name.
+
+For each record it must return one row of four numbers, in this order. First comes load_pct itself. Second comes ambient_c itself. Third comes load_pct divided by 100. Fourth comes load_pct multiplied by ambient_c.
+
+The result holds one such row per input record, and the rows stay in the same order as the input.
+
+Use only values that are available at the moment a prediction is requested. That means load and ambient temperature, and anything calculated from them. The target never goes into a feature.
+
+Keep the exact names and the exact output order. Check the types and units against the task brief on your own issued task slide.
+
+## Slide 34: ablation_metrics(training_records, validation_records)
 
 Fit two sklearn LinearRegression models on the same training records: base features [load_pct, ambient_c] and extended features adding load_pct*ambient_c.
 
@@ -632,105 +660,168 @@ Return base_mae, extended_mae and improvement=base_mae-extended_mae, without rou
 
 Inputs are complete; never fit on validation targets.
 
-Keep these exact output keys and the function name. You may use descriptive local variable names, such as true_positive_count, but the returned dictionary must use the published key, such as tp. The grader checks keys and values; changing a key changes the interface.
+Keep the exact names and outputs. Check types, units and the issued brief.
 
-## Slide 46: Written evidence
+**Spoken script**
 
-Written evidence
-Explanation to give
-Show the actual markdown answer cell headed My written evidence. This is where the learner explains the choices and the supplied scenario in their own words.
+Your second required function is ablation_metrics. It receives training records and validation records.
 
-Worked illustration / lecturer answer
-A useful explanation connects a decision to a named result and its limitation: for example, why a training-only median avoids using evaluation information. Describe supplied scenario figures as supplied, not as measurements the learner produced.
+Inside it you fit two scikit-learn LinearRegression models on the same training records. The base model uses load_pct and ambient_c. The extended model uses those two and also load_pct multiplied by ambient_c.
 
-Misconception to address
-Prompts and copied code comments do not substitute for the learner’s reasoning. Weekly work and tests use the notebook; projects also require their separate readable report.
+Then you evaluate both models on the same validation records, using mean absolute error.
 
-On this slide
+The function returns three values, base_mae, extended_mae and improvement. The improvement is base_mae minus extended_mae. Do not round any of them, because the grader compares the exact values.
+
+The inputs are complete, which means no values are missing, so you do not need an imputer here. And never fit on the validation targets. Validation rows are only for scoring the models.
+
+Use the exact function name and the exact output names.
+
+## Slide 35: Written evidence
+
+01
+
 Use the cell headed “My written evidence”.
+
+02
 
 Explain the supplied scenario in your own words.
 
+03
+
 State target units, reasons and limitations.
+
+04
 
 Submit one complete notebook containing code and written evidence.
 
-## Slide 47: Features and ablation submission
+**Spoken script**
 
-Features and ablation submission
-Explanation to give
-This slide hands over CML3111 W11. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
+Your notebook needs words as well as code. Find the cell headed My written evidence and write your answer there.
 
-Worked illustration / lecturer answer
-The recorded cutoff for this form is 2026-11-27T11:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
+Explain the scenario we supplied in your own words. Say what the target is and give its unit, which is deg C. Then give your reasons for the choices you made, and state the limitations of what you found.
 
-Misconception to address
-Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
+A good explanation links a decision to a result. For example, you might say why the imputer takes its medians from the training rows only, and what that protects you from.
 
-On this slide
+The figures in the scenario came with it, so describe them as supplied and not as measurements you made yourself.
+
+Submit one complete notebook that contains both your code and your written evidence. Copied prompts and code comments do not replace your own reasoning.
+
+## Slide 36: Features and ablation submission
+
+01
+
 Opens: 20 Nov 2026, 11:00 Kampala
+
+02
 
 Deadline: 27 Nov 2026, 11:00 Kampala
 
+03
+
 Use your full Student Registration Number in the form.
+
+04
 
 Keep the submitted files and confirmation.
 
-## Slide 48: Project preparation
+Open W11 assignment form
 
-Project preparation
-Explanation to give
-Make contribution evidence specific enough to check. A seed records the starting state of random choices; a contribution log records who produced and explained which work.
+https://docs.google.com/forms/d/e/1FAIpQLSeQJ_LsZgtIRbakN-KW4e4dx5rru2iqg6HwaaKoAQbKW7bh8Q/viewform
 
-Worked illustration / lecturer answer
-Name a file, function or chart and the decision behind it. Match that entry to meaningful repository history. Disclose AI assistance according to the assessment policy.
+**Spoken script**
 
-Misconception to address
-Many commits do not necessarily mean substantial work, and a seed does not establish accuracy. Both are supporting evidence, not replacements for the analysis.
+This slide covers the submission of your Week 11 assignment. Read the opening time and the deadline on the slide, and check them again on the form itself before you submit.
 
-On this slide
+The form asks for your full Student Registration Number. Type it exactly, because this is how we match your work to you.
+
+The file to submit is one completed notebook, with the dot ipynb ending. When you upload it, wait until the filename appears on the form before pressing Submit.
+
+A notebook saved only in Drive or GitHub has not been submitted. Only the form counts.
+
+Keep the submitted file and the confirmation after you finish, as your evidence that you submitted.
+
+## Slide 37: Project preparation
+
+01
+
 Use the published machine learning project brief.
+
+02
 
 Build the evidence gradually in your project notebook.
 
+03
+
 Keep raw data, labelled charts, run instructions and individual contributions.
+
+04
 
 Published deadline: 18 Dec 2026, 11:00 Kampala
 
-## Slide 49: Week 11 quiz
+**Spoken script**
 
-Week 11 quiz
-Explanation to give
-This is the CML3111 Week 1 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W1_CML3111 when ready and read the logged closing time.
+Your machine learning project is built up gradually, and the work you do now goes into it.
 
-Worked illustration / lecturer answer
-Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
+Use the published project brief as your guide. Add evidence to your project notebook a little at a time, as you finish each part.
 
-Misconception to address
-Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
+Keep four things. Keep the raw data, unchanged. Keep your charts, each with labels. Keep the run instructions, so someone else can run your notebook. And keep a record of each person's contribution, specific enough that it can be checked, such as a named file, function or chart and the decision behind it.
 
-On this slide
+Check the project deadline on the slide. Working steadily now makes the final weeks much lighter.
+
+## Slide 38: Words from today
+
+**Spoken script**
+
+Six words to keep. Feature engineering builds new inputs from existing columns. A derived feature is one column calculated from others. An interaction multiplies two inputs. The effect of one spread, which is the slope times the standard deviation, lets us compare inputs fairly. Ablation compares scores with and without one piece. And the prediction time rule says to use only inputs you will have when you predict. In the assignment you build the features and run the ablation yourself.
+
+## Slide 39: Week 11 quiz
+
+01
+
 Answer individually after the lecturer activates the quiz.
+
+02
 
 Available for 24 hours from activation.
 
+03
+
 Use your Student Registration Number and registered account.
+
+04
 
 Check the announced quiz closing time.
 
-## Slide 50: Revision and submission checklist
+Open this week’s quiz
 
-Revision and submission checklist
-Explanation to give
-Explain why a calculated input may help and test the idea under an unchanged validation protocol.
+https://forms.gle/32Y9ttL1XWaqbGMNA
 
-Worked illustration / lecturer answer
-If validation MAE falls from 5 to 4 after adding one feature, the reduction is 1 target unit, or 20%. A comparison on a different split cannot isolate that change.
+**Spoken script**
 
-Misconception to address
-Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
+This slide is about the Week 11 quiz. You answer it on your own.
 
-On this slide
-You can state the new feature’s meaning and calculate an improvement correctly.
+The quiz opens when the lecturer activates it, and from that moment it stays open for 24 hours. Check the closing time that is announced for your class.
 
-Save your work and check the required submission files.
+When you fill in the form, use your Student Registration Number and your registered account. Using a different account can make your answers difficult to match to you.
+
+The link on the slide opens the response form. The link alone does not start the 24 hours. That starts when the lecturer activates the quiz, so wait for that announcement and then answer.
+
+## Slide 40: Revision and submission checklist
+
+Explain to a classmate why load divided by 100 is a derived feature, how you would decide whether to keep a new feature, and why a repair note written after a fault cannot be an input.
+
+Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
+
+Point to your evidence. Save your work.
+
+**Spoken script**
+
+We finish with a check you do on your own. Pick a classmate, or imagine one, and explain three things out loud.
+
+First, why load divided by 100 is a derived feature. Second, how you decide whether to keep a new feature. Third, why a repair note written after a fault cannot be used as an input.
+
+If you can explain these three clearly, you understood the lesson. If you get stuck, go back to the slide where that idea appeared.
+
+Before you submit, keep the raw data unchanged, then restart your notebook and run all cells from the top. If the notebook runs cleanly to the end, it is ready.
+
+Point to your evidence, and save your work.

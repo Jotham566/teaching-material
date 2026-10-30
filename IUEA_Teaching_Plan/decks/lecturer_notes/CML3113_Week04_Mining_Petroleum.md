@@ -1,1665 +1,1247 @@
 # CML3113 Week 4
 
+Each slide shows its text, then the spoken script the lecturer reads aloud.
+
 ## Slide 1: Lists loops and reading a table
 
-Lists loops and reading a table
-CML3113, Week 4, slide 1
-
-Explanation to give
-Move from one calculation to many records. Lists supply ordered values, loops visit them, dictionaries label fields and CSV files store the observations.
-
-Worked illustration / lecturer answer
-For readings 2, 4 and 6, the running total is 2, then 6, then 12. Count 3 gives mean 4.0. A group needs its own total and count.
-
-Misconception to address
-Use this as an orientation to the lesson. Terms and syntax will be unpacked on their own slides; students do not need to know them in advance.
-
-On this slide
 Mining and Petroleum Engineering
 
-Continue to
-Today’s learning
+Friday 02 October 2026
+Friday 08:00–11:00, Room 105
+
+**Spoken script**
+
+Welcome to week four. This week we learn how to handle many readings at once instead of one number at a time.
+
+We start with lists, which hold values in order. Then we learn loops, which repeat a step for every value. After that we meet dictionaries, tuples and sets. We finish by reading a table of measurements from a CSV file and calculating averages for each group.
+
+This session is for the mining and petroleum engineering group. Check the slide for the date, time and room.
 
 ## Slide 2: Today’s learning
 
-Today’s learning
-CML3113, Week 4, slide 2
-
-Explanation to give
-Move from one calculation to many records. Lists supply ordered values, loops visit them, dictionaries label fields and CSV files store the observations.
-
-Worked illustration / lecturer answer
-For readings 2, 4 and 6, the running total is 2, then 6, then 12. Count 3 gives mean 4.0. A group needs its own total and count.
-
-Misconception to address
-At the end, check the specific outcome shown here using a small previously demonstrated example. A completed file without an explanation is not evidence of understanding.
-
-On this slide
 Read lists and dictionary fields.
 
 Trace a loop, read CSV rows and calculate summaries.
 
-Continue to
-Connection to the previous lesson
+You can show how the total and count change for each record.
+
+**Spoken script**
+
+This slide tells us where we are going today. There are two parts.
+
+The first part is what we will do. We will read lists and dictionary fields. A dictionary is a way to store a value under a name, such as a reading under the word reading. We will also trace a loop, which means following it one step at a time. Then we will read the rows of a CSV file and calculate summaries from them.
+
+The second part is how you will show it. You will show how the total and the count change as each record is processed. If you can say what the two numbers are after every record, you have understood the main idea of today.
 
 ## Slide 3: Connection to the previous lesson
 
-Connection to the previous lesson
-CML3113, Week 4, slide 3
+Week 3 introduced values, function inputs and results, conditions and list positions.
 
-Explanation to give
-Move from one calculation to many records. Lists supply ordered values, loops visit them, dictionaries label fields and CSV files store the observations.
+Now we repeat a calculation across records, then organise those records by keys.
 
-Worked illustration / lecturer answer
-For readings 2, 4 and 6, the running total is 2, then 6, then 12. Count 3 gives mean 4.0. A group needs its own total and count.
+**Spoken script**
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+Last week we met values, function inputs and results, conditions, and list positions. A value is a piece of data such as a number. A function takes inputs and gives back a result. A condition is a true or false question that decides which path the program takes.
 
-On this slide
-Week 3 introduced values, function inputs and results, conditions and list positions. Now we repeat a calculation across records, then organise those records by keys.
-
-Continue to
-Why this week’s tools are needed
+Today we build on those. First we repeat a calculation across many records, so that we do not have to write the same line again and again. Then we organise each record using keys. A key is a name that labels one piece of information in a record. Both steps start from the lists and conditions you already used.
 
 ## Slide 4: Why this week’s tools are needed
 
-Why this week’s tools are needed
-CML3113, Week 4, slide 4
+Sensor readings arrive as records in a CSV file.
 
-Explanation to give
-Move from one calculation to many records. Lists supply ordered values, loops visit them, dictionaries label fields and CSV files store the observations.
+We first learn the Python collections and loops needed to read those records and summarise them.
 
-Worked illustration / lecturer answer
-For readings 2, 4 and 6, the running total is 2, then 6, then 12. Count 3 gives mean 4.0. A group needs its own total and count.
+**Spoken script**
 
-Misconception to address
-Connect this to the previous result named on this slide. Demonstrate the first step again if necessary; there is no requirement for partner work before the explanation.
+Think about a sensor that measures something every minute and writes the results to a file. That file is a CSV file. Each line is one record, and the values on a line are separated by commas.
 
-On this slide
-Sensor readings arrive as records in a CSV file. We first learn the Python collections and loops needed to read those records and summarise them.
+A real file can hold hundreds or thousands of records. We cannot type each one into our program by hand. We need a way to read them in, visit each one, and add them up.
 
-Continue to
-List and index
+So first we learn the Python tools for that job. Lists hold the readings. Loops visit them one by one. Dictionaries label the fields of a record. With those in place, we can read a whole file and summarise it in a few lines.
 
 ## Slide 5: List and index
 
-List and index
-CML3113, Week 4, slide 5
+A list holds values in order: [2, 4, 6]. Square brackets select a position. readings[0] selects the first item, 2.
 
-Explanation to give
-A list is an ordered collection. Draw labelled positions 0, 1 and 2 above three values. The position is the address, not the value stored there. A list may contain repeated values.
+**Spoken script**
 
-Worked illustration / lecturer answer
-For [2, 4, 6], position 0 contains 2 and position 2 contains 6. len returns 3. There is no position 3. append(8) adds a new final item and the count becomes 4.
+A list holds several values in order. We write it with square brackets and commas between the values. Our example is the list two, four, six, and we give it the name readings.
 
-Misconception to address
-Square brackets create a list when enclosing values, but select an item when placed after its name. Python counts list positions from zero.
+Every item in a list has a position, and Python calls this position the index. The first item sits at position zero, the second at position one, and the third at position two. We count from zero.
 
-On this slide
-List and index: A list holds values in order: [2, 4, 6]. Square brackets select a position. readings[0] selects the first item, 2.
+To pick one item, we write the list name followed by square brackets with the position inside. So readings, open square bracket, zero, close square bracket, selects the first item, which is two.
 
-Continue to
-A list position starts at zero
+Notice that square brackets appear in two jobs. Around values they build a list. After a name they select an item.
 
 ## Slide 6: A list position starts at zero
 
-A list position starts at zero
-CML3113, Week 4, slide 6
+01
 
-Explanation to give
-A list is an ordered collection. Draw labelled positions 0, 1 and 2 above three values. The position is the address, not the value stored there. A list may contain repeated values.
-
-Worked illustration / lecturer answer
-For [2, 4, 6], position 0 contains 2 and position 2 contains 6. len returns 3. There is no position 3. append(8) adds a new final item and the count becomes 4.
-
-Misconception to address
-Square brackets create a list when enclosing values, but select an item when placed after its name. Python counts list positions from zero.
-
-On this slide
 In [2, 4, 6], position 0 holds 2.
+
+02
 
 Position 1 holds 4. Position 2 holds 6.
 
+03
+
 There is no position 3 in this three-item list.
 
-Continue to
-Read list operations
+**Spoken script**
+
+Let us look at the list two, four, six one position at a time.
+
+Position zero holds the value two. This is the first item in the list. Many people expect the first position to be one, so it takes practice to count from zero.
+
+Position one holds four, and position two holds six.
+
+This list has three items, so there is no position three. If we ask for position three, Python stops with an error message. The last position is always one less than the number of items. In this list the last position is two.
+
+Keep this picture of positions zero, one and two in mind, because every list in this course works the same way.
 
 ## Slide 7: Read list operations
 
-Read list operations
-CML3113, Week 4, slide 7
+append and len
 
-Explanation to give
-Walk through append, replacement and selection separately. append adds a new last item; values[1] = 9 replaces the item at position 1; values[1] retrieves it.
+readings.append(8) adds 8 to the end of the list. len(readings) counts its items. The dot selects an operation belonging to that object; parentheses call it.
 
-Worked illustration / lecturer answer
-Starting with [2, 4], append(6) gives [2, 4, 6]. Assigning values[1] = 9 then gives [2, 9, 6], still three items.
+Slice
 
-Misconception to address
-append changes the list and returns None. Do not write values = values.append(6), which would replace the list name with None.
+readings[1:3] selects positions 1 and 2. The stop position 3 is excluded. A slice produces a new list; it does not remove items from the original.
 
-On this slide
-append and len: readings.append(8) adds 8 to the end of the list. len(readings) counts its items. The dot selects an operation belonging to that object; parentheses call it.
-Slice: readings[1:3] selects positions 1 and 2. The stop position 3 is excluded. A slice produces a new list; it does not remove items from the original.
+**Spoken script**
 
-Continue to
-A list stores items in order
+This slide shows three things we can do with a list.
+
+First, append. We write readings, dot, append, and put the new value in parentheses. For example, append eight adds eight to the end of the list. The dot means we are using an operation that belongs to the list. The parentheses mean we are calling that operation, in other words asking it to run.
+
+Second, len. Writing len of readings counts the items in the list.
+
+Third, a slice. A slice picks a range of positions. Readings, open bracket, one, colon, three, close bracket, picks positions one and two. It stops before position three. The stop position is always left out.
+
+A slice makes a new list. The original list stays as it was.
 
 ## Slide 8: A list stores items in order
 
-A list stores items in order
-CML3113, Week 4, slide 8
+print displays a value below the cell.
 
-Explanation to give
-A list is an ordered collection. Draw labelled positions 0, 1 and 2 above three values. The position is the address, not the value stored there. A list may contain repeated values.
+append adds one item to the end of a list.
 
-Worked illustration / lecturer answer
-For [2, 4, 6], position 0 contains 2 and position 2 contains 6. len returns 3. There is no position 3. append(8) adds a new final item and the count becomes 4.
+Square brackets create a list or select an item.
 
-Misconception to address
-Square brackets create a list when enclosing values, but select an item when placed after its name. Python counts list positions from zero.
-
-Read the displayed code line by line
-readings = [2, 4, 6]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(readings[0])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-readings.append(8)
-Evaluate the argument and add it as one new item at the end of this list.
-
-print(len(readings))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(readings[1:3])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 [] builds a list. Positions start at zero. The slice stops before position 3.
 
-Continue to
-Trace the list changes
+```python
+readings = [2, 4, 6]
+print(readings[0])
+readings.append(8)
+print(len(readings))
+print(readings[1:3])
+```
 
-Output from the supplied CSV (this cohort):
-2
-4
-[4, 6]
+**Spoken script**
 
+We read this example one line at a time.
 
-Result from the supplied example
-2
-4
-[4, 6]
+The first line builds a list called readings with the values two, four and six.
+
+The second line prints readings at position zero. Print shows a value below the cell. Position zero is the first item, so this shows two.
+
+The third line appends eight. Append adds one item to the end, so the list becomes two, four, six, eight.
+
+The fourth line prints len of readings, which counts the items. There are now four, so this shows four.
+
+The last line prints readings from position one up to, but excluding, position three. That means positions one and two, which hold four and six. The output is the small list four, six.
 
 ## Slide 9: Trace the list changes
 
-Trace the list changes
-CML3113, Week 4, slide 9
-
-Explanation to give
-A list is an ordered collection. Draw labelled positions 0, 1 and 2 above three values. The position is the address, not the value stored there. A list may contain repeated values.
-
-Worked illustration / lecturer answer
-For [2, 4, 6], position 0 contains 2 and position 2 contains 6. len returns 3. There is no position 3. append(8) adds a new final item and the count becomes 4.
-
-Misconception to address
-Square brackets create a list when enclosing values, but select an item when placed after its name. Python counts list positions from zero.
-
-On this slide
-Instruction | List afterwards | Displayed output
-readings = [2, 4, 6] | [2, 4, 6] | Nothing yet
-print(readings[0]) | [2, 4, 6] | 2
-readings.append(8) | [2, 4, 6, 8] | Nothing yet
-print(readings[1:3]) | [2, 4, 6, 8] | [4, 6]
 len reports 4 after append. A slice excludes its stop position and leaves the original list intact.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-A loop repeats instructions
+This table follows the list after each instruction, so we can see exactly when it changes.
+
+After the first line the list is two, four, six, and nothing is displayed yet because we only created it.
+
+The second line prints the item at position zero. It shows two, and the list stays the same.
+
+The third line appends eight. The list becomes two, four, six, eight. Nothing is displayed, because append changes the list but prints nothing.
+
+The fourth line prints len, which shows four. The fifth line prints a slice from position one up to, but not including, position three, which shows four, six. It shows four, six. The list is still two, four, six, eight.
+
+Len reports four after the append, because there are four items. The slice leaves the original list intact.
 
 ## Slide 10: A loop repeats instructions
 
-A loop repeats instructions
-CML3113, Week 4, slide 10
+01
 
-Explanation to give
-Read for item in values as “take one value, call it item, execute the indented body, then take the next value”. The loop name temporarily refers to the current item.
-
-Worked illustration / lecturer answer
-For values [2, 4, 6], print(item) produces 2, then 4, then 6. With count initially zero and one increment per visit, the final count is 3.
-
-Misconception to address
-The loop variable does not refer to the whole list. A statement after the indentation ends runs after the loop, not once per item.
-
-On this slide
 A loop runs a block more than once. One execution of the block is called an iteration.
+
+02
 
 for takes one item at a time from a collection. Use it when each item needs the same action.
 
+03
+
 while repeats while a condition stays True. Use it when a condition controls repetition.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Read every part of a for header
+A loop runs a block of instructions more than once. One run through the block is called an iteration.
+
+Python gives us two kinds of loop. The first is the for loop. It takes one item at a time from a collection, such as a list, and runs the same action on each item. We use it when every item needs the same treatment.
+
+The second is the while loop. It keeps repeating as long as a condition stays true. A condition is a true or false question. We use while when a condition decides how long the repetition lasts.
+
+Today we begin with for, because summing a list of readings is a job where every item gets the same treatment.
 
 ## Slide 11: Read every part of a for header
 
-Read every part of a for header
-CML3113, Week 4, slide 11
+01
 
-Explanation to give
-Read for item in values as “take one value, call it item, execute the indented body, then take the next value”. The loop name temporarily refers to the current item.
-
-Worked illustration / lecturer answer
-For values [2, 4, 6], print(item) produces 2, then 4, then 6. With count initially zero and one increment per visit, the final count is 3.
-
-Misconception to address
-The loop variable does not refer to the whole list. A statement after the indentation ends runs after the loop, not once per item.
-
-On this slide
 In for reading in readings:, for introduces repetition, reading names the current item, and readings is the collection to visit.
+
+02
 
 in connects the current-item name to that collection. The colon begins the loop body. Four spaces mark each instruction that repeats.
 
+03
+
 reading is a name we choose; it is assigned the next item automatically. It is not the same name as readings. After the last item, execution leaves the loop.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Visit each item without calculating
+We take apart the first line of a for loop, which reads for reading in readings, colon.
+
+The word for tells Python we are starting a repetition.
+
+Reading is a name for the current item. Python gives this name the next item automatically each time round. We choose the name ourselves. Readings with an s is the list we are visiting. These are two different names. One is a single item and the other is the whole collection.
+
+The word in links the item name to the collection.
+
+The colon begins the loop body. The body is the set of lines that repeat, and we mark them with four spaces at the start of each line.
+
+After the last item has been visited, Python leaves the loop and carries on below it.
 
 ## Slide 12: Visit each item without calculating
 
-Visit each item without calculating
-CML3113, Week 4, slide 12
+The body runs once for each item.
 
-Explanation to give
-Read for item in values as “take one value, call it item, execute the indented body, then take the next value”. The loop name temporarily refers to the current item.
+The final line is outside the loop, so it runs once.
 
-Worked illustration / lecturer answer
-For values [2, 4, 6], print(item) produces 2, then 4, then 6. With count initially zero and one increment per visit, the final count is 3.
-
-Misconception to address
-The loop variable does not refer to the whole list. A statement after the indentation ends runs after the loop, not once per item.
-
-Read the displayed code line by line
-readings = [2, 4, 6]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for reading in readings:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-print(reading)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print("finished")
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 2; 4; 6; finished
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+```python
+readings = [2, 4, 6]
+for reading in readings:
+    print(reading)
+print("finished")
+```
 
-Continue to
-Trace the for loop item by item
+**Spoken script**
 
-Output from the supplied CSV (this cohort):
-2
-4
-6
-finished
+We read this loop line by line.
 
+The first line makes the list two, four, six.
 
-Result from the supplied example
-2
-4
-6
-finished
+The second line starts the loop. Python takes the first item, two, and calls it reading.
+
+The third line is indented by four spaces, so it belongs to the loop body. It prints the current reading. On the first pass it prints two. Python then goes back, takes four, and prints four. On the third pass it takes six and prints six.
+
+The last line prints the word finished. It has no indentation, so it sits outside the loop. It runs once, after the loop is done.
+
+The output is two, four, six, finished. The body ran three times because the list has three items.
 
 ## Slide 13: Trace the for loop item by item
 
-Trace the for loop item by item
-CML3113, Week 4, slide 13
-
-Explanation to give
-Read for item in values as “take one value, call it item, execute the indented body, then take the next value”. The loop name temporarily refers to the current item.
-
-Worked illustration / lecturer answer
-For values [2, 4, 6], print(item) produces 2, then 4, then 6. With count initially zero and one increment per visit, the final count is 3.
-
-Misconception to address
-The loop variable does not refer to the whole list. A statement after the indentation ends runs after the loop, not once per item.
-
-On this slide
-Step | Current reading | Action
-First item | 2 | Print 2
-Second item | 4 | Print 4
-Third item | 6 | Print 6
-No items left | No new item | Leave loop; print finished
 An empty list runs the body zero times. It still reaches the outside line.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Updating a counter inside a loop
+This table traces the same loop step by step.
+
+In the first step, the current reading is two, and the action is to print two.
+
+In the second step, the current reading is four, and we print four.
+
+In the third step, the current reading is six, and we print six.
+
+Then there are no items left, so there is no new reading. Python leaves the loop and prints finished.
+
+The slide also tells us what happens with an empty list, which is a list with nothing in it. The body runs zero times, because there is no item to visit. Python still reaches the outside line and prints finished.
 
 ## Slide 14: Updating a counter inside a loop
 
-Updating a counter inside a loop
-CML3113, Week 4, slide 14
+01
 
-Explanation to give
-Read the right-hand occurrence of the name as its old value. Calculate the new value, then replace the old association. This is why an update works in programming even though count = count + 1 is not an algebraic equality.
-
-Worked illustration / lecturer answer
-Start at count = 2. The update computes 2 + 1 and count becomes 3. Another execution of the update gives 4. Re-executing the initialisation first returns the sequence to 2, then 3.
-
-Misconception to address
-Initialise a running counter before the loop. Resetting it inside the loop throws away earlier progress.
-
-On this slide
 A counter records how many times an event happens. Set count = 0 before the loop, then count = count + 1 inside it.
+
+02
 
 count += 1 is a shorter spelling for that numeric update. Similarly, total += reading means total = total + reading.
 
+03
+
 The initial value belongs outside the loop. Resetting count to zero inside every iteration loses the earlier count.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Count the visited items
+A counter records how many times something happens. We build one in two steps.
+
+First, before the loop, we write count equals zero. This gives the counter a starting value.
+
+Second, inside the loop, we write count equals count plus one. Python reads the right side first, takes the current count and adds one, and then stores the answer back in count.
+
+There is a shorter way to write the same update. Count plus equals one means the same as count equals count plus one. In the same way, total plus equals reading means total equals total plus reading.
+
+The starting value must be set outside the loop. If we reset count to zero inside the loop, it goes back to zero on every pass, and we lose the earlier count.
 
 ## Slide 15: Count the visited items
 
-Count the visited items
-CML3113, Week 4, slide 15
+Updates: 0 to 1, 1 to 2, then 2 to 3.
 
-Explanation to give
-Read for item in values as “take one value, call it item, execute the indented body, then take the next value”. The loop name temporarily refers to the current item.
-
-Worked illustration / lecturer answer
-For values [2, 4, 6], print(item) produces 2, then 4, then 6. With count initially zero and one increment per visit, the final count is 3.
-
-Misconception to address
-The loop variable does not refer to the whole list. A statement after the indentation ends runs after the loop, not once per item.
-
-Read the displayed code line by line
-count = 0
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for reading in [2, 4, 6]:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-count += 1
-Add the right-hand amount to the current stored value, then keep the updated value.
-
-print(count)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 3
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+```python
+count = 0
+for reading in [2, 4, 6]:
+    count += 1
+print(count)
+```
 
-Continue to
-Accumulator
+**Spoken script**
 
-Output from the supplied CSV (this cohort):
-3
+This example counts how many items a list has by visiting each one.
 
+The first line sets count to zero, before the loop starts.
 
-Result from the supplied example
-3
+The second line starts a for loop over the list two, four, six. On each pass, reading holds the current item.
+
+The third line is inside the loop. It adds one to count. We never use the value of reading here, because we only want to know how many items we visited.
+
+The count changes from zero to one on the first pass, from one to two on the second pass, and from two to three on the third.
+
+The last line is outside the loop and prints count. The output is three, which matches the three items in the list.
 
 ## Slide 16: Accumulator
 
-Accumulator
-CML3113, Week 4, slide 16
+A running total. Set it to zero before the loop, add inside the loop, and read the final total afterward.
 
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
+**Spoken script**
 
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
+An accumulator is a running total. It is a variable that collects a result a little at a time as a loop visits each item.
 
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
+We build it in three steps. Before the loop, we set it to zero. Inside the loop, we add the current item to it. After the loop finishes, we read the final total.
 
-On this slide
-Accumulator: A running total. Set it to zero before the loop, add inside the loop, and read the final total afterward.
+Think of a cashier adding up a customer's items. The till starts at zero, each item adds to the total, and the last number on the screen is the answer.
 
-Continue to
-A loop repeats an indented block
+The counter we saw a moment ago is an accumulator too. It adds one each time instead of adding the item's value.
 
 ## Slide 17: A loop repeats an indented block
 
-A loop repeats an indented block
-CML3113, Week 4, slide 17
+01
 
-Explanation to give
-Read for item in values as “take one value, call it item, execute the indented body, then take the next value”. The loop name temporarily refers to the current item.
-
-Worked illustration / lecturer answer
-For values [2, 4, 6], print(item) produces 2, then 4, then 6. With count initially zero and one increment per visit, the final count is 3.
-
-Misconception to address
-The loop variable does not refer to the whole list. A statement after the indentation ends runs after the loop, not once per item.
-
-On this slide
 for reading in readings: takes one item at a time.
+
+02
 
 The colon starts the block. Four spaces show which lines repeat.
 
+03
+
 A running total must start at zero before the loop.
 
-Continue to
-A mean uses a total and a count
+**Spoken script**
+
+We pull the loop ideas together before we use them for adding.
+
+The line for reading in readings, colon, takes one item at a time from the list and gives it the name reading.
+
+The colon starts the block, which is the group of lines that repeat. Four spaces at the start of a line show that the line belongs to the block. A line without those spaces is outside the loop.
+
+The last idea is about running totals. A running total must start at zero before the loop. If we forget this, Python does not know what to add to, and we get an error. If we start it inside the loop, it resets on every pass.
 
 ## Slide 18: A mean uses a total and a count
 
-A mean uses a total and a count
-CML3113, Week 4, slide 18
+01
 
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
-
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
-
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
-
-On this slide
 Start the total at 0. Add 2, then 4, then 6.
+
+02
 
 The final total is 12. The count is 3.
 
+03
+
 12 / 3 gives the mean 4. An empty list needs a separate rule.
 
-Continue to
-A loop changes the running total
+**Spoken script**
+
+A mean is the total of the values divided by how many values there are. To find it for our list, we need two numbers from the loop, a total and a count.
+
+In the first step we start the total at zero and add two, then four, then six.
+
+In the second step we look at the results. The final total is twelve, and the count is three because we visited three items.
+
+In the third step we divide. Twelve divided by three gives a mean of four.
+
+The slide also warns that an empty list needs a separate rule. An empty list has a count of zero, and dividing by zero is an error, so we must decide what the program does in that case before we divide.
 
 ## Slide 19: A loop changes the running total
 
-A loop changes the running total
-CML3113, Week 4, slide 19
-
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
-
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
-
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
-
-On this slide
 This illustration uses six separate readings. Next we trace the smaller list [2, 4, 6] using the same running-total rule.
 
-Continue to
-Tracing the loop
+**Spoken script**
+
+This picture shows a loop changing a running total. It uses six separate readings, so we can see the total grow as each reading is added.
+
+Before the first reading, the total is zero. Each time the loop visits a reading, it adds that reading to the total, and the total gets bigger.
+
+Next we trace a smaller list, two, four, six, using the same rule. With only three readings, we can follow every number on the table and check each step ourselves.
 
 ## Slide 20: Tracing the loop
 
-Tracing the loop
-CML3113, Week 4, slide 20
-
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
-
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
-
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
-
-On this slide
-Step | reading | total after addition
-Before loop | — | 0
-First | 2 | 2
-Second | 4 | 6
-Third | 6 | 12
 There are three readings.
 
-Continue to
-Lists loops and records in Python
+**Spoken script**
+
+This table traces the running total through the list two, four, six.
+
+Before the loop starts, there is no reading yet, and the total is zero.
+
+On the first pass the reading is two. We add it, and the total becomes two.
+
+On the second pass the reading is four. We add it to the two already in the total, and the total becomes six.
+
+On the third pass the reading is six. We add it, and the total becomes twelve.
+
+There are three readings, so the count is three. The total of twelve and the count of three are the two numbers we need for the mean. Twelve divided by three is four.
 
 ## Slide 21: Lists loops and records in Python
 
-Lists loops and records in Python
-CML3113, Week 4, slide 21
+for takes the next item. The indented block repeats.
 
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
+print displays a value below the cell.
 
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
+Square brackets create a list or select an item.
 
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
-
-Read the displayed code line by line
-readings = [2, 4, 6]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-total = 0
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for reading in readings:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-total = total + reading
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-mean = total / len(readings)
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(mean)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Read top to bottom. Run the complete example in the matching practice notebook.
 
-Continue to
-Lists loops and records results
+```python
+readings = [2, 4, 6]
+total = 0
+for reading in readings:
+    total = total + reading
+mean = total / len(readings)
+print(mean)
+```
 
-Output from the supplied CSV (this cohort):
-4.0
+**Spoken script**
 
+This is the full program that puts together everything we have seen so far. We read it from top to bottom.
 
-Result from the supplied example
-4.0
+The first line builds the list of readings, two, four, six.
+
+The second line sets total to zero. This is the accumulator, and it starts before the loop.
+
+The third line starts the for loop. Each pass gives us the next item, called reading.
+
+The fourth line is indented, so it is in the loop body. It sets total to the old total plus the current reading.
+
+The fifth line is outside the loop. It divides the total by len of readings, which is the number of items, and stores the answer in mean.
+
+The last line prints the mean. We should run this complete example in the matching practice notebook and check the result.
 
 ## Slide 22: Lists loops and records results
 
-Lists loops and records results
-CML3113, Week 4, slide 22
+Which step produced this result? What changes if one input changes?
 
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
-
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
-
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
-
-On this slide
+```python
 4.0
+```
 
-Continue to
-The built-in summary functions
+**Spoken script**
+
+This is the output of the program we just read. It shows four point zero.
+
+That is the mean of two, four and six. The total of twelve divided by the count of three gives four. Python shows it as four point zero because dividing with the slash always gives a decimal number, even when the answer is whole.
+
+Look back at the code and say which step produced this result. The answer is the last division, total divided by len of readings.
+
+Then think about what changes if one input changes. If we changed six to nine, the total would change, so the mean would change too. The count would stay the same, because we still have three readings.
 
 ## Slide 23: The built-in summary functions
 
-The built-in summary functions
-CML3113, Week 4, slide 23
-
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
-
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
-
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
-
-On this slide
-Function | Question it answers | For [2, 4, 6]
-len | How many items? | 3
-sum | What is their total? | 12
-min | Which is smallest? | 2
-max | Which is largest? | 6
 These functions already exist in Python. min and max need at least one item unless an explicit default is supplied.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Built-in summaries of a list
+Python already has built-in functions for the most common summaries, so we do not always need to write a loop ourselves.
+
+Len answers how many items there are. For our list two, four, six, it gives three.
+
+Sum answers what the total is. It gives twelve.
+
+Min answers which item is smallest. It gives two.
+
+Max answers which item is largest. It gives six.
+
+There is one condition. Min and max need at least one item in the list. If the list is empty, they have nothing to choose from, so Python reports an error, unless we supply an explicit default value to use instead.
 
 ## Slide 24: Built-in summaries of a list
 
-Built-in summaries of a list
-CML3113, Week 4, slide 24
+These functions are built into Python.
 
-Explanation to give
-An accumulator keeps the result built so far. Initialise total before the loop, add the current reading during each visit, and calculate the mean only after all readings have been counted.
+min and max require a nonempty list here.
 
-Worked illustration / lecturer answer
-For [2, 4, 6], total changes 0 to 2 to 6 to 12. The count is 3, so the mean is 12 / 3 = 4.0. sum, len, min and max report 12, 3, 2 and 6.
-
-Misconception to address
-An empty list has count zero, so dividing by its count fails. The issued task must define the empty-data behaviour; do not silently invent a reading.
-
-Read the displayed code line by line
-readings = [2, 4, 6]
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(sum(readings))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(len(readings))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(min(readings))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(max(readings))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 12, 3, 2, 6. sum totals; len counts; min and max select the smallest and largest.
 
-Continue to
-A while loop checks before each repetition
+```python
+readings = [2, 4, 6]
+print(sum(readings))
+print(len(readings))
+print(min(readings))
+print(max(readings))
+```
 
-Output from the supplied CSV (this cohort):
-12
-3
-2
-6
+**Spoken script**
 
+This example uses the built-in summary functions on our list.
 
-Result from the supplied example
-12
-3
-2
-6
+The first line makes the list two, four, six.
+
+The second line prints sum of readings. Sum adds all the items, so it shows twelve.
+
+The third line prints len of readings, which counts the items. It shows three.
+
+The fourth line prints min of readings, the smallest item. It shows two.
+
+The last line prints max of readings, the largest item. It shows six.
+
+The output is twelve, three, two, six. These functions are built into Python, so we can use them without any setup. Min and max need a list with at least one item, and our list has three, so both work here.
 
 ## Slide 25: A while loop checks before each repetition
 
-A while loop checks before each repetition
-CML3113, Week 4, slide 25
+01
 
-Explanation to give
-while tests a condition before each iteration. Unlike for over a fixed list, it needs a route that eventually makes the condition False. Trace both the test and the state update.
-
-Worked illustration / lecturer answer
-With count = 0 and while count < 3, print then increment yields 0, 1 and 2. The next test sees count 3 and stops before printing it.
-
-Misconception to address
-If count is never updated, the condition stays True. Interrupt a stuck runtime rather than waiting indefinitely, then identify the missing update.
-
-On this slide
 while count < 3: tests the condition before entering its indented block. True enters the block; False skips it and continues after the loop.
+
+02
 
 At the end of the body, return to the condition and test again. Unlike for, while does not automatically move to the next list item.
 
+03
+
 Something must make the condition become False, or the loop may continue indefinitely. In our example, count increases on every iteration.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-A while loop with a stopping condition
+A while loop checks a condition before each repetition. The condition here is count is less than three.
+
+In the first step, Python tests the condition before entering the block. If the answer is true, it enters the block. If the answer is false, it skips the block and continues after the loop.
+
+In the second step, at the end of the body, Python returns to the condition and tests it again. A for loop moves to the next item in a list by itself. A while loop does not do that. It only repeats the test.
+
+The third step is about stopping. Something inside the loop must make the condition become false, or the loop may continue forever. In our example, count goes up by one on every iteration, so it eventually reaches three.
 
 ## Slide 26: A while loop with a stopping condition
 
-A while loop with a stopping condition
-CML3113, Week 4, slide 26
+Initialise, test, run the body, update, test again.
 
-Explanation to give
-while tests a condition before each iteration. Unlike for over a fixed list, it needs a route that eventually makes the condition False. Trace both the test and the state update.
+When count becomes 3, the condition is False.
 
-Worked illustration / lecturer answer
-With count = 0 and while count < 3, print then increment yields 0, 1 and 2. The next test sees count 3 and stops before printing it.
-
-Misconception to address
-If count is never updated, the condition stays True. Interrupt a stuck runtime rather than waiting indefinitely, then identify the missing update.
-
-Read the displayed code line by line
-count = 0
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-while count < 3:
-Test this condition before each repetition. Stop when it becomes False.
-
-print(count)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-count = count + 1
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print("finished")
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 0; 1; 2; finished
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+```python
+count = 0
+while count < 3:
+    print(count)
+    count = count + 1
+print("finished")
+```
 
-Continue to
-Trace the while condition and update
+**Spoken script**
 
-Output from the supplied CSV (this cohort):
-0
-1
-2
-finished
+We read this while loop line by line.
 
+The first line sets count to zero. This is the starting value.
 
-Result from the supplied example
-0
-1
-2
-finished
+The second line is the test. While count is less than three, the loop body runs.
+
+The third line prints the current count.
+
+The fourth line adds one to count. This update is what eventually ends the loop.
+
+The last line has no indentation, so it runs once, after the loop ends.
+
+The order is to set up, test, run the body, update, and test again. When count reaches three, the test is false and the loop stops. The output is zero, one, two, finished.
 
 ## Slide 27: Trace the while condition and update
 
-Trace the while condition and update
-CML3113, Week 4, slide 27
-
-Explanation to give
-while tests a condition before each iteration. Unlike for over a fixed list, it needs a route that eventually makes the condition False. Trace both the test and the state update.
-
-Worked illustration / lecturer answer
-With count = 0 and while count < 3, print then increment yields 0, 1 and 2. The next test sees count 3 and stops before printing it.
-
-Misconception to address
-If count is never updated, the condition stays True. Interrupt a stuck runtime rather than waiting indefinitely, then identify the missing update.
-
-On this slide
-count before test | count < 3 | Body and next count
-0 | True | Print 0; update to 1
-1 | True | Print 1; update to 2
-2 | True | Print 2; update to 3
-3 | False | Skip body; print finished
 If count starts at 3, the body runs zero times. The condition is tested first.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Preventing an endless loop
+This table follows the while loop by the value of count at each test.
+
+When count is zero, the test count less than three is true. We print zero and update count to one.
+
+When count is one, the test is true again. We print one and update count to two.
+
+When count is two, the test is still true. We print two and update count to three.
+
+When count is three, the test is false. Python skips the body and goes on to print finished.
+
+The slide also says what happens if count starts at three. The test is made first, and it is false right away, so the body runs zero times.
 
 ## Slide 28: Preventing an endless loop
 
-Preventing an endless loop
-CML3113, Week 4, slide 28
+01
 
-Explanation to give
-while tests a condition before each iteration. Unlike for over a fixed list, it needs a route that eventually makes the condition False. Trace both the test and the state update.
-
-Worked illustration / lecturer answer
-With count = 0 and while count < 3, print then increment yields 0, 1 and 2. The next test sees count 3 and stops before printing it.
-
-Misconception to address
-If count is never updated, the condition stays True. Interrupt a stuck runtime rather than waiting indefinitely, then identify the missing update.
-
-On this slide
 If the update is missing, count remains 0. The question 0 < 3 stays True, so the body keeps running.
+
+02
 
 In Colab, click the running cell’s stop button or use Runtime → Interrupt execution. Fix the condition or update before running again.
 
+03
+
 Do not run an intentionally endless example. Trace the unchanged value on the slide to see why it would fail.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Choosing if for or while
+An endless loop is one that never stops. Here is how it happens with our example.
+
+Suppose we forget the update line. Then count stays at zero for ever. The question zero less than three stays true on every test, so the body keeps running and never finishes.
+
+If that happens in Colab, click the stop button on the running cell, or use the Runtime menu and choose Interrupt execution. Then fix the condition or the update before you run the cell again.
+
+Please do not run an endless example on purpose. Instead, trace the unchanged value on the slide. Count is zero, the test is true, count is still zero, and the test is true again. That tells us the loop would never end.
 
 ## Slide 29: Choosing if for or while
 
-Choosing if for or while
-CML3113, Week 4, slide 29
-
-Explanation to give
-if makes a decision once, for visits members of a collection, and while repeats while a condition remains True. Choose the construct by the job before writing syntax.
-
-Worked illustration / lecturer answer
-For three recorded temperatures, for visits all three. Inside it, if reading > 30 decides whether to count that observation. while is appropriate when repetition depends on a changing condition.
-
-Misconception to address
-A loop and a condition can appear together. They answer different questions: how often to repeat, and whether this item qualifies.
-
-On this slide
-Construct | Purpose | When it finishes
-if / else | Choose a path once | After the chosen block
-for | Visit supplied items | When items are exhausted
-while | Repeat while True | When condition becomes False
 A condition alone does not imply repetition: if tests once; while tests again after its body.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-range supplies a sequence of integers
+We now have three ways to control a program, and this table compares them.
+
+An if statement chooses a path once. When the chosen block is done, the program moves on.
+
+A for loop visits supplied items, such as the items of a list. It finishes when the items run out.
+
+A while loop repeats as long as its condition is true. It finishes when the condition becomes false.
+
+The key difference is between if and while. Both test a condition, but if tests it a single time. A while loop tests it again after each run of its body. So a condition alone does not mean a program repeats.
 
 ## Slide 30: range supplies a sequence of integers
 
-range supplies a sequence of integers
-CML3113, Week 4, slide 30
+01
 
-Explanation to give
-range supplies integers in order. Its stop value is excluded. Say the sequence out loud before executing the loop so the boundary is visible.
-
-Worked illustration / lecturer answer
-range(3) supplies 0, 1, 2. range(1, 4) supplies 1, 2, 3. Both provide three integers but different starting points.
-
-Misconception to address
-The stop value itself is not visited. range counts steps and does not automatically retrieve values from a separate list.
-
-On this slide
 range(3) supplies 0, 1 and 2. The stop value 3 is excluded. range(1, 4) supplies 1, 2 and 3.
+
+02
 
 Use range with for when a numbered repetition is useful. The loop still works by taking the next supplied item.
 
+03
+
 range(0, 6, 2) uses a step of 2 and supplies 0, 2, 4. A step is the change between successive numbers; it cannot be zero.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Repeat with range
+Range gives us a sequence of whole numbers, which is useful when we want a loop to repeat a set number of times.
+
+In the first step, range of three supplies zero, one and two. The stop value, three, is left out. Range of one, comma, four supplies one, two and three, because it starts at one and stops before four.
+
+In the second step, we use range with a for loop. The loop still works the same way. It takes the next supplied number each time.
+
+In the third step, a third value is the step. Range of zero, six, two supplies zero, two and four. The step is the amount we move between one number and the next. The step can never be zero.
 
 ## Slide 31: Repeat with range
 
-Repeat with range
-CML3113, Week 4, slide 31
+Start at 1; stop before 4.
 
-Explanation to give
-range supplies integers in order. Its stop value is excluded. Say the sequence out loud before executing the loop so the boundary is visible.
-
-Worked illustration / lecturer answer
-range(3) supplies 0, 1, 2. range(1, 4) supplies 1, 2, 3. Both provide three integers but different starting points.
-
-Misconception to address
-The stop value itself is not visited. range counts steps and does not automatically retrieve values from a separate list.
-
-Read the displayed code line by line
-for attempt in range(1, 4):
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-print(attempt)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 1; 2; 3
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+```python
+for attempt in range(1, 4):
+    print(attempt)
+```
 
-Continue to
-continue and break change a loop’s path
+**Spoken script**
 
-Output from the supplied CSV (this cohort):
-1
-2
-3
+This example repeats an action using range.
 
+The first line says for attempt in range of one, comma, four. Attempt is the name we give to the current number. Range of one to four starts at one and stops before four, so it supplies one, two and three.
 
-Result from the supplied example
-1
-2
-3
+The second line is indented, so it is the loop body. It prints the current attempt.
+
+The loop runs three times. The output is one, two, three.
+
+If we wanted it to start at zero we could write range of 3 on its own, with no start value. Here we chose to start at one, which suits counting attempts the way people count them.
 
 ## Slide 32: continue and break change a loop’s path
 
-continue and break change a loop’s path
-CML3113, Week 4, slide 32
+01
 
-Explanation to give
-continue ends the current iteration and proceeds to the next item. break ends the nearest enclosing loop completely. Trace the same data twice to show the distinction.
-
-Worked illustration / lecturer answer
-Over [1, 2, 3], skipping 2 with continue still allows 3 to be processed. Breaking when 2 is reached prevents both 2's remaining work and the later visit to 3.
-
-Misconception to address
-Statements below continue or break in that iteration are skipped. Neither word means “restart the whole notebook”.
-
-On this slide
 continue skips the rest of the current iteration, then starts the next iteration. It does not end the whole loop.
+
+02
 
 break exits the nearest enclosing loop immediately. Execution resumes after that loop.
 
+03
+
 Put the condition inside the loop with four spaces. Its action is inside that condition with eight spaces: an indented block inside another block.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Skip one item using continue
+Sometimes we need to change the normal path of a loop. Python has two words for this.
+
+The first is continue. It skips the rest of the current iteration and starts the next one. The loop carries on with the next item.
+
+The second is break. It exits the loop immediately. Python resumes with the line after the loop. If there are loops inside loops, break exits only the nearest one.
+
+The third point is about layout. The if condition sits inside the loop with four spaces. Its action, continue or break, sits inside the condition with eight spaces. That is an indented block inside another block. Each level of indentation tells Python what belongs to what.
 
 ## Slide 33: Skip one item using continue
 
-Skip one item using continue
-CML3113, Week 4, slide 33
+-1 takes continue, so its print is skipped.
 
-Explanation to give
-continue ends the current iteration and proceeds to the next item. break ends the nearest enclosing loop completely. Trace the same data twice to show the distinction.
+2 and 6 reach print.
 
-Worked illustration / lecturer answer
-Over [1, 2, 3], skipping 2 with continue still allows 3 to be processed. Breaking when 2 is reached prevents both 2's remaining work and the later visit to 3.
-
-Misconception to address
-Statements below continue or break in that iteration are skipped. Neither word means “restart the whole notebook”.
-
-Read the displayed code line by line
-for reading in [2, -1, 6]:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-if reading < 0:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
-
-continue
-Skip the rest of this iteration and proceed to the next item.
-
-print(reading)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 2; 6
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+```python
+for reading in [2, -1, 6]:
+    if reading < 0:
+        continue
+    print(reading)
+```
 
-Continue to
-Stop at one item using break
+**Spoken script**
 
-Output from the supplied CSV (this cohort):
-2
-6
+This example skips one item using continue.
 
+The first line loops over the list two, minus one, six. Each pass, reading holds the current item.
 
-Result from the supplied example
-2
-6
+The second line is an if statement. It asks whether reading is less than zero, in other words whether it is negative.
+
+The third line has eight spaces. It runs only when the condition is true, and it says continue. This sends Python straight to the next item.
+
+The last line prints the reading, and it has four spaces, so it is part of the loop body.
+
+The reading two is positive, so it is printed. The reading minus one is negative, so continue skips its print. The reading six is printed. The output is two, six.
 
 ## Slide 34: Stop at one item using break
 
-Stop at one item using break
-CML3113, Week 4, slide 34
+-1 triggers break. The loop never visits 6.
 
-Explanation to give
-continue ends the current iteration and proceeds to the next item. break ends the nearest enclosing loop completely. Trace the same data twice to show the distinction.
-
-Worked illustration / lecturer answer
-Over [1, 2, 3], skipping 2 with continue still allows 3 to be processed. Breaking when 2 is reached prevents both 2's remaining work and the later visit to 3.
-
-Misconception to address
-Statements below continue or break in that iteration are skipped. Neither word means “restart the whole notebook”.
-
-Read the displayed code line by line
-for reading in [2, -1, 6]:
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-if reading < 0:
-Evaluate this yes/no condition. Execute its indented body only on the matching path.
-
-break
-Exit this loop immediately; later items will not be visited.
-
-print(reading)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 2
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+```python
+for reading in [2, -1, 6]:
+    if reading < 0:
+        break
+    print(reading)
+```
 
-Continue to
-Trace the two loop controls
+**Spoken script**
 
-Output from the supplied CSV (this cohort):
-2
+This example is almost the same as the last one, but it uses break instead of continue.
 
+The loop goes over the list two, minus one, six. For each item, the if line asks whether reading is less than zero.
 
-Result from the supplied example
-2
+For two, the answer is false, so the print line runs and shows two.
+
+For minus one, the answer is true, so break runs. The loop ends immediately.
+
+The loop never visits six, because it has already finished.
+
+The output is just two.
+
+The only change from the last slide is one word, and it changes the result from two and six to two alone.
 
 ## Slide 35: Trace the two loop controls
 
-Trace the two loop controls
-CML3113, Week 4, slide 35
-
-Explanation to give
-continue ends the current iteration and proceeds to the next item. break ends the nearest enclosing loop completely. Trace the same data twice to show the distinction.
-
-Worked illustration / lecturer answer
-Over [1, 2, 3], skipping 2 with continue still allows 3 to be processed. Breaking when 2 is reached prevents both 2's remaining work and the later visit to 3.
-
-Misconception to address
-Statements below continue or break in that iteration are skipped. Neither word means “restart the whole notebook”.
-
-On this slide
-Input | continue version | break version
-2 | Print 2 | Print 2
--1 | Skip its print | Exit loop
-6 | Print 6 | Never visited
 Use continue only when skipping is justified by the stated data rule; do not silently discard evidence.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-A dictionary is a record with named fields
+This table compares the two loop controls on the same input, the list two, minus one, six.
+
+For the item two, both versions print two.
+
+For minus one, the continue version skips its print and goes on. The break version exits the loop.
+
+For six, the continue version prints six. The break version never reaches it.
+
+The slide gives a rule for using these. Use continue only when the data rule we were given justifies skipping an item. An example is a rule that says negative readings are invalid. We should avoid quietly throwing away data, because we might lose evidence that something is wrong.
 
 ## Slide 36: A dictionary is a record with named fields
 
-A dictionary is a record with named fields
-CML3113, Week 4, slide 36
+01
 
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-On this slide
 record = {"unit": "A", "reading": 4} stores two key–value pairs. Keys name fields; values hold the information.
+
+02
 
 Braces enclose the dictionary. A colon separates each key from its value and a comma separates pairs. Each key is unique.
 
+03
+
 record["reading"] returns 4. Unlike a list position, "reading" names the field we want.
 
-Continue to
-A missing dictionary key and get
+**Spoken script**
+
+A dictionary is a record with named fields. In a list we find items by position. In a dictionary we find them by name.
+
+Our example is record equals braces, with the word unit, a colon, and the letter A, then a comma, then the word reading, a colon and four. This stores two key and value pairs. The keys are the names of the fields, and the values hold the information.
+
+The braces enclose the dictionary. A colon separates each key from its value, and a comma separates one pair from the next. Each key can appear only once.
+
+To read a value, we write record, then square brackets with the key in quotation marks. Record with the key reading gives four. We ask for the field by its name, so we do not need to remember a position.
 
 ## Slide 37: A missing dictionary key and get
 
-A missing dictionary key and get
-CML3113, Week 4, slide 37
+01
 
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-On this slide
 record["reading"] requests a known field. If that key does not exist, square-bracket lookup raises KeyError.
+
+02
 
 record.get("missing", 0) asks for that key with a fallback: return 0 if it is absent. This does not add a new key.
 
+03
+
 The second input is the fallback value. Use a fallback only when the task defines what missing information should mean.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Reading and updating a dictionary
+Sometimes we ask a dictionary for a key that is not there. Take a record that holds a unit and a reading. When we write record, then square brackets with the word reading in quotes, Python looks for the key called reading and gives back its value. If that key does not exist, Python stops with an error called KeyError.
+
+There is a gentler way to ask. Record dot get, with the word missing in quotes and then zero, asks for the key called missing and says, if it is absent, give me zero instead. This call does not add a new key to the dictionary. It only hands back the fallback.
+
+The second input to get is the fallback value. We use a fallback only when the task tells us what missing information should mean. In a count, for example, a missing key can sensibly mean zero so far.
 
 ## Slide 38: Reading and updating a dictionary
 
-Reading and updating a dictionary
-CML3113, Week 4, slide 38
+["reading"] selects a key, not a position.
 
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
+Assigning through the key updates its value.
 
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-Read the displayed code line by line
-record = {"unit": "A", "reading": 4}
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(record["reading"])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-record["reading"] = 6
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(record["reading"])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(record.get("missing", 0))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 4, then 6, then 0. get uses the fallback only when that key is absent.
 
-Continue to
-Tuples and unpacking
+```python
+record = {"unit": "A", "reading": 4}
+print(record["reading"])
+record["reading"] = 6
+print(record["reading"])
+print(record.get("missing", 0))
+```
 
-Output from the supplied CSV (this cohort):
-4
-6
-0
+**Spoken script**
 
+We build a record with two fields, a unit with the value A and a reading with the value 4. The curly brackets hold pairs, and each pair is a key, a colon, and its value.
 
-Result from the supplied example
-4
-6
-0
+The first print asks for the key reading, so we see 4. The square brackets select a key. They pick out the field by its name.
+
+The next line assigns through the key. Record, reading in square brackets, equals 6, replaces the old value stored under that key. The second print now shows 6.
+
+The last print uses get with the key missing and a fallback of zero. The record has no key called missing, so get gives back zero. If the key had been present, get would have returned its real value.
+
+The output is 4, then 6, then 0.
 
 ## Slide 39: Tuples and unpacking
 
-Tuples and unpacking
-CML3113, Week 4, slide 39
+01
 
-Explanation to give
-A tuple keeps positions that cannot be reassigned. Unpacking assigns the items to several names in the same order. Show the number of items and names before running it.
-
-Worked illustration / lecturer answer
-point = (2, 3), then x, y = point gives x = 2 and y = 3. The original tuple still exists. record.items() similarly supplies key/value pairs to two loop names.
-
-Misconception to address
-Two names need two items. A tuple containing a mutable object does not freeze that object's contents.
-
-On this slide
 A tuple stores items in order. point = (2, 3) stores two coordinates; point[0] is 2. You cannot reassign point[0].
+
+02
 
 x, y = point gives the first item to x and the second to y. This is unpacking; the number of names must match the number of items.
 
+03
+
 A tuple prevents replacing its positions. It does not freeze the contents of a mutable object stored inside it.
 
-Continue to
-Unpacking a pair
+**Spoken script**
+
+A tuple stores items in order, like a list, but its positions cannot be reassigned. We write one with round brackets. Point equals open bracket 2, comma, 3, close bracket stores two coordinates. Point with zero in square brackets is 2, because counting starts at zero. If we try to put a new value into point at position zero, Python refuses.
+
+Unpacking means giving the items of a tuple to separate names in one line. X comma y equals point gives the first item to x and the second to y. The number of names must match the number of items, otherwise Python reports an error.
+
+A tuple stops us replacing its positions. If a tuple holds a list inside it, the items of that list can still change, because the tuple only fixes which object sits at each position.
 
 ## Slide 40: Unpacking a pair
 
-Unpacking a pair
-CML3113, Week 4, slide 40
+Two names receive the two items in order.
 
-Explanation to give
-A tuple keeps positions that cannot be reassigned. Unpacking assigns the items to several names in the same order. Show the number of items and names before running it.
-
-Worked illustration / lecturer answer
-point = (2, 3), then x, y = point gives x = 2 and y = 3. The original tuple still exists. record.items() similarly supplies key/value pairs to two loop names.
-
-Misconception to address
-Two names need two items. A tuple containing a mutable object does not freeze that object's contents.
-
-Read the displayed code line by line
-point = (2, 3)
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-x, y = point
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(x)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(y)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 2, then 3.
 
-Continue to
-A set remembers distinct items
+```python
+point = (2, 3)
+x, y = point
+print(x)
+print(y)
+```
 
-Output from the supplied CSV (this cohort):
-2
-3
+**Spoken script**
 
+We create a tuple called point holding 2 and 3. Then x comma y equals point is the unpacking line. There are two names on the left and two items on the right, so they match. Python gives the first item to x and the second item to y, in order.
 
-Result from the supplied example
-2
-3
+The first print shows x, which is 2. The second print shows y, which is 3.
+
+The original tuple still exists after unpacking. We have only copied its items into two names so that we can use them separately.
+
+The output is 2, then 3.
 
 ## Slide 41: A set remembers distinct items
 
-A set remembers distinct items
-CML3113, Week 4, slide 41
+01
 
-Explanation to give
-A set answers whether an item is present and stores each distinct item once. It has no numeric positions. Use it to remember IDs already encountered.
-
-Worked illustration / lecturer answer
-Add "A" twice to an empty set: len is still 1. "A" in seen is True and "B" in seen is False. Adding "B" makes the count 2.
-
-Misconception to address
-{} creates an empty dictionary. Use set() for an empty set. Sets are unsuitable when duplicate measurements or a particular order must be retained.
-
-On this slide
 A set is useful when the question is “Have we seen this ID?” It keeps one instance of each distinct item.
+
+02
 
 seen = set() creates an empty set. seen.add("A") adds an item. "A" in seen asks whether it is present.
 
+03
+
 Do not use a set when position or repeated readings matter. Sets cannot be indexed. {} creates an empty dictionary, not an empty set.
 
-Continue to
-Set membership and repeated IDs
+**Spoken script**
+
+A set is a collection that keeps one copy of each distinct item. It is useful when the question is, have we seen this ID before? A sensor ID might appear fifty times in a file, and the set keeps it once.
+
+To make an empty set we write seen equals set with empty brackets. Seen dot add with the letter A in quotes puts A into the set. To ask whether something is inside, we write the item, then the word in, then the set. Python answers True or False.
+
+A set is the wrong tool when position or repeated readings matter, because a set has no positions and we cannot index it. One trap to remember is that empty curly brackets create an empty dictionary. For an empty set we always write set with brackets.
 
 ## Slide 42: Set membership and repeated IDs
 
-Set membership and repeated IDs
-CML3113, Week 4, slide 42
+in returns True or False.
 
-Explanation to give
-A set answers whether an item is present and stores each distinct item once. It has no numeric positions. Use it to remember IDs already encountered.
+A set answers membership questions.
 
-Worked illustration / lecturer answer
-Add "A" twice to an empty set: len is still 1. "A" in seen is True and "B" in seen is False. Adding "B" makes the count 2.
-
-Misconception to address
-{} creates an empty dictionary. Use set() for an empty set. Sets are unsuitable when duplicate measurements or a particular order must be retained.
-
-Read the displayed code line by line
-seen = set()
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-seen.add("A")
-Remember this item in the set. Adding the same item again does not create a duplicate.
-
-seen.add("A")
-Remember this item in the set. Adding the same item again does not create a duplicate.
-
-print(len(seen))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print("A" in seen)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print("B" in seen)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: 1, True, False. Adding the same ID twice keeps one distinct ID.
 
-Continue to
-How the four collections differ
+```python
+seen = set()
+seen.add("A")
+seen.add("A")
+print(len(seen))
+print("A" in seen)
+print("B" in seen)
+```
 
-Output from the supplied CSV (this cohort):
-1
-True
-False
+**Spoken script**
 
+We start with an empty set called seen. Then we add the letter A. We add the letter A a second time. A set keeps only one copy of each item, so the second add changes nothing.
 
-Result from the supplied example
-1
-True
-False
+The first print shows len of seen, which counts the items. The answer is 1, because only one distinct ID is stored.
+
+The second print asks whether A is in seen. The word in gives back True or False, and here it is True.
+
+The third print asks about B. We never added B, so the answer is False.
+
+The output is 1, True, False. This is how a set answers membership questions.
 
 ## Slide 43: How the four collections differ
 
-How the four collections differ
-CML3113, Week 4, slide 43
-
-Explanation to give
-Compare the access rule for each collection. Lists and tuples use positions; dictionaries use keys; sets answer membership questions. Lists can change their items, while tuple positions cannot be reassigned.
-
-Worked illustration / lecturer answer
-For readings use an ordered list. For a record with unit and reading fields use a dictionary. For a coordinate pair use a tuple. For IDs already seen use a set.
-
-Misconception to address
-A set cannot be indexed. Dictionary keys are unique, but values may repeat. {} is an empty dictionary; set() is an empty set.
-
-On this slide
-Collection | Find an item by | Repeats / changes
-list | Position: values[0] | Repeats allowed; items change
-dict | Key: record["reading"] | Keys unique; values change
-tuple | Position: point[0] | Repeats allowed; positions fixed
-set | Membership: "A" in seen | Distinct items; add or remove
 Choose by the question: ordered readings, named fields, fixed positions, or distinct IDs.
 
-Continue to
-Dictionary items and two loop names
+**Spoken script**
+
+We now have four collections, and each answers a different kind of question. We choose by the question we are asking.
+
+If we have ordered readings, we use a list. We find items by position and the list can change.
+
+If we have named fields, such as a unit and a reading belonging to one record, we use a dictionary. We find items by their key.
+
+If we have fixed positions, such as a pair of coordinates, we use a tuple. Its positions cannot be reassigned.
+
+If we only need to know which IDs we have already seen, we use a set. It keeps each distinct item once and answers yes or no.
+
+Before writing code, we say the question aloud and pick the collection that fits it.
 
 ## Slide 44: Dictionary items and two loop names
 
-Dictionary items and two loop names
-CML3113, Week 4, slide 44
-
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-On this slide
 record.items() provides each key with its value as a pair. The loop unpacks each pair into the names key and value.
 
 for key, value in record.items(): repeats the indented body for each field. Use .items() when both the label and its value are needed.
 
-Continue to
-Looping through named fields
+**Spoken script**
+
+Often we need both the label and the value of every field in a dictionary. For that we use dot items. Record dot items gives each key together with its value as a pair.
+
+The for line has two names after the word for, key and value, separated by a comma. Python takes each pair and unpacks it, exactly like unpacking a tuple. The first name receives the key and the second name receives the value.
+
+The line ends with a colon, and the indented lines below it run once for every field in the record.
+
+We use dot items when we need both the label and its value.
 
 ## Slide 45: Looping through named fields
 
-Looping through named fields
-CML3113, Week 4, slide 45
+.items() supplies pairs.
 
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
+key and value are names chosen for this loop.
 
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-Read the displayed code line by line
-record = {"unit": "A", "reading": 6}
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-for key, value in record.items():
-Take each item or pair in turn, assign the loop name(s), and repeat the indented body.
-
-print(key, value)
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Output: unit A, then reading 6. The dictionary preserves insertion order.
 
-Continue to
-A position and a key find different things
+```python
+record = {"unit": "A", "reading": 6}
+for key, value in record.items():
+    print(key, value)
+```
 
-Output from the supplied CSV (this cohort):
-unit A
-reading 6
+**Spoken script**
 
+The record has a unit with the value A and a reading with the value 6. The for line says, for key comma value in record dot items. Dot items hands over one pair at a time.
 
-Result from the supplied example
-unit A
-reading 6
+Inside the loop, print key value prints the two names side by side. On the first pass, key holds the word unit and value holds A. On the second pass, key holds the word reading and value holds 6.
+
+The names key and value were chosen by us for this loop. We could pick other names, as long as there are two of them, one for each part of the pair.
+
+The output is unit A, then reading 6. The dictionary keeps its fields in the order we inserted them, so the loop visits them in that order.
 
 ## Slide 46: A position and a key find different things
 
-A position and a key find different things
-CML3113, Week 4, slide 46
-
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-On this slide
 Both examples return 4. Explain how each lookup finds it.
 
-Continue to
-CSV and header
+**Spoken script**
+
+Here are two ways to reach the same number, 4. One uses a position and one uses a key, and they find it differently.
+
+A list keeps items in order and numbers them starting at zero. When we ask for a position, Python counts along the list and returns whatever sits there. We need to know where the item is.
+
+A dictionary keeps labels. When we ask for a key, Python looks up that label and returns the value stored under it. The place where the field was written does not matter. We need to know the label.
+
+Both examples return 4. If a new item were added to the front of a list, the positions would shift. The label in a dictionary keeps pointing at its own value.
 
 ## Slide 47: CSV and header
 
-CSV and header
-CML3113, Week 4, slide 47
+CSV means comma-separated values. One line usually represents one record; a header names the columns. CSV numbers arrive as text and may need float conversion.
 
-Explanation to give
-A CSV file stores rows as text separated into fields. Its header provides column names. csv.DictReader turns each data row into a dictionary using those names; numeric-looking cells initially remain strings.
+**Spoken script**
 
-Worked illustration / lecturer answer
-A CSV row with reading 2.5 yields the text "2.5". float converts that field to the number 2.5. with open(...) keeps the file available inside the indented block and closes it afterwards.
+CSV stands for comma-separated values. It is a plain text file where each line is usually one record, and the commas separate the fields on that line.
 
-Misconception to address
-Use the exact file from the current week's package and its exact header. A correct formula cannot repair a wrong file, misspelled column or wrong unit.
+The first line is the header. It gives a name to each column, for example unit and reading. Every line after the header is data.
 
-On this slide
-CSV and header: CSV means comma-separated values. One line usually represents one record; a header names the columns. CSV numbers arrive as text and may need float conversion.
+There is one important detail. Everything we read from a CSV file arrives as text, even a cell that looks like a number. The text two point five is not yet a number we can add. We have to convert it with float.
 
-Continue to
-One record at a time
+So when we read a CSV, we remember two things. The header gives us names for the columns, and every cell starts out as text.
 
 ## Slide 48: One record at a time
 
-One record at a time
-CML3113, Week 4, slide 48
+01
 
-Explanation to give
-A CSV file stores rows as text separated into fields. Its header provides column names. csv.DictReader turns each data row into a dictionary using those names; numeric-looking cells initially remain strings.
-
-Worked illustration / lecturer answer
-A CSV row with reading 2.5 yields the text "2.5". float converts that field to the number 2.5. with open(...) keeps the file available inside the indented block and closes it afterwards.
-
-Misconception to address
-Use the exact file from the current week's package and its exact header. A correct formula cannot repair a wrong file, misspelled column or wrong unit.
-
-On this slide
 A CSV is a text table with a header row.
+
+02
 
 DictReader uses that header for dictionary keys.
 
+03
+
 CSV cells begin as text, even when they look numeric.
+
+04
 
 float("2.5") converts text into the number 2.5.
 
-Continue to
-A CSV file has a header and text values
+**Spoken script**
+
+We read a CSV file one record at a time, and there are four small ideas.
+
+First, a CSV file is a text table, and its first line is the header row.
+
+Second, DictReader is a tool from the csv library. It uses the header to build a dictionary for each data row, so each column name becomes a key.
+
+Third, the cells begin as text, even when they look like numbers. If a cell holds two point five, Python holds the text, which is the characters two, a dot, and five.
+
+Fourth, float with the text two point five in quotes converts it into the number 2.5. After that we can add it, compare it and average it.
 
 ## Slide 49: A CSV file has a header and text values
 
-A CSV file has a header and text values
-CML3113, Week 4, slide 49
-
-Explanation to give
-A CSV file stores rows as text separated into fields. Its header provides column names. csv.DictReader turns each data row into a dictionary using those names; numeric-looking cells initially remain strings.
-
-Worked illustration / lecturer answer
-A CSV row with reading 2.5 yields the text "2.5". float converts that field to the number 2.5. with open(...) keeps the file available inside the indented block and closes it afterwards.
-
-Misconception to address
-Use the exact file from the current week's package and its exact header. A correct formula cannot repair a wrong file, misspelled column or wrong unit.
-
-On this slide
-CSV line | Dictionary meaning
-unit,reading | Two field names
-A,2.5 | {"unit": "A", "reading": "2.5"}
-B, | {"unit": "B", "reading": ""}
 An empty field is empty text. Check the task’s rule before converting it.
 
-Continue to
-A CSV row becomes a dictionary
+**Spoken script**
+
+A CSV file has a header and text values. The header gives the column names, and each cell below it is a piece of text.
+
+A cell can also be empty. An empty field is empty text, which is a string with nothing in it. A blank cell means that no reading was recorded, and it holds no number at all.
+
+If we ask float to convert empty text, Python stops with an error. So before converting we check the rule in the task. The task tells us whether to skip blank cells or treat them in some other way.
+
+We carry this habit into the assignment. We look at the value as text first and decide what to do with it before converting.
 
 ## Slide 50: A CSV row becomes a dictionary
 
-A CSV row becomes a dictionary
-CML3113, Week 4, slide 50
+01
 
-Explanation to give
-A dictionary labels fields with keys. A list organises records by position. Explain each lookup in a nested expression separately rather than saying it all at once.
-
-Worked illustration / lecturer answer
-records[0]["reading"] first selects the first record, then finds its reading field. In {"unit": "A", "reading": 4}, the key reading retrieves 4 regardless of its visual position.
-
-Misconception to address
-Using a missing key with square brackets raises KeyError. get("missing", 0) uses 0 only if the key is absent, not when its existing value is None.
-
-On this slide
 The header gives field names, such as unit and reading.
+
+02
 
 csv.DictReader returns one dictionary for each data row.
 
+03
+
 The value "2.5" starts as text. float("2.5") makes the number 2.5.
 
-Continue to
-with and import
+**Spoken script**
+
+A CSV row becomes a dictionary through three steps.
+
+The header gives the field names. If the header line says unit comma reading, then unit and reading are the names for the two columns.
+
+Then csv dot DictReader returns one dictionary for each data row. For a row holding A and 2.5, we get a dictionary with the key unit holding A and the key reading holding 2.5.
+
+The value 2.5 starts out as text. It sits in the dictionary in quotes. To use it as a number we write float with that text inside brackets, and we receive the number 2.5.
+
+Once a row is a dictionary, we can ask it for any field by its key.
 
 ## Slide 51: with and import
 
-with and import
-CML3113, Week 4, slide 51
+import makes library tools available. with open(...) opens a file for a block and closes it afterward. A filename must match an existing file in the working folder.
 
-Explanation to give
-A CSV file stores rows as text separated into fields. Its header provides column names. csv.DictReader turns each data row into a dictionary using those names; numeric-looking cells initially remain strings.
+**Spoken script**
 
-Worked illustration / lecturer answer
-A CSV row with reading 2.5 yields the text "2.5". float converts that field to the number 2.5. with open(...) keeps the file available inside the indented block and closes it afterwards.
+Two small words appear in nearly every file-reading program, import and with.
 
-Misconception to address
-Use the exact file from the current week's package and its exact header. A correct formula cannot repair a wrong file, misspelled column or wrong unit.
+Import makes a library's tools available to our program. When we write import csv, we can then use the tools of the csv library, such as DictReader.
 
-On this slide
-with and import: import makes library tools available. with open(...) opens a file for a block and closes it afterward. A filename must match an existing file in the working folder.
+With open, followed by the file name, opens a file for the indented block that follows. When Python leaves that block, the file is closed automatically, so we never forget to close it.
 
-Continue to
-Your cohort data
+The file name in the quotes must match an existing file in the working folder. If the spelling is different, or the file has not been uploaded, Python cannot find it and reports an error. Whenever a file fails to open, the first thing we check is the exact name.
 
 ## Slide 52: Your cohort data
 
-Your cohort data
-CML3113, Week 4, slide 52
+01
 
-Explanation to give
-Use fluid moving through a system as the physical reference. Volume in litres divided by elapsed seconds gives a flow rate in L/s. Density and depth belong to a later pressure calculation.
-
-Worked illustration / lecturer answer
-Show drill_shift_log.csv in the runtime Files panel. The Week 2 file has four rows for setup; Week 4 uses its own 300-row file. Inspect the header to locate this cohort’s reading field and group field.
-
-Misconception to address
-Flow rate and pressure are different physical quantities. Keep litres/seconds separate from the SI units specified for mud_pressure.
-
-On this slide
 drill_shift_log.csv
+
+02
 
 Summarise rate_of_penetration (m/hour); group by bit_type.
 
+03
+
 Read the issued task’s blank-value and threshold rules before calculating.
 
-Continue to
-Read the supplied CSV in four steps
+**Spoken script**
+
+Now we look at the data that your cohort will use. The file is drill underscore shift underscore log dot csv.
+
+We will summarise the column rate underscore of underscore penetration, which is measured in metres per hour. We will group the rows by bit underscore type. Grouping means that we calculate one summary for each distinct label in that column.
+
+Before calculating anything, read the issued task. It states what to do with blank values and which threshold to use. We follow those rules exactly.
 
 ## Slide 53: Read the supplied CSV in four steps
 
-Read the supplied CSV in four steps
-CML3113, Week 4, slide 53
+01
 
-Explanation to give
-A CSV file stores rows as text separated into fields. Its header provides column names. csv.DictReader turns each data row into a dictionary using those names; numeric-looking cells initially remain strings.
-
-Worked illustration / lecturer answer
-A CSV row with reading 2.5 yields the text "2.5". float converts that field to the number 2.5. with open(...) keeps the file available inside the indented block and closes it afterwards.
-
-Misconception to address
-Use the exact file from the current week's package and its exact header. A correct formula cannot repair a wrong file, misspelled column or wrong unit.
-
-On this slide
 Place drill_shift_log.csv beside the notebook, or upload it in Colab’s Files panel.
+
+02
 
 import csv loads the CSV tools. newline="" lets the reader handle line endings. DictReader uses the header as dictionary keys.
 
+03
+
 list(...) collects the rows while the file is open. We inspect the first row and the count; the later assignment calculations are your work.
 
-Continue to
-What with open as source does
+**Spoken script**
+
+We read the supplied CSV in steps.
+
+First, place drill underscore shift underscore log dot csv in the same folder as the notebook, or upload it in the Files panel in Colab.
+
+Second, import csv loads the CSV tools. The newline equals empty quotes part lets the reader handle line endings correctly. DictReader then uses the header row as the dictionary keys.
+
+Third, list with the reader inside collects all the rows into one list while the file is still open. We then inspect the first row and the count of rows.
+
+The later calculations belong to the assignment, and they are your work.
 
 ## Slide 54: What with open as source does
 
-What with open as source does
-CML3113, Week 4, slide 54
+01
 
-Explanation to give
-A CSV file stores rows as text separated into fields. Its header provides column names. csv.DictReader turns each data row into a dictionary using those names; numeric-looking cells initially remain strings.
-
-Worked illustration / lecturer answer
-A CSV row with reading 2.5 yields the text "2.5". float converts that field to the number 2.5. with open(...) keeps the file available inside the indented block and closes it afterwards.
-
-Misconception to address
-Use the exact file from the current week's package and its exact header. A correct formula cannot repair a wrong file, misspelled column or wrong unit.
-
-On this slide
 open("file.csv", newline="") opens a text file for reading. Use the actual supplied filename, including its .csv extension.
+
+02
 
 with manages the open file. as source gives that file object a name. Indented lines use it while it is open; leaving the block closes it.
 
+03
+
 csv.DictReader(source) reads rows using the header names as keys. list(...) collects those rows into memory before the file closes.
 
-Reference / existing resource
-https://docs.python.org/3/tutorial/introduction.html
-https://docs.python.org/3/tutorial/controlflow.html;
+**Spoken script**
 
-Continue to
-Open a real CSV and inspect its first row
+This slide explains the line with open, as source.
+
+Open, with the file name in quotes and newline equals empty quotes, opens a text file for reading. We write the real file name, including the dot csv ending.
+
+The word with manages the open file. As source gives the file a name that we can use, here source. The indented lines below use the file while it is open. When we leave that block, Python closes the file for us.
+
+Inside, csv dot DictReader with source reads the rows, using the header names as keys. List around it collects all the rows into memory. We collect them before the file closes, because after that the reader can no longer read from it.
 
 ## Slide 55: Open a real CSV and inspect its first row
 
-Open a real CSV and inspect its first row
-CML3113, Week 4, slide 55
+with open(...) as source opens the file. as gives the open file the name source.
 
-Explanation to give
-A CSV file stores rows as text separated into fields. Its header provides column names. csv.DictReader turns each data row into a dictionary using those names; numeric-looking cells initially remain strings.
-
-Worked illustration / lecturer answer
-A CSV row with reading 2.5 yields the text "2.5". float converts that field to the number 2.5. with open(...) keeps the file available inside the indented block and closes it afterwards.
-
-Misconception to address
-Use the exact file from the current week's package and its exact header. A correct formula cannot repair a wrong file, misspelled column or wrong unit.
-
-Read the displayed code line by line
-import csv
-Load this library. An alias after as is the shorter name used below.
-
-with open("drill_shift_log.csv", newline="") as source:
-Open the named resource for the indented block and close it when leaving the block.
-
-rows = list(csv.DictReader(source))
-Evaluate the complete right-hand expression first, then assign its result to the name or selected field on the left.
-
-print(rows[0])
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-print(len(rows))
-Evaluate the expression inside the parentheses and display it. Displaying is separate from returning a function result.
-
-Result / continuity
 Read the actual keys and text values. Check the uploaded filename if Python reports FileNotFoundError.
 
-Continue to
-A list of dictionaries
+```python
+import csv
+with open("drill_shift_log.csv", newline="") as source:
+    rows = list(csv.DictReader(source))
+print(rows[0])
+print(len(rows))
+```
 
-Output from the supplied CSV (this cohort):
-{'hole_id': 'H1', 'depth_m': '80', 'rate_of_penetration': '10.17', 'bit_type': 'B1', 'operator_id': 'O1', 'downtime_min': '0', 'downtime_reason': 'service', 'shift': 'day'}
-300
+**Spoken script**
 
+This is the complete code for opening a real file.
 
-Result from the supplied example
-{'hole_id': 'H1', 'depth_m': '80', 'rate_of_penetration': '10.17', 'bit_type': 'B1', 'operator_id': 'O1', 'downtime_min': '0', 'downtime_reason': 'service', 'shift': 'day'}
-300
+Import csv loads the CSV tools. The with line opens drill underscore shift underscore log dot csv for reading and calls the open file source.
+
+The indented line builds a list called rows. DictReader turns every data row into a dictionary, and list collects them all while the file is open.
+
+Print rows with zero in square brackets shows the first row. Since counting starts at zero, this is the first data row. We read the actual keys, and notice that the values are still text.
+
+Print len of rows shows how many records were read.
+
+If Python reports FileNotFoundError, we check that the uploaded file name matches the one in the code.
 
 ## Slide 56: Numbers read from CSV
 
-Use the real header shown in the previous example. The list rows already contains the supplied file records.
+DictReader reads each row as a dictionary. CSV field values start as text. float converts a recorded numeric field to a number.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Check for an empty string before converting a blank cell.
+
+**Spoken script**
+
+DictReader reads each row as a dictionary. The values in those dictionaries begin as text. When a field holds a recorded number, we use float to convert it into a number.
+
+Some cells are blank. A blank cell is an empty string, and float cannot convert an empty string. So before converting, we check for an empty string and skip the blank cell.
+
+The list called rows from the previous example already holds all the records from the supplied file. We use the real header names we saw there as our keys.
+
+The pattern is the same each time. We take the text from the field, check that it is not empty, and then convert it.
 
 ## Slide 57: Recorded values from the supplied rows
 
-Each retained number comes directly from a CSV row. [:5] previews up to five entries.
+Each retained number comes directly from a CSV row.
 
-Complete worked example:
+Run this cell on the supplied CSV. Read the output below the cell.
+
+```python
 values = []
 for row in rows:
     text = row["rate_of_penetration"]
@@ -1667,27 +1249,43 @@ for row in rows:
         values.append(float(text))
 print(len(values))
 print(values[:5])
+```
 
-Output from the supplied CSV (this cohort):
-297
-[10.17, 10.81, 10.01, 10.19, 11.19]
+**Spoken script**
 
+We now collect the recorded numbers from the supplied rows.
 
-Result from the supplied example
-297
-[10.17, 10.81, 10.01, 10.19, 11.19]
+Values equals empty square brackets starts an empty list. The for line visits each row in rows. Inside the loop, text equals row with rate underscore of underscore penetration in square brackets takes that row's reading, still as text.
+
+The if line checks that the text is not equal to an empty string. A blank cell fails this check and is skipped. When a cell passes, float turns the text into a number, and values dot append adds it to the list.
+
+After the loop, print len of values shows how many numbers were kept. Leaving out the number before the colon means start at the beginning, so values with colon 5 takes positions zero to four, and it shows fewer than five items if the list is shorter.
+
+Run this cell on your own file and read the output below the cell. Each number comes directly from a row in your CSV.
 
 ## Slide 58: One summary for each group
 
-Every retained row contributes once. Use the actual group and measurement names in this cohort’s CSV.
+Keep a totals dictionary and a counts dictionary. Initialise a new group before adding its first reading.
 
-Reference: https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html
+Add the recorded value and increment its count. Divide each total by its count to obtain the group mean.
+
+**Spoken script**
+
+To get one summary for each group, we keep two dictionaries. One is a totals dictionary and the other is a counts dictionary. The keys are the group labels.
+
+When a group appears for the first time, it has no entry yet. We start it at zero before adding its first reading. The get function helps us do this in one step.
+
+For every valid row we do two things. We add the recorded value to that group's total, and we add one to that group's count.
+
+When all the rows are done, we divide each group's total by its own count. That gives the mean for each group. Every group uses its own count as the divisor.
 
 ## Slide 59: Grouped means from the supplied rows (1/2)
 
-get(group, 0) returns the existing value or zero for a new group. The measurement and grouping labels match the supplied CSV.
+get(group, 0) returns the existing value or zero for a new group.
 
-Complete worked example:
+Run this cell on the supplied CSV. Read the output below the cell.
+
+```python
 totals = {}
 counts = {}
 for row in rows:
@@ -1696,302 +1294,331 @@ for row in rows:
         value = float(row["rate_of_penetration"])
         totals[group] = totals.get(group, 0) + value
         counts[group] = counts.get(group, 0) + 1
-means = {}
-for group in totals:
-    means[group] = totals[group] / counts[group]
-print(means)
+```
 
-Output from the supplied CSV (this cohort):
-{'B1': 10.975400000000002, 'B2': 11.014444444444447, 'B3': 9.043265306122452}
+**Spoken script**
 
+This is the first half of the grouped mean calculation. We make two empty dictionaries, totals and counts.
 
-Result from the supplied example
-{'B1': 10.975400000000002, 'B2': 11.014444444444447, 'B3': 9.043265306122452}
+The loop visits each row. The line group equals row with bit underscore type in square brackets picks the group label of this row.
+
+The if line skips rows where rate underscore of underscore penetration is blank. For every other row, value equals float of that field turns the text into a number.
+
+The next line updates the total. Totals with group in square brackets equals totals dot get of group and zero, plus value. If this group has no total yet, get returns zero, so a new group starts from zero. Otherwise it returns the running total, and we add the new value.
+
+The count line works the same way and adds one each time.
+
+Run this cell on your own file. It prints nothing yet.
 
 ## Slide 60: Grouped means from the supplied rows (2/2)
 
-get(group, 0) returns the existing value or zero for a new group. The measurement and grouping labels match the supplied CSV.
+get(group, 0) returns the existing value or zero for a new group.
 
-Complete worked example:
-totals = {}
-counts = {}
-for row in rows:
-    group = row["bit_type"]
-    if row["rate_of_penetration"] != "":
-        value = float(row["rate_of_penetration"])
-        totals[group] = totals.get(group, 0) + value
-        counts[group] = counts.get(group, 0) + 1
+Continue the same cell with the indentation shown.
+
+```python
 means = {}
 for group in totals:
     means[group] = totals[group] / counts[group]
 print(means)
+```
 
-Result from the supplied example
-{'B1': 10.975400000000002, 'B2': 11.014444444444447, 'B3': 9.043265306122452}
+**Spoken script**
+
+This is the second half of the grouped mean calculation, and we continue in the same cell with the same indentation.
+
+Means equals empty curly brackets starts a new dictionary for the answers. The for line goes through the keys of totals, which are the group labels, one at a time. For each group, means with the group in square brackets receives that group's total divided by that group's count.
+
+Each group uses its own count as the divisor. Each group's total is divided by its own count.
+
+Print means shows the finished dictionary. It has one entry for every group, with the group label as the key and the mean as the value.
+
+This is the pattern we use for the group means task in the assignment.
 
 ## Slide 61: Your issued assignment
 
-Your issued assignment
-CML3113, Week 4, slide 75
+01
 
-Explanation to give
-A4 uses the Week 4 300-row cohort CSV. The required outputs are valid_count, mean_reading, above_limit and group_means. Work only with the rows admitted by the published blank-reading rules.
-
-Worked illustration / lecturer answer
-Trace a smaller unrelated dataset first: A readings 2 and 4 yield A mean 3; B reading 9 yields B mean 9. Each group needs its own denominator.
-
-Misconception to address
-Despite “Reading report” in the title, A4 is one completed Python notebook, not a separate Word report. Do not use Week 2’s four-row CSV.
-
-On this slide
 Open W04_student.ipynb.
+
+02
 
 Read every task and its input units before coding.
 
+03
+
 Keep the required function names and returned outputs.
+
+04
 
 Restart and run all cells, then save the completed notebook.
 
-Continue to
-valid_count (5 marks)
+**Spoken script**
+
+This slide describes your issued assignment.
+
+First, open the notebook called W04 underscore student dot ipynb.
+
+Second, read every task and its input units before you start coding. Knowing what goes in and what should come out saves time.
+
+Third, keep the required function names and the returned outputs exactly as they are in the starter code. The checks look for those names.
+
+Fourth, when you finish, restart the notebook and run all cells from the top, to confirm that everything works in order. Then save the completed notebook.
 
 ## Slide 62: valid_count (5 marks)
 
-valid_count (5 marks)
-CML3113, Week 4, slide 76
-
-Explanation to give
-Count records with a nonblank reading after applying the published rules. A blank is not a measured zero.
-
-Worked illustration / lecturer answer
-For numeric text "2", blank, "4", there are two recorded numbers. The assignment uses the current Week 4 300-row CSV.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Store an integer count of rows whose rate_of_penetration field is nonblank.
 
 Skip blank readings before numeric conversion.
 
-Continue to
-mean_reading (5 marks)
+**Spoken script**
+
+The first output is valid underscore count, worth five marks.
+
+It must be an integer, a whole number. It counts the rows where the rate underscore of underscore penetration field is nonblank.
+
+Valid means a recorded reading exists. A blank cell is a missing reading. It is no measured zero, so it is left out of the count.
+
+We skip blank readings before any numeric conversion. If we try to convert a blank, Python raises an error.
+
+For a small example, a column holding two, blank, four has a valid count of two.
 
 ## Slide 63: mean_reading (5 marks)
 
-mean_reading (5 marks)
-CML3113, Week 4, slide 77
+01
 
-Explanation to give
-Add only the readings admitted by the stated validity rule, then divide by their count. Keep the requested numeric return or variable.
-
-Worked illustration / lecturer answer
-For recorded readings 2 and 4, mean is 3. The skipped blank does not belong in the denominator.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Store the arithmetic mean of the nonblank rate_of_penetration values as a number.
+
+02
 
 Add the valid readings and divide by their count.
 
+03
+
 Keep full precision.
 
-Continue to
-above_limit (5 marks)
+**Spoken script**
+
+The second output is mean underscore reading, worth five marks.
+
+It is the arithmetic mean of the nonblank rate underscore of underscore penetration values, stored as a number.
+
+First we add up the valid readings. Then we divide that total by the number of valid readings. Blank cells are left out of both the total and the count.
+
+Keep full precision. This means we do not round the answer ourselves.
+
+For a small example, readings two and four have a mean of three.
 
 ## Slide 64: above_limit (5 marks)
 
-above_limit (5 marks)
-CML3113, Week 4, slide 78
-
-Explanation to give
-Compare each valid numeric reading against the specified threshold using the exact strict or inclusive relation in the task.
-
-Worked illustration / lecturer answer
-For readings 9,10,11 and a strictly-greater-than 10 limit, the count is 1. Using >= would incorrectly count 2.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Store an integer count of valid rate_of_penetration readings strictly greater than 8.0.
 
 A reading equal to the threshold is not counted.
 
-Continue to
-group_means (5 marks)
+**Spoken script**
+
+The third output is above underscore limit, worth five marks.
+
+It is an integer count of valid rate underscore of underscore penetration readings that are strictly greater than 8.0.
+
+Strictly greater than means that a reading equal to the threshold is left out of the count. We use the greater-than sign, with no equals sign next to it.
+
+Blank cells are not valid readings, so they are skipped.
+
+For a small example, with readings nine, ten and eleven and a limit of ten, only eleven is above the limit, so the count is one. If we used greater than or equal to, we would count two, which would be wrong.
 
 ## Slide 65: group_means (5 marks)
 
-group_means (5 marks)
-CML3113, Week 4, slide 79
+01
 
-Explanation to give
-Produce a dictionary from each group label to its own mean, using each group’s valid count.
-
-Worked illustration / lecturer answer
-Group A with readings 2 and 4 has mean 3. Group B with a single 9 has mean 9. Dividing both by the overall count would be wrong.
-
-Misconception to address
-Keep the exact output names and required types. Use the task text for the learner’s own assessed answer; the alternate example explains the method without replacing their work.
-
-On this slide
 Store a dictionary whose keys are the bit_type labels and whose values are the mean valid rate_of_penetration readings within each group.
+
+02
 
 Divide each group total by its own valid count.
 
+03
+
 Keep full precision.
 
-Continue to
-Week 4 rules
+**Spoken script**
+
+The fourth output is group underscore means, worth five marks.
+
+It is a dictionary. Its keys are the bit underscore type labels, and each value is the mean of the valid rate underscore of underscore penetration readings within that group.
+
+Each group has its own total and its own count. We divide each group's total by that group's valid count.
+
+Keep full precision, which means we do not round.
+
+For a small example, group A with readings two and four has a mean of three. Group B with a single reading of nine has a mean of nine. Dividing both totals by the overall count would give wrong answers.
 
 ## Slide 66: Week 4 rules
 
-Week 4 rules
-CML3113, Week 4, slide 80
+01
 
-Explanation to give
-A4 uses the Week 4 300-row cohort CSV. The required outputs are valid_count, mean_reading, above_limit and group_means. Work only with the rows admitted by the published blank-reading rules.
-
-Worked illustration / lecturer answer
-Trace a smaller unrelated dataset first: A readings 2 and 4 yield A mean 3; B reading 9 yields B mean 9. Each group needs its own denominator.
-
-Misconception to address
-Despite “Reading report” in the title, A4 is one completed Python notebook, not a separate Word report. Do not use Week 2’s four-row CSV.
-
-On this slide
 Fictional teaching data.
+
+02
 
 300 records.
 
+03
+
 Three blank rate_of_penetration values must be skipped in numerical summaries.
+
+04
 
 Threshold 8.0 is a teaching assumption.
 
-Continue to
-Week 4 rules continued
+**Spoken script**
+
+These are the rules for the Week 4 assignment.
+
+The data is fictional teaching data. It does not come from a real drilling shift.
+
+The file has 300 records.
+
+Three rate underscore of underscore penetration values are blank. Those must be skipped in any numerical summary, so they are left out of the totals and of the counts.
+
+The threshold of 8.0 is a teaching assumption. It is a value chosen for this exercise. We use it exactly as the task states.
 
 ## Slide 67: Week 4 rules continued
 
-Week 4 rules continued
-CML3113, Week 4, slide 81
+01
 
-Explanation to give
-A4 uses the Week 4 300-row cohort CSV. The required outputs are valid_count, mean_reading, above_limit and group_means. Work only with the rows admitted by the published blank-reading rules.
-
-Worked illustration / lecturer answer
-Trace a smaller unrelated dataset first: A readings 2 and 4 yield A mean 3; B reading 9 yields B mean 9. Each group needs its own denominator.
-
-Misconception to address
-Despite “Reading report” in the title, A4 is one completed Python notebook, not a separate Word report. Do not use Week 2’s four-row CSV.
-
-On this slide
 Compute valid_count, mean_reading, above_limit (strictly greater than 8.0) and group_means keyed by bit_type.
+
+02
 
 Use standard-library csv and collections.
 
+03
+
 Save a copy using your Student Registration Number with / replaced by _, followed by _W04.ipynb.
+
+04
 
 STUDENT_ID in the starter code means Student Registration Number.
 
-Continue to
-Week 4 rules continued
+**Spoken script**
+
+These are the remaining rules for the assignment.
+
+Compute valid underscore count, mean underscore reading, above underscore limit and group underscore means. The above limit count uses strictly greater than 8.0, and the group means are keyed by bit underscore type.
+
+The csv module is the toolbox for reading the file, and it comes with Python. The collections module is another built-in toolbox that you may use, though nothing this week requires it. They come with Python, so nothing needs installing.
+
+Save a copy of the notebook named with your Student Registration Number, where the forward slash is replaced by an underscore, followed by underscore W04 dot ipynb.
+
+In the starter code, STUDENT underscore ID means your Student Registration Number. Enter your own number there.
 
 ## Slide 68: Week 4 rules continued
 
-Week 4 rules continued
-CML3113, Week 4, slide 82
+01
 
-Explanation to give
-A4 uses the Week 4 300-row cohort CSV. The required outputs are valid_count, mean_reading, above_limit and group_means. Work only with the rows admitted by the published blank-reading rules.
-
-Worked illustration / lecturer answer
-Trace a smaller unrelated dataset first: A readings 2 and 4 yield A mean 3; B reading 9 yields B mean 9. Each group needs its own denominator.
-
-Misconception to address
-Despite “Reading report” in the title, A4 is one completed Python notebook, not a separate Word report. Do not use Week 2’s four-row CSV.
-
-On this slide
 Four checks carry five marks each.
+
+02
 
 Explain the interesting pattern separately as formative practice.
 
+03
+
 For beginner step-by-step help, open ASSIGNMENT_INSTRUCTIONS.txt and STUDENT_HOW_TO.md in this folder.
+
+04
 
 The first names your required files and hand-in checklist; the second explains accounts, Colab, saving and uploads.
 
-Continue to
-Reading report submission
+**Spoken script**
+
+Here are the last rules for the assignment.
+
+There are four checks, and each carries five marks.
+
+Explaining the interesting pattern you find in the data is separate. It is formative practice, so it helps your learning, and it sits outside the four marked checks.
+
+If you want step-by-step help as a beginner, open the two files in this folder, ASSIGNMENT underscore INSTRUCTIONS dot txt and STUDENT underscore HOW underscore TO dot md.
+
+The first one names your required files and the hand-in checklist. The second explains accounts, Colab, saving and uploads.
 
 ## Slide 69: Reading report submission
 
-Reading report submission
-CML3113, Week 4, slide 83
+01
 
-Explanation to give
-This slide hands over CML3113 W04. Show the exact form title before uploading. The required packet is one completed .ipynb notebook.
-
-Worked illustration / lecturer answer
-The recorded cutoff for this form is 2026-10-09T08:00:00+03:00. Check the live form for later changes. A replacement must contain the complete required file set, not just the changed file.
-
-Misconception to address
-Students enter their own Student Registration Number as required freeform text. They wait for filenames to appear, press Submit and keep the confirmation. A file saved in Drive or GitHub is not itself a form submission.
-
-On this slide
 Opens: 02 Oct 2026, 08:00 Kampala
+
+02
 
 Deadline: 09 Oct 2026, 08:00 Kampala
 
+03
+
 Use your full Student Registration Number in the form.
+
+04
 
 Keep the submitted files and confirmation.
 
-Continue to
-Week 4 quiz
+Open W04 assignment form
+
+https://docs.google.com/forms/d/e/1FAIpQLSenqAHKxNgzxWHIR41scC7h5WAxcs8D9wOyXYjIQ_ulbGpPCw/viewform
+
+**Spoken script**
+
+This slide is for submitting your Week 4 assignment. Check the opening time and the deadline shown on the slide, and use the button to open the form.
+
+In the form, type your full Student Registration Number. Then upload your completed notebook.
+
+Keep the files you submitted and the confirmation the form gives you. If something goes wrong, they are your evidence of what you handed in.
 
 ## Slide 70: Week 4 quiz
 
-Week 4 quiz
-CML3113, Week 4, slide 84
+01
 
-Explanation to give
-This is the CML3113 Week 4 quiz. The student link opens the response form; it does not activate its window. In Quiz Controls use open_W4_CML3113 when ready and read the logged closing time.
-
-Worked illustration / lecturer answer
-Explain the distinction between the expected answering time and availability: five minutes of questions can still be available for 24 hours after activation. Enter the learner’s own Student Registration Number and use the registered Google account.
-
-Misconception to address
-Read the exact live cutoff before announcing it. Do not promise a new attempt to somebody who already submitted. Quiz catch-up and assignment uploads are separate forms.
-
-On this slide
 Answer individually after the lecturer activates the quiz.
+
+02
 
 Available for 24 hours from activation.
 
+03
+
 Use your Student Registration Number and registered account.
+
+04
 
 Check the announced quiz closing time.
 
-Continue to
-Revision and submission checklist
+Open this week’s quiz
+
+https://forms.gle/YbPS4yzALy4tB1YM7
+
+**Spoken script**
+
+This is the Week 4 quiz. You answer it individually, and you open it using the link on the slide.
+
+The quiz opens when the lecturer activates it. It then stays open for 24 hours. The closing time is the one the lecturer announces.
+
+Use your Student Registration Number and your registered account when you enter your answers.
+
+The quiz stays available for the full 24 hours, so you do not need to rush.
 
 ## Slide 71: Revision and submission checklist
 
-Revision and submission checklist
-CML3113, Week 4, slide 85
-
-Explanation to give
-Move from one calculation to many records. Lists supply ordered values, loops visit them, dictionaries label fields and CSV files store the observations.
-
-Worked illustration / lecturer answer
-For readings 2, 4 and 6, the running total is 2, then 6, then 12. Count 3 gives mean 4.0. A group needs its own total and count.
-
-Misconception to address
-Close by identifying the actual saved file and its correct submission route. Read the live deadline. For current weekly notebook tasks, students upload their own work, not the practice notebook, ZIP or grading files.
-
-On this slide
 You can show how the total and count change for each record.
 
 Save your work and check the required submission files.
+
+Point to your evidence. Save your work.
+
+**Spoken script**
+
+We close with a checklist for revising this week and for submitting your work.
+
+You can explain how the total and the count change for each record. Take readings two, four and six. The running total goes two, then six, then twelve. The count reaches three, and the mean is twelve divided by three, which is four. With groups, each group has its own total and its own count.
+
+You can say what each collection is for. Lists keep ordered values. Loops visit them. Dictionaries label the fields. CSV files store the observations.
+
+Save your work. Then check that you have the required submission files, and point to them as evidence that the work is done.
