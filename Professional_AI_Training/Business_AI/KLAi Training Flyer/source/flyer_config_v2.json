@@ -1,0 +1,59 @@
+{
+ "title": "KLAi Professional Learning: AI and data courses",
+ "org": "KLAi Professional Learning",
+ "headline": "Practical AI and data skills, taught live",
+ "sub": "For professionals who want to be AI-ready, change career or add a skill. Live and hands-on, using free tools.",
+ "sub_short": "Live and hands-on, using free tools.",
+ "cta": "Reserve your place",
+ "cta_fallback": "Message us to reserve your place.",
+ "contact": {
+  "whatsapp": "+256 750 990 718",
+  "email": "jothammartin.wambi@gmail.com",
+  "website": "",
+  "next_start": "",
+  "venue": ""
+ },
+ "schedule_note": "Two-hour sessions spread over several weeks. Ask us for the next start date and fees.",
+ "tutor_name": "Jotham Martin Wambi",
+ "tutor_label": "Your tutor",
+ "tutor_long": "Data scientist and ML engineer with 8+ years across Citibank, EY and applied AI. Lecturer in AI and machine learning at IUEA. Master's, Yamaguchi University. PhD in Applied Interdisciplinary Informatics at Osaka Metropolitan University from April 2027.",
+ "tutor_short": "Data scientist and ML engineer, 8+ years. Lecturer, IUEA. PhD at Osaka Metropolitan University from April 2027.",
+ "courses": [
+  {
+   "name": "AI & Data Science",
+   "who": "Career changers. No coding needed",
+   "line": "Frame questions, build tested models, ship a live app.",
+   "hours": "48 hours",
+   "sessions": "24 sessions"
+  },
+  {
+   "name": "Machine Learning",
+   "who": "Analysts and engineers",
+   "line": "Build predictive models and prove they work.",
+   "hours": "36 hours",
+   "sessions": "18 sessions"
+  },
+  {
+   "name": "Python & SQL for Data Analysis",
+   "who": "Analysts and business teams",
+   "line": "Analyse data and build dashboards in Power BI, Tableau or Python.",
+   "hours": "36 hours",
+   "sessions": "18 sessions"
+  },
+  {
+   "name": "AI & Automation",
+   "who": "Professionals using AI at work",
+   "line": "Plan and automate a repetitive workflow in your job.",
+   "hours": "24 hours",
+   "sessions": "12 sessions"
+  },
+  {
+   "name": "Enterprise Data Readiness for AI",
+   "who": "Leaders, organisations and data teams",
+   "line": "Get your data and platforms ready for AI.",
+   "hours": "24 hours",
+   "sessions": "12 sessions"
+  }
+ ],
+ "tutor_mid": "Data scientist and ML engineer, 8+ years across Citibank, EY and applied AI. Lecturer, IUEA. PhD at Osaka Metropolitan University from April 2027."
+}

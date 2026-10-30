@@ -1,0 +1,53 @@
+{
+ "title": "KLAi Professional Learning: AI and data courses",
+ "org": "KLAi Professional Learning",
+ "headline": "AI and data courses for working professionals",
+ "sub": "Live, hands-on training to get you ready for the AI era, move into a new field or add a skill your employer will notice. Every tool is free.",
+ "audience": [
+  "Be AI-ready",
+  "Change career",
+  "Add a skill"
+ ],
+ "cta": "Enrol for the next cohort",
+ "cta_fallback": "Message us to reserve your place.",
+ "contact": {
+  "whatsapp": "+256 750 990 718",
+  "email": "jothammartin.wambi@gmail.com",
+  "website": "",
+  "next_start": "",
+  "venue": ""
+ },
+ "courses": [
+  {
+   "name": "AI & Data Science",
+   "line": "Go from Excel to a tested model and a live app. No coding experience needed.",
+   "big": "48",
+   "small": "hours\n24 sessions"
+  },
+  {
+   "name": "Machine Learning",
+   "line": "Build, test and judge predictive models on real business data.",
+   "big": "36",
+   "small": "hours\n18 sessions"
+  },
+  {
+   "name": "Python & SQL for Data Analysis",
+   "line": "Query databases, clean data and report findings with confidence.",
+   "big": "36",
+   "small": "hours\n18 sessions"
+  },
+  {
+   "name": "AI & Automation",
+   "line": "Use AI at work with evidence and controls, then plan a first pilot.",
+   "big": "24",
+   "small": "hours\n12 sessions"
+  },
+  {
+   "name": "Enterprise Data Readiness for AI",
+   "line": "Align your data and infrastructure for AI, now or later. For organisations, leaders and data teams.",
+   "big": "24",
+   "small": "hours\n12 sessions"
+  }
+ ],
+ "schedule_note": "Two-hour sessions, spread over several weeks and not back to back."
+}
