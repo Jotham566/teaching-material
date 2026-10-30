@@ -1956,7 +1956,7 @@ Check the announced closing time with the lecturer, and use the link on the slid
 
 You can explain each input, the returned answer and its engineering unit.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 

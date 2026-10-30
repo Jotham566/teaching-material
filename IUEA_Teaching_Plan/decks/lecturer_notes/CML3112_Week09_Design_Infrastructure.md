@@ -422,7 +422,7 @@ One pair of conditions, one count, four times over.
 
 ## Slide 24: Confusion counts from classification_case.csv: step 3
 
-actual_labels: the recorded class of each observation: 1 means positive and 0 means negative.
+Run the cell and read the output below it.
 
 Run the cell and read the output below it.
 
@@ -462,7 +462,7 @@ To tell them apart, we read the actual value first. If a real problem exists and
 
 ## Slide 26: Confusion counts from classification_case.csv: step 4 (1/3)
 
-actual_labels: the recorded class of each observation: 1 means positive and 0 means negative.
+Run the cell and read the output below it.
 
 Continue in the same code cell.
 
@@ -489,7 +489,7 @@ Nothing prints yet. We continue in the same cell on the next slide.
 
 ## Slide 27: Confusion counts from classification_case.csv: step 4 (2/3)
 
-actual_labels: the recorded class of each observation: 1 means positive and 0 means negative.
+Run the cell and read the output below it.
 
 Continue in the same code cell.
 
@@ -516,7 +516,7 @@ Together with the true positives from the earlier cell, we now have all four cou
 
 ## Slide 28: Confusion counts from classification_case.csv: step 4 (3/3)
 
-actual_labels: the recorded class of each observation: 1 means positive and 0 means negative.
+Run the cell and read the output below it.
 
 Run the cell and read the output below it.
 
@@ -785,7 +785,23 @@ Six words to take away. Accuracy is the share of rows answered correctly, and it
 
 In the assignment you will compute the four counts, precision, recall and the cost. You now know what each of those words means.
 
-## Slide 44: Your issued task
+## Slide 44: Block 1, part B: this week's tasks
+
+Part B of 3. 20 marks.
+
+Today's tasks are part B of the Block 1 pack, worth 20 of its 60 marks. They use classification_metrics.
+Part C follows next week. All parts are handed in together by Tuesday 17 November 2026, 11:00 Kampala time.
+There is no quiz after today's class. The Block 1 quiz comes after the Week 10 class.
+
+**Spoken script**
+
+This week's tasks are part B of the Block 1 assignment pack, worth twenty marks. They are built around classification_metrics.
+
+The earlier part is already in your folder, and the next part comes next week. All parts are handed in together by Tuesday 17 November at 11:00 Kampala time.
+
+There is no quiz today. The Block 1 quiz opens after the Week 10 class.
+
+## Slide 45: Your issued task
 
 01
 
@@ -811,7 +827,7 @@ First, compute the confusion matrix, which is the four counts. Then compute prec
 
 Finally, explain in your own words the five to one cost assumption, which says a missed warning costs five and a false alarm costs one. Also explain why accuracy alone is insufficient. A model that never raises an alert can still look accurate when most rows are no alert, yet it misses every real warning.
 
-## Slide 45: Your issued task continued
+## Slide 46: Your issued task continued
 
 01
 
@@ -825,7 +841,7 @@ Real operating limits have to come from the people responsible for the equipment
 
 Also say what positive means in this file. Costs and benefits only make sense once the positive class has a name.
 
-## Slide 46: classification_metrics(actual, predicted)
+## Slide 47: classification_metrics(actual, predicted)
 
 Return dictionary keys tp, tn, fp, fn, precision, recall and cost.
 
@@ -845,7 +861,7 @@ Precision and recall are calculated as we did in the notebook. The cost is five 
 
 The function name and the key names must match exactly, because the grader looks them up by name. Inside the function you may use longer local names such as true_positive_count, but the dictionary keys must be the short ones. Check the types of your values and the issued brief before you submit.
 
-## Slide 47: Written evidence
+## Slide 48: Written evidence
 
 01
 
@@ -869,71 +885,13 @@ Besides the code, we write our own explanation. Find the cell headed My written 
 
 In that cell, explain the supplied scenario in your own words. State the units of any quantity you mention, for example cooling load in kW. Give your reasons for the choices you made, and state the limitations of your result.
 
-Then submit one complete notebook that contains both the code and the written evidence. The explanation shows how you reason, so it must be written by you.
+The code and the written evidence for this part go in one complete notebook, and that notebook goes into the Block 1 pack. The explanation shows how you reason, so it must be written by you.
 
-## Slide 48: Classification and cost submission
-
-01
-
-Opens: 03 Nov 2026, 11:00 Kampala
-
-02
-
-Deadline: 10 Nov 2026, 11:00 Kampala
-
-03
-
-Use your full Student Registration Number in the form.
-
-04
-
-Keep the submitted files and confirmation.
-
-Open W09 assignment form
-
-https://docs.google.com/forms/d/e/1FAIpQLSfTe7OkZ7tZEVzG-mup0-8liXg1jKy_KmsDWZiPK9EWMJ9InA/viewform
-
-**Spoken script**
-
-This slide covers the Week 9 assignment submission. Check the opening time and the deadline shown on the slide, and read the form title before you upload.
-
-Enter your full Student Registration Number in the form. Wait for your filenames to appear, then press submit.
-
-Keep the submitted files and the confirmation. Saving a file in Drive or GitHub does not submit it. The form is the submission.
-
-## Slide 49: Week 9 quiz
-
-01
-
-Answer individually after the lecturer activates the quiz.
-
-02
-
-Available for 24 hours from activation.
-
-03
-
-Use your Student Registration Number and registered account.
-
-04
-
-Check the announced quiz closing time.
-
-Open this week’s quiz
-
-https://forms.gle/6XBHNCQXESUyQ6G86
-
-**Spoken script**
-
-This is the Week 9 quiz. It opens when the lecturer activates it, and then it stays open for 24 hours.
-
-Answer it individually. Use your Student Registration Number and your registered account. Check the announced closing time on the slide, and use the link on the slide to open the quiz form.
-
-## Slide 50: Revision and submission checklist
+## Slide 49: Revision and submission checklist
 
 Explain to a classmate why a model that never raises an alert can score 67 percent, and what a missed alert costs in your engineering field.
 
-Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
+Keep raw data unchanged. Restart and run all cells before you hand in your Block 1 notebooks.
 
 Point to your evidence. Save your work.
 
@@ -943,11 +901,11 @@ Here is the exit check for this week.
 
 Explain to a classmate why a model that never raises an alert can still score a high accuracy, and what a missed alert costs in your own engineering field. If you can say it in plain words, you understand it.
 
-Before you submit, keep your raw data unchanged. Restart the notebook and run all cells from the top, so we know it works from start to end.
+Before you hand in your notebooks, keep your raw data unchanged. Restart the notebook and run all cells from the top, so we know it works from start to end.
 
 Then point to your evidence in the notebook and save your work.
 
-## Slide 51: Optional revision video
+## Slide 50: Optional revision video
 
 01
 

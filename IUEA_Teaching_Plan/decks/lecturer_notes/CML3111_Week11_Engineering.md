@@ -416,7 +416,7 @@ Fitting each model on the same training rows gives both of them the same startin
 
 ## Slide 23: Paired ablation using the supplied CSV: step 2 (1/2)
 
-base_feature_columns: input columns for the simpler comparison pipeline.
+Run the cell and read the output below it.
 
 Continue in the same code cell.
 
@@ -525,7 +525,7 @@ With these two error values in hand we can compare the two models directly.
 
 ## Slide 28: Paired ablation using the supplied CSV: step 4 (1/2)
 
-base_feature_columns: input columns for the simpler comparison pipeline.
+Run the cell and read the output below it.
 
 Continue in the same code cell.
 
@@ -550,7 +550,7 @@ The cell continues on the next slide with the lines that print. Both errors come
 
 ## Slide 29: Paired ablation using the supplied CSV: step 4 (2/2)
 
-base_feature_columns: input columns for the simpler comparison pipeline.
+Run the cell and read the output below it.
 
 Run the cell and read the output below it.
 
@@ -604,7 +604,25 @@ One rule applies to every feature you build. You must have it at the moment the 
 
 Be suspicious of anything that is known only afterwards: the measured target itself, a repair note written after a fault, or a monthly average that includes next week. These leak the answer. The model looks wonderful in training and fails in service. Last week's leakage guard number four is this rule.
 
-## Slide 32: Your issued task
+## Slide 32: Block 2: how Weeks 11, 12 and 13 are assessed
+
+One assignment pack and one quiz for every three classes.
+
+Today's tasks are part A of the Block 2 pack, worth 20 of its 40 marks. Week 13 has no graded notebook. It is assessed in the Block 2 quiz and in your project.
+Nothing is submitted and there is no quiz after today's class. You hand in all 2 parts together by Thursday 10 December 2026, 23:59 Kampala time.
+The Block 2 quiz has 15 questions, five from each of the three weeks. You sit it after the Week 13 class.
+
+**Spoken script**
+
+From this week the weekly assignment and the weekly quiz stop. We now assess in blocks of three classes. Block 2 covers Weeks 11, 12 and 13: features and ablation; choosing a model; regularisation, nearest neighbours and reproducibility.
+
+Today's tasks are part A of the Block 2 assignment pack. It is worth 20 of the pack's 40 marks. The next part arrives in Week 12. Week 13 has no graded notebook, so its content is assessed in the Block 2 quiz and in your project.
+
+Nothing is submitted after today's class, and there is no quiz. We hand in all 2 parts together by Thursday 10 December at 23:59 Kampala time. The Block 2 quiz has fifteen questions, five from each week. It opens after the Week 13 class.
+
+Weeks 1 to 6 stay as they were. The two lowest weekly scores are dropped, and the block marks count in full, so the blocks carry about 60 percent of the quiz and assignment marks.
+
+## Slide 33: Your issued task
 
 01
 
@@ -630,7 +648,7 @@ Each row of the data is one operating observation. The equipment_id column repea
 
 These are synthetic teaching records, made up for learning. They are not measurements that could be used to operate real equipment, and the relationships we find in them are not calibrated physical laws.
 
-## Slide 33: make_features(feature_records)
+## Slide 34: make_features(feature_records)
 
 Return one feature row per input, in order: [load_pct, ambient_c, load_pct/100, load_pct*ambient_c].
 
@@ -650,7 +668,7 @@ Use only values that are available at the moment a prediction is requested. That
 
 Keep the exact names and the exact output order. Check the types and units against the task brief on your own issued task slide.
 
-## Slide 34: ablation_metrics(training_records, validation_records)
+## Slide 35: ablation_metrics(training_records, validation_records)
 
 Fit two sklearn LinearRegression models on the same training records: base features [load_pct, ambient_c] and extended features adding load_pct*ambient_c.
 
@@ -676,7 +694,7 @@ The inputs are complete, which means no values are missing, so you do not need a
 
 Use the exact function name and the exact output names.
 
-## Slide 35: Written evidence
+## Slide 36: Written evidence
 
 01
 
@@ -704,41 +722,7 @@ A good explanation links a decision to a result. For example, you might say why 
 
 The figures in the scenario came with it, so describe them as supplied and not as measurements you made yourself.
 
-Submit one complete notebook that contains both your code and your written evidence. Copied prompts and code comments do not replace your own reasoning.
-
-## Slide 36: Features and ablation submission
-
-01
-
-Opens: 20 Nov 2026, 11:00 Kampala
-
-02
-
-Deadline: 27 Nov 2026, 11:00 Kampala
-
-03
-
-Use your full Student Registration Number in the form.
-
-04
-
-Keep the submitted files and confirmation.
-
-Open W11 assignment form
-
-https://docs.google.com/forms/d/e/1FAIpQLSeQJ_LsZgtIRbakN-KW4e4dx5rru2iqg6HwaaKoAQbKW7bh8Q/viewform
-
-**Spoken script**
-
-This slide covers the submission of your Week 11 assignment. Read the opening time and the deadline on the slide, and check them again on the form itself before you submit.
-
-The form asks for your full Student Registration Number. Type it exactly, because this is how we match your work to you.
-
-The file to submit is one completed notebook, with the dot ipynb ending. When you upload it, wait until the filename appears on the form before pressing Submit.
-
-A notebook saved only in Drive or GitHub has not been submitted. Only the form counts.
-
-Keep the submitted file and the confirmation after you finish, as your evidence that you submitted.
+The code and the written evidence for this part go in one complete notebook, and that notebook goes into the Block 2 pack. Copied prompts and code comments do not replace your own reasoning.
 
 ## Slide 37: Project preparation
 
@@ -774,43 +758,11 @@ Check the project deadline on the slide. Working steadily now makes the final we
 
 Six words to keep. Feature engineering builds new inputs from existing columns. A derived feature is one column calculated from others. An interaction multiplies two inputs. The effect of one spread, which is the slope times the standard deviation, lets us compare inputs fairly. Ablation compares scores with and without one piece. And the prediction time rule says to use only inputs you will have when you predict. In the assignment you build the features and run the ablation yourself.
 
-## Slide 39: Week 11 quiz
-
-01
-
-Answer individually after the lecturer activates the quiz.
-
-02
-
-Available for 24 hours from activation.
-
-03
-
-Use your Student Registration Number and registered account.
-
-04
-
-Check the announced quiz closing time.
-
-Open this week’s quiz
-
-https://forms.gle/32Y9ttL1XWaqbGMNA
-
-**Spoken script**
-
-This slide is about the Week 11 quiz. You answer it on your own.
-
-The quiz opens when the lecturer activates it, and from that moment it stays open for 24 hours. Check the closing time that is announced for your class.
-
-When you fill in the form, use your Student Registration Number and your registered account. Using a different account can make your answers difficult to match to you.
-
-The link on the slide opens the response form. The link alone does not start the 24 hours. That starts when the lecturer activates the quiz, so wait for that announcement and then answer.
-
-## Slide 40: Revision and submission checklist
+## Slide 39: Revision and submission checklist
 
 Explain to a classmate why load divided by 100 is a derived feature, how you would decide whether to keep a new feature, and why a repair note written after a fault cannot be an input.
 
-Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
+Keep raw data unchanged. Restart and run all cells before you hand in your Block 2 notebooks.
 
 Point to your evidence. Save your work.
 
@@ -822,6 +774,6 @@ First, why load divided by 100 is a derived feature. Second, how you decide whet
 
 If you can explain these three clearly, you understood the lesson. If you get stuck, go back to the slide where that idea appeared.
 
-Before you submit, keep the raw data unchanged, then restart your notebook and run all cells from the top. If the notebook runs cleanly to the end, it is ready.
+Before you hand in your notebooks, keep the raw data unchanged, then restart your notebook and run all cells from the top. If the notebook runs cleanly to the end, it is ready.
 
 Point to your evidence, and save your work.

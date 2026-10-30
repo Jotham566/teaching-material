@@ -611,33 +611,21 @@ The check is this. We restart the notebook runtime, then we follow our README ex
 
 Suppose Step 2 says to load data dot csv, but the file in the folder is called readings dot csv. The run fails at that step. The fix is to correct the filename in the instructions. Then we run again from the beginning, and when it works, we record the successful result. Notice that we start over each time, because a repair near the end is only proven when the whole run passes.
 
-## Slide 35: Preparing for the assignment
-
-01
+## Slide 35: Block 2 closes after today
 
 No new weekly assignment.
 
-02
-
-Continue the official project deliverables and Week 13 quiz.
-
-03
-
-Rehearse Colab Test 2 saving and submission and the published function interfaces before Week 14.
-
-04
-
-Do not add an extra upload.
+The Block 2 pack, A10 and A11 for 40 marks, is due Monday 7 December 2026, 23:59 Kampala time.
+The Block 2 quiz covers Weeks 11, 12 and 13. It opens after today's class.
+Next week is Practical Test 2. Rehearse saving and submitting your test notebook, and revise the published function interfaces.
 
 **Spoken script**
 
-Let us be clear about what to do after class.
+There is no new assignment this week. Block 2 closes with two things.
 
-There is no new weekly assignment this week. We continue with the official project deliverables, and we complete the Week 13 quiz.
+The first is the Block 2 assignment pack, which is part A from Week 11 and part B from Week 12, forty marks in all, due Monday 7 December at 23:59 Kampala time. The second is the Block 2 quiz, fifteen questions across Weeks 11, 12 and 13, which opens after today's class.
 
-We also prepare for Colab Test 2 in Week 14. Practise saving your test notebook and submitting it, and revise the published function interfaces. An interface is the function name, its inputs and what it returns, and the test expects them exactly as published.
-
-Please do not add an extra upload. Nothing beyond the official deliverables is being asked for.
+Next week is Practical Test 2. Rehearse saving your test notebook and submitting it, and revise the function interfaces. An interface is the function name, its inputs and what it returns, and the test expects them exactly as published.
 
 ## Slide 36: A reproducible handover
 
@@ -711,41 +699,41 @@ Third, keep the raw data, labelled charts, run instructions and each person's co
 
 Fourth, check the published deadline on the slide, and plan backward from it so the independent run check is finished with time to spare.
 
-## Slide 39: Week 13 quiz
+## Slide 39: Block 2 quiz: three forms, 15 questions
 
 01
 
-Answer individually after the lecturer activates the quiz.
+Week 11 form (5 questions)
+
+Open the Week 11 quiz form
 
 02
 
-Available for 24 hours from activation.
+Week 12 form (5 questions)
+
+Open the Week 12 quiz form
 
 03
 
-Use your Student Registration Number and registered account.
+Week 13 form (5 questions)
 
-04
+Open the Week 13 quiz form
 
-Check the announced quiz closing time.
-
-Open this week’s quiz
-
-https://forms.gle/SBN8HWXnKnXX34qw9
+Opens after today's class. Each form stays open for 24 hours. Use your Student Registration Number and registered account.
 
 **Spoken script**
 
-The Week 13 quiz is next.
+The Block 2 quiz is three short forms, one for each week of the block, with five questions each. Together they are fifteen questions and fifteen marks.
 
-Answer it individually. It opens when we activate it, and it then stays open for 24 hours. Use your Student Registration Number and your registered account when you sign in. The quiz link is on the slide.
+The forms open after today's class, when the lecturer activates them, and each stays open for twenty-four hours. Open them one after the other and answer individually, using your Student Registration Number and your registered account.
 
-Check the announced closing time, and do not leave it until the last minutes. Once the quiz is active, answer it on your own.
+This quiz replaces the three weekly quizzes of Weeks 11, 12 and 13. Like the assignment pack, it counts in full and is not dropped.
 
 ## Slide 40: Revision and submission checklist
 
 Another learner can follow your README and reproduce the stated result.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 

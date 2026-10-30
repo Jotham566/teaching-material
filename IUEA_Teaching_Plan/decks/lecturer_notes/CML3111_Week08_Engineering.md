@@ -1097,7 +1097,25 @@ Let us gather today's new words in one place. A baseline is the simple guess eve
 
 Keep this slide. Every one of these words returns in the next weeks.
 
-## Slide 64: Your issued task
+## Slide 64: Block 1: how Weeks 8, 9 and 10 are assessed
+
+One assignment pack and one quiz for every three classes.
+
+Today's tasks are part A of the Block 1 pack, worth 20 of its 60 marks. Part B follows in Week 9 and part C in Week 10.
+Nothing is submitted and there is no quiz after today's class. You hand in all 3 parts together by Friday 20 November 2026, 11:00 Kampala time.
+The Block 1 quiz has 15 questions, five from each of the three weeks. You sit it after the Week 10 class.
+
+**Spoken script**
+
+From this week the weekly assignment and the weekly quiz stop. We now assess in blocks of three classes. Block 1 covers Weeks 8, 9 and 10: regression, baseline and errors; classification and cost; validation and leakage.
+
+Today's tasks are part A of the Block 1 assignment pack. It is worth 20 of the pack's 60 marks. Part B arrives next week and part C the week after.
+
+Nothing is submitted after today's class, and there is no quiz. We hand in all 3 parts together by Friday 20 November at 11:00 Kampala time. The Block 1 quiz has fifteen questions, five from each week. It opens after the Week 10 class.
+
+Weeks 1 to 6 stay as they were. The two lowest weekly scores are dropped, and the block marks count in full, so the blocks carry about 60 percent of the quiz and assignment marks.
+
+## Slide 65: Your issued task
 
 01
 
@@ -1123,7 +1141,7 @@ Each record is one operating observation, one reading of a machine at a moment. 
 
 These are synthetic teaching records, made up for learning. They are good for practising the method and are unsuitable for running real equipment.
 
-## Slide 65: predict_regression(training_records, feature_records)
+## Slide 66: predict_regression(training_records, feature_records)
 
 Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only.
 
@@ -1145,7 +1163,7 @@ The imputer that fills blanks must learn its medians from the training data alon
 
 The function returns a dictionary with three keys, baseline, linear and tree. Each key holds a list of predictions, one for each feature record. Keep the names exactly as written, and check the types and the units against your brief.
 
-## Slide 66: regression_errors(actual, predicted)
+## Slide 67: regression_errors(actual, predicted)
 
 Return mae and rmse, calculated over the same paired observations, with full precision.
 
@@ -1159,7 +1177,7 @@ It returns a dictionary with two keys, mae and rmse. The first holds the mean ab
 
 Both must be calculated over the same paired observations, so the first prediction goes with the first actual value, and so on down the lists. Return the full precision numbers with no rounding. Keep the exact names, and check the types and units against your brief.
 
-## Slide 67: Written evidence
+## Slide 68: Written evidence
 
 01
 
@@ -1185,71 +1203,13 @@ First, explain the supplied scenario in your own words. Say what was being predi
 
 Second, state the unit of the target, give your reasons for your choices, and describe the limits of what you did. For example, you can say why the fill values came from the training rows only.
 
-The code and the written evidence go in one complete notebook, and you submit that single notebook.
+The code and the written evidence for this part go in one complete notebook, and that notebook goes into the Block 1 pack.
 
-## Slide 68: Regression and baseline submission
-
-01
-
-Opens: 30 Oct 2026, 11:00 Kampala
-
-02
-
-Deadline: 06 Nov 2026, 11:00 Kampala
-
-03
-
-Use your full Student Registration Number in the form.
-
-04
-
-Keep the submitted files and confirmation.
-
-Open W08 assignment form
-
-https://docs.google.com/forms/d/e/1FAIpQLSeAVNyokX8n-TQXwu2hQtJJkeKsQcU8katFAhghZmQH4HJreA/viewform
-
-**Spoken script**
-
-This slide covers this week's assignment submission, the regression and baseline notebook.
-
-Check the opening time, the deadline and the form link on the slide. When you open the form, enter your full Student Registration Number, so your work is matched to you.
-
-Submit one complete notebook, then wait until the file name appears before you press Submit. Keep the submitted files and the confirmation message you receive, as your proof that the work went in.
-
-## Slide 69: Week 8 quiz
-
-01
-
-Answer individually after the lecturer activates the quiz.
-
-02
-
-Available for 24 hours from activation.
-
-03
-
-Use your Student Registration Number and registered account.
-
-04
-
-Check the announced quiz closing time.
-
-Open this week’s quiz
-
-https://forms.gle/KsZJ7QANUE99kkX36
-
-**Spoken script**
-
-Next comes the Week 8 quiz. You answer it individually.
-
-The quiz opens when the lecturer activates it, and it then stays open for twenty-four hours. Use your Student Registration Number and your registered account when you fill in the form. Check the announced closing time on the slide, so you know when it ends.
-
-## Slide 70: Revision and submission checklist
+## Slide 69: Revision and submission checklist
 
 Explain to a classmate what a feature and a target are in today's data, why some rows stay hidden while a model learns, and what an error of 0.78 deg C tells you.
 
-Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
+Keep raw data unchanged. Restart and run all cells before you hand in your Block 1 notebooks.
 
 Point to your evidence. Save your work.
 
@@ -1257,11 +1217,11 @@ Point to your evidence. Save your work.
 
 Before you leave, check yourself with this exit task. Explain to a classmate what a feature and a target are in today's data. Then explain why some rows stay hidden while a model learns. Finally, say what an error value in deg C tells you about the predictions.
 
-To submit, keep the raw data unchanged. Restart the notebook and run all the cells from the top, so you know the whole notebook works in order, and then submit the required assignment notebook.
+To hand in your notebooks, keep the raw data unchanged. Restart the notebook and run all the cells from the top, so you know the whole notebook works in order, and then hand in our Block 1 notebooks.
 
 Be ready to point to the evidence in your notebook for each answer, and save your work.
 
-## Slide 71: Optional revision video
+## Slide 70: Optional revision video
 
 01
 

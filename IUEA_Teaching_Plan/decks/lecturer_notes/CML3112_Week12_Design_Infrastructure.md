@@ -433,7 +433,7 @@ In the next examples we use exactly this pattern. If the table of acceptable mod
 
 ## Slide 24: Selection from the measured candidate table: step 1
 
-eligible_models: candidates satisfying both stated limits.
+Run the cell and read the output below it.
 
 Run the cell and read the output below it.
 
@@ -630,7 +630,23 @@ Most of our data comes from machines, and machine data carries little personal r
 
 Uganda's Data Protection and Privacy Act of 2019 protects personal data. The habits that follow are simple. Collect only what you need. Keep it safe. And say what it will be used for. This is a learning summary and is not legal advice, so for a real project, ask for qualified advice.
 
-## Slide 36: Your issued task
+## Slide 36: Block 2, part B: this week's tasks
+
+Part B of 2. 20 marks.
+
+Today's tasks are part B of the Block 2 pack, worth 20 of its 40 marks. They use select_model and regression_errors.
+The pack closes Monday 7 December 2026, 23:59 Kampala time.
+There is no quiz after today's class. The Block 2 quiz comes after the Week 13 class.
+
+**Spoken script**
+
+This week's tasks are part B of the Block 2 assignment pack, worth twenty marks. They are built around select_model and regression_errors.
+
+This is the last part, so the whole pack is due by Monday 7 December at 23:59 Kampala time. In a moment we show where each part is submitted.
+
+There is no quiz today. The Block 2 quiz opens after the Week 13 class.
+
+## Slide 37: Your issued task
 
 01
 
@@ -658,7 +674,7 @@ The records are synthetic teaching data. They are made for learning and are not 
 
 Each record is one operating observation. A column such as equipment underscore id can repeat, because one machine appears in many observations. Record underscore id identifies each single observation, and the target column holds the known answer that the model learns to predict.
 
-## Slide 37: select_model(candidates, max_mae, max_ms)
+## Slide 38: select_model(candidates, max_mae, max_ms)
 
 Candidates have name, validation_mae and latency_ms.
 
@@ -680,7 +696,7 @@ The function returns the chosen name, or None when no candidate qualifies.
 
 It works only with validation scores. Test scores are never used to select. Keep the function name and the output exactly as written, and check the types and units against your issued brief.
 
-## Slide 38: regression_errors(actual, predicted)
+## Slide 39: regression_errors(actual, predicted)
 
 Return mae and rmse, calculated over the same paired observations, with full precision.
 
@@ -694,7 +710,7 @@ The function returns two numbers. MAE is the mean absolute error, the average si
 
 Both must be calculated over the same paired observations. Give the results with full precision and do not round them. Keep the exact names, mae and rmse, because the grader looks for them.
 
-## Slide 39: Written evidence
+## Slide 40: Written evidence
 
 01
 
@@ -720,39 +736,7 @@ Find the cell headed My written evidence. In that cell you explain the supplied 
 
 Your explanation should state the target units, give your reasons for the choice you made, and name the limitations of the result. A limitation might be the small data size, or the fact that the data is synthetic.
 
-Then you submit one complete notebook that contains both your code and your written evidence.
-
-## Slide 40: Model recommendation submission
-
-01
-
-Opens: 24 Nov 2026, 11:00 Kampala
-
-02
-
-Deadline: 24 Nov 2026, 14:00 Kampala
-
-03
-
-Use your full Student Registration Number in the form.
-
-04
-
-Keep the submitted files and confirmation.
-
-Open W12 assignment form
-
-https://docs.google.com/forms/d/e/1FAIpQLSd4Ltaw1RqRzbW7PoC4_Kh3PZHkElCKA9OY8F_xrJfLnpcbfA/viewform
-
-**Spoken script**
-
-This slide covers the submission for this week's assignment. Check the opening time and the deadline on the slide, and plan your work around them.
-
-Open the form from the link and look at the form title before uploading. Enter your full Student Registration Number exactly as it is registered.
-
-Upload your single completed notebook file. Wait until the file name appears, then press Submit.
-
-Keep the files you submitted and the confirmation you receive. A file saved only in Drive or GitHub has not been submitted until you complete the form.
+The code and the written evidence for this part go in one complete notebook, and that notebook goes into the Block 2 pack.
 
 ## Slide 41: Project preparation
 
@@ -788,41 +772,35 @@ Check the project deadline shown on the slide and plan backwards from it.
 
 Six words to keep. A candidate is a model being considered. A constraint is a limit it must meet. A random forest averages many trees. Boosting adds small trees that fix earlier mistakes, and we study it in Semester 2. A model card records purpose, data, scores and limits on one page. A false negative is a missed alert, usually the costly mistake. In the assignment you apply the constraints and choose a model, and you explain the choice in your own words.
 
-## Slide 43: Week 12 quiz
+## Slide 43: Submit the Block 2 assignment pack
 
 01
 
-Answer individually after the lecturer activates the quiz.
+Part A: Features and ablation (A10, Week 11)
+
+Open the A10 form
 
 02
 
-Available for 24 hours from activation.
+Part B: Model recommendation (A11, Week 12)
 
-03
+Open the A11 form
 
-Use your Student Registration Number and registered account.
-
-04
-
-Check the announced quiz closing time.
-
-Open this week’s quiz
-
-https://forms.gle/MKfjP3UWDXAei6FK6
+Closes Monday 7 December 2026, 23:59 Kampala time. Submit each notebook to its own form, with your full Student Registration Number.
 
 **Spoken script**
 
-The Week 12 quiz is taken individually. It opens when the lecturer activates it, and once activated it stays open for 24 hours.
+This slide is where the Block 2 assignment pack goes in. It has 2 parts, one notebook for each, and each part has its own form.
 
-Use the link on the slide to reach the quiz form. Sign in with your registered account, and enter your Student Registration Number in the form.
+Open the form for each part in turn, enter your full Student Registration Number, and upload that part's notebook. Do not wait for the last minute, because the pack closes Monday 7 December at 23:59 Kampala time, and all parts close together.
 
-Check the closing time that is announced after activation, so you do not miss it. The quiz may take only a few minutes to answer, but the form stays available for the whole 24 hours.
+A part that is not submitted scores zero for that part. The block marks are never dropped, so each part counts.
 
 ## Slide 44: Revision and submission checklist
 
 Explain to a classmate how you would choose between two models, and name one limit you would write on a model card.
 
-Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
+Keep raw data unchanged. Restart and run all cells before you hand in your Block 2 notebooks.
 
 Point to your evidence. Save your work.
 
@@ -845,7 +823,7 @@ For revision after class.
 02
 
 StatQuest with Josh Starmer
-Machine Learning Fundamentals Cross Validation
+Machine Learning Fundamentals: Bias and Variance
 
 03
 
@@ -853,7 +831,7 @@ Opening up to 04:00, optional preview-selected excerpt
 
 04
 
-Listening question: Why evaluate using observations not used to fit that particular model?
+Listening question: What goes wrong with a model that is too simple, and with one that is too flexible?
 
 Open explainer video
 
@@ -861,8 +839,6 @@ https://www.youtube.com/watch?v=fSytzGwwBVw
 
 **Spoken script**
 
-This video is optional and is meant for revision after class. It comes from StatQuest with Josh Starmer and is called Machine Learning Fundamentals, Cross Validation.
+This optional video is for revision after class. It is a short StatQuest explanation of bias and variance, the two ways a model can go wrong. A model that is too simple misses the pattern, and a model that is too flexible chases noise.
 
-Watch the opening, up to the four minute mark. Use the link on the slide.
-
-While you watch, keep one question in mind. Why do we evaluate a model on observations that were not used to fit that particular model? Try to answer it in your own words after the video ends.
+Before you watch, hold one question in mind: what goes wrong with a model that is too simple, and with one that is too flexible? Then watch the opening four minutes and answer it in your own words. The video supports revision of the Week 10 and Week 12 ideas, and watching it is optional.

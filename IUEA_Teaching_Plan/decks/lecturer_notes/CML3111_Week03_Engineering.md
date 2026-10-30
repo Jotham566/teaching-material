@@ -1964,7 +1964,7 @@ Check the announced closing time on the slide and from the lecturer, and use the
 
 You can explain each input, the returned answer and its engineering unit.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 

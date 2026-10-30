@@ -661,7 +661,7 @@ Use your Student Registration Number and your registered account. The link is on
 
 You can explain which observations a filter keeps and what a grouped total means.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 

@@ -625,7 +625,7 @@ We report both numbers, the mean and the spread, with their unit.
 
 ## Slide 32: Fold errors calculated from the supplied training rows: step 3
 
-grouped_folds: the split rule that keeps observations from one equipment group together.
+Run the cell and read the output below it.
 
 Run the cell and read the output below it.
 
@@ -802,7 +802,23 @@ The last line calls the function with that list and prints what it returns. We e
 
 Six words to keep. Overfitting is memorising the training rows, noise included. Underfitting is a model too simple for the pattern. Generalisation is doing well on rows never seen. Cross-validation scores the model on several held-back groups in turn, and the spread tells us how stable the result is. Data leakage is information reaching the model that should not. Notice that every one of these words is about trust. In the assignment you will build the group split and report errors that an engineer could rely on.
 
-## Slide 41: Your issued task
+## Slide 41: Block 1, part C: this week's tasks
+
+Part C of 3. 20 marks.
+
+Today's tasks are part C of the Block 1 pack, worth 20 of its 60 marks. They use group_split and predict_regression.
+This is the last part. The pack closes Friday 20 November 2026, 11:00 Kampala time. Part A and part B are the earlier weeks' notebooks.
+The quiz opens after today's class.
+
+**Spoken script**
+
+This week's tasks are part C of the Block 1 assignment pack, worth twenty marks. They are built around group_split and predict_regression.
+
+This is the last part, so the whole pack is due by Friday 20 November at 11:00 Kampala time. In a moment we show where each part is submitted.
+
+The Block 1 quiz opens after today's class.
+
+## Slide 42: Your issued task
 
 01
 
@@ -830,7 +846,7 @@ equipment underscore id repeats across rows, because one machine produces many o
 
 These are synthetic teaching records. They do not describe a calibrated physical relationship, and they are not suitable for running real equipment. We practise the method on them, and we do not rely on the numbers.
 
-## Slide 42: group_split(records)
+## Slide 43: group_split(records)
 
 Assign whole equipment groups: E1–E4 to train, E5 to validation, E6 to test.
 
@@ -852,7 +868,7 @@ The function must not look at target values to decide membership. The equipment 
 
 We keep the function name and the output names exactly as published, because the grader looks for those names. We also check the types, the units and the issued brief before we submit.
 
-## Slide 43: predict_regression(training_records, feature_records)
+## Slide 44: predict_regression(training_records, feature_records)
 
 Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only.
 
@@ -876,7 +892,7 @@ Then we predict for the feature records. These records have no target column, be
 
 As always, we keep the function name and these output names exactly, and we check types, units and the issued brief.
 
-## Slide 44: Written evidence
+## Slide 45: Written evidence
 
 01
 
@@ -904,73 +920,73 @@ A good explanation ties a decision to a result. For example, we can say why a me
 
 We describe the scenario figures as supplied. They are given to us, so we do not present them as measurements we made.
 
-We submit one complete notebook that holds both the code and the written evidence.
+The code and the written evidence for this part go in one complete notebook, and that notebook goes into the Block 1 pack.
 
-## Slide 45: Validation and trust submission
-
-01
-
-Opens: 13 Nov 2026, 11:00 Kampala
-
-02
-
-Deadline: 20 Nov 2026, 11:00 Kampala
-
-03
-
-Use your full Student Registration Number in the form.
-
-04
-
-Keep the submitted files and confirmation.
-
-Open W10 assignment form
-
-https://docs.google.com/forms/d/e/1FAIpQLSd5yLPYJ8OPmahSQIIIPfI-OfVHWbcHnwnntSRiE7wafqbRTg/viewform
-
-**Spoken script**
-
-This slide covers the Week 10 assignment submission. Please look at the slide for the opening time and the deadline, and check the form for the current details.
-
-In the form we enter our full Student Registration Number. We upload the completed notebook, and we wait until the file name shows before pressing Submit.
-
-After submitting, we keep the files and the confirmation. A notebook saved in Drive or on GitHub is not a submission until it has gone through the form.
-
-## Slide 46: Week 10 quiz
+## Slide 46: Submit the Block 1 assignment pack
 
 01
 
-Answer individually after the lecturer activates the quiz.
+Part A: Regression and baseline (A7, Week 8)
+
+Open the A7 form
 
 02
 
-Available for 24 hours from activation.
+Part B: Classification and cost (A8, Week 9)
+
+Open the A8 form
 
 03
 
-Use your Student Registration Number and registered account.
+Part C: Validation and trust (A9, Week 10)
 
-04
+Open the A9 form
 
-Check the announced quiz closing time.
-
-Open this week’s quiz
-
-https://forms.gle/KJmiCV72Y98y51a38
+Closes Friday 20 November 2026, 11:00 Kampala time. Submit each notebook to its own form, with your full Student Registration Number.
 
 **Spoken script**
 
-The Week 10 quiz is answered individually. It opens when the lecturer activates it, and then it stays open for twenty-four hours.
+This slide is where the Block 1 assignment pack goes in. It has 3 parts, one notebook for each, and each part has its own form.
 
-We use our Student Registration Number and the account we registered with. We check the announced closing time on the slide and in the form, so we know when it shuts.
+Open the form for each part in turn, enter your full Student Registration Number, and upload that part's notebook. Do not wait for the last minute, because the pack closes Friday 20 November at 11:00 Kampala time, and all parts close together.
 
-The link on the slide opens the response form. The quiz becomes available only after the lecturer activates it.
+A part that is not submitted scores zero for that part. The block marks are never dropped, so each part counts.
 
-## Slide 47: Revision and submission checklist
+## Slide 47: Block 1 quiz: three forms, 15 questions
+
+01
+
+Week 8 form (5 questions)
+
+Open the Week 8 quiz form
+
+02
+
+Week 9 form (5 questions)
+
+Open the Week 9 quiz form
+
+03
+
+Week 10 form (5 questions)
+
+Open the Week 10 quiz form
+
+Opens after today's class. Each form stays open for 24 hours. Use your Student Registration Number and registered account.
+
+**Spoken script**
+
+The Block 1 quiz is three short forms, one for each week of the block, with five questions each. Together they are fifteen questions and fifteen marks.
+
+The forms open after today's class, when the lecturer activates them, and each stays open for twenty-four hours. Open them one after the other and answer individually, using your Student Registration Number and your registered account.
+
+This quiz replaces the three weekly quizzes of Weeks 8, 9 and 10. Like the assignment pack, it counts in full and is not dropped.
+
+## Slide 48: Revision and submission checklist
 
 Explain to a classmate how you would tell that a model is overfitting, and give one way leakage could creep into your own data preparation.
 
-Keep raw data unchanged. Restart and run all cells before submitting the required assignment notebook.
+Keep raw data unchanged. Restart and run all cells before you hand in your Block 1 notebooks.
 
 Point to your evidence. Save your work.
 
@@ -980,11 +996,11 @@ Here is a check we do individually before leaving.
 
 First, we explain to a classmate how we would tell that a model is overfitting. Then we give one way that leakage could creep into our own data preparation. If we can say both in plain words, we have the main ideas of the week.
 
-Then the practical items. We keep the raw data unchanged. Before we submit the assignment notebook, we restart the session and run all cells from the top, to confirm that the notebook works from start to finish.
+Then the practical items. We keep the raw data unchanged. Before we hand in our Block 1 notebooks, we restart the session and run all cells from the top, to confirm that the notebook works from start to finish.
 
 We point to our evidence for each claim, and we save our work.
 
-## Slide 48: Optional revision video
+## Slide 49: Optional revision video
 
 01
 

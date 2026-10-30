@@ -163,7 +163,23 @@ Individual work accounts for sixty five per cent of the mark. That means most of
 
 The slide lists the components and their weights, and together they add up to one hundred per cent. Some weekly tasks and quizzes can differ by cohort, so check the details for your own class on the course page. Read the marking criteria for each piece of work before you start it.
 
-## Slide 9: What I expect, and what you can expect back
+## Slide 9: Quizzes and assignments from Week 8
+
+Weekly in Weeks 1 to 6. Every three classes from Week 8.
+
+Weeks 1 to 6: a quiz and an assignment each week. The best 4 of the 6 count.
+Block 1 is Weeks 8 to 10 and Block 2 is Weeks 11 to 13. Each block has one assignment pack and one quiz.
+A block counts in full and cannot be dropped. Together the two blocks carry about 60 percent of the quiz and assignment marks.
+
+**Spoken script**
+
+Here is how the quizzes and assignments work over the whole semester. In Weeks 1 to 6 you have a short quiz and an assignment each week, and your best four of the six count, so two weak weeks do not hurt you.
+
+From Week 8 we assess every three classes. Block 1 covers Weeks 8 to 10 and Block 2 covers Weeks 11 to 13. Each block has one assignment pack and one quiz, and each is handed in or sat after the third class of the block.
+
+A block counts in full and cannot be dropped, because it holds three weeks of learning. Together the two blocks carry about sixty percent of the quiz and assignment marks. The two practical tests, the projects and the demonstration are unchanged.
+
+## Slide 10: What I expect, and what you can expect back
 
 What I expect from you
 
@@ -195,7 +211,7 @@ When you ask for help, include the error message, what you tried and what you ex
 
 From me, you get every marking scheme before the work is set, so you never meet a rubric for the first time in an assessment. You get feedback on weekly work within a week, and instant feedback on every quiz. I also ask you to download the lesson files before class so that you can use the data without an internet connection. And ask how each topic relates to your engineering problem.
 
-## Slide 10: Machine learning topics
+## Slide 11: Machine learning topics
 
 This roadmap shows Semester 1, Semester 2 and topics outside this course.
 
@@ -207,7 +223,7 @@ A roadmap puts ideas and tools in order. It shows what comes first, what builds 
 
 You do not need to learn every item today. Your job in this segment is to see the whole landscape once, so that each later week has a place on the map.
 
-## Slide 11: The machine learning roadmap
+## Slide 12: The machine learning roadmap
 
 Fifteen stages, from Python to transformers. Orange is Semester 1. Green is Semester 2. Dark blue is the stage you already have from your engineering degree. Grey is what this course deliberately does not teach. Structure follows the public roadmap.sh Machine Learning roadmap.
 
@@ -221,7 +237,7 @@ The shape follows the public roadmap dot sh Machine Learning roadmap, which is a
 
 The orange stages are your route this semester. You start with Python, move to preparing data, and then reach building and testing models.
 
-## Slide 12: Mathematics and programming foundations
+## Slide 13: Mathematics and programming foundations
 
 Mathematics used in machine learning
 
@@ -251,7 +267,7 @@ For programming, Weeks 2 to 6 introduce Python, data libraries and data preparat
 
 Your engineering knowledge matters too. It helps you check units, judge whether a result is plausible, and see the limits of the data.
 
-## Slide 13: Topics covered in this course
+## Slide 14: Topics covered in this course
 
 Grey marks topics outside this course, including reinforcement learning, full MLOps and most advanced language-model topics.
 
@@ -263,7 +279,7 @@ Reinforcement learning is a way for a program to learn by trying actions and rec
 
 Read this boundary literally. If a topic sits outside the highlighted route, it is not a hidden prerequisite for any weekly task. Nobody will ask you to use it in an exercise or a test. Those topics exist, and you can study them later if you wish.
 
-## Slide 14: Four jobs this field splits into
+## Slide 15: Four jobs this field splits into
 
 These are four different roadmaps and four different careers. This course points at the first one, applied inside your own engineering discipline — which is a narrower and more defensible position than competing with computer science graduates on general machine learning.
 
@@ -277,7 +293,7 @@ Our course aims at the job of applying data skills inside your own engineering f
 
 The course gives you introductory skills in this area. It is a start and it does not replace a professional qualification.
 
-## Slide 15: Machine learning in engineering
+## Slide 16: Machine learning in engineering
 
 Three words people use interchangeably and should not — and where engineering sits among them.
 
@@ -289,7 +305,7 @@ In this segment we separate them, and we place engineering among them. Each gets
 
 When we choose a method, we start from the decision that someone needs to make, and from the observations we already have. We choose a model after that. If you pick a model first, you can reach an impressive score that helps nobody.
 
-## Slide 16: The words, and how they nest
+## Slide 17: The words, and how they nest
 
 Each is contained by the one before it. Data science is the odd one out: it overlaps all of them and is contained by none, because it is the craft of getting an answer out of data at all — finding it, cleaning it, questioning it, presenting it.
 
@@ -301,7 +317,7 @@ Data science is the odd one out. It overlaps all of them and is contained by non
 
 Much of that work involves no model whatever. A person who counts missing readings, checks units, and explains a trend is doing data science, even if no predictive model is ever built.
 
-## Slide 17: Artificial intelligence
+## Slide 18: Artificial intelligence
 
 Any machine doing something we would call intelligent. It names a goal. Many different techniques aim at it.
 
@@ -319,7 +335,7 @@ This is easy to confuse with machine learning. Machine learning is one particula
 
 So the phrase artificial intelligence tells you what someone wants to achieve. It does not tell you how they do it, and it does not mean that the system understands the problem the way a person does.
 
-## Slide 18: Machine learning
+## Slide 19: Machine learning
 
 Getting a computer to work out a rule from examples, instead of you writing the rule yourself.
 
@@ -335,7 +351,7 @@ Here is an example. You show the computer four thousand past inspections. Each o
 
 Do not confuse machine learning with automation. A script that emails a report every Monday is automation. It does exactly what it was told, and there is no learning in it at all.
 
-## Slide 19: Data science
+## Slide 20: Data science
 
 The craft of getting a trustworthy answer out of data — finding it, cleaning it, questioning it, analysing it and presenting it so somebody can act.
 
@@ -351,7 +367,7 @@ For example, you might discover that a third of your inspection records are miss
 
 Do not confuse data science with machine learning. You will spend far more of this semester on data science than on machine learning. That ratio matches professional practice, where most of the effort goes into getting the data right.
 
-## Slide 20: Two ways to make a computer decide
+## Slide 21: Two ways to make a computer decide
 
 Learning patterns from data and using them to make predictions.
 
@@ -363,7 +379,7 @@ In the first way, a person writes the rule. In the second way, the computer lear
 
 Neither way is always better. If an established equation exists and its assumptions apply, the equation can be the better choice. We will work out together when each way fits.
 
-## Slide 21: "Can we estimate the 28-day compressive strength of a concrete mix without casting and crushing another cylinder?"
+## Slide 22: "Can we estimate the 28-day compressive strength of a concrete mix without casting and crushing another cylinder?"
 
 Hold onto that question. In twenty minutes you are going to answer a version of it yourself, on paper, with no computer and no formula.
 
@@ -375,7 +391,7 @@ Today the usual way to find out is to cast a cylinder, wait twenty eight days, a
 
 Keep the question in mind. Think about what you would need. You would need the strength, which is the outcome, and the information known at mixing time. In twenty minutes you will answer a version of it yourself, on paper, with no computer and no formula.
 
-## Slide 22: Traditional programming, and machine learning
+## Slide 23: Traditional programming, and machine learning
 
 On the left, a rule specified by a person: you work out the rule and write it down. On the right, the new way: you do not know the rule, but you have examples of inputs and the answers that followed, and the computer works out a rule from them.
 
@@ -389,7 +405,7 @@ The second is machine learning. Here you do not know the rule. What you have are
 
 After that, the rule it found can be used on new inputs, and it predicts the answers. So the roles are reversed. In traditional programming you supply the rule. In machine learning the computer supplies the rule, and you supply the examples.
 
-## Slide 23: When to write the rule, and when to learn it from data
+## Slide 24: When to write the rule, and when to learn it from data
 
 Write the rule yourself when…
 
@@ -421,7 +437,7 @@ Let the computer infer the rule when nobody knows the rule, or it involves many 
 
 An equation still needs correct units and valid assumptions, so the check is always yours.
 
-## Slide 24: Data, features and targets
+## Slide 25: Data, features and targets
 
 In this example, each row describes one case. Feature columns contain the inputs available before prediction. The target column contains the value to predict.
 
@@ -433,7 +449,7 @@ The columns are the measurements. Some columns are the inputs. We call these the
 
 When you read any table, begin with the column names and the units. Then ask which columns you would really know in advance, and which one column is the answer. The table on the slide is part of the lesson, so there is no file to download or open.
 
-## Slide 25: Feature, and target
+## Slide 26: Feature, and target
 
 A FEATURE is a column you know before the outcome — an input. The TARGET is the column you want to predict. One row containing all of them is one EXAMPLE.
 
@@ -449,7 +465,7 @@ In the table you just saw, cement content, water content and curing age are the 
 
 Be careful about the word cause. A target does not have to be a cause. Cement content is associated with strength, which means the two tend to move together. The model learns that association. It knows nothing about hydration chemistry, which is the chemical reaction that makes cement harden.
 
-## Slide 26: Can you answer these?
+## Slide 27: Can you answer these?
 
 In a table of Concrete Compressive Strength records, is 28-day compressive strength a feature or the target?
 
@@ -471,7 +487,7 @@ Question C. Give one example from your own discipline of a problem where you alr
 
 The answers are on the next slide. Try first, then look.
 
-## Slide 27: How did you do?
+## Slide 28: How did you do?
 
 Feature or target?
 
@@ -497,7 +513,7 @@ For C, any problem with a formula or a code threshold works. For a simply suppor
 
 If a validated equation exists, use the equation.
 
-## Slide 28: Hands on: predict case 13
+## Slide 29: Hands on: predict case 13
 
 Use the twelve rows of data to predict a value for the new case. Write your prediction and explain which rows helped you choose it.
 
@@ -511,7 +527,7 @@ Write down your prediction and explain which of the twelve rows helped you choos
 
 The aim is a reasoned estimate. The aim is a reasoned estimate, and what we mark is the reason you give.
 
-## Slide 29: Your task
+## Slide 30: Your task
 
 Twelve cases show their inputs and measured outcomes. Case 13 shows only its inputs. Predict its outcome and write one sentence explaining your choice.
 
@@ -525,7 +541,7 @@ Start by reading the column headings and the units. Then find the known cases th
 
 Writing your reason first matters. Afterwards you can compare what you expected with what was measured, and learn from the difference.
 
-## Slide 30: Reading the pattern from twelve cases
+## Slide 31: Reading the pattern from twelve cases
 
 One approach is to compare cases with similar inputs. Follow the steps below.
 
@@ -563,7 +579,7 @@ Step four. Adjust for anything else you noticed, such as a second column that al
 
 You have used a pattern in known examples to predict an unknown value. Comparing the prediction with the measured value tells you the size of the error.
 
-## Slide 31: The answer, and your error
+## Slide 32: The answer, and your error
 
 The star marks the measured value. Its distance from your prediction is the prediction error. The dashed line shows a possible pattern in the data.
 
@@ -577,7 +593,7 @@ The dashed line shows one possible pattern in the data. A line is only one kind 
 
 One case cannot tell us how reliable a method is. With a single test we only see how it did this once. Later we will use many cases that were held back, and then the error means much more.
 
-## Slide 32: Steps in a prediction task
+## Slide 33: Steps in a prediction task
 
 What you called it
 
@@ -613,7 +629,7 @@ You then applied your rule to a case that you had not seen. That is predicting f
 
 So on paper, with twelve rows, you went through the same steps that a computer follows later. Nothing was trained today. Later weeks will repeat these steps in Python.
 
-## Slide 33: Break
+## Slide 34: Break
 
 10 minutes
 
@@ -625,7 +641,7 @@ We now take a ten minute break. Stand up, stretch and drink some water.
 
 When we come back, we move to the second half of the introduction. No computer is needed for the remaining examples, and no download or code is required. Come back on time, because we start with the two main kinds of prediction question.
 
-## Slide 34: Two kinds of question
+## Slide 35: Two kinds of question
 
 Predicting a number, and predicting a category. Almost everything in this course is one or the other.
 
@@ -637,7 +653,7 @@ The kind of answer decides the task. If the answer is an amount, such as a torqu
 
 Categories can be stored as numeric codes, like zero and one. The digits alone do not decide the task. What matters is what the answer means.
 
-## Slide 35: Regression and classification
+## Slide 36: Regression and classification
 
 Left: the answer is a number on a continuous scale, so we fit a line through the cases. Right: the answer is one of a small set of labels, so we look for a boundary that separates them. The data can be the same; the question is what changes.
 
@@ -649,7 +665,7 @@ In classification, the answer is one of a small set of labels. To handle this we
 
 The same data can often support both. If we take a column of measured temperatures, we can predict the temperature itself, which is regression, or we can predict whether it passes a safety limit, which is classification. The data stays the same. What changes is the question we ask, and so the target we choose.
 
-## Slide 36: Regression, and classification
+## Slide 37: Regression, and classification
 
 REGRESSION predicts a number on a continuous scale. CLASSIFICATION predicts which of a small number of categories a case belongs to.
 
@@ -665,7 +681,7 @@ For example, a regression question is, how many megapascals of strength? A class
 
 To tell them apart, ask what the answer means. Estimating a quantity is regression. Choosing a category is classification. Categories may be stored as numeric codes such as zero and one, but they are still categories.
 
-## Slide 37: Can you answer these?
+## Slide 38: Can you answer these?
 
 You want to predict how many days until a component needs replacing. Regression or classification?
 
@@ -687,7 +703,7 @@ Question C. You want to predict which of five fault types a machine has. Which o
 
 Think about what each answer would look like. Is it a quantity, or is it a choice from a list? The answers are on the next slide.
 
-## Slide 38: How did you do?
+## Slide 39: How did you do?
 
 Days until replacement?
 
@@ -713,7 +729,7 @@ For C, five fault types is still classification, but it is multiclass instead of
 
 In Week 9 we study which categories get confused with each other, and that tells us much more than a single accuracy score.
 
-## Slide 39: What machine learning cannot do
+## Slide 40: What machine learning cannot do
 
 Four limitations to consider when using machine learning.
 
@@ -725,7 +741,7 @@ A model will always give you an answer. A returned prediction does not prove tha
 
 The next two slides give the four limits, first in general terms and then in your own discipline.
 
-## Slide 40: Four limits, and none of them go away
+## Slide 41: Four limits, and none of them go away
 
 A model can produce a prediction even when the data are unsuitable. Check whether the inputs and evaluation support its intended use.
 
@@ -739,7 +755,7 @@ A model can produce a prediction even when the data are unsuitable. It will not 
 
 These four are questions to investigate for each plant and each data set. Each one is a question to investigate in each case.
 
-## Slide 41: The same four limits, in your own discipline
+## Slide 42: The same four limits, in your own discipline
 
 1 · No data
 
@@ -775,7 +791,7 @@ Four, the future changed. A model trained on one quarry's aggregate may quietly 
 
 This matters for the rest of the course. Every project in Week 9 has to survive these four questions before it is approved. A team that cannot answer them has not defined an engineering problem yet. It has picked a technique and gone looking for somewhere to use it.
 
-## Slide 42: Challenge: the Problem Hunt
+## Slide 43: Challenge: the Problem Hunt
 
 Read the problem and identify the information available. Use the worked example to plan your first step.
 
@@ -787,7 +803,7 @@ Your task is to read a problem and identify the information that is available. Y
 
 This exercise supports your Assignment A1 brief. It is practice, and it does not create another graded upload. A good answer may even conclude that an established rule is better than machine learning, and that is a perfectly good finding.
 
-## Slide 43: Problem Hunt
+## Slide 44: Problem Hunt
 
 List three problems from construction, structures, materials and building performance where data might help.
 Classify each problem: predict a number, predict a category or use another method. Explain your choice.
@@ -817,7 +833,7 @@ Work through six questions in order. What do you want to predict? Who measures t
 
 Take one candidate problem and answer all six questions for it. Then repeat the process for the other two.
 
-## Slide 44: How your team works, all semester
+## Slide 45: How your team works, all semester
 
 Project teams of four or five
 
@@ -847,7 +863,7 @@ Individual accountability is built in. Sixty five per cent of the mark is indivi
 
 Before you leave, sign the team charter. Write the names, contact details, a weekly meeting slot, and what you will do if somebody stops contributing. Agreeing that now is much easier than agreeing it in November.
 
-## Slide 45: Review your examples and Assignment A1
+## Slide 46: Review your examples and Assignment A1
 
 Check your candidate problems, then review A1 and the preparation for Week 2.
 
@@ -859,7 +875,7 @@ First, look again at your candidate problems from the Problem Hunt. Check one of
 
 The next slide explains A1 and the steps before next week. It is written so that someone reading it alone can follow it, so you can return to it when you are revising.
 
-## Slide 46: Before Week 2
+## Slide 47: Before Week 2
 
 Assignment A1 — use the current form deadline
 
@@ -897,7 +913,7 @@ Also before next week, create a GitHub account, which is a place to store projec
 
 Do not install anything. Week 2 needs only a browser.
 
-## Slide 47: Watch this before Week 2
+## Slide 48: Watch this before Week 2
 
 IBM Technology
 
@@ -921,7 +937,7 @@ Generative AI means systems that create new text, images or other content. We na
 
 If the video is unavailable, you can use today's slides for the same definitions.
 
-## Slide 48: Revision material
+## Slide 49: Revision material
 
 Everything from here on is for you to study from. Summary, self-test with answers, glossary and a one-page reference.
 
@@ -933,7 +949,7 @@ The slides that follow contain a summary, a self test with answers, a glossary, 
 
 These slides recap today's lesson. They do not add any new submission.
 
-## Slide 49: What you should take away
+## Slide 50: What you should take away
 
 Artificial intelligence is a goal; machine learning is one way of reaching it; data science is the craft of getting a trustworthy answer out of data at all.
 
@@ -963,7 +979,7 @@ Regression predicts a number with a unit. Classification predicts which of a sma
 
 A model learns association. It does not learn cause, and a good fit is no evidence of a mechanism. Check for missing data, weak patterns, better physical models and changed conditions. A prediction alone does not show that a model is useful, so check the data, the errors and the limits of the intended use.
 
-## Slide 50: Self-test — try these before you look
+## Slide 51: Self-test — try these before you look
 
 A colleague says 'we should use AI for this'. What three questions would you ask before agreeing?
 
@@ -993,7 +1009,7 @@ Question E. Your model predicts twenty eight day compressive strength to within 
 
 The answers are on the next slide.
 
-## Slide 51: How did you do?
+## Slide 52: How did you do?
 
 Three questions before agreeing to 'use AI'?
 
@@ -1029,7 +1045,7 @@ D. A model may memorise its training examples. To check whether it predicts new 
 
 E. You need to know how large the error is in engineering terms and whether that is tolerable, what it costs when the model is wrong, and whether today's conditions still resemble the data it learned from.
 
-## Slide 52: Every word we used today (1 of 3)
+## Slide 53: Every word we used today (1 of 3)
 
 Artificial intelligence
 
@@ -1073,7 +1089,7 @@ A dataset is a collection of data. In this lesson we use tables of observations.
 
 A feature is a column known before the outcome. It is an input to the prediction. The target, also called the label, is the column you are trying to predict.
 
-## Slide 53: Every word we used today (2 of 3)
+## Slide 54: Every word we used today (2 of 3)
 
 Regression
 
@@ -1113,7 +1129,7 @@ A prediction is the model's answer for a case. The error is the difference betwe
 
 Unseen data means cases that were not used to fit the model. To be useful, they must also be relevant to the intended use and free from leakage. If you test a model on cases that look nothing like real use, a good score tells you very little.
 
-## Slide 54: Every word we used today (3 of 3)
+## Slide 55: Every word we used today (3 of 3)
 
 Data leakage
 
@@ -1137,7 +1153,7 @@ Generalisation asks whether a rule learned from past cases still works on new on
 
 Association versus cause is the third. A model learns which columns move together. It knows nothing about the mechanism behind them. To show that one thing causes another, you need extra assumptions or a carefully designed study.
 
-## Slide 55: Eight questions to ask about any data problem
+## Slide 56: Eight questions to ask about any data problem
 
 1 · What exactly am I predicting?
 
@@ -1181,7 +1197,7 @@ Four, where does the data come from? Who measured it, how often, over what perio
 
 Six, how will I know if I am wrong? You need cases the model has never seen, so decide now how you will hold some back. Seven, what does being wrong cost? A false alarm and a missed failure are not equally bad, and that decides which model you pick. Eight, do today's conditions still resemble the data? If the process, material or plant has changed, the model may be quietly obsolete.
 
-## Slide 56: Five questions,
+## Slide 57: Five questions,
 five minutes
 
 Features and target read off a table, regression told from classification, and one of the four limits applied to a case.
@@ -1204,7 +1220,7 @@ Enter your own Student Registration Number exactly as recorded. You have one att
 
 After you submit, tap View score and read the feedback. The quiz category is ten per cent, and your best nine of eleven count because Quiz 6 is waived. Check the slide for the link.
 
-## Slide 57: You have practised
+## Slide 58: You have practised
 prediction reasoning.
 
 Today you used twelve rows of data to make a prediction and measure its error. Later lessons use Python to repeat these calculations on larger datasets.

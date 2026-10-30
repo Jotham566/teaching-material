@@ -15,7 +15,7 @@ Welcome to week four. This week we learn how to handle many readings at once ins
 
 We start with lists, which hold values in order. Then we learn loops, which repeat a step for every value. After that we meet dictionaries, tuples and sets. We finish by reading a table of measurements from a CSV file and calculating averages for each group.
 
-This session is for the civil engineering and architecture group. Check the slide for the date, time and room.
+This session is for the civil engineering and architecture group.
 
 ## Slide 2: Today’s learning
 
@@ -1609,7 +1609,7 @@ The quiz stays available for the full 24 hours, so you do not need to rush.
 
 You can show how the total and count change for each record.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 

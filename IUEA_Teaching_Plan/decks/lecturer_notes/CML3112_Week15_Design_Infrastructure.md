@@ -539,7 +539,7 @@ Keep the submitted files and the confirmation. A file saved in Drive or GitHub i
 
 You can point to the evidence behind one decision you personally worked on.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 

@@ -7,7 +7,7 @@ Each slide shows its text, then the spoken script the lecturer reads aloud.
 Communications, Electrical, Mechatronics and Robotics Engineering
 
 Friday 09 October 2026
-Friday 11:00–14:00, Room 115
+No normal class on this date: replacement session as announced
 
 **Spoken script**
 
@@ -16,6 +16,8 @@ Welcome to Week 5 for CML3111, the communications, electrical, mechatronics and 
 Pandas is a toolbox of ready-made code for Python. In earlier weeks we worked with lists, dictionaries and loops. Pandas does similar work on a whole table at once, in a few short lines.
 
 By the end of the session we can ask a table questions, such as which rows pass a test and what the total is for each group. The slide shows the day, time and room for your class.
+
+This Friday was a public holiday, so we use this deck in the replacement session that the lecturer announces.
 
 ## Slide 2: Today’s learning
 
@@ -683,7 +685,7 @@ Week 6 then starts with 30 minutes of consolidation. Consolidation means going b
 
 You can explain which observations a filter keeps and what a grouped total means.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 

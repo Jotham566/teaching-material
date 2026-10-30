@@ -937,7 +937,7 @@ Answer it individually. Use your Student Registration Number and the Google acco
 
 You can explain why running the same cell again may change its output.
 
-Save your work and check the required submission files.
+Check that the required files are in place.
 
 Point to your evidence. Save your work.
 
