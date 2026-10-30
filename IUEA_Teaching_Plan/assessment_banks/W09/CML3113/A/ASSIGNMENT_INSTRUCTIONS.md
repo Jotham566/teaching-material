@@ -2,7 +2,10 @@
 
 **Submit:** ONE completed assignment notebook (.ipynb).
 
-**Deadline:** 13 November 2026, 08:00 Kampala. The live form shows any later change.
+**Deadline:** 20 November 2026, 08:00 Kampala. The live form shows any later change.
+
+<!-- BLOCK_ASSESSMENT_20261030 -->
+**Block assessment:** this is part B of 3 of the Block 1 assignment (Weeks 8 to 10; parts A7, A8, A9). All parts close together at the time above, and each part is marked out of 20. The Block 1 quiz is one sitting: In the last twenty minutes of the Week 10 class the lecturer opens the three quiz forms together; each stays open for 24 hours.
 
 ## 1. Start
 
