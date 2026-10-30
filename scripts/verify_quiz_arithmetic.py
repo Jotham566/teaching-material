@@ -315,6 +315,11 @@ EXPECTED = {
 }
 STANDARD = {"diagnosis": 2, "traceback": 1, "interpretation": 1,
             "judgement": 1}
+# Weeks 6 and 8 to 12 were redesigned on 15 October 2026 (pandas_quiz_revision.py) around short reading questions
+# on the taught pandas workflow: two interpretation, one diagnosis, one traceback, one judgement.
+REVISED = {"interpretation": 2, "diagnosis": 1, "traceback": 1, "judgement": 1}
+for _w in (6, 8, 9, 10, 11, 12):
+    EXPECTED[_w] = REVISED
 
 for wk in sorted(QB.QUIZ):
     got = Counter(q["kind"] for q in QB.QUIZ[wk]["q"])
@@ -486,7 +491,7 @@ ok("no leftover 'Correct.' inside a wrong-answer message", not stale,
    "; ".join(stale[:5]))
 
 intro_bad = [f"{code} W{w['week']}" for code, c in payload.items()
-             for w in c["weeks"] if "tap View score" not in w["intro"]]
+             for w in c["weeks"] if w["week"] != 6 and "tap View score" not in w["intro"]]  # Quiz 6 is waived
 ok("every form tells students to tap View score", not intro_bad,
    "; ".join(intro_bad[:5]))
 

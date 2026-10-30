@@ -999,8 +999,8 @@ var QUIZ_DATA = {
                 "correct": true
               }
             ],
-            "fbCorrect": "Deduplicate observation IDs under the stated policy, not a source ID that can repeat.",
-            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy, not a source ID that can repeat.\n\nWhy the others are wrong. \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets.  \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields."
+            "fbCorrect": "Deduplicate observation IDs under the stated policy. A source ID can repeat.",
+            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy. A source ID can repeat.\n\nWhy the others are wrong. \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets.  \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields."
           },
           {
             "n": 3,
@@ -1052,7 +1052,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.",
-            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero.  \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate, not a recovered observation."
+            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero.  \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate. It is never a recovered observation."
           },
           {
             "n": 5,
@@ -1112,7 +1112,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The two named features form a table; y has a target for each same row.",
-            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count, not the observation count.  \u201cA column containing the target only\u201d \u2014 The target is y, not a predictor."
+            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count. The observation count is the number of rows.  \u201cA column containing the target only\u201d \u2014 The target is y. It is never a predictor."
           },
           {
             "n": 2,
@@ -1190,7 +1190,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Absolute errors are 2 and 4; squared errors are 4 and 16.",
-            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are percentages\u201d \u2014 These errors use the target unit.  \u201cBoth are 6\u201d \u2014 Six is the total absolute error, not its mean.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong."
+            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are percentages\u201d \u2014 These errors use the target unit.  \u201cBoth are 6\u201d \u2014 Six is the total absolute error. The mean divides it by the count.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong."
           },
           {
             "n": 5,
@@ -1388,7 +1388,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Repeated observations from one source can make evaluation too optimistic.",
-            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts.  \u201cTo use the target as a group label\u201d \u2014 Equipment identity, not the answer, defines this split."
+            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts.  \u201cTo use the target as a group label\u201d \u2014 Equipment identity defines this split. The answer plays no part."
           },
           {
             "n": 2,
@@ -1526,7 +1526,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
-            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c0.4 and 65\u201d \u2014 An interaction here is a product, not a sum.  \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
+            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c0.4 and 65\u201d \u2014 An interaction here is a product. A sum would be a different feature.  \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
           },
           {
             "n": 2,
@@ -1604,7 +1604,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The extended model reduces mean absolute error by 0.5.",
-            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit, not an automatic percentage.  \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction."
+            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit. It is not an automatic percentage.  \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction."
           },
           {
             "n": 5,
@@ -1879,8 +1879,8 @@ var QUIZ_DATA = {
                 "correct": true
               }
             ],
-            "fbCorrect": "Correct. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
-            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file.  \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks."
+            "fbCorrect": "Correct. The message is about a file. A package problem or a model problem would read differently. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
+            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file. A package problem or a model problem would read differently. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file.  \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks."
           },
           {
             "n": 5,
@@ -1906,7 +1906,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
-            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning, not a proof.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data."
+            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning sign. It proves nothing.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data."
           }
         ]
       }
@@ -2663,8 +2663,8 @@ var QUIZ_DATA = {
                 "correct": false
               }
             ],
-            "fbCorrect": "Deduplicate observation IDs under the stated policy, not a source ID that can repeat.",
-            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy, not a source ID that can repeat.\n\nWhy the others are wrong. \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields.  \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets."
+            "fbCorrect": "Deduplicate observation IDs under the stated policy. A source ID can repeat.",
+            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy. A source ID can repeat.\n\nWhy the others are wrong. \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields.  \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets."
           },
           {
             "n": 3,
@@ -2716,7 +2716,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.",
-            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate, not a recovered observation.  \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero."
+            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate. It is never a recovered observation.  \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero."
           },
           {
             "n": 5,
@@ -2776,7 +2776,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The two named features form a table; y has a target for each same row.",
-            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count, not the observation count.  \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cA column containing the target only\u201d \u2014 The target is y, not a predictor."
+            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count. The observation count is the number of rows.  \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cA column containing the target only\u201d \u2014 The target is y. It is never a predictor."
           },
           {
             "n": 2,
@@ -2854,7 +2854,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Absolute errors are 2 and 4; squared errors are 4 and 16.",
-            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are 6\u201d \u2014 Six is the total absolute error, not its mean.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong.  \u201cBoth are percentages\u201d \u2014 These errors use the target unit."
+            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are 6\u201d \u2014 Six is the total absolute error. The mean divides it by the count.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong.  \u201cBoth are percentages\u201d \u2014 These errors use the target unit."
           },
           {
             "n": 5,
@@ -3052,7 +3052,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Repeated observations from one source can make evaluation too optimistic.",
-            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo use the target as a group label\u201d \u2014 Equipment identity, not the answer, defines this split.  \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts."
+            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo use the target as a group label\u201d \u2014 Equipment identity defines this split. The answer plays no part.  \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts."
           },
           {
             "n": 2,
@@ -3190,7 +3190,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
-            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product, not a sum."
+            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product. A sum would be a different feature."
           },
           {
             "n": 2,
@@ -3268,7 +3268,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The extended model reduces mean absolute error by 0.5.",
-            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction.  \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit, not an automatic percentage."
+            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction.  \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit. It is not an automatic percentage."
           },
           {
             "n": 5,
@@ -3543,8 +3543,8 @@ var QUIZ_DATA = {
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
-            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks.  \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file."
+            "fbCorrect": "Correct. The message is about a file. A package problem or a model problem would read differently. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
+            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file. A package problem or a model problem would read differently. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks.  \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file."
           },
           {
             "n": 5,
@@ -3570,7 +3570,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
-            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning, not a proof."
+            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning sign. It proves nothing."
           }
         ]
       }
@@ -4327,8 +4327,8 @@ var QUIZ_DATA = {
                 "correct": false
               }
             ],
-            "fbCorrect": "Deduplicate observation IDs under the stated policy, not a source ID that can repeat.",
-            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy, not a source ID that can repeat.\n\nWhy the others are wrong. \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields.  \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets."
+            "fbCorrect": "Deduplicate observation IDs under the stated policy. A source ID can repeat.",
+            "fbWrong": "THE ANSWER: It removes distinct observations from the same equipment. Deduplicate observation IDs under the stated policy. A source ID can repeat.\n\nWhy the others are wrong. \u201cIt fills missing values\u201d \u2014 drop_duplicates does not fill missing fields.  \u201cIt keeps every observation\u201d \u2014 It retains only the first row per equipment ID.  \u201cIt sorts by target\u201d \u2014 This operation removes rows; it does not sort targets."
           },
           {
             "n": 3,
@@ -4380,7 +4380,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.",
-            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero.  \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate, not a recovered observation."
+            "fbWrong": "THE ANSWER: It inserts 24 for the missing entry and retains 80. The known values are 20, 24 and 80; the median is 24. fillna changes only missing entries.\n\nWhy the others are wrong. \u201cIt fills the gap with zero\u201d \u2014 The supplied fill is the median, not zero.  \u201cIt replaces 80 with 24\u201d \u2014 An extreme recorded value is not a missing value.  \u201cIt recovers the true missing measurement\u201d \u2014 The fill is an estimate. It is never a recovered observation."
           },
           {
             "n": 5,
@@ -4440,7 +4440,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The two named features form a table; y has a target for each same row.",
-            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count, not the observation count.  \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cA column containing the target only\u201d \u2014 The target is y, not a predictor."
+            "fbWrong": "THE ANSWER: One row per training observation and two feature columns. The two named features form a table; y has a target for each same row.\n\nWhy the others are wrong. \u201cTwo rows regardless of dataset size\u201d \u2014 Two is the feature count. The observation count is the number of rows.  \u201cOne unrelated row for each target\u201d \u2014 Features and targets must refer to matching observations.  \u201cA column containing the target only\u201d \u2014 The target is y. It is never a predictor."
           },
           {
             "n": 2,
@@ -4518,7 +4518,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Absolute errors are 2 and 4; squared errors are 4 and 16.",
-            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are 6\u201d \u2014 Six is the total absolute error, not its mean.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong.  \u201cBoth are percentages\u201d \u2014 These errors use the target unit."
+            "fbWrong": "THE ANSWER: MAE 3; RMSE approximately 3.1623. Absolute errors are 2 and 4; squared errors are 4 and 16.\n\nWhy the others are wrong. \u201cBoth are 6\u201d \u2014 Six is the total absolute error. The mean divides it by the count.  \u201cMAE -1; RMSE 1\u201d \u2014 MAE uses absolute errors, so signed cancellation is wrong.  \u201cBoth are percentages\u201d \u2014 These errors use the target unit."
           },
           {
             "n": 5,
@@ -4716,7 +4716,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Repeated observations from one source can make evaluation too optimistic.",
-            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts.  \u201cTo use the target as a group label\u201d \u2014 Equipment identity, not the answer, defines this split."
+            "fbWrong": "THE ANSWER: To avoid evaluating on equipment patterns already seen in training. Repeated observations from one source can make evaluation too optimistic.\n\nWhy the others are wrong. \u201cTo delete repeated valid observations\u201d \u2014 Repeated observations can be valid and remain in their group.  \u201cTo make every partition equally large\u201d \u2014 Group separation does not guarantee equal counts.  \u201cTo use the target as a group label\u201d \u2014 Equipment identity defines this split. The answer plays no part."
           },
           {
             "n": 2,
@@ -4854,7 +4854,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
-            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product, not a sum.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
+            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product. A sum would be a different feature.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
           },
           {
             "n": 2,
@@ -4932,7 +4932,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "The extended model reduces mean absolute error by 0.5.",
-            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit, not an automatic percentage.  \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction."
+            "fbWrong": "THE ANSWER: 0.5 in the target unit. The extended model reduces mean absolute error by 0.5.\n\nWhy the others are wrong. \u201c0.5 percent in every case\u201d \u2014 MAE uses the target unit. It is not an automatic percentage.  \u201cA guarantee every prediction improved\u201d \u2014 An average improvement does not guarantee each row improved.  \u201c-0.5\u201d \u2014 That reverses the stated subtraction."
           },
           {
             "n": 5,
@@ -5207,8 +5207,8 @@ var QUIZ_DATA = {
                 "correct": false
               }
             ],
-            "fbCorrect": "Correct. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
-            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file, not a package or a model. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks."
+            "fbCorrect": "Correct. The message is about a file. A package problem or a model problem would read differently. Confirm the file sits at the path the notebook uses, and that the README says where to put it.",
+            "fbWrong": "THE ANSWER: The working folder, the relative path and the supplied file name. The message is about a file. A package problem or a model problem would read differently. Confirm the file sits at the path the notebook uses, and that the README says where to put it.\n\nWhy the others are wrong. \u201cRewrite the analysis using csv.DictReader\u201d \u2014 Changing the reading tool does not create a missing file.  \u201cChange the model settings\u201d \u2014 Model settings have no effect on finding a file.  \u201cDelete all the other files in the folder\u201d \u2014 That removes evidence and still does not put the file where the notebook looks."
           },
           {
             "n": 5,
@@ -5234,7 +5234,7 @@ var QUIZ_DATA = {
               }
             ],
             "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
-            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning, not a proof.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session."
+            "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning sign. It proves nothing.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session."
           }
         ]
       }

@@ -2949,8 +2949,8 @@ BANKS[13] = [
         "options": [
             ("The working folder, the relative path and the supplied file "
              "name", True,
-             "Correct. The message is about a file, not a package or a "
-             "model. Confirm the file sits at the path the notebook uses, "
+             "Correct. The message is about a file. A package problem or a "
+             "model problem would read differently. Confirm the file sits at the path the notebook uses, "
              "and that the README says where to put it."),
             ("Rewrite the analysis using csv.DictReader", False,
              "Changing the reading tool does not create a missing file."),
@@ -2974,7 +2974,7 @@ BANKS[13] = [
              "produces its own results."),
             ("The chart proves the current code works", False,
              "It may have been saved before the code changed. A chart that "
-             "will not rebuild is a warning, not a proof."),
+             "will not rebuild is a warning sign. It proves nothing."),
             ("Restarting changes the dataset by itself", False,
              "Restarting clears variables in memory. The usual cause is a "
              "step or a file that only existed in the old session."),
