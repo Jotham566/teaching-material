@@ -265,7 +265,7 @@ alpha and k were chosen on these rows, so the scores are slightly optimistic.
 
 **Spoken script**
 
-Here are five candidates scored on the same validation rows, with the baseline at the top. The average guess is the reference. The straight line using both inputs scores 0.67. The depth four tree scores 1.18. The ridge curve on load alone scores 0.99. KNN with k equal to three scores 0.63.
+Here are five candidates scored on the same validation rows, with the baseline at the top. The average guess is the reference. The straight line using both inputs scores 0.67. The depth four tree scores 1.20. The ridge curve on load alone scores 0.99. KNN with k equal to three scores 0.63.
 
 The straight line on both inputs fits these rows best, and KNN on the same two inputs comes second. The ridge curve sees only the load, so its row is not a like-for-like comparison. A flexible model earns its place only when the pattern needs it. When two models score about the same, we choose the simpler one, because it is easier to explain and to maintain. One caution: we picked alpha and k by looking at these same validation rows, so these scores are slightly optimistic. The sealed test group gives the final check later. We will use this reasoning in the project write-up.
 

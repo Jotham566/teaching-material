@@ -1105,7 +1105,282 @@ The linear model performs best on these two rows.
 
 Remember the limit of this result. Two synthetic rows tell us very little about how a model performs on new equipment. The zero error appears because the practice file was built with an exact straight-line pattern. Real data has noise, which is why the test uses separate groups of machines and unseen data.
 
-## Slide 54: Test 2 revision checklist
+## Slide 54: The test now reaches back to Week 13
+
+EIGHT CODING TASKS
+Week 8: predictions and errors. Week 9: warnings and cost. Week 10: the split and cross-validation. Week 11: does an extra input help? Week 12: choose under limits. Week 13: ridge and neighbours.
+
+SIX READING CHOICES
+Splits, fill values, cost, the sealed test rows, the ridge penalty and scaling. Record the letters in DECISIONS.
+
+**Spoken script**
+
+The test has grown since the first plan. It now reaches back over Weeks 8 to 13, so that it checks what we have really learned this term.
+
+There are eight coding tasks and six reading choices. From Week 8 we have the predictions and the two error measures. From Week 9 we have counting warnings and working out their cost. From Week 10 we have the split by equipment and cross-validation. From Week 11 we have asking whether an extra input helps. From Week 12 we have choosing a model inside two limits. From Week 13 we have the ridge curve and the nearest neighbours.
+
+The next few slides revise the later weeks with tiny examples, so that nothing in the test is a surprise. Everything we need is a small step from something we have already written.
+
+## Slide 55: Words for the later weeks
+
+**Spoken script**
+
+Six words to keep in mind. A fold is one round of cross-validation: one group is held back and the rest are used to fit. Cross-validation means holding each group back in turn, and then reporting the average error and how far the errors spread.
+
+Ablation means adding or removing one input and comparing the error on the same rows. A ridge penalty is a price on large coefficients, and it calms a wiggly curve. The number alpha sets the price.
+
+Nearest neighbours predicts from the average of the closest training rows. Scaling puts the inputs on a common ruler, so that a column with big numbers does not decide all the distances.
+
+Every one of these words came from a lesson in Weeks 10 to 13. Nothing here is new.
+
+## Slide 56: Counting warnings and their cost
+
+tp: warnings given and needed. fn: warnings missed. fp: false alarms.
+zip pairs each actual label with its predicted label.
+A missed warning costs 5 and a false alarm costs 1.
+
+Label 1 means a warning. One warning was missed, so the cost is 5.
+
+```python
+actual    = [0, 1, 1, 0, 1]
+predicted = [0, 1, 0, 0, 1]
+pairs = list(zip(actual, predicted))
+tp = sum(a == 1 and p == 1 for a, p in pairs)
+fn = sum(a == 1 and p == 0 for a, p in pairs)
+fp = sum(a == 0 and p == 1 for a, p in pairs)
+cost = 5 * fn + fp
+print("tp", tp, "fn", fn, "fp", fp)
+print("cost", cost)
+```
+
+Output on the slide:
+
+```text
+tp 2 fn 1 fp 0
+cost 5
+```
+
+**Spoken script**
+
+Task 4 asks us to count the outcomes of a warning model and work out a cost. Label one means a warning was needed, or a warning was given.
+
+We pair each actual label with its predicted label using zip. Then we count three things. A true positive, tp, is a warning that was needed and given. A false negative, fn, is a warning that was needed and missed. A false positive, fp, is a warning given when none was needed, a false alarm.
+
+The cost rule in the test is five for each missed warning and one for each false alarm. Here one warning was missed and there were no false alarms, so the cost is five. In the test we also work out precision and recall, and we use zero when a denominator would be zero.
+
+## Slide 57: Cross-validation by equipment group
+
+Each pass holds one group back and fits on the others.
+A held-back group never appears in its own training rows.
+The test asks for E1 to E5, then the mean and the spread of the five errors.
+
+Three groups give three passes and three errors.
+
+```python
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+table = pd.DataFrame({"group": list("AABBCC"),
+    "load": [20, 40, 30, 50, 60, 80],
+    "target": [10, 21, 14, 26, 29, 41]})
+for held_out in "ABC":
+    train = table[table["group"] != held_out]
+    test = table[table["group"] == held_out]
+    model = LinearRegression().fit(train[["load"]], train["target"])
+    pred = model.predict(test[["load"]])
+    error = mean_absolute_error(test["target"], pred)
+    print(held_out, round(error, 2))
+```
+
+Output on the slide:
+
+```text
+A 1.27
+B 0.95
+C 2.0
+```
+
+**Spoken script**
+
+Task 5 repeats the check so that every group is held back once. This is cross-validation by equipment group.
+
+The loop picks one group to hold out. The training rows are all the other groups, and the test rows are the held-out group. We fit a straight line on the training rows, predict the held-out rows, and print the error. Then the loop moves to the next group.
+
+In the real test there are five groups, E1 to E5, and E6 is never used. The function returns the five errors in order, their average, and their spread, which is the sample standard deviation. A small spread means the model behaves much the same on every group.
+
+## Slide 58: Does an extra input help?
+
+The new input is the load multiplied by the temperature.
+Both models use the same training rows and the same validation rows.
+The only change is one extra column.
+
+On this tiny file the extra input lowers the error. On the test file, report what the numbers show.
+
+```python
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+train = pd.DataFrame({"load": [20, 30, 40, 50, 60, 70],
+    "temp": [20, 25, 22, 30, 28, 35],
+    "target": [10.5, 15, 18.7, 25.2, 28.4, 35.9]})
+valid = pd.DataFrame({"load": [35, 65], "temp": [24, 32],
+    "target": [17.0, 32.6]})
+for t in (train, valid):
+    t["load_x_temp"] = t["load"] * t["temp"]
+for cols in (["load", "temp"], ["load", "temp", "load_x_temp"]):
+    model = LinearRegression().fit(train[cols], train["target"])
+    pred = model.predict(valid[cols])
+    error = mean_absolute_error(valid["target"], pred)
+    print(len(cols), "inputs", round(error, 3))
+```
+
+Output on the slide:
+
+```text
+2 inputs 0.336
+3 inputs 0.145
+```
+
+**Spoken script**
+
+Task 6 asks whether an extra input earns its place. This is an ablation: one change, the same rows, the same error measure.
+
+First we make the new input, load times temperature, in both tables. Then the loop fits two straight-line models. The first uses load and temperature. The second adds the new column. Each is fitted on the training rows and scored on the validation rows.
+
+Compare the two printed errors. Here the second is smaller, so the extra input helped on this tiny file. The test asks for both errors and their difference, and it does not promise which way the answer goes.
+
+## Slide 59: Choosing a model inside two limits
+
+kept holds the models that meet both limits.
+sorted orders them by error, then speed, then name.
+The first one in the sorted list is the choice.
+
+The tree is too slow and the mean is too inaccurate. Of the rest, knn has the smaller error.
+
+```python
+candidates = [
+    {"name": "line", "validation_mae": 1.5, "latency_ms": 3},
+    {"name": "tree", "validation_mae": 1.2, "latency_ms": 30},
+    {"name": "knn", "validation_mae": 1.1, "latency_ms": 12},
+    {"name": "mean", "validation_mae": 4.0, "latency_ms": 1}]
+kept = [c for c in candidates
+        if c["validation_mae"] <= 2.0
+        and c["latency_ms"] <= 20]
+ranked = sorted(kept, key=lambda c: (
+    c["validation_mae"], c["latency_ms"], c["name"]))
+print([c["name"] for c in kept])
+print(ranked[0]["name"])
+```
+
+Output on the slide:
+
+```text
+['line', 'knn']
+knn
+```
+
+**Spoken script**
+
+Task 7 chooses a model under two limits, one for the error and one for the time a prediction takes. Each candidate is a dictionary with a name, a validation error and a time in milliseconds.
+
+First we keep only the candidates that meet both limits. The tree is dropped because it takes thirty milliseconds, and the mean is dropped because its error is four. Two are left, the line and knn.
+
+Then we sort. The smallest error comes first, then the shorter time, then the name in alphabetical order. The first one in the sorted list is knn. If nothing meets both limits, the test wants the answer None. We never use the test scores to choose.
+
+## Slide 60: Ridge and nearest neighbours: build the models (1/2)
+
+The ridge pipeline makes a cubic curve of load, scales it, then fits with a penalty.
+The neighbour pipeline scales both inputs first.
+Nothing is fitted yet.
+
+Two recipes. Each one will be fitted on the training rows only.
+
+```python
+import pandas as pd
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import (
+    PolynomialFeatures, StandardScaler)
+from sklearn.linear_model import Ridge
+from sklearn.neighbors import KNeighborsRegressor
+ridge = make_pipeline(
+    PolynomialFeatures(3, include_bias=False),
+    StandardScaler(), Ridge(alpha=1.0))
+knn = make_pipeline(
+    StandardScaler(),
+    KNeighborsRegressor(n_neighbors=3))
+```
+
+Output on the slide:
+
+```text
+(nothing printed)
+```
+
+**Spoken script**
+
+Task 8 compares two ideas from Week 13. First we build both models. Nothing is fitted yet, so nothing prints.
+
+The ridge pipeline has three steps. PolynomialFeatures makes load, load squared and load cubed. StandardScaler puts those three columns on a common ruler. Ridge fits a curve with a penalty, and alpha equal to one sets the price of the penalty.
+
+The neighbour pipeline has two steps. StandardScaler puts load and temperature on a common ruler, so that neither decides all the distances. Then KNeighborsRegressor predicts from the average of the three nearest training rows.
+
+## Slide 61: Ridge and nearest neighbours: fit and score (2/2)
+
+Both models are fitted on the training rows only.
+The ridge model sees load alone. The neighbour model sees load and temperature.
+Both are scored on the same validation rows.
+
+Same rows, same measure. The smaller error is better.
+
+```python
+from sklearn.metrics import mean_absolute_error
+train = pd.DataFrame({
+    "load": [20, 30, 40, 50, 60, 70, 80, 90],
+    "temp": [22, 30, 25, 35, 28, 33, 26, 31],
+    "target": [10.2, 15.8, 19.5, 26.4, 29.1, 35.7, 39.2, 45.6]})
+valid = pd.DataFrame({
+    "load": [35, 55, 75], "temp": [28, 30, 32],
+    "target": [17.9, 28.0, 38.1]})
+ridge.fit(train[["load"]], train["target"])
+knn.fit(train[["load", "temp"]], train["target"])
+for name, model, cols in [("ridge", ridge, ["load"]),
+                          ("knn", knn, ["load", "temp"])]:
+    pred = model.predict(valid[cols])
+    print(name, round(mean_absolute_error(valid["target"], pred), 2))
+```
+
+Output on the slide:
+
+```text
+ridge 1.16
+knn 2.0
+```
+
+**Spoken script**
+
+Now we fit both models on the training rows and score them on the validation rows. The ridge model sees load alone. The neighbour model sees load and temperature, because that is how the task is written.
+
+The loop predicts the validation rows with each model and prints the mean absolute error. Here the ridge error is a little over one, and the neighbour error is two. So ridge is better on this tiny file.
+
+In the test, the function returns both errors without rounding, and the word ridge or knn for the smaller one. Every step is fitted on the training rows only. The validation rows are used only to score.
+
+## Slide 62: Test 2 checklist for Weeks 9 to 13
+
+I CAN
+Count tp, fn and fp and work out a cost. Hold each group back in turn and report the mean and spread. Compare two models on the same rows. Choose the best model inside two limits.
+
+I CAN EXPLAIN
+Why a very large ridge penalty can hurt. Why neighbours need scaled inputs. Why the test rows stay sealed. Why every fit uses training rows only.
+
+**Spoken script**
+
+Here is a short checklist for the later weeks. Before the test, we should be able to do four things. Count true positives, false negatives and false alarms and work out a cost. Hold each group back in turn and report the average error and the spread. Compare two models on the same rows. And choose the best model inside two limits.
+
+We should also be able to explain four ideas in plain words. A very large ridge penalty can flatten the curve and make both errors worse. Nearest neighbours need scaled inputs, because distances depend on the size of the numbers. The test rows stay sealed until the choice is made. And every fit, including every fill value and every scaler, uses training rows only.
+
+If you can do these and explain these, you are ready for the later part of the test.
+
+## Slide 63: Test 2 revision checklist
 
 01
 
@@ -1131,7 +1406,7 @@ Third, calculate MAE and RMSE, and explain why a perfect result on this tiny fil
 
 If you can do these three things, you are well prepared.
 
-## Slide 55: Functions and returned answers
+## Slide 64: Functions and returned answers
 
 01
 
@@ -1155,7 +1430,7 @@ On test day, keep every function name exactly as supplied. The grader calls your
 
 This is easier than it sounds. We use the same pandas steps we practised, placed inside a function, and we return the final value.
 
-## Slide 56: Defining and calling a function
+## Slide 65: Defining and calling a function
 
 def gives a reusable block a name and input parameters. The indented statements run when it is called. return sends a result back to the caller; print displays a result but does not return it.
 
@@ -1169,7 +1444,7 @@ The lines indented underneath form the body of the function. They do not run whe
 
 The word return sends a result back to the caller. Print is different. Print shows a value on the screen, but the function does not hand it back, so the caller receives nothing to use. If the test asks a function to return a value, we must use return.
 
-## Slide 57: A practice function
+## Slide 66: A practice function
 
 Use the inputs and operations defined in the preceding slides.
 
@@ -1193,7 +1468,7 @@ The last two lines call the function. The first call gives it the target column 
 
 The output is twenty-five and fifty. Those are the averages of the four targets and the four loads. The same function works for both, because it calculates from whatever input it receives. That is how we write the test functions.
 
-## Slide 58: Recording interpretation answers
+## Slide 67: Recording interpretation answers
 
 01
 
@@ -1217,7 +1492,7 @@ Then find DECISIONS in the notebook. Each question has an identifier, and it alr
 
 The letters only name the answer choices. They have nothing to do with which test files you receive. The portal gives you your files automatically, so you never choose a version.
 
-## Slide 59: A dictionary entry for a practice question
+## Slide 68: A dictionary entry for a practice question
 
 Use the inputs and operations defined in the preceding slides.
 
@@ -1240,7 +1515,7 @@ The output is B.
 
 In the real test, the keys are the question identifiers already present in the notebook, and you replace each blank value with the letter you chose. This practice entry is only a demonstration and carries no marks.
 
-## Slide 60: Test-day instructions
+## Slide 69: Test-day instructions
 
 01
 
@@ -1264,7 +1539,7 @@ On the test day, you will use the notebook and the CSV file issued to you by the
 
 Read the next slides slowly now, so that on the day you already know what to expect.
 
-## Slide 61: Your test files on test day
+## Slide 70: Your test files on test day
 
 01
 
@@ -1294,7 +1569,7 @@ On the page you enter three things. They are your name, your Google email, and y
 
 The page assigns your files automatically, and you do not choose a version.
 
-## Slide 62: Opening the notebook and CSV
+## Slide 71: Opening the notebook and CSV
 
 01
 
@@ -1320,11 +1595,11 @@ Then click the folder icon on the left, and use Upload to add engineering unders
 
 If the session resets, upload the CSV again.
 
-## Slide 63: One notebook contains all answers
+## Slide 72: One notebook contains all answers
 
 01
 
-Code tasks have a prompt, function name and marks.
+Eight code tasks, each with a prompt, function name and marks.
 
 02
 
@@ -1338,43 +1613,39 @@ Submit one notebook snapshot using the final button.
 
 Everything for the test lives in one notebook.
 
-The code tasks each have a prompt, a function name, and the marks they carry. Read the prompt, and write your code in the function with the name supplied.
+There are eight code tasks. Each has a prompt, a function name and the marks it carries. Read the prompt, and write your code in the function with the name supplied.
 
-There are six interpretation questions. For these you record your chosen option letters in the DECISIONS dictionary, as we practised.
+There are also six interpretation questions. For these you record your chosen option letters in the DECISIONS dictionary, as we practised.
 
 When you finish, you submit one notebook snapshot using the final button. A snapshot is a saved copy of your notebook at that moment.
 
-Everything the grader needs is in that one notebook.
-
-## Slide 64: How the 100 marks are allocated
+## Slide 73: How the 100 marks are allocated
 
 01
 
-Equipment-group split 20.
+Weeks 8 to 10: split 10, predictions 15, MAE and RMSE 5, group cross-validation 10.
 
 02
 
-Baseline, linear and tree predictions 30.
+Weeks 9, 11 and 12: classification and cost 10, feature ablation 10, model selection 10.
 
 03
 
-MAE and RMSE 20. Structured interpretation 30.
+Week 13: ridge and nearest neighbours 15. Six interpretation choices 15.
 
 **Spoken script**
 
-The test is marked out of one hundred, and the slide shows where the marks sit.
+The test is marked out of one hundred, and it reaches back over Weeks 8 to 13.
 
-The equipment-group split is worth twenty marks. This is the step where we separate machines into training and validation.
+From Weeks 8 to 10 we have the equipment-group split for ten marks, the baseline, linear and tree predictions for fifteen, MAE and RMSE for five, and cross-validation by equipment group for ten.
 
-The baseline, linear and tree predictions are worth thirty marks together.
+From Weeks 9, 11 and 12 we have classification and cost for ten marks, the feature ablation for ten, and choosing a model under limits for ten.
 
-Calculating MAE and RMSE is worth twenty marks.
+From Week 13 we have the ridge curve and nearest neighbours for fifteen marks. The six interpretation choices are worth fifteen marks together.
 
-The structured interpretation questions are worth thirty marks. Those are the six questions where you record option letters.
+Every one of these steps is something we have practised. The revision slides before this section cover each of them.
 
-All of these steps are things we have practised in this deck, one at a time. If you can follow the practice examples, you can follow the test.
-
-## Slide 65: Order of work
+## Slide 74: Order of work
 
 01
 
@@ -1386,7 +1657,7 @@ Fit the imputer and models on training records only.
 
 03
 
-Compare validation errors. Keep the specified final-test group untouched.
+Work down the eight tasks in order. Each is checked on its own, so move on if one is stuck.
 
 **Spoken script**
 
@@ -1396,11 +1667,11 @@ We begin by running the row filters that the notebook supplies. After that we sp
 
 Next we fit the imputer and the models on the training records only. The training rows teach the pipelines, and the other rows stay out of the learning.
 
-Then we compare the validation errors of the baseline, the linear model and the tree on the same validation rows.
+Then we work down the eight tasks in order. Each task is checked on its own, so an error in one does not stop the grader from checking the next. If a task will not work, leave it and move on, and come back if you have time.
 
-Throughout, the specified final-test group stays untouched. We do not look at it, fit on it, or use it to choose between models.
+Throughout, the final-test group, E6, stays untouched until the very end.
 
-## Slide 66: The three-hour session
+## Slide 75: The three-hour session
 
 01
 
@@ -1432,7 +1703,7 @@ The final twenty minutes are for preparing the snapshot and submitting the form.
 
 Check the slide and the form for the actual start and close times.
 
-## Slide 67: Before submitting
+## Slide 76: Before submitting
 
 01
 
@@ -1458,7 +1729,7 @@ Third, fix any errors that appear, and then run the final submission cell.
 
 This restart check can feel tedious, but it protects you.
 
-## Slide 68: Submission and confirmation
+## Slide 77: Submission and confirmation
 
 01
 
@@ -1484,7 +1755,7 @@ Third, press Submit on the form, before the deadline shown there. Keep the confi
 
 Clicking the notebook button alone is only the first half. The submission is complete once you have pressed Submit on the form.
 
-## Slide 69: How grading works
+## Slide 78: How grading works
 
 01
 

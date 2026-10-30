@@ -220,7 +220,7 @@ Speed comes next: a candidate must also be fast enough.
 
 **Spoken script**
 
-Choosing a model means comparing candidates fairly. We score three of them on the same validation rows, so the comparison is fair. The average guess has an error of 2.71 kWh/t. The straight line has 0.67. The tree has 1.18.
+Choosing a model means comparing candidates fairly. We score three of them on the same validation rows, so the comparison is fair. The average guess has an error of 2.71 kWh/t. The straight line has 0.67. The tree has 1.20.
 
 The right column applies one constraint from this week's classroom decision: error at most ten. Notice that error is only one of the things an engineer checks. The next slides add speed, and then the full selection rule.
 

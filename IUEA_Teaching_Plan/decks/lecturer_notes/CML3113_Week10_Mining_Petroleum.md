@@ -345,7 +345,7 @@ On the right the tree may ask twelve questions in a row. Look how it jumps up an
 
 Some books call the left problem bias, meaning too simple, and the right problem variance, meaning too jumpy. You will see those two words in other courses. In Semester 2 we add tools that hold a flexible model back.
 
-## Slide 18: Training error keeps falling while validation error stalls
+## Slide 18: Training error falls to almost zero, validation error stays far above it
 
 The loop tries three tree depths.
 mean_absolute_error(actual, predicted) is the MAE you computed by hand.
@@ -373,7 +373,7 @@ Output on the slide:
 ```text
 depth train valid
 1 1.33 1.56
-4 0.48 1.18
+4 0.48 1.2
 8 0.03 1.26
 ```
 
@@ -381,7 +381,7 @@ depth train valid
 
 Now the numbers behind the picture. The loop trains three trees, with one, four and eight questions in a row allowed. For each tree we print two errors. The first is the error on the training rows the tree learned from. The second is the error on the validation rows it has never seen.
 
-Read the output. The training error falls steadily, from 1.33 down to 0.03. The validation error improves at first and then stops improving; at depth eight it is 1.26. The gap between the two columns is the sign of overfitting.
+Read the output. The training error falls steadily, from 1.33 down to 0.03. The validation error falls much less, and it stays far above the training error; at depth eight it is 1.26. The gap between the two columns is the sign of overfitting.
 
 This is why we never report the training error as the result of a model. A model always looks good on rows it has already seen.
 
@@ -699,7 +699,7 @@ print("leaky ", round(mean_absolute_error(y_valid, pred), 2))
 Output on the slide:
 
 ```text
-honest 1.26
+honest 1.18
 leaky  0.01
 ```
 
@@ -707,7 +707,7 @@ leaky  0.01
 
 Let us leak on purpose and watch what it does. First we score a deep tree honestly: it trains on the training rows and is scored on the validation rows.
 
-Then we cheat. We stack the validation rows into the training table with concat, train again, and score on the same validation rows. The honest error is 1.26 kWh/t. The leaky error is 0.01. A model that has the answers in front of it looks perfect.
+Then we cheat. We stack the validation rows into the training table with concat, train again, and score on the same validation rows. The honest error is 1.18 kWh/t. The leaky error is 0.01. A model that has the answers in front of it looks perfect.
 
 No warning appeared. That is why leakage is so dangerous, and why the habits on the previous slide matter.
 

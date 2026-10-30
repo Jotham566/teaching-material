@@ -706,7 +706,7 @@ max_depth is a hyperparameter, a setting you choose before training. It limits h
 
 **Spoken script**
 
-A decision tree is the second model we compare. It is a list of yes or no questions about the inputs. Read it from the top. Is the load at most 42.94 percent? If yes, go left. Otherwise go right.
+A decision tree is the second model we compare. It is a list of yes or no questions about the inputs. Read it from the top. Is the load at most 42.93 percent? If yes, go left. Otherwise go right.
 
 The boxes at the bottom are called leaves. Each leaf predicts the average motor temperature of the training rows that ended up there. This tree asks two questions in a row, so we say its depth is two.
 

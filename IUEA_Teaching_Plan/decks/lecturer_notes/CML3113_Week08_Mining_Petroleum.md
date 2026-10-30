@@ -706,7 +706,7 @@ max_depth is a hyperparameter, a setting you choose before training. It limits h
 
 **Spoken script**
 
-A decision tree is the second model we compare. It is a list of yes or no questions about the inputs. Read it from the top. Is the load at most 42.94 percent? If yes, go left. Otherwise go right.
+A decision tree is the second model we compare. It is a list of yes or no questions about the inputs. Read it from the top. Is the load at most 42.93 percent? If yes, go left. Otherwise go right.
 
 The boxes at the bottom are called leaves. Each leaf predicts the average crusher energy demand of the training rows that ended up there. This tree asks two questions in a row, so we say its depth is two.
 
@@ -990,7 +990,7 @@ Output on the slide:
 ```text
 baseline 2.71
 line 0.67
-tree 1.18
+tree 1.20
 ```
 
 **Spoken script**
@@ -1006,7 +1006,7 @@ All three models used the same training rows and the same validation rows.
 
 **Spoken script**
 
-Here is what everything we built today produces, on the validation rows that none of the models saw. The average guess misses by 2.71 kWh/t on average. The tree misses by 1.18. The line misses by 0.67.
+Here is what everything we built today produces, on the validation rows that none of the models saw. The average guess misses by 2.71 kWh/t on average. The tree misses by 1.20. The line misses by 0.67.
 
 Look at the pattern. The line beats the tree by a wide margin. Remember the scatter plot: the dots follow a straight path, so a straight line is the right shape. A tree can only predict in steps, so it has to cut that path into rough pieces.
 
