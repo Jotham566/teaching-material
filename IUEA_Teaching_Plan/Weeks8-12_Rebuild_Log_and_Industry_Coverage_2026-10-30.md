@@ -103,3 +103,7 @@ python3 scripts/audit_term_order_20261030.py
 - The Week 12 optional video repeats the Week 10 cross-validation video.
 - Minor items from the reviews that I left as the slide text stands: the "Save your work" line appears twice on the Week 13 exit slide, a few generic captions, and the repeated "check the slide for the date, time and room" pointer in opening notes.
 - Weeks 1 to 7 already taught: their slide content is unchanged apart from the repairs above. Only the notes changed.
+
+## 7. Block assessment arrangement and final fixes (30 Oct 2026)
+
+Week 8 onwards moves from weekly quizzes and assignments to one assignment pack and one quiz sitting per three classes. Policy, grading and hand steps: `Block_Assessment_Arrangement_2026-10-30.md`. Scripts: `patch_blocks_20261030.py` (decks and notes), `apply_block_policy_20261030.py` (registry, deadlines, Apps Script), `patch_block_docs_20261030.py` (guides, banks, ZIPs, index, grader README), `patch_block_docx_20261030.py` (syllabi, master plan, quiz operations guide). Also fixed: Week 5 title slide contradiction, Week 12 video (now StatQuest bias and variance), duplicate exit slide, generic captions, repeated date pointer. Checks after the last run: verify 0 problems (NumPy stand-in), term-order audit 0, note lint clean on 2,431 slides, links 0 missing. Open: real scikit-learn run on the Mac, PowerPoint click-through, Q12 bank.

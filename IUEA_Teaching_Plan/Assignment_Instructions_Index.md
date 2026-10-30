@@ -63,3 +63,8 @@ Students already working should keep their answers. They do not need to restart 
 - [CML3111|TEST2](student_guides/CML3111/TEST2.md)
 - [CML3111|ML_PROJECT](student_guides/CML3111/ML_PROJECT.md)
 - [CML3111|DEMO](student_guides/CML3111/DEMO.md)
+
+<!-- BLOCK_ASSESSMENT_20261030 -->
+## Block arrangement from Week 8
+
+From Week 8 there is one assignment pack and one quiz sitting after every three classes. Read [Block_Assessment_Arrangement_2026-10-30.md](Block_Assessment_Arrangement_2026-10-30.md). Student block guides: CML3111 [B1](student_guides/CML3111/B1.md), [B2](student_guides/CML3111/B2.md); CML3112 [B1](student_guides/CML3112/B1.md), [B2](student_guides/CML3112/B2.md); CML3113 [B1](student_guides/CML3113/B1.md), [B2](student_guides/CML3113/B2.md).

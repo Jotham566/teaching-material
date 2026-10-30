@@ -8,6 +8,8 @@ Current CML3112 reopening deadlines are in [the 29 September links](CML3112_Sept
 
 Assessment release is also required: IUEA W02–W06 and W08–W12 are validated for their scheduled windows. Major projects, practical tests and DEMO remain held pending complete grading validation. Independent S05/S09 are validated but await dates; S13/S15 remain held. A listed future deadline does not by itself open a held form.
 
+**From Week 8 the weekly assignment and quiz become block assessments.** A7, A8 and A9 form Block 1 and close together; A10 and A11 form Block 2 and close together. The closing times in the tables below are the block deadlines. The arrangement is in [Block_Assessment_Arrangement_2026-10-30.md](Block_Assessment_Arrangement_2026-10-30.md).
+
 ## CML3111
 
 | Assignment | Opens | Closes | Submission |
@@ -18,11 +20,11 @@ Assessment release is also required: IUEA W02–W06 and W08–W12 are validated 
 | A4: Reading report | 2026-10-02T11:00:00+03:00 | 2026-10-09T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSePYYXhI694GpzUBX1qxmt3pml_MGCxvT9R9o-fT0__kqrmNA/viewform) |
 | A5: Pandas investigation | 2026-10-07T08:30:00+03:00 | 2026-10-16T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSea9Y9pC-JeaVEPpu4prViKZaOHF8cmPczko8iGDiPmr73I2A/viewform) |
 | A6: Cleaning and quality | 2026-10-16T11:00:00+03:00 | 2026-10-23T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfcvyIDBXQG0fnr8EYsAHCsFatx8MDwAjzct3kPMz2JgAPxZQ/viewform) |
-| A7: Regression and baseline | 2026-10-30T11:00:00+03:00 | 2026-11-06T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeAVNyokX8n-TQXwu2hQtJJkeKsQcU8katFAhghZmQH4HJreA/viewform) |
-| A8: Classification and cost | 2026-11-06T11:00:00+03:00 | 2026-11-13T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfelPFlgqIQS1vM0QDthocg7aIU_WLXNjL4g1DdZAJyKcm9eA/viewform) |
+| A7: Regression and baseline | 2026-10-30T11:00:00+03:00 | 2026-11-20T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeAVNyokX8n-TQXwu2hQtJJkeKsQcU8katFAhghZmQH4HJreA/viewform) |
+| A8: Classification and cost | 2026-11-06T11:00:00+03:00 | 2026-11-20T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfelPFlgqIQS1vM0QDthocg7aIU_WLXNjL4g1DdZAJyKcm9eA/viewform) |
 | A9: Validation and trust | 2026-11-13T11:00:00+03:00 | 2026-11-20T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSd5yLPYJ8OPmahSQIIIPfI-OfVHWbcHnwnntSRiE7wafqbRTg/viewform) |
-| A10: Features and ablation | 2026-11-20T11:00:00+03:00 | 2026-11-27T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeQJ_LsZgtIRbakN-KW4e4dx5rru2iqg6HwaaKoAQbKW7bh8Q/viewform) |
-| A11: Model recommendation | 2026-11-27T11:00:00+03:00 | 2026-11-27T14:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSd372X-BsxlyaBxjHNN5N4xQuj9fMiwEWDSkDOh8sXTQk3imQ/viewform) |
+| A10: Features and ablation | 2026-11-20T11:00:00+03:00 | 2026-12-10T23:59:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeQJ_LsZgtIRbakN-KW4e4dx5rru2iqg6HwaaKoAQbKW7bh8Q/viewform) |
+| A11: Model recommendation | 2026-11-27T11:00:00+03:00 | 2026-12-10T23:59:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSd372X-BsxlyaBxjHNN5N4xQuj9fMiwEWDSkDOh8sXTQk3imQ/viewform) |
 | DA_PROJECT: Data analysis project | 2026-10-09T11:00:00+03:00 | 2026-10-30T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeFHqKnsIRNf8opU-Iksp55kGXQVFWPgL97r724FoRwvkz-6A/viewform) |
 | TEST1: Practical Test 1 | 2026-10-23T11:00:00+03:00 | 2026-10-23T14:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLScq0XkP-55fa9_XY4ixHKtDNdilmStAZ89FkjBdv1vJvQba-g/viewform) |
 | TEST2: Practical Test 2 | 2026-12-11T11:00:00+03:00 | 2026-12-11T14:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfOabwvSWjm6i8Hwl0WyoTKG0AtEsqrI4vqKuOoTWCw_DmcCQ/viewform) |
@@ -39,11 +41,11 @@ Assessment release is also required: IUEA W02–W06 and W08–W12 are validated 
 | A4: Reading report | 2026-09-29T11:00:00+03:00 | 2026-10-13T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeZymY0jwFhuwihprLiqEaq2DqmLZD3nIYht1IkN4OcPGeTFg/viewform) |
 | A5: Pandas investigation | 2026-10-13T18:00:00+03:00 | 2026-10-20T18:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeP_Eykf3YDYN_6sbB5to0B3LX14fsujEVPhsp8UezRZXTNGw/viewform) |
 | A6: Cleaning and quality | 2026-10-13T11:00:00+03:00 | 2026-10-20T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLScHyVpTnSxgMVMvsImyTtkME2QAGZmMg55dBKy2VvQ_0d7fxQ/viewform) |
-| A7: Regression and baseline | 2026-10-27T11:00:00+03:00 | 2026-11-03T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfOpt4U_rhJrjlYCp6pyzm9ygu2vN5EwO9yeAiJaUKy-kJKoA/viewform) |
-| A8: Classification and cost | 2026-11-03T11:00:00+03:00 | 2026-11-10T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfTe7OkZ7tZEVzG-mup0-8liXg1jKy_KmsDWZiPK9EWMJ9InA/viewform) |
+| A7: Regression and baseline | 2026-10-27T11:00:00+03:00 | 2026-11-17T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfOpt4U_rhJrjlYCp6pyzm9ygu2vN5EwO9yeAiJaUKy-kJKoA/viewform) |
+| A8: Classification and cost | 2026-11-03T11:00:00+03:00 | 2026-11-17T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfTe7OkZ7tZEVzG-mup0-8liXg1jKy_KmsDWZiPK9EWMJ9InA/viewform) |
 | A9: Validation and trust | 2026-11-10T11:00:00+03:00 | 2026-11-17T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfHHR9NLI-zvGYZ2Xf7wgwxBjXO3bjfUZRIH9SX_g3JtGRLXQ/viewform) |
-| A10: Features and ablation | 2026-11-17T11:00:00+03:00 | 2026-11-24T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfSqUcR9TgY7f1c7HXO9KGM3C2yXm1r7V2rQl2WEubwZir8iw/viewform) |
-| A11: Model recommendation | 2026-11-24T11:00:00+03:00 | 2026-11-24T14:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSd4Ltaw1RqRzbW7PoC4_Kh3PZHkElCKA9OY8F_xrJfLnpcbfA/viewform) |
+| A10: Features and ablation | 2026-11-17T11:00:00+03:00 | 2026-12-07T23:59:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfSqUcR9TgY7f1c7HXO9KGM3C2yXm1r7V2rQl2WEubwZir8iw/viewform) |
+| A11: Model recommendation | 2026-11-24T11:00:00+03:00 | 2026-12-07T23:59:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSd4Ltaw1RqRzbW7PoC4_Kh3PZHkElCKA9OY8F_xrJfLnpcbfA/viewform) |
 | DA_PROJECT: Data analysis project | 2026-10-06T11:00:00+03:00 | 2026-10-27T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLScBWq6-FVmuDHGDXqQzURw8zP6C0I8H_GnhD7sinBspayooCA/viewform) |
 | TEST1: Practical Test 1 | 2026-10-20T11:00:00+03:00 | 2026-10-20T14:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSdwcNAD9gGSz-hXLmHPO8nS3WIfg72BcsKW7IrwpvtakiJrIA/viewform) |
 | TEST2: Practical Test 2 | 2026-12-08T11:00:00+03:00 | 2026-12-08T14:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSdvVxHeeW8LiNgjsQeqqFnAYSBPBxJjBkBuAKSj1gAQ4gVHkQ/viewform) |
@@ -60,11 +62,11 @@ Assessment release is also required: IUEA W02–W06 and W08–W12 are validated 
 | A4: Reading report | 2026-10-15T12:00:00+03:00 | 2026-10-22T12:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSenqAHKxNgzxWHIR41scC7h5WAxcs8D9wOyXYjIQ_ulbGpPCw/viewform) |
 | A5: Pandas investigation | 2026-10-07T08:00:00+03:00 | 2026-10-16T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSehGqFG7PZ1wfoBRTaooiO6bw5XPXrKkDJ6kWCXi-YmEx69Eg/viewform) |
 | A6: Cleaning and quality | 2026-10-16T08:00:00+03:00 | 2026-10-23T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfTETySrIpbVK0xyJo7Zft9exWhC8kB0u4XRrbF8Vbm9Ajq7Q/viewform) |
-| A7: Regression and baseline | 2026-10-30T08:00:00+03:00 | 2026-11-06T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLScEhukVhOy7mk4-sfmGMIBPDwAXlVTIZeAict3izXXZ1fvCFg/viewform) |
-| A8: Classification and cost | 2026-11-06T08:00:00+03:00 | 2026-11-13T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfckaplMvJ6zeqbURyQrkDOSTS0MhGV3jY3tIY4EhnHLMm1tw/viewform) |
+| A7: Regression and baseline | 2026-10-30T08:00:00+03:00 | 2026-11-20T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLScEhukVhOy7mk4-sfmGMIBPDwAXlVTIZeAict3izXXZ1fvCFg/viewform) |
+| A8: Classification and cost | 2026-11-06T08:00:00+03:00 | 2026-11-20T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfckaplMvJ6zeqbURyQrkDOSTS0MhGV3jY3tIY4EhnHLMm1tw/viewform) |
 | A9: Validation and trust | 2026-11-13T08:00:00+03:00 | 2026-11-20T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSd0PIGgcund5zKvqtctB1dz7pekt8hubl0ZUrFL-BJc9bKGlQ/viewform) |
-| A10: Features and ablation | 2026-11-20T08:00:00+03:00 | 2026-11-27T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSdxAosnTnoXrNZ7QCm8pPQuoa2KxsqFvu_PPsZIQGrJnHMw1g/viewform) |
-| A11: Model recommendation | 2026-11-27T08:00:00+03:00 | 2026-11-27T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfSPtMfaziLgaLKx4v0Lla4vYcA58pDDv_b_w33OfZsj0aVHA/viewform) |
+| A10: Features and ablation | 2026-11-20T08:00:00+03:00 | 2026-12-10T23:59:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSdxAosnTnoXrNZ7QCm8pPQuoa2KxsqFvu_PPsZIQGrJnHMw1g/viewform) |
+| A11: Model recommendation | 2026-11-27T08:00:00+03:00 | 2026-12-10T23:59:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSfSPtMfaziLgaLKx4v0Lla4vYcA58pDDv_b_w33OfZsj0aVHA/viewform) |
 | DA_PROJECT: Data analysis project | 2026-10-09T08:00:00+03:00 | 2026-10-30T08:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSf_avvvqyl5ZJ-6HU7n4zal9AQETYyJkykuDO5J5Au3dBA4vw/viewform) |
 | TEST1: Practical Test 1 | 2026-10-23T08:00:00+03:00 | 2026-10-23T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeXXoklBxEruaJB_K0Ydf_N_YgW4KV44-PEBMDCSkhUHyBI4g/viewform) |
 | TEST2: Practical Test 2 | 2026-12-11T08:00:00+03:00 | 2026-12-11T11:00:00+03:00 | [Submit](https://docs.google.com/forms/d/e/1FAIpQLSeAnqjVsUO288tWRg47SCH61K6pzS7hTyYb40MH5KKd9aPkAA/viewform) |
