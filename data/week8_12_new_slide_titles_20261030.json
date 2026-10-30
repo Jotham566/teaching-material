@@ -37,7 +37,7 @@
   "Preparing X and y, with a filled copy for tree experiments",
   "The Week 8 pipeline, ready to be scored on several folds",
   "The gap between training and validation error is the warning sign",
-  "Training error keeps falling while validation error stalls",
+  "Training error falls to almost zero, validation error stays far above it",
   "Words for today: fitting and fairness",
   "Words for today: repeated checks and leaks",
   "Words from today"
