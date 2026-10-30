@@ -32,7 +32,8 @@ def apply(path, code, week):
             text = text.replace("{short}", c["short"]).replace("{unit}", c["unit"])
             assert "{" not in text, f"unfilled placeholder in {key}"
             s.notes_slide.notes_text_frame.text = text; applied += 1; used.add(key)
-    unused = {k for k, e in scripts.items() if (code in e or "all" in e)} - used
+    retired = lambda k: week >= 8 and (k.endswith(" submission||0") or k.endswith("quiz||0") or k.startswith("Preparing for the assignment"))
+    unused = {k for k, e in scripts.items() if (code in e or "all" in e) and not retired(k)} - used
     prs.save(str(path))
     return applied, sorted(unused)
 

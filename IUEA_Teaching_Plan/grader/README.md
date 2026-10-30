@@ -240,3 +240,8 @@ The standard and atomic visual candidates both failed known-answer checks. Neith
 ### A6 and Quiz 6 waiver — 19 October 2026
 
 CML3112 and CML3113: exclude W06 and Q6 from final marks and missing-work flags. The updated gradebook uses best 7 of 10 assignments and best 9 of 11 quizzes, preserving the normal drop allowance and 10% weight for each component. Raw submissions and marks are retained. CML3111 stays best 8 of 11 and best 10 of 12. See `../Practical_Revision_Week6_Waiver.md`. Use this updated `gradebook.gs` for any future gradebook installation. The current collection workbook holds responses and the waiver register; it does not have a `Grades` sheet.
+
+<!-- BLOCK_ASSESSMENT_20261030 -->
+## Block arrangement from Week 8
+
+The best-7-of-10 and best-9-of-11 rules above apply to Weeks 1 to 6 only. From Week 8 the A7 to A11 submissions and the Q7 to Q12 quizzes are combined per block (Block 1 = Weeks 8 to 10, Block 2 = Weeks 11 to 13) and are never dropped. Each part is still graded by the same grader and form. See `../Block_Assessment_Arrangement_2026-10-30.md` and `../../data/assessment_blocks_20261030.json`.

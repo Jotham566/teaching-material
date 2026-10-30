@@ -141,10 +141,12 @@
       "pptx"
     ],
     "opens_at": "2026-10-27T11:00:00+03:00",
-    "closes_at": "2026-11-03T11:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-11-17T11:00:00+03:00",
+    "delivery_note": "Block 1 assignment, part A of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "A"
   },
   {
     "key": "CML3112|W09",
@@ -163,10 +165,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-03T11:00:00+03:00",
-    "closes_at": "2026-11-10T11:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-11-17T11:00:00+03:00",
+    "delivery_note": "Block 1 assignment, part B of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "B"
   },
   {
     "key": "CML3112|W10",
@@ -186,9 +190,11 @@
     ],
     "opens_at": "2026-11-10T11:00:00+03:00",
     "closes_at": "2026-11-17T11:00:00+03:00",
-    "delivery_note": "",
+    "delivery_note": "Block 1 assignment, part C of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "C"
   },
   {
     "key": "CML3112|W11",
@@ -207,10 +213,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-17T11:00:00+03:00",
-    "closes_at": "2026-11-24T11:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-12-07T23:59:00+03:00",
+    "delivery_note": "Block 2 assignment, part A of 2. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B2",
+    "block_part": "A"
   },
   {
     "key": "CML3112|W12",
@@ -229,10 +237,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-24T11:00:00+03:00",
-    "closes_at": "2026-11-24T14:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-12-07T23:59:00+03:00",
+    "delivery_note": "Block 2 assignment, part B of 2. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B2",
+    "block_part": "B"
   },
   {
     "key": "CML3112|DA_PROJECT",
@@ -474,10 +484,12 @@
       "pptx"
     ],
     "opens_at": "2026-10-30T08:00:00+03:00",
-    "closes_at": "2026-11-06T08:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-11-20T08:00:00+03:00",
+    "delivery_note": "Block 1 assignment, part A of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "A"
   },
   {
     "key": "CML3113|W09",
@@ -496,10 +508,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-06T08:00:00+03:00",
-    "closes_at": "2026-11-13T08:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-11-20T08:00:00+03:00",
+    "delivery_note": "Block 1 assignment, part B of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "B"
   },
   {
     "key": "CML3113|W10",
@@ -519,9 +533,11 @@
     ],
     "opens_at": "2026-11-13T08:00:00+03:00",
     "closes_at": "2026-11-20T08:00:00+03:00",
-    "delivery_note": "",
+    "delivery_note": "Block 1 assignment, part C of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "C"
   },
   {
     "key": "CML3113|W11",
@@ -540,10 +556,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-20T08:00:00+03:00",
-    "closes_at": "2026-11-27T08:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-12-10T23:59:00+03:00",
+    "delivery_note": "Block 2 assignment, part A of 2. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B2",
+    "block_part": "A"
   },
   {
     "key": "CML3113|W12",
@@ -562,10 +580,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-27T08:00:00+03:00",
-    "closes_at": "2026-11-27T11:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-12-10T23:59:00+03:00",
+    "delivery_note": "Block 2 assignment, part B of 2. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B2",
+    "block_part": "B"
   },
   {
     "key": "CML3113|DA_PROJECT",
@@ -803,10 +823,12 @@
       "pptx"
     ],
     "opens_at": "2026-10-30T11:00:00+03:00",
-    "closes_at": "2026-11-06T11:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-11-20T11:00:00+03:00",
+    "delivery_note": "Block 1 assignment, part A of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "A"
   },
   {
     "key": "CML3111|W09",
@@ -825,10 +847,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-06T11:00:00+03:00",
-    "closes_at": "2026-11-13T11:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-11-20T11:00:00+03:00",
+    "delivery_note": "Block 1 assignment, part B of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "B"
   },
   {
     "key": "CML3111|W10",
@@ -848,9 +872,11 @@
     ],
     "opens_at": "2026-11-13T11:00:00+03:00",
     "closes_at": "2026-11-20T11:00:00+03:00",
-    "delivery_note": "",
+    "delivery_note": "Block 1 assignment, part C of 3. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B1",
+    "block_part": "C"
   },
   {
     "key": "CML3111|W11",
@@ -869,10 +895,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-20T11:00:00+03:00",
-    "closes_at": "2026-11-27T11:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-12-10T23:59:00+03:00",
+    "delivery_note": "Block 2 assignment, part A of 2. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B2",
+    "block_part": "A"
   },
   {
     "key": "CML3111|W12",
@@ -891,10 +919,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-27T11:00:00+03:00",
-    "closes_at": "2026-11-27T14:00:00+03:00",
-    "delivery_note": "",
+    "closes_at": "2026-12-10T23:59:00+03:00",
+    "delivery_note": "Block 2 assignment, part B of 2. All parts of the block close together.",
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "block": "B2",
+    "block_part": "B"
   },
   {
     "key": "CML3111|DA_PROJECT",

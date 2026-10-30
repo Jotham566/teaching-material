@@ -1,0 +1,45 @@
+{
+  "effective_from": "Week 8, 2026-10-27 (CML3112) and 2026-10-30 (CML3111, CML3113)",
+  "decision": "From Week 8 the weekly quiz and the weekly assignment are replaced by one assignment pack and one quiz sitting after every three classes. Weeks 1 to 6 stay weekly. The forms, the graders and every graded function are unchanged; only the deadlines, the sittings and the way the marks are combined change.",
+  "blocks": [
+    {
+      "id": "B1", "label": "Block 1", "weeks": [8, 9, 10],
+      "topics": "regression, baseline and errors; classification and cost; validation and leakage",
+      "assignment_parts": [
+        {"part": "A", "id": "W08", "label": "A7", "title": "Regression and baseline", "marks": 20},
+        {"part": "B", "id": "W09", "label": "A8", "title": "Classification and cost", "marks": 20},
+        {"part": "C", "id": "W10", "label": "A9", "title": "Validation and trust", "marks": 20}
+      ],
+      "assignment_marks": 60,
+      "quiz_forms": [{"week": 8, "form": "Q7"}, {"week": 9, "form": "Q8"}, {"week": 10, "form": "Q9"}],
+      "quiz_marks": 15,
+      "quiz_sitting": "In the last twenty minutes of the Week 10 class the lecturer opens the three quiz forms together; each stays open for 24 hours.",
+      "assignment_closes": {"CML3111": "2026-11-20T11:00:00+03:00", "CML3112": "2026-11-17T11:00:00+03:00", "CML3113": "2026-11-20T08:00:00+03:00"}
+    },
+    {
+      "id": "B2", "label": "Block 2", "weeks": [11, 12, 13],
+      "topics": "features and ablation; choosing a model; regularisation, nearest neighbours and reproducibility",
+      "assignment_parts": [
+        {"part": "A", "id": "W11", "label": "A10", "title": "Features and ablation", "marks": 20},
+        {"part": "B", "id": "W12", "label": "A11", "title": "Model recommendation", "marks": 20}
+      ],
+      "assignment_marks": 40,
+      "quiz_forms": [{"week": 11, "form": "Q10"}, {"week": 12, "form": "Q11"}, {"week": 13, "form": "Q12"}],
+      "quiz_marks": 15,
+      "quiz_sitting": "In the last twenty minutes of the Week 13 class the lecturer opens the three quiz forms together; each stays open for 24 hours.",
+      "assignment_closes": {"CML3111": "2026-12-10T23:59:00+03:00", "CML3112": "2026-12-07T23:59:00+03:00", "CML3113": "2026-12-10T23:59:00+03:00"},
+      "note": "Week 13 has no graded notebook. Its content is assessed in the Block 2 quiz and in the Engineering ML Project milestone."
+    }
+  ],
+  "weights_percent": {"quizzes": 10, "assignments": 10, "data_analysis_project": 10, "practical_test_1": 15, "practical_test_2": 20, "engineering_ml_project": 25, "demonstration": 10},
+  "coursework_rule": {
+    "weekly": "Weeks 1 to 6 stay weekly. The best 4 of the 6 weekly quizzes (each out of 5) and the best 4 of the 6 weekly assignments (each out of 20) count. Week 6 is not assigned to these cohorts, so the best 3 of the remaining 5 count.",
+    "blocks": "Each block is never dropped. Its marks are the sum of its parts: quiz = three forms out of 5 = 15 marks; Block 1 assignment = A7 + A8 + A9 = 60 marks; Block 2 assignment = A10 + A11 = 40 marks. A part that is not submitted scores zero.",
+    "quizzes_out_of": "4 x 5 + 15 + 15 = 50 marks (45 when Week 6 is not assigned); the percentage is marks earned divided by that total, times 10.",
+    "assignments_out_of": "4 x 20 + 60 + 40 = 180 marks (160 when Week 6 is not assigned); the percentage is marks earned divided by that total, times 10.",
+    "why": "A block carries its weeks. Block 1 and Block 2 hold 6 of the 12 taught weeks and about 60 percent of the coursework marks, and a student cannot drop one."
+  },
+  "unchanged": ["Data Analysis Project", "Practical Test 1 (Week 7)", "Practical Test 2 (Week 14)", "Engineering ML Project (four milestones in Weeks 10 to 13)", "Demonstration, viva and reflection (Week 15)"],
+  "forms_in_use": "Block 1 submissions use the existing A7, A8 and A9 forms. Block 2 submissions use the existing A10 and A11 forms. Block quizzes use the existing weekly quiz forms opened together.",
+  "open_item": "The Week 13 quiz bank was written for the old Week 13 and does not ask about regularisation or nearest neighbours. See Block_Assessment_Arrangement_2026-10-30.md."
+}

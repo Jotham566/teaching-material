@@ -2,8 +2,11 @@
  * gradebook.gs - Google Apps Script gradebook for CML3111 / CML3112 / CML3113.
  * Revised September 2026 for the current weights.
  *
- *   Weekly quizzes             10 %   best 10 of 12, each out of 5
- *   Weekly challenges          10 %   best 8 of 11, each out of 20
+ *   Quizzes                    10 %   Weeks 1-6 weekly (best 4 of 6, each out of 5), then one
+ *                                     block quiz after Weeks 8-10 and one after Weeks 11-13,
+ *                                     each out of 15 (the three weekly forms added together)
+ *   Assignments                10 %   Weeks 1-6 weekly (best 4 of 6, each out of 20), then
+ *                                     Block 1 (A7+A8+A9, out of 60) and Block 2 (A10+A11, out of 40)
  *   Data Analysis Project      10 %
  *   Practical Test 1           15 %
  *   Practical Test 2           20 %
@@ -50,13 +53,22 @@ var WEIGHTS = {
   demo: 10
 };
 
-var QUIZ_COUNT = 12;           // Weeks 1-6 and 8-13
-var QUIZ_BEST = 10;            // the two lowest are dropped; there are no resits
-var QUIZ_MAX = 5;              // marks per quiz, one per question
+var QUIZ_COUNT = 12;           // columns Q1-Q12: Weeks 1-6, then Weeks 8-13
+var QUIZ_MAX = 5;              // marks per quiz form, one per question
 
-var CHALLENGE_COUNT = 11;      // Weeks 1–6 and 8–12, A1–A11
-var CHALLENGE_BEST = 8;
-var CHALLENGE_MAX = 20;        // marks per weekly challenge
+var CHALLENGE_COUNT = 11;      // columns W01-W06 and W08-W12, A1-A11
+var CHALLENGE_MAX = 20;        // marks per weekly assignment or block part
+
+// From Week 8 the work is assessed in blocks of three classes. The forms and
+// graders are unchanged; only the way the marks are combined changes.
+// Indexes refer to positions in the quiz and challenge arrays below.
+var WEEKLY_COUNT = 6;          // Weeks 1-6 stay weekly
+var WEEKLY_BEST = 4;           // the two lowest weekly scores are dropped; blocks are never dropped
+var WEEKLY_WAIVED_INDEX = 5;   // Week 6 is not assigned to these cohorts
+var COURSEWORK_BLOCKS = {
+  quizzes:    [{id: "Block 1", cols: [6, 7, 8]},  {id: "Block 2", cols: [9, 10, 11]}],   // Q7-Q9 = Weeks 8-10; Q10-Q12 = Weeks 11-13
+  challenges: [{id: "Block 1", cols: [6, 7, 8]},  {id: "Block 2", cols: [9, 10]}]        // A7-A9 = Weeks 8-10; A10-A11 = Weeks 11-12
+};
 
 // Which assignment id maps to which challenge column. Edit this, not the code.
 var CHALLENGE_IDS = ["W01", "W02", "W03", "W04", "W05", "W06", "W08", "W09", "W10", "W11", "W12"];
@@ -117,6 +129,53 @@ function bestOfComponent_(scores, best, perItemMax, weight) {
   };
 }
 
+/** Sum of the numeric entries at the given positions; blanks and text count as zero. */
+function sumAt_(scores, cols) {
+  var total = 0, sat = 0;
+  cols.forEach(function (c) {
+    var v = scores[c];
+    if (v === "" || v === null || v === undefined) { return; }
+    var f = Number(v);
+    if (isNaN(f)) { return; }
+    total += f; sat++;
+  });
+  return { total: total, sat: sat };
+}
+
+/**
+ * Coursework in the block arrangement: the best weekly items from Weeks 1-6, plus every block.
+ * A block adds the marks of its parts and is never dropped. Marks not earned count as zero.
+ * perItemMax is the maximum of one weekly item and of one block part.
+ */
+function blockComponent_(scores, perItemMax, weight, policy, blocks) {
+  scores = scores || [];
+  scores.forEach(function (v) { validateMark_(v, perItemMax); });
+  var weekly = [];
+  for (var i = 0; i < WEEKLY_COUNT; i++) {
+    if (policy.waived && i === WEEKLY_WAIVED_INDEX) { continue; }
+    weekly.push(scores[i]);
+  }
+  var w = bestNOf_(weekly, policy.weeklyBest);
+  var earned = w.total, outOf = policy.weeklyBest * perItemMax, blockSat = 0, detail = [];
+  blocks.forEach(function (b) {
+    var t = sumAt_(scores, b.cols);
+    earned += t.total; outOf += b.cols.length * perItemMax;
+    if (t.sat > 0) { blockSat++; }
+    detail.push({ id: b.id, earned: t.total, outOf: b.cols.length * perItemMax, parts: t.sat, partsOf: b.cols.length });
+  });
+  return {
+    weighted: round2_(outOf > 0 ? earned / outOf * weight : 0),
+    outOf: weight,
+    counted: w.counted + blockSat,
+    submitted: w.submitted,
+    blocksSat: blockSat,
+    blocksOf: blocks.length,
+    blocks: detail,
+    raw: earned,
+    rawOutOf: outOf
+  };
+}
+
 /** A straight percentage component, e.g. a test marked out of 100. */
 function validateMark_(mark, maximum) {
   if (mark === "" || mark === null || mark === undefined) { return; }
@@ -145,18 +204,15 @@ function round2_(x) { return Math.round(x * 100) / 100; }
 /** A6/Q6 are not assigned to these cohorts. Keep the same drop allowance. */
 function courseworkPolicy_(cohort) {
   var waived = ['CML3111','CML3112','CML3113'].indexOf(String(cohort||'').trim().toUpperCase()) >= 0;
-  return {waived:waived,quizBest:QUIZ_BEST-(waived?1:0),challengeBest:CHALLENGE_BEST-(waived?1:0),
-          quizCount:QUIZ_COUNT-(waived?1:0),challengeCount:CHALLENGE_COUNT-(waived?1:0)};
+  return {waived:waived,weeklyBest:WEEKLY_BEST-(waived?1:0),weeklyCount:WEEKLY_COUNT-(waived?1:0)};
 }
 function assignedScores_(scores, policy) {
   return (scores||[]).filter(function(v,i){return !policy.waived || i!==5;});
 }
 function computeFinal_(row) {
   var policy=courseworkPolicy_(row.cohort);
-  var cp = bestOfComponent_(assignedScores_(row.quizzes,policy), policy.quizBest,
-                            QUIZ_MAX, WEIGHTS.quizzes);
-  var ch = bestOfComponent_(assignedScores_(row.challenges,policy), policy.challengeBest,
-                            CHALLENGE_MAX, WEIGHTS.challenges);
+  var cp = blockComponent_(row.quizzes, QUIZ_MAX, WEIGHTS.quizzes, policy, COURSEWORK_BLOCKS.quizzes);
+  var ch = blockComponent_(row.challenges, CHALLENGE_MAX, WEIGHTS.challenges, policy, COURSEWORK_BLOCKS.challenges);
   var dp = percentComponent_(row.dataProject, 100, WEIGHTS.dataProject);
   var t1 = percentComponent_(row.test1, 100, WEIGHTS.test1);
   var t2 = percentComponent_(row.test2, 100, WEIGHTS.test2);
@@ -169,14 +225,14 @@ function computeFinal_(row) {
   if (t2.missing) { missing.push("Practical Test 2"); }
   if (pr.missing) { missing.push("ML Project"); }
   if (dm.missing) { missing.push("Demo/viva"); }
-  if (cp.submitted < policy.quizBest) {
-    missing.push("quizzes: " + cp.submitted + " of " + policy.quizBest +
-                 " that count");
+  if (cp.submitted < policy.weeklyBest) {
+    missing.push("weekly quizzes (Weeks 1-6): " + cp.submitted + " of " + policy.weeklyBest + " that count");
   }
-  if (ch.submitted < policy.challengeBest) {
-    missing.push("challenges: " + ch.submitted + " of " + policy.challengeBest +
-                 " that count");
+  if (ch.submitted < policy.weeklyBest) {
+    missing.push("weekly assignments (Weeks 1-6): " + ch.submitted + " of " + policy.weeklyBest + " that count");
   }
+  cp.blocks.forEach(function (b) { if (b.parts === 0) { missing.push(b.id + " quiz"); } });
+  ch.blocks.forEach(function (b) { if (b.parts === 0) { missing.push(b.id + " assignment"); } });
 
   var final = round2_(cp.weighted + ch.weighted + dp.weighted + t1.weighted +
                       t2.weighted + pr.weighted + dm.weighted);
@@ -210,16 +266,21 @@ function progressSummary_(row) {
   var ch = res.components.challenges;
   var cp = res.components.quizzes;
   var lines = [];
-  lines.push("You have completed " + ch.submitted + " of " + policy.challengeCount +
-             " weekly challenges. The best " + policy.challengeBest + " count.");
-  if (ch.submitted < policy.challengeBest) {
-    lines.push("You need " + (policy.challengeBest - ch.submitted) + " more before " +
+  lines.push("Weekly assignments, Weeks 1-6: " + ch.submitted + " of " + policy.weeklyCount +
+             " done. The best " + policy.weeklyBest + " count.");
+  if (ch.submitted < policy.weeklyBest) {
+    lines.push("You need " + (policy.weeklyBest - ch.submitted) + " more weekly assignments before " +
                "this part of your mark stops being capped.");
   } else {
-    lines.push("You have enough for this part of your mark to count in full.");
+    lines.push("You have enough weekly assignments for this part of your mark to count in full.");
   }
-  lines.push("You have sat " + cp.submitted + " of " + policy.quizCount +
-             " weekly quizzes. The best " + policy.quizBest + " count.");
+  ch.blocks.forEach(function (b) {
+    lines.push(b.id + " assignment: " + b.parts + " of " + b.partsOf + " parts submitted, " + b.earned + " of " + b.outOf + " marks.");
+  });
+  lines.push("Weekly quizzes, Weeks 1-6: " + cp.submitted + " of " + policy.weeklyCount + " sat. The best " + policy.weeklyBest + " count.");
+  cp.blocks.forEach(function (b) {
+    lines.push(b.id + " quiz: " + b.parts + " of " + b.partsOf + " forms sat, " + b.earned + " of " + b.outOf + " marks.");
+  });
   lines.push("Marks banked so far: " + res.final + " of 100.");
   if (res.missing.length) {
     lines.push("Not yet recorded: " + res.missing.join("; ") + ".");
@@ -692,25 +753,42 @@ function runUnitTests_() {
   eq("bestNOf_ handles a zero score", bestNOf_([0, 0, 0, 0, 0], 4),
      { total: 0, counted: 4, submitted: 5 });
 
-  // ---- best-of components ----
+  // ---- best-of components (still used for generic cases) ----
   var cpFull = bestOfComponent_([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 10, 5, 10);
-  near("quizzes all full -> 10%", cpFull.weighted, 10);
-  var cpDrop = bestOfComponent_([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0], 10, 5, 10);
-  near("quizzes best 10 of 12 drops the two zeros", cpDrop.weighted, 10);
-  var cpHalf = bestOfComponent_([2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5,
-                                 2.5, 2.5], 10, 5, 10);
-  near("quizzes all half -> 5%", cpHalf.weighted, 5);
-  var cpEight = bestOfComponent_([5, 5, 5, 5, 5, 5, 5, 5], 10, 5, 10);
-  near("only 8 quizzes of 12 sat -> 8%", cpEight.weighted, 8);
-  var chFull = bestOfComponent_([20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
-                                8, 20, 10);
-  near("challenges all full -> 10%", chFull.weighted, 10);
-  var chNine = bestOfComponent_([20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 0],
-                                8, 20, 10);
-  near("challenges best 8 of 11 ignores three zeroes", chNine.weighted, 10);
+  near("generic best-of: all full -> 10%", cpFull.weighted, 10);
   var chSix = bestOfComponent_([20, 20, 20, 20, 20, 20], 8, 20, 10);
-  near("six challenges of 11 -> 7.5%", chSix.weighted, 7.5);
-  eq("challenges counts submissions", chSix.submitted, 6);
+  near("generic best-of: six of eight needed -> 7.5%", chSix.weighted, 7.5);
+  eq("generic best-of counts submissions", chSix.submitted, 6);
+
+  // ---- block component: weekly Weeks 1-6 (best 4 of 6) plus Blocks 1 and 2 ----
+  var pol = courseworkPolicy_("CML3111");          // Week 6 not assigned: best 3 of 5 weekly
+  var polFull = {waived: false, weeklyBest: 4, weeklyCount: 6};
+  var qb = COURSEWORK_BLOCKS.quizzes, cb = COURSEWORK_BLOCKS.challenges;
+  var q1 = blockComponent_([5,5,5,5,5,5, 5,5,5, 5,5,5], 5, 10, polFull, qb);
+  near("block quizzes all full, six weekly assigned -> 10%", q1.weighted, 10);
+  eq("block quizzes: out of 50 marks", q1.rawOutOf, 50);
+  var q2 = blockComponent_([5,5,5,5,5,5, 5,5,5, 5,5,5], 5, 10, pol, qb);
+  near("block quizzes all full, Week 6 waived -> 10%", q2.weighted, 10);
+  eq("block quizzes: out of 45 marks when Week 6 is waived", q2.rawOutOf, 45);
+  var q3 = blockComponent_([5,5,5,5,0,0, 5,5,5, 5,5,5], 5, 10, polFull, qb);
+  near("two weekly zeros are dropped", q3.weighted, 10);
+  var q4 = blockComponent_([5,5,5,5,5,5, 5,5,5, "","",""], 5, 10, polFull, qb);
+  near("Block 2 quiz not sat -> 35 of 50 -> 7%", q4.weighted, 7);
+  var q5 = blockComponent_([5,5,5,5,5,5, 5,"","", 5,5,5], 5, 10, polFull, qb);
+  near("only one of three Block 1 forms sat -> 40 of 50 -> 8%", q5.weighted, 8);
+  eq("block quiz detail reports parts sat", q5.blocks[0].parts, 1);
+  var a1 = blockComponent_([20,20,20,20,20,20, 20,20,20, 20,20], 20, 10, polFull, cb);
+  near("block assignments all full -> 10%", a1.weighted, 10);
+  eq("block assignments: out of 180 marks", a1.rawOutOf, 180);
+  var a2 = blockComponent_([20,20,20,20,0,0, 20,20,20, 20,20], 20, 10, pol, cb);
+  near("assignments: Week 6 waived, best 3 of 5 weekly -> 160 of 160 -> 10%", a2.weighted, 10);
+  eq("assignments: out of 160 marks when Week 6 is waived", a2.rawOutOf, 160);
+  var a3 = blockComponent_([20,20,20,20,20,20, 20,20,10, 20,""], 20, 10, polFull, cb);
+  near("Block 1 part C scored 10 and Block 2 part B missing -> 150 of 180", a3.weighted, 10 * 150 / 180);
+  var a4 = blockComponent_([20,20,20,20,20,20, "","","", "",""], 20, 10, polFull, cb);
+  near("no block work yet -> 80 of 180", a4.weighted, 10 * 80 / 180);
+  var badMark = false; try { blockComponent_([21,0,0,0,0,0, 0,0,0, 0,0], 20, 10, polFull, cb); } catch (e) { badMark = true; }
+  ok("a mark above the maximum is rejected", badMark);
 
   // ---- percentComponent_ ----
   near("test1 at 60/100 -> 9 of 15", percentComponent_(60, 100, 15).weighted, 9);
@@ -736,18 +814,30 @@ function runUnitTests_() {
   near("half marks everywhere -> 50", half.final, 50);
   var empty = computeFinal_({});
   near("empty row -> 0", empty.final, 0);
-  ok("empty row lists 7 things missing", empty.missing.length === 7,
+  ok("empty row lists 11 things missing (5 big components, 2 weekly parts, 4 blocks)", empty.missing.length === 11,
      JSON.stringify(empty.missing));
   var midterm = computeFinal_({
-    quizzes: [4, 5, 3, 5, "", "", "", "", "", "", "", ""],
-    challenges: [16, 18, 14, 20, "", "", "", "", "", "", ""],
+    cohort: "CML3111",
+    quizzes: [4, 5, 3, 5, 4, "", "", "", "", "", "", ""],
+    challenges: [16, 18, 14, 20, 12, "", "", "", "", "", ""],
     dataProject: 72, test1: 65, test2: "", mlProject: "", demo: ""
   });
-  // quizzes best10 of [4,5,3,5] = 17/50 -> 3.4 ; ch best8 of [16,18,14,20] = 68/160 -> 4.25
+  // Week 6 not assigned: weekly best 3 of [4,5,3,5,4] = 5+5+4 = 14 of 45 -> 3.11 ; assignments best 3 of [16,18,14,20,12] = 54 of 160 -> 3.375
   // dp 7.2 ; t1 9.75 ; rest 0
-  near("mid-semester student", midterm.final, 3.4 + 4.25 + 7.2 + 9.75);
-  ok("mid-semester student flagged for test 2",
-     midterm.missing.indexOf("Practical Test 2") >= 0);
+  near("mid-semester student", midterm.final, 10 * 14 / 45 + 10 * 54 / 160 + 7.2 + 9.75);
+  ok("mid-semester student flagged for test 2", midterm.missing.indexOf("Practical Test 2") >= 0);
+  ok("mid-semester student flagged for Block 1 quiz", midterm.missing.indexOf("Block 1 quiz") >= 0, JSON.stringify(midterm.missing));
+  ok("mid-semester student flagged for Block 2 assignment", midterm.missing.indexOf("Block 2 assignment") >= 0, JSON.stringify(midterm.missing));
+  var afterBlock1 = computeFinal_({
+    cohort: "CML3111",
+    quizzes: [5, 5, 5, 5, 5, "", 5, 5, 5, "", "", ""],
+    challenges: [20, 20, 20, 20, 20, "", 20, 20, 20, "", ""],
+    dataProject: 0, test1: 0, test2: 0, mlProject: 0, demo: 0
+  });
+  // quizzes (15+15)/45 -> 6.67 ... weekly best 3 of 5 = 15, plus Block 1 = 15 -> 30 of 45 ; assignments weekly 60 + Block 1 60 = 120 of 160
+  near("after Block 1: quizzes and assignments", afterBlock1.final, 10 * 30 / 45 + 10 * 120 / 160);
+  eq("after Block 1 only Block 2 and the big components are missing",
+     afterBlock1.missing.indexOf("Block 1 quiz") < 0 && afterBlock1.missing.indexOf("Block 2 quiz") >= 0, true);
 
   // ---- gradeBand_ ----
   eq("band 85 -> A", gradeBand_(85), "A");
@@ -757,21 +847,21 @@ function runUnitTests_() {
 
   // ---- progressSummary_ ----
   var line = progressSummary_({
+    cohort: "CML3111",
     quizzes: [4, 5, 3, 5, 4, "", "", "", "", "", "", ""],
-    challenges: [16, 18, 14, 20, 12, 15, 19, "", "", "", ""]
+    challenges: [16, 18, 14, 20, 12, "", "", "", "", "", ""]
   });
-  ok("progress line counts 7 of 11",
-     line.indexOf("completed 7 of 11") >= 0, line);
-  ok("progress line says one more needed",
-     line.indexOf("need 1 more") >= 0, line);
-  ok("progress line counts quizzes sat",
-     line.indexOf("sat 5 of 12") >= 0, line);
+  ok("progress line counts 5 of 5 weekly assignments", line.indexOf("5 of 5 done") >= 0, line);
+  ok("progress line stops nagging once enough weekly work is in", line.indexOf("count in full") >= 0, line);
+  ok("progress line reports Block 1 assignment status", line.indexOf("Block 1 assignment: 0 of 3 parts submitted") >= 0, line);
   var line2 = progressSummary_({
-    quizzes: [4, 5, 3, 5, 4, 5, 4, 3, "", "", "", ""],
-    challenges: [16, 18, 14, 20, 12, 15, 19, 11, "", "", ""]
+    cohort: "CML3111",
+    quizzes: [4, 5, 3, 5, 4, "", 5, 4, 3, "", "", ""],
+    challenges: [16, 18, "", "", "", "", 19, 11, 15, "", ""]
   });
-  ok("progress line stops nagging at 8",
-     line2.indexOf("count in full") >= 0, line2);
+  ok("progress line needs more weekly work", line2.indexOf("need 1 more weekly assignments") >= 0, line2);
+  ok("progress line adds up Block 1 quiz marks", line2.indexOf("Block 1 quiz: 3 of 3 forms sat, 12 of 15 marks") >= 0, line2);
+  ok("progress line adds up Block 1 assignment marks", line2.indexOf("45 of 60 marks") >= 0, line2);
 
   // ---- base32 ----
   eq("b32Decode_ NBSWY3DP -> hello",
