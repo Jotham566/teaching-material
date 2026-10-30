@@ -1,5 +1,7 @@
 # Test revision materials to share in advance
 
+Latest Test 2 revision: 30 October 2026. Test 2 now covers Weeks 8 to 13 (eight coding tasks and six interpretation choices). Use the current 78-slide Week 14 decks, which add a revision section for classification and cost, cross-validation by group, feature ablation, model selection, and ridge with nearest neighbours. The slides are exported with LibreOffice; replace earlier copies when sharing. The practice CSV is unchanged.
+
 Latest Test 1 revision: 19 October 2026. Use the current 68-slide Week 7 decks. They now include returned records, summary dictionaries, Figure objects, ten-bin histograms, findings with units, and interpretation limits. Replace earlier copies when sharing. The matching practice CSV filenames and values are unchanged.
 
 Send the matching **PDF slides and practice CSV together**, a few days before each test. For WhatsApp, attach the PDF and CSV as two documents so students do not need to unzip anything. The optional ZIP bundles those same files with START_HERE.txt. It contains no test notebook, grader or assessment answer key.

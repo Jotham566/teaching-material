@@ -1,6 +1,6 @@
 # Test 1: coding-only review — 23 October 2026
 
-Applies to CML3111, CML3112 and CML3113. Version: `2026.10-test1-coding-v3`.
+Applies to CML3111, CML3112 and CML3113. Version: `2026.10-test1-coding-v3`. The marks table below is v3. The current grader and student notebook are `2026.10-test1-notebook-v4`, whose marks are 20, 10, 20, 10, 15, 10, 5 and 10 for Tasks 1 to 8 (see `grader/rubrics/TEST1.json`).
 The lecturer confirmed no real students had started and authorised replacement for all three programmes.
 
 ## What students complete
