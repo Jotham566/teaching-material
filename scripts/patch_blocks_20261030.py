@@ -149,7 +149,7 @@ def patch_week1(code, prs):
         if sh.shape_type == 13 and img.exists():
             rid = sh._element.blipFill.blip.rEmbed; s8.part.related_part(rid)._blob = img.read_bytes()
     s = statement_slide(prs, "ASSESSMENT", "Quizzes and assignments from Week 8", "Weekly in Weeks 1 to 6. Every three classes from Week 8.",
-        [("Weeks 1 to 6: a quiz and an assignment each week. The best 4 of the 6 count.", False),
+        [("Weeks 1 to 5: a quiz and an assignment each week, and the best 3 of the 5 count. Week 6 is waived.", False),
          ("Block 1 is Weeks 8 to 10 and Block 2 is Weeks 11 to 13. Each block has one assignment pack and one quiz.", False),
          ("A block counts in full and cannot be dropped. Together the two blocks carry about 60 percent of the quiz and assignment marks.", False)],
         spoken("Here is how the quizzes and assignments work over the whole semester. In Weeks 1 to 6 you have a short quiz and an assignment each week, and your best four of the six count, so two weak weeks do not hurt you.",

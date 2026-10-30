@@ -89,7 +89,7 @@ One quiz sitting for the whole block: {forms}. {b['quiz_sitting']} Each form is 
 
 ## How it counts
 
-Weeks 1 to 6 stay weekly. For those weeks your best 4 weekly quizzes and best 4 weekly assignments count. The two blocks always count in full. Quizzes are marked out of 50 (45 for cohorts without a Week 6), and assignments out of 180 (160 without a Week 6). The quiz component is worth 10 percent of the course and the assignment component 10 percent.
+Weeks 1 to 5 stay weekly, and Week 6 is waived. For those weeks your best 3 weekly quizzes and best 3 weekly assignments count. The two blocks always count in full. Quizzes are marked out of 45 and assignments out of 160. The quiz component is worth 10 percent of the course and the assignment component 10 percent.
 
 The guided practice notebook for each week is for practice in class and is not submitted.
 """

@@ -90,7 +90,7 @@ def quizops():
     d.save(B / f)
 
 if __name__ == "__main__":
-    syllabus("IUEA_ML_Syllabus_CohortA_Design_and_Infrastructure.docx", "CML3111", True)
+    syllabus("IUEA_ML_Syllabus_CohortA_Design_and_Infrastructure.docx", "CML3111", False)
     syllabus("IUEA_ML_Syllabus_CohortB_Mining_and_Petroleum.docx", "CML3112", False)
     syllabus("IUEA_ML_Syllabus_CohortC_Engineering.docx", "CML3113", False)
     master(); quizops(); print("done")

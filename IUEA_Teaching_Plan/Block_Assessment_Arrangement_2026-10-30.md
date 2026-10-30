@@ -18,9 +18,9 @@ From Week 8 there is no weekly quiz and no weekly assignment. There is one assig
 
 ## Grading
 
-Weekly work in Weeks 1 to 6 keeps the best 4 of 6 (best 3 of 5 for CML3112 and CML3113, where Week 6 is not assigned). Blocks are never dropped, because each one carries three classes of teaching. A part that is not submitted scores zero.
+Weekly work stays in Weeks 1 to 5 and the best 3 of 5 count. Week 6 is waived for all three cohorts (see `Practical_Revision_Week6_Waiver.md`). Blocks are never dropped, because each one carries three classes of teaching. A part that is not submitted scores zero.
 
-Quizzes are out of 50 marks (45 when Week 6 is not assigned). Assignments are out of 180 marks (160). The percentage is marks earned divided by that total, times 10. Course weights are unchanged: quizzes 10, assignments 10, Data Analysis Project 10, Practical Test 1 15, Practical Test 2 20, Engineering ML Project 25, Demonstration 10.
+Quizzes are out of 45 marks and assignments out of 160. The percentage is marks earned divided by that total, times 10. Course weights are unchanged: quizzes 10, assignments 10, Data Analysis Project 10, Practical Test 1 15, Practical Test 2 20, Engineering ML Project 25, Demonstration 10.
 
 ## What changed in the files
 
@@ -30,6 +30,16 @@ Decks for Weeks 1, 8 to 13 (assessment slides, exit slides, spoken notes), stude
 
 1. In the Apps Script submission project, run `applyBlockWindows()` from `grader/apply_block_windows_20261030.gs` once. It moves the A7 to A11 form windows.
 2. In the quiz project, run `open_Block1_CML31xx` in the last 20 minutes of the Week 10 class and `open_Block2_CML31xx` in the Week 13 class, from `grader/block_quiz_sittings_20261030.gs`.
-3. Install the updated gradebook rule if you grade from `continuous_assessment.py`. That script was left unchanged on purpose and still counts the old weekly rule, so aggregate by hand or edit its constants before final marks.
-4. The Q12 quiz bank was written for the old Week 13. It does not ask about regularisation or nearest neighbours. Write a new bank, regenerate the form with `build_quiz_forms_gs.py`, rebuild the live form, and update `data/quiz_links.json`.
+3. `grader/continuous_assessment.py` now has `coursework_totals()`, which applies this rule to the ledger. `gradebook.gs` already applies it.
+4. The Week 13 quiz (Q12) bank has been rewritten for regularisation, nearest neighbours and reproducibility. See section below for how to rebuild the live form.
 5. Tell students once, in class, that the weekly quiz and assignment stop after Week 6 and what the block deadlines are.
+
+## Rebuilding the live Week 13 quiz form (Q12)
+
+The new Q12 bank is in `scripts/quiz_bank_weeks.py` (`BANKS[13]`). Its two tables are the Week 13 deck's own numbers, and `scripts/verify_quiz_arithmetic.py` re-checks them. The 36-form script was regenerated, and only Week 13 changed.
+
+1. Open the quiz Apps Script project and paste the new `grader/create_quiz_forms.gs` over the old file.
+2. Run `replaceWeek13Questions()` once. It replaces the five questions on the three existing Week 13 forms and sets the new title and description. Links, QR codes and response sheets stay the same. A form that already has responses is skipped.
+3. Run `auditForm(13, "CML3111")` and the same for CML3112 and CML3113 (through a small wrapper, as the Quiz Operations Guide describes), and open one form yourself.
+4. Do not run `rebuildAllForms()` for this. It deletes all 36 forms and changes every link.
+
