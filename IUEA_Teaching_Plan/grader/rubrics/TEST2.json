@@ -1,5 +1,5 @@
 {
-  "id": "TEST2-2026.10-colab-v2-units",
+  "id": "TEST2-2026.12-colab-v3-weeks8-13",
   "title": "Practical TEST2",
   "maximum": 100,
   "grading": "deterministic",
@@ -7,26 +7,56 @@
     {
       "id": "q1",
       "title": "Equipment-group split",
-      "maximum": 20,
+      "maximum": 10,
       "description": "Assign whole equipment groups: E1\u2013E4 to train, E5 to validation, E6 to test. Return train, validation and test lists of record_id in input order. Do not use target values to choose membership."
     },
     {
       "id": "q2",
       "title": "Baseline, linear and tree predictions",
-      "maximum": 30,
+      "maximum": 15,
       "description": "Fit a training-mean baseline, linear regression and a decision tree (max_depth=4, random_state=17) using load_pct and ambient_c only. Return three prediction lists under baseline, linear and tree. Feature records have no target. Fit preprocessing only on training data."
     },
     {
       "id": "q3",
       "title": "MAE and RMSE",
-      "maximum": 20,
+      "maximum": 5,
       "description": "Return mae and rmse, calculated over the same paired observations, with full precision."
     },
     {
       "id": "q4",
+      "title": "Classification and cost",
+      "maximum": 10,
+      "description": "For binary labels return tp, tn, fp, fn, precision, recall and cost=5*fn+fp; use zero for an undefined precision/recall denominator."
+    },
+    {
+      "id": "q5",
+      "title": "Group cross-validation",
+      "maximum": 10,
+      "description": "The records are clean and have targets. Using whole equipment groups, hold out each of E1, E2, E3, E4 and E5 in turn (E6 is never used). For each fold fit sklearn LinearRegression on load_pct and ambient_c using the other four groups, and compute the MAE on the held-out group. Return folds (the five MAEs in the order E1 to E5), mean (their average) and spread (their sample standard deviation, ddof=1). Do not round."
+    },
+    {
+      "id": "q6",
+      "title": "Feature ablation",
+      "maximum": 10,
+      "description": "Fit two sklearn LinearRegression models on the same training records: base features [load_pct, ambient_c] and extended features adding load_pct*ambient_c. Evaluate both on the same validation records. Return base_mae, extended_mae and improvement=base_mae-extended_mae, without rounding. Inputs are complete; never fit on validation targets."
+    },
+    {
+      "id": "q7",
+      "title": "Model selection",
+      "maximum": 10,
+      "description": "Candidates have name, validation_mae and latency_ms. Keep those meeting both inclusive constraints; select smallest validation_mae, then latency_ms, then name alphabetically. Return the selected name or None. Never use test scores for selection."
+    },
+    {
+      "id": "q8",
+      "title": "Ridge and nearest neighbours",
+      "maximum": 15,
+      "description": "Records are complete and the validation records are held out. Fit on the training records only. Ridge: a pipeline of PolynomialFeatures(3, include_bias=False), StandardScaler() and Ridge(alpha=1.0) on load_pct alone. Nearest neighbours: StandardScaler fitted on the training load_pct and ambient_c, then KNeighborsRegressor(n_neighbors=3). Return ridge_mae and knn_mae, each model's MAE on the validation records without rounding, and better, which is the text \"ridge\" or \"knn\" for the smaller MAE."
+    },
+    {
+      "id": "q9",
       "title": "Structured interpretation",
-      "maximum": 30,
-      "description": "Six scenario choices in DECISIONS; 5 marks for each correct choice."
+      "maximum": 15,
+      "description": "Six scenario choices in DECISIONS; 2.5 marks for each correct choice."
     }
   ]
 }

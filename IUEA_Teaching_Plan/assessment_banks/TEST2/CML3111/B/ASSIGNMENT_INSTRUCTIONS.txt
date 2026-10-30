@@ -4,7 +4,7 @@
 
 1. Open your lecturer’s test entry link or scan its QR code. Enter your full name, Google email and Student Registration Number. Download the notebook and CSV shown on your page. On your laptop, open Colab → **File → Open notebook → Upload** and select the notebook. Save your own copy in Drive.
 2. In Colab's **Files** sidebar, upload your downloaded `engineering_data.csv`. Do not rename it. Enter your name, email and Student Registration Number in the identity cell. Keep the supplied course, test and internal allocation settings unchanged.
-3. Work from top to bottom. Write each function beneath its question. Use pandas. The notebook explains the columns, return formats and marks. Answer the six interpretation questions by putting A, B or C in `DECISIONS`.
+3. Work from top to bottom. Write each function beneath its question. Use pandas. Eight functions and six interpretation choices cover Weeks 8 to 13. The notebook explains the columns, return formats and marks. Answer the six interpretation questions by putting A, B or C in `DECISIONS`.
 4. Restart the session and run all cells. If Colab asks for the CSV again, upload the same file. Fix errors and save. Run the final submission cell.
 5. Click **Submit test** at the bottom of the notebook. Authorize your own Google account if asked. The button saves a snapshot and prepares a form link. Open that link using the same account, check your details, tick the email confirmation box and press **Submit** on the form. Keep the confirmation. The notebook button alone is not a completed submission. No manual download or file upload is needed. Keep the snapshot in Drive until grades are released.
 

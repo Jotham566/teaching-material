@@ -116,3 +116,33 @@ def five_findings(clean_records):
     values['group_gap']=float(groups.max()-groups.min())
     unit={'CML3111':'deg C','CML3112':'kW','CML3113':'kWh/t'}[COHORT]
     return {k:dict(value=v,unit='observations' if k=='count' else unit) for k,v in values.items()}
+
+
+def group_cv_mae(records):
+    from sklearn.linear_model import LinearRegression
+    from sklearn.metrics import mean_absolute_error
+    table = pd.DataFrame(records)
+    folds = []
+    for group in ['E1', 'E2', 'E3', 'E4', 'E5']:
+        train = table[table['equipment_id'].isin(['E1', 'E2', 'E3', 'E4', 'E5']) & (table['equipment_id'] != group)]
+        held = table[table['equipment_id'] == group]
+        model = LinearRegression().fit(train[['load_pct', 'ambient_c']], train['target'])
+        folds.append(float(mean_absolute_error(held['target'], model.predict(held[['load_pct', 'ambient_c']]))))
+    series = pd.Series(folds)
+    return dict(folds=folds, mean=float(series.mean()), spread=float(series.std(ddof=1)))
+
+
+def ridge_and_knn(training_records, validation_records):
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import PolynomialFeatures, StandardScaler
+    from sklearn.linear_model import Ridge
+    from sklearn.neighbors import KNeighborsRegressor
+    from sklearn.metrics import mean_absolute_error
+    train = pd.DataFrame(training_records); valid = pd.DataFrame(validation_records)
+    ridge = make_pipeline(PolynomialFeatures(3, include_bias=False), StandardScaler(), Ridge(alpha=1.0))
+    ridge.fit(train[['load_pct']], train['target'])
+    ridge_mae = float(mean_absolute_error(valid['target'], ridge.predict(valid[['load_pct']])))
+    knn = make_pipeline(StandardScaler(), KNeighborsRegressor(n_neighbors=3))
+    knn.fit(train[['load_pct', 'ambient_c']], train['target'])
+    knn_mae = float(mean_absolute_error(valid['target'], knn.predict(valid[['load_pct', 'ambient_c']])))
+    return dict(ridge_mae=ridge_mae, knn_mae=knn_mae, better='ridge' if ridge_mae < knn_mae else 'knn')

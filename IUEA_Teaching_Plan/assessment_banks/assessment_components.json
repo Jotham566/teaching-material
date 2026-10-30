@@ -151,23 +151,43 @@
     "maximum": 100,
     "deterministic_maximum": 100,
     "reasoning_maximum": 0,
-    "version": "2026.10-colab-v2-units",
+    "version": "2026.12-colab-v3-weeks8-13",
     "parts": [
       [
         "split",
-        20
+        10
       ],
       [
         "regression",
-        30
+        15
       ],
       [
         "errors",
-        20
+        5
+      ],
+      [
+        "classification",
+        10
+      ],
+      [
+        "groupcv",
+        10
+      ],
+      [
+        "ablation",
+        10
+      ],
+      [
+        "selection",
+        10
+      ],
+      [
+        "ridgeknn",
+        15
       ],
       [
         "decisions",
-        30
+        15
       ]
     ]
   },
