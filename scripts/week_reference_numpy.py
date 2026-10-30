@@ -87,8 +87,9 @@ def _walk(node, x):
     return node[1]
 
 
-def tree_reg_fit(X, y, max_depth):
-    return _grow(np.asarray(X, float), np.asarray(y, float), 0, max_depth, lambda v: float(np.var(v)), lambda v: float(np.mean(v)))
+def tree_reg_fit(X, y, max_depth, seed=17):
+    """A replica of scikit-learn's DecisionTreeRegressor(max_depth=..., random_state=seed). See sk_tree_replica.py."""
+    import sk_tree_replica; return sk_tree_replica.fit(X, y, max_depth, "reg", seed)
 
 
 def gini(v):
@@ -96,11 +97,13 @@ def gini(v):
     p = np.mean(v); return 2 * p * (1 - p)
 
 
-def tree_clf_fit(X, y, max_depth):
-    return _grow(np.asarray(X, float), np.asarray(y, int), 0, max_depth, gini, lambda v: float(np.mean(v)))
+def tree_clf_fit(X, y, max_depth, seed=17):
+    """A replica of scikit-learn's DecisionTreeClassifier(max_depth=..., random_state=seed)."""
+    import sk_tree_replica; return sk_tree_replica.fit(X, y, max_depth, "clf", seed)
 
 
-def tree_predict(tree, X): return np.array([_walk(tree, x) for x in np.asarray(X, float)])
+def tree_predict(tree, X):
+    import sk_tree_replica; return sk_tree_replica.predict(tree, X)
 
 
 def tree_depth_and_rules(tree, names, unit="", depth=0, out=None):

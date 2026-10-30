@@ -50,12 +50,12 @@ def w10(prs, ctx):
     cr = curve_rows(O, [1, 4, 8])
     loop = ("from sklearn.tree import DecisionTreeRegressor\nfrom sklearn.metrics import mean_absolute_error\nprint(\"depth train valid\")\nfor depth in [1, 4, 8]:\n    tree = DecisionTreeRegressor(\n        max_depth=depth, random_state=17)\n    tree.fit(X_train_filled, y_train)\n"
             "    train_pred = tree.predict(X_train_filled)\n    valid_pred = tree.predict(X_valid_filled)\n    train_mae = mean_absolute_error(y_train, train_pred)\n    valid_mae = mean_absolute_error(y_valid, valid_pred)\n    print(depth, round(train_mae, 2), round(valid_mae, 2))")
-    N["loop"] = code_slide(prs, "WORKED EXAMPLE", "Training error keeps falling while validation error stalls", loop,
+    N["loop"] = code_slide(prs, "WORKED EXAMPLE", "Training error falls to almost zero, validation error stays far above it", loop,
         "depth train valid\n" + "\n".join(f"{d} {round(a, 2)} {round(b, 2)}" for d, a, b in cr),
         ["The loop tries three tree depths.", "mean_absolute_error(actual, predicted) is the MAE you computed by hand.", "We score the same tree twice: on rows it learned from, and on rows it never saw."],
         f"Errors are in {unit}. The deeper tree fits its training rows almost perfectly.",
         spoken("Now the numbers behind the picture. The loop trains three trees, with one, four and eight questions in a row allowed. For each tree we print two errors. The first is the error on the training rows the tree learned from. The second is the error on the validation rows it has never seen.",
-               f"Read the output. The training error falls steadily, from {cr[0][1]:.2f} down to {cr[-1][1]:.2f}. The validation error improves at first and then stops improving; at depth eight it is {cr[-1][2]:.2f}. The gap between the two columns is the sign of overfitting.",
+               f"Read the output. The training error falls steadily, from {cr[0][1]:.2f} down to {cr[-1][1]:.2f}. The validation error falls much less, and it stays far above the training error; at depth eight it is {cr[-1][2]:.2f}. The gap between the two columns is the sign of overfitting.",
                "This is why we never report the training error as the result of a model. A model always looks good on rows it has already seen."), lab(), code_size=13, out_size=14)
     F.fig_overfit_curve(fd / "overfit_curve.png", code)
     N["curve"] = figure_slide(prs, "The gap between training and validation error is the warning sign", fd / "overfit_curve.png",
@@ -100,7 +100,7 @@ def w10(prs, ctx):
                "No warning appeared. That is why leakage is so dangerous, and why the habits on the previous slide matter."), lab(), code_size=14, out_size=16)
     N["words10"] = table_slide(prs, "WORDS WE USED", "Words from today",
         ["Word", "Plain meaning", "Where we met it"],
-        [["Overfitting", "Memorising the training rows, noise included.", "Training error falls, validation error stalls"],
+        [["Overfitting", "Memorising the training rows, noise included.", "Training error falls to near zero, validation error stays far above"],
          ["Underfitting", "A model too simple for the pattern.", "A tree with one question"],
          ["Generalisation", "Doing well on rows never seen.", "The validation error"],
          ["Cross-validation", "Scoring on several held-back groups in turn.", "GroupKFold, four folds"],

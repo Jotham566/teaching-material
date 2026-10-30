@@ -37,15 +37,15 @@ def install_shim():
         def predict(self, X): return R.linreg_predict(self.intercept_, self.coef_, arr(X))
 
     class DecisionTreeRegressor(_Est):
-        def __init__(self, max_depth=None, random_state=None): self.d = max_depth if max_depth is not None else 99
+        def __init__(self, max_depth=None, random_state=None): self.d = max_depth if max_depth is not None else 99; self.rs = random_state if random_state is not None else 0
         def fit(self, X, y):
             A = arr(X); assert not np.isnan(A).any(), "shim: tree input has NaN"
-            self.t = R.tree_reg_fit(A, np.asarray(y, float), self.d); return self
+            self.t = R.tree_reg_fit(A, np.asarray(y, float), self.d, self.rs); return self
         def predict(self, X): return R.tree_predict(self.t, arr(X))
 
     class DecisionTreeClassifier(_Est):
-        def __init__(self, max_depth=None, random_state=None): self.d = max_depth if max_depth is not None else 99
-        def fit(self, X, y): self.t = R.tree_clf_fit(arr(X), np.asarray(y, int), self.d); return self
+        def __init__(self, max_depth=None, random_state=None): self.d = max_depth if max_depth is not None else 99; self.rs = random_state if random_state is not None else 0
+        def fit(self, X, y): self.t = R.tree_clf_fit(arr(X), np.asarray(y, int), self.d, self.rs); return self
         def predict_proba(self, X): p = R.tree_predict(self.t, arr(X)); return np.column_stack([1 - p, p])
         def predict(self, X): return (self.predict_proba(X)[:, 1] >= 0.5).astype(int)
 
