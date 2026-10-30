@@ -24,7 +24,7 @@ Quizzes are out of 45 marks and assignments out of 160. The percentage is marks 
 
 ## What changed in the files
 
-Decks for Weeks 1, 8 to 13 (assessment slides, exit slides, spoken notes), student guides (Weeks 8 to 12 plus new `B1.md` and `B2.md` per cohort), the assignment banks and the Week 8 to 12 student ZIPs (deadline line and a block note), `Assignment_Instructions_Index.md`, `Assignment_Submission_Links.md`, `data/assessments.json` (new closing times), the three syllabi, the master teaching plan (docx and the Assessment sheet), the Quiz Operations Guide and the grader README.
+Decks for Weeks 1, 8 to 13 (assessment slides, exit slides, spoken notes), student guides (Weeks 8 to 12 plus new `B1.md` and `B2.md` per cohort), and the Week 8 to 12 student ZIPs, which now hold the notebook, its data, `guided_practice.ipynb` and ONE short `START_HERE.md` (built by `scripts/build_block_packages_20261030.py`), `Assignment_Instructions_Index.md`, `Assignment_Submission_Links.md`, `data/assessments.json` (new closing times), the three syllabi, the master teaching plan (docx and the Assessment sheet), the Quiz Operations Guide and the grader README.
 
 ## What you still do by hand
 
