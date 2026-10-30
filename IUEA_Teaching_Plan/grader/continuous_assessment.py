@@ -9,6 +9,20 @@ COHORTS=('CML3111','CML3112','CML3113')
 QUIZ_WEEKS=(1,2,3,4,5,6,8,9,10,11,12,13)
 ASSIGNMENT_WEEKS=(1,2,3,4,5,6,8,9,10,11,12)
 
+# Block arrangement from Week 8 (data/assessment_blocks_20261030.json is the source of truth; a test keeps this in step).
+# Receipts are named by teaching week here: Q8 is the Week 8 quiz (called Q7 in the gradebook columns) and W08 is A7.
+# Weeks 1 to 6 stay weekly and the best WEEKLY_BEST of the assigned weeks count. Week 6 is waived for every cohort.
+# A block adds the marks of its parts, is never dropped, and a part that was not submitted scores zero.
+WEEKLY_WEEKS=(1,2,3,4,5,6)
+WAIVED_WEEKS=(6,)
+WEEKLY_BEST=4  # of the six weekly items; one fewer for each waived week
+QUIZ_MAX=5
+ASSIGNMENT_MAX=20
+COURSEWORK_WEIGHT=10  # percent of the course, for quizzes and for assignments alike
+BLOCKS=dict(
+ quizzes=(('Block 1',('Q8','Q9','Q10')),('Block 2',('Q11','Q12','Q13'))),
+ assignments=(('Block 1',('W08','W09','W10')),('Block 2',('W11','W12'))))
+
 def norm(v):
  """Compare formatting only: retain every letter, digit, slash and hyphen."""
  return re.sub(r'\s+','',str(v or '').upper()).replace('_','/')
@@ -196,6 +210,34 @@ def finalize(attempts,sources,extra_conflicts=(),supported_accounts=(),registrat
   if r['full_name']:s['full_name']=r['full_name']
  for s in students.values():s['email']='; '.join(sorted(s.pop('emails')))
  return dict(updated_at=datetime.now(timezone.utc).isoformat(),students=sorted(students.values(),key=lambda s:(s['cohort'],s['student_id'])),current=current,attempts=attempts,sources=sources)
+
+def _best_weekly(marks,ids,best):
+ """Sum of the best `best` marks among the weekly ids; an item not submitted scores zero."""
+ return sum(sorted((marks.get(i,0) for i in ids),reverse=True)[:best])
+
+def coursework_totals(current,waived_weeks=WAIVED_WEEKS):
+ """Quiz and assignment totals under the block arrangement, one row per (cohort, student).
+
+ `current` is the list that build() returns under 'current'. Only GRADED receipts add marks.
+ Returns marks earned, marks available and the weighted percentage of the course for each component.
+ """
+ marks=collections.defaultdict(dict)
+ for r in current:
+  if r['status']=='GRADED' and r['score'] is not None and r['student_id']:
+   marks[(r['cohort'],r['student_id'])][r['assessment']]=r['score']
+ weeks=[w for w in WEEKLY_WEEKS if w not in waived_weeks];best=WEEKLY_BEST-(len(WEEKLY_WEEKS)-len(weeks))
+ spec=dict(quizzes=('Q%d',QUIZ_MAX),assignments=('W%02d',ASSIGNMENT_MAX))
+ out=[]
+ for (cohort,sid),m in sorted(marks.items()):
+  row=dict(cohort=cohort,student_id=sid)
+  for part,(fmt,top) in spec.items():
+   earned=_best_weekly(m,[fmt%w for w in weeks],best);available=best*top;detail=[]
+   for label,ids in BLOCKS[part]:
+    got=sum(m.get(i,0) for i in ids);earned+=got;available+=len(ids)*top
+    detail.append(dict(block=label,earned=got,available=len(ids)*top,parts_submitted=sum(i in m for i in ids)))
+   row[part]=dict(earned=earned,available=available,weighted=round(earned/available*COURSEWORK_WEIGHT,2),blocks=detail)
+  out.append(row)
+ return out
 
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source',required=True);ap.add_argument('--results');ap.add_argument('--timing');ap.add_argument('--out',required=True);ap.add_argument('--test-ledger',action='append',default=[]);a=ap.parse_args()

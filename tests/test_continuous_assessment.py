@@ -1,11 +1,35 @@
 import sys,unittest,json,tempfile
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
-from continuous_assessment import choose_current,identity_conflicts,quiz_mark,build,field,norm,recover_quiz_ids,resolve_supported_typos
+from continuous_assessment import choose_current,identity_conflicts,quiz_mark,build,field,norm,recover_quiz_ids,resolve_supported_typos,coursework_totals,BLOCKS,WAIVED_WEEKS,QUIZ_WEEKS,ASSIGNMENT_WEEKS
 
 def receipt(**kwargs):
  r=dict(cohort='CML3111',student_id='DEMO-01',email='demo@example.com',assessment='W03',response_id='r1',submitted_at='2026-10-01T08:00:00Z',timing_status='ON_TIME',status='GRADED',score=15)
  r.update(kwargs);return r
+class BlockCourseworkTests(unittest.TestCase):
+ def rows(self,quiz,assign,sid='DEMO-01'):
+  return [receipt(student_id=sid,assessment=a,score=v,response_id=f'{sid}-{a}') for a,v in {**quiz,**assign}.items()]
+ def test_full_marks_give_ten_percent_each(self):
+  q={f'Q{w}':5 for w in (1,2,3,4,5,8,9,10,11,12,13)};a={f'W{w:02}':20 for w in (1,2,3,4,5,8,9,10,11,12)}
+  r=coursework_totals(self.rows(q,a))[0]
+  self.assertEqual((r['quizzes']['available'],r['assignments']['available']),(45,160))
+  self.assertEqual((r['quizzes']['weighted'],r['assignments']['weighted']),(10.0,10.0))
+ def test_weekly_drops_two_lowest_of_five_and_blocks_are_never_dropped(self):
+  q={'Q1':0,'Q2':5,'Q3':5,'Q4':5,'Q5':2,'Q8':5,'Q9':5,'Q10':5}
+  r=coursework_totals(self.rows(q,{}))[0]['quizzes']
+  self.assertEqual(r['earned'],15+15)   # best 3 of 5 weekly = 5+5+5; Block 1 = 15; Block 2 not sat = 0
+  self.assertEqual(r['weighted'],round(30/45*10,2))
+ def test_missing_block_part_scores_zero(self):
+  a={'W08':20,'W09':20}
+  r=coursework_totals(self.rows({},a))[0]['assignments']
+  self.assertEqual(r['blocks'][0],dict(block='Block 1',earned=40,available=60,parts_submitted=2))
+  self.assertEqual(r['blocks'][1]['earned'],0)
+ def test_constants_match_policy_file(self):
+  pol=json.loads((Path(__file__).resolve().parents[1]/'data/assessment_blocks_20261030.json').read_text())
+  wk=lambda b:tuple(f'Q{q["week"]}' for q in b['quiz_forms'])
+  self.assertEqual(BLOCKS['quizzes'],tuple((b['label'],wk(b)) for b in pol['blocks']))
+  self.assertEqual(BLOCKS['assignments'],tuple((b['label'],tuple(p['id'] for p in b['assignment_parts'])) for b in pol['blocks']))
+  self.assertEqual(pol['weights_percent']['quizzes'],10);self.assertEqual(WAIVED_WEEKS,(6,))
 class ContinuousAssessmentTests(unittest.TestCase):
  def test_consistent_alternate_accounts_require_multiple_assessments(self):
   rows=[receipt(email=e,assessment=a) for e in ['one@example.com','two@example.com'] for a in ['W01','Q1']]
