@@ -26,6 +26,18 @@ def connect(path):
 
 def records(db):return [json.loads(r[0]) for r in db.execute('SELECT payload FROM attempts')]
 
+def id_shown_in_source(notebook,sid):
+    """True when any cell text, including a markdown cell, assigns STUDENT_ID to this receipt's number."""
+    import re
+    try:cells=json.loads(Path(notebook).read_text())['cells']
+    except (OSError,ValueError,KeyError,TypeError):return False
+    for cell in cells:
+        text=cell.get('source','')
+        text=''.join(text) if isinstance(text,list) else str(text)
+        for found in re.findall(r'^\s*STUDENT_ID\s*=\s*[\"\']([^\"\']+)[\"\']',text,re.M):
+            if normalize(found)==sid:return True
+    return False
+
 def process(job,notebook,db):
     rid=job['response_id']
     prior=db.execute('SELECT payload FROM attempts WHERE response_id=?',(rid,)).fetchone()
@@ -67,9 +79,13 @@ def process(job,notebook,db):
                     hidden_path=Path(tmp)/'test1_current_hidden.py'
                     hidden_path.write_text(hidden_spec_source())
                 result=grade_one(str(path),str(HERE/'specs'/f'spec_{exam}.py'),str(hidden_path),exam,cohort,str(folder),20,180,None)
-            out['feedback']=json.dumps(dict(questions=result['questions'],cell_errors=result['cell_errors']),ensure_ascii=False)
+            detail=dict(questions=result['questions'],cell_errors=result['cell_errors'])
+            if not normalize(result.get('declared_sid','')) and id_shown_in_source(notebook,sid):
+                # The ID cell was no longer code when graded, but its text matches the verified receipt.
+                detail['identity_note']='STUDENT_ID was not defined when graded; the notebook text shows the receipt registration number, accepted.'
+            out['feedback']=json.dumps(detail,ensure_ascii=False)
             if result['status'] not in ('OK','ERRORS'):out['status']=result['status']
-            elif normalize(result.get('declared_sid',''))!=sid:out['status']='IDENTITY_MISMATCH'
+            elif normalize(result.get('declared_sid',''))!=sid and not (not normalize(result.get('declared_sid','')) and id_shown_in_source(notebook,sid)):out['status']='IDENTITY_MISMATCH'
             elif any(q.get('err') for q in result['questions'].values()):out['status']='GRADER_EXCEPTION'
             else:
                 out['status']='GRADED';out['score']=sum(q['awarded'] for q in result['questions'].values());out['semester_points']=out['score']*(.15 if exam=='TEST1' else .20)
