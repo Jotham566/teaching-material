@@ -1,0 +1,12 @@
+import sys, inspect
+sys.path.insert(0,'/sessions/focused-youthful-einstein/mnt/IUEA-Teaching-Resources/Schools_ML_Track/camp_2026/build/slides')
+sys.path.insert(0,'/sessions/focused-youthful-einstein/mnt/IUEA-Teaching-Resources/Schools_ML_Track/camp_2026/build')
+import build_slides as BS
+import slidekit as K
+src=inspect.getsource(BS.fig_plan)
+old="s.text(x0 + t * scale + wd / 2, ly, lab, size=20, color='#333333')"
+new="fs_ = 15 if ident in ('ML23',) else 20; lw_ = K.width_in(lab, fs_) / 2 + 0.05; cx_ = min(max(x0 + t * scale + wd / 2, lw_), w - lw_); s.text(cx_, ly, lab, size=fs_, color='#333333')"
+assert old in src
+ns=dict(BS.__dict__); exec(src.replace(old,new), ns); BS.fig_plan=ns['fig_plan']
+sys.argv=['build_slides.py']+sys.argv[1:]
+BS.main()

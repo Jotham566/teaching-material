@@ -1,15 +1,23 @@
 # Supplied teaching data
 
-Both CSV files are generated synthetic examples, not observations of actual shops or housing. The generator uses a fixed seed for reproducible checking. They contain no learner records. No claim about real demand, prices or rents can be inferred from them.
+All files are generated synthetic examples. They are not observations of actual shops, trips or housing, and contain no learner records. Generators use fixed seeds so every number can be reproduced and checked. No claim about real demand, prices, fares or rents can be drawn from them.
 
-## camp_shop.csv and camp_shop.sqlite
+## camp_shop.csv
 
-60 sales records across 20 illustrative December dates. `sale_id`: unique record identifier. `date`: YYYY-MM-DD date string. `item`: Book, Pen or Juice. `units`: whole items sold. `unit_price_ugx`: UGX per item. Revenue is units multiplied by unit price. Costs are absent, so profit cannot be calculated. The SQLite products table has one unique item key and its category. A matching item connects sales to products. No intentionally missing values or duplicate IDs in this clean file; cleaning mistakes are introduced separately in the worked lessons.
+60 sales records across 20 illustrative December dates. `sale_id`: unique identifier. `date`: YYYY-MM-DD text. `item`: Book, Pen or Juice. `units`: whole items sold. `unit_price_ugx`: UGX per item. Revenue is units multiplied by unit price. Costs are absent, so profit cannot be calculated. The file is small on purpose so that answers can be checked by hand: 277 units, UGX 550,000 revenue (Book 297,000, Juice 150,000, Pen 103,000). Pen sells the most units and Book earns the most money.
 
-## synthetic_homes.csv
+## synthetic_homes.csv (ML)
 
-120 invented independent home records. `home_id`: identifier, exclude from model inputs. `area_m2`: floor area in square metres. `rooms`: whole-number room count. `rent_ugx`: invented monthly rent in UGX. Features: area_m2 and rooms. Target: rent_ugx. The generation formula deliberately creates an easy learnable relationship; performance is a workflow exercise, not validation of a market model. Use a held-out test and report this limitation.
+120 invented independent home records. `home_id`: identifier, exclude from model inputs. `area_m2`: floor area in square metres. `rooms`: number of rooms. `rent_ugx`: invented monthly rent in UGX. Features: area_m2 and rooms. Target: rent_ugx. The generating formula deliberately creates an easy learnable relationship, so every model scores well. Performance is a workflow exercise and says nothing about a market.
 
-## Iris
+## synthetic_fares.csv (ML)
 
-ML classification uses `sklearn.datasets.load_iris`, bundled with scikit-learn after installation. Inputs are four flower measurements in centimetres; target is a species category encoded as 0, 1 or 2. Display `data.feature_names` and `data.target_names` in class to connect codes with names. This is a historical teaching dataset, not student data. Source documentation: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html
+150 invented boda-boda trips. `trip_id`: identifier, exclude from model inputs. `distance_km`: trip distance. `rush_hour` and `raining`: 1 for yes and 0 for no. `fare_ugx`: invented fare in UGX. `tip_ugx`: invented tip. Features: distance_km, rush_hour, raining. Target: fare_ugx. The fares carry real-looking noise, so a model beats its baseline by a moderate margin and a weak feature such as rain shows up as weak. `tip_ugx` is a deliberate leakage column: it is only known after the trip and tracks the fare, so a model that uses it looks better and predicts nothing. Generator: build_fares_data.py.
+
+## Iris (ML)
+
+Classification uses `sklearn.datasets.load_iris`, bundled with scikit-learn after installation. Inputs are four flower measurements in centimetres; the target is a species encoded as 0, 1 or 2. Display `data.feature_names` and `data.target_names` in class to connect codes with names. This is a historical teaching dataset. Source: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html
+
+## Sunrise Shops (Python for Data Analysis)
+
+A fictional three-shop chain, 60 days, 1,513 sales lines. Files, columns, the five planted defects in the raw export and the deliberate cleaning residual are described in [sunrise/DATA_DICTIONARY.md](sunrise/DATA_DICTIONARY.md). In the student pack the files carry the prefix `sunrise_`. The SQLite version of the same data is kept for the professional courses.

@@ -8,17 +8,17 @@ Weeks 1 to 6, each out of 10: correct required output 4; saved/reproducible meth
 
 ## Checkpoint one
 
-Raw scale 20, weighted 15%: correct file/table setup 3; valid calculations 5; appropriate cleaning decisions and preserved raw data 4; labelled chart 4; findings and limitation 4. ML submits ML12.ipynb; DA submits DA12.ipynb plus short DOCX/PDF explanation. No penalty for honestly reporting that the supplied clean file did not need alteration.
+Raw scale 20, weighted 15%: correct file/table setup 3; valid calculations 5; appropriate cleaning decisions and preserved raw data 4; labelled chart 4; findings and limitation 4. ML submits ML12.ipynb; DA submits DA12.ipynb plus a short DOCX/PDF explanation. The DA labelled chart is drawn from the Sunrise Shops sales. No penalty for honestly reporting that the supplied clean file did not need alteration.
 
 ## Checkpoint two
 
 ML raw scale 20, weighted 20%: correct train/validation/test separation 5; baseline and candidate models fitted only on training 4; validation comparison and frozen choice 4; correct final metric/matrix 4; explanation and limitations 3. Use ML18 instructions and instructor reference. Do not grade the learner by a minimum accuracy threshold.
 
-DA raw scale 20, weighted 20%: filtering/grouping SQL 5; valid join and key checks 4; null/count checks 3; agreement between SQL and pandas totals 4; saved query and explanation 4. Use DA18 and reference_values.json. Collect DA18.ipynb, DA18.sql and results.csv. Result screenshots without the query do not earn reproducibility marks.
+DA raw scale 20, weighted 20%: filtering and grouping in pandas 5; valid merge and key checks (unique key, unchanged row count) 4; missing-value, duplicate and row-count checks 3; agreement between two routes to the same total, with any residual difference named and explained 4; saved notebook that reruns and an explanation 4. Use DA18 and reference_values.json. Collect DA18.ipynb and the short explanation. Result screenshots without the code earn no reproducibility marks.
 
 ## Final project
 
-Raw scale 30, weighted 30% for each track: clear question and data origin 4; reproducible preparation 6; correct analysis/model workflow 8; checks and honest limitations 6; complete readable handover 6. ML requires a baseline and a final held-out test. DA requires an executable Python/pandas notebook with labelled charts, saved SQL and a short report. Restrict projects to taught skills and approved data. Project requirements are introduced in Week 4, fixed in Week 7 and submitted in Session 22.
+Raw scale 30, weighted 30% for each track: clear question and data origin 4; reproducible preparation 6; correct analysis/model workflow 8; checks and honest limitations 6; complete readable handover 6. ML requires a baseline and a final held-out test. DA requires an executable Python notebook using pandas, NumPy and the charting libraries, with labelled charts, a cleaning log and a short report. Restrict projects to taught skills and approved data. Project requirements are introduced in Week 4, fixed in Week 7 and submitted in Session 22.
 
 Detailed scoring anchors are in PROJECT_RUBRIC.md. Collect AI_USE_LOG.md with the final hand-in; learners who used no assistance state that explicitly.
 

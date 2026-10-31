@@ -1,0 +1,93 @@
+{
+  "sales_rows": 1513,
+  "total_revenue_ugx": 6375900,
+  "total_units": 4038,
+  "total_profit_ugx": 1983300,
+  "revenue_by_branch": {
+    "Central Market": 2997000,
+    "Campus Gate": 1985400,
+    "Roadside": 1393500
+  },
+  "revenue_by_category": {
+    "Household": 2082700,
+    "Drinks": 1863200,
+    "Stationery": 1686500,
+    "Snacks": 743500
+  },
+  "units_by_product_top5": [
+    [
+      "Bottled Water",
+      441
+    ],
+    [
+      "Biscuits",
+      383
+    ],
+    [
+      "Juice",
+      352
+    ],
+    [
+      "Pencil",
+      344
+    ],
+    [
+      "Chapati",
+      337
+    ]
+  ],
+  "customers_counted_by_branch": {
+    "Campus Gate": 6954,
+    "Central Market": 13499,
+    "Roadside": 5293
+  },
+  "revenue_per_customer_by_branch": {
+    "Central Market": 222.02,
+    "Campus Gate": 285.5,
+    "Roadside": 263.27
+  },
+  "line_value_mean_ugx": 4214.08,
+  "line_value_median_ugx": 2400,
+  "mean_over_median": 1.756,
+  "sales_rows_by_branch": {
+    "Campus Gate": 555,
+    "Central Market": 577,
+    "Roadside": 381
+  },
+  "fan_out": {
+    "correct_rows": 1513,
+    "joined_rows": 1628,
+    "extra_rows": 115,
+    "joined_revenue_ugx": 7079900,
+    "overstatement_ugx": 704000
+  },
+  "weekday_effect": {
+    "central_market_saturday_lines_per_day": 12.6,
+    "central_market_monday_to_thursday_lines_per_day": 9.7
+  },
+  "corr_customers_vs_revenue": 0.623,
+  "corr_rain_vs_customers_by_branch": {
+    "Central Market": -0.032,
+    "Campus Gate": 0.012,
+    "Roadside": -0.159
+  },
+  "raw_defects": {
+    "duplicate_rows": 25,
+    "mixed_date_format_rows": 60,
+    "blank_units_rows": 40,
+    "messy_name_rows": 80,
+    "units_as_words_rows": 12
+  },
+  "raw_file_rows": 1538,
+  "cleaning_policy": "drop exact duplicates; parse ISO and dd/mm/yyyy dates; strip().title() names mapped to product_id; words to numbers; EXCLUDE rows with blank units and report them",
+  "cleaned_rows": 1473,
+  "excluded_blank_units_value_ugx": 125400,
+  "cleaned_revenue_ugx": 6250500,
+  "residual_vs_database_ugx": 125400,
+  "properties": {
+    "most_revenue_branch": "Central Market",
+    "best_revenue_per_customer_branch": "Campus Gate"
+  },
+  "seed": 20261031,
+  "synthetic": true
+}

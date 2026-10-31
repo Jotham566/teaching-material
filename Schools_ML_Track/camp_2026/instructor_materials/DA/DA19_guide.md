@@ -1,33 +1,73 @@
-# DA19 Instructor guide
+# DA19 Instructor guide: Project question and a safe plan
 
-Read the matching student sheet first. Prerequisite: DA18 Checkpoint two across Python and SQL.
+Private. Keep this file out of the student folder.
 
-Learning objective: Define three descriptive questions answerable from the approved dataset and name their measures.
+**Objective.** By the end: you can write a narrow project plan with a question, the data, the measures, the charts and the limits, and have it approved.
 
-## Explain and demonstrate
+**Question of the day.** Which three questions can our data answer, and how will we show the answers?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA18 Checkpoint two: clean, merge and reconcile.
 
-Correct worked result: A one-page plan with three questions, data dictionary and method.
+## The 180 minutes
 
-Specific repair cue: If the plan promises profit without costs, change the measure to revenue. If it promises prediction, keep it descriptive.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+Where it overruns: Approve plans one at a time. A plan that is too big is the most common reason a project fails in week 8.
 
-A plan is workable if its required columns exist and the student can explain each calculation.
+## Block A. From a topic to three questions
 
-## Questions to ask
+A project serves a reader. Decide who needs the answer and what choice it could help with. Review AI_USE_POLICY.md now. Any permitted supervised AI help is written in AI_USE_LOG.md, and an unaided attempt always comes first. No forecasting or model training is required.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Ask for the prediction first: Predict which of these questions the Sunrise Shops data can answer with the taught methods: (a) Which category earns the most at each branch? (b) Why do people like Campus Gate? (c) What will sales be next month?
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+Correct result: Question (a) can be answered: it needs the sales, products and branches tables, a merge and a group total. Question (b) asks for reasons, and the data has no opinions. Question (c) asks for a forecast, which this course does not teach. A narrow descriptive question with named columns is the right size.
+
+Investigate, with answers:
+
+- What makes question (a) answerable? Answer: Every column it needs exists, and the method is one we have used.
+- How would you narrow question (b) so the data can answer it? Answer: Ask something countable, such as which shop has the highest revenue per customer.
+
+Modify: Write one more question the Sunrise data can answer, and name the columns it needs. Answer: Any narrow question with named columns, for example: did the Sugar price rise change its units sold? It needs product_id, units and sale_date.
+
+## Block B. The plan and the data
+
+Your PROJECT_PLAN.md has seven headings: question, reader and use, data source and licence, measures and columns, method, charts, limitations. Start with Sunrise Shops, which is invented and needs no permission. You may use a public real dataset, for example from the Uganda Bureau of Statistics or the World Bank, once the licence has been read at the source, the instructor has approved it, and it holds no personal information.
+
+Ask for the prediction first: Predict which heading is hardest to write, and why.
+
+Correct result: Most learners find limitations hardest, because it means saying what the data cannot show. A good limitation names a missing column or a kind of conclusion the project will not draw: no costs means no profit, invented data means no claim about real shops.
+
+Investigate, with answers:
+
+- Why must the licence be read at the source? Answer: The licence says what you may do with the data. Only the owner of the data can tell you.
+- What goes in the data dictionary? Answer: Each column you use, its meaning and its unit.
+
+Modify: Write the limitations heading for your own plan in two sentences. Answer: Two sentences naming what the data cannot show.
+
+## Make: reference
+
+An acceptable plan names Sunrise Shops (invented) or an approved public dataset with its licence read at the source. Its three questions are descriptive and name their columns. Example: (1) Which category earns the most at each branch? Needs sales, products, branches. (2) Which branch earns the most per customer counted? Needs sales and daily_summary. (3) Did the Sugar price rise on day 31 change its units sold? Needs product_id, units, sale_date. Limitations: invented data, no costs so no profit, no claim about real shops. If the plan promises profit, change the measure to revenue. If it promises a forecast, make it descriptive.
+
+Evidence to collect: PROJECT_PLAN.md approved by the instructor, with a data dictionary for the columns used.
+
+## Misconceptions to listen for
+
+- A bigger question is a better project.
+- Real data is always better than invented data.
+- Limitations make the project look weak.
+
+## Questions to ask, with expected answers
+
+- Which columns does your first question need? Expected: Each one is named, and each is in the data dictionary.
+- Who is the reader and what could they decide? Expected: A named reader and a concrete choice.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

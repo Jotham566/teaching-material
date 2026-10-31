@@ -1,33 +1,67 @@
-# DA18 Instructor guide
+# DA18 Instructor guide: Checkpoint two: clean, merge and reconcile
 
-Read the matching student sheet first. Prerequisite: DA17 Nulls validation and repeatable work.
+Private. Keep this file out of the student folder.
 
-Learning objective: Compare labelled SQL and pandas results, reconcile grand totals and explain a join risk.
+**Objective.** By the end: you can clean a raw export, merge it with a lookup table, and report a total together with its named difference from the true total.
 
-## Explain and demonstrate
+**Question of the day.** Which category earns the most in the cleaned data, and by how much do our totals fall short of the truth?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA17 Merging two tables and the fan-out trap.
 
-Correct worked result: Saved SQL, exported results and a notebook reconciliation statement.
+## The 180 minutes
 
-Specific repair cue: Check whether a pandas filter is hiding records or whether a join duplicated rows before changing a formula.
+| Minutes | Activity |
+|---|---|
+| 15 | recall, then read the brief together |
+| 80 | learners work and the instructor visits each of the five |
+| 15 | break away from screens |
+| 40 | learners finish, restart and run all |
+| 20 | individual check, save and submit |
+| 10 | review |
 
-## Independent task reference
+Where it overruns: Use the error cards from sessions 10, 16 and 17 for repair. Introduce no new syntax.
 
-Results must match the supplied reference queries. Correct totals with missing SQL are incomplete evidence of reproducibility.
+## Make: reference
 
-## Questions to ask
+```python
+import pandas as pd
+raw = pd.read_csv("sunrise_sales_raw.csv")
+products = pd.read_csv("sunrise_products.csv")
+lookup = {n.title(): n for n in products["name"]}
+words = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
+work = raw.drop_duplicates().copy()
+work["sale_date"] = pd.to_datetime(work["sale_date"], format="%Y-%m-%d", errors="coerce").fillna(pd.to_datetime(work["sale_date"], format="%d/%m/%Y", errors="coerce"))
+work["product"] = work["product"].str.strip().str.title().map(lookup)
+work["units"] = pd.to_numeric(work["units"].replace(words), errors="coerce")
+excluded = work[work["units"].isna()]
+clean = work.dropna(subset=["units"]).copy()
+clean["units"] = clean["units"].astype(int)
+clean["line_value"] = clean["units"] * clean["unit_price_ugx"]
+clean = clean.merge(products.rename(columns={"name": "product"})[["product", "category"]], on="product", how="left", validate="many_to_one")
+assert len(clean) == 1473
+by_category = clean.groupby("category")["line_value"].sum().sort_values(ascending=False)
+true_sales = pd.read_csv("sunrise_sales.csv")
+true_total = int((true_sales["units"] * true_sales["unit_price_ugx"]).sum())
+residual = true_total - int(clean["line_value"].sum())
+assert by_category.sum() == clean["line_value"].sum()
+print(by_category)
+print(residual)
+# Household earns the most. The residual 125400 is the value of the 40 excluded rows.
+```
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Evidence to collect: DA18.ipynb that reruns from a restarted kernel, with rows kept and excluded, the unique-key check, category totals, the named residual and two limitations. Marks follow ASSESSMENT_AND_SHOWCASE.md.
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+## Misconceptions to listen for
+
+- A passing merge means correct totals.
+- The residual means the pipeline is wrong.
+- More steps mean a better checkpoint.
+
+## Questions to ask, with expected answers
+
+- How do you prove the merge did not change the data? Expected: The row count and the grand total are the same before and after.
+- What is the residual here? Expected: 125400 shillings, the value of the 40 sales with blank units.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

@@ -1,36 +1,107 @@
-# ML02 Instructor guide
+# ML02 Instructor guide: Values, names and types
 
-Read the matching student sheet first. Prerequisite: ML01 Files and your first instruction.
+Private. Keep this file out of the student folder.
 
-Learning objective: Create and identify integer, float, string and Boolean values; predict how an assignment changes a variable.
+**Objective.** By the end: you can create whole numbers, decimals and text, and predict what happens when a name is given a new value.
 
-## Explain and demonstrate
+**Question of the day.** What kind of thing is each part of a sale?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: ML01 Your first instruction and your first prediction.
 
-Correct worked result: 6000; price has type int; the quoted value has type str.
+## The 180 minutes
 
-Specific repair cue: NameError means a name was not defined in this running session. Run the defining cell first; check spelling.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+## Block A. Names point to values
 
+A shop sells 3 items at UGX 2000 each. Run the cell and read each line of output.
+
+Ask for the prediction first: Predict the three lines the cell will print.
+
+```python
+price = 2000
+quantity = 3
+cost = price * quantity
+print(cost)
+print(type(price))
+print(type("2000"))
+```
+
+Correct result: The cell prints 6000, then <class 'int'>, then <class 'str'>. price and quantity are variables. 2000 is an integer. The quoted 2000 is a string, which is text. The equals sign stores the value on its right under the name on its left.
+
+Investigate, with answers:
+
+- Why is type("2000") a string? Answer: Quotation marks make it text. Python cannot multiply it like an amount of money.
+- What does the equals sign do in cost = price * quantity? Answer: It calculates the right side first, then stores the answer under the name cost.
+
+Modify: Change quantity to 5 and run the whole cell again. Answer: cost becomes 10000.
+
+```python
+quantity = 5
+cost = price * quantity
+```
+
+## Block B. A name keeps its value until you change it
+
+Run the cell and watch what the printed total does when quantity changes.
+
+Ask for the prediction first: Predict the three numbers printed. Will the second one change after quantity changes?
+
+```python
+price = 2500.5
+quantity = 2
+total = price * quantity
+print(total)
+quantity = 4
+print(total)
+total = price * quantity
+print(total)
+```
+
+Correct result: The cell prints 5001.0, then 5001.0, then 10002.0. 2500.5 is a float. Changing quantity does not change total until the line that calculates total runs again. Python works from the top of the cell to the bottom.
+
+Investigate, with answers:
+
+- Why does the second print still show 5001.0? Answer: total was calculated when quantity was 2. Python does not recalculate by itself.
+- What line makes the third number different? Answer: The second total = price * quantity line, which runs with quantity equal to 4.
+
+Modify: Set quantity to 10, recalculate total and print it. Answer: The total is 25005.0.
+
+```python
+quantity = 10
+total = price * quantity
+```
+
+## Make: reference
+
+```python
 price = 2500.5
 quantity = 2
 print(price * quantity)
-# 5001.0; quotes make text, not a numerical value.
+print(type("2500.5"))
+# 5001.0. With quotation marks 2500.5 is a string, which is text and not an amount.
+```
 
-## Questions to ask
+Evidence to collect: ML02.ipynb with the total 5001.0 and a sentence explaining the quotation marks.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+## Misconceptions to listen for
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+- = asks whether two things are equal.
+- Quotation marks around a number change nothing.
+- Changing quantity changes total automatically.
+
+## Questions to ask, with expected answers
+
+- What does the equals sign do? Expected: It stores the value on the right under the name on the left.
+- Why is 5001.0 shown with a decimal point? Expected: Multiplying by a float gives a float.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

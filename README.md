@@ -2,7 +2,7 @@
 
 Two courses and the build engine that generates them. The course builders in `scripts/` generate the teaching artifacts. Numerical examples have executable checks; fictional datasets and teaching assumptions are labelled.
 
-Additional programmes: [School Track camp marketing](Schools_ML_Track/camp_2026/marketing/README.md) and [professional AI training](Professional_AI_Training/README.md).
+Additional programmes: the [Holiday Data and AI Camp](Schools_ML_Track/camp_2026/README.md) for S.4 to S.6 students (Machine Learning and Python for Data Analysis; its marketing is in [camp_2026/marketing](Schools_ML_Track/camp_2026/marketing/README.md)) and [professional AI training](Professional_AI_Training/README.md).
 
 Current readiness and remaining deployment work: [rework status](review/2026-09-14/REWORK_STATUS.md).
 

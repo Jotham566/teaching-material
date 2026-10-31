@@ -1,33 +1,43 @@
-# DA22 Instructor guide
+# DA22 Instructor guide: Report and handover
 
-Read the matching student sheet first. Prerequisite: DA21 Build and test the project chart report.
+Private. Keep this file out of the student folder.
 
-Learning objective: Hand over a cleanly rerunnable notebook, SQL, source data reference, dictionary and findings report.
+**Objective.** By the end: you can hand over a project that another person can open, rerun and check.
 
-## Explain and demonstrate
+**Question of the day.** Does everything I submit open, rerun and agree with itself?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA21 Build and test the chart report.
 
-Correct worked result: A complete project folder ready for another person to review.
+## The 180 minutes
 
-Specific repair cue: If a claim has no traceable number or chart, remove it or add supporting analysis.
+| Minutes | Activity |
+|---|---|
+| 15 | recall, then the handover checklist |
+| 60 | rerun from a restarted kernel and repair |
+| 15 | break away from screens |
+| 50 | write and export the report |
+| 25 | individual check and submit |
+| 15 | feedback, then save |
 
-## Independent task reference
+Where it overruns: Check each learner's submission arrived. A file on a laptop has not been submitted.
 
-The notebook retains executable calculations; SQL can be rerun; report findings match outputs and disclose the synthetic data.
+## Make: reference
 
-## Questions to ask
+Checklist: the notebook reruns from a restarted kernel; the cleaning log counts each row removed; the data dictionary covers every column used; each finding in the report has a number in an output cell; the report states the invented or licensed data source and its limits; the log records any permitted AI help or says No AI assistance used; every file opens after being reopened.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Evidence to collect: All five files submitted and reopened, and totals in the report that agree with the notebook.
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+## Misconceptions to listen for
+
+- A polished picture is enough evidence.
+- A saved file has been submitted.
+- Restarting the kernel is only for beginners.
+
+## Questions to ask, with expected answers
+
+- How do you know your report matches your notebook? Expected: Each number in the report is copied from an output cell that reruns from the top.
+- What did you decide not to claim? Expected: A limitation named in the report, such as no costs so no profit.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

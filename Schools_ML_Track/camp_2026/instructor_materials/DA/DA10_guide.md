@@ -1,33 +1,106 @@
-# DA10 Instructor guide
+# DA10 Instructor guide: Cleaning without hiding evidence
 
-Read the matching student sheet first. Prerequisite: DA09 Mean median and describing variation.
+Private. Keep this file out of the student folder.
 
-Learning objective: Identify missing data and a known accidental duplicate while preserving raw data and a cleaning log.
+**Objective.** By the end: you can find missing values and duplicates, remove the duplicates on a copy, and save a cleaning log that says what you did.
 
-## Explain and demonstrate
+**Question of the day.** What is wrong with the raw Sunrise sales file, and how many rows does each problem touch?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA09 Sort, group, mean and median.
 
-Correct worked result: Two missing price cells in raw; three rows after known accidental duplicate removed; mean of observed prices is 2000.
+## The 180 minutes
 
-Specific repair cue: Use a copy before editing. If duplicate removal erases legitimate events, restore raw and use a true record ID.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+## Block A. Missing values and duplicates in a small table
 
-Keep raw unchanged. clean has IDs 1,2,3. Missing price means unknown, not free. No imputation is justified by this example alone.
+Keep the raw table unchanged and work on a copy. isna marks missing cells True. Adding the True values counts them. drop_duplicates removes rows that repeat another row exactly.
 
-## Questions to ask
+Ask for the prediction first: Predict how many missing prices there are and how many rows stay after the duplicate is removed.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+```python
+import pandas as pd
+raw = pd.DataFrame({"id": [1, 2, 2, 3], "price": [1000, None, None, 3000]})
+clean = raw.drop_duplicates().copy()
+print(raw["price"].isna().sum())
+print(len(clean))
+print(clean["price"].mean())
+```
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+Correct result: The raw table has 2 missing prices. After the duplicate row is removed, 3 rows stay and one price is still missing. The mean of the two known prices is 2000. The missing price is unknown and is not free.
+
+Investigate, with answers:
+
+- Why would replacing the missing price with 0 change the meaning? Answer: Zero says the item was free. The truth is that nobody recorded the price.
+- Could two identical rows be real separate sales? Answer: Yes, if two customers bought the same thing. Here the repeated id shows it is a copy.
+
+Modify: Count how many rows in clean still have a missing price. Answer: One.
+
+```python
+still_missing = clean["price"].isna().sum()
+```
+
+## Block B. The raw Sunrise file
+
+sunrise_sales_raw.csv is the Sunrise sales as an untidy export. Count the problems. to_csv saves a table to a file. index=False stops pandas adding an extra column of row numbers.
+
+Ask for the prediction first: Predict how many duplicate rows the file holds. The clean version has 1513 sales.
+
+```python
+raw_sales = pd.read_csv("sunrise_sales_raw.csv")
+print(raw_sales.shape)
+print(raw_sales.duplicated().sum())
+deduped = raw_sales.drop_duplicates()
+print(deduped.shape)
+print(deduped["units"].isna().sum())
+log = pd.DataFrame({"problem": ["duplicate rows", "blank units"], "rows": [raw_sales.duplicated().sum(), deduped["units"].isna().sum()]})
+log.to_csv("cleaning_log.csv", index=False)
+print(pd.read_csv("cleaning_log.csv"))
+```
+
+Correct result: The raw file has 1538 rows. 25 are exact duplicates, so removing them leaves 1513, the same as the clean file. 40 rows have blank units. The log table is saved and read back with two lines: 25 duplicate rows and 40 blank-unit rows.
+
+Investigate, with answers:
+
+- Why does the cleaned row count of 1513 match the clean file? Answer: The 25 extra rows were exact copies. Removing them restores the original count.
+- Why not fill the 40 blank units with the mean? Answer: It would invent sales that nobody recorded. We decide in session 16 how to report them.
+
+Modify: Count the rows whose date is written with slashes, and add them to the log. Answer: 60 rows.
+
+```python
+slashes = deduped["sale_date"].str.contains("/").sum()
+```
+
+## Make: reference
+
+```python
+import pandas as pd
+log = pd.DataFrame({"step": ["raw rows", "duplicate removed", "missing price remaining"], "count": [4, 1, 1]})
+log.to_csv("my_log.csv", index=False)
+print(pd.read_csv("my_log.csv"))
+# Zero would say the item was free. The price is unknown.
+```
+
+Evidence to collect: DA10.ipynb and my_log.csv with the three counts and the sentence about zero.
+
+## Misconceptions to listen for
+
+- A missing value is the same as zero.
+- Every repeated row is an error.
+- Cleaning means making the numbers look nice.
+
+## Questions to ask, with expected answers
+
+- What goes in a cleaning log? Expected: The problem, how many rows it touched, and what you did.
+- Why work on a copy? Expected: The raw file is the evidence. Overwriting it destroys the evidence.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

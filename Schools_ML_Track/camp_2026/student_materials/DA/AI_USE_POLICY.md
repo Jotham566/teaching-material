@@ -1,6 +1,6 @@
 # Responsible AI use in the holiday camp
 
-This policy applies to both tracks. The programme teaches students to write, read, test and explain Python, SQL and basic data work themselves. AI assistants are a late-programme literacy topic, not a substitute for learning or a required development tool. No learner account or paid AI subscription is required.
+This policy applies to both tracks. The programme teaches students to write, read, test and explain Python and basic data work themselves. AI assistants are a late-programme literacy topic, not a substitute for learning or a required development tool. No learner account or paid AI subscription is required.
 
 ## Weeks 1–6
 

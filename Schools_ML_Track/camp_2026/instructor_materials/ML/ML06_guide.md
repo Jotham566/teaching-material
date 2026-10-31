@@ -1,37 +1,119 @@
-# ML06 Instructor guide
+# ML06 Instructor guide: Functions and checks that fail loudly
 
-Read the matching student sheet first. Prerequisite: ML05 Lists dictionaries and repetition.
+Private. Keep this file out of the student folder.
 
-Learning objective: Write a function with a return value and check three known inputs using assert.
+**Objective.** By the end: you can write a function that returns a result, and check it against known answers with assert.
 
-## Explain and demonstrate
+**Question of the day.** How do I turn my flower rule into a reusable tool and test it?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: ML05 Lists, dictionaries and loops.
 
-Correct worked result: 6000. A passing assert prints nothing.
+## The 180 minutes
 
-Specific repair cue: If the answer is None, check for a missing return. Define a function before calling it.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+## Block A. A function and an assert
 
+A function names a calculation so you can use it again. Run the cell. A passing assert prints nothing.
+
+Ask for the prediction first: Predict what total(2000, 3) gives and what happens when the assert passes.
+
+```python
+def total(price, quantity):
+    return price * quantity
+
+result = total(2000, 3)
+print(result)
+assert total(2000, 3) == 6000
+```
+
+Correct result: The cell prints 6000. def starts the function. price and quantity are parameters, and the 2000 and 3 you give it are arguments. return sends the answer back. assert stops with an error when the statement is false, and a passing assert prints nothing.
+
+Investigate, with answers:
+
+- What is the difference between return and print? Answer: return gives the value back to the program. print only shows it on the screen.
+- What happens if you define total but never call it? Answer: Nothing runs. Defining a function does not run its lines.
+
+Modify: Add an assert that total(1000, 0) equals 0. Answer: It passes silently, because 1000 times 0 is 0.
+
+```python
+assert total(1000, 0) == 0
+```
+
+## Block B. The flower rule as a function
+
+Your rule from session 4 becomes a function. Three asserts test it, and a loop counts it on eight flowers.
+
+Ask for the prediction first: Predict how many of the eight flowers the function names correctly.
+
+```python
+def guess_species(petal_length):
+    if petal_length < 2.5:
+        return "setosa"
+    elif petal_length < 4.8:
+        return "versicolor"
+    else:
+        return "virginica"
+
+assert guess_species(1.4) == "setosa"
+assert guess_species(4.7) == "versicolor"
+assert guess_species(6.0) == "virginica"
+flowers = [[1.4, "setosa"], [1.4, "setosa"], [4.7, "versicolor"], [4.5, "versicolor"], [4.9, "versicolor"], [6.0, "virginica"], [5.1, "virginica"], [5.9, "virginica"]]
+right = 0
+for flower in flowers:
+    if guess_species(flower[0]) == flower[1]:
+        right = right + 1
+print(right)
+```
+
+Correct result: The cell prints 7. The three asserts pass without a sound. Each flower in the list holds a petal length at position 0 and a species at position 1. The function is right for seven of eight flowers, the same count you found by hand.
+
+Investigate, with answers:
+
+- What does flower[0] give? Answer: The petal length, because position 0 is the first item.
+- Why test the function on three known flowers before counting? Answer: If an assert fails you know the rule is broken before you trust any count.
+
+Modify: Add the flower [4.9, "versicolor"] again to the list and recount. Answer: The count becomes 7 out of 9, because the 4.9 flower is wrong each time.
+
+```python
+flowers = flowers + [[4.9, "versicolor"]]
+right = 0
+for flower in flowers:
+    if guess_species(flower[0]) == flower[1]:
+        right = right + 1
+```
+
+## Make: reference
+
+```python
 def double(number):
     return number * 2
+
 assert double(4) == 8
 assert double(0) == 0
 assert double(-2) == -4
+```
 
-## Questions to ask
+Evidence to collect: ML06.ipynb with double defined, three passing asserts, and a clean run from the top.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+## Misconceptions to listen for
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+- Defining a function runs it.
+- print and return do the same job.
+- A passing assert should show a message.
+
+## Questions to ask, with expected answers
+
+- What makes a good test case? Expected: A case where you already know the right answer, including a boundary such as 0.
+- What does assert print when it passes? Expected: Nothing.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

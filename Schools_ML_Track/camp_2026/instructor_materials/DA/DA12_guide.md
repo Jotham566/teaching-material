@@ -1,33 +1,61 @@
-# DA12 Instructor guide
+# DA12 Instructor guide: Checkpoint one: load, summarise, chart and explain
 
-Read the matching student sheet first. Prerequisite: DA11 Charts and cautious findings.
+Private. Keep this file out of the student folder.
 
-Learning objective: Produce a reproducible sales analysis with reconciled totals, a labelled chart and cautious findings.
+**Objective.** By the end: you can read a table, check it, summarise it, chart it and explain two findings and one limit, from a restarted notebook.
 
-## Explain and demonstrate
+**Question of the day.** What do the Sunrise Shops sales tell us about the three shops?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA11 Charts that say what the numbers say.
 
-Correct worked result: 60 rows; product totals add to the overall revenue. Read the exact totals from the printed output and compare with the source rows.
+## The 180 minutes
 
-Specific repair cue: If revenue is missing, run its assignment before grouping. Use the CSV beside the notebook. A passing assert produces no output. No target prediction is required.
+| Minutes | Activity |
+|---|---|
+| 15 | recall, then read the brief together |
+| 80 | learners work and the instructor visits each of the five |
+| 15 | break away from screens |
+| 40 | learners finish, restart and run all |
+| 20 | individual check, save and submit |
+| 10 | review |
 
-## Independent task reference
+Where it overruns: Do not teach new syntax. Repair with the error cards from sessions 7 to 11.
 
-Compare totals with reference_values.json. The notebook must retain executable Python, the chart and explanations. Do not require unnecessary cleaning of the supplied clean dataset or accept a screenshot as the calculation.
+## Make: reference
 
-## Questions to ask
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+sales = pd.read_csv("sunrise_sales.csv")
+sales["line_value"] = sales["units"] * sales["unit_price_ugx"]
+rows = len(sales)
+total = sales["line_value"].sum()
+missing = int(sales.isna().sum().sum())
+duplicates = int(sales.duplicated().sum())
+names = {1: "Central Market", 2: "Campus Gate", 3: "Roadside"}
+sales["branch"] = sales["branch_id"].map(names)
+by_branch = sales.groupby("branch")["line_value"].sum().sort_values(ascending=False)
+assert by_branch.sum() == total
+plt.bar(by_branch.index, by_branch.values)
+plt.ylabel("Revenue (UGX)")
+plt.ylim(bottom=0)
+plt.show()
+# 1513 rows, 6375900 in revenue, no missing values, no duplicates. Central Market earns the most.
+```
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Evidence to collect: DA12.ipynb that reruns from a restarted kernel, with the rows, total, checks, sorted branch totals, one labelled chart, two findings and one limitation. Marks follow ASSESSMENT_AND_SHOWCASE.md.
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+## Misconceptions to listen for
+
+- A notebook that works now will work after a restart.
+- More charts show more skill.
+- A finding needs no number.
+
+## Questions to ask, with expected answers
+
+- Where does each number in your findings come from? Expected: A named output cell. If it has no cell, it does not go in the finding.
+- What can this data not tell us? Expected: Anything about real shops. It is invented, and it has no costs, so no profit.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

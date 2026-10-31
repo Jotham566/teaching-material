@@ -1,8 +1,10 @@
 # Start here for students and parents
 
-You choose one route: Machine Learning or Data Analysis. Both start from the beginning. S.4–S.6 students and vacists are welcome; you do not need coding experience or a particular subject combination.
+You choose one route: Machine Learning or Python for Data Analysis. Both start from the beginning. S.4–S.6 students and vacists are welcome; you do not need coding experience or a particular subject combination.
 
 ## Before the first class
+
+The camp is held at The National ICT Innovation Hub, Nakawa. Dates and times are confirmed with each group before the first class.
 
 Every learner must have their own laptop and bring its charger, a notebook and a pen. A phone is not sufficient. Arrange a device check before paying. Use a supported computer system and do not install software from links in messages from strangers. The instructor will help with the official tools and check that you can open the first lesson. Tell the instructor about access needs or a device problem early. You do not need a public Google, GitHub or AI account to complete these materials.
 
@@ -11,8 +13,8 @@ Every learner must have their own laptop and bring its charger, a notebook and a
 1. Download the ZIP for your chosen track. A ZIP is a compressed folder of files.
 2. On Windows, right-click it and choose Extract All. On a Mac, double-click it. Work in the extracted folder, not inside the ZIP viewer.
 3. Move the extracted folder to Documents and give it a simple name, such as HolidayCamp. Keep all supplied data files beside your lesson files.
-4. Open START_HERE.md with a text editor, or ask the instructor for the printed copy. ML01/DA01 is the first lesson; the numbers are the teaching order. Do not attempt the lessons alone in advance. Your Data Analysis track has three core classes per week. The extra foundation labs belong to the Machine Learning track only.
-5. Keep a separate folder named MyWork for exported reports and hand-in copies. Run the supplied ML notebooks beside their CSV files; if you move a notebook into MyWork, copy its data files there too. Use a nickname or organiser-issued learner code in filenames, not a university registration number. Do not put private information into sample datasets.
+4. Open START_HERE.md with a text editor, or ask the instructor for the printed copy. ML01/DA01 is the first lesson; the numbers are the teaching order. Do not attempt the lessons alone in advance. Your track has three core classes a week and no extra labs.
+5. Keep a separate folder named MyWork for exported reports and hand-in copies. Run the supplied notebooks beside their CSV files; if you move a notebook into MyWork, copy its data files there too. Use a nickname or organiser-issued learner code in filenames, not a university registration number. Do not put private information into sample datasets.
 
 ## Python and Jupyter for both tracks
 
@@ -22,17 +24,17 @@ If you see text containing braces instead of a notebook page, you opened the fil
 
 The instructor shows how to restart the kernel (the running Python process) and run all cells from top to bottom. This exposes missing steps hidden in memory. Save a fresh copy before experimenting. The .md lesson sheet repeats the task in a form you can read without running code.
 
-## Data Analysis tools
+## Your tools
 
-Your main tools are Python, pandas and matplotlib in Jupyter Notebook. The first six classes teach Python from the beginning; pandas starts in class seven. You do not need Excel or a spreadsheet subscription. A CSV is a plain-text table: in Python, pandas reads it into a DataFrame (a table object). Keep the supplied CSV beside the notebooks. Save your code and explanations in .ipynb files; a CSV holds data, not your code or charts.
+Your tools are Python, NumPy, pandas, matplotlib and seaborn, all in Jupyter Notebook. They are free. The first six classes teach Python from the beginning, pandas starts in class seven, NumPy in class 13 and seaborn in class 14. You do not need Excel, SQL or any account. A CSV is a plain-text table: pandas reads it into a DataFrame (a table object). Keep the supplied CSV files beside your notebooks. Save your code and explanations in .ipynb files, because a CSV holds data and not your code or charts.
 
-From Session 13 use DB Browser for SQLite alongside your Python notebooks. Open the application, choose Open Database and select camp_shop.sqlite. Choose Execute SQL, type the demonstrated query and click the run/play button. SQL is a different language from Python: do not paste raw SQL into a Python code cell. The DA13–DA17 notebooks contain reading and reflection prompts; run their SQL examples in DB Browser. Save your query text as a .sql file. At DA18, export the query results as CSV using the results panel’s export option; save results.csv beside your notebook. Read it with pandas and compare the labelled totals. Your instructor demonstrates the installed application’s menus before the task.
+Your data comes in two sets. camp_shop.csv is a 60-row practice shop that you can check by hand. The Sunrise Shops files are a larger invented chain of three shops: sunrise_sales.csv, sunrise_products.csv, sunrise_branches.csv, sunrise_daily_summary.csv, sunrise_products_practice.csv and the messy sunrise_sales_raw.csv. The data is invented, so it says nothing about real shops.
 
-Your final hand-in includes project.ipynb, queries.sql, cleaning_log.md, a data dictionary and report.pdf or report.docx. Keep the supplied source CSV with the project for rerunning. Your notebook contains charts and findings; no interactive dashboard or Excel workbook is required. Save five presentation slides as showcase.pptx for the final demonstration.
+Your final hand-in includes project.ipynb, cleaning_log.md, a data dictionary, report.pdf or report.docx and AI_USE_LOG.md. Keep the supplied source CSV with the project for rerunning. Your notebook contains charts and findings. No interactive dashboard or Excel workbook is required. Save five presentation slides as showcase.pptx for the final demonstration.
 
 ## How each class works
 
-First predict what a small example will do. Watch the instructor explain and demonstrate. Repeat it with guidance. Then change one input and explain the new result. Finally complete the independent task and save it. Ask whenever a word, symbol or instruction is unclear. The instructor checks each learner's work in the small group.
+Every class follows the same steps. Read the words for today. Predict what a small example will do and write your guess on paper. Run it and compare. Investigate by answering two or three questions about the output. Modify one value and explain the new result. Then do the independent Make task and save it. Each sheet ends with an error card for the two errors most likely that day and an exit ticket sentence. Ask whenever a word, symbol or instruction is unclear. The instructor checks each learner's work in the small group.
 
 Use two 45 to 60 minute practice blocks on non-class days as a starting routine. Take breaks. If stuck for 30 minutes, save the error and the question for class instead of copying an answer you cannot explain. Practice is expected; it is how the skills become usable.
 

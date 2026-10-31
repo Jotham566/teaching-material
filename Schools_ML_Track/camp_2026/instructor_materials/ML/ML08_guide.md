@@ -1,36 +1,105 @@
-# ML08 Instructor guide
+# ML08 Instructor guide: Select, filter and calculate new columns
 
-Read the matching student sheet first. Prerequisite: ML07 Tables files and importing a library.
+Private. Keep this file out of the student folder.
 
-Learning objective: Filter records, group totals and distinguish a total from an average; calculate a derived column.
+**Objective.** By the end: you can pick a column, keep rows that meet a condition, add a revenue column and total it by item.
 
-## Explain and demonstrate
+**Question of the day.** Which item earned the most money in the practice shop?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: ML07 Tables and reading a CSV file.
 
-Correct worked result: Filter keeps Pen 5 and Book 3. Group totals: Book 5, Pen 5. The added double_units column is 4, 10, 6 in row order.
+## The 180 minutes
 
-Specific repair cue: Column spelling must match exactly. Put the comparison inside the outer table brackets.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+## Block A. Select and filter
 
-print(sales[sales["units"] >= 3])
-print(sales["units"].sum())
-print(sales["units"].mean())
-# Total 10; mean 10/3, about 3.33 units per row.
+Read the practice shop and keep the large sales.
 
-## Questions to ask
+Ask for the prediction first: Predict how many of the 60 sales have 5 units or more.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+```python
+import pandas as pd
+shop = pd.read_csv("camp_shop.csv")
+units = shop["units"]
+big = shop[shop["units"] >= 5]
+print(len(big))
+print(units.sum())
+```
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+Correct result: The cell prints 30 and 277. shop["units"] selects one column. The comparison inside the outer brackets gives True or False for every row, and only the True rows stay. That filter keeps 30 sales. All 60 sales together sold 277 units.
+
+Investigate, with answers:
+
+- Is the filter deleting the other 30 rows? Answer: No. The big table is a new, smaller table. shop still has all 60 rows.
+- Why can the sum of units not tell us the money earned? Answer: The three items have different prices, so units and money are different quantities.
+
+Modify: Filter the Juice sales with 5 units or more and count them. Answer: Seven sales.
+
+```python
+juice_big = shop[(shop["item"] == "Juice") & (shop["units"] >= 5)]
+n_juice_big = len(juice_big)
+```
+
+## Block B. A revenue column and totals by item
+
+Multiply units by price on every row, then add the money for each item.
+
+Ask for the prediction first: Predict which item earns the most money. Is it the one with the most units?
+
+```python
+shop["revenue_ugx"] = shop["units"] * shop["unit_price_ugx"]
+total_revenue = shop["revenue_ugx"].sum()
+by_item = shop.groupby("item")["revenue_ugx"].sum()
+print(total_revenue)
+print(by_item)
+```
+
+Correct result: The total is 550000 shillings. Book earns 297000, Juice 150000 and Pen 103000. Pen sold the most units, 103, but Book earns the most money because each Book costs 3000. Assigning to a new column name creates the column, and the groupby line adds the revenue of each item separately.
+
+Investigate, with answers:
+
+- Pen sold the most units. Why is it last for revenue? Answer: A pen costs only UGX 1000, so its units bring in little money.
+- Do the three item totals add up to the overall total? Answer: Yes: 297000 + 150000 + 103000 is 550000. If they did not, something would be wrong.
+
+Modify: Group the units column by item instead and print the totals. Answer: Book 99, Juice 75, Pen 103.
+
+```python
+units_by_item = shop.groupby("item")["units"].sum()
+```
+
+## Make: reference
+
+```python
+import pandas as pd
+shop = pd.read_csv("camp_shop.csv")
+over3 = shop[shop["units"] >= 3]
+total_units = over3["units"].sum()
+mean_units = over3["units"].mean()
+print(len(over3), total_units, mean_units)
+# 42 rows, 247 units in all, about 5.88 units per sale. The total is for all the rows together and the mean is for one row.
+```
+
+Evidence to collect: ML08.ipynb with 42 rows, total 247, mean about 5.88, and a sentence on the difference.
+
+## Misconceptions to listen for
+
+- Filtering removes rows from the file.
+- The item with the most units earns the most money.
+- A mean is the same as a total.
+
+## Questions to ask, with expected answers
+
+- Why do we check that the grouped totals add to the overall total? Expected: It catches rows lost or counted twice.
+- Can this table tell us profit? Expected: No. It has no costs.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

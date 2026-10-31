@@ -9,6 +9,10 @@ root=Path(__file__).resolve().parent.parent
 layout=json.loads((root/'source/layout.json').read_text());W,H=layout['width'],layout['height']
 fonts=Path('/System/Library/Fonts/Supplemental')
 fontmap={('Arial',False):'Arial.ttf',('Arial',True):'Arial Bold.ttf',('Arial Black',False):'Arial Black.ttf',('Arial Black',True):'Arial Black.ttf',('Arial Narrow',False):'Arial Narrow.ttf',('Arial Narrow',True):'Arial Narrow Bold.ttf',('Caveat',True):root/'assets/Caveat.ttf'}
+if not (fonts/'Arial.ttf').exists():
+ # No Mac fonts here (for example on Linux): Liberation Sans has Arial's metrics, Liberation Sans Narrow matches Arial Narrow, and Lato Black stands in for Arial Black.
+ lib=Path('/usr/share/fonts/truetype');fonts=lib
+ fontmap.update({('Arial',False):'liberation2/LiberationSans-Regular.ttf',('Arial',True):'liberation2/LiberationSans-Bold.ttf',('Arial Black',False):'lato/Lato-Black.ttf',('Arial Black',True):'lato/Lato-Black.ttf',('Arial Narrow',False):'liberation/LiberationSansNarrow-Regular.ttf',('Arial Narrow',True):'liberation/LiberationSansNarrow-Bold.ttf'})
 for i,(key,file) in enumerate(fontmap.items()):
  name='Font'+str(i);pdfmetrics.registerFont(TTFont(name,str(file if isinstance(file,Path) else fonts/file)));fontmap[key]=name
 pw,ph=595.2756,841.8898;scale=ph/H;offset=(pw-W*scale)/2

@@ -6,15 +6,15 @@ For S.4–S.6 students and vacists. No coding experience needed. Each learner mu
 ONLY 15 PLACES • MAXIMUM 5 LEARNERS PER GROUP
 Choose one eight-week track:
 
-DATA ANALYSIS
-Turn raw data into clear findings. Learn to clean data, compare groups, explain charts, query databases and turn evidence into findings.
-Tools: Python, Jupyter, pandas, matplotlib and SQL.
-Your individual project: a Python analysis notebook, charts, saved SQL queries and a short report. Example: identify the best-selling products in sample sales data and explain the evidence.
+PYTHON FOR DATA ANALYSIS
+Turn raw data into clear findings. Learn to clean data, compare groups, explore patterns with charts, merge tables and turn evidence into findings.
+Tools: Python, Jupyter, NumPy, pandas, matplotlib and seaborn.
+Your individual project: a Python analysis notebook, charts, a cleaning log and a short report. Example: identify the best-selling products in sample sales data and explain the evidence.
 24 classes: three per week; other days for project practice.
 
 MACHINE LEARNING
 Build prediction models and learn how to test whether they work. Learn Python, explore data, compare models with a baseline and explain prediction errors.
-Tools: Python, Jupyter, pandas and scikit-learn.
+Tools: Python, Jupyter, NumPy, pandas and scikit-learn.
 Your individual project: a Python model notebook, baseline comparison and test results. Example: estimate rent from sample housing data.
 24 classes plus four foundation labs: three classes weekly, with an extra lab in each of weeks 1–4. Other days for practice.
 
@@ -32,13 +32,14 @@ Master’s, Yamaguchi University, Japan.
 Incoming PhD student in Applied Informatics, Osaka Metropolitan University, Japan (April 2027).
 https://www.linkedin.com/in/jothammartinwambi/
 
-WHOLE PROGRAMME FEES PER LEARNER
-Small group of exactly five: UGX 800,000 each.
-Private/semi-private, one or two learners: UGX 1,000,000 each.
-Groups of three or four: request a quote.
+WHOLE PROGRAMME FEE PER LEARNER
+UGX 1,000,000 per learner, the same for groups of 1 to 5.
+
+VENUE
+The National ICT Innovation Hub, Nakawa. Dates and times are confirmed with each group.
 
 RESERVE YOUR PLACE
 WhatsApp/Call: +256 750 990 718
 Start a WhatsApp enquiry: https://wa.me/256750990718
 Email: jothammartin.wambi@gmail.com
-Send the learner’s level and preferred track. Confirm dates, venue and booking terms before payment.
+Send the learner’s level and preferred track. Confirm dates and booking terms before payment.

@@ -1,36 +1,104 @@
-# DA07 Instructor guide
+# DA07 Instructor guide: A table in Python: DataFrame, columns and reading a CSV
 
-Read the matching student sheet first. Prerequisite: DA06 Reusable functions and a first check.
+Private. Keep this file out of the student folder.
 
-Learning objective: Build a small DataFrame, identify rows/columns and round-trip it through CSV.
+**Objective.** By the end: you can build a small table, read a CSV file into one, and say how many rows and columns it has and what each column holds.
 
-## Explain and demonstrate
+**Question of the day.** What is in each table we have been given?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA06 Functions and checks that fail loudly.
 
-Correct worked result: Three rows and two columns; shape is (3, 2). my_sales.csv contains headers and three records.
+## The 180 minutes
 
-Specific repair cue: FileNotFoundError means the file is not at that path. Look in the notebook folder. ModuleNotFoundError requires the prepared environment; do not install random packages.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+Where it overruns: Six words and two blocks. If Block B runs long, shorten the products table and keep the shop table.
 
+## Block A. Build a tiny table
+
+pandas is a library for tables. import pandas as pd loads it and gives it the short name pd. A dot after a name reaches something that belongs to it: sales.shape asks the table for its size. A shape of (3, 2) means three rows and two columns.
+
+Ask for the prediction first: Predict the shape of the table before you run the cell.
+
+```python
 import pandas as pd
-prices = pd.DataFrame({"item": ["Book", "Pen"], "price_ugx": [3000, 1000]})
-prices.to_csv("prices.csv", index=False)
-print(pd.read_csv("prices.csv"))
+sales = pd.DataFrame({"item": ["Book", "Pen", "Book"], "units": [2, 5, 3]})
+print(sales)
+print(sales.shape)
+print(list(sales.columns))
+```
 
-## Questions to ask
+Correct result: The cell prints a table of three rows and two columns, then (3, 2), then ['item', 'units']. The first column holds the item sold and the second holds the units.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Investigate, with answers:
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+- Which number in (3, 2) counts rows? Answer: The first one. The shape is rows first and then columns.
+- Where do the column headers come from? Answer: From the keys of the dictionary we gave pandas.
+
+Modify: Add a third column called price_ugx with the values 3000, 1000 and 3000, then print the shape. Answer: The shape becomes (3, 3).
+
+```python
+sales["price_ugx"] = [3000, 1000, 3000]
+```
+
+## Block B. Read a CSV file
+
+pd.read_csv reads a CSV file and returns a DataFrame. The path is where the file is. Here the file sits beside the notebook, so its name is enough. dtypes lists the type of each column.
+
+Ask for the prediction first: Predict how many rows and columns camp_shop.csv has, and which columns hold text.
+
+```python
+shop = pd.read_csv("camp_shop.csv")
+print(shop.shape)
+print(shop.dtypes)
+products = pd.read_csv("sunrise_products.csv")
+print(products.shape)
+print(products.head(3))
+```
+
+Correct result: The shop table has shape (60, 5). date and item hold text. The other three columns are whole numbers. The Sunrise products table has shape (15, 5): fifteen products, each with an id, a name, a category and two prices.
+
+Investigate, with answers:
+
+- Which columns would you use to work out revenue? Answer: units and unit_price_ugx. Revenue is units times unit price.
+- Why is date a text column here? Answer: pandas reads it as text until we ask it to treat it as a date, which is a later session.
+
+Modify: Show the last three rows of the shop table with tail(3). Answer: Sales 58, 59 and 60.
+
+```python
+last3 = shop.tail(3)
+```
+
+## Make: reference
+
+```python
+import pandas as pd
+sunrise = pd.read_csv("sunrise_sales.csv")
+print(sunrise.shape)
+print(list(sunrise.columns))
+# 1513 rows and 6 columns. sale_date holds the date and unit_price_ugx the price of one unit.
+```
+
+Evidence to collect: DA07.ipynb with shape (1513, 6), the six column names and two sentences naming the date and price columns.
+
+## Misconceptions to listen for
+
+- A CSV file is an Excel file.
+- Reading a file changes the file.
+- The shape lists columns first.
+
+## Questions to ask, with expected answers
+
+- What is the difference between a row and a column? Expected: A row is one record. A column is one kind of information about every record.
+- What does read_csv give back? Expected: A DataFrame.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

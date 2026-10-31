@@ -1,33 +1,58 @@
-# DA21 Instructor guide
+# DA21 Instructor guide: Build and test the chart report
 
-Read the matching student sheet first. Prerequisite: DA20 Build a reliable analysis.
+Private. Keep this file out of the student folder.
 
-Learning objective: Produce a readable chart report and critique a separate coding-assistant hint with tests.
+**Objective.** By the end: you can build a chart report that a stranger reads in 30 seconds, and you can critique a coding assistant's hint with a test.
 
-## Explain and demonstrate
+**Question of the day.** Does my report answer my questions without a verbal tour?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA20 Build a reliable analysis.
 
-Correct worked result: A readable chart report whose measures match the notebook calculations.
+## The 180 minutes
 
-Specific repair cue: If the export is tiny, reduce chart count or spread supporting details onto the report; do not shrink all text.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+Where it overruns: The 20-minute critique lab sits inside the Make block. Start it only for learners who passed the individual readiness check.
 
-Each headline value matches a calculation. No chart hides labels or implies causation from correlation.
+## Make: reference
 
-## Questions to ask
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+sales = pd.read_csv("sunrise_sales.csv")
+sales["line_value"] = sales["units"] * sales["unit_price_ugx"]
+by_branch = sales.groupby("branch_id")["line_value"].sum()
+plt.bar(by_branch.index.astype(str), by_branch.values)
+plt.ylabel("Revenue (UGX)")
+plt.title("Revenue by branch, Sunrise Shops (invented data)")
+plt.ylim(bottom=0)
+plt.savefig("revenue.png", bbox_inches="tight")
+plt.show()
+with open("revenue.png", "rb") as f:
+    header = f.read(4)
+# savefig writes the image and bbox_inches="tight" keeps the labels in.
+```
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Evidence to collect: A chart report whose headline numbers match the notebook, a peer note on where they hesitated, and AI_USE_LOG.md with the tested critique.
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+## Misconceptions to listen for
+
+- More charts make a stronger report.
+- A plausible AI answer is a correct one.
+- The report is allowed to need a spoken explanation.
+
+## Questions to ask, with expected answers
+
+- Where did your peer hesitate, and what did you change? Expected: A real hesitation and a concrete change to a heading or label.
+- How did you test the assistant's advice? Expected: Predict, run, compare with the known answer, and keep the failing case.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

@@ -1,0 +1,16 @@
+product_id,name,category,cost_ugx,price_ugx
+1,Exercise Book,Stationery,2000,3000
+2,Pen,Stationery,600,1000
+3,Pencil,Stationery,300,500
+4,Ruler,Stationery,900,1500
+5,Geometry Set,Stationery,4200,6000
+6,Juice,Drinks,1300,2000
+7,Bottled Water,Drinks,600,1000
+8,Soda,Drinks,1000,1500
+9,Milk Packet,Drinks,900,1200
+10,Biscuits,Snacks,700,1000
+11,Chapati,Snacks,300,500
+12,Groundnuts,Snacks,500,800
+13,Soap Bar,Household,1800,2500
+14,Sugar 1kg,Household,3800,4500
+15,Candle,Household,400,700

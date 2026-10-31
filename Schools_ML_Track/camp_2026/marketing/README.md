@@ -16,3 +16,7 @@ Each design directory contains its assets, editable output and build source. Use
 The current sharing materials are linked above. Superseded flyer revisions through v12 and the earlier parent carousel have been removed from the checkout; Git history retains them. Their pricing, audience wording and QR destinations may be obsolete. Build new posts from the current source and assets. Duplicate ZIP handoff exports are removed where their complete contents already exist unpacked; retain an archive if it holds unique assets or licence text.
 
 `registration_form_review/` records earlier checks of the live form. Each retained current design uses its own assets and source. Temporary `.build/` and `.chart-data-*/` folders can be regenerated and should not be committed.
+
+## Revision 2 note (31 October 2026)
+
+The camp is now Machine Learning and Python for Data Analysis, with no SQL. Updated and re-rendered: the two track flyers (PDF and PNG), the parent and student one-pager (PDF, PNG, DOCX) and WhatsApp_Enquiry_Copy.txt. `editable_flyer_v13` (the detailed registration flyer) was updated the same day: SQL removed, charts icon, claims the course does not teach removed. Still to update: the track name "Data Analysis" in the social packs and carousels. Check each before sharing.

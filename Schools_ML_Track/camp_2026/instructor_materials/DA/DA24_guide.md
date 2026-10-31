@@ -1,33 +1,43 @@
-# DA24 Instructor guide
+# DA24 Instructor guide: Parent showcase and next steps
 
-Read the matching student sheet first. Prerequisite: DA23 Rehearse a five minute explanation.
+Private. Keep this file out of the student folder.
 
-Learning objective: Demonstrate, explain and modify a small calculation or query without AI assistance.
+**Objective.** By the end: you can present your project, answer questions, and change a small part of it live without AI assistance.
 
-## Explain and demonstrate
+**Question of the day.** What can I show and explain, and what will I learn next?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA23 Explain it to a parent.
 
-Correct worked result: Individual demonstration, feedback and recorded completion decision.
+## The 180 minutes
 
-Specific repair cue: Use screenshot backup if equipment fails. Arrange a brief rerun for any technical evidence not demonstrated.
+| Minutes | Activity |
+|---|---|
+| 30 | setup, rehearsal and backups |
+| 10 | welcome for parents and guardians |
+| 40 | presentations and questions |
+| 10 | break |
+| 20 | feedback, certificates and photographs only where consent exists |
+| 70 | reflection, portfolio copy and next steps |
 
-## Independent task reference
+Where it overruns: A combined event for several groups needs a separate, longer slot than this plan allows.
 
-Instructor uses the published rubric and distinguishes completion evidence from attendance.
+## Make: reference
 
-## Questions to ask
+Mark with PROJECT_RUBRIC.md and the demonstration criteria in ASSESSMENT_AND_SHOWCASE.md. Typical instructor-chosen changes: filter one branch, change a threshold from 5 units to 10, add a label to a chart, or rerun a calculation with a different column. The certificate records the completed track and the assessed evidence under the published completion policy. The programme issues the certificate. No university or vendor qualification is involved.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Evidence to collect: A completed demonstration, one unaided change, feedback and a recorded completion decision. Attendance is recorded separately from competence.
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+## Misconceptions to listen for
+
+- The showcase is a performance.
+- Help must be hidden.
+- A certificate certifies a profession.
+
+## Questions to ask, with expected answers
+
+- What did you change in the live task, and how did you check it? Expected: A concrete change and a check against a known value.
+- What will you learn next? Expected: A specific skill with a first step.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

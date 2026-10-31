@@ -4,3 +4,7 @@ scikit-learn==1.9.1
 matplotlib==3.11.2
 notebook==7.6.3
 ipykernel==7.3.0
+numpy
+seaborn
+# numpy and seaborn are unpinned until programme/preflight_stack.py passes on a Windows laptop and a Mac with Python 3.12;
+# then run pip freeze and pin them here.

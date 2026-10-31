@@ -20,19 +20,19 @@ A justified “no changes needed” cleaning log can earn full marks. Do not rew
 
 ML, four checks at 0–2 each: training/validation/test roles and no leakage; baseline fitted only on training data; candidate model fitted on training data and chosen using validation evidence; final metric appropriate to the target and computed on the reserved final test. A model can earn full marks even if it does not beat the baseline, when the method and interpretation are correct.
 
-DA, four checks at 0–2 each: Python calculations answer the stated questions; saved SQL filters/groups answer matching questions; any required join uses the stated keys without inflating rows; charts accurately display the calculated results with labels and units. Restrict requirements to the taught methods; no interactive dashboard or untaught library is required.
+DA, four checks at 0–2 each: Python calculations answer the stated questions; each headline total is confirmed by a second route (for example pandas against NumPy, or a merged total against the unmerged one); any required merge uses the stated keys, a unique-key check and an unchanged or explained row count; charts accurately display the calculated results with labels and units. Restrict requirements to the taught methods; no interactive dashboard or untaught library is required.
 
 ## Checks and honest limitations — 6 points
 
 ML: one independently checked prediction/error (0–2); fair baseline/model comparison and inspected errors (0–2); a clear limitation of the data/model and cautious conclusion (0–2).
 
-DA: reconciled row counts and totals (0–2); labelled agreement between SQL and pandas results, or a documented repair of a discrepancy (0–2); a supported finding and clear limitation without unsupported causal claims (0–2).
+DA: reconciled row counts and totals (0–2); agreement between two routes to the same number, or a documented and named residual difference (0–2); a supported finding and clear limitation without unsupported causal claims (0–2).
 
-Use instructor_materials/reference_values.json for the supplied sales data. Do not transfer those sales totals to another approved dataset. Fixed worked examples check mechanics, not generalisation or understanding.
+Use instructor_materials/reference_values.json for the supplied camp_shop and Sunrise Shops data. Do not transfer those sales totals to another approved dataset. Fixed worked examples check mechanics, not generalisation or understanding.
 
 ## Complete handover — 6 points
 
-- Required files open and include executable notebook, report and the taught SQL evidence for DA: 0–2.
+- Required files open and include executable notebook, report and cleaning log for DA: 0–2.
 - The report ties the question to traceable results and a cautious conclusion: 0–2.
 - Data dictionary/source instructions and assistance declaration are complete: 0–2.
 

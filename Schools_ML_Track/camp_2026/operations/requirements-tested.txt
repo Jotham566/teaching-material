@@ -1,6 +1,0 @@
-# Tested with Python 3.12 on macOS arm64; preflight on each learner device.
-pandas==3.0.6
-scikit-learn==1.9.1
-matplotlib==3.11.2
-notebook==7.6.3
-ipykernel==7.3.0

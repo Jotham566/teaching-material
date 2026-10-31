@@ -1,51 +1,53 @@
-# December holiday camp materials
+# Holiday Data and AI Camp
 
-Two beginner tracks for S.4–S.6 students and vacists. Each is eight weeks with three core classes per week. ML adds a fourth-day foundation lab in weeks 1–4 (28 meetings); DA has 24 meetings. Every student must have their own laptop. Working programme name: Holiday Data and AI Camp. The proposed offering is one track per learner, with three groups of five learners total.
+Two beginner tracks for S.4 to S.6 students and school leavers: **Machine Learning** and **Python for Data Analysis**. Eight weeks, three core sessions a week, 24 core sessions each. Machine Learning adds four foundation labs on a fourth day in weeks 1 to 4 and an optional extension. Every learner needs their own laptop. SQL is taught in the professional courses and is not part of this camp. Rebuilt on 31 October 2026 (revision 2); the reasons and evidence are in [the restructuring proposal](../docs/Camp_Restructuring_Proposal.docx).
 
-## Marketing files to review
+## Where to find things
 
-- [Parent and student one pager PDF](marketing/Parent_Student_One_Pager.pdf)
-- [Editable one pager DOCX](marketing/Parent_Student_One_Pager.docx)
-- [Machine Learning flyer PDF](marketing/Machine_Learning_Flyer.pdf) and [WhatsApp image](marketing/Machine_Learning_Flyer.png)
-- [Data Analysis flyer PDF](marketing/Data_Analysis_Flyer.pdf) and [WhatsApp image](marketing/Data_Analysis_Flyer.png)
+| I want to | Go to |
+|---|---|
+| Teach a session | [instructor_materials/](instructor_materials/README.md): one guide per session with the 180-minute clock, answers, misconceptions and questions to ask. Keep it private. |
+| Hand out the course | [student_packs/](student_packs/README.md): one ZIP per track, ready to share. |
+| See what each session teaches | [curriculum/](curriculum/README.md): the 24-session curriculum and eight-week plan for each track, glossaries and the foundation labs. |
+| Check a rule (AI use, marking, completion, what to tell students) | [handbook/](handbook/README.md) |
+| Prepare laptops and the room, or see the organiser's decisions | [programme/](programme/README.md): setup, preflight script, decisions, benchmarks. |
+| Find or rebuild a dataset | [data/](data/README.md) |
+| Edit a lesson, rebuild or verify the pack | [build/](build/README.md) |
+| See the student sheets and notebooks | [student_materials/](student_materials/README.md) (the same files are inside the ZIPs) |
+| Project a session | `slides/DA/` and `slides/ML/`: 53 KLAi-branded decks (one per session, lab and the extension) with a spoken script in the speaker notes. Instructor only, not in the student ZIPs. Install the Lato fonts from `brand/fonts/` on the teaching laptop first. |
+| Brand files (logos, fonts, colours) | `brand/` |
+| Send parents a short outline | `marketing/parent_outlines/KLAi_Camp_Parent_Outline_DA.pdf` and `_ML.pdf` (2 pages each, fee and venue included) |
+| Teach from a printed guide | `instructor_materials/PDF/Instructor_Guide_DA.pdf` and `_ML.pdf` |
+| Share flyers and posts | [marketing/](marketing/README.md) |
 
-The enquiry materials include main tutor Jotham Martin Wambi’s profile, phone, email and LinkedIn. Before advertising confirmed bookings, resolve the dates, venue, session lengths, booking terms and three/four-person price. [Programme decisions](operations/PROGRAMME_DECISIONS.md) distinguishes supplied details from working choices. December 2026 plus eight teaching weeks normally extends into January 2027.
+## One session in a sentence
 
-## Teaching and student packs
+One question for the day, at most six new words, two 50-minute blocks (predict, run, investigate, modify), a Make task, an error card and an exit ticket. Default clock: 10 recall, 50 block A, 15 break, 50 block B, 40 make, 15 exit.
 
-- [Class-by-class delivery plan](teaching/CLASS_BY_CLASS_PLAN.md): objectives for all 48 classes, weekly practice and the ML lab sequence.
-- [Final project rubric](teaching/PROJECT_RUBRIC.md): scoring anchors for the project and unaided demonstration.
-- [Responsible AI policy](teaching/AI_USE_POLICY.md): independent foundations, limited supervised exposure in weeks 7–8 and unaided final assessment.
-- [Coding-assistant critique](teaching/AI_CODING_ASSISTANTS_LAB.md): guided Session 21 practice with tests and disclosure.
-- [Optional modern-AI orientation](teaching/MODERN_AI_ORIENTATION.md): 20 minutes inside Session 23, with an offline demonstration and lecturer prompts.
-- [Foundation lab sequence](teaching/FOUNDATION_LABS.md): required ML bridge before modelling.
-- [Curriculum](teaching/CURRICULUM.md): both 24-session pathways, definitions and practical outcomes.
-- [Student start guide](teaching/START_HERE.md): extracting files, opening tools, saving and submitting work.
-- [Assessment and showcase](teaching/ASSESSMENT_AND_SHOWCASE.md): observable evidence and proposed completion rules.
-- [Machine Learning student ZIP](ML_Beginner_Student_Pack.zip): 24 core lesson sheets/notebooks plus four foundation lab sheets/notebooks, practice data and start instructions.
-- [Data Analysis student ZIP](DA_Beginner_Student_Pack.zip): 24 lesson sheets and notebooks, Python/pandas practice CSV, SQLite database and five worked SQL files.
-- [Instructor material](instructor_materials/): 48 core session guides plus four ML foundation lab guides, task references, exact data totals, reference SQL and ML checkpoint code. Keep this folder private.
-- [Instructor setup](operations/INSTRUCTOR_SETUP.md): prepare and rehearse the tools before class.
+## Before the first class
 
-The student ZIP is distributed before the first class once device instructions are agreed. Start at ML01 or DA01; the instructor teaches each example in order. Learners complete the matching task in class and practise it afterward. Do not tell learners to complete all files independently before class. Empty task cells are deliberate spaces for their work; worked examples and expected results are included.
+Run [programme/preflight_stack.py](programme/preflight_stack.py) on every laptop. Pilot one beginner through ML01, ML05, ML14, DA02, DA09, DA14 and DA17. Confirm the dates, venue, fees and booking terms in [programme/PROGRAMME_DECISIONS.md](programme/PROGRAMME_DECISIONS.md).
 
-These teaching materials are lesson sheets and notebooks, not a completed PowerPoint slide course. They need a beginner pilot and actual-device preflight. A school submission platform, online registration/payment flow, full automated grading service and issued certificates are not deployed by this pack.
+Students work from PDF session sheets and notebooks; the slides are the instructor's projection aid. A school submission platform, online registration and payment, automatic grading and issued certificates are not deployed by this pack. No beginner pilot has been run.
 
-## Review and verification
+## Verify and rebuild
 
-[Review rationale and sources](operations/REVIEW_AND_BENCHMARKS.md) records the corrections and external benchmarks without implying affiliation. The teaching data is supplied and synthetic; no learner survey or public profile is required. Privacy and equipment arrangements are explicit launch decisions.
-
-`review/2026-09-26/schools-camp/verification.json` records example execution and notebook validation. Final PDF and DOCX layouts have been rendered and visually inspected. These checks do not establish beginner comprehension or compatibility with every laptop.
-
-## Rebuild
-
-Run from the repository root using a Python environment with the required libraries. Artifact creation uses the workspace's bundled Python with python-docx/reportlab; worked-code verification uses the tested teaching environment.
+From the repository root:
 
 ```
-python scripts/build_schools_camp.py
-python scripts/build_schools_camp_marketing.py
-python scripts/verify_schools_camp.py
-python scripts/package_schools_camp.py
+python Schools_ML_Track/camp_2026/build/build_camp.py
+python Schools_ML_Track/camp_2026/build/verify_camp.py
+python Schools_ML_Track/camp_2026/build/package_camp.py
 ```
 
-After editing, render and inspect all marketing pages again and regenerate the two final PNG flyers from the current PDFs. `scripts/schools_camp_content.py` supplies lesson content and four-phase roadmaps. The eight-week comparison in the marketing builder must remain aligned with it. Do not use the old ML-only syllabus generators to publish this new two-track offer.
+The verifier runs every worked example, Modify answer, Make reference and lab against the supplied data and writes `review/2026-10-31/schools-camp/verification.json`.
+
+## Rebuild the slides
+
+```
+cd Schools_ML_Track/camp_2026/build/slides
+PPTX_SKILL_SCRIPTS=<path to pptx skill scripts> python3 build_slides.py          # all decks (FORCE_FIGS=1 redraws every figure)
+python3 lint_slides.py
+```
+
+Figures are cached in `figures/` and specs in `build/slides/_specs`; both can be regenerated.

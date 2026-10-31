@@ -105,3 +105,5 @@ IUEA_Teaching_Plan/test_operations/private/
 
 # Keep the small written release status linked by README; render evidence stays local.
 !review/2026-09-14/REWORK_STATUS.md
+Schools_ML_Track/camp_2026/figures/
+Schools_ML_Track/camp_2026/build/slides/_specs/

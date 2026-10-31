@@ -1,33 +1,43 @@
-# DA23 Instructor guide
+# DA23 Instructor guide: Explain it to a parent
 
-Read the matching student sheet first. Prerequisite: DA22 Write the report and package the evidence.
+Private. Keep this file out of the student folder.
 
-Learning objective: Explain a chart, its calculation and a limitation to a nontechnical listener in five minutes.
+**Objective.** By the end: you can explain your project to a listener who has never seen code, in five minutes, with a chart and a limit.
 
-## Explain and demonstrate
+**Question of the day.** Can a parent say what I found, how I know, and what the data cannot tell us?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: DA22 Report and handover.
 
-Correct worked result: A five-minute presentation, screenshot backup and peer feedback.
+## The 180 minutes
 
-Specific repair cue: If the demo depends on internet, save a local copy and screenshots before showcase day.
+| Minutes | Activity |
+|---|---|
+| 15 | recall, then the five-slide plan |
+| 45 | build the slides |
+| 15 | break away from screens |
+| 60 | timed rehearsals in turn with peer feedback |
+| 30 | repair, backup and the optional modern AI orientation |
+| 15 | exit ticket, then save |
 
-## Independent task reference
+Where it overruns: Five learners at five minutes each plus questions fill the rehearsal block. Rotate the listener role.
 
-Student points to the Python calculation or SQL query and the relevant source records, rather than only reading the final number.
+## Make: reference
 
-## Questions to ask
+Five slides, one idea each, no code on screen unless it answers a question. A listener can say what was compared, the unit, the biggest difference and the limitation. The speaker can point to the notebook cell behind each number. A screenshot backup exists.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+Evidence to collect: showcase.pptx and a PDF backup, a timed rehearsal and a feedback note from a peer.
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+## Misconceptions to listen for
+
+- A good talk lists the libraries used.
+- More slides mean a stronger talk.
+- A live demonstration must always run.
+
+## Questions to ask, with expected answers
+
+- What would a parent say your project found? Expected: A plain sentence with one number and one comparison.
+- What is your backup if the laptop fails? Expected: A PDF and screenshots, and a spoken explanation.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

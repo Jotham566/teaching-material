@@ -1,33 +1,106 @@
-# ML10 Instructor guide
+# ML10 Instructor guide: Cleaning without hiding evidence
 
-Read the matching student sheet first. Prerequisite: ML09 Mean median and describing variation.
+Private. Keep this file out of the student folder.
 
-Learning objective: Identify missing data and a known accidental duplicate while preserving raw data and a cleaning log.
+**Objective.** By the end: you can count missing values and duplicates, remove an exact duplicate on a copy, and save a cleaning log.
 
-## Explain and demonstrate
+**Question of the day.** What is wrong with this table, and what did I change?
 
-Use the student definition, then type or perform the worked example slowly. Ask learners to predict the result before you run it. Explain punctuation and units aloud. Do not add a new library or formula unless its purpose and inputs are demonstrated. Ask each of the five students to change one value and explain what changed.
+Prerequisite: ML09 Mean, median, range and proportions.
 
-Correct worked result: Two missing price cells in raw; three rows after known accidental duplicate removed; mean of observed prices is 2000.
+## The 180 minutes
 
-Specific repair cue: Use a copy before editing. If duplicate removal erases legitimate events, restore raw and use a true record ID.
+| Minutes | Activity |
+|---|---|
+| 10 | Recall: retrieve yesterday, three questions on paper |
+| 50 | Block A: predict, run, investigate, modify |
+| 15 | Break away from screens |
+| 50 | Block B: predict, run, investigate, modify |
+| 40 | Make: the independent task and the project journal |
+| 15 | Exit ticket, save, and an individual check with each learner |
 
-## Independent task reference
+## Block A. Count the problems
 
-Keep raw unchanged. clean has IDs 1,2,3. Missing price means unknown, not free. No imputation is justified by this example alone.
+A tiny table has two sets of trouble. Count them before you change anything.
 
-## Questions to ask
+Ask for the prediction first: Predict how many missing prices and how many duplicate rows the raw table has.
 
-- What information goes in and what should come out of this particular example?
-- Which result would convince you the task is correct?
-- What does the example not tell us?
+```python
+import pandas as pd
+raw = pd.DataFrame({"id": [1, 2, 2, 3], "price": [1000, None, None, 3000]})
+missing = raw["price"].isna().sum()
+dupes = raw.duplicated().sum()
+clean = raw.drop_duplicates().copy()
+print(missing, dupes, len(clean))
+print(clean["price"].mean())
+```
 
-Use the task reference to evaluate their reasoning. If a learner cannot explain the basic operation, repeat the tiny example with different values before assigning the main task. For students who finish early, ask for an edge case or a limitation; do not introduce next week's syntax to the whole group.
+Correct result: The cell prints 2, 1 and 3, then 2000.0. isna marks each blank as True and sum counts them. duplicated marks the repeated row and drop_duplicates removes it. copy makes a separate table, so raw stays unchanged. The mean of 2000.0 uses the two prices that exist and ignores the missing one.
+
+Investigate, with answers:
+
+- Why do we work on a copy? Answer: The raw table is the evidence. If a change is wrong we can start again from it.
+- Why not replace the missing price with 0? Answer: Zero means a free item. A missing price is unknown, and zero would pull the mean down.
+
+Modify: Print how many prices are still missing in clean. Answer: One price is still missing.
+
+```python
+still_missing = clean["price"].isna().sum()
+```
+
+## Block B. Save a cleaning log
+
+Write down what you found as a small table and save it as a file.
+
+Ask for the prediction first: Predict how many rows and columns the saved log has after you read it back.
+
+```python
+log = pd.DataFrame({"step": ["raw rows", "duplicate removed", "price still missing"], "count": [4, 1, 1]})
+log.to_csv("cleaning_log.csv", index=False)
+log_back = pd.read_csv("cleaning_log.csv")
+print(log_back)
+print(log_back.shape)
+```
+
+Correct result: The log has 3 rows and 2 columns. to_csv writes the table into cleaning_log.csv. index=False stops pandas adding a column of row numbers. Reading the file back proves that it saved. The log lists the raw row count and each change, so a reader can repeat the cleaning.
+
+Investigate, with answers:
+
+- What would the log look like with index=False left out? Answer: The file would carry an extra unnamed column of row numbers.
+- Who is the cleaning log for? Answer: Anyone who needs to check or repeat your work, including you next week.
+
+Modify: Add the step final rows with a count of 3 and save again. Answer: The log has 4 rows.
+
+```python
+log = pd.DataFrame({"step": ["raw rows", "duplicate removed", "price still missing", "final rows"], "count": [4, 1, 1, 3]})
+log.to_csv("cleaning_log.csv", index=False)
+log_back = pd.read_csv("cleaning_log.csv")
+```
+
+## Make: reference
+
+```python
+import pandas as pd
+my_log = pd.DataFrame({"step": ["raw rows", "duplicate removed", "price missing"], "count": [4, 1, 1]})
+my_log.to_csv("my_log.csv", index=False)
+back = pd.read_csv("my_log.csv")
+print(back)
+# Zero would say the item was free. A missing price means the price is unknown.
+```
+
+Evidence to collect: ML10.ipynb with the counts 2 missing, 1 duplicate, the saved log, and the explanation about zero.
+
+## Misconceptions to listen for
+
+- Missing values should be filled with 0.
+- Two equal rows are always a mistake.
+- Cleaning means changing the original file.
+
+## Questions to ask, with expected answers
+
+- Why can two equal rows be genuine? Expected: Two customers can buy the same item at the same price on the same day.
+- What is the first thing to do with a messy file? Expected: Keep the raw copy, then count the problems.
 
 ## Evidence and feedback
 
-Record complete, needs repair or absent for each learner. Give one concrete repair action. During a five-student class allocate a short individual check to every learner, not only volunteers. Keep instructor answers private. For SQL and numerical work use reference_values.json and the reference scripts. Short explanations and live demonstrations still require instructor judgement; do not describe them as fully auto-graded.
-
-## Suggested three hour pacing
-
-15 minutes retrieval and setup; 20 minutes first explanation; 25 minutes guided attempt; 20 minutes individual variation; 15 minutes away from screens; 20 minutes second demonstration or repair; 40 minutes independent task; 15 minutes feedback and saving; 10 minutes exit check. Total 180 minutes. If an idea takes longer, reduce the optional variation rather than skipping the explanation. Sessions 12 and 18 use most practice time for the checkpoint; sessions 19 to 24 use it for project mentoring and rehearsal.
+Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.

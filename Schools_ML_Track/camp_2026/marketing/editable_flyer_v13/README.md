@@ -13,6 +13,8 @@ Canvas: 1024 × 1664. PNG: 2048 × 3328. The fee is UGX 1,000,000 per learner fo
 
 Use PowerPoint’s Selection Pane to edit named text, panels and independent logo images. Fonts: Arial, Arial Black and Arial Narrow. Export fresh PNG/PDF files after editing; existing exports do not update automatically.
 
+Revision 2 (31 October 2026) removed SQL from the Data Analysis column. See source/SOURCES.md. Earlier exports are kept in output/previous/.
+
 Source-based edits use source/layout.json and the included exporters with the Codex artifact runtime and ReportLab. Source assets include archived unused images from earlier versions, but the portrait is not embedded in any current flyer export. Earlier editions remain available separately. See source/SOURCES.md and asset license notices.
 
 ## Registration
