@@ -104,3 +104,6 @@ practical details for the school to confirm: dates, days, times, venue, fee,
 instructor, contact and group size. They are blank rather than guessed,
 because a syllabus that goes home with a wrong date is worse than one with a
 gap.
+
+
+The syllabus, its PDF and its `figs/` folder were moved here from the track root on 31 October 2026. Their generators (scripts/build_schools_syllabus_docx.py, make_schools_figures.py, verify_schools_track.py) now point at this folder.

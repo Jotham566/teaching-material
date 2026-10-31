@@ -34,7 +34,7 @@ sys.path.insert(0, _HERE)
 
 import schools_content as C                                # noqa: E402
 
-OUT = _ROOT + "/Schools_ML_Track/figs"
+OUT = _ROOT + "/Schools_ML_Track/archive/original_ml_syllabus/figs"
 os.makedirs(OUT, exist_ok=True)
 
 # Copied verbatim from make_figures.py rather than chosen again.

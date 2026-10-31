@@ -1,9 +1,9 @@
 # School holiday programmes
 
-The current commercial programme is in [camp_2026](camp_2026/README.md): separate Machine Learning and Data Analysis pathways for S.4–S.6 students and vacists, each with 24 core classes over eight teaching weeks. ML adds four foundation labs in weeks 1–4; every learner must have their own laptop.
+| Folder | What it is |
+|---|---|
+| [camp_2026/](camp_2026/README.md) | The current programme: the Holiday Data and AI Camp, with Machine Learning and Python for Data Analysis tracks for S.4 to S.6 students and school leavers. Start here. |
+| [docs/](docs/) | Review and design documents, including the camp restructuring proposal. |
+| [archive/](archive/) | Superseded work, kept for reference: the first camp pack (with SQL), the original S.5 and S.6 ML syllabus with its figures, and stray test outputs. Each folder carries a README. |
 
-Start with the [parent and student one pager](camp_2026/marketing/Parent_Student_One_Pager.pdf), the [two-track curriculum](camp_2026/teaching/CURRICULUM.md), and the [organiser decisions checklist](camp_2026/operations/PROGRAMME_DECISIONS.md).
-
-The original ML_Track_S5_S6_Syllabus files and figs remain in this directory for compatibility and historical reference. They are superseded for the December commercial offering and should not be sent as the current brochure. Their assumptions about mathematics, public portfolios, group datasets and advanced topics have been replaced in camp_2026. A copy of the original syllabus and README is retained in archive/original_ml_syllabus.
-
-The old schools_content.py/build_schools_syllabus_docx.py scripts generate that legacy ML-only syllabus. Use the build_schools_camp scripts listed in camp_2026/README.md for the current programme.
+Start with the [camp README](camp_2026/README.md). It maps every folder.

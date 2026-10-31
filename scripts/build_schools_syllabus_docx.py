@@ -31,7 +31,7 @@ from docx.shared import Inches
 from docxkit import *                # noqa
 import schools_content as C          # noqa: E402
 
-TRACK_DIR = _os.path.join(_ROOT, "Schools_ML_Track")
+TRACK_DIR = _os.path.join(_ROOT, "Schools_ML_Track", "archive", "original_ml_syllabus")
 FIGS = _os.path.join(TRACK_DIR, "figs")
 OUT = _os.path.join(TRACK_DIR, "ML_Track_S5_S6_Syllabus.docx")
 

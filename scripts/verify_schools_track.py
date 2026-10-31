@@ -33,7 +33,7 @@ sys.path.insert(0, _HERE)
 import schools_content as C                                # noqa: E402
 import build_schools_syllabus_docx as B                    # noqa: E402
 
-TRACK = os.path.join(_ROOT, "Schools_ML_Track")
+TRACK = os.path.join(_ROOT, "Schools_ML_Track", "archive", "original_ml_syllabus")
 DOCX = os.path.join(TRACK, "ML_Track_S5_S6_Syllabus.docx")
 FIGS = os.path.join(TRACK, "figs")
 

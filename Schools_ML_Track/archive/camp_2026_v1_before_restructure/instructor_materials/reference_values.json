@@ -1,0 +1,36 @@
+{
+  "row_count": 60,
+  "units_ge_5": 30,
+  "total_units": 277,
+  "revenue_ugx": 550000,
+  "by_item": [
+    [
+      "Book",
+      99,
+      297000,
+      20
+    ],
+    [
+      "Juice",
+      75,
+      150000,
+      20
+    ],
+    [
+      "Pen",
+      103,
+      103000,
+      20
+    ]
+  ],
+  "by_category": [
+    [
+      "Refreshment",
+      150000
+    ],
+    [
+      "Stationery",
+      400000
+    ]
+  ]
+}
