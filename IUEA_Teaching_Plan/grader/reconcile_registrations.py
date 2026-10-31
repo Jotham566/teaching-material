@@ -70,6 +70,16 @@ def one_missing_letter(short, long):
         long[i].isalpha() and long[:i]+long[i+1:] == short for i in range(len(long)))
 
 
+def edit_distance(a, b):
+    previous = list(range(len(b)+1))
+    for i, x in enumerate(a, 1):
+        row = [i]
+        for j, y in enumerate(b, 1):
+            row.append(min(previous[j]+1, row[j-1]+1, previous[j-1]+(x != y)))
+        previous = row
+    return previous[-1]
+
+
 def read(path, default):
     return json.loads(path.read_text()) if path.is_file() else default
 
@@ -106,6 +116,29 @@ def reconcile(ledger, evidence, source, separator_only=False):
         if r['email'] and r['student_id']:
             groups[(r['cohort'],r['email'])].append(r)
             owners[(r['cohort'],r['student_id'])].add(r['email'])
+    # Test registrations were validated against the allocation list, so they are the
+    # strongest per-account evidence. A near-identical typo on the same account is
+    # corrected only when no other account claims either registration.
+    if not separator_only:
+        compact_id=lambda value: re.sub(r"[^A-Z0-9]",'',str(value).upper())
+        test_reg=collections.defaultdict(set)
+        for r in rows:
+            if str(r['assessment']).startswith('TEST') and r['email'] and r['student_id']:
+                test_reg[(r['cohort'],r['email'])].add(r['student_id'])
+        for (course,email), account in groups.items():
+            known=test_reg.get((course,email),set())
+            if len(known)!=1:continue
+            target=next(iter(known))
+            if owners[(course,target)]!={email}:continue
+            for r in account:
+                sid=r['student_id']
+                if sid==target or str(r['assessment']).startswith('TEST'):continue
+                if owners[(course,sid)]-{email}:continue
+                if edit_distance(compact_id(sid),compact_id(target))>3:
+                    notes[r['response_id']]='REVIEW: registration differs from this account\'s Test registration '+target+' by more than a typo.'
+                    continue
+                r['student_id']=target
+                notes[r['response_id']]='Registration corrected to the one validated in this account\'s Test submission ('+target+'); original entry retained.'
     # Recover omitted/misplaced separators only against an already submitted,
     # unambiguous registration. Never split a run of digits by guessing.
     compact=lambda value: re.sub(r"[\s/_=\-'’‘`\"“”]",'',str(value).upper())
