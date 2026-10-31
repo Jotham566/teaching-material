@@ -37,6 +37,8 @@ def prepare(source,ledger,out):
             try:
                 f=files[fid]
                 original=source/'files'/f['export_name']
+                # Re-uploaded data files are not written evidence.
+                if original.suffix.lower()=='.csv':continue
                 if hashlib.sha256(original.read_bytes()).hexdigest()!=f['sha256']:
                     raise ValueError('Original attachment checksum mismatch')
                 text=grading.extract(original,r['assessment'])

@@ -70,8 +70,9 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
                 needs_review='NO_README_NOTEBOOK_TEXT_USED'
             deterministic=dict(status='OK',notebook_total=prior['code_score'],max_total=prior['code_maximum'])
         packet=prepared.get(receipt['response_id'],{})
-        if (packet.get('errors') or len(packet.get('files',[]))!=len(paths)
-                or {t['id'] for t in packet.get('files',[])}!=set(receipt['file_ids'])):
+        evidence_ids={fid for fid,p in zip(receipt['file_ids'],paths) if p.suffix.lower()!='.csv'}
+        if (packet.get('errors') or not evidence_ids
+                or {t['id'] for t in packet.get('files',[])}!=evidence_ids):
             result['status']='TEXT_EXTRACTION_PENDING';results.append(result);continue
         if packet.get('extractor_fingerprint')!=artifact_grade.evaluator_fingerprint(rubric):
             raise ValueError('Prepared text uses a different extractor; prepare it again')
