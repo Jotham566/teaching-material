@@ -26,7 +26,8 @@ def equal(actual, expected):
             return isinstance(actual,list) and len(actual)==len(expected) and all(equal(a,b) for a,b in zip(actual,expected))
         if isinstance(expected,(int,float)) or hasattr(expected,'item'):
             return not isinstance(actual,bool) and math.isclose(float(actual),float(expected),rel_tol=1e-6,abs_tol=1e-6)
-        return actual==expected
+        # A Series or array answer gives an element-wise result, which is a wrong answer, not a crash.
+        return bool(actual==expected)
     except (AssertionError,ValueError,TypeError,KeyError): return False
 
 def assess(ns, task):
