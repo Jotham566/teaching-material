@@ -377,14 +377,18 @@ def finish_publish(private):
     (private/'refresh_publish.json').unlink()
 
 
-def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=render):
+def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=render, regrade=False):
     private = Path(private).resolve()
     with exclusive(private):
         finish_publish(private)
         inputs = inventory(download)
-        key = hashlib.sha256(json.dumps(inputs, sort_keys=True).encode()).hexdigest()[:24]
-        batch = private/'batches'/key
         previous = active_base(private)
+        seed = dict(inputs)
+        # A regrade of an already-graded ZIP is a new batch on top of the active marks.
+        # Awarded and review-held results are retained; only unfinished receipts re-run.
+        if regrade: seed['__regrade_after__'] = str(previous.relative_to(private))
+        key = hashlib.sha256(json.dumps(seed, sort_keys=True).encode()).hexdigest()[:24]
+        batch = private/'batches'/key
         state = read(batch/'status.json', {})
         if state.get('state')=='COMPLETE':
             print('This download batch is already graded. No marks were added again.'); return read(batch/'summary.json')
@@ -457,9 +461,10 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('download_folder',help='One grading ZIP (or legacy download folder)');p.add_argument('--check',action='store_true',help='Validate downloads without running graders or replacing marks')
+    p.add_argument('--regrade',action='store_true',help='Re-run unfinished receipts from an already-graded ZIP after a grader fix; awarded marks are retained')
     args=p.parse_args()
     try:
-        summary=refresh(args.download_folder, check_only=args.check)
+        summary=refresh(args.download_folder, check_only=args.check, regrade=args.regrade)
         if not args.check:
             pending=sum(n for state,n in summary['current_statuses'].items() if state!='GRADED')
             print(f"New receipts: {summary['new_receipts']}. Current submitted records needing review: {pending}. See Review needed in Excel.")

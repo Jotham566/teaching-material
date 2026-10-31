@@ -7,7 +7,7 @@ if [[ ! -x "$python_bin" ]]; then
   exit 1
 fi
 if [[ $# -eq 0 ]]; then
-  print 'Usage: ./grade-submissions ~/Downloads/IUEA_CA_20261022_120000.zip [--check]'
+  print 'Usage: ./grade-submissions ~/Downloads/IUEA_CA_20261022_120000.zip [--check|--regrade]'
   exit 1
 fi
 cd "$root_dir"
