@@ -134,11 +134,22 @@ def reconcile(ledger, evidence, source, separator_only=False):
                 sid=r['student_id']
                 if sid==target or str(r['assessment']).startswith('TEST'):continue
                 if owners[(course,sid)]-{email}:continue
-                if edit_distance(compact_id(sid),compact_id(target))>3:
+                shaped=re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/[A-Z]{2,12}-[A-Z]',sid)
+                # An entry that is not a registration at all (e.g. "MY ASSIGNMENT") carries no
+                # competing claim, so the account's own validated Test registration replaces it.
+                if shaped and edit_distance(compact_id(sid),compact_id(target))>3:
                     notes[r['response_id']]='REVIEW: registration differs from this account\'s Test registration '+target+' by more than a typo.'
                     continue
                 r['student_id']=target
                 notes[r['response_id']]='Registration corrected to the one validated in this account\'s Test submission ('+target+'); original entry retained.'
+    # Fill blank names from the same account's Test submission when it gave exactly one name.
+    test_names=collections.defaultdict(set)
+    for r in rows:
+        if str(r['assessment']).startswith('TEST') and valid_name(r.get('full_name','')):
+            test_names[(r['cohort'],r['email'])].add(r['full_name'].strip())
+    for r in rows:
+        names_for=test_names.get((r['cohort'],r['email']),set())
+        if not r.get('full_name') and len(names_for)==1:r['full_name']=next(iter(names_for))
     # Recover omitted/misplaced separators only against an already submitted,
     # unambiguous registration. Never split a run of digits by guessing.
     compact=lambda value: re.sub(r"[\s/_=\-'’‘`\"“”]",'',str(value).upper())
