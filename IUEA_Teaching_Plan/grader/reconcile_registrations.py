@@ -281,6 +281,11 @@ def reconcile(ledger, evidence, source, separator_only=False):
     for r in rows:
         aliases[(r['cohort'],r['email'],canonical(r.get('submitted_student_id',r['student_id'])))].add(r['student_id'])
     for key,target in supported_aliases.items():aliases[key].add(target)
+    shape=r'\d{2,4}/(?:UG/)?\d+/[A-Z]{2,12}-[A-Z]'
+    test_ids=collections.defaultdict(set)
+    for r in rows:
+        if str(r['assessment']).startswith('TEST') and r['email'] and r['student_id']:
+            test_ids[(r['cohort'],r['email'])].add(r['student_id'])
     for r in rows:
         if r['status']!='IDENTITY_MISMATCH' or r['assessment'] not in ('W02','W03','W04','W05'):continue
         g=indexed.get(r['response_id'],{}); record=g.get('record',{})
@@ -292,7 +297,14 @@ def reconcile(ledger, evidence, source, separator_only=False):
         if any(not (source/'files'/f['export_name']).is_file() or hashlib.sha256((source/'files'/f['export_name']).read_bytes()).hexdigest()!=f['sha256'] for f in meta.get('files',[]) if f['id'] in hashes):continue
         declared=resolved(r['cohort'],record.get('declared_sid'))
         accepted=declared==r['student_id'] or aliases.get((r['cohort'],r['email'],declared))=={r['student_id']}
-        if not declared or not accepted or record.get('cell_errors'):continue
+        # A blank or template ID in the notebook is not a competing claim when the same account's
+        # Test submission already validated this registration and no other account holds it.
+        confirmed_by_test=(not re.fullmatch(shape,declared or '') and test_ids.get((r['cohort'],r['email']))=={r['student_id']}
+                           and owners[(r['cohort'],r['student_id'])]<={r['email']})
+        if confirmed_by_test and not accepted:
+            accepted=True
+            notes[r['response_id']]='Notebook ID cell is blank or template text; receipt registration matches the account\'s validated Test registration. Original retained.'
+        if not (declared or confirmed_by_test) or not accepted or record.get('cell_errors'):continue
         questions=record.get('questions',{}); maximum=14 if r['assessment']=='W02' else 20
         if not questions or any(q.get('err') for q in questions.values()):continue
         if any(type(q.get('marks')) not in (int,float) or type(q.get('awarded')) not in (int,float) or not 0<=q['awarded']<=q['marks'] for q in questions.values()):continue
