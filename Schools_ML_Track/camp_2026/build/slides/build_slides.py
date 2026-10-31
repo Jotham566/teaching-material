@@ -258,7 +258,11 @@ def capture_block(track, ident, l, bi):
             if not getattr(_sns.scatterplot, '_klai', False):
                 _osc = _sns.scatterplot
                 def _sc(*a, **k):
-                    if not any(x in k for x in ('color', 'palette', 'hue', 'c')):
+                    if k.get('hue') == 'branch' and 'palette' not in k:
+                        k['palette'] = {'Central Market': figkit.INK, 'Campus Gate': figkit.RED, 'Roadside': figkit.GOLD}
+                        k.setdefault('edgecolor', figkit.INK)
+                        k.setdefault('s', 60)
+                    elif not any(x in k for x in ('color', 'palette', 'hue', 'c')):
                         k['color'] = figkit.INK
                     return _osc(*a, **k)
                 _sc._klai = True
@@ -465,10 +469,20 @@ def add_block(d, l, bi, letter, concepts):
             tx, tw = 7.7, 4.9
         except K.FitError:
             try:
-                o, s, ph = K.code_panel(K.wrap_code(code, 62), 0.7, 1.8, 11.9, 3.7, size_max=22, size_min=16)
+                try:
+                    o, s, ph = K.code_panel(K.wrap_code(code, 84), 0.7, 1.8, 11.9, 3.7, size_max=22, size_min=16)
+                except K.FitError:
+                    o, s, ph = K.code_panel(K.wrap_code(code, 62), 0.7, 1.8, 11.9, 3.7, size_max=22, size_min=16)
                 objs += o
                 placed = 'wide'
             except K.FitError:
+                try:
+                    o, s, ph = K.code_panel(K.wrap_code(code, 84), 0.7, 1.8, 11.9, 3.7, size_max=22, size_min=16)
+                    objs += o
+                    placed = 'wide'
+                except K.FitError:
+                    pass
+            if placed is False:
                 try:
                     o, s, ph = K.code_panel(K.wrap_code(code, 50), 0.7, 1.8, 7.9, 4.95, size_max=18, size_min=16)
                     objs += o
@@ -609,23 +623,37 @@ def add_make(d, l):
     mk = l['make']
     d.section = 'Make and close'
     sents = [x for x in re.split(r'(?<=[.!?])\s+', mk['task'].strip()) if x]
-    save = f'Save it as {d.ident}. Write two sentences: what you changed and how you checked it.'
-    words = len(mk['task'].split())
-    if words > 70 and len(sents) > 3:
-        half = 0
-        acc = 0
-        for i, x in enumerate(sents):
-            acc += len(x.split())
-            if acc >= words / 2:
-                half = i + 1
-                break
-        groups = [sents[:half], sents[half:]]
-    else:
-        groups = [sents]
+    save = (f'Save it as {d.ident}. Write two sentences: what you changed and how you checked it.' if 'Save' not in mk['task'] and 'save' not in mk['task']
+            else 'Write two sentences: what you changed and how you checked it.')
+    def grouping(limit):
+        groups, cur, n = [], [], 0
+        for x in sents:
+            w = len(x.split())
+            if cur and n + w > limit:
+                groups.append(cur)
+                cur, n = [], 0
+            cur.append(x)
+            n += w
+        if cur:
+            groups.append(cur)
+        if len(groups) > 1 and len(groups[-1]) == 1 and len(groups[-1][0].split()) < 8:
+            last = groups.pop()
+            groups[-1] = groups[-1] + last
+        return groups
+
+    groups = grouping(52)
+    for limit in (52, 40, 30, 22):
+        groups = grouping(limit)
+        try:
+            for gi, g in enumerate(groups):
+                K.fitted_paras(0.7, 1.9, 7.6, 4.9, list(g) + ([save] if gi == len(groups) - 1 else []), size_max=28, size_min=20, lead=1.2, gap=0.28)
+            break
+        except K.FitError:
+            continue
     for gi, g in enumerate(groups):
         objs = []
-        paras = [' '.join(g)] + ([save] if gi == len(groups) - 1 else [])
-        mo, _ = K.fitted_paras(0.7, 1.9, 7.6, 4.9, paras, size_max=30, size_min=21, lead=1.2, gap=0.35)
+        paras = list(g) + ([save] if gi == len(groups) - 1 else [])
+        mo, _ = K.fitted_paras(0.7, 1.9, 7.6, 4.9, paras, size_max=28, size_min=20, lead=1.2, gap=0.28)
         objs.append(mo)
         objs.append(K.image_obj(fig_save(3.8, 3.6), 8.9, 2.1, 3.8, 3.6, alt='A notebook saved with a tick'))
         title = 'Make: your own version' if len(groups) == 1 else f'Make: your own version ({gi + 1} of {len(groups)})'

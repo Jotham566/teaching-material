@@ -22,3 +22,5 @@ python Schools_ML_Track/camp_2026/build/slides/lint_slides.py             # hous
 | lint_slides.py | Style lint. |
 
 Figures are cached in `camp_2026/figures/`. Fonts: install Lato from `camp_2026/brand/fonts/` on any laptop that opens the decks.
+
+`audit_specs.py` checks every generated spec for wrapped titles, text or images that run into the footer strip, objects off the slide, text under 14 pt and overlapping boxes. Long Predict code is split over two slides so no code panel is below 16 pt.

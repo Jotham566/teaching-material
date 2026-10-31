@@ -74,7 +74,7 @@ S14 = dict(
              check='round(sunrise["line_value"].skew(), 1) == 7.3'),
         dict(idea='A box plot for each shop',
              intro='sns.boxplot draws one box for each group. The line inside the box is the median. The box runs from the lower quartile to the upper quartile. Dots beyond the whiskers are outliers.',
-             predict='Predict which shop has the highest median sale.',
+             predict='Predict which shop has the lowest median sale.',
              code='sns.boxplot(data=sunrise, x="branch", y="line_value")\nplt.ylabel("Value of one sale (UGX)")\nplt.show()\nmedians = sunrise.groupby("branch")["line_value"].median()\nprint(medians)',
              shows='The medians are 2500 at Central Market, 2000 at Campus Gate and 2500 at Roadside. The boxes look alike and every shop has dots well above its whiskers: bulk sales happen in all three. The shops differ more in how many sales they make than in how big a typical sale is.',
              investigate=[('Do the shops differ much in typical sale value?', 'Not much. Two medians are 2500 and one is 2000.'),

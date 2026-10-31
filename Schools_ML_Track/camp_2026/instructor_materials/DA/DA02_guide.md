@@ -70,10 +70,10 @@ Investigate, with answers:
 - Why does the answer 5001.0 keep a decimal point even though 2 is a whole number? Answer: Multiplying a float by 2 gives a float. Python keeps the decimal point.
 - What would happen with float("two")? Answer: An error. Only text that looks like a number can be converted.
 
-Modify: Convert the text "1500" to an integer with int() and multiply it by 4. Answer: 6000.
+Modify: Convert the text "2500.5" to a number with float() and multiply it by 4. Answer: 10002.0.
 
 ```python
-total = int("1500") * 4
+total = float("2500.5") * 4
 ```
 
 ## Make: reference

@@ -220,7 +220,7 @@ def da_axis_honesty(w, h, kind='zero', **_):
 def da_hist_tail(w, h, **_):
     f, ax = chart(w, h)
     v = sales()['line_value']
-    ax.hist(v, bins=30, color=GREY, edgecolor=PAPER)
+    ax.hist(v, bins=30, color=GOLD, edgecolor=INK, linewidth=0.8)
     ax.set_xlabel('Value of one sale (UGX)')
     ax.set_ylabel('Number of sales')
     fmt_axis_money(ax, 'x')

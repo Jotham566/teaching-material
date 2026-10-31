@@ -689,7 +689,7 @@ def ml_complexity_gap(w, h, **_):
     ax.bar(xs + 0.2, np.minimum(te, top), 0.38, color=PAPER, edgecolor=INK, linewidth=2)
     for i, v in enumerate(te):
         if v > top:
-            ax.text(xs[i] + 0.2, top * 1.05, f'{v:,.0f}', ha='center', va='bottom', fontsize=16, fontweight='bold', color=RED, family=figkit.FONT)
+            ax.text(xs[i] + 0.2, top * 1.05, f'off the chart:\n{v:,.0f}', ha='center', va='bottom', fontsize=15, fontweight='bold', color=RED, family=figkit.FONT)
     ax.set_xticks(xs)
     ax.set_xticklabels(['line', 'bend 1', 'bend 3', 'bend 7', 'bend 10'], fontsize=17)
     ax.set_ylim(0, top * 1.3)

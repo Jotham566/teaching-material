@@ -370,7 +370,7 @@ def da_mean_pulled(w, h, **_):
 def da_hist_mean_median(w, h, **_):
     f, ax = chart(w, h)
     v = sales()['line_value']
-    ax.hist(v, bins=np.arange(0, 20001, 1000), color=GREY, edgecolor=PAPER)
+    ax.hist(v, bins=np.arange(0, 20001, 1000), color=GOLD, edgecolor=INK, linewidth=1.0)
     mean, med = v.mean(), v.median()
     ax.axvline(med, color=INK, lw=3)
     ax.axvline(mean, color=RED, lw=3)

@@ -56,7 +56,7 @@ plt.close("all")
 
 sns.boxplot draws one box for each group. The line inside the box is the median. The box runs from the lower quartile to the upper quartile. Dots beyond the whiskers are outliers.
 
-Ask for the prediction first: Predict which shop has the highest median sale.
+Ask for the prediction first: Predict which shop has the lowest median sale.
 
 ```python
 sns.boxplot(data=sunrise, x="branch", y="line_value")
