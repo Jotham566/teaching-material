@@ -94,7 +94,8 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
         ),sort_keys=True).encode()).hexdigest()
         target=out/(hashlib.sha256(receipt['response_id'].encode()).hexdigest()+'.json')
         old=json.loads(target.read_text()) if target.exists() else {}
-        if old.get('signature')==signature and old.get('status')=='GRADED':
+        if old.get('signature')==signature and old.get('status') in ('GRADED','WRITTEN_REVIEW'):
+            if old['status']!='GRADED':old['score']=None
             results.append(old);continue
         # Resource failures stop the batch, never become a student's grading error.
         ensure_docker_stopped()
@@ -104,6 +105,8 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' and not needs_review else 'WRITTEN_REVIEW',
                           review_reason=needs_review,
                           score=evidence['score'],evidence=evidence,signature=signature)
+            # A review hold must not carry a mark; the suggestion stays in the evidence.
+            if result['status']!='GRADED':result['score']=None
         except Exception as exc:
             result.update(status='WRITTEN_ERROR',error=str(exc)[:400])
         target.write_text(json.dumps(result,indent=2))
