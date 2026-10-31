@@ -80,6 +80,15 @@ def fit_paragraphs(paras, kind, max_w, max_h, size_max, size_min, lead=1.2, gap=
 
 
 # ---------------------------------------------------------------- spec objects
+def balance(text, size, kind, w):
+    """Insert one line break so a two-line text has two similar lines (spaces only, never at a hyphen)."""
+    if '\n' in text or len(wrap(text, size, kind, w)) != 2:
+        return text
+    ws = text.split(' ')
+    best = min(range(1, len(ws)), key=lambda i: max(width_in(' '.join(ws[:i]), size, kind), width_in(' '.join(ws[i:]), size, kind)))
+    return ' '.join(ws[:best]) + '\n' + ' '.join(ws[best:])
+
+
 def title_obj(text, w=11.9, h=1.15, size_max=38, size_min=28):
     s, lines = fit_lines(text, 'bold', w, h, size_max, size_min, lead=1.12)
     if len(lines) == 2 and '\n' not in text:

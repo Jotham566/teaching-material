@@ -969,7 +969,7 @@ def ml_baseline_guess(w, h, **_):
     ax.scatter([4.6], [new], s=420, facecolor=GOLD, edgecolor=INK, linewidth=2.2, zorder=4)
     ax.plot([4.6, 4.6], [m, new], color=INK, lw=3, zorder=3)
     ax.text(4.85, (m + new) / 2 + 80, f'error {abs(new - m):,.0f}', fontsize=19, fontweight='bold', va='center', ha='left', family=FONT)
-    ax.text(0.55, m + 220, f'baseline guess = mean = {m:,.0f}', fontsize=17, color=RED, fontweight='bold', va='bottom', family=FONT)
+    ax.text(4.95, m - 250, f'baseline guess\n= mean = {m:,.0f}', fontsize=17, color=RED, fontweight='bold', va='top', ha='left', family=FONT)
     ax.set_xlim(0.4, 6.7)
     ax.set_ylim(0, 7200)
     ax.set_xticks([2, 4.6])

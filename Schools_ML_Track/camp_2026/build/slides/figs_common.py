@@ -246,7 +246,7 @@ def c_hero_week_of_sales(w, h):
     s = Scene(w, h)
     s.icon('shop', 1.15, h - 1.35, 1.7)
     s.text(1.15, h - 2.35, 'a small shop', size=20, weight='bold')
-    s.text(1.15, h - 2.7, '60 sales on 20 days', size=16, color=MUTE)
+    s.text(1.15, h - 2.7, 'the first 7 days', size=16, color=MUTE)
     s.icon('receipt', 1.15, 0.95, 1.1)
     s.arrow(1.15, 1.55, 1.15, 1.9, color=INK, lw=1.6, head=12)
     px, py = axes_xy(s, 3.3, 0.95, w - 3.9, h - 1.9, (0, 7), (0, 50000), xticks=[], yticks=[0, 10000, 20000, 30000, 40000, 50000],

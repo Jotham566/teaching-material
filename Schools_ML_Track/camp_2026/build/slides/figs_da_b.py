@@ -94,9 +94,10 @@ def da_raw_counts(w, h, **_):
     s.text(3.2, y + 0.55, '→', size=30, weight='bold', color=RED)
     s.text(6.7, y + 0.55, '=', size=30, weight='bold', color=RED)
     s.line(0.2, 1.8, w - 0.2, 1.8, color=HAIR, lw=1.2)
-    s.text(0.2, 1.4, 'Two more problems still sit in those rows', size=19, weight='bold', ha='left')
-    s.box(0.2, 0.2, 5.5, 0.85, f'{blank} rows with blank units', size=20, fill=PAPER, edge=RED, lw=2.4, color=INK)
-    s.box(6.0, 0.2, 5.7, 0.85, f'{slash} dates written with slashes', size=20, fill=PAPER, edge=RED, lw=2.4, color=INK)
+    s.text(0.2, 1.4, 'More problems still sit in those rows', size=19, weight='bold', ha='left')
+    bw3 = (w - 0.4 - 0.5) / 3
+    for k, tx in enumerate([f'{blank} blank units', f'{slash} dates with slashes', '12 units in words']):
+        s.box(0.2 + k * (bw3 + 0.25), 0.2, bw3, 0.85, tx, size=20, fill=PAPER, edge=RED, lw=2.4, color=INK)
     return s
 
 

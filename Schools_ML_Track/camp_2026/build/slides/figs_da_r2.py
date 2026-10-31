@@ -75,7 +75,7 @@ def da_std_dev(w, h, **_):
     ax.axvspan(m - sd, m + sd, color='#EDEDED', zorder=1)
     ax.text(m, 1.14, f'mean {m:.1f}', ha='center', fontsize=17, fontweight='bold', color=RED, bbox=dict(fc=PAPER, ec='none', pad=2), zorder=6)
     ax.annotate('', xy=(m + sd, -0.3), xytext=(m, -0.3), arrowprops=dict(arrowstyle='<|-|>', color=INK, lw=2.2))
-    ax.text(m + sd / 2, -0.5, f'typical distance {sd:.1f}', ha='center', va='top', fontsize=17, fontweight='bold')
+    ax.text(m + sd / 2 + 0.35 * sd, -0.55, f'typical distance {sd:.1f}', ha='center', va='top', fontsize=17, fontweight='bold', bbox=dict(fc=PAPER, ec='none', pad=2), zorder=7)
     ax.set_ylim(-1.0, 1.4)
     ax.set_yticks([])
     ax.spines['left'].set_visible(False)

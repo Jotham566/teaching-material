@@ -119,7 +119,7 @@ CONCEPTS[4] = {
                  'say': 'Here are the units sold in the first twelve sales. A shopkeeper wants to treat any sale of five or more units as a large order. '
                         'The dashed line marks that rule, and the gold bars are the ones that pass it. Looking at the bars takes a second. '
                         'Python has no eyes, so we have to give it the rule in words it understands. Today we learn how to write that rule.'},
-    'word_icons': {'comparison': 'magnifier', 'Boolean': 'check', 'if': ('c_icon_branch',), 'else': 'cross', 'indentation': ('c_icon_cell',), 'and, or': ('r1_icon_venn',)},
+    'word_icons': {'comparison': 'magnifier', 'Boolean': 'check', 'if': ('c_icon_branch',), 'else': ('c_icon_branch',), 'indentation': ('c_icon_cell',), 'and, or': ('r1_icon_venn',)},
     'slides': [
         {'at': 0, 'kind': 'concept', 'title': 'A comparison answers True or False', 'fig': 'c_edge_numberline',
          'points': ['Three budgets meet the same rule.', 'The edge value counts when you write >=.', 'Always test just below, on and just above the edge.'],

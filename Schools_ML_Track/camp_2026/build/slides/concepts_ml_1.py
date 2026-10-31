@@ -120,7 +120,7 @@ CONCEPTS[4] = {
     'word_icons': {'comparison': ('ml_r3_wicon', {'kind': 'compare'}), 'Boolean': ('ml_r3_wicon', {'kind': 'bool'}), 'if': ('ml_r3_wicon', {'kind': 'if'}), 'else': ('ml_r3_wicon', {'kind': 'else'}), 'elif': ('ml_r3_wicon', {'kind': 'elif'}), 'indentation': ('ml_r3_wicon', {'kind': 'indent'})},
     'slides': [
         {'at': 0, 'kind': 'concept', 'title': 'A comparison answers True or False', 'fig': 'ml_r3_edge',
-         'points': ['Three budgets meet the same rule.', 'The edge value counts when you write >=.', 'Test just below, on and just above the edge.'],
+         'points': ['Three budgets test the same rule.', 'The edge value counts when you write >=.', 'Test just below, on and just above the edge.'],
          'say': 'A comparison is a yes or no question. The ticket costs five thousand. Is the budget at least five thousand? For four thousand nine hundred and ninety nine the answer is False. For exactly five thousand it is True, because the symbol includes the edge itself. For five thousand and one it is True.\n\n'
                 'The edge is where mistakes hide, so we always test one value below it, the value on it and one above it.'},
         {'at': 0, 'kind': 'concept', 'title': 'An if sends the program down one of two paths', 'fig': ('ml_r3_flow', {'conds': [['cost <= budget', 'message = "Within budget"']], 'else_text': 'message = "Over budget"', 'code': ['if cost <= budget:', '    message = "Within budget"', 'else:', '    message = "Over budget"']}),

@@ -744,13 +744,13 @@ def ml_three_datasets(w, h, **_):
     for i, (nm, f, n, cols, tgt, kind) in enumerate(cards):
         x = 0.2 + i * (cw + 0.25)
         s.box(x, 0.2, cw, h - 0.4, '', fill=PAPER, lw=2, r=0.06)
-        s.text(x + 0.25, h - 0.6, f, size=21, weight='bold', ha='left', mono=True)
+        s.text(x + 0.2, h - 0.6, f, size=18, weight='bold', ha='left', mono=True)
         s.text(x + 0.25, h - 1.1, n, size=21, ha='left', color=BODY)
         s.text(x + 0.25, h - 1.7, 'inputs', size=19, ha='left', color=MUTE, weight='bold')
         for k, c in enumerate(cols):
             s.text(x + 0.25, h - 2.15 - k * 0.4, c, size=19, ha='left', mono=True)
         if nm == 'fares':
-            s.text(x + 0.25, h - 2.15 - 3 * 0.4 - 0.15, 'left out: tip_ugx', size=18, ha='left', mono=True, color=RED, weight='bold')
+            s.text(x + 0.25, h - 2.15 - 3 * 0.4 + 0.05, 'left out: tip_ugx', size=18, ha='left', mono=True, color=RED, weight='bold')
         s.text(x + 0.25, 1.0, 'target', size=19, ha='left', color=MUTE, weight='bold')
         s.text(x + 0.25, 0.55, tgt, size=21, ha='left', mono=True, weight='bold', color=RED)
         s.text(x + cw - 0.2, 0.55, kind, size=19, ha='right', color=BODY)

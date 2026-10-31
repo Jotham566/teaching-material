@@ -88,10 +88,11 @@ def auto_fig(name, w, h, draw):
 
 def fig_paper_pen(w=2.6, h=2.6):
     def d(s):
-        s.icon('notebook', w * 0.42, h * 0.5, 1.9)
-        s.icon('pen', w * 0.8, h * 0.42, 1.5)
-        s.text(w * 0.45, h * 0.52, '?', size=46, weight='bold', color=figkit.RED)
-    return auto_fig('paper_pen', w, h, d)
+        k = min(w, h) / 2.6
+        s.icon('notebook', w * 0.42, h * 0.5, 1.9 * k)
+        s.icon('pen', w * 0.8, h * 0.42, 1.5 * k)
+        s.text(w * 0.45, h * 0.52, '?', size=46 * k, weight='bold', color=figkit.RED)
+    return auto_fig('pp2', w, h, d)
 
 
 def fig_save(w=2.6, h=2.6):
@@ -192,9 +193,29 @@ def fig_plan(ident, parts, w=11.9, h=4.55):
     return path
 
 
+def _chart_house_colours(plt):
+    """Charts the lesson code draws use the house look: gold bars and boxes with black outlines, black lines and dots."""
+    import matplotlib
+    import matplotlib.axes as mpa
+    plt.rcParams['axes.prop_cycle'] = matplotlib.cycler(color=[figkit.GOLD, figkit.INK, figkit.RED, figkit.GREY, '#555555'])
+    for name, col, key in (('bar', figkit.GOLD, 'color'), ('barh', figkit.GOLD, 'color'), ('hist', figkit.GOLD, 'color'),
+                           ('plot', figkit.INK, 'color'), ('scatter', figkit.INK, 'color')):
+        orig = getattr(mpa.Axes, name)
+        if getattr(orig, '_klai', False):
+            continue
+        def make(orig=orig, col=col, key=key):
+            def w(self, *a, **k):
+                if key not in k and 'c' not in k and 'facecolor' not in k:
+                    k[key] = col
+                return orig(self, *a, **k)
+            w._klai = True
+            return w
+        setattr(mpa.Axes, name, make())
+
+
 # ---------------------------------------------------------------- capture program output and charts
 def capture_block(track, ident, l, bi):
-    cache = AUTO / f'{ident}_b{bi}_v3.json'
+    cache = AUTO / f'{ident}_b{bi}_v4.json'
     if cache.exists():
         return json.loads(cache.read_text())
     blocks = l['blocks']
@@ -231,8 +252,17 @@ def capture_block(track, ident, l, bi):
         plt.show = _show
         out = io.StringIO()
         figkit.use_style()
+        _chart_house_colours(plt)
         try:
             import seaborn as _sns
+            if not getattr(_sns.scatterplot, '_klai', False):
+                _osc = _sns.scatterplot
+                def _sc(*a, **k):
+                    if not any(x in k for x in ('color', 'palette', 'hue', 'c')):
+                        k['color'] = figkit.INK
+                    return _osc(*a, **k)
+                _sc._klai = True
+                _sns.scatterplot = _sc
             if not getattr(_sns.heatmap, '_klai', False):
                 _orig = _sns.heatmap
                 def _heat(*a, **k):
@@ -285,7 +315,7 @@ def add_title(d, l, num, lesson_title, week):
     info = f'{TRACK_NAMES[d.track] if d.track in TRACK_NAMES else "Machine Learning"}  |  {d.sub}'
     sub = K.text_obj(0.7, 6.55, 11.8, 0.5, text=f'{info}\nHoliday Data and AI Camp  |  {VENUE}', size=16, color='B5B5B5', lead=1.45)
     s, lines = K.fit_lines(lesson_title, 'bold', 11.6, 2.5, 56, 34, lead=1.1)
-    sl = {'layout': 'dark', 'section': 'Opening', 'title': {'text': lesson_title, 'size': s, 'lead': round(s * 1.1, 1)}, 'objects': [q, sub],
+    sl = {'layout': 'dark', 'section': 'Opening', 'title': {'text': K.balance(lesson_title, s, 'bold', 11.6), 'size': s, 'lead': round(s * 1.1, 1)}, 'objects': [q, sub],
           'notes': N.title_note(d.ident, lesson_title, d.objective, d.question, d.seed)}
     d.slides.append(sl)
 
@@ -315,6 +345,10 @@ def add_plan(d, l):
     d.add('light', title, objs, N.plan_note(parts, d.seed, l['mode'], cap))
 
 
+FALLBACK_ICONS = {'integer': 'book', 'float': 'coin', 'expression': 'calculator', 'order of operations': 'clock', 'seaborn': 'bars',
+                  'normalise': 'tag', 'disclosure': 'notebook', 'locked test': 'folder'}
+
+
 def add_words(d, l, concepts):
     words = l['words']
     if not words:
@@ -329,7 +363,7 @@ def add_words(d, l, concepts):
         any_icon = any(icons.get(t[0]) for t in grp)
         for i, (term, plain, like) in enumerate(grp):
             yy = y + i * row_h
-            icon = icons.get(term)
+            icon = icons.get(term) or (FALLBACK_ICONS.get(term, 'tag') if any_icon else None)
             tx = 0.7
             if any_icon:
                 if icon:
@@ -466,14 +500,14 @@ def add_block(d, l, bi, letter, concepts):
             ob = list(o2)
             bottom = 1.8 + ph2 + 0.2
             if k == 0:
-                msg = [f'Read the first part of the code. {len(halves[0].splitlines())} lines. Say what each one does.', 'The second part comes next.']
+                msg = [prompt, 'The rest of the code is on the next slide.']
             else:
-                msg = [prompt, 'Write your guess on paper before we run it.']
+                msg = ['This is the rest of the code. Keep your guess in mind.', 'Write your guess on paper before we run it.']
             po, _ = K.fitted_paras(0.7, bottom, 8.8, 6.85 - bottom, msg, size_max=24, size_min=19, lead=1.2, gap=0.14)
             ob.append(po)
             ob.append(K.image_obj(fig_paper_pen(1.5, 1.3), 11.1, max(bottom, 5.45), 1.5, 1.3, alt='A page and a pen'))
-            d.add('light', f'Predict: {idea} ({k + 1} of 2)', ob, N.predict_note(blk['intro'], prompt, seed) if k == 1 else
-                  f'Read this first part of the code with me before we run anything. {pick_sentences(blk["intro"])}', section=f'Block {letter}')
+            d.add('light', f'Predict: {idea} ({k + 1} of 2)', ob, N.predict_note(blk['intro'], prompt, seed) if k == 0 else
+                  'Here is the rest of the code. Read it through once. Then write your guess on paper before we run anything.', section=f'Block {letter}')
         placed = 'done'
     if placed == 'done':
         pass
@@ -528,7 +562,7 @@ def add_block(d, l, bi, letter, concepts):
     qs = [f'{i + 1}.  {q}' for i, (q, a) in enumerate(blk['investigate'])]
     if code:
         try:
-            o, s, ph = K.code_panel(K.wrap_code(code, 36), 8.2, 1.9, 4.4, 4.7, size_max=18, size_min=14)
+            o, s, ph = K.code_panel(K.wrap_code(code, 36), 8.2, 1.9, 4.4, 4.7, size_max=18, size_min=16)
             objs += o
             qw = 7.0
         except K.FitError:
@@ -547,7 +581,7 @@ def add_block(d, l, bi, letter, concepts):
     objs.append(mo)
     if code:
         try:
-            o, s, ph = K.code_panel(K.wrap_code(code, 38), 7.9, 1.9, 4.7, 4.6, size_max=18, size_min=14)
+            o, s, ph = K.code_panel(K.wrap_code(code, 38), 7.9, 1.9, 4.7, 4.6, size_max=18, size_min=16)
             objs += o
         except K.FitError:
             objs.append(K.image_obj(fig_icon('pen', 2.0, 2.0, 1.5), 10.3, 2.3, 2.0, 2.0, alt='Change one thing'))
