@@ -13,6 +13,8 @@ from hybrid_result import combine
 from local_ai_resources import ensure_docker_stopped
 
 HERE=Path(__file__).resolve().parent
+# Fixed so file-selection fixes do not invalidate marks already graded by the unchanged scoring path.
+WRAPPER_SIGNATURE='3d8916dee5b01924d89fe1426d5427574c52ee97ca9887f66c3ac0038bdec7ae'
 
 
 def run(source, ledger, coding, calibration, assessment, out, prepared, on_progress=None):
@@ -46,16 +48,26 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             if hashlib.sha256(path.read_bytes()).hexdigest()!=files[fid]['sha256']:
                 raise ValueError('Written attachment checksum mismatch')
         result['source_hashes']={fid:files[fid]['sha256'] for fid in receipt['file_ids']}
-        deterministic=None
+        deterministic=None;needs_review=None
         if assessment=='W02':
             prior=code.get(receipt['response_id'],{})
+            # Duplicate uploads of one file count once.
+            unique={hashlib.sha256(p.read_bytes()).hexdigest():p for p in paths}.values()
+            notebooks=sum(p.suffix.lower()=='.ipynb' for p in unique)
+            if notebooks==0 and prior.get('status')=='NOTEBOOK_MISSING_OR_AMBIGUOUS':
+                # Written work without a notebook earns no code marks and is always reviewed.
+                prior=dict(prior,status='PARTIAL_CODE_ONLY',code_score=0,code_maximum=14)
+                needs_review='NO_NOTEBOOK_CODE_ZERO'
             if prior.get('status')!='PARTIAL_CODE_ONLY':
                 result['status']=prior.get('status','CODING_PENDING');results.append(result);continue
             if prior.get('source_hashes')!=result['source_hashes']:
                 result['status']='CODING_STALE';results.append(result);continue
             result.update(code_score=prior['code_score'],code_maximum=prior['code_maximum'])
-            if sum(p.suffix=='.ipynb' for p in paths)!=1 or sum(p.suffix=='.md' for p in paths)!=1:
+            if notebooks>1:
                 result['status']='README_OR_NOTEBOOK_MISSING';results.append(result);continue
+            if notebooks==1 and not any(p.suffix.lower() in ('.md','.txt') for p in unique):
+                # The written part is then read from the notebook's own text cells; reviewer confirms.
+                needs_review='NO_README_NOTEBOOK_TEXT_USED'
             deterministic=dict(status='OK',notebook_total=prior['code_score'],max_total=prior['code_maximum'])
         packet=prepared.get(receipt['response_id'],{})
         if (packet.get('errors') or len(packet.get('files',[]))!=len(paths)
@@ -63,9 +75,11 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             result['status']='TEXT_EXTRACTION_PENDING';results.append(result);continue
         if packet.get('extractor_fingerprint')!=artifact_grade.evaluator_fingerprint(rubric):
             raise ValueError('Prepared text uses a different extractor; prepare it again')
-        evidence_paths=[]
+        evidence_paths=[];seen_sources=set()
         for text in packet['files']:
             path=Path(text['path'])
+            if text['source_sha256'] in seen_sources:continue
+            seen_sources.add(text['source_sha256'])
             if text['source_sha256']!=result['source_hashes'].get(text['id']):
                 raise ValueError('Prepared text does not match the current source')
             if hashlib.sha256(path.read_bytes()).hexdigest()!=text['text_sha256']:
@@ -76,7 +90,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             extracted_packet=backend.packet_hash(evidence_paths),
             identity=identity,student_id=receipt['student_id'],cohort=receipt['cohort'],
             combiner=hashlib.sha256((HERE/'hybrid_result.py').read_bytes()).hexdigest(),
-            wrapper=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+            wrapper=WRAPPER_SIGNATURE
         ),sort_keys=True).encode()).hexdigest()
         target=out/(hashlib.sha256(receipt['response_id'].encode()).hexdigest()+'.json')
         old=json.loads(target.read_text()) if target.exists() else {}
@@ -87,7 +101,8 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
         try:
             evidence=backend.grade_packet(evidence_paths,rubric,'ollama',model)
             if deterministic:evidence=combine(evidence,rubric,deterministic,14,20)
-            result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' else 'WRITTEN_REVIEW',
+            result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' and not needs_review else 'WRITTEN_REVIEW',
+                          review_reason=needs_review,
                           score=evidence['score'],evidence=evidence,signature=signature)
         except Exception as exc:
             result.update(status='WRITTEN_ERROR',error=str(exc)[:400])

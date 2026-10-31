@@ -38,6 +38,7 @@ def run(source,ledger,out):
    result['status']='DOWNLOAD_MISSING';results.append(result);continue
   result['source_hashes']={fid:files[fid]['sha256'] for fid in r['file_ids']}
   notebooks=[files[fid] for fid in r['file_ids'] if fid in files and files[fid]['export_name'].endswith('.ipynb')]
+  notebooks=list({n['sha256']:n for n in notebooks}.values())
   if len(notebooks)!=1:result['status']='NOTEBOOK_MISSING_OR_AMBIGUOUS';results.append(result);continue
   info=notebooks[0];file=source/'files'/info['export_name']
   if not file.is_file():result['status']='DOWNLOAD_MISSING';results.append(result);continue
