@@ -86,7 +86,7 @@ export async function reviewDetails(data,base){
   return {r,category:category(r.status),label:assessmentLabel(r.assessment),reason:[reasons[r.status]||r.status,step,r.source_status!==r.status?reasons[r.source_status]||r.source_status:''].filter(Boolean).join(' '),
    detail:notes.join('\n').slice(0,3000),scores,relatedIds:relatedIds.join('; '),relatedEmails:relatedEmails.join('; '),
    declared:g.record?.declared_sid||coding.get(r.response_id)?.record?.declared_sid||'',files,
-   formUrl:formId&&/^[A-Za-z0-9_-]+$/.test(formId)?`https://docs.google.com/forms/d/${formId}/edit`:''};
+   formUrl:formId&&/^[A-Za-z0-9_-]+$/.test(formId)?`https://docs.google.com/forms/d/${formId}/edit#response=${encodeURIComponent(r.response_id)}`:''};
  });
  return rows.sort((a,b)=>a.category.localeCompare(b.category)||a.r.assessment.localeCompare(b.r.assessment)||a.r.cohort.localeCompare(b.r.cohort)||String(a.r.student_id).localeCompare(String(b.r.student_id)));
 }

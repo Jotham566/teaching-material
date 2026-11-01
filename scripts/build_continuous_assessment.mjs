@@ -40,7 +40,7 @@ const lastRc=col(rh.length-1);
 rs.getRange(`B6:D${rend}`).format.columnWidth=28;rs.getRange(`E6:F${rend}`).format.columnWidth=26;rs.getRange(`G6:G${rend}`).format.columnWidth=26;rs.getRange(`H6:H${rend}`).format.columnWidth=70;rs.getRange(`I6:K${rend}`).format.columnWidth=30;rs.getRange(`L6:M${rend}`).format.columnWidth=14;rs.getRange(`N6:R${rend}`).format.columnWidth=38;rs.getRange(`S6:${lastRc}${rend}`).format.columnWidth=35;rs.getRange(`A7:${lastRc}${rend}`).format.wrapText=true;rs.getRange(`A7:${lastRc}${rend}`).format.rowHeight=90;rs.getRange(`A7:${lastRc}${rend}`).format.verticalAlignment='center';
 const reviewLinks=[];
 const link=(cell,url,label)=>{rs.getRange(cell).values=[[safe(label)]];rs.getRange(cell).format.font={name:'Arial',size:11,color:'#0563C1'};reviewLinks.push([cell,url]);};
-review.forEach((x,i)=>{const row=i+7;if(x.formUrl)link(`I${row}`,x.formUrl,'Open response form');x.files.forEach((f,j)=>link(j<2?`${col(9+j)}${row}`:`${col(19+j-2)}${row}`,f.url,f.name));});
+review.forEach((x,i)=>{const row=i+7;if(x.formUrl)link(`I${row}`,x.formUrl,'Open this response');x.files.forEach((f,j)=>link(j<2?`${col(9+j)}${row}`:`${col(19+j-2)}${row}`,f.url,f.name));});
 const rubricSheet=wb.worksheets.getItem('Written rubrics'),rubricRows=[];
 for(const assessment of ['W01','W02']){const rubric=JSON.parse(await fs.readFile(new URL(`../IUEA_Teaching_Plan/grader/rubrics/${assessment}.json`,import.meta.url),'utf8'));for(const c of rubric.criteria)rubricRows.push([assessment,c.id,c.title,c.maximum,c.description]);}
 rubricSheet.getRange('A2').values=[['Written assessment marking criteria']];rubricSheet.getRange('A4').values=[['A1: written total /20. A2: written total /6 plus coding component /14. Grader-pass scores are not approved marks.']];
