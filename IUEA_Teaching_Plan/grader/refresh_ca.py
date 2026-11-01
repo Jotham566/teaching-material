@@ -241,6 +241,7 @@ def prepare_batch(download, batch, previous):
 
 
 def select_work(source, ledger, old_results):
+    import grade_ca_written
     by_id = {r['response_id']: r for r in old_results}
     retained, todo = [], []
     for r in ledger['attempts']:
@@ -251,7 +252,8 @@ def select_work(source, ledger, old_results):
         same = old and all(old.get(k)==r[k] for k in ('cohort','assessment','student_id')) and old.get('source_hashes')==hashes and bool(hashes)
         # Do not silently rerun already-awarded or review-held AI judgements.
         if same and old['status'] in ('GRADED','WRITTEN_REVIEW'):
-            retained.append(old)
+            # Held results whose only issue was differing AI passes are marked from the saved evidence.
+            retained.append(grade_ca_written.settle_held(old) if old['status']=='WRITTEN_REVIEW' else old)
         else: todo.append(r)
     return retained, todo
 

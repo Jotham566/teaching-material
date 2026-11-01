@@ -58,6 +58,20 @@ def explain(evidence,rubric,reason,scores):
     if detail:parts.append('Pass 1 - '+detail)
     return ' '.join(parts)[:1500]
 
+def settle_held(old):
+    """Turn a result held only because the two AI passes differed into a marked one, without re-running the model."""
+    if old.get('status')!='WRITTEN_REVIEW' or not old.get('evidence'):return old
+    rubric=json.loads((HERE/'rubrics'/f"{old['assessment']}.json").read_text())
+    evidence,scores=settle(old['evidence'])
+    if evidence.get('status')!='AUTO_SCORED':return old
+    if old['assessment']=='W02':
+        if old.get('code_score') is None or not old.get('code_maximum'):return old
+        if scores or 'deterministic' not in evidence:
+            evidence=combine(evidence,rubric,dict(status='OK',notebook_total=old['code_score'],max_total=old['code_maximum']),14,20)
+    if evidence.get('status')!='AUTO_SCORED' or evidence.get('score') is None:return old
+    return dict(old,status='GRADED',score=evidence['score'],evidence=evidence,
+                grading_note=explain(evidence,rubric,old.get('review_reason'),scores))
+
 def run(source, ledger, coding, calibration, assessment, out, prepared, on_progress=None):
     source, out = Path(source), Path(out)
     out.mkdir(parents=True, exist_ok=True)
