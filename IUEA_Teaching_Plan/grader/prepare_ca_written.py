@@ -8,6 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 import artifact_grade as grading
+import evidence_extract
 
 HERE=Path(__file__).resolve().parent
 
@@ -41,7 +42,7 @@ def prepare(source,ledger,out):
                 if original.suffix.lower()=='.csv':continue
                 if hashlib.sha256(original.read_bytes()).hexdigest()!=f['sha256']:
                     raise ValueError('Original attachment checksum mismatch')
-                text=grading.extract(original,r['assessment'])
+                text=evidence_extract.extract(original,r['assessment'])
                 content=text.encode('utf-8')
                 target=out/(hashlib.sha256((r['response_id']+'|'+fid).encode()).hexdigest()+'.md')
                 target.write_bytes(content)
