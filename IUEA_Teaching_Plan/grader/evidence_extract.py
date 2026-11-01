@@ -101,27 +101,28 @@ def _ocr_pdf(path):
         return OCR_NOTE+'\n'.join(_ocr_image(p) for p in pages)
 
 
-def condense(text):
+def condense(text,budget=None):
     """Fit a long report into the grader's text limit without hiding that it was shortened.
 
     Keeps the opening, the closing and the headings/first lines of the middle, and
     marks every gap, so a quoted passage is always real text from the document."""
-    if len(text)<=BUDGET:return text
+    budget=budget or BUDGET
+    if len(text)<=budget:return text
     lines=[l.rstrip() for l in text.splitlines() if l.strip()]
     head,tail,used=[],[],0
     for l in lines:
-        if used+len(l)+1>BUDGET*0.45:break
+        if used+len(l)+1>budget*0.45:break
         head.append(l);used+=len(l)+1
     rest=lines[len(head):]
     used=0
     for l in reversed(rest):
-        if used+len(l)+1>BUDGET*0.25:break
+        if used+len(l)+1>budget*0.25:break
         tail.insert(0,l);used+=len(l)+1
     middle=rest[:len(rest)-len(tail)]
     keep,used=[],0
     for i,l in enumerate(middle):
         starts=i==0 or len(middle[i-1])<60 or len(l)<80
-        if starts and used+min(len(l),200)+1<=BUDGET*0.28:
+        if starts and used+min(len(l),200)+1<=budget*0.28:
             keep.append(l[:200]);used+=min(len(l),200)+1
     omitted=len(text)-sum(len(x)+1 for x in head+keep+tail)
     note=f'{CONDENSED} the original has {len(text)} characters; about {omitted} were omitted from the middle to fit the reader]'
@@ -145,6 +146,16 @@ def _pdf_fallback(path,assessment):
     if len(text.strip())<40:text=_ocr_pdf(path)
     if len(text.strip())<80:raise ValueError('OCR found no readable text; the document needs manual review')
     return _through_extract(condense(text),assessment,'pdf')
+
+
+def _plain_text(path):
+    """Readable text of an over-long notebook or text file (markdown and code; outputs are left out)."""
+    raw=decode(path.read_bytes())
+    if path.suffix.lower()!='.ipynb':return raw
+    import json
+    try:cells=json.loads(raw).get('cells',[])
+    except ValueError:return raw
+    return '\n'.join(''.join(c.get('source',[])) if isinstance(c.get('source'),list) else str(c.get('source','')) for c in cells)
 
 
 def _zip_text(path,assessment):
@@ -195,4 +206,7 @@ def extract(original,assessment=None):
                 except Exception as second:
                     raise ValueError(f'{first} | fallback: {second}'[:400])
                 raise
-    return grading.extract(path,assessment)
+    try:return grading.extract(path,assessment)
+    except ValueError as exc:
+        if 'exceeds supported text length' not in str(exc):raise
+        return _through_extract(condense(_plain_text(path)),assessment,'long')

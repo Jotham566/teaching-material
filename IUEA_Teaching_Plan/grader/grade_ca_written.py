@@ -184,9 +184,12 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             deterministic=dict(status='OK',notebook_total=prior['code_score'],max_total=prior['code_maximum'])
         packet=prepared.get(receipt['response_id'],{})
         evidence_ids={fid for fid,p in zip(receipt['file_ids'],paths) if p.suffix.lower()!='.csv'}
-        if (packet.get('errors') or not evidence_ids
-                or {t['id'] for t in packet.get('files',[])}!=evidence_ids):
+        readable={t['id'] for t in packet.get('files',[])}
+        # One unreadable extra file must not hold work that has a readable report or notebook beside it.
+        unread=sorted(evidence_ids-readable)
+        if not evidence_ids or not readable or not readable<=evidence_ids or (unread and not packet.get('errors')):
             result['status']='TEXT_EXTRACTION_PENDING';results.append(result);continue
+        if unread:evidence_ids=readable
         if packet.get('extractor_fingerprint')!=artifact_grade.evaluator_fingerprint(rubric):
             raise ValueError('Prepared text uses a different extractor; prepare it again')
         evidence_paths=[];seen_sources=set()
@@ -227,7 +230,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             if deterministic:evidence=combine(evidence,rubric,deterministic,14,20)
             result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' else 'WRITTEN_REVIEW',
                           review_reason=needs_review,
-                          grading_note=explain(evidence,rubric,needs_review,scores),
+                          grading_note=(explain(evidence,rubric,needs_review,scores)+(f' {len(unread)} other uploaded file(s) could not be read; marked from the readable files.' if unread else ''))[:1500],
                           score=evidence['score'],evidence=evidence,signature=signature)
             # A review hold must not carry a mark; the suggestion stays in the evidence.
             if result['status']!='GRADED':result['score']=None

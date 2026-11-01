@@ -13,6 +13,18 @@ import evidence_extract
 HERE=Path(__file__).resolve().parent
 
 
+def share(record):
+    """Several files are read together, so give each a fair share of the combined text limit."""
+    files=record['files']
+    if len(files)<2:return
+    each=max(2000,(evidence_extract.BUDGET-400*len(files))//len(files))
+    for f in files:
+        path=Path(f['path']);text=path.read_text(encoding='utf-8')
+        if len(text)>each:
+            content=evidence_extract.condense(text,each).encode('utf-8');path.write_bytes(content)
+            f['text_sha256']=hashlib.sha256(content).hexdigest()
+
+
 def prepare(source,ledger,out):
     source,out=Path(source),Path(out)
     out.mkdir(parents=True,exist_ok=True)
@@ -50,6 +62,7 @@ def prepare(source,ledger,out):
                                             text_sha256=hashlib.sha256(content).hexdigest()))
             except Exception as exc:
                 record['errors'].append(dict(id=fid,error=str(exc)[:400]))
+        share(record)
         prepared[r['response_id']]=record
         (out/'prepared.json').write_text(json.dumps(prepared,indent=2))
     (out/'prepared.json').write_text(json.dumps(prepared,indent=2))

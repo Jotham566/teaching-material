@@ -51,5 +51,23 @@ class Condense(unittest.TestCase):
         self.assertTrue(out.startswith('Line 0 '))
         self.assertEqual(e.condense('short'),'short')
 
+    def test_overlong_notebook_is_condensed_not_rejected(self):
+        import json
+        with tempfile.TemporaryDirectory() as d:
+            nb=Path(d)/'a.ipynb'
+            nb.write_text(json.dumps({'cells':[{'cell_type':'markdown','source':['# Part %d\n'%i,'text '*60]} for i in range(400)]}))
+            out=e.extract(nb,'W01')
+            self.assertIn(e.CONDENSED,out)
+
+    def test_files_share_combined_budget(self):
+        import prepare_ca_written as p
+        with tempfile.TemporaryDirectory() as d:
+            files=[]
+            for i in range(2):
+                f=Path(d)/f'{i}.md';f.write_text('\n'.join('row %d '%j+'x'*50 for j in range(300)))
+                files.append(dict(path=str(f),text_sha256=''))
+            p.share(dict(files=files))
+            self.assertLess(sum(len(Path(f['path']).read_text()) for f in files),12000)
+
 
 if __name__=='__main__':unittest.main()
