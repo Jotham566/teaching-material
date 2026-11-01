@@ -133,6 +133,10 @@ def extract(original,assessment=None):
     path=Path(original);ext=path.suffix.lower()
     real=sniff(path) if ext not in TEXT_SUFFIXES+('.ipynb','.csv') else ''
     if real and real!=ext:ext=real
+    if ext=='.ipynb' and path.read_bytes()[:2] in (b'\xff\xfe',b'\xfe\xff'):
+        with tempfile.TemporaryDirectory() as d:
+            copy=Path(d)/'nb.ipynb';copy.write_text(decode(path.read_bytes()),encoding='utf-8')
+            return grading.extract(copy,assessment)
     if ext=='.zip':return _zip_text(path,assessment)
     if ext in ('.html','.htm'):
         parts=[]
