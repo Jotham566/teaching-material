@@ -194,8 +194,19 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
   recover_quiz_ids(attempts)
  return finalize(attempts,sources)
 
+# The lecturer's own test submissions must never appear in the compiled marks.
+LECTURER_EMAILS={'jothammartin.wambi@gmail.com','wirmbeesubs@gmail.com'}
+LECTURER_NAME_PARTS={'JOTHAM','MARTIN','WAMBI'}
+def is_lecturer_test(r):
+ sid=norm(r.get('submitted_student_id') or r.get('student_id'));cur=norm(r.get('student_id'))
+ if re.match(r'^TEST\d*$',sid) or re.match(r'^TEST\d*$',cur):return True
+ if (r.get('email') or '').strip().lower() in LECTURER_EMAILS:return True
+ words=set(re.findall(r'[A-Z]+',(r.get('full_name') or '').upper()))
+ return len(words&LECTURER_NAME_PARTS)>=2
+
 def finalize(attempts,sources,extra_conflicts=(),supported_accounts=(),registration_authoritative=False):
  """Rebuild current attempts and students after supported identity corrections."""
+ attempts[:]=[r for r in attempts if not is_lecturer_test(r)]
  bad=(set() if registration_authoritative else identity_conflicts(attempts,supported_accounts))|set(extra_conflicts)
  for r in attempts:
   r['source_score']=r['score']

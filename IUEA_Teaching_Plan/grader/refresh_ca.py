@@ -487,7 +487,8 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
             ledger = ca.build(batch/'reconciled', batch/'written_queue/combined_results.json', timing, retained_attempts=extras)
             old_ids = {r['response_id'] for r in old_ledger['attempts']}
             new_ids = {r['response_id'] for r in ledger['attempts']}
-            if not old_ids <= new_ids: raise ValueError('Receipt history would shrink; existing workbook preserved.')
+            kept_ids = {r['response_id'] for r in old_ledger['attempts'] if not ca.is_lecturer_test(r)}
+            if not kept_ids <= new_ids: raise ValueError('Receipt history would shrink; existing workbook preserved.')
             if len(new_ids)!=len(ledger['attempts']): raise ValueError('Duplicate receipt in rebuilt ledger')
             reconcile_batch_identities(ledger,batch)
             grade_after_identity(ledger,batch,previous)
