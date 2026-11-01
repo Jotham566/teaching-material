@@ -40,6 +40,41 @@ def instructions_for(cohort,assessment):
     return ('Assignment instructions given to students. Award marks only for work that follows them; '
             'work in a format the instructions do not allow, or that is missing a required part, earns zero for the affected criteria.\n'+text)[:3000]
 
+QUOTE_ERROR='verifiable quoted evidence'
+
+def snap(quote,text):
+    """Return the exact passage of text that the model's near-verbatim quote refers to, or None."""
+    from difflib import SequenceMatcher
+    if not quote or len(quote)<25:return None
+    spans=[m.span() for m in re.finditer(r'[^\n.!?]+[.!?]?',text) if m.group().strip()]
+    best,top=None,0.0
+    # A quote may cover one sentence or a few neighbouring ones; every candidate is a contiguous slice of text.
+    for i in range(len(spans)):
+        for j in range(i,min(i+3,len(spans))):
+            piece=text[spans[i][0]:spans[j][1]].strip()
+            ratio=SequenceMatcher(None,piece,quote,autojunk=False).ratio()
+            if ratio>top:best,top=piece,ratio
+    return best if top>=.85 else None
+
+def repair_quotes(evidence,paths,assessment):
+    """Fix unverifiable quotes without touching the calibrated grader: snap near-matches to the real text,
+    and score a criterion 0 where no genuine supporting passage exists."""
+    if QUOTE_ERROR not in str(evidence.get('error','')):return evidence
+    text='\n\n'.join('Artifact %d\n%s'%(i+1,artifact_grade.extract(p,assessment)) for i,p in enumerate(sorted(map(Path,paths))))
+    evaluations=json.loads(json.dumps(evidence['evaluations']));dropped=0
+    for e in evaluations:
+        for c in e.get('criteria',[]):
+            q=c.get('evidence','')
+            if c.get('awarded',0)>0 and (not q or q not in text):
+                fixed=snap(q,text)
+                if fixed:c['evidence']=fixed
+                else:
+                    c['awarded']=0;c['evidence']='';dropped+=1
+                    c['feedback']=(c.get('feedback','')+' No supporting passage could be verified, so 0.')[:240]
+    fixed=dict(evidence,evaluations=evaluations,status='EXCEPTION',repaired_quotes=True,dropped_unverified=dropped)
+    fixed.pop('error',None)
+    return fixed
+
 def settle(evidence):
     """Differing passes are averaged, not held. Only concerns or invalid output stay unmarked."""
     passes=evidence.get('evaluations',[])
@@ -52,6 +87,8 @@ def settle(evidence):
 def explain(evidence,rubric,reason,scores):
     titles={c['id']:c['title'] for c in rubric['criteria']}
     parts=[REVIEW_NOTES[reason]] if reason in REVIEW_NOTES else []
+    if evidence.get('repaired_quotes'):
+        parts.append('Quotes the AI could not verify were corrected to the student\'s exact text'+(f'; {evidence["dropped_unverified"]} criterion award(s) had no verifiable support and were scored 0.' if evidence.get('dropped_unverified') else '.'))
     if scores:parts.append(f'The two AI passes scored {scores[0]} and {scores[1]}; the mark is their average.')
     first=(evidence.get('evaluations') or [{}])[0]
     detail='; '.join(f"{titles.get(c['id'],c['id'])} {c['awarded']}: {c.get('feedback','')}".strip() for c in first.get('criteria',[]))
@@ -167,7 +204,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             results.append(old);continue
         if old.get('signature')==signature and old.get('status')=='WRITTEN_REVIEW' and old.get('evidence'):
             # Earlier runs held these for review; settle them from the saved AI passes without re-running the model.
-            evidence,scores=settle(old['evidence'])
+            evidence,scores=settle(repair_quotes(old['evidence'],evidence_paths,assessment))
             if deterministic and evidence.get('status')=='AUTO_SCORED' and (scores or 'deterministic' not in evidence):
                 evidence=combine(evidence,rubric,deterministic,14,20)
             if evidence.get('status')=='AUTO_SCORED' and evidence.get('score') is not None:
@@ -178,7 +215,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
         # Resource failures stop the batch, never become a student's grading error.
         ensure_docker_stopped()
         try:
-            evidence,scores=settle(backend.grade_packet(evidence_paths,dict(rubric,assignment_instructions=instructions_for(receipt['cohort'],assessment)),'ollama',model))
+            evidence,scores=settle(repair_quotes(backend.grade_packet(evidence_paths,dict(rubric,assignment_instructions=instructions_for(receipt['cohort'],assessment)),'ollama',model),evidence_paths,assessment))
             if deterministic:evidence=combine(evidence,rubric,deterministic,14,20)
             result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' else 'WRITTEN_REVIEW',
                           review_reason=needs_review,

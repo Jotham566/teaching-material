@@ -253,7 +253,12 @@ def select_work(source, ledger, old_results):
         # Do not silently rerun already-awarded or review-held AI judgements.
         if same and old['status'] in ('GRADED','WRITTEN_REVIEW'):
             # Held results whose only issue was differing AI passes are marked from the saved evidence.
-            retained.append(grade_ca_written.settle_held(old) if old['status']=='WRITTEN_REVIEW' else old)
+            if old['status']=='WRITTEN_REVIEW':
+                old=grade_ca_written.settle_held(old)
+                # Unverifiable quotes are repaired from the saved AI passes during written grading; no model rerun.
+                if old['status']=='WRITTEN_REVIEW' and grade_ca_written.QUOTE_ERROR in str(old.get('evidence',{}).get('error','')):
+                    todo.append(r);continue
+            retained.append(old)
         else: todo.append(r)
     return retained, todo
 
