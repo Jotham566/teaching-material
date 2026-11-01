@@ -1,4 +1,5 @@
 """Validate installed A1/A2 models before replacing calibration; never grade students."""
+import argparse
 import json
 from pathlib import Path
 import shutil
@@ -39,10 +40,10 @@ def activate(candidates, reports=REPORTS):
             temporary.replace(dest)
 
 
-def main():
+def main(a1_model='qwen3.5:4b', a2_model='qwen3:4b', trial=False):
     with exclusive(PRIVATE):
         # Both names must already be available; do not silently download a new model.
-        models = {'A1': 'qwen3.5:4b', 'A2': 'qwen3:4b'}
+        models = {'A1': a1_model, 'A2': a2_model}
         for model in models.values(): artifact_grade.local_model_identity(model)
         ensure_docker_stopped()
         trials = PRIVATE/'model_trials'; trials.mkdir(parents=True, exist_ok=True)
@@ -62,13 +63,25 @@ def main():
                 subprocess.run(command+['--model',model,'--out',str(candidates[label])],check=True,cwd=ROOT)
             finally:
                 unload(model)
+        if trial:
+            for label, (_, rubric_path) in REPORTS.items():
+                model = model_for_report(candidates[label])
+                artifact_grade.validate_calibration(candidates[label], json.loads(rubric_path.read_text()),
+                                                   artifact_grade.local_model_identity(model), model)
+            print('TRIAL PASS: '+', '.join(l+'='+m for l, m in models.items())+' passed calibration. Nothing was activated.')
+            print('Evidence: '+str(folder))
+            return
         activate(candidates)
         print('PASS: both calibrations activated. Original reports are backed up. No student marks changed.')
         print('Repeat your original grade-submissions command with the same ZIP to resume.')
 
 
 if __name__ == '__main__':
-    try: main()
+    ap = argparse.ArgumentParser(description='Calibrate installed models; --trial validates a candidate without activating it.')
+    ap.add_argument('--a1-model', default='qwen3.5:4b'); ap.add_argument('--a2-model', default='qwen3:4b')
+    ap.add_argument('--trial', action='store_true')
+    args = ap.parse_args()
+    try: main(args.a1_model, args.a2_model, args.trial)
     except Exception as exc:
         print('STOPPED: '+str(exc), file=sys.stderr)
         print('Do not bypass calibration. Keep the evidence and share the failed case/error for review. Student marks were not changed.', file=sys.stderr)

@@ -23,6 +23,23 @@ REVIEW_NOTES={
  'NO_README_NOTEBOOK_TEXT_USED':'No README was uploaded; the written part was marked from the notebook\'s own explanation cells.'
 }
 
+# Files that can never be the written report or README the instructions ask for.
+WRONG_TYPES={'.zip','.rar','.7z','.tar','.gz','.py','.csv','.xlsx','.xls','.json'}
+GUIDES=HERE.parent/'student_guides'
+
+def instructions_for(cohort,assessment):
+    """The student-facing brief, so the marker judges work against what was actually asked."""
+    path=GUIDES/cohort/(assessment+'.md')
+    if not path.is_file():return None
+    keep=[];
+    for line in path.read_text().splitlines():
+        if line.startswith('## Help only'):break
+        if line.startswith(('**Deadline','**Submission link')):continue
+        keep.append(line)
+    text='\n'.join(keep).strip()
+    return ('Assignment instructions given to students. Award marks only for work that follows them; '
+            'work in a format the instructions do not allow, or that is missing a required part, earns zero for the affected criteria.\n'+text)[:3000]
+
 def settle(evidence):
     """Differing passes are averaged, not held. Only concerns or invalid output stay unmarked."""
     passes=evidence.get('evaluations',[])
@@ -73,6 +90,14 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
                 raise ValueError('Written attachment checksum mismatch')
         result['source_hashes']={fid:files[fid]['sha256'] for fid in receipt['file_ids']}
         deterministic=None;needs_review=None
+        if all(p.suffix.lower() in WRONG_TYPES for p in paths):
+            # Only archives, data or script files: the required report/notebook and README were not submitted.
+            uploaded=', '.join(sorted({files[fid].get('original_name',fid) for fid in receipt['file_ids']}))[:300]
+            wanted='a DOCX/PDF report (or PPTX with notes)' if assessment=='W01' else 'a notebook (.ipynb) and a README'
+            result.update(status='GRADED',score=0,
+                          grading_note=f'Instructions require {wanted}; none was submitted, so the assignment scores 0/20. Uploaded: {uploaded}')
+            if assessment=='W02':result.update(code_score=0,code_maximum=14)
+            results.append(result);continue
         if assessment=='W02':
             prior=code.get(receipt['response_id'],{})
             # Duplicate uploads of one file count once.
@@ -139,7 +164,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
         # Resource failures stop the batch, never become a student's grading error.
         ensure_docker_stopped()
         try:
-            evidence,scores=settle(backend.grade_packet(evidence_paths,rubric,'ollama',model))
+            evidence,scores=settle(backend.grade_packet(evidence_paths,dict(rubric,assignment_instructions=instructions_for(receipt['cohort'],assessment)),'ollama',model))
             if deterministic:evidence=combine(evidence,rubric,deterministic,14,20)
             result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' else 'WRITTEN_REVIEW',
                           review_reason=needs_review,

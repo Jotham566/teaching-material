@@ -99,6 +99,10 @@ caffeinate -i ~/Projects/teaching-material/.iuea-grader-env/bin/python ~/Project
 
 It stops Docker, tests A1 and A2 using synthetic known-answer examples, and saves the evidence privately. Only after both pass does it activate the new reports, backing up the originals. It does not change student marks. Wait for **PASS: both calibrations activated**, then repeat the original `grade-submissions` command with the same ZIP. If a case fails, retain the output for review; do not bypass the check or restore a snapshot over the interrupted batch.
 
+To try a larger model without changing anything live, pull it first (`ollama pull qwen3.5:9b`), then run the same script with `--trial --a1-model qwen3.5:9b --a2-model qwen3.5:9b`. A trial runs both calibrations and prints **TRIAL PASS** or fails; it activates nothing and leaves marks untouched. Evidence is saved under `model_trials/`.
+
+Written grading is also given the cohort's student instructions (`student_guides/<cohort>/<W01|W02>.md`). A submission containing only ZIP, script, CSV or spreadsheet files is scored 0 with the reason recorded in the Grading note.
+
 Finish any unrelated Docker work first. The grading command manages Docker for code/document checks, then stops it before written grading. Do not reopen Docker during written grading.
 
 ## 4. Run one grading command
