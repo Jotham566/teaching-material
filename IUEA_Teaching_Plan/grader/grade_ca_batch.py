@@ -2,7 +2,7 @@
 Run only after source exports and identity/timing checks have completed.
 W02 code marks remain a partial component until its calibrated text marks exist.
 """
-import argparse,hashlib,json,shutil,tempfile
+import argparse,hashlib,json,re,shutil,tempfile
 from pathlib import Path
 import batch_grade as bg
 import iuea_grader as ig
@@ -17,6 +17,25 @@ def fingerprint():
  for p in sorted([HERE/'Dockerfile']+list(HERE.glob('*.py'))+[p for p in (HERE/'specs').rglob('*') if p.suffix in ('.py','.json')]):
   h.update(str(p.relative_to(HERE)).encode());h.update(p.read_bytes())
  return h.hexdigest()
+
+HELPER_NOTEBOOK=re.compile(r'proof[ _-]*of[ _-]*life|hidden[ _-]*state|wrong[ _-]*(?:path|runtime)|missing[ _-]*module|^copy of ',re.I)
+
+def pick_notebook(notebooks,assignment,student_id):
+ """Choose the submission notebook when extra practice notebooks were uploaded too.
+ Practice/helper notebooks are ignored; if several remain, only one whose name carries
+ this assignment or the student's registration is accepted. Otherwise stay ambiguous."""
+ if len(notebooks)==1:return notebooks[0]
+ stem=lambda n:re.sub(r'\.ipynb.*$','',n.get('original_name',''),flags=re.I)
+ main=[n for n in notebooks if not HELPER_NOTEBOOK.search(stem(n).strip())]
+ if len(main)==1:return main[0]
+ compact=lambda v:re.sub(r'[^A-Z0-9]','',str(v).upper())
+ named=[n for n in main if assignment in compact(stem(n)) or compact(student_id) in compact(stem(n))]
+ return named[0] if len(named)==1 else None
+
+def decode_notebook(raw):
+ """Return notebook JSON text; accept UTF-8 (with BOM) and BOM-marked UTF-16 exports."""
+ if raw[:2] in (b'\xff\xfe',b'\xfe\xff'):return raw.decode('utf-16')
+ return raw.decode('utf-8-sig')
 
 def run(source,ledger,out):
  source=Path(source);out=Path(out);out.mkdir(parents=True,exist_ok=True)
@@ -39,15 +58,16 @@ def run(source,ledger,out):
   result['source_hashes']={fid:files[fid]['sha256'] for fid in r['file_ids']}
   notebooks=[files[fid] for fid in r['file_ids'] if fid in files and files[fid]['export_name'].endswith('.ipynb')]
   notebooks=list({n['sha256']:n for n in notebooks}.values())
-  if len(notebooks)!=1:result['status']='NOTEBOOK_MISSING_OR_AMBIGUOUS';results.append(result);continue
-  info=notebooks[0];file=source/'files'/info['export_name']
+  info=pick_notebook(notebooks,r['assessment'],r['student_id']) if notebooks else None
+  if info is None:result['status']='NOTEBOOK_MISSING_OR_AMBIGUOUS';results.append(result);continue
+  file=source/'files'/info['export_name']
   if not file.is_file():result['status']='DOWNLOAD_MISSING';results.append(result);continue
   digest=hashlib.sha256(file.read_bytes()).hexdigest()
   if digest!=info['sha256']:raise ValueError('Downloaded notebook hash mismatch')
   if not file.stat().st_size:
    result['status']='EMPTY_NOTEBOOK';results.append(result);continue
   try:
-   notebook=json.loads(file.read_text(encoding='utf-8'))
+   notebook_text=decode_notebook(file.read_bytes());notebook=json.loads(notebook_text)
    if not isinstance(notebook,dict) or not isinstance(notebook.get('cells'),list):raise ValueError('Missing cells')
   except (UnicodeError,ValueError):
    result['status']='INVALID_NOTEBOOK';results.append(result);continue
@@ -62,7 +82,7 @@ def run(source,ledger,out):
   spec=ig.find_spec_file(assignment,None);hidden=ig.find_hidden_spec_file(assignment,None)
   if not spec or not hidden:raise ValueError('Both visible and private authoritative checks are required')
   with tempfile.TemporaryDirectory(prefix='ca_receipt_') as tmp:
-   target=Path(tmp)/(filename_id(r['student_id'])+'_'+assignment+'.ipynb');shutil.copy2(file,target)
+   target=Path(tmp)/(filename_id(r['student_id'])+'_'+assignment+'.ipynb');target.write_text(notebook_text,encoding='utf-8')
    record=bg.grade_one(str(target),spec,hidden,assignment,cohort,str(data_dir) if data_dir.exists() else None,30,180,None)
   if record['status']=='IDENTITY_MISMATCH' and norm(record.get('declared_sid'))==r['student_id']:
    record['identity_note']='Notebook identity matches the receipt after whitespace/filename-separator normalization; original declared_sid retained.'

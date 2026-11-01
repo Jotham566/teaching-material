@@ -55,7 +55,7 @@ def obvious_text_variant(original, target):
 def canonical(value):
     original = ca.norm(value)
     clean = re.sub("['’‘`\"“”]", '', original)
-    punct=re.fullmatch(r'(\d{2,4})[/_.\\-](?:(UG)[/_.\\-])?(\d+)[/_.\\-]([A-Z]{2,12})[-/=]([A-Z])',clean)
+    punct=re.fullmatch(r'(\d{2,4})[/_.\\-](?:(UG)[/_.\\-])?(\d+)[/_.\\-]([A-Z]{2,12})[-/=_]([A-Z])',clean)
     if punct:return '/'.join(x for x in (punct[1],punct[2],punct[3]) if x)+'/'+punct[4]+'-'+punct[5]
     joined=re.fullmatch(r'(\d{2,4}/(?:UG/)?\d+/)([A-Z]+)([A-Z])',clean)
     if joined and joined[2] in {code for codes in COURSE_PROGRAMMES.values() for code in codes}:
@@ -142,6 +142,20 @@ def reconcile(ledger, evidence, source, separator_only=False):
                     continue
                 r['student_id']=target
                 notes[r['response_id']]='Registration corrected to the one validated in this account\'s Test submission ('+target+'); original entry retained.'
+    # A non-registration entry (a name, phone number or partial ID) is replaced by the account's
+    # sole registration across all of its receipts when no other account claims either value.
+    if not separator_only:
+        for (course,email), account in groups.items():
+            regs={r['student_id'] for r in account if re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/[A-Z]{2,12}-[A-Z]',r['student_id'])}
+            if len(regs)!=1:continue
+            target=next(iter(regs))
+            if owners[(course,target)]!={email}:continue
+            for r in account:
+                sid=r['student_id']
+                if sid==target or str(r['assessment']).startswith('TEST') or sid in regs:continue
+                if re.fullmatch(r'\d{2,4}/(?:UG/)?\d+/[A-Z]{2,12}-[A-Z]',sid) or owners[(course,sid)]-{email}:continue
+                r['student_id']=target
+                notes[r['response_id']]='Entry is not a registration number; replaced by the sole registration used by this account ('+target+'). Original entry retained.'
     # Fill blank names from the same account's Test submission when it gave exactly one name.
     test_names=collections.defaultdict(set)
     for r in rows:
@@ -150,6 +164,20 @@ def reconcile(ledger, evidence, source, separator_only=False):
     for r in rows:
         names_for=test_names.get((r['cohort'],r['email']),set())
         if not r.get('full_name') and len(names_for)==1:r['full_name']=next(iter(names_for))
+    # Drive appends the uploader's display name to each uploaded file (" - Full Name.ext").
+    # Use it for display only, and only when every upload on the account gives one name.
+    manifests={}
+    uploader=collections.defaultdict(set)
+    for r in rows:
+        if not r['email'] or not r.get('source'):continue
+        meta=manifests.setdefault(r['source'],read(source/r['source'],{}))
+        for f in meta.get('files',[]):
+            if f['id'] in r.get('file_ids',[]):
+                m=re.search(r' - ([^-]+?)(?:\.[A-Za-z0-9]+)?$',f.get('original_name',''))
+                if m and valid_name(m[1].strip()):uploader[(r['cohort'],r['email'])].add(m[1].strip())
+    for r in rows:
+        found=uploader.get((r['cohort'],r['email']),set())
+        if not r.get('full_name') and found and len({name_key(x) for x in found})==1:r['full_name']=sorted(found)[0]
     # Recover omitted/misplaced separators only against an already submitted,
     # unambiguous registration. Never split a run of digits by guessing.
     compact=lambda value: re.sub(r"[\s/_=\-'’‘`\"“”]",'',str(value).upper())
@@ -299,12 +327,21 @@ def reconcile(ledger, evidence, source, separator_only=False):
         accepted=declared==r['student_id'] or aliases.get((r['cohort'],r['email'],declared))=={r['student_id']}
         # A blank or template ID in the notebook is not a competing claim when the same account's
         # Test submission already validated this registration and no other account holds it.
-        confirmed_by_test=(not re.fullmatch(shape,declared or '') and test_ids.get((r['cohort'],r['email']))=={r['student_id']}
+        account_ids={x['student_id'] for x in rows if x['cohort']==r['cohort'] and x['email']==r['email'] and x['student_id']}
+        confirmed_by_test=(not re.fullmatch(shape,declared or '')
+                           and (test_ids.get((r['cohort'],r['email']))=={r['student_id']} or account_ids=={r['student_id']})
                            and owners[(r['cohort'],r['student_id'])]<={r['email']})
+        # A one-or-two character slip in the notebook's own ID, on an account with only this registration.
+        near_typo=(declared and not accepted and account_ids=={r['student_id']} and owners[(r['cohort'],r['student_id'])]<={r['email']}
+                   and (lambda a,b:edit_distance(a,b)<=2 or (len(a)>=5 and (b.startswith(a) or a.startswith(b))))(
+                        re.sub(r'[^A-Z0-9]','',declared.upper()),re.sub(r'[^A-Z0-9]','',r['student_id'])))
+        if near_typo:
+            accepted=True
+            notes[r['response_id']]='Notebook ID differs from the receipt registration by a typo; the account uses only this registration. Original retained.'
         if confirmed_by_test and not accepted:
             accepted=True
             notes[r['response_id']]='Notebook ID cell is blank or template text; receipt registration matches the account\'s validated Test registration. Original retained.'
-        if not (declared or confirmed_by_test) or not accepted or record.get('cell_errors'):continue
+        if not (declared or confirmed_by_test) or not accepted:continue
         questions=record.get('questions',{}); maximum=14 if r['assessment']=='W02' else 20
         if not questions or any(q.get('err') for q in questions.values()):continue
         if any(type(q.get('marks')) not in (int,float) or type(q.get('awarded')) not in (int,float) or not 0<=q['awarded']<=q['marks'] for q in questions.values()):continue

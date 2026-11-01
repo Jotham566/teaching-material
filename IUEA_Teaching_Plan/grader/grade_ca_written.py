@@ -6,6 +6,7 @@ Every result is keyed by receipt; identity conflicts remain withheld by the ledg
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import artifact_grade
 from calibration_record import model_for_report, profile_for_report
@@ -53,7 +54,11 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             prior=code.get(receipt['response_id'],{})
             # Duplicate uploads of one file count once.
             unique={hashlib.sha256(p.read_bytes()).hexdigest():p for p in paths}.values()
-            notebooks=sum(p.suffix.lower()=='.ipynb' for p in unique)
+            from grade_ca_batch import HELPER_NOTEBOOK
+            # Practice notebooks uploaded alongside the submission are not a second submission.
+            names={hashlib.sha256(p.read_bytes()).hexdigest():files[fid]['original_name'] for fid,p in zip(receipt['file_ids'],paths)}
+            notebooks=sum(p.suffix.lower()=='.ipynb' and not HELPER_NOTEBOOK.search(re.sub(r'\.ipynb.*$','',names[h],flags=re.I).strip())
+                          for h,p in {hashlib.sha256(p.read_bytes()).hexdigest():p for p in paths}.items())
             if notebooks==0 and prior.get('status')=='NOTEBOOK_MISSING_OR_AMBIGUOUS':
                 # Written work without a notebook earns no code marks and is always reviewed.
                 prior=dict(prior,status='PARTIAL_CODE_ONLY',code_score=0,code_maximum=14)
