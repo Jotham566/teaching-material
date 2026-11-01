@@ -339,6 +339,46 @@ def reconcile_batch_identities(ledger, batch):
     print(f'Identity checks complete: {corrected} supported registration corrections; {released} held marks allocated. Uncertain cases remain for review.',flush=True)
 
 
+def grade_after_identity(ledger, batch, previous):
+    """A2 receipts whose notebook identity was settled only after written grading still need their written marks.
+
+    The notebook's code mark is already verified, so only the written part runs; results are cached per receipt.
+    """
+    rows = [r for r in ledger['attempts'] if r['assessment']=='W02' and r['status']=='PARTIAL_CODE_ONLY'
+            and r['timing_status']=='ON_TIME' and r.get('code_score') is not None]
+    if not rows: return
+    import grade_ca_written
+    from local_ai_resources import ensure_docker_stopped
+    from run_ca_written_queue import unload
+    from calibration_record import model_for_report
+    out = batch/'written_queue/W02_post'
+    if (previous/'written_queue/W02_post').exists() and not out.exists(): shutil.copytree(previous/'written_queue/W02_post', out)
+    source = batch/'reconciled'; report = ROOT/'review/2026-09-14/rework/local_calibration_v10.json'
+    coding = []
+    for r in rows:
+        meta = read(source/r['source'])
+        hashes = {f['id']: f['sha256'] for f in meta['files'] if f['id'] in r['file_ids']}
+        coding.append(dict(response_id=r['response_id'], cohort=r['cohort'], assessment='W02', student_id=r['student_id'],
+                           status='PARTIAL_CODE_ONLY', code_score=r['code_score'], code_maximum=r['code_maximum'], source_hashes=hashes))
+    write(batch/'post_identity_input.json', {'current': rows}); write(batch/'post_identity_coding.json', coding)
+    print(f'Written grading for {len(rows)} A2 receipts whose identity was settled after grading...', flush=True)
+    ensure_docker_stopped()
+    try:
+        results = grade_ca_written.run(source, batch/'post_identity_input.json', batch/'post_identity_coding.json', report,
+                                       'W02', out, batch/'written_text/prepared.json')
+    finally:
+        try: unload(model_for_report(report))
+        except Exception: pass
+    by_id = {g['response_id']: g for g in results if g['status']=='GRADED' and g.get('score') is not None}
+    for group in ('attempts', 'current'):
+        for r in ledger[group]:
+            g = by_id.get(r['response_id'])
+            if g:
+                r.update(score=g['score'], status='GRADED', source_score=g['score'], source_status='GRADED')
+                if g.get('grading_note'): r['grading_note'] = g['grading_note']
+    print(f'{len(by_id)} of {len(rows)} marked.', flush=True)
+
+
 def preflight_workbook():
     from run_ca_written_queue import NODE
     runtime=Path(os.environ.get('IUEA_ARTIFACT_NODE_MODULES',str(Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules')))
@@ -450,6 +490,7 @@ def refresh(download, private=PRIVATE, check_only=False, grader=grade, renderer=
             if not old_ids <= new_ids: raise ValueError('Receipt history would shrink; existing workbook preserved.')
             if len(new_ids)!=len(ledger['attempts']): raise ValueError('Duplicate receipt in rebuilt ledger')
             reconcile_batch_identities(ledger,batch)
+            grade_after_identity(ledger,batch,previous)
             write(batch/'ledger.json', ledger)
             summary = {'new_receipts':len(new_ids-old_ids), 'retained_assignment_results':len(retained),
                        'checked_assignment_receipts':len(todo), 'current_statuses':dict(collections.Counter(r['status'] for r in ledger['current']))}
