@@ -18,6 +18,30 @@ const reasons={
  AWAITING_GRADING:'This receipt has not yet received a complete grade.',
  PARTIAL_CODE_ONLY:'The coding component is available; the written component is not yet final.'
 };
+const reviewReasons={
+ NO_NOTEBOOK_CODE_ZERO:'No notebook was uploaded, so code is scored 0/14. Confirm the written part from the report.',
+ NO_README_NOTEBOOK_TEXT_USED:'No README was uploaded; the written part was read from the notebook\'s own explanation cells. Confirm it.'
+};
+// Plain-language next step, derived from what was actually uploaded.
+function nextStep(r,names,notes,g){
+ const ext=[...new Set(names.map(n=>(n.match(/\.([A-Za-z0-9]+)\s*$/)||[,'no extension'])[1].toLowerCase()))].join(', ');
+ if(g.review_reason&&reviewReasons[g.review_reason])return reviewReasons[g.review_reason];
+ if(r.status==='NOTEBOOK_MISSING_OR_AMBIGUOUS'){
+  const nb=names.filter(n=>/\.ipynb\s*$/i.test(n));
+  return nb.length>1?`${nb.length} different notebooks were uploaded and none is clearly the submission. Open each and mark the right one.`
+   :`No notebook (.ipynb) was uploaded; files are: ${ext}. Open the file(s) and mark manually.`;
+ }
+ if(r.status==='TEXT_EXTRACTION_PENDING'){
+  const text=notes.join(' ');
+  if(/image-only/i.test(text))return 'Scanned/image-only document with no selectable text. Read it and mark manually.';
+  if(/Unsupported format/i.test(text))return `Unsupported upload (${ext}), e.g. a ZIP or repository export. Open it and mark manually.`;
+  if(/could not be rendered/i.test(text))return 'The document would not open reliably. Open it in Drive and mark manually.';
+  if(/exceeds supported text length/i.test(text))return 'Document too long for automatic reading. Mark manually.';
+ }
+ if(r.status==='IDENTITY_MISMATCH')return 'The notebook\'s student ID differs from the form entry and cannot be matched to this account. Confirm which registration is correct.';
+ if(r.status==='IDENTITY_CONFLICT'||r.status==='IDENTITY_MISSING')return 'The registration entered is not a valid registration number and the account has no other registration to confirm it. Find the student\'s registration.';
+ return '';
+}
 async function optionalJson(file,fallback){try{return JSON.parse(await fs.readFile(file,'utf8'));}catch(e){if(e.code==='ENOENT')return fallback;throw e;}}
 export async function reviewDetails(data,base){
  const grades=new Map((await optionalJson(path.join(base,'written_queue/combined_results.json'),[])).map(r=>[r.response_id,r]));
@@ -45,7 +69,8 @@ export async function reviewDetails(data,base){
    return {name:f?.original_name||id,url:`https://drive.google.com/file/d/${id}/view`};
   });
   const formId=meta.form_id||meta.quizzes?.[0]?.form_id;
-  return {r,reason:[reasons[r.status]||r.status,r.source_status!==r.status?reasons[r.source_status]||r.source_status:''].filter(Boolean).join(' '),
+  const step=nextStep(r,files.map(f=>f.name),notes,g);
+  return {r,reason:[reasons[r.status]||r.status,step,r.source_status!==r.status?reasons[r.source_status]||r.source_status:''].filter(Boolean).join(' '),
    detail:notes.join('\n').slice(0,3000),scores,relatedIds:relatedIds.join('; '),relatedEmails:relatedEmails.join('; '),
    declared:g.record?.declared_sid||coding.get(r.response_id)?.record?.declared_sid||'',files,
    formUrl:formId&&/^[A-Za-z0-9_-]+$/.test(formId)?`https://docs.google.com/forms/d/${formId}/edit`:''};
