@@ -59,18 +59,32 @@ def run(source,ledger,out):
   notebooks=[files[fid] for fid in r['file_ids'] if fid in files and files[fid]['export_name'].endswith('.ipynb')]
   notebooks=list({n['sha256']:n for n in notebooks}.values())
   info=pick_notebook(notebooks,r['assessment'],r['student_id']) if notebooks else None
+  if info is None and not notebooks and r['assessment']!='W02':
+   # Instructions require a notebook. None was uploaded: scored 0 with the reason recorded.
+   uploaded=', '.join(sorted({files[fid].get('original_name',fid) for fid in r['file_ids']})) or 'no files'
+   result.update(status='GRADED',score=0,code_score=0,code_maximum=20,
+                 grading_note='No notebook (.ipynb) was submitted, so the assignment scores 0/20. Uploaded: '+uploaded[:300])
+   results.append(result);continue
   if info is None:result['status']='NOTEBOOK_MISSING_OR_AMBIGUOUS';results.append(result);continue
   file=source/'files'/info['export_name']
   if not file.is_file():result['status']='DOWNLOAD_MISSING';results.append(result);continue
   digest=hashlib.sha256(file.read_bytes()).hexdigest()
   if digest!=info['sha256']:raise ValueError('Downloaded notebook hash mismatch')
+  if not file.stat().st_size and r['assessment']!='W02':
+   result.update(status='GRADED',score=0,code_score=0,code_maximum=20,
+                 grading_note='The uploaded notebook is empty (0 bytes), so the assignment scores 0/20. File: '+info.get('original_name',''))
+   results.append(result);continue
   if not file.stat().st_size:
    result['status']='EMPTY_NOTEBOOK';results.append(result);continue
   try:
    notebook_text=decode_notebook(file.read_bytes());notebook=json.loads(notebook_text)
    if not isinstance(notebook,dict) or not isinstance(notebook.get('cells'),list):raise ValueError('Missing cells')
   except (UnicodeError,ValueError):
-   result['status']='INVALID_NOTEBOOK';results.append(result);continue
+   if r['assessment']!='W02':
+    result.update(status='GRADED',score=0,code_score=0,code_maximum=20,
+                  grading_note='The uploaded file is not a readable notebook, so the assignment scores 0/20. File: '+info.get('original_name',''))
+   else:result['status']='INVALID_NOTEBOOK'
+   results.append(result);continue
   assignment=r['assessment'];cohort=r['cohort']
   data_dir=ROOT/('IUEA_Teaching_Plan/setup/'+cohort if assignment=='W02' else 'IUEA_Teaching_Plan/practicals/'+assignment+'/'+cohort)
   data_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(data_dir.glob('*.csv'))}

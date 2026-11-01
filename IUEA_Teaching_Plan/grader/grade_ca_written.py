@@ -18,6 +18,29 @@ HERE=Path(__file__).resolve().parent
 WRAPPER_SIGNATURE='3d8916dee5b01924d89fe1426d5427574c52ee97ca9887f66c3ac0038bdec7ae'
 
 
+REVIEW_NOTES={
+ 'NO_NOTEBOOK_CODE_ZERO':'No usable notebook was submitted, so the code component is 0/14; the written part was marked from the uploaded report.',
+ 'NO_README_NOTEBOOK_TEXT_USED':'No README was uploaded; the written part was marked from the notebook\'s own explanation cells.'
+}
+
+def settle(evidence):
+    """Differing passes are averaged, not held. Only concerns or invalid output stay unmarked."""
+    passes=evidence.get('evaluations',[])
+    if (evidence.get('status')=='EXCEPTION' and not evidence.get('error') and len(passes)==2
+            and not any(e.get('concerns') for e in passes)):
+        scores=[round(sum(c['awarded'] for c in e['criteria']),2) for e in passes]
+        return dict(evidence,status='AUTO_SCORED',score=round(sum(scores)/2,2),averaged_passes=scores),scores
+    return evidence,None
+
+def explain(evidence,rubric,reason,scores):
+    titles={c['id']:c['title'] for c in rubric['criteria']}
+    parts=[REVIEW_NOTES[reason]] if reason in REVIEW_NOTES else []
+    if scores:parts.append(f'The two AI passes scored {scores[0]} and {scores[1]}; the mark is their average.')
+    first=(evidence.get('evaluations') or [{}])[0]
+    detail='; '.join(f"{titles.get(c['id'],c['id'])} {c['awarded']}: {c.get('feedback','')}".strip() for c in first.get('criteria',[]))
+    if detail:parts.append('Pass 1 - '+detail)
+    return ' '.join(parts)[:1500]
+
 def run(source, ledger, coding, calibration, assessment, out, prepared, on_progress=None):
     source, out = Path(source), Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -59,7 +82,8 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             names={hashlib.sha256(p.read_bytes()).hexdigest():files[fid]['original_name'] for fid,p in zip(receipt['file_ids'],paths)}
             notebooks=sum(p.suffix.lower()=='.ipynb' and not HELPER_NOTEBOOK.search(re.sub(r'\.ipynb.*$','',names[h],flags=re.I).strip())
                           for h,p in {hashlib.sha256(p.read_bytes()).hexdigest():p for p in paths}.items())
-            if notebooks==0 and prior.get('status')=='NOTEBOOK_MISSING_OR_AMBIGUOUS':
+            usable_missing=(notebooks==0 and prior.get('status')=='NOTEBOOK_MISSING_OR_AMBIGUOUS') or prior.get('status') in ('EMPTY_NOTEBOOK','INVALID_NOTEBOOK')
+            if usable_missing:
                 # Written work without a notebook earns no code marks and is always reviewed.
                 prior=dict(prior,status='PARTIAL_CODE_ONLY',code_score=0,code_maximum=14)
                 needs_review='NO_NOTEBOOK_CODE_ZERO'
@@ -70,7 +94,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             result.update(code_score=prior['code_score'],code_maximum=prior['code_maximum'])
             if notebooks>1:
                 result['status']='README_OR_NOTEBOOK_MISSING';results.append(result);continue
-            if notebooks==1 and not any(p.suffix.lower() in ('.md','.txt') for p in unique):
+            if not needs_review and notebooks==1 and not any(p.suffix.lower() in ('.md','.txt') for p in unique):
                 # The written part is then read from the notebook's own text cells; reviewer confirms.
                 needs_review='NO_README_NOTEBOOK_TEXT_USED'
             deterministic=dict(status='OK',notebook_total=prior['code_score'],max_total=prior['code_maximum'])
@@ -100,16 +124,26 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
         ),sort_keys=True).encode()).hexdigest()
         target=out/(hashlib.sha256(receipt['response_id'].encode()).hexdigest()+'.json')
         old=json.loads(target.read_text()) if target.exists() else {}
-        if old.get('signature')==signature and old.get('status') in ('GRADED','WRITTEN_REVIEW'):
-            if old['status']!='GRADED':old['score']=None
+        if old.get('signature')==signature and old.get('status')=='GRADED':
             results.append(old);continue
+        if old.get('signature')==signature and old.get('status')=='WRITTEN_REVIEW' and old.get('evidence'):
+            # Earlier runs held these for review; settle them from the saved AI passes without re-running the model.
+            evidence,scores=settle(old['evidence'])
+            if deterministic and evidence.get('status')=='AUTO_SCORED' and (scores or 'deterministic' not in evidence):
+                evidence=combine(evidence,rubric,deterministic,14,20)
+            if evidence.get('status')=='AUTO_SCORED' and evidence.get('score') is not None:
+                old.update(status='GRADED',score=evidence['score'],evidence=evidence,
+                           grading_note=explain(evidence,rubric,old.get('review_reason'),scores))
+            else:old['score']=None
+            target.write_text(json.dumps(old,indent=2));results.append(old);continue
         # Resource failures stop the batch, never become a student's grading error.
         ensure_docker_stopped()
         try:
-            evidence=backend.grade_packet(evidence_paths,rubric,'ollama',model)
+            evidence,scores=settle(backend.grade_packet(evidence_paths,rubric,'ollama',model))
             if deterministic:evidence=combine(evidence,rubric,deterministic,14,20)
-            result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' and not needs_review else 'WRITTEN_REVIEW',
+            result.update(status='GRADED' if evidence['status']=='AUTO_SCORED' else 'WRITTEN_REVIEW',
                           review_reason=needs_review,
+                          grading_note=explain(evidence,rubric,needs_review,scores),
                           score=evidence['score'],evidence=evidence,signature=signature)
             # A review hold must not carry a mark; the suggestion stays in the evidence.
             if result['status']!='GRADED':result['score']=None

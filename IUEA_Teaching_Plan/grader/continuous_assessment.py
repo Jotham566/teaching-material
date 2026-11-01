@@ -168,6 +168,7 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
     if not hashes or set(hashes)!=set(r['file_ids']) or g.get('source_hashes')!=hashes:
      raise ValueError('Grade attachment hashes do not match this source snapshot; regrade')
    r.update(score=value,status=g['status'],code_score=g.get('code_score'),code_maximum=g.get('code_maximum'))
+   if g.get('grading_note'):r['grading_note']=g['grading_note']
  for test_file in test_ledgers or []:
   test_path=Path(test_file);td=json.loads(test_path.read_text())
   sources.append(dict(file=test_path.name,sha256=digest(test_path),exported_at='Test grading ledger'))
