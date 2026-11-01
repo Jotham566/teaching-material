@@ -17,7 +17,9 @@ const assignments=[1,2,3,4,5,6,8,9,10,11,12].map(w=>'W'+String(w).padStart(2,'0'
 const projects=['DA_PROJECT','TEST1','TEST2','ML_PROJECT','DEMO'];
 const safe=v=>typeof v==='string'&&/^[=+@-]/.test(v)?"'"+v:v;
 const col=n=>{let s='';for(n++;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;};
-for(const name of [...cohorts,'Review needed','Written rubrics','Current marks','All attempts','Rules','Identity review','Registration corrections'])wb.worksheets.add(name);
+const sheetOrder=['Start here','Review needed',...cohorts,'Current marks','All attempts','Identity review','Registration corrections','Written rubrics','Rules'];
+for(const name of sheetOrder)wb.worksheets.add(name);
+const sheetPart=name=>`xl/worksheets/sheet${sheetOrder.indexOf(name)+1}.xml`;
 function table(sheet,headers,rows){const end=Math.max(7,6+rows.length),last=col(headers.length-1);sheet.showGridLines=false;sheet.getRange(`A6:${last}6`).values=[headers];if(rows.length)sheet.getRange(`A7:${last}${end}`).values=rows.map(r=>r.map(safe));sheet.getRange(`A2:${last}${end}`).format.font={name:'Arial',size:11};sheet.getRange(`A2`).format.font={name:'Arial',size:16,bold:true};sheet.getRange(`A6:${last}6`).format={fill:'#17365D',font:{name:'Arial',size:11,bold:true,color:'#FFFFFF'},wrapText:true,rowHeight:44,verticalAlignment:'center',horizontalAlignment:'center'};sheet.getRange(`A7:${last}${end}`).format.rowHeight=23;sheet.getRange(`A6:${last}${end}`).format.columnWidth=16;sheet.freezePanes.freezeRows(6);sheet.freezePanes.freezeColumns(2);if(rows.length)sheet.tables.add(`A6:${last}${end}`,true,sheet.name.replaceAll(' ','')+'Table');return end;}
 const recordHeaders=['Programme','Registration Number','Email','Name','Assessment','Submitted (Kampala)','Status','Mark','Maximum','Timing','Response ID','Source mark','Source status','Registration as entered','Code component','Code maximum','Identity evidence','Grading note'];
 for(const [name,records] of [['Current marks',data.current],['All attempts',data.attempts]]){
@@ -28,16 +30,17 @@ for(const [name,records] of [['Current marks',data.current],['All attempts',data
 function stamp(s){return new Date(s).getTime();}
 const review=await reviewDetails(data,path.dirname(input));
 const rs=wb.worksheets.getItem('Review needed');
-rs.getRange('A2').values=[['Submitted work requiring review']];
-rs.getRange('A4').values=[['Filter by issue or programme. File links use your existing Google access. Held marks are not yet allocated to totals.']];
-rs.getRange('A5').values=[['This list refreshes with grading. Keep decisions against the Response ID separately; do not overwrite calculated marks.']];
-const fileCount=Math.max(1,...review.map(x=>x.files.length));
-const rh=['Programme','Registration Number','Name','Email','Assessment','Issue','What needs attention','Held source mark','Code component','Two grading passes','Processing detail','Other registrations on account','Other accounts on registration','Notebook registration','Response form','Response ID',...Array.from({length:fileCount},(_,i)=>`Uploaded file ${i+1}`)];
-const rend=table(rs,rh,review.map(x=>[x.r.cohort,x.r.student_id,x.r.full_name||'Not collected',x.r.email,x.r.assessment,x.r.status,x.reason,x.r.source_score??null,x.r.code_score??null,x.scores,x.detail,x.relatedIds,x.relatedEmails,x.declared,'',x.r.response_id,...Array(fileCount).fill('')]));
-rs.getRange(`B6:D${rend}`).format.columnWidth=28;rs.getRange(`F6:G${rend}`).format.columnWidth=44;rs.getRange(`J6:N${rend}`).format.columnWidth=38;rs.getRange(`P6:${col(rh.length-1)}${rend}`).format.columnWidth=35;rs.getRange(`A7:${col(rh.length-1)}${rend}`).format.wrapText=true;rs.getRange(`A7:${col(rh.length-1)}${rend}`).format.rowHeight=100;rs.getRange(`A7:${col(rh.length-1)}${rend}`).format.verticalAlignment='center';
+rs.getRange('A2').values=[['Needs your manual review: '+review.length+' submissions']];
+rs.getRange('A4').values=[['Work down the list by Category. Links open the student\'s uploaded file(s) and the form response. Rows with an issue are held out of totals until resolved.']];
+rs.getRange('A5').values=[['This tab rebuilds on every grading run; keep your own decisions against the Response ID (last column of the detail block) elsewhere.']];
+const extraFiles=Math.max(0,Math.max(0,...review.map(x=>x.files.length))-2);
+const rh=['Programme','Registration Number','Name','Email','Assessment','Category','Issue','What to do','Response form','Uploaded file 1','Uploaded file 2','Held source mark','Code component','Two grading passes','Processing detail','Other registrations on account','Other accounts on registration','Notebook registration','Response ID',...Array.from({length:extraFiles},(_,i)=>`Uploaded file ${i+3}`)];
+const rend=table(rs,rh,review.map(x=>[x.r.cohort,x.r.student_id,x.r.full_name||'Not collected',x.r.email,x.label,x.category,x.r.status,x.reason,'','','',x.r.source_score??null,x.r.code_score??null,x.scores,x.detail,x.relatedIds,x.relatedEmails,x.declared,x.r.response_id,...Array(extraFiles).fill('')]));
+const lastRc=col(rh.length-1);
+rs.getRange(`B6:D${rend}`).format.columnWidth=28;rs.getRange(`E6:F${rend}`).format.columnWidth=26;rs.getRange(`G6:G${rend}`).format.columnWidth=26;rs.getRange(`H6:H${rend}`).format.columnWidth=70;rs.getRange(`I6:K${rend}`).format.columnWidth=30;rs.getRange(`L6:M${rend}`).format.columnWidth=14;rs.getRange(`N6:R${rend}`).format.columnWidth=38;rs.getRange(`S6:${lastRc}${rend}`).format.columnWidth=35;rs.getRange(`A7:${lastRc}${rend}`).format.wrapText=true;rs.getRange(`A7:${lastRc}${rend}`).format.rowHeight=90;rs.getRange(`A7:${lastRc}${rend}`).format.verticalAlignment='center';
 const reviewLinks=[];
 const link=(cell,url,label)=>{rs.getRange(cell).values=[[safe(label)]];rs.getRange(cell).format.font={name:'Arial',size:11,color:'#0563C1'};reviewLinks.push([cell,url]);};
-review.forEach((x,i)=>{const row=i+7;if(x.formUrl)link(`O${row}`,x.formUrl,'Open response form');x.files.forEach((f,j)=>link(`${col(16+j)}${row}`,f.url,f.name));});
+review.forEach((x,i)=>{const row=i+7;if(x.formUrl)link(`I${row}`,x.formUrl,'Open response form');x.files.forEach((f,j)=>link(j<2?`${col(9+j)}${row}`:`${col(19+j-2)}${row}`,f.url,f.name));});
 const rubricSheet=wb.worksheets.getItem('Written rubrics'),rubricRows=[];
 for(const assessment of ['W01','W02']){const rubric=JSON.parse(await fs.readFile(new URL(`../IUEA_Teaching_Plan/grader/rubrics/${assessment}.json`,import.meta.url),'utf8'));for(const c of rubric.criteria)rubricRows.push([assessment,c.id,c.title,c.maximum,c.description]);}
 rubricSheet.getRange('A2').values=[['Written assessment marking criteria']];rubricSheet.getRange('A4').values=[['A1: written total /20. A2: written total /6 plus coding component /14. Grader-pass scores are not approved marks.']];
@@ -93,6 +96,44 @@ const rules=wb.worksheets.getItem('Rules');rules.getRange('A2').values=[['Markin
 const ruleRows=[['Quizzes',10,'All programmes: best 9 of 11; exclude Q6. Each /5.'],['Assignments',10,'All programmes: best 7 of 10; exclude A6. Each /20.'],['Data analysis project',10,'Out of 100'],['Practical Test 1',15,'Out of 100'],['Practical Test 2',20,'Out of 100'],['ML project',25,'Out of 100'],['Demo / reflection',10,'Out of 100'],['Waivers',null,'A6 and Quiz 6 waived for all three programmes. No weekly quiz/assignment in test weeks 7/14 or final-project week 15; major assessments retain their weights.'],['Current selection',null,'Latest eligible receipt per programme, registration number and assessment.'],['Identity',null,'Same-account punctuation variants and strongly supported early digit typos are reconciled; unresolved conflicts remain held.'],['Names',null,'Blank names are filled from a later verified source, never guessed from email.'],['Totals',null,'Earned semester points so far. Missing and future assessments are not final zeros.'],['Grade bands',null,'No letter grades: Faculty grade bands have not been verified.'],['Source coverage',null,data.sources.length+' source files. See the local source manifest for receipt hashes.']];
 const re=table(rules,['Component','Weight /100','Rule'],ruleRows);rules.getRange(`A6:A${re}`).format.columnWidth=28;rules.getRange(`C6:C${re}`).format.columnWidth=95;rules.getRange(`C7:C${re}`).format.wrapText=true;rules.getRange(`A7:C${re}`).format.rowHeight=36;
 rules.getRange('A14:C14').format.rowHeight=66;
+
+// Navigation page: what is in each tab and exactly what still needs manual work.
+{
+ const sh=wb.worksheets.getItem('Start here');sh.showGridLines=false;
+ const cats=new Map();for(const x of review){const c=cats.get(x.category)||{n:0,by:new Map()};c.n++;c.by.set(x.label,(c.by.get(x.label)||0)+1);cats.set(x.category,c);}
+ const meaning={'1. Identity':'The registration/email on the submission cannot be matched safely, so the mark is held. Open the response form and files, decide who it belongs to.','2. Unreadable file':'The upload is a ZIP, an image-only PDF, a repository export or too large to read. Open the file and mark it by hand.','3. Notebook problem':'No single usable notebook was found, or several different notebooks were uploaded. Open them and mark the right one.','4. Written part to mark':'The written part could not be marked automatically. Read the report against the rubric (see Written rubrics).','5. Other':'See the Issue and What to do columns.'};
+ const graded=data.current.filter(r=>r.status==='GRADED'&&!isWaived(r.assessment)).length;
+ sh.getRange('A1:E60').format.font={name:'Arial',size:11};
+ sh.getRange('A2').values=[['IUEA Continuous Assessment: start here']];sh.getRange('A2').format.font={name:'Arial',size:18,bold:true};
+ sh.getRange('A3').values=[[`${graded} submissions are marked. ${review.length} need you. Marked work carries a Grading note explaining how the mark was reached.`]];
+ const hdr=(range)=>{sh.getRange(range).format={fill:'#17365D',font:{name:'Arial',size:11,bold:true,color:'#FFFFFF'},verticalAlignment:'center'};};
+ let row=5;
+ sh.getRange(`A${row}`).values=[['1. What still needs your manual review (go to the Review needed tab and filter by Category)']];sh.getRange(`A${row}`).format.font={name:'Arial',size:13,bold:true};row++;
+ sh.getRange(`A${row}:D${row}`).values=[['Category','How many','Which assessments','What to do']];hdr(`A${row}:D${row}`);row++;
+ const first=row;
+ for(const [c,v] of [...cats.entries()].sort()){sh.getRange(`A${row}:D${row}`).values=[[c,v.n,[...v.by.entries()].sort().map(([a,n])=>`${a}: ${n}`).join('; '),meaning[c]||'']];row++;}
+ if(!cats.size){sh.getRange(`A${row}`).values=[['Nothing needs review.']];row++;}
+ sh.getRange(`A${first}:D${row-1}`).format.wrapText=true;sh.getRange(`A${first}:D${row-1}`).format.verticalAlignment='top';
+ row+=1;
+ sh.getRange(`A${row}`).values=[['2. What is in each tab']];sh.getRange(`A${row}`).format.font={name:'Arial',size:13,bold:true};row++;
+ sh.getRange(`A${row}:D${row}`).values=[['Tab','What it contains','Use it to','']];hdr(`A${row}:D${row}`);row++;
+ const guide=[
+  ['Review needed','Only the submissions still waiting on you, sorted by Category then assessment, with student, email, links to the form response and uploaded files, and what to do.','Do your manual checking and marking here.'],
+  ['CML3111 / CML3112 / CML3113','One tab per programme: every student with their quiz, assignment and project marks and totals.','See a student\'s full record and course total.'],
+  ['Current marks','One row per student per assessment: the mark counted now, status, timing, and the Grading note.','Look up any single mark and why it was given.'],
+  ['All attempts','Every receipt received, including resubmissions and superseded ones.','Audit history; check what a student submitted and when.'],
+  ['Identity review','Accounts where name or registration evidence was checked.','Confirm who submitted what when identities were doubtful.'],
+  ['Registration corrections','Registration numbers the system corrected, with the evidence used. Original entries are retained.','Verify or reverse a correction.'],
+  ['Written rubrics','The marking criteria used for Assignment 1 and Assignment 2 written work.','Mark manually to the same standard.'],
+  ['Rules','Weights, best-of rules and waivers.','Check how totals are calculated.']];
+ const gfirst=row;for(const g of guide){sh.getRange(`A${row}:C${row}`).values=[g];row++;}
+ sh.getRange(`A${gfirst}:C${row-1}`).format.wrapText=true;sh.getRange(`A${gfirst}:C${row-1}`).format.verticalAlignment='top';
+ row+=1;
+ sh.getRange(`A${row}`).values=[['3. How marks are decided']];sh.getRange(`A${row}`).format.font={name:'Arial',size:13,bold:true};row++;
+ const notes=['Work that does not follow the instructions (wrong file type, missing notebook) is scored 0 with the reason in the Grading note.','Where the two AI marking passes differ, the mark is their average and the Grading note shows both scores.','A blank score always means unresolved, never zero. Zero is only given with a stated reason.','Identity: the registration number decides who gets the mark; names are for display. Blank names are filled as Test 1 data arrives.'];
+ for(const n of notes){sh.getRange(`A${row}`).values=[[n]];row++;}
+ sh.getRange('A1:A1').format.columnWidth=30;sh.getRange('B1:B1').format.columnWidth=60;sh.getRange('C1:C1').format.columnWidth=60;sh.getRange('D1:D1').format.columnWidth=90;
+}
 wb.recalculate();
 const check=await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#NUM!|#NULL!',options:{useRegex:true,maxResults:30}});
 await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(path.join(path.dirname(output),'workbook_check.ndjson'),check.ndjson);
@@ -107,8 +148,8 @@ async function attachLinks(sheetPart, links, label) {
  } finally { await fs.unlink(linkFile).catch(()=>{}); }
  console.log(`Clickable links complete: ${label}.`);
 }
-await attachLinks('xl/worksheets/sheet4.xml',reviewLinks,'review_needed');
-await attachLinks('xl/worksheets/sheet9.xml',identityRows.flatMap((r,i)=>/^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(r[13])?[[`N${i+7}`,r[13]]]:[]),'identity_review');
+await attachLinks(sheetPart('Review needed'),reviewLinks,'review_needed');
+await attachLinks(sheetPart('Identity review'),identityRows.flatMap((r,i)=>/^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(r[13])?[[`N${i+7}`,r[13]]]:[]),'identity_review');
 if(process.env.IUEA_WORKBOOK_QA==='1')for(const name of [...cohorts,'Review needed','Written rubrics','Current marks','All attempts','Rules']){const b=await wb.render({sheetName:name,range:name==='Written rubrics'?'A6:E15':name==='Review needed'?'E10:K14':name==='Rules'?'A1:C15':cohorts.includes(name)?'D1:N12':'E1:J12',scale:1});await fs.writeFile(path.join(path.dirname(output),name.replaceAll(' ','_')+'_preview.png'),new Uint8Array(await b.arrayBuffer()));}
 if(process.env.IUEA_IDENTITY_QA==='1'){const b=await wb.render({sheetName:'Identity review',range:'A1:H9',scale:1});await fs.writeFile(path.join(path.dirname(output),'identity_review_preview.png'),new Uint8Array(await b.arrayBuffer()));}
 console.log('Saved private cumulative workbook.');

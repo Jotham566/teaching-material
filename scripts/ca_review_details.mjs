@@ -42,6 +42,19 @@ function nextStep(r,names,notes,g){
  if(r.status==='IDENTITY_CONFLICT'||r.status==='IDENTITY_MISSING')return 'The registration entered is not a valid registration number and the account has no other registration to confirm it. Find the student\'s registration.';
  return '';
 }
+// Which kind of manual work this row needs, so the lecturer can batch it.
+function category(status){
+ if(/^IDENTITY_/.test(status))return '1. Identity';
+ if(status==='TEXT_EXTRACTION_PENDING')return '2. Unreadable file';
+ if(['NOTEBOOK_MISSING_OR_AMBIGUOUS','EMPTY_NOTEBOOK','INVALID_NOTEBOOK','README_OR_NOTEBOOK_MISSING'].includes(status))return '3. Notebook problem';
+ if(['WRITTEN_REVIEW','WRITTEN_ERROR','PARTIAL_CODE_ONLY','CODING_PENDING','CODING_STALE'].includes(status))return '4. Written part to mark';
+ return '5. Other';
+}
+function assessmentLabel(a){
+ const w=/^W0([1-5])$/.exec(a);if(w)return `Assignment ${w[1]} (${a})`;
+ const q=/^Q(\d+)$/.exec(a);if(q)return `Quiz ${q[1]} (${a})`;
+ return a;
+}
 async function optionalJson(file,fallback){try{return JSON.parse(await fs.readFile(file,'utf8'));}catch(e){if(e.code==='ENOENT')return fallback;throw e;}}
 export async function reviewDetails(data,base){
  const grades=new Map((await optionalJson(path.join(base,'written_queue/combined_results.json'),[])).map(r=>[r.response_id,r]));
@@ -55,7 +68,7 @@ export async function reviewDetails(data,base){
   if(path.basename(name)!==name)throw Error('Invalid source filename');
   manifests.set(name,await optionalJson(path.join(base,'reconciled',name),{}));
  }
- return data.current.filter(r=>r.status!=='GRADED'&&!isWaived(r.assessment)).map(r=>{
+ const rows=data.current.filter(r=>r.status!=='GRADED'&&!isWaived(r.assessment)).map(r=>{
   const g=grades.get(r.response_id)||{},meta=manifests.get(r.source)||{};
   const evaluations=g.evidence?.evaluations||[];
   const notes=[g.error,...(prepared[r.response_id]?.errors||[]).map(x=>x.error),
@@ -70,9 +83,10 @@ export async function reviewDetails(data,base){
   });
   const formId=meta.form_id||meta.quizzes?.[0]?.form_id;
   const step=nextStep(r,files.map(f=>f.name),notes,g);
-  return {r,reason:[reasons[r.status]||r.status,step,r.source_status!==r.status?reasons[r.source_status]||r.source_status:''].filter(Boolean).join(' '),
+  return {r,category:category(r.status),label:assessmentLabel(r.assessment),reason:[reasons[r.status]||r.status,step,r.source_status!==r.status?reasons[r.source_status]||r.source_status:''].filter(Boolean).join(' '),
    detail:notes.join('\n').slice(0,3000),scores,relatedIds:relatedIds.join('; '),relatedEmails:relatedEmails.join('; '),
    declared:g.record?.declared_sid||coding.get(r.response_id)?.record?.declared_sid||'',files,
    formUrl:formId&&/^[A-Za-z0-9_-]+$/.test(formId)?`https://docs.google.com/forms/d/${formId}/edit`:''};
  });
+ return rows.sort((a,b)=>a.category.localeCompare(b.category)||a.r.assessment.localeCompare(b.r.assessment)||a.r.cohort.localeCompare(b.r.cohort)||String(a.r.student_id).localeCompare(String(b.r.student_id)));
 }
