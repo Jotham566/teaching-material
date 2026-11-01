@@ -61,19 +61,41 @@ def _docx_text(path):
     return re.sub(r'&amp;','&',re.sub(r'&lt;','<',re.sub(r'&gt;','>',text)))
 
 
-def _ocr_pdf(path):
-    if not (shutil.which('pdftoppm') and shutil.which('tesseract')):
-        raise ValueError('OCR tools (poppler, tesseract) are not installed')
-    with tempfile.TemporaryDirectory() as d:
+def _render_pages(path,d):
+    """Page images for OCR: pypdfium2 (pip) if present, otherwise poppler's pdftoppm."""
+    try:
+        import pypdfium2
+        pdf=pypdfium2.PdfDocument(str(path))
+        pages=[]
+        for i in range(min(len(pdf),OCR_PAGES)):
+            target=Path(d)/f'p{i:03d}.png'
+            pdf[i].render(scale=2).to_pil().save(target);pages.append(target)
+        return pages
+    except ImportError:
+        if not shutil.which('pdftoppm'):raise ValueError('No PDF page renderer: pip install pypdfium2 (or brew install poppler)')
         subprocess.run(['pdftoppm','-r','150','-l',str(OCR_PAGES),'-png',str(path),str(Path(d)/'p')],
                        check=True,capture_output=True,timeout=180)
-        pages=sorted(Path(d).glob('p*.png'))
+        return sorted(Path(d).glob('p*.png'))
+
+
+def _ocr_image(page):
+    """Apple Vision through ocrmac when available (best on this Mac); Tesseract otherwise."""
+    try:
+        from ocrmac import ocrmac
+    except ImportError:
+        if not shutil.which('tesseract'):raise ValueError('No OCR engine: pip install ocrmac (or brew install tesseract)')
+        return subprocess.run(['tesseract',str(page),'stdout','-l','eng'],check=True,capture_output=True,text=True,timeout=90).stdout
+    lines=ocrmac.OCR(str(page),recognition_level='accurate').recognize()
+    # Vision returns (text, confidence, bounding box); the box origin is bottom-left.
+    lines=sorted(lines,key=lambda x:-x[2][1])
+    return '\n'.join(x[0] for x in lines)
+
+
+def _ocr_pdf(path):
+    with tempfile.TemporaryDirectory() as d:
+        pages=_render_pages(path,d)
         if not pages:raise ValueError('No pages could be rendered for OCR')
-        out=[]
-        for page in pages:
-            r=subprocess.run(['tesseract',str(page),'stdout','-l','eng'],check=True,capture_output=True,text=True,timeout=90)
-            out.append(r.stdout)
-    return OCR_NOTE+'\n'.join(out)
+        return OCR_NOTE+'\n'.join(_ocr_image(p) for p in pages)
 
 
 def _pdf_fallback(path,assessment):
