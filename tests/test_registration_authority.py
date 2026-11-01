@@ -58,4 +58,20 @@ class RegistrationAuthorityTests(unittest.TestCase):
             self.assertEqual(ledger['current'][0]['student_id'],'99/111/BARC-S')
             self.assertIsNone(ledger['current'][0]['score'])
 
+    def test_lecturer_confirmed_receipt_released_when_registration_is_shared(self):
+        with tempfile.TemporaryDirectory() as temp:
+            base=Path(temp);source=base/'reconciled';(source/'files').mkdir(parents=True);(base/'written_queue').mkdir()
+            content=b'{}';(source/'files/n.ipynb').write_bytes(content);sha=hashlib.sha256(content).hexdigest()
+            (source/'manifest.json').write_text(json.dumps({'files':[{'id':'f','sha256':sha,'export_name':'n.ipynb'}]}))
+            g={'response_id':'r1','student_id':'99/111/BARC-S','cohort':'CML3112','assessment':'W03','source_hashes':{'f':sha},'record':{'declared_sid':'YOUR/ID','questions':{'q':{'marks':20,'awarded':18}}}}
+            (base/'written_queue/combined_results.json').write_text(json.dumps([g]))
+            def run():
+                ledger=ca.finalize([row('99/111/BARC-S',cohort='CML3112',assessment='W03',status='IDENTITY_MISMATCH',score=None,file_ids=['f']),
+                                    row('99/111/BARC-S','r2',cohort='CML3112',assessment='Q1',email='other.account@example.test')],[])
+                reconcile(ledger,{},source)
+                return next(r for r in ledger['current'] if r['assessment']=='W03')
+            self.assertIsNone(run()['score'])
+            (base/'identity_policy.json').write_text(json.dumps({'registration_authoritative':True,'confirmed_responses':['r1']}))
+            self.assertEqual(run()['score'],18)
+
 if __name__=='__main__':unittest.main()

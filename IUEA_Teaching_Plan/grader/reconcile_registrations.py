@@ -95,6 +95,8 @@ def reconcile(ledger, evidence, source, separator_only=False):
     policy.update(read(live_policy,{}))
     authoritative=policy.get('registration_authoritative',False) and not separator_only
     approved=policy.get('approved_aliases',{}) if not separator_only else {}
+    # Receipts the lecturer has personally checked; their notebook identity is accepted as the receipt's.
+    confirmed=set(policy.get('confirmed_responses',[])) if not separator_only else set()
     def resolved(course,value):
         value=canonical(value)
         return approved.get(course,{}).get(value,value)
@@ -338,10 +340,13 @@ def reconcile(ledger, evidence, source, separator_only=False):
         if near_typo:
             accepted=True
             notes[r['response_id']]='Notebook ID differs from the receipt registration by a typo; the account uses only this registration. Original retained.'
+        if r['response_id'] in confirmed and not accepted:
+            accepted=True
+            notes[r['response_id']]='Lecturer confirmed this receipt belongs to this registration; notebook ID cell is blank or template text. Original retained.'
         if confirmed_by_test and not accepted:
             accepted=True
             notes[r['response_id']]='Notebook ID cell is blank or template text; receipt registration matches the account\'s validated Test registration. Original retained.'
-        if not (declared or confirmed_by_test) or not accepted:continue
+        if not accepted or not (declared or confirmed_by_test or r['response_id'] in confirmed):continue
         questions=record.get('questions',{}); maximum=14 if r['assessment']=='W02' else 20
         if not questions or any(q.get('err') for q in questions.values()):continue
         if any(type(q.get('marks')) not in (int,float) or type(q.get('awarded')) not in (int,float) or not 0<=q['awarded']<=q['marks'] for q in questions.values()):continue
