@@ -19,7 +19,9 @@ ZIP_MEMBERS=TEXT_SUFFIXES+DOC_SUFFIXES+('.ipynb',)
 MAX_MEMBER=5*1024*1024
 MAX_TOTAL=30*1024*1024
 MAX_MEMBERS=20
-OCR_PAGES=12
+OCR_PAGES=30
+BUDGET=11000
+CONDENSED='[CONDENSED:'
 OCR_NOTE='[Recovered by OCR; recognition errors are possible.]\n'
 
 
@@ -99,14 +101,50 @@ def _ocr_pdf(path):
         return OCR_NOTE+'\n'.join(_ocr_image(p) for p in pages)
 
 
-def _pdf_fallback(path,assessment):
-    text=''
+def condense(text):
+    """Fit a long report into the grader's text limit without hiding that it was shortened.
+
+    Keeps the opening, the closing and the headings/first lines of the middle, and
+    marks every gap, so a quoted passage is always real text from the document."""
+    if len(text)<=BUDGET:return text
+    lines=[l.rstrip() for l in text.splitlines() if l.strip()]
+    head,tail,used=[],[],0
+    for l in lines:
+        if used+len(l)+1>BUDGET*0.45:break
+        head.append(l);used+=len(l)+1
+    rest=lines[len(head):]
+    used=0
+    for l in reversed(rest):
+        if used+len(l)+1>BUDGET*0.25:break
+        tail.insert(0,l);used+=len(l)+1
+    middle=rest[:len(rest)-len(tail)]
+    keep,used=[],0
+    for i,l in enumerate(middle):
+        starts=i==0 or len(middle[i-1])<60 or len(l)<80
+        if starts and used+min(len(l),200)+1<=BUDGET*0.28:
+            keep.append(l[:200]);used+=min(len(l),200)+1
+    omitted=len(text)-sum(len(x)+1 for x in head+keep+tail)
+    note=f'{CONDENSED} the original has {len(text)} characters; about {omitted} were omitted from the middle to fit the reader]'
+    return '\n'.join(head+[note]+keep+[note]+tail)
+
+
+def _host_pdf_text(path):
+    """Text layer of a PDF on the host: poppler if present, otherwise pypdfium2."""
     if shutil.which('pdftotext'):
-        try:text=subprocess.run(['pdftotext','-layout','-l',str(OCR_PAGES*3),str(path),'-'],check=True,capture_output=True,text=True,timeout=120).stdout
-        except Exception:text=''
+        r=subprocess.run(['pdftotext','-layout',str(path),'-'],capture_output=True,text=True,timeout=120)
+        if r.returncode==0:return r.stdout
+    try:
+        import pypdfium2
+        pdf=pypdfium2.PdfDocument(str(path))
+        return '\n'.join(pdf[i].get_textpage().get_text_range() for i in range(len(pdf)))
+    except ImportError:return ''
+
+
+def _pdf_fallback(path,assessment):
+    text=_host_pdf_text(path)
     if len(text.strip())<40:text=_ocr_pdf(path)
     if len(text.strip())<80:raise ValueError('OCR found no readable text; the document needs manual review')
-    return _through_extract(text,assessment,'ocr')
+    return _through_extract(condense(text),assessment,'pdf')
 
 
 def _zip_text(path,assessment):
@@ -145,14 +183,14 @@ def extract(original,assessment=None):
             except ValueError:continue
         if not parts:raise ValueError('The HTML file has no readable GitHub README or notebook')
         return '\n\n'.join(parts)
-    if ext in TEXT_SUFFIXES:return _through_extract(decode(path.read_bytes()),assessment,'text')
+    if ext in TEXT_SUFFIXES:return _through_extract(condense(decode(path.read_bytes())),assessment,'text')
     if ext in DOC_SUFFIXES:
         with tempfile.TemporaryDirectory() as d:
             copy=Path(d)/('submission'+ext);copy.write_bytes(path.read_bytes())
             try:return grading.extract(copy,assessment)
             except Exception as first:
                 try:
-                    if ext=='.docx':return _through_extract(_docx_text(copy),assessment,'docx')
+                    if ext=='.docx':return _through_extract(condense(_docx_text(copy)),assessment,'docx')
                     if ext=='.pdf':return _pdf_fallback(copy,assessment)
                 except Exception as second:
                     raise ValueError(f'{first} | fallback: {second}'[:400])

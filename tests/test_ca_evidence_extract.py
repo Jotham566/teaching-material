@@ -42,5 +42,14 @@ class Expand(unittest.TestCase):
             h=Path(d)/'l.html';h.write_text('<a href="https://github.com/stud/week3-work/tree/main/nb">repo</a> https://github.com/features/x')
             self.assertEqual(ax.github_links(h),[('stud','week3-work','main/nb')])
 
+class Condense(unittest.TestCase):
+    def test_long_report_fits_and_is_marked(self):
+        text='\n'.join(f'Line {i} '+'word '*30 for i in range(600))
+        out=e.condense(text)
+        self.assertLessEqual(len(out),12000)
+        self.assertIn(e.CONDENSED,out)
+        self.assertTrue(out.startswith('Line 0 '))
+        self.assertEqual(e.condense('short'),'short')
+
 
 if __name__=='__main__':unittest.main()
