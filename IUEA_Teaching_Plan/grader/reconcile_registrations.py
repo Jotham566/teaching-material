@@ -327,12 +327,11 @@ def reconcile(ledger, evidence, source, separator_only=False):
         if any(not (source/'files'/f['export_name']).is_file() or hashlib.sha256((source/'files'/f['export_name']).read_bytes()).hexdigest()!=f['sha256'] for f in meta.get('files',[]) if f['id'] in hashes):continue
         declared=resolved(r['cohort'],record.get('declared_sid'))
         accepted=declared==r['student_id'] or aliases.get((r['cohort'],r['email'],declared))=={r['student_id']}
-        # A blank or template ID in the notebook is not a competing claim when the same account's
-        # Test submission already validated this registration and no other account holds it.
+        # A blank or template ID in the notebook is not a competing claim: the form registration stands
+        # (lecturer policy) when this account only ever used it or its Test submission validated it.
         account_ids={x['student_id'] for x in rows if x['cohort']==r['cohort'] and x['email']==r['email'] and x['student_id']}
         confirmed_by_test=(not re.fullmatch(shape,declared or '')
-                           and (test_ids.get((r['cohort'],r['email']))=={r['student_id']} or account_ids=={r['student_id']})
-                           and owners[(r['cohort'],r['student_id'])]<={r['email']})
+                           and (test_ids.get((r['cohort'],r['email']))=={r['student_id']} or account_ids=={r['student_id']}))
         # A one-or-two character slip in the notebook's own ID, on an account with only this registration.
         near_typo=(declared and not accepted and account_ids=={r['student_id']} and owners[(r['cohort'],r['student_id'])]<={r['email']}
                    and (lambda a,b:edit_distance(a,b)<=2 or (len(a)>=5 and (b.startswith(a) or a.startswith(b))))(
