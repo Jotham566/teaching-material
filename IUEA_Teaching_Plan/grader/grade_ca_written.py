@@ -9,6 +9,7 @@ import json
 import re
 from pathlib import Path
 import artifact_grade
+import attachment_expand
 from calibration_record import model_for_report, profile_for_report
 from hybrid_result import combine
 from local_ai_resources import ensure_docker_stopped
@@ -141,7 +142,13 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
                 raise ValueError('Written attachment checksum mismatch')
         result['source_hashes']={fid:files[fid]['sha256'] for fid in receipt['file_ids']}
         deterministic=None;needs_review=None
-        if all(p.suffix.lower() in WRONG_TYPES for p in paths):
+        # ZIPs and GitHub links are opened (read only); their notebook/README counts as the submission.
+        inside=[m for p in paths if p.suffix.lower() in ('.zip','.html','.htm') for m in attachment_expand.expanded(p,out/'expanded')]
+        direct_notebooks=any(p.suffix.lower()=='.ipynb' for p in paths)
+        if inside and not direct_notebooks:
+            inside_notebooks=list({m['sha256']:m for m in inside if m['original_name'].lower().endswith('.ipynb')}.values())
+        else:inside_notebooks=[]
+        if not inside and all(p.suffix.lower() in WRONG_TYPES for p in paths):
             # Only archives, data or script files: the required report/notebook and README were not submitted.
             uploaded=', '.join(sorted({files[fid].get('original_name',fid) for fid in receipt['file_ids']}))[:300]
             wanted='a DOCX/PDF report (or PPTX with notes)' if assessment=='W01' else 'a notebook (.ipynb) and a README'
@@ -158,6 +165,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             names={hashlib.sha256(p.read_bytes()).hexdigest():files[fid]['original_name'] for fid,p in zip(receipt['file_ids'],paths)}
             notebooks=sum(p.suffix.lower()=='.ipynb' and not HELPER_NOTEBOOK.search(re.sub(r'\.ipynb.*$','',names[h],flags=re.I).strip())
                           for h,p in {hashlib.sha256(p.read_bytes()).hexdigest():p for p in paths}.items())
+            notebooks+=sum(not HELPER_NOTEBOOK.search(re.sub(r'\.ipynb.*$','',m['original_name'],flags=re.I).strip()) for m in inside_notebooks)
             usable_missing=(notebooks==0 and prior.get('status')=='NOTEBOOK_MISSING_OR_AMBIGUOUS') or prior.get('status') in ('EMPTY_NOTEBOOK','INVALID_NOTEBOOK')
             if usable_missing:
                 # Written work without a notebook earns no code marks and is always reviewed.
@@ -170,7 +178,7 @@ def run(source, ledger, coding, calibration, assessment, out, prepared, on_progr
             result.update(code_score=prior['code_score'],code_maximum=prior['code_maximum'])
             if notebooks>1:
                 result['status']='README_OR_NOTEBOOK_MISSING';results.append(result);continue
-            if not needs_review and notebooks==1 and not any(p.suffix.lower() in ('.md','.txt') for p in unique):
+            if not needs_review and notebooks==1 and not any(p.suffix.lower() in ('.md','.txt') for p in unique) and not any(m['original_name'].lower().endswith(('.md','.txt')) for m in inside):
                 # The written part is then read from the notebook's own text cells; reviewer confirms.
                 needs_review='NO_README_NOTEBOOK_TEXT_USED'
             deterministic=dict(status='OK',notebook_total=prior['code_score'],max_total=prior['code_maximum'])

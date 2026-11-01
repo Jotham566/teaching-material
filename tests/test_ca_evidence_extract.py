@@ -2,6 +2,7 @@ import sys,tempfile,unittest,zipfile
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
 import evidence_extract as e
+import attachment_expand as ax
 import continuous_assessment as ca
 
 
@@ -24,6 +25,22 @@ class EvidenceExtract(unittest.TestCase):
         self.assertTrue(ca.is_lecturer_test(dict(student_id='X',email='WirmbeeSubs@gmail.com',full_name='')))
         self.assertTrue(ca.is_lecturer_test(dict(student_id='X',email='a@b.c',full_name='Martin Wambi')))
         self.assertFalse(t(submitted_student_id='24/1/BSCE-S'))
+
+
+class Expand(unittest.TestCase):
+    def test_zip_members_skip_unsafe_and_junk(self):
+        with tempfile.TemporaryDirectory() as d:
+            d=Path(d);z=d/'s.zip'
+            with zipfile.ZipFile(z,'w') as f:
+                f.writestr('proj/S1_W03.ipynb','{"cells":[]}');f.writestr('../evil.ipynb','{}')
+                f.writestr('__MACOSX/._a.ipynb','x');f.writestr('.ipynb_checkpoints/a-checkpoint.ipynb','{}');f.writestr('data.csv','a')
+            names=[m['original_name'] for m in ax.zip_members(z,d/'c')]
+            self.assertEqual(names,['S1_W03.ipynb'])
+
+    def test_github_links_found_in_html(self):
+        with tempfile.TemporaryDirectory() as d:
+            h=Path(d)/'l.html';h.write_text('<a href="https://github.com/stud/week3-work/tree/main/nb">repo</a> https://github.com/features/x')
+            self.assertEqual(ax.github_links(h),[('stud','week3-work','main/nb')])
 
 
 if __name__=='__main__':unittest.main()

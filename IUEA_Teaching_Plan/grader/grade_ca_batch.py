@@ -6,6 +6,7 @@ import argparse,hashlib,json,re,shutil,tempfile
 from pathlib import Path
 import batch_grade as bg
 import iuea_grader as ig
+import attachment_expand
 from registration import filename_id
 from continuous_assessment import norm
 
@@ -58,6 +59,14 @@ def run(source,ledger,out):
   result['source_hashes']={fid:files[fid]['sha256'] for fid in r['file_ids']}
   notebooks=[files[fid] for fid in r['file_ids'] if fid in files and files[fid]['export_name'].endswith('.ipynb')]
   notebooks=list({n['sha256']:n for n in notebooks}.values())
+  origin_note=''
+  if not notebooks:
+   # No direct notebook: look inside ZIPs and GitHub links submitted instead (read only, never run).
+   for fid in r['file_ids']:
+    for n in attachment_expand.expanded(source/'files'/files[fid]['export_name'],out/'expanded'):
+     if n['original_name'].lower().endswith('.ipynb'):notebooks.append(n)
+   notebooks=list({n['sha256']:n for n in notebooks}.values())
+   if notebooks:origin_note='Notebook was not uploaded directly; '+notebooks[0]['original_name']+' was taken from '+notebooks[0]['origin']+' (no penalty). '
   info=pick_notebook(notebooks,r['assessment'],r['student_id']) if notebooks else None
   if info is None and not notebooks and r['assessment']!='W02':
    # Instructions require a notebook. None was uploaded: scored 0 with the reason recorded.
@@ -66,7 +75,7 @@ def run(source,ledger,out):
                  grading_note='No notebook (.ipynb) was submitted, so the assignment scores 0/20. Uploaded: '+uploaded[:300])
    results.append(result);continue
   if info is None:result['status']='NOTEBOOK_MISSING_OR_AMBIGUOUS';results.append(result);continue
-  file=source/'files'/info['export_name']
+  file=info['path'] if info.get('path') else source/'files'/info['export_name']
   if not file.is_file():result['status']='DOWNLOAD_MISSING';results.append(result);continue
   digest=hashlib.sha256(file.read_bytes()).hexdigest()
   if digest!=info['sha256']:raise ValueError('Downloaded notebook hash mismatch')
@@ -106,6 +115,7 @@ def run(source,ledger,out):
   expected=14 if assignment=='W02' else 20
   valid=record['status'] in ('OK','ERRORS') and maximum==expected
   if record['status'] in ('OK','ERRORS') and maximum!=expected:record['status']='CHECK_MAXIMUM_MISMATCH'
+  if origin_note:result['grading_note']=origin_note.strip()
   result.update(status=('PARTIAL_CODE_ONLY' if assignment=='W02' else 'GRADED') if valid else record['status'],score=score if valid and assignment!='W02' else None,code_score=score if valid else None,code_maximum=maximum,signature=signature,record=record)
   cache.write_text(json.dumps(result,indent=2)+'\n');results.append(result)
   (out/'results.json').write_text(json.dumps(results,indent=2)+'\n')

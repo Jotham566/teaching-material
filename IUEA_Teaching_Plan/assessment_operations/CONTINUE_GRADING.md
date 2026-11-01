@@ -190,3 +190,10 @@ The separate **Identity_Review.xlsx** has two tabs. In **Cases**, read the possi
 The review file is in the private snapshot under `IUEA_Teaching_Plan/assessment_operations/private/outputs/identity-review-20261022/`. Copy it outside the snapshot before editing so later snapshot captures do not overwrite your decisions. The review reflects the receipts available when generated.
 
 If a pull fails with `HTTP/2`, `curl 92`, or `early EOF`, retry using `git -C ~/Projects/IUEA-Grading-Private -c http.version=HTTP/1.1 pull --ff-only`. This changes the transfer protocol for that command only. A failed first command in an `&&` chain prevents the later grading commands from running. Do not reset your working copy or restore over local marks to fix a download failure.
+
+## ZIPs, GitHub links, scanned PDFs and the workbook tabs
+
+- A ZIP, or an HTML file linking to a public GitHub repo, is opened when no notebook was uploaded directly. The notebook/README inside is graded with no penalty, and the Grading note says where it came from. Nothing is run outside the grading container. GitHub downloads are cached in `private/…/expanded`.
+- Scanned PDFs are read with Apple Vision (`pip install ocrmac pypdfium2` in `.iuea-grader-env`); Tesseract is the fallback.
+- Lecturer test submissions (TEST… registrations, the lecturer's emails/name) are dropped from the compiled marks.
+- The workbook opens on **Start here**, which lists every tab and the live count of items needing manual review. Work through **Review needed** by Category; each row links to that student's own form response and uploaded files.

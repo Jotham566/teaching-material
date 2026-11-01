@@ -11,6 +11,7 @@ import tempfile
 import zipfile
 from pathlib import Path
 import artifact_grade as grading
+import attachment_expand
 
 TEXT_SUFFIXES=('.md','.txt','.sql','.py')
 DOC_SUFFIXES=('.pdf','.docx','.pptx')
@@ -133,6 +134,13 @@ def extract(original,assessment=None):
     real=sniff(path) if ext not in TEXT_SUFFIXES+('.ipynb','.csv') else ''
     if real and real!=ext:ext=real
     if ext=='.zip':return _zip_text(path,assessment)
+    if ext in ('.html','.htm'):
+        parts=[]
+        for m in attachment_expand.html_members(path):
+            try:parts.append('### '+m['original_name']+'\n'+extract(m['path'],assessment))
+            except ValueError:continue
+        if not parts:raise ValueError('The HTML file has no readable GitHub README or notebook')
+        return '\n\n'.join(parts)
     if ext in TEXT_SUFFIXES:return _through_extract(decode(path.read_bytes()),assessment,'text')
     if ext in DOC_SUFFIXES:
         with tempfile.TemporaryDirectory() as d:
