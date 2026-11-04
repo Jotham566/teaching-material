@@ -6,13 +6,15 @@ Additional programmes: the [Holiday Data and AI Camp](Schools_ML_Track/camp_2026
 
 Current readiness and remaining deployment work: [rework status](review/2026-09-14/REWORK_STATUS.md).
 
+**Weeks 8 to 12 (4 November 2026):** the semester ends at Week 12. Weeks 8 to 11 are four classes in [IUEA_Teaching_Plan/second_half/](IUEA_Teaching_Plan/second_half/) (slides, lab notebooks, lecturer guides, student packages, the plan PDF). Week 12 is the individual, timed, auto-graded ML project. There is no Practical Test 2, demo or Weeks 13 to 15. See [teaching progress](IUEA_Teaching_Plan/Teaching_Progress.md).
+
 **Teaching materials:** use the updated PowerPoints in [decks](IUEA_Teaching_Plan/decks/README.md). CML3111/CML3113 are revised from Week 2 and CML3112 from Week 3. Open Presenter View for the worked explanations and teaching prompts. Use the [lecturer guide](IUEA_Teaching_Plan/Beginner_Lecturer_Guide.md) and matching student ZIP. Practice notebooks are separate from graded submissions. The HTML lesson route has been retired. Rebuild with `scripts/build_decks.py`; build practice notebooks with `scripts/build_beginner_pathway.py --verify`, then student ZIPs with `scripts/build_student_packages.py --beginner-update`.
 
 | | **IUEA machine learning** | **Data Analysis track** |
 |---|---|---|
 | Who | Year 3 engineering undergraduates, IUEA | Adults in work, confident in a spreadsheet, no code |
-| Shape | 15 weeks, 3 cohorts, 45 contact hours each | 5 weeks, 15 sessions, 45 hours |
-| Decks | 45 (15 weeks x 3 cohorts), 1,569 slides | 15, 356 slides |
+| Shape | 12 study weeks, 3 cohorts, 36 contact hours each | 5 weeks, 15 sessions, 45 hours |
+| Decks | 21 in `decks/` (Weeks 1 to 7) and 12 class decks in `second_half/Slides/` (Weeks 8 to 11) | 15, 356 slides |
 | Codes | CML3111, CML3112, CML3113 | — |
 | Where | `IUEA_Teaching_Plan/` | `DataAnalysis_Track/` |
 
@@ -23,7 +25,7 @@ either affects both and both validation harnesses should be run.
 
 ```
 IUEA_Teaching_Plan/          the IUEA deliverables — teach from these
-  decks/                       45 .pptx, one per week per cohort
+  decks/                       45 .pptx, one per week per cohort (Weeks 8 to 15 superseded by second_half/)
   grader/                      notebook autograder, gradebook.gs,
                                create_quiz_forms.gs (36 Google Forms)
   *.docx *.xlsx                master plan, three syllabi, teaching guide,
