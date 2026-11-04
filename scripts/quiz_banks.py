@@ -325,10 +325,13 @@ _TOPICS = {
          "Train and test scores matched to one of the three error stories, "
          "four pipelines with one that leaks, and a cross-validated score "
          "quoted without its spread."),
-    11: ("Features", None,
-         "An ablation table read for which feature earned its place, a one-hot "
-         "encoding on a high-cardinality column, and a scaler that made no "
-         "difference to a tree."),
+    11: ("Features and choosing a model", None,
+         "A feature that uses the answer, an ablation read for the size of the "
+         "improvement, and a fair comparison protocol (Class 4 of the "
+         "four-class second half). Two questions are model-comparison "
+         "questions moved from the retired Q11 bank on 2 November 2026: which "
+         "candidate meets both limits, and what stops select_model failing on "
+         "an empty table."),
     12: ("Model comparison (integrative)", None,
          "Whether a difference between two models is real given the fold "
          "spread, and which model a stated client constraint selects. TWO of "
@@ -396,7 +399,7 @@ def options_for(q, code):
     return q.get("options_by", {}).get(code, q.get("options", []))
 
 
-from pandas_quiz_revision import apply as apply_pandas_revision
+from pandas_quiz_revision import apply as apply_pandas_revision, RETIRED_ARCHIVE, RETIRED_WEEKS
 apply_pandas_revision(QUIZ)
 
 if __name__ == "__main__":

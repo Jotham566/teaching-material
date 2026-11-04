@@ -1,4 +1,5 @@
 {
+  "superseded_by": "data/assessment_blocks_20261103.json (4 November 2026: no demo, no Practical Test 2; the Engineering ML project is an individual timed auto-graded Week 12 sitting). Kept as a record; do not read policy from this file.",
   "effective_from": "Week 8, 2026-10-27 (CML3112) and 2026-10-30 (CML3111, CML3113)",
   "decision": "From Week 8 the weekly quiz and the weekly assignment are replaced by one assignment pack and one quiz sitting after every three classes. Weeks 1 to 6 stay weekly. The forms, the graders and every graded function are unchanged; only the deadlines, the sittings and the way the marks are combined change.",
   "blocks": [

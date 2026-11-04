@@ -1,8 +1,12 @@
 # CML3113 DEMO — Presentation and individual reflection
 
+<!-- BLOCK_ASSESSMENT_20261103 -->
+> **RETIRED on 3 November 2026.** There is no demo. Week 12 is the Engineering ML project sitting and nobody presents. The Engineering ML project (an individual timed sitting) replaces it: see [ML_PROJECT.md](ML_PROJECT.md). Ignore the instructions below. This form is closed.
+
 **Submit:** TWO files together: your presentation (.pptx, with narration notes) AND one DOCX/PDF containing your written defence, reflection and AI-use declaration.
 
-**Deadline:** 18 December 2026, 11:00 Kampala. The live form shows any later change.
+<!-- BLOCK_ASSESSMENT_20261102 -->
+**Deadline:** to be confirmed by the lecturer. The semester now ends at Week 12 (project sitting Friday 4 December, proposed); there is no demo and the 15 December date no longer applies. The live form shows any later change.
 
 ## 1. Start
 

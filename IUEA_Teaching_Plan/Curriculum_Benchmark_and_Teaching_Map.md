@@ -1,6 +1,6 @@
 # Curriculum benchmark and teaching map
 
-**Teaching-mode update, 29 September 2026:** The Week 3–15 PowerPoints supersede the earlier live pair/activity approach described below. Use direct lecturer demonstrations and individual revision with worked answers. Collections are introduced in Week 3 before indexing and developed in Week 4 before record processing. See the current slide-by-slide lecturer companions for the authoritative sequence.
+**Teaching-mode update, 29 September 2026:** The Week 3–7 PowerPoints (and, from 4 November 2026, the Weeks 8 to 11 class decks in `second_half/`) supersede the earlier live pair/activity approach described below. Use direct lecturer demonstrations and individual revision with worked answers. Collections are introduced in Week 3 before indexing and developed in Week 4 before record processing. See the current slide-by-slide lecturer companions for the authoritative sequence.
 
 
 Reviewed and revised 16 September 2026. Teach with the PowerPoints in `decks/`. The notebook supports practice; the issued assignment remains the graded submission.
@@ -37,10 +37,8 @@ The revised decks implement those principles with larger illustrations, paired c
 | 9 | Binary labels, indicators, probability, threshold, confusion matrix, precision/recall and stated costs | Explain one false negative in the programme’s setting |
 | 10 | Group separation, validation, folds, mean/spread, final test isolation | Explain which records may influence model choice |
 | 11 | Derived features and physical meaning | Confirm an input exists at prediction time |
-| 12 | Fair comparisons and constraints | Apply every requirement before selecting a candidate |
-| 13 | Fresh run, paths, environment, README and contribution evidence | Another learner follows the run instructions |
-| 14 | Previously taught evaluation and typed reasoning | Rehearse the offline collection procedure |
-| 15 | Question, evidence, limitations, individual contribution | Explain one personally contributed decision |
+| 11 (Class 4; the old Week 12 topic) | Fair comparisons and constraints | Apply every requirement before selecting a candidate |
+| 12 | Everything from Weeks 1 to 11, applied under time (Weeks 13 to 15 no longer exist) | Sit the 3-hour individual project; a rehearsal is released after Class 4 |
 
 ## A manageable three-hour ordinary class
 
@@ -48,7 +46,7 @@ Use about 15 minutes for recall, 45 for explanation and demonstration, 10 for a 
 
 The decks include reference explanations and public task contracts. Do not spend equal time on every slide. If learners fail the checkpoint, repeat the smallest example with different values. Move optional extensions to later practice. Reserve time to explain the assessed function names, inputs, return values, required files and closing time.
 
-Use the five-minute pair activity inside the guided-practice allocation, then discuss its answer. It is ungraded and adds no upload or manual marking. Weeks 7 and 14 contain rehearsal activities to complete before the test period.
+Use the five-minute pair activity inside the guided-practice allocation, then discuss its answer. It is ungraded and adds no upload or manual marking. Week 7 contains rehearsal activities to complete before the test; the Week 12 project has its own unmarked rehearsal after Class 4.
 
 Use Presenter View for the expected practice results. The illustrated examples use invented or illustrative data. Programme-specific task briefs supply the authoritative data, units and required outputs.
 
@@ -65,7 +63,7 @@ Use Presenter View for the expected practice results. The illustrated examples u
 | 9 | Place paired labels into four cells | TP, FN, FP, TN, precision and recall |
 | 10 | Keep cards for the same equipment together | Group separation and a reserved final test |
 | 11 | Change one comparison error and recalculate improvement | Evidence for retaining a derived feature |
-| 12 | Cross out ineligible candidates before ranking | Inclusive constraints and tie-breaks |
+| 11 (Class 4) | Cross out ineligible candidates before ranking | Inclusive constraints and tie-breaks |
 | 13 | Exchange run instructions without giving verbal hints | Reproducibility and actionable feedback |
 | 15 | Explain one finding and its limitation to a colleague | Evidence-based communication and contribution |
 

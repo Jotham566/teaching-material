@@ -1,3 +1,4 @@
+# NOTE (4 November 2026): Publishes the OLD Weeks 8 to 15 decks. Superseded by IUEA_Teaching_Plan/second_half/ (see IUEA_Teaching_Plan/decks/SUPERSEDED_README.md). Do not run it for Weeks 8 to 15.
 """Install only validated, rendered PPTX files whose slide content matches the source."""
 from pathlib import Path
 import json,zipfile,re,hashlib,shutil,xml.etree.ElementTree as ET

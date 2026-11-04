@@ -330,7 +330,7 @@ Also verified, same query: "Terminal Tutorial for Beginners: Command Line Basics
 
 ---
 
-## Weeks 5-15 map
+## Weeks 5-12 map
 
 ### Data cleaning
 - **VERIFIED** · Corey Schafer — "Python Pandas Tutorial (Part 9): Cleaning Data - Casting Datatypes and Handling Missing Values" · https://www.youtube.com/watch?v=KdmPHEnPJPs · query: `pandas data cleaning tutorial youtube.com/watch beginners missing values Corey Schafer` · runtime not stated. Watch FOR: what he does with a missing value rather than what he does about it — the decision, not the code.
@@ -420,7 +420,7 @@ All of the following are **VERIFIED** from query `"data leakage" machine learnin
 
 | Playlist | URL | Surfacing query |
 |---|---|---|
-| StatQuest — Machine Learning (the core of Weeks 5-15) | https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF | `StatQuest machine learning playlist "PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF"` |
+| StatQuest — Machine Learning (the core of Weeks 5-12) | https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF | `StatQuest machine learning playlist "PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF"` |
 | StatQuest — Logistic Regression | https://www.youtube.com/playlist?list=PLblh5JKOoLUKxzEP5HA2d-Li7IJkHfXSe | `StatQuest "Logistic Regression" clearly explained youtube.com/watch classification` |
 | Corey Schafer — Python Programming Beginner Tutorials (Weeks 3-4) | https://www.youtube.com/playlist?list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7 | `Corey Schafer "Python Tutorial for Beginners" variables strings integers youtube.com/watch` |
 | Corey Schafer — Pandas Tutorials (11 parts) | https://m.youtube.com/playlist?list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS | `Corey Schafer "Python Pandas Tutorial" playlist youtube.com/playlist data analysis` |

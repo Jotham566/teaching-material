@@ -1,4 +1,7 @@
-"""Block assessment arrangement in the decks (data/assessment_blocks_20261030.json).
+"""SUPERSEDED on 2 November 2026 (four-class second half, data/assessment_blocks_20261102.json). Kept for the OLD Week 8 to 13 decks in
+decks/, which the new second_half decks replace. Do not run it on the new decks.
+
+Block assessment arrangement in the decks (data/assessment_blocks_20261030.json).
 From Week 8 the weekly assignment and weekly quiz become one assignment pack and one quiz sitting per block of three
 classes. This script rewrites the Week 1 assessment slide and the Week 8 to 13 assessment slides, with spoken notes.
 Run after patch_weeks8b_12_20261030.py and before apply_spoken_notes_20261030.py. Idempotent.

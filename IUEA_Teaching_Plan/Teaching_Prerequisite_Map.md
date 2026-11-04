@@ -25,9 +25,8 @@ For each new idea: define it in everyday language, identify its notation, demons
 | 9 | Labels, outcomes, probability, threshold and separate counters | Boundary-inclusive threshold examples and a four-observation counter trace |
 | 10 | Groups, leakage, folds, hyperparameters and spread | Train/validation separation and a three-turn validation table |
 | 11 | Ratios, interactions, consistent transformations and scaling | Trace a new row; create and fit models on separate lines; numerical scaling example |
-| 12 | Eligibility, tuple comparison, sorting keys and empty results | Ranked candidates, the meaning of passing a function, then the full selection example |
-| 13 | Fresh session, working folder, relative path, README and dependencies | Defined path operations, run instructions and independent reproduction check |
-| 14–15 | Previously taught modelling, evidence and explanation | Assessment/reference material; use the published requirements without introducing surprise tools |
+| 11 (Class 4; the old Week 12 topic) | Eligibility, tuple comparison, sorting keys and empty results | Ranked candidates, the meaning of passing a function, then the full selection example |
+| 12 | Project sitting: no new syntax, everything from Weeks 1 to 11 (Weeks 13 to 15 no longer exist) | Rehearsal released after Class 4; use the published brief |
 
 CML3112 resumes Week 3 at slide 13. Its expanded route and exact ranges are in [Week 3 continuation](CML3112_Week3_Continuation.md). The continuation now spends more time on foundations; pause at an explicit slide if needed rather than assigning unexplained syntax as practice.
 

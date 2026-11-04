@@ -94,9 +94,21 @@ IUEA_Teaching_Plan/guided_practice/CML3111/W06/CML3111-Week6-guided_practice.ipy
 
 # Private continuous-assessment source exports and student marks.
 IUEA_Teaching_Plan/assessment_operations/private/
+IUEA_Teaching_Plan/IUEA_ML_Gradebook_Semester1.xlsx
+IUEA_Teaching_Plan/Grading_Update_By_Hand_2026-11-03.md
+**/_backup_2026-11-02/
+**/_backup_2026-11-03/
+**/_backup_2026-11-04/
 
 # Private test deployment backups and rehearsal evidence
 IUEA_Teaching_Plan/test_operations/private/
+
+# Keep explicit answer keys and hidden assessment data out of the public repository.
+IUEA_Teaching_Plan/second_half/Project/grader_spec/
+IUEA_Teaching_Plan/second_half/Project/Lecturer_Marking_Guide.*
+**/Facilitator Materials/
+**/04 Facilitator Materials/
+**/Build/autocheck/
 
 # Disposable authoring previews and optional synthetic voice output
 **/.chart-data-*/

@@ -72,7 +72,7 @@ assert.equal(forms.submissionAssessmentReleased_('DA|S09',{}),false);
 assert.equal(forms.submissionAssessmentReleased_('DA|S05',{}),true);
 assert.equal(forms.submissionAssessmentReleased_('CML3112|W02',{assessmentReleased:false}),false);
 assert.equal(forms.submissionAssessmentReleased_('CML3112|W06',{assessmentReleased:true}),false);
-assert.equal(forms.submissionAssessmentReleased_('CML3112|W06',{assessmentReleased:true,releaseEvidence:'Validated current rubric and reference checks: evidence/file.json'}),true);
+assert.equal(forms.submissionAssessmentReleased_('CML3112|W06',{assessmentReleased:true,releaseEvidence:'Validated current rubric and reference checks: evidence/file.json'}),false);
 properties={};acceptingNow=true;
 forms.saveSubmissionState_({'CML3112|W06':{ready:true,uploadReady:true,formId:'form',openAt:'2020-01-01T00:00:00Z',closeAt:'2099-01-01T00:00:00Z'}});
 forms.syncSubmissions();assert.equal(acceptingNow,false);

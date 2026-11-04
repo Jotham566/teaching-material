@@ -12,7 +12,7 @@ for(const match of scheduleSource.matchAll(/'(CML311[123]\|TEST1)':\['([^']+)','
 }
 const secret='synthetic-test-secret-not-for-production-12345';
 let mode='open',counter=0,rows=[['key','reg','email','code','variant','created']];
-const keys=['CML3111','CML3112','CML3113'].flatMap(c=>['TEST1','TEST2'].map(t=>c+'|'+t));
+const keys=['CML3111','CML3112','CML3113'].map(c=>c+'|TEST1');
 const ctx={Date,Math,JSON,Error,PropertiesService:{getScriptProperties:()=>({getProperty:()=>secret})},
  SpreadsheetApp:{openById:()=>({getSheetByName:n=>n==='Test windows'?{getDataRange:()=>({getValues:()=>[['key','open','close','enabled'],...keys.map(k=>[k,new Date(Date.now()+(mode==='future'?60000:-60000)).toISOString(),new Date(Date.now()+(mode==='expired'?-1000:120000)).toISOString(),mode==='disabled'?'NO':'YES'])]})}:{getDataRange:()=>({getValues:()=>rows}),getLastRow:()=>rows.length,getRange:()=>({setRichTextValues:r=>rows.push(...r)})}}),newRichTextValue:()=>({setText(s){this.s=s;return this},build(){return this.s}})},
  LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock:()=>{}})},Utilities:{getUuid:()=>`synthetic-${++counter}`,formatDate:d=>d.toISOString()},
@@ -46,7 +46,11 @@ for(const key of keys){
  for(const state of ['future','expired','disabled']){mode=state;const result=await handle(request(learner(key)),env,upstream);assert.equal(result.status,409);const body=await result.json();assert.equal(body.ok,false);assert.equal(body.result,undefined);assert.match(body.error,/opens|closed|not open/);}
  assert.equal(rows.length,before);
 }
-assert.equal(rows.length,19);
+assert.equal(rows.length,10);
+const retiredPage=await handle(new Request('https://test.example/?test='+encodeURIComponent('CML3111|TEST2')),env,upstream);
+assert.equal(retiredPage.status,410);assert.match(await retiredPage.text(),/withdrawn and replaced by the Engineering ML final project/);
+const retiredRequest=await handle(request(learner('CML3111|TEST2')),env,upstream);
+assert.equal(retiredRequest.status,410);assert.match((await retiredRequest.json()).error,/withdrawn and replaced by the Engineering ML final project/);
 let before=calls;
 assert.equal((await handle(request(learner(keys[0])),{},upstream)).status,503);
 assert.equal((await handle(new Request('https://test.example/api/files',{method:'POST',headers:{Origin:'https://other.example','Content-Type':'application/json'},body:'{}'}),env,upstream)).status,403);
@@ -56,4 +60,4 @@ assert.equal(calls,before);
 const denied=JSON.parse(ctx.doPost({postData:{contents:JSON.stringify({secret:'wrong',input:learner(keys[0])})}}).text);assert.equal(denied.ok,false);
 const network=await handle(request(learner(keys[0])),env,async()=>{throw Error('private upstream error')});assert.equal(network.status,502);assert(!(await network.text()).includes('private upstream'));
 const googleError=await handle(request(learner(keys[0])),env,async()=>new Response('<html>Google error</html>'));assert.equal(googleError.status,502);
-console.log('PASS: all 6 routes, all 18 allocations, stable repeated downloads, all 6 early/expired/disabled windows, no browser Google RPC, no cookie forwarding, no caching, malformed requests, secret failures and upstream errors.');
+console.log('PASS: all 3 Test 1 routes, all 9 allocations, Test 2 retirement, stable repeated downloads, all 3 early/expired/disabled windows, no browser Google RPC, no cookie forwarding, no caching, malformed requests, secret failures and upstream errors.');

@@ -1,0 +1,3 @@
+# Guided practice notebooks: Weeks 13 to 15 are superseded (4 November 2026)
+
+The semester ends at Week 12. The guided practice notebooks for `W13`, `W14` and `W15` belong to the old plan (project studio, Practical Test 2 preparation, Demo Day) and are **not used**. The `W08` to `W12` notebooks are the old per-week practice material; the new classes use the lab notebooks in `../second_half/Lab Notebooks/`. The W08 to W12 notebooks are still copied into the assignment ZIPs in `../student_packages/` as ungraded practice. `W02` to `W07` are unchanged. Nothing was deleted or edited. See `../second_half/Plan_Weeks_8-12.pdf`.

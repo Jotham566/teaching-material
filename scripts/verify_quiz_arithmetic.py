@@ -491,7 +491,7 @@ ok("no leftover 'Correct.' inside a wrong-answer message", not stale,
    "; ".join(stale[:5]))
 
 intro_bad = [f"{code} W{w['week']}" for code, c in payload.items()
-             for w in c["weeks"] if w["week"] != 6 and "tap View score" not in w["intro"]]  # Quiz 6 is waived
+             for w in c["weeks"] if w["week"] != 6 and not w.get("retired") and "tap View score" not in w["intro"]]  # Quiz 6 is waived; Q11 and Q12 are retired
 ok("every form tells students to tap View score", not intro_bad,
    "; ".join(intro_bad[:5]))
 
@@ -516,6 +516,77 @@ _qq, _A, _B, _sd = _np.array([60, 30.]), _np.array([63, 36.]), _np.array([67, 30
 _raw = (_np.linalg.norm(_qq - _A), _np.linalg.norm(_qq - _B)); _sc = (_np.linalg.norm((_qq - _A) / _sd), _np.linalg.norm((_qq - _B) / _sd))
 ok("W13 scaling example: raw says A (6.7 v 7.0)", round(_raw[0], 1) == 6.7 and round(_raw[1], 1) == 7.0 and _raw[0] < _raw[1], str(_raw))
 ok("W13 scaling example: scaled says B (2.0 v 0.3)", round(_sc[0], 1) == 2.0 and round(_sc[1], 1) == 0.3 and _sc[1] < _sc[0], str(_sc))
+
+# ---------------------------------------------------------------------------
+print("\n8. Four-class second half (2 November 2026): Q10 swap, Q11 and Q12 retired")
+# ---------------------------------------------------------------------------
+# The two questions moved from the Q11 bank into Q10 are re-implemented and executed here, like every other snippet.
+def _eligible(rows, mae_max, lat_max):
+    return [r for r in rows if r["mae"] <= mae_max and r["lat"] <= lat_max]
+
+_rows = [{"name": "simple", "mae": 3, "lat": 2}, {"name": "complex", "mae": 1, "lat": 20}]
+ok("W11 moved Q (limits): only 'simple' meets MAE <= 3 and latency <= 10",
+   [r["name"] for r in _eligible(_rows, 3, 10)] == ["simple"])
+ok("W11 moved Q (limits): 'complex' has the lowest error but fails latency",
+   min(_rows, key=lambda r: r["mae"])["name"] == "complex" and _rows[1]["lat"] > 10)
+ok("W11 moved Q (limits): the MAE limit is inclusive (MAE 3 passes)", 3 <= 3)
+_none = _eligible([{"name": "complex", "mae": 1, "lat": 20}], 3, 10)
+try:
+    _none[0]
+    _raised = False
+except IndexError:
+    _raised = True
+ok("W11 moved Q (empty table): taking the first eligible row of an empty list raises IndexError", _raised)
+ok("W11 moved Q (empty table): the guarded version returns None",
+   (None if not _none else _none[0]) is None)
+
+_q10 = QB.QUIZ[11]["q"]
+_arch = QB.RETIRED_ARCHIVE
+ok("Q10 (Week 11) still has five questions", len(_q10) == 5, str(len(_q10)))
+ok("Q10 mix is unchanged after the swap: 2 interpretation, 1 diagnosis, 1 traceback, 1 judgement",
+   dict(Counter(q["kind"] for q in _q10)) == REVISED, str(dict(Counter(q["kind"] for q in _q10))))
+_old_stems = {q["stem"] for q in _arch["Q10_questions_replaced_2026-11-02"]}
+_new_stems = {q["stem"] for q in _q10}
+ok("Q10 no longer contains the two replaced feature questions", not (_old_stems & _new_stems), str(_old_stems & _new_stems))
+_q11_stems = {q["stem"] for q in _arch["Q11_week12_all_five"]}
+ok("Q10 contains exactly two questions that came from the Q11 bank", len(_new_stems & _q11_stems) == 2,
+   str(_new_stems & _q11_stems))
+ok("the two moved questions have the same kinds as the two they replaced",
+   sorted(q["kind"] for q in _arch["Q10_questions_replaced_2026-11-02"]) == ["interpretation", "traceback"])
+ok("Q10 keeps three feature questions (leak, ablation, fair comparison)",
+   len(_new_stems - _q11_stems) == 3)
+ok("archive holds all five Q11 questions and all five Q12 questions",
+   len(_arch["Q11_week12_all_five"]) == 5 and len(_arch["Q12_week13_all_five"]) == 5)
+ok("Q11 (Week 12) and Q12 (Week 13) are flagged retired and Q10 is not",
+   QB.QUIZ[12].get("retired") and QB.QUIZ[13].get("retired") and not QB.QUIZ[11].get("retired"))
+ok("retired weeks are exactly 12 and 13", tuple(QB.RETIRED_WEEKS) == (12, 13))
+
+for _code, _c in payload.items():
+    _by = {w["week"]: w for w in _c["weeks"]}
+    ok(f"{_code}: Week 12 and 13 forms carry the RETIRED notice and the retired flag",
+       all(_by[w].get("retired") and _by[w]["intro"].startswith("RETIRED.") for w in (12, 13)))
+    ok(f"{_code}: Weeks 8 to 11 intros describe the block sitting and the 35-mark quiz total",
+       all("last 20 minutes of Class" in _by[w]["intro"] and "35 marks" in _by[w]["intro"] for w in (8, 9, 10, 11)))
+    ok(f"{_code}: Block 1 forms say Class 2 and Block 2 forms say Class 4",
+       "Class 2" in _by[8]["intro"] and "Class 2" in _by[9]["intro"] and "Class 4" in _by[10]["intro"] and "Class 4" in _by[11]["intro"])
+    ok(f"{_code}: no live intro still says 'best ten of twelve' or 'nine of eleven'",
+       not any(("best ten of twelve" in w["intro"] or "nine of eleven" in w["intro"]) for w in _c["weeks"]))
+    ok(f"{_code}: Weeks 1 to 5 intros state best three and 15%",
+       all(("best three" in _by[w]["intro"] and "15%" in _by[w]["intro"]) for w in (1, 2, 3, 4, 5)))
+    ok(f"{_code}: Week 11 form title names the new topic", "choosing a model" in _by[11]["title"])
+    ok(f"{_code}: Week 11 form has 5 questions, one correct option each",
+       len(_by[11]["questions"]) == 5 and all(sum(ch["correct"] for ch in q["choices"]) == 1 for q in _by[11]["questions"]))
+
+# Generated Apps Script files must be pure ASCII and carry the new helpers.
+for _name in ("create_quiz_forms.gs", "block_quiz_sittings_20261102.gs", "apply_block_windows_20261102.gs"):
+    _path = _os.path.join(_ROOT, "IUEA_Teaching_Plan", "grader", _name)
+    if _os.path.exists(_path):
+        _txt = open(_path, "rb").read()
+        ok(f"{_name} is pure ASCII", all(b < 128 for b in _txt))
+_gs = open(_os.path.join(_ROOT, "IUEA_Teaching_Plan", "grader", "create_quiz_forms.gs"), encoding="ascii").read()
+ok("create_quiz_forms.gs defines replaceWeek11Questions and keeps replaceWeek13Questions",
+   "function replaceWeek11Questions()" in _gs and "function replaceWeek13Questions()" in _gs)
+ok("create_quiz_forms.gs refuses to open retired weeks", "RETIRED_QUIZ_WEEKS = [12, 13]" in _gs and "is retired and is not sat" in _gs)
 
 print()
 if FAILED:

@@ -1,4 +1,8 @@
 """Canonical assessment IDs, weights, submission formats and deadlines.
+NOTE 3 November 2026: the demo is removed and the ML project is submitted (scripts/apply_policy_20261103.py patched assessments.json in place; do not regenerate it here).
+NOTE 2 November 2026: data/assessments.json is now patched IN PLACE by scripts/apply_block_policy_20261102.py (block deadlines,
+Practical Test 2 retired, project and demo dates to be confirmed). Do NOT run this module as a script to regenerate it, that would
+undo those patches. records() below still describes the original pre-block schedule and is kept for the tests.
 Dates use Africa/Kampala (UTC+03:00). Existing Week 1 is preserved.
 DA dates are deliberately unset until its actual start date is supplied.
 """
@@ -8,8 +12,10 @@ TZ = timezone(timedelta(hours=3))
 COHORTS = {'CML3112': (1, 11), 'CML3113': (4, 8), 'CML3111': (4, 11)}
 QUIZ_WEEKS = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13]
 CHALLENGE_WEEKS = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12]
-WEIGHTS = {'quizzes': 10, 'challenges': 10, 'data_project': 10, 'test1': 15,
-           'test2': 20, 'ml_project': 25, 'demo': 10}
+# Weights of 3 November 2026 (no Practical Test 2, no demo; data/assessment_blocks_20261103.json is the source of truth).
+# ml_project = Part A coded notebook /30 + Part B decision memo /15.
+WEIGHTS = {'quizzes': 15, 'challenges': 15, 'data_project': 10, 'test1': 15,
+           'ml_project': 45}
 TITLES = ['Three problems one dataset', 'Proof of life', 'Engineering functions',
           'Reading report', 'Pandas investigation', 'Cleaning and quality',
           'Regression and baseline', 'Classification and cost', 'Validation and trust',
@@ -81,7 +87,7 @@ def records():
 
 
 def grade_headers():
-    return ['student_id','name','email','cohort'] + [f'Q{i}' for i in range(1,13)] + [f'W{w:02}' for w in CHALLENGE_WEEKS] + ['Data Analysis Project','Practical Test 1','Practical Test 2','ML Project','Demo','Final %','Band','Missing','Challenges done']
+    return ['student_id','name','email','cohort'] + [f'Q{i}' for i in range(1,13)] + [f'W{w:02}' for w in CHALLENGE_WEEKS] + ['Data Analysis Project','Practical Test 1','ML Project Part A','ML Project Part B','Semester 1 provisional','Project','Final %','Band','Missing','Challenges done']
 
 
 if __name__ == '__main__':

@@ -1,3 +1,5 @@
+> **Current (4 November 2026):** the semester ends at Week 12. Weeks 8 to 11 are four classes taught from `second_half/`; Week 12 is the individual timed project sitting. There is no Practical Test 2, demo or Weeks 13 to 15. See [teaching progress](Teaching_Progress.md).
+
 > **Current foundation sequence:** Week 3 now teaches arithmetic and comparisons individually, then traces if/else/elif before functions and list examples. Week 4 teaches for/while, range and loop controls before records. Use the current PowerPoint and slide companion; allow another session when needed rather than skipping an unexplained prerequisite. CML3112’s revised route is in [Week 3 continuation](CML3112_Week3_Continuation.md).
 
 # Teaching from Week 2 onward
@@ -6,7 +8,7 @@ Updated 29 September 2026. Week 3–15 decks and their slide-by-slide lecturer c
 
 Open the matching PowerPoint in **decks/** and teach in Slide Show. Use Presenter View for the detailed explanation prompts in speaker notes. Use the cohort student ZIP for practice and the issued assignment. The HTML lesson route is retired. The issued brief remains authoritative for graded outputs.
 
-The slides use illustrated concepts, annotated code and worked examples with answers. Explain them directly; no live pair or role-play activities are required. Students can repeat the examples individually after class using the matching guided notebook. Videos are optional revision. For Weeks 7 and 14, complete rehearsal before the timed test.
+The slides use illustrated concepts, annotated code and worked examples with answers. Explain them directly; no live pair or role-play activities are required. Students can repeat the examples individually after class using the matching guided notebook. Videos are optional revision. For Week 7 (Practical Test 1) and the Week 12 project sitting, complete the rehearsal before the timed test.
 
 The [curriculum benchmark and teaching map](Curriculum_Benchmark_and_Teaching_Map.md) records the research, prerequisite sequence and weekly activities. Definitions and syntax references can be revisited as needed; do not rush through every slide at the same pace.
 
@@ -33,7 +35,7 @@ If many learners cannot pass the checkpoint, use the independent-practice recove
 | 165–170 | Explain quiz access and its 24-hour availability window |
 | 170–180 | Save, explain requirements and confirm the deadline |
 
-Weeks 7 and 14 use their existing examination timetable; their opening preparation slides are for use before the test, not replacement exam content. Week 15 uses the published demo timetable. Week 13 prioritises studio work and the final weekly quiz. Friday Week 5 has no normal class; announce a supported replacement and retain Week 6 consolidation.
+Week 7 uses its examination timetable; its opening preparation slides are for use before the test, not replacement exam content. Week 12 is the project sitting (3 hours, individual, timed; proposed times in Teaching_Progress.md). There are no Weeks 13 to 15, no Practical Test 2 and no demo. Friday Week 5 has no normal class; announce a supported replacement and retain Week 6 consolidation.
 
 ## Follow the prerequisite sequence
 
@@ -135,7 +137,7 @@ For CML3111/CML3113, publish the recording and issued campus-energy files before
 
 **Before the existing quiz:** A Boolean mask is a list-like column of True/False values. len(mask) counts all rows; mask.sum() counts True entries. Strings sort as text, so "9" can rank above "100". Inspect numeric types before taking maxima. KeyError often means the column name does not match; check spelling, case and spaces. shape is (rows, columns). Read provenance and units before trusting a dataset.
 
-## Weeks 6 to 15 pandas continuation
+## Weeks 6 to 12 pandas continuation
 
 Updated 15 October 2026. Use the current PowerPoint and matching slide companion. Keep students working with DataFrames for tables after Week 5.
 
@@ -165,19 +167,11 @@ Create derived DataFrame columns. Compare base and extended features on the same
 
 ### Week 12
 
-Filter candidate tables by both constraints, sort by the published tie-breaks and return the selected name or None.
+The project sitting: 3 hours, individual, timed, auto-graded, covering Weeks 1 to 11. Filtering candidate tables by both constraints and the published tie-breaks (the old Week 12 topic) is now taught in Class 4.
 
-### Week 13
+### Weeks 13 to 15
 
-Reproduce the pandas notebook from a fresh session using documented data paths, dependencies and run order.
-
-### Week 14
-
-Rehearse named-column model inputs, training-only pipelines and the issued return types before Practical Test 2.
-
-### Week 15
-
-Present the reproducible pandas and modelling workflow, supported findings, limitations and individual contribution.
+Superseded on 4 November 2026: these weeks are no longer taught.
 
 The assignment loader is supplied. Existing function names, returned Python types and marks remain unchanged. Use pandas internally and convert at the return boundary. Correct older solutions remain valid. Lecturer-only pandas reference solutions are checked against the same unseen grading cases and never belong in student ZIPs.
 

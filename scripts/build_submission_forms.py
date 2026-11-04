@@ -1,3 +1,4 @@
+# NOTE (4 November 2026): Embeds assessment_registry.records() (the pre-block schedule) in grader/submission_forms.gs. The embedded TEST2, ML_PROJECT and DEMO rows were updated by scripts/patch_data_grader_20261104.py; running this script restores the old rows. Do not run it.
 """Embed the canonical registry in the assignment submission Apps Script."""
 import json
 from pathlib import Path

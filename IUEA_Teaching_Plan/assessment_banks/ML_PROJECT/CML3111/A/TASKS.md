@@ -1,3 +1,5 @@
+> **SUPERSEDED (4 November 2026).** The Engineering ML project is now an individual, timed, auto-graded 3-hour sitting in Week 12 (Fri 4 Dec 2026, 11:00 to 14:00 Kampala, proposed, lecturer to confirm), worth 45: Part A coded notebook 30 and Part B decision memo 15, entered and submitted like Practical Test 1. There is no report, no DOCX or PDF upload, no team and no demo. The current brief is `second_half/Project/Student_Brief_CML3111.pdf`. The take-home text below is the old bank and is not used.
+
 # CML3111 ML_PROJECT — task reference
 
 These are the same tasks shown in the assignment notebook. Work in the notebook; you do not need to complete this file separately.

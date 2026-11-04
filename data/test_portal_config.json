@@ -3,10 +3,7 @@
   "public_url": "https://iuea-test-entry.jothammartin-wambi.workers.dev/",
   "links": {
     "CML3111|TEST1": "https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3111%7CTEST1",
-    "CML3111|TEST2": "https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3111%7CTEST2",
     "CML3112|TEST1": "https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3112%7CTEST1",
-    "CML3112|TEST2": "https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3112%7CTEST2",
-    "CML3113|TEST1": "https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3113%7CTEST1",
-    "CML3113|TEST2": "https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3113%7CTEST2"
+    "CML3113|TEST1": "https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3113%7CTEST1"
   }
 }

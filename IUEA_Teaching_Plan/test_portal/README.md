@@ -1,5 +1,7 @@
 # Student test entry portal
 
+> **4 November 2026:** Practical Test 2 was withdrawn and replaced by the Engineering ML final project. This source now serves Test 1 only. The project has a separate `ML_PROJECT` deployment bundle; its links remain proposed until that deployment is confirmed. See `../second_half/Project/deploy/DEPLOYMENT_STEPS.md`.
+
 ## Timed take-home Test 1 (23 October 2026)
 
 On 29 October 2026, the existing Apps Script web-app deployment was updated to version 22 with the allocated-email metadata and Colab account preflight. The Cloudflare Worker was already live and was not redeployed.
@@ -11,19 +13,19 @@ Issued Colab files are private, shared as reader only with the declared Google a
 
 ## Deployment status
 
-The existing Cloudflare Workers Free endpoint remains `https://iuea-test-entry.jothammartin-wambi.workers.dev/`. Its six course/test pages returned HTTP 200 after the Apps Script update. No Worker code, route, secret, or setting changed. Google redirects happen server-to-server, not in the learner's browser.
+The existing Cloudflare Workers Free endpoint remains `https://iuea-test-entry.jothammartin-wambi.workers.dev/`. Its six course/test pages returned HTTP 200 after the Apps Script update. The Test 2 withdrawal is reflected in the current source and generated packets but has **not** been deployed; the old public deployment may still serve Test 2 entry pages. Do not share those links. Google redirects happen server-to-server, not in the learner's browser.
 
 The existing Apps Script web-app deployment now targets version 22 at the same `/exec` URL, running as `wirmbeesubs@gmail.com` with anonymous web-app access. The collector project source was updated separately; its existing triggers and spreadsheet were not reconfigured. Publication did not open or extend any test window.
 
 Student host: https://iuea-test-entry.jothammartin-wambi.workers.dev/
 
-Use a course/test link, not the bare host. All six live routes were checked in the normal multi-account browser. Existing opening times and deadlines were preserved. See [gateway/README.md](gateway/README.md) for deployment and verification details.
+Use a course/Test 1 link, not the bare host. The three Test 1 routes were checked in the normal multi-account browser. Existing opening times and deadlines were preserved. See [gateway/README.md](gateway/README.md) for deployment and verification details.
 
 Deployment: https://script.google.com/macros/s/AKfycbxRlh_k0QbbgWbTE5gukY4QTEBFJ8Y8BNg9VL38Rtf5cYdq2RS93V6tn6ULgvzevrc/exec
 
 Use the course-specific links in [TEST_ENTRY_LINKS.md](../test_operations/TEST_ENTRY_LINKS.md). Downloads follow the existing Test windows; publication does not open all tests.
 
-The portal update was prepared from the previously deployed packet set. Only the submission helper was updated in each of the 18 packet notebooks; question cells, CSVs, instructions, timer values, and allocation metadata were preserved. Existing issued Drive notebooks were not edited, so an already-open Colab session continues unchanged. Previously issued notebooks do not gain the client-side preflight retroactively; the collector's server-side identity and ownership checks remain in force.
+The 29 October portal update was prepared from the previously deployed packet set. Only the submission helper was updated in each of the 18 then-active packet notebooks; question cells, CSVs, instructions, timer values, and allocation metadata were preserved. The current source now generates nine Test 1 packets. Existing issued Drive notebooks were not edited, so an already-open Colab session continues unchanged. Previously issued notebooks do not gain the client-side preflight retroactively; the collector's server-side identity and ownership checks remain in force.
 
 Project: https://script.google.com/home/projects/1QHfTCL-vxjaWjrQLvDhg8PlGaHoUDzT5MdvJ7Tz46JK6VSz-4lgYFJay/edit
 
@@ -40,7 +42,7 @@ The lecturer authorised CML3111 Test 1 to open from 17:26:54 to 18:26:54 Kampala
 - Downloaded the private ZIP and graded it in Docker: GRADED, 100/100. Workbook: `test_operations/grading_output/cloudflare_rehearsal_20261019/graded/Test_Marks.xlsx`.
 - Marked the synthetic collection row REHEARSAL so normal student exports exclude it. Its separate local grading ledger cannot affect students’ marks. No marks were sent to students.
 
-This completes the successful live Cloudflare download-to-workbook check for CML3111 Test 1. The other five routes were checked live while closed/future; all 18 packets passed local checks. Physical phone-camera scanning was not performed.
+This completes the successful live Cloudflare download-to-workbook check for CML3111 Test 1. The other two Test 1 routes were checked live while closed/future. The former six-route and 18-packet checks predate the Test 2 withdrawal; the current nine Test 1 packets are validated by the portal test suite. Physical phone-camera scanning was not performed.
 
 ## Student flow
 
@@ -63,15 +65,15 @@ When deploying these changes, regenerate the student notebooks and `Packets.gs`,
 ## Original deployment procedure (historical)
 
 1. Publish as a web app running as wirmbeesubs@gmail.com, available to anyone with a Google account. Obtain the required account authorization.
-2. Save the returned /exec URL in data/test_portal_config.json and generate the six links with a URL-encoded test parameter, such as CML3111|TEST1. Generate matching QR PNGs under qr/test_entry.
+2. Save the returned /exec URL in data/test_portal_config.json and generate only the three Test 1 links with URL-encoded keys. The withdrawn Test 2 keys must not be generated; the final project has a separate deployment bundle.
 3. Update only Colab_Test_Collection.gs in the existing private lecturer project with grader/exam_collection.gs. Run enableTestPortalCollection once. This renames the form field, retains its entry ID, and requires portal allocation codes for new submissions. Old collected records are untouched.
-4. Build the six Week 7/14 decks from the updated source. Render and inspect the changed slides, links and QR codes before publishing the PPTX files and lecturer notes.
+4. Build and verify the three active Week 7 Test 1 decks only. Weeks 8–15 decks are superseded; do not rebuild them from the old source.
 5. Rehearse the live page, returning for the same files, both downloads and a portal-issued notebook submission. Confirm COLLECTED and the correct internal variant in the private ledger. Verify grading with the downloaded batch.
 6. Preserve current test windows. Do not open additional real tests for verification without a teaching decision. Use an explicitly authorised rehearsal window.
 
 ## Maintaining the files
 
-Run scripts/build_colab_exams.py, then scripts/build_test_portal.py after any test-content change. Update the portal's server source and deployment version so new downloads match the current tests. No solutions or graders are included in Packets.gs.
+Run scripts/build_colab_exams.py, then scripts/build_test_portal.py after any Test 1 content change. Update the portal's server source and deployment version so new downloads match Test 1. The final project's separate `ML_PROJECT` deployment bundle is maintained under `second_half/Project/deploy/`. No solutions or graders are included in Packets.gs.
 
 The private Test allocations tab has one row per course/test and registration number. Do not delete allocations to reshuffle versions. For a genuine typo, verify the student's identity and check existing submissions before correcting the registration/email in that allocation row; keep its allocation code and variant. The student then retrieves the files with the corrected details. Already collected identity conflicts require separate resolution before releasing marks.
 
@@ -85,13 +87,13 @@ If a wrong Google account caused the failure, use the keyed function with `repla
 
 ## Verification completed locally
 
-- All 18 packets load and contain only student material.
+- Before Test 2 was withdrawn, all 18 packets loaded and contained only student material. The active source now generates nine Test 1 packets.
 - Stable allocation across repeat requests; 30 synthetic learners distributed 10 per version.
 - No files before opening, after closing or when disabled.
 - Identity mismatch and email reuse are rejected.
 - Freeform registration text, including formula-like text, is stored literally.
 - Collector rejects wrong allocation, wrong course or altered identity; legacy letter bypass is rejected after migration.
-- All 18 reference solutions still score 100/100; submission-helper and existing collector checks pass.
+- Before withdrawal, all 18 reference solutions scored 100/100; submission-helper and existing collector checks passed.
 - Browser preview reviewed. Student and lecturer DOCX guides rendered and visually checked.
 
 ## Live verification, 19 October 2026
@@ -114,7 +116,7 @@ All six final Week 7/14 PPTX QR images and their rendered-slide QR images decode
 
 The browser reproduced Google's “unable to open” page after redirecting to `/macros/u/1/`, with two Google accounts signed in. This happens before the portal code runs. The lecturer also reported the same failure in a single-account private window, so multiple accounts are not a confirmed root cause. Further live deployment diagnosis is required; the private-window suggestion is only a troubleshooting step. Do not describe the QR as broken or a closed test as a missing file. A fresh single-account live download remains to be verified after this audit; no real test windows were changed.
 
-The expanded `tests/test_test_portal.cjs` exercises all 18 download packets and compares their questions, CSV and instructions with the current assessment files. It checks correct identity/allocation insertion and disabled, early and expired windows across all six entry points. These are local automated checks, separate from live browser verification.
+The expanded `tests/test_test_portal.cjs` exercises all nine active Test 1 download packets and compares their questions, CSV and instructions with the assessment files. It checks correct identity/allocation insertion, withdrawn Test 2 rejection, and disabled, early and expired windows across the three active entry points. These are local automated checks, separate from live browser verification.
 
 ### Follow-up live diagnosis, 19 October, 16:37 Kampala
 

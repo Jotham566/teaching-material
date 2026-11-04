@@ -22,7 +22,8 @@ assert.throws(()=>ctx.examAllocation_(token,input.test,'wrong',input.email,{book
 assert.throws(()=>ctx.examAllocation_(token,input.test,input.registration,'other@example.com',{bookId:'book'}),/Test allocation email mismatch: allocated to synthetic@example\.com but the form was submitted by other@example\.com/);
 assert.throws(()=>ctx.examAllocation_('A',input.test,input.registration,input.email,{bookId:'book'}),/does not match/);
 assert.throws(()=>ctx.examAllocation_(token,'CML3112|TEST1',input.registration,input.email,{bookId:'book'}),/does not match/);
-assert.equal(Object.keys(ctx.PORTAL_PACKETS).length,18);
+assert.throws(()=>ctx.requestTestFiles({...input,test:'CML3111|TEST2'}),/withdrawn and replaced by the Engineering ML final project/);
+assert.equal(Object.keys(ctx.PORTAL_PACKETS).length,9);
 for(const packet of Object.values(ctx.PORTAL_PACKETS)){
  const n=JSON.parse(packet.notebook),submitCell=n.cells.find(cell=>(cell.metadata.tags||[]).includes('iuea-submission')),submitSource=submitCell.source.join('');
  assert(n.cells.at(-1).source.join('').includes("globals().get('_IUEA_ALLOCATION', VARIANT)"));
@@ -30,23 +31,23 @@ for(const packet of Object.values(ctx.PORTAL_PACKETS)){
  assert(submitSource.includes("_drive.files().get("));assert(submitSource.includes("authuser"));
  assert(!packet.instructions.includes('assigned A, B or C'));
 }
-console.log('Portal checks passed: 18 packets, stable allocation, balanced random distribution, identity conflict, literal registration, closed/early/late windows, collector binding and legacy bypass rejection.');
+console.log('Portal checks passed: 9 Test 1 packets, Test 2 retirement, stable allocation, balanced random distribution, identity conflict, literal registration, closed/early/late windows, collector binding and legacy bypass rejection.');
 
 // Opening a page or reusing an allocation must never bypass an unopened window.
 const before=rows.length;
-for(const course of ['CML3111','CML3112','CML3113'])for(const exam of ['TEST1','TEST2']){
+for(const course of ['CML3111','CML3112','CML3113'])for(const exam of ['TEST1']){
  const learner={...input,test:course+'|'+exam};
  enabled='NO';assert.throws(()=>ctx.requestTestFiles(learner),/not open/);
  enabled='YES';clock=Date.now()+120000;assert.throws(()=>ctx.requestTestFiles(learner),/opens/);
  clock=Date.now()-120000;assert.throws(()=>ctx.requestTestFiles(learner),/closed/);
 }
 assert.equal(rows.length,before);
-console.log('All six entry points reject disabled, future and expired windows without allocating or returning files.');
+console.log('All three Test 1 entry points reject disabled, future and expired windows without allocating or returning files.');
 
 // Exercise the download payload for every course, test and allocated packet.
 enabled='YES';clock=Date.now();
 const checked=new Set();
-for(const course of ['CML3111','CML3112','CML3113'])for(const exam of ['TEST1','TEST2']){
+for(const course of ['CML3111','CML3112','CML3113'])for(const exam of ['TEST1']){
  const key=course+'|'+exam;
  for(let i=0;i<6;i++){
   const learner={test:key,name:'Download rehearsal',email:`download-${course}-${exam}-${i}@example.com`,registration:`DEMO-DOWNLOAD-${course}-${exam}-${i}`};
@@ -65,5 +66,5 @@ for(const course of ['CML3111','CML3112','CML3113'])for(const exam of ['TEST1','
   assert(notebook.cells.at(-1).source.includes(allocation[3]));
  }
 }
-assert.equal(checked.size,18);
-console.log('All 18 download payloads match the current notebook questions, CSV and instructions, with correct learner identity and allocation.');
+assert.equal(checked.size,9);
+console.log('All 9 Test 1 download payloads match the current notebook questions, CSV and instructions, with correct learner identity and allocation.');

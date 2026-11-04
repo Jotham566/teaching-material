@@ -1,6 +1,12 @@
 """Weeks 6+ questions use only the revised taught pandas workflow.
 The answer positions are shuffled per cohort by the existing generator.
 """
+
+# Retired quiz weeks (Week 12 = Q11, Week 13 = Q12). They stay in QUIZ with retired=True so the existing live forms
+# can still be audited and closed, and their questions are archived here for reuse next semester.
+RETIRED_WEEKS=(12,13)
+RETIRED_ARCHIVE={}
+
 def question(stem,pre,correct,reason,wrong,kind='interpretation'):
  return dict(stem=stem,pre=pre,kind=kind,options=[(correct,True,reason)]+[(text,False,feedback) for text,feedback in wrong])
 
@@ -44,7 +50,26 @@ def apply(quiz):
  q('Which name wins the published tie-break?','Both candidates have MAE 2 and latency 3 ms.\nNames: beta, alpha\nSort by error, latency, then name.','alpha','With equal numerical criteria, alphabetical name order decides.', [('beta','That is not the alphabetical first name.'),('Whichever appeared last','Input order is not the stated tie-break.'),('None','Both are eligible and the tie-break resolves the choice.')]),
  q('Which data should guide model selection?','The final test is reserved for the fixed choice.','Validation results under a consistent protocol','The final test should remain independent of repeated choices.', [('Final-test results after every trial','Repeated selection on those results uses up the final test.'),('The nicest-looking training plot','Appearance does not establish held-out performance.'),('The largest number of parameters','Complexity alone does not establish quality.')],'judgement')]
  }
+ # ---- 2 November 2026: four-class second half (data/assessment_blocks_20261102.json) ----
+ # Class 4 (Week 11 content) now teaches model comparison as well as features, and Q11 and Q12 are no longer sat.
+ # Two Q10 questions are swapped for two Q11 questions of the SAME kind, so the design mix is unchanged:
+ # two interpretation, one diagnosis, one traceback, one judgement. Position 1 (interpretation) and
+ # position 3 (traceback) are the ones replaced; the feature leak, the ablation and the fair comparison stay.
+ import copy
+ q10_before=copy.deepcopy(banks[11]); q11_before=copy.deepcopy(banks[12]); q12_before=copy.deepcopy(quiz[13]['q'])
+ assert [x['kind'] for x in q10_before]==['interpretation','diagnosis','traceback','interpretation','judgement']
+ assert [x['kind'] for x in q11_before]==['interpretation','diagnosis','traceback','interpretation','judgement']
+ assert q10_before[0]['stem']=='Which values are produced?' and q10_before[2]['stem']=='What does this error suggest?'
+ assert q11_before[0]['stem']=='Which candidate meets both constraints?' and q11_before[2]['stem']=='What check prevents this error?'
+ banks[11]=[copy.deepcopy(q11_before[0]),q10_before[1],copy.deepcopy(q11_before[2]),q10_before[3],q10_before[4]]
+ RETIRED_ARCHIVE.clear()
+ RETIRED_ARCHIVE.update({
+  'Q10_questions_replaced_2026-11-02':[q10_before[0],q10_before[2]],
+  'Q11_week12_all_five':q11_before,
+  'Q12_week13_all_five':q12_before})
  for week,questions in banks.items():
   quiz[week]['q']=questions
   quiz[week]['intro']='Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.'
+ for week in RETIRED_WEEKS:
+  quiz[week]['retired']=True
  return quiz

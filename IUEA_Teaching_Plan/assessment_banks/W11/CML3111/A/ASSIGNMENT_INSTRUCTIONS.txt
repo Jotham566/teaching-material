@@ -1,10 +1,10 @@
 # CML3111 A10: Features and ablation
 
-**Block 2, part A of 2** (Weeks 11 to 13). Marked out of 20. All 2 parts of the block close together.
+**Block 2, part B of 3** (Weeks 10 and 11 content). Marked out of 20. All 3 parts of the block close together.
 
-**Deadline:** 10 December 2026, 23:59 Kampala. The live form shows any later change.
+**Deadline:** 4 December 2026, 11:00 Kampala. The live form shows any later change.
 **Submit:** ONE completed notebook (.ipynb) on this form: https://docs.google.com/forms/d/e/1FAIpQLSeQJ_LsZgtIRbakN-KW4e4dx5rru2iqg6HwaaKoAQbKW7bh8Q/viewform
-**Block quiz:** one sitting in the last 20 minutes of the Week 13 class, 3 short quizzes, 15 marks.
+**Block quiz:** one sitting in the last 20 minutes of Class 4 (Friday 27 November), 2 short quizzes, 10 marks.
 
 ## Do this
 

@@ -142,7 +142,7 @@
     ],
     "opens_at": "2026-10-27T11:00:00+03:00",
     "closes_at": "2026-11-17T11:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part A of 3. All parts of the block close together.",
+    "delivery_note": "Block 1 assignment, part A of 2. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B1",
@@ -166,7 +166,7 @@
     ],
     "opens_at": "2026-11-03T11:00:00+03:00",
     "closes_at": "2026-11-17T11:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part B of 3. All parts of the block close together.",
+    "delivery_note": "Block 1 assignment, part B of 2. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B1",
@@ -189,12 +189,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-10T11:00:00+03:00",
-    "closes_at": "2026-11-17T11:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part C of 3. All parts of the block close together.",
+    "closes_at": "2026-12-01T11:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part A of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
-    "block": "B1",
-    "block_part": "C"
+    "block": "B2",
+    "block_part": "A"
   },
   {
     "key": "CML3112|W11",
@@ -213,12 +213,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-17T11:00:00+03:00",
-    "closes_at": "2026-12-07T23:59:00+03:00",
-    "delivery_note": "Block 2 assignment, part A of 2. All parts of the block close together.",
+    "closes_at": "2026-12-01T11:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part B of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B2",
-    "block_part": "A"
+    "block_part": "B"
   },
   {
     "key": "CML3112|W12",
@@ -237,12 +237,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-24T11:00:00+03:00",
-    "closes_at": "2026-12-07T23:59:00+03:00",
-    "delivery_note": "Block 2 assignment, part B of 2. All parts of the block close together.",
+    "closes_at": "2026-12-01T11:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part C of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B2",
-    "block_part": "B"
+    "block_part": "C"
   },
   {
     "key": "CML3112|DA_PROJECT",
@@ -296,11 +296,17 @@
     "formats": [
       "ipynb"
     ],
-    "opens_at": "2026-12-08T11:00:00+03:00",
-    "closes_at": "2026-12-08T14:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.12-colab-v3-weeks8-13"
+    "assessment_version": "2026.12-colab-v3-weeks8-13",
+    "original_opens_at": "2026-12-08T11:00:00+03:00",
+    "original_closes_at": "2026-12-08T14:00:00+03:00",
+    "original_week": 14,
+    "status": "RETIRED",
+    "delivery_note": "Practical Test 2 was dropped on 2 November 2026 because the semester now ends at Week 12. No submission and no mark.",
+    "retired": true
   },
   {
     "key": "CML3112|ML_PROJECT",
@@ -308,19 +314,51 @@
     "cohort": "CML3112",
     "id": "ML_PROJECT",
     "label": "ML_PROJECT",
-    "week": 15,
+    "week": 12,
     "title": "Engineering ML project",
-    "maximum": 100,
+    "maximum": 45,
     "component": "ml_project",
     "formats": [
-      "ipynb",
-      "pdf",
-      "docx"
+      "ipynb"
     ],
-    "opens_at": "2026-11-24T11:00:00+03:00",
-    "closes_at": "2026-12-15T11:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "automatic",
+    "original_opens_at": "2026-11-24T11:00:00+03:00",
+    "original_closes_at": "2026-12-15T11:00:00+03:00",
+    "original_week": 15,
+    "status": "SITTING_TO_BE_CONFIRMED",
+    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project: one supervised 3-hour sitting in Google Colab in the Week 12 class slot, entered and submitted like Practical Test 1 (update of 4 November 2026; there is no take-home and no demo). One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 11 only. Proposed sitting (lecturer to confirm): Tuesday 1 December 2026 11:00 to 14:00 Kampala. Unmarked rehearsal released after Class 4. It is collected by the Colab test collector under the key CML3112|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null until the lecturer sets the Test windows row.",
+    "parts": [
+      {
+        "part": "A",
+        "id": "ML_PROJECT_A",
+        "gradebook_column": "ML Project Part A",
+        "title": "Coded project notebook",
+        "maximum": 30,
+        "marking": "Fully automatic: hidden checks on unseen data (24) and automatic process checks (6)."
+      },
+      {
+        "part": "B",
+        "id": "ML_PROJECT_B",
+        "gradebook_column": "ML Project Part B",
+        "title": "Structured decision memo (a form inside the notebook)",
+        "maximum": 15,
+        "marking": "Fully automatic: the memo form inside the notebook, marked by key and keyword and length rules (15)."
+      }
+    ],
+    "scope": "Only what was taught this semester, Weeks 1 to 11 (Classes 1 to 4 of the second half included).",
+    "proposed_released_after_class_4": "2026-11-24",
+    "proposed_status": "proposed, lecturer to confirm",
+    "mode": "individual, timed (180 minutes), fully auto-graded",
+    "proposed_sitting": {
+      "date": "2026-12-01",
+      "start": "11:00",
+      "end": "14:00",
+      "timezone": "Africa/Kampala",
+      "duration_minutes": 180
+    }
   },
   {
     "key": "CML3112|DEMO",
@@ -328,7 +366,7 @@
     "cohort": "CML3112",
     "id": "DEMO",
     "label": "DEMO",
-    "week": 15,
+    "week": 12,
     "title": "Presentation and individual reflection",
     "maximum": 100,
     "component": "demo",
@@ -337,10 +375,16 @@
       "pdf",
       "docx"
     ],
-    "opens_at": "2026-11-24T11:00:00+03:00",
-    "closes_at": "2026-12-15T14:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "original_opens_at": "2026-11-24T11:00:00+03:00",
+    "original_closes_at": "2026-12-15T14:00:00+03:00",
+    "original_week": 15,
+    "status": "RETIRED",
+    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. Week 12 is the individual timed project sitting; nobody presents. No form window is opened and nothing is marked on this form.",
+    "retired": true
   },
   {
     "key": "CML3113|W01",
@@ -485,7 +529,7 @@
     ],
     "opens_at": "2026-10-30T08:00:00+03:00",
     "closes_at": "2026-11-20T08:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part A of 3. All parts of the block close together.",
+    "delivery_note": "Block 1 assignment, part A of 2. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B1",
@@ -509,7 +553,7 @@
     ],
     "opens_at": "2026-11-06T08:00:00+03:00",
     "closes_at": "2026-11-20T08:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part B of 3. All parts of the block close together.",
+    "delivery_note": "Block 1 assignment, part B of 2. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B1",
@@ -532,12 +576,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-13T08:00:00+03:00",
-    "closes_at": "2026-11-20T08:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part C of 3. All parts of the block close together.",
+    "closes_at": "2026-12-04T08:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part A of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
-    "block": "B1",
-    "block_part": "C"
+    "block": "B2",
+    "block_part": "A"
   },
   {
     "key": "CML3113|W11",
@@ -556,12 +600,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-20T08:00:00+03:00",
-    "closes_at": "2026-12-10T23:59:00+03:00",
-    "delivery_note": "Block 2 assignment, part A of 2. All parts of the block close together.",
+    "closes_at": "2026-12-04T08:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part B of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B2",
-    "block_part": "A"
+    "block_part": "B"
   },
   {
     "key": "CML3113|W12",
@@ -580,12 +624,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-27T08:00:00+03:00",
-    "closes_at": "2026-12-10T23:59:00+03:00",
-    "delivery_note": "Block 2 assignment, part B of 2. All parts of the block close together.",
+    "closes_at": "2026-12-04T08:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part C of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B2",
-    "block_part": "B"
+    "block_part": "C"
   },
   {
     "key": "CML3113|DA_PROJECT",
@@ -639,11 +683,17 @@
     "formats": [
       "ipynb"
     ],
-    "opens_at": "2026-12-11T08:00:00+03:00",
-    "closes_at": "2026-12-11T11:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.12-colab-v3-weeks8-13"
+    "assessment_version": "2026.12-colab-v3-weeks8-13",
+    "original_opens_at": "2026-12-11T08:00:00+03:00",
+    "original_closes_at": "2026-12-11T11:00:00+03:00",
+    "original_week": 14,
+    "status": "RETIRED",
+    "delivery_note": "Practical Test 2 was dropped on 2 November 2026 because the semester now ends at Week 12. No submission and no mark.",
+    "retired": true
   },
   {
     "key": "CML3113|ML_PROJECT",
@@ -651,19 +701,51 @@
     "cohort": "CML3113",
     "id": "ML_PROJECT",
     "label": "ML_PROJECT",
-    "week": 15,
+    "week": 12,
     "title": "Engineering ML project",
-    "maximum": 100,
+    "maximum": 45,
     "component": "ml_project",
     "formats": [
-      "ipynb",
-      "pdf",
-      "docx"
+      "ipynb"
     ],
-    "opens_at": "2026-11-27T08:00:00+03:00",
-    "closes_at": "2026-12-18T08:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "automatic",
+    "original_opens_at": "2026-11-27T08:00:00+03:00",
+    "original_closes_at": "2026-12-18T08:00:00+03:00",
+    "original_week": 15,
+    "status": "SITTING_TO_BE_CONFIRMED",
+    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project: one supervised 3-hour sitting in Google Colab in the Week 12 class slot, entered and submitted like Practical Test 1 (update of 4 November 2026; there is no take-home and no demo). One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 11 only. Proposed sitting (lecturer to confirm): Friday 4 December 2026 08:00 to 11:00 Kampala. Unmarked rehearsal released after Class 4. It is collected by the Colab test collector under the key CML3113|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null until the lecturer sets the Test windows row.",
+    "parts": [
+      {
+        "part": "A",
+        "id": "ML_PROJECT_A",
+        "gradebook_column": "ML Project Part A",
+        "title": "Coded project notebook",
+        "maximum": 30,
+        "marking": "Fully automatic: hidden checks on unseen data (24) and automatic process checks (6)."
+      },
+      {
+        "part": "B",
+        "id": "ML_PROJECT_B",
+        "gradebook_column": "ML Project Part B",
+        "title": "Structured decision memo (a form inside the notebook)",
+        "maximum": 15,
+        "marking": "Fully automatic: the memo form inside the notebook, marked by key and keyword and length rules (15)."
+      }
+    ],
+    "scope": "Only what was taught this semester, Weeks 1 to 11 (Classes 1 to 4 of the second half included).",
+    "proposed_released_after_class_4": "2026-11-27",
+    "proposed_status": "proposed, lecturer to confirm",
+    "mode": "individual, timed (180 minutes), fully auto-graded",
+    "proposed_sitting": {
+      "date": "2026-12-04",
+      "start": "08:00",
+      "end": "11:00",
+      "timezone": "Africa/Kampala",
+      "duration_minutes": 180
+    }
   },
   {
     "key": "CML3113|DEMO",
@@ -671,7 +753,7 @@
     "cohort": "CML3113",
     "id": "DEMO",
     "label": "DEMO",
-    "week": 15,
+    "week": 12,
     "title": "Presentation and individual reflection",
     "maximum": 100,
     "component": "demo",
@@ -680,10 +762,16 @@
       "pdf",
       "docx"
     ],
-    "opens_at": "2026-11-27T08:00:00+03:00",
-    "closes_at": "2026-12-18T11:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "original_opens_at": "2026-11-27T08:00:00+03:00",
+    "original_closes_at": "2026-12-18T11:00:00+03:00",
+    "original_week": 15,
+    "status": "RETIRED",
+    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. Week 12 is the individual timed project sitting; nobody presents. No form window is opened and nothing is marked on this form.",
+    "retired": true
   },
   {
     "key": "CML3111|W01",
@@ -824,7 +912,7 @@
     ],
     "opens_at": "2026-10-30T11:00:00+03:00",
     "closes_at": "2026-11-20T11:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part A of 3. All parts of the block close together.",
+    "delivery_note": "Block 1 assignment, part A of 2. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B1",
@@ -848,7 +936,7 @@
     ],
     "opens_at": "2026-11-06T11:00:00+03:00",
     "closes_at": "2026-11-20T11:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part B of 3. All parts of the block close together.",
+    "delivery_note": "Block 1 assignment, part B of 2. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B1",
@@ -871,12 +959,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-13T11:00:00+03:00",
-    "closes_at": "2026-11-20T11:00:00+03:00",
-    "delivery_note": "Block 1 assignment, part C of 3. All parts of the block close together.",
+    "closes_at": "2026-12-04T11:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part A of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
-    "block": "B1",
-    "block_part": "C"
+    "block": "B2",
+    "block_part": "A"
   },
   {
     "key": "CML3111|W11",
@@ -895,12 +983,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-20T11:00:00+03:00",
-    "closes_at": "2026-12-10T23:59:00+03:00",
-    "delivery_note": "Block 2 assignment, part A of 2. All parts of the block close together.",
+    "closes_at": "2026-12-04T11:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part B of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B2",
-    "block_part": "A"
+    "block_part": "B"
   },
   {
     "key": "CML3111|W12",
@@ -919,12 +1007,12 @@
       "pptx"
     ],
     "opens_at": "2026-11-27T11:00:00+03:00",
-    "closes_at": "2026-12-10T23:59:00+03:00",
-    "delivery_note": "Block 2 assignment, part B of 2. All parts of the block close together.",
+    "closes_at": "2026-12-04T11:00:00+03:00",
+    "delivery_note": "Block 2 assignment, part C of 3. All parts of the block close together.",
     "preserve_existing": false,
     "grading": "rubric",
     "block": "B2",
-    "block_part": "B"
+    "block_part": "C"
   },
   {
     "key": "CML3111|DA_PROJECT",
@@ -978,11 +1066,17 @@
     "formats": [
       "ipynb"
     ],
-    "opens_at": "2026-12-11T11:00:00+03:00",
-    "closes_at": "2026-12-11T14:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
     "grading": "notebook",
-    "assessment_version": "2026.12-colab-v3-weeks8-13"
+    "assessment_version": "2026.12-colab-v3-weeks8-13",
+    "original_opens_at": "2026-12-11T11:00:00+03:00",
+    "original_closes_at": "2026-12-11T14:00:00+03:00",
+    "original_week": 14,
+    "status": "RETIRED",
+    "delivery_note": "Practical Test 2 was dropped on 2 November 2026 because the semester now ends at Week 12. No submission and no mark.",
+    "retired": true
   },
   {
     "key": "CML3111|ML_PROJECT",
@@ -990,19 +1084,51 @@
     "cohort": "CML3111",
     "id": "ML_PROJECT",
     "label": "ML_PROJECT",
-    "week": 15,
+    "week": 12,
     "title": "Engineering ML project",
-    "maximum": 100,
+    "maximum": 45,
     "component": "ml_project",
     "formats": [
-      "ipynb",
-      "pdf",
-      "docx"
+      "ipynb"
     ],
-    "opens_at": "2026-11-27T11:00:00+03:00",
-    "closes_at": "2026-12-18T11:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "automatic",
+    "original_opens_at": "2026-11-27T11:00:00+03:00",
+    "original_closes_at": "2026-12-18T11:00:00+03:00",
+    "original_week": 15,
+    "status": "SITTING_TO_BE_CONFIRMED",
+    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project: one supervised 3-hour sitting in Google Colab in the Week 12 class slot, entered and submitted like Practical Test 1 (update of 4 November 2026; there is no take-home and no demo). One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 11 only. Proposed sitting (lecturer to confirm): Friday 4 December 2026 11:00 to 14:00 Kampala. Unmarked rehearsal released after Class 4. It is collected by the Colab test collector under the key CML3111|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null until the lecturer sets the Test windows row.",
+    "parts": [
+      {
+        "part": "A",
+        "id": "ML_PROJECT_A",
+        "gradebook_column": "ML Project Part A",
+        "title": "Coded project notebook",
+        "maximum": 30,
+        "marking": "Fully automatic: hidden checks on unseen data (24) and automatic process checks (6)."
+      },
+      {
+        "part": "B",
+        "id": "ML_PROJECT_B",
+        "gradebook_column": "ML Project Part B",
+        "title": "Structured decision memo (a form inside the notebook)",
+        "maximum": 15,
+        "marking": "Fully automatic: the memo form inside the notebook, marked by key and keyword and length rules (15)."
+      }
+    ],
+    "scope": "Only what was taught this semester, Weeks 1 to 11 (Classes 1 to 4 of the second half included).",
+    "proposed_released_after_class_4": "2026-11-27",
+    "proposed_status": "proposed, lecturer to confirm",
+    "mode": "individual, timed (180 minutes), fully auto-graded",
+    "proposed_sitting": {
+      "date": "2026-12-04",
+      "start": "11:00",
+      "end": "14:00",
+      "timezone": "Africa/Kampala",
+      "duration_minutes": 180
+    }
   },
   {
     "key": "CML3111|DEMO",
@@ -1010,7 +1136,7 @@
     "cohort": "CML3111",
     "id": "DEMO",
     "label": "DEMO",
-    "week": 15,
+    "week": 12,
     "title": "Presentation and individual reflection",
     "maximum": 100,
     "component": "demo",
@@ -1019,10 +1145,16 @@
       "pdf",
       "docx"
     ],
-    "opens_at": "2026-11-27T11:00:00+03:00",
-    "closes_at": "2026-12-18T14:00:00+03:00",
+    "opens_at": null,
+    "closes_at": null,
     "preserve_existing": false,
-    "grading": "rubric"
+    "grading": "rubric",
+    "original_opens_at": "2026-11-27T11:00:00+03:00",
+    "original_closes_at": "2026-12-18T14:00:00+03:00",
+    "original_week": 15,
+    "status": "RETIRED",
+    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. Week 12 is the individual timed project sitting; nobody presents. No form window is opened and nothing is marked on this form.",
+    "retired": true
   },
   {
     "key": "DA|S05",

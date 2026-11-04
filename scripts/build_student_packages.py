@@ -1,3 +1,4 @@
+# NOTE (4 November 2026): For Weeks 8 to 12 this writes the OLD ASSIGNMENT_INSTRUCTIONS.txt, not the START_HERE.md of the block packs. Use scripts/build_block_packages_20261102.py for W08 to W12 (see IUEA_Teaching_Plan/student_packages/SUPERSEDED_README.md).
 """Package ready practicals using an explicit allowlist; no lecturer keys."""
 from pathlib import Path
 import zipfile,json,sys

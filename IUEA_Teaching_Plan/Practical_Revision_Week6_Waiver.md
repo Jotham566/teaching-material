@@ -1,5 +1,7 @@
 # Practical revision: all three programmes
 
+> Note of 4 November 2026: Practical Test 2, the final project demo and Weeks 13 to 15 no longer exist (see Block_Assessment_Arrangement_2026-11-03.md). Everything else below is the 21 October record.
+
 Updated 21 October 2026. A6 and Quiz 6 are **waived for CML3111, CML3112 and CML3113**. No upload, quiz attempt or replacement assessment is required. Retain earlier responses, files and raw marks as an audit record; exclude them from coursework calculations and missing-work flags.
 
 CML3111's completed A6 and Quiz 6 work is also excluded. This does not waive Test 1, Test 2, the final project or demo. Separate weekly assignments/quizzes are already omitted in their assessment weeks (7, 14 and 15). The data-analysis project in Week 8 and ordinary Week 8 coursework remain unchanged.

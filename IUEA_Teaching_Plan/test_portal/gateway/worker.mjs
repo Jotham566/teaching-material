@@ -1,5 +1,7 @@
 import page from './page.mjs';
-const keyPattern=/^CML311[123]\|TEST[12]$/;
+const keyPattern=/^CML311[123]\|TEST1$/;
+const retiredKeyPattern=/^CML311[123]\|TEST2$/;
+const retiredTestMessage='Practical Test 2 was withdrawn and replaced by the Engineering ML final project. Follow your lecturer’s project instructions.';
 const headers={'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
 const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{...headers,'Content-Type':'application/json; charset=utf-8'}});
 async function limitedText(request,limit){
@@ -13,7 +15,8 @@ export async function handle(request,env,upstream=fetch){
  const url=new URL(request.url);
  if(url.pathname==='/'&&(request.method==='GET'||request.method==='HEAD')){
   const key=url.searchParams.get('test')||'';
-  if(!keyPattern.test(key))return new Response('Open the course/test link provided by your lecturer.',{status:400,headers});
+   if(retiredKeyPattern.test(key))return new Response(retiredTestMessage,{status:410,headers});
+   if(!keyPattern.test(key))return new Response('Open the course/Test 1 link provided by your lecturer.',{status:400,headers});
   return new Response(request.method==='HEAD'?null:page.replace('__TEST_KEY_JSON__',JSON.stringify(key)),{headers:{...headers,'Content-Type':'text/html; charset=utf-8','Content-Security-Policy':"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"}});
  }
  if(url.pathname!=='/api/files')return json({ok:false,error:'Page not found.'},404);
@@ -23,6 +26,7 @@ export async function handle(request,env,upstream=fetch){
  let input;
  try{
   const body=JSON.parse(await limitedText(request,8192));
+  if(retiredKeyPattern.test(body.test))return json({ok:false,error:retiredTestMessage},410);
   input={test:body.test,name:body.name,email:body.email,registration:body.registration};
   if(!keyPattern.test(input.test))throw Error();
   for(const [key,max] of [['name',160],['email',254],['registration',160]]){

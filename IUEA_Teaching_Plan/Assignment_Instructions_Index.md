@@ -30,7 +30,7 @@ Students already working should keep their answers. They do not need to restart 
 - [CML3112|TEST1](student_guides/CML3112/TEST1.md)
 - [CML3112|TEST2](student_guides/CML3112/TEST2.md)
 - [CML3112|ML_PROJECT](student_guides/CML3112/ML_PROJECT.md)
-- [CML3112|DEMO](student_guides/CML3112/DEMO.md)
+- [CML3112|DEMO](student_guides/CML3112/DEMO.md) (retired 3 November 2026)
 - [CML3113|W01](student_guides/CML3113/W01.md)
 - [CML3113|W02](student_guides/CML3113/W02.md)
 - [CML3113|W03](student_guides/CML3113/W03.md)
@@ -46,7 +46,7 @@ Students already working should keep their answers. They do not need to restart 
 - [CML3113|TEST1](student_guides/CML3113/TEST1.md)
 - [CML3113|TEST2](student_guides/CML3113/TEST2.md)
 - [CML3113|ML_PROJECT](student_guides/CML3113/ML_PROJECT.md)
-- [CML3113|DEMO](student_guides/CML3113/DEMO.md)
+- [CML3113|DEMO](student_guides/CML3113/DEMO.md) (retired 3 November 2026)
 - [CML3111|W01](student_guides/CML3111/W01.md)
 - [CML3111|W02](student_guides/CML3111/W02.md)
 - [CML3111|W03](student_guides/CML3111/W03.md)
@@ -62,9 +62,9 @@ Students already working should keep their answers. They do not need to restart 
 - [CML3111|TEST1](student_guides/CML3111/TEST1.md)
 - [CML3111|TEST2](student_guides/CML3111/TEST2.md)
 - [CML3111|ML_PROJECT](student_guides/CML3111/ML_PROJECT.md)
-- [CML3111|DEMO](student_guides/CML3111/DEMO.md)
+- [CML3111|DEMO](student_guides/CML3111/DEMO.md) (retired 3 November 2026)
 
-<!-- BLOCK_ASSESSMENT_20261030 -->
-## Block arrangement from Week 8
+<!-- BLOCK_ASSESSMENT_20261102 -->
+## Block arrangement from Week 8 (updated 2 November 2026)
 
-From Week 8 there is one assignment pack and one quiz sitting after every three classes. Read [Block_Assessment_Arrangement_2026-10-30.md](Block_Assessment_Arrangement_2026-10-30.md). Student block guides: CML3111 [B1](student_guides/CML3111/B1.md), [B2](student_guides/CML3111/B2.md); CML3112 [B1](student_guides/CML3112/B1.md), [B2](student_guides/CML3112/B2.md); CML3113 [B1](student_guides/CML3113/B1.md), [B2](student_guides/CML3113/B2.md).
+Two blocks of two classes: one assignment pack and one quiz sitting per block. The semester ends at Week 12 and there is no Practical Test 2. Read [Block_Assessment_Arrangement_2026-11-03.md](Block_Assessment_Arrangement_2026-11-03.md) (3 November 2026: no demo; the Engineering ML project is a timed individual sitting in Week 12, Part A /30 and Part B /15, both automatic; the 2 November note is superseded). <!-- BLOCK_ASSESSMENT_20261103 --> Student block guides: CML3111 [B1](student_guides/CML3111/B1.md), [B2](student_guides/CML3111/B2.md); CML3112 [B1](student_guides/CML3112/B1.md), [B2](student_guides/CML3112/B2.md); CML3113 [B1](student_guides/CML3113/B1.md), [B2](student_guides/CML3113/B2.md).

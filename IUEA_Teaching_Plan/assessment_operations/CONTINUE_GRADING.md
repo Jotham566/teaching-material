@@ -11,7 +11,7 @@ Use the workflow that matches the submission:
 | A1–A5 notebook assignments | This guide: Export Grading ZIP → `grade-submissions`; student code runs in Docker. |
 | A1–A5 written/document assignments | The same ZIP and command; document preparation uses Docker, then native Ollama checks written answers. |
 | Quizzes 1–5 | The same ZIP and command imports the recorded Google Forms scores. |
-| Test 1 / Test 2 notebooks | [Test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test): Export Test ZIP → `Grade_Tests.command`; updates both test marks and the cumulative workbook automatically. |
+| Test 1 notebooks (there is no Test 2) | [Test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test): Export Test ZIP → `Grade_Tests.command`; updates both test marks and the cumulative workbook automatically. |
 
 After downloading, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
 
@@ -33,7 +33,7 @@ Completed work is reused, so a batch with nothing new to grade can skip the grad
 
 **Your part:** after the one-time setup, start the Ollama server in step 3 and leave its Terminal window open. Run the grading command in a second Terminal window in step 4. You do not manually switch between Docker and Ollama. The server can stay open during the Docker stage; an open server does not mean its AI model is currently grading. Do not reopen Docker during written grading.
 
-**Test 1 and Test 2 are different:** follow the [test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test). Start Docker Desktop yourself, wait for it to be running, then run `Grade_Tests.command`. Those tests use fixed checks for code and structured answers; Ollama is not needed.
+**Test 1 is different (there is no Test 2; the Week 12 project is marked with `second_half/Project/grader_spec/grade_project.py`, see its marking guide):** follow the [test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test). Start Docker Desktop yourself, wait for it to be running, then run `Grade_Tests.command`. Those tests use fixed checks for code and structured answers; Ollama is not needed.
 
 ## 1. Get ready
 

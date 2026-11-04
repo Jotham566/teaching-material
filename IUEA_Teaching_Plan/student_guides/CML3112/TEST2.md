@@ -1,5 +1,8 @@
 # CML3112 TEST2 — Colab practical test
 
+<!-- BLOCK_ASSESSMENT_20261102 -->
+> **RETIRED on 2 November 2026.** There is no Practical Test 2. The semester now ends at Week 12 with the Engineering ML project, a timed individual sitting (no demo), and the weights have changed. Ignore the instructions below. See [B2.md](B2.md) and your lecturer.
+
 **Submit one notebook snapshot:** your completed `TEST2_student.ipynb`. Total: **100 marks**. Individual work.
 
 1. Open your lecturer’s test entry link or scan its QR code. Enter your full name, Google email and Student Registration Number. Download the notebook and CSV shown on your page. On your laptop, open Colab → **File → Open notebook → Upload** and select the notebook. Save your own copy in Drive.

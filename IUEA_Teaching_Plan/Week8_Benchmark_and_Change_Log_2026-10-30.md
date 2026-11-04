@@ -1,5 +1,7 @@
 # Week 8 changes, benchmark and plan for Weeks 9 to 12
 
+> Superseded by Block_Assessment_Arrangement_2026-11-03.md and second_half/Plan_Weeks_8-12.pdf: the semester ends at Week 12, Weeks 8 to 11 are four classes in second_half/, the project is an individual timed sitting in Week 12, and there is no Practical Test 2, demo or Weeks 13 to 15. Kept as a record. The line that CML3112 taught Week 8 on 27 October is not current: CML3112 starts Week 8 on Tue 3 Nov 2026.
+
 30 October 2026. Companion to [Week8_Onwards_Deck_Review_2026-10-29.md](Week8_Onwards_Deck_Review_2026-10-29.md).
 
 ## 1. Recommendations on the three questions

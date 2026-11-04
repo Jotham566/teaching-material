@@ -84,7 +84,7 @@ python3 IUEA_Teaching_Plan/grader/artifact_grade.py \
   --calibration-report calibration/DEMO.json --out results/DEMO
 ```
 
-DOCX, selectable-text PDF and PPTX speaker notes are supported. PPTX submissions must include narration as text in notes. Native PBIX and ZIP files are not readable grading evidence; provide accessible report/slide exports. Images, animation, spoken delivery and interactive dashboard behaviour are not assessed by this text pipeline. Do not claim a visual-design mark has been verified from extracted text alone.
+(The DEMO rubric is retired from 3 November 2026. The Part B decision memo is graded by the project grader in `second_half/Project/grader_spec/grade_project.py`, not by this command.) DOCX, selectable-text PDF and PPTX speaker notes are supported. PPTX submissions must include narration as text in notes. Native PBIX and ZIP files are not readable grading evidence; provide accessible report/slide exports. Images, animation, spoken delivery and interactive dashboard behaviour are not assessed by this text pipeline. Do not claim a visual-design mark has been verified from extracted text alone.
 
 Files from one response are assessed together. The combined supported text limit is 12,000 characters; longer packets produce an exception instead of silent truncation. Each result retains source and rubric hashes, model name, two criterion-level evaluations and exact supporting quotations. A rerun reuses successful results only when the input, rubric, model and deterministic marks/status match. Temporary notebook staging paths and execution duration do not trigger fresh AI marking. The CLI selects the model recorded in the passing calibration unless an explicit matching `--model` is supplied. Transport timeouts receive one automatic retry of the complete two-pass evaluation. Model disagreement and low marks are not retried to search for a different score. Unresolved packets remain blank; a later explicit rerun can retry them. The CLI requires a passing calibration report covering the exact current authored cases, expected score ranges and input hashes, as well as the rubric, evaluator and local model digest. Incomplete or stale case sets cannot authorize marks. The DEMO example requires a report that has not yet been created; it is not a ready-to-run assessment. Agreement between two passes is not evidence of grading accuracy; calibration against known work is required.
 
@@ -100,13 +100,13 @@ Create a `Grades` sheet using `Grades_template.csv` and paste `gradebook.gs` int
 
 | Component | Weight | Rule |
 |---|---:|---|
-| Quizzes | 10% | Best 10 of 12, each /5 |
-| Challenges | 10% | Best 8 of 11, each /20; W01–W06 and W08–W12 |
+| Quizzes | 15% | Weeks 1 to 5: best 3 of 5, each /5 (Week 6 waived); Block 1 Q7 + Q8 /10; Block 2 Q9 + Q10 /10; total /35 (Q11, Q12 retired) |
+| Challenges | 15% | Weeks 1 to 5: best 3 of 5, each /20; Block 1 A7 + A8 /40; Block 2 A9 + A10 + A11 /60; total /160 |
 | Data analysis project | 10% | /100 |
 | Practical Test 1 | 15% | /100 |
-| Practical Test 2 | 20% | /100 |
-| ML project | 25% | /100 |
-| Demo / reflection | 10% | /100 |
+| Engineering ML project | 45% | Part A coded notebook /30 (column `ML Project Part A`) + Part B decision memo /15 (column `ML Project Part B`). Individual, timed 3-hour Colab sitting in the Week 12 class slot (proposed: CML3112 Tue 1 Dec, CML3113 and CML3111 Fri 4 Dec; lecturer to confirm), fully automatic, Weeks 1 to 11 only; graded by `second_half/Project/grader_spec/grade_project.py` |
+
+Practical Test 2 was dropped on 2 November 2026 and the demo on 3 November 2026. The table above replaces the 10/10/10/15/20/25/10 weights. The weights sum to 100. Until both project columns hold a mark the sheet shows `Semester 1 provisional: x of 55 marks, y percent` and `Project: PENDING`, and leaves Final % and Band blank; see the 3 November section at the end.
 
 Letter bands remain placeholders until verified against the Faculty's actual rules. The weighted percentage is separate from that policy. Existing Week 1 marks cannot be overwritten by the results importer.
 
@@ -127,7 +127,7 @@ The official student-facing term is **Student Registration Number**. Legacy mach
 
 ## Later assessment contracts (release checks pending)
 
-`../assessment_banks/` contains cohort-specific task sheets and starter notebooks for W06, W08–W12, both practical tests and both major projects. Each exam has variants A/B/C with the same schema and defect counts. These are synthetic engineering scenarios, labelled as such. `assessment_components.json` maps every deterministic mark back to its published rubric criterion; original criterion totals are preserved. The remaining marks use the corresponding `rubrics/hybrid/` rubric. Do not issue a draft bank until its release status, reference tests and calibration are complete.
+`../assessment_banks/` contains cohort-specific task sheets and starter notebooks for W06, W08–W12, Practical Test 1 (Practical Test 2 is retired) and the major projects (the DA project and the Engineering ML project; the ML project sitting is now built in `../second_half/Project/`, and `assessment_banks/ML_PROJECT` is the superseded older bank). Each exam has variants A/B/C with the same schema and defect counts. These are synthetic engineering scenarios, labelled as such. `assessment_components.json` maps every deterministic mark back to its published rubric criterion; original criterion totals are preserved. The remaining marks use the corresponding `rubrics/hybrid/` rubric. Do not issue a draft bank until its release status, reference tests and calibration are complete.
 
 The fixed function interfaces are a machine-checkable skills component. Students still explain and justify the broader investigation. Checks use unseen inputs, not a saved screenshot or a claim that code ran. Figure checks inspect actual matplotlib figures, their plotted values and unit labels. They do not assess aesthetic quality or spoken delivery.
 
@@ -229,7 +229,7 @@ The header-only `IUEA_Teaching_Plan/roster_template.csv` is ready for the actual
 
 ## Verified releases — 15 September 2026
 
-The live audit records 32 assessments eligible for scheduled opening and 20 held. W06, W08–W12 across all three IUEA cohorts and independent S09 were released after current calibration and complete-packet pilots passed. The four independent dates remain unset, so those forms stay closed. Week 1 stays protected. Both exams, both major IUEA projects, DEMO, S13 and S15 remain held for incomplete assessment coverage.
+The live audit records 32 assessments eligible for scheduled opening and 20 held. W06, W08–W12 across all three IUEA cohorts and independent S09 were released after current calibration and complete-packet pilots passed. The four independent dates remain unset, so those forms stay closed. Week 1 stays protected. (Audit of 21 October 2026, kept as a record.) At that date both exams, both major IUEA projects, DEMO, S13 and S15 were held for incomplete assessment coverage. Practical Test 2 and DEMO are since retired; the ML project sitting is graded by `second_half/Project/grader_spec/grade_project.py`.
 
 Use the 30 IUEA ZIPs in `../student_packages/` and the S09 ZIP in `../../DataAnalysis_Track/student_packages/`; they contain intended student materials only. Later weekly submissions require one complete notebook, including the student's own `## My written evidence` cell. S09 requires the notebook and a separate accessible PDF/DOCX log in one response.
 
@@ -241,7 +241,18 @@ The standard and atomic visual candidates both failed known-answer checks. Neith
 
 CML3112 and CML3113: exclude W06 and Q6 from final marks and missing-work flags. The updated gradebook uses best 7 of 10 assignments and best 9 of 11 quizzes, preserving the normal drop allowance and 10% weight for each component. Raw submissions and marks are retained. CML3111 stays best 8 of 11 and best 10 of 12. See `../Practical_Revision_Week6_Waiver.md`. Use this updated `gradebook.gs` for any future gradebook installation. The current collection workbook holds responses and the waiver register; it does not have a `Grades` sheet.
 
-<!-- BLOCK_ASSESSMENT_20261030 -->
-## Block arrangement from Week 8
+<!-- BLOCK_ASSESSMENT_20261102 -->
+## Block arrangement from Week 8 (updated 2 November 2026)
 
-The best-7-of-10 and best-9-of-11 rules above apply to Weeks 1 to 6 only. From Week 8 the A7 to A11 submissions and the Q7 to Q12 quizzes are combined per block (Block 1 = Weeks 8 to 10, Block 2 = Weeks 11 to 13) and are never dropped. Each part is still graded by the same grader and form. See `../Block_Assessment_Arrangement_2026-10-30.md` and `../../data/assessment_blocks_20261030.json`.
+The best-of rules above apply to Weeks 1 to 5 only (best 3 of 5; Week 6 is waived). From Week 8 the A7 to A11 submissions and the Q7 to Q10 quizzes are combined per block and are never dropped: Block 1 = A7 + A8 (40 marks) and Q7 + Q8 (10); Block 2 = A9 + A10 + A11 (60 marks) and Q9 + Q10 (10). Q11 and Q12 are retired. Quizzes are out of 35 and assignments out of 160, 15 percent of the course each; Practical Test 2 is dropped. Each part is still graded by the same grader and form. See `../Block_Assessment_Arrangement_2026-11-02.md` and `../../data/assessment_blocks_20261102.json`. Apps Script files: `apply_block_windows_20261102.gs`, `block_quiz_sittings_20261102.gs`, `create_quiz_forms.gs`.
+
+<!-- BLOCK_ASSESSMENT_20261103 -->
+## Grading update of 3 November 2026 (no demo; provisional results)
+
+- Weights: quizzes 15, assignments 15, data analysis project 10, Practical Test 1 15, Engineering ML project 45 (Part A /30, Part B /15). The demonstration is removed. Blocks, best-of rules and the 35 and 160 totals are unchanged.
+- Gradebook columns: `ML Project Part A`, `ML Project Part B`, then `Semester 1 provisional` and `Project` (written by the script), then `Final %`, `Band`. Run `prepareGradesColumns()` once on the live sheet to add any that are missing; it never deletes anything. The old `ML Project` and `Demo` columns are ignored.
+- Provisional mode: a blank project column means the project is not marked yet. The sheet shows `Semester 1 provisional: x of 55 marks, y percent` (quizzes, assignments, data analysis project and Test 1) and `Project: PENDING`. Final % and Band stay blank. Once both columns hold a number the sheet shows the full total out of 100. Type 0 and 0 for a student who submitted no project.
+- A missing quiz or assignment part still scores zero. A blank data analysis project or Practical Test 1 also scores zero and is listed under Missing.
+- CA ledger and totals: `python3 IUEA_Teaching_Plan/grader/continuous_assessment.py --source SOURCE_DIR --out LEDGER.json --totals-out TOTALS.csv` (add `--results RESULTS.json`, `--timing TIMING.json` and `--test-ledger LEDGER.json` as before). Project marks go in `results.json` as `part_scores` (`{"A": 24.5}` while only Part A is marked, status `PART_MARKED`; both parts and status `GRADED` when finished).
+- Source of truth: `../../data/assessment_blocks_20261103.json`. Note: `Block_Assessment_Arrangement_2026-11-03.md`. By-hand steps: `Grading_Update_By_Hand_2026-11-03.md`.
+- Submission project: `retire_demo_forms_20261103.gs` closes and retires the three DEMO forms (run `retireDemoForms()` once, then `showDemoRetirement()`). It opens no form window.

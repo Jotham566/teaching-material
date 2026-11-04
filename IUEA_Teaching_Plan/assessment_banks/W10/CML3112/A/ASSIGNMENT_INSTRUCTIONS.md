@@ -1,10 +1,10 @@
 # CML3112 A9: Validation and trust
 
-**Block 1, part C of 3** (Weeks 8 to 10). Marked out of 20. All 3 parts of the block close together.
+**Block 2, part A of 3** (Weeks 10 and 11 content). Marked out of 20. All 3 parts of the block close together.
 
-**Deadline:** 17 November 2026, 11:00 Kampala. The live form shows any later change.
+**Deadline:** 1 December 2026, 11:00 Kampala. The live form shows any later change.
 **Submit:** ONE completed notebook (.ipynb) on this form: https://docs.google.com/forms/d/e/1FAIpQLSfHHR9NLI-zvGYZ2Xf7wgwxBjXO3bjfUZRIH9SX_g3JtGRLXQ/viewform
-**Block quiz:** one sitting in the last 20 minutes of the Week 10 class, 3 short quizzes, 15 marks.
+**Block quiz:** one sitting in the last 20 minutes of Class 4 (Tuesday 24 November), 2 short quizzes, 10 marks.
 
 ## Do this
 

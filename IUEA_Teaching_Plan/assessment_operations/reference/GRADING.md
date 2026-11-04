@@ -8,6 +8,8 @@ Do not share this workbook with the class: it contains students' private informa
 
 ## What the totals mean
 
+> Policy since 3 and 4 November 2026 (`data/assessment_blocks_20261103.json`): quizzes 15, assignments 15, data analysis project 10, Practical Test 1 15, Engineering ML project 45 (individual timed sitting, Part A 30 + Part B 15). There is no Test 2 and no demo; the semester ends at Week 12; Weeks 1 to 5 are best 3 of 5 and the block rules apply from Week 8. The live gradebook is the Google Sheet driven by `grader/gradebook.gs`. The private workbook described below was last built on 21 October and still uses the older weights: do not use its totals for Semester 1 results.
+
 - Quiz and assignment marks contribute 10 points each to the semester total.
 - Data project: 10; Test 1: 15; Test 2: 20; ML project: 25; demo/reflection: 10.
 - All three programmes waive A6 and Quiz 6, including previously completed CML3111 work. Use best 9 of 11 quizzes and best 7 of 10 weekly assignments. Separate weekly quizzes/assignments are not assigned in Weeks 7, 14 and 15; Test 1, Test 2, final project and demo retain their own marks and weights.

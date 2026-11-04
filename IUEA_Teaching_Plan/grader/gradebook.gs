@@ -1,19 +1,26 @@
 /**
  * gradebook.gs - Google Apps Script gradebook for CML3111 / CML3112 / CML3113.
- * Revised September 2026 for the current weights.
+ * Revised 3 November 2026 (data/assessment_blocks_20261103.json). There is NO demo and no Practical Test 2.
+ * The Engineering ML project stays: one individual, timed 3-hour Colab sitting in Week 12 (like Practical Test 1), fully auto-graded, Weeks 1 to 11 only.
  *
- *   Quizzes                    10 %   Weeks 1-6 weekly (best 4 of 6, each out of 5), then one
- *                                     block quiz after Weeks 8-10 and one after Weeks 11-13,
- *                                     each out of 15 (the three weekly forms added together)
- *   Assignments                10 %   Weeks 1-6 weekly (best 4 of 6, each out of 20), then
- *                                     Block 1 (A7+A8+A9, out of 60) and Block 2 (A10+A11, out of 40)
- *   Data Analysis Project      10 %
- *   Practical Test 1           15 %
- *   Practical Test 2           20 %
- *   Engineering ML Project     25 %
- *   Demo / viva / reflection   10 %
+ *   Quizzes                    15 %   Weeks 1-5 weekly (best 3 of 5, Week 6 waived, each out of 5), then
+ *                                     Block 1 (Q7+Q8, out of 10) and Block 2 (Q9+Q10, out of 10).
+ *                                     Total 3x5 + 10 + 10 = 35 marks. Q11 and Q12 are retired.
+ *   Assignments                15 %   Weeks 1-5 weekly (best 3 of 5, each out of 20), then
+ *                                     Block 1 (A7+A8, out of 40) and Block 2 (A9+A10+A11, out of 60).
+ *                                     Total 3x20 + 40 + 60 = 160 marks.
+ *   Data Analysis Project      10 %   out of 100
+ *   Practical Test 1           15 %   out of 100
+ *   Engineering ML Project     45 %   Part A coded project notebook /30 (fully automatic)
+ *                                     + Part B decision memo form /15 (fully automatic). Two columns.
  *                             ----
  *                             100 %
+ *
+ * PROVISIONAL MODE. Semester 1 results can be published before the project is marked. While either project column
+ * (ML Project Part A, ML Project Part B) is blank the sheet shows "Semester 1 provisional: x of 55 marks, y percent"
+ * (quizzes, assignments, data analysis project and Test 1; 15 + 15 + 10 + 15 = 55) and "Project: PENDING". Final % and
+ * Band stay blank: an unmarked project is never counted as zero. Once BOTH columns hold a number (type 0 for a student
+ * who submitted nothing) the sheet shows the full total out of 100. A missing quiz or assignment part still scores zero.
  *
  * What is here:
  *   recomputeAll()        weighted totals, best-of rules, missing flags
@@ -44,16 +51,22 @@
 // --------------------------------------------------------------------------
 
 var WEIGHTS = {
-  quizzes: 10,
-  challenges: 10,
+  quizzes: 15,
+  challenges: 15,
   dataProject: 10,
   test1: 15,
-  test2: 20,
-  mlProject: 25,
-  demo: 10
+  mlProject: 45          // Part A (coded notebook, /30) + Part B (decision memo, /15). There is no demo component.
 };
 
-var QUIZ_COUNT = 12;           // columns Q1-Q12: Weeks 1-6, then Weeks 8-13
+var ML_PART_A_MAX = 30;        // marks for the coded project notebook (fully automatic)
+var ML_PART_B_MAX = 15;        // marks for the decision memo form (fully automatic)
+var PROJECT_INPUT_HEADERS = ["ML Project Part A", "ML Project Part B"];
+var PROVISIONAL_HEADER = "Semester 1 provisional";
+var PROJECT_STATUS_HEADER = "Project";
+var PROJECT_PENDING_TEXT = "Project: PENDING";
+var PROJECT_MARKED_TEXT = "Project: marked";
+
+var QUIZ_COUNT = 12;           // columns Q1-Q12 stay in the sheet: Weeks 1-6, then Weeks 8-13. Q11 and Q12 are retired and never counted.
 var QUIZ_MAX = 5;              // marks per quiz form, one per question
 
 var CHALLENGE_COUNT = 11;      // columns W01-W06 and W08-W12, A1-A11
@@ -66,8 +79,8 @@ var WEEKLY_COUNT = 6;          // Weeks 1-6 stay weekly
 var WEEKLY_BEST = 4;           // the two lowest weekly scores are dropped; blocks are never dropped
 var WEEKLY_WAIVED_INDEX = 5;   // Week 6 is not assigned to these cohorts
 var COURSEWORK_BLOCKS = {
-  quizzes:    [{id: "Block 1", cols: [6, 7, 8]},  {id: "Block 2", cols: [9, 10, 11]}],   // Q7-Q9 = Weeks 8-10; Q10-Q12 = Weeks 11-13
-  challenges: [{id: "Block 1", cols: [6, 7, 8]},  {id: "Block 2", cols: [9, 10]}]        // A7-A9 = Weeks 8-10; A10-A11 = Weeks 11-12
+  quizzes:    [{id: "Block 1", cols: [6, 7]},  {id: "Block 2", cols: [8, 9]}],          // Q7+Q8 = Weeks 8-9 (Class 2); Q9+Q10 = Weeks 10-11 (Class 4). Columns 10 and 11 (Q11, Q12) are retired and ignored.
+  challenges: [{id: "Block 1", cols: [6, 7]},  {id: "Block 2", cols: [8, 9, 10]}]       // A7+A8 = Weeks 8-9; A9+A10+A11 = Weeks 10-12
 };
 
 // Which assignment id maps to which challenge column. Edit this, not the code.
@@ -194,12 +207,50 @@ function percentComponent_(mark, outOf, weight) {
            raw: Number(mark) };
 }
 
+/** A cell with nothing in it. A typed 0 is NOT blank: it is a mark of zero. */
+function isBlankMark_(v) {
+  return v === "" || v === null || v === undefined || (typeof v === "string" && v.replace(/\s/g, "") === "");
+}
+
+/**
+ * The Engineering ML project: Part A (/30) and Part B (/15) are entered as two columns.
+ * It counts only when BOTH parts hold a number. If either is blank the project is PENDING: it is not zero, and the
+ * gradebook then shows a provisional result instead of a final one. Out-of-range or text marks are rejected loudly.
+ */
+function projectComponent_(partA, partB) {
+  validateMark_(partA, ML_PART_A_MAX);
+  validateMark_(partB, ML_PART_B_MAX);
+  var aBlank = isBlankMark_(partA), bBlank = isBlankMark_(partB);
+  var marked = !aBlank && !bBlank;
+  var a = aBlank ? null : Number(partA), b = bBlank ? null : Number(partB);
+  var outOfParts = ML_PART_A_MAX + ML_PART_B_MAX;
+  return {
+    outOf: WEIGHTS.mlProject,
+    marked: marked,
+    pending: !marked,
+    partA: a,
+    partB: b,
+    partAMarked: !aBlank,
+    partBMarked: !bBlank,
+    raw: marked ? a + b : null,
+    rawOutOf: outOfParts,
+    weighted: marked ? round2_((a + b) / outOfParts * WEIGHTS.mlProject) : 0
+  };
+}
+
+/** Weight of the components that are marked before the project: quizzes + assignments + data analysis project + Test 1 = 55. */
+function provisionalOutOf_() {
+  return WEIGHTS.quizzes + WEIGHTS.challenges + WEIGHTS.dataProject + WEIGHTS.test1;
+}
+
+function fmt2_(x) { return Number(x).toFixed(2); }
+
 function round2_(x) { return Math.round(x * 100) / 100; }
 
 /**
  * Everything for one student.
- * row: { quizzes: [], challenges: [], dataProject, test1, test2,
- *        mlProject, demo }  - marks out of 100 for the four big components.
+ * row: { quizzes: [], challenges: [], dataProject, test1, mlProjectA, mlProjectB }
+ *        dataProject and test1 are marks out of 100; mlProjectA is out of 30 and mlProjectB out of 15, blank until marked.
  */
 /** A6/Q6 are not assigned to these cohorts. Keep the same drop allowance. */
 function courseworkPolicy_(cohort) {
@@ -215,16 +266,13 @@ function computeFinal_(row) {
   var ch = blockComponent_(row.challenges, CHALLENGE_MAX, WEIGHTS.challenges, policy, COURSEWORK_BLOCKS.challenges);
   var dp = percentComponent_(row.dataProject, 100, WEIGHTS.dataProject);
   var t1 = percentComponent_(row.test1, 100, WEIGHTS.test1);
-  var t2 = percentComponent_(row.test2, 100, WEIGHTS.test2);
-  var pr = percentComponent_(row.mlProject, 100, WEIGHTS.mlProject);
-  var dm = percentComponent_(row.demo, 100, WEIGHTS.demo);
+  var pr = projectComponent_(row.mlProjectA, row.mlProjectB);
 
+  // A missing quiz or assignment part, data analysis project or Test 1 scores zero and is listed here.
+  // The project is different: unmarked means PENDING, which is not a missing mark and is not listed here.
   var missing = [];
   if (dp.missing) { missing.push("Data Analysis Project"); }
   if (t1.missing) { missing.push("Practical Test 1"); }
-  if (t2.missing) { missing.push("Practical Test 2"); }
-  if (pr.missing) { missing.push("ML Project"); }
-  if (dm.missing) { missing.push("Demo/viva"); }
   if (cp.submitted < policy.weeklyBest) {
     missing.push("weekly quizzes (Weeks 1-6): " + cp.submitted + " of " + policy.weeklyBest + " that count");
   }
@@ -234,13 +282,27 @@ function computeFinal_(row) {
   cp.blocks.forEach(function (b) { if (b.parts === 0) { missing.push(b.id + " quiz"); } });
   ch.blocks.forEach(function (b) { if (b.parts === 0) { missing.push(b.id + " assignment"); } });
 
-  var final = round2_(cp.weighted + ch.weighted + dp.weighted + t1.weighted +
-                      t2.weighted + pr.weighted + dm.weighted);
+  // Provisional result: the four components that are marked before the project, out of 55.
+  var provMarks = round2_(cp.weighted + ch.weighted + dp.weighted + t1.weighted);
+  var provOut = provisionalOutOf_();
+  var provPercent = round2_(provMarks / provOut * 100);
+  var provisional = {
+    marks: provMarks,
+    outOf: provOut,
+    percent: provPercent,
+    text: "Semester 1 provisional: " + fmt2_(provMarks) + " of " + provOut + " marks, " + fmt2_(provPercent) + " percent"
+  };
+
+  // Final result: only when the project is marked. Never a final figure or band that counts an unmarked project as zero.
+  var final = pr.pending ? null : round2_(cp.weighted + ch.weighted + dp.weighted + t1.weighted + pr.weighted);
   return {
     components: { quizzes: cp, challenges: ch, dataProject: dp,
-                  test1: t1, test2: t2, mlProject: pr, demo: dm },
+                  test1: t1, mlProject: pr },
     final: final,
-    band: gradeBand_(final),
+    band: pr.pending ? null : gradeBand_(final),
+    projectPending: pr.pending,
+    projectStatus: pr.pending ? PROJECT_PENDING_TEXT : PROJECT_MARKED_TEXT,
+    provisional: provisional,
     missing: missing
   };
 }
@@ -252,7 +314,7 @@ function gradeBand_(pct) {
   return "F";
 }
 
-/** Total of the seven weights. Should always be 100; the tests assert it. */
+/** Total of the five weights. Should always be 100; the tests assert it. */
 function weightTotal_() {
   var t = 0;
   for (var k in WEIGHTS) { if (WEIGHTS.hasOwnProperty(k)) { t += WEIGHTS[k]; } }
@@ -281,7 +343,15 @@ function progressSummary_(row) {
   cp.blocks.forEach(function (b) {
     lines.push(b.id + " quiz: " + b.parts + " of " + b.partsOf + " forms sat, " + b.earned + " of " + b.outOf + " marks.");
   });
-  lines.push("Marks banked so far: " + res.final + " of 100.");
+  var pj = res.components.mlProject;
+  if (res.projectPending) {
+    lines.push(res.provisional.text + ".");
+    lines.push(PROJECT_PENDING_TEXT + ". The Engineering ML project is worth " + WEIGHTS.mlProject + " marks and is not marked yet" +
+               (pj.partAMarked ? " (Part A is marked, Part B is not)" : (pj.partBMarked ? " (Part B is marked, Part A is not)" : "")) +
+               ". Your final total, out of 100, appears when it is marked.");
+  } else {
+    lines.push("Marks banked: " + res.final + " of 100 (the project is marked).");
+  }
   if (res.missing.length) {
     lines.push("Not yet recorded: " + res.missing.join("; ") + ".");
   }
@@ -523,6 +593,7 @@ function columnIndexByHeader_(headers, name) {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu("CML3111-3 gradebook")
+    .addItem("Add the project columns (run once)", "prepareGradesColumns")
     .addItem("Recompute all totals", "recomputeAll")
     .addItem("Ingest submission codes...", "ingestTokenCsv")
     .addItem("Show my progress line for the selected row", "showProgress")
@@ -531,14 +602,38 @@ function onOpen() {
     .addToUi();
 }
 
+/** Headers from `wanted` that the sheet's header row does not have yet (same loose matching as columnIndexByHeader_). */
+function missingHeaders_(headers, wanted) {
+  return wanted.filter(function (h) { return columnIndexByHeader_(headers, h) < 0; });
+}
+
+/**
+ * Run once after pasting this file. Adds any of "ML Project Part A", "ML Project Part B", "Semester 1 provisional" and
+ * "Project" that the Grades sheet does not have, to the right of the existing columns. It never deletes, moves or
+ * overwrites anything: the old "ML Project" and "Demo" columns stay where they are and are ignored.
+ */
+function prepareGradesColumns() {
+  var sh = SpreadsheetApp.getActive().getSheetByName(GRADER_SHEET);
+  if (!sh) { throw new Error("No sheet called '" + GRADER_SHEET + "'."); }
+  var width = sh.getLastColumn();
+  var headers = sh.getRange(1, 1, 1, width).getValues()[0];
+  var add = missingHeaders_(headers, PROJECT_INPUT_HEADERS.concat([PROVISIONAL_HEADER, PROJECT_STATUS_HEADER]));
+  if (!add.length) {
+    SpreadsheetApp.getActive().toast("All four project columns are already there.");
+    return;
+  }
+  sh.getRange(1, width + 1, 1, add.length).setValues([add]);
+  SpreadsheetApp.getActive().toast("Added columns: " + add.join(", "));
+}
+
 function readGradesSheet_(spreadsheet) {
   var sh = (spreadsheet||SpreadsheetApp.getActive()).getSheetByName(GRADER_SHEET);
   if (!sh) { throw new Error("No sheet called '" + GRADER_SHEET + "'."); }
   var values = sh.getDataRange().getValues();
-  var required = ["student_id"].concat(CHALLENGE_IDS);
+  var required = ["student_id"].concat(CHALLENGE_IDS).concat(PROJECT_INPUT_HEADERS);
   for (var q = 1; q <= QUIZ_COUNT; q++) { required.push("Q" + q); }
   var missing = required.filter(function (h) { return columnIndexByHeader_(values[0], h) < 0; });
-  if (missing.length) { throw new Error("Grades sheet missing columns: " + missing.join(", ")); }
+  if (missing.length) { throw new Error("Grades sheet missing columns: " + missing.join(", ") + ". If these are the project columns, run prepareGradesColumns() once."); }
   return { sheet: sh, headers: values[0], rows: values.slice(1) };
 }
 
@@ -560,9 +655,8 @@ function rowToRecord_(headers, row) {
     challenges: chs,
     dataProject: get("Data Analysis Project"),
     test1: get("Practical Test 1"),
-    test2: get("Practical Test 2"),
-    mlProject: get("ML Project"),
-    demo: get("Demo")
+    mlProjectA: get("ML Project Part A"),
+    mlProjectB: get("ML Project Part B")
   };
 }
 
@@ -572,8 +666,13 @@ function recomputeAll() {
   var iBand = columnIndexByHeader_(g.headers, "Band");
   var iMiss = columnIndexByHeader_(g.headers, "Missing");
   var iDone = columnIndexByHeader_(g.headers, "Challenges done");
+  var iProv = columnIndexByHeader_(g.headers, PROVISIONAL_HEADER);
+  var iProj = columnIndexByHeader_(g.headers, PROJECT_STATUS_HEADER);
   if (iFinal < 0) {
     throw new Error("Add a column headed 'Final %' to the Grades sheet.");
+  }
+  if (iProv < 0 || iProj < 0) {
+    throw new Error("The Grades sheet has no '" + PROVISIONAL_HEADER + "' or '" + PROJECT_STATUS_HEADER + "' column. Run prepareGradesColumns() once, then run this again.");
   }
   var out = [];
   for (var r = 0; r < g.rows.length; r++) {
@@ -581,8 +680,11 @@ function recomputeAll() {
     if (!rec.studentId) { out.push(null); continue; }
     var res = computeFinal_(rec);
     var line = g.rows[r].slice();
-    line[iFinal] = res.final;
-    if (iBand >= 0) { line[iBand] = GRADE_BANDS_VERIFIED ? res.band : 'Awaiting Faculty bands'; }
+    // Provisional: no final percentage and no band, because the project is not marked. Never an unmarked project as zero.
+    line[iFinal] = res.final === null ? "" : res.final;
+    if (iBand >= 0) { line[iBand] = res.projectPending ? "No band yet" : (GRADE_BANDS_VERIFIED ? res.band : 'Awaiting Faculty bands'); }
+    line[iProv] = res.projectPending ? res.provisional.text : "";
+    line[iProj] = res.projectStatus;
     if (iMiss >= 0) { line[iMiss] = res.missing.join("; "); }
     if (iDone >= 0) { line[iDone] = res.components.challenges.submitted; }
     out.push(line);
@@ -737,6 +839,12 @@ function runUnitTests_() {
 
   // ---- weights ----
   eq("weights total 100", weightTotal_(), 100);
+  eq("weights are the 3 November 2026 weights", WEIGHTS, {quizzes: 15, challenges: 15, dataProject: 10, test1: 15, mlProject: 45});
+  ok("Practical Test 2 has no weight", !WEIGHTS.hasOwnProperty("test2"));
+  ok("the demonstration has no weight", !WEIGHTS.hasOwnProperty("demo"));
+  eq("project parts add up to the project weight", ML_PART_A_MAX + ML_PART_B_MAX, WEIGHTS.mlProject);
+  eq("the provisional components weigh 55", provisionalOutOf_(), 55);
+  eq("provisional plus project is 100", provisionalOutOf_() + WEIGHTS.mlProject, 100);
 
   // ---- bestNOf_ ----
   eq("bestNOf_ picks the top 4",
@@ -760,34 +868,41 @@ function runUnitTests_() {
   near("generic best-of: six of eight needed -> 7.5%", chSix.weighted, 7.5);
   eq("generic best-of counts submissions", chSix.submitted, 6);
 
-  // ---- block component: weekly Weeks 1-6 (best 4 of 6) plus Blocks 1 and 2 ----
+  // ---- block component: weekly Weeks 1-6 (best 4 of 6, or 3 of 5 with Week 6 waived) plus Blocks 1 and 2 ----
+  // Quiz array: 6 weekly, Q7 Q8 (Block 1), Q9 Q10 (Block 2), Q11 Q12 (retired). Assignment array: 6 weekly, A7 A8, A9 A10 A11.
   var pol = courseworkPolicy_("CML3111");          // Week 6 not assigned: best 3 of 5 weekly
   var polFull = {waived: false, weeklyBest: 4, weeklyCount: 6};
   var qb = COURSEWORK_BLOCKS.quizzes, cb = COURSEWORK_BLOCKS.challenges;
-  var q1 = blockComponent_([5,5,5,5,5,5, 5,5,5, 5,5,5], 5, 10, polFull, qb);
-  near("block quizzes all full, six weekly assigned -> 10%", q1.weighted, 10);
-  eq("block quizzes: out of 50 marks", q1.rawOutOf, 50);
-  var q2 = blockComponent_([5,5,5,5,5,5, 5,5,5, 5,5,5], 5, 10, pol, qb);
-  near("block quizzes all full, Week 6 waived -> 10%", q2.weighted, 10);
-  eq("block quizzes: out of 45 marks when Week 6 is waived", q2.rawOutOf, 45);
-  var q3 = blockComponent_([5,5,5,5,0,0, 5,5,5, 5,5,5], 5, 10, polFull, qb);
-  near("two weekly zeros are dropped", q3.weighted, 10);
-  var q4 = blockComponent_([5,5,5,5,5,5, 5,5,5, "","",""], 5, 10, polFull, qb);
-  near("Block 2 quiz not sat -> 35 of 50 -> 7%", q4.weighted, 7);
-  var q5 = blockComponent_([5,5,5,5,5,5, 5,"","", 5,5,5], 5, 10, polFull, qb);
-  near("only one of three Block 1 forms sat -> 40 of 50 -> 8%", q5.weighted, 8);
+  var q1 = blockComponent_([5,5,5,5,5,5, 5,5, 5,5, "",""], 5, 15, polFull, qb);
+  near("block quizzes all full, six weekly assigned -> 15%", q1.weighted, 15);
+  eq("block quizzes: out of 40 marks when Week 6 is assigned", q1.rawOutOf, 40);
+  var q2 = blockComponent_([5,5,5,5,5,5, 5,5, 5,5, "",""], 5, 15, pol, qb);
+  near("block quizzes all full, Week 6 waived -> 15%", q2.weighted, 15);
+  eq("block quizzes: out of 35 marks when Week 6 is waived (3x5 + 10 + 10)", q2.rawOutOf, 35);
+  var q3 = blockComponent_([5,5,5,5,0,0, 5,5, 5,5, "",""], 5, 15, polFull, qb);
+  near("two weekly zeros are dropped", q3.weighted, 15);
+  var q4 = blockComponent_([5,5,5,5,5,5, 5,5, "","", "",""], 5, 15, polFull, qb);
+  near("Block 2 quiz not sat -> 30 of 40 -> 11.25%", q4.weighted, 15 * 30 / 40);
+  var q5 = blockComponent_([5,5,5,5,5,"", 5,"", 5,5, "",""], 5, 15, pol, qb);
+  near("only one of two Block 1 forms sat, Week 6 waived -> 30 of 35", q5.weighted, 15 * 30 / 35);
   eq("block quiz detail reports parts sat", q5.blocks[0].parts, 1);
-  var a1 = blockComponent_([20,20,20,20,20,20, 20,20,20, 20,20], 20, 10, polFull, cb);
-  near("block assignments all full -> 10%", a1.weighted, 10);
-  eq("block assignments: out of 180 marks", a1.rawOutOf, 180);
-  var a2 = blockComponent_([20,20,20,20,0,0, 20,20,20, 20,20], 20, 10, pol, cb);
-  near("assignments: Week 6 waived, best 3 of 5 weekly -> 160 of 160 -> 10%", a2.weighted, 10);
-  eq("assignments: out of 160 marks when Week 6 is waived", a2.rawOutOf, 160);
-  var a3 = blockComponent_([20,20,20,20,20,20, 20,20,10, 20,""], 20, 10, polFull, cb);
-  near("Block 1 part C scored 10 and Block 2 part B missing -> 150 of 180", a3.weighted, 10 * 150 / 180);
-  var a4 = blockComponent_([20,20,20,20,20,20, "","","", "",""], 20, 10, polFull, cb);
-  near("no block work yet -> 80 of 180", a4.weighted, 10 * 80 / 180);
-  var badMark = false; try { blockComponent_([21,0,0,0,0,0, 0,0,0, 0,0], 20, 10, polFull, cb); } catch (e) { badMark = true; }
+  eq("block quiz detail reports the maximum of a block", q5.blocks[0].outOf, 10);
+  var q6 = blockComponent_([5,5,5,5,5,"", 5,5, 5,5, 5,5], 5, 15, pol, qb);
+  near("retired Q11 and Q12 columns do not add marks", q6.weighted, 15);
+  eq("retired Q11 and Q12 columns do not change the maximum", q6.rawOutOf, 35);
+  var a1 = blockComponent_([20,20,20,20,20,20, 20,20, 20,20,20], 20, 15, polFull, cb);
+  near("block assignments all full -> 15%", a1.weighted, 15);
+  eq("block assignments: out of 180 marks when Week 6 is assigned", a1.rawOutOf, 180);
+  var a2 = blockComponent_([20,20,20,20,0,0, 20,20, 20,20,20], 20, 15, pol, cb);
+  near("assignments: Week 6 waived, best 3 of 5 weekly -> 160 of 160 -> 15%", a2.weighted, 15);
+  eq("assignments: out of 160 marks when Week 6 is waived (3x20 + 40 + 60)", a2.rawOutOf, 160);
+  eq("Block 2 assignment is out of 60", a2.blocks[1].outOf, 60);
+  eq("Block 1 assignment is out of 40", a2.blocks[0].outOf, 40);
+  var a3 = blockComponent_([20,20,20,20,20,20, 20,20, 10,20,""], 20, 15, polFull, cb);
+  near("A9 scored 10 and A11 missing -> 150 of 180", a3.weighted, 15 * 150 / 180);
+  var a4 = blockComponent_([20,20,20,20,20,20, "","", "","",""], 20, 15, polFull, cb);
+  near("no block work yet -> 80 of 180", a4.weighted, 15 * 80 / 180);
+  var badMark = false; try { blockComponent_([21,0,0,0,0,0, 0,0, 0,0,0], 20, 15, polFull, cb); } catch (e) { badMark = true; }
   ok("a mark above the maximum is rejected", badMark);
 
   // ---- percentComponent_ ----
@@ -798,46 +913,140 @@ function runUnitTests_() {
   ok("text in a test cell is rejected",rejectedText);
   near("blank test scores 0", percentComponent_("", 100, 15).weighted, 0);
 
+  // ---- project component ----
+  var pc0 = projectComponent_("", "");
+  ok("both project parts blank: pending, not zero", pc0.pending && !pc0.marked && pc0.weighted === 0 && pc0.raw === null);
+  var pcA = projectComponent_(24, "");
+  ok("only Part A: still pending", pcA.pending && pcA.partAMarked && !pcA.partBMarked && pcA.weighted === 0);
+  var pcB = projectComponent_(null, 9);
+  ok("only Part B: still pending", pcB.pending && !pcB.partAMarked && pcB.partBMarked);
+  var pcAB = projectComponent_(24, 9);
+  ok("both parts: marked", pcAB.marked && !pcAB.pending);
+  near("both parts: 33 of 45 is 33 of the 45 marks", pcAB.weighted, 33);
+  var pcZero = projectComponent_(0, 0);
+  ok("typed zeros are a mark of zero, not pending", pcZero.marked && pcZero.weighted === 0);
+  ok("a space is blank", projectComponent_(" ", " ").pending);
+  var rejected = 0;
+  [[31, 0], [0, 16], [-1, 0], ["absent", 0], [0, "x"]].forEach(function (p) { try { projectComponent_(p[0], p[1]); } catch (e) { rejected++; } });
+  eq("project marks above the maximum, negative or text are rejected", rejected, 5);
+
   // ---- computeFinal_ ----
+  var ALL5 = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, "", ""];
+  var ALL20 = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
   var perfect = computeFinal_({
-    quizzes: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-    challenges: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
-    dataProject: 100, test1: 100, test2: 100, mlProject: 100, demo: 100
+    quizzes: ALL5, challenges: ALL20,
+    dataProject: 100, test1: 100, mlProjectA: 30, mlProjectB: 15
   });
-  near("perfect student -> 100", perfect.final, 100);
+  near("perfect student with the project marked -> 100", perfect.final, 100);
   eq("perfect student has nothing missing", perfect.missing, []);
+  eq("perfect student's project is not pending", perfect.projectPending, false);
+  eq("perfect student's status line", perfect.projectStatus, "Project: marked");
+  eq("perfect student gets a band", perfect.band, "A");
   var half = computeFinal_({
-    quizzes: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
+    quizzes: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, "", ""],
     challenges: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-    dataProject: 50, test1: 50, test2: 50, mlProject: 50, demo: 50
+    dataProject: 50, test1: 50, mlProjectA: 15, mlProjectB: 7.5
   });
   near("half marks everywhere -> 50", half.final, 50);
-  var empty = computeFinal_({});
-  near("empty row -> 0", empty.final, 0);
-  ok("empty row lists 11 things missing (5 big components, 2 weekly parts, 4 blocks)", empty.missing.length === 11,
-     JSON.stringify(empty.missing));
-  var midterm = computeFinal_({
+
+  // PROVISIONAL, no project at all
+  var provNoProject = computeFinal_({
+    quizzes: ALL5, challenges: ALL20,
+    dataProject: 100, test1: 100, mlProjectA: "", mlProjectB: ""
+  });
+  eq("provisional, no project: final is null", provNoProject.final, null);
+  eq("provisional, no project: band is null", provNoProject.band, null);
+  eq("provisional, no project: pending", provNoProject.projectPending, true);
+  eq("provisional, no project: status line", provNoProject.projectStatus, "Project: PENDING");
+  near("provisional, no project: 55 marks", provNoProject.provisional.marks, 55);
+  near("provisional, no project: 100 percent", provNoProject.provisional.percent, 100);
+  eq("provisional, no project: text", provNoProject.provisional.text, "Semester 1 provisional: 55.00 of 55 marks, 100.00 percent");
+  eq("provisional, no project: nothing is missing", provNoProject.missing, []);
+  var provWeak = computeFinal_({
     cohort: "CML3111",
     quizzes: [4, 5, 3, 5, 4, "", "", "", "", "", "", ""],
     challenges: [16, 18, 14, 20, 12, "", "", "", "", "", ""],
-    dataProject: 72, test1: 65, test2: "", mlProject: "", demo: ""
+    dataProject: 72, test1: 65, mlProjectA: "", mlProjectB: ""
   });
-  // Week 6 not assigned: weekly best 3 of [4,5,3,5,4] = 5+5+4 = 14 of 45 -> 3.11 ; assignments best 3 of [16,18,14,20,12] = 54 of 160 -> 3.375
-  // dp 7.2 ; t1 9.75 ; rest 0
-  near("mid-semester student", midterm.final, 10 * 14 / 45 + 10 * 54 / 160 + 7.2 + 9.75);
-  ok("mid-semester student flagged for test 2", midterm.missing.indexOf("Practical Test 2") >= 0);
+  // Week 6 not assigned: weekly best 3 of [4,5,3,5,4] = 14 of 35 -> 6.00 ; assignments best 3 of [16,18,14,20,12] = 54 of 160 -> 5.06 ; DA 7.2 ; Test 1 9.75
+  near("provisional, mid-semester student: marks", provWeak.provisional.marks, 15 * 14 / 35 + 5.06 + 7.2 + 9.75);
+  near("provisional percent is marks over 55", provWeak.provisional.percent, provWeak.provisional.marks / 55 * 100);
+  eq("the provisional percent is not diluted by the 45 unmarked project marks", provWeak.provisional.percent > 50, true);
+  eq("provisional text carries both numbers", provWeak.provisional.text, "Semester 1 provisional: 28.01 of 55 marks, 50.93 percent");
+
+  // PROVISIONAL, only Part A marked
+  var provPartA = computeFinal_({
+    quizzes: ALL5, challenges: ALL20,
+    dataProject: 100, test1: 100, mlProjectA: 27, mlProjectB: ""
+  });
+  eq("only Part A: final is still null", provPartA.final, null);
+  eq("only Part A: band is still null", provPartA.band, null);
+  eq("only Part A: still pending", provPartA.projectPending, true);
+  eq("only Part A: provisional line is unchanged by Part A", provPartA.provisional.text, provNoProject.provisional.text);
+  var onlyB = computeFinal_({ quizzes: ALL5, challenges: ALL20, dataProject: 100, test1: 100, mlProjectA: "", mlProjectB: 12 });
+  eq("only Part B: final is null", onlyB.final, null);
+
+  // FULL total
+  var full = computeFinal_({
+    quizzes: ALL5, challenges: ALL20,
+    dataProject: 80, test1: 60, mlProjectA: 24, mlProjectB: 9
+  });
+  // 15 + 15 + 8 + 9 + (24+9)/45*45 = 47 + 33 = 80
+  near("full total out of 100: 15 + 15 + 8 + 9 + 33", full.final, 80);
+  eq("full total: not pending", full.projectPending, false);
+  eq("full total: has a band", full.band, "A");
+  var projectZero = computeFinal_({ quizzes: ALL5, challenges: ALL20, dataProject: 100, test1: 100, mlProjectA: 0, mlProjectB: 0 });
+  near("project typed as 0 and 0: final is 55, project counted as zero because it is marked", projectZero.final, 55);
+  eq("project typed as 0 and 0: not pending", projectZero.projectPending, false);
+
+  // A student with NO submissions at all
+  var empty = computeFinal_({});
+  eq("empty row: final is null (project pending)", empty.final, null);
+  near("empty row: provisional marks 0", empty.provisional.marks, 0);
+  near("empty row: provisional percent 0", empty.provisional.percent, 0);
+  eq("empty row: provisional text", empty.provisional.text, "Semester 1 provisional: 0.00 of 55 marks, 0.00 percent");
+  eq("empty row: pending", empty.projectPending, true);
+  ok("empty row lists 8 things missing (2 big components, 2 weekly parts, 4 blocks); the project is pending, not missing", empty.missing.length === 8,
+     JSON.stringify(empty.missing));
+  ok("empty row: the ML project is not in Missing", empty.missing.every(function (m) { return m.indexOf("ML Project") < 0; }), JSON.stringify(empty.missing));
+  var emptyAfter = computeFinal_({ mlProjectA: 0, mlProjectB: 0 });
+  near("empty row once the project is marked as 0 and 0: final 0", emptyAfter.final, 0);
+  eq("empty row once marked: band F", emptyAfter.band, "F");
+
+  var ignoreOld = computeFinal_({
+    quizzes: ALL5, challenges: ALL20,
+    dataProject: 100, test1: 100, test2: 100, mlProject: 100, demo: 100
+  });
+  eq("a leftover Practical Test 2, Demo or old ML Project value in a row is ignored (project stays pending)", ignoreOld.final, null);
+  near("a leftover Demo or Test 2 value adds nothing to the provisional marks", ignoreOld.provisional.marks, 55);
+
+  var midterm = provWeak;
+  ok("Practical Test 2 is never listed as missing", midterm.missing.indexOf("Practical Test 2") < 0, JSON.stringify(midterm.missing));
+  ok("Demo is never listed as missing", midterm.missing.indexOf("Demo/viva") < 0 && midterm.missing.indexOf("Demo") < 0);
+  ok("mid-semester student is NOT listed as missing the ML project", midterm.missing.indexOf("ML Project") < 0, JSON.stringify(midterm.missing));
   ok("mid-semester student flagged for Block 1 quiz", midterm.missing.indexOf("Block 1 quiz") >= 0, JSON.stringify(midterm.missing));
   ok("mid-semester student flagged for Block 2 assignment", midterm.missing.indexOf("Block 2 assignment") >= 0, JSON.stringify(midterm.missing));
+  var noDa = computeFinal_({ quizzes: ALL5, challenges: ALL20, test1: 100 });
+  ok("a blank Data Analysis Project is missing and counts as zero", noDa.missing.indexOf("Data Analysis Project") >= 0 && Math.abs(noDa.provisional.marks - 45) < 0.005, JSON.stringify(noDa.provisional));
   var afterBlock1 = computeFinal_({
     cohort: "CML3111",
-    quizzes: [5, 5, 5, 5, 5, "", 5, 5, 5, "", "", ""],
-    challenges: [20, 20, 20, 20, 20, "", 20, 20, 20, "", ""],
-    dataProject: 0, test1: 0, test2: 0, mlProject: 0, demo: 0
+    quizzes: [5, 5, 5, 5, 5, "", 5, 5, "", "", "", ""],
+    challenges: [20, 20, 20, 20, 20, "", 20, 20, "", "", ""],
+    dataProject: 0, test1: 0, mlProjectA: "", mlProjectB: ""
   });
-  // quizzes (15+15)/45 -> 6.67 ... weekly best 3 of 5 = 15, plus Block 1 = 15 -> 30 of 45 ; assignments weekly 60 + Block 1 60 = 120 of 160
-  near("after Block 1: quizzes and assignments", afterBlock1.final, 10 * 30 / 45 + 10 * 120 / 160);
+  // quizzes: weekly best 3 of 5 = 15, plus Block 1 = 10 -> 25 of 35 ; assignments: weekly 60 + Block 1 40 = 100 of 160
+  near("after Block 1: quizzes and assignments (provisional)", afterBlock1.provisional.marks, 15 * 25 / 35 + 15 * 100 / 160);
   eq("after Block 1 only Block 2 and the big components are missing",
      afterBlock1.missing.indexOf("Block 1 quiz") < 0 && afterBlock1.missing.indexOf("Block 2 quiz") >= 0, true);
+  var afterBlock2 = computeFinal_({
+    cohort: "CML3112",
+    quizzes: [5, 5, 5, 5, 5, "", 5, 5, 5, 5, "", ""],
+    challenges: [20, 20, 20, 20, 20, "", 20, 20, 20, 20, 20],
+    dataProject: 0, test1: 0, mlProjectA: "", mlProjectB: ""
+  });
+  near("after both blocks the coursework is complete: 15 + 15", afterBlock2.provisional.marks, 30);
+  ok("after both blocks no block is missing",
+     afterBlock2.missing.every(function (m) { return m.indexOf("Block") < 0; }), JSON.stringify(afterBlock2.missing));
 
   // ---- gradeBand_ ----
   eq("band 85 -> A", gradeBand_(85), "A");
@@ -853,15 +1062,43 @@ function runUnitTests_() {
   });
   ok("progress line counts 5 of 5 weekly assignments", line.indexOf("5 of 5 done") >= 0, line);
   ok("progress line stops nagging once enough weekly work is in", line.indexOf("count in full") >= 0, line);
-  ok("progress line reports Block 1 assignment status", line.indexOf("Block 1 assignment: 0 of 3 parts submitted") >= 0, line);
+  ok("progress line reports Block 1 assignment status", line.indexOf("Block 1 assignment: 0 of 2 parts submitted") >= 0, line);
+  ok("progress line reports Block 2 assignment status", line.indexOf("Block 2 assignment: 0 of 3 parts submitted") >= 0, line);
   var line2 = progressSummary_({
     cohort: "CML3111",
-    quizzes: [4, 5, 3, 5, 4, "", 5, 4, 3, "", "", ""],
-    challenges: [16, 18, "", "", "", "", 19, 11, 15, "", ""]
+    quizzes: [4, 5, 3, 5, 4, "", 5, 4, "", "", "", ""],
+    challenges: [16, 18, "", "", "", "", 19, 11, "", "", ""]
   });
   ok("progress line needs more weekly work", line2.indexOf("need 1 more weekly assignments") >= 0, line2);
-  ok("progress line adds up Block 1 quiz marks", line2.indexOf("Block 1 quiz: 3 of 3 forms sat, 12 of 15 marks") >= 0, line2);
-  ok("progress line adds up Block 1 assignment marks", line2.indexOf("45 of 60 marks") >= 0, line2);
+  ok("progress line adds up Block 1 quiz marks", line2.indexOf("Block 1 quiz: 2 of 2 forms sat, 9 of 10 marks") >= 0, line2);
+  ok("progress line adds up Block 1 assignment marks", line2.indexOf("Block 1 assignment: 2 of 2 parts submitted, 30 of 40 marks") >= 0, line2);
+  var linePend = progressSummary_({
+    cohort: "CML3111",
+    quizzes: [4, 5, 3, 5, 4, "", 5, 4, "", "", "", ""],
+    challenges: [16, 18, "", "", "", "", 19, 11, "", "", ""],
+    dataProject: 72, test1: 65
+  });
+  ok("progress line shows the provisional result", linePend.indexOf("Semester 1 provisional: ") >= 0 && linePend.indexOf(" of 55 marks, ") >= 0, linePend);
+  ok("progress line says the project is PENDING", linePend.indexOf("Project: PENDING") >= 0, linePend);
+  ok("progress line does not show a banked total while pending", linePend.indexOf("Marks banked") < 0, linePend);
+  var linePartA = progressSummary_({ cohort: "CML3111", quizzes: [], challenges: [], dataProject: 72, test1: 65, mlProjectA: 20, mlProjectB: "" });
+  ok("progress line says Part A is marked and Part B is not", linePartA.indexOf("Part A is marked, Part B is not") >= 0, linePartA);
+  var lineDone = progressSummary_({ cohort: "CML3111", quizzes: [], challenges: [], dataProject: 72, test1: 65, mlProjectA: 20, mlProjectB: 10 });
+  ok("progress line shows the full total once the project is marked", lineDone.indexOf("Marks banked:") >= 0 && lineDone.indexOf("Project: PENDING") < 0, lineDone);
+
+  // ---- sheet helpers ----
+  eq("missingHeaders_ finds all four on an old sheet",
+     missingHeaders_(["student_id", "ML Project", "Demo", "Final %"], PROJECT_INPUT_HEADERS.concat([PROVISIONAL_HEADER, PROJECT_STATUS_HEADER])),
+     ["ML Project Part A", "ML Project Part B", "Semester 1 provisional", "Project"]);
+  eq("missingHeaders_ does not mistake the old 'ML Project' column for the new ones",
+     missingHeaders_(["ML Project"], ["ML Project Part A"]), ["ML Project Part A"]);
+  eq("missingHeaders_ finds none when they are there (case and spaces ignored)",
+     missingHeaders_(["ml project part a", "ML_Project_Part_B", "semester 1 provisional", "project"], PROJECT_INPUT_HEADERS.concat([PROVISIONAL_HEADER, PROJECT_STATUS_HEADER])), []);
+  eq("markColumnMax_ assignment", markColumnMax_("W05"), 20);
+  eq("markColumnMax_ Part A", markColumnMax_("ML Project Part A"), 30);
+  eq("markColumnMax_ Part B", markColumnMax_("ML Project Part B"), 15);
+  eq("markColumnMax_ Test 1", markColumnMax_("Practical Test 1"), 100);
+
 
   // ---- base32 ----
   eq("b32Decode_ NBSWY3DP -> hello",
@@ -959,12 +1196,21 @@ if (typeof module !== "undefined" && typeof process !== "undefined" &&
   process.exit(runUnitTests_() === 0 ? 0 : 1);
 }
 
+/** The maximum a column's marks can have: 20 for an assignment part, 30 and 15 for the two project parts, 100 otherwise. */
+function markColumnMax_(columnName) {
+  if (CHALLENGE_IDS.indexOf(columnName) >= 0) { return CHALLENGE_MAX; }
+  if (columnName === PROJECT_INPUT_HEADERS[0]) { return ML_PART_A_MAX; }
+  if (columnName === PROJECT_INPUT_HEADERS[1]) { return ML_PART_B_MAX; }
+  return 100;
+}
+
 /** Import lecturer-side results by roster ID, atomically after validation.
  * CSV must contain student_id,status plus score,maximum (artifact grader)
  * or notebook_total,max_total (isolated notebook grader). No token-only rows.
  */
 function importMarkedResults(fileId, columnName, spreadsheet) {
-  var allowed=CHALLENGE_IDS.concat(['Data Analysis Project','Practical Test 1','Practical Test 2','ML Project','Demo']);
+  // Practical Test 2 was dropped on 2 November 2026 and the demo on 3 November 2026; their columns are no longer import targets.
+  var allowed=CHALLENGE_IDS.concat(['Data Analysis Project','Practical Test 1'],PROJECT_INPUT_HEADERS);
   if (allowed.indexOf(columnName)<0) { throw new Error('Unknown assessment column'); }
   var rows=Utilities.parseCsv(DriveApp.getFileById(fileId).getBlob().getDataAsString());
   var h=rows.shift(), index=function(name){return h.indexOf(name);};
@@ -979,7 +1225,7 @@ function importMarkedResults(fileId, columnName, spreadsheet) {
     if(id&&rowOf[id]!==undefined){throw new Error('Duplicate roster ID '+id);}
     if(id){rowOf[id]=i;}return [r[target]];
   });
-  var expected=CHALLENGE_IDS.indexOf(columnName)>=0?20:100;
+  var expected=markColumnMax_(columnName);
   rows.filter(function(r){return r.join('').trim();}).forEach(function(r){
     var id=String(r[sid]).trim().toUpperCase();
     if(seen[id]){throw new Error('Duplicate result '+id);}seen[id]=true;
@@ -1049,3 +1295,5 @@ function importQuizScores(spreadsheet) {
   });
   Object.keys(merged).forEach(function(col){if(g.rows.length){g.sheet.getRange(2,Number(col)+1,g.rows.length,1).setValues(merged[col]);}});
 }
+
+// GRADEBOOK_PATCH_20261103: patched 3 November 2026 from data/assessment_blocks_20261103.json

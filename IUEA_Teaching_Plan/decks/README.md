@@ -1,12 +1,14 @@
 # PowerPoint teaching decks
 
+> **4 November 2026:** the semester ends at Week 12. The Week 8 to 11 decks in this folder are replaced by the four class decks in `../second_half/Slides/`, and Week 12 is the individual project sitting. Weeks 13, 14 and 15 are superseded and not used. Weeks 1 to 7 are unchanged. See `../Teaching_Progress.md`.
+
 **30 October 2026 rebuild:** Weeks 8 to 13 have new explain-before-use slides, vocabulary tables and worked examples, and Week 13 is a new deck (regularisation, nearest neighbours, reproducibility). Every deck in Weeks 1 to 15 now carries a spoken-script note on each slide. The lecturer-notes Markdown, guided notebooks and Week 8 to 12 student ZIPs were regenerated from these decks. Originals are in `_backup_2026-10-30/`. See `../Weeks8-12_Rebuild_Log_and_Industry_Coverage_2026-10-30.md`.
 
 **15 October revision:** Weeks 6–15 continue the pandas workflow introduced in Week 5. Use the matching lecturer notes and current student ZIPs. Check the live forms for current deadlines and Teaching_Progress.md for cohort pacing.
 
 **Pandas explanations:** Each CSV code example now follows explanations of its operations. Presenter View and the matching lecturer companion give line-by-line walkthroughs and interpretations of the supplied data results.
 
-**CSV examples:** File-based worked examples now use the CSV supplied for that cohort and week. The lecturer notes include executed outputs. Share the refreshed ZIPs. Week 7 rehearsal reuses Week 6 data; Week 14 rehearsal reuses Week 12 data.
+**CSV examples:** File-based worked examples now use the CSV supplied for that cohort and week. The lecturer notes include executed outputs. Share the refreshed ZIPs. Week 7 rehearsal reuses Week 6 data; the Week 14 rehearsal is no longer used.
 
 Teach directly from the PowerPoints below. Open Presenter View for the teaching prompts and practice explanations. All decks include reviewed lecturer notes; completed lessons retain their existing visual design.
 
@@ -20,14 +22,14 @@ Use the matching student ZIP for practice and the issued assignment. The final s
 | 5 | [Week 5](CML3111_Week05_Engineering.pptx) | [Week 5](CML3112_Week05_Design_Infrastructure.pptx) | [Week 5](CML3113_Week05_Mining_Petroleum.pptx) |
 | 6 | [Week 6](CML3111_Week06_Engineering.pptx) | [Week 6](CML3112_Week06_Design_Infrastructure.pptx) | [Week 6](CML3113_Week06_Mining_Petroleum.pptx) |
 | 7 | [Week 7](CML3111_Week07_Engineering.pptx) | [Week 7](CML3112_Week07_Design_Infrastructure.pptx) | [Week 7](CML3113_Week07_Mining_Petroleum.pptx) |
-| 8 | [Week 8](CML3111_Week08_Engineering.pptx) | [Week 8](CML3112_Week08_Design_Infrastructure.pptx) | [Week 8](CML3113_Week08_Mining_Petroleum.pptx) |
-| 9 | [Week 9](CML3111_Week09_Engineering.pptx) | [Week 9](CML3112_Week09_Design_Infrastructure.pptx) | [Week 9](CML3113_Week09_Mining_Petroleum.pptx) |
-| 10 | [Week 10](CML3111_Week10_Engineering.pptx) | [Week 10](CML3112_Week10_Design_Infrastructure.pptx) | [Week 10](CML3113_Week10_Mining_Petroleum.pptx) |
-| 11 | [Week 11](CML3111_Week11_Engineering.pptx) | [Week 11](CML3112_Week11_Design_Infrastructure.pptx) | [Week 11](CML3113_Week11_Mining_Petroleum.pptx) |
-| 12 | [Week 12](CML3111_Week12_Engineering.pptx) | [Week 12](CML3112_Week12_Design_Infrastructure.pptx) | [Week 12](CML3113_Week12_Mining_Petroleum.pptx) |
-| 13 | [Week 13](CML3111_Week13_Engineering.pptx) | [Week 13](CML3112_Week13_Design_Infrastructure.pptx) | [Week 13](CML3113_Week13_Mining_Petroleum.pptx) |
-| 14 | [Week 14](CML3111_Week14_Engineering.pptx) | [Week 14](CML3112_Week14_Design_Infrastructure.pptx) | [Week 14](CML3113_Week14_Mining_Petroleum.pptx) |
-| 15 | [Week 15](CML3111_Week15_Engineering.pptx) | [Week 15](CML3112_Week15_Design_Infrastructure.pptx) | [Week 15](CML3113_Week15_Mining_Petroleum.pptx) |
+| 8 (replaced by ../second_half/ Class 1) | [Week 8](CML3111_Week08_Engineering.pptx) | [Week 8](CML3112_Week08_Design_Infrastructure.pptx) | [Week 8](CML3113_Week08_Mining_Petroleum.pptx) |
+| 9 (replaced by ../second_half/ Class 2) | [Week 9](CML3111_Week09_Engineering.pptx) | [Week 9](CML3112_Week09_Design_Infrastructure.pptx) | [Week 9](CML3113_Week09_Mining_Petroleum.pptx) |
+| 10 (replaced by ../second_half/ Class 3) | [Week 10](CML3111_Week10_Engineering.pptx) | [Week 10](CML3112_Week10_Design_Infrastructure.pptx) | [Week 10](CML3113_Week10_Mining_Petroleum.pptx) |
+| 11 (replaced by ../second_half/ Class 4) | [Week 11](CML3111_Week11_Engineering.pptx) | [Week 11](CML3112_Week11_Design_Infrastructure.pptx) | [Week 11](CML3113_Week11_Mining_Petroleum.pptx) |
+| 12 (superseded: Week 12 is the project sitting) | [Week 12](CML3111_Week12_Engineering.pptx) | [Week 12](CML3112_Week12_Design_Infrastructure.pptx) | [Week 12](CML3113_Week12_Mining_Petroleum.pptx) |
+| 13 (superseded: not used, see ../second_half/) | [Week 13](CML3111_Week13_Engineering.pptx) | [Week 13](CML3112_Week13_Design_Infrastructure.pptx) | [Week 13](CML3113_Week13_Mining_Petroleum.pptx) |
+| 14 (superseded: not used, see ../second_half/) | [Week 14](CML3111_Week14_Engineering.pptx) | [Week 14](CML3112_Week14_Design_Infrastructure.pptx) | [Week 14](CML3113_Week14_Mining_Petroleum.pptx) |
+| 15 (superseded: not used, see ../second_half/) | [Week 15](CML3111_Week15_Engineering.pptx) | [Week 15](CML3112_Week15_Design_Infrastructure.pptx) | [Week 15](CML3113_Week15_Mining_Petroleum.pptx) |
 
 [All presentations and lecturer notes](LECTURER_NOTES_INDEX.md)
 

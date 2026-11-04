@@ -1,3 +1,4 @@
+# NOTE (4 November 2026): Builds the Practical Test 1 and the retired Practical Test 2 notebooks. Practical Test 2 is retired (2 November 2026). The project sitting is built by IUEA_Teaching_Plan/second_half/Project/tools/.
 """Build the approved fully automatic Colab tests; no answer keys in student files."""
 import csv,json,sys,zipfile
 from pathlib import Path

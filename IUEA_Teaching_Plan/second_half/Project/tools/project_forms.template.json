@@ -1,0 +1,42 @@
+{
+  "_comment": "Copy this file to project_forms.json and fill in the values printed by installColabExamCollection (PUBLIC_NOTEBOOK_CONFIG) for the three new forms, or merge the three entries into data/colab_test_submission_config.json. The five item names must stay exactly as shown.",
+  "lecturer_email": "wirmbeesubs@gmail.com",
+  "forms": {
+    "CML3112|ML_PROJECT": {
+      "formId": "FILL",
+      "url": "FILL",
+      "prefill": "https://docs.google.com/forms/d/e/FILL/viewform?usp=pp_url&entry.FILL1=PLACEHOLDER_FILL1&entry.FILL2=PLACEHOLDER_FILL2&entry.FILL3=PLACEHOLDER_FILL3&entry.FILL4=PLACEHOLDER_FILL4&entry.FILL5=PLACEHOLDER_FILL5",
+      "items": {
+        "Full name": "FILL1",
+        "Student Registration Number": "FILL2",
+        "Variant": "FILL3",
+        "Snapshot file ID": "FILL4",
+        "Snapshot SHA-256": "FILL5"
+      }
+    },
+    "CML3113|ML_PROJECT": {
+      "formId": "FILL",
+      "url": "FILL",
+      "prefill": "https://docs.google.com/forms/d/e/FILL/viewform?usp=pp_url&entry.FILL1=PLACEHOLDER_FILL1&entry.FILL2=PLACEHOLDER_FILL2&entry.FILL3=PLACEHOLDER_FILL3&entry.FILL4=PLACEHOLDER_FILL4&entry.FILL5=PLACEHOLDER_FILL5",
+      "items": {
+        "Full name": "FILL1",
+        "Student Registration Number": "FILL2",
+        "Variant": "FILL3",
+        "Snapshot file ID": "FILL4",
+        "Snapshot SHA-256": "FILL5"
+      }
+    },
+    "CML3111|ML_PROJECT": {
+      "formId": "FILL",
+      "url": "FILL",
+      "prefill": "https://docs.google.com/forms/d/e/FILL/viewform?usp=pp_url&entry.FILL1=PLACEHOLDER_FILL1&entry.FILL2=PLACEHOLDER_FILL2&entry.FILL3=PLACEHOLDER_FILL3&entry.FILL4=PLACEHOLDER_FILL4&entry.FILL5=PLACEHOLDER_FILL5",
+      "items": {
+        "Full name": "FILL1",
+        "Student Registration Number": "FILL2",
+        "Variant": "FILL3",
+        "Snapshot file ID": "FILL4",
+        "Snapshot SHA-256": "FILL5"
+      }
+    }
+  }
+}

@@ -90,6 +90,7 @@ def quizops():
     d.save(B / f)
 
 if __name__ == "__main__":
+    raise SystemExit("SUPERSEDED on 2 November 2026. Running this would overwrite the new arrangement with the 30 October one. Use patch_block_docx_20261102.py instead.")
     syllabus("IUEA_ML_Syllabus_CohortA_Design_and_Infrastructure.docx", "CML3111", False)
     syllabus("IUEA_ML_Syllabus_CohortB_Mining_and_Petroleum.docx", "CML3112", False)
     syllabus("IUEA_ML_Syllabus_CohortC_Engineering.docx", "CML3113", False)

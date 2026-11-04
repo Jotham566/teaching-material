@@ -1,4 +1,8 @@
-# IUEA teaching progress — 29 September 2026
+# IUEA teaching progress
+
+> Current status: the last section of this file, **Status 4 November 2026**. Everything between here and there is history.
+
+## History: status of 29 September 2026
 
 | Cohort | Confirmed coverage | Next lesson |
 |---|---|---|
@@ -34,3 +38,24 @@ These replace the previous 2 October deadlines. Existing work remains valid. No 
 ## Student packages: no grading scripts
 
 Updated Week 3 and Week 5 notebooks need no grader imports or self-check files. Share the current ZIPs in `student_packages`. The lecturer’s automatic grader still evaluates every task, including hidden checks, after upload. Existing submissions remain valid; do not ask students to redo their work. Students using an old notebook may keep it with its original helpers, or copy their answers into the updated notebook.
+
+## Status 4 November 2026
+
+This is the current position. The older sections above are history.
+
+- Weeks 1 to 7 are done. Week 7 was Practical Test 1. Week 6 was waived.
+- Week 8 theory: CML3113 and CML3111 had it on Friday 30 October, without the lab. CML3112 starts Week 8 on Tuesday 3 November.
+- The semester ends at Week 12 (12 study weeks, 36 contact hours). Weeks 8 to 11 are taught as four classes, concepts first and then the lab. Slides, lab notebooks, lecturer guides, student packages, student slide PDFs and the project are in `second_half/`.
+
+| Class | Content | CML3112 (Tue) | CML3113 and CML3111 (Fri) |
+|---|---|---|---|
+| 1 First model | Week 8 | Tue 3 Nov | Fri 6 Nov (concepts recap, then the lab) |
+| 2 Classification | Week 9 | Tue 10 Nov | Fri 13 Nov |
+| 3 Trust | Week 10 | Tue 17 Nov | Fri 20 Nov |
+| 4 Choosing | Week 11 | Tue 24 Nov | Fri 27 Nov |
+
+- Week 12 is the Engineering ML project: individual, timed, auto-graded, one supervised 3-hour sitting in Google Colab in the class slot, with the same entry and Submit test flow as Practical Test 1. Part A coded notebook 30 plus Part B decision memo 15 (a form inside the notebook) = 45 percent. It covers Weeks 1 to 11 only.
+- Proposed sittings (lecturer to confirm): CML3112 Tue 1 Dec 11:00 to 14:00; CML3113 Fri 4 Dec 08:00 to 11:00; CML3111 Fri 4 Dec 11:00 to 14:00. An unmarked rehearsal is released right after Class 4 (Tue 24 Nov, Fri 27 Nov).
+- Gone: Practical Test 2, the demo and viva, Weeks 13 to 15, the project clinic, team ML projects, the old take-home project, the December due dates, and the Q11 and Q12 quizzes. The data analysis project (10 percent) is still a team project.
+- Weights: quizzes 15, assignments 15, data analysis project 10, Practical Test 1 15, ML project 45. Block 1 is A7 + A8 and Q7 + Q8 (quiz sat in the last 20 minutes of Class 2). Block 2 is A9 + A10 + A11 and Q9 + Q10 (last 20 minutes of Class 4). Weeks 1 to 5 stay weekly, best 3 of 5. Results are provisional out of 55 until the project is marked.
+- Details: `second_half/Plan_Weeks_8-12.pdf`, `Block_Assessment_Arrangement_2026-11-03.md`, `second_half/Project/README.md` and `Grading_Update_By_Hand_2026-11-03.md`.

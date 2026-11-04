@@ -1,5 +1,7 @@
 # Weeks 8 to 12 rebuild: what changed, how it was checked, and coverage against industry standards
 
+> Superseded by Block_Assessment_Arrangement_2026-11-03.md and second_half/Plan_Weeks_8-12.pdf: the semester ends at Week 12, Weeks 8 to 11 are four classes in second_half/, the project is an individual timed sitting in Week 12, and there is no Practical Test 2, demo or Weeks 13 to 15. Kept as a record.
+
 30 October 2026. Follows [Week8_Benchmark_and_Change_Log_2026-10-30.md](Week8_Benchmark_and_Change_Log_2026-10-30.md). Original decks are in `decks/_backup_2026-10-30/`.
 
 ## 1. What every deck now does

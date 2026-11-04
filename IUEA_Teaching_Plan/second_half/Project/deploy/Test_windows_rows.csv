@@ -1,0 +1,4 @@
+assessment_key,opens_at,closes_at,enabled,duration_minutes,note
+CML3112|ML_PROJECT,2026-12-01T11:00:00+03:00,2026-12-01T14:00:00+03:00,NO,180,"proposed, lecturer to confirm; set enabled to YES only after confirming"
+CML3113|ML_PROJECT,2026-12-04T08:00:00+03:00,2026-12-04T11:00:00+03:00,NO,180,"proposed, lecturer to confirm; set enabled to YES only after confirming"
+CML3111|ML_PROJECT,2026-12-04T11:00:00+03:00,2026-12-04T14:00:00+03:00,NO,180,"proposed, lecturer to confirm; set enabled to YES only after confirming"

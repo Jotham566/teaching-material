@@ -1,0 +1,232 @@
+{
+  "superseded_by": "data/assessment_blocks_20261103.json (4 November 2026: no demo, no Practical Test 2; the Engineering ML project is an individual timed auto-graded Week 12 sitting). Kept as a record; do not read policy from this file.",
+  "effective_from": "Week 8 content: CML3112 Tue 3 Nov 2026, CML3113 and CML3111 Fri 6 Nov 2026 (Class 1 for each cohort)",
+  "supersedes": "data/assessment_blocks_20261030.json",
+  "decided": "2026-11-02",
+  "decision": "The semester ends at Week 12 and Practical Test 2 is dropped. Teaching is four classes (Weeks 8 to 11 content) in two blocks of two classes. Weeks 1 to 5 stay weekly (Week 6 waived). Block 1 is Classes 1 and 2 and Block 2 is Classes 3 and 4. Each block has one assignment pack and one quiz sitting in the last 20 minutes of its second class. Week 12 is a short project demo. The forms, graders and graded functions are unchanged; only deadlines, sittings and the way marks combine change.",
+  "calendar": {
+    "class_dates": {
+      "CML3112": {
+        "1": "2026-11-03",
+        "2": "2026-11-10",
+        "3": "2026-11-17",
+        "4": "2026-11-24"
+      },
+      "CML3113": {
+        "1": "2026-11-06",
+        "2": "2026-11-13",
+        "3": "2026-11-20",
+        "4": "2026-11-27"
+      },
+      "CML3111": {
+        "1": "2026-11-06",
+        "2": "2026-11-13",
+        "3": "2026-11-20",
+        "4": "2026-11-27"
+      }
+    },
+    "content_week_of_class": {
+      "1": 8,
+      "2": 9,
+      "3": 10,
+      "4": 11
+    },
+    "class_hours_kampala": {
+      "CML3111": "11:00-14:00",
+      "CML3112": "11:00-14:00",
+      "CML3113": "08:00-11:00"
+    },
+    "week_12_demo": {
+      "dates": {
+        "CML3111": "2026-12-04",
+        "CML3112": "2026-12-01",
+        "CML3113": "2026-12-04"
+      },
+      "status": "Proposal, not final. Short project demo of about five minutes per team with questions from the class.",
+      "marks_and_mark_scheme": "to be confirmed by the lecturer",
+      "time_and_room": "to be confirmed by the lecturer"
+    },
+    "semester_ends": "Week 12 (demo day)",
+    "retired_events": [
+      "Practical Test 2 (was Week 14)",
+      "Week 13 class, quiz and assignment slot",
+      "Week 14 and Week 15 events",
+      "Week 15 Demo Day, viva and reflection as a separate event"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "B1",
+      "label": "Block 1",
+      "classes": [
+        1,
+        2
+      ],
+      "weeks": [
+        8,
+        9
+      ],
+      "topics": "regression, baseline and errors; classification and cost",
+      "assignment_parts": [
+        {
+          "part": "A",
+          "id": "W08",
+          "label": "A7",
+          "title": "Regression and baseline",
+          "marks": 20
+        },
+        {
+          "part": "B",
+          "id": "W09",
+          "label": "A8",
+          "title": "Classification and cost",
+          "marks": 20
+        }
+      ],
+      "assignment_marks": 40,
+      "quiz_forms": [
+        {
+          "week": 8,
+          "form": "Q7"
+        },
+        {
+          "week": 9,
+          "form": "Q8"
+        }
+      ],
+      "quiz_marks": 10,
+      "sitting_class": 2,
+      "quiz_sitting": "In the last 20 minutes of Class 2 (the Week 9 class) the lecturer opens the two quiz forms together; each stays open for 24 hours.",
+      "quiz_sitting_date": {
+        "CML3111": "2026-11-13",
+        "CML3112": "2026-11-10",
+        "CML3113": "2026-11-13"
+      },
+      "quiz_sitting_opens_local": {
+        "CML3111": "2026-11-13T13:40:00+03:00",
+        "CML3112": "2026-11-10T13:40:00+03:00",
+        "CML3113": "2026-11-13T10:40:00+03:00"
+      },
+      "assignment_closes": {
+        "CML3111": "2026-11-20T11:00:00+03:00",
+        "CML3112": "2026-11-17T11:00:00+03:00",
+        "CML3113": "2026-11-20T08:00:00+03:00"
+      }
+    },
+    {
+      "id": "B2",
+      "label": "Block 2",
+      "classes": [
+        3,
+        4
+      ],
+      "weeks": [
+        10,
+        11
+      ],
+      "topics": "validation, trust and leakage; features and ablation; choosing a model",
+      "assignment_parts": [
+        {
+          "part": "A",
+          "id": "W10",
+          "label": "A9",
+          "title": "Validation and trust",
+          "marks": 20
+        },
+        {
+          "part": "B",
+          "id": "W11",
+          "label": "A10",
+          "title": "Features and ablation",
+          "marks": 20
+        },
+        {
+          "part": "C",
+          "id": "W12",
+          "label": "A11",
+          "title": "Model recommendation",
+          "marks": 20
+        }
+      ],
+      "assignment_marks": 60,
+      "quiz_forms": [
+        {
+          "week": 10,
+          "form": "Q9"
+        },
+        {
+          "week": 11,
+          "form": "Q10"
+        }
+      ],
+      "quiz_marks": 10,
+      "sitting_class": 4,
+      "quiz_sitting": "In the last 20 minutes of Class 4 (the Week 11 class) the lecturer opens the two quiz forms together; each stays open for 24 hours.",
+      "quiz_sitting_date": {
+        "CML3111": "2026-11-27",
+        "CML3112": "2026-11-24",
+        "CML3113": "2026-11-27"
+      },
+      "quiz_sitting_opens_local": {
+        "CML3111": "2026-11-27T13:40:00+03:00",
+        "CML3112": "2026-11-24T13:40:00+03:00",
+        "CML3113": "2026-11-27T10:40:00+03:00"
+      },
+      "assignment_closes": {
+        "CML3111": "2026-12-04T11:00:00+03:00",
+        "CML3112": "2026-12-01T11:00:00+03:00",
+        "CML3113": "2026-12-04T08:00:00+03:00"
+      },
+      "note": "A9 is issued in Class 3. A10 and A11 are issued in Class 4. Q10 (Week 11 form) carries two model-comparison questions taken from the retired Q11 bank."
+    }
+  ],
+  "retired_quiz_forms": [
+    {
+      "week": 12,
+      "form": "Q11",
+      "reason": "Class 4 teaches model comparison; two of its questions moved into Q10. The form is closed and never sat."
+    },
+    {
+      "week": 13,
+      "form": "Q12",
+      "reason": "There is no Week 13 class. The form is closed and never sat."
+    }
+  ],
+  "retired_assessments": [
+    "Practical Test 2",
+    "Q11",
+    "Q12",
+    "Engineering ML Project milestones in Weeks 12 and 13 (project dates to be confirmed by the lecturer)"
+  ],
+  "weights_percent": {
+    "quizzes": 15,
+    "assignments": 15,
+    "data_analysis_project": 10,
+    "practical_test_1": 15,
+    "engineering_ml_project": 30,
+    "demonstration": 15
+  },
+  "weights_status": "Recommended by the lecturer's plan and approved on 2 November 2026. Still to be checked against IUEA regulations.",
+  "coursework_rule": {
+    "weekly": "Weeks 1 to 5 stay weekly. Week 6 is waived for all three cohorts. The best 3 of the 5 weekly quizzes (each out of 5) and the best 3 of the 5 weekly assignments (each out of 20) count.",
+    "blocks": "A block is never dropped. Its marks are the sum of its parts: Block 1 quiz = Q7 + Q8 = 10; Block 2 quiz = Q9 + Q10 = 10; Block 1 assignment = A7 + A8 = 40; Block 2 assignment = A9 + A10 + A11 = 60. A part that is not submitted scores zero.",
+    "quizzes_out_of": "3 x 5 + 10 + 10 = 35 marks; the percentage of the course is marks earned divided by 35, times 15.",
+    "assignments_out_of": "3 x 20 + 40 + 60 = 160 marks; the percentage of the course is marks earned divided by 160, times 15.",
+    "why": "A block carries its classes, so a student cannot drop one. The two blocks hold 20 of the 35 quiz marks and 100 of the 160 assignment marks."
+  },
+  "unchanged": [
+    "Data Analysis Project",
+    "Practical Test 1 (Week 7)",
+    "Weeks 1 to 5 weekly quizzes and assignments (best 3 of 5, Week 6 waived)"
+  ],
+  "changed": [
+    "Engineering ML Project: weight 25 to 30; milestones and due date to be confirmed by the lecturer",
+    "Demonstration: weight 10 to 15; now the Week 12 short project demo (Tue 1 Dec, Fri 4 Dec); mark scheme to be confirmed by the lecturer"
+  ],
+  "forms_in_use": "Block 1 submissions use the existing A7 and A8 forms. Block 2 submissions use the existing A9, A10 and A11 forms. Block quizzes use the existing Week 8, 9, 10 and 11 quiz forms (Q7 to Q10), opened together.",
+  "open_items": [
+    "The Week 11 quiz form (Q10) must be replaced in place with replaceWeek11Questions() before the Class 4 sitting. See Block_Assessment_Arrangement_2026-11-02.md.",
+    "Mark scheme, due date and team arrangements for the Week 12 project demo: to be confirmed by the lecturer.",
+    "Weights need checking against IUEA regulations."
+  ]
+}

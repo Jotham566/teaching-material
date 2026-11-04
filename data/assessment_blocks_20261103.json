@@ -1,0 +1,355 @@
+{
+  "effective_from": "3 November 2026 (lecturer decision). Block dates, closing times and quiz sittings are exactly those of the 2 November arrangement.",
+  "supersedes": "data/assessment_blocks_20261102.json",
+  "decided": "2026-11-03",
+  "decision": "There is no demo. Practical Test 2 stays removed. The Engineering ML project stays but students sit it alone: it is an individual, timed (one supervised 3-hour sitting), fully auto-graded project like Practical Test 1, and it covers only what was taught this semester (Weeks 1 to 11). Semester 1 results can be published BEFORE the project is marked, with the project shown as PENDING. Teaching is four classes (Weeks 8 to 11 content) in two blocks; Week 12 is the project sitting (3 hours, individual, timed, auto-graded; no demo, no clinic). An unmarked rehearsal is released right after Class 4. Weeks 1 to 5 stay weekly (best 3 of 5, Week 6 waived). The quizzes, assignments, blocks, deadlines and quiz sittings are unchanged from 2 November 2026.",
+  "calendar": {
+    "class_dates": {
+      "CML3112": {
+        "1": "2026-11-03",
+        "2": "2026-11-10",
+        "3": "2026-11-17",
+        "4": "2026-11-24"
+      },
+      "CML3113": {
+        "1": "2026-11-06",
+        "2": "2026-11-13",
+        "3": "2026-11-20",
+        "4": "2026-11-27"
+      },
+      "CML3111": {
+        "1": "2026-11-06",
+        "2": "2026-11-13",
+        "3": "2026-11-20",
+        "4": "2026-11-27"
+      }
+    },
+    "content_week_of_class": {
+      "1": 8,
+      "2": 9,
+      "3": 10,
+      "4": 11
+    },
+    "class_hours_kampala": {
+      "CML3111": "11:00-14:00",
+      "CML3112": "11:00-14:00",
+      "CML3113": "08:00-11:00"
+    },
+    "semester_ends": "Week 12 (project sitting). The sitting slots are proposed, lecturer to confirm.",
+    "retired_events": [
+      "Practical Test 2 (was Week 14)",
+      "Week 13 class, quiz and assignment slot",
+      "Week 14 and Week 15 events",
+      "Week 15 Demo Day, viva and reflection as a separate event",
+      "Week 12 short project demo (retired 3 November 2026: there is no demo)"
+    ],
+    "week_12_project_clinic": {
+      "dates": {
+        "CML3111": "2026-12-04",
+        "CML3112": "2026-12-01",
+        "CML3113": "2026-12-04"
+      },
+      "dates_status": "Same Week 12 class dates as before. Slots and times: proposed, lecturer to confirm.",
+      "what": "Project sitting: 3 hours, individual, timed, auto-graded, in Google Colab, in the class slot. No demo, no presentation, no clinic.",
+      "marks": "Part A 30 and Part B 15, both automatic (see engineering_ml_project)",
+      "time_and_room": "to be confirmed by the lecturer",
+      "sitting_slots": {
+        "CML3112": "2026-12-01 11:00-14:00",
+        "CML3113": "2026-12-04 08:00-11:00",
+        "CML3111": "2026-12-04 11:00-14:00"
+      }
+    }
+  },
+  "blocks": [
+    {
+      "id": "B1",
+      "label": "Block 1",
+      "classes": [
+        1,
+        2
+      ],
+      "weeks": [
+        8,
+        9
+      ],
+      "topics": "regression, baseline and errors; classification and cost",
+      "assignment_parts": [
+        {
+          "part": "A",
+          "id": "W08",
+          "label": "A7",
+          "title": "Regression and baseline",
+          "marks": 20
+        },
+        {
+          "part": "B",
+          "id": "W09",
+          "label": "A8",
+          "title": "Classification and cost",
+          "marks": 20
+        }
+      ],
+      "assignment_marks": 40,
+      "quiz_forms": [
+        {
+          "week": 8,
+          "form": "Q7"
+        },
+        {
+          "week": 9,
+          "form": "Q8"
+        }
+      ],
+      "quiz_marks": 10,
+      "sitting_class": 2,
+      "quiz_sitting": "In the last 20 minutes of Class 2 (the Week 9 class) the lecturer opens the two quiz forms together; each stays open for 24 hours.",
+      "quiz_sitting_date": {
+        "CML3111": "2026-11-13",
+        "CML3112": "2026-11-10",
+        "CML3113": "2026-11-13"
+      },
+      "quiz_sitting_opens_local": {
+        "CML3111": "2026-11-13T13:40:00+03:00",
+        "CML3112": "2026-11-10T13:40:00+03:00",
+        "CML3113": "2026-11-13T10:40:00+03:00"
+      },
+      "assignment_closes": {
+        "CML3111": "2026-11-20T11:00:00+03:00",
+        "CML3112": "2026-11-17T11:00:00+03:00",
+        "CML3113": "2026-11-20T08:00:00+03:00"
+      }
+    },
+    {
+      "id": "B2",
+      "label": "Block 2",
+      "classes": [
+        3,
+        4
+      ],
+      "weeks": [
+        10,
+        11
+      ],
+      "topics": "validation, trust and leakage; features and ablation; choosing a model",
+      "assignment_parts": [
+        {
+          "part": "A",
+          "id": "W10",
+          "label": "A9",
+          "title": "Validation and trust",
+          "marks": 20
+        },
+        {
+          "part": "B",
+          "id": "W11",
+          "label": "A10",
+          "title": "Features and ablation",
+          "marks": 20
+        },
+        {
+          "part": "C",
+          "id": "W12",
+          "label": "A11",
+          "title": "Model recommendation",
+          "marks": 20
+        }
+      ],
+      "assignment_marks": 60,
+      "quiz_forms": [
+        {
+          "week": 10,
+          "form": "Q9"
+        },
+        {
+          "week": 11,
+          "form": "Q10"
+        }
+      ],
+      "quiz_marks": 10,
+      "sitting_class": 4,
+      "quiz_sitting": "In the last 20 minutes of Class 4 (the Week 11 class) the lecturer opens the two quiz forms together; each stays open for 24 hours.",
+      "quiz_sitting_date": {
+        "CML3111": "2026-11-27",
+        "CML3112": "2026-11-24",
+        "CML3113": "2026-11-27"
+      },
+      "quiz_sitting_opens_local": {
+        "CML3111": "2026-11-27T13:40:00+03:00",
+        "CML3112": "2026-11-24T13:40:00+03:00",
+        "CML3113": "2026-11-27T10:40:00+03:00"
+      },
+      "assignment_closes": {
+        "CML3111": "2026-12-04T11:00:00+03:00",
+        "CML3112": "2026-12-01T11:00:00+03:00",
+        "CML3113": "2026-12-04T08:00:00+03:00"
+      },
+      "note": "A9 is issued in Class 3. A10 and A11 are issued in Class 4. Q10 (Week 11 form) carries two model-comparison questions taken from the retired Q11 bank."
+    }
+  ],
+  "retired_quiz_forms": [
+    {
+      "week": 12,
+      "form": "Q11",
+      "reason": "Class 4 teaches model comparison; two of its questions moved into Q10. The form is closed and never sat."
+    },
+    {
+      "week": 13,
+      "form": "Q12",
+      "reason": "There is no Week 13 class. The form is closed and never sat."
+    }
+  ],
+  "retired_assessments": [
+    "Practical Test 2",
+    "Q11",
+    "Q12",
+    "Demonstration and the Week 12 short project demo (retired 3 November 2026)"
+  ],
+  "weights_percent": {
+    "quizzes": 15,
+    "assignments": 15,
+    "data_analysis_project": 10,
+    "practical_test_1": 15,
+    "engineering_ml_project": 45
+  },
+  "weights_status": "Decided by the lecturer on 3 November 2026. Still to be checked against IUEA regulations.",
+  "coursework_rule": {
+    "weekly": "Weeks 1 to 5 stay weekly. Week 6 is waived for all three cohorts. The best 3 of the 5 weekly quizzes (each out of 5) and the best 3 of the 5 weekly assignments (each out of 20) count.",
+    "blocks": "A block is never dropped. Its marks are the sum of its parts: Block 1 quiz = Q7 + Q8 = 10; Block 2 quiz = Q9 + Q10 = 10; Block 1 assignment = A7 + A8 = 40; Block 2 assignment = A9 + A10 + A11 = 60. A part that is not submitted scores zero.",
+    "quizzes_out_of": "3 x 5 + 10 + 10 = 35 marks; the percentage of the course is marks earned divided by 35, times 15.",
+    "assignments_out_of": "3 x 20 + 40 + 60 = 160 marks; the percentage of the course is marks earned divided by 160, times 15.",
+    "why": "A block carries its classes, so a student cannot drop one. The two blocks hold 20 of the 35 quiz marks and 100 of the 160 assignment marks."
+  },
+  "unchanged": [
+    "Data Analysis Project",
+    "Practical Test 1 (Week 7)",
+    "Weeks 1 to 5 weekly quizzes and assignments (best 3 of 5, Week 6 waived)",
+    "Quizzes: weekly Q1 to Q5 best 3 of 5, plus Block 1 (Q7 + Q8) and Block 2 (Q9 + Q10); out of 35; 15 percent",
+    "Assignments: weekly A1 to A5 best 3 of 5, plus Block 1 (A7 + A8) and Block 2 (A9 + A10 + A11); out of 160; 15 percent",
+    "All block dates, assignment closing times and quiz sittings of 2 November 2026"
+  ],
+  "changed": [
+    "Demonstration removed everywhere (weight 15 gone).",
+    "Engineering ML Project: weight 30 to 45. It is an individual, timed, auto-graded sitting, not a demo. Part A coded notebook 30 (automatic), Part B structured decision memo form 15 (automatic). Covers Weeks 1 to 11 only.",
+    "Week 12 is the project sitting (3 hours, individual, timed, auto-graded; no demo, no clinic).",
+    "Unmarked rehearsal released after Class 4; the sitting is in the Week 12 class slot (proposed, lecturer to confirm).",
+    "Semester 1 results can be published before the project is marked: provisional line out of 55 plus 'Project: PENDING'."
+  ],
+  "forms_in_use": "Block 1 submissions use the existing A7 and A8 forms. Block 2 submissions use the existing A9, A10 and A11 forms. Block quizzes use the existing Week 8, 9, 10 and 11 quiz forms (Q7 to Q10), opened together.",
+  "open_items": [
+    "Resolved on 4 November 2026: individual, timed, fully auto-graded. Still open: confirm the sitting dates, times and room, and the portal and collector deployment.",
+    "Rehearsal release dates (after Class 4) and the Week 12 sitting slots: proposed, lecturer to confirm. No form window is opened until the lecturer sets one (Test windows row, duration_minutes 180).",
+    "The Week 11 quiz form (Q10) must be replaced in place with replaceWeek11Questions() before the Class 4 sitting. See Block_Assessment_Arrangement_2026-11-02.md.",
+    "Weights need checking against IUEA regulations.",
+    "Grade bands are still a placeholder in gradebook.gs (GRADE_BANDS_VERIFIED is false)."
+  ],
+  "engineering_ml_project": {
+    "what": "INDIVIDUAL, TIMED and fully AUTO-GRADED project. One supervised 3-hour sitting in Google Colab in the Week 12 class slot, entered and submitted like Practical Test 1. One submission with two parts. (Update of 4 November 2026.)",
+    "scope": "Only what was taught this semester, Weeks 1 to 11 (Classes 1 to 4 of the second half included).",
+    "marks": 45,
+    "parts": [
+      {
+        "part": "A",
+        "id": "ML_PROJECT_A",
+        "gradebook_column": "ML Project Part A",
+        "title": "Coded project notebook",
+        "marks": 30,
+        "marking": "Fully automatic: hidden checks on unseen data (24 marks) and automatic process checks (6 marks: test set opened once after the choice, no data leakage, reproducible with the seed, readable charts)."
+      },
+      {
+        "part": "B",
+        "id": "ML_PROJECT_B",
+        "gradebook_column": "ML Project Part B",
+        "title": "Structured decision memo (a form of fields inside the notebook)",
+        "marks": 15,
+        "marking": "Fully automatic: recommended model and decision threshold, validation and test numbers compared with the notebook, three limits and a next step chosen from lists, two short written answers checked by keyword and length rules."
+      }
+    ],
+    "submission_key": "ML_PROJECT",
+    "submission_formats": [
+      "ipynb"
+    ],
+    "hand_in": "One notebook with the memo form inside it, handed in like Practical Test 1: the Submit test cell, then the Google Form, before the personal deadline.",
+    "submission_note": "Uses the Colab test collector key ML_PROJECT (CML3111|ML_PROJECT, CML3112|ML_PROJECT, CML3113|ML_PROJECT) with a Test windows row of duration_minutes=180, not the assignment form. opens_at and closes_at stay null until the lecturer sets them.",
+    "released": {
+      "rule": "Unmarked rehearsal released right after Class 4 (Week 11 content): practice notebook and practice dataset, same structure, no solved walk-through",
+      "dates": {
+        "CML3111": "2026-11-27",
+        "CML3112": "2026-11-24",
+        "CML3113": "2026-11-27"
+      },
+      "status": "proposed, lecturer to confirm"
+    },
+    "due": {
+      "all_cohorts": "2026-12-11T23:59:00+03:00",
+      "text": "SUPERSEDED on 4 November 2026: there is no take-home due date. Placeholder kept only because the registry and tests still read it; the Week 12 sitting window replaces it.",
+      "status": "superseded placeholder (proposed, lecturer to confirm the sitting window)"
+    },
+    "team_or_individual": "individual",
+    "rubric_and_marks_detail": "No rubric and no manual marking. Part A is 30 automatic marks, Part B is 15 automatic marks. The lecturer reviews a short spot-check list; a flag never lowers a mark by itself.",
+    "sitting": {
+      "duration_minutes": 180,
+      "mode": "supervised, individual, timed, auto-graded, Google Colab; personal deadline = the earlier of 3 hours after Start and the class closing time",
+      "slots": {
+        "CML3112": {
+          "date": "2026-12-01",
+          "start": "11:00",
+          "end": "14:00"
+        },
+        "CML3113": {
+          "date": "2026-12-04",
+          "start": "08:00",
+          "end": "11:00"
+        },
+        "CML3111": {
+          "date": "2026-12-04",
+          "start": "11:00",
+          "end": "14:00"
+        }
+      },
+      "timezone": "Africa/Kampala",
+      "data_variants": [
+        "A",
+        "B",
+        "C"
+      ],
+      "status": "proposed, lecturer to confirm"
+    }
+  },
+  "demonstration": {
+    "status": "REMOVED on 3 November 2026",
+    "note": "There is no demo and no demonstration component. The DEMO row in data/assessments.json is retired."
+  },
+  "provisional_mode": {
+    "purpose": "Semester 1 results can be published before the project is marked.",
+    "components_marked_for_provisional": [
+      "quizzes",
+      "assignments",
+      "data_analysis_project",
+      "practical_test_1"
+    ],
+    "provisional_weight_total": 55,
+    "pending_components": [
+      "engineering_ml_project"
+    ],
+    "gradebook_columns": {
+      "project_part_a": "ML Project Part A",
+      "project_part_b": "ML Project Part B",
+      "provisional_text": "Semester 1 provisional",
+      "project_status": "Project",
+      "final": "Final %",
+      "band": "Band"
+    },
+    "provisional_text": "Semester 1 provisional: {x} of 55 marks, {y} percent",
+    "project_status_text": {
+      "pending": "Project: PENDING",
+      "marked": "Project: marked"
+    },
+    "project_is_pending_when": "either project column is blank. A blank is unmarked; a typed 0 is a mark of zero.",
+    "project_is_marked_when": "both ML Project Part A and ML Project Part B hold a number. Enter 0 for a student who submitted nothing once marking is finished.",
+    "while_pending": "Final % and Band are blank. The sheet shows the provisional line and 'Project: PENDING'. A final percentage or grade band is never shown that treats an unmarked project as zero.",
+    "once_marked": "Final % is the full total out of 100: quizzes + assignments + data analysis project + Practical Test 1 + project Part A + Part B. The provisional line is cleared.",
+    "not_pending": "A student with a missing quiz or assignment part still scores zero for it. A blank data analysis project or Practical Test 1 also counts as zero and is listed under Missing. Only the project can be pending.",
+    "x": "marks earned over the four marked components, out of 55 (the weighted points, 15 + 15 + 10 + 15)",
+    "y": "x divided by 55, times 100, rounded half up to two places"
+  }
+}

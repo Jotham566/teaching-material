@@ -150,6 +150,10 @@ var PROP_CLOSE_AT = 'IUEA_CLOSE_AT';
 var QUIZ_MIN_ON_CLOCK = 5;
 var WINDOW_HOURS = 24;
 
+// Quiz weeks that are no longer sat (policy of 2 November 2026): Week 12 = Q11 and Week 13 = Q12.
+// openQuizFor refuses them. retireQ11AndQ12Forms() in block_quiz_sittings_20261102.gs closes the live forms.
+var RETIRED_QUIZ_WEEKS = [12, 13];
+
 // ONE SUBMISSION PER STUDENT.
 //
 // Forms can only enforce this by identity, and the only identity it has is
@@ -258,7 +262,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3112 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -396,7 +400,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3112 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -534,7 +538,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3112 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -672,7 +676,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3112 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -810,7 +814,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3112 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1086,7 +1090,7 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3112 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 7, one of the two quizzes of Block 1. The two forms are sat together in the last 20 minutes of Class 2. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 1 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1224,7 +1228,7 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3112 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 8, one of the two quizzes of Block 1. The two forms are sat together in the last 20 minutes of Class 2. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 1 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1362,7 +1366,7 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3112 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 9, one of the two quizzes of Block 2. The two forms are sat together in the last 20 minutes of Class 4. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 2 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -1499,34 +1503,34 @@ var QUIZ_DATA = {
       {
         "week": 11,
         "number": 10,
-        "title": "CML3112 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "title": "CML3112 \u00b7 Weekly Quiz 10 \u2014 Features and choosing a model",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 10, one of the two quizzes of Block 2. The two forms are sat together in the last 20 minutes of Class 4. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 2 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
             "kind": "interpretation",
-            "title": "Which values are produced?",
-            "help": "load_pct = 40; ambient_c = 25\nload_fraction = load_pct / 100\ninteraction = load_pct * ambient_c",
+            "title": "Which candidate meets both constraints?",
+            "help": "Limits: MAE <= 3 and latency <= 10 ms.\nsimple: MAE 3, latency 2\ncomplex: MAE 1, latency 20",
             "choices": [
               {
-                "text": "0.4 and 65",
+                "text": "Neither",
                 "correct": false
               },
               {
-                "text": "40 and 65",
+                "text": "complex",
                 "correct": false
               },
               {
-                "text": "0.4 and 1000",
+                "text": "simple",
                 "correct": true
               },
               {
-                "text": "4000 and 1.6",
+                "text": "Both",
                 "correct": false
               }
             ],
-            "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
-            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c0.4 and 65\u201d \u2014 An interaction here is a product. A sum would be a different feature.  \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
+            "fbCorrect": "It satisfies both inclusive limits.",
+            "fbWrong": "THE ANSWER: simple. It satisfies both inclusive limits.\n\nWhy the others are wrong. \u201cNeither\u201d \u2014 simple meets the limits, including equality on MAE.  \u201ccomplex\u201d \u2014 Its latency fails the requirement.  \u201cBoth\u201d \u2014 complex fails the latency limit."
           },
           {
             "n": 2,
@@ -1557,28 +1561,28 @@ var QUIZ_DATA = {
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What does this error suggest?",
-            "help": "valid[\"interaction\"]\nKeyError: 'interaction'",
+            "title": "What check prevents this error?",
+            "help": "winner = eligible.iloc[0][\"name\"]\nIndexError: single positional indexer is out-of-bounds",
             "choices": [
               {
-                "text": "Round the validation data",
+                "text": "Delete the latency column",
                 "correct": false
               },
               {
-                "text": "The model has too many rows",
+                "text": "Always pick the original first candidate",
                 "correct": false
               },
               {
-                "text": "Fit on validation targets",
+                "text": "Use iloc[1] instead",
                 "correct": false
               },
               {
-                "text": "The column has not been created under that name in valid",
+                "text": "Check eligible.empty and return None if no rows remain",
                 "correct": true
               }
             ],
-            "fbCorrect": "Apply the same named feature preparation to training and validation.",
-            "fbWrong": "THE ANSWER: The column has not been created under that name in valid. Apply the same named feature preparation to training and validation.\n\nWhy the others are wrong. \u201cRound the validation data\u201d \u2014 Rounding does not create the column.  \u201cThe model has too many rows\u201d \u2014 This error concerns a missing key or label.  \u201cFit on validation targets\u201d \u2014 That leaks evaluation answers."
+            "fbCorrect": "There is no first row in an empty table.",
+            "fbWrong": "THE ANSWER: Check eligible.empty and return None if no rows remain. There is no first row in an empty table.\n\nWhy the others are wrong. \u201cDelete the latency column\u201d \u2014 Removing evidence does not satisfy the constraints.  \u201cAlways pick the original first candidate\u201d \u2014 That can choose an ineligible model.  \u201cUse iloc[1] instead\u201d \u2014 An empty table has no second row either."
           },
           {
             "n": 4,
@@ -1638,7 +1642,7 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3112 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.",
         "questions": [
           {
             "n": 1,
@@ -1770,13 +1774,14 @@ var QUIZ_DATA = {
             "fbCorrect": "The final test should remain independent of repeated choices.",
             "fbWrong": "THE ANSWER: Validation results under a consistent protocol. The final test should remain independent of repeated choices.\n\nWhy the others are wrong. \u201cFinal-test results after every trial\u201d \u2014 Repeated selection on those results uses up the final test.  \u201cThe nicest-looking training plot\u201d \u2014 Appearance does not establish held-out performance.  \u201cThe largest number of parameters\u201d \u2014 Complexity alone does not establish quality."
           }
-        ]
+        ],
+        "retired": true
       },
       {
         "week": 13,
         "number": 12,
         "title": "CML3112 \u00b7 Weekly Quiz 12 \u2014 Regularisation, neighbours and reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.",
         "questions": [
           {
             "n": 1,
@@ -1908,7 +1913,8 @@ var QUIZ_DATA = {
             "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
             "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning sign. It proves nothing.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data."
           }
-        ]
+        ],
+        "retired": true
       }
     ]
   },
@@ -1922,7 +1928,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3113 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2060,7 +2066,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3113 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2198,7 +2204,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3113 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2336,7 +2342,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3113 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2474,7 +2480,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3113 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2750,7 +2756,7 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3113 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 7, one of the two quizzes of Block 1. The two forms are sat together in the last 20 minutes of Class 2. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 1 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -2888,7 +2894,7 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3113 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 8, one of the two quizzes of Block 1. The two forms are sat together in the last 20 minutes of Class 2. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 1 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3026,7 +3032,7 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3113 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 9, one of the two quizzes of Block 2. The two forms are sat together in the last 20 minutes of Class 4. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 2 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3163,34 +3169,34 @@ var QUIZ_DATA = {
       {
         "week": 11,
         "number": 10,
-        "title": "CML3113 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "title": "CML3113 \u00b7 Weekly Quiz 10 \u2014 Features and choosing a model",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 10, one of the two quizzes of Block 2. The two forms are sat together in the last 20 minutes of Class 4. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 2 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
             "kind": "interpretation",
-            "title": "Which values are produced?",
-            "help": "load_pct = 40; ambient_c = 25\nload_fraction = load_pct / 100\ninteraction = load_pct * ambient_c",
+            "title": "Which candidate meets both constraints?",
+            "help": "Limits: MAE <= 3 and latency <= 10 ms.\nsimple: MAE 3, latency 2\ncomplex: MAE 1, latency 20",
             "choices": [
               {
-                "text": "40 and 65",
+                "text": "complex",
                 "correct": false
               },
               {
-                "text": "0.4 and 1000",
+                "text": "simple",
                 "correct": true
               },
               {
-                "text": "4000 and 1.6",
+                "text": "Both",
                 "correct": false
               },
               {
-                "text": "0.4 and 65",
+                "text": "Neither",
                 "correct": false
               }
             ],
-            "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
-            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c4000 and 1.6\u201d \u2014 These use different operations.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product. A sum would be a different feature."
+            "fbCorrect": "It satisfies both inclusive limits.",
+            "fbWrong": "THE ANSWER: simple. It satisfies both inclusive limits.\n\nWhy the others are wrong. \u201ccomplex\u201d \u2014 Its latency fails the requirement.  \u201cBoth\u201d \u2014 complex fails the latency limit.  \u201cNeither\u201d \u2014 simple meets the limits, including equality on MAE."
           },
           {
             "n": 2,
@@ -3221,28 +3227,28 @@ var QUIZ_DATA = {
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What does this error suggest?",
-            "help": "valid[\"interaction\"]\nKeyError: 'interaction'",
+            "title": "What check prevents this error?",
+            "help": "winner = eligible.iloc[0][\"name\"]\nIndexError: single positional indexer is out-of-bounds",
             "choices": [
               {
-                "text": "Round the validation data",
+                "text": "Delete the latency column",
                 "correct": false
               },
               {
-                "text": "The model has too many rows",
+                "text": "Always pick the original first candidate",
                 "correct": false
               },
               {
-                "text": "The column has not been created under that name in valid",
+                "text": "Check eligible.empty and return None if no rows remain",
                 "correct": true
               },
               {
-                "text": "Fit on validation targets",
+                "text": "Use iloc[1] instead",
                 "correct": false
               }
             ],
-            "fbCorrect": "Apply the same named feature preparation to training and validation.",
-            "fbWrong": "THE ANSWER: The column has not been created under that name in valid. Apply the same named feature preparation to training and validation.\n\nWhy the others are wrong. \u201cRound the validation data\u201d \u2014 Rounding does not create the column.  \u201cThe model has too many rows\u201d \u2014 This error concerns a missing key or label.  \u201cFit on validation targets\u201d \u2014 That leaks evaluation answers."
+            "fbCorrect": "There is no first row in an empty table.",
+            "fbWrong": "THE ANSWER: Check eligible.empty and return None if no rows remain. There is no first row in an empty table.\n\nWhy the others are wrong. \u201cDelete the latency column\u201d \u2014 Removing evidence does not satisfy the constraints.  \u201cAlways pick the original first candidate\u201d \u2014 That can choose an ineligible model.  \u201cUse iloc[1] instead\u201d \u2014 An empty table has no second row either."
           },
           {
             "n": 4,
@@ -3302,7 +3308,7 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3113 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.",
         "questions": [
           {
             "n": 1,
@@ -3434,13 +3440,14 @@ var QUIZ_DATA = {
             "fbCorrect": "The final test should remain independent of repeated choices.",
             "fbWrong": "THE ANSWER: Validation results under a consistent protocol. The final test should remain independent of repeated choices.\n\nWhy the others are wrong. \u201cThe nicest-looking training plot\u201d \u2014 Appearance does not establish held-out performance.  \u201cThe largest number of parameters\u201d \u2014 Complexity alone does not establish quality.  \u201cFinal-test results after every trial\u201d \u2014 Repeated selection on those results uses up the final test."
           }
-        ]
+        ],
+        "retired": true
       },
       {
         "week": 13,
         "number": 12,
         "title": "CML3113 \u00b7 Weekly Quiz 12 \u2014 Regularisation, neighbours and reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.",
         "questions": [
           {
             "n": 1,
@@ -3572,7 +3579,8 @@ var QUIZ_DATA = {
             "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
             "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning sign. It proves nothing."
           }
-        ]
+        ],
+        "retired": true
       }
     ]
   },
@@ -3586,7 +3594,7 @@ var QUIZ_DATA = {
         "week": 1,
         "number": 1,
         "title": "CML3111 \u00b7 Weekly Quiz 1 \u2014 What machine learning is",
-        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Nothing here can be answered without reading what it shows you.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3724,7 +3732,7 @@ var QUIZ_DATA = {
         "week": 2,
         "number": 2,
         "title": "CML3111 \u00b7 Weekly Quiz 2 \u2014 Notebooks and version control",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -3862,7 +3870,7 @@ var QUIZ_DATA = {
         "week": 3,
         "number": 3,
         "title": "CML3111 \u00b7 Weekly Quiz 3 \u2014 Python as an engineering calculator",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4000,7 +4008,7 @@ var QUIZ_DATA = {
         "week": 4,
         "number": 4,
         "title": "CML3111 \u00b7 Weekly Quiz 4 \u2014 Collections, loops and files",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4138,7 +4146,7 @@ var QUIZ_DATA = {
         "week": 5,
         "number": 5,
         "title": "CML3111 \u00b7 Weekly Quiz 5 \u2014 pandas, and judging a dataset",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4414,7 +4422,7 @@ var QUIZ_DATA = {
         "week": 8,
         "number": 7,
         "title": "CML3111 \u00b7 Weekly Quiz 7 \u2014 Learning from data: the first model",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 7, one of the two quizzes of Block 1. The two forms are sat together in the last 20 minutes of Class 2. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 1 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4552,7 +4560,7 @@ var QUIZ_DATA = {
         "week": 9,
         "number": 8,
         "title": "CML3111 \u00b7 Weekly Quiz 8 \u2014 Classification",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 8, one of the two quizzes of Block 1. The two forms are sat together in the last 20 minutes of Class 2. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 1 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4690,7 +4698,7 @@ var QUIZ_DATA = {
         "week": 10,
         "number": 9,
         "title": "CML3111 \u00b7 Weekly Quiz 9 \u2014 Can I trust this model?",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 9, one of the two quizzes of Block 2. The two forms are sat together in the last 20 minutes of Class 4. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 2 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
@@ -4827,34 +4835,34 @@ var QUIZ_DATA = {
       {
         "week": 11,
         "number": 10,
-        "title": "CML3111 \u00b7 Weekly Quiz 10 \u2014 Features",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "title": "CML3111 \u00b7 Weekly Quiz 10 \u2014 Features and choosing a model",
+        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 This is quiz 10, one of the two quizzes of Block 2. The two forms are sat together in the last 20 minutes of Class 4. Answer both while the class is still fresh.\n\u2022 Each form stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each. The two Block 2 quizzes together are out of 10 marks and a block always counts. All quizzes together are out of 35 marks and count for 15% of the course.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
         "questions": [
           {
             "n": 1,
             "kind": "interpretation",
-            "title": "Which values are produced?",
-            "help": "load_pct = 40; ambient_c = 25\nload_fraction = load_pct / 100\ninteraction = load_pct * ambient_c",
+            "title": "Which candidate meets both constraints?",
+            "help": "Limits: MAE <= 3 and latency <= 10 ms.\nsimple: MAE 3, latency 2\ncomplex: MAE 1, latency 20",
             "choices": [
               {
-                "text": "0.4 and 1000",
+                "text": "simple",
                 "correct": true
               },
               {
-                "text": "40 and 65",
+                "text": "complex",
                 "correct": false
               },
               {
-                "text": "0.4 and 65",
+                "text": "Neither",
                 "correct": false
               },
               {
-                "text": "4000 and 1.6",
+                "text": "Both",
                 "correct": false
               }
             ],
-            "fbCorrect": "Division converts percent to a fraction; multiplication creates the interaction.",
-            "fbWrong": "THE ANSWER: 0.4 and 1000. Division converts percent to a fraction; multiplication creates the interaction.\n\nWhy the others are wrong. \u201c40 and 65\u201d \u2014 The first needs division and the second multiplication.  \u201c0.4 and 65\u201d \u2014 An interaction here is a product. A sum would be a different feature.  \u201c4000 and 1.6\u201d \u2014 These use different operations."
+            "fbCorrect": "It satisfies both inclusive limits.",
+            "fbWrong": "THE ANSWER: simple. It satisfies both inclusive limits.\n\nWhy the others are wrong. \u201ccomplex\u201d \u2014 Its latency fails the requirement.  \u201cNeither\u201d \u2014 simple meets the limits, including equality on MAE.  \u201cBoth\u201d \u2014 complex fails the latency limit."
           },
           {
             "n": 2,
@@ -4885,28 +4893,28 @@ var QUIZ_DATA = {
           {
             "n": 3,
             "kind": "traceback",
-            "title": "What does this error suggest?",
-            "help": "valid[\"interaction\"]\nKeyError: 'interaction'",
+            "title": "What check prevents this error?",
+            "help": "winner = eligible.iloc[0][\"name\"]\nIndexError: single positional indexer is out-of-bounds",
             "choices": [
               {
-                "text": "Round the validation data",
+                "text": "Delete the latency column",
                 "correct": false
               },
               {
-                "text": "The model has too many rows",
+                "text": "Always pick the original first candidate",
                 "correct": false
               },
               {
-                "text": "The column has not been created under that name in valid",
+                "text": "Check eligible.empty and return None if no rows remain",
                 "correct": true
               },
               {
-                "text": "Fit on validation targets",
+                "text": "Use iloc[1] instead",
                 "correct": false
               }
             ],
-            "fbCorrect": "Apply the same named feature preparation to training and validation.",
-            "fbWrong": "THE ANSWER: The column has not been created under that name in valid. Apply the same named feature preparation to training and validation.\n\nWhy the others are wrong. \u201cRound the validation data\u201d \u2014 Rounding does not create the column.  \u201cThe model has too many rows\u201d \u2014 This error concerns a missing key or label.  \u201cFit on validation targets\u201d \u2014 That leaks evaluation answers."
+            "fbCorrect": "There is no first row in an empty table.",
+            "fbWrong": "THE ANSWER: Check eligible.empty and return None if no rows remain. There is no first row in an empty table.\n\nWhy the others are wrong. \u201cDelete the latency column\u201d \u2014 Removing evidence does not satisfy the constraints.  \u201cAlways pick the original first candidate\u201d \u2014 That can choose an ineligible model.  \u201cUse iloc[1] instead\u201d \u2014 An empty table has no second row either."
           },
           {
             "n": 4,
@@ -4966,7 +4974,7 @@ var QUIZ_DATA = {
         "week": 12,
         "number": 11,
         "title": "CML3111 \u00b7 Weekly Quiz 11 \u2014 Model comparison (integrative)",
-        "intro": "Five questions on the pandas workflow and engineering decisions taught this week. Read each example before choosing one answer.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.",
         "questions": [
           {
             "n": 1,
@@ -5098,13 +5106,14 @@ var QUIZ_DATA = {
             "fbCorrect": "The final test should remain independent of repeated choices.",
             "fbWrong": "THE ANSWER: Validation results under a consistent protocol. The final test should remain independent of repeated choices.\n\nWhy the others are wrong. \u201cFinal-test results after every trial\u201d \u2014 Repeated selection on those results uses up the final test.  \u201cThe largest number of parameters\u201d \u2014 Complexity alone does not establish quality.  \u201cThe nicest-looking training plot\u201d \u2014 Appearance does not establish held-out performance."
           }
-        ]
+        ],
+        "retired": true
       },
       {
         "week": 13,
         "number": 12,
         "title": "CML3111 \u00b7 Weekly Quiz 12 \u2014 Regularisation, neighbours and reproducibility (integrative)",
-        "intro": "Read what each question shows you. None of them can be answered without it.\n\nHOW THIS WORKS\n\u2022 Answer it now, in the 5 minutes on the screen. That is when this is meant to be taken, while the session is still fresh.\n\u2022 The form then stays open for 24 hours and closes itself. That window is there so a dead network or a broken phone does not cost you a mark you had earned. Take it in the room if you can: by Thursday you will have forgotten the session, and the feedback will be worth less to you.\n\u2022 ONE attempt, from your signed-in Google account. You cannot reopen it or change an answer, so read each question once, properly.\n\u2022 The first box asks for your registration number. It is the number printed on your student card, and it is how the mark reaches your record.\n\u2022 Five questions, one mark each, part of the 10% quiz component.\n\u2022 Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count. Missing two costs you nothing, and there are no resits.\n\u2022 When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading.\n\u2022 A question left blank scores the same as one answered wrongly, so answer all five.",
+        "intro": "RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.",
         "questions": [
           {
             "n": 1,
@@ -5236,7 +5245,8 @@ var QUIZ_DATA = {
             "fbCorrect": "Correct, so it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.",
             "fbWrong": "THE ANSWER: The chart may be left over from an earlier session. So it proves nothing about the code as it stands. Saved outputs stay on the page after the code or the inputs change. Restart and Run All, from the supplied files and in the README's order, is the test that the notebook produces its own results.\n\nWhy the others are wrong. \u201cThe chart proves the current code works\u201d \u2014 It may have been saved before the code changed. A chart that will not rebuild is a warning sign. It proves nothing.  \u201cOnly the chart title matters\u201d \u2014 A title cannot make a missing step run. Reproducibility needs executable steps and the data.  \u201cRestarting changes the dataset by itself\u201d \u2014 Restarting clears variables in memory. The usual cause is a step or a file that only existed in the old session."
           }
-        ]
+        ],
+        "retired": true
       }
     ]
   }
@@ -6833,6 +6843,11 @@ function replaceQuestionsForWeek_(week) {
   Logger.log('done: ' + done + ' forms replaced, ' + skipped + ' skipped. Links and QR codes are unchanged.');
 }
 function replaceWeek13Questions() { replaceQuestionsForWeek_(13); }
+/** Class 4 (Week 11 content) form, Q10. Replaces the five questions on the three EXISTING Week 11 forms with the
+ *  current bank (two model-comparison questions moved in from the retired Q11 bank on 2 November 2026) and sets
+ *  the new title and description. Links, QR codes and response sheets stay the same. A form that already has
+ *  responses is skipped. Run it once before the Class 4 sitting, then check each form with auditForm(11, code). */
+function replaceWeek11Questions() { replaceQuestionsForWeek_(11); }
 
 function responseSpreadsheet_(code, fold) {
   var name = 'IUEA ML Quiz Responses \u2014 ' + code;
@@ -6941,6 +6956,7 @@ function clearCloseTriggers_() {
  * column in the response sheet, not the state of the form.
  */
 function openQuizFor(week, code) {
+  if (RETIRED_QUIZ_WEEKS.indexOf(Number(week)) >= 0) { throw new Error('Quiz week ' + week + ' is retired and is not sat this semester.'); }
   if(Number(week)===6 && ['CML3111','CML3112','CML3113'].indexOf(code)>=0){throw new Error('Quiz 6 is waived for practical revision.');}
 
   if (week === undefined || code === undefined) {

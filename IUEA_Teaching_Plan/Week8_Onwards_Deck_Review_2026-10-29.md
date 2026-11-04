@@ -1,5 +1,7 @@
 # Week 8 onwards: deck review and improvement plan
 
+> Superseded by Block_Assessment_Arrangement_2026-11-03.md and second_half/Plan_Weeks_8-12.pdf: the semester ends at Week 12, Weeks 8 to 11 are four classes in second_half/, the project is an individual timed sitting in Week 12, and there is no Practical Test 2, demo or Weeks 13 to 15. Kept as a record.
+
 Reviewed 29 October 2026. Scope: CML3111, CML3112 and CML3113 decks for Weeks 8 to 15, read against what Weeks 1 to 7 actually taught. No deck, notebook or form was changed. Everything below is a finding or a proposal.
 
 (You wrote "Week 5 is progressing to Machine Learning". I have read that as Week 8, the first model-fitting week.)

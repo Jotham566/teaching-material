@@ -87,4 +87,5 @@ def main():
 
 
 if __name__ == "__main__":
+    raise SystemExit("SUPERSEDED on 2 November 2026. Running this would overwrite the new arrangement with the 30 October one. Use build_block_packages_20261102.py instead.")
     main()

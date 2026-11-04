@@ -1,3 +1,5 @@
+> **Not used:** Practical Test 2 was removed on 2 November 2026. Kept for the record.
+
 # CML3113 TEST2 — Colab practical test
 
 **Submit one notebook snapshot:** your completed `TEST2_student.ipynb`. Total: **100 marks**. Individual work.

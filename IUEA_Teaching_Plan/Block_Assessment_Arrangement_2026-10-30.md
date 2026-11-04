@@ -1,3 +1,5 @@
+> **SUPERSEDED on 2 November 2026** by [Block_Assessment_Arrangement_2026-11-02.md](Block_Assessment_Arrangement_2026-11-02.md). The semester now ends at Week 12, Practical Test 2 is dropped and the blocks are Classes 1 and 2 and Classes 3 and 4. Everything below is the 30 October arrangement, kept for the record. Do not follow it.
+
 # Block assessment arrangement from Week 8
 
 Source of truth: `data/assessment_blocks_20261030.json`. This note explains it in plain language and lists what you still have to do by hand.

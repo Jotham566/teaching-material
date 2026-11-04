@@ -1,8 +1,10 @@
+> **SUPERSEDED (4 November 2026).** The Engineering ML project is now an individual, timed, auto-graded 3-hour sitting in Week 12 (Fri 4 Dec 2026, 08:00 to 11:00 Kampala, proposed, lecturer to confirm), worth 45: Part A coded notebook 30 and Part B decision memo 15, entered and submitted like Practical Test 1. There is no report, no DOCX or PDF upload, no team and no demo. The current brief is `second_half/Project/Student_Brief_CML3113.pdf`. The take-home text below is the old bank and is not used.
+
 # CML3113 ML_PROJECT — Engineering ML project
 
-**Submit:** TWO files together: your completed notebook (.ipynb) AND one complete report (DOCX or selectable-text PDF).
+**Submit:** one completed notebook (.ipynb) with the decision memo form inside it, through the Submit test cell and form of the timed portal.
 
-**Deadline:** 18 December 2026, 08:00 Kampala. The live form shows any later change.
+**Sitting:** Fri 4 Dec 2026, 08:00 to 11:00 Kampala (proposed, lecturer to confirm). The old December deadline no longer applies.
 
 ## 1. Start
 
@@ -15,9 +17,7 @@ In Colab: File → Open notebook → Upload. Add any supplied CSV files through 
 1. Set STUDENT_ID to your own Student Registration Number, keeping quotes and slashes. Keep COHORT="CML3113".
 2. Answer each numbered task immediately below its prompt. Keep the required names exactly as shown.
 
-3. Use the **Report checklist** in the notebook to write one report. Include all listed evidence, captions, repository URL and run instructions. A repository link alone is not the report.
-
-Include the two-page engineering brief, contribution log and AI-use declaration.
+3. Part B is the decision memo form inside the notebook. There is no separate report.
 
 ## 3. Check and save
 
@@ -25,13 +25,7 @@ Restart and run all cells from the top. Fix errors, then download/save the compl
 
 ## 4. Hand in
 
-Open your cohort’s form below. Enter your Student Registration Number. Choose **Add file → Upload**, attach the required file(s), then press **Submit**. Keep the confirmation.
-
-For individual work, leave Team ID blank. Each file must be at most 10 MB. A replacement before the deadline must contain the complete file set again.
-
-**Do not submit:** the ZIP, guided_practice.ipynb, raw CSVs or helper scripts.
-
-**Submission link:** https://docs.google.com/forms/d/e/1FAIpQLSe_nQBvitfOInzsUcXkNH9V5Ykc95ymXHHeujjqHXX2lNzgpg/viewform
+Use the Submit test cell in the notebook and the generated form, as in Practical Test 1, before your personal deadline. Keep the confirmation.
 
 ## Help only if needed
 

@@ -1,27 +1,38 @@
 """Build a private, repeatable CA ledger from source receipts and graded results.
 Never execute uploaded code here. The existing isolated grader supplies marks.
 """
-import argparse,collections,csv,hashlib,json,re
+import argparse,collections,csv,hashlib,json,math,re
 from datetime import datetime,timezone
 from pathlib import Path
 
 COHORTS=('CML3111','CML3112','CML3113')
-QUIZ_WEEKS=(1,2,3,4,5,6,8,9,10,11,12,13)
+QUIZ_WEEKS=(1,2,3,4,5,6,8,9,10,11)    # Weeks 12 and 13 (Q11, Q12) are retired and never sat
+RETIRED_QUIZ_WEEKS=(12,13)
 ASSIGNMENT_WEEKS=(1,2,3,4,5,6,8,9,10,11,12)
 
-# Block arrangement from Week 8 (data/assessment_blocks_20261030.json is the source of truth; a test keeps this in step).
+# Block arrangement of 2 November 2026 (unchanged on 3 November; data/assessment_blocks_20261103.json is the source of truth and a test keeps this in step).
 # Receipts are named by teaching week here: Q8 is the Week 8 quiz (called Q7 in the gradebook columns) and W08 is A7.
 # Weeks 1 to 6 stay weekly and the best WEEKLY_BEST of the assigned weeks count. Week 6 is waived for every cohort.
 # A block adds the marks of its parts, is never dropped, and a part that was not submitted scores zero.
+# Block 1 = Classes 1 and 2: quizzes of Weeks 8 and 9 (Q7, Q8; 10 marks), assignments A7 and A8 (40 marks).
+# Block 2 = Classes 3 and 4: quizzes of Weeks 10 and 11 (Q9, Q10; 10 marks), assignments A9, A10, A11 (60 marks).
+# Quizzes are out of 3 x 5 + 10 + 10 = 35 and assignments out of 3 x 20 + 40 + 60 = 160 when Week 6 is waived.
 WEEKLY_WEEKS=(1,2,3,4,5,6)
 WAIVED_WEEKS=(6,)
 WEEKLY_BEST=4  # of the six weekly items; one fewer for each waived week
 QUIZ_MAX=5
 ASSIGNMENT_MAX=20
-COURSEWORK_WEIGHT=10  # percent of the course, for quizzes and for assignments alike
+# Decision of 3 November 2026 (data/assessment_blocks_20261103.json is the source of truth; a test keeps this in step): no demo, no Practical Test 2.
+# The Engineering ML project is an individual, timed, fully auto-graded Colab sitting (Week 12) like Practical Test 1: Part A coded notebook /30 + Part B decision memo form /15.
+COURSE_WEIGHTS=dict(quizzes=15,assignments=15,data_analysis_project=10,practical_test_1=15,engineering_ml_project=45)  # sums to 100
+PROJECT_PARTS=(('A',30),('B',15))  # (part, maximum); the project counts only when BOTH parts are marked
+PROJECT_MAX=sum(m for _,m in PROJECT_PARTS)
+PROVISIONAL_KEYS=('quizzes','assignments','data_analysis_project','practical_test_1')  # marked before the project
+PROVISIONAL_OUT_OF=sum(COURSE_WEIGHTS[k] for k in PROVISIONAL_KEYS)  # 55
+COURSEWORK_WEIGHT=COURSE_WEIGHTS['quizzes']  # percent of the course, for quizzes and for assignments alike (both 15)
 BLOCKS=dict(
- quizzes=(('Block 1',('Q8','Q9','Q10')),('Block 2',('Q11','Q12','Q13'))),
- assignments=(('Block 1',('W08','W09','W10')),('Block 2',('W11','W12'))))
+ quizzes=(('Block 1',('Q8','Q9')),('Block 2',('Q10','Q11'))),
+ assignments=(('Block 1',('W08','W09')),('Block 2',('W10','W11','W12'))))
 
 def norm(v):
  """Compare formatting only: retain every letter, digit, slash and hyphen."""
@@ -138,7 +149,7 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
    if override:
     if not override.get('evidence'):raise ValueError('Timing correction requires evidence')
     timing_status=override['status']
-   append(dict(cohort=cohort,assessment=assessment,student_id=sid,submitted_student_id=field(f,['registration','student id','student_id']),email=email,full_name=field(f,['full name','student name']),response_id=row['response_id'],submitted_at=row['submitted_at'],timing_status=timing_status,status='AWAITING_GRADING',score=None,maximum=20,file_ids=row['file_ids'],source=p.name))
+   append(dict(cohort=cohort,assessment=assessment,student_id=sid,submitted_student_id=field(f,['registration','student id','student_id']),email=email,full_name=field(f,['full name','student name']),response_id=row['response_id'],submitted_at=row['submitted_at'],timing_status=timing_status,status='AWAITING_GRADING',score=None,maximum=(PROJECT_MAX if assessment=='ML_PROJECT' else 20),file_ids=row['file_ids'],source=p.name))
  for qp in sorted(list(source.glob('*_quiz.json'))+([source/'quizzes.json'] if (source/'quizzes.json').exists() else [])):
   data=json.loads(qp.read_text());sources.append(dict(file=qp.name,sha256=digest(qp),exported_at=data['exported_at']))
   for q in data['quizzes']:
@@ -159,9 +170,28 @@ def build(source,results=None,timing=None,test_ledgers=None,resolve_identities=T
    r=index[g['response_id']]
    if any(g[k]!=r[k] for k in ('cohort','assessment','student_id')):raise ValueError('Mark identity mismatch')
    value=g.get('score')
+   if g.get('part_scores') is not None:
+    # Engineering ML project: Part A (/30) and Part B (/15). Both marked -> GRADED and the total is A+B; one marked -> PART_MARKED.
+    if r['assessment']!='ML_PROJECT':raise ValueError('Part scores belong to the ML project only')
+    parts=g['part_scores']
+    if not isinstance(parts,dict) or not parts or set(parts)-{p for p,_ in PROJECT_PARTS}:raise ValueError('Part scores must be a dict of A and/or B')
+    for p,top in PROJECT_PARTS:
+     v=parts.get(p)
+     if v is not None and (isinstance(v,bool) or not isinstance(v,(int,float)) or not 0<=v<=top):raise ValueError('Project part mark out of range')
+    full=all(parts.get(p) is not None for p,_ in PROJECT_PARTS)
+    if g['status']=='GRADED' and not full:raise ValueError('A completed project needs both parts')
+    if g['status']=='PART_MARKED' and full:raise ValueError('Both parts marked: status must be GRADED')
+    if g['status'] not in ('GRADED','PART_MARKED'):raise ValueError('Part scores need status GRADED or PART_MARKED')
+    if full:
+     total=sum(parts[p] for p,_ in PROJECT_PARTS)
+     if value is not None and abs(value-total)>1e-9:raise ValueError('Project total must equal Part A + Part B')
+     value=total;g=dict(g,score=total)
+    elif value is not None:raise ValueError('Total must be blank until both project parts are marked')
+    r['part_scores']={p:parts.get(p) for p,_ in PROJECT_PARTS}
+   elif g['status']=='PART_MARKED':raise ValueError('PART_MARKED needs part_scores')
    if g['status']=='GRADED' and value is None:raise ValueError('Completed mark must be numeric')
    if value is not None and (isinstance(value,bool) or not isinstance(value,(int,float)) or not 0<=value<=r['maximum']):raise ValueError('Mark out of range')
-   if g['status']!='GRADED' and value is not None:raise ValueError('Unresolved mark must be blank')
+   if g['status'] not in ('GRADED','PART_MARKED') and value is not None:raise ValueError('Unresolved mark must be blank')
    if value is not None or g.get('code_score') is not None:
     manifest=json.loads((source/r['source']).read_text())
     hashes={f['id']:f['sha256'] for f in manifest['files'] if f['id'] in r['file_ids']}
@@ -223,11 +253,15 @@ def finalize(attempts,sources,extra_conflicts=(),supported_accounts=(),registrat
  for s in students.values():s['email']='; '.join(sorted(s.pop('emails')))
  return dict(updated_at=datetime.now(timezone.utc).isoformat(),students=sorted(students.values(),key=lambda s:(s['cohort'],s['student_id'])),current=current,attempts=attempts,sources=sources)
 
+def round2(x):
+ """Round to two places, halves upward, exactly as Math.round(x*100)/100 does in gradebook.gs (Python's round() goes to even)."""
+ return math.floor(x*100+0.5)/100
+
 def _best_weekly(marks,ids,best):
  """Sum of the best `best` marks among the weekly ids; an item not submitted scores zero."""
  return sum(sorted((marks.get(i,0) for i in ids),reverse=True)[:best])
 
-def coursework_totals(current,waived_weeks=WAIVED_WEEKS):
+def coursework_totals(current,waived_weeks=WAIVED_WEEKS,extra_students=()):
  """Quiz and assignment totals under the block arrangement, one row per (cohort, student).
 
  `current` is the list that build() returns under 'current'. Only GRADED receipts add marks.
@@ -237,6 +271,7 @@ def coursework_totals(current,waived_weeks=WAIVED_WEEKS):
  for r in current:
   if r['status']=='GRADED' and r['score'] is not None and r['student_id']:
    marks[(r['cohort'],r['student_id'])][r['assessment']]=r['score']
+ for k in extra_students:marks[tuple(k)]
  weeks=[w for w in WEEKLY_WEEKS if w not in waived_weeks];best=WEEKLY_BEST-(len(WEEKLY_WEEKS)-len(weeks))
  spec=dict(quizzes=('Q%d',QUIZ_MAX),assignments=('W%02d',ASSIGNMENT_MAX))
  out=[]
@@ -247,13 +282,83 @@ def coursework_totals(current,waived_weeks=WAIVED_WEEKS):
    for label,ids in BLOCKS[part]:
     got=sum(m.get(i,0) for i in ids);earned+=got;available+=len(ids)*top
     detail.append(dict(block=label,earned=got,available=len(ids)*top,parts_submitted=sum(i in m for i in ids)))
-   row[part]=dict(earned=earned,available=available,weighted=round(earned/available*COURSEWORK_WEIGHT,2),blocks=detail)
+   row[part]=dict(earned=earned,available=available,weighted=round2(earned/available*COURSEWORK_WEIGHT),blocks=detail)
   out.append(row)
  return out
 
+def _weighted(mark,top,weight):
+ """A mark out of `top` as points of the course; a missing mark scores zero. Rounded like gradebook.gs."""
+ return 0 if mark is None else round2(mark/top*weight)
+
+def semester_totals(current,students=(),waived_weeks=WAIVED_WEEKS):
+ """Semester 1 totals, one row per (cohort, student), with the same rules as gradebook.gs.
+
+ Provisional mode: until BOTH project parts are marked, `final` is None, `project_status` is 'Project: PENDING' and the row carries
+ `provisional` = 'Semester 1 provisional: x of 55 marks, y percent' over the four components marked before the project (quizzes,
+ assignments, data analysis project, Practical Test 1). An unmarked project is never counted as zero. Once both parts are marked the
+ row carries the full total out of 100. A missing quiz or assignment part, data analysis project or Test 1 still scores zero.
+ `current` is build()['current'];
+ `students` adds (cohort, student_id) pairs that have no receipts at all (they score zero)."""
+ marks=collections.defaultdict(dict);parts=collections.defaultdict(dict)
+ for r in current:
+  if not r['student_id']:continue
+  k=(r['cohort'],r['student_id'])
+  if r['status']=='GRADED' and r['score'] is not None and r['assessment'] in ('DA_PROJECT','TEST1'):marks[k][r['assessment']]=r['score']
+  if r['assessment']=='ML_PROJECT' and r['status'] in ('GRADED','PART_MARKED') and r.get('part_scores'):
+   for p,_ in PROJECT_PARTS:
+    if r['part_scores'].get(p) is not None:parts[k][p]=r['part_scores'][p]
+ keys=sorted({(r['cohort'],r['student_id']) for r in current if r['student_id']}|set(marks)|set(parts)|{(c,s) for c,s in students})
+ base={(r['cohort'],r['student_id']):r for r in coursework_totals(current,waived_weeks,keys)}
+ out=[]
+ for k in keys:
+  cohort,sid=k;cw=base[k]
+  q,a=cw['quizzes'],cw['assignments']
+  da=marks[k].get('DA_PROJECT');t1=marks[k].get('TEST1')
+  daw=_weighted(da,100,COURSE_WEIGHTS['data_analysis_project']);t1w=_weighted(t1,100,COURSE_WEIGHTS['practical_test_1'])
+  pa,pb=parts[k].get('A'),parts[k].get('B');marked=pa is not None and pb is not None
+  prw=round2((pa+pb)/PROJECT_MAX*COURSE_WEIGHTS['engineering_ml_project']) if marked else 0
+  pm=round2(q['weighted']+a['weighted']+daw+t1w);pp=round2(pm/PROVISIONAL_OUT_OF*100)
+  missing=[]
+  if da is None:missing.append('Data Analysis Project')
+  if t1 is None:missing.append('Practical Test 1')
+  for part,label in (('quizzes','quiz'),('assignments','assignment')):
+   for b in (cw[part]['blocks'] or []):
+    if b['parts_submitted']==0:missing.append(f"{b['block']} {label}")
+  out.append(dict(cohort=cohort,student_id=sid,quizzes=q,assignments=a,
+   data_analysis_project=dict(mark=da,weighted=daw),practical_test_1=dict(mark=t1,weighted=t1w),
+   project=dict(part_a=pa,part_b=pb,marked=marked,pending=not marked,weighted=prw),
+   provisional=dict(marks=pm,out_of=PROVISIONAL_OUT_OF,percent=pp,text=f"Semester 1 provisional: {pm:.2f} of {PROVISIONAL_OUT_OF} marks, {pp:.2f} percent"),
+   final=round2(pm+prw) if marked else None,
+   project_status='Project: marked' if marked else 'Project: PENDING',missing=missing))
+ return out
+
+TOTALS_COLUMNS=('cohort','student_id','quizzes_earned','quizzes_out_of','quizzes_weighted','assignments_earned','assignments_out_of','assignments_weighted',
+ 'data_analysis_project_weighted','practical_test_1_weighted','provisional_marks','provisional_out_of','provisional_percent','project_part_a','project_part_b',
+ 'project_status','final_percent','missing')
+def write_totals_csv(rows,path):
+ """Private working file for the lecturer. While the project is pending final_percent is blank, never zero."""
+ with open(path,'w',newline='',encoding='utf-8') as f:
+  w=csv.writer(f);w.writerow(TOTALS_COLUMNS)
+  for r in rows:
+   w.writerow([r['cohort'],r['student_id'],r['quizzes']['earned'],r['quizzes']['available'],r['quizzes']['weighted'],r['assignments']['earned'],r['assignments']['available'],r['assignments']['weighted'],
+    r['data_analysis_project']['weighted'],r['practical_test_1']['weighted'],r['provisional']['marks'],r['provisional']['out_of'],r['provisional']['percent'],
+    '' if r['project']['part_a'] is None else r['project']['part_a'],'' if r['project']['part_b'] is None else r['project']['part_b'],
+    r['project_status'],'' if r['final'] is None else r['final'],'; '.join(r['missing'])])
+
 def main():
- ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source',required=True);ap.add_argument('--results');ap.add_argument('--timing');ap.add_argument('--out',required=True);ap.add_argument('--test-ledger',action='append',default=[]);a=ap.parse_args()
- data=build(a.source,a.results,json.loads(Path(a.timing).read_text()) if a.timing else None,a.test_ledger)
- p=Path(a.out);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(data,indent=2)+'\n')
+ ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--source');ap.add_argument('--results');ap.add_argument('--timing');ap.add_argument('--out');ap.add_argument('--test-ledger',action='append',default=[])
+ ap.add_argument('--totals-out',help='also write a CSV of Semester 1 totals: provisional out of 55 until the project is marked, then the full total')
+ ap.add_argument('--from-ledger',help='skip the rebuild: read an existing ledger.json and write only the --totals-out CSV');a=ap.parse_args()
+ if a.from_ledger:
+  if not a.totals_out:ap.error('--from-ledger needs --totals-out')
+  data=json.loads(Path(a.from_ledger).read_text())
+ else:
+  if not a.source or not a.out:ap.error('--source and --out are required unless --from-ledger is used')
+  data=build(a.source,a.results,json.loads(Path(a.timing).read_text()) if a.timing else None,a.test_ledger)
+  p=Path(a.out);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(data,indent=2)+'\n')
+ if a.totals_out:
+  t=Path(a.totals_out);t.parent.mkdir(parents=True,exist_ok=True)
+  write_totals_csv(semester_totals(data['current'],[(s['cohort'],s['student_id']) for s in data['students']]),t)
  print(json.dumps(dict(students=len(data['students']),attempts=len(data['attempts']),current=len(data['current']),statuses=dict(collections.Counter(r['status'] for r in data['current'])))))
 if __name__=='__main__':main()
+# SEMESTER_TOTALS_20261103: patched 3 November 2026

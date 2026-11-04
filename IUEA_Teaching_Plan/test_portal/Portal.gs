@@ -4,9 +4,11 @@
  */
 var PORTAL_BOOK_ID = '1BveqLGvv-6C-00TMbUF0qti6VoEnAcRX9K1s9eja8uM';
 var PORTAL_ALLOCATION_HEADERS = ['assessment_key','registration_normalized','email','allocation_code','variant','created_at','full_name','started_at','personal_deadline','notebook_id','window_opens_at','working_mode'];
+var PORTAL_TEST2_MESSAGE = 'Practical Test 2 was withdrawn and replaced by the Engineering ML final project. Follow your lecturer’s project instructions.';
 function doGet(e) {
  var key=String((e&&e.parameter&&e.parameter.test)||'');
- if(!/^(CML3111|CML3112|CML3113)\|TEST[12]$/.test(key))return HtmlService.createHtmlOutput('Use the test link or QR code supplied by your lecturer.');
+ if(/^(CML3111|CML3112|CML3113)\|TEST2$/.test(key))return HtmlService.createHtmlOutput(PORTAL_TEST2_MESSAGE);
+ if(!/^(CML3111|CML3112|CML3113)\|TEST1$/.test(key))return HtmlService.createHtmlOutput('Use the Test 1 link supplied by your lecturer.');
  var t=HtmlService.createTemplateFromFile('Index');t.testKey=key;
  return t.evaluate().setTitle(key.replace('|',' ')+' test files').addMetaTag('viewport','width=device-width, initial-scale=1');
 }
@@ -35,7 +37,8 @@ function portalAssertNotSubmitted_(book,key,email,registration) {
 }
 function requestTestFiles(input) {
  input=input||{};var key=String(input.test||'');
- if(!/^(CML3111|CML3112|CML3113)\|TEST[12]$/.test(key))throw Error('Use your lecturer’s test link.');
+ if(/^(CML3111|CML3112|CML3113)\|TEST2$/.test(key))throw Error(PORTAL_TEST2_MESSAGE);
+ if(!/^(CML3111|CML3112|CML3113)\|TEST1$/.test(key))throw Error('Use the Test 1 link supplied by your lecturer.');
  var name=portalIdentity_(input.name,'full name',160),email=portalIdentity_(input.email,'Google-account email',254).toLowerCase(),reg=portalIdentity_(input.registration,'Student ID/ Registration Number',160);
  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw Error('Enter the email of the Google account you will use in Colab and the submission form.');
  var normalized=reg.toUpperCase(),book=SpreadsheetApp.openById(PORTAL_BOOK_ID),w=portalWindow_(book,key);

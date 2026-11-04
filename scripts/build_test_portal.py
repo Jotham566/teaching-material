@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 base=ROOT/'IUEA_Teaching_Plan'
 packets={}
-for exam in ['TEST1','TEST2']:
+for exam in ['TEST1']:
  for cohort in ['CML3111','CML3112','CML3113']:
   for variant in 'ABC':
    folder=base/'assessment_banks'/exam/cohort/variant

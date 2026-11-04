@@ -71,6 +71,32 @@ COHORTS = {
 }
 
 
+# Block quiz sittings from the 2 November 2026 policy. Week 8 and 9 forms are Q7 and Q8 (Block 1, Class 2);
+# Week 10 and 11 forms are Q9 and Q10 (Block 2, Class 4). Weeks 12 and 13 (Q11, Q12) are retired.
+BLOCK_OF_WEEK = {8: (1, 2, "Q7"), 9: (1, 2, "Q8"), 10: (2, 4, "Q9"), 11: (2, 4, "Q10")}
+RETIRED_INTRO = ("RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the "
+                 "two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.")
+
+
+def block_intro(topic_line, wk):
+    block, cls, label = BLOCK_OF_WEEK[wk]
+    return (topic_line
+            + "\n\nHOW THIS WORKS"
+            + f"\n• This is quiz {label[1:]}, one of the two quizzes of Block {block}. The two forms are sat together "
+              f"in the last 20 minutes of Class {cls}. Answer both while the class is still fresh."
+            + f"\n• Each form stays open for {WINDOW_H} hours and closes itself. That window is there so a dead network "
+              "or a broken phone does not cost you a mark you had earned. Take it in the room if you can."
+            + "\n• ONE attempt, from your signed-in Google account. "
+              "You cannot reopen it or change an answer, so read each question once, properly."
+            + "\n• The first box asks for your registration number. It is the number printed on your student card, "
+              "and it is how the mark reaches your record."
+            + f"\n• Five questions, one mark each. The two Block {block} quizzes together are out of 10 marks and a block always counts. "
+              "All quizzes together are out of 35 marks and count for 15% of the course."
+            + "\n• When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. "
+              "Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading."
+            + "\n• A question left blank scores the same as one answered wrongly, so answer all five.")
+
+
 def build_payload():
     """Everything the Apps Script needs, as plain JSON-able data."""
     out = {}
@@ -110,8 +136,14 @@ def build_payload():
                 + "\n• A question left blank scores the same as one "
                   "answered wrongly, so answer all five.")
             if code in ('CML3111','CML3112','CML3113'):
-                intro=intro.replace('worth 1% of your final mark.', 'part of the 10% quiz component.').replace('Your best ten of twelve quizzes count.', 'Quiz 6 is not assigned. Your best nine of eleven assigned quizzes count.')
+                # Policy of 2 November 2026 (data/assessment_blocks_20261102.json): Weeks 1 to 5 weekly, best 3 of 5,
+                # Week 6 waived; two block sittings from Week 8; quizzes out of 35 marks and 15% of the course.
+                intro=intro.replace('Five questions, one mark each, worth 1% of your final mark.', 'Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.')
+                intro=intro.replace('Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.', 'Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.')
+                assert 'best ten of twelve' not in intro and 'worth 1%' not in intro, 'quiz intro wording was not updated'
                 if wk==6:intro='NOT ASSIGNED: Quiz 6 is waived for practical revision. No submission or mark is required.'
+                if wk in BLOCK_OF_WEEK:intro=block_intro(q['intro'],wk)
+                if q.get('retired'):intro=RETIRED_INTRO
             entry = {
                 "week": wk,
                 "number": QB.QUIZ_NUMBER[wk],
@@ -119,6 +151,8 @@ def build_payload():
                 "intro": intro,
                 "questions": [],
             }
+            if q.get("retired"):
+                entry["retired"] = True
             if not q["q"]:
                 # Not yet authored. Create the form anyway so the mechanism can
                 # be tested, with one honest placeholder question.
@@ -323,6 +357,10 @@ var PROP_CLOSE_AT = 'IUEA_CLOSE_AT';
 // It is not an invitation to do it on Thursday.
 var QUIZ_MIN_ON_CLOCK = 5;
 var WINDOW_HOURS = 24;
+
+// Quiz weeks that are no longer sat (policy of 2 November 2026): Week 12 = Q11 and Week 13 = Q12.
+// openQuizFor refuses them. retireQ11AndQ12Forms() in block_quiz_sittings_20261102.gs closes the live forms.
+var RETIRED_QUIZ_WEEKS = [12, 13];
 
 // ONE SUBMISSION PER STUDENT.
 //
@@ -2014,6 +2052,11 @@ function replaceQuestionsForWeek_(week) {
   Logger.log('done: ' + done + ' forms replaced, ' + skipped + ' skipped. Links and QR codes are unchanged.');
 }
 function replaceWeek13Questions() { replaceQuestionsForWeek_(13); }
+/** Class 4 (Week 11 content) form, Q10. Replaces the five questions on the three EXISTING Week 11 forms with the
+ *  current bank (two model-comparison questions moved in from the retired Q11 bank on 2 November 2026) and sets
+ *  the new title and description. Links, QR codes and response sheets stay the same. A form that already has
+ *  responses is skipped. Run it once before the Class 4 sitting, then check each form with auditForm(11, code). */
+function replaceWeek11Questions() { replaceQuestionsForWeek_(11); }
 
 function responseSpreadsheet_(code, fold) {
   var name = 'IUEA ML Quiz Responses \u2014 ' + code;
@@ -2122,6 +2165,7 @@ function clearCloseTriggers_() {
  * column in the response sheet, not the state of the form.
  */
 function openQuizFor(week, code) {
+  if (RETIRED_QUIZ_WEEKS.indexOf(Number(week)) >= 0) { throw new Error('Quiz week ' + week + ' is retired and is not sat this semester.'); }
   if(Number(week)===6 && ['CML3111','CML3112','CML3113'].indexOf(code)>=0){throw new Error('Quiz 6 is waived for practical revision.');}
 
   if (week === undefined || code === undefined) {

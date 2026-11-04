@@ -1,5 +1,7 @@
 # Test revision materials to share in advance
 
+> **4 November 2026:** Practical Test 2 was removed, so the Test 2 revision materials below are not used and must not be shared. The Test 1 materials are unchanged. The Week 12 project has its own unmarked rehearsal in `../second_half/Project/Rehearsal/`.
+
 Latest Test 2 revision: 30 October 2026. Test 2 now covers Weeks 8 to 13 (eight coding tasks and six interpretation choices). Use the current 78-slide Week 14 decks, which add a revision section for classification and cost, cross-validation by group, feature ablation, model selection, and ridge with nearest neighbours. The slides are exported with LibreOffice; replace earlier copies when sharing. The practice CSV is unchanged.
 
 Latest Test 1 revision: 19 October 2026. Use the current 68-slide Week 7 decks. They now include returned records, summary dictionaries, Figure objects, ten-bin histograms, findings with units, and interpretation limits. Replace earlier copies when sharing. The matching practice CSV filenames and values are unchanged.
@@ -11,11 +13,11 @@ Students create a blank Colab notebook, upload the CSV and follow the deck in or
 | Programme | Test week | Slides | Practice CSV | Optional bundle |
 |---|---|---|---|---|
 | CML3111 | Week 7 / Test 1 | [PDF](CML3111/Test1/CML3111_Week07_Engineering.pdf) | [CSV](CML3111/Test1/CML3111_Test1_practice.csv) | [ZIP](CML3111/Test1/CML3111_Test1_revision.zip) |
-| CML3111 | Week 14 / Test 2 | [PDF](CML3111/Test2/CML3111_Week14_Engineering.pdf) | [CSV](CML3111/Test2/CML3111_Test2_practice.csv) | [ZIP](CML3111/Test2/CML3111_Test2_revision.zip) |
+| CML3111 | Week 14 / Test 2 (not used) | [PDF](CML3111/Test2/CML3111_Week14_Engineering.pdf) | [CSV](CML3111/Test2/CML3111_Test2_practice.csv) | [ZIP](CML3111/Test2/CML3111_Test2_revision.zip) |
 | CML3112 | Week 7 / Test 1 | [PDF](CML3112/Test1/CML3112_Week07_Design_Infrastructure.pdf) | [CSV](CML3112/Test1/CML3112_Test1_practice.csv) | [ZIP](CML3112/Test1/CML3112_Test1_revision.zip) |
-| CML3112 | Week 14 / Test 2 | [PDF](CML3112/Test2/CML3112_Week14_Design_Infrastructure.pdf) | [CSV](CML3112/Test2/CML3112_Test2_practice.csv) | [ZIP](CML3112/Test2/CML3112_Test2_revision.zip) |
+| CML3112 | Week 14 / Test 2 (not used) | [PDF](CML3112/Test2/CML3112_Week14_Design_Infrastructure.pdf) | [CSV](CML3112/Test2/CML3112_Test2_practice.csv) | [ZIP](CML3112/Test2/CML3112_Test2_revision.zip) |
 | CML3113 | Week 7 / Test 1 | [PDF](CML3113/Test1/CML3113_Week07_Mining_Petroleum.pdf) | [CSV](CML3113/Test1/CML3113_Test1_practice.csv) | [ZIP](CML3113/Test1/CML3113_Test1_revision.zip) |
-| CML3113 | Week 14 / Test 2 | [PDF](CML3113/Test2/CML3113_Week14_Mining_Petroleum.pdf) | [CSV](CML3113/Test2/CML3113_Test2_practice.csv) | [ZIP](CML3113/Test2/CML3113_Test2_revision.zip) |
+| CML3113 | Week 14 / Test 2 (not used) | [PDF](CML3113/Test2/CML3113_Week14_Mining_Petroleum.pdf) | [CSV](CML3113/Test2/CML3113_Test2_practice.csv) | [ZIP](CML3113/Test2/CML3113_Test2_revision.zip) |
 
 Suggested message:
 

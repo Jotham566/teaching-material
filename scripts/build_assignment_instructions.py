@@ -1,3 +1,4 @@
+# NOTE (4 November 2026): Regenerates student_guides, the briefs JSON and the instruction index from assessment_registry.records(), which holds the pre-block schedule (Test 2, demo, Weeks 13 to 15, old project). Running it undoes the 2 to 4 November 2026 changes. Edit the guides directly or use scripts/patch_data_grader_20261104.py.
 """Build student workflow instructions without changing questions or grading code."""
 from pathlib import Path
 import json, sys

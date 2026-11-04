@@ -10,7 +10,11 @@ Updated 15 September 2026. Times are Kampala (UTC+03:00). This is a lecturer che
 
 **After the completed CML3112 Week 2 class:** teach from the matching updated [PowerPoint](decks/README.md) and use [the lecturer guide](Beginner_Lecturer_Guide.md). This applies to CML3111/CML3113 from Week 2 and CML3112 from Week 3. Presenter View contains the explanation prompts. The earlier “today” section below records the completed CML3112 Week 2 class. The final slides contain the cohort assignment and quiz links.
 
-## Current teaching position — 29 September
+## Current teaching position: 4 November 2026
+
+Weeks 1 to 7 are done. The semester ends at Week 12. Weeks 8 to 11 are four classes (Class 1 to Class 4) taught from `second_half/`: CML3112 on Tue 3, 10, 17 and 24 Nov; CML3113 and CML3111 on Fri 6, 13, 20 and 27 Nov (they had the Week 8 theory on Fri 30 Oct without the lab, so their Class 1 is a recap and the lab). Week 12 is the individual timed project sitting (proposed: CML3112 Tue 1 Dec 11:00 to 14:00; CML3113 Fri 4 Dec 08:00 to 11:00; CML3111 Fri 4 Dec 11:00 to 14:00; lecturer to confirm). There is no Practical Test 2, no demo and no Weeks 13 to 15. See [teaching progress](Teaching_Progress.md) and [Block_Assessment_Arrangement_2026-11-03.md](Block_Assessment_Arrangement_2026-11-03.md). The week table at the end of this file is updated; the 29 September position below is history.
+
+## Teaching position on 29 September (history)
 
 **CML3112 has completed all Week 3 content. Its next lesson is Week 4.** CML3111 and CML3113 have not yet covered Week 3 and should start that deck at slide 1. See [teaching progress and the one-minute assignment briefing](Teaching_Progress.md).
 
@@ -96,12 +100,12 @@ Worked repair answers and explanations: [Week 2 repair walkthrough](IUEA_ML_Week
 | 5 | Check the Pandas package and dataset. Friday cohorts have a recorded session and earlier package opening: confirm the published walkthrough and dates. Open W5 quiz when introduced. |
 | 6 | Check the cleaning package, written-evidence cell and full 20-point grading route. Include the planned Week 5 consolidation. Open W6 quiz. |
 | 7 | Practical Test 1: confirm the final validated test, environment, timing, typed written evidence and collection procedure. No weekly quiz. The test remains held pending full grading validation. |
-| 8 | Check the regression/baseline package and written interpretation. Open W8 quiz (quiz number 7). Treat the separate data-analysis project as held until its full assessment is validated. |
-| 9 | Check the classification/cost package and class meanings. Open W9 quiz (quiz number 8). |
-| 10 | Check the validation/leakage package and split protocol. Open W10 quiz (quiz number 9). |
-| 11 | Check the features/ablation package and written evidence. Open W11 quiz (quiz number 10). |
-| 12 | Plan the 70-minute practice plus 30-minute individual W12 bank within the 100-minute work block. W12 upload closes at class end, not next week. Open W12 quiz (quiz number 11). |
-| 13 | Prepare the project studio and individual support plan. Open W13 quiz (quiz number 12). There is no W13 weekly challenge upload. |
+| 8 (Class 1) | CML3112 Tue 3 Nov (starts Week 8); CML3113 and CML3111 Fri 6 Nov (they had the Week 8 theory on Fri 30 Oct without the lab: recap, then the lab). Teach from `second_half/`. Check the regression/baseline package (A7) and written interpretation. Do not open Q7 today: Q7 and Q8 are sat together in the Block 1 quiz in Class 2. Treat the separate data-analysis project as held until its full assessment is validated. |
+| 9 (Class 2) | CML3112 Tue 10 Nov; Fridays 13 Nov. Check the classification/cost package (A8) and class meanings. The Block 1 quiz (Q7 + Q8, 10 marks) is sat in the last 20 minutes of this class. |
+| 10 (Class 3) | CML3112 Tue 17 Nov; Fridays 20 Nov. Check the validation/leakage package (A9) and split protocol. No quiz today. Block 1 assignments (A7, A8) close on the date in the arrangement note. |
+| 11 (Class 4) | CML3112 Tue 24 Nov; Fridays 27 Nov. Check the features/ablation and model recommendation packages (A10, A11), the decision memo and written evidence. The Block 2 quiz (Q9 + Q10, 10 marks) is sat in the last 20 minutes. After class, release the unmarked project rehearsal. |
+| 12 | Engineering ML project sitting: 3 hours, individual, timed, auto-graded, in Colab, with the Practical Test 1 entry and Submit test flow. Proposed (lecturer to confirm): CML3112 Tue 1 Dec 11:00 to 14:00; CML3113 Fri 4 Dec 08:00 to 11:00; CML3111 Fri 4 Dec 11:00 to 14:00. Prepare from `second_half/Project/` (marking guide, `deploy/DEPLOYMENT_STEPS.md`). No weekly quiz and no weekly assignment. |
+| 13 to 15 | Superseded: there are no Weeks 13 to 15, no Practical Test 2, no demo and no project clinic. The semester ends at Week 12. |
 | 14 | Practical Test 2: validate the complete test before release; confirm typed offline Part B and collection time. No weekly quiz. |
 | 15 | Confirm project/demo release, complete evidence requirements, presentation order and individual reflection/defence. Major-project and demo grading remains held until validated. No weekly quiz. |
 

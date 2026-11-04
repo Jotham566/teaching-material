@@ -27,6 +27,10 @@ are branched too.
 
 BANKS = {}
 
+# NOTE 2 November 2026 (four-class second half): these are the ORIGINAL banks. The questions actually used for Weeks
+# 6 and 8 to 12 come from pandas_quiz_revision.py, which overrides them. Q11 (Week 12) and Q12 (Week 13) are retired
+# and archived in pandas_quiz_revision.RETIRED_ARCHIVE. Q10 (Week 11) took two questions from the Q11 bank there.
+
 # ==========================================================================
 # QUIZ 2 — Week 2. Notebooks and version control. Their first notebook.
 # Mix: 1 traceback, 3 interpretation, 1 judgement.

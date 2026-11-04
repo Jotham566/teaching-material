@@ -1,10 +1,10 @@
 # CML3111 A8: Classification and cost
 
-**Block 1, part B of 3** (Weeks 8 to 10). Marked out of 20. All 3 parts of the block close together.
+**Block 1, part B of 2** (Weeks 8 and 9 content). Marked out of 20. All 2 parts of the block close together.
 
 **Deadline:** 20 November 2026, 11:00 Kampala. The live form shows any later change.
 **Submit:** ONE completed notebook (.ipynb) on this form: https://docs.google.com/forms/d/e/1FAIpQLSfelPFlgqIQS1vM0QDthocg7aIU_WLXNjL4g1DdZAJyKcm9eA/viewform
-**Block quiz:** one sitting in the last 20 minutes of the Week 10 class, 3 short quizzes, 15 marks.
+**Block quiz:** one sitting in the last 20 minutes of Class 2 (Friday 13 November), 2 short quizzes, 10 marks.
 
 ## Do this
 
