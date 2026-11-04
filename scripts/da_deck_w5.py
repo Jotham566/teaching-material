@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Week 5 slide content: sessions 13, 14 and 15.
 
-A whole investigation, then Power BI, then the capstone. DAX time
+A whole investigation, then Power BI, then the final project. DAX time
 intelligence and row-level security were cut to pay for the foundations; see
 da_content.CUT.
 """
@@ -98,12 +98,12 @@ DECKS[13] = dict(
              "Use the supplied files and source notes",
              ["Read data/sector_snapshots/README.md for attribution, source terms and interpretation limits.",
               "",
-              "Pick the one closest to your own work. The capstone is worth "
+              "Pick the one closest to your own work. The final project is worth "
               "more to you if the data looks like your data.",
               "",
               "Whichever you pick, the routine is the same. That is the "
               "point of having a routine."],
-             "THE SECTOR ASSESSMENT")],
+             "PROJECT 4 · THE INVESTIGATION")],
 
     worked=("Turning eleven observations into five findings",
             "An investigation produces far more observations than findings. "
@@ -119,7 +119,7 @@ DECKS[13] = dict(
              "Write each as one sentence with a number, and put the "
              "limitation beside it."],
             "Five findings with numbers beat eleven observations without "
-            "them, and the marking reflects that."),
+            "them, and so will the people who read your write-up."),
 
     check=(["What makes a sentence a finding rather than an observation?",
             "Your investigation produced no surprises. Is that a failure?",
@@ -139,9 +139,10 @@ DECKS[13] = dict(
              "saw, and you will still be the one defending the number.")]),
 
     lab=("Run the routine on your sector dataset",
-         "This is the sector assessment, worth 30%. Six questions in "
-         "order, then five findings. Marked on the findings and the "
-         "limitations beside them, not on the code.",
+         "This is Project 4, the investigation write-up. Six questions in "
+         "order, then five findings. Peers read the findings and the "
+         "limitations beside them and say which they would act on. "
+         "Nothing is marked.",
          ["What is the file a record of? What is one row?",
           "Time window, and is it complete?",
           "What is missing, and is it missing for a reason?",
@@ -432,7 +433,7 @@ DECKS[15] = dict(
              [("The question, in one sentence",
                "The one you were actually asked. Fifteen seconds."),
               ("The answer, with its number",
-               "Immediately. Not the method, not the journey. Attention is "
+               "Immediately. Not the method, not the route. Attention is "
                "highest at the start and you cannot control when it ends."),
               ("How you know",
                "The data, the window, and the one chart that carries it. "
@@ -445,23 +446,23 @@ DECKS[15] = dict(
                "The sentence that separates an analyst from an advocate.")],
              "THE PRESENTATION")],
 
-    splits=[("What you hand in, and what you say",
+    splits=[("What you show, and what you say",
              "Five minutes",
              "The question, in one sentence.\n\n"
              "The answer, with its number, immediately after.\n\n"
              "One chart. One.\n\n"
              "What you traded away.\n\n"
              "What would change your answer.",
-             "And what is marked",
-             ["Upload PPTX with narration notes and numerical evidence.",
+             "And what you get back",
+             ["Show the final project: the investigation and the dashboard, with narration in the speaker notes.",
               "",
-              "Add a DOCX/PDF appendix if needed. Keep PBIX as supporting material.",
+              "Keep the PBIX and the notebook. They are yours.",
               "",
-              'Marks reward a supported decision and the required evidence.',
+              "Peers say what they would act on and what they doubt. There are no marks.",
               "",
               "Everybody asks at least one question of somebody else. That "
               "is how you learn what a weak answer sounds like."],
-             "CAPSTONE · 40% OF THE MARK")],
+             "FINAL PROJECT · PEER FEEDBACK")],
 
     prose=[("Monday morning, and what to learn next",
             ["**Pick one report and replace it**",
@@ -473,7 +474,7 @@ DECKS[15] = dict(
              "to the data rather than analysing it. That is a conversation "
              "with whoever owns the database, and it goes better when you "
              "can name the tables you need and the grain you want them at.",
-             "**Where to go next, honestly**",
+             "**Where to go next**",
              "Statistics and experiment design if your questions are about "
              "causes. Machine learning if they are about prediction. Data "
              "engineering if the bottleneck turned out to be access. "
@@ -504,7 +505,7 @@ DECKS[15] = dict(
              "your method.")]),
 
     lab=("Finish the dashboard, then present",
-         "Use the 50-minute clinic to finish and reconcile the dashboard. Submit a five-minute narrated presentation. Selected live demonstrations take 40 minutes, followed by 20 minutes on applying the work.",
+         "Use the 50-minute clinic to finish and reconcile the dashboard, then prepare a five-minute presentation of the final project. Selected projects are shown for 40 minutes with peer feedback, followed by 20 minutes on applying the work.",
          ["Four visuals, three measures, one slicer.",
           "Every total reconciled against a number you already trust.",
           "A title that states your finding.",
@@ -515,8 +516,9 @@ DECKS[15] = dict(
           "you need to ask."]),
 
     closing=("You can answer a question with a number attached",
-             "That is a smaller claim than a certificate implies and a "
-             "bigger one than it sounds. Most organisations have very few "
+             "The certificate of completion from KLAi Professional Learning "
+             "says you finished the course and its project. This is the "
+             "skill behind it, and most organisations have very few "
              "people who will say what they found, what it cost, and what "
              "would change their mind.",
              "Send it to the person who asked in week one. That is the last "

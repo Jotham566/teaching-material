@@ -124,9 +124,9 @@ for ss in DC.SESSIONS:
     para(d, "Homework set tonight", size=10.5, bold=True, colour=NAVY,
          after=4)
     para(d, ss["home"], size=9.5)
-    if ss.get("check"):
+    if ss.get("project"):
         spacer(d, 4)
-        para(d, "Assessed here: " + ss["check"], size=9.5, bold=True,
+        para(d, ss["project"], size=9.5, bold=True,
              colour=MID)
     if ss.get("note"):
         spacer(d, 4)

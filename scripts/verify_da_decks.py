@@ -574,6 +574,54 @@ if "Mac" in pbi and "browser" in pbi.lower():
 else:
     bad("the Power BI decks do not mention the Mac path")
 
+# --------------------------------------------------------- 8. no assessment
+# Lecturer decision 4 Nov 2026: no exam, marks, grades, weights, submissions
+# or capstone. The only allowed uses are statements that there are none, the
+# chart sense of "mark" (a bar or a point), "percentage points" and the Power
+# BI date table being marked as one. Slides AND speaker notes are scanned.
+sec("8. No assessment wording")
+_ban = re.compile(r"\b(marks?|marked|marking|graded?|grading|weights?|"
+                  r"assess\w*|quiz\w*|exams?|rubric\w*|submit\w*|"
+                  r"submission\w*|capstone|checkpoints?|gradebook|"
+                  r"S\d\dCHECK|deadline|registration number|pass mark)\b",
+                  re.I)
+_allow = re.compile(
+    r"nothing is marked|no marks|never marked|peers? say|read one row or "
+    r"mark aloud|read one mark aloud|mean and the median marked|marked as "
+    r"(the|a) date table|date table marked and sorted|mark as date table|"
+    r"mark it; sort|marked,|fold scores|weight=|saved repository|"
+    r"upload data again", re.I)
+_hits = []
+for f in sorted(counts):
+    prs_ = Presentation(os.path.join(DECKS_DIR, f))
+    for i, sl in enumerate(prs_.slides, 1):
+        texts = [sh.text_frame.text for sh in sl.shapes if sh.has_text_frame]
+        if sl.has_notes_slide:
+            texts.append(sl.notes_slide.notes_text_frame.text)
+        for t in texts:
+            t2 = _allow.sub("", t)
+            m = _ban.search(t2)
+            if m:
+                _hits.append("%s slide %d: ...%s..." % (
+                    f[:6], i, t2[max(0, m.start() - 25):m.end() + 25]))
+if _hits:
+    bad("assessment wording in %d places, e.g. %r" % (len(_hits), _hits[:3]))
+else:
+    ok("no marks, grades, weights, assessment, submit, checkpoint or "
+       "capstone wording on any slide or in any speaker note")
+
+_s15 = " ".join(
+    sh.text_frame.text
+    for f in counts if f.startswith("DA_S15")
+    for sl in Presentation(os.path.join(DECKS_DIR, f)).slides
+    for sh in sl.shapes if sh.has_text_frame)
+if "FINAL PROJECT" in _s15 and "peer feedback" in _s15.lower() \
+        and "KLAi Professional Learning" in _s15:
+    ok("session 15 shows the final project with peer feedback and names "
+       "the certificate of completion")
+else:
+    bad("session 15 lacks the final project, peer feedback or certificate")
+
 con.close()
 os.remove(tmp)
 print("\n%d checks, %d failures" % (CHECKS, len(FAIL)))

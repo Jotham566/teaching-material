@@ -96,8 +96,7 @@ callout(d, "What this track is for, and who it assumes you are",
         "lists. Section 5 is that glossary.\n\n"
         "The generated Riverside data and reference calculations have automated "
         "checks. This does not establish that every teaching activity or "
-        "student account has been rehearsed. The assessment readiness report "
-        "separately records current calibration and complete-packet evidence.",
+        "student account has been rehearsed.",
         MID_H, LIGHT_H)
 
 tool_rows = [[k, str(v) + " hours",
@@ -120,7 +119,7 @@ para(d, "Fifteen sessions of three hours, three a week. Week 1 introduces "
         "data, tables and the first SQL query. Week 2 develops SQL joins and "
         "introduces Python. Week 3 reads, cleans and reconciles files in pandas. "
         "Week 4 develops statistical descriptions and charts. Week 5 completes "
-        "the investigation, Power BI model and capstone presentation.")
+        "the investigation, Power BI model and final project presentation.")
 
 wk_titles = {1: "Week 1 — data foundations and first SQL",
              2: "Week 2 — SQL joins and first Python",
@@ -180,35 +179,32 @@ for s in C.SESSIONS:
 
     spacer(d, 4)
     para(d, "Common mistake: " + s["trap"], size=9, colour=MID, after=3)
-    if s.get("check"):
+    if s.get("project"):
         spacer(d, 4)
-        para(d, "Assessed here: " + s["check"], size=9, bold=True,
-             colour=MID)
+        para(d, s["project"], size=9, bold=True, colour=MID)
     if s.get("note"):
         spacer(d, 4)
         para(d, "Note: " + s["note"], size=9, italic=True, colour=MID)
     spacer(d, 4)
 
 # ------------------------------------------------------------------ part 3
-h1_page(d, "3 · Assessment")
-para(d, "Light, because these are working adults, and real, because without "
-        "it the practice does not happen. Everything is marked on whether "
-        "somebody could act on the result.")
-table(d, ["What", "Weight", "When", "How it is marked"],
-      [[a, "{}%".format(w), when, how] for a, w, when, how in C.ASSESSMENT],
-      [26, 10, 12, 52], font=9, hdr_font=9)
+h1_page(d, "3 · Projects and feedback, with no exam")
+para(d, "This course has no exam and no assessment of any kind: no marks, "
+        "grades, pass marks, weights or mark sheets. Learners build practical "
+        "projects and keep them. Each project is something a working adult "
+        "can show a manager.")
+table(d, ["Project", "When", "What the learner keeps", "How feedback arrives"],
+      [[a, when, what, how] for a, when, what, how in C.PROJECTS],
+      [24, 10, 36, 30], font=9, hdr_font=9)
 
 spacer(d, 10)
-callout(d, "Automatic assessment has explicit release checks",
-        "S05 SQL is checked against a reference in an isolated container. "
-        "S09 combines 50 executed marks with 50 local-model cleaning-log marks. "
-        "Local reasoning requires a passing current calibration, and unresolved "
-        "results remain blank. It is not an instant guarantee of correctness.\n\n"
-        "S13 has draft numerical checks for 40 Analysis marks; S15 has draft "
-        "checks for 20 reported-measure marks. Their remaining criteria and "
-        "complete evidence workflows must be validated before release. Actual "
-        "session dates are still required for the timed forms. The independent "
-        "track retains weights 15%, 15%, 30% and 40% and its own learner roster.",
+callout(d, "The final project and the certificate",
+        C.FINAL_PROJECT + "\n\n" + C.FEEDBACK_NOTE + "\n\n"
+        "Completion: " + C.CERTIFICATE + " The instructor keeps a simple "
+        "participant progress and projects tracker (sheet 4 of the "
+        "workbook). It records attendance and whether each project is "
+        "started or finished, so that nobody is left behind. It holds no "
+        "marks.",
         MID_H, LIGHT_H)
 
 # ------------------------------------------------------------------ part 4
@@ -288,7 +284,7 @@ callout(d, "The reconciliation does not come out exact, on purpose",
         "0.0004% of revenue.\n\n"
         "It is in the design because reporting a reconciliation as exact when "
         "it is not is the habit this course is trying to break. Naming the "
-        "residual and its cause is part of the pass mark.".format(
+        "residual and its cause is the point of the lab.".format(
             K["s3"]["revenue_delivered_ugx"],
             K["s3"]["revenue_delivered_from_raw_ugx"],
             K["s3"]["usd_rounding_residual_ugx"],
@@ -307,7 +303,7 @@ para(d, "It is generated from the sessions themselves, so a term cannot be "
         "taught without reaching the handout and the handout cannot drift "
         "from what was taught. The full version is "
         "DataAnalysis_Glossary.docx; the terms with no spreadsheet "
-        "equivalent are listed below, because those are the genuinely new "
+        "equivalent are listed below, because those are the new "
         "ideas and there are fewer of them than anybody expects.")
 spacer(d, 6)
 _new_only = [t for t, _, x, _ in C.GLOSSARY if not x]
@@ -360,7 +356,7 @@ table(d, ["#", "Do this", "Why it matters"],
         "browser model editor with the actual account and its workspace/tenant "
         "permissions, or arrange a Windows lab machine."],
        ["7", "Ask each participant for one question from their own work.",
-        "Collected in session 1 and used as capstone candidates. A capstone "
+        "Collected in session 1 and used as final project candidates. A final project "
         "on the participant's own data is the difference between a course "
         "they finish and a course they use."]],
       [4, 40, 56], font=8.8, hdr_font=8.8)
@@ -399,7 +395,7 @@ table(d, ["What came out", "Why, and what replaced it"],
 
 spacer(d, 10)
 callout(d, "The first thing to add back",
-        "Reshaping, pivot_table and melt in pandas. It is a genuinely "
+        "Reshaping, pivot_table and melt in pandas. It is a "
         "useful idea and it was cut because it is the third way of saying "
         "something the room has already met twice, as a pivot table and as "
         "GROUP BY. A cohort that reaches session 9 comfortably has room for "
@@ -418,7 +414,7 @@ for t, why in C.DEPARTURES:
 spacer(d, 8)
 h2(d, "What to do next, which session 15 introduces")
 para(d, "Forty-five hours provides a foundation for guided analysis; "
-        "competence must be demonstrated in the submitted work. Further practice "
+        "the five projects show what each learner can do. Further practice "
         "can develop statistics and experiment design for causal questions, "
         "machine learning for prediction, or data engineering for reliable "
         "collection and refresh. Choose the next step from the work the learner "

@@ -225,7 +225,7 @@ DECKS[8] = dict(
                "lines to a returns frame because negative quantity is this "
                "system's return convention.",
                "The notes tab nobody fills in. The difference is that this "
-               "one is the deliverable, and it is marked."),
+               "one is part of what you keep."),
 
               ("Reconciliation",
                "Getting the same number two different ways and chasing every "
@@ -313,7 +313,7 @@ DECKS[8] = dict(
               "cent threw a fraction away and it does not come back.",
               "",
               "So: land within a few thousand shillings, then WRITE THE "
-              "RESIDUAL DOWN with its cause. That is the pass mark.",
+              "RESIDUAL DOWN with its cause. That is what a good result looks like.",
               "",
               "An analyst who reports a reconciliation as exact when it is "
               "not has told you they did not look."],
@@ -344,8 +344,8 @@ DECKS[8] = dict(
 
     lab=("Clean it, log it, reconcile it",
          "From the raw CSVs to a revenue figure you can defend, keeping the "
-         "log as you go rather than writing it afterwards. The log is marked "
-         "as heavily as the number.",
+         "log as you go rather than writing it afterwards. The log matters "
+         "as much as the number.",
          ["Profile first. Rows in, and what you expect rows out to be.",
           "Work the seven defects. Two lines to find each, two to fix it.",
           "Keep the log: rows before, rows after, what changed, why.",
@@ -481,22 +481,22 @@ DECKS[9] = dict(
             "The commonest cause, by a long way, is one side filtering on "
             "status and the other not."),
 
-    splits=[("Checkpoint 2",
-             "What to hand in",
+    splits=[("Project 2",
+             "What to keep",
              "The pandas rebuild of the session 5 report.\n\n"
              "A reconciliation against the SQL output, row by row.\n\n"
              "The cleaning log from session 8 that produced your starting "
              "numbers.",
-             "How it is marked",
+             "What good looks like",
              ["Do the numbers agree, and where they do not, is every "
               "difference named?",
               "",
               "Could somebody else reproduce your starting figures from the "
               "log alone?",
               "",
-              "Finding a genuine difference and explaining it scores higher "
-              "than a clean match you cannot account for."],
-             "CHECKPOINT 2 · 15% OF THE MARK")],
+              "Finding a genuine difference and explaining it is a better "
+              "result than a clean match you cannot account for."],
+             "PROJECT 2 · CLEANED DATA AND LOG")],
 
     check=(["Your groupby result will not let you select a column you can "
             "see. Why?",
@@ -520,12 +520,12 @@ DECKS[9] = dict(
     lab=("Reconcile pandas against SQL",
          "Rebuild the rep revenue report in pandas and set it beside your "
          "SQL output. Any difference is a finding, and finding one is a "
-         "pass. A clean match you cannot explain is not.",
+         "good result. A clean match you cannot explain is not.",
          ["Rebuild the report with groupby and merge.",
           "Print the row count after every merge.",
           "Merge your result against the SQL output with indicator=True.",
           "List every difference and name the cause of each.",
-          "Submit with the cleaning log from last session."]),
+          "Keep it with the cleaning log from last session."]),
 
     closing=("Two tools, one answer",
              "Getting the same number twice, two different ways, is the only "

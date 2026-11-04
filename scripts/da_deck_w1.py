@@ -118,7 +118,7 @@ DECKS[1] = dict(
               "Three requests rewritten as answerable questions.",
               "",
               "One question from your own work, written down. It is a "
-              "capstone candidate."],
+              "final project candidate."],
              "THE DATASET")],
 
     prose=[("How the five weeks go",

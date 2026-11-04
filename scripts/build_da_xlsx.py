@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-"""The Data Analysis track workbook: session grid, assessment, datasets,
-and a participant mark sheet the instructor fills in as the course runs.
+"""The Data Analysis track workbook: session grid, projects, datasets,
+and a participant progress and projects tracker (no marks, no weights)
+that the instructor fills in as the course runs.
 
 Conventions follow build_xlsx.py, which is the approved house style for this
-project: Arial, navy header band, banded rows, frozen panes. Totals and
-weighted marks are real formulas, so the sheet recalculates when a mark is
-typed in.
+project: Arial, navy header band, banded rows, frozen panes. Counts and
+status are real formulas, so the sheet recalculates when a status is
+chosen.
 """
 import json
 import os
@@ -109,89 +110,86 @@ for col in (1, 2, 3, 4):
     ws.cell(r, col).fill = PatternFill("solid", fgColor=GREEN)
 ws.freeze_panes = "A5"
 
-# ============================================================ 3. assessment
-ws = wb.create_sheet("Assessment")
-title_block(ws, "Assessment", "Weights must total 100", 4)
-header_row(ws, 4, ["What", "Weight", "When", "How it is marked"],
-           [34, 10, 14, 70])
+# ============================================================ 3. projects
+ws = wb.create_sheet("Projects")
+title_block(ws, "Projects and feedback",
+            "No exam, marks, grades or weights. Learners build projects and "
+            "keep them.", 4)
+header_row(ws, 4, ["Project", "When", "What the learner keeps",
+                   "How feedback arrives"], [38, 12, 64, 56])
 r = 5
-for a, w, when, how in C.ASSESSMENT:
-    write_row(ws, r, [a, w / 100.0, when, how], height=44)
-    ws.cell(r, 2).number_format = "0%"
+for a, when, what, how in C.PROJECTS:
+    write_row(ws, r, [a, when, what, how], height=54)
     r += 1
-ws.cell(r, 1).value = "Total"
-ws.cell(r, 1).font = BODY_B
-ws.cell(r, 2).value = "=SUM(B5:B{})".format(r - 1)
-ws.cell(r, 2).font = BODY_B
-ws.cell(r, 2).number_format = "0%"
-for col in range(1, 5):
-    ws.cell(r, col).fill = PatternFill("solid", fgColor=GREEN)
+write_row(ws, r, ["Final project", "Session 15", C.FINAL_PROJECT,
+                  "Peer feedback in the room. No marks."],
+          fill=GREEN, height=44)
+r += 1
+write_row(ws, r, ["Certificate", "End of course", C.CERTIFICATE, ""],
+          fill=GREEN, height=32)
+r += 2
+ws.cell(r, 1, C.FEEDBACK_NOTE).font = S_FONT
 ws.freeze_panes = "A5"
 
-# ============================================================ 4. mark sheet
-ws = wb.create_sheet("Mark sheet")
-title_block(ws, "Participant mark sheet",
-            "Type marks out of 100 in the blue cells. The weighted total is "
-            "a formula and recalculates as you go.", 8)
-labels = [a for a, _, _, _ in C.ASSESSMENT]
-weights = [w for _, w, _, _ in C.ASSESSMENT]
-header_row(ws, 4, ["Participant", "Email"] + labels + ["Weighted total",
-                                                       "Standing"],
-           [26, 26] + [16] * len(labels) + [15, 14], height=44)
-# the weights live in their own labelled row, and the formulas reference it
-ws.cell(5, 1, "Weight").font = BODY_B
-for i, w in enumerate(weights):
-    c = ws.cell(5, 3 + i, w / 100.0)
-    c.font = BODY_B
-    c.number_format = "0%"
-    c.fill = PatternFill("solid", fgColor=AMBER)
-ws.cell(5, 3 + len(labels), "=SUM(C5:{}5)".format(
-    get_column_letter(2 + len(labels))))
-ws.cell(5, 3 + len(labels)).number_format = "0%"
-ws.cell(5, 3 + len(labels)).font = BODY_B
-
-FIRST_DATA = 6
+# ============================================================ 4. tracker
+ws = wb.create_sheet("Progress tracker")
+title_block(ws, "Participant progress and projects tracker",
+            "Pick a status from the list in the blue cells. The two grey "
+            "columns are formulas. There are no marks or weights.", 11)
+PROJ_LABELS = ["Project 1 SQL report", "Project 2 cleaned data and log",
+               "Project 3 statistics notes", "Project 4 investigation",
+               "Project 5 dashboard"]
+assert len(PROJ_LABELS) == len(C.PROJECTS)
+headers = (["Participant", "Email", "Sessions attended (of 15)"]
+           + PROJ_LABELS + ["Final project shown (Yes/No)",
+                            "Projects finished (of 5)", "Course status"])
+header_row(ws, 4, headers, [26, 26, 14] + [16] * 5 + [15, 14, 14],
+           height=48)
+FIRST_DATA = 5
 N_ROWS = 24
-last_mark_col = get_column_letter(2 + len(labels))
-tot_col = get_column_letter(3 + len(labels))
+from openpyxl.worksheet.datavalidation import DataValidation
+dv_status = DataValidation(type="list",
+                           formula1='"Not started,Started,Finished"',
+                           allow_blank=True)
+dv_yes = DataValidation(type="list", formula1='"Yes,No"', allow_blank=True)
+dv_att = DataValidation(type="whole", operator="between", formula1="0",
+                        formula2="15", allow_blank=True)
+ws.add_data_validation(dv_status)
+ws.add_data_validation(dv_yes)
+ws.add_data_validation(dv_att)
+GREY = "EDEDED"
 for i in range(N_ROWS):
     r = FIRST_DATA + i
     if i == 0:
-        # one example row, in the format expected, per the workbook guidance
-        write_row(ws, r, ["Example: Grace Nabirye",
-                          "grace@example.com", 80, 72, 68, 75],
-                  fill=AMBER)
-        for cc in range(3, 3 + len(labels)):
-            ws.cell(r, cc).font = INPUT
+        write_row(ws, r, ["Example: Grace Nabirye", "grace@example.com", 9,
+                          "Finished", "Finished", "Started", "Not started",
+                          "Not started", "No"], fill=AMBER)
     else:
-        write_row(ws, r, ["", ""] + [None] * len(labels))
-        for cc in range(3, 3 + len(labels)):
-            ws.cell(r, cc).font = INPUT
-    # SUMPRODUCT against the weight row, guarded so a blank row stays blank.
-    # The denominator is a second SUMPRODUCT rather than SUM(IF(...)):
-    # SUM(IF()) over a range needs array entry, which openpyxl cannot write,
-    # and it came back #VALUE! from the recalc.
-    ws.cell(r, 3 + len(labels)).value = (
-        '=IF(COUNT(C{r}:{lc}{r})=0,"",'
-        'SUMPRODUCT(C{r}:{lc}{r},C$5:{lc}$5)'
-        '/SUMPRODUCT((C{r}:{lc}{r}<>"")*(C$5:{lc}$5)))'.format(
-            r=r, lc=last_mark_col))
-    ws.cell(r, 3 + len(labels)).font = BODY_B
-    ws.cell(r, 3 + len(labels)).number_format = "0.0"
-    ws.cell(r, 4 + len(labels)).value = (
-        '=IF({tc}{r}="","",IF({tc}{r}>=70,"Distinction",'
-        'IF({tc}{r}>=50,"Pass","Not yet")))'.format(tc=tot_col, r=r))
-    ws.cell(r, 4 + len(labels)).font = BODY
-
+        write_row(ws, r, ["", ""] + [None] * 7)
+    for cc in range(3, 10):
+        ws.cell(r, cc).font = INPUT
+    dv_att.add(ws.cell(r, 3))
+    for cc in range(4, 9):
+        dv_status.add(ws.cell(r, cc))
+    dv_yes.add(ws.cell(r, 9))
+    ws.cell(r, 10).value = (
+        '=IF(COUNTA(D{r}:H{r})=0,"",COUNTIF(D{r}:H{r},"Finished"))'
+        .format(r=r))
+    ws.cell(r, 11).value = (
+        '=IF(COUNTA(C{r}:I{r})=0,"",IF(AND(J{r}=5,I{r}="Yes"),'
+        '"Complete","In progress"))'.format(r=r))
+    for cc in (10, 11):
+        ws.cell(r, cc).font = BODY_B
+        ws.cell(r, cc).fill = PatternFill("solid", fgColor=GREY)
 ws.cell(FIRST_DATA + N_ROWS + 1, 1,
-        "The weighted total divides by the weight of the pieces ACTUALLY "
-        "marked, so a participant halfway through the course shows their "
-        "standing on what they have done rather than being penalised for "
-        "work not yet set.").font = S_FONT
+        "Complete means all five projects are finished and the final project "
+        "has been shown in session 15. Complete participants receive a "
+        "certificate of completion from KLAi Professional Learning.").font = S_FONT
 ws.cell(FIRST_DATA + N_ROWS + 2, 1,
-        "Bands are a placeholder: 70 distinction, 50 pass. Replace them with "
-        "the awarding body's if there is one.").font = S_FONT
-ws.freeze_panes = "C6"
+        "Sessions attended is for follow-up only. This tracker sets no "
+        "attendance threshold; the lecturer decides whether to set one."
+        ).font = S_FONT
+ws.freeze_panes = "D5"
 
 # ============================================================ 5. datasets
 ws = wb.create_sheet("Datasets")
@@ -306,7 +304,7 @@ for term, definition, excel, sess in C.GLOSSARY:
     r += 1
 r += 1
 ws.cell(r, 1, "The {} terms with no spreadsheet equivalent are the "
-              "genuinely new ideas in this course.".format(
+              "new ideas in this course.".format(
                   sum(1 for _, _, x, _ in C.GLOSSARY if not x))).font = S_FONT
 ws.freeze_panes = "A5"
 

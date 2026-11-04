@@ -67,7 +67,7 @@ callout(d, "How to use this",
         "for something you already do: a field is a column, a record is a "
         "row, a join is a VLOOKUP, GROUP BY is a pivot table. Where there "
         "is no spreadsheet equivalent, the column says so, and those are "
-        "the genuinely new ideas. There are fewer than you expect.\n\n"
+        "the new ideas. There are fewer than you expect.\n\n"
         "The session column says where each word is introduced, so you can "
         "go back to the deck it was taught in.",
         MID_H, LIGHT_H)
@@ -103,6 +103,6 @@ print("  {} terms across {} sessions, {} stranded paragraphs removed"
       .format(len(C.GLOSSARY),
               sum(1 for s in C.SESSIONS if s.get("vocab")), _gone))
 no_excel = [t for t, _, x, _ in C.GLOSSARY if not x]
-print("  {} terms have no spreadsheet equivalent, which is the genuinely "
+print("  {} terms have no spreadsheet equivalent, which is the "
       "new material:".format(len(no_excel)))
 print("    " + ", ".join(no_excel))

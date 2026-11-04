@@ -293,8 +293,8 @@ DECKS[5] = dict(
             "<<returns_value>>. A report that ignores returns overstates "
             "every rep, and the manager will find out from somebody else."),
 
-    splits=[("Checkpoint 1",
-             "What to hand in",
+    splits=[("Project 1",
+             "What to keep",
              "One query that runs from cold in DB Browser.\n\n"
              "Revenue by rep by month for 2025, net of returns, built as "
              "named steps.\n\n"
@@ -303,13 +303,11 @@ DECKS[5] = dict(
              "And one sentence of judgement",
              ["Which rep would you talk to first, and why?",
               "",
-              "Put your judgement in a SQL comment for class discussion. "
-              "The automatic mark checks the query: 25 points each for "
-              "grain, gross, returned and net amounts.",
+              "Put your judgement in a SQL comment for class discussion.",
               "",
-              "Submit one .sql file. Amounts allow 1 UGX rounding tolerance; "
-              "extra or missing rows reduce credit."],
-             "CHECKPOINT 1 · 15% OF THE MARK")],
+              "Check your grain, gross, returned and net amounts against "
+              "the answer sheet. Keep the .sql file. Nothing is marked."],
+             "PROJECT 1 · THE SQL REVENUE REPORT")],
 
     check=(["An INNER JOIN and a LEFT JOIN return the same row count. What "
             "does that tell you?",
@@ -331,8 +329,8 @@ DECKS[5] = dict(
              "mistake in the middle is the last one you find.")]),
 
     lab=("Build the rep revenue report",
-         "This is Checkpoint 1 and it is marked against the answer key "
-         "tonight. Build it as named steps and check the row count after "
+         "This is Project 1. Check it against the answer sheet "
+         "tonight and keep it. Build it as named steps and check the row count after "
          "each one.",
          ["Step one: line value, filtered to delivered and to 2025.",
           "Check step one on its own.",
@@ -418,7 +416,7 @@ DECKS[6] = dict(
                "FileNotFoundError means the path is wrong. Three messages "
                "cover most of your first month.",
                "#VALUE! or #REF!, with an explanation attached and the line "
-               "number. It is genuinely more helpful than Excel here."),
+               "number. It is more helpful than Excel here."),
 
               ("Zero-based counting",
                "Python counts from 0, so the first row is row 0 and the "

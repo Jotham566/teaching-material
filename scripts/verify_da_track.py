@@ -11,7 +11,7 @@ produced by running something. So this script
      answer key,
   3. runs the pandas cleaning pipeline from the Python lab end to end and
      checks it lands on the target revenue,
-  4. checks the schedule arithmetic, the assessment weights and the tool
+  4. checks the schedule arithmetic, the project plan (no marks) and the tool
      hours,
   5. checks house style, because the standing instruction is no "X, not Y"
      antithesis.
@@ -58,7 +58,7 @@ def section(t):
 
 
 # ---------------------------------------------------------------- 1. schedule
-section("1. Schedule and weights")
+section("1. Schedule and projects")
 if sum(m for m, _, _ in C.BLOCK) == C.HOURS_PER_SESSION * 60:
     ok("the three-hour block sums to %d minutes"
        % (C.HOURS_PER_SESSION * 60))
@@ -83,11 +83,27 @@ if all(len(v) == 3 for v in wk.values()) and len(wk) == 5:
 else:
     bad("weeks are not three sessions each: %r" % wk)
 
-tot = sum(w for _, w, _, _ in C.ASSESSMENT)
-if tot == 100:
-    ok("assessment weights sum to 100")
+# No exam, marks, grades or weights (lecturer decision, 4 Nov 2026). The old
+# "weights sum to 100" check is replaced by: no ASSESSMENT table exists, five
+# projects exist, each project lands in a real session, and the session
+# fields that used to say "Assessed here" are now project lines.
+if not hasattr(C, "ASSESSMENT") and len(C.PROJECTS) == 5:
+    ok("no ASSESSMENT table or weights; five projects defined instead")
 else:
-    bad("assessment weights sum to %d" % tot)
+    bad("da_content still has ASSESSMENT or the wrong project count")
+proj_sessions = sorted(int(w.split()[1]) for _, w, _, _ in C.PROJECTS)
+tagged = sorted(s["n"] for s in C.SESSIONS
+                if s.get("project", "").startswith("Project "))
+if proj_sessions == tagged == [5, 9, 11, 13, 15]:
+    ok("each project is tagged on the session that produces it: %s"
+       % tagged)
+else:
+    bad("projects %r and tagged sessions %r disagree" % (proj_sessions,
+                                                         tagged))
+if any("check" in s for s in C.SESSIONS):
+    bad("a session still carries an old 'check' (assessed) field")
+else:
+    ok("no session carries an 'Assessed here' field")
 
 if sum(C.TOOL_HOURS.values()) == C.TOTAL_HOURS:
     ok("tool hours sum to the track total (%s)"
@@ -121,7 +137,7 @@ for s in C.SESSIONS:
     if miss:
         bad("session %d is missing %s" % (s["n"], miss))
 if not FAIL:
-    ok("all twelve sessions have outcomes, two blocks, a lab, homework, "
+    ok("all fifteen sessions have outcomes, two blocks, a lab, homework, "
        "a trap and a roadmap mapping")
 for s in C.SESSIONS:
     if not 2 <= len(s["outcomes"]) <= 4:
@@ -258,7 +274,7 @@ else:
 
 # the skew the statistics session needs has to actually be there
 if K["s7"]["mean_over_median"] > 2.0:
-    ok("order value is genuinely skewed: mean is %.2fx the median, so the "
+    ok("order value is clearly skewed: mean is %.2fx the median, so the "
        "session 7 lesson is in the data rather than asserted"
        % K["s7"]["mean_over_median"])
 else:
@@ -446,7 +462,8 @@ section("7. House style")
 prose = []
 for s in C.SESSIONS:
     prose += [s["title"], s["b1"], s["b2"], s["lab"], s["home"], s["trap"]]
-prose += [x for _, _, _, x in C.ASSESSMENT]
+prose += [x for p in C.PROJECTS for x in p[2:]] + [C.FINAL_PROJECT,
+                                                        C.CERTIFICATE]
 prose += [C.AUDIENCE] + [d["use"] for d in C.DATASETS]
 for f in os.listdir(LABS):
     prose.append(open(os.path.join(LABS, f), encoding="utf-8").read())
@@ -469,6 +486,29 @@ if len(dash) <= 2:
     ok("no run of em-dash editorial asides (%d)" % len(dash))
 else:
     bad("em-dash asides in %d places: %r" % (len(dash), dash[:3]))
+
+# No assessment vocabulary in any prose the track generates from here. The
+# phrases that say there are none are allowed.
+_allow = re.compile(r"no marks?|nothing (in this course )?is marked|never "
+                    r"marked|no exam|marked as a date table|marked and "
+                    r"sorted|marking it|correctly marked|mark it as a date "
+                    r"table|marked as the date table", re.I)
+_ban = re.compile(r"\b(marks?|marked|marking|graded?|grading|weights?|"
+                  r"assess\w*|quiz\w*|exam|pass mark|rubric|score[sd]?|"
+                  r"submit\w*|capstone|checkpoint)\b", re.I)
+_vocab_hits = []
+for p in prose:
+    t = _allow.sub("", str(p))
+    m = _ban.search(t)
+    if m:
+        _vocab_hits.append("%s: ...%s..." % (m.group(0),
+                           t[max(0, m.start() - 30):m.end() + 30]))
+if _vocab_hits:
+    bad("assessment wording survives in %d prose passages: %r"
+        % (len(_vocab_hits), _vocab_hits[:3]))
+else:
+    ok("no marks, grades, weights, assessment, submit or capstone wording "
+       "in sessions, projects or labs")
 
 # every lab must state its dataset and its licence position
 for f in sorted(os.listdir(LABS)):

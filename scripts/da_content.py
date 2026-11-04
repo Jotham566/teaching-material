@@ -98,7 +98,7 @@ DATASETS = [
      "shape": "bank-full.csv is 45,211 rows x 17; bank-additional-full.csv is "
               "41,188 rows x 21. They are different files: say which one.",
      "account": "none",
-     "use": "Banking, finance and telecom capstone. Campaign contacts "
+     "use": "Banking, finance and telecom investigation. Campaign contacts "
             "against an outcome, so it carries segmentation, rates and "
             "cross-tabs. Call duration is known only after the call, so it "
             "must not justify pre-call targeting decisions."},
@@ -110,7 +110,7 @@ DATASETS = [
      "shape": "10,000 rows x 14 columns, one CSV. Failures are about 3.4% of "
               "rows",
      "account": "none",
-     "use": "Energy, mining and manufacturing capstone. Synthetic machine "
+     "use": "Energy, mining and manufacturing investigation. Synthetic machine "
             "observations against a failure flag. The imbalance is the point: a "
             "rule that predicts no failure is 96.6% accurate and useless."},
     {"key": "worldbank",
@@ -120,7 +120,7 @@ DATASETS = [
      "licence": "CC BY 4.0, with additional terms on the portal",
      "shape": "About 16,000 indicators. JSON, 50 records a page by default",
      "account": "No key. Authentication was removed entirely.",
-     "use": "Government, NGO and health capstone. The URL above works in a "
+     "use": "Government, NGO and health investigation. The URL above works in a "
             "browser address bar, which is the cheapest possible way to show "
             "a beginner what an API actually is."},
     {"key": "healthsites",
@@ -221,11 +221,11 @@ SESSIONS = [
              "your sheet and turn each into an answerable question.",
          home="Write down the last three things somebody asked you for at "
               "work. Rewrite each as a question with a number, a population "
-              "and a window. Bring them: they are capstone candidates.",
+              "and a window. Bring them: they are final project candidates.",
          trap="Starting to compute before agreeing what was asked. It is "
               "the most expensive habit in the room and the cheapest to "
               "fix.",
-         check="Setup checkpoint: the tools installed and the data open.",
+         project="Setup: the tools installed and the data open. Nothing is kept from this session.",
          figs=["fig_table_anatomy"]),
 
     dict(n=2, week=1, tool="Foundations",
@@ -309,7 +309,7 @@ SESSIONS = [
               None),
              ("NULL", "No value recorded. It is not zero and not an empty "
                       "string, and any comparison with it is neither true "
-                      "nor false.", "A genuinely blank cell"),
+                      "nor false.", "A truly blank cell"),
              ("COUNT", "How many rows. COUNT(*) counts rows; COUNT(column) "
                        "counts rows where that column is not NULL.",
               "COUNTA against COUNT"),
@@ -413,12 +413,12 @@ SESSIONS = [
             "and each step checked on its own before the next is written.",
          lab="Build the revenue report the sales manager wants: revenue by "
              "rep by month for 2025, net of returns. Three CTEs, checked "
-             "step by step. This is Checkpoint 1 and it is marked against "
-             "the key tonight.",
+             "step by step. This is Project 1. Check your numbers against "
+             "the answer sheet before you leave, and keep the query.",
          home="Finish the report if it is not finished, then break it on "
               "purpose: change one LEFT JOIN to an INNER JOIN and write down "
               "what changed in the numbers and why.",
-         check="Checkpoint 1: the rep revenue report, marked against the key.",
+         project="Project 1, kept: the SQL revenue report, one query with three named steps.",
          trap="A join that multiplies rows. The total gets bigger and looks "
               "plausible, and the only tell is the row count."),
 
@@ -593,14 +593,15 @@ SESSIONS = [
             "fan out. Then the reconciliation: the same report from SQL and "
             "from pandas, set side by side, and every difference named.",
          lab="Rebuild session 5's rep revenue report in pandas and reconcile "
-             "it against the SQL output row by row. This is Checkpoint 2. "
-             "Finding a real difference and explaining it scores higher than "
-             "a clean match you cannot account for.",
+             "it against the SQL output row by row. This finishes Project 2, "
+             "the cleaned dataset with its cleaning log. A real difference "
+             "that you can explain is a better result than a clean match "
+             "you cannot account for.",
          home="Take one report somebody at work produces by hand every month "
               "and write the pandas that would produce it. It does not have "
               "to run yet.",
-         check="Checkpoint 2: the reconciliation, and the cleaning log "
-               "behind it.",
+         project="Project 2, kept: the cleaned dataset, the cleaning log "
+                 "behind it and the reconciliation against SQL.",
          trap="A merge that silently multiplies rows. validate turns that "
               "into an exception instead of a wrong number."),
 
@@ -610,7 +611,7 @@ SESSIONS = [
              "Say what a statistic is, and compute a mean, a median and a "
              "mode.",
              "Read a histogram and say which statistic the shape allows.",
-             "Use percentiles to describe a business quantity honestly.",
+             "Use percentiles to describe a business quantity fairly.",
          ],
          vocab=[
              ("Statistic", "One number that summarises many. Every statistic "
@@ -698,11 +699,13 @@ SESSIONS = [
          lab="Five statements about this business, each of which sounds "
              "plausible. Decide which are supported, which are unsupported "
              "and which are unanswerable, and attach a number to every "
-             "verdict.",
+             "verdict. Put the verdicts and your session 10 notes on "
+             "one page. This is Project 3, the statistics notes page.",
          home="Find a percentage quoted at work and decide whether it should "
               "have been a percentage point, a rate, or a count.",
          trap="Reporting a count where the audience will read a rate, and "
               "calling a seasonal peak growth.",
+         project="Project 3, kept: the statistics notes page.",
          figs=["fig_rate_vs_count", "fig_seasonality"]),
 
     dict(n=12, week=4, tool="Charts", title="Charts that answer the question",
@@ -787,11 +790,12 @@ SESSIONS = [
             "somebody could do about it. Then the limitation beside each one.",
          lab="Run the routine on the sector dataset you chose: banking and "
              "telecom, energy and manufacturing, or public sector and "
-             "development. Use the fixed Bank Marketing, synthetic AI4I or Uganda GDP snapshot. Five findings with numbers. This is the sector "
-             "assessment and it is marked on the findings, not the code.",
-         home="Finish and submit the investigation: half a page of findings "
+             "development. Use the fixed Bank Marketing, synthetic AI4I or Uganda GDP snapshot. Five findings with numbers. This is Project 4, the investigation "
+             "write-up. Peers read it and say what they would act on; "
+             "nothing is marked.",
+         home="Finish the investigation to show a neighbour: half a page of findings "
               "plus the notebook behind it.",
-         check="Sector assessment: five findings on a sector dataset.",
+         project="Project 4, kept: the investigation write-up, five findings on a sector dataset with the notebook behind them.",
          trap="A notebook with forty cells and no conclusion. The routine "
               "exists to stop exactly that."),
 
@@ -833,7 +837,7 @@ SESSIONS = [
             "date table, and marking it.",
          lab="Load the course data, build the model, and produce three "
              "visuals whose totals match the numbers you already got in SQL "
-             "and in pandas. Matching is the mark.",
+             "and in pandas. Matching totals tell you the model is right.",
          home="Add the Uganda Healthsites file and put a map visual on it. "
               "Notice what that file makes easy and what it makes "
               "impossible.",
@@ -885,36 +889,59 @@ SESSIONS = [
             "presentation structure: the question, the answer with its "
             "number, how you know, what you traded, and what would change "
             "your answer.",
-         lab="Finish the dashboard in 50 minutes. Submit a five-minute narrated presentation. The final hour contains selected demonstrations and 20 minutes on applying the analysis at work.",
+         lab="Finish the dashboard in 50 minutes. Prepare a five-minute presentation of the final project. The final hour is the showing of selected projects with peer feedback, and 20 minutes on applying the analysis at work.",
          home="None. Send the dashboard to the person who asked the question "
               "in week one.",
-         check="Capstone: dashboard, one page, five-minute presentation.",
+         project="Project 5, kept: the Power BI dashboard. With the Project 4 investigation it is the final project, shown in this session.",
          trap="A dashboard with fourteen visuals and no answer, presented "
               "method first. Nobody outside the room cares which library you "
               "used.",
-         note="Session 15 uses 30 minutes for DAX, 10 break, 20 for design, 50 dashboard completion, 10 break, 40 selected demonstrations and 20 application planning. Every learner submits a five-minute narrated presentation with the capstone for rubric assessment; selected live demonstrations provide discussion, not extra marks."),
+         note="Session 15 uses 30 minutes for DAX, 10 break, 20 for design, 50 dashboard completion, 10 break, 40 for showing selected final projects with peer feedback and 20 application planning. Every learner shows the final project (investigation and dashboard) in a five-minute presentation, with narration in the speaker notes. Peers give feedback; there are no marks."),
 ]
 assert len(SESSIONS) == 15
 assert [s["n"] for s in SESSIONS] == list(range(1, 16))
 
-# ---------------------------------------------------------------- assessment
-ASSESSMENT = [
-    ("Checkpoint 1 — the rep revenue report", 15, "Session 5",
-     "One SQL query with three named steps, marked against the answer key. "
-     "Either the numbers match or they do not, so feedback is immediate."),
-    ("Checkpoint 2 — reconciliation and cleaning log", 15, "Session 9",
-     "The same report in pandas, reconciled against the SQL, with the log "
-     "that makes the starting numbers reproducible. Marked on the log as "
-     "much as the answer."),
-    ("Sector investigation", 30, "Session 13",
+# ---------------------------------------------------------------- projects
+# No exam, no marks, no grades and no weights (lecturer decision, 4 Nov
+# 2026). Learners build practical projects and keep them. Each tuple is
+# (project, session, what the learner keeps, how feedback arrives).
+PROJECTS = [
+    ("Project 1: the SQL revenue report", "Session 5",
+     "One SQL query with three named steps: revenue by rep by month for "
+     "2025, net of returns.",
+     "The answer sheet in the lab shows the right numbers, so the learner "
+     "checks their own query and the instructor helps with any difference."),
+    ("Project 2: the cleaned dataset and its cleaning log", "Session 9",
+     "The cleaned file, the log that makes the starting numbers "
+     "reproducible, and the same report in pandas reconciled against the "
+     "SQL.",
+     "Self-check against the lab answers, then a short read by a neighbour "
+     "who tries to follow the log."),
+    ("Project 3: the statistics notes page", "Session 11",
+     "One page of notes: the mean and the median of a real column side by "
+     "side, the spread, and the five statements from the lab, each with "
+     "its verdict and the number behind it.",
+     "Read aloud to a neighbour, who says what they would do with it."),
+    ("Project 4: the investigation write-up", "Session 13",
      "Five findings on a sector dataset, each with a number, a chart and a "
-     "stated limitation. Marked on the findings, not the code."),
-    ("Capstone", 40, "Session 15",
-     "A dashboard whose totals reconcile, one page of recommendation, and "
-     "a five-minute presentation with narration in speaker notes. Marked on whether a decision maker "
-     "could act on it."),
+     "stated limitation, plus the notebook behind them.",
+     "Peers read it and say which finding they would act on and which "
+     "they doubt."),
+    ("Project 5: the Power BI dashboard", "Session 15",
+     "A one-page dashboard whose totals reconcile to the SQL and pandas "
+     "numbers.",
+     "Shown to the room with the Project 4 investigation as the final "
+     "project, in five minutes, followed by peer feedback."),
 ]
-assert sum(w for _, w, _, _ in ASSESSMENT) == 100
+FINAL_PROJECT = ("Final project: the investigation (Project 4) and the "
+                 "dashboard (Project 5), shown in session 15 in a five-minute "
+                 "presentation, with peer feedback and no marks.")
+CERTIFICATE = ("A certificate of completion from KLAi Professional "
+               "Learning, for completing the course and its project.")
+FEEDBACK_NOTE = ("Practice feedback stays: checks inside the labs, the "
+                 "check-and-answers slide in each deck, and recall "
+                 "questions that are self-checks and never marked.")
+assert len(PROJECTS) == 5
 
 # ---------------------------------------------------------------- tool split
 TOOL_HOURS = {"Foundations": 6, "SQL": 9, "Python": 12, "Statistics": 6,
@@ -944,7 +971,7 @@ CUT = [
      "returns a plausible wrong number silently. Session 15 teaches SUM, "
      "DIVIDE and CALCULATE properly instead."),
     ("Reshaping: pivot_table and melt in pandas",
-     "Wide against long is a genuinely useful idea and it is the third way "
+     "Wide against long is a useful idea and it is the third way "
      "of saying something the room has already met as a pivot table and as "
      "GROUP BY. Cut to make room, and named here because it is the first "
      "thing to add back if a cohort moves quickly."),
@@ -1004,7 +1031,7 @@ ROOM = [
                        "taken."),
     ("Group size", "Twelve to twenty. Above twenty the lab stops working, "
                    "because the instructor cannot reach everybody in fifty "
-                   "minutes. Session 15 uses submitted narrated presentations for individual assessment and selected live demonstrations for discussion."),
+                   "minutes. Session 15 is a showing of final projects with peer feedback."),
     ("Between sessions", "One homework of 45 to 60 minutes, always with the "
                          "option to do it on the participant's own work "
                          "data, which is what makes it get done."),

@@ -60,7 +60,7 @@ DECKS[10] = dict(
                "p10 is <<p10_order>>, the median is <<median_order>>, p90 "
                "is <<p90_order>> and the largest single order is "
                "<<max_order>>. Four numbers, and now you have described "
-               "the business honestly.",
+               "the business fairly.",
                "PERCENTILE. Same function, and the reason to reach for it "
                "is that it survives a skewed distribution.")],
 
@@ -77,7 +77,7 @@ DECKS[10] = dict(
               "above four orders in five, which is why it is a poor answer "
               "to \"what is typical\"."),
              ("fig_percentiles",
-              "Four numbers that describe the business honestly",
+              "Four numbers that describe the business fairly",
               "p10, median, p90 and the largest order. Together these say "
               "more than any single statistic can, and none of them "
               "mislead.")],
@@ -142,7 +142,7 @@ DECKS[10] = dict(
             "Why look at the distribution before choosing a statistic?"],
            [("When the mean is right",
              "When the distribution is roughly symmetric, or when you "
-             "genuinely need the total divided by the count, which is what "
+             "need the total divided by the count, which is what "
              "average order value is for pricing and capacity. As a "
              "description of typical, on a skewed distribution, it is "
              "wrong."),
@@ -163,7 +163,7 @@ DECKS[10] = dict(
          "sentence saying why the alternative would mislead.",
          ["Draw the histogram first, before choosing anything.",
           "Mean, median and the three percentiles.",
-          "Which statistic describes this column honestly?",
+          "Which statistic describes this column fairly?",
           "One sentence: why would the other one mislead?",
           "Then find a column where the mean IS the right answer, and say "
           "why."]),
@@ -288,7 +288,7 @@ DECKS[11] = dict(
            "# December 2025 is <<dec_over_feb>>x February 2024.\n"
            "# Growth, or December?\n"
            "m.groupby(m.index.month).mean()    # answer: it is December\n"
-           "m.pct_change(12)                   # year on year, honestly",
+           "m.pct_change(12)                   # year on year",
            "Quote month-on-month growth into January and you will report a "
            "collapse every year. Quote year-on-year and December stops "
            "being news. Both are correct arithmetic and they produce "

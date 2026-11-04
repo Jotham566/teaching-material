@@ -284,8 +284,8 @@ def build_session(ss):
              label="The words for tonight")
 
     s = s_da_objectives(prs, ss["outcomes"], ss["n"], ss["title"], ss["tool"])
-    notes(s, "These three are what tonight is marked against, in the sense "
-             "that the lab checks them. "
+    notes(s, "These three are what tonight's lab practises, and the check "
+             "and answers slide lets you test yourself on them. "
              "TO TEACH: read them out. It takes twenty seconds and it stops "
              "the room wondering where a session is going.")
 
@@ -356,8 +356,8 @@ def build_session(ss):
     for sp in c.get("splits", []):
         title, lh, lb, rh, rr, kicker = sp
         s = s_split(prs, title, lh, lb, rh, rr, kicker=kicker)
-        note(s, "TO TEACH: this is what they hand in. Read the right-hand "
-                "panel out loud.", label=title)
+        note(s, "TO TEACH: this is what they keep. Read the right-hand "
+                "panel out loud. Nothing here is marked.", label=title)
 
     for pr in c.get("prose", []):
         title, paras, kicker, cols = pr
@@ -399,10 +399,10 @@ def build_session(ss):
     notes(s, brief + " TO TEACH: circulate. Anything asked twice gets "
                      "answered to the whole room.")
     if ss['n']==15:
-        s=s_break(prs,10,after='Selected demonstrations follow; keep your submitted slides ready.')
-        s=s_divider(prs,'DEMONSTRATIONS · 40 MINUTES','Eight short demonstrations',
-                    'Five minutes each. Start with the decision, show the supporting evidence, and name one limitation.')
-        notes(s,'Every learner submits the same presentation evidence for grading. Selected live demonstrations carry no extra marks. TO TEACH: select eight contrasting examples in advance and keep each slot to five minutes.')
+        s=s_break(prs,10,after='Selected final projects are shown next; keep your slides ready.')
+        s=s_divider(prs,'FINAL PROJECTS · 40 MINUTES','Eight final projects, with peer feedback',
+                    'Five minutes each. Start with the decision, show the supporting evidence, and name one limitation. Peers say what they would act on.')
+        notes(s,'Everybody prepares the same five-minute presentation of the final project. Nothing is marked; peers give feedback on what they would act on and what they doubt. TO TEACH: select eight contrasting examples in advance and keep each slot to five minutes.')
         s=s_divider(prs,'APPLICATION PLANNING · 20 MINUTES','Use the work beyond tonight',
                     'Choose one portfolio improvement and one concrete next step for a client or job application.')
 

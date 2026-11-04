@@ -213,13 +213,13 @@ before returns are taken off:
 
 Total value of everything returned, across both years: **{returns_value}**.
 
-### What to hand in
-Submit one `.sql` file. The automatic mark is 25 points each for the correct
-rep/month grain, gross amount, returned amount and net amount. Use the six
-output columns shown above, with no duplicate rep/month keys. Amounts are
-checked within 1 UGX after rounding; extra or missing rows reduce credit.
-Add a SQL comment naming which rep you would talk to first and why. Discuss
-that judgement in class; it is not a separately marked prose submission.
+### What to keep (Project 1)
+Keep one `.sql` file. Use the six output columns shown above, with no
+duplicate rep/month keys. Check your grain, gross amount, returned amount and
+net amount against the answers above; they should agree within 1 UGX after
+rounding, and a wrong row count is the first thing to look at. Add a SQL
+comment naming which rep you would talk to first and why, and talk about that
+judgement in class. Nothing in this course is marked: the file is yours.
 
 ---
 
@@ -285,14 +285,14 @@ category was recorded in dollars **to the cent**, so converting it back at
 lines. Rounding to the cent throws away a fraction of a shilling each time,
 and it does not come back.
 
-Landing within a few thousand shillings of the database is therefore the pass
-mark, and **writing the residual down with its cause is part of it**. An
+Landing within a few thousand shillings of the database is therefore a good
+result, and **writing the residual down with its cause is part of it**. An
 analyst who reports a reconciliation as exact when it is not has told you
 they did not look. One who says "0.0004% low, from cent-rounding on the
 dollar-priced lines" has told you they did.
 
 Work in a notebook. Keep the cells in order and use Restart and Run All
-before you submit, because a notebook that only works in the order you
+before you keep it, because a notebook that only works in the order you
 happened to click is not a result.
 
 ---
@@ -414,7 +414,7 @@ A table, in the notebook, filled in as you go. Not written afterwards.
 | Split out returns | | | {d_neg} rows moved | negative quantity is a return |
 | ... | | | | |
 
-The log is marked as heavily as the answer. A number nobody can reproduce is
+The log matters as much as the answer. A number nobody can reproduce is
 not a result, and in six months the person who cannot reproduce it is you.
 
 ---
@@ -437,6 +437,16 @@ Every difference is a finding. Chase each one until you can name it, then
 stop: the cent-rounding residual above is named, so it is finished. "Close
 enough" with no number beside it is how a wrong figure reaches a board
 paper.
+
+---
+
+## What to keep (Project 2)
+
+The cleaned file, the cleaning log, the pandas version of the session 5
+report and your list of differences from SQL, each with its cause. A real
+difference you can explain is a better result than a clean match you cannot
+account for. Nothing is marked: ask a neighbour to follow your log and tell
+you where it loses them.
 
 ---
 
@@ -541,7 +551,7 @@ rather than by hand in Excel.
 
 ---
 
-## Part 2 — the model, which is where the marks are
+## Part 2 — the model, which is where the value is
 
 Model view. This model has a snowflake structure: orders connects customers
 and reps to order_items. Use single-direction filtering from each one side
@@ -641,7 +651,7 @@ One page. Four visuals. A person will look at it for thirty seconds.
 4. **A table**: top ten customers by revenue, with average order value.
 5. **One slicer**: `Dates[Year]`. One, not five.
 
-Then the title, which is the assessed part. Not "Sales Dashboard". Something
+Then the title, which is the part readers remember. Not "Sales Dashboard". Something
 like "December is a third of the year's revenue in two weeks", if that is
 what you found. A title that states the finding does the reader's work for
 them, which is what they are paying for.
@@ -655,11 +665,11 @@ publish anything derived from it, say where it came from.
 
 ---
 
-## What to hand in
+## What to keep (Project 5 and the final project)
 
 The `.pbix` file, or a link to the published report, plus one page: the
 question, the answer with its number, how you know, and what would change
-your answer. Five minutes in front of the room in session 15.
+your answer. Five minutes in front of the room in session 15, followed by feedback from your peers. Nothing is marked.
 """
 
 
