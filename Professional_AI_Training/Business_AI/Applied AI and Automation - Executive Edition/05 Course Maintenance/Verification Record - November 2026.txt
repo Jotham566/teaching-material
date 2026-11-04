@@ -1,0 +1,26 @@
+VERIFICATION RECORD, 1 NOVEMBER 2026 (built in a sandbox without access to Zapier, Google or any AI tool)
+
+Passed here:
+  Session files: kit/lint_content.py, 0 problems in 12 sessions (schema, word limits, notes length, banned words, price, exam language, X-not-Y, dashes, pronouns).
+  Decks: 12 decks built, 18 or 19 slides each (227 slides), all with spoken-script notes; kit/audit_specs.py shows no slide content below the footer line, off the slide edge, under 14 pt or colliding with a title.
+  Speaker notes: all 227 slides have a spoken script (median 88 words, split into short paragraphs; recall slides read each question, pause, then give the answer); the same text is in 04 Facilitator Materials/Presenter Script (47 pages).
+  Visual coverage (kit/visual_report.py): of 227 slides, 127 carry a drawn diagram, 72 carry pictogram rows, 13 carry one pictogram or the cover, 3 are text only (before the visual pass: 47 diagrams and 87 text-only). Every practice slide shows a drawn example of the finished page; every demonstration slide has a drawn visual.
+  Teaching review (3 independent reviewers, coherence / flow / teachability): findings fixed in the sessions, templates and guides: missing demo materials written out, contradictions removed, clocks rebalanced, over-claims softened, close returns to the cover question, slide map and probes added to the Facilitator Guide, one incident list and one set of numbers across Sessions 8, 11 and 12. Reviewer scores before fixes: coherence 6 to 7, flow 5 to 6.5, teachability 5.5 to 6.5 out of 10. Not re-scored after the fixes.
+  Whole-edition scan, kit/scan_edition.py: 0 findings.
+  Case data: data_gen/verify_case_data.py, 722 checks passed.
+  Templates: templates_gen/verify_templates.py, 0 problems (about 570 formulas recalculated in LibreOffice, 0 errors).
+  Apps Script: tests/run_tests.js 50 passed; tests/integration_case_data.js 16 passed on the full invoice and sales files (8 planted invoice errors found, no false positives; weekly totals match).
+  Business case numbers (Session 11): monthly net UGX 169,000, payback 2.8 months, 12-month net UGX 1,548,000, UGX 417,600 after a 30% haircut, recomputed from the workbook.
+  Independent visual review of all 12 decks, then a fix pass (see Review notes below).
+
+NOT verified (needs a real account; record results in 04 Facilitator Materials/Rehearsal Record.docx):
+  Zapier: what the free trial allows, whether AI by Zapier runs without your own key, whether an outside approver needs a login, screen names, task use per run.
+  Google: permission prompt wording, Script Properties steps, trigger set-up, Gmail draft, time zone behaviour of dates.
+  Gemini API: key creation from Uganda, current model name (default gemini-2.5-flash may be retired), free-tier limits and data terms.
+  No AI output has been observed. Slides label every example illustrative. Observed runs are to be recorded by the instructor.
+  Facts about plan limits, quotas and regulation come from search summaries dated 1 November 2026 and must be re-checked the week of teaching, especially the Uganda national AI strategy status and the Data Protection and Privacy Act guidance.
+  Templates: Excel files carry no cached values (they calculate on opening in Excel or Google Sheets); a preview tool that does not calculate shows blank formula cells.
+
+Open items for the owner:
+  Decide the follow-up dates for each learner cohort; the 90-Day Roadmap template examples use December 2026 to February 2027 dates while the Session 12 slides use a 1 February 2027 start.
+  Review the Facilitator Guide sections once as the teacher; wording is written for you to read aloud or adapt.

@@ -1,0 +1,26 @@
+FICTIONAL TEACHING DOCUMENT
+Nile Valley Foods Ltd (fictional). Review playbook for supplier agreements. Owner: Finance Manager. Version 2.
+
+Use this playbook when you review any supplier agreement. For each rule, the agreement either meets it or it does not. If it does not, mark the clause and propose the fix. The Managing Director signs every supplier agreement.
+
+P1. Payment terms. NVF accepts payment in 30 days or more from receipt of a correct invoice. NVF does not accept a shorter period.
+
+P2. Late payment interest. NVF accepts interest on late payment of up to 1.5% a month, if it applies to undisputed amounts only and applies equally to late refunds by the supplier.
+
+P3. Price changes. NVF accepts a price change only with at least 30 days' written notice, a cap of 5% in any 12 months, and no effect on orders already confirmed. NVF does not accept price changes at the supplier's sole discretion.
+
+P4. Ordering and delivery. Delivery within 5 working days or faster. Risk passes on signed delivery.
+
+P5. Quality and returns. NVF must have at least 7 days to reject goods, and the supplier must replace or credit within 14 days.
+
+P6. Term and renewal. Automatic renewal is acceptable for periods of 12 months or less, if the notice period to stop renewal is no more than 30 days. NVF does not accept a notice period longer than 30 days.
+
+P7. Termination. Each party may end the agreement for an unfixed material breach (fix period of 14 days or less) and for insolvency.
+
+P8. Liability. NVF accepts a cap on the supplier's liability only if the cap is at least 12 months of fees. Claims about unsafe or contaminated goods, fraud and breach of data rules must have no cap.
+
+P9. Confidentiality and personal data. Confidentiality for at least 3 years after the end. The supplier uses NVF's personal data only on NVF's instructions, follows the Data Protection and Privacy Act 2019 and reports any leak within 72 hours.
+
+P10. Governing law. The law of Uganda and courts in Uganda.
+
+How to record a review: list the clause number, the words that cause the problem, the playbook rule, and the change NVF should ask for.

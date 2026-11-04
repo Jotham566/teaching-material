@@ -1,0 +1,11 @@
+invoice_id,date,supplier,description,qty,unit_price_ugx,vat_pct,total_ugx,po_number
+INV-001,2026-09-01,Busoga Oils Ltd,Cooking oil 20L jerrycan,100,150000,18,17700000,PO-1001
+INV-002,2026-09-02,Elgon Millers Ltd,Maize flour 50kg bag,200,90000,0,18000000,PO-1002
+INV-003,2026-09-03,Tororo Rice Growers Cooperative,Rice 50kg bag,50,280000,18,16250000,PO-1003
+INV-004,2026-09-04,Lakeside Logistics Ltd,Transport Jinja to Mbale,4,1200000,18,5664000,PO-1004
+INV-005,2026-09-05,Pearl Packaging Ltd,Printed bags,1000,1500,18,1770000,
+INV-006,2026-09-01,Busoga Oils Ltd,Cooking oil 20L jerrycan,100,150000,18,17700000,PO-1001
+INV-007,2026-09-08,Busoga Oils Ltd,Cooking oil 20L jerrycan,30,150000,18,5310000,PO-1005
+INV-008,2026-09-09,Elgon Millers Ltd,Maize flour 50kg bag,10,90000,18,1062000,PO-1006
+INV-009,2026-09-10,Pearl Packaging Ltd,Printed bags,500,1500,18,800000,
+INV-008,2026-09-11,Elgon Millers Ltd,Maize flour 50kg bag,5,90000,18,531000,PO-1007

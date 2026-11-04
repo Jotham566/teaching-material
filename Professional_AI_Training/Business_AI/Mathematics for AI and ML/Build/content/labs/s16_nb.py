@@ -1,0 +1,195 @@
+"""Session 16 lab (Python): maximum likelihood, MAP and the bias-variance trade-off.
+The deck (content/s16.py) and the figures (kit/diagrams_math_f.py) take every number from namespace(), which runs the SOLUTION cells of this notebook, so slides and notebook cannot disagree."""
+import contextlib
+import io
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'kit'))
+from nb import Notebook  # noqa: E402
+
+TITLE = 'Maximum likelihood, MAP and bias-variance'
+
+SIM_SRC = '''import warnings
+warnings.filterwarnings("ignore")             # a degree-9 fit on 10 points makes numpy complain; that is the point of the picture
+rng = np.random.default_rng(16)               # a fixed seed so everyone gets the same numbers
+x_train = np.linspace(0, 1, 10)               # 10 training inputs, the same in every repeat
+x_test = np.linspace(0.05, 0.95, 10)          # 10 places where we look at the predictions
+true_f = lambda x: np.sin(2 * np.pi * x)      # the true curve (we pretend nature knows it)
+noise = 0.3                                   # standard deviation of the noise in each y
+repeats = 300                                 # 300 fresh training sets
+degrees = [1, 3, 9]                           # the three models: a line, a cubic, a degree-9 polynomial
+preds = {d: np.zeros((repeats, len(x_test))) for d in degrees}
+for r in range(repeats):
+    y_train = true_f(x_train) + rng.normal(0, noise, size=len(x_train))   # one new noisy training set
+    for d in degrees:
+        coef = np.polyfit(x_train, y_train, d)                            # fit a polynomial of degree d
+        preds[d][r] = np.polyval(coef, x_test)                           # its predictions at the 10 test inputs
+bias2 = {d: float(np.mean((preds[d].mean(axis=0) - true_f(x_test)) ** 2)) for d in degrees}   # squared bias
+variance = {d: float(np.mean(preds[d].var(axis=0))) for d in degrees}                         # variance
+for d in degrees:
+    print("degree", d, " bias squared", round(bias2[d], 4), " variance", round(variance[d], 4))'''
+
+
+def _todo(nb, solution, hint, stub, code):
+    """A cell the learner completes. The learner version holds the stub (`name = None  # your code here`) and a one-line hint."""
+    nb.code(f'# {hint}\n' + (code if solution else stub))
+
+
+def build(solution=False):
+    nb = Notebook()
+    nb.md('# Session 16 lab: maximum likelihood, MAP and the bias-variance trade-off\n\n'
+          'KLAi | Mathematics for AI and Machine Learning\n\n'
+          'Today you choose the parameter that makes the data most likely (maximum likelihood estimation, MLE), you show that squared error and cross-entropy come from probability assumptions, '
+          'you add a prior (maximum a posteriori estimation, MAP) and you watch bias and variance in a simulation.\n\n'
+          '**How to use this notebook.** Run the cells in order with Shift and Enter. Each step has the same rhythm: **PREDICT**, **RUN**, **READ**, then **CHANGE one thing**. '
+          'Type your answers in the lines that start with `>`. If a number differs from the slide called "Check your numbers", stop and find the step that went wrong.\n\n'
+          '**Words.** *Likelihood*: how probable the observed data are under one value of the parameter. *Log-likelihood*: the natural logarithm of the likelihood. '
+          '*Prior*: what we believe about the parameter before we see the data. *Bias*: the error of the average prediction. *Variance*: how much the prediction moves from one training set to the next.')
+    nb.check_setup()
+    nb.code('import numpy as np\nimport matplotlib.pyplot as plt\nnp.set_printoptions(suppress=True, precision=6)')
+
+    # ------------------------------------------------------------------ step 1
+    nb.step(1, 'Maximum likelihood of a coin, by scanning', 'A coin is flipped 10 times. 1 means heads and 0 means tails. We try nine possible values of p, the probability of heads, and compute the likelihood of this exact sequence of flips for each one. '
+            '(If the order did not matter, the probability of 7 heads in any order is 120 times larger. That factor does not depend on p, so it does not move the peak.)')
+    nb.code('flips = np.array([1, 1, 0, 1, 1, 1, 0, 1, 0, 1])      # 1 = heads, 0 = tails\n'
+            'n = len(flips)                                          # number of flips\n'
+            'k = int(flips.sum())                                    # number of heads\n'
+            'p_grid = np.round(np.linspace(0.1, 0.9, 9), 1)          # the nine values of p we try: 0.1, 0.2, ... 0.9\n'
+            'print("flips:", n, " heads:", k)')
+    nb.predict('Which of the nine values of p do you think makes this data most likely? Is it 0.5, 0.7 or 0.9?')
+    _todo(nb, solution, 'For every p in p_grid: how probable is this exact sequence? Each head and each tail contributes a factor (see the slide "By hand: the likelihood of one sequence")',
+          'likelihood = None  # your code here',
+          'likelihood = p_grid**k * (1 - p_grid)**(n - k)')
+    nb.code('for p, L in zip(p_grid, likelihood):\n'
+            '    print("p =", p, "  likelihood =", round(float(L), 7))\n'
+            'check("likelihood of the exact sequence at p = 0.7", likelihood[6], 0.0022236, 0.000001)\n'
+            'from math import comb\n'
+            'check("7 heads in any order at p = 0.7 is comb(10, 7) times that (the Session 14 value)", comb(n, k) * likelihood[6], 0.2668, 0.0001)\n'
+            'check("the grid value with the largest likelihood (the MLE)", p_grid[np.argmax(likelihood)], 0.7, 0.0001)')
+    nb.read('The likelihoods are tiny numbers. Is the largest one at the same p as k / n? Write k / n here.')
+    nb.change('Change the flips to all heads: `flips = np.ones(10, dtype=int)` and run Step 1 again. Where is the maximum now? (The grid stops at 0.9, so the maximum lands on its last value although k / n is 1.) What does that say about trusting MLE with very little data?')
+
+    # ------------------------------------------------------------------ step 2
+    nb.step(2, 'The log-likelihood, and why we use it', 'A likelihood of many data points is a product of many numbers below 1. Computers cannot hold a product that small, but they can hold a sum of logarithms.')
+    nb.predict('What will Python print for 0.5 raised to the power 1100 (1,100 fair coin flips, each with probability 0.5)?')
+    nb.code('print("0.5 ** 1100 =", 0.5 ** 1100)')
+    _todo(nb, solution, 'The log-likelihood is the sum of the natural logs of the same factors (see the log-likelihood slides). Compute it for every p in p_grid. Then the log of 0.5**1100 as a sum of 1100 equal logs, with no product',
+          'log_likelihood = None  # your code here\nlog_fair_1100 = None  # your code here',
+          'log_likelihood = k * np.log(p_grid) + (n - k) * np.log(1 - p_grid)\nlog_fair_1100 = 1100 * np.log(0.5)')
+    nb.code('print("log-likelihood at p = 0.7:", round(float(log_likelihood[6]), 4))\n'
+            'print("log of 0.5**1100 as a sum:", round(float(log_fair_1100), 2))\n'
+            'check("log-likelihood of the exact sequence at p = 0.7", log_likelihood[6], -6.1086, 0.001)\n'
+            'check("the log-likelihood has its maximum at the same p", p_grid[np.argmax(log_likelihood)], 0.7, 0.0001)\n'
+            'check("log of 0.5**1100 as a sum of logs", log_fair_1100, -762.4623, 0.001)')
+    nb.read('The product printed 0.0, but the sum of logs is a clear number. Is the largest log-likelihood at the same p as the largest likelihood?')
+
+    # ------------------------------------------------------------------ step 3
+    nb.step(3, 'Maximum likelihood of a Gaussian mean', 'Eight measurements of the width of a part, in mm. We assume each one comes from a Gaussian (normal) distribution with an unknown mean mu and a known standard deviation sigma = 1.')
+    nb.code('y = np.array([9.8, 10.4, 11.2, 9.1, 10.7, 10.1, 11.5, 9.2])   # widths in mm\n'
+            'sigma = 1.0                                                    # known standard deviation\n'
+            'mu_grid = np.arange(9.0, 11.5001, 0.25)                        # the values of mu we try, 9.00 to 11.50\n'
+            'print("n =", len(y), "  sample mean =", y.mean())')
+    nb.predict('Which mu will have the largest log-likelihood? Guess before you run, then see whether the sample mean matches.')
+    _todo(nb, solution, 'For each mu add up the natural log of the Gaussian density of every y (see the slide "Gaussian noise turns the negative log-likelihood into a squared error plus a constant")',
+          'log_lik_mu = None  # your code here',
+          'log_lik_mu = np.array([np.sum(-0.5 * np.log(2 * np.pi * sigma**2) - (y - mu)**2 / (2 * sigma**2)) for mu in mu_grid])')
+    nb.code('best = mu_grid[np.argmax(log_lik_mu)]\n'
+            'print("best mu:", best, "  largest log-likelihood:", round(float(log_lik_mu.max()), 4))\n'
+            'plt.figure(figsize=(6, 3.2))\nplt.plot(mu_grid, log_lik_mu, "o-", color="black")\nplt.axvline(best, color="#AE2525")\n'
+            'plt.xlabel("mu (mm)"); plt.ylabel("log-likelihood"); plt.title("Log-likelihood of the 8 widths"); plt.show()\n'
+            'check("best mu on the grid", best, 10.25, 0.0001)\n'
+            'check("the largest log-likelihood", log_lik_mu.max(), -10.0215, 0.001)\n'
+            'check("best mu equals the sample mean", y.mean(), best, 0.0001)')
+    nb.read('The best mu equals the average of the eight widths. Why would the average be the most likely mean?')
+    nb.change('Change sigma to 2.0 and run Step 3 again. Does the best mu move? Does the curve get wider or narrower?')
+
+    # ------------------------------------------------------------------ step 4
+    nb.step(4, 'Squared error is the Gaussian log-likelihood in disguise', 'Compute the sum of squared errors (SSE) for every mu and put it next to the negative log-likelihood.')
+    nb.predict('If we minimise the SSE, will we pick the same mu as when we maximise the log-likelihood?')
+    _todo(nb, solution, 'For each mu, the sum of the squared gaps between the eight widths and mu',
+          'sse = None  # your code here',
+          'sse = np.array([np.sum((y - mu)**2) for mu in mu_grid])')
+    nb.code('print("mu with the smallest SSE:", mu_grid[np.argmin(sse)], "  SSE there:", round(float(sse.min()), 4))\n'
+            'gap = -log_lik_mu - sse / 2                       # negative log-likelihood minus SSE/2\n'
+            'print("-loglik minus SSE/2 for every mu:", np.round(gap, 4))\n'
+            'check("SSE at the best mu", sse.min(), 5.34, 0.001)\n'
+            'check("mu with the smallest SSE", mu_grid[np.argmin(sse)], 10.25, 0.0001)\n'
+            'check("the leftover constant n/2 * ln(2*pi)", gap.mean(), 7.3515, 0.001)')
+    nb.read('The last line shows the same number for every mu. That number is n/2 times ln(2 pi), which does not depend on mu. What does that tell you about the two curves?')
+
+    # ------------------------------------------------------------------ step 5
+    nb.step(5, 'Cross-entropy is the Bernoulli log-likelihood', 'A classifier says "probability of class 1" for four examples. The true labels are 1, 0, 1, 1.')
+    nb.code('y_true = np.array([1, 0, 1, 1])\np_pred = np.array([0.8, 0.3, 0.6, 0.9])       # the model\'s probability of class 1\nprobs3 = np.array([0.7, 0.2, 0.1])              # a 3-class prediction; the true class is the first one')
+    nb.predict('Will the mean negative log-likelihood of the four labels be bigger than 1, or smaller?')
+    _todo(nb, solution, 'Binary cross-entropy: the mean over the four rows of the negative natural log of the probability given to the true label (see the cross-entropy formula slide). Categorical: the same idea for one true class',
+          'bce = None  # your code here\ncat_loss = None  # your code here',
+          'bce = -np.mean(y_true * np.log(p_pred) + (1 - y_true) * np.log(1 - p_pred))\ncat_loss = -np.log(probs3[0])')
+    nb.code('print("binary cross-entropy:", round(float(bce), 4), "  categorical loss:", round(float(cat_loss), 4))\n'
+            'check("binary cross-entropy of the four labels", bce, 0.2990, 0.001)\n'
+            'check("categorical cross-entropy for true class prob 0.7", cat_loss, 0.3567, 0.001)')
+    nb.change('Change the model\'s probability for the second example from 0.3 to 0.9 (a confident wrong answer, since the true label is 0). How much does the cross-entropy rise?')
+
+    # ------------------------------------------------------------------ step 6
+    nb.step(6, 'MAP: the likelihood times a prior', 'Back to the coin. We believe a coin is probably near fair, so we give each p a prior weight: 1, 2, 3, 4, 5, 4, 3, 2, 1 for p = 0.1 up to 0.9.')
+    nb.code('prior = np.round(5 - 10 * np.abs(p_grid - 0.5), 6)      # 1, 2, 3, 4, 5, 4, 3, 2, 1\nprint("prior weights:", prior)')
+    nb.predict('The likelihood alone peaks at p = 0.7. Will the posterior (likelihood times prior) peak at 0.7, below it, or above it?')
+    _todo(nb, solution, 'The unnormalised posterior combines the likelihood and the prior weight of each p (see the MAP slides). The MAP estimate is the p with the largest one',
+          'posterior = None  # your code here',
+          'posterior = likelihood * prior')
+    nb.code('p_map = p_grid[np.argmax(posterior)]\n'
+            'print("MAP estimate:", p_map, "  posterior at that p:", round(float(posterior.max()), 6))\n'
+            'check("MAP estimate of p", p_map, 0.6, 0.0001)\n'
+            'check("unnormalised posterior at p = 0.6", posterior[5], 0.0071664, 0.000001)')
+    nb.md('**Weight decay is the same idea.** A Gaussian prior on a weight w adds an L2 penalty (lambda times the squared weight) to the squared error. Take x = 1, 2, 3 and y = 2.1, 3.9, 6.2 and fit y = w x. '
+          'The slide "By hand: the penalty pulls the best weight towards 0" gives the penalised answer for this fit.')
+    nb.code('x = np.array([1.0, 2.0, 3.0])\ny_reg = np.array([2.1, 3.9, 6.2])\nlam_values = [0, 1, 5, 14]')
+    _todo(nb, solution, 'For every lambda in lam_values, the best w for this fit with the penalty (see the slide "By hand: the penalty pulls the best weight towards 0")',
+          'w_ridge = None  # your code here',
+          'w_ridge = np.array([np.sum(x * y_reg) / (np.sum(x**2) + lam) for lam in lam_values])')
+    nb.code('print("lambda values:", lam_values)\nprint("weights:", np.round(w_ridge, 4))\n'
+            'check("w with no penalty and with lambda = 1, 5, 14", w_ridge, [2.0357, 1.9, 1.5, 1.0179], 0.001)')
+    nb.read('As lambda grows, does w get larger or smaller? What would a prior that is very sure that w is near zero do?')
+
+    # ------------------------------------------------------------------ step 7
+    nb.step(7, 'Bias and variance in a simulation', 'We draw 300 fresh noisy training sets of 10 points from a sine curve, fit three polynomials (degree 1, 3 and 9) to each, and measure how the predictions behave.')
+    nb.predict('Which degree will have the largest bias, and which the largest variance?')
+    nb.code(SIM_SRC)
+    _todo(nb, solution, 'Expected test error for each degree: the three parts on the slide "Expected error splits into bias squared, variance and noise"',
+          'expected_error = None  # your code here',
+          'expected_error = {d: bias2[d] + variance[d] + noise**2 for d in degrees}')
+    nb.code('print({d: round(v, 4) for d, v in expected_error.items()})\n'
+            'fig, axes = plt.subplots(1, 3, figsize=(10, 2.8), sharey=True)\n'
+            'xx = np.linspace(0, 1, 100)\n'
+            'for ax, d in zip(axes, degrees):\n'
+            '    for r in range(30):                                  # draw 30 of the 300 fitted curves\n'
+            '        ax.plot(x_test, preds[d][r], color="#8C8C8C", alpha=0.4)\n'
+            '    ax.plot(xx, true_f(xx), color="#AE2525", lw=2)\n'
+            '    ax.set_title("degree " + str(d)); ax.set_ylim(-2, 2)\n'
+            'plt.show()\n'
+            'check("expected error, degree 1", expected_error[1], 0.3189, 0.001)\n'
+            'check("expected error, degree 3", expected_error[3], 0.1270, 0.001)\n'
+            'check("expected error, degree 9", expected_error[9], 0.9148, 0.001)\n'
+            'check("degree 9 has the largest variance", max(variance, key=variance.get), 9, 0.0001)\n'
+            'check("degree 1 has the largest bias squared", max(bias2, key=bias2.get), 1, 0.0001)')
+    nb.read('Which degree has the smallest expected error? Is it the simplest model, the most flexible one, or the one in between?')
+    nb.change('Change `noise = 0.3` to `noise = 0.6` and run the simulation again. Which degree gets worse fastest?')
+
+    nb.md('---\n## Save your work\n\nRun every cell again from the top (Runtime, Restart and run all), check the last line says all checks pass, then save the notebook.')
+    nb.code('show_checks()')
+    return nb
+
+
+def namespace():
+    """Run the solution cells and return the variables, for the deck, the figures and the workbook."""
+    import matplotlib
+    matplotlib.use('Agg')
+    nb = build(True)
+    ns = {'__name__': 's16_ns'}
+    for c in nb.cells:
+        if c['cell_type'] == 'code':
+            with contextlib.redirect_stdout(io.StringIO()):
+                exec(''.join(c['source']), ns)
+    import matplotlib.pyplot as plt
+    plt.close('all')
+    return ns
