@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 A DataFrame is a labelled table. A Series is a single labelled sequence, often one column. A dtype describes stored values, but the import may infer something unsuitable.
@@ -477,7 +477,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 You wrote a program tonight. Move on after a learner can explain the current example or required action.

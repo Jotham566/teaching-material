@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 A calculated column stores a result for each row at refresh. A measure is evaluated under the filters of the current visual. SUMX evaluates an expression for each row before adding it.
@@ -352,12 +352,12 @@ IF LEARNERS ARE STUCK
 Work one order line by hand, then two lines. Name the numerator and denominator populations before an average-order-value measure.
 
 NEXT
-What you hand in, and what you say. Move on after a learner can explain the current example or required action.
+What you show, and what you say. Move on after a learner can explain the current example or required action.
 
-## Slide 18 — What you hand in, and what you say
+## Slide 18 — What you show, and what you say
 
 TEACHING PURPOSE
-What you hand in, and what you say
+What you show, and what you say
 
 CONNECT
 Build on the preceding slide: DISTINCTCOUNT, which is session 5 again.
@@ -371,12 +371,6 @@ For a bar chart comparing amounts, why normally start the value axis at zero? Ba
 IF LEARNERS ARE STUCK
 Read one mark aloud as a sentence. Check the population, period, filters and units before stating the finding.
 
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
-CAPSTONE FILES
-The S15 guide requires PPTX with narration in speaker notes, plus DOCX or selectable-text PDF if evidence is separate. Include all five S15CHECK lines from NUMERICAL_EVIDENCE.md as text. Keep PBIX or an authorised report link as supporting material; the upload form does not accept PBIX or ZIP. Release remains subject to grading checks.
-
 NEXT
 Monday morning, and what to learn next. Move on after a learner can explain the current example or required action.
 
@@ -386,7 +380,7 @@ TEACHING PURPOSE
 Monday morning, and what to learn next
 
 CONNECT
-Build on the preceding slide: What you hand in, and what you say.
+Build on the preceding slide: What you show, and what you say.
 
 LECTURER CUE
 Reference.
@@ -400,9 +394,6 @@ One order has two lines. After joining orders to lines, how many rows for it? Tw
 IF LEARNERS ARE STUCK
 Write one example row from each table. Circle keys and trace each match. Aggregate to the intended grain and check counts and totals.
 
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
 NEXT
 Before you start tonight. Move on after a learner can explain the current example or required action.
 
@@ -415,7 +406,7 @@ CONNECT
 Build on the preceding slide: Monday morning, and what to learn next.
 
 LECTURER CUE
-Session 15 uses 30 minutes for DAX, 10 break, 20 for design, 50 dashboard completion, 10 break, 40 selected demonstrations and 20 application planning. Every learner submits a five-minute narrated presentation with the capstone for rubric assessment; selected live demonstrations provide discussion, not extra marks.
+Session 15 uses 30 minutes for DAX, 10 break, 20 for design, 50 dashboard completion, 10 break, 40 for showing selected final projects with peer feedback and 20 application planning. Every learner shows the final project (investigation and dashboard) in a five-minute presentation, with narration in the speaker notes. Peers give feedback; there are no marks.
 
 EXPLAIN IN ORDINARY WORDS
 A calculated column stores a result for each row at refresh. A measure is evaluated under the filters of the current visual. SUMX evaluates an expression for each row before adding it.
@@ -425,9 +416,6 @@ Should revenue respond to a selected region? Yes; test the measure with that fil
 
 IF LEARNERS ARE STUCK
 Work one order line by hand, then two lines. Name the numerator and denominator populations before an average-order-value measure.
-
-CAPSTONE FILES
-The S15 guide requires PPTX with narration in speaker notes, plus DOCX or selectable-text PDF if evidence is separate. Include all five S15CHECK lines from NUMERICAL_EVIDENCE.md as text. Keep PBIX or an authorised report link as supporting material; the upload form does not accept PBIX or ZIP. Release remains subject to grading checks.
 
 NEXT
 A dashboard with fourteen visuals and no answer, presented method first. Nobody outside the room cares which library you used.. Move on after a learner can explain the current example or required action.
@@ -518,7 +506,7 @@ CONNECT
 Build on the preceding slide: How did you do?.
 
 LECTURER CUE
-Use the 50-minute clinic to finish and reconcile the dashboard. Submit a five-minute narrated presentation. Selected live demonstrations take 40 minutes, followed by 20 minutes on applying the work.
+Use the 50-minute clinic to finish and reconcile the dashboard. Then prepare a five-minute presentation of the final project. Selected projects are shown for 40 minutes with peer feedback, followed by 20 minutes on applying the work.
 
 EXPLAIN IN ORDINARY WORDS
 Begin with the question and intended comparison. Identify what an axis, bar, point or colour represents, including its unit. A chart summarises data and may hide variation.
@@ -528,9 +516,6 @@ For a bar chart comparing amounts, why normally start the value axis at zero? Ba
 
 IF LEARNERS ARE STUCK
 Read one mark aloud as a sentence. Check the population, period, filters and units before stating the finding.
-
-CAPSTONE FILES
-The S15 guide requires PPTX with narration in speaker notes, plus DOCX or selectable-text PDF if evidence is separate. Include all five S15CHECK lines from NUMERICAL_EVIDENCE.md as text. Keep PBIX or an authorised report link as supporting material; the upload form does not accept PBIX or ZIP. Release remains subject to grading checks.
 
 NEXT
 Break. Move on after a learner can explain the current example or required action.
@@ -547,18 +532,18 @@ DELIVER THIS SLIDE
 Read the stated purpose, then point to the named example or action on the slide. Ask learners to describe what they will do before moving on. For a break slide, announce the return time; for a section divider, name the next concrete task.
 
 NEXT
-Eight short demonstrations. Move on after a learner can explain the current example or required action.
+Eight final projects, with peer feedback. Move on after a learner can explain the current example or required action.
 
-## Slide 26 — Eight short demonstrations
+## Slide 26 — Eight final projects, with peer feedback
 
 TEACHING PURPOSE
-Eight short demonstrations
+Eight final projects, with peer feedback
 
 CONNECT
 Build on the preceding slide: Break.
 
 LECTURER CUE
-Every learner submits the same presentation evidence for grading. Selected live demonstrations carry no extra marks.
+Everybody prepares the same five-minute presentation of the final project. Nothing is marked; peers give feedback on what they would act on and what they doubt.
 
 EXPLAIN IN ORDINARY WORDS
 An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
@@ -578,7 +563,7 @@ TEACHING PURPOSE
 Use the work beyond tonight
 
 CONNECT
-Build on the preceding slide: Eight short demonstrations.
+Build on the preceding slide: Eight final projects, with peer feedback.
 
 DELIVER THIS SLIDE
 Read the stated purpose, then point to the named example or action on the slide. Ask learners to describe what they will do before moving on. For a break slide, announce the return time; for a section divider, name the next concrete task.
@@ -638,7 +623,7 @@ CONNECT
 Build on the preceding slide: Before the next session.
 
 LECTURER CUE
-That is a smaller claim than a certificate implies and a bigger one than it sounds. Most organisations have very few people who will say what they found, what it cost, and what would change their mind.
+The certificate of completion from KLAi Professional Learning says you finished the course and its project. This is the skill behind it, and most organisations have very few people who will say what they found, what it cost, and what would change their mind.
 
 EXPLAIN IN ORDINARY WORDS
 An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.

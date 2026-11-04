@@ -203,13 +203,13 @@ before returns are taken off:
 
 Total value of everything returned, across both years: **UGX 197,830,550**.
 
-### What to hand in
-Submit one `.sql` file. The automatic mark is 25 points each for the correct
-rep/month grain, gross amount, returned amount and net amount. Use the six
-output columns shown above, with no duplicate rep/month keys. Amounts are
-checked within 1 UGX after rounding; extra or missing rows reduce credit.
-Add a SQL comment naming which rep you would talk to first and why. Discuss
-that judgement in class; it is not a separately marked prose submission.
+### What to keep (Project 1)
+Keep one `.sql` file. Use the six output columns shown above, with no
+duplicate rep/month keys. Check your grain, gross amount, returned amount and
+net amount against the answers above; they should agree within 1 UGX after
+rounding, and a wrong row count is the first thing to look at. Add a SQL
+comment naming which rep you would talk to first and why, and talk about that
+judgement in class. Nothing in this course is marked: the file is yours.
 
 ---
 

@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.
@@ -235,7 +235,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 Break. Move on after a learner can explain the current example or required action.
@@ -457,7 +457,7 @@ CONNECT
 Build on the preceding slide: What you can do now.
 
 LECTURER CUE
-Write down the last three things somebody asked you for at work. Rewrite each as a question with a number, a population and a window. Bring them: they are capstone candidates.
+Write down the last three things somebody asked you for at work. Rewrite each as a question with a number, a population and a window. Bring them: they are final project candidates.
 
 EXPLAIN IN ORDINARY WORDS
 An observation describes the data. A finding answers a defined question with evidence. A recommendation adds an action, its justification and limits.

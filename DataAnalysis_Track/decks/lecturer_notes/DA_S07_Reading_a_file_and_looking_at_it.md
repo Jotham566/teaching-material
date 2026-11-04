@@ -80,7 +80,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 A DataFrame is a labelled table. A Series is a single labelled sequence, often one column. A dtype describes stored values, but the import may infer something unsuitable.

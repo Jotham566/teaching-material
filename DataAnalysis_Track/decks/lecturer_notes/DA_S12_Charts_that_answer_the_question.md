@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 Begin with the question and intended comparison. Identify what an axis, bar, point or colour represents, including its unit. A chart summarises data and may hide variation.
@@ -410,7 +410,7 @@ EXPLAIN IN ORDINARY WORDS
 A repository is the project folder and recorded history. A commit records a chosen change; uploading or pushing shares it. A README tells someone else how to run the work.
 
 CHECK AND EXPECTED ANSWER
-Does saving to GitHub hand in the assignment? No; submission requires the correct form and its confirmation.
+Does saving to GitHub mean someone else can run your project? Only if the README says how to run it.
 
 IF LEARNERS ARE STUCK
 Ask a partner to follow only the README. It should identify the data, files, run order and expected result. Keep secrets out of the repository.

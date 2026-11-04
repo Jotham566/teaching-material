@@ -17,7 +17,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 Where tonight sits. Move on after a learner can explain the current example or required action.
@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
@@ -83,7 +83,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 You have a file you have never seen and three hours.. Move on after a learner can explain the current example or required action.
@@ -106,7 +106,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 The routine, in a fixed order. Move on after a learner can explain the current example or required action.
@@ -341,7 +341,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 Can you answer these?. Move on after a learner can explain the current example or required action.
@@ -395,7 +395,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 Run the routine on your sector dataset. Move on after a learner can explain the current example or required action.
@@ -409,7 +409,7 @@ CONNECT
 Build on the preceding slide: How did you do?.
 
 LECTURER CUE
-This is the sector assessment, worth 30%. Six questions in order, then five findings. Marked on the findings and the limitations beside them, not on the code.
+This is Project 4, the investigation write-up. Six questions in order, then five findings. Peers read the findings and the limitations beside them and say which they would act on. Nothing is marked.
 
 EXPLAIN IN ORDINARY WORDS
 Mean is total divided by count. Median is the middle of sorted values. A percentile locates a position in that ordered distribution; interpolation conventions can differ. Match the summary to the question.
@@ -438,7 +438,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 Before the next session. Move on after a learner can explain the current example or required action.
@@ -452,7 +452,7 @@ CONNECT
 Build on the preceding slide: What you can do now.
 
 LECTURER CUE
-Finish and submit the investigation: half a page of findings plus the notebook behind it.
+Finish the investigation to show a neighbour: half a page of findings plus the notebook behind it.
 
 EXPLAIN IN ORDINARY WORDS
 A notebook contains code cells and explanatory text cells. The runtime remembers values from cells that actually ran, which may differ from their visual order.
@@ -461,7 +461,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 A routine beats talent under time pressure. Move on after a learner can explain the current example or required action.

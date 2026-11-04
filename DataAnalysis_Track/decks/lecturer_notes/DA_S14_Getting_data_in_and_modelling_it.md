@@ -65,7 +65,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 Begin with the question and intended comparison. Identify what an axis, bar, point or colour represents, including its unit. A chart summarises data and may hide variation.
@@ -228,12 +228,12 @@ LECTURER CUE
 Ten minutes.
 
 NEXT
-The model, which is where the marks are. Move on after a learner can explain the current example or required action.
+The model, which is where the value is. Move on after a learner can explain the current example or required action.
 
-## Slide 13 — The model, which is where the marks are
+## Slide 13 — The model, which is where the value is
 
 TEACHING PURPOSE
-The model, which is where the marks are
+The model, which is where the value is
 
 CONNECT
 Build on the preceding slide: Break.
@@ -250,7 +250,7 @@ TEACHING PURPOSE
 What you are building tonight
 
 CONNECT
-Build on the preceding slide: The model, which is where the marks are.
+Build on the preceding slide: The model, which is where the value is.
 
 LECTURER CUE
 The same six tables you mapped by hand in session 2, now as a model. The arrows all point the same way: many orders to one customer. Row counts are the real ones.

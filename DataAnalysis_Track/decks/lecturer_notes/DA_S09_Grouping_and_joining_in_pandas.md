@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 Grain means what one row represents. A key identifies a row; a primary key may use more than one column. A join matches keys, and multiple matches can multiply rows.
@@ -315,12 +315,12 @@ IF LEARNERS ARE STUCK
 Make two rows and two category columns by hand before showing the encoder.
 
 NEXT
-Checkpoint 2. Move on after a learner can explain the current example or required action.
+Project 2. Move on after a learner can explain the current example or required action.
 
-## Slide 16 — Checkpoint 2
+## Slide 16 — Project 2
 
 TEACHING PURPOSE
-Checkpoint 2
+Project 2
 
 CONNECT
 Build on the preceding slide: Reconciling two tools, properly.
@@ -334,9 +334,6 @@ May we delete every repeated amount? No. Check the row identifier and the table 
 IF LEARNERS ARE STUCK
 Keep raw data, record counts before and after each action, then explain any remaining difference instead of forcing totals to agree.
 
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
 NEXT
 A merge that silently multiplies rows. validate turns that into an exception instead of a wrong number.. Move on after a learner can explain the current example or required action.
 
@@ -346,7 +343,7 @@ TEACHING PURPOSE
 A merge that silently multiplies rows. validate turns that into an exception instead of a wrong number.
 
 CONNECT
-Build on the preceding slide: Checkpoint 2.
+Build on the preceding slide: Project 2.
 
 LECTURER CUE
 A merge that silently multiplies rows. validate turns that into an exception instead of a wrong number.
@@ -426,7 +423,7 @@ CONNECT
 Build on the preceding slide: How did you do?.
 
 LECTURER CUE
-Rebuild the rep revenue report in pandas and set it beside your SQL output. Any difference is a finding, and finding one is a pass. A clean match you cannot explain is not.
+Rebuild the rep revenue report in pandas and set it beside your SQL output. Any difference is a finding, and finding one is a good result. A clean match you cannot explain is not.
 
 EXPLAIN IN ORDINARY WORDS
 A DataFrame is a labelled table. A Series is a single labelled sequence, often one column. A dtype describes stored values, but the import may infer something unsuitable.

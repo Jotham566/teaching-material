@@ -48,7 +48,7 @@ rather than by hand in Excel.
 
 ---
 
-## Part 2 — the model, which is where the marks are
+## Part 2 — the model, which is where the value is
 
 Model view. This model has a snowflake structure: orders connects customers
 and reps to order_items. Use single-direction filtering from each one side
@@ -148,12 +148,12 @@ One page. Four visuals. A person will look at it for thirty seconds.
 4. **A table**: top ten customers by revenue, with average order value.
 5. **One slicer**: `Dates[Year]`. One, not five.
 
-Then the title, which is the assessed part. Not "Sales Dashboard". Something
+Then the title, which is the part readers remember. Not "Sales Dashboard". Something
 like "December is a third of the year's revenue in two weeks", if that is
 what you found. A title that states the finding does the reader's work for
 them, which is what they are paying for.
 
-### Optional extension: the map
+### Homework: the map
 Add **Uganda Healthsites** — <https://data.humdata.org/dataset/uganda-healthsites>,
 ODbL, about 7,969 facilities with coordinates — and put a map visual on it,
 coloured by facility type. Then write two sentences: one on what this file
@@ -162,6 +162,8 @@ publish anything derived from it, say where it came from.
 
 ---
 
-## What to hand in
+## What to keep (Project 5 and the final project)
 
-Read `../student_guides/DA/S15.md` for the full submission steps. Keep the `.pbix` or authorised report link as supporting project material. Upload a PPTX with narration notes and any separate DOCX/selectable-text PDF evidence through the S15 form; PBIX and ZIP are not accepted there. Include your question, numerical answer, supporting evidence, limitations and what would change your answer, plus all five plain-text S15CHECK contexts from `../assessment_banks/S15/NUMERICAL_EVIDENCE.md`. Prepare the five-minute presentation. This assessment remains closed until full grading validation and dates are published.
+The `.pbix` file, or a link to the published report, plus one page: the
+question, the answer with its number, how you know, and what would change
+your answer. Five minutes in front of the room in session 15, followed by feedback from your peers. Nothing is marked.

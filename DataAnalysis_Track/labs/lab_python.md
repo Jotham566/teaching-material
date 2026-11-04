@@ -17,14 +17,14 @@ category was recorded in dollars **to the cent**, so converting it back at
 lines. Rounding to the cent throws away a fraction of a shilling each time,
 and it does not come back.
 
-Landing within a few thousand shillings of the database is therefore the pass
-mark, and **writing the residual down with its cause is part of it**. An
+Landing within a few thousand shillings of the database is therefore a good
+result, and **writing the residual down with its cause is part of it**. An
 analyst who reports a reconciliation as exact when it is not has told you
 they did not look. One who says "0.0004% low, from cent-rounding on the
 dollar-priced lines" has told you they did.
 
 Work in a notebook. Keep the cells in order and use Restart and Run All
-before you submit, because a notebook that only works in the order you
+before you keep it, because a notebook that only works in the order you
 happened to click is not a result.
 
 ---
@@ -146,7 +146,7 @@ A table, in the notebook, filled in as you go. Not written afterwards.
 | Split out returns | | | 501 rows moved | negative quantity is a return |
 | ... | | | | |
 
-The log is marked as heavily as the answer. A number nobody can reproduce is
+The log matters as much as the answer. A number nobody can reproduce is
 not a result, and in six months the person who cannot reproduce it is you.
 
 ---
@@ -174,6 +174,16 @@ Every difference is a finding. Chase each one until you can name it, then
 stop: the cent-rounding residual above is named, so it is finished. "Close
 enough" with no number beside it is how a wrong figure reaches a board
 paper.
+
+---
+
+## What to keep (Project 2)
+
+The cleaned file, the cleaning log, the pandas version of the session 5
+report and your list of differences from SQL, each with its cause. A real
+difference you can explain is a better result than a clean match you cannot
+account for. Nothing is marked: ask a neighbour to follow your log and tell
+you where it loses them.
 
 ---
 

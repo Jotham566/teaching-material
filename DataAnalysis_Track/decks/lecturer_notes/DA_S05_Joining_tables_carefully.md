@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 Grain means what one row represents. A key identifies a row; a primary key may use more than one column. A join matches keys, and multiple matches can multiply rows.
@@ -218,7 +218,7 @@ CHECK AND EXPECTED ANSWER
 Does editing a cell update a value already stored in memory? No; the cell must run.
 
 IF LEARNERS ARE STUCK
-Outside an assessment restriction, restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
+Restart and run from the top after loading data. Fix the first error before later cells; save the successful notebook.
 
 NEXT
 Watch the row count decide the answer. Move on after a learner can explain the current example or required action.
@@ -338,12 +338,12 @@ IF LEARNERS ARE STUCK
 Write one example row from each table. Circle keys and trace each match. Aggregate to the intended grain and check counts and totals.
 
 NEXT
-Checkpoint 1. Move on after a learner can explain the current example or required action.
+Project 1. Move on after a learner can explain the current example or required action.
 
-## Slide 17 — Checkpoint 1
+## Slide 17 — Project 1
 
 TEACHING PURPOSE
-Checkpoint 1
+Project 1
 
 CONNECT
 Build on the preceding slide: The report the sales manager actually wants.
@@ -357,9 +357,6 @@ One order has two lines. After joining orders to lines, how many rows for it? Tw
 IF LEARNERS ARE STUCK
 Write one example row from each table. Circle keys and trace each match. Aggregate to the intended grain and check counts and totals.
 
-ASSIGNMENT HANDOVER
-Open the matching public student guide and show the exact starter filename, required outputs and upload set. Ask one learner to repeat what to submit and where. IUEA Student Registration Number is required freeform text; learners enter their own number. A saved repository is not a submitted form. Read the live deadline and keep the submission confirmation. Do not release an assessment that is still awaiting grading validation.
-
 NEXT
 A join that multiplies rows. The total gets bigger and looks plausible, and the only tell is the row count.. Move on after a learner can explain the current example or required action.
 
@@ -369,7 +366,7 @@ TEACHING PURPOSE
 A join that multiplies rows. The total gets bigger and looks plausible, and the only tell is the row count.
 
 CONNECT
-Build on the preceding slide: Checkpoint 1.
+Build on the preceding slide: Project 1.
 
 LECTURER CUE
 A join that multiplies rows. The total gets bigger and looks plausible, and the only tell is the row count.
@@ -449,7 +446,7 @@ CONNECT
 Build on the preceding slide: How did you do?.
 
 LECTURER CUE
-This is Checkpoint 1 and it is marked against the answer key tonight. Build it as named steps and check the row count after each one.
+This is Project 1. Check it against the answer sheet tonight and keep it. Build it as named steps and check the row count after each one.
 
 EXPLAIN IN ORDINARY WORDS
 Grain means what one row represents. A key identifies a row; a primary key may use more than one column. A join matches keys, and multiple matches can multiply rows.

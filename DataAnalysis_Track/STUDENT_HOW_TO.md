@@ -1,48 +1,42 @@
-# Independent Data Analyst track — getting started
+# Data Analysis course: getting started
 
-Use your DA learner ID from the class roster, not an IUEA Student Registration Number. Your identity remains the same across the track. The lecturer supplies the assignment dates; a draft guide does not mean the form is open.
+This course has no exam and no marks. You build projects and keep them. At the end you receive a certificate of completion from KLAi Professional Learning for completing the course and its project.
 
 ## Accounts and files
 
-1. Use your existing Google account for Colab and submission forms. If you do not have one, go to https://accounts.google.com, choose Create account and follow the personal-account prompts and verification. Use the email registered with the lecturer. Never share a password or verification code.
-2. GitHub is only needed when the task asks for a repository. At https://github.com choose Sign up, complete the prompts and verify your email, or sign in to your existing account. A free account is sufficient. Create a private repository using + > New repository, enable Add README and create it. Use Add file > Upload files and Commit changes to save your work there. A repository is a project folder with saved history, not a submission form.
-3. Download the lecturer's session files. A ZIP is a compressed folder: on Windows right-click > Extract All; on Mac double-click it in Finder. Work in the extracted folder, keeping raw data unchanged. Do not download a different version of the data to fix a mismatch.
-4. Before starting, read the matching guide in student_guides/DA, or ASSIGNMENT_INSTRUCTIONS.md in the issued folder. It specifies the exact starting files and submission set.
+1. Use your existing Google account for Colab. If you do not have one, go to https://accounts.google.com, choose Create account and follow the prompts. Never share a password or verification code.
+2. GitHub is optional. It is only useful if you want to keep your projects in a repository, which is a project folder with saved history. A free account at https://github.com is enough.
+3. Download the session files from your lecturer. A ZIP is a compressed folder: on Windows right-click > Extract All; on Mac double-click it in Finder. Work in the extracted folder and keep the raw data unchanged.
 
-## SQL in Session 5
+## SQL in Sessions 3 to 5
 
-Install DB Browser for SQLite from https://sqlitebrowser.org/dl/ for your operating system, or use the prepared installation. No SQL account or database server is needed. Open the app, choose Open Database, select the supplied riverside.db and choose Execute SQL. Type a query and use Execute to see its result table. Follow the SQL lab before the assessment.
+Install DB Browser for SQLite from https://sqlitebrowser.org/dl/ for your operating system, or use the prepared installation. No SQL account or database server is needed. Open the app, choose Open Database, select the supplied riverside.db and choose Execute SQL. Type a query and use Execute to see the result table.
 
-Save the final query as a plain-text .sql file using the SQL editor's save command. Reopen it and run it against the issued database. Check that it did not acquire an extra .txt extension. Submit the query, not a screenshot of its output or the database itself. Read S05.md for the six required output columns and marking checks.
+For Project 1, save your final query as a plain-text .sql file with the SQL editor's save command. Reopen it and run it to check it still works, and check that it did not acquire an extra .txt extension. The lab shows the right numbers, so you can check yourself.
 
-## Colab in Python sessions
+## Colab in the Python sessions
 
-1. Open https://colab.research.google.com. Choose File > Open notebook > Upload and select the assignment .ipynb. A notebook has code cells to execute and text cells to read or edit. Save your own copy with File > Save a copy in Drive.
-2. Click Connect if needed. In the left Files sidebar click Upload and select the named CSV/database/helper files. This is different from opening the notebook. Check all filenames appear, including riverside.db when required. Upload again if a disconnected runtime loses its files.
-3. Replace YOUR_ID inside STUDENT_ID with your own DA roster ID, keeping quotes. Keep COHORT="DA". Read each task, edit the answer cell and run it with Shift+Enter. Do not change required function names or supplied check code.
-4. A function must return the requested value. Printing alone is not a substitute. Blank starter functions can fail checks until you complete them. Read the first error and fix it before continuing.
-5. Double-click a text cell to write your reasoning. For S09, the cleaning log must be a separate DOCX/PDF, not only notebook comments. For S13, follow your chosen sector's published finding keys and units.
-6. Choose Runtime > Restart session and then Run all. Check the outputs and any errors. Download using File > Download > Download .ipynb. Rename using your actual learner ID and session, such as your ID followed by _S09.ipynb. Reopen the downloaded file to check that it contains your final work.
+1. Open https://colab.research.google.com. Choose File > Open notebook > Upload and select the notebook. Save your own copy with File > Save a copy in Drive.
+2. Click Connect if needed. In the left Files sidebar click Upload and select the data files named in the lab. Upload them again if a disconnected runtime loses them.
+3. Run each cell with Shift+Enter. Read the first error message and fix it before continuing.
+4. Before you keep a notebook, choose Runtime > Restart session and then Run all. Download it with File > Download > Download .ipynb and reopen it to check it holds your final work.
 
-## Reports and presentations
+## Your projects
 
-In Word or Google Docs create a blank document. Add your learner ID, session and title, then the headings specified by the brief. Explain your method, numerical evidence, interpretation and limitations. In Google Docs use File > Download > Microsoft Word (.docx) or PDF Document (.pdf). Reopen the export and check the text is selectable. A photo of a page is not a text report.
+| Project | Session | What you keep |
+|---|---|---|
+| 1. SQL revenue report | 5 | One .sql file |
+| 2. Cleaned dataset and cleaning log | 9 | The cleaned file, the log and the pandas report reconciled to SQL |
+| 3. Statistics notes page | 11 | One page of notes |
+| 4. Investigation write-up | 13 | Five findings and the notebook behind them |
+| 5. Power BI dashboard | 15 | The dashboard file |
 
-In PowerPoint or https://slides.google.com create your slides and add your narration in the Notes area below each slide. Export as PPTX (Google Slides: File > Download > Microsoft PowerPoint). Check the exported notes. Screenshots can illustrate results but must not replace required written explanations or S15CHECK lines.
+The investigation and the dashboard together are the final project. You show it in Session 15 in five minutes, and your peers say what they would act on and what they doubt.
 
 ## Power BI access before Session 14
 
-Windows users obtain Power BI Desktop from https://learn.microsoft.com/en-us/power-bi/fundamentals/desktop-get-the-desktop. Follow the installation prompts, open the app and check that you can load the supplied CSVs. Desktop is a Windows application; do not attempt to install it directly on macOS.
+Windows users obtain Power BI Desktop from https://learn.microsoft.com/en-us/power-bi/fundamentals/desktop-get-the-desktop. Follow the installation prompts, open the app and check that you can load the supplied CSVs. Desktop is a Windows application and does not install on macOS.
 
-For a Mac, use the lecturer-provisioned browser workspace at https://app.powerbi.com only after testing its model-editing permissions with your authorised teaching account. Sign in with that account and verify you can open the designated semantic model (the shared tables and relationships). A personal Gmail sign-in does not provide those permissions. If access fails, arrange a prepared Windows lab machine before class. Do not buy a licence or start a trial to solve a classroom access problem.
+For a Mac, use the lecturer-provisioned browser workspace at https://app.powerbi.com only after testing its model-editing permissions with your authorised teaching account. Sign in and check that you can open the designated semantic model. A personal Gmail sign-in does not give those permissions. If access fails, the lecturer arranges a prepared Windows lab machine before class. Do not buy a licence or start a trial to solve a classroom access problem.
 
-Follow lab_powerbi.md to load five tables into one model, establish relationships, create measures and check totals. Save the editable PBIX or authorised report link as supporting work. Read S15.md for the accessible PPTX/DOCX/PDF evidence to upload; the form does not accept PBIX or ZIP. The S15 assessment remains closed until the full grading workflow is validated and dates are published.
-
-## Submit and check confirmation
-
-1. Open the matching session's student form from its assignment guide. Check its title and the exact Kampala closing time. Use the Google email on your roster and enter your DA learner ID.
-2. Choose Add file > Upload. Select the complete file set in the brief. S05: one SQL file. S09: notebook and cleaning log. S13: notebook and report. S15: presentation with notes and any separate evidence document.
-3. Wait until all filenames appear, then Submit. Keep the confirmation page and your local files. Attaching a file or saving a repository is not submission. Each file must be at most 10 MB.
-4. A correction before the deadline must contain the complete set again; the latest on-time response replaces the earlier set. A form that is closed is not permission to use a different session's form. Contact the lecturer with the session and error, while keeping your work.
-
-Official help: https://support.google.com/accounts/answer/27441 and https://research.google.com/colaboratory/faq.html
+Follow lab_powerbi.md to load the tables into one model, build the relationships, create measures and check your totals against the numbers you already have from SQL and pandas.

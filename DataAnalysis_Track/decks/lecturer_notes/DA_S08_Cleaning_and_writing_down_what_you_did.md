@@ -74,7 +74,7 @@ CONNECT
 Build on the preceding slide: The words for tonight.
 
 LECTURER CUE
-These three are what tonight is marked against, in the sense that the lab checks them.
+These three are what tonight's lab practises, and the check and answers slide lets you test yourself on them.
 
 EXPLAIN IN ORDINARY WORDS
 Missing means not recorded, not automatically zero. Decide why it is missing and document the rule. Fitted fill values must come from training data when evaluating a model.
@@ -420,7 +420,7 @@ CONNECT
 Build on the preceding slide: How did you do?.
 
 LECTURER CUE
-From the raw CSVs to a revenue figure you can defend, keeping the log as you go rather than writing it afterwards. The log is marked as heavily as the number.
+From the raw CSVs to a revenue figure you can defend, keeping the log as you go rather than writing it afterwards. The log matters as much as the number.
 
 EXPLAIN IN ORDINARY WORDS
 A cleaning decision needs evidence, a stated rule and a before/after check. Similar rows may be genuine repeated events. Reconciliation compares totals built under the same definitions.

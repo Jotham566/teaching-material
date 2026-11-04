@@ -2,11 +2,11 @@
 
 Open the PowerPoint and use Presenter View to see notes privately. In normal editing view, open the Notes pane beneath the slide. Share the slide display with students, not your lecturer screen.
 
-Each slide has a purpose and transition. Where relevant, notes add an everyday explanation, a check with an expected answer, a recovery example, code cues, and submission instructions. The checks in these notes are teaching examples, not extra assessed tasks.
+Each slide has a purpose and transition. Where relevant, notes add an everyday explanation, a check with an expected answer, a recovery example and code cues. The checks in these notes are practice for the room. Nothing in this course is marked.
 
-Before class: read the notes for the next lesson, rehearse its supplied worked examples, test the displayed video excerpt, and check the current assignment and quiz release status. Explain, predict, run, then change one input. Pause and repeat a smaller example if learners cannot explain the current one.
+Before class: read the notes for the next lesson, rehearse its supplied worked examples, and test any video excerpt you plan to show. Explain, predict, run, then change one input. Pause and repeat a smaller example if learners cannot explain the current one.
 
-Quiz availability is 24 hours from its own activation. Assignment windows use their published dates. Keep the current public task guide open when explaining what to submit. Assessments awaiting grading validation are not released by this review.
+This course has no exam, marks or grades. Learners keep their projects, and in Session 15 they show the final project to the room and receive peer feedback.
 
 | Presentation | Read the lecturer notes |
 |---|---|
