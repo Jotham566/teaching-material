@@ -1,7 +1,7 @@
-"""Session 18 capstone (Python): five builds, individually auto-graded.
-Every learner types a student ID in the first code cell. All datasets (regression points, logistic data, PCA cloud, XOR-style data, attention embeddings) are generated from a seed derived from that ID,
-so every learner has different numbers and no expected value is printed anywhere. The learner writes functions with fixed names; the check cell calls them on the learner's data and on a second dataset
-and compares with reference implementations (the SHARED block of Build/autocheck/grade_capstone.py, copied into the notebook so that notebook and grader cannot disagree).
+"""Session 18 course project (Python): five builds, with automatic self-checks and no marks.
+A learner may type a student ID in the first code cell. It only seeds a personal dataset (regression points, logistic data, PCA cloud, XOR-style data, attention embeddings), so every learner has different numbers.
+It is not a test. The learner writes functions with fixed names; the check cell calls them on the learner's data and on a second dataset and compares with reference implementations
+(the SHARED block of Build/autocheck/project_selfcheck.py, copied into the notebook so that notebook and script always agree). The checks show OK or NOT YET and nothing is recorded.
 The slides and the guided workbook use separate seed-free toy numbers, computed by toy() below."""
 import contextlib
 import io
@@ -15,14 +15,14 @@ BUILD = HERE.parents[1]
 sys.path.insert(0, str(BUILD / 'kit'))
 from nb import Notebook  # noqa: E402
 
-TITLE = 'Capstone: five builds from first principles'
-GRADER = BUILD / 'autocheck' / 'grade_capstone.py'
+TITLE = 'Course project: five builds from first principles'
+CHECKFILE = BUILD / 'autocheck' / 'project_selfcheck.py'
 PLACEHOLDER = 'PUT-YOUR-STUDENT-ID-HERE'
 SOLUTION_ID = 'KLAI-SOLUTION-0000'
 
 
 def shared_source():
-    t = GRADER.read_text(encoding='utf-8')
+    t = CHECKFILE.read_text(encoding='utf-8')
     return t.split('# >>> SHARED BEGIN', 1)[1].split('# <<< SHARED END', 1)[0].split('\n', 1)[1]
 
 
@@ -44,7 +44,7 @@ HIDDEN = make_datasets(20260518)      # a second small dataset that only the che
 def run_build(k):
     """Runs the checks of build k on YOUR data and on a second dataset, calling YOUR functions."""
     L = {n: globals().get(n) for n in NAMES}
-    for b, cid, label, marks, fn in CHECKS:
+    for b, cid, label, fn in CHECKS:
         if b == k:
             for tag, D in (("your data", DATA), ("second dataset", HIDDEN)):
                 check(BUILD_NAMES[b] + ": " + label + ", " + tag, run_check(fn, D, L), True, 0)
@@ -59,17 +59,17 @@ def show(label, thunk):
 
 def build(solution=False):
     nb = Notebook()
-    nb.md('# Session 18 capstone: five builds from first principles\n\nKLAi | Mathematics for AI and Machine Learning | **Individual and auto-graded**\n\n'
+    nb.md('# Session 18 course project: five builds from first principles\n\nKLAi | Mathematics for AI and Machine Learning | **Your project. Automatic self-checks, no marks**\n\n'
           'You build five things with numpy only: **(1) linear regression**, **(2) logistic regression**, **(3) PCA**, **(4) a small neural network with backpropagation** and **(5) scaled dot-product attention**. '
           'Each build is one or more **functions with fixed names**, which you write in the cells marked "your code here".\n\n'
-          '**How the grading works.** Type your student ID in the first code cell. Every dataset in this notebook is generated from your ID, so your numbers are your own and nobody else has the same ones. '
-          'The checks call YOUR functions on YOUR data and on a second dataset, and compare the results with a trusted reference. No expected number is printed, so there is nothing to copy: a function that returns typed-in numbers fails. '
-          'Your teacher also runs your functions on further datasets that you cannot see. Each check names its build. The last cell says "All N checks pass" when everything is right.\n\n'
-          '**Rules.** Use numpy only. Run the cells in order from the top. Work alone. You may look at your notes, the slides and earlier notebooks. '
-          'The spreadsheet capstone is a guided practice version with fixed toy numbers. It is not the graded capstone.')
+          '**How the self-checks work.** There is no exam and there are no marks. Type a student ID in the first code cell (any text you like, even your own name). It only creates a personal dataset, so your numbers are your own and nobody else has the same ones. It is not a test and nothing is sent anywhere. '
+          'The checks call YOUR functions on YOUR data and on a second dataset, and compare the results with a reference. Each check shows OK or NOT YET, so you can see which build still needs work. No expected number is printed, so the way to see OK is to write a function that really computes the answer. '
+          'Each check names its build. The last cell says "All N checks pass" when everything is right.\n\n'
+          '**Rules.** Use numpy only. Run the cells in order from the top. You may look at your notes, the slides and earlier notebooks, and you may talk with others and ask an assistant to explain an idea. The project is yours to build and keep. '
+          'The spreadsheet version is a guided workbook with fixed toy numbers and its own checks.')
     nb.code(f'STUDENT_ID = "{SOLUTION_ID if solution else PLACEHOLDER}"      # type your student ID between the quotes, then run this cell')
     nb.check_setup()
-    nb.code('# Grading helper: data generators, reference implementations and checks. Run this cell once. You do not need to read it.\n' + shared_source().strip('\n') + '\n' + HELPER_EXTRA)
+    nb.code('# Self-check helper: data generators, reference implementations and checks. Run this cell once. You do not need to read it.\n' + shared_source().strip('\n') + '\n' + HELPER_EXTRA)
     nb.code('SEED = seed_from_id(STUDENT_ID)\nDATA = make_datasets(SEED)            # all your datasets, generated from your ID\n'
             'lin, logd, pca_data, xor_data, att_data = DATA["lin"], DATA["log"], DATA["pca"], DATA["xor"], DATA["att"]\n'
             'check("Setup: a student ID was entered", STUDENT_ID.strip().upper() != PLACEHOLDER and len(STUDENT_ID.strip()) > 2, True, 0)\n'
@@ -149,8 +149,11 @@ def build(solution=False):
             'print("standard deviation of q . k for length 64:", np.std(np.sum(qs * ks, axis=1)), " after dividing by sqrt(64):", np.std(np.sum(qs * ks, axis=1)) / 8)\nrun_build(5)')
     nb.change('Change `attention` so it does not divide by the square root of d_k and compare the weights on the 6-number example `att_data["Q2"]`, `att_data["K2"]`. Which rows get sharper (closer to one-hot)?')
 
-    nb.md('---\n## Save your work\n\nRun every cell again from the top (Runtime, Restart and run all). The last line must say all checks pass. Save the notebook and keep it: it is your capstone. '
-          'Submit the .ipynb file to your teacher. The teacher\'s grader reads your student ID and your functions, runs them on your data and on hidden datasets, and gives a mark for each build out of 20.')
+    nb.md('---\n## Save your work\n\nRun every cell again from the top (Runtime, Restart and run all). The last line must say all checks pass. Save the notebook and keep it: it is your course project. '
+          'There is nothing to hand in for marks. If you would like feedback, show the notebook to a classmate or to your facilitator and use the project checklist below.\n\n'
+          '## Make it yours (optional)\n\nTake the same functions to data you care about. Two examples: put two columns of your own numbers in a list and call `fit_linear` to fit a line, or call `pca_first_component` on two columns of a small table from your work. '
+          'Never use private or confidential data in a shared notebook. Then go through the checklist, alone or with a partner.\n\n'
+          '## Project checklist (for you and a peer)\n\n- [ ] Every self-check says OK, or I can explain what NOT YET still means.\n- [ ] I can explain Build 1 to someone in two sentences, with no formulas.\n- [ ] I can say why the logistic loss is cross-entropy (Session 16).\n- [ ] I can say what the first principal component is, in plain words.\n- [ ] I checked my backpropagation gradient against a numeric gradient.\n- [ ] I can say why attention divides by the square root of d_k.\n- [ ] My notebook runs from the top with Restart and run all.\n- [ ] I tried at least one change (a new learning rate, my own data or no scaling) and wrote down what happened.')
     nb.code('show_checks()')
     return nb
 

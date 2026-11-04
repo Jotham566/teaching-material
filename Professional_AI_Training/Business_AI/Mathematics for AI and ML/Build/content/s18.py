@@ -1,4 +1,4 @@
-"""Session 18: capstone, five builds from first principles (author F). Every number comes from the solution notebook (labs/s18_nb.py)."""
+"""Session 18: course project, five builds from first principles (author F). Every number comes from the solution notebook (labs/s18_nb.py)."""
 import importlib.util
 import math
 from pathlib import Path
@@ -47,22 +47,22 @@ def build():
     fm = lambda M_: '(' + '), ('.join(', '.join(f'{v:g}' for v in row) for row in np.atleast_2d(M_)) + ')'
 
     s = dict(
-        num=18, block='Capstone', short_title='Capstone',
-        title='Capstone: five builds from first principles, from linear regression to attention',
+        num=18, block='Course project', short_title='Course project',
+        title='Course project: five builds from first principles, from linear regression to attention',
         question='Can five small builds, written from first principles, reproduce the core of what runs inside modern AI?',
         outcomes=['Build linear regression (normal equation and gradient descent) and logistic regression (gradient descent) with numpy',
                   'Build PCA from the covariance eigen-decomposition and a 2-4-1 neural network with backpropagation',
-                  'Build scaled dot-product attention for three tokens, and pass the automatic checks of the capstone'],
+                  'Build scaled dot-product attention for three tokens, and see OK on the automatic self-checks of your project'],
         outcome_icons=['chart', 'gear', 'check'],
         outcome_note=('By the end of today you can build five things from first principles. Linear regression, with the normal equation and with gradient descent. Logistic regression, with gradient descent. '
                       'PCA, from the eigen-decomposition of the covariance matrix. A small neural network, two inputs, four hidden units and one output, with backpropagation. And scaled dot-product attention for three tokens. '
-                      'In the notebook your student ID generates your own data, your functions are checked automatically on it, and each check names the build it belongs to.'),
+                      'In the notebook the text you type as a student ID makes your own personal data, and automatic self-checks show OK or NOT YET for each build. There are no marks. The project is yours to keep.'),
         clock=[(10, 'Recall, then a real question from AI'), (35, 'Concept: a picture, then one example by hand'), (10, 'Break'), (45, 'Lab in Python or a spreadsheet: predict, run, change one thing'),
                (15, 'Where this appears in AI, and an exit check'), (5, 'Save the work')],
-        plan_title='Your two hours: a guided tour, then the capstone',
-        plan_caption='The tour first. Then the individual capstone, graded in the notebook. Then AI.',
+        plan_title='Your two hours: a guided tour, then your project',
+        plan_caption='The tour first. Then your project, with self-checks and no marks. Then AI.',
         plan_note=('Today is the last session. Ten minutes of recall from Session 17. Thirty-five minutes of guided tour of the five builds, with the maths of each on a formula slide and a hand example. A ten minute break. '
-                   'Then forty-five minutes of capstone. The graded capstone is the notebook, which you complete on your own with your own data. The spreadsheet is a guided practice version. We finish with where this appears in AI, what to learn next, and saving your work.'),
+                   'Then forty-five minutes on your project. The project is the notebook, which you build with your own personal data and keep. Nothing is marked: the checks only show you what works. The spreadsheet is a guided version with the same five builds. We finish with where this appears in AI, what to learn next, and saving your work.'),
         recall_from='Session 17',
         recall=[('How are cross-entropy, entropy and KL divergence related?', 'Cross-entropy = entropy + KL divergence. The entropy is fixed by the data, so lowering the cross-entropy lowers the KL divergence.'),
                 ('What is the gradient of softmax with cross-entropy with respect to the logits?', 'The prediction minus the target: p - y.'),
@@ -76,12 +76,12 @@ def build():
         words_note=('Five words for today. The normal equation is the direct formula for least squares. A principal component is a direction of largest spread, an eigenvector of the covariance matrix. '
                     'Backpropagation is the chain rule applied backwards through a network. Query, key and value are the three vectors each token makes in attention. '
                     'And attention is a weighted average of the values, with the weights coming from a softmax. We use each of them today.'),
-        keep='Keep your finished capstone notebook with all checks passing, and write your one-page formula sheet: every formula named in plain words and in the industry term.',
-        keep_visual=dict(kind='card', title='Take away', fields=[dict(label='Capstone', value='All checks pass'), dict(label='Formula sheet', value='One page'),
+        keep='Keep your finished project notebook, ideally with all self-checks OK, and write your one-page formula sheet: every formula named in plain words and in the industry term.',
+        keep_visual=dict(kind='card', title='Take away', fields=[dict(label='Your project', value='Self-checks OK'), dict(label='Formula sheet', value='One page'),
                                                               dict(label='Next', value='Machine Learning at KLAi'), dict(label='Then', value='Deep learning')]),
-        keep_title='Save your capstone and write your formula sheet',
+        keep_title='Save your project and write your formula sheet',
         next='Machine Learning at KLAi, then deep learning (to be confirmed).', next_label='What to learn next',
-        keep_note=('This is the end of the course, so before you go do two things. Run your capstone from the top, check that every check passes and save it. '
+        keep_note=('This is the end of the course, so before you go do two things. Run your project from the top, look at the self-checks and save it. It is yours to keep, and nothing is marked. '
                    'Then write your one-page formula sheet, with every formula named in plain words and in the industry term. It is the page you will use when you read a paper or a library manual. '
                    'Thank you for eighteen sessions. What was the one idea you will remember?'),
         keep_returns=True,
@@ -110,9 +110,9 @@ def build():
                   rows=[['1 Linear', 'Hours x = 1, 2, 3, 4, 5, 6. Energy y (kWh) = 2.2, 2.9, 4.1, 5.2, 5.8, 7.1.'],
                         ['2 Logistic', 'Hours x = 1 to 8. Passed y = 0, 0, 0, 1, 0, 1, 1, 1.'],
                         ['3 PCA', 'a = 2.5, 0.5, 2.2, 1.9, 3.1, 2.3, 2.0, 1.0, 1.5, 1.1. b = 2.4, 0.7, 2.9, 2.2, 3.0, 2.7, 1.6, 1.1, 1.6, 0.9.']],
-                  widths=[2.2, 9.4], icons=False, note='These fixed numbers are for the slides and the guided workbook. In the graded notebook your own student ID generates different data.',
+                  widths=[2.2, 9.4], icons=False, note='These fixed numbers are for the slides and the guided workbook. In the notebook your student ID makes your own different data.',
                   notes=('Here is every number that the first three guided builds use, so you can recompute them from these slides alone. Build one has six readings of hours and energy. Build two has eight students with hours of study and pass or fail. '
-                         'Build three has ten points in two columns, a and b. These numbers are made up to show the arithmetic. In the graded notebook your own student ID generates different data. Which build has the most numbers to check?')))
+                         'Build three has ten points in two columns, a and b. These numbers are made up to show the arithmetic. In the notebook the text you type as a student ID makes your own, different data. Which build has the most numbers to check?')))
 
     S.append(dict(kind='table', title='The illustrative data of Builds 4 and 5',
                   headers=['Build', 'Data'],
@@ -207,7 +207,7 @@ def build():
                   widths=[2.4, 2.0, 3.8, 3.8], icons=False, note=f'The loss falls from {loss0:.3f} to {lnn:.4f}. Learning rate 0.5.',
                   notes=(f'Here is what training does. Before training all four outputs are close to one half, between {min(p0):.2f} and {max(p0):.2f}, and the loss is {loss0:.3f}. '
                          f'After five thousand steps of gradient descent the outputs are near zero for the first and last inputs and near one for the middle two, and the loss is {lnn:.4f}. The network has learned XOR, which no single straight line can do. '
-                         'In the graded notebook the checks compare your backward function with a numeric gradient, on your own data.')))
+                         'In the notebook the self-checks compare your backward function with a numeric gradient, on your own data.')))
 
     S.append(dict(kind='wide', title='Build 5: attention gives every token a weighted average of the value vectors',
                   visual=dict(kind='f_attention', tokens=tok, weights=Wt.tolist(), outputs=Wo.tolist(), note=f'Illustrative numbers. Token 3 reads {Wt[2, 0] * 100:.0f} percent from token 1, {Wt[2, 1] * 100:.0f} from token 2 and {Wt[2, 2] * 100:.0f} from token 3.'),
@@ -242,7 +242,7 @@ def build():
                          f'Multiplying the weights by the three value vectors gives the output for token one, {Wo[0, 0]:.3f} and {Wo[0, 1]:.3f}. Token three has the largest score for itself, {Wa[2, 2]:.3f}, so it gives itself the largest weight, {Wt[2, 2]:.3f}. '
                          'In the workbook the softmax is built in cells with the stable trick of subtracting the row maximum.')))
 
-    S.append(dict(kind='compare', title='Three slips that the capstone checks will catch',
+    S.append(dict(kind='compare', title='Three slips that the self-checks will catch',
                   left=dict(head='The slip', points=['No column of ones, so no intercept.', 'PCA without centring the data first.', 'Softmax along the wrong axis, or no sqrt(d).']),
                   right=dict(head='The fix', points=['Add the column of ones to X.', 'Subtract each column mean first.', 'Softmax along each row, then divide scores by sqrt(d_k).']),
                   verdict='Each check names its build, so read the name first.',
@@ -254,32 +254,32 @@ def build():
                   code='w = np.linalg.solve(X.T @ X, X.T @ y)\nw = w - lr * X.T @ (sigmoid(X @ w) - y) / n\nvals, vecs = np.linalg.eigh(Dc.T @ Dc / n)\ngW1 = dh.T @ X\nout = softmax_rows(Q @ K.T / np.sqrt(d)) @ V',
                   reads=['Build 1: the normal equation in one line.', 'Build 2: one gradient step of logistic regression.', 'Build 3: eigh returns the eigenvalues smallest first, so take the last column. The sign of an eigenvector is arbitrary.', 'Build 4: a gradient from backpropagation.', 'Build 5: the attention formula.',
                          'Spreadsheet: MMULT, MINVERSE, TRANSPOSE and SUMPRODUCT.'],
-                  notes=('Before the capstone, read the five recipes. Build one, the normal equation in a single line with solve. Build two, one gradient step of logistic regression, the p minus y again. '
+                  notes=('Before your project, read the five recipes. Build one, the normal equation in a single line with solve. Build two, one gradient step of logistic regression, the p minus y again. '
                          'Build three, the eigen-decomposition of the covariance matrix with eigh. Build four, a gradient from backpropagation, here the gradient of the first weight matrix. Build five, the attention formula in one line. '
                          'In the spreadsheet the same steps use MMULT, MINVERSE, TRANSPOSE and SUMPRODUCT. The notebook asks you to write the functions that these lines sit in.')))
 
-    S.append(dict(kind='divider', title='Part 2: the capstone', lead='Close the slides. Open the notebook or the workbook.', section='Lab',
-                  notes=('That is the end of the tour. The capstone is individual. Open the notebook or the workbook and work through the five builds in order. '
-                         'Every check names its build, so you can see which one needs work. You may use your notes and earlier notebooks. '
+    S.append(dict(kind='divider', title='Part 2: your project', lead='Close the slides. Open the notebook or the workbook.', section='Lab',
+                  notes=('That is the end of the tour. The project is yours. Open the notebook or the workbook and work through the five builds in order. '
+                         'Every self-check names its build, so you can see which one needs work. You may use your notes and earlier notebooks, and you may talk with your neighbour. Nothing is marked. '
                          'Raise your hand if something does not run, and I will help you read the error message. Good luck.')))
 
-    S.append(dict(kind='steps', title='The capstone has five builds, and every check names its build',
-                  steps=[dict(head='1 Linear', text='fit_linear, fit_linear_gd', icon='chart'), dict(head='2 Logistic', text='sigmoid, logistic_loss, fit_logistic', icon='check'), dict(head='3 PCA', text='two functions (named on the grading slide)', icon='magnifier'),
+    S.append(dict(kind='steps', title='Your project has five builds, and every self-check names its build',
+                  steps=[dict(head='1 Linear', text='fit_linear, fit_linear_gd', icon='chart'), dict(head='2 Logistic', text='sigmoid, logistic_loss, fit_logistic', icon='check'), dict(head='3 PCA', text='first component, variance share', icon='magnifier'),
                          dict(head='4 Network', text='mlp_forward, mlp_backward, mlp_train', icon='gear'), dict(head='5 Attention', text='softmax_rows, attention', icon='key')],
-                  caption=f'Python: {nchk} checks, each run on your own data and on a second dataset. 20 marks per build. Spreadsheet: a guided version with fixed toy numbers.',
-                  notes=(f'Here are the five builds in the order you will do them, with the names of the functions you write. In the notebook there are {nchk} checks. Each one runs your function on your own data and on a second dataset, and every check begins with the name of its build. '
+                  caption=f'Python: {nchk} checks, each run on your own data and on a second dataset. No marks. Spreadsheet: a guided version with fixed toy numbers.',
+                  notes=(f'Here are the five builds in the order you will do them, with the names of the functions you write. In the notebook there are {nchk} self-checks. Each one runs your function on your own data and on a second dataset, and every check begins with the name of its build. '
                          'Build one is linear regression. Build two is logistic regression. Build three is PCA. Build four is the network, where you write the forward pass, the backward pass and the training function. Build five is attention. '
                          'The notebook ends with a cell that says how many checks pass. Work in order, because later builds reuse earlier ideas, like p minus y and the sigmoid.')))
 
-    S.append(dict(kind='table', title='How the capstone is graded: your own data and your own functions',
+    S.append(dict(kind='table', title='How the self-checks work: your own data and your own functions',
                   headers=['Step', 'What happens'],
-                  rows=[['1 Student ID', 'Type it in the first cell. Every dataset is generated from it, so your numbers are yours alone.'], ['2 Functions', 'You write 12 functions with fixed names: fit_linear, fit_linear_gd, sigmoid, logistic_loss, fit_logistic, pca_first_component, pca_variance_share, mlp_forward, mlp_backward, mlp_train, softmax_rows, attention.'],
-                        ['3 Checks', 'Each check runs your function on your data and on a second dataset, and compares with a trusted reference. No expected number is shown anywhere.'],
-                        ['4 Marking', 'Your teacher runs your functions again on datasets you cannot see. Typed-in numbers fail. 20 marks per build, 100 in total.']],
-                  widths=[2.4, 9.2], icons=['key', 'gear', 'check', 'flag'], note='The spreadsheet is a guided practice version with fixed toy numbers. It is not the graded capstone.',
-                  notes=('Here is how the grading works, and why it is fair. You type your student ID in the first cell, and every dataset in the notebook is generated from it, so your numbers differ from your neighbour. '
-                         'You write functions with fixed names. Each check runs your function on your data and on a second dataset, and compares the result with a trusted reference, so no expected number is printed for you to copy. '
-                         'Afterwards your teacher runs your functions on datasets you cannot see. A function that only returns typed-in numbers fails, and a function that really computes the answer passes. The spreadsheet is a guided version for practice. Which step is new to you?')))
+                  rows=[['1 Student ID', 'Type any text in the first cell. It only makes your own datasets, so your numbers are yours. It is not a test.'], ['2 Functions', 'You write 12 functions with fixed names: fit_linear, fit_linear_gd, sigmoid, logistic_loss, fit_logistic, pca_first_component, pca_variance_share, mlp_forward, mlp_backward, mlp_train, softmax_rows, attention.'],
+                        ['3 Self-checks', 'Each one runs your function on your data and on a second dataset, and compares with a reference. No expected number is shown anywhere.'],
+                        ['4 No marks', 'You see OK or NOT YET and nothing is recorded. Typed-in numbers show NOT YET. Keep the project and show it to a partner.']],
+                  widths=[2.4, 9.2], icons=['key', 'gear', 'check', 'flag'], note='The spreadsheet is a guided version with fixed toy numbers and its own checks.',
+                  notes=('Here is how the self-checks work. There is no exam and no mark. You type any text as a student ID in the first cell, and every dataset in the notebook is made from it, so your numbers differ from your neighbour, and it is not a test. '
+                         'You write functions with fixed names. Each self-check runs your function on your data and on a second dataset, and compares the result with a reference, so no expected number is printed for you to copy. '
+                         'You see OK or NOT YET, and nothing is recorded. A function that only returns typed-in numbers shows NOT YET, and a function that really computes the answer shows OK. The spreadsheet is a guided version with its own checks. Which step is new to you?')))
 
     S.append(dict(kind='table', title='Guided workbook: check your numbers against these (toy data)',
                   headers=['Build', 'What you should see'],
@@ -287,11 +287,11 @@ def build():
                         ['3 PCA', f'eigenvalues {ev[1]:.4f}, {ev[0]:.4f} (largest first); first component ({pc1[0]:.4f}, {pc1[1]:.4f}); share {ratio:.4f}'],
                         ['4 Neural network', f'input (1, 2), target 1: p = {p:.4f}, loss {-math.log(p):.4f}, delta = {d:.4f}, first g_W2 = {gW2[0]:.4f}'],
                         ['5 Attention', f'weights row 1: {Wt[0, 0]:.3f}, {Wt[0, 1]:.3f}, {Wt[0, 2]:.3f}; output row 3: {Wo[2, 0]:.3f}, {Wo[2, 1]:.3f}']],
-                  widths=[3.0, 8.6], icons=['chart', 'check', 'magnifier', 'gear', 'key'], note='These toy numbers are for the guided workbook. The graded notebook shows no expected numbers. In numpy, eigh gives the eigenvalues smallest first.',
+                  widths=[3.0, 8.6], icons=['chart', 'check', 'magnifier', 'gear', 'key'], note='These toy numbers are for the guided workbook. The notebook shows no expected numbers. In numpy, eigh gives the eigenvalues smallest first.',
                   notes=('Use this table with the guided workbook. For linear regression you should see weights 1.12 and 0.98. For logistic regression, after five steps, the weights and loss in the table. '
                          'For PCA, the eigenvalues, largest first, and the first component. The numpy function eigh returns the eigenvalues smallest first, so you take the last column, and the sign of an eigenvector is arbitrary. '
                          'For the network, the single worked example. For attention, the first row of weights, 0.401, 0.198 and 0.401, and the output of token three. '
-                         'If a check fails, the table tells you what the correct number is. In the graded notebook no such table exists, because your data are your own.')))
+                         'If a check fails, the table tells you what the correct number is. In the notebook no such table exists, because your data are your own.')))
 
     S.append(dict(kind='table', title='Errors you will meet, what they mean and what to do',
                   headers=['What you see', 'What it means', 'What to do'],
@@ -302,12 +302,20 @@ def build():
                          'A check that says not yet means your function disagrees with the reference, on your data or on the second dataset, so call it on a tiny example and work it out by hand. And in the spreadsheet, a value error usually means an array formula was not filled over the whole gold block. '
                          'Read the last line of any error first.')))
 
+    S.append(dict(kind='list', title='Project checklist: use it alone, then swap with a partner',
+                  items=['Every self-check says OK, or I can say what NOT YET still means.', 'I can explain each build in two sentences, with no formulas.',
+                         'I changed one thing (learning rate, my own data, no scaling) and wrote what happened.', 'My notebook runs from the top with Restart and run all.'],
+                  icons=['check', 'book', 'magnifier', 'notebook'],
+                  notes=('Here is a checklist for your project. There are no marks, so this is how you and a partner give each other feedback. First, every self-check says OK, or you can say what a NOT YET still means. '
+                         'Second, you can explain each build in two sentences with no formulas, which is the best way to see that you understood it. Third, you changed one thing, such as the learning rate, your own data or no scaling, and wrote down what happened. '
+                         'Fourth, the notebook runs from the top with restart and run all. Swap notebooks with a partner and tick the list for each other. Which item do you expect to be hardest?')))
+
     S.append(dict(kind='idea', title='Where this appears in AI: attention is the core step of every layer of a published transformer',
                   visual=dict(kind='stack', layers=[dict(head='Tokens and embeddings', text='Text becomes vectors', icon='doc'), dict(head='Attention', text='Your Build 5', icon='key', ),
                                                     dict(head='Feed-forward layer', text='Matrix products, nonlinearity', icon='gear'), dict(head='Softmax and loss', text='Next-token probabilities', icon='chart')], highlight=1),
                   lead='Published research describes transformer language models as many repeated layers of attention and feed-forward steps.',
                   points=['Your Build 5 is the published attention formula (Vaswani et al., 2017).', 'Closed products do not publish their designs. Open models such as Llama use the same core formula plus a causal mask, and other changes.'],
-                  notes=('Here is where the capstone appears in real systems, as published research describes transformer language models. Text becomes tokens and embeddings. Then come many repeated layers. '
+                  notes=('Here is where your project appears in real systems, as published research describes transformer language models. Text becomes tokens and embeddings. Then come many repeated layers. '
                          'Each layer has an attention step, which is the core of your build five, and a feed-forward step, which is matrix multiplications with a nonlinearity. At the top a softmax gives next-token probabilities and training minimises the cross-entropy. '
                          'Real models use many tokens, many attention heads and many layers. Open models such as Llama use the same core formula with a causal mask, so a token cannot read later tokens, and other changes. '
                          'The designs of ChatGPT, Gemini and Claude are not published, so I describe only the published framework.')))
@@ -351,9 +359,9 @@ def build():
 
     s['facilitator'] = dict(
         prep=['Run the solution notebook once from the top and open the solution workbook. Toy numbers on the slides: weights 1.12 and 0.98, share of variance 0.9632, attention row 1 0.401, 0.198, 0.401.',
-              'The capstone is individual and graded in the notebook. Every learner types a student ID in the first cell and gets different data. Tell learners they may use notes and earlier notebooks but must not share code.',
-              'Collect the submitted .ipynb files and run Facilitator Materials/Autocheck/grade_capstone.py on them (Python with numpy). Change the two secret seeds first and keep them private. Marks: 20 per build, 100 in total, plus flags.',
-              'The spreadsheet is a guided practice version with fixed toy numbers, not the graded capstone. Open the learner notebook and confirm it ends with 0 checks passing before any work.'],
+              'There are no marks. The project is the notebook, and each learner keeps it. Every learner types any text as a student ID in the first cell and gets personal data. Tell learners they may use notes, earlier notebooks and each other. The self-checks show OK or NOT YET and nothing is recorded.',
+              'Optional: Facilitator Materials/Autocheck/project_selfcheck.py (Python with numpy) prints OK or NOT YET per build for a notebook, for a learner who wants a second look. It gives no marks and has no secret seeds.',
+              'The spreadsheet is a guided version with fixed toy numbers and its own checks. Open the learner notebook and confirm it ends with 0 checks passing before any work.'],
         misconceptions=[('The normal equation and gradient descent give different models.', 'Both minimise the same loss and reach the same weights. Gradient descent is needed when no direct formula exists.'),
                         ('PCA works on raw columns.', 'It needs centred columns. Otherwise the covariance and the scores are wrong. The checks shift the data to catch this.'), ('Attention is a different kind of maths from the rest of the course.', 'It is matrix multiplication, a dot product score and a softmax.'),
                         ('The sqrt(d) is a detail.', 'It stops the softmax from saturating when d is large. Published in the original transformer paper.')],
@@ -366,7 +374,7 @@ def build():
                    ('Build 4', 'The usual fault is a shape error or a missing input factor in the gradient of W1; the numeric gradient check names it. Spreadsheet: one step for the input (1, 2).'),
                    ('Build 5', 'Rows of weights add to 1. A softmax without the row maximum fails on the large scores. Dividing by sqrt(d_k) is tested on 6-number keys.')],
         rescue=['If time is short, ask learners to finish Builds 1, 2 and 5 in class and the rest at home.', 'If a learner is stuck in Build 4, let them write mlp_backward first and use the given training demo to see the loss fall.', 'Spreadsheet learners can practise Linear, Logistic and Attention first, then do the notebook at home.'],
-        after=['Collect the notebooks and run the grader. Check the flags: a flag is a prompt to look, not a verdict.', 'Remind learners to write the one-page formula sheet.', 'Point learners to Machine Learning at KLAi as the next step (a deep learning course is to be confirmed).'],
+        after=['Ask learners to swap notebooks with a partner and use the project checklist. Nothing is collected or marked.', 'Remind learners to write the one-page formula sheet. The certificate of completion from KLAi Professional Learning goes to learners who complete the course project.', 'Point learners to Machine Learning at KLAi as the next step (a deep learning course is to be confirmed).'],
         lab_answer_key=[['Build 1 PREDICT: slope', 'Look at how much y rises per hour in the learner\'s own printout. The hidden slope is between 0.5 and 2.5.'], ['Build 1 CHANGE: learning rate 0.05', 'Gradient descent diverges: the steps overshoot, so the weights blow up.'],
                         ['Build 2 PREDICT: first step for w1', 'It moves up, because more hours of study go with passing.'], ['Build 2 READ: confidence', 'Not very confident: the passes and fails overlap, so the loss stays well above zero.'],
                         ['Build 3 PREDICT: direction', 'Along (1, 1) or the tilt of the cloud: both columns rise together.'], ['Build 3 READ: what is kept', 'One score per point, holding most of the spread (the share of variance).'],

@@ -50,14 +50,15 @@ def guide():
     h2(d, 'Before the first session')
     bullets(d, ['Check that every learner can open Google Colab with a Google account, and can open an .xlsx file in Excel or in Google Sheets (File, Import, Upload, Replace spreadsheet).',
                 'Install the Lato fonts from brand/fonts on the teaching laptop so the slides look right. Open each deck in Presenter View: the spoken script is in the notes.',
-                'Share the notebooks and workbooks in the Notebooks and Workbooks folders. Keep Facilitator Materials private: it holds the solution notebooks and the capstone grader.',
+                'Share the notebooks and workbooks in the Notebooks and Workbooks folders. Keep Facilitator Materials private: it holds the solution notebooks and the self-check script.',
                 'Run each lab yourself once in Colab and in a spreadsheet before the session. The notebooks were proved with numpy only, not on Colab itself.'], 10)
     h2(d, 'What you can say about ChatGPT, Gemini, Claude and other AI')
     para(d, 'These are products built on large language models. Their exact internals are not published. Say what published research describes (transformers, attention, next-token prediction trained with cross-entropy, Adam, low-rank adaptation) and what open models such as Llama, Gemma and Mistral publish. Do not quote parameter counts, layer counts or training details of closed models. The "Where this appears in AI" slides are written to that rule. If a learner asks about a closed product, answer "my understanding is that the maker has not published that; here is what published models of this kind do".', 10, after=4)
     h2(d, 'Automatic checks')
     bullets(d, ['Each notebook has check cells that print OK or NOT YET and finish with "All N checks pass". Each workbook has a Check sheet with the same idea. Learners can run them as often as they like.',
-                'The capstone (Session 18) is individual and graded. The learner types a student ID; their data come from a seed made from that ID. Run Facilitator Materials/Autocheck/grade_capstone.py on a submitted notebook. Change the secret seeds in that script before real use.',
-                'Marks are not given for the other sessions; the checks are for the learner to see that the lab worked.'], 10)
+                'The course project (Session 18) has no marks. The learner types any text as a student ID; their personal data come from a seed made from it. It is not a test. Facilitator Materials/Autocheck/project_selfcheck.py prints OK or NOT YET for each build of a notebook. It records nothing and has no secret seeds.',
+                'There are no exams, marks, grades, weights or pass marks anywhere in the course. The checks are for the learner to see that the lab worked. Recall and exit-check questions are self-checks and are never marked.',
+                'The certificate is a certificate of completion from KLAi Professional Learning. It goes to learners who complete the course project, and nothing more is needed.'], 10)
     page_break(d)
     for s in SESS:
         n = s['num']
@@ -131,6 +132,11 @@ def learner():
     bullets(d, [('Slides as PDF.', 'Read them again after class. They make sense without the speaker.'), ('A notebook for every session.', 'For learners who code. Open it in Google Colab (free) with a Google account.'),
                 ('A workbook for every session.', 'For everyone else, and for coders who like spreadsheets. It works in Excel and in Google Sheets.'), ('A Check sheet or check cells.', 'They tell you which of your answers are right. You can try as often as you like.'),
                 ('A formula sheet template.', 'You fill it in as the course goes, in your own words.')], 10)
+    h2(d, 'No exams, no marks, and what you keep')
+    bullets(d, ['There are no exams, marks, grades or pass marks in this course. The check cells and the Check sheet say OK or NOT YET so that you can see what works. They are for you, and nothing is recorded.',
+                'The recall and exit-check questions are for you to test yourself. Nobody marks them.',
+                'In Session 18 you build a course project from the five builds, on your own personal data, and you keep it. A short project checklist helps you and a partner give each other feedback.',
+                'When you complete the course project you receive a certificate of completion from KLAi Professional Learning.'], 10)
     h2(d, 'How a session runs')
     grid(d, [['10', 'Recall, then a real question from AI'], ['35', 'Concept: a picture, then one example worked by hand'], ['10', 'Break'], ['45', 'Lab in Python, Google Sheets or Excel'], ['15', 'Where this appears in AI, and an exit check'], ['5', 'Save your work']], [2.2, 15.2], header=['Minutes', 'What happens'], size=9.5)
     h2(d, 'Using the notebook')
@@ -140,7 +146,7 @@ def learner():
     bullets(d, ['Open the .xlsx in Excel. In Google Sheets choose File, Import, Upload, then Replace spreadsheet.', 'Gold cells are yours to fill. Everything else is given. The sheet called Check tells you which answers are right.',
                 'Use the formulas shown on the Start here sheet. No add-ins, no macros.'], 10)
     h2(d, 'Using AI tools while you learn')
-    para(d, 'You may ask an assistant such as ChatGPT, Gemini or Claude to explain an idea. Check what it says against your own numbers from the lab. Never paste private or confidential data into an assistant. The final capstone is your own work.', 10, after=4)
+    para(d, 'You may ask an assistant such as ChatGPT, Gemini or Claude to explain an idea. Check what it says against your own numbers from the lab. Never paste private or confidential data into an assistant. The course project is yours to build and keep.', 10, after=4)
     p = out / 'Start Here.docx'
     save(d, p)
     to_pdf(p)

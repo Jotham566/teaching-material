@@ -1,6 +1,6 @@
-"""Session 18 GUIDED workbook (not the graded capstone): the five builds with fixed, seed-free toy numbers (the same as on the slides of Session 18), with its own checks.
+"""Session 18 GUIDED workbook of the course project (no marks): the five builds with fixed, seed-free toy numbers (the same as on the slides of Session 18), with its own checks.
 Linear regression by the normal equation, logistic regression as a table of 5 gradient steps, PCA by formulas for a 2 by 2 covariance matrix, one forward and one backward step of the
-2-4-1 network for a single example, and attention for 3 tokens. The graded capstone is the Python notebook, where every learner's data come from the student ID."""
+2-4-1 network for a single example, and attention for 3 tokens. The Python notebook is the same project on your own personal data, with its own self-checks."""
 import importlib.util
 import sys
 from pathlib import Path
@@ -23,9 +23,9 @@ def one_example():
 def build(solution=False):
     N = _nb.namespace()
     E = one_example()
-    x = xl.XL('Session 18: Capstone', 'Five builds from first principles, in cells', solution)
-    x.start('This is the GUIDED version of the capstone. It is not the graded capstone. It uses fixed toy numbers (the same as on the slides, made up to show the arithmetic) and has its own checks, labelled by build. '
-            'The graded capstone is the Python notebook: there every learner types a student ID, all the data are generated from it, and you write functions that are tested on data nobody has seen. '
+    x = xl.XL('Session 18: Course project', 'Five builds from first principles, in cells', solution)
+    x.start('This is the GUIDED version of the course project. There are no marks: the checks only show you what works. It uses fixed toy numbers (the same as on the slides, made up to show the arithmetic) and has its own checks, labelled by build. '
+            'In the Python notebook the same project runs on your own personal data, made from any text you type as a student ID, and you write functions that the self-checks run on two datasets. '
             'What this workbook covers: Build 1 by the normal equation only (no gradient descent). Build 2 for the first 5 gradient steps only (the notebook trains for thousands). '
             'Build 3 with the formula for a 2 by 2 covariance matrix. Build 4 as ONE forward and backward step for ONE example (the notebook trains a network on 40 points). Build 5 for 3 tokens with d = 2.',
             ['Sheet Linear: build the normal equation with MMULT and MINVERSE, then the mean squared error.',

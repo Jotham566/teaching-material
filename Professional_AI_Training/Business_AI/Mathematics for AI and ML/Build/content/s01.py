@@ -290,7 +290,7 @@ def build():
               'Share the notebook link and the workbook file. Every learner needs one of them open for the lab, and they choose by habit: coders use Python, others use the spreadsheet.',
               'Write the "check your numbers" table on the board before the lab.',
               'Have a calculator with an LN key at hand. A phone calculator in scientific mode is enough.',
-              'This is the first session. Spend the welcome ten minutes on the course shape: picture, hand example, lab, then AI. Explain that there are no exams, only automatic checks.'],
+              'This is the first session. Spend the welcome ten minutes on the course shape: picture, hand example, lab, then AI. Explain that there are no exams and no marks, only automatic checks that learners run for themselves, and that each learner finishes with a course project to keep.'],
         misconceptions=[('A logarithm of a probability should be positive', 'Probabilities are at most 1, so their natural logarithms are zero or negative. We use minus ln p when we want a positive number.'),
                         ('ln(a + b) equals ln a + ln b', 'The rule is for products: ln(a × b) = ln a + ln b. The log of a sum has no simple rule.'),
                         ('np.log is the base 10 logarithm', 'np.log is the natural logarithm (base e). Base 10 is np.log10. In a spreadsheet LN is natural and LOG is base 10.'),

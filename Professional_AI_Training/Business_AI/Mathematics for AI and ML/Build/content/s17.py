@@ -66,11 +66,11 @@ def build():
                     'And perplexity is the standard score for language models, the effective number of equally likely words the model chooses between at each step. We use every one of them today.'),
         keep='Keep your notebook or workbook with all checks passing. Keep six numbers: entropy 1.75 bits, cross-entropy 2.000, KL 0.250, softmax 0.659, gradient -0.758 and perplexity 5.21.',
         keep_visual=dict(kind='card', title='Take away', fields=[dict(label='Cross-entropy = entropy + KL', value='2.000 = 1.750 + 0.250'), dict(label='Gradient', value='p - y = (0.659, -0.758, 0.099)'),
-                                                              dict(label='Toy perplexity', value='5.21'), dict(label='Next session', value='Capstone: five builds')]),
+                                                              dict(label='Toy perplexity', value='5.21'), dict(label='Next session', value='Course project: five builds')]),
         keep_title='Save your lab and keep six numbers',
-        next='Session 18: the capstone. Build linear regression, logistic regression, PCA, a small network and attention from first principles.', next_label='Next session',
+        next='Session 18: the course project. Build linear regression, logistic regression, PCA, a small network and attention from first principles.', next_label='Next session',
         keep_note=('Before you go, run the notebook or the workbook from the top, check that every check passes and save it. Keep the six numbers on the slide. '
-                   'Next session is the capstone. You build linear regression, logistic regression, PCA, a small neural network and attention, all from first principles, and the notebook checks your work automatically. '
+                   'Next session is the course project. You build linear regression, logistic regression, PCA, a small neural network and attention, all from first principles, and the notebook shows you OK or NOT YET for each build. There are no marks. '
                    'The softmax and its gradient from today appear in three of the five builds. Bring one question.'),
         cover_note=('Welcome to Session 17. Last time we saw that training a model is maximum likelihood, and that the loss for classification is cross-entropy. Today we look at cross-entropy from the side of information. '
                     'We ask how surprising an outcome is, how uncertain a distribution is, and how far a model is from reality. We also meet the softmax and perplexity, the two tools you will see in every language model paper.'),
@@ -316,7 +316,7 @@ def build():
                   widths=[7.0, 5.0], icons=False, note='Answer each in one sentence before you read the right-hand column.',
                   notes=('Three questions to finish. One, the entropy of a fair coin is one bit. Two, the gradient of softmax with cross-entropy with respect to the logits is the prediction minus the target. '
                          'Three, if the mean negative log-probability is two nats per word, the perplexity is e squared, which is 7.39. Cover the right-hand column and answer aloud first. '
-                         'If one was shaky, mark it. Next session is the capstone, and these three ideas come back there.')))
+                         'If one was shaky, mark it. Next session is the course project, and these three ideas come back there.')))
 
     s['facilitator'] = dict(
         prep=['Run the solution notebook once from the top. Key numbers: entropy 1.75, cross-entropy 2.000 and 1.8007, softmax 0.659 0.242 0.099, perplexity 5.21.', 'Open the Session 17 workbook and check that the Check sheet says all checks pass.',
@@ -330,7 +330,7 @@ def build():
                    ('Step 3: cross-entropy and KL', 'A: 2.000 and 0.250. B: 1.8007 and 0.0507. The identity check passes to six decimals.'), ('Step 4: softmax', 'Stable output for 1000, 1001, 1002 equals softmax of 0, 1, 2. The naive way prints nan.'),
                    ('Step 5: gradient check', 'Formula and numeric gradient agree to five decimals. Entries add to 0.'), ('Step 6: perplexity', 'Sum 9.903, mean 1.6505, perplexity 5.21. The 1/50 CHANGE gives exactly 50, all 1.0 gives 1.')],
         rescue=['If concepts run over, skip the stable softmax example and show it in the lab.', 'If lab time is short, do Steps 3, 4 and 6 and leave the gradient check for home.', 'If logarithm bases confuse people, use bits for hand work and nats in code and show 1 bit = 0.693 nats.'],
-        after=['Share the notebook and workbook again for absent learners.', 'Note any question you could not answer and open Session 18 with it.', 'Remind learners that the capstone is individual and auto-graded, and that Session 18 reuses the softmax gradient.'],
+        after=['Share the notebook and workbook again for absent learners.', 'Note any question you could not answer and open Session 18 with it.', 'Remind learners that the course project has self-checks and no marks, and that Session 18 reuses the softmax gradient.'],
         lab_answer_key=[['Step 1 PREDICT: surprises', '1, 3 and 10 bits.'], ['Step 1 READ: halving the probability', 'Adds one bit.'], ['Step 2 PREDICT: which coin has more entropy', 'The fair coin.'],
                         ['Step 2 CHANGE: 0.99 / 0.01 coin', 'Entropy falls to about 0.081 bits: nearly certain outcomes carry little surprise.'], ['Step 3 PREDICT: model B vs A', 'B has the smaller cross-entropy (1.8007 against 2.000).'],
                         ['Step 3 READ: gap to entropy', 'Model A is 0.25 bits above the entropy. That is its KL divergence.'], ['Step 4 PREDICT: biggest probability', 'The first class, and yes they add to 1.'],

@@ -51,15 +51,15 @@ rows = [
  ['15', 'Conditional probability and Bayes', 'Updating beliefs with evidence; a small Naive Bayes classifier', 'Spam filters and diagnosis; reasoning with uncertain answers'],
  ['16', 'Maximum likelihood and MAP', 'Why squared error and cross-entropy are the right losses; bias and variance', 'Training a language model is maximum likelihood; weight decay is a MAP prior'],
  ['17', 'Information theory', 'Entropy, cross-entropy, KL divergence, softmax, perplexity', 'Cross-entropy is the training loss of language models, and perplexity is their standard score'],
- ['18', 'Capstone', 'Build linear regression, logistic regression, PCA, a small network and attention from first principles', 'Attention is the core step inside ChatGPT, Gemini and Claude; the build is individual and auto-graded'],
+ ['18', 'Course project', 'Build linear regression, logistic regression, PCA, a small network and attention from first principles', 'Attention is the core step inside ChatGPT, Gemini and Claude; the project is yours to keep, with automatic self-checks and no marks'],
 ]
 grid(d, rows, [0.9, 3.6, 5.6, 7.3], header=['#', 'Session', 'What is taught', 'Where it appears in ChatGPT, Gemini, Claude and other ML'], size=8.5, label_cols=(0,))
 h2(d, 'Kept out on purpose')
 para(d, 'Measure theory, formal proofs, convex duality, tensor calculus and the finer points of numerical linear algebra. They are useful for researchers but lose most learners. Derivations appear only where they feed something the learner then implements: the least-squares solution, backpropagation, and the gradient of softmax with cross-entropy.', 10, after=4)
-h2(d, 'Assessment and what learners keep')
-bullets(d, ['No exams. Each session ends with an automatic check of the notebook or spreadsheet, the same kind of check KLAi already uses in the IUEA course.',
-            'The capstone (session 18) is an individual, auto-graded build. The Python version is a notebook, and the spreadsheet version is a guided workbook (Google Sheets or Excel) with the same numbers.',
-            'A certificate at the end, as for every KLAi course.',
+h2(d, 'No exams, no marks, and what learners keep')
+bullets(d, ['No exams, no marks, no grades and no pass mark. Each session ends with an automatic check of the notebook or spreadsheet that shows OK or NOT YET. The checks are for the learner to see what works, and nothing is recorded.',
+            'The course project (session 18) is a practical build that each learner keeps. The Python version is a notebook on the learner\'s own personal data, with automatic self-checks. The spreadsheet version is a guided workbook (Google Sheets or Excel) with the same numbers. A project checklist supports feedback from the learner and a partner.',
+            'A certificate of completion from KLAi Professional Learning for completing the course project.',
             'A one-page formula sheet that each learner writes, with every formula named in plain words and in the industry term.'], 10)
 h2(d, 'Decisions already made')
 bullets(d, ['36 hours in 18 sessions. Both coding and non-coding learners. Preferably taken before the Machine Learning course.',
