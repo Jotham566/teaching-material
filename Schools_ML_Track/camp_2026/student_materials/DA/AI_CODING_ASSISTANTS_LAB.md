@@ -1,6 +1,6 @@
 # Checking a coding assistant’s advice
 
-A 20-minute supervised activity in Session 21, week seven, for either track. Use 20 minutes of the existing independent-practice block; the rest remains project work. No new syntax, package, student account or paid subscription is required. Use only the practice function below, not the assessed project. Keep the learner’s unassisted attempt.
+A 20-minute supervised activity in Session 21, week seven, for either track. Use 20 minutes of the existing independent-practice block; the rest remains project work. No new syntax, package, student account or paid subscription is required. Use only the practice function below, not your project. Keep the learner’s unassisted attempt.
 
 ## 0–5 minutes — Read and test without AI
 
@@ -46,4 +46,4 @@ Passing asserts print nothing. Tests support this small requirement; they do not
 
 Save the original code, the advice, the learner’s own edit and test results in AI_USE_LOG.md. Answer: what did you accept, what did you reject, and why? Explain the change without consulting the assistant. A learner can complete the entire activity by observing the tutor and critiquing the teacher-written example. No AI-generated solution is needed.
 
-Close the assistant before returning to independent assessed work. The final project demonstration is always unaided. Read AI_USE_POLICY.md for the rules governing disclosure and supervision.
+Close the assistant before returning to independent work. The parent showcase is always presented without an assistant open. Read AI_USE_POLICY.md for the rules governing disclosure and supervision.

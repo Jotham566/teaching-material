@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** What is wrong with the raw Sunrise sales file, and how many rows does each problem touch?
 
+**Where this is used.** Exports from tills often hold duplicates, blanks and typing slips. Good analysts keep a log of every fix so the owner can trust the result. How many problems can you find before you fix a single one?
+
 Prerequisite: DA09 Sort, group, mean and median.
 
 ## The 180 minutes
@@ -88,7 +90,7 @@ print(pd.read_csv("my_log.csv"))
 # Zero would say the item was free. The price is unknown.
 ```
 
-Evidence to collect: DA10.ipynb and my_log.csv with the three counts and the sentence about zero.
+Build log entry to look for: DA10.ipynb and my_log.csv with the three counts and the sentence about zero.
 
 ## Misconceptions to listen for
 
@@ -101,6 +103,32 @@ Evidence to collect: DA10.ipynb and my_log.csv with the three counts and the sen
 - What goes in a cleaning log? Expected: The problem, how many rows it touched, and what you did.
 - Why work on a copy? Expected: The raw file is the evidence. Overwriting it destroys the evidence.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Missing values and duplicates in a small table: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, The raw Sunrise file: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Missing values and duplicates in a small table): Count how many rows in clean still have a missing price.
+2. Modify, Block B (The raw Sunrise file): Count the rows whose date is written with slashes, and add them to the log.
+3. Make: Write a cleaning log for the four-row table in Block A: four raw rows, one duplicate removed, one price still missing. Save it as a CSV with to_csv. Write one sentence on why replacing the missing price with zero would change what the data says.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What goes in a cleaning log? Expected: The problem, how many rows it touched, and what you did.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

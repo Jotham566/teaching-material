@@ -1,0 +1,320 @@
+{
+ "track": "ML",
+ "trackName": "Machine Learning",
+ "learner": "",
+ "start": "Thursday 3 December 2026",
+ "end": "Saturday 30 January 2027",
+ "endIs": "parent showcase",
+ "weeks": [
+  {
+   "theme": "Python and a first prediction",
+   "badge": "First Prediction",
+   "codes": [
+    "ML01",
+    "ML02",
+    "ML03",
+    "F01"
+   ]
+  },
+  {
+   "theme": "Python you need",
+   "badge": "Python You Need",
+   "codes": [
+    "ML04",
+    "ML05",
+    "ML06",
+    "F02"
+   ]
+  },
+  {
+   "theme": "Tables and statistics",
+   "badge": "Data Detective",
+   "codes": [
+    "ML07",
+    "ML08",
+    "ML09",
+    "F03"
+   ]
+  },
+  {
+   "theme": "Clean, chart, question",
+   "badge": "Clean and Chart",
+   "codes": [
+    "ML10",
+    "ML11",
+    "ML12",
+    "F04"
+   ]
+  },
+  {
+   "theme": "Baselines and a line",
+   "badge": "Baseline Breaker",
+   "codes": [
+    "ML13",
+    "ML14",
+    "ML15"
+   ]
+  },
+  {
+   "theme": "Trees and fair comparisons",
+   "badge": "Fair Judge",
+   "codes": [
+    "ML16",
+    "ML17",
+    "ML18"
+   ]
+  },
+  {
+   "theme": "Your project",
+   "badge": "Project Builder",
+   "codes": [
+    "ML19",
+    "ML20",
+    "ML21"
+   ]
+  },
+  {
+   "theme": "Hand over",
+   "badge": "Showcase",
+   "codes": [
+    "ML22",
+    "ML23",
+    "ML24"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "date": "2026-12-03",
+   "kind": "core",
+   "code": "ML01",
+   "title": "Your first instruction and your first prediction",
+   "build": "a computer that guesses the rent of a home",
+   "where": "person"
+  },
+  {
+   "date": "2026-12-05",
+   "kind": "core",
+   "code": "ML02",
+   "title": "Values, names and types",
+   "build": "a price calculator that knows numbers from text",
+   "where": "person"
+  },
+  {
+   "date": "2026-12-08",
+   "kind": "core",
+   "code": "ML03",
+   "title": "Arithmetic, converting text and reading errors",
+   "build": "a calculator that tells you where you slipped",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-10",
+   "kind": "core",
+   "code": "ML04",
+   "title": "Decisions and a hand-written flower rule",
+   "build": "a flower-sorting rule that you write by hand",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-11",
+   "kind": "lab",
+   "code": "F01",
+   "title": "Numbers, names and predicting Python output",
+   "build": "a warm-up: guess what Python prints, then check",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-12",
+   "kind": "core",
+   "code": "ML05",
+   "title": "Lists, dictionaries and loops",
+   "build": "a loop that reads a whole price list",
+   "where": "person"
+  },
+  {
+   "date": "2026-12-15",
+   "kind": "core",
+   "code": "ML06",
+   "title": "Functions and checks that fail loudly",
+   "build": "a function that checks its own answers",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-17",
+   "kind": "core",
+   "code": "ML07",
+   "title": "Tables and reading a CSV file",
+   "build": "your first table: open a shop sales file",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-18",
+   "kind": "lab",
+   "code": "F02",
+   "title": "Lists, vectors and NumPy arrays",
+   "build": "a first tour of NumPy arrays",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-19",
+   "kind": "core",
+   "code": "ML08",
+   "title": "Select, filter and calculate new columns",
+   "build": "a revenue column that you calculate yourself",
+   "where": "person"
+  },
+  {
+   "date": "2026-12-22",
+   "kind": "core",
+   "code": "ML09",
+   "title": "Mean, median, range and proportions",
+   "build": "a summary card: typical, spread and chance",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-24",
+   "kind": "core",
+   "code": "ML10",
+   "title": "Cleaning without hiding evidence",
+   "build": "a clean dataset with a log of every change",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-28",
+   "kind": "lab",
+   "code": "F03",
+   "title": "Variation, proportions and probability",
+   "build": "quick maths for data: spread and chance",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-29",
+   "kind": "core",
+   "code": "ML11",
+   "title": "Charts that show what the numbers say",
+   "build": "three charts that tell the story of the sales",
+   "where": "online"
+  },
+  {
+   "date": "2026-12-31",
+   "kind": "core",
+   "code": "ML12",
+   "title": "Show your first chart and choose your project question",
+   "build": "a mini report and your own project question",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-02",
+   "kind": "core",
+   "code": "ML13",
+   "title": "Features, targets and an honest baseline",
+   "build": "a plain-guess baseline your model must beat",
+   "where": "person"
+  },
+  {
+   "date": "2027-01-04",
+   "kind": "lab",
+   "code": "F04",
+   "title": "Matrices, weighted sums and slope",
+   "build": "the weighted sum behind a prediction",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-05",
+   "kind": "core",
+   "code": "ML14",
+   "title": "Predicting a number with a line",
+   "build": "a line that predicts a rent",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-07",
+   "kind": "core",
+   "code": "ML15",
+   "title": "A complete regression experiment",
+   "build": "a full prediction experiment, start to finish",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-09",
+   "kind": "core",
+   "code": "ML16",
+   "title": "Predicting a category with a decision tree",
+   "build": "a decision tree that sorts flowers",
+   "where": "person"
+  },
+  {
+   "date": "2027-01-12",
+   "kind": "core",
+   "code": "ML17",
+   "title": "Mistakes, overfitting and fair comparisons",
+   "build": "a fair comparison that spots overfitting",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-14",
+   "kind": "core",
+   "code": "ML18",
+   "title": "A fair comparison: does your model beat the plain guess?",
+   "build": "your model against data it has never seen",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-16",
+   "kind": "core",
+   "code": "ML19",
+   "title": "Project data and a safe plan",
+   "build": "your project plan and your data",
+   "where": "person"
+  },
+  {
+   "date": "2027-01-19",
+   "kind": "core",
+   "code": "ML20",
+   "title": "Build the project baseline",
+   "build": "your project baseline",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-21",
+   "kind": "core",
+   "code": "ML21",
+   "title": "Compare, explain and critique",
+   "build": "your best model, explained in plain words",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-23",
+   "kind": "core",
+   "code": "ML22",
+   "title": "The final run: your project, ready to share",
+   "build": "your finished project, ready to share",
+   "where": "person"
+  },
+  {
+   "date": "2027-01-26",
+   "kind": "core",
+   "code": "ML23",
+   "title": "Explain the project to a parent",
+   "build": "a three-minute talk about what you built",
+   "where": "online"
+  },
+  {
+   "date": "2027-01-30",
+   "kind": "core",
+   "code": "ML24",
+   "title": "Parent showcase and next steps",
+   "build": "showcase day: you show your family what you made",
+   "where": "person"
+  }
+ ],
+ "hasLabs": true,
+ "startIso": "2026-12-03",
+ "holidayText": "Friday 25 December, Saturday 26 December and Friday 1 January",
+ "movedText": " The online labs that fall on 25 December and 1 January move to Monday 28 December and Monday 4 January.",
+ "physicalName": "Saturday",
+ "logo": "/sessions/focused-youthful-einstein/mnt/IUEA-Teaching-Resources/Schools_ML_Track/camp_2026/brand/logos/klai_logo_on_black_cropped.png",
+ "lastClassText": "Saturday 30 January",
+ "hasSpare": false
+}

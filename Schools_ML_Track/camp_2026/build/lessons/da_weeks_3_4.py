@@ -245,15 +245,15 @@ S11 = dict(
 )
 
 S12 = dict(
-    title='Checkpoint one: load, summarise, chart and explain',
+    title='Show your first chart and explain what it says',
     objective='By the end: you can read a table, check it, summarise it, chart it and explain two findings and one limit, from a restarted notebook.',
     question='What do the Sunrise Shops sales tell us about the three shops?',
     words=[],
     blocks=[],
-    make=dict(task='In DA12.ipynb use sunrise_sales.csv. 1) Report the number of rows and the total revenue. 2) Check for missing values and duplicates and report the counts. 3) Total the revenue by branch with names from a dictionary and sort the result. 4) Draw one labelled chart. 5) Write two findings and one limitation in text cells. Restart the kernel, run all cells from the top, save and submit DA12.ipynb with a short report.pdf or report.docx through the route in START_HERE.md.',
+    make=dict(task='In DA12.ipynb use sunrise_sales.csv. 1) Report the number of rows and the total revenue. 2) Check for missing values and duplicates and report the counts. 3) Total the revenue by branch with names from a dictionary and sort the result. 4) Draw one labelled chart. 5) Write two findings and one limitation in text cells. 6) Look at the topic on your progress map and write one project question that this table, or another supplied table, could help answer. Restart the kernel, run all cells from the top, save DA12.ipynb with a short report.pdf or report.docx, and share them by the route in START_HERE.md.',
               reference='import pandas as pd\nimport matplotlib.pyplot as plt\nsales = pd.read_csv("sunrise_sales.csv")\nsales["line_value"] = sales["units"] * sales["unit_price_ugx"]\nrows = len(sales)\ntotal = sales["line_value"].sum()\nmissing = int(sales.isna().sum().sum())\nduplicates = int(sales.duplicated().sum())\nnames = {1: "Central Market", 2: "Campus Gate", 3: "Roadside"}\nsales["branch"] = sales["branch_id"].map(names)\nby_branch = sales.groupby("branch")["line_value"].sum().sort_values(ascending=False)\nassert by_branch.sum() == total\nplt.bar(by_branch.index, by_branch.values)\nplt.ylabel("Revenue (UGX)")\nplt.ylim(bottom=0)\nplt.show()\n# 1513 rows, 6375900 in revenue, no missing values, no duplicates. Central Market earns the most.',
               reference_is_code=True, check='rows == 1513 and total == 6375900 and missing == 0 and duplicates == 0 and by_branch.index[0] == "Central Market"',
-              evidence='DA12.ipynb that reruns from a restarted kernel, with the rows, total, checks, sorted branch totals, one labelled chart, two findings and one limitation. Marks follow ASSESSMENT_AND_SHOWCASE.md.'),
+              evidence='DA12.ipynb that reruns from a restarted kernel, with the rows, total, checks, sorted branch totals, one labelled chart, two findings and one limitation. It goes in the build log, and the instructor gives one strength and one next step in a private chat.'),
     errors=[('The numbers differ after a restart', 'A cell relies on a value that was created in a cell that no longer runs first.', 'Restart the kernel and run all cells from the top. Fix the first cell that fails.'),
             ('The total does not match 6375900', 'A filter, copy or merge changed the number of rows.', 'Print len() after each step and find where the count changes.')],
     exit_ticket='My notebook reruns from the top and every number in my findings appears in an output.',
@@ -261,7 +261,7 @@ S12 = dict(
     misconceptions=['A notebook that works now will work after a restart.', 'More charts show more skill.', 'A finding needs no number.'],
     questions=[('Where does each number in your findings come from?', 'A named output cell. If it has no cell, it does not go in the finding.'),
                ('What can this data not tell us?', 'Anything about real shops. It is invented, and it has no costs, so no profit.')],
-    pacing='15 minutes recall, then read the brief together; 80 minutes learners work and the instructor visits each of the five; 15 minutes break away from screens; 40 minutes learners finish, restart and run all; 20 minutes individual check, save and submit; 10 minutes review',
+    pacing='15 minutes recall, then read the brief together; 80 minutes learners work and the instructor visits each of the five; 15 minutes break away from screens; 40 minutes learners finish, restart and run all; 20 minutes a quiet one-to-one chat, then save and share; 10 minutes review',
     time_note='Do not teach new syntax. Repair with the error cards from sessions 7 to 11.',
 )
 

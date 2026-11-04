@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Which item earned the most money in the practice shop?
 
+**Where this is used.** A shopkeeper asks which item earned the most this week. Answering needs a filter and a new column: units times price. What would you ask of the sales of your own shop?
+
 Prerequisite: ML07 Tables and reading a CSV file.
 
 ## The 180 minutes
@@ -87,7 +89,7 @@ print(len(over3), total_units, mean_units)
 # 42 rows, 247 units in all, about 5.88 units per sale. The total is for all the rows together and the mean is for one row.
 ```
 
-Evidence to collect: ML08.ipynb with 42 rows, total 247, mean about 5.88, and a sentence on the difference.
+Build log entry to look for: ML08.ipynb with 42 rows, total 247, mean about 5.88, and a sentence on the difference.
 
 ## Misconceptions to listen for
 
@@ -100,6 +102,32 @@ Evidence to collect: ML08.ipynb with 42 rows, total 247, mean about 5.88, and a 
 - Why do we check that the grouped totals add to the overall total? Expected: It catches rows lost or counted twice.
 - Can this table tell us profit? Expected: No. It has no costs.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Select and filter: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, A revenue column and totals by item: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Select and filter): Filter the Juice sales with 5 units or more and count them.
+2. Modify, Block B (A revenue column and totals by item): Group the units column by item instead and print the totals.
+3. Make: Keep the rows with units of at least 3. Calculate the total units and the mean units per row. Say why these two numbers are different quantities.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why do we check that the grouped totals add to the overall total? Expected: It catches rows lost or counted twice.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

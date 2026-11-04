@@ -25,6 +25,7 @@ for f in sorted(glob.glob('_specs/*.json')):
         if t and s['layout']!='dark':
             tl=len(K.wrap(t['text'],t['size'],'bold',11.9)); th=tl*t['lead']/72
             for o in objs:
+                if o['y']<0.6 and o['h']<0.5: continue  # the online tag beside a short title
                 if o['y']<0.42+th-0.02: out.append((name,i,'title collision',f"{o['type']} y={o['y']:.2f} title bottom {0.42+th:.2f}"))
 from collections import Counter
 print(Counter(k for _,_,k,_ in out))

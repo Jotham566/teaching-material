@@ -4,9 +4,11 @@ Private. Keep this file out of the student folder.
 
 **Objective.** By the end: you can describe a supplied dataset, spot a leakage column, and write a seven-heading project plan the instructor can approve.
 
-**Question of the day.** Which dataset and which question can I answer with a fair test in two weeks?
+**Question of the day.** Which dataset and which question can I answer with a fair comparison in two weeks?
 
-Prerequisite: ML18 Checkpoint two with a locked test.
+**Where this is used.** Real projects start with a written plan: the question, the data, and the column that would give the answer away. Data teams also protect private information. Which question could your data answer fairly?
+
+Prerequisite: ML18 A fair comparison: does your model beat the plain guess?.
 
 ## The 180 minutes
 
@@ -50,29 +52,29 @@ id_corr = fares["trip_id"].corr(fares["fare_ugx"])
 
 ## Block B. A plan needs seven headings
 
-The plan has seven headings: question, dataset, target, inputs, baseline, evaluation and limits. Write one sentence under each.
+The plan has seven headings: question, dataset, target, inputs, baseline, evaluation and limits. Write one sentence under each. Begin with the topic on your progress map and the supplied dataset that fits it best.
 
 Ask for the prediction first: Write the target and two inputs for your project before looking at the example.
 
-Correct result: An example plan: question, can distance and rush hour predict a boda-boda fare; dataset, synthetic_fares.csv; target, fare_ugx; inputs, distance_km, rush_hour and raining; baseline, the mean fare of the training trips; evaluation, mean absolute error in shillings on a locked test; limits, invented data and 150 trips. The options are synthetic_homes.csv (rent from area and rooms), synthetic_fares.csv and the iris flowers. Real people's records are not used. Repeat the AI rules: any assisted step is logged in AI_USE_LOG.md after your own attempt, or the log says No AI assistance used.
+Correct result: An example plan: question, can distance and rush hour predict a boda-boda fare; dataset, synthetic_fares.csv; target, fare_ugx; inputs, distance_km, rush_hour and raining; baseline, the mean fare of the training trips; evaluation, mean absolute error in shillings on a held-back set; limits, invented data and 150 trips. The options are synthetic_homes.csv (rent from area and rooms), synthetic_fares.csv and the iris flowers. Real people's records are not used. Repeat the AI rules: any assisted step is logged in AI_USE_LOG.md after your own attempt, or the log says No AI assistance used.
 
 Investigate, with answers:
 
-- Which heading stops you using the test answers to choose a model? Answer: Evaluation. It states which rows are locked and which metric is used.
+- Which heading stops you using the test answers to choose a model? Answer: Evaluation. It states which rows are held back and which metric is used.
 - Why is the home_id column not an input for homes? Answer: It is only a label. It carries no information about rent.
 
 Modify: Write the leakage column you will exclude and why. Answer: For fares: tip_ugx, because it is known only after the trip.
 
 ## Make: reference
 
-An approved plan has a narrow question, a supplied dataset, a target present in the file, inputs known beforehand, a baseline fitted on training data, a metric and a locked test, and two stated limits.
+An approved plan has a narrow question, a supplied dataset, a target present in the file, inputs known beforehand, a baseline fitted on training data, a metric and a held-back set, and two stated limits.
 
-Evidence to collect: PROJECT_PLAN.md with seven headings, one named leakage column, and the instructor's approval.
+Build log entry to look for: PROJECT_PLAN.md with seven headings, one named leakage column, and the instructor's approval.
 
 ## Misconceptions to listen for
 
 - A highly correlated column is always a good input.
-- The plan can change after I see the final test.
+- The plan can change after I see the held-back result.
 - The biggest model is the best project.
 
 ## Questions to ask, with expected answers
@@ -80,6 +82,32 @@ Evidence to collect: PROJECT_PLAN.md with seven headings, one named leakage colu
 - Why plan before coding? Expected: Choices made after seeing test results are no longer honest.
 - What is the leakage column in fares? Expected: tip_ugx.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Tour the fares data: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, A plan needs seven headings: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Tour the fares data): Print the correlation of the fare with the trip_id column.
+2. Modify, Block B (A plan needs seven headings): Write the leakage column you will exclude and why.
+3. Make: Write PROJECT_PLAN.md using the seven headings. Name one leakage column and exclude it. Start from the topic on your progress map and choose the supplied dataset that fits it best. Real public data is used only after you and the instructor have read its licence. Ask the instructor to approve the scope before you build.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why plan before coding? Expected: Choices made after seeing test results are no longer honest.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

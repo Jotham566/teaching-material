@@ -1,4 +1,4 @@
-"""DA figures, part D: sessions 16 to 18 (cleaning the raw export, merging, checkpoint two)."""
+"""DA figures, part D: sessions 16 to 18 (cleaning the raw export, merging, reconcile)."""
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -341,7 +341,7 @@ def da_hero_cp2(w, h, **_):
     steps_ = [('Clean', f'{len(clean):,}', 'rows kept'), ('Merge', f'{len(m):,}', 'rows, same count'), ('Total', money(by.sum()), 'by category'), ('Compare', money(true_total), 'the true total'),
               ('Name it', money(true_total - got), 'the residual')]
     _flow(s, w, h - 2.75, steps_, bh=1.8, size=20)
-    s.text(0.1, h - 0.4, 'Checkpoint two: clean, merge, total, compare, name the gap', size=22, weight='bold', ha='left')
+    s.text(0.1, h - 0.4, 'Reconcile two tables: clean, merge, total, compare, name the gap', size=22, weight='bold', ha='left')
     s.text(0.1, 1.15, f'Finding: {by.index[0]} earns the most, {money(by.iloc[0])} in the cleaned data.', size=20, ha='left')
     s.text(0.1, 0.55, f'Limit: {len(excluded)} sales with blank units cannot be recovered, so the totals fall short by {money(true_total - got)}.', size=20, ha='left', color=BODY)
     return s
@@ -358,7 +358,7 @@ def da_cp2_checks(w, h, **_):
         y = h - 0.6 - i * 0.88
         s.icon('check', 0.55, y, 0.62)
         s.text(1.05, y, t, size=20, ha='left')
-    s.text(0.3, 0.3, 'A checkpoint is the checks that you can show.', size=18, color=BODY, ha='left')
+    s.text(0.3, 0.3, 'A good notebook has checks you can show.', size=18, color=BODY, ha='left')
     return s
 
 

@@ -7,7 +7,7 @@ Every word in the course, with the session where it first appears. This list is 
 | and, or | and needs both conditions True. or needs at least one. | Entry needs a ticket and an ID. A discount needs a student card or a coupon. | DA04 |
 | argument | The actual value you give a function when you call it. | The answer you write in the blank. | DA06 |
 | array | A row of numbers that NumPy can calculate with all at once. | A strip of numbers on a ruler. | DA13 |
-| assert | Stop with an error if a statement is False. Say nothing if it is True. | A teacher checking the answer without saying well done. | DA06 |
+| assert | Stop with an error if a statement is False. Say nothing if it is True. | A friend checking the answer without saying well done. | DA06 |
 | axis label | The words along an axis that name the quantity and its unit. | The heading of a column. | DA11 |
 | bar chart | Bars compare amounts between categories. | Piles of stock side by side. | DA11 |
 | Boolean | A value that is either True or False. | A light that is on or off. | DA04 |
@@ -35,7 +35,7 @@ Every word in the course, with the session where it first appears. This list is 
 | edge case | A value at the boundary where a rule might break, such as zero. | A customer who buys nothing. | DA06 |
 | element-wise | Doing the same calculation to every number in an array at once. | Adding 100 shillings to every price on the board. | DA13 |
 | else | Run these lines when the condition is False. | Otherwise, go to the queue. | DA04 |
-| error message | Python explaining why it stopped. Read the last line first. | A teacher's comment on what went wrong. | DA03 |
+| error message | Python explaining why it stopped. Read the last line first. | A friend pointing out what went wrong. | DA03 |
 | exclude | Leave a row out and count it, because it cannot be repaired. | Setting aside the damaged goods and counting them. | DA16 |
 | exploratory analysis | Looking at the data from several sides to see what is there before you answer a question. | Walking round a shop before you count the stock. | DA14 |
 | expression | A calculation Python can work out, such as 3 * 2000. | One line of working in a maths exercise. | DA03 |

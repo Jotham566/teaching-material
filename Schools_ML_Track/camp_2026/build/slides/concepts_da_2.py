@@ -348,12 +348,12 @@ CONCEPTS = {13: {'question': {'fig': 'da_hero_numpy',
                          'Reconciling means making two sets of numbers agree, and it is a habit worth keeping for your whole career.'}]},
  18: {'question': {'fig': 'da_hero_cp2',
                    'alt': 'One workflow: load 1,538 raw rows, clean to 1,473, merge, total by category and reconcile with the true total',
-                   'say': 'Second checkpoint. Which category earns the most in the cleaned data, and by how much do our totals fall short of the '
+                   'say': 'Which category earns the most in the cleaned data, and by how much do our totals fall short of the '
                           'truth? You clean the raw export, merge it with the products table, and add up the categories. Then you reconcile. You '
                           'already know the pieces. Today you put them in one notebook and show that every number agrees.'},
       'slides': [{'at': 0,
                   'kind': 'concept',
-                  'title': 'Checkpoint two ends with five checks that all pass',
+                  'title': 'A reconciled notebook ends with five checks that all pass',
                   'fig': 'da_cp2_checks',
                   'points': ['Count the rows kept and the rows left out.',
                              'Check the key and the merged row count.',
@@ -383,7 +383,7 @@ CONCEPTS = {13: {'question': {'fig': 'da_hero_numpy',
                          'and thirty eight raw rows. Twenty five repeats come out, which leaves one thousand five hundred and thirteen. Forty blank '
                          'rows are excluded, which leaves one thousand four hundred and seventy three, and the merge changes nothing.\n'
                          '\n'
-                         'If you can explain every number in that list, you have understood the checkpoint, and you are ready to start your own '
+                         'If you can explain every number in that list, you have understood the whole workflow, and you are ready to start your own '
                          'project next session.'}]},
  19: {'question': {'fig': 'da_hero_plan',
                    'alt': 'Three project questions, two that the data can answer and one that it cannot',
@@ -544,12 +544,12 @@ CONCEPTS = {13: {'question': {'fig': 'da_hero_numpy',
                          'Then decide whether to keep or reject it, and say why. Write each turn in your AI log.'}]},
  22: {'question': {'fig': 'da_hero_handover',
                    'alt': 'The project folder with the notebook, report and logs inside',
-                   'say': 'Does everything I submit open, rerun and agree with itself? Look at the project folder. The notebook, the cleaning log, '
+                   'say': 'Does everything I share open, rerun and agree with itself? Look at the project folder. The notebook, the cleaning log, '
                           'the data dictionary, the report and the AI log all have to open, and they all have to tell the same story. Today we check '
-                          'each one against the others, and then we hand the project in. Nothing is handed in until all of them agree.'},
+                          'each one against the others, and then we share the project folder. Nothing is shared until all of them agree.'},
       'slides': [{'at': 0,
                   'kind': 'concept',
-                  'title': 'Six checks decide if a project is ready to hand in',
+                  'title': 'Six checks decide if a project is ready to share',
                   'fig': 'da_handover_checklist',
                   'points': ['The notebook reruns from a restarted kernel.',
                              'Every number in the report is in an output.',
@@ -572,17 +572,17 @@ CONCEPTS = {13: {'question': {'fig': 'da_hero_numpy',
                          'cannot say.'},
                  {'at': 2,
                   'kind': 'concept',
-                  'title': 'You have submitted when the confirmation arrives',
+                  'title': 'Your folder is shared when the confirmation arrives',
                   'fig': 'da_submit_route',
-                  'points': ['Save, export the PDF and reopen both.', 'Upload to the folder you were given.', 'Keep the confirmation.'],
-                  'say': 'Submitting has a route. Save the notebook. Export the report to PDF. Reopen both files to check they work. Upload them to '
+                  'points': ['Save, export the PDF and reopen both.', 'Share the folder you were given.', 'Keep the confirmation.'],
+                  'say': 'Sharing has a route. Save the notebook. Export the report to PDF. Reopen both files to check they work. Share them in '
                          'the place you were told. Then wait for the confirmation and keep it.\n'
                          '\n'
-                         'A file on your laptop is not a submission. A submission is complete when the confirmation arrives, so do not close the '
+                         'A file on your laptop is not shared yet. Sharing is complete when the confirmation arrives, so do not close the '
                          'page until it does.'}]},
  23: {'question': {'fig': 'da_hero_talk',
                    'alt': 'A learner presenting five slides to a parent',
-                   'say': 'Can a parent say what I found, how I know, and what the data cannot tell us? That is the test for your talk. Parents are '
+                   'say': 'Can a parent say what I found, how I know, and what the data cannot tell us? That is the aim for your talk. Parents are '
                           'not data analysts, and they do not need to be. They need to leave knowing one clear finding and trusting it. Today you '
                           'plan the talk, you rehearse it with a timer, and you prepare for the questions you will be asked.'},
       'slides': [{'at': 0,
@@ -632,14 +632,14 @@ CONCEPTS = {13: {'question': {'fig': 'da_hero_numpy',
                           'Look at the bars: the presentations are the longest part before the final reflection, and that is where you shine.'},
       'slides': [{'at': 0,
                   'kind': 'concept',
-                  'title': 'You make one small change unaided',
-                  'fig': 'da_unaided_change',
+                  'title': 'You try one small change live',
+                  'fig': 'da_live_change',
                   'points': ['Close the assistant windows first.', 'Make the change and run it.', 'Say what changed and how you checked.'],
-                  'say': 'Part of the showcase is a short live change. The instructor chooses one small change, for example filter one branch, or '
+                  'say': 'Part of the showcase is a short live change. The instructor suggests one small change, for example filter one branch, or '
                          'change five units to ten. You close every assistant window. You make the change, run it, and say what changed and how you '
                          'checked it.\n'
                          '\n'
-                         'This is the best proof that you understand your own project. Stay calm, and say your steps aloud as you go.'},
+                         'This is a good way to show how your own project works. Stay calm, and say your steps aloud as you go.'},
                  {'at': 2,
                   'kind': 'wide',
                   'title': 'If the notebook will not open, use the PDF backup',
@@ -648,7 +648,7 @@ CONCEPTS = {13: {'question': {'fig': 'da_hero_numpy',
                   'say': 'If the notebook will not open on the day, you stay calm and use the backup. Open the PDF and the screenshots, and explain '
                          'the workflow from there, step by step, while the pictures stay on the screen.\n'
                          '\n'
-                         'The instructor can arrange a short live rerun afterwards if evidence is missing. Having a backup is part of doing the job '
+                         'The instructor can arrange a short live rerun afterwards if a demonstration did not work on the day. Having a backup is part of doing the job '
                          'properly.'},
                  {'at': 2,
                   'kind': 'concept',

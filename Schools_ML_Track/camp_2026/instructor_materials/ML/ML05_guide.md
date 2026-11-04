@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How do I repeat one calculation for every item in a list?
 
+**Where this is used.** A football league table is a list of teams with points, and a program loops over it to add up every match. Your mobile money statement works the same way. What would you loop over in your favourite sport?
+
 Prerequisite: ML04 Decisions and a hand-written flower rule.
 
 ## The 180 minutes
@@ -96,7 +98,7 @@ print(short)
 # 3, 5, 7, then 8, then 2 short petals.
 ```
 
-Evidence to collect: ML05.ipynb with the three loop outputs, the stock 8, and the count 2.
+Build log entry to look for: ML05.ipynb with the three loop outputs, the stock 8, and the count 2.
 
 ## Misconceptions to listen for
 
@@ -109,6 +111,32 @@ Evidence to collect: ML05.ipynb with the three loop outputs, the stock 8, and th
 - What does position 0 mean? Expected: The first item in the list.
 - Where should total = 0 go? Expected: Before the loop, so it starts once.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Lists and dictionaries: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, A loop that adds: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Lists and dictionaries): Print the last price using its index.
+2. Modify, Block B (A loop that adds): Change the list to [1500, 2500] and run the loop again.
+3. Make: Make the list [2, 4, 6] and print each value plus 1 with a loop. Make a dictionary with the keys name and stock and print the stock. Then loop over the eight petal lengths 1.4, 1.4, 4.7, 4.5, 4.9, 6.0, 5.1, 5.9 and count how many are below 2.5.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does position 0 mean? Expected: The first item in the list.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

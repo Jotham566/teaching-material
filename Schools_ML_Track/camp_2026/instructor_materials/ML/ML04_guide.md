@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How often does a three-line rule name the right flower?
 
+**Where this is used.** Apps decide with rules such as: if the balance is too low, refuse the payment. Botanists also tell flowers apart by measuring petals, and today you write a three-line rule that does it. Can your rule beat a guess?
+
 Prerequisite: ML03 Arithmetic, converting text and reading errors.
 
 ## The 180 minutes
@@ -103,7 +105,7 @@ print(decision)
 # 4999 gives Save; 5000 and 5001 give Buy. The flower rule is right for 7 of 8 flowers.
 ```
 
-Evidence to collect: ML04.ipynb with the ticket decision tested at three budgets and the flower count 7 out of 8.
+Build log entry to look for: ML04.ipynb with the ticket decision tested at three budgets and the flower count 7 out of 8.
 
 ## Misconceptions to listen for
 
@@ -116,6 +118,32 @@ Evidence to collect: ML04.ipynb with the ticket decision tested at three budgets
 - Why test 4999, 5000 and 5001? Expected: The change happens at the boundary, and boundaries are where rules break.
 - What does the flower rule teach us about prediction? Expected: Even a simple rule is wrong sometimes, so every rule needs counting on examples.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, A decision with if and else: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, A rule that names a flower: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (A decision with if and else): Set cost to 12000 and run the decision again.
+2. Modify, Block B (A rule that names a flower): Set petal_length to 4.9 and run the rule.
+3. Make: A ticket costs UGX 5000. Write a decision that prints Buy when the budget is at least 5000 and Save otherwise. Test 4999, 5000 and 5001. Then say how many of the eight flowers your flower rule names correctly.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why test 4999, 5000 and 5001? Expected: The change happens at the boundary, and boundaries are where rules break.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

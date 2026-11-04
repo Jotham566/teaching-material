@@ -5,12 +5,13 @@ import zipfile
 from common import ROOT, HANDBOOK, PROGRAMME, PACKS
 import build_pdfs
 
-POLICY = ['AI_USE_POLICY.md', 'AI_CODING_ASSISTANTS_LAB.md', 'PROJECT_RUBRIC.md', 'ASSESSMENT_AND_SHOWCASE.md', 'MODERN_AI_ORIENTATION.md']
+POLICY = ['AI_USE_POLICY.md', 'AI_CODING_ASSISTANTS_LAB.md', 'SHOWCASE_GUIDE.md', 'BUILD_LOG_AND_SHOWCASE.md', 'MODERN_AI_ORIENTATION.md']
 
 
 def resolve(text, code):
     """Keep the marked block for this track and drop the other track's block."""
     other = 'DA' if code == 'ML' else 'ML'
+    text = re.sub(r'<!--INSTR-->.*?<!--/INSTR-->\n?', '', text, flags=re.S)       # instructor-only parts never reach a student copy
     text = re.sub(r'<!--%s-->.*?<!--/%s-->\n?' % (other, other), '', text, flags=re.S)
     return re.sub(r'<!--/?%s-->' % code, '', text)
 
@@ -18,6 +19,7 @@ def resolve(text, code):
 for code in ['ML', 'DA']:
     folder = ROOT / 'student_materials' / code
     (folder / 'START_HERE.md').write_text(resolve((HANDBOOK / 'START_HERE.md').read_text(), code), encoding='utf-8')
+    (folder / 'HYBRID_DELIVERY.md').write_text(resolve((HANDBOOK / 'HYBRID_DELIVERY.md').read_text(), code), encoding='utf-8')
     for f in POLICY:
         shutil.copy2(HANDBOOK / f, folder / f)
     shutil.copy2(PROGRAMME / 'requirements-tested.txt', folder / 'requirements-tested.txt')
@@ -33,6 +35,9 @@ for code in ['ML', 'DA']:
         names = z.namelist()
         assert not any('instructor' in n or 'reference_values' in n or n.endswith('_guide.md') or 'keras_demo' in n for n in names), 'instructor file in student zip'
         assert f'{code}/PDF/START_HERE.pdf' in names
+        assert f'{code}/PDF/HYBRID_DELIVERY.pdf' in names and f'{code}/PDF/My_Progress_Map.pdf' in names
+        hy = (folder / 'HYBRID_DELIVERY.md').read_text()
+        assert 'INSTR' not in hy and 'keeping a teenager engaged' not in hy.lower() and 'come in person' not in hy.lower(), 'instructor part of HYBRID_DELIVERY in a student copy'
         assert not any(n.endswith('.md') for n in names), 'Markdown source in a student zip'
         sheets = [n for n in names if re.fullmatch(code + r'/PDF/' + code + r'\d\d\.pdf', n)]
         books = [n for n in names if re.fullmatch(code + r'/' + code + r'\d\d\.ipynb', n)]

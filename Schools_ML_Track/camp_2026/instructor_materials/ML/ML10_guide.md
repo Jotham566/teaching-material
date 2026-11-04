@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** What is wrong with this table, and what did I change?
 
+**Where this is used.** Clinics, schools and banks collect data typed by busy people, so duplicates and blanks are normal. Data scientists clean the table and write down every change they make. What would you check first in a messy register?
+
 Prerequisite: ML09 Mean, median, range and proportions.
 
 ## The 180 minutes
@@ -88,7 +90,7 @@ print(back)
 # Zero would say the item was free. A missing price means the price is unknown.
 ```
 
-Evidence to collect: ML10.ipynb with the counts 2 missing, 1 duplicate, the saved log, and the explanation about zero.
+Build log entry to look for: ML10.ipynb with the counts 2 missing, 1 duplicate, the saved log, and the explanation about zero.
 
 ## Misconceptions to listen for
 
@@ -101,6 +103,32 @@ Evidence to collect: ML10.ipynb with the counts 2 missing, 1 duplicate, the save
 - Why can two equal rows be genuine? Expected: Two customers can buy the same item at the same price on the same day.
 - What is the first thing to do with a messy file? Expected: Keep the raw copy, then count the problems.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Count the problems: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Save a cleaning log: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Count the problems): Print how many prices are still missing in clean.
+2. Modify, Block B (Save a cleaning log): Add the step final rows with a count of 3 and save again.
+3. Make: Write a cleaning log for this table: four raw rows, one removed duplicate and one remaining missing price. Save it as my_log.csv and read it back. Explain why replacing the missing price with 0 would change its meaning.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why can two equal rows be genuine? Expected: Two customers can buy the same item at the same price on the same day.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

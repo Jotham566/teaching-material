@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** What kind of thing is each part of a sale?
 
+**Where this is used.** A till keeps a product name as text, a price as a number and a date as a date. If the types get mixed up, the totals go wrong. Which one is a phone number: text or a number?
+
 Prerequisite: DA01 Open a notebook and read your first table.
 
 ## The 180 minutes
@@ -86,7 +88,7 @@ print(type("2500.5"))
 # 5001.0. With quotation marks 2500.5 is a string, which is text and not an amount.
 ```
 
-Evidence to collect: DA02.ipynb with the total 5001.0 and a sentence about the quotation marks.
+Build log entry to look for: DA02.ipynb with the total 5001.0 and a sentence about the quotation marks.
 
 ## Misconceptions to listen for
 
@@ -99,6 +101,32 @@ Evidence to collect: DA02.ipynb with the total 5001.0 and a sentence about the q
 - What does the equals sign do? Expected: It stores the value on the right under the name on the left.
 - Why is 5001.0 shown with a decimal point? Expected: Multiplying by a float gives a float.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Names point to values: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Decimals and converting text: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Names point to values): Change units to 5 and run the whole cell again.
+2. Modify, Block B (Decimals and converting text): Convert the text "2500.5" to a number with float() and multiply it by 4.
+3. Make: Create a decimal price of 2500.5 and a quantity of 2. Print the total. Write one sentence on why "2500.5" with quotation marks behaves differently.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does the equals sign do? Expected: It stores the value on the right under the name on the left.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

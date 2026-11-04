@@ -508,7 +508,7 @@ def da_hero_cp2(w, h, **_):
     got = int(clean['line_value'].sum())
     gap = true_total - got
     raw_n, dedup_n = steps[0][1], steps[1][1]
-    s.text(0.1, h - 0.4, 'Checkpoint two: load, clean, merge, total, reconcile', size=22, weight='bold', ha='left')
+    s.text(0.1, h - 0.4, 'Reconcile two tables: load, clean, merge, total, reconcile', size=22, weight='bold', ha='left')
     names = [('Load', f'{raw_n:,} raw rows'), ('Clean', f'{len(clean):,} rows kept'), ('Merge', f'{len(m):,} rows,\nsame count'), ('Total', f'UGX {money(by.sum())}'),
              ('Reconcile', f'true {money(true_total)}\ngap {money(gap)}')]
     n = len(names)
@@ -539,7 +539,7 @@ def da_cp2_checks(w, h, **_):
         y = h - 0.55 - i * 0.82
         s.icon('check', 0.5, y, 0.58)
         s.text(1.0, y, t, size=18, ha='left')
-    s.text(0.2, 0.3, 'A checkpoint is a set of checks you can show.', size=17, color=BODY, ha='left')
+    s.text(0.2, 0.3, 'A good notebook has checks you can show.', size=17, color=BODY, ha='left')
     return s
 
 

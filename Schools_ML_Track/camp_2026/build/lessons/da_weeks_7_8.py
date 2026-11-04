@@ -14,8 +14,8 @@ S19 = dict(
     ],
     blocks=[
         dict(idea='From a topic to three questions',
-             intro='A project serves a reader. Decide who needs the answer and what choice it could help with. Review AI_USE_POLICY.md now. '
-                   'Any permitted supervised AI help is written in AI_USE_LOG.md, and an unaided attempt always comes first. No forecasting or model training is required.',
+             intro='A project serves a reader. Start with the topic on your progress map. Decide who needs the answer and what choice it could help with. Review AI_USE_POLICY.md now. '
+                   'Any permitted supervised AI help is written in AI_USE_LOG.md, and your own attempt always comes first. No forecasting or model training is required.',
              predict='Predict which of these questions the Sunrise Shops data can answer with the taught methods: (a) Which category earns the most at each branch? (b) Why do people like Campus Gate? (c) What will sales be next month?',
              code=None,
              shows='Question (a) can be answered: it needs the sales, products and branches tables, a merge and a group total. Question (b) asks for reasons, and the data has no opinions. Question (c) asks for a forecast, which this course does not teach. A narrow descriptive question with named columns is the right size.',
@@ -35,7 +35,7 @@ S19 = dict(
              modify=dict(instruction='Write the limitations heading for your own plan in two sentences.', answer='Two sentences naming what the data cannot show.'),
              nocheck=True),
     ],
-    make=dict(task='Write PROJECT_PLAN.md with the seven headings. Name the data file and its licence or its invented status. List the three questions, the columns each needs, the charts and the limitations. Ask the instructor to approve a narrow scope before you build.',
+    make=dict(task='Write PROJECT_PLAN.md with the seven headings. Start from the topic on your progress map and choose the supplied data file that fits it best. Real public data is used only after you and the instructor have read its licence. Name the data file and its licence or its invented status. List the three questions, the columns each needs, the charts and the limitations. Ask the instructor to approve a narrow scope before you build.',
               reference='An acceptable plan names Sunrise Shops (invented) or an approved public dataset with its licence read at the source. Its three questions are descriptive and name their columns. Example: (1) Which category earns the most at each branch? Needs sales, products, branches. (2) Which branch earns the most per customer counted? Needs sales and daily_summary. (3) Did the Sugar price rise on day 31 change its units sold? Needs product_id, units, sale_date. Limitations: invented data, no costs so no profit, no claim about real shops. If the plan promises profit, change the measure to revenue. If it promises a forecast, make it descriptive.',
               reference_is_code=False,
               evidence='PROJECT_PLAN.md approved by the instructor, with a data dictionary for the columns used.'),
@@ -71,7 +71,7 @@ S20 = dict(
 )
 
 S21 = dict(
-    title='Build and test the chart report',
+    title='Build and check the chart report',
     objective='By the end: you can build a chart report that a stranger reads in 30 seconds, and you can critique a coding assistant\'s hint with a test.',
     question='Does my report answer my questions without a verbal tour?',
     words=[
@@ -97,22 +97,22 @@ S21 = dict(
 S22 = dict(
     title='Report and handover',
     objective='By the end: you can hand over a project that another person can open, rerun and check.',
-    question='Does everything I submit open, rerun and agree with itself?',
+    question='Does everything I share open, rerun and agree with itself?',
     words=[],
     blocks=[],
-    make=dict(task='Restart the kernel and run all cells from the top. Confirm every number in the report appears in an output. Write the one-page report: question, data, method, three findings with their values, one recommendation and one limitation. Export it to PDF and reopen it. Submit project.ipynb, cleaning_log.md, your data dictionary, report.pdf or report.docx and AI_USE_LOG.md together through the route in START_HERE.md. Keep personal information out of every file.',
+    make=dict(task='Restart the kernel and run all cells from the top. Confirm every number in the report appears in an output. Write the one-page report: question, data, method, three findings with their values, one recommendation and one limitation. Export it to PDF and reopen it. Save project.ipynb, cleaning_log.md, your data dictionary, report.pdf or report.docx and AI_USE_LOG.md together in your project folder, and share the folder by the route in START_HERE.md. Keep personal information out of every file.',
               reference='Checklist: the notebook reruns from a restarted kernel; the cleaning log counts each row removed; the data dictionary covers every column used; each finding in the report has a number in an output cell; the report states the invented or licensed data source and its limits; the log records any permitted AI help or says No AI assistance used; every file opens after being reopened.',
               reference_is_code=False,
-              evidence='All five files submitted and reopened, and totals in the report that agree with the notebook.'),
+              evidence='All five files saved together and reopened, and totals in the report that agree with the notebook.'),
     errors=[('A claim in the report has no number behind it', 'The sentence was written from memory and not from an output.', 'Find the output cell that supports it, or remove the claim.'),
             ('The report opens but the charts are missing', 'The PNG was not saved in the same folder, or the picture was linked and not inserted.', 'Insert the saved PNG into the document and export to PDF again.')],
-    exit_ticket='Everything I submitted opens, reruns and agrees with itself.',
+    exit_ticket='Everything I am sharing opens, reruns and agrees with itself.',
     mode='guide', libs=[], data=[],
-    misconceptions=['A polished picture is enough evidence.', 'A saved file has been submitted.', 'Restarting the kernel is only for beginners.'],
+    misconceptions=['A polished picture is enough evidence.', 'A saved file has been shared.', 'Restarting the kernel is only for beginners.'],
     questions=[('How do you know your report matches your notebook?', 'Each number in the report is copied from an output cell that reruns from the top.'),
                ('What did you decide not to claim?', 'A limitation named in the report, such as no costs so no profit.')],
-    pacing='15 minutes recall, then the handover checklist; 60 minutes rerun from a restarted kernel and repair; 15 minutes break away from screens; 50 minutes write and export the report; 25 minutes individual check and submit; 15 minutes feedback, then save',
-    time_note='Check each learner\'s submission arrived. A file on a laptop has not been submitted.',
+    pacing='15 minutes recall, then the handover checklist; 60 minutes rerun from a restarted kernel and repair; 15 minutes break away from screens; 50 minutes write and export the report; 25 minutes individual check and share; 15 minutes feedback, then save',
+    time_note='Check each learner\'s folder arrived. A file on a laptop has not been shared.',
 )
 
 S23 = dict(
@@ -121,7 +121,7 @@ S23 = dict(
     question='Can a parent say what I found, how I know, and what the data cannot tell us?',
     words=[],
     blocks=[],
-    make=dict(task='Make five slides: my question; what data I used; what I did; my most useful finding with its chart; the limitation and next step. Save as showcase.pptx and keep a PDF and screenshots as a backup. Rehearse with a timer. Practise answering: where did this number come from, what did you clean, and what can this data not tell us. Disclose any help or AI use. Show only invented or approved non-personal data. The instructor may follow the rehearsal with MODERN_AI_ORIENTATION.md, a 20-minute optional introduction with no assignment or mark.',
+    make=dict(task='Make five slides: my question; what data I used; what I did; my most useful finding with its chart; the limitation and next step. Save as showcase.pptx and keep a PDF and screenshots as a backup. Rehearse with a timer. Practise answering: where did this number come from, what did you clean, and what can this data not tell us. Disclose any help or AI use. Show only invented or approved non-personal data. The instructor may follow the rehearsal with MODERN_AI_ORIENTATION.md, a 20-minute optional introduction with no assignment.',
               reference='Five slides, one idea each, no code on screen unless it answers a question. A listener can say what was compared, the unit, the biggest difference and the limitation. The speaker can point to the notebook cell behind each number. A screenshot backup exists.',
               reference_is_code=False,
               evidence='showcase.pptx and a PDF backup, a timed rehearsal and a feedback note from a peer.'),
@@ -138,14 +138,14 @@ S23 = dict(
 
 S24 = dict(
     title='Parent showcase and next steps',
-    objective='By the end: you can present your project, answer questions, and change a small part of it live without AI assistance.',
+    objective='By the end: you can present your project, answer questions, and try a small change to it live with no AI assistant open.',
     question='What can I show and explain, and what will I learn next?',
     words=[],
     blocks=[],
-    make=dict(task='Present your project for five minutes and answer three minutes of questions. Explain one calculation, one chart and one limitation. The instructor then chooses one small change, and you make it unaided. Close assistant windows and turn off generative suggestions first. Acknowledge any help you had. Choose one next learning goal. Keep your project folder and feedback.',
-              reference='Mark with PROJECT_RUBRIC.md and the demonstration criteria in ASSESSMENT_AND_SHOWCASE.md. Typical instructor-chosen changes: filter one branch, change a threshold from 5 units to 10, add a label to a chart, or rerun a calculation with a different column. The certificate records the completed track and the assessed evidence under the published completion policy. The programme issues the certificate. No university or vendor qualification is involved.',
+    make=dict(task='Present your project for five minutes and answer three minutes of questions. Explain one calculation, one chart and one limitation. The instructor then suggests one small change, and you make it live. Close assistant windows and turn off generative suggestions first. Acknowledge any help you had. Choose one next learning goal. Keep your project folder and feedback.',
+              reference='Use the SHOWCASE_GUIDE.md checklist as a guide for friendly feedback. Typical suggested changes: filter one branch, change a threshold from 5 units to 10, add a label to a chart, or rerun a calculation with a different column. The certificate goes to learners who attended or made up most classes, kept their build log and showed a finished project. The camp has no tests and no scores. The programme issues the certificate. No university or vendor qualification is involved.',
               reference_is_code=False,
-              evidence='A completed demonstration, one unaided change, feedback and a recorded completion decision. Attendance is recorded separately from competence.'),
+              evidence='A showcase talk, one small live change, one strength and one next step, and a certificate decision based on attendance, build log and finished project.'),
     errors=[('The notebook will not open on the day', 'The file or environment was not tested on the showcase laptop.', 'Use the PDF and screenshots, explain the workflow, and arrange a short live rerun afterwards.'),
             ('A question about the code cannot be answered', 'The student has not traced that line since they wrote it.', 'Say what the line is meant to do, then run it on a small input to show it.')],
     exit_ticket='I can show my work, explain it, change one part of it, and name what I will learn next.',
@@ -153,7 +153,7 @@ S24 = dict(
     misconceptions=['The showcase is a performance.', 'Help must be hidden.', 'A certificate certifies a profession.'],
     questions=[('What did you change in the live task, and how did you check it?', 'A concrete change and a check against a known value.'),
                ('What will you learn next?', 'A specific skill with a first step.')],
-    pacing='30 minutes setup, rehearsal and backups; 10 minutes welcome for parents and guardians; 40 minutes presentations and questions; 10 minutes break; 20 minutes feedback, certificates and photographs only where consent exists; 70 minutes reflection, portfolio copy and next steps',
+    pacing='30 minutes setup, rehearsal and backups; 10 minutes welcome for parents and guardians; 40 minutes presentations and questions; 10 minutes break; 20 minutes feedback, certificates and photographs only where consent exists; 70 minutes reflection, project folder copy and next steps',
     time_note='A combined event for several groups needs a separate, longer slot than this plan allows.',
 )
 

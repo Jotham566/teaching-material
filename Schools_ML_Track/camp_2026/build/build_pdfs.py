@@ -142,6 +142,18 @@ class Bookmark(Flowable):
         self.canv.addOutlineEntry(self.title, self.key, self.level, closed=self.level > 0)
 
 
+def where_box(text):
+    """The 'Where this is used' box: a gold bar on the left, a small label and the hook text."""
+    lab = Paragraph('WHERE THIS IS USED', ParagraphStyle('wl', fontName='LatoB', fontSize=8.5, leading=11, textColor=RED, spaceAfter=0))
+    body = Paragraph(inline(text), ParagraphStyle('wb', parent=ST['body'], fontSize=11, leading=15.5, spaceAfter=0))
+    t = Table([[lab], [body]], colWidths=[CW])
+    t.setStyle(TableStyle([('BOX', (0, 0), (-1, -1), 0.8, INK), ('LINEBEFORE', (0, 0), (0, -1), 5, GOLD),
+                           ('LEFTPADDING', (0, 0), (-1, -1), 14), ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+                           ('TOPPADDING', (0, 0), (0, 0), 7), ('BOTTOMPADDING', (0, 0), (0, 0), 1),
+                           ('TOPPADDING', (0, 1), (0, 1), 1), ('BOTTOMPADDING', (0, 1), (0, 1), 8)]))
+    return t
+
+
 # ------------------------------------------------------------------ markdown -> flowables
 def md_to_flow(md, student=False, bookmark_levels=None, key_prefix='k', h1_break=False, shift=0):
     """bookmark_levels: map markdown heading depth -> outline level (None: no outline entries)."""
@@ -213,6 +225,11 @@ def md_to_flow(md, student=False, bookmark_levels=None, key_prefix='k', h1_break
         while i + 1 < len(lines) and lines[i + 1].strip() and not re.match(r'^(#{1,4}\s|```|\||\s*([-*]|\d+\.)\s)', lines[i + 1]):
             i += 1; para.append(lines[i].strip())
         txt = ' '.join(para)
+        if txt.startswith('**Where this is used.**'):
+            out.append(where_box(txt[len('**Where this is used.**'):].strip()))
+            out.append(Spacer(1, 8))
+            i += 1
+            continue
         out.append(Paragraph(inline(txt), ST['body']))
         if student and txt.startswith('**Predict.**'):
             out.append(GuessBox()); out.append(Spacer(1, 8))
@@ -319,6 +336,9 @@ def student(track):
         build_doc(outdir / f'{stem}.pdf', title_of(md) or stem, f'{name}  |  {stem.replace("_", " ").title() if not is_session else stem}', flow, cover=False)
         made += 1
     STUDENT_MODE[0] = False
+    import build_progress_map
+    build_progress_map.build(track)
+    made += 1
     print(track, 'student PDFs', made, '->', outdir.relative_to(CAMP))
 
 

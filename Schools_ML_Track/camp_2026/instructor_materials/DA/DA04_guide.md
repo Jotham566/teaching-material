@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Is this sale big enough to count as a large order?
 
+**Where this is used.** Shops and delivery businesses often treat big orders differently, with free delivery, a discount or a call from the manager. A program makes that choice with if and else. What rule would you set for the big orders of your own shop?
+
 Prerequisite: DA03 Arithmetic, revenue and reading errors.
 
 ## The 180 minutes
@@ -96,7 +98,7 @@ print(decide(4999), decide(5000), decide(5001))
 # Save Buy Buy
 ```
 
-Evidence to collect: DA04.ipynb with the decision tested at 4999, 5000 and 5001.
+Build log entry to look for: DA04.ipynb with the decision tested at 4999, 5000 and 5001.
 
 ## Misconceptions to listen for
 
@@ -109,6 +111,32 @@ Evidence to collect: DA04.ipynb with the decision tested at 4999, 5000 and 5001.
 - Which three values do you test for a rule that says at least 5000? Expected: 4999, 5000 and 5001: just below, on and just above the edge.
 - What happens to the else lines when the condition is True? Expected: They are skipped.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Compare and decide: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Two conditions together: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Compare and decide): Set budget to 4999 and run the cell again.
+2. Modify, Block B (Two conditions together): Change the price to 2500 and run the cell again.
+3. Make: Write a decision for a ticket that costs 5000. Print "Buy" if the budget is at least 5000 and otherwise print "Save". Test 4999, 5000 and 5001.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Which three values do you test for a rule that says at least 5000? Expected: 4999, 5000 and 5001: just below, on and just above the edge.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

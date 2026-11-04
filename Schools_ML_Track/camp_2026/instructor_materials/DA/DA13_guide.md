@@ -6,7 +6,9 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How spread out are the daily customer counts, and which sales are unusually large?
 
-Prerequisite: DA12 Checkpoint one: load, summarise, chart and explain.
+**Where this is used.** Weather offices and football analysts work with long rows of numbers, such as daily rainfall or distance run. They check how spread out the numbers are and spot unusual days. Which day in a shop would you call unusual?
+
+Prerequisite: DA12 Show your first chart and explain what it says.
 
 ## The 180 minutes
 
@@ -96,7 +98,7 @@ print(np_route)
 # Mean 35421.67, median 30350, quartiles 18400 and 44125.
 ```
 
-Evidence to collect: DA13.ipynb with the four numbers from both routes and a passing allclose check.
+Build log entry to look for: DA13.ipynb with the four numbers from both routes and a passing allclose check.
 
 ## Misconceptions to listen for
 
@@ -109,6 +111,32 @@ Evidence to collect: DA13.ipynb with the four numbers from both routes and a pas
 - Why do we not delete outliers automatically? Expected: They may be real. Deleting them changes the story without telling the reader.
 - What does np.percentile(x, 75) return? Expected: The value that 75 percent of the numbers fall below.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Arrays, summaries and percentiles: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Spread and outliers: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Arrays, summaries and percentiles): Add 50 to every count at once and print the new mean.
+2. Modify, Block B (Spread and outliers): Count the sales with a value above 20000.
+3. Make: Take the revenue_ugx column of the daily summary as a NumPy array. Find its mean, median and the 25th and 75th percentiles with NumPy. Then find the same four numbers with pandas and check that the two routes agree.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why do we not delete outliers automatically? Expected: They may be real. Deleting them changes the story without telling the reader.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

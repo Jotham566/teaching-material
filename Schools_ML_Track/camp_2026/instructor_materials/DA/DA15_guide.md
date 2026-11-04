@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Do busier days bring in more money, and does rain keep customers away?
 
+**Where this is used.** Taxi parks, shops and farms all ask whether rain changes demand. Two things moving together do not prove that one causes the other. Do rainy days keep customers away, or is something else going on?
+
 Prerequisite: DA14 Exploring distributions with seaborn.
 
 ## The 180 minutes
@@ -90,7 +92,7 @@ print(result)
 # All three are weak. The largest is Roadside at -0.159. Even that does not prove that rain causes fewer customers.
 ```
 
-Evidence to collect: DA15.ipynb with three correlations and a sentence on why correlation is not cause.
+Build log entry to look for: DA15.ipynb with three correlations and a sentence on why correlation is not cause.
 
 ## Misconceptions to listen for
 
@@ -103,6 +105,32 @@ Evidence to collect: DA15.ipynb with three correlations and a sentence on why co
 - What would you check before saying rain keeps customers away? Expected: A reason and more evidence: the correlation is weak, and other things change from day to day.
 - What does a negative correlation mean? Expected: One goes up as the other goes down.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, A scatter plot and one correlation: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, A heatmap of every pair, and the rain question: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (A scatter plot and one correlation): Find the correlation between customers and the number of sale lines (sale_lines).
+2. Modify, Block B (A heatmap of every pair, and the rain question): Find the correlation of rain_mm with revenue_ugx.
+3. Make: Check the rain question for each shop separately. For each branch find the correlation between rain_mm and customers_counted. Say whether rain matters at any shop and why a correlation could not prove that it does.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What would you check before saying rain keeps customers away? Expected: A reason and more evidence: the correlation is weak, and other things change from day to day.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

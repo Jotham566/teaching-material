@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Does a tree that learned its questions beat my hand-written flower rule?
 
+**Where this is used.** Doctors and farm advisers sort cases into groups by asking questions in order: is there a fever, are the leaves spotted? A decision tree learns which questions to ask. Can your tree out-guess your own rule?
+
 Prerequisite: ML15 A complete regression experiment.
 
 ## The 180 minutes
@@ -100,7 +102,7 @@ print(round(percent, 1))
 # Target: species. One input: petal length. The codes are labels that carry no amounts.
 ```
 
-Evidence to collect: ML16.ipynb with both accuracies as percentages, the target and one input named, and the sentence about codes.
+Build log entry to look for: ML16.ipynb with both accuracies as percentages, the target and one input named, and the sentence about codes.
 
 ## Misconceptions to listen for
 
@@ -113,6 +115,32 @@ Evidence to collect: ML16.ipynb with both accuracies as percentages, the target 
 - What does max_depth limit? Expected: How many questions in a row the tree may ask.
 - Why print the baseline accuracy? Expected: To show how much better than guessing the tree is.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Train a tree and draw it: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Back to the hand rule: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Train a tree and draw it): Change max_depth to 1 and run again.
+2. Modify, Block B (Back to the hand rule): Change 4.8 to 5.0 in the rule and score it again.
+3. Make: Convert both accuracies to percentages. Name the target and one input. Explain why species code 2 is not twice species code 1.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does max_depth limit? Expected: How many questions in a row the tree may ask.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

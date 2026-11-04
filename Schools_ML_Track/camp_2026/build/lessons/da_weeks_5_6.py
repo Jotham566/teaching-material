@@ -244,23 +244,23 @@ S17 = dict(
 )
 
 S18 = dict(
-    title='Checkpoint two: clean, merge and reconcile',
+    title='Does your total match the true total? Clean, merge and reconcile',
     objective='By the end: you can clean a raw export, merge it with a lookup table, and report a total together with its named difference from the true total.',
     question='Which category earns the most in the cleaned data, and by how much do our totals fall short of the truth?',
     words=[],
     blocks=[],
-    make=dict(task='In DA18.ipynb start from sunrise_sales_raw.csv. 1) Clean it with a function and report the rows kept, rows excluded and the cleaning steps. 2) Merge the clean table with the products table on product_id. Check that the key is unique and that the row count is unchanged. 3) Total the revenue by category. 4) Compare the cleaned total with the true total in sunrise_sales.csv. Name the residual and its cause. 5) Write two limitations. Run from a restarted kernel, save and submit DA18.ipynb and a short explanation of your checks through the route in START_HERE.md.',
+    make=dict(task='In DA18.ipynb start from sunrise_sales_raw.csv. 1) Clean it with a function and report the rows kept, rows excluded and the cleaning steps. 2) Merge the clean table with the products table on product_id. Check that the key is unique and that the row count is unchanged. 3) Total the revenue by category. 4) Compare the cleaned total with the true total in sunrise_sales.csv. Name the residual and its cause. 5) Write two limitations. Run from a restarted kernel, save DA18.ipynb with a short explanation of your checks, and share them by the route in START_HERE.md.',
               reference='import pandas as pd\nraw = pd.read_csv("sunrise_sales_raw.csv")\nproducts = pd.read_csv("sunrise_products.csv")\nlookup = {n.title(): n for n in products["name"]}\nwords = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}\nwork = raw.drop_duplicates().copy()\nwork["sale_date"] = pd.to_datetime(work["sale_date"], format="%Y-%m-%d", errors="coerce").fillna(pd.to_datetime(work["sale_date"], format="%d/%m/%Y", errors="coerce"))\nwork["product"] = work["product"].str.strip().str.title().map(lookup)\nwork["units"] = pd.to_numeric(work["units"].replace(words), errors="coerce")\nexcluded = work[work["units"].isna()]\nclean = work.dropna(subset=["units"]).copy()\nclean["units"] = clean["units"].astype(int)\nclean["line_value"] = clean["units"] * clean["unit_price_ugx"]\nclean = clean.merge(products.rename(columns={"name": "product"})[["product", "category"]], on="product", how="left", validate="many_to_one")\nassert len(clean) == 1473\nby_category = clean.groupby("category")["line_value"].sum().sort_values(ascending=False)\ntrue_sales = pd.read_csv("sunrise_sales.csv")\ntrue_total = int((true_sales["units"] * true_sales["unit_price_ugx"]).sum())\nresidual = true_total - int(clean["line_value"].sum())\nassert by_category.sum() == clean["line_value"].sum()\nprint(by_category)\nprint(residual)\n# Household earns the most. The residual 125400 is the value of the 40 excluded rows.',
               reference_is_code=True, check='by_category.index[0] == "Household" and residual == 125400 and len(excluded) == 40 and by_category.sum() == 6250500',
-              evidence='DA18.ipynb that reruns from a restarted kernel, with rows kept and excluded, the unique-key check, category totals, the named residual and two limitations. Marks follow ASSESSMENT_AND_SHOWCASE.md.'),
+              evidence='DA18.ipynb that reruns from a restarted kernel, with rows kept and excluded, the unique-key check, category totals, the named residual and two limitations. It goes in the build log, and the instructor gives one strength and one next step in a private chat.'),
     errors=[('The category totals add to 6375900, not 6250500', 'The clean table was not used, or the excluded rows were put back by a merge.', 'Total from the cleaned table and compare with len() at each step.'),
             ('MergeError or a larger row count after the merge', 'The key is repeated in the products table.', 'Check is_unique on the lookup table before you merge.')],
     exit_ticket='I can show my steps, my checks and the named reason my total is not the true total.',
     mode='guide', libs=[], data=['sunrise_sales_raw.csv', 'sunrise_products.csv', 'sunrise_sales.csv'],
-    misconceptions=['A passing merge means correct totals.', 'The residual means the pipeline is wrong.', 'More steps mean a better checkpoint.'],
+    misconceptions=['A passing merge means correct totals.', 'The residual means the pipeline is wrong.', 'More steps mean a better result.'],
     questions=[('How do you prove the merge did not change the data?', 'The row count and the grand total are the same before and after.'),
                ('What is the residual here?', '125400 shillings, the value of the 40 sales with blank units.')],
-    pacing='15 minutes recall, then read the brief together; 80 minutes learners work and the instructor visits each of the five; 15 minutes break away from screens; 40 minutes learners finish, restart and run all; 20 minutes individual check, save and submit; 10 minutes review',
+    pacing='15 minutes recall, then read the brief together; 80 minutes learners work and the instructor visits each of the five; 15 minutes break away from screens; 40 minutes learners finish, restart and run all; 20 minutes a quiet one-to-one chat, then save and share; 10 minutes review',
     time_note='Use the error cards from sessions 10, 16 and 17 for repair. Introduce no new syntax.',
 )
 

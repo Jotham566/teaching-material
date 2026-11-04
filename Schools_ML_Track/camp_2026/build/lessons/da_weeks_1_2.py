@@ -38,7 +38,7 @@ S01 = dict(
                          code='ten = shop.head(10)', check='len(ten) == 10'),
              check='len(shop) == 60 and list(shop.columns) == ["sale_id", "date", "item", "units", "unit_price_ugx"]'),
     ],
-    make=dict(task='In a new code cell show your nickname and the result of 7 + 4. Then show the first three rows of the shop table with head(3). Save the notebook as DA01.ipynb, close it and open it again.',
+    make=dict(task='In a new code cell show your nickname and the result of 7 + 4. Then show the first three rows of the shop table with head(3). Save the notebook as DA01.ipynb, close it and open it again. On your progress map, write one topic you love, such as football, music or farming. It will grow into your project.',
               reference='print("Nyanzi")\nprint(7 + 4)\nimport pandas as pd\nshop = pd.read_csv("camp_shop.csv")\nprint(shop.head(3))\n# The numerical result is 11.',
               reference_is_code=True, check='len(shop.head(3)) == 3',
               evidence='DA01.ipynb that reopens with the nickname, 11 and three table rows.'),
@@ -111,7 +111,7 @@ S03 = dict(
         ('expression', 'A calculation Python can work out, such as 3 * 2000.', 'One line of working in a maths exercise.'),
         ('order of operations', 'Brackets first, then powers, then multiply and divide, then add and subtract.', 'The rule that makes 2 + 3 * 4 equal 14.'),
         ('comment', 'A note for people that starts with # and is ignored by Python.', 'A pencil note in the margin.'),
-        ('error message', 'Python explaining why it stopped. Read the last line first.', 'A teacher\'s comment on what went wrong.'),
+        ('error message', 'Python explaining why it stopped. Read the last line first.', 'A friend pointing out what went wrong.'),
         ('line number', 'The place in the cell where Python found the problem.', 'The page and line in a book.'),
     ],
     blocks=[
@@ -260,7 +260,7 @@ S06 = dict(
         ('parameter', 'The name for an input inside a function.', 'The blank in a form.'),
         ('argument', 'The actual value you give a function when you call it.', 'The answer you write in the blank.'),
         ('return', 'Send the result back to where the function was called.', 'The cashier handing you the change.'),
-        ('assert', 'Stop with an error if a statement is False. Say nothing if it is True.', 'A teacher checking the answer without saying well done.'),
+        ('assert', 'Stop with an error if a statement is False. Say nothing if it is True.', 'A friend checking the answer without saying well done.'),
         ('edge case', 'A value at the boundary where a rule might break, such as zero.', 'A customer who buys nothing.'),
     ],
     blocks=[

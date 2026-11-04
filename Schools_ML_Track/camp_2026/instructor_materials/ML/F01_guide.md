@@ -4,6 +4,8 @@ Week 1, fourth teaching day. Complete ML03 first.
 
 **Today's question.** Can I predict every line Python prints before I run it?
 
+**Where this is used.** A good programmer reads code and predicts its output before pressing run. A mobile money app keeps an amount, a name and a date in named boxes, and each one must be right. Can you predict every line before it runs?
+
 ## Words for today
 
 | Word | What it means | Think of it like this |
@@ -54,4 +56,8 @@ Reference: 15000, then 6000. A calculation runs when its line runs and it does n
 
 Repair: If quotation marks surround a quantity, remove them so it is a number. If a total looks stale, rerun the line that calculates it. Do not move on until the learner can predict both totals.
 
-Record complete, needs repair or absent. Carry unfinished repair into the next core session. Lab evidence goes in that week's portfolio with no second mark.
+Carry unfinished work into the next core session. Lab work goes in that week's build log. Give one strength and one next step.
+
+## Online version
+
+Foundation labs run online as designed: two hours live on video with screen sharing, with the same minutes as the tutor pacing above and a short break away from the screen. There is no extra build task. Unfinished work carries into the next core class. Ask each learner to share their screen at least three times, to say their paper prediction aloud before they run the code, and to hold up their notebook or paper to the camera. See handbook/HYBRID_DELIVERY.md.

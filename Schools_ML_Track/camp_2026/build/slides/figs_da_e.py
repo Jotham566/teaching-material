@@ -306,7 +306,7 @@ def da_report_page(w, h, **_):
 @fig('da_submit_route')
 def da_submit_route(w, h, **_):
     s = Scene(w, h)
-    steps = [('Save', 'notebook'), ('Export\nPDF', 'book'), ('Reopen\nboth', 'magnifier'), ('Upload', 'folder'), ('Keep the\nconfirmation', 'receipt')]
+    steps = [('Save', 'notebook'), ('Export\nPDF', 'book'), ('Reopen\nboth', 'magnifier'), ('Share', 'folder'), ('Keep the\nconfirmation', 'receipt')]
     n = len(steps)
     gap = (w - 0.4) / n
     for i, (lab, ic) in enumerate(steps):
@@ -315,8 +315,8 @@ def da_submit_route(w, h, **_):
         s.text(x, h - 2.35, lab, size=18, weight='bold')
         if i < n - 1:
             s.arrow(x + 0.65, h - 1.3, x + gap - 0.65, h - 1.3, color=RED, lw=2.4, head=13)
-    s.text(w / 2, 0.9, 'A file on your laptop has not been submitted.', size=21, weight='bold', color=RED)
-    s.text(w / 2, 0.4, 'It is submitted when the confirmation arrives.', size=19, color=BODY)
+    s.text(w / 2, 0.9, 'A file on your laptop has not been shared.', size=21, weight='bold', color=RED)
+    s.text(w / 2, 0.4, 'It is shared when the confirmation arrives.', size=19, color=BODY)
     return s
 
 
@@ -411,10 +411,10 @@ def da_hero_showcase(w, h, **_):
     return s
 
 
-@fig('da_unaided_change')
-def da_unaided_change(w, h, **_):
+@fig('da_live_change')
+def da_live_change(w, h, **_):
     s = Scene(w, h)
-    steps = [('The instructor picks one small change', 'person'), ('Close the assistant windows', 'cross'), ('You make the change and run it', 'laptop'), ('You say what changed and how you checked', 'magnifier')]
+    steps = [('The instructor suggests one small change', 'person'), ('Close the assistant windows', 'cross'), ('You make the change and run it', 'laptop'), ('You say what changed and how you checked', 'magnifier')]
     for i, (t, ic) in enumerate(steps):
         y = h - 0.75 - i * 1.1
         s.icon(ic, 0.6, y, 0.7)

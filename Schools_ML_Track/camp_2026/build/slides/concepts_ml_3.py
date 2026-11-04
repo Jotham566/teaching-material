@@ -297,10 +297,10 @@ CONCEPTS = {7: {'question': {'fig': 'ml_csv_to_table',
                          'same shape.'}]},
  12: {'question': {'fig': 'ml_checkpoint_flow',
                    'alt': 'Six steps: read, check, calculate, chart, explain and rerun',
-                   'say': 'Checkpoint one is these six steps, done on your own in one notebook. Read the file, check it, calculate something, draw a '
+                   'say': 'Showing your first chart takes these six steps, done in one notebook. Read the file, check it, calculate something, draw a '
                           'labelled chart, explain what you found, and rerun everything from the top. The notebook must work the same way for anyone '
                           'who opens it. Today you also choose the question for your project.'},
-      'word_icons': {'checkpoint': 'check',
+      'word_icons': {'show-and-tell': 'check',
                      'reproducible': ('ml_r3_wicon', {'kind': 'repeat'}),
                      'data dictionary': 'book',
                      'target': ('ml_icon', {'kind': 'target'}),
@@ -317,7 +317,7 @@ CONCEPTS = {7: {'question': {'fig': 'ml_csv_to_table',
                          'Do this before you hand anything in. What do you expect to find?'},
                  {'at': 1,
                   'kind': 'concept',
-                  'title': 'A project question names an input, a target and a test',
+                  'title': 'A project question names an input, a target and a check',
                   'fig': 'ml_question_target_input',
                   'points': ['The target is the answer you want.', 'Inputs must be known before the answer.', 'The question ends with a mark.'],
                   'say': 'A good project question says what you will predict and from what. Can area and rooms predict monthly rent? The rent is the '

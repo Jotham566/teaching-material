@@ -1,10 +1,12 @@
-# ML12 Instructor guide: Checkpoint one and a project question
+# ML12 Instructor guide: Show your first chart and choose your project question
 
 Private. Keep this file out of the student folder.
 
 **Objective.** By the end: you can load a table, check it, total it, chart it, write two findings and a limitation, and ask one prediction question a table could answer.
 
 **Question of the day.** Can I take a table from a file to a labelled chart and a careful finding on my own?
+
+**Where this is used.** Every data job starts with one clear question and a table. A coffee trader, a football analyst and a clinic manager each begin that way. Which question would you like your own project to answer?
 
 Prerequisite: ML11 Charts that show what the numbers say.
 
@@ -15,13 +17,13 @@ Prerequisite: ML11 Charts that show what the numbers say.
 | 10 | recall |
 | 20 | brief and worked skeleton |
 | 15 | break |
-| 100 | checkpoint work |
+| 100 | first-chart work |
 | 20 | project question |
 | 15 | save and exit check |
 
-Where it overruns: Most time goes on the independent checkpoint. Keep the skeleton short and let students use their own wording.
+Where it overruns: Most time goes on the independent chart work. Keep the skeleton short and let students use their own wording.
 
-## Block A. The checkpoint skeleton
+## Block A. The first-chart skeleton
 
 Run the skeleton, then repeat each step in your own notebook, ML12.ipynb, with your own wording.
 
@@ -42,7 +44,7 @@ plt.title("Revenue by item, practice shop")
 plt.show()
 ```
 
-Correct result: The skeleton prints 60 rows, 0 missing cells and a total revenue of 550000. The assert passes silently because the item totals add up to the overall total. The chart shows Book as the tallest bar. Your checkpoint needs the same steps with your own two findings, one limitation, a missing-value check and a clean rerun from a restarted kernel.
+Correct result: The skeleton prints 60 rows, 0 missing cells and a total revenue of 550000. The assert passes silently because the item totals add up to the overall total. The chart shows Book as the tallest bar. Your own notebook needs the same steps with your two findings, one limitation, a missing-value check and a clean rerun from a restarted kernel.
 
 Investigate, with answers:
 
@@ -57,7 +59,7 @@ book_share = by_item['Book'] / by_item.sum()
 
 ## Block B. Write your project question
 
-In the last 20 minutes choose a table and write three sentences: the question, the dataset and the target. Model building starts next week.
+Start from the topic on your progress map. In the last 20 minutes choose the supplied table that fits it best and write three sentences: the question, the dataset and the target. Model building starts next week.
 
 Ask for the prediction first: Before you look at the datasets again, write the question you would most like a model to answer.
 
@@ -83,11 +85,11 @@ total_units = shop["units"].sum()
 print(len(shop), missing, total_units, by_item.to_dict())
 ```
 
-Evidence to collect: ML12.ipynb: totals, one labelled chart, two findings, one limitation, a missing-value check, a restarted-kernel run, and a three-sentence project question.
+Build log entry to look for: ML12.ipynb: totals, one labelled chart, two findings, one limitation, a missing-value check, a restarted-kernel run, and a three-sentence project question.
 
 ## Misconceptions to listen for
 
-- The checkpoint needs a new technique.
+- Showing my first chart needs a new technique.
 - A prediction question can be any question.
 - No missing values means no check is needed.
 
@@ -96,6 +98,32 @@ Evidence to collect: ML12.ipynb: totals, one labelled chart, two findings, one l
 - What do you do first if the totals disagree? Expected: Compare row counts at each step to find where rows changed.
 - What makes a project question suitable? Expected: A table can answer it, a target exists, and its inputs are known beforehand.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, The first-chart skeleton: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Write your project question: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (The first-chart skeleton): Add a finding with a number and one limitation as text cells under the chart.
+2. Modify, Block B (Write your project question): Rewrite a question that asks why into one that asks for a prediction.
+3. Make: In ML12.ipynb report the row count, the revenue by item, one chart, two findings and one limitation, and record your missing-value check. Run all cells from a restarted kernel and save. Add your three-sentence project question. Start from the topic on your progress map and pick the supplied table that fits it best. If none fits, say so; real public data is used only after you and the instructor have read its licence.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What do you do first if the totals disagree? Expected: Compare row counts at each step to find where rows changed.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

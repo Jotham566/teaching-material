@@ -22,7 +22,7 @@ AI LITERACY
 Near the end of the programme, learn how AI coding assistants can help with coding and debugging—and why their answers must be checked. Foundations and core exercises are completed without AI-generated solutions.
 
 WHAT STUDENTS LEAVE WITH
-Practical skills, an individual project they can explain, presentation experience at a parent/guardian showcase, and a completion certificate after meeting assessment and project requirements. Projects use synthetic sample data. This is a beginner programme, not a professional qualification.
+Practical skills, an individual project they can explain, presentation experience at a parent/guardian showcase, and a completion certificate for attending most classes, keeping a build log and showing a finished project. There are no tests or marks. Projects use synthetic sample data. This is a beginner programme, not a professional qualification.
 
 Build a foundation for university study in computing, engineering, business, economics, statistics and data science.
 

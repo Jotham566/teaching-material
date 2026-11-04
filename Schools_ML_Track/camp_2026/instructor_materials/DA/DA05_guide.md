@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How many units did the first six sales sell in total?
 
+**Where this is used.** A shop has many sales, a league has many matches and a tailor has many orders. A loop handles every one of them without you typing each by hand. What would you loop over in your favourite sport?
+
 Prerequisite: DA04 Conditions and decisions.
 
 ## The 180 minutes
@@ -88,7 +90,7 @@ print(item["stock"])
 # 3, 5, 7 and then 8.
 ```
 
-Evidence to collect: DA05.ipynb with the loop output 3, 5, 7, the stock 8 and the explanation of position 0.
+Build log entry to look for: DA05.ipynb with the loop output 3, 5, 7, the stock 8 and the explanation of position 0.
 
 ## Misconceptions to listen for
 
@@ -101,6 +103,32 @@ Evidence to collect: DA05.ipynb with the loop output 3, 5, 7, the stock 8 and th
 - How many values does a list of six have, and what is the last index? Expected: Six values. The last index is 5.
 - Why does the running total start at zero? Expected: Nothing has been added yet.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Lists and positions: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Dictionaries and a loop with a running total: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Lists and positions): Print the value at position 4.
+2. Modify, Block B (Dictionaries and a loop with a running total): Change the loop to print each value plus 1 and then print the final total.
+3. Make: Make a list [2, 4, 6]. Print each value plus 1 with a loop. Make a dictionary with the keys name and stock and print the stock. Explain why position 0 is the first.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: How many values does a list of six have, and what is the last index? Expected: Six values. The last index is 5.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

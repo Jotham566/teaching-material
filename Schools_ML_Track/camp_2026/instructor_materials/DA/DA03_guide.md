@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How much money did the first three sales bring in?
 
+**Where this is used.** Revenue is units times price, added up. A shop owner does it by hand, and a program does it for every sale in a blink. Which error message have you seen on your phone, and what did it mean?
+
 Prerequisite: DA02 Values, names and types.
 
 ## The 180 minutes
@@ -75,7 +77,7 @@ print(float("12.5") * 4)
 # 50.0. No number multiplied by zero gives 10, so 10 divided by 0 has no answer.
 ```
 
-Evidence to collect: DA03.ipynb with 50.0, the prediction written before the run, and an error log with two errors read correctly.
+Build log entry to look for: DA03.ipynb with 50.0, the prediction written before the run, and an error log with two errors read correctly.
 
 ## Misconceptions to listen for
 
@@ -88,6 +90,32 @@ Evidence to collect: DA03.ipynb with 50.0, the prediction written before the run
 - Why predict before you run? Expected: A prediction shows whether you understand the line. A surprise is where learning happens.
 - What does the comment in the code do? Expected: Nothing for Python. It helps the next person read the code.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Revenue by hand and by Python: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Reading an error message: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Revenue by hand and by Python): Change the Pen to 5 units and find the new total.
+2. Modify, Block B (Reading an error message): Fix the NameError by creating units = 4 first and then printing units * 2000.
+3. Make: Convert the text "12.5" to a number and calculate the price of four items at that price. Predict the result before you run it. Write one sentence on why division by zero cannot be answered.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why predict before you run? Expected: A prediction shows whether you understand the line. A surprise is where learning happens.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

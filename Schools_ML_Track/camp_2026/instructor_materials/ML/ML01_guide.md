@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Can a computer guess a rent after seeing 120 homes?
 
+**Where this is used.** Property apps and agents guess a fair rent from the size and area of a home. A model does the same after studying homes that were already rented, and today you build the smallest version. What rent would you guess for a home you know?
+
 Prerequisite: START_HERE.md.
 
 ## The 180 minutes
@@ -83,7 +85,7 @@ pred80 = model.predict(pd.DataFrame({"area_m2": [80]}))[0]
 print(round(pred80))
 ```
 
-Evidence to collect: ML01.ipynb with a nickname, 11, and a rent estimate for 80 square metres, reopened and saved.
+Build log entry to look for: ML01.ipynb with a nickname, 11, and a rent estimate for 80 square metres, reopened and saved.
 
 ## Misconceptions to listen for
 
@@ -96,6 +98,32 @@ Evidence to collect: ML01.ipynb with a nickname, 11, and a rent estimate for 80 
 - What did the model need before it could guess a rent? Expected: Examples: the 120 homes with their areas and rents.
 - Why should we distrust the estimate? Expected: The homes are invented, and nobody has tested the model yet.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Welcome, camera and sound check, and a notebook that opens |
+| 35 | Block A, Run your first instruction: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Run a ready-made prediction: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Run your first instruction): Change Hello, data to your own nickname and run the cell again.
+2. Modify, Block B (Run a ready-made prediction): Change 50 to 100 and run the cell again.
+3. Make: In a new code cell print your nickname and the result of 7 + 4. In another cell estimate the rent for 80 square metres. Save as ML01.ipynb, close it and reopen it. On your progress map, write one topic you love, such as football, music or farming. It will grow into your project. With the instructor, read AI_USE_POLICY.md: in weeks 1 to 6 all core work is your own, with no AI-generated solutions.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What did the model need before it could guess a rent? Expected: Examples: the 120 homes with their areas and rents.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

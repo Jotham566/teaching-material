@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Which chart shows this comparison most clearly?
 
+**Where this is used.** Weather pages, football stats and mobile money summaries all lean on a chart to make one point quickly. A busy shop owner has a minute at most. Which chart would you show an owner who has only one minute?
+
 Prerequisite: DA10 Cleaning without hiding evidence.
 
 ## The 180 minutes
@@ -112,7 +114,7 @@ plt.show()
 # Central Market earns the most, 2997000. The data is invented, so it says nothing about real shops.
 ```
 
-Evidence to collect: DA11.ipynb with a labelled bar chart of three branches, one finding and one limitation.
+Build log entry to look for: DA11.ipynb with a labelled bar chart of three branches, one finding and one limitation.
 
 ## Misconceptions to listen for
 
@@ -125,6 +127,32 @@ Evidence to collect: DA11.ipynb with a labelled bar chart of three branches, one
 - Which chart suits the revenue of each branch, and why? Expected: A bar chart, because the branches are separate categories.
 - What must every chart carry? Expected: Labelled axes with units, and a title that says what is shown.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Bar and line charts: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Histogram and scatter plot: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Bar and line charts): Draw the bar chart of units by item and add its label.
+2. Modify, Block B (Histogram and scatter plot): Change bins=30 to bins=10 and describe what the histogram loses.
+3. Make: Chart the Sunrise revenue by branch. Use a dictionary to turn the ids 1, 2 and 3 into the names Central Market, Campus Gate and Roadside. Label the axis, start it at zero and write one finding and one limitation.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Which chart suits the revenue of each branch, and why? Expected: A bar chart, because the branches are separate categories.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

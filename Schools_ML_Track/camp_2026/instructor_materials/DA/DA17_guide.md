@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Which product category earns the most, and can we trust the merge that tells us?
 
+**Where this is used.** Customers, products and sales usually live in separate tables, and analysts join them. A careless join can count one sale twice. How would you check that your total is still right after a join?
+
 Prerequisite: DA16 Cleaning the raw export.
 
 ## The 180 minutes
@@ -99,7 +101,7 @@ print(by_name)
 # Central Market 2997000, Campus Gate 1985400, Roadside 1393500. They match session 9.
 ```
 
-Evidence to collect: DA17.ipynb with the unchanged row count, three branch totals and the reconciliation sentence.
+Build log entry to look for: DA17.ipynb with the unchanged row count, three branch totals and the reconciliation sentence.
 
 ## Misconceptions to listen for
 
@@ -112,6 +114,32 @@ Evidence to collect: DA17.ipynb with the unchanged row count, three branch total
 - What two numbers tell you a merge went wrong? Expected: The row count and the grand total.
 - What does validate="many_to_one" check? Expected: That the key is unique in the second table, so each row of the first matches one row.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, A merge you can trust: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, The fan-out trap: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (A merge you can trust): Show the category with the lowest revenue.
+2. Modify, Block B (The fan-out trap): Ask the merge to check the key by adding validate="many_to_one". Read the result.
+3. Make: Merge the sales with sunrise_branches.csv on branch_id to get the branch names. Check that the row count is unchanged. Total the revenue by branch name and reconcile it with the totals you found in session 9.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What two numbers tell you a merge went wrong? Expected: The row count and the grand total.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

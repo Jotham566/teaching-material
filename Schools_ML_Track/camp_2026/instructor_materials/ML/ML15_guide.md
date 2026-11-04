@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Does the rent model beat a plain guess on homes it has never seen?
 
+**Where this is used.** A model can look perfect on the homes it learned from and still fail on a new one. Teams that build tools for lending, fares or weather test on cases kept aside. Would you trust a model that was only tested on its own homework?
+
 Prerequisite: ML14 Predicting a number with a line.
 
 ## The 180 minutes
@@ -98,7 +100,7 @@ model_mae = mean_absolute_error(y_test, LinearRegression().fit(X_train, y_train)
 print(round(baseline_mae), round(model_mae))
 ```
 
-Evidence to collect: ML15.ipynb with both errors, the sentence that the model beats the baseline on held-out homes, and the split unchanged.
+Build log entry to look for: ML15.ipynb with both errors, the sentence that the model beats the baseline on held-out homes, and the split unchanged.
 
 ## Misconceptions to listen for
 
@@ -111,6 +113,32 @@ Evidence to collect: ML15.ipynb with both errors, the sentence that the model be
 - Why report the baseline error next to the model error? Expected: Without it nobody knows whether the model is better than a plain guess.
 - What is held out? Expected: Rows the model never saw while it learned.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Split the homes: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Baseline against model: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Split the homes): Change test_size to 0.2 and run the split again.
+2. Modify, Block B (Baseline against model): Fit a model using only area_m2 and print its error.
+3. Make: Run the experiment, record the two errors, and say whether the model beats the baseline on the held-out homes. Keep the split as it is. Do not keep changing random_state to get a better score.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why report the baseline error next to the model error? Expected: Without it nobody knows whether the model is better than a plain guess.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

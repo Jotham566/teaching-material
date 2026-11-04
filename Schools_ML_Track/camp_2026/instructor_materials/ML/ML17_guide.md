@@ -2,9 +2,11 @@
 
 Private. Keep this file out of the student folder.
 
-**Objective.** By the end: you can read a confusion matrix, spot an overfitted tree from its training and test scores, and explain why the final test must stay locked.
+**Objective.** By the end: you can read a confusion matrix, spot an overfitted tree from its training and test scores, and explain why the held-back set must stay untouched until the end.
 
 **Question of the day.** When is a very high score a warning sign?
+
+**Where this is used.** A fraud alert that blocks a real payment upsets a customer, and one that misses fraud costs money. Teams count both kinds of mistake. When would a very high score make you suspicious?
 
 Prerequisite: ML16 Predicting a category with a decision tree.
 
@@ -72,7 +74,7 @@ Correct result: Each line prints the depth, the training score and the test scor
 Investigate, with answers:
 
 - Why is 100% on training flowers a warning sign? Answer: The tree may have memorised the flowers. Only the test score says how it does on new ones.
-- Can we use the test score to pick the best depth? Answer: No. A choice made by looking at test scores uses the test as a practice exam, and the final test then proves nothing.
+- Can we use the test score to pick the best depth? Answer: No. A choice made by looking at test scores uses those rows to tune the model, and the held-back set then gives no honest result.
 
 Modify: Print the gap between the last tree's training and test scores. Answer: The gap is the training score minus the test score; it is zero or more.
 
@@ -88,15 +90,15 @@ matrix = confusion_matrix([0, 0, 1, 1, 1], [0, 1, 1, 0, 1], labels=[0, 1])
 right = matrix[0, 0] + matrix[1, 1]
 wrong = matrix.sum() - right
 print(right, wrong)
-# 3 right, 2 wrong. If you tune against the final test, it has become a validation set and a new test is needed.
+# 3 right, 2 wrong. If you tune against the held-back set, it has become a validation set and a new held-back set is needed.
 ```
 
-Evidence to collect: ML17.ipynb with the labelled matrix, 3 right and 2 wrong, and the explanation about tuning on the test.
+Build log entry to look for: ML17.ipynb with the labelled matrix, 3 right and 2 wrong, and the explanation about tuning on the test.
 
 ## Misconceptions to listen for
 
 - A higher training score always means a better model.
-- I can try settings on the final test until I like the result.
+- I can try settings on the held-back set until I like the result.
 - A small test set gives stable scores.
 
 ## Questions to ask, with expected answers
@@ -104,6 +106,32 @@ Evidence to collect: ML17.ipynb with the labelled matrix, 3 right and 2 wrong, a
 - What does the diagonal of a confusion matrix hold? Expected: The correct predictions.
 - What changes if you choose a depth by looking at test scores? Expected: The test is no longer unseen, so it cannot give an honest final score.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Read a confusion matrix: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, The tree that remembered: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Read a confusion matrix): Calculate the accuracy from the matrix.
+2. Modify, Block B (The tree that remembered): Print the gap between the last tree's training and test scores.
+3. Make: Draw the 2 by 2 matrix for the toy answers and label both axes. Count the right and the wrong predictions. Explain why trying many settings against the held-back set weakens it.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does the diagonal of a confusion matrix hold? Expected: The correct predictions.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Can we trust our revenue calculation on cases we already know the answer to?
 
+**Where this is used.** Payment and tax software relies on functions that must give the right answer on cases where the answer is already known. A check that fails loudly protects every customer. What known case would you use to test a discount function?
+
 Prerequisite: DA05 Lists, dictionaries and loops.
 
 ## The 180 minutes
@@ -90,7 +92,7 @@ assert price_after_discount(2000, 10) == 1800
 assert price_after_discount(2000, 100) == 0
 ```
 
-Evidence to collect: DA06.ipynb with the function and three passing asserts, rerun from the top.
+Build log entry to look for: DA06.ipynb with the function and three passing asserts, rerun from the top.
 
 ## Misconceptions to listen for
 
@@ -103,6 +105,32 @@ Evidence to collect: DA06.ipynb with the function and three passing asserts, rer
 - Which three inputs do you test for a discount function? Expected: Zero percent, an ordinary percent and 100 percent, which are the edges and a middle case.
 - Why use assert when we can read the output ourselves? Expected: The computer checks every time, and a wrong answer stops the program loudly.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, A function and a check: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Edge cases and a guard: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (A function and a check): Add a third assert that checks revenue(5, 1000) equals 5000.
+2. Modify, Block B (Edge cases and a guard): Add an assert that share(1, 4) equals 0.25.
+3. Make: Write price_after_discount(price, percent) that returns the price after a percentage discount. Check it with assert for 0 percent, 10 percent and 100 percent on a price of 2000. Save the notebook and run all cells from the top.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Which three inputs do you test for a discount function? Expected: Zero percent, an ordinary percent and 100 percent, which are the edges and a middle case.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

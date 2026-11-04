@@ -4,13 +4,15 @@ Week 2, fourth teaching day. Complete ML06 first.
 
 **Today's question.** Why do the numbers in a list need a fixed order and a unit?
 
+**Where this is used.** A row of daily temperatures or match scores only makes sense in a fixed order, with a unit. Weather stations and football analysts keep their numbers that way. What would break if the order of a list changed?
+
 ## Words for today
 
 | Word | What it means | Think of it like this |
 |---|---|---|
 | scalar | A single number. | One mark. |
 | vector | An ordered list of numbers whose positions have meanings. | A home described by area, then rooms. |
-| NumPy array | A list of numbers that can be calculated with all at once. | A whole row of marks marked together. |
+| NumPy array | A list of numbers that can be calculated with all at once. | A whole row of numbers worked on together. |
 | shape | The size of an array, such as (2,) for two numbers. | Counting the boxes in a row. |
 | element-wise | Doing the same calculation to every number. | Adding the same bonus to every pupil's mark. |
 | unit | What a number measures, such as square metres. | Shillings, kilograms or metres. |
@@ -55,4 +57,8 @@ Reference: Shape (2,); a total of 7 both ways. Do not add area to rooms: the uni
 
 Repair: An IndexError means a position outside the array. [40, 2] has positions 0 and 1 only. If a learner expects list addition to add numbers, rerun the joined line and compare it with the array line.
 
-Record complete, needs repair or absent. Carry unfinished repair into the next core session. Lab evidence goes in that week's portfolio with no second mark.
+Carry unfinished work into the next core session. Lab work goes in that week's build log. Give one strength and one next step.
+
+## Online version
+
+Foundation labs run online as designed: two hours live on video with screen sharing, with the same minutes as the tutor pacing above and a short break away from the screen. There is no extra build task. Unfinished work carries into the next core class. Ask each learner to share their screen at least three times, to say their paper prediction aloud before they run the code, and to hold up their notebook or paper to the camera. See handbook/HYBRID_DELIVERY.md.

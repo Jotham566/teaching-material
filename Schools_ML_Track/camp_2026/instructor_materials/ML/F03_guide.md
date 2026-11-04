@@ -4,13 +4,15 @@ Week 3, fourth teaching day. Complete ML09 first.
 
 **Today's question.** Two groups can have the same mean. How can I tell them apart?
 
+**Where this is used.** Forecasts speak in chances, and clinics report the share of patients with a problem. Two groups can have the same average and still look very different. How would you tell two football teams apart if both score the same average?
+
 ## Words for today
 
 | Word | What it means | Think of it like this |
 |---|---|---|
 | mean | The total shared out equally. | Sharing a bag of mandazi. |
 | deviation | A value minus the mean; it can be negative. | How far a mark is from the class average. |
-| standard deviation | A typical size of the deviations, in the original unit. | How spread out the marks are. |
+| standard deviation | A typical size of the deviations, in the original unit. | How spread out the scores are. |
 | proportion | A part divided by the whole. | 3 blue counters out of 5. |
 | probability | How likely an outcome is under stated conditions. | A fair die gives a 6 about once in six throws. |
 | observed fraction | What actually happened in a limited number of tries. | Ten throws of a die. |
@@ -53,4 +55,8 @@ Reference: Mean 3.0, standard deviation 2.0, probability of blue 3/5 = 0.6 = 60%
 
 Repair: If the deviations cancel to zero, the learner added the signed deviations without squaring or using std. If a percentage is above 100, the whole was divided by the part.
 
-Record complete, needs repair or absent. Carry unfinished repair into the next core session. Lab evidence goes in that week's portfolio with no second mark.
+Carry unfinished work into the next core session. Lab work goes in that week's build log. Give one strength and one next step.
+
+## Online version
+
+Foundation labs run online as designed: two hours live on video with screen sharing, with the same minutes as the tutor pacing above and a short break away from the screen. There is no extra build task. Unfinished work carries into the next core class. Ask each learner to share their screen at least three times, to say their paper prediction aloud before they run the code, and to hold up their notebook or paper to the camera. See handbook/HYBRID_DELIVERY.md.

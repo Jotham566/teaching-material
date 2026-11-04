@@ -6,7 +6,9 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** What did the session 1 model learn from, and how well would a plain guess do?
 
-Prerequisite: ML12 Checkpoint one and a project question.
+**Where this is used.** Banks and mobile lenders use models to flag unusual payments, and they first ask whether the model beats a plain rule. That plain rule is the baseline. What plain guess would you make for tomorrow's weather?
+
+Prerequisite: ML12 Show your first chart and choose your project question.
 
 ## The 180 minutes
 
@@ -70,7 +72,7 @@ Correct result: The cell prints 2996 and 159436. The feature is area_m2, kept in
 Investigate, with answers:
 
 - Which of these is the feature and which is the target? Answer: area_m2 is the feature, rent_ugx is the target.
-- Why is it unfair to test the model on the same 120 homes? Answer: It has already seen their answers. A fair test needs homes it has not seen.
+- Why is it unfair to test the model on the same 120 homes? Answer: It has already seen their answers. A fair check needs homes it has not seen.
 
 Modify: Add rooms as a second feature and print the two slopes. Answer: About 2992 shillings per square metre and 19345 shillings per room.
 
@@ -90,7 +92,7 @@ print(baseline, error)
 # 4000.0 and 1000.0. The final payment amount would give away the selling price: leakage.
 ```
 
-Evidence to collect: ML13.ipynb with baseline 4000.0, error 1000.0, and one named leaked feature.
+Build log entry to look for: ML13.ipynb with baseline 4000.0, error 1000.0, and one named leaked feature.
 
 ## Misconceptions to listen for
 
@@ -103,6 +105,32 @@ Evidence to collect: ML13.ipynb with baseline 4000.0, error 1000.0, and one name
 - What are the feature and target in the session 1 model? Expected: Feature: area_m2. Target: rent_ugx.
 - What counts as leakage in a rent model? Expected: Any column only known after the rent is agreed, such as the first month's payment received.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, The baseline guess: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Open the session 1 model: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (The baseline guess): Change the actual price to 3000 and recalculate the error.
+2. Modify, Block B (Open the session 1 model): Add rooms as a second feature and print the two slopes.
+3. Make: For training values [2000, 4000, 6000], find the baseline guess for a new item. If its real value is 5000, calculate the absolute error. Name one leaked feature if you were predicting a selling price.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What are the feature and target in the session 1 model? Expected: Feature: area_m2. Target: rent_ugx.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

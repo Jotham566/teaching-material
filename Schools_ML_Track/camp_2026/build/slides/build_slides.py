@@ -30,6 +30,7 @@ import brand as B
 import slidekit as K
 import figkit
 import notes_auto as N
+import figs_hooks as FH
 from common import ROOT, TRACK_NAMES, DEFAULT_CLOCK, DATA_DA, DATA_ML
 from content import ML, DA, LABS, EXTENSION
 
@@ -40,7 +41,7 @@ AUTO = B.FIG_DIR / 'auto'
 VENUE = 'The National ICT Innovation Hub, Nakawa'
 WEEK_THEMES = {
     'DA': ['Meet the data', 'Python you need', 'Tables in pandas', 'Clean and chart', 'Explore with NumPy and seaborn', 'Messy data and two tables', 'Show it', 'Hand over'],
-    'ML': ['Python and a first prediction', 'Python you need', 'Tables and statistics', 'Clean, chart, question', 'Baselines and a line', 'Trees and fair tests', 'Your project', 'Hand over'],
+    'ML': ['Python and a first prediction', 'Python you need', 'Tables and statistics', 'Clean, chart, question', 'Baselines and a line', 'Trees and fair comparisons', 'Your project', 'Hand over'],
 }
 try:
     import figs_common  # noqa: F401
@@ -336,21 +337,83 @@ def add_question(d, concepts):
     d.add('light', d.question, objs, notes)
 
 
+def hook_fig(name, w, h, draw):
+    path = AUTO / f'hook1_{name}_{w:.2f}x{h:.2f}.png'
+    if not path.exists() or os.environ.get('FORCE_FIGS'):
+        s = figkit.Scene(w, h)
+        draw(s)
+        s.save(path, name=f'hook_{name}')
+    return path
+
+
+def add_hook(d, l, kind, idx):
+    """'Where this is used': the hook text large, a three-step pictogram, a 24-dot progress strip and the project corner prompt."""
+    hook = l['hook']
+    nodes = FH.HOOK_NODES[d.ident]
+    ho, _ = K.fitted_text(0.7, 1.8, 7.4, 3.7, hook, size_max=30, size_min=24, lead=1.25)
+    objs = [ho]
+    iw, ih = 4.3, 3.7
+    objs.append(K.image_obj(hook_fig('nodes_' + d.ident, iw, ih, lambda sc: FH.draw_nodes(sc, iw, ih, nodes)), 8.4, 1.75, iw, ih, alt='Three steps that show where the idea is used'))
+    sw, sh = 11.9, 0.62
+    if kind == 'extension':
+        objs.append(K.text_obj(0.7, 5.75, 11.9, 0.55, text='Optional extension after session 24. Take it if you want to go further.', size=20, bold=True, valign='middle'))
+        strip_line = 'This one is optional.'
+    else:
+        if kind == 'lab':
+            after = int(LABS[idx - 1]['after'][2:])
+            label, args = f'Lab {d.ident} after ML{after:02d}', dict(session=None, lab_after=after)
+            strip_line = f'This lab sits between session {after} and session {after + 1}.'
+        else:
+            label, args = f'Session {idx} of 24', dict(session=idx)
+            strip_line = f'You are at session {idx} of 24.'
+        objs.append(K.image_obj(hook_fig(f'strip_{d.ident}', sw, sh, lambda sc: FH.draw_strip(sc, sw, sh, label=label, **args)), 0.7, 5.7, sw, sh, alt=strip_line))
+    objs.append(K.text_obj(0.7, 6.4, 11.9, 0.5, text='Project corner: how could this help the project you want to build?', size=22, bold=True, color=B.RED, valign='middle'))
+    d.add('light', 'Where this is used', objs, N.hook_note(hook, d.seed) + ' ' + strip_line, section='Opening')
+
+
 def add_plan(d, l):
     parts = parse_clock(l)
     n = len(parts)
     p = fig_plan(d.ident, parts, 11.9, min(4.55, 0.72 * n + 0.2))
     objs = [K.image_obj(p, 0.7, 1.75, 11.9, min(4.55, 0.72 * n + 0.2), alt='The plan for the session: start time, minutes and what we do')]
     if l['mode'] == 'python':
-        cap, title = 'Most of our time is spent doing, in small steps, with a guess before every run.', 'Three hours, mostly doing'
+        cap, title = 'Most of our time is spent doing, in small steps, with a guess before every run.', 'In person: three hours, mostly doing'
     else:
         cap, title = PLAN_CAPTION.get(d.ident, 'The numbers in the bars are minutes.'), "Today's plan in minutes"
     objs.append(K.text_obj(0.7, 6.4, 11.9, 0.5, text=cap, size=22, color=B.BODY))
     d.add('light', title, objs, N.plan_note(parts, d.seed, l['mode'], cap))
 
 
+def online_parts(l):
+    """The 90-minute live clock for an online class (same shape as build_camp.online_clock)."""
+    if l['blocks'] and len(l['blocks']) == 2:
+        return [('Recall: three questions, said aloud', 5), ('First idea: predict, run, investigate', 35), ('Break away from the screen', 5),
+                ('Second idea: predict, run, investigate', 35), ('Close: exit sentence, build task set', 10)]
+    return [('Recall: three questions, said aloud', 5), ('Read the brief together, first build step', 35), ('Break away from the screen', 5),
+            ('Keep building, a visit to each of you', 35), ('Close: exit sentence, build task set', 10)]
+
+
+def after_class_pill():
+    """A small gold tag for the slides whose work moves to the build task in an online class."""
+    return [K.rect_obj(9.05, 0.5, 3.55, 0.42, fill=B.GOLD, radius=0.08),
+            K.text_obj(9.05, 0.5, 3.55, 0.42, text='Online: do this after class', size=16, bold=True, align='center', valign='middle')]
+
+
+def add_online(d, l):
+    """'If you are online today': the 90-minute live clock and what moves to the after-class build."""
+    parts = online_parts(l)
+    h = 0.72 * len(parts) + 0.2
+    p = fig_plan(d.ident + '_online', parts, 11.9, h)
+    objs = [K.image_obj(p, 0.7, 1.75, 11.9, h, alt='The online plan: 90 minutes live, in five parts')]
+    cap = ('After class, about an hour: the Modify steps and the Make task. Finish your build, add a line to your build log and send it before the next class.'
+           if l['blocks'] else 'After class, about an hour: finish the Make task, add a line to your build log and send it before the next class.')
+    co, _ = K.fitted_text(0.7, 1.75 + h + 0.15, 11.9, 6.85 - (1.75 + h + 0.15), cap, size_max=22, size_min=18, color=B.BODY, lead=1.25)
+    objs.append(co)
+    d.add('light', 'Online today: 90 minutes live, then your build', objs, N.online_note(parts, cap, d.seed))
+
+
 FALLBACK_ICONS = {'integer': 'book', 'float': 'coin', 'expression': 'calculator', 'order of operations': 'clock', 'seaborn': 'bars',
-                  'normalise': 'tag', 'disclosure': 'notebook', 'locked test': 'folder'}
+                  'normalise': 'tag', 'disclosure': 'notebook', 'protected rows': 'folder'}
 
 
 def add_words(d, l, concepts):
@@ -601,6 +664,7 @@ def add_block(d, l, bi, letter, concepts):
             objs.append(K.image_obj(fig_icon('pen', 2.0, 2.0, 1.5), 10.3, 2.3, 2.0, 2.0, alt='Change one thing'))
     else:
         objs.append(K.image_obj(fig_icon('pen', 2.6, 2.6, 1.7), 9.6, 2.4, 2.6, 2.6, alt='Change one thing'))
+    objs += after_class_pill()
     d.add('light', 'Modify: change one thing', objs, N.modify_note(mod['instruction'], mod['answer'], seed), section=f'Block {letter}')
 
 
@@ -657,6 +721,7 @@ def add_make(d, l):
         objs.append(mo)
         objs.append(K.image_obj(fig_save(3.8, 3.6), 8.9, 2.1, 3.8, 3.6, alt='A notebook saved with a tick'))
         title = 'Make: your own version' if len(groups) == 1 else f'Make: your own version ({gi + 1} of {len(groups)})'
+        objs += after_class_pill()
         d.add('light', title, objs, N.make_note(d.ident, mk['task'], d.seed, gi, len(groups)), section='Make and close')
 
 
@@ -682,9 +747,12 @@ def add_errors(d, l):
 
 def add_exit(d, l):
     objs = []
-    eo, _ = K.fitted_paras(0.7, 1.9, 7.6, 3.2, [l['exit_ticket']], size_max=40, size_min=26, lead=1.2)
+    eo, _ = K.fitted_paras(0.7, 1.9, 7.6, 2.9, [l['exit_ticket']], size_max=38, size_min=26, lead=1.2)
     objs.append(eo)
-    objs.append(K.text_obj(0.7, 5.3, 7.6, 1.2, text='Then save your notebook, close it and open it again to check it saved.', size=22, color=B.BODY, lead=1.25))
+    so, _ = K.fitted_paras(0.7, 4.85, 7.9, 2.0, ['Save your notebook, close it and open it again to check it saved.',
+                                                  'Add one line to your build log, and one idea to your project corner.',
+                                                  'Online? Send your build before the next class.'], size_max=22, size_min=18, color=B.BODY, lead=1.2, gap=0.12)
+    objs.append(so)
     objs.append(K.image_obj(fig_icon('check', 3.6, 3.6, 2.2), 9.0, 2.1, 3.6, 3.6, alt='Finished'))
     d.add('light', 'Finish this sentence in your notebook', objs, N.exit_note(l['exit_ticket'], d.question, d.seed), section='Make and close')
 
@@ -698,7 +766,7 @@ def lab_as_lesson(i, lab):
     reps = [s.strip() for s in lab['repair'].replace('\n', ' ').split('. ') if s.strip()]
     errs = lab.get('errors') or [('Your printed numbers differ from your paper work', (reps[0].rstrip('.') + '.') if reps else 'A step was changed or skipped.', (reps[1].rstrip('.') + '.') if len(reps) > 1 else 'Ask the instructor to look at it with you.'),
             ('The code stops with an error message', 'Python could not run one of the lines.', 'Read the last line of the message first, then find the line number it names.')]
-    return {'title': lab['title'], 'objective': 'By the end: you can explain the idea in your own words and run the worked example.', 'question': lab['question'],
+    return {'title': lab['title'], 'hook': lab['hook'], 'objective': 'By the end: you can explain the idea in your own words and run the worked example.', 'question': lab['question'],
             'words': lab['words'], 'blocks': [dict(idea=LAB_IDEA.get(ident, lab['title']), intro=lab['explain'], predict='Work the paper example first: ' + lab['hand'].split('.')[0] + '. Then predict every line the code will print.',
                                                   code=lab['code'], shows=lab['output'], investigate=[('What does each line of the code do?', 'Read each line aloud and say what it stores or prints.'), ('Which number surprised you?', 'Say which printed value differed from your paper work, and why.')],
                                                   modify=dict(instruction=lab['task'].split('. ')[0] + '.', answer=lab['answer'].split('.')[0] + '.'))],
@@ -708,7 +776,7 @@ def lab_as_lesson(i, lab):
 
 def ext_as_lesson():
     e = EXTENSION
-    return {'title': e['title'], 'objective': 'By the end: you can compare a small neural network with a decision tree and a baseline, and say why a bigger model is not automatically better.',
+    return {'title': e['title'], 'hook': e['hook'], 'objective': 'By the end: you can compare a small neural network with a decision tree and a baseline, and say why a bigger model is not automatically better.',
             'question': 'Does a neural network beat a small tree on 150 flowers?', 'words': [],
             'blocks': [dict(idea='A network, a tree and a baseline', intro=e['intro'], predict='Predict whether the network will score higher than the depth 3 tree.', code=e['code'],
                             shows=e['honest_note'], investigate=[('Why scale the inputs first?', 'Networks learn badly from numbers on very different scales.'), ('What would convince you a network is worth using?', 'A clear gain on data it has not seen, after the baseline and the tree are beaten.')],
@@ -731,7 +799,9 @@ def build_one(track, idx, lesson, ident, concepts, kind='session'):
         d.sub = 'Optional extension after session 24'
     add_title(d, lesson, idx, lesson['title'], week)
     add_question(d, concepts)
+    add_hook(d, lesson, kind, idx)
     add_plan(d, lesson) if kind == 'session' else None
+    add_online(d, lesson) if kind == 'session' and idx != 24 else None
     add_words(d, lesson, concepts)
     add_concepts(d, concepts, 0)
     blocks = lesson['blocks']

@@ -25,7 +25,7 @@ make         dict  task=str, reference=str (code when reference_is_code), refere
                    check=str optional (evaluated after reference code), evidence=str
 errors       list  EXACTLY 2 tuples (what you see, what it means in plain words, the fix)
 exit_ticket  str   one sentence the student must be able to say or write
-mode         str   'python' (blocks are executed by the verifier) or 'guide' (checkpoint,
+mode         str   'python' (blocks are executed by the verifier) or 'guide' (show-and-tell,
                    project or presentation; code is not executed)
 libs         list  libraries newly used this session, e.g. ['pandas']
 data         list  data files in the student folder the session reads
@@ -33,6 +33,10 @@ misconceptions list of str  what students commonly believe wrongly in this sessi
 questions    list of (question, expected answer) for the instructor
 pacing       str|None  overrides DEFAULT_CLOCK when the session needs a different 180 minutes
 time_note    str|None  one sentence on where the session is most likely to overrun
+hook         str   "Where this is used": 2 to 3 short sentences, concrete and true, with no figures or company
+                   claims, tied to what the session teaches, ending in a question or an invitation. Required for
+                   all 24 sessions of both tracks, the four labs and the ML25 extension; at most 60 words, no
+                   digits. Written in lessons/hooks.py and merged in by lessons/da.py and lessons/ml.py.
 
 SESSION CLOCK
 -------------
@@ -51,7 +55,7 @@ BUILD = Path(__file__).resolve().parent
 ROOT = BUILD.parent                       # camp_2026
 REPO = ROOT.parents[1]
 CURRICULUM = ROOT / 'curriculum'          # generated: curricula, plans, glossaries, labs
-HANDBOOK = ROOT / 'handbook'              # written by hand: policies, rubric, start guide
+HANDBOOK = ROOT / 'handbook'              # written by hand: policies, showcase guide, start guide
 PROGRAMME = ROOT / 'programme'            # organiser material: decisions, setup, preflight
 PACKS = ROOT / 'student_packs'            # the two student ZIPs
 DATA = ROOT / 'data'
@@ -66,6 +70,18 @@ DEFAULT_CLOCK = [
     ('Exit ticket, save, and an individual check with each learner', 15),
 ]
 assert sum(m for _, m in DEFAULT_CLOCK) == 180
+
+# Online (hybrid) class: about 90 minutes live on video, then an after-class build task of about an hour.
+ONLINE_LIVE_MINUTES = 90
+HOOK_MAX_WORDS = 60
+
+# One badge per week, shown on My_Progress_Map.pdf and in the curriculum week headings.
+BADGES = {
+    'ML': ['First Prediction', 'Python You Need', 'Data Detective', 'Clean and Chart',
+           'Baseline Breaker', 'Fair Judge', 'Project Builder', 'Showcase'],
+    'DA': ['First Look', 'Code Builder', 'Table Tamer', 'Clean and Chart',
+           'Pattern Spotter', 'Truth Finder', 'Project Builder', 'Showcase'],
+}
 
 ALLOWED_IMPORTS = {'pandas', 'numpy', 'matplotlib', 'seaborn', 'sklearn', 'math'}
 BANNED_TERMS = ['SQL', 'sqlite', 'DB Browser', 'statistics.mean', 'import statistics']
@@ -86,12 +102,12 @@ ROADMAP = {
     'Machine Learning': [
         ('1–2', 'Python foundations', 'Values, decisions, lists, functions, and NumPy vectors. A first prediction in session 1.'),
         ('3–4', 'Understand your data', 'pandas tables, cleaning, matplotlib and seaborn charts, mean, median, proportions and weighted sums.'),
-        ('5–6', 'Build and test predictions', 'Baselines, regression, decision trees, held-out tests and error measures with scikit-learn.'),
-        ('7–8', 'Build your own project', 'Plan, compare, test, explain and demonstrate an individual prediction project.')],
+        ('5–6', 'Build and test predictions', 'Baselines, regression, decision trees, held-back data and error measures with scikit-learn.'),
+        ('7–8', 'Build your own project', 'Plan, compare, check, explain and show your own prediction project.')],
     'Data Analysis': [
         ('1–2', 'Start coding in Python', 'Use Jupyter; values, decisions, lists, loops and functions with checks.'),
-        ('3–4', 'Find answers with pandas', 'Read, filter, group, clean and chart real-looking shop data; checkpoint one.'),
-        ('5–6', 'Explore and merge', 'NumPy, seaborn exploration, cleaning a messy export, merging two tables; checkpoint two.'),
+        ('3–4', 'Find answers with pandas', 'Read, filter, group, clean and chart real-looking shop data; show your first chart.'),
+        ('5–6', 'Explore and merge', 'NumPy, seaborn exploration, cleaning a messy export, merging two tables; reconcile a total.'),
         ('7–8', 'Build your own project', 'A Python analysis notebook, charts, findings and a five-minute explanation.')],
 }
 TRACK_NAMES = {'ML': 'Machine Learning', 'DA': 'Python for Data Analysis'}

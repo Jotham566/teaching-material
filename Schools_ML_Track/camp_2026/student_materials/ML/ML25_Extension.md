@@ -1,8 +1,10 @@
 # ML25 A first neural network, and why bigger is not automatically better
 
-Optional extension after session 24. Not assessed, no extra class, no extra install.
+Optional extension after session 24. Optional, for interest, no extra class, no extra install.
 
-This optional notebook is not assessed. It uses scikit-learn's MLPClassifier, a small neural network, on the iris flowers. Inputs are scaled first, because networks learn badly from numbers on different scales. You compare the network with the depth 3 decision tree and with the majority baseline on the same validation flowers.
+**Where this is used.** Many phones recognise speech with neural networks, which are big stacks of small calculations. For a small table, a tree or a line is often enough. Would you reach for the big model first?
+
+This optional notebook is for interest only. It uses scikit-learn's MLPClassifier, a small neural network, on the iris flowers. Inputs are scaled first, because networks learn badly from numbers on different scales. You compare the network with the depth 3 decision tree and with the majority baseline on the same validation flowers.
 
 ```python
 from sklearn.datasets import load_iris

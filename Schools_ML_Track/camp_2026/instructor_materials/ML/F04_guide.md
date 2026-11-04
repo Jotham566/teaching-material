@@ -4,14 +4,16 @@ Week 4, fourth teaching day. Complete ML12 first.
 
 **Today's question.** How does a model turn two measurements into one prediction?
 
+**Where this is used.** A model turns measurements into one number by giving each a weight, like a rent that grows with size and rooms. A ride fare grows with distance and time. Which input would you give the biggest weight when pricing a ride?
+
 ## Words for today
 
 | Word | What it means | Think of it like this |
 |---|---|---|
 | matrix | A table of numbers with rows and columns. | A page of a register. |
 | shape | Rows by columns. | How many lines and headings. |
-| weight | A number that says how much an input counts. | How many marks each question is worth. |
-| weighted sum | Multiply each input by its weight and add the results. | Adding up the marks of every question. |
+| weight | A number that says how much an input counts. | How many points each goal is worth. |
+| weighted sum | Multiply each input by its weight and add the results. | Adding up the points from every goal. |
 | intercept | The starting amount before any input is added. | A fixed fee. |
 | slope | How much the answer changes when one input rises by one unit. | Extra rent for each extra square metre. |
 
@@ -52,4 +54,8 @@ Reference: Shape (3, 2). The third prediction is 290000. 3000 is shillings per s
 
 Repair: If a learner writes homes * weights, show that it multiplies matching elements and does not add them, then use np.dot. If the column meaning is unclear, label the paper table before coding. Recheck independent predictions before ML13.
 
-Record complete, needs repair or absent. Carry unfinished repair into the next core session. Lab evidence goes in that week's portfolio with no second mark.
+Carry unfinished work into the next core session. Lab work goes in that week's build log. Give one strength and one next step.
+
+## Online version
+
+Foundation labs run online as designed: two hours live on video with screen sharing, with the same minutes as the tutor pacing above and a short break away from the screen. There is no extra build task. Unfinished work carries into the next core class. Ask each learner to share their screen at least three times, to say their paper prediction aloud before they run the code, and to hold up their notebook or paper to the camera. See handbook/HYBRID_DELIVERY.md.

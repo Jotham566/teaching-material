@@ -15,7 +15,8 @@ The registry maps a figure name to a function (w, h) -> Scene. render_figure(nam
 FIG_DIR/<name>_<w>x<h>.png and returns its path.
 
 Pictograms (s.icon) are flat drawings in brand colours: person, shop, laptop, notebook, folder, bottle,
-book, pen, tag, bag, cloud, rain, magnifier, calculator, clock, coin, bars, bike, receipt, check, cross.
+book, pen, tag, bag, cloud, rain, magnifier, calculator, clock, coin, bars, bike, receipt, check, cross,
+phone, ball, plant, clinic, sun, calendar, home, gear, flower, lock, pin.
 """
 import math
 from pathlib import Path
@@ -305,6 +306,84 @@ class Scene:
         self.circle(x, y, 0.3 * s, fill=RED, edge=RED, lw=2)
         self.line(x - 0.12 * s, y - 0.12 * s, x + 0.12 * s, y + 0.12 * s, color=PAPER, lw=3.4, z=4)
         self.line(x - 0.12 * s, y + 0.12 * s, x + 0.12 * s, y - 0.12 * s, color=PAPER, lw=3.4, z=4)
+
+    def _i_phone(self, x, y, s, c, a):
+        self.ax.add_patch(FancyBboxPatch((x - 0.21 * s, y - 0.42 * s), 0.42 * s, 0.84 * s, boxstyle=f'round,pad=0,rounding_size={0.07 * s}', fc=PAPER, ec=c, lw=2, zorder=2))
+        self.rect(x - 0.15 * s, y - 0.27 * s, 0.30 * s, 0.56 * s, fill=a, edge=c, lw=1.2, z=3)
+        self.circle(x, y - 0.35 * s, 0.03 * s, fill=c, edge=c, lw=0.8, z=3)
+
+    def _i_ball(self, x, y, s, c, a):
+        self.circle(x, y, 0.36 * s, fill=PAPER, edge=c, lw=2.2)
+        pts = [(x + 0.13 * s * math.cos(math.radians(90 + 72 * k)), y + 0.13 * s * math.sin(math.radians(90 + 72 * k))) for k in range(5)]
+        self.poly(pts, fill=c, edge=c, lw=1, z=3)
+        for k in range(5):
+            ang = math.radians(90 + 72 * k)
+            self.line(x + 0.13 * s * math.cos(ang), y + 0.13 * s * math.sin(ang), x + 0.35 * s * math.cos(ang), y + 0.35 * s * math.sin(ang), color=c, lw=1.8, z=3)
+
+    def _i_plant(self, x, y, s, c, a):
+        self.line(x - 0.4 * s, y - 0.4 * s, x + 0.4 * s, y - 0.4 * s, color=c, lw=2)
+        self.line(x, y - 0.4 * s, x, y + 0.12 * s, color=c, lw=2.4, z=3)
+        self.ax.add_patch(Ellipse((x - 0.16 * s, y - 0.02 * s), 0.34 * s, 0.15 * s, angle=30, fc=a, ec=c, lw=2, zorder=3))
+        self.ax.add_patch(Ellipse((x + 0.16 * s, y + 0.12 * s), 0.34 * s, 0.15 * s, angle=-30, fc=a, ec=c, lw=2, zorder=3))
+        self.ax.add_patch(Ellipse((x, y + 0.3 * s), 0.14 * s, 0.3 * s, angle=0, fc=a, ec=c, lw=2, zorder=3))
+
+    def _i_clinic(self, x, y, s, c, a):
+        self.rect(x - 0.42 * s, y - 0.36 * s, 0.84 * s, 0.7 * s, fill=PAPER, edge=c, lw=2)
+        self.rect(x - 0.07 * s, y + 0.1 * s, 0.14 * s, 0.4 * s, fill=RED, edge=RED, lw=1, z=3)
+        self.rect(x - 0.2 * s, y + 0.23 * s, 0.4 * s, 0.14 * s, fill=RED, edge=RED, lw=1, z=3)
+        self.rect(x - 0.1 * s, y - 0.36 * s, 0.2 * s, 0.3 * s, fill=a, edge=c, lw=1.6, z=3)
+        self.rect(x - 0.34 * s, y - 0.22 * s, 0.14 * s, 0.14 * s, fill=PAPER, edge=c, lw=1.4, z=3)
+        self.rect(x + 0.2 * s, y - 0.22 * s, 0.14 * s, 0.14 * s, fill=PAPER, edge=c, lw=1.4, z=3)
+
+    def _i_sun(self, x, y, s, c, a):
+        self.circle(x, y, 0.18 * s, fill=a, edge=c, lw=2.2)
+        for k in range(8):
+            ang = math.radians(45 * k)
+            self.line(x + 0.26 * s * math.cos(ang), y + 0.26 * s * math.sin(ang), x + 0.4 * s * math.cos(ang), y + 0.4 * s * math.sin(ang), color=c, lw=2.2, z=3)
+
+    def _i_calendar(self, x, y, s, c, a):
+        self.rect(x - 0.36 * s, y - 0.36 * s, 0.72 * s, 0.7 * s, fill=PAPER, edge=c, lw=2)
+        self.rect(x - 0.36 * s, y + 0.16 * s, 0.72 * s, 0.18 * s, fill=a, edge=c, lw=2, z=3)
+        for dx in (-0.2, 0.2):
+            self.line(x + dx * s, y + 0.3 * s, x + dx * s, y + 0.42 * s, color=c, lw=2.4, z=4)
+        for i in range(3):
+            for j in range(3):
+                self.rect(x - 0.27 * s + j * 0.2 * s, y - 0.28 * s + i * 0.15 * s, 0.12 * s, 0.09 * s, fill=PAPER, edge=c, lw=1, z=3)
+
+    def _i_home(self, x, y, s, c, a):
+        self.rect(x - 0.32 * s, y - 0.38 * s, 0.64 * s, 0.46 * s, fill=PAPER, edge=c, lw=2)
+        self.poly([(x - 0.42 * s, y + 0.06 * s), (x, y + 0.44 * s), (x + 0.42 * s, y + 0.06 * s)], fill=a, edge=c, lw=2, z=3)
+        self.rect(x - 0.09 * s, y - 0.38 * s, 0.18 * s, 0.3 * s, fill=PAPER, edge=c, lw=1.6, z=3)
+        self.rect(x + 0.14 * s, y - 0.2 * s, 0.12 * s, 0.12 * s, fill=PAPER, edge=c, lw=1.4, z=3)
+
+    def _i_gear(self, x, y, s, c, a):
+        n = 10
+        pts = []
+        for k in range(2 * n):
+            r = 0.4 if k % 2 == 0 else 0.3
+            ang = math.radians(360 / (2 * n) * k)
+            pts.append((x + r * s * math.cos(ang), y + r * s * math.sin(ang)))
+        self.poly(pts, fill=a, edge=c, lw=2)
+        self.circle(x, y, 0.11 * s, fill=PAPER, edge=c, lw=2, z=3)
+
+    def _i_flower(self, x, y, s, c, a):
+        self.line(x, y - 0.42 * s, x, y - 0.05 * s, color=c, lw=2.4)
+        for k in range(5):
+            ang = math.radians(90 + 72 * k)
+            self.circle(x + 0.16 * s * math.cos(ang), y + 0.14 * s + 0.16 * s * math.sin(ang), 0.1 * s, fill=PAPER, edge=c, lw=1.8, z=3)
+        self.circle(x, y + 0.14 * s, 0.09 * s, fill=a, edge=c, lw=1.8, z=4)
+
+    def _i_lock(self, x, y, s, c, a):
+        self.ax.add_patch(Wedge((x, y + 0.08 * s), 0.2 * s, 0, 180, width=0.05 * s, fc=c, ec=c, zorder=2))
+        self.line(x - 0.175 * s, y + 0.08 * s, x - 0.175 * s, y - 0.02 * s, color=c, lw=2.4)
+        self.line(x + 0.175 * s, y + 0.08 * s, x + 0.175 * s, y - 0.02 * s, color=c, lw=2.4)
+        self.ax.add_patch(FancyBboxPatch((x - 0.3 * s, y - 0.4 * s), 0.6 * s, 0.42 * s, boxstyle=f'round,pad=0,rounding_size={0.05 * s}', fc=a, ec=c, lw=2, zorder=3))
+        self.circle(x, y - 0.22 * s, 0.05 * s, fill=c, edge=c, lw=1, z=4)
+
+    def _i_pin(self, x, y, s, c, a):
+        self.poly([(x - 0.2 * s, y + 0.05 * s), (x + 0.2 * s, y + 0.05 * s), (x, y - 0.42 * s)], fill=a, edge=c, lw=2)
+        self.circle(x, y + 0.14 * s, 0.22 * s, fill=a, edge=c, lw=2, z=3)
+        self.circle(x, y + 0.14 * s, 0.08 * s, fill=PAPER, edge=c, lw=1.6, z=4)
 
     # ------------------------------------------------------------ output
     def audit(self, name=''):

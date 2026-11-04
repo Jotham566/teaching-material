@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** What is a typical number of units in a sale, and how spread out are the sales?
 
+**Where this is used.** News reports quote the average income or the share of people who did something. One very large value can drag the mean up, while the median stays calm. Which would you quote for what most boda-boda rides on your road cost?
+
 Prerequisite: ML08 Select, filter and calculate new columns.
 
 ## The 180 minutes
@@ -86,7 +88,7 @@ print(rate_a, rate_b)
 # 60.0 and 30.0. 15 is the larger count but out of 50, so its rate is lower.
 ```
 
-Evidence to collect: ML09.ipynb with mean, median and range for [10, 12, 14, 16] before and after adding 100, and the two rates.
+Build log entry to look for: ML09.ipynb with mean, median and range for [10, 12, 14, 16] before and after adding 100, and the two rates.
 
 ## Misconceptions to listen for
 
@@ -99,6 +101,32 @@ Evidence to collect: ML09.ipynb with mean, median and range for [10, 12, 14, 16]
 - When is the mean a poor summary? Expected: When outliers pull it away from where most values sit.
 - What is the percentage form of 0.5? Expected: 50%.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Typical value and spread: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, One extreme value and a proportion: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Typical value and spread): Find the 25th percentile of units.
+2. Modify, Block B (One extreme value and a proportion): Replace 100 with 1000 in bigger and print the mean and the median.
+3. Make: Compare 12 successes out of 20 attempts with 15 out of 50. Calculate each percentage and explain why the larger count does not have to mean the better rate.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: When is the mean a poor summary? Expected: When outliers pull it away from where most values sit.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

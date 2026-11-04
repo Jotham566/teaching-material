@@ -1,0 +1,246 @@
+{
+ "track": "DA",
+ "learner": "",
+ "rows": [
+  {
+   "date": "2026-12-01",
+   "kind": "core",
+   "code": "DA01",
+   "title": "Open a notebook and read your first table",
+   "build": "your first table, opened and read in a notebook",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2026-12-03",
+   "kind": "core",
+   "code": "DA02",
+   "title": "Values, names and types",
+   "build": "a note that shows the type of every value",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2026-12-05",
+   "kind": "core",
+   "code": "DA03",
+   "title": "Arithmetic, revenue and reading errors",
+   "build": "a revenue calculator that explains its errors",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2026-12-08",
+   "kind": "core",
+   "code": "DA04",
+   "title": "Conditions and decisions",
+   "build": "a rule that treats big orders differently",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2026-12-10",
+   "kind": "core",
+   "code": "DA05",
+   "title": "Lists, dictionaries and loops",
+   "build": "a loop that totals a whole week of sales",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2026-12-12",
+   "kind": "core",
+   "code": "DA06",
+   "title": "Functions and checks that fail loudly",
+   "build": "a function that checks its own answers",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2026-12-15",
+   "kind": "core",
+   "code": "DA07",
+   "title": "A table in Python: DataFrame, columns and reading a CSV",
+   "build": "a real table loaded from a CSV file",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2026-12-17",
+   "kind": "core",
+   "code": "DA08",
+   "title": "Select, filter and calculate a revenue column",
+   "build": "a revenue column, filtered to the sales you ask for",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2026-12-19",
+   "kind": "core",
+   "code": "DA09",
+   "title": "Sort, group, mean and median",
+   "build": "a summary of the best seller and the typical sale",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2026-12-22",
+   "kind": "core",
+   "code": "DA10",
+   "title": "Cleaning without hiding evidence",
+   "build": "a clean table with a log of every fix",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2026-12-24",
+   "kind": "core",
+   "code": "DA11",
+   "title": "Charts that say what the numbers say",
+   "build": "two charts that make one clear point",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2026-12-29",
+   "kind": "core",
+   "code": "DA12",
+   "title": "Show your first chart and explain what it says",
+   "build": "a first report: a table, a chart and honest sentences",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2026-12-31",
+   "kind": "core",
+   "code": "DA13",
+   "title": "NumPy: the numbers underneath pandas",
+   "build": "a NumPy check that agrees with pandas",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-02",
+   "kind": "core",
+   "code": "DA14",
+   "title": "Exploring distributions with seaborn",
+   "build": "a chart that shows how sales are spread",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-05",
+   "kind": "core",
+   "code": "DA15",
+   "title": "Exploring relationships: scatter plots, correlation and cause",
+   "build": "a heatmap, and an honest answer about rain",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2027-01-07",
+   "kind": "core",
+   "code": "DA16",
+   "title": "Cleaning the raw export",
+   "build": "a cleaned export you can rerun next month",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-09",
+   "kind": "core",
+   "code": "DA17",
+   "title": "Merging two tables and the fan-out trap",
+   "build": "a merged table with its row count checked",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-12",
+   "kind": "core",
+   "code": "DA18",
+   "title": "Does your total match the true total? Clean, merge and reconcile",
+   "build": "a total that matches the true total",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2027-01-14",
+   "kind": "core",
+   "code": "DA19",
+   "title": "Project question and a safe plan",
+   "build": "your project question and plan",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-16",
+   "kind": "core",
+   "code": "DA20",
+   "title": "Build a reliable analysis",
+   "build": "a reliable analysis, checked two ways",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-19",
+   "kind": "core",
+   "code": "DA21",
+   "title": "Build and check the chart report",
+   "build": "a chart report people can read alone",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  },
+  {
+   "date": "2027-01-21",
+   "kind": "core",
+   "code": "DA22",
+   "title": "Report and handover",
+   "build": "a report and a handover folder",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-23",
+   "kind": "core",
+   "code": "DA23",
+   "title": "Explain it to a parent",
+   "build": "a three-minute talk about what you built",
+   "where": "online",
+   "time": "10:00-11:30",
+   "timeText": "10:00 to 11:30 am"
+  },
+  {
+   "date": "2027-01-26",
+   "kind": "core",
+   "code": "DA24",
+   "title": "Parent showcase and next steps",
+   "build": "showcase day: you show your family what you made",
+   "where": "person",
+   "time": "09:00-12:00",
+   "timeText": "9:00 am to 12:00 noon"
+  }
+ ]
+}

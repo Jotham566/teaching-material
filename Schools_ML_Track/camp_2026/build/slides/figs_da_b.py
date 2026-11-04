@@ -1,4 +1,4 @@
-"""DA figures, part B: sessions 10 to 12 (cleaning, charts, checkpoint one)."""
+"""DA figures, part B: sessions 10 to 12 (cleaning, charts, first chart)."""
 import numpy as np
 import pandas as pd
 
@@ -295,7 +295,7 @@ def da_cp1_flow(w, h, **_):
     steps = [('Load', f'{rows:,}', f'rows, {cols} columns'), ('Check', f'{miss} + {dups}', 'missing, duplicates'), ('Summarise', money(total), 'UGX revenue'),
              ('Chart', '3', 'branches compared'), ('Explain', '2 + 1', 'findings, limit')]
     _flow(s, w, h - 2.75, steps, bh=1.8, size=20)
-    s.text(0.1, h - 0.4, 'Checkpoint one: five steps, a real number at each step', size=22, weight='bold', ha='left')
+    s.text(0.1, h - 0.4, 'Your first chart: five steps, a real number at each step', size=22, weight='bold', ha='left')
     s.text(0.1, 1.15, f'First finding: {by.index[0]} earns the most, {money(by.iloc[0])} of the {money(total)}.', size=20, ha='left')
     s.text(0.1, 0.55, 'Limit: the data is invented and has no costs, so it says nothing about real shops or profit.', size=20, ha='left', color=BODY)
     return s
@@ -337,7 +337,7 @@ def da_rerun_top(w, h, **_):
     s.text(0.25, h - 3.5, 'If a cell fails, the notebook was relying on memory:', size=19, weight='bold', ha='left')
     s.text(0.25, h - 4.05, 'a value made in a cell that now runs later, or no longer exists.', size=18, color=BODY, ha='left')
     s.text(0.25, h - 4.5, 'Fix the first cell that fails, then run all again.', size=18, color=RED, weight='bold', ha='left')
-    s.text(0.25, h - 0.45, 'The test of a notebook', size=22, weight='bold', ha='left')
+    s.text(0.25, h - 0.45, 'Does the notebook really work?', size=22, weight='bold', ha='left')
     return s
 
 

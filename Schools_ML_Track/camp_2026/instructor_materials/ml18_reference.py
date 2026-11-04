@@ -13,5 +13,5 @@ models = [DecisionTreeClassifier(max_depth=d, random_state=7).fit(X_train, y_tra
 scores = [accuracy_score(y_val, m.predict(X_val)) for m in models]
 chosen = max(range(len(models)), key=lambda i: scores[i])
 print("Validation scores", scores, "Chosen depth", [1, 3][chosen])
-print("Final test accuracy", accuracy_score(y_test, models[chosen].predict(X_test)))
+print("Held-back accuracy", accuracy_score(y_test, models[chosen].predict(X_test)))
 print(confusion_matrix(y_test, models[chosen].predict(X_test)))

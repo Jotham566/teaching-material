@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How do I turn my flower rule into a reusable tool and test it?
 
+**Where this is used.** A fee calculator is a function: write it once and use it for every payment. Software teams also write checks with known answers, so a mistake shows up before a customer finds it. What check would you write for a fee calculator?
+
 Prerequisite: ML05 Lists, dictionaries and loops.
 
 ## The 180 minutes
@@ -101,7 +103,7 @@ assert double(0) == 0
 assert double(-2) == -4
 ```
 
-Evidence to collect: ML06.ipynb with double defined, three passing asserts, and a clean run from the top.
+Build log entry to look for: ML06.ipynb with double defined, three passing asserts, and a clean run from the top.
 
 ## Misconceptions to listen for
 
@@ -114,6 +116,32 @@ Evidence to collect: ML06.ipynb with double defined, three passing asserts, and 
 - What makes a good test case? Expected: A case where you already know the right answer, including a boundary such as 0.
 - What does assert print when it passes? Expected: Nothing.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, A function and an assert: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, The flower rule as a function: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (A function and an assert): Add an assert that total(1000, 0) equals 0.
+2. Modify, Block B (The flower rule as a function): Add the flower [4.9, "versicolor"] again to the list and recount.
+3. Make: Define double(number) so it returns twice its input. Check double(4), double(0) and double(-2) with assert. Save the notebook and run all cells from the top.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What makes a good test case? Expected: A case where you already know the right answer, including a boundary such as 0.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

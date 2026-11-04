@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** What is in each table we have been given?
 
+**Where this is used.** Till exports, clinic registers and school timetables all become tables in Python. This is the table every data analyst works with. Which exported file would you most like to open?
+
 Prerequisite: DA06 Functions and checks that fail loudly.
 
 ## The 180 minutes
@@ -86,7 +88,7 @@ print(list(sunrise.columns))
 # 1513 rows and 6 columns. sale_date holds the date and unit_price_ugx the price of one unit.
 ```
 
-Evidence to collect: DA07.ipynb with shape (1513, 6), the six column names and two sentences naming the date and price columns.
+Build log entry to look for: DA07.ipynb with shape (1513, 6), the six column names and two sentences naming the date and price columns.
 
 ## Misconceptions to listen for
 
@@ -99,6 +101,32 @@ Evidence to collect: DA07.ipynb with shape (1513, 6), the six column names and t
 - What is the difference between a row and a column? Expected: A row is one record. A column is one kind of information about every record.
 - What does read_csv give back? Expected: A DataFrame.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Build a tiny table: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Read a CSV file: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Build a tiny table): Add a third column called price_ugx with the values 3000, 1000 and 3000, then print the shape.
+2. Modify, Block B (Read a CSV file): Show the last three rows of the shop table with tail(3).
+3. Make: Read sunrise_sales.csv, the Sunrise Shops sales. Print its shape and its column names. Write which column holds the date and which holds the price of one unit.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What is the difference between a row and a column? Expected: A row is one record. A column is one kind of information about every record.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

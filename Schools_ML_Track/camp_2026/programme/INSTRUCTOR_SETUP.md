@@ -36,13 +36,17 @@ Teach Python first. If students need more time with loops or indexing, use the n
 
 TensorFlow and Keras are not installed on student laptops. The optional extension notebook ML25 uses scikit-learn's MLPClassifier. If you want to demonstrate Keras, install TensorFlow only on your own laptop after checking that its supported Python versions include the one in the camp environment, then run `python programme/preflight_stack.py --tf`. The demonstration script is instructor_materials/ML/ML25_keras_demo_instructor.py and is not run by the verifier.
 
+## Online setup check (hybrid groups)
+
+Some learners take part online for two of their three weekly classes (and for the ML foundation labs). Before the first online class, work through the instructor part of handbook/HYBRID_DELIVERY.md: confirm the platform, the written class times and link for each parent or guardian, the consent form for any recording, and the route for returning build tasks (the organiser sets it and you rehearse it). Test screen sharing and sound with one learner. Check that each learner has the camp notebook installed and tested, the PDF sheet and the notebook already on the laptop as the backup, a charger and headphones. Online classes have a 90-minute live clock, and every instructor guide has an Online version section with that session's clock and build task. Keep a private list of who returned each build task.
+
 ## Every class
 
 Open the student sheet and corresponding private instructor guide. Run the example before learners arrive. Write the words for today and the expected output on the board. Have the previous session's repair task ready. Confirm each learner can save a file. During practice visit all five learners. Finish with a saved artifact and one explanation from each student. Track complete/needs repair/absent privately. Keep a backup of teaching files and student work only in the agreed location.
 
-## Assessment operations
+## Build log and showcase operations
 
-References include numeric data summaries, SQL and an ML checkpoint implementation. They are not an upload service or a complete autograder. The organiser must choose and rehearse the collection and grading workflow before it is promised to parents. Use the short common rubrics for explanations and demonstrations; do not copy university roster identifiers or gradebook rules into this camp.
+References include numeric data summaries, SQL and an ML held-back-set implementation. They help you check that a learner's numbers are right. They are not an upload service and nothing is graded. The organiser must choose and rehearse the way learners share their project folders before it is promised to parents. Use SHOWCASE_GUIDE.md for friendly feedback, one strength and one next step for each learner. Do not copy university roster identifiers or gradebook rules into this camp.
 
 ## Added ML foundation labs
 
@@ -50,4 +54,4 @@ Follow curriculum/FOUNDATION_LABS.md. Teach F01 after ML03, F02 after ML06, F03 
 
 ## Responsible AI literacy
 
-Teach handbook/AI_USE_POLICY.md in Session 1. Disable generative suggestions for weeks 1–6 and all core independent exercises. Before Session 21, rehearse handbook/AI_CODING_ASSISTANTS_LAB.md and check learner readiness; use a tutor-controlled local assistant or the labelled teacher-written fallback. Never make an account a prerequisite. Collect the permitted-use log with project evidence. Final explanations and demonstrations must be unaided. No automated AI detector is a grading criterion.
+Teach handbook/AI_USE_POLICY.md in Session 1. Disable generative suggestions for weeks 1–6 and all core independent exercises. Before Session 21, rehearse handbook/AI_CODING_ASSISTANTS_LAB.md and check learner readiness; use a tutor-controlled local assistant or the labelled teacher-written fallback. Never make an account a prerequisite. Keep the permitted-use log with the project folder. The showcase is presented without an AI assistant open. No automated AI detector is used for anything.

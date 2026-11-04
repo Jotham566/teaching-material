@@ -2,7 +2,7 @@
 
 Run from build/:  python3 build_parent_outlines.py
 Output: ../marketing/parent_outlines/KLAi_Camp_Parent_Outline_{ML,DA}.pdf
-Facts come from curriculum/, handbook/ASSESSMENT_AND_SHOWCASE.md and programme/PROGRAMME_DECISIONS.md.
+Facts come from curriculum/, handbook/BUILD_LOG_AND_SHOWCASE.md and programme/PROGRAMME_DECISIONS.md.
 Fee, venue and contact are set once in FACTS below.
 """
 from pathlib import Path
@@ -37,31 +37,31 @@ FACTS = {
 
 COMMON_SESSION = ('Each three-hour class has the same shape. A short recall, then a guess written on paper before anything is run, '
                   'then the code is run and investigated, a 15-minute break away from the screen, a second block, and a make time where each '
-                  'learner builds their own version. Every class ends with a sentence the learner writes in their own words.')
+                  'learner builds their own version. Every class ends with something saved to a build log.')
 
 TRACKS = {
     'ML': {
         'name': 'Machine Learning',
-        'line': 'Learn to teach a computer to make predictions, and to test whether it works.',
+        'line': 'Learn to teach a computer to make predictions, and to check whether it works.',
         'who': 'S.4 to S.6 students and school leavers. No coding experience is needed. Basic school maths is enough.',
         'tools': 'Python, Jupyter notebooks, NumPy, pandas, matplotlib, seaborn and scikit-learn.',
         'build': ('Each learner builds a prediction project from start to finish. They choose a question, prepare the data, '
-                  'set a simple baseline to beat, train a model, and test it once on data it has never seen. '
+                  'set a simple baseline to beat, train a model, and check it once on data it has never seen. '
                   'They present it in a five-minute talk and a short written report.'),
         'leave': ['A working project notebook that can be rerun from the top.',
                   'A report that states what the model can and cannot do.',
                   'A completion certificate, once the requirements below are met.'],
         'weeks': [
             ('1', 'Python and a first prediction', 'A computer guesses a rent from 120 homes. Notebooks, values, arithmetic and reading error messages.'),
-            ('2', 'Python you need', 'Decisions, lists, loops and functions. A hand-written rule that names flowers, then a test of how often it is right.'),
+            ('2', 'Python you need', 'Decisions, lists, loops and functions. A hand-written rule that names flowers, then a count of how often it is right.'),
             ('3', 'Tables and statistics', 'Tables in pandas, picking and filtering rows, averages and spread, with NumPy.'),
-            ('4', 'Clean, chart, question', 'Fixing messy data, drawing charts that say something, choosing a project question. Checkpoint one.'),
+            ('4', 'Clean, chart, question', 'Fixing messy data, drawing charts that say something, choosing a project question. Show your first chart.'),
             ('5', 'Baselines and a line', 'Why a model must beat a simple guess. Fitting a line and measuring its error.'),
-            ('6', 'Trees and fair tests', 'Decision trees, and keeping a test set locked until the end. Checkpoint two.'),
+            ('6', 'Trees and fair comparisons', 'Decision trees, and keeping some data held back until the end. A fair comparison with a plain guess.'),
             ('7', 'Your project', 'An approved plan, a baseline and a compared model. Modern AI assistants are shown and critiqued.'),
-            ('8', 'Hand over', 'The final test, the report, and each learner demonstrates their work to parents and guardians.'),
+            ('8', 'Hand over', 'The final run, the report, and each learner shows their project to parents and guardians at the showcase.'),
         ],
-        'extra': 'Four extra two-hour foundation labs in weeks 1 to 4 (a fourth day) give more practice with Python and maths. An optional extension follows week 8 and is not assessed.',
+        'extra': 'Four extra two-hour foundation labs in weeks 1 to 4 (a fourth day) give more practice with Python and maths. An optional extension follows week 8 and is just for interest.',
         'hours': '24 classes of 3 hours, plus 4 labs of 2 hours: 80 scheduled hours including breaks.',
         'file': 'KLAi_Camp_Parent_Outline_ML.pdf',
         'data': 'All project data is practice data made for the camp, so no real person\'s information is used.',
@@ -81,11 +81,11 @@ TRACKS = {
             ('1', 'Meet the data', 'Open a notebook, read a table of shop sales, store values and read error messages.'),
             ('2', 'Python you need', 'Decisions, lists, loops and functions, with checks that stop the program when something is wrong.'),
             ('3', 'Tables in pandas', 'Select, filter, sort and group a table. Revenue by item and by branch, checked by hand.'),
-            ('4', 'Clean and chart', 'Finding and fixing duplicates and gaps, bar, line, histogram and scatter charts. Checkpoint one.'),
+            ('4', 'Clean and chart', 'Finding and fixing duplicates and gaps, bar, line, histogram and scatter charts. Show your first chart.'),
             ('5', 'Explore with NumPy and seaborn', 'Spread, typical values, unusual values, and why two things moving together do not prove one causes the other.'),
-            ('6', 'Messy data and two tables', 'Clean a raw export, join two tables, and explain any difference in the totals. Checkpoint two.'),
+            ('6', 'Messy data and two tables', 'Clean a raw export, join two tables, and explain any difference in the totals. Reconcile a total.'),
             ('7', 'Show it', 'An approved project plan and a notebook that reruns. Modern AI assistants are shown and critiqued.'),
-            ('8', 'Hand over', 'The report, the five-minute talk, and each learner demonstrates their work to parents and guardians.'),
+            ('8', 'Hand over', 'The report, the five-minute talk, and each learner shows their project to parents and guardians at the showcase.'),
         ],
         'extra': 'The practice data comes from a made-up chain of three shops, Sunrise Shops. Final projects may use public real data once the licence has been read at its source.',
         'hours': '24 classes of 3 hours: 72 scheduled hours including breaks.',
@@ -94,8 +94,8 @@ TRACKS = {
     },
 }
 
-MARKS = [('Six weekly portfolios', '20%'), ('Checkpoint one, end of week 4', '15%'), ('Checkpoint two, end of week 6', '20%'),
-         ('Final project', '30%'), ('Individual demonstration', '15%')]
+STEPS = [('Build log, one saved thing', 'every class'), ('Show-and-tell, end of week 4', 'first chart'), ('Show-and-tell, end of week 6', 'two minutes'),
+         ('Final project', 'weeks 7 and 8'), ('Parent showcase', 'week 8')]
 
 
 def P(c, text, x, y, w, size=10.5, color=BODY, font='Lato', lead=None):
@@ -170,27 +170,27 @@ def build(key):
     y = P(c, COMMON_SESSION, M, y, cw, 10.5) - 4
     y = P(c, 'Nobody is expected to know any of this beforehand. Every new word is explained with a picture and an everyday example, and the instructor works with each learner at their own pace.', M, y, cw, 10.5) - 14
 
-    y = section(c, 'How progress is checked', y)
-    y = P(c, 'Every mark points to something the learner made. Marks are private, and learners are never ranked in public.', M, y, cw, 10.5) - 6
+    y = section(c, 'How progress is shown', y)
+    y = P(c, 'No tests and no marks. Learners keep a build log and show what they made. Feedback is one strength and one next step, given privately.', M, y, cw, 10.5) - 6
     rx = M
-    for name, pc in MARKS:
+    for name, pc in STEPS:
         c.setStrokeColor(HAIR); c.setLineWidth(0.6)
         T(c, name, rx, y - 12, 10.5, BODY, 'Lato'); T(c, pc, rx + 300, y - 12, 10.5, INK, 'LatoB', 'right')
         c.line(rx, y - 18, rx + 300, y - 18)
         y -= 21
-    # right column beside the marks table: completion rule
+    # right column beside the steps table: completion rule
     cx = M + 330
-    P(c, '<b>To earn the certificate</b><br/>At least 20 of the 24 classes attended or made up.<br/>Both checkpoints, the final project and the demonstration handed in.<br/>An overall mark of at least 50 out of 100.', cx, y + 21 * len(MARKS) - 4, W - M - cx, 10, BODY, 'Lato', 14)
+    P(c, '<b>To earn the certificate</b><br/>At least 20 of the 24 classes attended or made up.<br/>The build log kept.<br/>A finished project shown at the parent showcase.', cx, y + 21 * len(STEPS) - 4, W - M - cx, 10, BODY, 'Lato', 14)
     y -= 12
 
     y = section(c, 'Using AI tools', y)
     y = P(c, 'In weeks 1 to 6 learners write and fix their own code, so that the foundations are theirs. In weeks 7 and 8 they see how modern AI coding assistants work, and learn to check what such a tool says before trusting it. '
-              'The final demonstration is done without AI help, and the certificate shows what the learner can do themselves.', M, y, cw, 10.5) - 14
+              'The showcase is presented without an AI assistant open, so the project shows what the learner can do themselves.', M, y, cw, 10.5) - 14
 
     y = section(c, 'What we ask of families', y)
     for line in ['Your child brings their own laptop and charger, Windows or Mac. We check it works with a short setup session before day one.',
                  'Learners attend on time and tell us ahead of any absence, so a class can be made up.',
-                 'Parents and guardians come to the final demonstration in week 8.',
+                 'Parents and guardians come to the showcase in week 8.',
                  'Photographs and sharing a project publicly are optional, and need a separate written consent.']:
         c.setFillColor(GOLD); c.rect(M, y - 9, 4, 4, fill=1, stroke=0)
         y = P(c, line, M + 14, y, cw - 14, 10.5) - 3

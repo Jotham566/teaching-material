@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** Which item earns the most, and what is a typical sale in a small practice shop?
 
+**Where this is used.** Retail chains compare their branches by grouping sales and finding the best sellers. A typical sale and an unusually large one tell different stories. Which branch would you visit first, and why?
+
 Prerequisite: DA08 Select, filter and calculate a revenue column.
 
 ## The 180 minutes
@@ -94,7 +96,7 @@ assert by_branch.sum() == sunrise["line_value"].sum()
 # Branch 1: 2997000. Branch 2: 1985400. Branch 3: 1393500. Total 6375900.
 ```
 
-Evidence to collect: DA09.ipynb with three sorted totals that add to 6375900 and a passing assert.
+Build log entry to look for: DA09.ipynb with three sorted totals that add to 6375900 and a passing assert.
 
 ## Misconceptions to listen for
 
@@ -107,6 +109,32 @@ Evidence to collect: DA09.ipynb with three sorted totals that add to 6375900 and
 - When would you quote the median and not the mean? Expected: When a few very large values pull the mean away from what most sales look like.
 - What check follows every group total? Expected: Add the groups and compare with the overall total.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Group, total and sort: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Mean, median and a proportion: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Group, total and sort): Group the revenue by date and find the date with the most revenue.
+2. Modify, Block B (Mean, median and a proportion): Find the proportion of sales with 5 units or more.
+3. Make: Add the line_value column and total it for each branch_id in the Sunrise sales. Sort the three totals from largest to smallest. Check that the three totals add up to the overall total.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: When would you quote the median and not the mean? Expected: When a few very large values pull the mean away from what most sales look like.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

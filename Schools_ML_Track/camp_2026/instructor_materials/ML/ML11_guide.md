@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How do I show which item earns most, and how sales vary, in a picture?
 
+**Where this is used.** Weather forecasts, football stats and mobile money summaries all use charts so people can see a pattern fast. A good chart makes one clear point. What is the one point you want your chart to make?
+
 Prerequisite: ML10 Cleaning without hiding evidence.
 
 ## The 180 minutes
@@ -99,7 +101,7 @@ plt.show()
 # Finding: Pen sells 9 units, 3 more than Book. Limitation: the table is small and invented. Daily rainfall suits a line chart because the days are in order.
 ```
 
-Evidence to collect: ML11.ipynb with a labelled bar chart, one finding with a number, one limitation, and the rainfall answer.
+Build log entry to look for: ML11.ipynb with a labelled bar chart, one finding with a number, one limitation, and the rainfall answer.
 
 ## Misconceptions to listen for
 
@@ -112,6 +114,32 @@ Evidence to collect: ML11.ipynb with a labelled bar chart, one finding with a nu
 - What is the first thing to look at on a chart? Expected: The title and the axis labels with their units.
 - What can a bar chart never show you about cause? Expected: Anything. It shows totals and nothing about reasons.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, A bar chart of revenue: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, A histogram and a box plot: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (A bar chart of revenue): Chart total units instead of revenue.
+2. Modify, Block B (A histogram and a box plot): Change the histogram so it uses unit_price_ugx instead of units.
+3. Make: Make the same bar chart for the values 6, 9 and 4 for Book, Pen and Juice. Write one finding with a number and one limitation. Say which chart type you would use for daily rainfall, and why.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What is the first thing to look at on a chart? Expected: The title and the axis labels with their units.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

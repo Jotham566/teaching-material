@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How close does a straight line get to the rents of eight homes?
 
+**Where this is used.** Rents, fares and crop prices often rise in a steady way with size, distance or season, and a straight line is the simplest model of that. Ride-hailing apps show a fare estimate before the trip starts. How far can one line take you?
+
 Prerequisite: ML13 Features, targets and an honest baseline.
 
 ## The 180 minutes
@@ -69,7 +71,7 @@ Correct result: The cell prints 3221, 135838, 20077 and 109399. The fitted line 
 
 Investigate, with answers:
 
-- Is a smaller error on the training homes proof that the line is good? Answer: No. The line has seen these homes. A fair test uses new homes, which is next session.
+- Is a smaller error on the training homes proof that the line is good? Answer: No. The line has seen these homes. A fair check uses new homes, which is next session.
 - How much better is the fitted line than the baseline? Answer: Its error is about a fifth of the baseline's.
 
 Modify: Predict the rent for a home of 100 square metres. Answer: About UGX 457910.
@@ -90,7 +92,7 @@ print(p35)
 # About 350. X holds inputs, y the answers. fit learns the line and predict applies it. 1000 is far outside the inputs it saw.
 ```
 
-Evidence to collect: ML14.ipynb with the prediction 350, the four definitions in the student's own words, and the reason 1000 is risky.
+Build log entry to look for: ML14.ipynb with the prediction 350, the four definitions in the student's own words, and the reason 1000 is risky.
 
 ## Misconceptions to listen for
 
@@ -103,6 +105,32 @@ Evidence to collect: ML14.ipynb with the prediction 350, the four definitions in
 - What does the slope of 3221 mean here? Expected: On these eight homes each extra square metre adds about UGX 3221 of rent.
 - Why is the data on the printed scatter plot useful? Expected: It lets you see where a hand-drawn line sits among the points.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Guess a line, measure the error: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Let scikit-learn fit the line: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Guess a line, measure the error): Try an intercept of 160000 and print the average error.
+2. Modify, Block B (Let scikit-learn fit the line): Predict the rent for a home of 100 square metres.
+3. Make: Use X = [[10], [20], [30], [40]] and y = [100, 200, 300, 400]. Fit a line and predict at 35. Explain in your own words what X, y, fit and predict mean, and why predicting at 1000 is risky.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does the slope of 3221 mean here? Expected: On these eight homes each extra square metre adds about UGX 3221 of rent.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

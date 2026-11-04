@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How do I turn the text of a price into a number I can calculate with?
 
+**Where this is used.** Anything you type into a form arrives as text. The app has to turn it into a number before it can add, compare or charge. Where in the apps you use does text quietly become a number?
+
 Prerequisite: ML02 Values, names and types.
 
 ## The 180 minutes
@@ -86,7 +88,7 @@ print(cost_of_four)
 # 50.0. Dividing by zero asks how many times zero fits into a number, and there is no answer.
 ```
 
-Evidence to collect: ML03.ipynb with the prediction written first, the result 50.0, and a sentence on division by zero.
+Build log entry to look for: ML03.ipynb with the prediction written first, the result 50.0, and a sentence on division by zero.
 
 ## Misconceptions to listen for
 
@@ -99,6 +101,32 @@ Evidence to collect: ML03.ipynb with the prediction written first, the result 50
 - What is the difference between 12.5 and "12.5"? Expected: The first is a number. The second is text.
 - Where do you start reading an error? Expected: At the last line, then the line number it names.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, The basic operators: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Text becomes a number: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (The basic operators): Write the calculation for 3 books at UGX 3000 plus 2 pens at UGX 1000 in one line.
+2. Modify, Block B (Text becomes a number): Change the text price to "20" and run the cell again.
+3. Make: Convert "12.5" to a number and calculate the price of four items. Predict the answer before you run it. Explain why nobody can divide by zero.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What is the difference between 12.5 and "12.5"? Expected: The first is a number. The second is text.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

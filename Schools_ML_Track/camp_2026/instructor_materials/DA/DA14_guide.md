@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** What does a typical sale look like, and does it differ between the three shops?
 
+**Where this is used.** A histogram shows what a typical day looks like, and a box plot shows how groups differ. Club analysts compare players and teams with plots like these. Which two shops would you compare first?
+
 Prerequisite: DA13 NumPy: the numbers underneath pandas.
 
 ## The 180 minutes
@@ -95,7 +97,7 @@ print(med)
 # Central Market 225, Campus Gate 136, Roadside 87. Central Market has more than twice the customers of Roadside on a typical day.
 ```
 
-Evidence to collect: DA14.ipynb with a histogram, a box plot, three medians and a finding.
+Build log entry to look for: DA14.ipynb with a histogram, a box plot, three medians and a finding.
 
 ## Misconceptions to listen for
 
@@ -108,6 +110,32 @@ Evidence to collect: DA14.ipynb with a histogram, a box plot, three medians and 
 - What does the line in a box plot show? Expected: The median.
 - How do you see a skewed distribution in a histogram? Expected: The bars bunch at one end and trail off in a long tail at the other.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, A histogram of sale values: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, A box plot for each shop: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (A histogram of sale values): Draw the histogram again with bins=60 and say what changes.
+2. Modify, Block B (A box plot for each shop): Use the box plot to compare the units column across shops. Print the median units for each shop.
+3. Make: Explore the daily customer counts. Draw a histogram of customers_counted and a box plot of customers_counted for each branch. Write the median for each branch and one finding in a sentence.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does the line in a box plot show? Expected: The median.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

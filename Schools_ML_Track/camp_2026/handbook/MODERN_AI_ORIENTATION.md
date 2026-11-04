@@ -2,7 +2,7 @@
 
 Follow AI_USE_POLICY.md; the coding-assistant critique is taught in Session 21. This optional 20-minute orientation is an extension.
 
-Optional 20-minute orientation within Session 23 in week eight, after learners finish their project rehearsal. It replaces an optional second rehearsal; it does not add a class, change marks or require a student account. If a learner still needs rehearsal support, prioritise that. This is an introduction to further study, not training in building a chatbot.
+Optional 20-minute orientation within Session 23 in week eight, after learners finish their project rehearsal. It replaces an optional second rehearsal; it does not add a class or require a student account. If a learner still needs rehearsal support, prioritise that. This is an introduction to further study, not training in building a chatbot.
 
 ## 0–4 minutes — Connect to what you know
 

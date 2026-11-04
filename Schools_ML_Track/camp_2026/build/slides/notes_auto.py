@@ -125,16 +125,16 @@ MOD_ANS = ['What you should find: {a}', 'Here is what happens. {a}', 'The result
 
 
 def modify_note(instruction, answer, seed):
-    return f'{pick(MOD_LEAD, seed)} {instruction} {pick(MOD_TELL, seed + 1)}\n\n{pick(MOD_ANS, seed + 2).format(a=answer)}'
+    return f'{pick(MOD_LEAD, seed)} {instruction} {pick(MOD_TELL, seed + 1)} If you are online, you do this step after class.\n\n{pick(MOD_ANS, seed + 2).format(a=answer)}'
 
 
 def make_note(ident, task, seed, part=0, parts=1):
     if parts == 1 or part == 0:
         lead = pick(['This is your own task for today. Take it one step at a time.', 'Now you do the real work yourself. Start with the first step.',
-                     'This task is yours. Run your code after every step so you can see where a problem begins.'], seed)
+                     'This task is yours. Run your code after every step so you can see where a problem begins.'], seed) + (' If you are online, you finish this after class.' if part == 0 else '')
         return (f'{lead} If you get stuck for a few minutes, read your error message, check the error card, and then ask me.\n\n'
                 f'Save it as {ident}. I will come round to each of you and ask what you changed and how you checked it.' + ('\n\nThe rest of the brief is on the next slide.' if parts > 1 else ''))
-    return 'Here is the rest of the brief. Take your time, and save your work as you go, because a saved file is the only thing I can mark.'
+    return 'Here is the rest of the brief. Take your time, and save your work as you go, because a saved file is the only thing I can look at with you.'
 
 
 def errors_note(errors, seed):
@@ -151,12 +151,30 @@ EXIT_LEAD = ['We are nearly done. Remember the question from the start of the se
 EXIT_DO = ['Finish this sentence in your notebook, in your own words.', 'Write this sentence in your notebook and finish it your own way.', 'Copy this sentence into your notebook and make it yours.']
 
 
+def online_note(parts, cap, seed):
+    total = sum(m for _, m in parts)
+    return (f'If you are joining online today, this is how the {total} minutes of live time go. We learn the two ideas together on the shared screen, with a break away from your screen in the middle.\n\n'
+            f'The part that makes it yours comes after class. {cap}\n\n'
+            'If you are in the room, you do the same things here with me, and the build happens before you leave.')
+
+
 def exit_note(exit_ticket, question, seed):
     return (f'{pick(EXIT_LEAD, seed)} {question}\n\n'
             f'{pick(EXIT_DO, seed + 1)} {exit_ticket}\n\n'
-            f'Then save your notebook, close it and open it again to check it saved.')
+            f'Then save your notebook, close it and open it again to check it saved. Add one line to your build log and one idea to your project corner. If you are online, send your build before the next class.')
 
 
 def break_note(minutes, nxt, seed):
     return (f'Break time. {minutes} minutes away from your screens. Stand up, drink some water and tell someone what you guessed in the first half.\n\n'
             f'When we come back we start {lower_first(nxt)}.')
+
+
+HOOK_LEAD = ["Before we touch any code, here is where today's idea is used in real life.", 'Let me show you where this idea shows up outside the classroom.',
+             "Today's idea is used in real places. Listen for the one that interests you most."]
+HOOK_PROJECT = ["Now think about your own project. How could today's idea help it? Write a few words in your notebook, or on your progress map, and keep them for the end of class.",
+                "Now your project. Think about the topic you wrote on your progress map. How could today's idea help it? Jot one line and we will come back to it.",
+                "Think about the project you want to build. Would today's idea help it? Say your answer quietly to yourself, then write one line."]
+
+
+def hook_note(hook, seed):
+    return f'{pick(HOOK_LEAD, seed)} {hook}\n\n{pick(HOOK_PROJECT, seed + 1)}'

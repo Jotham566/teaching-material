@@ -853,7 +853,7 @@ def ml_finding_card(w, h, **_):
     return s
 
 
-# ================================================================== SESSION 12: checkpoint one and the project question
+# ================================================================== SESSION 12: first chart and the project question
 @fig('ml_checkpoint_flow')
 def ml_checkpoint_flow(w, h, **_):
     s = Scene(w, h)
@@ -991,9 +991,9 @@ def ml_practice_vs_exam(w, h, **_):
     s.text(6.0, h - 3.0, 'kept aside to check\nwhat it learned', size=18)
     s.box(0.5, 0.35, 5.4, 0.55, '', fill=PAPER, lw=2, r=0.03)
     s.rect(0.5 + 4.05, 0.35, 1.35, 0.55, fill=GOLD, lw=2)
-    s.text(0.5 + 4.05 / 2, 0.625, 'training: practice questions', size=15)
+    s.text(0.5 + 4.05 / 2, 0.625, 'training: learn from', size=15)
     s.text(0.5 + 4.05 + 0.675, 0.625, 'test', size=18, weight='bold')
-    s.text(w / 2, 1.2, 'like practice questions and the exam', size=17, color=MUTE)
+    s.text(w / 2, 1.2, 'one pile to learn from, one pile kept aside', size=17, color=MUTE)
     return s
 
 
@@ -1629,7 +1629,7 @@ def ml_complexity_gap(w, h, **_):
 @fig('ml_peek_test')
 def ml_peek_test(w, h, **_):
     s = Scene(w, h)
-    pts = [(2.0, h - 1.4, 'try a setting'), (5.7, h - 1.4, 'peek at the\nfinal test score'), (5.7, 1.5, 'change the setting\nto score higher'), (2.0, 1.5, 'repeat')]
+    pts = [(2.0, h - 1.4, 'try a setting'), (5.7, h - 1.4, 'peek at the\nheld-back score'), (5.7, 1.5, 'change the setting\nto score higher'), (2.0, 1.5, 'repeat')]
     for x, y, t in pts:
         s.box(x - 1.3, y - 0.5, 2.6, 1.0, t, size=18, weight='bold', r=0.06, edge=RED if 'peek' in t else INK, color=RED if 'peek' in t else INK)
     s.arrow(3.4, h - 1.4, 4.3, h - 1.4, color=INK, lw=2.4, head=16)
@@ -1637,11 +1637,11 @@ def ml_peek_test(w, h, **_):
     s.arrow(4.3, 1.5, 3.4, 1.5, color=INK, lw=2.4, head=16)
     s.arrow(2.0, 2.05, 2.0, h - 1.95, color=INK, lw=2.4, head=16)
     s.icon('magnifier', 3.85, 3.4, 0.8)
-    s.text(3.85, 2.55, 'the test turns\ninto practice', size=17, color=RED, weight='bold')
+    s.text(3.85, 2.55, 'the held-back set\nturns into practice', size=17, color=RED, weight='bold')
     return s
 
 
-# ================================================================== SESSION 18: three-way split and the locked test
+# ================================================================== SESSION 18: three-way split and the held-back set
 def lock_icon(s, x, y, size=0.6, color=INK):
     from matplotlib.patches import Wedge
     s.rect(x - 0.28 * size, y - 0.3 * size, 0.56 * size, 0.42 * size, fill=GOLD, lw=2.2)
@@ -1651,7 +1651,7 @@ def lock_icon(s, x, y, size=0.6, color=INK):
 @fig('ml_three_way_bar')
 def ml_three_way_bar(w, h, unit='flowers', total=150, **_):
     s = Scene(w, h)
-    parts = [('train', 90, PAPER, 'the model learns from these'), ('validation', 30, '#BDBDBD', 'choose the setting'), ('final test', 30, GOLD, 'locked until the end')]
+    parts = [('train', 90, PAPER, 'the model learns from these'), ('validation', 30, '#BDBDBD', 'choose the setting'), ('held-back set', 30, GOLD, 'untouched until the end')]
     x0, wd = 0.4, w - 0.8
     xx = x0
     for name, n, f, note in parts:
@@ -1687,12 +1687,12 @@ def ml_two_cuts(w, h, **_):
     s.text(0.5, y1 + 0.95, 'start: 150 flowers', size=18, weight='bold', ha='left')
     bar(y1, [('all', 150, PAPER)])
     s.arrow(1.6, y1 - 0.05, 1.6, y2 + 0.67, color=RED, lw=2.4, head=16)
-    s.text(1.85, (y1 + y2 + 0.67) / 2, 'first cut: 30 flowers (20%)\nare locked away for the final test', size=16, ha='left', color=RED, weight='bold')
+    s.text(1.85, (y1 + y2 + 0.67) / 2, 'first cut: 30 flowers (20%)\nare held back until the end', size=16, ha='left', color=RED, weight='bold')
     s.text(0.5, y2 + 0.95, 'two parts', size=18, weight='bold', ha='left')
-    bar(y2, [('development', 120, '#BDBDBD'), ('final test', 30, GOLD)])
+    bar(y2, [('development', 120, '#BDBDBD'), ('held-back set', 30, GOLD)])
     s.arrow(1.6, y2 - 0.05, 1.6, y3 + 0.67, color=RED, lw=2.4, head=16)
     s.text(1.85, (y2 + y3 + 0.67) / 2, 'second cut: 30 of the 120 (25%)\nbecome the validation part', size=16, ha='left', color=RED, weight='bold')
-    bar(y3, [('train', 90, PAPER), ('validation', 30, '#BDBDBD'), ('final test', 30, GOLD)])
+    bar(y3, [('train', 90, PAPER), ('validation', 30, '#BDBDBD'), ('held-back set', 30, GOLD)])
     return s
 
 
@@ -1704,7 +1704,7 @@ def ml_stratify(w, h, **_):
     for i, (nm, f) in enumerate(zip(names, cols)):
         s.rect(0.5 + i * 2.35, h - 0.85, 0.38, 0.38, fill=f, lw=1.8)
         s.text(1.0 + i * 2.35, h - 0.66, nm, size=17, ha='left')
-    rows = [('train', 30), ('validation', 10), ('final test', 10)]
+    rows = [('train', 30), ('validation', 10), ('held-back set', 10)]
     unit = 0.085
     for r, (nm, k) in enumerate(rows):
         y = h - 2.0 - r * 1.15
@@ -1738,7 +1738,7 @@ def ml_choose_freeze_test(w, h, **_):
     s.box(9.0, ys - 0.85, 1.6, 1.0, 'test\nonce', size=19, weight='bold', r=0.05, edge=RED, color=RED)
     s.arrow(10.65, ys - 0.35, 11.0, ys - 0.35, color=INK, lw=2.4, head=14)
     s.text(11.05, ys - 0.35, 'report', size=18, weight='bold', ha='left')
-    s.text(w / 2, 0.45, 'The choice is made before the test is ever opened.', size=19, color=BODY)
+    s.text(w / 2, 0.45, 'The choice is made before the held-back set is ever opened.', size=19, color=BODY)
     return s
 
 
@@ -1764,7 +1764,7 @@ def ml_confusion_3x3(w, h, **_):
 @fig('ml_checkpoint_two_list')
 def ml_checkpoint_two_list(w, h, **_):
     s = Scene(w, h)
-    items = ['the three split sizes', 'the baseline score', 'two validation scores', 'the chosen depth', 'the final test accuracy', 'the confusion matrix', 'two limitations']
+    items = ['the three split sizes', 'the baseline score', 'two validation scores', 'the chosen depth', 'the held-back accuracy', 'the confusion matrix', 'two limitations']
     for i, t in enumerate(items):
         col, row = i // 4, i % 4
         x = 0.4 + col * 6.1
@@ -1869,7 +1869,7 @@ def ml_trip_timeline(w, h, **_):
 def ml_plan_storyboard(w, h, **_):
     s = Scene(w, h)
     rows = [('Question', 'Can distance, rush hour and rain predict a boda-boda fare?'), ('Dataset', 'synthetic_fares.csv, 150 invented trips'), ('Target', 'fare_ugx'),
-            ('Inputs', 'distance_km, rush_hour, raining. Not tip_ugx.'), ('Baseline', 'the mean fare of the training trips'), ('Evaluation', 'mean absolute error in UGX, final test used once'), ('Limits', 'invented data, so no claim about real fares')]
+            ('Inputs', 'distance_km, rush_hour, raining. Not tip_ugx.'), ('Baseline', 'the mean fare of the training trips'), ('Evaluation', 'mean absolute error in UGX, held-back set used once'), ('Limits', 'invented data, so no claim about real fares')]
     s.box(0.2, 0.15, w - 0.4, h - 0.3, '', fill=PAPER, lw=2, r=0.04)
     pitch = (h - 0.6) / len(rows)
     for i, (a, b) in enumerate(rows):
@@ -1939,7 +1939,7 @@ def ml_train_only_mean(w, h, **_):
     s.rect(0.5, 0.95, 3.2, 0.6, fill=PAPER, edge=RED, lw=2)
     s.rect(3.7, 0.95, 1.0, 0.6, fill='#BDBDBD', edge=RED, lw=2)
     s.rect(4.7, 0.95, 1.0, 0.6, fill=GOLD, edge=RED, lw=2)
-    s.text(3.1, 0.55, 'mean of all 150: it has peeked at the test trips', size=16, weight='bold', color=RED)
+    s.text(3.1, 0.55, 'mean of all 150: it has peeked at the held-back trips', size=16, weight='bold', color=RED)
     s.icon('cross', 6.8, 1.25, 0.7)
     return s
 
@@ -2078,12 +2078,12 @@ def ml_decision_card(w, h, **_):
     return s
 
 
-# ================================================================== SESSION 22: the final test
+# ================================================================== SESSION 22: the held-back run
 @fig('ml_final_test_bars')
 def ml_final_test_bars(w, h, **_):
     m = fares_models()
     s = Scene(w, h)
-    bars_compare(s, [('plain guess', m['base_test'], ''), ('frozen model', m['test_three'], 'gold')], 0.3, 1.0, w - 0.6, h - 1.6, 'average miss on the 30 locked trips, in UGX')
+    bars_compare(s, [('plain guess', m['base_test'], ''), ('frozen model', m['test_three'], 'gold')], 0.3, 1.0, w - 0.6, h - 1.6, 'average miss on the 30 held-back trips, in UGX')
     return s
 
 
@@ -2092,7 +2092,7 @@ def ml_open_once(w, h, **_):
     s = Scene(w, h)
     s.box(0.4, 1.3, 2.5, 2.3, '', fill=GOLD, lw=2.4, r=0.06)
     lock_icon(s, 1.65, 2.75, 1.5)
-    s.text(1.65, 1.7, '30 locked trips', size=17, weight='bold')
+    s.text(1.65, 1.7, '30 held-back trips', size=17, weight='bold')
     s.arrow(3.0, 2.45, 4.1, 2.45, color=RED, lw=2.6, head=18)
     s.text(3.55, 2.9, 'open once', size=16, weight='bold', color=RED)
     s.box(4.2, 1.6, 3.0, 1.7, '', fill=PAPER, lw=2.2, r=0.06)
@@ -2116,20 +2116,20 @@ def ml_val_vs_test(w, h, **_):
         for b, v in zip(bars, vals):
             ax.text(b.get_x() + b.get_width() / 2, v + 60, f'{v:,.0f}', ha='center', va='bottom', fontsize=16, fontweight='bold', family=FONT)
     ax.set_xticks(x)
-    ax.set_xticklabels(['validation trips', 'final test trips'], fontsize=16)
+    ax.set_xticklabels(['validation trips', 'held-back trips'], fontsize=16)
     ax.set_ylim(0, 6200)
     ax.set_yticks([])
     ax.spines['left'].set_visible(False)
     ax.legend(loc='upper right', fontsize=16, frameon=False)
     s.text(w / 2, h - 0.4, 'average miss (UGX)', size=20, weight='bold')
-    s.text(w / 2, 0.3, 'The lead is smaller on the test, and that is normal.', size=16, color=BODY)
+    s.text(w / 2, 0.3, 'The lead is smaller on the held-back trips, and that is normal.', size=16, color=BODY)
     return s
 
 
 @fig('ml_handover_checklist')
 def ml_handover_checklist(w, h, **_):
     s = Scene(w, h)
-    items = [('folder', 'the data file sits beside the notebook'), ('clock', 'Restart and Run All works from the top'), ('notebook', 'the data origin is stated, and it is invented'), ('magnifier', 'validation and final test are reported apart'), ('check', 'limits are written next to the result')]
+    items = [('folder', 'the data file sits beside the notebook'), ('clock', 'Restart and Run All works from the top'), ('notebook', 'the data origin is stated, and it is invented'), ('magnifier', 'validation and held-back set are reported apart'), ('check', 'limits are written next to the result')]
     pitch = (h - 0.4) / len(items)
     for i, (ic, t) in enumerate(items):
         y = h - 0.2 - pitch * (i + 0.5)
@@ -2157,7 +2157,7 @@ def ml_one_page_report(w, h, **_):
 @fig('ml_parent_five_slides')
 def ml_parent_five_slides(w, h, **_):
     s = Scene(w, h)
-    cards = [('1', 'Question', 'distance, rush hour\nand rain: a fare?'), ('2', 'Data', '150 invented trips'), ('3', 'Test', 'a plain guess,\nthen the model'),
+    cards = [('1', 'Question', 'distance, rush hour\nand rain: a fare?'), ('2', 'Data', '150 invented trips'), ('3', 'Check', 'a plain guess,\nthen the model'),
              ('4', 'Result', 'the error in UGX,\nnext to the baseline'), ('5', 'Limit', 'what it cannot tell')]
     cw, gap = 2.05, 0.32
     x0 = (w - (5 * cw + 4 * gap)) / 2
@@ -2192,7 +2192,7 @@ def ml_claim_evidence(w, h, **_):
 @fig('ml_audience_cards')
 def ml_audience_cards(w, h, **_):
     s = Scene(w, h)
-    rows = [('person', 'a parent', 'It guesses the fare from the distance.\nIt was tested on trips it never saw.'), ('laptop', 'a classmate', 'Linear regression with three inputs,\ncompared with a mean baseline.')]
+    rows = [('person', 'a parent', 'It guesses the fare from the distance.\nIt was checked on trips it never saw.'), ('laptop', 'a classmate', 'Linear regression with three inputs,\ncompared with a mean baseline.')]
     for i, (ic, who, say) in enumerate(rows):
         y = h - 1.5 - i * 1.85
         s.box(0.3, y - 0.7, w - 0.6, 1.6, '', lw=2.2, r=0.05)
@@ -2218,7 +2218,7 @@ def ml_demo_backup(w, h, **_):
 @fig('ml_showcase_run')
 def ml_showcase_run(w, h, **_):
     s = Scene(w, h)
-    steps = [('present', 'your five slides'), ('explain', 'what the number means'), ('answer', 'questions from the room'), ('change', 'one small thing, unaided')]
+    steps = [('present', 'your five slides'), ('explain', 'what the number means'), ('answer', 'questions from the room'), ('change', 'one small thing, live')]
     cw, gap = 2.45, 0.5
     x0 = (w - (4 * cw + 3 * gap)) / 2
     for i, (t, sub) in enumerate(steps):
@@ -2228,27 +2228,27 @@ def ml_showcase_run(w, h, **_):
         s.text(x + cw / 2, h / 2 - 0.3, sub, size=15)
         if i < 3:
             s.arrow(x + cw + 0.05, h / 2, x + cw + gap - 0.05, h / 2, lw=2.2, head=14)
-    s.text(w / 2, h / 2 - 1.55, 'Your work, your voice, nothing to lean on but what you know.', size=18, color=BODY)
+    s.text(w / 2, h / 2 - 1.55, 'Your work, your voice, your showcase.', size=18, color=BODY)
     return s
 
 
 @fig('ml_portfolio_next')
 def ml_portfolio_next(w, h, **_):
     s = Scene(w, h)
-    s.text(1.9, h - 0.4, 'your portfolio', size=19, weight='bold')
+    s.text(1.9, h - 0.4, 'your project folder', size=19, weight='bold')
     for i, (ic, t) in enumerate([('notebook', 'the handover notebook'), ('folder', 'the data file'), ('receipt', 'the one-page report'), ('pen', 'the AI use log')]):
         y = h - 1.2 - i * 0.95
         s.icon(ic, 0.7, y, 0.6)
         s.text(1.3, y, t, size=17, ha='left')
     s.arrow(3.5, h / 2, 4.2, h / 2, lw=2.4, head=16)
     s.text(4.4, h - 0.4, 'next step', size=19, weight='bold', ha='left')
-    for i, t in enumerate(['a new question', 'real data, with permission', 'a bigger model, tested fairly']):
+    for i, t in enumerate(['a new question', 'real data, with permission', 'a bigger model, compared fairly']):
         s.text(4.4, h - 1.2 - i * 0.95, t, size=15, ha='left')
     return s
 
 
-@fig('ml_unaided_change')
-def ml_unaided_change(w, h, **_):
+@fig('ml_live_change')
+def ml_live_change(w, h, **_):
     s = Scene(w, h)
     s.code(0.3, h - 0.5, ['model = LinearRegression()', 'model.fit(X_train, y_train)', 'print(mae)'], size=15, line_h=0.34, pad=0.18, w=4.6, hl_lines=(1,))
     s.arrow(5.0, h - 1.05, 5.8, h - 1.05, lw=2.4, head=16)

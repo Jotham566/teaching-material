@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** If we clean the raw export carefully, does it give back the true revenue?
 
+**Where this is used.** A raw export from a real system is rarely tidy. Analysts clean it with a function so the same steps run again on next month's file. Could you clean a file you have never seen?
+
 Prerequisite: DA15 Exploring relationships: scatter plots, correlation and cause.
 
 ## The 180 minutes
@@ -117,7 +119,7 @@ print(len(excluded))
 # The residual is 125400, the value of the 40 sales with blank units.
 ```
 
-Evidence to collect: DA16.ipynb with the function, two passing asserts, and a sentence naming the residual of 125400 and its cause.
+Build log entry to look for: DA16.ipynb with the function, two passing asserts, and a sentence naming the residual of 125400 and its cause.
 
 ## Misconceptions to listen for
 
@@ -130,6 +132,32 @@ Evidence to collect: DA16.ipynb with the function, two passing asserts, and a se
 - Why do the cleaned and true totals differ? Expected: The 40 blank-unit sales cannot be recovered, and their value is the residual.
 - Why put the steps in a function? Expected: It reruns the same steps every time and can be tested with assert.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Dates and names: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Units, blanks and the residual: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Dates and names): Count how many rows used the slash format.
+2. Modify, Block B (Units, blanks and the residual): Prove that the residual equals the value of the 40 excluded sales, using the true sales table.
+3. Make: Put the cleaning steps in one function called clean_sales(raw) that returns the clean table and the excluded rows. Run it on the raw export and check with assert that the clean table has 1473 rows and the clean revenue is 6250500. Write one sentence naming the residual and its cause.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: Why do the cleaned and true totals differ? Expected: The 40 blank-unit sales cannot be recovered, and their value is the residual.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

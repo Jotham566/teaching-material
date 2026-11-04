@@ -22,13 +22,13 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                          'to be?'},
                  {'at': 0,
                   'kind': 'concept',
-                  'title': 'Practice and exam questions must be different',
+                  'title': 'Training rows and test rows must be different',
                   'fig': 'ml_practice_vs_exam',
-                  'points': ['Training data is the practice.', 'Test data is the exam.', 'A model must never practise on the exam.'],
-                  'say': 'A student who has seen the exam questions in advance scores well and proves nothing. A model is the same. It learns from '
+                  'points': ['Training data is what the model learns from.', 'Test data is kept aside to try it out.', 'A model must never train on the test data.'],
+                  'say': 'Imagine learning the answers to ten puzzles and then being shown the same ten. You look clever and show nothing. A model is the same. It learns from '
                          'the training data. We check it on test data it has never seen.\n'
                          '\n'
-                         'Why would a perfect score on the practice questions not tell us much?'},
+                         'Why would a perfect result on the rows it learned from not tell us much?'},
                  {'at': 1,
                   'kind': 'concept',
                   'title': 'The learned line rises as the area grows',
@@ -241,7 +241,7 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                      'confusion matrix': ('ml_icon', {'kind': 'matrix'}),
                      'actual and predicted': ('ml_r4_icon', {'kind': 'pair_marks'}),
                      'validation records': ('ml_r4_icon', {'kind': 'three_way'}),
-                     'final test': ('ml_icon', {'kind': 'lock'})},
+                     'held-back set': ('ml_icon', {'kind': 'lock'})},
       'slides': [{'at': 0,
                   'kind': 'concept',
                   'title': 'A confusion matrix shows where the answers went',
@@ -265,32 +265,32 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                   'fig': 'ml_complexity_gap',
                   'points': ['Gold bars show the training miss.', 'White bars show the miss on new trips.', 'The gap grows as the curve bends.'],
                   'say': 'Allow the line to bend more, and the miss on training trips shrinks. The miss on new trips grows. The model is memorising '
-                         'the practice and failing the exam.\n'
+                         'the training trips and missing on new ones.\n'
                          '\n'
                          'The same thing happens to a tree that is allowed too many questions.'},
                  {'at': 1,
                   'kind': 'concept',
-                  'title': 'Peeking at the final test turns it into practice',
+                  'title': 'Peeking at the held-back set turns it into practice',
                   'fig': 'ml_peek_test',
-                  'points': ['Score on the final test.', 'Change a setting and score again.', 'The test now shapes your choice.'],
-                  'say': 'It is tempting to check the final test, change a setting, and check again. Each peek leaks a little of the test into your '
-                         'decisions, and the test stops being a fair exam.\n'
+                  'points': ['Score on the held-back set.', 'Change a setting and score again.', 'The held-back set now shapes your choice.'],
+                  'say': 'It is tempting to check the held-back set, change a setting, and check again. Each peek leaks a little of the held-back set into your '
+                         'decisions, and it stops being a fair check.\n'
                          '\n'
-                         'So we keep a separate validation part for choosing settings, and we open the final test once.'},
+                         'So we keep a separate validation part for choosing settings, and we open the held-back set once.'},
                  {'at': 2,
                   'kind': 'wide',
-                  'title': 'Choose on validation and open the final test last',
+                  'title': 'Choose on validation and open the held-back set last',
                   'fig': 'ml_three_way_bar',
-                  'points': ['Train on 90.', 'Choose a setting using the 30 validation flowers.', 'Open the 30 test flowers once.'],
+                  'points': ['Train on 90.', 'Choose a setting using the 30 validation flowers.', 'Open the 30 held-back flowers once.'],
                   'say': 'The flowers are split three ways. Ninety for training. Thirty for validation, where we compare settings. Thirty for the '
-                         'final test, which stays locked until the very end.\n'
+                         'held-back set, which stays untouched until the very end.\n'
                          '\n'
                          'Next session you will do this yourself and compare two tree depths.'}]},
  18: {'question': {'fig': 'ml_choose_freeze_test',
                    'alt': 'Three candidate models scored on validation, the best one frozen, then tested once and reported',
-                   'say': 'This is the order of work for checkpoint two. Score the baseline and two trees on the validation flowers. Pick the best. '
-                          'Freeze it, so nothing changes any more. Test it once on the locked flowers and report the number. The choice is made '
-                          'before the test is ever opened.'},
+                   'say': 'This is the order of work for today. Score the baseline and two trees on the validation flowers. Pick the best. '
+                          'Freeze it, so nothing changes any more. Check it once on the held-back flowers and report the number. The choice is made '
+                          'before the held-back set is ever opened.'},
       'word_icons': {'stratify': ('ml_r4_icon', {'kind': 'strata'}),
                      'validation score': ('ml_r4_icon', {'kind': 'bars_pick'}),
                      'frozen choice': ('ml_r4_icon', {'kind': 'snow'}),
@@ -299,10 +299,10 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                   'kind': 'concept',
                   'title': 'Two cuts turn 150 flowers into 90, 30 and 30',
                   'fig': 'ml_two_cuts',
-                  'points': ['First cut: 30 flowers go to the final test.',
+                  'points': ['First cut: 30 flowers go to the held-back set.',
                              'Second cut: 30 of the 120 go to validation.',
                              'The rest, 90, is for training.'],
-                  'say': 'Start with all one hundred and fifty flowers. The first cut sets aside thirty for the final test. That leaves a hundred '
+                  'say': 'Start with all one hundred and fifty flowers. The first cut sets aside thirty for the held-back set. That leaves a hundred '
                          'and twenty. The second cut takes thirty of those for validation. Ninety are left for training.\n'
                          '\n'
                          'Check that your three sizes add up to a hundred and fifty.'},
@@ -317,20 +317,20 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                          'In this picture each part has the same proportion of the three species.'},
                  {'at': 1,
                   'kind': 'concept',
-                  'title': 'The final test has ten flowers of each species',
+                  'title': 'The held-back set has ten flowers of each species',
                   'fig': 'ml_confusion_3x3',
                   'points': ['Each row adds up to ten.', 'The diagonal holds right answers.', 'Off the diagonal are the mix-ups.'],
-                  'say': 'The final test holds thirty flowers, ten of each species, so every row of the confusion matrix adds up to ten. The '
+                  'say': 'The held-back set holds thirty flowers, ten of each species, so every row of the confusion matrix adds up to ten. The '
                          'diagonal cells are the flowers we named correctly. Anything off the diagonal is a mix-up between two species.\n'
                          '\n'
                          'Your own matrix will have real numbers in these cells.'},
                  {'at': 2,
                   'kind': 'wide',
-                  'title': 'Checkpoint two needs seven pieces of evidence',
+                  'title': 'A fair comparison has seven things to report',
                   'fig': 'ml_checkpoint_two_list',
-                  'points': ['Report validation and final test apart.'],
-                  'say': 'Before you hand in checkpoint two, tick these seven items. The three split sizes, the baseline score, two validation '
-                         'scores, the chosen depth, the final test accuracy, the confusion matrix and two limitations.\n'
+                  'points': ['Report validation and held-back set apart.'],
+                  'say': 'Before you show your comparison, tick these seven items. The three split sizes, the baseline score, two validation '
+                         'scores, the chosen depth, the held-back accuracy, the confusion matrix and two limitations.\n'
                          '\n'
                          'All of them must come from one notebook that you restarted and ran from the top.'}]},
  19: {'question': {'fig': 'ml_three_datasets',
@@ -396,9 +396,9 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                   'kind': 'wide',
                   'title': 'The fares split into 90, 30 and 30 trips',
                   'fig': 'ml_three_way_bar_fares',
-                  'points': ['Same shape as the flowers split.', 'Training teaches.', 'Test stays locked.'],
+                  'points': ['Same shape as the flowers split.', 'Training teaches.', 'Held-back set stays untouched.'],
                   'say': 'The fares file is cut the same way as the flowers. Ninety trips to learn from, thirty to choose between models, and thirty '
-                         'locked away for the end.\n'
+                         'held back for the end.\n'
                          '\n'
                          'Use the same random state as before so your numbers match the ones on the screen.'},
                  {'at': 0,
@@ -495,8 +495,8 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                          '\n'
                          'If you can write the card in three lines, you understand your own project.'}]},
  22: {'question': {'fig': 'ml_final_test_bars',
-                   'alt': 'Final test errors for the plain guess, 3,617 shillings, and the frozen model, 2,936 shillings',
-                   'say': 'Here is the answer to the question for today. On the thirty locked trips, the plain guess misses by three thousand six '
+                   'alt': 'Held-back errors for the plain guess, 3,617 shillings, and the frozen model, 2,936 shillings',
+                   'say': 'Here is the answer to the question for today. On the thirty held-back trips, the plain guess misses by three thousand six '
                           'hundred and seventeen shillings. The frozen model misses by two thousand nine hundred and thirty six. The model still '
                           'wins, though by less than on validation. That is a normal and honest result.'},
       'word_icons': {'frozen model': ('ml_r4_icon', {'kind': 'snow'}),
@@ -505,10 +505,10 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                      'limit': ('ml_r4_icon', {'kind': 'bounds'})},
       'slides': [{'at': 0,
                   'kind': 'concept',
-                  'title': 'The locked trips are opened once and reported',
+                  'title': 'The held-back trips are opened once and reported',
                   'fig': 'ml_open_once',
-                  'points': ['Thirty trips stayed locked until now.', 'Open them once.', 'Report whatever number appears.'],
-                  'say': 'The thirty locked trips have waited all this time. Now we open them once, with the model already frozen, and write down '
+                  'points': ['Thirty trips stayed untouched until now.', 'Open them once.', 'Report whatever number appears.'],
+                  'say': 'The thirty held-back trips have waited all this time. Now we open them once, with the model already frozen, and write down '
                          'the number.\n'
                          '\n'
                          'If the number is disappointing we report it anyway. Changing the model now and trying again would make the test '
@@ -518,12 +518,12 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                   'title': 'The lead over the plain guess shrinks at the test',
                   'fig': 'ml_val_vs_test',
                   'points': ['Validation lead: 4,361 against 2,255.',
-                             'Final test lead: 3,617 against 2,936.',
+                             'Held-back lead: 3,617 against 2,936.',
                              'A smaller lead on fresh trips is normal.'],
-                  'say': 'On validation the model beat the plain guess by a wide margin. On the final test the margin is smaller. This happens '
+                  'say': 'On validation the model beat the plain guess by a wide margin. On the held-back set the margin is smaller. This happens '
                          'because we chose the model using the validation trips, so it looked a little better there than it really is.\n'
                          '\n'
-                         'The final test gives the honest figure.'},
+                         'The held-back set gives the honest figure.'},
                  {'at': 2,
                   'kind': 'wide',
                   'title': 'A handover lets someone else rerun your work',
@@ -532,7 +532,7 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                   'say': 'A handover means somebody else can pick up your folder and run it. Keep the data file next to the notebook. Check that '
                          'restart and run all works from the top. State where the data came from, and say that it is invented.\n'
                          '\n'
-                         'Report validation and final test separately, and write the limits next to the result.'},
+                         'Report validation and held-back set separately, and write the limits next to the result.'},
                  {'at': 2,
                   'kind': 'concept',
                   'title': 'A one page report has five parts',
@@ -543,8 +543,8 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                          '\n'
                          'A stranger should be able to read it in two minutes.'}]},
  23: {'question': {'fig': 'ml_parent_five_slides',
-                   'alt': 'Five slide cards in a row: question, data, test, result and limit',
-                   'say': 'Your showcase has five slides, one for each of these ideas. The question, the data, the test, the result and the limit. '
+                   'alt': 'Five slide cards in a row: question, data, check, result and limit',
+                   'say': 'Your showcase has five slides, one for each of these ideas. The question, the data, the check, the result and the limit. '
                           'Five minutes in all, with no jargon a parent would stumble over. Today you build the five slides and rehearse them with a '
                           'partner.'},
       'word_icons': {'claim': ('ml_r4_icon', {'kind': 'bubble'}),
@@ -567,7 +567,7 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                   'fig': 'ml_audience_cards',
                   'points': ['A parent wants the idea.', 'A classmate wants the method.', 'Choose words for the person in front of you.'],
                   'say': 'The finding is the same for everyone. The words change. To a parent you say that it guesses the fare from the distance, '
-                         'and was tested on trips it never saw. To a classmate you can name the method.\n'
+                         'and was checked on trips it never saw. To a classmate you can name the method.\n'
                          '\n'
                          'Write your sentence for a parent first. If they would understand it, the rest is easy.'},
                  {'at': 1,
@@ -580,29 +580,29 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                          '\n'
                          'Being open about help is part of doing honest work.'}]},
  24: {'question': {'fig': 'ml_showcase_run',
-                   'alt': 'Four steps of the showcase: present, explain, answer and make a small change unaided',
+                   'alt': 'Four steps of the showcase: present, explain, answer and try a small change live',
                    'say': 'The showcase has four parts. You present your five slides. You explain what the number means. You answer questions from '
-                          'the room. Then you make one small change to your own code with nobody helping. This is your chance to show that the work '
-                          'is yours and that you understand it.'},
+                          'the room. Then you try one small change to your own code, live, with no AI assistant open. This is your chance to show your work '
+                          'and how you built it.'},
       'word_icons': {'showcase': ('ml_r4_icon', {'kind': 'screen'}),
-                     'unaided': ('ml_r4_icon', {'kind': 'solo'}),
-                     'completion record': ('ml_r4_icon', {'kind': 'cert'}),
-                     'portfolio': ('ml_r4_icon', {'kind': 'folder2'}),
+                     'live change': ('ml_r4_icon', {'kind': 'solo'}),
+                     'certificate': ('ml_r4_icon', {'kind': 'cert'}),
+                     'project folder': ('ml_r4_icon', {'kind': 'folder2'}),
                      'next step': ('ml_r4_icon', {'kind': 'stairs'}),
                      'feedback': ('ml_r4_icon', {'kind': 'bubble'})},
       'slides': [{'at': 0,
                   'kind': 'wide',
                   'title': 'Quote the number you measured when asked',
                   'fig': 'ml_final_test_bars',
-                  'points': ['The final test is your evidence.'],
+                  'points': ['The held-back set is your evidence.'],
                   'say': 'Questions from the room are easier when you have your numbers ready. The plain guess misses by three thousand six hundred '
-                         'and seventeen shillings on the locked trips. Your frozen model misses by two thousand nine hundred and thirty six.\n'
+                         'and seventeen shillings on the held-back trips. Your frozen model misses by two thousand nine hundred and thirty six.\n'
                          '\n'
                          'If you do not know an answer, say so, and say how you would find out.'},
                  {'at': 0,
                   'kind': 'concept',
-                  'title': 'One unaided change shows you know your code',
-                  'fig': 'ml_unaided_change',
+                  'title': 'One small live change shows how your code works',
+                  'fig': 'ml_live_change',
                   'points': ['Change one thing in your own notebook.', 'Predict the result first.', 'Run it and explain the difference.'],
                   'say': 'At the end you change one thing in your own code, perhaps a setting or an input. Say what you expect to happen before you '
                          'run it. Then run it and explain the difference.\n'
@@ -610,13 +610,13 @@ CONCEPTS = {13: {'question': {'fig': 'ml_features_target',
                          'If something breaks, read the last line of the error first. That line usually tells you what to look at.'},
                  {'at': 1,
                   'kind': 'concept',
-                  'title': 'Your portfolio and your next step go home with you',
+                  'title': 'Your project folder and your next step go home with you',
                   'fig': 'ml_portfolio_next',
                   'points': ['Keep the notebook, data, report and AI log together.', 'Pick one next step.', 'Ask a new question next time.'],
-                  'say': 'Before you leave, collect your portfolio: the handover notebook, the data file, the one page report and your AI use log. '
+                  'say': 'Before you leave, collect your project folder: the notebook, the data file, the one page report and your AI use log. '
                          'Keep them in one folder.\n'
                          '\n'
-                         'Then choose one next step. A new question, real data used with permission, or a bigger model tested fairly.'}]},
+                         'Then choose one next step. A new question, real data used with permission, or a bigger model compared fairly.'}]},
  'F03': {'question': {'fig': 'ml_same_mean_spread',
                       'alt': 'Two groups of four numbers with the same mean of 4 and different spread',
                       'say': 'Group A has the numbers two, two, six and six. Group B has four, four, four and four. Both have a mean of four. Yet '

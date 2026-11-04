@@ -6,6 +6,8 @@ Private. Keep this file out of the student folder.
 
 **Question of the day.** How many sales are in the practice shop file, and what does each one record?
 
+**Where this is used.** A shop till, a clinic register and a school timetable are all tables with rows and columns. Programs read such tables from files before they can learn anything. Which table in your life would you like to open in Python?
+
 Prerequisite: ML06 Functions and checks that fail loudly.
 
 ## The 180 minutes
@@ -84,7 +86,7 @@ print(homes.shape)
 # 120 rows and 4 columns. Each row is one invented home. rent_ugx is monthly rent in shillings.
 ```
 
-Evidence to collect: ML07.ipynb with the first rows, the shape (120, 4), and two sentences on a row and the unit.
+Build log entry to look for: ML07.ipynb with the first rows, the shape (120, 4), and two sentences on a row and the unit.
 
 ## Misconceptions to listen for
 
@@ -97,6 +99,32 @@ Evidence to collect: ML07.ipynb with the first rows, the shape (120, 4), and two
 - What does shape return for a table of 20 sales and 5 headers? Expected: (20, 5).
 - Why keep the CSV beside the notebook? Expected: read_csv looks for the file starting from the notebook folder.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Build a small table: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, Read the practice shop file: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Build a small table): Add a fourth sale, Pen with 4 units, to both lists and run again.
+2. Modify, Block B (Read the practice shop file): Show the first 10 rows by writing 10 inside the brackets of head.
+3. Make: Read synthetic_homes.csv. Show its first rows and its shape. Say what each row stands for and what unit rent_ugx is in.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does shape return for a table of 20 sales and 5 headers? Expected: (20, 5).
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

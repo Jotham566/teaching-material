@@ -1,0 +1,296 @@
+{
+ "track": "ML",
+ "learner": "",
+ "rows": [
+  {
+   "date": "2026-12-03",
+   "kind": "core",
+   "code": "ML01",
+   "title": "Your first instruction and your first prediction",
+   "build": "a computer that guesses the rent of a home",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2026-12-05",
+   "kind": "core",
+   "code": "ML02",
+   "title": "Values, names and types",
+   "build": "a price calculator that knows numbers from text",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2026-12-08",
+   "kind": "core",
+   "code": "ML03",
+   "title": "Arithmetic, converting text and reading errors",
+   "build": "a calculator that tells you where you slipped",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2026-12-10",
+   "kind": "core",
+   "code": "ML04",
+   "title": "Decisions and a hand-written flower rule",
+   "build": "a flower-sorting rule that you write by hand",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2026-12-11",
+   "kind": "lab",
+   "code": "F01",
+   "title": "Numbers, names and predicting Python output",
+   "build": "a warm-up: guess what Python prints, then check",
+   "where": "online",
+   "time": "14:00-16:00",
+   "timeText": "2:00 to 4:00 pm"
+  },
+  {
+   "date": "2026-12-12",
+   "kind": "core",
+   "code": "ML05",
+   "title": "Lists, dictionaries and loops",
+   "build": "a loop that reads a whole price list",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2026-12-15",
+   "kind": "core",
+   "code": "ML06",
+   "title": "Functions and checks that fail loudly",
+   "build": "a function that checks its own answers",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2026-12-17",
+   "kind": "core",
+   "code": "ML07",
+   "title": "Tables and reading a CSV file",
+   "build": "your first table: open a shop sales file",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2026-12-18",
+   "kind": "lab",
+   "code": "F02",
+   "title": "Lists, vectors and NumPy arrays",
+   "build": "a first tour of NumPy arrays",
+   "where": "online",
+   "time": "14:00-16:00",
+   "timeText": "2:00 to 4:00 pm"
+  },
+  {
+   "date": "2026-12-19",
+   "kind": "core",
+   "code": "ML08",
+   "title": "Select, filter and calculate new columns",
+   "build": "a revenue column that you calculate yourself",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2026-12-22",
+   "kind": "core",
+   "code": "ML09",
+   "title": "Mean, median, range and proportions",
+   "build": "a summary card: typical, spread and chance",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2026-12-24",
+   "kind": "core",
+   "code": "ML10",
+   "title": "Cleaning without hiding evidence",
+   "build": "a clean dataset with a log of every change",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2026-12-28",
+   "kind": "lab",
+   "code": "F03",
+   "title": "Variation, proportions and probability",
+   "build": "quick maths for data: spread and chance",
+   "where": "online",
+   "time": "14:00-16:00",
+   "timeText": "2:00 to 4:00 pm"
+  },
+  {
+   "date": "2026-12-29",
+   "kind": "core",
+   "code": "ML11",
+   "title": "Charts that show what the numbers say",
+   "build": "three charts that tell the story of the sales",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2026-12-31",
+   "kind": "core",
+   "code": "ML12",
+   "title": "Show your first chart and choose your project question",
+   "build": "a mini report and your own project question",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-02",
+   "kind": "core",
+   "code": "ML13",
+   "title": "Features, targets and an honest baseline",
+   "build": "a plain-guess baseline your model must beat",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2027-01-04",
+   "kind": "lab",
+   "code": "F04",
+   "title": "Matrices, weighted sums and slope",
+   "build": "the weighted sum behind a prediction",
+   "where": "online",
+   "time": "14:00-16:00",
+   "timeText": "2:00 to 4:00 pm"
+  },
+  {
+   "date": "2027-01-05",
+   "kind": "core",
+   "code": "ML14",
+   "title": "Predicting a number with a line",
+   "build": "a line that predicts a rent",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-07",
+   "kind": "core",
+   "code": "ML15",
+   "title": "A complete regression experiment",
+   "build": "a full prediction experiment, start to finish",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-09",
+   "kind": "core",
+   "code": "ML16",
+   "title": "Predicting a category with a decision tree",
+   "build": "a decision tree that sorts flowers",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2027-01-12",
+   "kind": "core",
+   "code": "ML17",
+   "title": "Mistakes, overfitting and fair comparisons",
+   "build": "a fair comparison that spots overfitting",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-14",
+   "kind": "core",
+   "code": "ML18",
+   "title": "A fair comparison: does your model beat the plain guess?",
+   "build": "your model against data it has never seen",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-16",
+   "kind": "core",
+   "code": "ML19",
+   "title": "Project data and a safe plan",
+   "build": "your project plan and your data",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2027-01-19",
+   "kind": "core",
+   "code": "ML20",
+   "title": "Build the project baseline",
+   "build": "your project baseline",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-21",
+   "kind": "core",
+   "code": "ML21",
+   "title": "Compare, explain and critique",
+   "build": "your best model, explained in plain words",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-23",
+   "kind": "core",
+   "code": "ML22",
+   "title": "The final run: your project, ready to share",
+   "build": "your finished project, ready to share",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  },
+  {
+   "date": "2027-01-26",
+   "kind": "core",
+   "code": "ML23",
+   "title": "Explain the project to a parent",
+   "build": "a three-minute talk about what you built",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-28",
+   "kind": "spare",
+   "code": "",
+   "title": "Catch-up and showcase rehearsal (optional)",
+   "build": "",
+   "where": "online",
+   "time": "14:00-15:30",
+   "timeText": "2:00 to 3:30 pm"
+  },
+  {
+   "date": "2027-01-30",
+   "kind": "core",
+   "code": "ML24",
+   "title": "Parent showcase and next steps",
+   "build": "showcase day: you show your family what you made",
+   "where": "person",
+   "time": "14:00-17:00",
+   "timeText": "2:00 to 5:00 pm"
+  }
+ ]
+}

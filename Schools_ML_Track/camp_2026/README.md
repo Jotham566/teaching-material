@@ -9,12 +9,14 @@ Two beginner tracks for S.4 to S.6 students and school leavers: **Machine Learni
 | Teach a session | [instructor_materials/](instructor_materials/README.md): one guide per session with the 180-minute clock, answers, misconceptions and questions to ask. Keep it private. |
 | Hand out the course | [student_packs/](student_packs/README.md): one ZIP per track, ready to share. |
 | See what each session teaches | [curriculum/](curriculum/README.md): the 24-session curriculum and eight-week plan for each track, glossaries and the foundation labs. |
-| Check a rule (AI use, marking, completion, what to tell students) | [handbook/](handbook/README.md) |
+| Check a rule (AI use, the build log, the progress map, the showcase, the certificate, what to tell students) | [handbook/](handbook/README.md) |
+| Run in-person and online classes | [handbook/HYBRID_DELIVERY.md](handbook/HYBRID_DELIVERY.md): the weekly pattern, the 90-minute online clock, tech checks, safeguarding. Each instructor guide ends with an Online version section. |
+| Give learners their progress map | `student_materials/{ML,DA}/PDF/My_Progress_Map.pdf` (one A4 page, eight badges, stamps, a project box). It is also inside the student ZIPs. |
 | Prepare laptops and the room, or see the organiser's decisions | [programme/](programme/README.md): setup, preflight script, decisions, benchmarks. |
 | Find or rebuild a dataset | [data/](data/README.md) |
 | Edit a lesson, rebuild or verify the pack | [build/](build/README.md) |
 | See the student sheets and notebooks | [student_materials/](student_materials/README.md) (the same files are inside the ZIPs) |
-| Project a session | `slides/DA/` and `slides/ML/`: 53 KLAi-branded decks (one per session, lab and the extension) with a spoken script in the speaker notes. Instructor only, not in the student ZIPs. Install the Lato fonts from `brand/fonts/` on the teaching laptop first. |
+| Project a session | `slides/DA/` and `slides/ML/`: 53 KLAi-branded decks (one per session, lab and the extension, each with a "Where this is used" slide after the question) with a spoken script in the speaker notes. Instructor only, not in the student ZIPs. Install the Lato fonts from `brand/fonts/` on the teaching laptop first. |
 | Brand files (logos, fonts, colours) | `brand/` |
 | Send parents a short outline | `marketing/parent_outlines/KLAi_Camp_Parent_Outline_DA.pdf` and `_ML.pdf` (2 pages each, fee and venue included) |
 | Teach from a printed guide | `instructor_materials/PDF/Instructor_Guide_DA.pdf` and `_ML.pdf` |
@@ -22,13 +24,13 @@ Two beginner tracks for S.4 to S.6 students and school leavers: **Machine Learni
 
 ## One session in a sentence
 
-One question for the day, at most six new words, two 50-minute blocks (predict, run, investigate, modify), a Make task, an error card and an exit ticket. Default clock: 10 recall, 50 block A, 15 break, 50 block B, 40 make, 15 exit.
+One question for the day, a "Where this is used" hook, at most six new words, two 50-minute blocks (predict, run, investigate, modify), a Make task, an error card and an exit ticket. Default clock: 10 recall, 50 block A, 15 break, 50 block B, 40 make, 15 exit. Online core class: about 90 minutes live (5 recall, 35 block A, 5 break, 35 block B, 10 close), then the Modify steps and the Make task as an after-class build task of about an hour. Every learner keeps one personal project that grows every class and a progress map with a badge for each week.
 
 ## Before the first class
 
 Run [programme/preflight_stack.py](programme/preflight_stack.py) on every laptop. Pilot one beginner through ML01, ML05, ML14, DA02, DA09, DA14 and DA17. Confirm the dates, venue, fees and booking terms in [programme/PROGRAMME_DECISIONS.md](programme/PROGRAMME_DECISIONS.md).
 
-Students work from PDF session sheets and notebooks; the slides are the instructor's projection aid. A school submission platform, online registration and payment, automatic grading and issued certificates are not deployed by this pack. No beginner pilot has been run.
+Students work from PDF session sheets and notebooks; the slides are the instructor's projection aid. A school submission platform, online registration and payment, and issued certificates are not deployed by this pack. No beginner pilot has been run.
 
 ## Verify and rebuild
 

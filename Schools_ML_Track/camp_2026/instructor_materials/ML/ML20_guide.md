@@ -2,9 +2,11 @@
 
 Private. Keep this file out of the student folder.
 
-**Objective.** By the end: you can split data into training, validation and locked test, fit a baseline on training only, and draw one descriptive chart.
+**Objective.** By the end: you can split data into training, validation and held-back parts, fit a baseline on training only, and draw one descriptive chart.
 
 **Question of the day.** How much does a plain guess miss by, before any model helps?
+
+**Where this is used.** A trader guessing next week's maize price might simply repeat this week's price. A model has to do better than that plain guess to be useful. What is the plain guess for your project?
 
 Prerequisite: ML19 Project data and a safe plan.
 
@@ -23,7 +25,7 @@ Where it overruns: Learners on other datasets need the same steps. Check the spl
 
 ## Block A. Split and fit the baseline
 
-Use the fares as the worked example, then repeat with your own dataset. Lock 20% away, take 25% of the rest for validation, and fit the mean guess on training only.
+Use the fares as the worked example, then repeat with your own dataset. Hold 20% back, take 25% of the rest for validation, and fit the mean guess on training only.
 
 Ask for the prediction first: Predict the three sizes and whether the baseline will miss fares by more than UGX 3000 on average.
 
@@ -42,7 +44,7 @@ val_baseline_mae = mean_absolute_error(y_val, baseline.predict(X_val))
 print(len(X_train), len(X_val), len(X_test), round(val_baseline_mae))
 ```
 
-Correct result: The cell prints 90, 30, 30 and 4361. The plain guess misses the validation fares by about UGX 4361 on average. Any model you build must beat that on the same validation trips. The baseline was fitted on the 90 training trips only. The 30 test trips stay locked.
+Correct result: The cell prints 90, 30, 30 and 4361. The plain guess misses the validation fares by about UGX 4361 on average. Any model you build must beat that on the same validation trips. The baseline was fitted on the 90 training trips only. The 30 held-back trips stay untouched.
 
 Investigate, with answers:
 
@@ -92,7 +94,7 @@ plt.show()
 
 Check the source, the split sizes, a baseline fitted only on training rows, a metric in the target's unit, and a labelled chart. The learner explains every column used.
 
-Evidence to collect: project.ipynb with the split, the baseline error on validation, one labelled chart, a data dictionary and a cleaning log.
+Build log entry to look for: project.ipynb with the split, the baseline error on validation, one labelled chart, a data dictionary and a cleaning log.
 
 ## Misconceptions to listen for
 
@@ -105,6 +107,32 @@ Evidence to collect: project.ipynb with the split, the baseline error on validat
 - What is the baseline error for the fares example? Expected: About UGX 4361 on validation.
 - Which rows may the chart use? Expected: Training rows.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Split and fit the baseline: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, One descriptive chart: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Split and fit the baseline): Print the share of the 150 trips used for training.
+2. Modify, Block B (One descriptive chart): Colour the dots by rush_hour by adding hue="rush_hour" to the plot.
+3. Make: Complete the three-way split, the baseline and one labelled chart for your own project dataset. Save the notebook, your data dictionary and the cleaning log. If no cleaning was needed, record the checks that found nothing.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What is the baseline error for the fares example? Expected: About UGX 4361 on validation.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.

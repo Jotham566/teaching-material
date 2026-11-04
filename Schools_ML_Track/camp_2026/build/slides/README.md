@@ -19,6 +19,7 @@ python Schools_ML_Track/camp_2026/build/slides/lint_slides.py             # hous
 | notes_auto.py | Spoken-script notes for the automatic slides. |
 | figs_common.py, figs_da.py, figs_ml.py | The authored illustrations. A figure is a function `fn(w, h, **params) -> Scene`. |
 | concepts_da_1.py, concepts_da_2.py, concepts_ml_1.py, concepts_ml_2.py | The authored concept slides and speaker notes per session. |
+| figs_hooks.py | The three-pictogram illustration for each deck's "Where this is used" slide (HOOK_NODES) and the 24-dot progress strip. The slide is built by `add_hook` in build_slides.py right after the question slide; its spoken script is `hook_note` in notes_auto.py. |
 | lint_slides.py | Style lint. |
 
 Figures are cached in `camp_2026/figures/`. Fonts: install Lato from `camp_2026/brand/fonts/` on any laptop that opens the decks.

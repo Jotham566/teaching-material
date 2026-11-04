@@ -2,7 +2,7 @@
 
 ## Confirmed by the organiser
 
-December intake; two months; three classes per week with practice between classes; separate Machine Learning and Python for Data Analysis tracks; S.4–S.6 students and vacists; three groups of five learners, 15 places total; parent and guardian project demonstrations followed by certificates. Price per learner for the whole programme: UGX 1,000,000 for every group size from one to five (confirmed by the organiser 31 October 2026, in line with the 30 September and 5 October instructions). Venue: The National ICT Innovation Hub, Nakawa. Every learner must have their own laptop. Currency is interpreted as UGX from the programme context.
+December intake; two months; three classes per week with practice between classes; separate Machine Learning and Python for Data Analysis tracks; S.4–S.6 students and vacists; three groups of five learners, 15 places total; a parent and guardian project showcase followed by certificates. Price per learner for the whole programme: UGX 1,000,000 for every group size from one to five (confirmed by the organiser 31 October 2026, in line with the 30 September and 5 October instructions). Venue: The National ICT Innovation Hub, Nakawa. Every learner must have their own laptop. Currency is interpreted as UGX from the programme context.
 
 ## Working choices used in this pack
 
@@ -25,7 +25,7 @@ Welcome S.4–S.6 students and vacists into either track; school year alone does
 7. Hold a brief device/setup check before the first class. Install and test the selected tools on the actual Windows/Mac devices. Prepare local data copies and offline notes. Do not promise a lab or recording service unless it exists.
 8. For under-18 learners, agree guardian contacts, pickup arrangements, emergency contacts and supervised communication. Obtain separate, optional consent for photographs or public project sharing. Students can complete the course without a public profile or social-media account.
 9. Pilot ML01, ML05, ML14, DA02, DA09, DA14 and DA17 with a genuine beginner. Time the exercises, check labels and repair cues, and adjust pacing before finalising the timetable.
-10. Choose a private submission channel and retention period. This school pack does not reuse university forms or student registration numbers. Test one upload/download using a learner account before issuing a submission link.
+10. Choose a private channel for sharing project folders and a retention period. This school pack does not reuse university forms or student registration numbers. Test one upload and download using a learner account before issuing a link.
 
 ## Capacity and gross revenue
 
@@ -41,21 +41,25 @@ Three full groups give 15 x UGX 1,000,000 = UGX 15,000,000 gross revenue for the
 
 A one-person group produces much less revenue per instructor hour than a full group. Review venue, preparation, device and support costs before confirming it at the same teaching hours. These are gross planning calculations, not profit forecasts.
 
-## Proposed completion and assessment policy
+## Build log, showcase and certificate policy (decision of 31 October 2026)
 
-Publish this before enrolment after confirming it. Six weekly practice portfolios contribute 20%; checkpoint one 15%; checkpoint two 20%; final project 30%; individual demonstration 15%. Total 100%. Convert each component's earned fraction to its published weight; do not add incompatible raw scales.
+The organiser decided on 31 October 2026 that the camp has no tests. It is a holiday programme that gives students an extra skill and should not feel like school. There are no marks, no weighted scores, no pass line and no rubric scoring. In every class learners build something and save it in a build log. Friendly milestone show-and-tells happen in weeks 4, 6 and 7. Each learner builds a final project and shows it at a parent showcase. Feedback is one strength and one next step, given kindly and privately. Publish these rules before enrolment after confirming them. The earlier policy of weighted components and a 50/100 pass line is retired and kept in the archive.
 
-Completion certificate: at least 20 of 24 core sessions attended or documented make-up evidence; ML also requires completion of F01–F04 lab evidence (in class or through guided make-up); both checkpoints submitted; project and individual demonstration completed; at least 50/100 overall. Offer one repair attempt for weekly work and checkpoints before the project submission date. A learner who has not yet met the evidence requirements receives a participation record and an agreed opportunity to complete the missing evidence, not a certificate claiming demonstrated skills. No external accreditation or professional qualification is promised.
+Completion certificate: at least 20 of the 24 core sessions attended or made up; ML learners also join the four foundation labs F01 to F04 (in class or by make-up); the build log kept; and a finished project shown at the parent showcase. A learner who has not yet done all of these receives a participation record and an agreed chance to finish. No external accreditation or professional qualification is promised. See handbook/BUILD_LOG_AND_SHOWCASE.md.
 
-Numeric Python/SQL results can be checked automatically against references. Written reasoning and the live demonstration require a short instructor review. Do not claim end-to-end automatic grading is operational: no school submission service or local-AI calibration has been deployed by this pack.
+Numeric Python results can be checked against the reference values so that the instructor can help a learner whose number is off. Nothing is graded. No school submission service has been deployed by this pack.
+
+## Hybrid delivery (owner decision of 31 October 2026)
+
+Some learners take one class a week in person (Saturday, 3 hours, at The National ICT Innovation Hub, Nakawa) and the other core classes online, plus the ML foundation labs online. An online core class is about 90 minutes live on video with screen sharing, then the learner finishes the build in their own time (about an hour) and sends a photo or the notebook before the next class. The rules are in handbook/HYBRID_DELIVERY.md. Still to be decided by the organiser: the route for returning build tasks, the video platform, which weekdays are online and the day of the labs, the written consent form for any recording, and whether a second adult joins online classes. Until decided, the pack says "the route the organiser sets".
 
 ## Python for Data Analysis: tools and outcome
 
-Revision 2 (31 October 2026). The track is Python-only: Jupyter and Python fundamentals in weeks 1–2; pandas in week 3; cleaning, matplotlib charts and checkpoint one in week 4; NumPy and seaborn exploration in week 5; cleaning a messy export, merging two tables and checkpoint two in week 6; a reproducible analysis notebook, chart report and showcase in weeks 7–8. SQL is taught in the professional courses and is not part of the teenage camp. Excel is not a required tool or deliverable. Three core meetings per week are retained; use readiness checks and narrow project scope rather than adding untaught tools. The standard stack for both tracks is NumPy, pandas, matplotlib and seaborn, with scikit-learn for Machine Learning. TensorFlow is an instructor demonstration only.
+Revision 2 (31 October 2026). The track is Python-only: Jupyter and Python fundamentals in weeks 1–2; pandas in week 3; cleaning, matplotlib charts and the first-chart show-and-tell in week 4; NumPy and seaborn exploration in week 5; cleaning a messy export, merging two tables and reconciling a total in week 6; a reproducible analysis notebook, chart report and showcase in weeks 7–8. SQL is taught in the professional courses and is not part of the teenage camp. Excel is not a required tool or deliverable. Three core meetings per week are retained; use readiness checks and narrow project scope rather than adding untaught tools. The standard stack for both tracks is NumPy, pandas, matplotlib and seaborn, with scikit-learn for Machine Learning. TensorFlow is an instructor demonstration only.
 
 ## Optional neural-network extension (ML25)
 
-Kept, as an optional notebook after session 24. Not assessed, not advertised as an outcome, no extra class or install. Industry practice is to fit a baseline and a simple model first and to reach for a neural network only when the data justifies it, so the notebook compares scikit-learn's MLPClassifier with a depth 3 tree and a majority baseline on 150 iris flowers and says plainly that the network has no advantage there. Keras is shown on the instructor laptop only.
+Kept, as an optional notebook after session 24. For interest only, not advertised as an outcome, no extra class or install. Industry practice is to fit a baseline and a simple model first and to reach for a neural network only when the data justifies it, so the notebook compares scikit-learn's MLPClassifier with a depth 3 tree and a majority baseline on 150 iris flowers and says plainly that the network has no advantage there. Keras is shown on the instructor laptop only.
 
 ## Marketing enquiry flow
 

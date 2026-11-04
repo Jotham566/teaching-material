@@ -38,7 +38,7 @@ Start list, one row per error card. Students add the errors they meet.
 | NameError: name 'iris' is not defined | The cell that loads iris has not run. | Run the cells in order from the top. | ML16 |
 | The two kinds of mistake sit in the wrong cells | The axes were read the wrong way round: rows are actual, columns are predicted. | Label both axes before reading any cell. | ML17 |
 | The matrix has actual and predicted swapped | The two lists were passed to confusion_matrix in the wrong order. It expects the actual values first and the predicted values second. | Write confusion_matrix(actual, predicted) and check that the row totals match the real class counts. | ML17 |
-| The final accuracy was calculated before the choice | The final test was used while deciding the depth. | Mark that result as validation and use the instructor's alternate holdout for the final. | ML18 |
+| The final accuracy was calculated before the choice | The held-back set was used while deciding the depth. | Mark that result as validation and use the instructor's alternate holdout for the final. | ML18 |
 | ValueError: The least populated class in y has only 1 members | stratify was given labels that are too few. | Check that y is the full label list. | ML18 |
 | KeyError: 'tip' | The column is called tip_ugx. | Print fares.columns and copy the exact names. | ML19 |
 | The plan promises too much | It asks for real people's data, an app or a neural network. | Reduce it to one supplied table, one target and one baseline. | ML19 |

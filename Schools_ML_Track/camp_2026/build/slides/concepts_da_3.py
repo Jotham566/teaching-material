@@ -344,19 +344,19 @@ CONCEPTS = {7: {'question': {'fig': 'da_tables_hero',
                          'not.'}]},
  12: {'question': {'fig': 'da_hero_checkpoint_one',
                    'alt': 'The Sunrise Shops sales table summarised for three shops',
-                   'say': 'This is the first checkpoint. You have the Sunrise sales, one thousand five hundred and thirteen rows, and you have the '
+                   'say': 'Today you show your first chart. You have the Sunrise sales, one thousand five hundred and thirteen rows, and you have the '
                           'tools to load, summarise and chart them. The question is a big one. What do the sales tell us about the three shops? '
-                          'Today you answer it on your own, in a notebook that someone else can restart and rerun, and I will mark what you wrote, '
+                          'Today you answer it in your own notebook, one that someone else can restart and rerun, and you show what you wrote '
                           'and how you checked it.'},
       'slides': [{'at': 0,
                   'kind': 'wide',
-                  'title': 'Checkpoint one has five steps, from file to finding',
+                  'title': 'Your first chart has five steps, from file to finding',
                   'fig': 'da_cp1_flow',
                   'points': ['Load, check, total, chart, then write what you found.'],
-                  'say': 'The checkpoint has a clear order. We load the file. We check it, looking for missing values and repeats. We total the '
+                  'say': 'This has a clear order. We load the file. We check it, looking for missing values and repeats. We total the '
                          'revenue and group it by branch. We draw a chart. And only then do we write what we found.\n'
                          '\n'
-                         'Keep the steps in this order in your notebook. If the order is clear, the marking is easy, and so is the rerun.'},
+                         'Keep the steps in this order in your notebook. If the order is clear, a rerun is easy.'},
                  {'at': 0,
                   'kind': 'concept',
                   'title': 'A notebook that reads top to bottom is easy to rerun',
@@ -375,7 +375,7 @@ CONCEPTS = {7: {'question': {'fig': 'da_tables_hero',
                          'value. The test is simple. Restart the kernel, which clears everything Python remembers, and run all the cells from the '
                          'top. If every number comes out the same, the notebook is honest.\n'
                          '\n'
-                         'Do this at the end of the checkpoint. If a number changes, find the first cell that differs.'},
+                         'Do this at the end of your notebook. If a number changes, find the first cell that differs.'},
                  {'at': 2,
                   'kind': 'concept',
                   'title': 'Every finding points back to its output cell',

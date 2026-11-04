@@ -27,7 +27,7 @@ import traceback
 os.environ['MPLBACKEND'] = 'Agg'
 import warnings
 warnings.filterwarnings('ignore', message='FigureCanvasAgg is non-interactive')
-from common import ROOT, CURRICULUM, ALLOWED_IMPORTS, BANNED_TERMS, DEFAULT_CLOCK, DATA_DA, DATA_ML
+from common import ROOT, CURRICULUM, ALLOWED_IMPORTS, BANNED_TERMS, DEFAULT_CLOCK, DATA_DA, DATA_ML, HOOK_MAX_WORDS, BADGES
 from content import ML, DA, LABS, EXTENSION
 
 try:
@@ -106,7 +106,32 @@ STYLE = [
     (re.compile(r',\s+not\s+(a|an|the|to|about|because|for)\b', re.I), '"X, not Y" contrast'),
     (re.compile(r'—'), 'em dash'),
     (re.compile(r'\b(genuinely|honestly|straightforward|it is worth noting)\b', re.I), 'filler word'),
+    (re.compile(r"\b(dive into|dive in|unlock|journey|embark|game-changer|in today's world)\b", re.I), 'AI-slop phrase'),
 ]
+INVITE = re.compile(r'^(try|build|imagine|pick|guess|test|ask|look|write|find|name|choose|think|say)\b', re.I)
+
+
+def check_hook(ident, l):
+    """The 'Where this is used' hook: non-empty, short, no figures, ends in a question or an invitation."""
+    h = l.get('hook')
+    if not isinstance(h, str) or not h.strip():
+        fail(f'{ident}: hook is missing or empty')
+        return
+    n = len(h.split())
+    if n > HOOK_MAX_WORDS:
+        fail(f'{ident}: hook has {n} words, limit {HOOK_MAX_WORDS}')
+    if re.search(r'\d', h):
+        fail(f'{ident}: hook contains a digit; use no figures')
+    sents = [x for x in re.split(r'(?<=[.!?])\s+', h.strip()) if x]
+    if not 2 <= len(sents) <= 3:
+        fail(f'{ident}: hook should be 2 to 3 short sentences, found {len(sents)}')
+    if not (sents[-1].endswith('?') or INVITE.match(sents[-1])):
+        fail(f'{ident}: hook must end with a question or an invitation')
+    for rx, label in STYLE:
+        m = rx.search(h)
+        if m:
+            fail(f'{ident}: hook style ({label}): "...{h[max(0, m.start() - 30):m.end() + 30]}..."')
+
 
 
 def check_lesson(track, i, l):
@@ -209,6 +234,7 @@ def main():
         seen = {}
         for i, l in enumerate(lessons, 1):
             check_lesson(track, i, l)
+            check_hook(f'{track}{i:02}', l)
             for w in l['words']:
                 k = w[0].lower()
                 if k in seen:
@@ -238,6 +264,7 @@ def main():
     # labs
     for n, lab in enumerate(LABS, 1):
         name = f'F{n:02}'
+        check_hook(name, lab)
         if len(lab['words']) > 6:
             fail(f'{name}: more than six words')
         for t in all_text(lab):
@@ -254,11 +281,55 @@ def main():
         err = execute('ML', name, [('exec', lab['code'], 'lab code'), ('eval', lab['check'], 'lab check')])
         err and fail(f'{name}: {err}')
         ok()
+    check_hook('ML25', EXTENSION)
     if EXTENSION.get('needs_sklearn') and not HAVE_SK:
         skipped.append('ML25')
     else:
         err = execute('ML', 'ML25', [('exec', EXTENSION['code'], 'extension'), ('eval', EXTENSION['check'], 'extension check')])
         err and fail(f'ML25: {err}')
+    # hooks, online sections, badges, progress maps and the hybrid handbook reach the generated files
+    for track, lessons in (('ML', ML), ('DA', DA)):
+        for i, l in enumerate(lessons, 1):
+            ident = f'{track}{i:02}'
+            for p in (STUDENT[track] / f'{ident}.md', ROOT / 'instructor_materials' / track / f'{ident}_guide.md'):
+                if p.exists() and l['hook'] not in p.read_text():
+                    fail(f'{p.name}: hook text missing')
+            nb = STUDENT[track] / f'{ident}.ipynb'
+            if nb.exists() and 'Where this is used' not in nb.read_text():
+                fail(f'{nb.name}: Where this is used missing')
+            g = ROOT / 'instructor_materials' / track / f'{ident}_guide.md'
+            if g.exists():
+                gt = g.read_text()
+                if '## Online version' not in gt or 'Live clock, 90 minutes' not in gt or 'route the organiser sets' not in gt:
+                    fail(f'{g.name}: Online version section incomplete')
+        cur = (CURRICULUM / f'CURRICULUM_{track}.md').read_text()
+        plan = (CURRICULUM / f'CLASS_PLAN_{track}.md').read_text()
+        for bd in BADGES[track]:
+            if f'(badge: {bd})' not in cur or f'(badge: {bd})' not in plan:
+                fail(f'{track}: badge {bd} missing from curriculum or class plan headings')
+        if 'Online version:' not in plan:
+            fail(f'{track}: class plan has no Online version lines')
+        mp = STUDENT[track] / 'PDF' / 'My_Progress_Map.pdf'
+        if not mp.exists():
+            fail(f'{track}: My_Progress_Map.pdf missing')
+    for n in range(1, 5):
+        for p in (STUDENT['ML'] / f'F{n:02}.md', ROOT / 'instructor_materials' / 'ML' / f'F{n:02}_guide.md'):
+            if LABS[n - 1]['hook'] not in p.read_text():
+                fail(f'{p.name}: hook text missing')
+        if '## Online version' not in (ROOT / 'instructor_materials' / 'ML' / f'F{n:02}_guide.md').read_text():
+            fail(f'F{n:02} guide: Online version missing')
+    if EXTENSION['hook'] not in (STUDENT['ML'] / 'ML25_Extension.md').read_text():
+        fail('ML25_Extension.md: hook text missing')
+    hb = ROOT / 'handbook' / 'HYBRID_DELIVERY.md'
+    if not hb.exists():
+        fail('handbook/HYBRID_DELIVERY.md missing')
+    else:
+        for path in [hb] + [ROOT / 'handbook' / n for n in ('START_HERE.md', 'BUILD_LOG_AND_SHOWCASE.md')]:
+            t = path.read_text()
+            for rx, label in STYLE:
+                m = rx.search(t)
+                if m:
+                    fail(f'{path.name}: style ({label}): "...{t[max(0, m.start() - 30):m.end() + 30]}..."')
     # reference numbers
     ref = json.loads((ROOT / 'instructor_materials' / 'reference_values.json').read_text())
     cs = ref['camp_shop']

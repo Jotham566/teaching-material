@@ -1,10 +1,12 @@
-# ML22 Instructor guide: The final test and a reproducible handover
+# ML22 Instructor guide: The final run: your project, ready to share
 
 Private. Keep this file out of the student folder.
 
-**Objective.** By the end: you can run the final test once, report it separately from validation, and hand over a project that reruns from a restarted kernel.
+**Objective.** By the end: you can run the held-back check once, report it separately from validation, and share a project that reruns from a restarted kernel.
 
 **Question of the day.** How well does my frozen model do on rows nobody has used?
+
+**Where this is used.** Before a model goes live, a team freezes it, tests it once on untouched data and packs the work so someone else can rerun it. Today you do the same. Could a stranger rerun your project tomorrow?
 
 Prerequisite: ML21 Compare, explain and critique.
 
@@ -13,19 +15,19 @@ Prerequisite: ML21 Compare, explain and critique.
 | Minutes | Activity |
 |---|---|
 | 10 | recall |
-| 40 | final test |
+| 40 | held-back run |
 | 15 | break |
 | 25 | handover checklist |
 | 80 | assemble, rerun and report |
 | 10 | save and exit check |
 
-Where it overruns: Learners with different datasets need the same final-test discipline. Check each learner's order of steps.
+Where it overruns: Learners with different datasets need the same held-back discipline. Check each learner's order of steps.
 
-## Block A. Run the final test once
+## Block A. Run the held-back check once
 
-The fares model with three inputs was chosen on validation. Now run the 30 locked test trips once.
+The fares model with three inputs was chosen on validation. Now run the 30 held-back trips once.
 
-Ask for the prediction first: Predict whether the final test error will be above or below the validation error of 2255.
+Ask for the prediction first: Predict whether the held-back error will be above or below the validation error of 2255.
 
 ```python
 import pandas as pd
@@ -45,14 +47,14 @@ final_baseline_mae = mean_absolute_error(y_test, baseline.predict(X_test))
 print(round(final_mae), round(final_baseline_mae))
 ```
 
-Correct result: The cell prints 2936 and 3617. On the locked 30 trips the model misses by about UGX 2936 and the plain guess by about UGX 3617. The model is still better, but its lead is much smaller than the validation lead of 2255 against 4361. This is normal: the test has only 30 trips, and the validation lead may have been lucky. Report the final number as it is, next to the validation number, and do not change the model to improve it.
+Correct result: The cell prints 2936 and 3617. On the 30 held-back trips the model misses by about UGX 2936 and the plain guess by about UGX 3617. The model is still better, but its lead is much smaller than the validation lead of 2255 against 4361. This is normal: the held-back set has only 30 trips, and the validation lead may have been lucky. Report the final number as it is, next to the validation number, and do not change the model to improve it.
 
 Investigate, with answers:
 
-- Why report the final score separately from validation? Answer: Validation was used to choose the model, so only the final test is an honest score.
-- Can you change the model if the final score is disappointing? Answer: No. Changing it after seeing the test would use the test twice, and a new locked test would be needed.
+- Why report the final score separately from validation? Answer: Validation was used to choose the model, so only the held-back set gives an honest score.
+- Can you change the model if the final score is disappointing? Answer: No. Changing it after seeing the result would use those trips twice, and a new held-back set would be needed.
 
-Modify: Calculate how much smaller the model's error is than the baseline's on the final test, as a percentage. Answer: About 19% smaller.
+Modify: Calculate how much smaller the model's error is than the baseline's on the held-back trips, as a percentage. Answer: About 19% smaller.
 
 ```python
 improvement = (final_baseline_mae - final_mae) / final_baseline_mae * 100
@@ -64,20 +66,20 @@ Another person should be able to rerun your folder. Work through the list with a
 
 Ask for the prediction first: Write the three things you think a stranger needs first to rerun your project.
 
-Correct result: The checklist: restart the kernel and run all cells from the top; the data file sits beside the notebook; the data origin and the fact that it is synthetic are stated; the final test is reported separately from validation; limits are written next to the result; project.ipynb, the data dictionary and report.pdf or report.docx are saved together; every file opens when reopened. A model on invented teaching data is a demonstration, and nobody should use it to make decisions about people.
+Correct result: The checklist: restart the kernel and run all cells from the top; the data file sits beside the notebook; the data origin and the fact that it is synthetic are stated; the held-back result is reported separately from validation; limits are written next to the result; project.ipynb, the data dictionary and report.pdf or report.docx are saved together; every file opens when reopened. A model on invented teaching data is a demonstration, and nobody should use it to make decisions about people.
 
 Investigate, with answers:
 
 - Why restart the kernel before the final run? Answer: Hidden steps are exposed when the notebook runs from a clean start.
-- What does the report say about the model's limits? Answer: The data is invented, the test is small, and the model has not been tried on real trips.
+- What does the report say about the model's limits? Answer: The data is invented, the held-back set is small, and the model has not been tried on real trips.
 
 Modify: Swap notebooks with a partner. Follow their instructions without asking questions and note where you stall. Answer: Every stall is a missing instruction. Add it.
 
 ## Make: reference
 
-All files open and agree with each other. The final test is clearly separate from validation. Nothing relies on a variable that exists only in an earlier session.
+All files open and agree with each other. The held-back result is clearly separate from validation. Nothing relies on a variable that exists only in an earlier session.
 
-Evidence to collect: A complete local project folder and a clean rerun from a restarted kernel, with the final test reported once.
+Build log entry to look for: A complete local project folder and a clean rerun from a restarted kernel, with the held-back result reported once.
 
 ## Misconceptions to listen for
 
@@ -87,9 +89,35 @@ Evidence to collect: A complete local project folder and a clean rerun from a re
 
 ## Questions to ask, with expected answers
 
-- What does the final test tell you that validation does not? Expected: How the frozen model does on rows no choice ever used.
+- What does the held-back result tell you that validation does not? Expected: How the frozen model does on rows no choice ever used.
 - What is the first fix when a notebook breaks on rerun? Expected: Restart and run all, and find the first cell that fails.
 
-## Evidence and feedback
+## Online version
 
-Record complete, needs repair or absent for each of the five learners, with one concrete repair action. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and live demonstrations need your judgement and are not auto-graded.
+For a hybrid group. The live class is 90 minutes on video with screen sharing. The learner finishes the build in their own time, about an hour. The full rules are in handbook/HYBRID_DELIVERY.md.
+
+### Live clock, 90 minutes
+
+| Minutes | Activity |
+|---|---|
+| 5 | Recall: three questions on paper, then say the answers aloud |
+| 35 | Block A, Run the held-back check once: predict, run, investigate. The Modify step moves to the build task. |
+| 5 | Break away from the screen |
+| 35 | Block B, The handover checklist: predict, run, investigate. The Modify step moves to the build task. |
+| 10 | Close: say the exit sentence aloud, then the build task is set |
+
+### After-class build task, about an hour
+
+1. Modify, Block A (Run the held-back check once): Calculate how much smaller the model's error is than the baseline's on the held-back trips, as a percentage.
+2. Modify, Block B (The handover checklist): Swap notebooks with a partner. Follow their instructions without asking questions and note where you stall.
+3. Make: Use the project checklist. Reopen all your files. Save project.ipynb, your data dictionary and report.pdf or report.docx together in your project folder, and share the folder with the instructor by the route in START_HERE.md.
+
+When you finish, write two sentences: what you changed and how you checked it. Add a build log entry. Send a photo of your work or the notebook by the route the organiser sets, before the next class.
+
+### Next class
+
+In the next class recall, ask: What does the held-back result tell you that validation does not? Expected: How the frozen model does on rows no choice ever used.
+
+## Build log and feedback
+
+Look at what each of the five learners saved and note one strength and one next step for each. Share them kindly and privately. Nothing is scored or ranked. Visit every learner, not only volunteers. Keep this guide private. Numeric results come from reference_values.json; explanations and show-and-tells need your judgement.
