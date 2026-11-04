@@ -1,0 +1,425 @@
+{
+ "session": 19,
+ "notes_title": "Today we predict next month, and today is Checkpoint 3. We use the District Clinics file, twelve districts and five years of malaria cases, and we ask a plain question. Can we beat the simplest possible guess? By the end you'll have a seasonal baseline, a model that uses last month's rain and last month's cases, and an error you can state in cases. It's also the third step of your capstone.",
+ "notes_outcomes": "You'll split a time series by the calendar, beat a seasonal naive forecast, and say by how much, in cases. You'll also read the syntax of a Pipeline, which packs a whole modelling job into one object. The model itself is short enough to write with numpy, so the lab spends its time on judging the result carefully. All of it counts toward Checkpoint 3, and the capstone brief sits near the end of the slides.",
+ "notes_words": "Six words today. A time series is a column of numbers recorded month after month. Seasonal naive means guessing the same month last year. A lag feature is a column that holds an earlier value beside today's row. A forecast horizon is how far ahead you predict. A pipeline is a saved list of steps that always run in the same order. And mean absolute error is the average size of a miss, which I'll call the average miss. I'll give the spreadsheet cousin of each word as it comes up.",
+ "vocab": [
+  [
+   "Time series",
+   "A number recorded at regular times, such as cases each month.",
+   "A column of monthly figures with dates beside it"
+  ],
+  [
+   "Seasonal naive",
+   "A forecast that copies the same period from last year.",
+   "A formula that points twelve rows up"
+  ],
+  [
+   "Lag feature",
+   "A column holding an earlier value, placed beside today's row.",
+   "Typing =B2 into row 3 so each row shows the row above"
+  ],
+  [
+   "Forecast horizon",
+   "How far ahead the forecast looks, such as one month.",
+   "How many rows below the last date you fill"
+  ],
+  [
+   "Pipeline",
+   "A list of steps that always run in the same order, packed into one object.",
+   "A recorded macro"
+  ],
+  [
+   "Mean absolute error",
+   "The average size of the misses, with the sign ignored, in the units of the target.",
+   "AVERAGE of the ABS of actual minus forecast"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 18",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Segments had no right answer to check against. What is learning without labels called?",
+     "a": "Unsupervised learning. We judged the segments by whether each could be described and acted on. The elbow plot only helped choose k."
+    },
+    {
+     "q": "Why did we scale the columns before running k-means?",
+     "a": "So a column of large numbers, such as spend in shillings, does not drown out a column of small numbers, such as visits."
+    }
+   ],
+   "notes": "Segments and scaling, from Session 18, before we turn to forecasts.\n\nFirst. Your customer segments had no right answer to check against. What do we call learning without labels? Have a think.\n\nIt's called unsupervised learning. Because nobody gave us the answers, we judged the segments by one test above all. Could we describe each one to a manager in plain words, and say what to do for it? The elbow plot only helped us choose how many groups.\n\nSecond. Why did we scale the columns before running k-means? No rush.\n\nSo that a column of big numbers, such as spend in shillings, doesn't drown out a column of small numbers, such as the count of visits. Today the answers come back. We'll predict a number we can check against what happened."
+  },
+  {
+   "type": "concept",
+   "title": "A monthly count has a trend, a season and noise",
+   "lead": "A time series is a number recorded at regular times. Pull one apart and each piece has a job.",
+   "points": [
+    {
+     "h": "Trend",
+     "t": "The slow drift up or down over the years."
+    },
+    {
+     "h": "Season",
+     "t": "The pattern that repeats every year."
+    },
+    {
+     "h": "Noise",
+     "t": "What is left over. No model predicts it."
+    }
+   ],
+   "fig": "ts_decomposition",
+   "alt": "Three stacked panels for monthly malaria cases: a rising trend, a repeating yearly season and small leftover noise.",
+   "notes": "Today's question is how to predict next month. We start with what the data looks like. Our file is clinic_visits.csv, the District Clinics data. Twelve districts, sixty months, January 2021 to December 2025. One row is one district in one month.\n\nA column of numbers recorded month after month is called a time series. In Excel it's the column of monthly figures with the dates running down beside it.\n\nThe picture adds up all twelve districts and pulls them apart into three pieces. The top panel is the trend, the slow drift. Monthly cases creep up from about twenty six thousand to about twenty nine thousand over the five years. The middle panel is the season, a shape that repeats every year. The bottom panel is the noise, the wiggle left over. A forecast can use the first two. It can never use the third."
+  },
+  {
+   "type": "figure",
+   "title": "Malaria cases by calendar month, all districts",
+   "fig": "clinic_season",
+   "look": [
+    "December is the tallest month, in the lighter bar.",
+    "April to June and October to December run higher than the months around them."
+   ],
+   "caption": "Cases added over five years and twelve districts, by calendar month.",
+   "alt": "Bar chart of malaria cases for each calendar month, with December highlighted as the tallest.",
+   "notes": "Here's the season on its own. Every January across five years and twelve districts is added into one bar, every February into the next, and so on.\n\nDecember is the tallest, shown in the lighter bar. About one hundred and fifty three thousand cases.\n\nAnd the bars are far from equal. April to June and October to December run higher than the months around them, by about twenty thousand cases. That repeating shape is what makes forecasting possible. If every month looked the same, last month would tell us everything. Because the year has a shape, the same month a year ago becomes a very good guess."
+  },
+  {
+   "type": "code",
+   "title": "Load the clinic file and total each year",
+   "lang": "python",
+   "code": "import pandas as pd\n\nclinic = pd.read_csv('clinic_visits.csv', parse_dates=['month'])\nclinic = clinic.sort_values(['district', 'month'])\nclinic.groupby(clinic.month.dt.year).malaria_cases.sum()",
+   "says": [
+    "Read the dates as dates, then sort by district and month.",
+    "Add the cases for each year to see the trend.",
+    "2025 is above 2021. That is the trend in numbers."
+   ],
+   "output": "month\n2021    315282\n2022    313225\n2023    331706\n2024    338833\n2025    346039",
+   "notes": "Let's open the file. Same routine as Session 7.\n\nread_csv with parse_dates turns the month column into real dates, which we met in Session 8. Then we sort by district and by month. That sort matters a lot today. Everything we do next looks backwards in time, so the rows must be in time order inside each district.\n\nThe file has seven hundred and twenty rows. Twelve districts times sixty months. The file's total_visits column has eighteen blank months, and we will leave that column alone today. malaria_cases has no blanks, and it's the number we want to predict.\n\nLast, the yearly totals. Three hundred and fifteen thousand in 2021, rising to three hundred and forty six thousand in 2025. That's the trend, in numbers."
+  },
+  {
+   "type": "code",
+   "title": "Seasonal naive: guess the same month last year",
+   "lang": "python",
+   "code": "def naive_miss(name):\n    m = clinic[clinic.district == name].set_index('month').malaria_cases\n    forecast = m['2024'].values\n    actual = m['2025'].values\n    return abs(actual - forecast).mean()\n\nfor name in ['Mbarara', 'Gulu', 'Kampala']:\n    print(name, round(naive_miss(name)))",
+   "says": [
+    "Keep one district. The forecast for 2025 is simply the 2024 values.",
+    "The miss is the gap between actual and forecast, ignoring the sign, then averaged.",
+    "Run it for three districts."
+   ],
+   "output": "Mbarara 623\nGulu 980\nKampala 121",
+   "notes": "The simplest forecast there is comes first. The seasonal naive forecast. To predict a month, you copy the same month from last year. January 2025 gets the January 2024 number. In Excel, it's a formula that points twelve rows up.\n\nThe function takes a district name. It picks that district's cases, and sets the forecast for 2025 to the 2024 values. Then it compares forecast with actual.\n\nThe miss for each month is the gap between the two with the sign dropped, because a miss of plus five hundred and a miss of minus five hundred are both misses. The average of those gaps is the mean absolute error. I'll just call it the average miss.\n\nMbarara misses by about six hundred and twenty three cases a month. Gulu by nine hundred and eighty. Kampala by only one hundred and twenty one, but Kampala is a much smaller district. Any model we build has to beat these numbers."
+  },
+  {
+   "type": "figure",
+   "title": "Mbarara in 2025: forecast against what happened",
+   "fig": "clinic_forecast",
+   "look": [
+    "The dashed line repeats last year's shape. In many months it follows the real line closely.",
+    "October and November show the biggest gaps. The real peak ran longer and higher.",
+    "The average miss is 623 cases."
+   ],
+   "caption": "Seasonal naive for Mbarara. Average miss 623 cases a month.",
+   "alt": "Line chart of actual Mbarara cases in 2025 and a seasonal naive forecast that repeats 2024, with the average miss of 623 cases.",
+   "notes": "Here is that Mbarara forecast drawn out. The solid line is what happened in 2025. The dashed line is last year's numbers moved forward.\n\nIn many months the two lines move together. The dashed line has the right shape, the dips and the rises. That's the season doing its work.\n\nThe biggest gaps come in October and November. Last year the peak ended in October. In 2025 it ran on through November, and higher. A copy of last year can't know that.\n\nThe label in the corner says an average miss of six hundred and twenty three cases. Keep that number in mind. It is the bar to beat."
+  },
+  {
+   "type": "concept",
+   "title": "Split by time, never at random",
+   "lead": "To test a forecast, hide the future and ask the model to predict it.",
+   "points": [
+    {
+     "h": "Train",
+     "t": "Every month up to December 2024."
+    },
+    {
+     "h": "Test",
+     "t": "The twelve months of 2025, never seen in training."
+    },
+    {
+     "h": "Why",
+     "t": "Next month will always lie after the data you have."
+    }
+   ],
+   "fig": "time_split",
+   "alt": "A timeline where the early months are training data and the later months are the test data.",
+   "notes": "You met the train and test split in Session 14. For a time series the rule changes. The split must follow the calendar.\n\nThe early months are the training data. The later months are the test data. Here, training runs to December 2024 and the test is the twelve months of 2025.\n\nWhy does it matter? In real life, next month always lies after everything you know. A test that mimics that is fair. A test that mixes months at random isn't, as the trap in a moment shows."
+  },
+  {
+   "type": "trap",
+   "title": "A random split lets the model peek at the future",
+   "looks": "You split the months at random, fit the model, and test on the held-back rows. It runs without error and the miss looks small.",
+   "why": "Some training rows come after the test rows. The model has seen both sides of every test month, and in real life it never will.",
+   "fix": "Pick a cut date. Train on everything before it. Test on everything after it.",
+   "notes": "This trap makes no error at all.\n\nYou split the months at random, as you did with the loans in Session 14. You fit a model and test it. Everything runs and the miss looks small.\n\nThe trouble is that your training rows now include months that come after your test months. For a test month in June, the model has seen May and also July. Real forecasting never gives you that. You've tested the model on a question that it will never be asked.\n\nThe fix is a cut date. Everything before it trains the model, everything after it tests the model. You lose some data that way, and you get a score you can believe."
+  },
+  {
+   "type": "figure",
+   "title": "Last month's rain relates to malaria, this month's does not",
+   "fig": "rain_lag_scatter",
+   "look": [
+    "Left: rain in the same month. The line is flat, r is about zero.",
+    "Right: rain in the month before. The line climbs, r is 0.37."
+   ],
+   "caption": "Each dot is one district in one month, after losing the first month of each district.",
+   "alt": "Two scatter plots. Same-month rainfall shows no pattern; last month rainfall shows an upward pattern.",
+   "notes": "A finding here helps us build a better forecast. The question is whether rain predicts malaria.\n\nOn the left, each dot is one district in one month, with that month's rain across the bottom and malaria cases up the side. The line is flat. The correlation, which you met in Session 4, is about zero. Rain in the same month tells us nothing.\n\nOn the right, the same cases, but now plotted against the rain from the month before. The line climbs. The correlation is thirty seven in a hundred. Mosquitoes need standing water and time to breed, so the cases follow the rain by a few weeks.\n\nSo a number from last month can help to predict this month. That idea has a name."
+  },
+  {
+   "type": "code",
+   "title": "Lag features: bring last month's numbers into this row",
+   "lang": "python",
+   "code": "g = clinic.groupby('district')\nclinic['rain_lag1'] = g.rainfall_mm.shift(1)\nclinic['cases_lag1'] = g.malaria_cases.shift(1)\nclinic['cases_lag12'] = g.malaria_cases.shift(12)\n\nok = clinic.dropna(subset=['rain_lag1'])\nprint(round(ok.rainfall_mm.corr(ok.malaria_cases), 2))\nprint(round(ok.rain_lag1.corr(ok.malaria_cases), 2))",
+   "says": [
+    "Group by district, then shift each column down by 1 or 12 rows.",
+    "The first rows of each district have no past, so they are dropped.",
+    "Compare the two correlations."
+   ],
+   "output": "0.0\n0.37",
+   "notes": "A lag feature is a column that holds an earlier value, moved down to sit beside today's row. In Excel you would put =B2 in C3, so each row shows the row above.\n\nHere, shift of one moves a column down one row. Shift of twelve moves it down a year. We make three. Last month's rain, last month's cases and the cases from the same month last year.\n\nThe group by district comes before the shift, and a trap in a moment shows why.\n\nThe first month of each district has no month before it, so the blank is dropped before we compute correlations. The same month's rain gives zero, and last month's rain gives zero point three seven, exactly as in the picture."
+  },
+  {
+   "type": "trap",
+   "title": "A lag that borrows from the wrong district",
+   "looks": "You write clinic.malaria_cases.shift(1) without grouping. It runs with no error and fills every row.",
+   "why": "The first month of Gulu would get its value from the last month of the district above it in the file.",
+   "fix": "Sort by district and month, then group by district before you shift. Check one row by hand.",
+   "notes": "A second trap, and again Python raises no error.\n\nYou write shift of one on the whole column, without grouping by district. Every row gets a lag value and it all looks fine.\n\nBut the file is stacked, one district after another. The first month of Gulu would be given a past value from the last month of the district above it. That number belongs to a different place.\n\nThe cure is to sort by district and month, then group by district before you shift. And check one row by hand. Pick a district, find its first row, and see that the lag is blank."
+  },
+  {
+   "type": "code",
+   "title": "Cut the calendar at 1 January 2025",
+   "lang": "python",
+   "code": "feats = ['cases_lag1', 'cases_lag12', 'rain_lag1']\nready = clinic.dropna(subset=feats)\ntrain = ready[ready.month < '2025-01-01']\ntest = ready[ready.month >= '2025-01-01']\nprint(len(train), len(test))",
+   "says": [
+    "Keep only the rows that have all three lag features.",
+    "Earlier months train the model. The twelve months of 2025 test it."
+   ],
+   "output": "432 144",
+   "notes": "To build the split, we start with the three lag columns we made. Rows with a blank in any of them can't be used, so we drop them. The first year of each district goes, because it has no twelve months of past.\n\nThen the cut date. Everything before the first of January 2025 is training. Everything from then on is the test.\n\nFour hundred and thirty two training rows, and one hundred and forty four test rows. That's twelve districts times twelve months. Not a single test month appears in training."
+  },
+  {
+   "type": "code",
+   "title": "Fit on the past, test on 2025",
+   "lang": "python",
+   "code": "import numpy as np\n\nX = np.c_[np.ones(len(train)), train[feats]]\ncoef = np.linalg.lstsq(X, train.malaria_cases, rcond=None)[0]\npred = np.c_[np.ones(len(test)), test[feats]] @ coef\ny = test.malaria_cases\nprint('naive', round(abs(y - test.cases_lag12).mean()))\nprint('model', round(abs(y - pred).mean()))",
+   "says": [
+    "Fit a straight-line model on the training rows only.",
+    "Predict the test rows. This is the whole model.",
+    "Score the naive forecast and the model the same way."
+   ],
+   "output": "naive 461\nmodel 338",
+   "notes": "The model is a regression like the one in Session 13, with three inputs. Last month's cases, the cases a year ago, and last month's rain.\n\nWe fit the line on the training rows only. The model never sees 2025.\n\nThen we predict the test rows. This is the whole model, a handful of lines with numpy.\n\nAnd we score the naive forecast and the model the same way, with the average miss in cases. Across all twelve districts, the seasonal naive misses by four hundred and sixty one cases a month. The model misses by three hundred and thirty eight. So the model beats the baseline, by about a quarter. Your own run in the lab will give the same numbers."
+  },
+  {
+   "type": "stat",
+   "title": "Judge the error in cases",
+   "stats": [
+    {
+     "n": "461",
+     "label": "Seasonal naive: average miss in cases"
+    },
+    {
+     "n": "338",
+     "label": "Lag model: average miss in cases"
+    },
+    {
+     "n": "2,403",
+     "label": "Average cases per district-month in 2025"
+    }
+   ],
+   "caption": "A miss of 338 against 2,403 is about 14 percent. A district manager can plan stock around that.",
+   "notes": "Here are the three numbers side by side. The naive forecast misses by four hundred and sixty one cases a month. The model misses by three hundred and thirty eight. And in 2025, a typical district month had two thousand four hundred and three cases.\n\nSo what does the model's miss mean? Three hundred and thirty eight against two thousand four hundred is about fourteen percent. The naive miss is about nineteen percent.\n\nThis is what we mean by error in the units of the business. A manager wants to hear that the forecast is usually within about three hundred and forty cases, so keep enough medicine for that many more. One caution. It's an average. Some months and some districts miss by much more, and we say so when we report it."
+  },
+  {
+   "type": "concept",
+   "title": "A pipeline packs the whole job into one object",
+   "lead": "A Pipeline is a list of steps that always run in the same order, on training data and test data alike.",
+   "points": [
+    {
+     "h": "Fill",
+     "t": "Replace blanks with a stated rule."
+    },
+    {
+     "h": "Encode",
+     "t": "Turn the district name into columns of 0 and 1."
+    },
+    {
+     "h": "Fit",
+     "t": "The model comes last, in the same object."
+    }
+   ],
+   "fig": "sklearn_pipeline",
+   "alt": "Blocks in a row: impute missing values, scale numbers, encode categories, then fit a model, all packed into one pipeline.",
+   "notes": "So far we did each step by hand. That works, but it's easy to forget a step on the test data, or to run the steps in a different order next month.\n\nA pipeline fixes that. It's a list of steps that always run in the same order. Fill the blanks, turn text columns into numbers, then fit the model. The picture shows the blocks in a row.\n\nIn a spreadsheet, this is a recorded macro, a set of steps you run again on tomorrow's file. It also stops the test data leaking in, because every step is learned from the training rows only, then applied to the test rows.\n\nIn a moment you'll see the syntax, and you'll write it in the lab. It uses scikit-learn, which runs in Colab."
+  },
+  {
+   "type": "code",
+   "title": "The Pipeline syntax in scikit-learn",
+   "lang": "python",
+   "code": "from sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import OneHotEncoder\nfrom sklearn.linear_model import LinearRegression\n\nnum = ['cases_lag1', 'cases_lag12', 'rain_lag1']\nprep = ColumnTransformer([\n    ('num', SimpleImputer(strategy='median'), num),\n    ('cat', OneHotEncoder(handle_unknown='ignore'), ['district'])])\nmodel = Pipeline([('prep', prep), ('fit', LinearRegression())])\nmodel.fit(train[num + ['district']], train.malaria_cases)",
+   "says": [
+    "A ColumnTransformer gives each group of columns its own treatment.",
+    "Pipeline chains the preparation and the model in one object.",
+    "fit learns from the training rows only."
+   ],
+   "notes": "Here's the syntax. Your job today is to read it, and the lab gives you the pieces.\n\nThe ColumnTransformer says which columns get which treatment. The three number columns get a median filler for blanks. The district column is turned into one column of zeros and ones per district.\n\nThen the Pipeline puts that preparation and the line model into one object. You give each step a name, and a tool.\n\nThe last line fits the whole thing on the training rows. To predict, you call predict on the test rows, and every step runs again by itself, in the right order. With districts added, the average miss should land near two hundred and twenty cases. Your own run will be close to that, and may differ by a few cases."
+  },
+  {
+   "type": "table",
+   "title": "The capstone timeline: today is the baseline and tested model",
+   "header": [
+    "Session",
+    "Capstone step"
+   ],
+   "rows": [
+    [
+     "13",
+     "Write and scope the question"
+    ],
+    [
+     "14",
+     "Choose the dataset"
+    ],
+    [
+     "19",
+     "Baseline and tested model (Checkpoint 3)"
+    ],
+    [
+     "23",
+     "Publish the app and the model card"
+    ],
+    [
+     "24",
+     "Present for ten minutes"
+    ]
+   ],
+   "colw": [
+    1.6,
+    8
+   ],
+   "hl": [
+    3
+   ],
+   "caption": "Checkpoint 3 is worth 15 percent of the marks. The capstone is worth 40 percent.",
+   "notes": "This is the capstone timeline, and today is the third step. In Session 13 you wrote and scoped your question. In Session 14 you chose your dataset. Today, in Session 19, you build a baseline and a tested model, and that is Checkpoint 3. In Session 23 you publish your app and write the model card. In Session 24 you present for ten minutes.\n\nThe finished project has seven parts. A question. Cleaned data. One analysis. One model, with a baseline and a metric. The limits of what you found. The app. And the presentation. Your dataset is one of four, Lakeside Mart, Nile Microfinance, District Clinics or the Lakeside Mart feedback messages.\n\nCheckpoint 3 is worth fifteen percent of the marks, and the capstone is worth forty. A tested model means a baseline, a score on data the model has not seen, and an error in the units of the business. Today's lab shows the pattern on the clinic file. Your capstone needs the same three moves on your own dataset."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: forecast, lag, test, compare",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 19 notebook and run the setup cell",
+    "Load and sort the clinic file, then seasonal naive for Gulu",
+    "Make the lag features and check the 0.37",
+    "Split at 1 January 2025 and fit the lag model",
+    "Compare the model and the baseline in cases",
+    "Run the Pipeline cell and write three sentences"
+   ],
+   "done": "Your model has an average miss in cases, a baseline to compare it with, and a sentence on whether it won.",
+   "notes": "The first task is to load the clinic file, sort it by district and month, and count the blank total_visits. Open the Session 19 notebook, run the setup cell and start there. You have forty minutes in Google Colab, and every task has a check cell that tells you whether you've got it.\n\nNext comes the seasonal naive guess for Gulu, because every model must beat it. Then you build the lag features and confirm the zero point three seven yourself. After that you split by time, fit the model, and compare the two misses in cases.\n\nThe Pipeline cell is next. Read it and run it.\n\nThe last task is three sentences. How far off is the model, does it beat the baseline, and what could go wrong. Those sentences are your Checkpoint 3 write up, so write them carefully."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A seasonal naive forecast for March 2026 uses which number?",
+     "a": "The March 2025 value. The same month last year."
+    },
+    {
+     "q": "Why must a forecast be tested on later months and not on random ones?",
+     "a": "Next month always lies after the data you have. A random split lets the model see the future."
+    },
+    {
+     "q": "Your model misses by 338 cases and the baseline by 461. What do you tell the manager?",
+     "a": "It beats the baseline by about a quarter, with an average miss near 340 cases, but some months miss by more."
+    }
+   ],
+   "notes": "A forecast for March 2026, a random split, and a number for the manager. My answers follow each question.\n\nQuestion one. A seasonal naive forecast for March 2026. Which number does it use? Sit with it for a second.\n\nThe March value from 2025. The same month, last year.\n\nQuestion two. Why test a forecast on later months, and not on random ones? Give that a moment.\n\nBecause next month always lies after the data you have. A random split lets the model see months on both sides of the test month. It can never do that in real life.\n\nQuestion three. Your model misses by three hundred and thirty eight cases, the baseline by four hundred and sixty one. What do you tell the manager? Pause on that.\n\nIt beats the baseline by about a quarter, and the average miss is near three hundred and forty cases. Then add the caveat. Some months and districts miss by more."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A time series has a trend, a season and noise. A same-month-last-year guess is the baseline to beat.",
+    "Split by time. Build lag features inside each district, and judge the error in cases.",
+    "A Pipeline packs fill, encode and fit into one object. Your baseline and tested model are Checkpoint 3."
+   ],
+   "next": "Neural networks and deep learning, without the maths wall",
+   "notes": "One. A time series has a trend, a season and noise. The guess of the same month last year is the baseline every model must beat.\n\nTwo. Split by time, never at random. Make lag features inside each district, and report the error in cases, the units the manager uses.\n\nThree. A Pipeline packs the filling, encoding and fitting into one object, so the same steps run every time. Your baseline and tested model are Checkpoint 3, and the app and model card come in Session 23.\n\nNext time we open the black box of neural networks, with no maths wall. We'll watch a small one learn in the browser, and ask when a simple model is the better choice."
+  }
+ ],
+ "lab": {
+  "intro": "Forecast malaria cases from the clinic file. Beat the same-month-last-year baseline and report the miss in cases.",
+  "cells": [
+   {
+    "md": "## Task 1. Load and sort\nRead `clinic_visits.csv` with `month` as a date. Sort by `district` and `month`. Store the table in `clinic`. Count the blank `total_visits` and store the count in `n_blank`."
+   },
+   {
+    "code": "import pandas as pd\nimport numpy as np\n\nclinic = pd.read_csv('clinic_visits.csv', parse_dates=['month'])\nclinic = clinic.sort_values(['district', 'month'])\nn_blank = clinic.total_visits.isna().sum()\nprint(clinic.shape, n_blank)",
+    "starter": "import pandas as pd\nimport numpy as np\n\n# Your turn: read clinic_visits.csv with the month column read as dates\n# Your turn: sort by district, then month, into clinic\n# Your turn: count the blank total_visits into n_blank\n"
+   },
+   {
+    "code": "assert clinic.shape == (720, 7), 'clinic should have 720 rows and 7 columns. Check the file name and that you kept every row'\nassert n_blank == 18, 'n_blank should be 18: count the blank cells in the total_visits column'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Seasonal naive for Gulu\nFor Gulu, forecast every month of 2025 with the same month of 2024. Store the average miss in `gulu_miss`."
+   },
+   {
+    "code": "m = clinic[clinic.district == 'Gulu'].set_index('month').malaria_cases\ngulu_miss = abs(m['2025'].values - m['2024'].values).mean()\nprint(round(gulu_miss))",
+    "starter": "# Your turn: pick Gulu's malaria_cases with month as the index\n# Your turn: the forecast for 2025 is the 2024 values\n# Your turn: average the gaps, ignoring the sign, into gulu_miss\n"
+   },
+   {
+    "code": "assert abs(gulu_miss - 980) < 2, 'gulu_miss should be about 980 cases. Compare the 2025 months with the 2024 months for Gulu only, ignore the sign, then take the mean'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Lag features\nInside each district, make `rain_lag1`, `cases_lag1` and `cases_lag12`. Then find the correlation of cases with last month's rain, in `r_lag`. Round to 2 places."
+   },
+   {
+    "code": "g = clinic.groupby('district')\nclinic['rain_lag1'] = g.rainfall_mm.shift(1)\nclinic['cases_lag1'] = g.malaria_cases.shift(1)\nclinic['cases_lag12'] = g.malaria_cases.shift(12)\nok = clinic.dropna(subset=['rain_lag1'])\nr_lag = round(ok.rain_lag1.corr(ok.malaria_cases), 2)\nprint(r_lag)",
+    "starter": "# Your turn: add the three lag columns, shifting inside each district, not across the whole table\n# Your turn: drop rows with no rain_lag1\n# Your turn: correlate rain_lag1 with malaria_cases into r_lag\n"
+   },
+   {
+    "code": "assert 0.30 <= r_lag <= 0.45, 'r_lag should be about 0.37. Did you shift inside each district, drop the rows with no rain_lag1, and round to 2 places?'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Split by time\nKeep rows that have all three lag features. Store them in `ready`. Training is every month before 2025, stored in `train`. Test is 2025, stored in `test`."
+   },
+   {
+    "code": "feats = ['cases_lag1', 'cases_lag12', 'rain_lag1']\nready = clinic.dropna(subset=feats)\ntrain = ready[ready.month < '2025-01-01']\ntest = ready[ready.month >= '2025-01-01']\nprint(len(train), len(test))",
+    "starter": "feats = ['cases_lag1', 'cases_lag12', 'rain_lag1']\n# Your turn: drop rows missing any feature into ready\n# Your turn: train = months before 2025, test = months from 2025\n"
+   },
+   {
+    "code": "assert len(test) == 144, 'test should hold 144 rows: 12 districts times the 12 months of 2025'\nassert train.month.max() < test.month.min(), 'train must end before test starts. Split on the month column'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Baseline and model\nWork out the average miss in cases for the seasonal naive forecast (`cases_lag12`) and for a straight-line model fitted on `train`. Store them in `naive_mae` and `model_mae`."
+   },
+   {
+    "code": "naive_mae = abs(test.malaria_cases - test.cases_lag12).mean()\nX = np.c_[np.ones(len(train)), train[feats]]\ncoef = np.linalg.lstsq(X, train.malaria_cases, rcond=None)[0]\npred = np.c_[np.ones(len(test)), test[feats]] @ coef\nmodel_mae = abs(test.malaria_cases - pred).mean()\nprint(round(naive_mae), round(model_mae))",
+    "starter": "# Your turn: naive_mae = average gap between malaria_cases and cases_lag12 in test\n# Your turn: fit coefficients on train with np.linalg.lstsq (add a column of ones)\n# Your turn: predict test, then average the gaps into model_mae\n"
+   },
+   {
+    "code": "assert 430 <= naive_mae <= 490, 'naive_mae should be near 461: the average gap between malaria_cases and cases_lag12 in test'\nassert 300 <= model_mae <= 380, 'model_mae should be near 338. Fit on train only, with a column of ones, and predict test'\nassert model_mae < naive_mae, 'The model should beat the baseline, so model_mae should be smaller than naive_mae'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. A Pipeline\nBuild a Pipeline with a median filler, a one-hot `district` and a LinearRegression. Fit it on `train`, predict `test` and store the average miss in `pipe_mae`. This cell uses scikit-learn, so your number will be close to 220 but may differ a little."
+   },
+   {
+    "code": "from sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import OneHotEncoder\nfrom sklearn.linear_model import LinearRegression\n\ncols = feats + ['district']\nprep = ColumnTransformer([\n    ('num', SimpleImputer(strategy='median'), feats),\n    ('cat', OneHotEncoder(handle_unknown='ignore'), ['district'])])\nmodel = Pipeline([('prep', prep), ('fit', LinearRegression())])\nmodel.fit(train[cols], train.malaria_cases)\npipe_pred = model.predict(test[cols])\npipe_mae = abs(test.malaria_cases - pipe_pred).mean()\nprint(round(pipe_mae))",
+    "starter": "from sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import OneHotEncoder\nfrom sklearn.linear_model import LinearRegression\n\ncols = feats + ['district']\n# Your turn: build prep, a ColumnTransformer that fills gaps in the three number\n#            features with their median and one-hot encodes district\n# Your turn: build model, a Pipeline of prep followed by a LinearRegression\n# Your turn: fit it on train[cols], predict test[cols], and store the average\n#            miss in cases in pipe_mae\n"
+   },
+   {
+    "code": "assert 150 <= pipe_mae <= 350, 'pipe_mae should be between 150 and 350 cases. Fit on train[cols], predict test[cols], then average the gaps ignoring the sign'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Report it\nWrite three sentences below. How far off is the model, in cases? Does it beat the baseline, and by how much? Name one limit, for example that the test is a single year."
+   }
+  ]
+ }
+}

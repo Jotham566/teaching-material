@@ -1,0 +1,6 @@
+Lakeside Mart Customer Data. Lakeside Mart collects a customer's phone number, name, age band and
+purchases to run the loyalty programme. This follows the principles in the Uganda Data Protection
+and Privacy Act, 2019, including collecting only what is needed and keeping it secure. A customer
+may ask to see, correct or delete their data by writing to the data officer. Data is kept for 3
+years after the last purchase. Analysts working with the data use customer numbers and not names,
+and share only summaries outside the company. Customer data is never sold.

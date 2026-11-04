@@ -1,0 +1,491 @@
+{
+ "session": 22,
+ "notes_title": "Chat assistants write fluent text, and some of it is false. Today you'll see what a language model does, why it can invent a confident answer, and how to fix that by finding the right passage first. We'll build the search ourselves, in plain Python, over the eight Lakeside Mart policy documents, and then test it with a sheet of twelve questions. Everything runs free in your own notebook.",
+ "notes_outcomes": "You'll explain tokens, context and next word prediction in plain words, build retrieval over a handful of documents so that a question finds the right passage, and test the answers against a checked list, recording every failure. The test sheet sits in the middle of the two hours, and the lab is built around it. The small model that writes the final answer comes last, and it is optional.",
+ "notes_words": "Seven words today, and they cover how a model writes and how we check it. A token is a piece of text a model reads, like one cell of a long row. A prompt is the instruction you type. The context is everything the model can see when it answers, a bit like the range a formula reads. A hallucination is a confident answer with no fact behind it. Retrieval is finding the right passage first, much like a lookup. A passage is one short piece of a document. A use log records what an assistant gave you and how you checked it.",
+ "vocab": [
+  [
+   "Token",
+   "A word or piece of a word that a language model reads and writes, one at a time.",
+   "One cell in a long row of text"
+  ],
+  [
+   "Prompt",
+   "The instruction and text you give a language model to answer.",
+   "The input cell you type into"
+  ],
+  [
+   "Context",
+   "Everything the model can see when it answers: your prompt, any pasted text and the answer so far.",
+   "The range a formula is allowed to read"
+  ],
+  [
+   "Hallucination",
+   "A fluent answer that no fact in the context supports, and that may be false.",
+   "A formula that returns a clean number with no data behind it"
+  ],
+  [
+   "Retrieval",
+   "Finding the passages most relevant to a question before anything answers it.",
+   "A lookup that runs before the formula"
+  ],
+  [
+   "Passage",
+   "A short piece of a document, such as one sentence, kept with its file name.",
+   "One row from a table of text"
+  ],
+  [
+   "Use log",
+   "A small table recording what an assistant was asked, what it gave and how you checked it.",
+   "A change log or Track Changes history"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 21",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Why does a computer need our text turned into numbers before it can compare two messages?",
+     "a": "It only works with numbers. Counts of words or an embedding give each message a position it can measure."
+    },
+    {
+     "q": "You searched for a long queue at the till and found messages with different words. How?",
+     "a": "Embeddings put messages with a similar meaning close together, so the search follows meaning and not exact words."
+    }
+   ],
+   "notes": "Last session we turned text into numbers. Two questions on that before we move on.\n\nFirst. Why does a computer need our text turned into numbers before it can compare two messages? Take your time.\n\nIt only works with numbers. So we gave each message a set of numbers, either counts of words or an embedding, and then the computer could measure how close two messages are.\n\nSecond. You searched for a long queue at the till and found messages that used different words. How did that work? Have a think.\n\nEmbeddings put messages with a similar meaning close together. The search follows meaning and ignores the exact words. Today we use that same idea to build something people use every day, a tool that answers questions from your own documents."
+  },
+  {
+   "type": "concept",
+   "title": "A language model predicts the next token",
+   "lead": "Everything a language model writes comes from one repeated guess. What piece of text most likely comes next?",
+   "points": [
+    {
+     "h": "Token",
+     "t": "A word or a piece of a word. Each one has a number."
+    },
+    {
+     "h": "Prediction",
+     "t": "The model scores every possible next token and picks one."
+    },
+    {
+     "h": "Training",
+     "t": "It learned these scores by reading a very large amount of text."
+    }
+   ],
+   "fig": "token_example",
+   "alt": "A sentence split into word and word-piece boxes, each with an identification number underneath.",
+   "notes": "Let's start with what a language model does. It predicts the next token.\n\nA token is a word, or a piece of a word. Look at the picture. The word provider is cut into two pieces, pro and vider. Each piece has a number underneath. The numbers in this picture are made up to show the idea. A real model has its own list.\n\nGiven the tokens so far, the model gives a score to every token it knows, and then picks one. It learned those scores by reading a huge amount of text.\n\nThat's all it does. It has no spreadsheet of facts inside and no list of Lakeside Mart rules. It has learned what text tends to follow what text."
+  },
+  {
+   "type": "flow",
+   "title": "One answer is built one token at a time",
+   "steps": [
+    {
+     "h": "Read",
+     "t": "The model reads your prompt."
+    },
+    {
+     "h": "Score",
+     "t": "It scores every possible next token."
+    },
+    {
+     "h": "Pick",
+     "t": "It chooses one token."
+    },
+    {
+     "h": "Add",
+     "t": "That token joins the text so far."
+    },
+    {
+     "h": "Repeat",
+     "t": "It goes round again until it stops."
+    }
+   ],
+   "caption": "An answer of forty tokens means forty trips round this loop.",
+   "notes": "Here's the loop that produces every answer you've ever seen from a chat assistant.\n\nFirst the model reads your prompt. A prompt is the text you give it.\n\nSecond, it scores every token it knows as a possible next piece.\n\nThird, it picks one. Usually a likely one, and sometimes a surprising one, which is why the same question can get two different answers.\n\nFourth, the chosen token is added to the text so far.\n\nFifth, it goes round again, now with one more token to read. It keeps going until it produces a token that means stop.\n\nSo a long answer is just a lot of small guesses in a row. Each guess is made by looking at everything written so far."
+  },
+  {
+   "type": "compare",
+   "title": "The same model with a vague prompt and a clear prompt",
+   "left": {
+    "h": "Vague prompt",
+    "points": [
+     "Tell me about returns.",
+     "No role, no limits",
+     "The model fills the gaps itself"
+    ]
+   },
+   "right": {
+    "h": "Clear prompt",
+    "points": [
+     "You are a till assistant. Using the text below, say how many days a customer has to return an item.",
+     "Role, task and limit",
+     "The text below is the context"
+    ]
+   },
+   "verdict": "A prompt is an instruction. Everything the model can see when it answers is the context.",
+   "notes": "Same model, two prompts. A prompt is the instruction you give it, in plain words.\n\nOn the left, a vague one. Tell me about returns. The model has to guess who's asking, what they want and where the facts come from, and it fills every gap itself.\n\nOn the right, a clear one. It gives the model a role, a task, and a limit. It says use the text below. That text is part of what the model can see.\n\nEverything the model can see when it answers is called the context. Your prompt, the text you paste in, and the answer so far, all sit inside it. The model can only use what's inside the context, plus whatever it learned in training. That second part is where the trouble starts."
+  },
+  {
+   "type": "concept",
+   "title": "Models invent because they predict likely text",
+   "lead": "When a model has no fact in its context, it still writes something. That something is called a hallucination.",
+   "points": [
+    {
+     "h": "Fluent",
+     "t": "The answer reads well and sounds sure."
+    },
+    {
+     "h": "Unchecked",
+     "t": "Nothing inside the model looks the fact up."
+    },
+    {
+     "h": "Plausible",
+     "t": "A likely number or date gets written even if it is wrong."
+    }
+   ],
+   "notes": "The trouble starts here. A language model writes the most likely text. It doesn't look anything up.\n\nSo suppose you ask it how long loyalty points last at Lakeside Mart. It has never seen our policy, because the policy is ours. It still has to produce a next token, and then another. So it writes a likely answer, such as a number of months that points often last in other shops.\n\nThe answer reads well. It sounds sure. And it can be wrong. When a model writes a confident answer that isn't backed by any fact in front of it, we call it a hallucination.\n\nIn spreadsheet terms, it's a formula that returns a clean looking number with no data behind it. The cure is to put the fact in the context before the model answers."
+  },
+  {
+   "type": "trap",
+   "title": "A confident answer with no source",
+   "looks": "You ask a model how long Lakeside Mart loyalty points last. It answers in one smooth sentence with a specific number of months. Nothing warns you.",
+   "why": "Our policy was never in its context, so the number is a likely guess. A smooth sentence says nothing about whether it is true.",
+   "fix": "Make the model answer from your document, show the passage it used, and check the answer against that passage.",
+   "notes": "This trap runs with no error at all.\n\nYou ask for the loyalty points rule. You get a neat sentence with a specific number of months in it. It looks like the work of someone who knows.\n\nThe model never saw our policy. The number is a likely guess dressed as a fact. How would you spot that, if you didn't already know the answer? Sit with it for a second.\n\nYou wouldn't, from the answer alone. The sentence is equally smooth when it's right and when it's wrong.\n\nSo the fix has three parts. Make the model answer from your own document. Show the passage it used beside the answer. And check the answer against that passage. The real policy says points expire after twelve months, and we'll find that line in code in a few minutes."
+  },
+  {
+   "type": "figure",
+   "title": "Retrieval first, then the model answers",
+   "fig": "rag_pipeline",
+   "look": [
+    "The question goes in first and is turned into numbers.",
+    "Your documents are searched for the closest passages.",
+    "The model answers from those passages and shows its source."
+   ],
+   "caption": "Retrieval means finding the right passage before anyone answers.",
+   "alt": "Pipeline: a question becomes a vector, the closest document passages are found, and a language model answers using only those passages.",
+   "notes": "This is the pattern for the rest of the session. Retrieval before answering. Retrieval means finding the right passage first. A passage is a short piece of a document, here a sentence or two.\n\nThe question comes in and is turned into something we can compare. In Session 21 that was an embedding. Today we start with something simpler.\n\nThen we search our own documents for the passages closest to the question. Those are the ones the question is most likely about.\n\nLast, the model answers from those passages, and we show the source beside the answer. The person reading can check it in ten seconds.\n\nIn the Excel world this is a lookup first, and a sentence written around the result second. The lookup is the part we can test."
+  },
+  {
+   "type": "code",
+   "title": "Split eight policies into passages",
+   "lang": "python",
+   "code": "import os, re\nimport numpy as np\nfrom collections import Counter\n\npassages = []\nfor name in sorted(os.listdir('policies')):\n    text = ' '.join(open('policies/' + name).read().split())\n    for s in re.split(r'(?<=\\.)\\s+(?=[A-Z])', text):\n        passages.append((name, s))\nprint(len(passages), 'passages')\nprint(passages[28])",
+   "output": "59 passages\n('loyalty_programme.txt', 'Points expire after 12 months.')",
+   "says": [
+    "Read each policy file and tidy the spaces.",
+    "Cut each file after a full stop. Each piece is a passage.",
+    "Keep the file name with every passage, so we can cite the source."
+   ],
+   "notes": "Let's build retrieval with nothing but Python and NumPy. First, our documents. Lakeside Mart has eight policy files in a folder called policies. Returns, loyalty, mobile money, delivery, food safety, data privacy, opening hours and supplier quality.\n\nWe read each file and tidy the spacing.\n\nThen we cut each file into sentences. Every file is a single block of text, so a sentence is the natural size for a passage. The cut happens after a full stop that's followed by a capital letter.\n\nWe keep the file name beside every passage. That's our source. When the program answers, it can say where the answer came from.\n\nThe result is fifty nine passages. The one we printed is a short one from the loyalty policy. Points expire after twelve months."
+  },
+  {
+   "type": "code",
+   "title": "Score by shared words and return the best passage",
+   "lang": "python",
+   "code": "FILLER = set('the a an of to in is are do does how what '\n  'can my for on at and or it be by with if we you from '\n  'when which will i'.split())\ndef words(text):\n    w = re.findall('[a-z0-9]+', text.lower())\n    return {x for x in w if x not in FILLER}\ndef retrieve(question):\n    q = words(question)\n    sc = [len(q & words(p)) for n, p in passages]\n    i = int(np.argmax(sc))\n    return passages[i], sc[i]\nbest, score = retrieve('How long do points last?')\nprint(best[0], score)\nprint(best[1][:34])",
+   "output": "data_privacy.txt 1\nData is kept for 3 years after the",
+   "says": [
+    "Throw away filler words such as the and of, and keep the rest.",
+    "A passage scores one point for each word it shares with the question.",
+    "argmax picks the passage with the top score."
+   ],
+   "notes": "The first search is the simplest method I know. Count the words the question shares with each passage, and return the passage with the most.\n\nFirst we make a short list of filler words, such as the, of and how. They appear everywhere and tell us nothing, so we throw them away.\n\nThen each passage gets one point for every remaining word it shares with the question. NumPy's argmax gives us the position of the highest score.\n\nWe ask our question. How long do points last?\n\nThe answer comes from the data privacy policy. Data is kept for three years after the last purchase. It scored one point, for the word last. The method found a passage that shares a word with the question, and that passage answers a different question.\n\nNothing crashed. It just retrieved the wrong thing. That's why we test."
+  },
+  {
+   "type": "code",
+   "title": "Tune the search: same meaning, rare words count more",
+   "lang": "python",
+   "code": "SAME = {'last': 'expire', 'lasts': 'expire'}\ndef base(w):\n    w = SAME.get(w, w)\n    return w[:-1] if len(w) > 3 and w[-1] == 's' else w\nwords2 = lambda text: {base(w) for w in words(text)}\nsets = [words2(p) for n, p in passages]\nseen_in = Counter(w for s in sets for w in s)\ndef retrieve2(question):\n    q = words2(question)\n    sc = [sum(1 / seen_in[w] for w in q & s) for s in sets]\n    i = int(np.argmax(sc))\n    return passages[i], round(sc[i], 2)\nbest, score = retrieve2('How long do points last?')\nprint(*best)\nprint('weighted score:', score)",
+   "output": "loyalty_programme.txt Points expire after 12 months.\nweighted score: 0.7",
+   "says": [
+    "Treat last and expire as the same word, and cut a trailing s.",
+    "A word found in few passages is worth more than a word found in many.",
+    "Same question. Now the loyalty passage wins."
+   ],
+   "notes": "So we tune the method, with two small changes.\n\nFirst, a tiny list of words that mean the same. Last and expire. Customers say last, the policy says expire. We also cut a trailing s, so points and point match.\n\nSecond, rare words count for more. A word that appears in only one or two passages tells us a lot. A word that appears in twenty tells us little. So each shared word scores one divided by the number of passages that contain it. You may remember that idea from Session 21.\n\nNow the same question gives the right sentence. Points expire after twelve months. The score is about zero point seven.\n\nWe looked at a failure, worked out why it failed, and changed the method. The questions stayed as they were. That is the fair way to tune."
+  },
+  {
+   "type": "table",
+   "title": "A test sheet scores the search and records failures",
+   "header": [
+    "Question",
+    "Right policy",
+    "Simple got",
+    "Answer found?",
+    "Failure"
+   ],
+   "rows": [
+    [
+     "How long do points last?",
+     "loyalty_programme",
+     "data_privacy",
+     "No",
+     "Wrong policy"
+    ],
+    [
+     "How long is customer data kept?",
+     "data_privacy",
+     "data_privacy",
+     "No",
+     "Right policy, wrong sentence"
+    ],
+    [
+     "How many days do I have to return an item?",
+     "returns_policy",
+     "returns_policy",
+     "Yes",
+     ""
+    ],
+    [
+     "Which towns does delivery not reach?",
+     "delivery",
+     "delivery",
+     "Yes",
+     ""
+    ]
+   ],
+   "colw": [
+    3.6,
+    1.9,
+    1.9,
+    1.3,
+    2.4
+   ],
+   "hl": [
+    1,
+    2
+   ],
+   "caption": "Twelve questions in all. The simple method picks the right policy 11 times and finds the answer 10 times. The tuned method gets 12 of 12.",
+   "notes": "The test sheet is a table. Each row has a question, the policy that should answer it, and the exact words of the correct answer, copied from the policy file. Then we add what our program returned, whether the answer was found, and a failures column that says what went wrong.\n\nHere are four of the twelve rows. The first two are failures. The points question went to the wrong policy. The data question found the right policy and the wrong sentence. The third and fourth passed.\n\nAcross all twelve, the simple method picks the right policy eleven times and finds the answer itself ten times. The tuned method gets all twelve.\n\nThe failures column tells you what to fix next.\n\nBe fair with yourself though. We tuned on these twelve, so a fresh set of questions may do worse. Keep a few questions hidden for that reason."
+  },
+  {
+   "type": "code",
+   "title": "Search by meaning with sentence-transformers",
+   "lang": "python",
+   "code": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\nvectors = model.encode([p for n, p in passages], normalize_embeddings=True)\n\ndef retrieve3(question):\n    qv = model.encode([question], normalize_embeddings=True)[0]\n    scores = vectors @ qv\n    i = int(scores.argmax())\n    return passages[i], round(float(scores[i]), 2)\n\nretrieve3('How long do points last?')",
+   "says": [
+    "Load the small model from Session 21. It runs inside Colab.",
+    "Encode every passage once, then compare by a dot product."
+   ],
+   "notes": "This version searches by meaning, with the model from Session 21. You'll run it in Colab, and the numbers will be your own.\n\nWe load the small sentence model, the same one as last session. It downloads once, about ninety megabytes, and then runs inside your notebook. No key, no account, nothing sent anywhere.\n\nWe turn every passage into a vector once, which is the list of numbers we called an embedding last session. For a question, we turn it into a vector too, and compare it with all of them using a dot product. Because the vectors are scaled to the same length, the biggest dot product means the closest meaning.\n\nThis method doesn't need a list of words that mean the same. A question with the word last should land near a passage with the word expire. Test it on your twelve questions and see."
+  },
+  {
+   "type": "code",
+   "title": "Let a small model write the answer",
+   "lang": "python",
+   "code": "from transformers import pipeline\ngenerate = pipeline('text-generation',\n    model='Qwen/Qwen2.5-0.5B-Instruct')\nRULE = 'Answer only from the passage. Else say so.'\ndef answer(question):\n    (name, passage), s = retrieve2(question)\n    text = f'Passage: {passage}\\nQuestion: {question}'\n    msgs = [{'role': 'system', 'content': RULE},\n            {'role': 'user', 'content': text}]\n    out = generate(msgs, max_new_tokens=60,\n                   do_sample=False)\n    return out[0]['generated_text'][-1]['content']\nprint(answer('How long do points last?'))",
+   "says": [
+    "Load a small open model that runs on the Colab processor.",
+    "Give it the passage and a rule: answer only from the passage.",
+    "Print the reply. Check it against the passage yourself."
+   ],
+   "notes": "The last step is the model. Again you'll run this in Colab. It's optional. The session works with retrieval alone.\n\nWe load a small open model. This one is about half a billion parameters, small enough to run on the free Colab processor, slowly. It downloads once into your notebook.\n\nThe function finds the best passage with our own search, then sends the model two messages. The first sets a rule. Answer only from the passage, and say so if the answer isn't there. The second holds the passage and the question.\n\nWe turn off random choice, so the same question gives the same answer each time.\n\nThe reply could still be wrong or oddly worded. A small model is weaker than the large ones you read about. So you test it the same way, with your twelve questions, and you record every failure."
+  },
+  {
+   "type": "concept",
+   "title": "Free, local and nothing leaves your notebook",
+   "lead": "This session needs no hosted service, no key and no payment.",
+   "points": [
+    {
+     "h": "Runs in Colab",
+     "t": "The model is downloaded into your notebook and runs there."
+    },
+    {
+     "h": "Check the licence",
+     "t": "The tutor reads the model card before class and confirms the terms."
+    },
+    {
+     "h": "Optional",
+     "t": "Retrieval and the test sheet work without any model."
+    }
+   ],
+   "notes": "A word about where all this runs.\n\nThe small model is downloaded into your Colab notebook and runs there. We don't call a hosted service. There's no key to paste in and no account to pay for. Nothing you type is sent to a company that sells model access.\n\nEvery model comes with a card that states its licence. Before class I read the card for the model we use and confirm that we're allowed to use it this way. Do the same any time you pick a model. The licence says what you may do with it, and some models forbid commercial use.\n\nAnd it's optional. If your notebook is slow or the download fails, you still have retrieval and the test sheet, and that's where most of the skill is."
+  },
+  {
+   "type": "table",
+   "title": "AI-assisted coding: use, check, record",
+   "header": [
+    "What I asked",
+    "What it gave",
+    "How I checked",
+    "Kept?"
+   ],
+   "rows": [
+    [
+     "Explain this KeyError",
+     "Said a column name had a typo",
+     "Printed df.columns and compared",
+     "Yes"
+    ],
+    [
+     "Write the passage splitter",
+     "A split on every full stop",
+     "Ran it and found a split after Mr.",
+     "Changed"
+    ],
+    [
+     "Why is my score zero?",
+     "A new scoring formula",
+     "Tested on three known questions",
+     "No, it failed"
+    ]
+   ],
+   "colw": [
+    3.2,
+    3.4,
+    3.9,
+    1.6
+   ],
+   "caption": "Keep a use log. A free assistant is optional, and you stay responsible for every line.",
+   "notes": "You may use a free chat assistant to help with code. It's optional, and I'd like you to use it in three steps. Use, check and record.\n\nUse it. Ask it to explain an error, or draft a function.\n\nCheck it. Run the code. Test it on a case where you already know the answer. Never paste in code you haven't read. An assistant can write code that runs and gives the wrong result, exactly like the wrong passage we saw earlier.\n\nRecord it. Keep a small table. What you asked, what it gave, how you checked, and whether you kept it.\n\nLook at the example rows. In the third one the suggestion failed the check, and the log says so. That record is useful to you next month, and useful to anyone who reviews your work."
+  },
+  {
+   "type": "concept",
+   "title": "Do not paste customer data into tools you do not control",
+   "lead": "Our policy and the Data Protection and Privacy Act of 2019 both ask for care with personal data.",
+   "points": [
+    {
+     "h": "Know the tool",
+     "t": "If you do not control where the text goes, do not paste customer data."
+    },
+    {
+     "h": "Use summaries",
+     "t": "Share counts and customer numbers, never names or phone numbers."
+    },
+    {
+     "h": "Use fiction",
+     "t": "Practise on fictional data, as we do in this course."
+    }
+   ],
+   "notes": "One rule matters more than any other today. Don't paste customer data into any tool you don't control.\n\nThat means a free chat assistant on a website. You don't know where the text is stored, who can read it, or whether it's used to train a model. A phone number or a name, once pasted, can't be taken back.\n\nUganda's Data Protection and Privacy Act of 2019 asks organisations to collect only what they need and keep it secure. The Lakeside Mart privacy policy in our folder says the same. Analysts use customer numbers and leave names out, and they share summaries only.\n\nSo at work, ask yourself before every paste. Do I control this tool? If the answer is no, use a made up example or a summary. In this course everything is fictional, so you're safe to practise freely."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: build retrieval and test it",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Load the eight policies into passages",
+    "Search by shared words and read the failures",
+    "Write twelve test questions and check each answer against its file",
+    "Score the simple method on the test sheet",
+    "Tune the method and score it again",
+    "Run the sentence-transformers and model cells",
+    "Write a use log entry and name your hardest failure"
+   ],
+   "done": "At least nine of twelve policies are right with the simple method, and your tuned method does better.",
+   "notes": "The first task splits the eight policy files into passages, and a check cell expects fifty nine of them. Then you build the word matching search and read what it gets wrong.\n\nSix of the twelve test questions are written for you and you add the other six. Each answer must appear word for word in its policy file, and a check cell confirms it. You need at least nine of twelve right policies from the simple method. Then you tune the method, score it again, and read the failures column as well as the total.\n\nThe last cells use sentence-transformers and the small model, and they may take a few minutes to download. If they're slow, move on. Finish with one line for your use log and one sentence on the failure that was hardest to fix. You're done when the simple method passes and your tuned method does better. I'll be around."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "What does a language model do at each step of writing an answer?",
+     "a": "It scores every possible next token and picks one, then repeats."
+    },
+    {
+     "q": "Why does retrieval come before the model answers?",
+     "a": "It puts the right passage into the context, so the answer rests on your document and not on a likely guess."
+    },
+    {
+     "q": "A test sheet scores 11 of 12. What do you read next?",
+     "a": "The failures column, to see what went wrong and what to fix."
+    }
+   ],
+   "notes": "First, what happens at each step of writing an answer. What does a language model do? No rush.\n\nIt scores every possible next token, picks one, and goes round again.\n\nSecond, why retrieval comes before the model answers. Think it over.\n\nRetrieval puts the right passage into the context. The answer then rests on your own document, and it doesn't rest on a likely guess.\n\nThird, a test sheet that scores eleven out of twelve. What do you read next? Give that a moment.\n\nThe failures column. The score tells you how much is wrong, and the failures tell you what to fix."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A language model predicts the next token, so it can write fluent text that is false.",
+    "Retrieve the right passage first, then answer from it and show the source.",
+    "Test with twelve known questions and read the failures column."
+   ],
+   "next": "Ship it: reproducible work, a small app and responsible use",
+   "notes": "A language model predicts the next token, so it can write fluent text that isn't true.\n\nRetrieve the right passage first, then answer from it and show the source, so anyone can check.\n\nTest with a sheet of questions whose answers you know, and read the failures column.\n\nNext session is the last one with new material. We'll save a model, put code on GitHub, build a small app, and write down how to use it responsibly. Bring a project from this course that you'd like to share."
+  }
+ ],
+ "lab": {
+  "intro": "Build a word-matching search over the eight Lakeside Mart policies, test it on twelve questions with a failures column, tune it, then try the sentence-transformers and small model cells in Colab.",
+  "cells": [
+   {
+    "md": "## Task 1. Split the policies into passages\nRead each file in `policies`, cut it into sentences and keep the file name with each. Store the list in `passages`."
+   },
+   {
+    "code": "import os, re\nimport numpy as np\nfrom collections import Counter\n\npassages = []\nfor name in sorted(os.listdir('policies')):\n    text = ' '.join(open('policies/' + name).read().split())\n    for s in re.split(r'(?<=\\.)\\s+(?=[A-Z])', text):\n        passages.append((name, s))",
+    "starter": "import os, re\nimport numpy as np\nfrom collections import Counter\n\npassages = []\n# Your turn: for each file in policies, tidy the spaces, split after a full stop\n# followed by a capital letter, and append (file name, sentence) to passages\n"
+   },
+   {
+    "code": "assert len(passages) == 59, 'Expected 59 passages: split after a full stop and a capital letter'\nassert passages[28] == ('loyalty_programme.txt', 'Points expire after 12 months.'), 'Passage 28 should be the loyalty sentence about points expiring. Keep the files in sorted order and the file name with each sentence'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Search by shared words\nBuild `retrieve(question)` that scores each passage by the words it shares with the question (ignore the filler words) and returns the best passage and its score."
+   },
+   {
+    "code": "FILLER = set('the a an of to in is are do does how what '\n  'can my for on at and or it be by with if we you from '\n  'when which will i'.split())\ndef words(text):\n    w = re.findall('[a-z0-9]+', text.lower())\n    return {x for x in w if x not in FILLER}\ndef retrieve(question):\n    q = words(question)\n    sc = [len(q & words(p)) for n, p in passages]\n    i = int(np.argmax(sc))\n    return passages[i], sc[i]",
+    "starter": "FILLER = {'the', 'a', 'an', 'of', 'to', 'in', 'is', 'are', 'do', 'does', 'how', 'what',\n          'can', 'my', 'for', 'on', 'at', 'and', 'or', 'it', 'be', 'by', 'with', 'if',\n          'we', 'you', 'from', 'when', 'which', 'will', 'i'}\n\ndef words(text):\n    # Your turn: return the set of lower case words in text, without the filler words\n    return set()\n\ndef retrieve(question):\n    # Your turn: score every passage by the number of shared words,\n    # then return (best passage, best score)\n    return ('', ''), 0\n"
+   },
+   {
+    "code": "(name, sentence), s = retrieve('How many days do I have to return an item?')\nassert name == 'returns_policy.txt', 'The returns policy should win this question. Check words() and that retrieve returns the passage with the most shared words'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Build the test sheet\nWrite twelve test questions as a table `tests` with columns `question`, `policy` and `answer`. Each `answer` must be copied word for word from the policy file. Starter rows are given. Add the missing ones from the files yourself."
+   },
+   {
+    "code": "import pandas as pd\n\ntests = pd.DataFrame([\n    ('How long do points last?', 'loyalty_programme.txt', 'Points expire after 12 months'),\n    ('How many days do I have to return an item?', 'returns_policy.txt', 'within 7 days of purchase'),\n    ('How long do mobile money refunds take?', 'returns_policy.txt', 'up to 3 working days'),\n    ('Which towns does delivery not reach?', 'delivery.txt', 'Gulu, Mbale, Mbarara or Fort Portal'),\n    ('What is the delivery fee within 5 kilometres?', 'delivery.txt', 'UGX 5,000 within 5 kilometres'),\n    ('What percent discount do Gold customers get?', 'loyalty_programme.txt', 'Gold customers receive 5 percent off'),\n    ('How long is customer data kept?', 'data_privacy.txt', '3 years after the last purchase'),\n    ('What temperature must dairy be stored at?', 'food_safety.txt', 'below 5 degrees Celsius'),\n    ('When do branches open on Sunday?', 'opening_hours.txt', 'from 9 am to 6 pm on Sunday'),\n    ('What happens when more than 5 percent of a delivery is damaged?', 'supplier_complaints.txt', 'the delivery is rejected'),\n    ('Does Lakeside Mart ask for my PIN?', 'mobile_money.txt', \"never asks for a customer's PIN\"),\n    ('Can points be exchanged for cash?', 'loyalty_programme.txt', 'Points cannot be exchanged for cash'),\n], columns=['question', 'policy', 'answer'])\nprint(len(tests), 'questions')",
+    "starter": "import pandas as pd\n\ntests = pd.DataFrame([\n    ('How long do points last?', 'loyalty_programme.txt', 'Points expire after 12 months'),\n    ('How many days do I have to return an item?', 'returns_policy.txt', 'within 7 days of purchase'),\n    ('How long do mobile money refunds take?', 'returns_policy.txt', 'up to 3 working days'),\n    ('Which towns does delivery not reach?', 'delivery.txt', 'Gulu, Mbale, Mbarara or Fort Portal'),\n    ('What is the delivery fee within 5 kilometres?', 'delivery.txt', 'UGX 5,000 within 5 kilometres'),\n    ('What percent discount do Gold customers get?', 'loyalty_programme.txt', 'Gold customers receive 5 percent off'),\n    # Your turn: add six more rows. Choose questions on data privacy, food safety,\n    # opening hours, supplier quality, mobile money and the loyalty rules.\n    # Copy each answer from the policy file exactly.\n], columns=['question', 'policy', 'answer'])\nprint(len(tests), 'questions')"
+   },
+   {
+    "code": "assert len(tests) == 12, 'tests needs twelve rows. Add six more questions with their policy file and answer'\nassert tests.policy.nunique() >= 6, 'Cover at least six different policy files'\nfor _, t in tests.iterrows():\n    text = ' '.join(open('policies/' + t.policy).read().split())\n    assert t.answer in text, 'Answer not found word for word in ' + t.policy + ': ' + t.answer\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Score the simple method\nWrite `score(tests, finder)` that runs each question through a finder and returns a table with the policy it got, whether the right sentence was found, and a `failure` column."
+   },
+   {
+    "code": "def score(tests, finder):\n    rows = []\n    for _, t in tests.iterrows():\n        (name, sentence), s = finder(t.question)\n        right = name == t.policy\n        found = t.answer in sentence\n        if right and found:\n            fail = ''\n        elif right:\n            fail = 'right policy, wrong sentence'\n        else:\n            fail = 'wrong policy'\n        rows.append((t.question, t.policy, name, found, fail))\n    return pd.DataFrame(rows, columns=['question', 'policy', 'got', 'answer_found', 'failure'])\n\nr1 = score(tests, retrieve)\nprint((r1.policy == r1.got).sum(), 'of 12 right policy;', r1.answer_found.sum(), 'answers found')\nr1[r1.failure != ''][['question', 'got', 'failure']]",
+    "starter": "def score(tests, finder):\n    rows = []\n    for _, t in tests.iterrows():\n        (name, sentence), s = finder(t.question)\n        # Your turn: right = did we get the right policy? found = is the answer in the sentence?\n        # Then choose a failure label: '' or 'wrong policy' or 'right policy, wrong sentence'\n        pass\n    return pd.DataFrame(rows, columns=['question', 'policy', 'got', 'answer_found', 'failure'])\n\nr1 = score(tests, retrieve)\nprint((r1.policy == r1.got).sum(), 'of 12 right policy;', r1.answer_found.sum(), 'answers found')\n"
+   },
+   {
+    "code": "assert (r1.policy == r1.got).sum() >= 9, 'At least 9 of 12 should pick the right policy. Check your word sets.'\nassert set(r1.failure) <= {'', 'wrong policy', 'right policy, wrong sentence'}\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Tune the method\nRead the failures. Add a short list of words that mean the same, cut a trailing s, and weight rare words more. Build `retrieve2` and score it again. Your tuned method must pick the right policy for at least 11 of 12 questions and find at least 11 answers."
+   },
+   {
+    "code": "SAME = {'last': 'expire', 'lasts': 'expire'}\ndef base(w):\n    w = SAME.get(w, w)\n    return w[:-1] if len(w) > 3 and w[-1] == 's' else w\nwords2 = lambda text: {base(w) for w in words(text)}\nsets = [words2(p) for n, p in passages]\nseen_in = Counter(w for s in sets for w in s)\ndef retrieve2(question):\n    q = words2(question)\n    sc = [sum(1 / seen_in[w] for w in q & s) for s in sets]\n    i = int(np.argmax(sc))\n    return passages[i], round(sc[i], 2)\n\nr2 = score(tests, retrieve2)\nprint((r2.policy == r2.got).sum(), 'of 12 right policy;', r2.answer_found.sum(), 'answers found')",
+    "starter": "from collections import Counter\n\nSAME = {}   # Your turn: add pairs of words that mean the same, a question word on the left and the policy word on the right\n\ndef base(w):\n    # Your turn: apply SAME, then cut a trailing s from words longer than 3 letters\n    return w\n\ndef words2(text):\n    return {base(w) for w in words(text)}\n\nsets = [words2(p) for n, p in passages]\nseen_in = Counter(w for s in sets for w in s)\n\ndef retrieve2(question):\n    # Your turn: score each passage by adding a weight for every shared word.\n    # A word that appears in fewer passages (see seen_in) should weigh more.\n    return ('', ''), 0\n\nr2 = score(tests, retrieve2)\nprint((r2.policy == r2.got).sum(), 'of 12 right policy;', r2.answer_found.sum(), 'answers found')\n"
+   },
+   {
+    "code": "assert (r2.policy == r2.got).sum() >= 11, 'Fewer than 11 right policies. Look at the failure column for r2 and fix the cause'\nassert r2.answer_found.sum() >= 11, 'Fewer than 11 answers found. Look at the failure column for r2'\nassert (r2.policy == r2.got).sum() >= (r1.policy == r1.got).sum(), 'The tuned method should not do worse than the simple one'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Search by meaning (Colab only, needs internet)\nRun the sentence-transformers version of the search. This cell downloads a model of about 90 MB the first time. Score it on your test sheet. Your result will differ from the tuned word method."
+   },
+   {
+    "code": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\nvectors = model.encode([p for n, p in passages], normalize_embeddings=True)\n\ndef retrieve3(question):\n    qv = model.encode([question], normalize_embeddings=True)[0]\n    scores = vectors @ qv\n    i = int(scores.argmax())\n    return passages[i], round(float(scores[i]), 2)\n\nr3 = score(tests, retrieve3)\nprint((r3.policy == r3.got).sum(), 'of 12 right policy;', r3.answer_found.sum(), 'answers found')",
+    "starter": "from sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\n# Your turn: encode every passage once with normalize_embeddings=True\nvectors = None   # replace None\n\ndef retrieve3(question):\n    # Your turn: encode the question, take the dot product with vectors,\n    # return the best passage and its score\n    return ('', ''), 0\n\nr3 = score(tests, retrieve3)\nprint((r3.policy == r3.got).sum(), 'of 12 right policy;', r3.answer_found.sum(), 'answers found')\n"
+   },
+   {
+    "code": "# r3 comes from the SentenceTransformer cell above\nassert (r3.policy == r3.got).sum() >= 7, 'Fewer than 7 right policies. Encode every passage with normalize_embeddings=True, encode the question the same way, and take the best dot product'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Let a small model answer (optional, Colab only)\nCheck the licence on the model card first. Then run the cell below. The model answers only from the passage that retrieval found. Compare three replies with the policy text."
+   },
+   {
+    "code": "from transformers import pipeline\ngenerate = pipeline('text-generation',\n    model='Qwen/Qwen2.5-0.5B-Instruct')\nRULE = 'Answer only from the passage. Else say so.'\ndef answer(question):\n    (name, passage), s = retrieve2(question)\n    text = f'Passage: {passage}\\nQuestion: {question}'\n    msgs = [{'role': 'system', 'content': RULE},\n            {'role': 'user', 'content': text}]\n    out = generate(msgs, max_new_tokens=60,\n                   do_sample=False)\n    return out[0]['generated_text'][-1]['content']\nprint(answer('How long do points last?'))",
+    "starter": "from transformers import pipeline\n\ngenerate = pipeline('text-generation', model='Qwen/Qwen2.5-0.5B-Instruct')\n\ndef answer(question):\n    # Your turn: retrieve the best passage with retrieve2, send the model a rule\n    # and the passage and question as messages, and return the reply text\n    pass\n\nprint(answer('How long do points last?'))\n"
+   },
+   {
+    "md": "## Task 8. Record and reflect\nWrite two lines below. First, one entry for your use log: what you asked an assistant, what it gave, how you checked, and whether you kept it (write 'none used' if you used no assistant). Second, one sentence on the failure you found hardest to fix, and why. Do not paste any customer data into an assistant."
+   }
+  ]
+ }
+}

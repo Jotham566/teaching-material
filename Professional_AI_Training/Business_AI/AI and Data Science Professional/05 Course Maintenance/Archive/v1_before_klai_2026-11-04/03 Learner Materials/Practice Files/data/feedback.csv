@@ -1,0 +1,801 @@
+feedback_id,branch_name,message,rating,sentiment,theme
+F0001,Entebbe,Feedback: Too costly for ordinary families. Will recommend.,3,negative,price
+F0002,Fort Portal,Feedback: Easy to earn points at Fort Portal. Keep it up.,5,positive,loyalty
+F0003,Mbarara,To the manager: I bought school books at Mbarara on Saturday. Please reply.,3,neutral,question
+F0004,Mbarara,"To the manager: Fast checkout at Mbarara, the cashier was quick. Do better.",5,positive,queue
+F0005,Jinja,On Friday evening. Is diapers available in Jinja? Thanks.,3,neutral,question
+F0006,Kampala Ntinda,"Hello. Great offer on soap this week, saved a lot. Thank you.",5,positive,price
+F0007,Gulu,Hello. The card machine worked well today.,5,positive,payment
+F0008,Mbale,We waited ages to pay at Mbale. Only one till was open. Will recommend.,3,negative,queue
+F0009,Entebbe,Yesterday I shopped at Entebbe. The delivery fee was higher than they told me. Keep it up.,3,negative,delivery
+F0010,Kampala Central,The vegetables at Kampala Central were very fresh this morning. This has happened before.,5,positive,freshness
+F0011,Kampala Central,Is school books available in Kampala Central? Thanks.,3,neutral,question
+F0012,Kampala Ntinda,To the manager: Is bananas available in Kampala Ntinda? Please reply.,3,neutral,question
+F0013,Mbarara,The rider never called before arriving.,1,negative,delivery
+F0014,Kampala Ntinda,Is cooking oil available in Kampala Ntinda? Thanks.,3,neutral,question
+F0015,Kampala Ntinda,"On Friday evening. Mobile money payment went through quickly, thank you.",5,positive,payment
+F0016,Mbale,Hello. My order arrived with items missing. I am not happy.,1,negative,delivery
+F0017,Jinja,The rider was polite and quick.,5,positive,delivery
+F0018,Fort Portal,Why were my points removed? Will recommend.,2,negative,loyalty
+F0019,Gulu,Flies near the meat counter. Please reply.,2,negative,cleanliness
+F0020,Gulu,Feedback: Does the receipt need my phone number?,1,negative,question
+F0021,Jinja,To the manager: diapers is always out of stock at Jinja.,3,negative,stock
+F0022,Mbale,"Hello. Prices of school books keep going up, too expensive. This has happened before.",1,negative,price
+F0023,Kampala Ntinda,The cashier at Kampala Ntinda shouted at me.,1,negative,staff
+F0024,Mbarara,The driver left the groceries at the gate. This has happened before.,3,negative,delivery
+F0025,Mbale,On Friday evening. The shelves at Mbale are half empty. Will recommend.,2,negative,stock
+F0026,Fort Portal,To the manager: Mobile money payment failed twice and I was charged anyway. Do better.,5,positive,payment
+F0027,Fort Portal,Please tell me the price of sugar.,3,neutral,question
+F0028,Entebbe,Delivery was two hours late and the phone charger was warm. Do better.,1,negative,delivery
+F0029,Entebbe,To the manager: The points on my card are wrong. This has happened before.,1,negative,loyalty
+F0030,Mbale,To the manager: Delivery was two hours late and the airtime voucher was warm. Will recommend.,1,negative,delivery
+F0031,Fort Portal,"Too many people and not enough cashiers at Fort Portal, I almost left my basket.",3,negative,queue
+F0032,Mbarara,Feedback: I scanned my card but no points were added. This has happened before.,2,negative,loyalty
+F0033,Fort Portal,Feedback: Good prices on tomatoes.,5,positive,price
+F0034,Gulu,To the manager: The vegetables at Gulu were very fresh this morning. Thank you.,5,positive,freshness
+F0035,Mbarara,To the manager: Do you open on public holidays at Mbarara? Thanks.,3,neutral,question
+F0036,Mbale,"To the manager: Slow service at the counter, it took so long to pay. Will recommend.",3,negative,queue
+F0037,Entebbe,To the manager: Paying with my phone was easy and quick. Will recommend.,5,positive,payment
+F0038,Mbarara,To the manager: I will pick up the tomatoes order tomorrow. Please reply.,3,neutral,question
+F0039,Kampala Central,I scanned my card but no points were added.,1,negative,loyalty
+F0040,Kampala Ntinda,"To the manager: Great offer on sugar this week, saved a lot. Do better.",5,positive,price
+F0041,Gulu,Hello. I will pick up the phone charger order tomorrow. Please reply.,3,neutral,question
+F0042,Mbale,Feedback: Very clean shelves at Mbale.,4,positive,cleanliness
+F0043,Mbarara,Feedback: Very poor customer care at Mbarara. I am not happy.,2,negative,staff
+F0044,Mbale,Hello. Do you open on public holidays at Mbale? Please reply.,3,neutral,question
+F0045,Kampala Ntinda,Feedback: The shop was dirty and the phone charger was damaged. Please reply.,2,negative,cleanliness
+F0046,Kampala Ntinda,Do you open on public holidays at Kampala Ntinda? Thanks.,3,neutral,question
+F0047,Jinja,On Friday evening. Do you open on public holidays at Jinja?,3,neutral,question
+F0048,Entebbe,To the manager: Asked about my Gold discount and the cashier knew nothing. This has happened before.,3,negative,loyalty
+F0049,Mbale,Hello. The promotion made milk very affordable. Please fix this.,5,positive,price
+F0050,Kampala Central,Paying with my phone was easy and quick. Will recommend.,4,positive,payment
+F0051,Entebbe,Hello. Good quality posho every time.,4,positive,freshness
+F0052,Mbarara,Feedback: Asked about my Gold discount and the cashier knew nothing. Keep it up.,2,negative,loyalty
+F0053,Kampala Ntinda,On Friday evening. soap is always out of stock at Kampala Ntinda. This has happened before.,1,negative,stock
+F0054,Fort Portal,Yesterday I shopped at Fort Portal. The manager solved my problem quickly. Thank you. Please fix this.,5,positive,staff
+F0055,Mbale,To the manager: Happy to find milk again.,4,positive,stock
+F0056,Gulu,On Friday evening. Please tell me the price of tomatoes.,3,neutral,question
+F0057,Entebbe,Yesterday I shopped at Entebbe. Waited all day for my delivery. Do better.,2,negative,delivery
+F0058,Jinja,Hello. The checkout line at Jinja was very slow today. Please reply.,3,negative,queue
+F0059,Gulu,Hello. Good prices on bananas. Keep it up.,4,positive,price
+F0060,Gulu,"Prices of airtime voucher keep going up, too expensive. This has happened before.",1,negative,price
+F0061,Entebbe,Feedback: The rider never called before arriving. Thank you.,5,positive,delivery
+F0062,Mbarara,Yesterday I shopped at Mbarara. The payment went through on my phone but the cashier says nothing came. Please refund.,1,negative,payment
+F0063,Jinja,Feedback: The card machine at Jinja was not working so I could not pay. Keep it up.,1,negative,payment
+F0064,Jinja,"Feedback: Mobile money payment went through quickly, thank you. I am not happy.",5,positive,payment
+F0065,Fort Portal,To the manager: The soap was not fresh at all. I am not happy.,2,negative,freshness
+F0066,Mbale,The line moved quickly even on Saturday. Will recommend.,5,positive,queue
+F0067,Kampala Central,On Friday evening. The floor at Kampala Central was wet and nobody cleaned it.,2,negative,cleanliness
+F0068,Gulu,Yesterday I shopped at Gulu. Does the receipt need my phone number?,3,neutral,question
+F0069,Jinja,Do you open on public holidays at Jinja?,3,neutral,question
+F0070,Entebbe,Yesterday I shopped at Entebbe. The shelves at Entebbe are half empty. Please fix this.,2,negative,stock
+F0071,Kampala Central,Please tell me the price of sodas. Thanks.,3,neutral,question
+F0072,Entebbe,On Friday evening. Is posho available in Entebbe? Thanks.,3,neutral,question
+F0073,Gulu,Yesterday I shopped at Gulu. The price on the shelf was lower than at the till. Do better.,1,negative,price
+F0074,Mbarara,Hello. The shop was dirty and the phone charger was damaged. Thank you.,2,negative,cleanliness
+F0075,Entebbe,On Friday evening. I came for milk but the shelf was empty. Please reply.,1,negative,stock
+F0076,Kampala Central,Feedback: I bought sugar at Kampala Central on Saturday. Thanks.,3,neutral,question
+F0077,Mbarara,"Yesterday I shopped at Mbarara. Prices of phone charger keep going up, too expensive. Do better.",2,negative,price
+F0078,Jinja,"Feedback: Fast checkout at Jinja, the cashier was quick. I am not happy.",5,positive,queue
+F0079,Mbarara,On Friday evening. Good prices on rice.,5,positive,price
+F0080,Fort Portal,bananas is always out of stock at Fort Portal.,1,negative,stock
+F0081,Gulu,Feedback: Fresh sodas and clean shelves. Will come back. Please reply.,4,positive,freshness
+F0082,Fort Portal,To the manager: Bad smell near the fresh produce section. Keep it up.,2,negative,cleanliness
+F0083,Gulu,To the manager: Bought bread at Gulu and it was already spoiled. Will recommend.,2,negative,freshness
+F0084,Gulu,The shop was dirty and the bread was damaged. Keep it up.,2,negative,cleanliness
+F0085,Entebbe,Hello. Does the receipt need my phone number? Please reply.,2,negative,question
+F0086,Kampala Central,Hello. Why is bread cheaper at the market than here? Do better.,2,negative,price
+F0087,Kampala Central,Hello. Please tell me the price of school books.,3,neutral,question
+F0088,Mbarara,Yesterday I shopped at Mbarara. The loyalty points were added at once. Very good. I am not happy.,4,positive,loyalty
+F0089,Kampala Ntinda,I will pick up the tomatoes order tomorrow. Please reply.,3,neutral,question
+F0090,Kampala Ntinda,"On Friday evening. Please stock milk, I travel far to shop here.",2,negative,stock
+F0091,Kampala Ntinda,I will pick up the milk order tomorrow.,3,neutral,question
+F0092,Entebbe,Is cooking oil available in Entebbe? Please reply.,3,neutral,question
+F0093,Mbale,To the manager: Very poor customer care at Mbale. Will recommend.,3,negative,staff
+F0094,Fort Portal,Hello. Please tell me the price of soap.,3,neutral,question
+F0095,Jinja,Yesterday I shopped at Jinja. I bought posho at Jinja on Saturday. Thanks.,3,neutral,question
+F0096,Entebbe,Airtel Money kept timing out at the till. Keep it up.,3,negative,payment
+F0097,Mbarara,To the manager: The card machine worked well today. Keep it up.,5,positive,payment
+F0098,Jinja,Staff were rude when I asked about a refund for bananas. Please fix this.,3,negative,staff
+F0099,Kampala Ntinda,On Friday evening. The price on the shelf was lower than at the till. I am not happy.,2,negative,price
+F0100,Entebbe,Hello. Same day delivery worked well. Thank you.,4,positive,delivery
+F0101,Kampala Ntinda,Unfriendly security guard at the entrance.,2,negative,staff
+F0102,Jinja,Staff were rude when I asked about a refund for diapers. Will recommend.,3,negative,staff
+F0103,Gulu,Feedback: The attendant ignored me for ten minutes. Thank you.,2,negative,staff
+F0104,Jinja,The shop was dirty and the soap was damaged. Please reply.,1,negative,cleanliness
+F0105,Fort Portal,Yesterday I shopped at Fort Portal. My loyalty points did not show after the purchase.,1,negative,loyalty
+F0106,Mbale,Feedback: I bought school books at Mbale on Saturday. Thanks.,3,neutral,question
+F0107,Gulu,Everything I needed was on the shelf.,4,positive,stock
+F0108,Mbale,To the manager: Do you open on public holidays at Mbale?,3,neutral,question
+F0109,Mbarara,"Slow service at the counter, it took so long to pay. Please reply.",2,negative,queue
+F0110,Jinja,To the manager: The bananas was not fresh at all. I am not happy.,1,negative,freshness
+F0111,Kampala Central,The driver left the groceries at the gate. Will recommend.,2,negative,delivery
+F0112,Entebbe,"Friendly staff at Entebbe, they helped me find sugar. Will recommend.",5,positive,staff
+F0113,Entebbe,Is airtime voucher available in Entebbe? Please reply.,3,neutral,question
+F0114,Kampala Central,"Fast checkout at Kampala Central, the cashier was quick.",4,positive,queue
+F0115,Mbale,"Hello. Mobile money payment went through quickly, thank you.",4,positive,payment
+F0116,Kampala Ntinda,I bought bananas at Kampala Ntinda on Saturday.,3,neutral,question
+F0117,Fort Portal,Hello. No airtime voucher on the shelf again this week. Why? Keep it up.,3,negative,stock
+F0118,Mbale,The shelves at Mbale are half empty. Please fix this.,1,negative,stock
+F0119,Gulu,Please tell me the price of phone charger. Please reply.,3,neutral,question
+F0120,Kampala Central,The card machine at Kampala Central was not working so I could not pay. This has happened before.,1,negative,payment
+F0121,Jinja,Hello. Good stock of cooking oil this week. This has happened before.,5,positive,stock
+F0122,Mbale,Hello. The shop was dirty and the posho was damaged. I am not happy.,2,negative,cleanliness
+F0123,Kampala Ntinda,"Please stock milk, I travel far to shop here. Keep it up.",2,negative,stock
+F0124,Kampala Central,Hello. Does the receipt need my phone number?,3,neutral,question
+F0125,Kampala Ntinda,On Friday evening. Does the receipt need my phone number? Thanks.,3,neutral,question
+F0126,Gulu,I will pick up the soap order tomorrow.,3,neutral,question
+F0127,Gulu,"On Friday evening. Long queue at the till in Gulu, waited more than twenty minutes. Please reply.",3,negative,queue
+F0128,Mbale,Everything at Mbale costs more than last month. Thank you.,1,negative,price
+F0129,Kampala Ntinda,Feedback: The loyalty points were added at once. Very good. Will recommend.,4,positive,loyalty
+F0130,Mbarara,To the manager: The vegetables at Mbarara were very fresh this morning. This has happened before.,5,positive,freshness
+F0131,Gulu,Hello. The shelves at Gulu are half empty. Keep it up.,2,negative,stock
+F0132,Fort Portal,Hello. The checkout line at Fort Portal was very slow today. Please fix this.,2,negative,queue
+F0133,Fort Portal,Yesterday I shopped at Fort Portal. Everything at Fort Portal costs more than last month. I am not happy.,2,negative,price
+F0134,Gulu,I bought cooking oil at Gulu on Saturday.,3,neutral,question
+F0135,Entebbe,Feedback: The tomatoes was not fresh at all.,2,negative,freshness
+F0136,Entebbe,Hello. I paid with Mobile Money but the till said no payment. I lost money. Please fix this.,1,negative,payment
+F0137,Jinja,On Friday evening. Fresh rice and clean shelves. Will come back.,5,positive,freshness
+F0138,Kampala Ntinda,To the manager: Dusty shelves and a sticky floor. Keep it up.,3,negative,cleanliness
+F0139,Kampala Central,I bought phone charger at Kampala Central on Saturday.,3,neutral,question
+F0140,Mbarara,On Friday evening. Love the Gold discount on Saturdays. Please fix this.,5,positive,loyalty
+F0141,Fort Portal,Feedback: We waited ages to pay at Fort Portal. Only one till was open. Thank you.,1,negative,queue
+F0142,Gulu,Feedback: Please tell me the price of sugar.,3,neutral,question
+F0143,Jinja,Nobody was ready to help me find sodas.,2,negative,staff
+F0144,Kampala Central,Fresh bread and clean shelves. Will come back. Thank you.,5,positive,freshness
+F0145,Entebbe,Is bread available in Entebbe? Please reply.,3,neutral,question
+F0146,Entebbe,Hello. Staff were rude when I asked about a refund for diapers. Thank you.,2,negative,staff
+F0147,Kampala Central,The bread was stale and the milk smelled bad. Keep it up.,2,negative,freshness
+F0148,Gulu,Feedback: Please tell me the price of school books. Please reply.,3,neutral,question
+F0149,Mbale,"To the manager: Friendly staff at Mbale, they helped me find tomatoes. Will recommend.",4,positive,staff
+F0150,Mbale,Mobile money payment failed twice and I was charged anyway. Please fix this.,3,negative,payment
+F0151,Gulu,Yesterday I shopped at Gulu. The checkout line at Gulu was very slow today. I am not happy.,3,negative,queue
+F0152,Mbarara,On Friday evening. Good quality sugar every time.,4,positive,freshness
+F0153,Entebbe,Yesterday I shopped at Entebbe. The vegetables at Entebbe were very fresh this morning. Will recommend.,4,positive,freshness
+F0154,Jinja,Hello. Please tell me the price of diapers.,3,neutral,question
+F0155,Gulu,"Hello. Fast checkout at Gulu, the cashier was quick. Please fix this.",4,positive,queue
+F0156,Gulu,I will pick up the bread order tomorrow.,3,neutral,question
+F0157,Mbarara,On Friday evening. Polite cashier and a helpful security guard. Do better.,5,positive,staff
+F0158,Kampala Ntinda,On Friday evening. Delivery was on time and the groceries were cold. Will recommend.,5,positive,delivery
+F0159,Kampala Ntinda,diapers is always out of stock at Kampala Ntinda.,2,negative,stock
+F0160,Gulu,"To the manager: Prices of diapers keep going up, too expensive. Keep it up.",1,negative,price
+F0161,Mbarara,"Hello. Please stock phone charger, I travel far to shop here. Do better.",5,positive,stock
+F0162,Kampala Central,Feedback: Is milk available in Kampala Central? Thanks.,3,neutral,question
+F0163,Jinja,The bread was stale and the milk smelled bad.,1,negative,freshness
+F0164,Jinja,Yesterday I shopped at Jinja. Good quality soap every time. Keep it up.,5,positive,freshness
+F0165,Entebbe,Delivery was two hours late and the phone charger was warm.,3,negative,delivery
+F0166,Entebbe,To the manager: I will pick up the soap order tomorrow.,3,neutral,question
+F0167,Entebbe,Hello. Good stock of bread this week.,5,positive,stock
+F0168,Jinja,The school books was expired when I opened it. Very disappointed. Please fix this.,1,negative,freshness
+F0169,Fort Portal,"Yesterday I shopped at Fort Portal. Long queue at the till in Fort Portal, waited more than twenty minutes.",1,negative,queue
+F0170,Kampala Central,The card machine at Kampala Central was not working so I could not pay. I am not happy.,3,negative,payment
+F0171,Mbarara,"To the manager: Friendly staff at Mbarara, they helped me find tomatoes. Do better.",5,positive,staff
+F0172,Mbale,"Feedback: Prices of bananas keep going up, too expensive.",1,negative,price
+F0173,Jinja,I scanned my card but no points were added. Please reply.,3,negative,loyalty
+F0174,Fort Portal,Hello. Found rotten tomatoes in the bag I took home. Thank you.,2,negative,freshness
+F0175,Kampala Ntinda,To the manager: Please tell me the price of phone charger. Please reply.,3,neutral,question
+F0176,Fort Portal,To the manager: Is diapers available in Fort Portal?,3,neutral,question
+F0177,Mbarara,"Yesterday I shopped at Mbarara. Mobile money payment went through quickly, thank you. This has happened before.",4,positive,payment
+F0178,Mbarara,On Friday evening. Please tell me the price of milk. Please reply.,3,neutral,question
+F0179,Kampala Central,To the manager: Good prices on posho. I am not happy.,5,positive,price
+F0180,Kampala Ntinda,The cashier at Kampala Ntinda shouted at me. Thank you.,2,negative,staff
+F0181,Gulu,To the manager: I will pick up the bananas order tomorrow. Thanks.,3,neutral,question
+F0182,Jinja,Yesterday I shopped at Jinja. The rider was polite and quick. Do better.,4,positive,delivery
+F0183,Kampala Ntinda,Good prices on diapers. Please reply.,5,positive,price
+F0184,Fort Portal,The card machine at Fort Portal was not working so I could not pay. Keep it up.,2,negative,payment
+F0185,Mbale,Yesterday I shopped at Mbale. The card machine at Mbale was not working so I could not pay. Please fix this.,3,negative,payment
+F0186,Mbale,Hello. Staff were rude when I asked about a refund for airtime voucher. Do better.,3,negative,staff
+F0187,Entebbe,On Friday evening. Lost my points when I changed my phone number. Do better.,1,negative,loyalty
+F0188,Kampala Central,The shop was clean and tidy.,5,positive,cleanliness
+F0189,Jinja,Yesterday I shopped at Jinja. The rider was polite and quick. Will recommend.,5,positive,delivery
+F0190,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. Nobody was ready to help me find airtime voucher. Thank you.,1,negative,staff
+F0191,Jinja,Feedback: Asked about my Gold discount and the cashier knew nothing. Please reply.,2,negative,loyalty
+F0192,Mbale,To the manager: Paying with my phone was easy and quick. Thank you.,5,positive,payment
+F0193,Entebbe,Hello. Bought sodas at Entebbe and it was already spoiled. Do better.,2,negative,freshness
+F0194,Entebbe,Hello. The shop was dirty and the school books was damaged. Please fix this.,1,negative,cleanliness
+F0195,Jinja,Good stock of sugar this week. Please fix this.,5,positive,stock
+F0196,Mbale,"Yesterday I shopped at Mbale. Prices of milk keep going up, too expensive. Keep it up.",3,negative,price
+F0197,Gulu,"On Friday evening. No queue at all at Gulu today, in and out in five minutes. Do better.",4,positive,queue
+F0198,Mbarara,"Yesterday I shopped at Mbarara. Mobile money payment went through quickly, thank you. Keep it up.",4,positive,payment
+F0199,Mbale,Feedback: Paying with my phone was easy and quick. Thank you.,5,positive,payment
+F0200,Entebbe,The promotion made milk very affordable. This has happened before.,4,positive,price
+F0201,Kampala Ntinda,Feedback: The loyalty points were added at once. Very good.,4,positive,loyalty
+F0202,Kampala Ntinda,"Yesterday I shopped at Kampala Ntinda. Great offer on sugar this week, saved a lot.",4,positive,price
+F0203,Gulu,On Friday evening. Polite cashier and a helpful security guard. Do better.,5,positive,staff
+F0204,Fort Portal,"Hello. Long queue at the till in Fort Portal, waited more than twenty minutes. Please reply.",3,negative,queue
+F0205,Jinja,Does the receipt need my phone number? Thanks.,3,neutral,question
+F0206,Mbale,The line moved quickly even on Saturday. Do better.,5,positive,queue
+F0207,Mbale,I paid with Mobile Money but the till said no payment. I lost money. This has happened before.,1,negative,payment
+F0208,Gulu,Yesterday I shopped at Gulu. The manager solved my problem quickly. Thank you. I am not happy.,5,positive,staff
+F0209,Kampala Central,posho is always out of stock at Kampala Central.,2,negative,stock
+F0210,Gulu,On Friday evening. Polite cashier and a helpful security guard. Keep it up.,5,positive,staff
+F0211,Mbale,Yesterday I shopped at Mbale. The card machine worked well today. Will recommend.,4,positive,payment
+F0212,Entebbe,Good quality school books every time. Please reply.,4,positive,freshness
+F0213,Entebbe,soap is always out of stock at Entebbe. Do better.,1,negative,stock
+F0214,Mbale,Feedback: Happy to find sodas again. This has happened before.,4,positive,stock
+F0215,Kampala Ntinda,Hello. The floor at Kampala Ntinda was wet and nobody cleaned it. Please reply.,3,negative,cleanliness
+F0216,Mbale,To the manager: Lost my points when I changed my phone number. Keep it up.,2,negative,loyalty
+F0217,Mbale,Hello. The shop was clean and tidy. Do better.,5,positive,cleanliness
+F0218,Kampala Central,Does the receipt need my phone number?,3,neutral,question
+F0219,Mbale,Airtel Money kept timing out at the till. Please reply.,2,negative,payment
+F0220,Mbale,Found rotten tomatoes in the bag I took home. Do better.,2,negative,freshness
+F0221,Gulu,"To the manager: Long queue at the till in Gulu, waited more than twenty minutes.",2,negative,queue
+F0222,Mbarara,The cashier at Mbarara shouted at me. I am not happy.,1,negative,staff
+F0223,Kampala Central,On Friday evening. The shop was clean and tidy.,4,positive,cleanliness
+F0224,Mbarara,Feedback: The manager solved my problem quickly. Thank you. Keep it up.,5,positive,staff
+F0225,Jinja,Hello. The checkout line at Jinja was very slow today. This has happened before.,2,negative,queue
+F0226,Jinja,Asked about my Gold discount and the cashier knew nothing. Will recommend.,1,negative,loyalty
+F0227,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. I came for sodas but the shelf was empty. Please fix this.,3,negative,stock
+F0228,Kampala Ntinda,Feedback: I scanned my card but no points were added. Please fix this.,2,negative,loyalty
+F0229,Kampala Ntinda,To the manager: Unfriendly security guard at the entrance. Please fix this.,1,negative,staff
+F0230,Kampala Central,"Yesterday I shopped at Kampala Central. Too many people and not enough cashiers at Kampala Central, I almost left my basket. Thank you.",2,negative,queue
+F0231,Jinja,Easy to earn points at Jinja.,5,positive,loyalty
+F0232,Kampala Central,Do you open on public holidays at Kampala Central? Thanks.,3,neutral,question
+F0233,Mbarara,On Friday evening. Everything at Mbarara costs more than last month.,2,negative,price
+F0234,Gulu,Hello. Why is milk cheaper at the market than here? Please reply.,2,negative,price
+F0235,Gulu,On Friday evening. I bought bananas at Gulu on Saturday.,3,neutral,question
+F0236,Kampala Central,Yesterday I shopped at Kampala Central. I will pick up the soap order tomorrow. Thanks.,3,neutral,question
+F0237,Kampala Central,Why were my points removed? Will recommend.,3,negative,loyalty
+F0238,Kampala Central,Very poor customer care at Kampala Central. Thank you.,2,negative,staff
+F0239,Kampala Ntinda,To the manager: Nobody was ready to help me find soap. Thank you.,2,negative,staff
+F0240,Kampala Ntinda,I was charged twice for one purchase. Please reply.,3,negative,payment
+F0241,Mbarara,Feedback: The shelves at Mbarara are half empty. Will recommend.,1,negative,stock
+F0242,Fort Portal,The checkout line at Fort Portal was very slow today.,1,negative,queue
+F0243,Mbale,The vegetables at Mbale were very fresh this morning. Keep it up.,5,positive,freshness
+F0244,Gulu,I paid with Mobile Money but the till said no payment. I lost money. Please fix this.,1,negative,payment
+F0245,Jinja,"No queue at all at Jinja today, in and out in five minutes. Will recommend.",4,positive,queue
+F0246,Mbale,On Friday evening. The points on my card are wrong.,2,negative,loyalty
+F0247,Mbale,The shop was dirty and the diapers was damaged. Please fix this.,2,negative,cleanliness
+F0248,Gulu,Feedback: Do you open on public holidays at Gulu? Thanks.,3,neutral,question
+F0249,Mbale,Easy to earn points at Mbale. Keep it up.,5,positive,loyalty
+F0250,Jinja,Dusty shelves and a sticky floor.,1,negative,cleanliness
+F0251,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. The card machine at Kampala Ntinda was not working so I could not pay. Please fix this.,1,negative,payment
+F0252,Kampala Ntinda,Feedback: Do you open on public holidays at Kampala Ntinda?,3,neutral,question
+F0253,Jinja,The shop was clean and tidy.,5,positive,cleanliness
+F0254,Mbarara,On Friday evening. The loyalty points were added at once. Very good. This has happened before.,5,positive,loyalty
+F0255,Gulu,"Please stock phone charger, I travel far to shop here. Thank you.",1,negative,stock
+F0256,Fort Portal,On Friday evening. The rider never called before arriving. I am not happy.,2,negative,delivery
+F0257,Gulu,Yesterday I shopped at Gulu. Waited all day for my delivery. Please reply.,1,negative,delivery
+F0258,Kampala Ntinda,On Friday evening. Does the receipt need my phone number? Please reply.,3,neutral,question
+F0259,Kampala Central,Does the receipt need my phone number? Please reply.,3,neutral,question
+F0260,Gulu,The price on the shelf was lower than at the till. Keep it up.,2,negative,price
+F0261,Jinja,The card machine at Jinja was not working so I could not pay. Please reply.,1,negative,payment
+F0262,Mbale,"Too many people and not enough cashiers at Mbale, I almost left my basket.",3,negative,queue
+F0263,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. I came for rice but the shelf was empty. Thank you.,2,negative,stock
+F0264,Mbale,Hello. I will pick up the phone charger order tomorrow. Thanks.,3,neutral,question
+F0265,Mbale,The expiry date on the bananas had passed two weeks ago. Please reply.,1,negative,freshness
+F0266,Mbarara,Staff were rude when I asked about a refund for tomatoes. This has happened before.,2,negative,staff
+F0267,Kampala Ntinda,To the manager: Why were my points removed? Please reply.,2,negative,loyalty
+F0268,Fort Portal,"On Friday evening. Too many people and not enough cashiers at Fort Portal, I almost left my basket. Will recommend.",2,negative,queue
+F0269,Gulu,The price on the shelf was lower than at the till. This has happened before.,1,negative,price
+F0270,Mbale,Feedback: Staff were rude when I asked about a refund for bread. Do better.,1,negative,staff
+F0271,Kampala Ntinda,Feedback: Is bananas available in Kampala Ntinda?,4,positive,question
+F0272,Entebbe,On Friday evening. I will pick up the tomatoes order tomorrow.,3,neutral,question
+F0273,Gulu,I will pick up the sugar order tomorrow. Please reply.,3,neutral,question
+F0274,Gulu,Yesterday I shopped at Gulu. Please tell me the price of airtime voucher.,3,neutral,question
+F0275,Kampala Ntinda,To the manager: Asked about my Gold discount and the cashier knew nothing. Please fix this.,2,negative,loyalty
+F0276,Kampala Central,To the manager: Does the receipt need my phone number? Please reply.,3,neutral,question
+F0277,Jinja,Feedback: Too costly for ordinary families. Will recommend.,1,negative,price
+F0278,Entebbe,Everything I needed was on the shelf. Thank you.,5,positive,stock
+F0279,Kampala Central,"Yesterday I shopped at Kampala Central. I cannot afford to shop here anymore, prices are high. Please reply.",2,negative,price
+F0280,Fort Portal,Feedback: bananas is always out of stock at Fort Portal. Please reply.,2,negative,stock
+F0281,Gulu,Feedback: Does the receipt need my phone number?,3,neutral,question
+F0282,Jinja,Hello. Do you open on public holidays at Jinja?,3,neutral,question
+F0283,Kampala Central,On Friday evening. I paid with Mobile Money but the till said no payment. I lost money. Keep it up.,1,negative,payment
+F0284,Mbale,The line moved quickly even on Saturday. Will recommend.,5,positive,queue
+F0285,Mbale,Yesterday I shopped at Mbale. The price on the shelf was lower than at the till. Thank you.,1,negative,price
+F0286,Kampala Central,Nobody was ready to help me find school books. Please reply.,3,negative,staff
+F0287,Mbale,Feedback: I was charged twice for one purchase. Thank you.,5,positive,payment
+F0288,Mbale,Hello. Everything I needed was on the shelf.,5,positive,stock
+F0289,Jinja,Feedback: The price on the shelf was lower than at the till. This has happened before.,2,negative,price
+F0290,Entebbe,"Too many people and not enough cashiers at Entebbe, I almost left my basket.",3,negative,queue
+F0291,Entebbe,Feedback: The shop was dirty and the school books was damaged. Keep it up.,1,negative,cleanliness
+F0292,Fort Portal,"On Friday evening. Mobile money payment went through quickly, thank you. I am not happy.",5,positive,payment
+F0293,Entebbe,Hello. I will pick up the bread order tomorrow. Thanks.,3,neutral,question
+F0294,Fort Portal,We waited ages to pay at Fort Portal. Only one till was open. Will recommend.,1,negative,queue
+F0295,Mbarara,Please tell me the price of tomatoes. Thanks.,3,neutral,question
+F0296,Entebbe,"Prices of phone charger keep going up, too expensive. Please reply.",1,negative,price
+F0297,Jinja,Is cooking oil available in Jinja?,3,neutral,question
+F0298,Kampala Ntinda,The driver left the groceries at the gate.,2,negative,delivery
+F0299,Mbarara,Yesterday I shopped at Mbarara. phone charger is always out of stock at Mbarara. Keep it up.,1,negative,stock
+F0300,Entebbe,To the manager: I bought cooking oil at Entebbe on Saturday. Thanks.,3,neutral,question
+F0301,Mbarara,Hello. Do you open on public holidays at Mbarara? Thanks.,3,neutral,question
+F0302,Entebbe,Does the receipt need my phone number? Please reply.,3,neutral,question
+F0303,Kampala Central,Unfriendly security guard at the entrance.,3,negative,staff
+F0304,Gulu,Yesterday I shopped at Gulu. Good prices on rice. I am not happy.,5,positive,price
+F0305,Kampala Ntinda,Feedback: The promotion made diapers very affordable. I am not happy.,5,positive,price
+F0306,Mbarara,Yesterday I shopped at Mbarara. Do you open on public holidays at Mbarara?,3,neutral,question
+F0307,Mbarara,To the manager: I bought rice at Mbarara on Saturday. Thanks.,3,neutral,question
+F0308,Mbarara,I will pick up the phone charger order tomorrow. Please reply.,3,neutral,question
+F0309,Jinja,On Friday evening. Asked about my Gold discount and the cashier knew nothing. Please fix this.,3,negative,loyalty
+F0310,Mbale,"On Friday evening. Fast checkout at Mbale, the cashier was quick. Do better.",4,positive,queue
+F0311,Jinja,The floor at Jinja was wet and nobody cleaned it. Will recommend.,1,negative,cleanliness
+F0312,Fort Portal,Please tell me the price of bread. Thanks.,3,neutral,question
+F0313,Kampala Ntinda,Why were my points removed? Will recommend.,3,negative,loyalty
+F0314,Jinja,Yesterday I shopped at Jinja. Paying with my phone was easy and quick.,5,positive,payment
+F0315,Kampala Ntinda,"To the manager: Mobile money payment went through quickly, thank you. I am not happy.",4,positive,payment
+F0316,Gulu,I paid with Mobile Money but the till said no payment. I lost money. Please fix this.,1,negative,payment
+F0317,Kampala Central,Yesterday I shopped at Kampala Central. Staff were rude when I asked about a refund for school books. Please fix this.,2,negative,staff
+F0318,Mbarara,Hello. Polite cashier and a helpful security guard.,4,positive,staff
+F0319,Fort Portal,Nobody was ready to help me find bread. I am not happy.,1,negative,staff
+F0320,Jinja,Feedback: We waited ages to pay at Jinja. Only one till was open.,3,negative,queue
+F0321,Fort Portal,Hello. Lost my points when I changed my phone number. Do better.,2,negative,loyalty
+F0322,Mbale,Feedback: The rider never called before arriving.,2,negative,delivery
+F0323,Fort Portal,"To the manager: Mobile money payment went through quickly, thank you. Please fix this.",4,positive,payment
+F0324,Mbale,Feedback: Everything I needed was on the shelf. Will recommend.,5,positive,stock
+F0325,Mbale,Hello. The payment went through on my phone but the cashier says nothing came. Please refund. Do better.,3,negative,payment
+F0326,Jinja,"Hello. Prices of airtime voucher keep going up, too expensive. Keep it up.",3,neutral,price
+F0327,Fort Portal,Feedback: Please tell me the price of milk.,3,neutral,question
+F0328,Kampala Central,Hello. Nobody was ready to help me find phone charger. Please reply.,2,negative,staff
+F0329,Kampala Central,To the manager: I scanned my card but no points were added. Keep it up.,2,negative,loyalty
+F0330,Kampala Central,To the manager: Unfriendly security guard at the entrance.,3,negative,staff
+F0331,Mbale,Fresh sugar and clean shelves. Will come back. Will recommend.,4,positive,freshness
+F0332,Fort Portal,I will pick up the airtime voucher order tomorrow. Please reply.,3,neutral,question
+F0333,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. The price on the shelf was lower than at the till. Will recommend.,1,negative,price
+F0334,Kampala Central,"Feedback: Please stock rice, I travel far to shop here. Thank you.",2,negative,stock
+F0335,Gulu,Feedback: Why is cooking oil cheaper at the market than here? Please reply.,1,negative,price
+F0336,Entebbe,Hello. I bought airtime voucher at Entebbe on Saturday. Thanks.,4,positive,question
+F0337,Gulu,Hello. I bought school books at Gulu on Saturday. Please reply.,3,neutral,question
+F0338,Mbarara,Yesterday I shopped at Mbarara. Spent half an hour in the line on Saturday. Please open more tills. Please reply.,2,negative,queue
+F0339,Kampala Ntinda,Hello. Please tell me the price of tomatoes. Thanks.,1,negative,question
+F0340,Gulu,The checkout line at Gulu was very slow today. Will recommend.,2,negative,queue
+F0341,Entebbe,Staff were rude when I asked about a refund for bread.,3,neutral,staff
+F0342,Gulu,Hello. Too costly for ordinary families. Will recommend.,3,negative,price
+F0343,Jinja,"Hello. No queue at all at Jinja today, in and out in five minutes. Keep it up.",5,positive,queue
+F0344,Fort Portal,"Feedback: I cannot afford to shop here anymore, prices are high. Keep it up.",2,negative,price
+F0345,Gulu,The card machine at Gulu was not working so I could not pay. This has happened before.,2,negative,payment
+F0346,Mbarara,Feedback: Do you open on public holidays at Mbarara? Thanks.,3,neutral,question
+F0347,Mbale,The card machine worked well today.,5,positive,payment
+F0348,Jinja,On Friday evening. Good quality rice every time.,5,positive,freshness
+F0349,Kampala Ntinda,Please tell me the price of tomatoes. Thanks.,3,neutral,question
+F0350,Jinja,Good stock of rice this week. Please reply.,4,positive,stock
+F0351,Jinja,I bought tomatoes at Jinja on Saturday. Please reply.,3,neutral,question
+F0352,Gulu,The manager solved my problem quickly. Thank you. Do better.,5,positive,staff
+F0353,Entebbe,Yesterday I shopped at Entebbe. I was charged twice for one purchase. Keep it up.,1,negative,payment
+F0354,Gulu,The milk was expired when I opened it. Very disappointed. Keep it up.,1,negative,freshness
+F0355,Kampala Ntinda,Very clean shelves at Kampala Ntinda.,5,positive,cleanliness
+F0356,Mbarara,To the manager: We waited ages to pay at Mbarara. Only one till was open. Please reply.,2,negative,queue
+F0357,Kampala Ntinda,Hello. The price on the shelf was lower than at the till. Will recommend.,3,negative,price
+F0358,Mbale,The payment went through on my phone but the cashier says nothing came. Please refund. This has happened before.,3,negative,payment
+F0359,Mbale,"Yesterday I shopped at Mbale. Friendly staff at Mbale, they helped me find sodas. Please reply.",5,positive,staff
+F0360,Kampala Central,Hello. The cashier at Kampala Central shouted at me. Please reply.,2,negative,staff
+F0361,Kampala Ntinda,On Friday evening. Waited all day for my delivery. Do better.,3,negative,delivery
+F0362,Fort Portal,Very poor customer care at Fort Portal. Do better.,1,negative,staff
+F0363,Entebbe,On Friday evening. Is cooking oil available in Entebbe? Please reply.,3,neutral,question
+F0364,Mbale,"Please stock tomatoes, I travel far to shop here. I am not happy.",2,negative,stock
+F0365,Gulu,"Feedback: Prices of rice keep going up, too expensive. Do better.",3,negative,price
+F0366,Entebbe,Hello. Does the receipt need my phone number?,3,neutral,question
+F0367,Kampala Ntinda,Hello. Please tell me the price of diapers. Please reply.,3,neutral,question
+F0368,Gulu,The checkout line at Gulu was very slow today. Do better.,2,negative,queue
+F0369,Mbarara,Feedback: The bread was stale and the milk smelled bad. Will recommend.,2,negative,freshness
+F0370,Kampala Ntinda,On Friday evening. My order arrived with items missing. Will recommend.,3,negative,delivery
+F0371,Fort Portal,I bought soap at Fort Portal on Saturday. Please reply.,3,neutral,question
+F0372,Kampala Ntinda,Good prices on soap. Do better.,5,positive,price
+F0373,Jinja,Feedback: Dusty shelves and a sticky floor.,1,negative,cleanliness
+F0374,Fort Portal,Hello. The payment went through on my phone but the cashier says nothing came. Please refund.,2,negative,payment
+F0375,Kampala Ntinda,The promotion made tomatoes very affordable. Will recommend.,4,positive,price
+F0376,Mbale,Spent half an hour in the line on Saturday. Please open more tills.,1,negative,queue
+F0377,Gulu,The card machine worked well today. Do better.,4,positive,payment
+F0378,Kampala Central,"To the manager: Long queue at the till in Kampala Central, waited more than twenty minutes. Thank you.",2,negative,queue
+F0379,Fort Portal,Staff were rude when I asked about a refund for bananas. This has happened before.,3,negative,staff
+F0380,Kampala Ntinda,On Friday evening. Unfriendly security guard at the entrance. Thank you.,3,negative,staff
+F0381,Gulu,On Friday evening. The payment went through on my phone but the cashier says nothing came. Please refund. Thank you.,1,negative,payment
+F0382,Gulu,Yesterday I shopped at Gulu. Happy to find soap again.,4,positive,stock
+F0383,Entebbe,To the manager: Does the receipt need my phone number? Please reply.,3,neutral,question
+F0384,Mbarara,Good stock of school books this week. This has happened before.,4,positive,stock
+F0385,Entebbe,The floor at Entebbe was wet and nobody cleaned it. This has happened before.,1,negative,cleanliness
+F0386,Mbale,On Friday evening. I was charged twice for one purchase. Keep it up.,1,negative,payment
+F0387,Kampala Ntinda,I bought tomatoes at Kampala Ntinda on Saturday.,3,neutral,question
+F0388,Jinja,Yesterday I shopped at Jinja. The payment went through on my phone but the cashier says nothing came. Please refund.,1,negative,payment
+F0389,Entebbe,To the manager: Everything at Entebbe costs more than last month. Thank you.,1,negative,price
+F0390,Fort Portal,Does the receipt need my phone number?,3,neutral,question
+F0391,Kampala Ntinda,I bought cooking oil at Kampala Ntinda on Saturday. Thanks.,3,neutral,question
+F0392,Kampala Ntinda,Hello. Why is sodas cheaper at the market than here? I am not happy.,2,negative,price
+F0393,Jinja,Mobile money payment failed twice and I was charged anyway.,2,negative,payment
+F0394,Gulu,"Friendly staff at Gulu, they helped me find phone charger. Please reply.",4,positive,staff
+F0395,Jinja,On Friday evening. Too costly for ordinary families.,1,negative,price
+F0396,Kampala Central,Feedback: The attendant ignored me for ten minutes. Please reply.,1,negative,staff
+F0397,Entebbe,Feedback: The line moved quickly even on Saturday. Keep it up.,5,positive,queue
+F0398,Mbale,Yesterday I shopped at Mbale. Very poor customer care at Mbale. Please fix this.,1,negative,staff
+F0399,Jinja,Hello. Good quality cooking oil every time.,5,positive,freshness
+F0400,Entebbe,Yesterday I shopped at Entebbe. Nobody was ready to help me find diapers. I am not happy.,3,negative,staff
+F0401,Jinja,The card machine at Jinja was not working so I could not pay. Thank you.,2,negative,payment
+F0402,Kampala Central,To the manager: The promotion made tomatoes very affordable. Thank you.,5,positive,price
+F0403,Jinja,Good stock of school books this week. Keep it up.,5,positive,stock
+F0404,Kampala Central,Yesterday I shopped at Kampala Central. Flies near the meat counter. Please fix this.,2,negative,cleanliness
+F0405,Kampala Central,Hello. My order arrived with items missing. This has happened before.,1,negative,delivery
+F0406,Gulu,Yesterday I shopped at Gulu. Waited all day for my delivery. Will recommend.,3,negative,delivery
+F0407,Kampala Ntinda,The promotion made bread very affordable. Keep it up.,5,positive,price
+F0408,Mbarara,Hello. The checkout line at Mbarara was very slow today. Thank you.,1,negative,queue
+F0409,Kampala Central,Yesterday I shopped at Kampala Central. The checkout line at Kampala Central was very slow today. Keep it up.,2,negative,queue
+F0410,Jinja,The soap was not fresh at all.,3,neutral,freshness
+F0411,Entebbe,Please tell me the price of posho. Please reply.,3,neutral,question
+F0412,Mbale,Is school books available in Mbale? Thanks.,3,neutral,question
+F0413,Kampala Central,On Friday evening. Delivery was on time and the groceries were cold. Do better.,3,neutral,delivery
+F0414,Entebbe,Feedback: The cashier at Entebbe shouted at me. I am not happy.,2,negative,staff
+F0415,Entebbe,On Friday evening. The loyalty points were added at once. Very good. Please fix this.,5,positive,loyalty
+F0416,Jinja,To the manager: Spent half an hour in the line on Saturday. Please open more tills. Do better.,2,negative,queue
+F0417,Jinja,"On Friday evening. Great offer on bread this week, saved a lot.",4,positive,price
+F0418,Mbale,Please tell me the price of cooking oil. Thanks.,3,neutral,question
+F0419,Fort Portal,Feedback: Easy to earn points at Fort Portal. Please fix this.,5,positive,loyalty
+F0420,Kampala Central,The promotion made milk very affordable. Thank you.,4,positive,price
+F0421,Fort Portal,"Hello. Slow service at the counter, it took so long to pay. Will recommend.",2,negative,queue
+F0422,Entebbe,The card machine worked well today. Keep it up.,4,positive,payment
+F0423,Kampala Ntinda,"No queue at all at Kampala Ntinda today, in and out in five minutes. This has happened before.",5,positive,queue
+F0424,Mbale,Does the receipt need my phone number? Please reply.,3,neutral,question
+F0425,Jinja,My order arrived with items missing. Please fix this.,3,negative,delivery
+F0426,Fort Portal,On Friday evening. I was charged twice for one purchase. Will recommend.,1,negative,payment
+F0427,Kampala Ntinda,"On Friday evening. Great offer on phone charger this week, saved a lot. Keep it up.",5,positive,price
+F0428,Gulu,Hello. I will pick up the phone charger order tomorrow.,3,neutral,question
+F0429,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. The rider never called before arriving. Do better.,2,negative,delivery
+F0430,Mbale,"Hello. Fast checkout at Mbale, the cashier was quick.",5,positive,queue
+F0431,Mbale,My loyalty points did not show after the purchase. Keep it up.,2,negative,loyalty
+F0432,Fort Portal,Polite cashier and a helpful security guard. Do better.,5,positive,staff
+F0433,Gulu,On Friday evening. Paying with my phone was easy and quick. I am not happy.,5,positive,payment
+F0434,Jinja,Yesterday I shopped at Jinja. I will pick up the bananas order tomorrow. Please reply.,3,neutral,question
+F0435,Entebbe,Yesterday I shopped at Entebbe. The driver left the groceries at the gate. Will recommend.,2,negative,delivery
+F0436,Kampala Central,To the manager: The line moved quickly even on Saturday. Thank you.,5,positive,queue
+F0437,Entebbe,Hello. The line moved quickly even on Saturday. Please fix this.,5,positive,queue
+F0438,Mbarara,To the manager: I scanned my card but no points were added. Please fix this.,2,negative,loyalty
+F0439,Mbarara,Hello. Delivery was on time and the groceries were cold. Thank you.,3,neutral,delivery
+F0440,Jinja,On Friday evening. Does the receipt need my phone number? Thanks.,3,neutral,question
+F0441,Fort Portal,We waited ages to pay at Fort Portal. Only one till was open. Please reply.,1,negative,queue
+F0442,Mbarara,To the manager: The loyalty points were added at once. Very good.,5,positive,loyalty
+F0443,Mbarara,On Friday evening. Out of diapers for the third time. Keep it up.,3,negative,stock
+F0444,Kampala Ntinda,Feedback: The loyalty points were added at once. Very good. Thank you.,3,neutral,loyalty
+F0445,Mbale,Yesterday I shopped at Mbale. The shelves at Mbale are half empty. Please reply.,3,negative,stock
+F0446,Mbale,Feedback: Why were my points removed? Do better.,5,positive,loyalty
+F0447,Kampala Central,The bread was stale and the milk smelled bad. Do better.,3,negative,freshness
+F0448,Kampala Central,Feedback: Everything I needed was on the shelf. This has happened before.,5,positive,stock
+F0449,Mbale,"Yesterday I shopped at Mbale. Slow service at the counter, it took so long to pay. This has happened before.",2,negative,queue
+F0450,Gulu,Very clean shelves at Gulu. This has happened before.,2,negative,cleanliness
+F0451,Mbale,Please tell me the price of school books.,3,neutral,question
+F0452,Fort Portal,Feedback: Why is soap cheaper at the market than here? I am not happy.,2,negative,price
+F0453,Gulu,Feedback: tomatoes is always out of stock at Gulu. Do better.,2,negative,stock
+F0454,Entebbe,Feedback: I will pick up the school books order tomorrow. Please reply.,3,neutral,question
+F0455,Jinja,On Friday evening. I came for bread but the shelf was empty. Please fix this.,2,negative,stock
+F0456,Fort Portal,"To the manager: Great offer on bread this week, saved a lot. Please reply.",4,positive,price
+F0457,Kampala Ntinda,On Friday evening. The cashier at Kampala Ntinda shouted at me. Will recommend.,2,negative,staff
+F0458,Entebbe,I came for bananas but the shelf was empty.,1,negative,stock
+F0459,Kampala Central,The cashier at Kampala Central shouted at me. I am not happy.,3,negative,staff
+F0460,Gulu,"Yesterday I shopped at Gulu. Mobile money payment went through quickly, thank you. Please fix this.",4,positive,payment
+F0461,Mbale,"Hello. Great offer on rice this week, saved a lot. Do better.",4,positive,price
+F0462,Kampala Central,Hello. The price on the shelf was lower than at the till.,2,negative,price
+F0463,Kampala Central,Yesterday I shopped at Kampala Central. Do you open on public holidays at Kampala Central?,3,neutral,question
+F0464,Kampala Central,To the manager: The promotion made milk very affordable. Please reply.,5,positive,price
+F0465,Gulu,I bought phone charger at Gulu on Saturday.,3,neutral,question
+F0466,Gulu,"Prices of posho keep going up, too expensive.",1,negative,price
+F0467,Jinja,Yesterday I shopped at Jinja. My loyalty points did not show after the purchase. Keep it up.,3,negative,loyalty
+F0468,Mbarara,The vegetables at Mbarara were very fresh this morning. Please fix this.,5,positive,freshness
+F0469,Kampala Ntinda,The floor at Kampala Ntinda was wet and nobody cleaned it. Thank you.,1,negative,cleanliness
+F0470,Kampala Ntinda,Very clean shelves at Kampala Ntinda. I am not happy.,5,positive,cleanliness
+F0471,Jinja,"Yesterday I shopped at Jinja. No queue at all at Jinja today, in and out in five minutes. Will recommend.",5,positive,queue
+F0472,Kampala Central,The promotion made airtime voucher very affordable. This has happened before.,4,positive,price
+F0473,Jinja,"Please stock airtime voucher, I travel far to shop here. Please reply.",1,negative,stock
+F0474,Gulu,To the manager: The payment went through on my phone but the cashier says nothing came. Please refund. Please reply.,2,negative,payment
+F0475,Mbarara,I bought phone charger at Mbarara on Saturday. Please reply.,3,neutral,question
+F0476,Jinja,"Fast checkout at Jinja, the cashier was quick. This has happened before.",4,positive,queue
+F0477,Entebbe,"Too many people and not enough cashiers at Entebbe, I almost left my basket. Keep it up.",2,negative,queue
+F0478,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. Nobody was ready to help me find bananas. This has happened before.,2,negative,staff
+F0479,Mbale,"Yesterday I shopped at Mbale. I cannot afford to shop here anymore, prices are high. Keep it up.",2,negative,price
+F0480,Kampala Central,To the manager: The card machine at Kampala Central was not working so I could not pay. This has happened before.,3,negative,payment
+F0481,Mbale,Hello. Is posho available in Mbale? Please reply.,3,neutral,question
+F0482,Fort Portal,Feedback: The soap was not fresh at all.,1,negative,freshness
+F0483,Fort Portal,To the manager: The cashier at Fort Portal shouted at me.,2,negative,staff
+F0484,Kampala Ntinda,Hello. Please tell me the price of cooking oil.,3,neutral,question
+F0485,Gulu,I came for sodas but the shelf was empty. Thank you.,1,negative,stock
+F0486,Mbale,Yesterday I shopped at Mbale. No phone charger on the shelf again this week. Why? Please fix this.,1,negative,stock
+F0487,Kampala Ntinda,To the manager: Good stock of airtime voucher this week. Thank you.,5,positive,stock
+F0488,Kampala Central,I bought bread at Kampala Central on Saturday. Thanks.,3,neutral,question
+F0489,Kampala Central,"Too many people and not enough cashiers at Kampala Central, I almost left my basket. Please reply.",2,negative,queue
+F0490,Kampala Central,Yesterday I shopped at Kampala Central. Spent half an hour in the line on Saturday. Please open more tills. This has happened before.,1,negative,queue
+F0491,Kampala Central,Yesterday I shopped at Kampala Central. Does the receipt need my phone number? Thanks.,3,neutral,question
+F0492,Mbarara,Hello. Please tell me the price of diapers.,3,neutral,question
+F0493,Kampala Ntinda,To the manager: The toilets at Kampala Ntinda were not clean. Thank you.,1,negative,cleanliness
+F0494,Kampala Central,Hello. Is milk available in Kampala Central?,3,neutral,question
+F0495,Kampala Central,Feedback: The promotion made airtime voucher very affordable. Do better.,5,positive,price
+F0496,Jinja,On Friday evening. The driver left the groceries at the gate. Keep it up.,2,negative,delivery
+F0497,Kampala Ntinda,Hello. Airtel Money kept timing out at the till. Thank you.,2,negative,payment
+F0498,Gulu,The shop was dirty and the sugar was damaged. Do better.,3,negative,cleanliness
+F0499,Mbale,Yesterday I shopped at Mbale. Good prices on phone charger. Do better.,5,positive,price
+F0500,Entebbe,"To the manager: Please stock phone charger, I travel far to shop here. Please fix this.",3,negative,stock
+F0501,Kampala Central,To the manager: The points on my card are wrong. Will recommend.,2,negative,loyalty
+F0502,Kampala Central,I came for diapers but the shelf was empty. Thank you.,1,negative,stock
+F0503,Jinja,Hello. Dusty shelves and a sticky floor. Do better.,3,negative,cleanliness
+F0504,Mbarara,Feedback: Mobile money payment failed twice and I was charged anyway.,1,negative,payment
+F0505,Jinja,On Friday evening. Good prices on rice. Please fix this.,4,positive,price
+F0506,Kampala Ntinda,To the manager: The vegetables at Kampala Ntinda were very fresh this morning. Thank you.,4,positive,freshness
+F0507,Kampala Central,Feedback: Do you open on public holidays at Kampala Central?,3,neutral,question
+F0508,Fort Portal,Hello. Unfriendly security guard at the entrance. Keep it up.,3,negative,staff
+F0509,Mbarara,"Fast checkout at Mbarara, the cashier was quick. This has happened before.",4,positive,queue
+F0510,Kampala Ntinda,The promotion made bananas very affordable.,4,positive,price
+F0511,Mbarara,Feedback: Please tell me the price of sodas. Please reply.,3,neutral,question
+F0512,Kampala Ntinda,Feedback: Delivery was two hours late and the soap was warm. Please reply.,1,negative,delivery
+F0513,Fort Portal,"Prices of soap keep going up, too expensive. Please fix this.",2,negative,price
+F0514,Mbarara,Same day delivery worked well. Do better.,4,positive,delivery
+F0515,Gulu,On Friday evening. Staff were rude when I asked about a refund for diapers.,3,negative,staff
+F0516,Kampala Ntinda,Hello. Is tomatoes available in Kampala Ntinda? Thanks.,3,neutral,question
+F0517,Entebbe,Yesterday I shopped at Entebbe. Please tell me the price of sugar. Thanks.,3,neutral,question
+F0518,Entebbe,Hello. The checkout line at Entebbe was very slow today.,1,negative,queue
+F0519,Kampala Central,"On Friday evening. Slow service at the counter, it took so long to pay. This has happened before.",2,negative,queue
+F0520,Fort Portal,Polite cashier and a helpful security guard. Keep it up.,4,positive,staff
+F0521,Mbale,Happy to find rice again. Keep it up.,5,positive,stock
+F0522,Jinja,"Yesterday I shopped at Jinja. Mobile money payment went through quickly, thank you. Keep it up.",5,positive,payment
+F0523,Jinja,Yesterday I shopped at Jinja. Does the receipt need my phone number? Thanks.,3,neutral,question
+F0524,Mbarara,Yesterday I shopped at Mbarara. Spent half an hour in the line on Saturday. Please open more tills. Keep it up.,1,negative,queue
+F0525,Kampala Central,The rider never called before arriving. Do better.,1,negative,delivery
+F0526,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. Good quality bananas every time. I am not happy.,4,positive,freshness
+F0527,Entebbe,Feedback: Very poor customer care at Entebbe. Please fix this.,2,negative,staff
+F0528,Mbale,"Too many people and not enough cashiers at Mbale, I almost left my basket. Please reply.",1,negative,queue
+F0529,Mbarara,Paying with my phone was easy and quick. Please reply.,4,positive,payment
+F0530,Jinja,I will pick up the sugar order tomorrow. Thanks.,3,neutral,question
+F0531,Mbarara,Unfriendly security guard at the entrance. Will recommend.,3,negative,staff
+F0532,Kampala Central,To the manager: The bread was stale and the milk smelled bad. Keep it up.,1,negative,freshness
+F0533,Kampala Central,Yesterday I shopped at Kampala Central. Happy to find soap again. Will recommend.,5,positive,stock
+F0534,Jinja,Unfriendly security guard at the entrance. This has happened before.,3,negative,staff
+F0535,Fort Portal,On Friday evening. I scanned my card but no points were added. Please fix this.,1,negative,loyalty
+F0536,Mbarara,Delivery was on time and the groceries were cold. Thank you.,4,positive,delivery
+F0537,Kampala Central,"Feedback: No queue at all at Kampala Central today, in and out in five minutes. Please fix this.",5,positive,queue
+F0538,Jinja,Hello. The card machine at Jinja was not working so I could not pay. Keep it up.,3,negative,payment
+F0539,Entebbe,Feedback: Everything I needed was on the shelf. This has happened before.,4,positive,stock
+F0540,Kampala Central,Neat and well organised store. Will recommend.,5,positive,cleanliness
+F0541,Entebbe,On Friday evening. Do you open on public holidays at Entebbe? Thanks.,3,neutral,question
+F0542,Kampala Central,Hello. Is milk available in Kampala Central? Please reply.,5,positive,question
+F0543,Entebbe,To the manager: Out of school books for the third time. Will recommend.,1,negative,stock
+F0544,Mbarara,Hello. The points on my card are wrong.,2,negative,loyalty
+F0545,Kampala Central,Airtel Money kept timing out at the till. Keep it up.,1,negative,payment
+F0546,Mbale,Love the Gold discount on Saturdays. Please fix this.,5,positive,loyalty
+F0547,Mbarara,Hello. The points on my card are wrong. Thank you.,2,negative,loyalty
+F0548,Kampala Ntinda,"Mobile money payment went through quickly, thank you.",5,positive,payment
+F0549,Gulu,Feedback: Please tell me the price of milk. Please reply.,3,neutral,question
+F0550,Fort Portal,Everything I needed was on the shelf. Keep it up.,4,positive,stock
+F0551,Jinja,"Yesterday I shopped at Jinja. Too many people and not enough cashiers at Jinja, I almost left my basket. Do better.",2,negative,queue
+F0552,Entebbe,"Feedback: Too many people and not enough cashiers at Entebbe, I almost left my basket. I am not happy.",2,negative,queue
+F0553,Fort Portal,Lost my points when I changed my phone number. I am not happy.,2,negative,loyalty
+F0554,Kampala Central,Airtel Money kept timing out at the till. Will recommend.,2,negative,payment
+F0555,Entebbe,Happy to find phone charger again. I am not happy.,5,positive,stock
+F0556,Fort Portal,Feedback: Do you open on public holidays at Fort Portal? Thanks.,3,neutral,question
+F0557,Mbale,Staff were rude when I asked about a refund for diapers. Please reply.,1,negative,staff
+F0558,Kampala Central,The price on the shelf was lower than at the till.,2,negative,price
+F0559,Jinja,I will pick up the rice order tomorrow. Thanks.,3,neutral,question
+F0560,Jinja,Hello. I was charged twice for one purchase. Please fix this.,2,negative,payment
+F0561,Gulu,Yesterday I shopped at Gulu. I bought soap at Gulu on Saturday.,3,neutral,question
+F0562,Jinja,"Long queue at the till in Jinja, waited more than twenty minutes. Please reply.",1,negative,queue
+F0563,Fort Portal,On Friday evening. I was charged twice for one purchase. I am not happy.,3,negative,payment
+F0564,Mbarara,Feedback: The line moved quickly even on Saturday. I am not happy.,2,negative,queue
+F0565,Mbarara,Feedback: Please tell me the price of bananas.,3,neutral,question
+F0566,Kampala Central,Feedback: The promotion made sugar very affordable. Will recommend.,4,positive,price
+F0567,Kampala Ntinda,To the manager: Easy to earn points at Kampala Ntinda. Please reply.,4,positive,loyalty
+F0568,Fort Portal,Feedback: The milk was expired when I opened it. Very disappointed. Please fix this.,1,negative,freshness
+F0569,Fort Portal,The diapers was not fresh at all.,1,negative,freshness
+F0570,Entebbe,Yesterday I shopped at Entebbe. Neat and well organised store. Do better.,5,positive,cleanliness
+F0571,Mbale,Please tell me the price of sugar.,3,neutral,question
+F0572,Entebbe,To the manager: I scanned my card but no points were added. Please fix this.,1,negative,loyalty
+F0573,Gulu,Hello. milk is always out of stock at Gulu. This has happened before.,1,negative,stock
+F0574,Entebbe,To the manager: Do you open on public holidays at Entebbe? Please reply.,3,neutral,question
+F0575,Gulu,Yesterday I shopped at Gulu. Very clean shelves at Gulu. I am not happy.,5,positive,cleanliness
+F0576,Gulu,Yesterday I shopped at Gulu. The shop was clean and tidy. Keep it up.,4,positive,cleanliness
+F0577,Mbarara,Why is bread cheaper at the market than here?,1,negative,price
+F0578,Fort Portal,"No queue at all at Fort Portal today, in and out in five minutes.",5,positive,queue
+F0579,Gulu,On Friday evening. I will pick up the phone charger order tomorrow. Thanks.,3,neutral,question
+F0580,Kampala Central,Hello. Airtel Money kept timing out at the till. I am not happy.,2,negative,payment
+F0581,Entebbe,Hello. Everything I needed was on the shelf. Please fix this.,4,positive,stock
+F0582,Entebbe,To the manager: Good quality diapers every time. Thank you.,4,positive,freshness
+F0583,Entebbe,Feedback: Easy to earn points at Entebbe.,5,positive,loyalty
+F0584,Entebbe,Feedback: I was charged twice for one purchase. Do better.,2,negative,payment
+F0585,Kampala Central,"Friendly staff at Kampala Central, they helped me find posho. Thank you.",5,positive,staff
+F0586,Entebbe,Hello. Very poor customer care at Entebbe. Do better.,1,negative,staff
+F0587,Mbale,Hello. Too costly for ordinary families.,3,negative,price
+F0588,Kampala Central,On Friday evening. The manager solved my problem quickly. Thank you.,5,positive,staff
+F0589,Kampala Ntinda,On Friday evening. Neat and well organised store. I am not happy.,5,positive,cleanliness
+F0590,Mbarara,The shelves at Mbarara are half empty. Please reply.,3,negative,stock
+F0591,Jinja,"Mobile money payment went through quickly, thank you.",5,positive,payment
+F0592,Kampala Central,tomatoes is always out of stock at Kampala Central. Do better.,3,negative,stock
+F0593,Kampala Ntinda,"Hello. Fast checkout at Kampala Ntinda, the cashier was quick. I am not happy.",4,positive,queue
+F0594,Jinja,On Friday evening. Mobile money payment failed twice and I was charged anyway. Keep it up.,1,negative,payment
+F0595,Kampala Central,Spent half an hour in the line on Saturday. Please open more tills.,2,negative,queue
+F0596,Fort Portal,"No queue at all at Fort Portal today, in and out in five minutes. Please reply.",5,positive,queue
+F0597,Jinja,"Fast checkout at Jinja, the cashier was quick. I am not happy.",5,positive,queue
+F0598,Fort Portal,"Hello. Friendly staff at Fort Portal, they helped me find posho.",4,positive,staff
+F0599,Mbale,Is bread available in Mbale?,3,neutral,question
+F0600,Entebbe,Asked about my Gold discount and the cashier knew nothing. Keep it up.,3,neutral,loyalty
+F0601,Kampala Ntinda,Hello. Is tomatoes available in Kampala Ntinda?,3,neutral,question
+F0602,Kampala Ntinda,Hello. The payment went through on my phone but the cashier says nothing came. Please refund. Please fix this.,1,negative,payment
+F0603,Kampala Ntinda,Staff were rude when I asked about a refund for bread. This has happened before.,1,negative,staff
+F0604,Kampala Ntinda,Dusty shelves and a sticky floor. Please reply.,1,negative,cleanliness
+F0605,Gulu,Yesterday I shopped at Gulu. The points on my card are wrong. Thank you.,1,negative,loyalty
+F0606,Mbale,Spent half an hour in the line on Saturday. Please open more tills.,2,negative,queue
+F0607,Mbarara,To the manager: I was charged twice for one purchase. Please reply.,3,negative,payment
+F0608,Mbarara,Feedback: The attendant ignored me for ten minutes. This has happened before.,2,negative,staff
+F0609,Mbarara,Feedback: No tomatoes on the shelf again this week. Why? I am not happy.,2,negative,stock
+F0610,Gulu,Feedback: Flies near the meat counter. Please fix this.,3,negative,cleanliness
+F0611,Entebbe,Feedback: Asked about my Gold discount and the cashier knew nothing. Please fix this.,3,negative,loyalty
+F0612,Kampala Ntinda,On Friday evening. Same day delivery worked well. Will recommend.,4,positive,delivery
+F0613,Jinja,"On Friday evening. Great offer on sodas this week, saved a lot. Thank you.",5,positive,price
+F0614,Entebbe,Good quality sodas every time. This has happened before.,4,positive,freshness
+F0615,Kampala Central,Yesterday I shopped at Kampala Central. Lost my points when I changed my phone number. Keep it up.,4,positive,loyalty
+F0616,Gulu,On Friday evening. I bought posho at Gulu on Saturday.,3,neutral,question
+F0617,Fort Portal,Yesterday I shopped at Fort Portal. Very poor customer care at Fort Portal. I am not happy.,1,negative,staff
+F0618,Entebbe,"Friendly staff at Entebbe, they helped me find bananas. Will recommend.",5,positive,staff
+F0619,Gulu,"Long queue at the till in Gulu, waited more than twenty minutes. Please fix this.",3,negative,queue
+F0620,Kampala Ntinda,Happy to find school books again. This has happened before.,5,positive,stock
+F0621,Mbale,Hello. The vegetables at Mbale were very fresh this morning. Will recommend.,5,positive,freshness
+F0622,Mbale,Hello. Unfriendly security guard at the entrance.,3,negative,staff
+F0623,Mbale,"Yesterday I shopped at Mbale. Prices of sugar keep going up, too expensive. Do better.",3,negative,price
+F0624,Fort Portal,To the manager: Everything at Fort Portal costs more than last month. Do better.,2,negative,price
+F0625,Mbarara,Feedback: Found rotten tomatoes in the bag I took home. I am not happy.,3,negative,freshness
+F0626,Mbarara,"Great offer on rice this week, saved a lot. I am not happy.",5,positive,price
+F0627,Mbale,Yesterday I shopped at Mbale. I was charged twice for one purchase. Please fix this.,1,negative,payment
+F0628,Entebbe,On Friday evening. Polite cashier and a helpful security guard. Keep it up.,5,positive,staff
+F0629,Entebbe,"Yesterday I shopped at Entebbe. Mobile money payment went through quickly, thank you. Will recommend.",5,positive,payment
+F0630,Kampala Central,On Friday evening. Please tell me the price of sugar.,3,neutral,question
+F0631,Entebbe,Hello. Unfriendly security guard at the entrance.,3,negative,staff
+F0632,Kampala Ntinda,Hello. The rider never called before arriving. Please reply.,2,negative,delivery
+F0633,Mbarara,On Friday evening. Out of phone charger for the third time. This has happened before.,3,negative,stock
+F0634,Kampala Ntinda,On Friday evening. The cashier at Kampala Ntinda shouted at me. Please fix this.,2,negative,staff
+F0635,Kampala Ntinda,Does the receipt need my phone number? Thanks.,3,neutral,question
+F0636,Fort Portal,"I cannot afford to shop here anymore, prices are high. Do better.",3,negative,price
+F0637,Kampala Central,On Friday evening. The shelves at Kampala Central are half empty. I am not happy.,2,negative,stock
+F0638,Gulu,Feedback: The payment went through on my phone but the cashier says nothing came. Please refund. Thank you.,1,negative,payment
+F0639,Jinja,Yesterday I shopped at Jinja. Love the Gold discount on Saturdays. Please reply.,5,positive,loyalty
+F0640,Entebbe,I will pick up the sodas order tomorrow.,3,neutral,question
+F0641,Gulu,No airtime voucher on the shelf again this week. Why? Thank you.,1,negative,stock
+F0642,Kampala Central,Hello. Too costly for ordinary families. Please fix this.,3,negative,price
+F0643,Jinja,"Feedback: Prices of sodas keep going up, too expensive.",2,negative,price
+F0644,Entebbe,Hello. Waited all day for my delivery. Please fix this.,1,negative,delivery
+F0645,Gulu,To the manager: The cashier at Gulu shouted at me. Please reply.,3,negative,staff
+F0646,Jinja,Is school books available in Jinja? Thanks.,3,neutral,question
+F0647,Kampala Ntinda,"To the manager: Too many people and not enough cashiers at Kampala Ntinda, I almost left my basket.",2,negative,queue
+F0648,Jinja,Feedback: Do you open on public holidays at Jinja?,3,neutral,question
+F0649,Gulu,"On Friday evening. Fast checkout at Gulu, the cashier was quick.",5,positive,queue
+F0650,Entebbe,Do you open on public holidays at Entebbe? Please reply.,3,neutral,question
+F0651,Fort Portal,To the manager: The attendant ignored me for ten minutes. Keep it up.,2,negative,staff
+F0652,Gulu,Yesterday I shopped at Gulu. I was charged twice for one purchase. I am not happy.,3,negative,payment
+F0653,Mbarara,On Friday evening. The cashier at Mbarara shouted at me.,2,negative,staff
+F0654,Entebbe,Love the Gold discount on Saturdays. Will recommend.,4,positive,loyalty
+F0655,Mbarara,Feedback: The payment went through on my phone but the cashier says nothing came. Please refund.,1,negative,payment
+F0656,Gulu,The tomatoes was expired when I opened it. Very disappointed.,1,negative,freshness
+F0657,Kampala Ntinda,Spent half an hour in the line on Saturday. Please open more tills. I am not happy.,2,negative,queue
+F0658,Jinja,To the manager: I will pick up the posho order tomorrow. Thanks.,3,neutral,question
+F0659,Entebbe,The expiry date on the bread had passed two weeks ago.,2,negative,freshness
+F0660,Mbale,Feedback: Bad smell near the fresh produce section. Please fix this.,2,negative,cleanliness
+F0661,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. Good stock of sugar this week. Please fix this.,4,positive,stock
+F0662,Gulu,Hello. Delivery was on time and the groceries were cold. Please reply.,4,positive,delivery
+F0663,Kampala Central,Is rice available in Kampala Central? Please reply.,3,neutral,question
+F0664,Kampala Ntinda,"Prices of tomatoes keep going up, too expensive. I am not happy.",2,negative,price
+F0665,Fort Portal,Hello. The rider was polite and quick. Keep it up.,5,positive,delivery
+F0666,Entebbe,Feedback: Very poor customer care at Entebbe. Please fix this.,2,negative,staff
+F0667,Mbarara,"Yesterday I shopped at Mbarara. Mobile money payment went through quickly, thank you. Keep it up.",4,positive,payment
+F0668,Gulu,"Hello. Please stock tomatoes, I travel far to shop here.",2,negative,stock
+F0669,Gulu,To the manager: I was charged twice for one purchase.,2,negative,payment
+F0670,Mbale,The attendant ignored me for ten minutes.,1,negative,staff
+F0671,Entebbe,To the manager: I scanned my card but no points were added. Please reply.,2,negative,loyalty
+F0672,Gulu,On Friday evening. I will pick up the bananas order tomorrow. Thanks.,3,neutral,question
+F0673,Mbarara,Hello. The card machine worked well today.,5,positive,payment
+F0674,Fort Portal,To the manager: Does the receipt need my phone number? Thanks.,3,neutral,question
+F0675,Jinja,Do you open on public holidays at Jinja?,3,neutral,question
+F0676,Kampala Central,"To the manager: Long queue at the till in Kampala Central, waited more than twenty minutes. This has happened before.",1,negative,queue
+F0677,Fort Portal,On Friday evening. Is phone charger available in Fort Portal? Please reply.,3,neutral,question
+F0678,Gulu,Does the receipt need my phone number? Please reply.,3,neutral,question
+F0679,Jinja,Hello. Everything at Jinja costs more than last month. Please reply.,3,negative,price
+F0680,Mbarara,On Friday evening. Why is sodas cheaper at the market than here? Keep it up.,2,negative,price
+F0681,Mbarara,On Friday evening. Out of bread for the third time. Keep it up.,2,negative,stock
+F0682,Entebbe,To the manager: The attendant ignored me for ten minutes. Do better.,1,negative,staff
+F0683,Kampala Central,Yesterday I shopped at Kampala Central. Delivery was two hours late and the diapers was warm. Will recommend.,2,negative,delivery
+F0684,Fort Portal,Feedback: I will pick up the airtime voucher order tomorrow. Please reply.,3,neutral,question
+F0685,Jinja,Feedback: The checkout line at Jinja was very slow today. I am not happy.,2,negative,queue
+F0686,Kampala Central,Hello. The shelves at Kampala Central are half empty. Thank you.,2,negative,stock
+F0687,Fort Portal,Hello. Very poor customer care at Fort Portal. Keep it up.,3,neutral,staff
+F0688,Jinja,The loyalty points were added at once. Very good. This has happened before.,5,positive,loyalty
+F0689,Fort Portal,"Hello. I cannot afford to shop here anymore, prices are high. This has happened before.",2,negative,price
+F0690,Gulu,My order arrived with items missing. Thank you.,2,negative,delivery
+F0691,Jinja,The loyalty points were added at once. Very good. I am not happy.,4,positive,loyalty
+F0692,Mbarara,Feedback: Staff were rude when I asked about a refund for posho.,1,negative,staff
+F0693,Jinja,"On Friday evening. Prices of rice keep going up, too expensive. I am not happy.",1,negative,price
+F0694,Kampala Ntinda,Hello. Found rotten tomatoes in the bag I took home. Do better.,2,negative,freshness
+F0695,Gulu,Does the receipt need my phone number? Please reply.,3,neutral,question
+F0696,Mbarara,Yesterday I shopped at Mbarara. The manager solved my problem quickly. Thank you. Please fix this.,4,positive,staff
+F0697,Mbale,"No queue at all at Mbale today, in and out in five minutes. Please reply.",5,positive,queue
+F0698,Kampala Ntinda,"I cannot afford to shop here anymore, prices are high.",1,negative,price
+F0699,Jinja,Why is bananas cheaper at the market than here? Please fix this.,2,negative,price
+F0700,Jinja,Yesterday I shopped at Jinja. Dusty shelves and a sticky floor. This has happened before.,2,negative,cleanliness
+F0701,Kampala Central,"On Friday evening. Slow service at the counter, it took so long to pay. Will recommend.",2,negative,queue
+F0702,Entebbe,To the manager: Is sodas available in Entebbe? Thanks.,3,neutral,question
+F0703,Kampala Ntinda,The shelves at Kampala Ntinda are half empty. Keep it up.,2,negative,stock
+F0704,Mbarara,To the manager: Everything I needed was on the shelf. Do better.,4,positive,stock
+F0705,Gulu,"Feedback: Friendly staff at Gulu, they helped me find rice. Please reply.",5,positive,staff
+F0706,Kampala Ntinda,"Great offer on tomatoes this week, saved a lot. Keep it up.",4,positive,price
+F0707,Jinja,Feedback: Spent half an hour in the line on Saturday. Please open more tills. Please reply.,3,negative,queue
+F0708,Kampala Central,Yesterday I shopped at Kampala Central. Everything I needed was on the shelf. This has happened before.,5,positive,stock
+F0709,Kampala Central,On Friday evening. The line moved quickly even on Saturday. Please reply.,4,positive,queue
+F0710,Entebbe,Too costly for ordinary families. I am not happy.,1,negative,price
+F0711,Mbarara,The card machine at Mbarara was not working so I could not pay. I am not happy.,1,negative,payment
+F0712,Mbale,The checkout line at Mbale was very slow today. This has happened before.,3,negative,queue
+F0713,Jinja,Yesterday I shopped at Jinja. Please tell me the price of tomatoes. Please reply.,3,neutral,question
+F0714,Kampala Central,The shelves at Kampala Central are half empty. Please fix this.,1,negative,stock
+F0715,Mbale,To the manager: The price on the shelf was lower than at the till.,2,negative,price
+F0716,Gulu,On Friday evening. The cashier at Gulu shouted at me. This has happened before.,2,negative,staff
+F0717,Gulu,The shelves at Gulu are half empty.,3,negative,stock
+F0718,Entebbe,Yesterday I shopped at Entebbe. Out of bread for the third time. Will recommend.,1,negative,stock
+F0719,Kampala Ntinda,Yesterday I shopped at Kampala Ntinda. No soap on the shelf again this week. Why? This has happened before.,2,negative,stock
+F0720,Fort Portal,The sugar was expired when I opened it. Very disappointed. Please fix this.,2,negative,freshness
+F0721,Fort Portal,My order arrived with items missing.,1,negative,delivery
+F0722,Fort Portal,Feedback: I paid with Mobile Money but the till said no payment. I lost money. Will recommend.,3,negative,payment
+F0723,Mbale,Hello. Spent half an hour in the line on Saturday. Please open more tills.,2,negative,queue
+F0724,Gulu,Do you open on public holidays at Gulu? Please reply.,3,neutral,question
+F0725,Gulu,"Fast checkout at Gulu, the cashier was quick. I am not happy.",4,positive,queue
+F0726,Mbale,To the manager: soap is always out of stock at Mbale. Please fix this.,2,negative,stock
+F0727,Mbale,Feedback: I came for sodas but the shelf was empty. Thank you.,1,negative,stock
+F0728,Mbarara,On Friday evening. The bread was stale and the milk smelled bad. Please fix this.,2,negative,freshness
+F0729,Gulu,Hello. Unfriendly security guard at the entrance. Keep it up.,1,negative,staff
+F0730,Kampala Ntinda,To the manager: Asked about my Gold discount and the cashier knew nothing. Please fix this.,2,negative,loyalty
+F0731,Mbarara,To the manager: Is milk available in Mbarara? Please reply.,3,neutral,question
+F0732,Kampala Central,"Yesterday I shopped at Kampala Central. Great offer on rice this week, saved a lot. Please fix this.",2,negative,price
+F0733,Kampala Ntinda,To the manager: Do you open on public holidays at Kampala Ntinda?,3,neutral,question
+F0734,Jinja,Hello. Is sugar available in Jinja? Please reply.,3,neutral,question
+F0735,Kampala Central,Waited all day for my delivery. Thank you.,3,negative,delivery
+F0736,Mbale,Hello. Everything at Mbale costs more than last month.,3,negative,price
+F0737,Jinja,The bananas was expired when I opened it. Very disappointed.,2,negative,freshness
+F0738,Mbarara,Fresh milk and clean shelves. Will come back.,5,positive,freshness
+F0739,Entebbe,Yesterday I shopped at Entebbe. The toilets at Entebbe were not clean. Thank you.,1,negative,cleanliness
+F0740,Jinja,Feedback: Waited all day for my delivery. Keep it up.,3,neutral,delivery
+F0741,Mbarara,To the manager: Do you open on public holidays at Mbarara? Thanks.,3,neutral,question
+F0742,Entebbe,Feedback: I bought soap at Entebbe on Saturday. Please reply.,3,neutral,question
+F0743,Mbale,Feedback: Fresh phone charger and clean shelves. Will come back. This has happened before.,5,positive,freshness
+F0744,Gulu,Yesterday I shopped at Gulu. Is tomatoes available in Gulu? Please reply.,1,negative,question
+F0745,Kampala Ntinda,"Slow service at the counter, it took so long to pay. Will recommend.",1,negative,queue
+F0746,Gulu,Feedback: Good stock of airtime voucher this week. I am not happy.,5,positive,stock
+F0747,Jinja,Yesterday I shopped at Jinja. The shelves at Jinja are half empty. This has happened before.,4,positive,stock
+F0748,Entebbe,"Hello. I cannot afford to shop here anymore, prices are high.",1,negative,price
+F0749,Kampala Ntinda,Does the receipt need my phone number?,3,neutral,question
+F0750,Gulu,Hello. Unfriendly security guard at the entrance. This has happened before.,2,negative,staff
+F0751,Gulu,Is diapers available in Gulu? Please reply.,3,neutral,question
+F0752,Kampala Ntinda,The floor at Kampala Ntinda was wet and nobody cleaned it.,3,neutral,cleanliness
+F0753,Fort Portal,Very poor customer care at Fort Portal. I am not happy.,2,negative,staff
+F0754,Jinja,I will pick up the bread order tomorrow. Please reply.,3,neutral,question
+F0755,Gulu,Hello. Everything at Gulu costs more than last month.,1,negative,price
+F0756,Mbarara,On Friday evening. The attendant ignored me for ten minutes. Please fix this.,3,negative,staff
+F0757,Mbale,I bought bread at Mbale on Saturday. Thanks.,3,neutral,question
+F0758,Mbarara,Feedback: The card machine at Mbarara was not working so I could not pay. Please reply.,1,negative,payment
+F0759,Jinja,"Feedback: Slow service at the counter, it took so long to pay. Keep it up.",3,negative,queue
+F0760,Fort Portal,On Friday evening. Unfriendly security guard at the entrance. Please reply.,3,negative,staff
+F0761,Mbarara,"On Friday evening. I cannot afford to shop here anymore, prices are high. Please reply.",5,positive,price
+F0762,Mbale,Asked about my Gold discount and the cashier knew nothing. Please reply.,1,negative,loyalty
+F0763,Kampala Central,To the manager: The promotion made bread very affordable. Please fix this.,4,positive,price
+F0764,Jinja,Good quality milk every time. Thank you.,5,positive,freshness
+F0765,Jinja,I will pick up the phone charger order tomorrow.,3,neutral,question
+F0766,Kampala Central,Good prices on soap. Keep it up.,4,positive,price
+F0767,Kampala Ntinda,Hello. No sodas on the shelf again this week. Why? I am not happy.,1,negative,stock
+F0768,Mbale,Fresh tomatoes and clean shelves. Will come back.,5,positive,freshness
+F0769,Gulu,Hello. The cashier at Gulu shouted at me. Please reply.,1,negative,staff
+F0770,Jinja,To the manager: Spent half an hour in the line on Saturday. Please open more tills. Please fix this.,1,negative,queue
+F0771,Fort Portal,To the manager: I will pick up the bread order tomorrow. Thanks.,3,neutral,question
+F0772,Mbarara,Hello. The price on the shelf was lower than at the till. Please fix this.,1,negative,price
+F0773,Kampala Central,The card machine worked well today. This has happened before.,4,positive,payment
+F0774,Jinja,"No queue at all at Jinja today, in and out in five minutes. I am not happy.",4,positive,queue
+F0775,Fort Portal,Good stock of bananas this week.,4,positive,stock
+F0776,Kampala Ntinda,To the manager: Bad smell near the fresh produce section. Keep it up.,1,negative,cleanliness
+F0777,Entebbe,Yesterday I shopped at Entebbe. Please tell me the price of milk.,3,neutral,question
+F0778,Kampala Ntinda,Happy to find soap again. Do better.,4,positive,stock
+F0779,Kampala Ntinda,Feedback: Spent half an hour in the line on Saturday. Please open more tills.,2,negative,queue
+F0780,Kampala Central,Yesterday I shopped at Kampala Central. I paid with Mobile Money but the till said no payment. I lost money.,1,negative,payment
+F0781,Fort Portal,Why were my points removed? Please fix this.,2,negative,loyalty
+F0782,Gulu,"On Friday evening. Fast checkout at Gulu, the cashier was quick.",4,positive,queue
+F0783,Entebbe,Feedback: Does the receipt need my phone number? Thanks.,3,neutral,question
+F0784,Kampala Ntinda,On Friday evening. Easy to earn points at Kampala Ntinda.,5,positive,loyalty
+F0785,Mbarara,Yesterday I shopped at Mbarara. Happy to find cooking oil again.,2,negative,stock
+F0786,Mbale,Feedback: Same day delivery worked well. Will recommend.,4,positive,delivery
+F0787,Jinja,On Friday evening. Do you open on public holidays at Jinja?,3,neutral,question
+F0788,Mbarara,Feedback: Polite cashier and a helpful security guard.,5,positive,staff
+F0789,Jinja,Good stock of soap this week. Please fix this.,5,positive,stock
+F0790,Entebbe,To the manager: Bought bananas at Entebbe and it was already spoiled. Will recommend.,3,neutral,freshness
+F0791,Gulu,Feedback: Do you open on public holidays at Gulu?,3,neutral,question
+F0792,Fort Portal,Is school books available in Fort Portal? Thanks.,3,neutral,question
+F0793,Jinja,On Friday evening. Please tell me the price of cooking oil.,3,neutral,question
+F0794,Jinja,Please tell me the price of tomatoes. Thanks.,3,neutral,question
+F0795,Kampala Ntinda,I will pick up the soap order tomorrow.,3,neutral,question
+F0796,Jinja,Feedback: Delivery was two hours late and the cooking oil was warm. Will recommend.,2,negative,delivery
+F0797,Kampala Ntinda,On Friday evening. Please tell me the price of soap.,3,neutral,question
+F0798,Kampala Central,Hello. The loyalty points were added at once. Very good. Please fix this.,5,positive,loyalty
+F0799,Kampala Central,To the manager: Delivery was on time and the groceries were cold. Keep it up.,4,positive,delivery
+F0800,Mbale,"No queue at all at Mbale today, in and out in five minutes.",4,positive,queue

@@ -1,0 +1,443 @@
+{
+ "session": 11,
+ "notes_title": "Today's file is one you have never seen, which is where most analysts start. Last time you asked a database questions in SQL. Now you learn what to do in your first hour with an unfamiliar file. That's called exploring, and it has a routine you can repeat on any file. We'll draw charts with two libraries, matplotlib and seaborn, and we'll hunt for a result that fools almost everyone the first time. By the end you'll have a notebook with charts and three findings written in plain words, each with a number and a limit.",
+ "notes_outcomes": "By the end you'll run a routine for exploring a new dataset, the same steps in the same order. You'll draw histograms, scatter plots, bars and lines with matplotlib and seaborn. And you'll write a finding that states a number and says where it stops being true. The live part builds the charts one at a time, and in the lab you draw six of your own and write three findings.",
+ "notes_words": "Six words come with exploring. EDA is short for exploratory data analysis, the routine of getting to know a new file. Axes is the chart area where matplotlib draws. Hue is seaborn's way of colouring by a column. A rate is a count divided by what could have happened. Seasonality is a pattern that comes back every year. And a finding is one sentence with a number, a comparison and a limit. Each has a spreadsheet cousin in the right-hand column, so none of this is far from what you already do.",
+ "vocab": [
+  [
+   "EDA",
+   "Exploratory data analysis: a fixed routine of looks, summaries and charts you run on a new file before you model or report.",
+   "Scrolling, filtering and pivoting a new sheet to get to know it"
+  ],
+  [
+   "Axes",
+   "The chart area of a matplotlib figure, where the line or bars are drawn and labelled.",
+   "The plot area of a chart"
+  ],
+  [
+   "Hue",
+   "A seaborn setting that colours the marks by the values of a column.",
+   "One colour per group in a chart legend"
+  ],
+  [
+   "Rate",
+   "A count divided by what could have happened, such as returns per 100 lines sold.",
+   "A calculated column that divides one column by another"
+  ],
+  [
+   "Seasonality",
+   "A pattern that comes back at the same time every year, such as a December peak.",
+   "The same bump in a line chart each year"
+  ],
+  [
+   "Finding",
+   "One sentence that states a number, a comparison and a limit.",
+   "The sentence you type under a chart before you send it"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 10",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "In SQL, what is the difference between WHERE and HAVING?",
+     "a": "WHERE picks rows before grouping. HAVING picks groups after the counting."
+    },
+    {
+     "q": "Why did you check each SQL answer against pandas?",
+     "a": "Two routes to the same number is the best evidence the number is right."
+    }
+   ],
+   "notes": "Two questions about SQL before we start exploring.\n\nFirst. In SQL, what is the difference between WHERE and HAVING? Have a think.\n\nWHERE picks rows before any grouping happens. HAVING picks groups after the counting is done. If you want only branches with more than a thousand orders, that's HAVING, because the count only exists once the groups are made.\n\nSecond. You checked each SQL answer against pandas. Why bother with a second route? No rush.\n\nBecause two different routes to the same number is the best evidence you have that it's right. Today we lean on that habit again, because a chart can look convincing even when the numbers behind it are wrong."
+  },
+  {
+   "type": "flow",
+   "title": "The EDA routine in six steps",
+   "steps": [
+    {
+     "h": "Look",
+     "t": "shape, types, missing"
+    },
+    {
+     "h": "Describe",
+     "t": "one summary per number column"
+    },
+    {
+     "h": "One column",
+     "t": "a histogram for its shape"
+    },
+    {
+     "h": "Two columns",
+     "t": "a scatter plot"
+    },
+    {
+     "h": "Groups",
+     "t": "compare with counts and rates"
+    },
+    {
+     "h": "Write",
+     "t": "a finding in one sentence"
+    }
+   ],
+   "caption": "Same steps, same order, on every new file.",
+   "notes": "Here's the idea that organises today. When you meet a new file, you don't start with a model or a report. You explore it. People call this EDA, short for exploratory data analysis. It's what you do in Excel when you scroll, filter and build a quick pivot to get to know a sheet. In Python we write the routine down, so it runs the same way every time.\n\nFirst, look. Shape, types and missing values. You did this in Session 7, and it never stops being the first move.\n\nSecond, describe. One summary for each number column. Count, mean, median, smallest and largest.\n\nThird, one column at a time. Draw a histogram to see its shape.\n\nFourth, two columns together. A scatter plot shows whether they rise and fall together.\n\nFifth, compare groups. Branches, months, payment methods. This is where counts and rates both matter, and we'll spend some time here.\n\nSixth, write. A finding in one sentence. If you can't write the sentence, you haven't finished exploring."
+  },
+  {
+   "type": "code",
+   "title": "Load the orders and describe the order value",
+   "lang": "python",
+   "code": "import pandas as pd\n\norders = pd.read_csv('orders.csv', parse_dates=['order_date'])\nprint(orders.shape)\norders.order_value_ugx.describe().round(0)",
+   "says": [
+    "Read the orders. Dates are read as dates.",
+    "shape: 30,229 rows and 7 columns.",
+    "describe gives count, mean, median and range."
+   ],
+   "output": "(30229, 7)\ncount 30229.0\nmean 47491.0\n50% 23200.0\nmax 3104000.0",
+   "notes": "We start where Session 7 started, with a load.\n\nWe read the orders file, and we ask pandas to treat order_date as dates, which matters when we draw a line over time.\n\nThe first print gives the size. Thirty thousand two hundred and twenty nine orders and seven columns. Later we'll bring in the order lines, the returns and the branches.\n\nThe last line is the describe step. The middle order is worth twenty three thousand two hundred shillings. The mean is forty seven thousand four hundred and ninety one, and the biggest is over three million. You've seen that skew before, and the charts today will show it again."
+  },
+  {
+   "type": "concept",
+   "title": "matplotlib: a page, a chart area and labels",
+   "lead": "matplotlib is the drawing library under almost every Python chart. Every chart is built in the same order.",
+   "points": [
+    {
+     "h": "Figure",
+     "t": "The blank page. plt.subplots() makes one."
+    },
+    {
+     "h": "Axes",
+     "t": "The chart area on the page. You draw on it."
+    },
+    {
+     "h": "Draw",
+     "t": "ax.plot, ax.bar and ax.hist add a line, bars or a histogram."
+    },
+    {
+     "h": "Label",
+     "t": "ax.set_title and ax.set_ylabel add the words."
+    }
+   ],
+   "notes": "matplotlib is the drawing library under almost every Python chart. It has two parts to know.\n\nThe figure is the blank page. The axes is the chart area on that page, with its two scales and the line or bars inside. You make both with one call, plt.subplots, then you draw on the axes and label it.\n\nIn Excel you'd select a chart, then add a title and axis titles. Same jobs. Here you write each one as a line, so the chart can be rebuilt tomorrow with new data and no clicking."
+  },
+  {
+   "type": "code",
+   "title": "Draw monthly revenue as a line",
+   "lang": "python",
+   "code": "import matplotlib.pyplot as plt\norders['month'] = orders.order_date.dt.to_period('M')\nmonthly = orders.groupby('month').order_value_ugx.sum() / 1e6\nfig, ax = plt.subplots()\nax.plot(monthly.index.astype(str), monthly.values, marker='o')\nax.set_title('Monthly revenue, sample')\nax.set_ylabel('UGX millions')\nprint(ax.get_title(), '|', len(ax.lines), 'line')",
+   "says": [
+    "Total the order value for each month, in millions.",
+    "Make the page, then draw one line with a dot per month.",
+    "A title and the units go on every chart."
+   ],
+   "output": "Monthly revenue, sample | 1 line",
+   "notes": "Let's draw a line. Revenue by month.\n\nThe first two lines add up the order value for each month and divide by a million, so the axis will read in millions of shillings.\n\nThen plt.subplots gives us the page and the chart area. We draw one line on the chart area, with a dot at each month so every month is visible.\n\nLast, we label. A title, and a y label that says what the units are. Without units, nobody knows what the numbers mean.\n\nThe print confirms the chart holds one line and carries our title. The picture itself you'll see in your own notebook."
+  },
+  {
+   "type": "concept",
+   "title": "Pick the chart from the question",
+   "lead": "Ask what you want to know first. The chart follows.",
+   "points": [
+    {
+     "h": "One number",
+     "t": "Histogram. Where do most values sit?"
+    },
+    {
+     "h": "Groups",
+     "t": "Bar. Which is bigger?"
+    },
+    {
+     "h": "Over time",
+     "t": "Line. Is there a pattern?"
+    },
+    {
+     "h": "Two numbers",
+     "t": "Scatter. Do they move together?"
+    }
+   ],
+   "fig": "chart_choice",
+   "alt": "Four mini charts: a histogram for one number, a bar chart to compare groups, a line for change over time and a scatter plot for two numbers.",
+   "notes": "Before more code, a quick decision guide. The picture shows the four charts we use most, each tied to a question.\n\nOne number, and you want to see its shape? A histogram. A comparison between groups? Bars. Change over time? A line. Two numbers, and you want to know whether they rise and fall together? A scatter plot.\n\nIn Session 3 you made these choices in Sheets. The choice is the same in Python. Only the drawing changes."
+  },
+  {
+   "type": "code",
+   "title": "seaborn: the shape of basket size",
+   "lang": "python",
+   "code": "import seaborn as sns\n\nlines = pd.read_csv('order_lines.csv')\nbasket = lines.groupby('order_id').size().rename('basket_size')\norders = orders.merge(basket, on='order_id')\nsns.histplot(data=orders, x='basket_size', binwidth=1)\nprint(orders.basket_size.median(), round(orders.basket_size.mean(), 2))",
+   "says": [
+    "Count the lines on each order and attach the count to orders.",
+    "histplot draws it. binwidth=1 gives one bar per basket size.",
+    "The median is 2 lines, the mean 3.24."
+   ],
+   "output": "2.0 3.24",
+   "notes": "Now seaborn. It sits on top of matplotlib and gives you good looking statistical charts in one line. You hand it the table and name the column.\n\nFirst, we read the order lines file, one row for each product on an order. Then basket size. That is my name for the number of lines on an order, the number of products rung up. We count the lines for each order and attach that count to the orders table.\n\nThen histplot draws the histogram. A bin width of one gives one bar for each basket size.\n\nThe numbers beneath tell the same story. The median basket is two lines and the mean is three point two four. It's the same shape as order value, a tall left side and a long tail to the right."
+  },
+  {
+   "type": "code",
+   "title": "seaborn: do bigger baskets cost more",
+   "lang": "python",
+   "code": "ax = sns.scatterplot(data=orders.sample(2000, random_state=1),\n                     x='basket_size', y='order_value_ugx',\n                     hue='payment_method')\nprint(round(orders.basket_size.corr(orders.order_value_ugx), 2))\norders.groupby('basket_size').order_value_ugx.median().head(4)",
+   "says": [
+    "One dot per order. We draw 2,000 so dots do not hide each other.",
+    "hue colours the dots by payment method.",
+    "The correlation is 0.3, a modest link."
+   ],
+   "output": "0.3\n1 7000.0\n2 16020.0\n3 26790.0\n4 36600.0",
+   "notes": "Two columns together. A scatter plot puts one dot on the page for each order.\n\nWe draw only two thousand orders, picked at random. Thirty thousand dots would sit on top of each other and hide the pattern. The hue setting colours the dots by payment method, so you can see whether one method behaves differently.\n\nThe correlation is zero point three. In Session 4 you read a correlation, and zero point three is a modest link.\n\nThe medians show it. One line is worth about seven thousand shillings, two lines sixteen thousand and twenty, three lines twenty six thousand seven hundred and ninety, and four lines thirty six thousand six hundred. More lines means more value, though loosely, because one line can be an expensive item."
+  },
+  {
+   "type": "code",
+   "title": "A wrong column name stops seaborn",
+   "lang": "python",
+   "expect_error": true,
+   "code": "sns.barplot(data=orders, x='branch', y='order_value_ugx')",
+   "output": "ValueError: Could not interpret value `branch` for `x`.",
+   "says": [
+    "seaborn looked for a column called branch and found none."
+   ],
+   "notes": "Here's the error you'll meet most with charts. We ask for a bar chart by branch, but the column in the table is called branch_id, and we typed branch.\n\nRead the last line, as we practised in Session 5. Could not interpret value branch for x. An entry with this name does not appear in data. In plain words, seaborn looked for a column called branch and found nothing.\n\nThe fix is quick. Print orders.columns and copy the name exactly."
+  },
+  {
+   "type": "code",
+   "title": "seaborn: revenue for each branch as bars",
+   "lang": "python",
+   "code": "ax = sns.barplot(data=orders, x='branch_id', y='order_value_ugx',\n                 estimator='sum', errorbar=None)\nprint(len(ax.patches), 'bars')",
+   "says": [
+    "estimator='sum' adds up the values in each bar.",
+    "Eight bars, one for each branch."
+   ],
+   "output": "8 bars",
+   "notes": "That error has a quick cure. The column is called branch_id, so we type that, and ask for the total order value for each branch.\n\nThe estimator setting tells seaborn what to do with the values in each bar. Here it adds them up. Without it seaborn draws the average, and a bar of averages answers a different question. Setting errorbar to None switches off the thin lines it would otherwise draw on top of each bar.\n\nOur check is the count of bars. Eight, one for each branch. In the picture in your notebook, the tallest bars are Kampala Central and Kampala Ntinda, in line with the totals from Session 10."
+  },
+  {
+   "type": "code",
+   "title": "Count the returns for each branch",
+   "lang": "python",
+   "code": "returns = pd.read_csv('returns.csv').merge(orders[['order_id', 'branch_id']], on='order_id')\nlines = lines.merge(orders[['order_id', 'branch_id']], on='order_id')\nby_branch = pd.DataFrame({'returns': returns.groupby('branch_id').size(),\n                          'lines': lines.groupby('branch_id').size()})\nbranches = pd.read_csv('branches.csv')\nby_branch = by_branch.join(branches.set_index('branch_id').branch_name)\nby_branch.sort_values('returns', ascending=False).head(3)",
+   "says": [
+    "Attach the branch to every return and every line sold.",
+    "Count returns and lines for each branch in one table.",
+    "Sort by returns, largest first."
+   ],
+   "output": "B01 321 19169 Kampala Central\nB07 293 9227 Fort Portal\nB02 266 15567 Kampala Ntinda",
+   "notes": "Now we compare groups. Which branch has the most returns?\n\nThe returns table knows the order but not the branch, so we attach the branch from the orders table with a merge, as in Session 9. We do the same for the lines table, because we'll need it in a moment.\n\nThen we build one small table with the number of returns and the number of lines sold for each branch, and add the branch names.\n\nSorted by returns, Kampala Central leads with three hundred and twenty one. Fort Portal is second with two hundred and ninety three, and Kampala Ntinda third with two hundred and sixty six. Remember the lines column. Kampala Central sold nineteen thousand lines. Fort Portal sold under ten thousand."
+  },
+  {
+   "type": "code",
+   "title": "Divide by what was sold to get a rate",
+   "lang": "python",
+   "code": "by_branch['per_100'] = (by_branch.returns / by_branch.lines * 100).round(2)\nby_branch.sort_values('per_100', ascending=False)[['branch_name', 'returns', 'per_100']].head(3)",
+   "says": [
+    "Returns divided by lines sold, times 100.",
+    "Sort the rate, largest first."
+   ],
+   "output": "B07 Fort Portal 293 3.18\nB08 Gulu 221 2.36\nB05 Mbale 231 2.35",
+   "notes": "Now the question that matters. Is a branch returning more, or just selling more?\n\nWe divide returns by lines sold and multiply by a hundred. That gives returns per hundred lines, which is a rate. In a sheet it's a calculated column that divides one column by another.\n\nThen we sort by the rate. Fort Portal now leads, at three point one eight returns for every hundred lines. Gulu is next at two point three six, then Mbale at two point three five.\n\nAnd Kampala Central, the leader a moment ago, has dropped to one point six seven. Let's see both answers side by side."
+  },
+  {
+   "type": "figure",
+   "title": "The count and the rate name different branches",
+   "fig": "returns_count_vs_rate",
+   "look": [
+    "By count, Kampala Central leads with 321 returns.",
+    "By rate, Fort Portal leads with 3.2 returns per 100 lines.",
+    "Kampala Central's rate is 1.7, below the 2.1 average."
+   ],
+   "caption": "Same returns, two questions. The count follows size. The rate shows risk.",
+   "alt": "Two bar charts of returns by branch. By count, Kampala Central has the most returns. By rate, Fort Portal is highest.",
+   "notes": "Same data, two questions, two panels.\n\nThe left panel counts returns. Kampala Central has the longest bar, shaded lighter, with three hundred and twenty one.\n\nThe right panel shows returns per hundred lines sold. Now Fort Portal has the lighter bar, at three point two.\n\nAnd look at Kampala Central again. Its rate is one point seven. Across all eight branches the rate is two point one, so Kampala Central is below the average. It has many returns because it sells many lines.\n\nIf a manager asked you which branch to visit about returns, which one would you name? Sit with it for a second.\n\nFort Portal. Its customers return about one line in thirty one, against one in sixty for Kampala Central."
+  },
+  {
+   "type": "trap",
+   "title": "A long bar can point at the wrong branch",
+   "looks": "You rank the branches by number of returns and send a quality visit to Kampala Central. The chart is right, the code runs and nothing warns you.",
+   "why": "Kampala Central sold 19,169 lines in the sample, more than double the 9,227 at Fort Portal. More sales means more returns, even when customers are happier.",
+   "fix": "Divide by what was sold. Show the rate beside the count, and say which one you used.",
+   "notes": "Here's the trap for today, and it makes no error at all.\n\nYou rank the branches by the number of returns, and you send a quality visit to Kampala Central. The chart is correct. The code runs. Nothing warns you.\n\nThe trouble is size. Kampala Central sold nineteen thousand one hundred and sixty nine lines in our sample, which is more than double the nine thousand two hundred and twenty seven at Fort Portal. A big branch has more of everything, including returns.\n\nTo fix it, divide by what was sold and show the rate beside the count. Then tell your reader which of the two you used."
+  },
+  {
+   "type": "figure",
+   "title": "Revenue peaks every December",
+   "fig": "revenue_by_month",
+   "look": [
+    "Most months sit between about 50 and 68 million shillings.",
+    "December 2024 jumps to 89.5 million.",
+    "December 2025 jumps again, to 72.8 million."
+   ],
+   "caption": "Sample revenue by month, UGX millions. December is the peak in both years.",
+   "alt": "Line chart of monthly revenue across two years, peaking sharply every December.",
+   "notes": "Now a pattern over time. Seasonality is a pattern that comes back at the same time every year. In a line chart you spot it as the same bump in each year.\n\nMost months sit between about fifty and sixty eight million shillings. This is revenue in our sample of orders.\n\nThen December 2024 jumps to eighty nine point five million. That's the highest point on the chart.\n\nDecember 2025 jumps again, to seventy two point eight million. Smaller, but the same bump, in the same month. Two Decembers in a row is what makes us say the word seasonality. One December would only be a single high month."
+  },
+  {
+   "type": "code",
+   "title": "Compare December with every other month",
+   "lang": "python",
+   "code": "dec = monthly[monthly.index.month == 12]\nrest = monthly[monthly.index.month != 12]\nprint(dec.round(1))\nprint(round(rest.mean(), 1))\nprint((dec / rest.mean()).round(2))",
+   "says": [
+    "Split the months into the Decembers and the rest.",
+    "Average of the other 22 months, in millions.",
+    "December as a multiple of that average."
+   ],
+   "output": "2024-12 89.5\n2025-12 72.8\n57.9\n2024-12 1.55\n2025-12 1.26",
+   "notes": "A chart gives you a hunch. A number tests it.\n\nWe split the months in two groups. The two Decembers, and the other twenty two months.\n\nThe average of the other twenty two months is fifty seven point nine million shillings.\n\nThen we divide each December by that average. December 2024 is one point five five times a normal month. December 2025 is one point two six times. So December ran about fifty five percent above normal in the first year and about twenty six percent above in the second. That's two Decembers, and we'll say so when we write the finding."
+  },
+  {
+   "type": "define",
+   "title": "Finding",
+   "definition": "One sentence that states a number, a comparison and a limit.",
+   "example": "Fort Portal has 3.2 returns per 100 lines sold, against 2.1 across all branches. This is a sample of orders, so it shows where to look and says nothing about why.",
+   "excel": "The sentence you type under a chart or pivot table before you send it to your manager.",
+   "notes": "The last word for the session. A finding.\n\nA finding is one sentence with three parts. A number, a comparison, and a limit.\n\nHere's one from today. Fort Portal has three point two returns per hundred lines sold, against two point one across all branches. That's the number and the comparison. Then comes the limit. This is a sample of orders, so it shows where to look and says nothing about why.\n\nIn Excel it's the sentence you type under a chart before you send it. The limit is the part people leave out, and it is the part the reader most needs."
+  },
+  {
+   "type": "table",
+   "title": "Weak findings and strong findings",
+   "header": [
+    "Weak",
+    "Strong"
+   ],
+   "rows": [
+    [
+     "Returns are high at Kampala Central.",
+     "Kampala Central has the most returns, 321, but only 1.7 per 100 lines, below the 2.1 average. One sample."
+    ],
+    [
+     "December is busy.",
+     "December revenue was 89.5 million in 2024 and 72.8 million in 2025, against 57.9 million in other months. Two Decembers only."
+    ],
+    [
+     "Bigger baskets cost more.",
+     "The correlation of basket size and order value is 0.3, a modest link. It shows a link and cannot show cause."
+    ]
+   ],
+   "caption": "Add the number, the comparison and the limit.",
+   "notes": "Here are three weak findings and their strong versions.\n\nReturns are high at Kampala Central is weak. It has no number, and it's misleading. The strong version gives the count, the rate and the average to compare with, and it names the limit, that this is one sample.\n\nDecember is busy is weak too. The strong version gives both Decembers, compares them with the other months, and admits we only have two.\n\nBigger baskets cost more is vague. The strong version says how strong the link is, zero point three, and reminds the reader that a link cannot show cause.\n\nIn the lab you'll write three of your own in this shape."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: explore returns and basket size",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 11 notebook and run the setup cell",
+    "Draw histograms of basket size and order value",
+    "Draw the scatter of basket size and value",
+    "Count returns and work out returns per 100 lines",
+    "Find the branch that leads by count but not by rate",
+    "Write three findings, each with a number and a limit"
+   ],
+   "done": "Three findings in a notebook cell, each with a number, a comparison and a limit.",
+   "notes": "The lab is forty minutes in Google Colab. The first task is to build basket size, the count of lines on each order, and merge it into orders. Run the setup cell in the Session 11 notebook first.\n\nThen you draw the two histograms and the scatter, count returns for each branch and turn the count into a rate. The moment that matters is when you find the branch that leads by count and does not lead by rate. Say it to your neighbour in one sentence.\n\nThe last task is writing three findings, each with a number, a comparison and a limit. You're done when all three are written. If a chart won't draw or a name isn't found, print the column names first."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "What two things does plt.subplots() give you?",
+     "a": "A figure, the page, and axes, the chart area you draw on."
+    },
+    {
+     "q": "Branch A has the most returns and branch B the highest rate. What do you check next?",
+     "a": "How many lines each branch sold. The rate divides by it."
+    },
+    {
+     "q": "What three parts make a finding?",
+     "a": "A number, a comparison and a limit."
+    }
+   ],
+   "notes": "Three questions on charts and findings. Keep your answers in your head first.\n\nQuestion one. What two things does plt.subplots give you? Take your time.\n\nA figure, which is the page, and axes, which is the chart area you draw on and label.\n\nQuestion two. Branch A has the most returns and branch B has the highest rate. What do you check next? Think it over.\n\nHow many lines each branch sold, because the rate divides by it. A big branch has more returns just by being big.\n\nQuestion three. What three parts make a finding? Give that a moment.\n\nA number, a comparison and a limit."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Explore in the same order every time: look, describe, one column, two columns, groups, write.",
+    "A count follows size. A rate divides by what was sold and shows risk.",
+    "A finding states a number, a comparison and a limit."
+   ],
+   "next": "Inference: is the difference real?",
+   "notes": "One. Explore in the same order every time. Look, describe, one column, two columns, groups, then write.\n\nTwo. A count follows size. A rate divides by what was sold, and it shows where the risk is. Fort Portal and Kampala Central taught us that.\n\nThree. A finding states a number, a comparison and a limit.\n\nNext session asks the question that follows. When two groups differ, how do we know the gap is real and not luck? Bring one difference from today that you'd like to test."
+  }
+ ],
+ "lab": {
+  "intro": "Explore the returns and the basket size of Lakeside Mart. Draw the charts, find the branch where the count and the rate disagree, and write three findings.",
+  "cells": [
+   {
+    "md": "## Task 1. Build basket size\nRead `orders.csv`, `order_lines.csv`, `returns.csv` and `branches.csv`. Count the lines on each order into `basket_size` and attach it to `orders`."
+   },
+   {
+    "code": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\norders = pd.read_csv('orders.csv', parse_dates=['order_date'])\nlines = pd.read_csv('order_lines.csv')\nreturns = pd.read_csv('returns.csv')\nbranches = pd.read_csv('branches.csv')\n\nbasket = lines.groupby('order_id').size().rename('basket_size')\norders = orders.merge(basket, on='order_id')\nprint(orders.shape)",
+    "starter": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\norders = pd.read_csv('orders.csv', parse_dates=['order_date'])\nlines = pd.read_csv('order_lines.csv')\nreturns = pd.read_csv('returns.csv')\nbranches = pd.read_csv('branches.csv')\n\n# Your turn: count lines for each order, name it basket_size, merge it into orders\n"
+   },
+   {
+    "code": "assert orders.shape == (30229, 8), 'Merge basket_size into orders. It should then have 30,229 rows and 8 columns.'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. The shape of basket size and order value\nDraw a histogram of `basket_size` with one bar per size, then a second histogram of `order_value_ugx`. Store the median basket size in `median_basket`."
+   },
+   {
+    "code": "ax = sns.histplot(data=orders, x='basket_size', binwidth=1)\nax.set_title('Lines per order')\nplt.show()\nax = sns.histplot(data=orders, x='order_value_ugx')\nax.set_title('Order value, UGX')\nplt.show()\nmedian_basket = orders.basket_size.median()\nprint(median_basket)",
+    "starter": "# Your turn: draw a seaborn histogram of basket_size with one bar per size,\n# then one of order_value_ugx. Give each a title.\n# Then store the median basket size in median_basket\n"
+   },
+   {
+    "code": "assert median_basket == 2, 'median_basket is the middle value of the basket_size column (use .median())'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Basket size and order value\nDraw a scatter of `basket_size` against `order_value_ugx` for 2,000 random orders (`random_state=1`), coloured by `payment_method`. Store the correlation, rounded to 2 places, in `r`."
+   },
+   {
+    "code": "sample = orders.sample(2000, random_state=1)\nsns.scatterplot(data=sample, x='basket_size', y='order_value_ugx', hue='payment_method')\nplt.show()\nr = round(orders.basket_size.corr(orders.order_value_ugx), 2)\nprint(r)",
+    "starter": "# Your turn: take a sample of 2000 orders with random_state=1 and draw the scatter coloured by payment_method.\n# Then store the correlation of basket_size and order_value_ugx, rounded, in r\n"
+   },
+   {
+    "code": "assert 0.25 <= r <= 0.35, 'Use the whole orders table for the correlation'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Returns: count and rate\nAttach the branch to `returns` and `lines`. Count returns for each branch into `count`, lines into `sold`, and the returns per 100 lines into `rate`, rounded to 2 places."
+   },
+   {
+    "code": "returns = returns.merge(orders[['order_id', 'branch_id']], on='order_id')\nlines = lines.merge(orders[['order_id', 'branch_id']], on='order_id')\ncount = returns.groupby('branch_id').size()\nsold = lines.groupby('branch_id').size()\nrate = (count / sold * 100).round(2)\nprint(rate.sort_values(ascending=False).head(3))",
+    "starter": "# Your turn: add each order's branch_id to returns and to lines.\n# Then make count, sold and rate, one number per branch\n"
+   },
+   {
+    "code": "assert count['B01'] == 321 and sold['B01'] == 19169, 'Count the rows for each branch_id'\nassert rate['B07'] == 3.18, 'rate is returns divided by lines sold, times 100'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. The reversal\nStore the branch with the most returns in `top_count` and the branch with the highest rate in `top_rate`. Draw the two as side by side bars. Print both branch names."
+   },
+   {
+    "code": "top_count = count.idxmax()\ntop_rate = rate.idxmax()\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\naxes[0].bar(count.index, count.values)\naxes[0].set_title('Number of returns')\naxes[1].bar(rate.index, rate.values)\naxes[1].set_title('Returns per 100 lines')\nplt.show()\nnames = branches.set_index('branch_id').branch_name\nprint(names[top_count], names[top_rate])",
+    "starter": "# Your turn: idxmax on count and on rate, then two bar charts with plt.subplots(1, 2)\n"
+   },
+   {
+    "code": "assert top_count == 'B01' and top_rate == 'B07', 'Use idxmax on count for top_count and on rate for top_rate'\nassert top_count != top_rate, 'The branch leading by count should differ from the branch leading by rate'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Seasonality\nTotal the order value for each month into `monthly` (in millions of UGX) and store the month with the highest total in `peak`. Draw it as a line."
+   },
+   {
+    "code": "monthly = orders.groupby(orders.order_date.dt.to_period('M')).order_value_ugx.sum() / 1e6\nfig, ax = plt.subplots(figsize=(8, 4))\nax.plot(monthly.index.astype(str), monthly.values, marker='o')\nax.set_title('Monthly revenue, sample')\nax.set_ylabel('UGX millions')\nplt.xticks(rotation=90)\nplt.show()\npeak = monthly.idxmax()\nprint(peak, round(monthly.max(), 1))",
+    "starter": "# Your turn: total the order value for each month in millions of UGX into monthly,\n# draw a line with a title, then find the peak month\n"
+   },
+   {
+    "code": "assert str(peak) == '2024-12', 'Group by order_date.dt.to_period(\"M\") and take idxmax'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Write three findings\nIn the code cell below, replace each text with one finding of your own. Each needs a number, a comparison and a limit. Use the returns reversal, the December peak and basket size."
+   },
+   {
+    "code": "findings = [\n    'Fort Portal has 3.18 returns per 100 lines sold, against 2.1 across all branches. This is one sample of orders.',\n    'December revenue was 89.5 million in 2024 and 72.8 million in 2025, against 57.9 million in other months. Only two Decembers.',\n    'The correlation of basket size and order value is 0.3, a modest link that cannot show cause.',\n]\nfor f in findings:\n    print(f)",
+    "starter": "findings = [\n    'Your turn: write the finding about returns here',\n    'Your turn: write the finding about December here',\n    'Your turn: write the finding about basket size here',\n]\nfor f in findings:\n    print(f)"
+   },
+   {
+    "code": "assert len(findings) == 3, 'Write exactly three findings'\nassert all(any(ch.isdigit() for ch in f) for f in findings), 'Every finding needs a number'\nassert not any('Your turn' in f for f in findings), 'Replace each Your turn text with your own finding'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Reflect\nWrite one sentence below. Which of your three findings do you trust least, and what limit would you add to make it safer?"
+   }
+  ]
+ }
+}

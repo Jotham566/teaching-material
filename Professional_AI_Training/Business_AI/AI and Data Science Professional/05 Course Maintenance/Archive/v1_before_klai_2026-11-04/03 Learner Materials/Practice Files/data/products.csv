@@ -1,0 +1,151 @@
+product_id,product_name,category,unit_cost_ugx,unit_price_ugx
+P001,Staples item 001,Staples,2200,3200
+P002,Staples item 002,Staples,6700,8400
+P003,Staples item 003,Staples,6900,8700
+P004,Staples item 004,Staples,4900,7000
+P005,Staples item 005,Staples,4200,6300
+P006,Staples item 006,Staples,2900,3600
+P007,Staples item 007,Staples,1700,2100
+P008,Staples item 008,Staples,4500,6000
+P009,Staples item 009,Staples,1800,2800
+P010,Staples item 010,Staples,2100,3300
+P011,Staples item 011,Staples,3100,4000
+P012,Staples item 012,Staples,1000,1500
+P013,Staples item 013,Staples,4600,6300
+P014,Staples item 014,Staples,3200,3900
+P015,Staples item 015,Staples,5700,8700
+P016,Staples item 016,Staples,3400,4300
+P017,Staples item 017,Staples,1400,1700
+P018,Staples item 018,Staples,3200,4400
+P019,Staples item 019,Staples,1600,2400
+P020,Staples item 020,Staples,1600,2000
+P021,Staples item 021,Staples,2700,3500
+P022,Staples item 022,Staples,3200,4100
+P023,Staples item 023,Staples,3900,5600
+P024,Staples item 024,Staples,2300,3600
+P025,Staples item 025,Staples,4500,5900
+P026,Staples item 026,Staples,2100,3300
+P027,Staples item 027,Staples,1600,1900
+P028,Staples item 028,Staples,1000,1500
+P029,Staples item 029,Staples,5900,7200
+P030,Staples item 030,Staples,1300,2100
+P031,Staples item 031,Staples,5200,8100
+P032,Staples item 032,Staples,2000,3200
+P033,Staples item 033,Staples,2900,3900
+P034,Staples item 034,Staples,1300,2100
+P035,Staples item 035,Staples,1500,1900
+P036,Staples item 036,Staples,1200,1900
+P037,Staples item 037,Staples,2900,3600
+P038,Staples item 038,Staples,4900,7500
+P039,Staples item 039,Staples,2200,2700
+P040,Staples item 040,Staples,1400,2200
+P041,Staples item 041,Staples,1300,2000
+P042,Staples item 042,Staples,4500,6100
+P043,Staples item 043,Staples,5900,7800
+P044,Staples item 044,Staples,2200,3500
+P045,Staples item 045,Staples,1000,1600
+P046,Staples item 046,Staples,2300,3300
+P047,Staples item 047,Staples,5100,6900
+P048,Staples item 048,Staples,2700,4200
+P049,Staples item 049,Staples,1300,1700
+P050,Staples item 050,Staples,3700,4500
+P051,Staples item 051,Staples,1600,2400
+P052,Fresh produce item 052,Fresh produce,3600,4500
+P053,Fresh produce item 053,Fresh produce,600,1000
+P054,Fresh produce item 054,Fresh produce,2200,3500
+P055,Fresh produce item 055,Fresh produce,1000,1200
+P056,Fresh produce item 056,Fresh produce,700,1000
+P057,Fresh produce item 057,Fresh produce,600,800
+P058,Fresh produce item 058,Fresh produce,1700,2400
+P059,Fresh produce item 059,Fresh produce,2900,3700
+P060,Fresh produce item 060,Fresh produce,1300,1700
+P061,Fresh produce item 061,Fresh produce,1100,1700
+P062,Fresh produce item 062,Fresh produce,3500,4400
+P063,Fresh produce item 063,Fresh produce,2900,4000
+P064,Fresh produce item 064,Fresh produce,800,1300
+P065,Fresh produce item 065,Fresh produce,700,900
+P066,Fresh produce item 066,Fresh produce,700,1000
+P067,Fresh produce item 067,Fresh produce,900,1300
+P068,Fresh produce item 068,Fresh produce,1000,1400
+P069,Fresh produce item 069,Fresh produce,2700,3300
+P070,Fresh produce item 070,Fresh produce,2800,3500
+P071,Fresh produce item 071,Fresh produce,1300,1600
+P072,Fresh produce item 072,Fresh produce,1100,1500
+P073,Fresh produce item 073,Fresh produce,1100,1600
+P074,Fresh produce item 074,Fresh produce,1700,2000
+P075,Fresh produce item 075,Fresh produce,1100,1600
+P076,Fresh produce item 076,Fresh produce,3500,5100
+P077,Fresh produce item 077,Fresh produce,1100,1500
+P078,Fresh produce item 078,Fresh produce,1100,1500
+P079,Fresh produce item 079,Fresh produce,1400,1900
+P080,Fresh produce item 080,Fresh produce,2300,2900
+P081,Fresh produce item 081,Fresh produce,3600,5300
+P082,Fresh produce item 082,Fresh produce,1500,2100
+P083,Fresh produce item 083,Fresh produce,1100,1300
+P084,Fresh produce item 084,Fresh produce,1200,2000
+P085,Beverages item 085,Beverages,1700,2100
+P086,Beverages item 086,Beverages,1300,1500
+P087,Beverages item 087,Beverages,1600,2100
+P088,Beverages item 088,Beverages,2100,2600
+P089,Beverages item 089,Beverages,1600,2500
+P090,Beverages item 090,Beverages,1600,2100
+P091,Beverages item 091,Beverages,1000,1400
+P092,Beverages item 092,Beverages,4500,6500
+P093,Beverages item 093,Beverages,2700,4100
+P094,Beverages item 094,Beverages,1500,2200
+P095,Beverages item 095,Beverages,1400,1700
+P096,Beverages item 096,Beverages,800,1200
+P097,Beverages item 097,Beverages,1700,2600
+P098,Beverages item 098,Beverages,1200,1900
+P099,Beverages item 099,Beverages,800,1200
+P100,Beverages item 100,Beverages,800,1100
+P101,Beverages item 101,Beverages,2400,3500
+P102,Beverages item 102,Beverages,4900,6900
+P103,Beverages item 103,Beverages,2700,3400
+P104,Beverages item 104,Beverages,1200,1400
+P105,Beverages item 105,Beverages,5300,6500
+P106,Household item 106,Household,2900,3500
+P107,Household item 107,Household,6400,10200
+P108,Household item 108,Household,6800,10000
+P109,Household item 109,Household,5100,7200
+P110,Household item 110,Household,4800,6100
+P111,Household item 111,Household,2200,2700
+P112,Household item 112,Household,6700,8600
+P113,Household item 113,Household,10600,13400
+P114,Household item 114,Household,2000,3000
+P115,Household item 115,Household,1900,3100
+P116,Household item 116,Household,10700,15400
+P117,Household item 117,Household,11600,14600
+P118,Household item 118,Household,5200,7600
+P119,Household item 119,Household,3600,4600
+P120,Household item 120,Household,12100,16400
+P121,Household item 121,Household,3900,5100
+P122,Household item 122,Household,2900,3500
+P123,Household item 123,Household,15200,20500
+P124,Personal care item 124,Personal care,8800,13200
+P125,Personal care item 125,Personal care,1900,2900
+P126,Personal care item 126,Personal care,22300,27000
+P127,Personal care item 127,Personal care,4600,5600
+P128,Personal care item 128,Personal care,4600,6700
+P129,Personal care item 129,Personal care,21900,26100
+P130,Personal care item 130,Personal care,3400,5000
+P131,Personal care item 131,Personal care,6900,9000
+P132,Personal care item 132,Personal care,3000,4200
+P133,Personal care item 133,Personal care,2600,4100
+P134,Personal care item 134,Personal care,12400,18400
+P135,Personal care item 135,Personal care,1800,2900
+P136,Personal care item 136,Personal care,3100,3800
+P137,Personal care item 137,Personal care,4900,6900
+P138,Personal care item 138,Personal care,5400,8800
+P139,Phones and electronics item 139,Phones and electronics,253600,381600
+P140,Phones and electronics item 140,Phones and electronics,33900,53300
+P141,Phones and electronics item 141,Phones and electronics,259200,378500
+P142,Phones and electronics item 142,Phones and electronics,51000,76000
+P143,Baby and school item 143,Baby and school,26400,34500
+P144,Baby and school item 144,Baby and school,7400,9900
+P145,Baby and school item 145,Baby and school,31700,39300
+P146,Baby and school item 146,Baby and school,21900,26700
+P147,Baby and school item 147,Baby and school,8400,12000
+P148,Baby and school item 148,Baby and school,10300,16000
+P149,Baby and school item 149,Baby and school,19000,27100
+P150,Baby and school item 150,Baby and school,21500,30100

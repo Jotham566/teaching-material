@@ -1,0 +1,242 @@
+{
+ "ai_ml_dl": {
+  "description": "Nested circles: AI contains machine learning contains deep learning; data science overlaps.",
+  "alt": "Nested circles showing deep learning inside machine learning inside artificial intelligence, with data science overlapping them."
+ },
+ "order_value_hist": {
+  "description": "Histogram of order value with mean and median marked (real, Lakeside orders).",
+  "alt": "Histogram of order values. Most orders are small, a long tail runs right, and the mean lies to the right of the median."
+ },
+ "distribution_shapes": {
+  "description": "Three distribution shapes (symmetric, right-skewed, two humps) with mean and median lines (schematic from simulated data).",
+  "alt": "Three histograms: a symmetric one where mean and median match, a right-skewed one where the mean is larger, and a two-peaked one."
+ },
+ "boxplot_anatomy": {
+  "description": "Annotated box plot: median, quartiles, whiskers, outliers (schematic).",
+  "alt": "A box plot labelled with median, first and third quartile, whiskers and outliers."
+ },
+ "revenue_by_month": {
+  "description": "Monthly revenue line 2024-2025 with December highlighted (real).",
+  "alt": "Line chart of monthly revenue across two years, peaking sharply every December."
+ },
+ "revenue_by_branch": {
+  "description": "Horizontal bars of sample revenue by branch (real).",
+  "alt": "Horizontal bar chart of revenue for each of the eight branches, largest at Kampala Central."
+ },
+ "box_by_branch": {
+  "description": "Box plot of order value by branch (real).",
+  "alt": "Box plots of order value for each branch; the boxes are similar and many high-value outliers sit above them."
+ },
+ "returns_count_vs_rate": {
+  "description": "Two panels: returns COUNT by branch and returns RATE by branch; the leaders differ (real).",
+  "alt": "Two bar charts. By count, Kampala Central has the most returns. By rate, Fort Portal is highest."
+ },
+ "bad_vs_good_axis": {
+  "description": "The same four bars on a truncated axis and on a zero-based axis (schematic, made-up values).",
+  "alt": "Two bar charts of the same data. With a cut axis the difference looks huge; from zero it is small."
+ },
+ "category_revenue": {
+  "description": "Bars of revenue by product category (real).",
+  "alt": "Bar chart of sample revenue by product category; staples and phones and electronics lead."
+ },
+ "payment_split": {
+  "description": "Bars: share of orders by payment method (real).",
+  "alt": "Bar chart of the share of orders paid by cash, mobile money and card."
+ },
+ "sampling_means": {
+  "description": "200 sample means of 30 orders each, with the true mean marked (real, seeded simulation).",
+  "alt": "Histogram of 200 sample means, each from 30 random orders, centred near the true mean and spread out around it."
+ },
+ "sampling_n_compare": {
+  "description": "Sample means for n = 5, 30 and 200 on one axis: bigger samples, narrower spread (real, seeded).",
+  "alt": "Three histograms of sample means for sample sizes 5, 30 and 200. The spread narrows as the sample grows."
+ },
+ "footfall_orders_scatter": {
+  "description": "Scatter of weekly footfall vs orders per branch-week with fitted line (real).",
+  "alt": "Scatter plot of weekly orders against footfall for each branch-week with an upward fitted line."
+ },
+ "rain_orders_scatter": {
+  "description": "Scatter of weekly rainfall vs orders (real); a weaker, downward link.",
+  "alt": "Scatter plot of weekly orders against rainfall with a gently downward fitted line and a lot of scatter."
+ },
+ "confounding": {
+  "description": "Causal diagram: a hidden third factor (season) drives both ice-cream style sales and another measure (schematic).",
+  "alt": "Diagram with a hidden factor, hot weather, pointing to both ice cream sales and drownings, which look linked but are not causal."
+ },
+ "ab_test_ci": {
+  "description": "Mean next-month spend, offer vs control, with 95 percent intervals (real).",
+  "alt": "Two bars with error bars of next-month spend for offer and control groups; the intervals nearly touch."
+ },
+ "difference_ci": {
+  "description": "The offer lift as a difference with its 95 percent interval and a zero line (real).",
+  "alt": "A point with an interval showing the spend difference between offer and control, entirely to the right of zero."
+ },
+ "pvalue_curve": {
+  "description": "Bell curve with the extreme tails shaded: what a p-value measures (schematic, standard normal).",
+  "alt": "A bell curve with both tails shaded to show the chance of a result at least this extreme if nothing is going on."
+ },
+ "regression_fit": {
+  "description": "Footfall vs orders with the least-squares line and three residuals drawn (real).",
+  "alt": "Scatter with a fitted line and vertical segments from three points to the line showing residuals."
+ },
+ "residual_plot": {
+  "description": "Residuals vs fitted values for the weekly orders model (real): a healthy random cloud.",
+  "alt": "Scatter of residuals against fitted values forming an even cloud around zero."
+ },
+ "coef_forest": {
+  "description": "Coefficients of the weekly orders model with 95 percent intervals (real, statsmodels will match).",
+  "alt": "Dot-and-interval plot of three regression coefficients: footfall up, promotion up, rain down."
+ },
+ "class_imbalance": {
+  "description": "Bars: loans repaid vs defaulted, showing the 87 to 13 imbalance (real).",
+  "alt": "Two bars showing most loans are repaid and about one in eight defaults."
+ },
+ "default_by_occupation": {
+  "description": "Default rate by occupation (real).",
+  "alt": "Bar chart of the share of loans that default for each occupation."
+ },
+ "default_by_burden": {
+  "description": "Default rate by repayment-burden band (instalment as a share of income) (real).",
+  "alt": "Bar chart showing default rate rising with repayment burden."
+ },
+ "sigmoid_curve": {
+  "description": "The logistic S-curve turning any score into a probability, with a 0.5 threshold (schematic).",
+  "alt": "S-shaped curve from 0 to 1 with a dashed line at 0.5 showing where the model switches from no to yes."
+ },
+ "threshold_tradeoff": {
+  "description": "Precision and recall as the decision threshold moves, for the loan model (real, numpy logistic regression).",
+  "alt": "Two curves: recall falls and precision rises as the threshold increases."
+ },
+ "roc_honest_vs_leaky": {
+  "description": "ROC curves: honest features (AUC about 0.76) vs the leaked collection_calls column (AUC about 0.99) (real, numpy logistic regression).",
+  "alt": "Two ROC curves. The leaky model hugs the top-left corner, far above the honest model."
+ },
+ "overfit_curve": {
+  "description": "Train and test error as a model gets more flexible; test error eventually shoots up (real weekly orders, polynomial degree 1 to 12).",
+  "alt": "Two curves: training error stays low and flat as flexibility grows, while test error stays close at first and then jumps up and runs off the chart."
+ },
+ "feature_weights": {
+  "description": "Standardised weights of the honest loan model, biggest first (real, numpy logistic regression).",
+  "alt": "Horizontal bars of the strongest weights in the loan model: repayment burden and late payments push risk up, savings and group loans push it down."
+ },
+ "decision_tree_schematic": {
+  "description": "A small decision tree drawn as rules about a borrower (schematic; thresholds illustrative).",
+  "alt": "A three-level decision tree of yes and no questions about repayment burden, late payments and savings that ends in low, medium and high risk."
+ },
+ "train_test_split": {
+  "description": "One dataset split into training and test parts (schematic bar).",
+  "alt": "A long bar divided into a larger training part and a smaller test part held back."
+ },
+ "cv_folds": {
+  "description": "Five-fold cross-validation: each fold takes a turn as the test part (schematic).",
+  "alt": "Five bars, each with a different fifth highlighted as the test fold."
+ },
+ "kmeans_segments": {
+  "description": "Customers on recency and spend, coloured by k-means segment (real, numpy k-means, k = 4).",
+  "alt": "Scatter of customers by days since last order and total spend, coloured in four segments."
+ },
+ "elbow_plot": {
+  "description": "Within-cluster spread against k for customer segments, to choose k (real, numpy k-means).",
+  "alt": "Line chart of within-cluster error falling as the number of clusters grows, with a bend near four."
+ },
+ "pca_view": {
+  "description": "Customer features flattened to two axes with PCA, coloured by segment (real, numpy SVD).",
+  "alt": "Scatter of customers on two principal components, coloured by segment, showing separated groups."
+ },
+ "segment_profile": {
+  "description": "Average recency, frequency and spend per segment, scaled 0 to 1 (real, numpy k-means).",
+  "alt": "Grouped bars comparing recency, frequency and spend across four customer segments."
+ },
+ "clinic_season": {
+  "description": "Malaria cases by calendar month across all districts (real).",
+  "alt": "Bar chart of malaria cases for each month with peaks after the two rainy seasons."
+ },
+ "rain_lag_scatter": {
+  "description": "Malaria cases against rainfall in the same month and the month before (real); the lag fits better.",
+  "alt": "Two scatter plots. Same-month rainfall shows no pattern; last month rainfall shows an upward pattern."
+ },
+ "ts_decomposition": {
+  "description": "Trend, seasonal pattern and leftover noise of total monthly malaria cases (real).",
+  "alt": "Three stacked panels showing a rising trend, a repeating yearly pattern and small leftover noise."
+ },
+ "clinic_forecast": {
+  "description": "Seasonal-naive forecast against actual for the last 12 months of one district, with MAE (real).",
+  "alt": "Line chart with actual cases and a seasonal-naive forecast that repeats last year, closely following the pattern."
+ },
+ "time_split": {
+  "description": "Time-ordered train and test split for a time series (schematic).",
+  "alt": "A timeline where the early months are training data and the later months are the test data."
+ },
+ "activation_functions": {
+  "description": "Sigmoid, tanh and ReLU curves side by side (schematic).",
+  "alt": "Three small plots of the sigmoid, tanh and ReLU activation functions."
+ },
+ "nn_diagram": {
+  "description": "A small feed-forward network: inputs, two hidden layers, one output (schematic).",
+  "alt": "Diagram of a neural network with three input nodes, two hidden layers of four nodes and one output node, all connected."
+ },
+ "text_map": {
+  "description": "Customer feedback messages placed in 2D from their word counts (real TF-IDF + SVD), coloured by sentiment.",
+  "alt": "Scatter of customer messages positioned by word usage, with positive, negative and neutral messages forming loose groups."
+ },
+ "dataframe_anatomy": {
+  "description": "Head of the orders table with its parts named: columns, rows, index, one cell (real values).",
+  "alt": "A small table of the first orders with arrows naming the column names, row index and a single cell."
+ },
+ "split_apply_combine": {
+  "description": "GROUP BY as split, apply, combine, drawn with real branch totals (schematic of real numbers).",
+  "alt": "Diagram: a table is split into groups by branch, each group is summed, and the sums combine into a small result table."
+ },
+ "join_types": {
+  "description": "Four join types as overlapping circles with the rows each keeps (schematic).",
+  "alt": "Four small Venn diagrams for inner, left, right and outer joins with the kept area shaded."
+ },
+ "join_doubling": {
+  "description": "Why a join can double revenue: one order row matched to two rows (schematic with real-looking IDs).",
+  "alt": "Two small tables joined on order_id where a duplicate key in the second table produces two result rows for one order."
+ },
+ "sql_order": {
+  "description": "The order SQL is written in versus the order it runs (schematic).",
+  "alt": "Two lists side by side: the written order of SQL clauses and the order the database actually runs them."
+ },
+ "ml_workflow": {
+  "description": "The machine learning workflow as a loop (schematic).",
+  "alt": "A loop of steps: question, data, features, split, train, evaluate, then improve or deliver."
+ },
+ "sklearn_pipeline": {
+  "description": "A scikit-learn Pipeline as connected blocks (schematic).",
+  "alt": "Blocks in a row: impute missing values, scale numbers, encode categories, then fit a model, all packed into one pipeline."
+ },
+ "drift_chart": {
+  "description": "Average borrower income over time with a shift that makes an old model go stale (schematic, simulated).",
+  "alt": "Line chart of a monthly average that is steady and then drops, with a label showing the point where the model should be re-checked."
+ },
+ "rag_pipeline": {
+  "description": "Retrieval before answering: question, search the documents, pass the best passages to the model (schematic).",
+  "alt": "Pipeline: a question becomes a vector, the closest document passages are found, and a language model answers using only those passages."
+ },
+ "embedding_idea": {
+  "description": "Meaning as position: similar phrases sit close together on a 2D map (schematic with example phrases).",
+  "alt": "A two-dimensional map where phrases about queues sit near each other, away from phrases about prices and about payment."
+ },
+ "token_example": {
+  "description": "A sentence cut into tokens with made-up token numbers (schematic, labelled illustrative).",
+  "alt": "A sentence split into word and word-piece boxes, each with an identification number underneath."
+ },
+ "learning_path": {
+  "description": "A six-month learning path after the course, from practice to portfolio (schematic).",
+  "alt": "Three-step path with months one to two, three to four and five to six listing practice, depth and portfolio goals."
+ },
+ "missing_by_column": {
+  "description": "Count of missing values per column in the loans file (real).",
+  "alt": "Bar chart of missing values per column; only monthly income has missing entries."
+ },
+ "chart_choice": {
+  "description": "Which chart for which question (schematic of four mini charts).",
+  "alt": "Four mini charts with labels: histogram for one number, bar for a comparison, line for change over time, scatter for two numbers."
+ },
+ "loop_vs_fill": {
+  "description": "Python loop beside fill-down (schematic).",
+  "alt": "Left: a spreadsheet column with a formula dragged down. Right: a Python for loop doing the same for each item."
+ }
+}

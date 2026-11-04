@@ -1,0 +1,450 @@
+{
+ "session": 18,
+ "notes_title": "Until now every model had an answer column to learn from. Today the data has none. We take the Lakeside Mart orders and ask a different kind of question. Who are our customers, in groups we can describe? We will build three numbers for each loyalty customer, let k-means find the groups, and name each group in words a manager can use. We also flag unusual orders. You will have a segment table you could take into a meeting.",
+ "notes_outcomes": "This is the one session with no answer column, so there's no score to chase and your own judgement does the marking. You'll build recency, frequency and spend for each loyalty customer, and see why we log and scale them. You'll run k-means and choose how many groups with the elbow and with common sense. You'll describe each segment in business words and flag unusual orders for review. The lab is mostly pandas until the clustering cells, which use scikit-learn.",
+ "notes_words": "Eight words today. Unsupervised learning means learning with no answer column. RFM is recency, frequency and spend. A log transform squeezes a long tail, and standard scaling gives every column the same spread. k-means finds the groups. The elbow is the bend in a chart that helps you choose how many. PCA squeezes many columns into a flat picture. An anomaly is a row that looks very different and needs a human look. Most have a spreadsheet cousin, shown on the right.",
+ "vocab": [
+  [
+   "Unsupervised learning",
+   "Learning with no answer column. The computer finds groups or odd rows.",
+   "Sorting and colouring a list by eye"
+  ],
+  [
+   "RFM",
+   "Recency, frequency and spend: three numbers per customer.",
+   "A PivotTable per customer"
+  ],
+  [
+   "Log transform",
+   "Replace each value by its logarithm to shrink a long tail.",
+   "A log scale on a chart"
+  ],
+  [
+   "Standard scaling",
+   "Rewrite a column to average 0 and spread 1.",
+   "The z score"
+  ],
+  [
+   "k-means",
+   "Splits rows into k groups, called clusters, around k centre points.",
+   null
+  ],
+  [
+   "Elbow",
+   "The bend in the spread-against-k chart. A hint for choosing k.",
+   null
+  ],
+  [
+   "PCA",
+   "Mixes many columns into two axes for a flat chart.",
+   "Best angle to photograph a statue"
+  ],
+  [
+   "Anomaly",
+   "A row very different from the rest. Needs a human look.",
+   "A cell coloured red by a rule"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 17",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "A model scores very well on training data and much worse on test data. What is that called?",
+     "a": "Overfitting. It memorised the training rows instead of learning a pattern that carries over."
+    },
+    {
+     "q": "A forest says a column has high importance. What can you safely say?",
+     "a": "The model leaned on that column. It does not prove the column causes the outcome."
+    }
+   ],
+   "notes": "Overfitting and importance first. Two questions from Session 17.\n\nFirst. A model scores very well on the training data and much worse on the test data. What is that called? Have a think.\n\nIt's overfitting. The model has memorised the training rows, so it looks clever on them and stumbles on rows it has never seen.\n\nSecond. A forest says one column has high importance. What can you safely say about that column? No rush.\n\nYou can say the model leaned on it. You cannot say it causes the outcome. Keep that care with you today, because today's models will hand us groups, and a group is only useful when we describe it plainly."
+  },
+  {
+   "type": "compare",
+   "title": "With an answer column and without one",
+   "left": {
+    "h": "Sessions 14 to 17",
+    "points": [
+     "Loans table has a default column",
+     "Model learns to predict it",
+     "We score it against the known answer"
+    ]
+   },
+   "right": {
+    "h": "Today",
+    "points": [
+     "Orders have no segment column",
+     "Nobody told us the groups",
+     "We look for structure and then judge it"
+    ]
+   },
+   "verdict": "Without answers, there is no score to chase. A person decides whether the result is useful.",
+   "notes": "Everything so far had an answer column. In the loan data, each loan said whether it defaulted, so the model could learn from it and we could score it afterwards.\n\nToday's data has no such column. The orders have no segment column. Nobody went through the customers and wrote down who is a big spender or who has drifted away.\n\nThe model's job is to look for structure by itself. This is called unsupervised learning, because no answer column supervises the learning. It's what you do in Excel when you sort a customer list and colour the rows that seem to belong together, only the computer does the sorting and looking.\n\nThe verdict is the important part. With no known answer, there's no score to chase. A person has to decide whether the groups make sense for the business."
+  },
+  {
+   "type": "code",
+   "title": "Keep only orders that name a customer",
+   "lang": "python",
+   "code": "import pandas as pd\n\norders = pd.read_csv('orders.csv')\norders['order_date'] = pd.to_datetime(orders['order_date'])\nloyal = orders.dropna(subset=['customer_id'])\nprint(len(orders), 'orders in the file')\nprint(len(orders) - len(loyal), 'walk-in orders left out')\nprint(len(loyal), 'loyalty orders kept')\nprint(loyal['customer_id'].nunique(), 'loyalty customers')",
+   "output": "30229 orders in the file\n9171 walk-in orders left out\n21058 loyalty orders kept\n2499 loyalty customers",
+   "says": [
+    "Walk-in orders have a blank customer_id. We cannot follow a person we cannot name.",
+    "dropna removes rows with a blank in the chosen column.",
+    "Twenty five hundred loyalty customers is our population for the day."
+   ],
+   "notes": "Our file is the Lakeside Mart orders again. We want to group customers, so every row we use must say which customer it belongs to.\n\nA walk-in order has a blank customer_id, because the person did not give a loyalty number. We cannot follow a person across visits if we do not know who they are. So these rows are left out of the segments. That is nine thousand one hundred and seventy one orders. Anyone reading your segments should know that walk-in shoppers are not in them.\n\nThe method that does the leaving out is dropna, with the column name inside. It removes every row that is blank in that column.\n\nWhat remains is twenty one thousand and fifty eight orders from two thousand four hundred and ninety nine loyalty customers. That's the group we will segment."
+  },
+  {
+   "type": "define",
+   "title": "RFM",
+   "definition": "Three numbers for each customer. Recency is days since the last order. Frequency is how many orders. Monetary value is total spend, called spend here.",
+   "example": "Customer C0001: last order 6 days before the end of the file, 15 orders, 969,690 UGX in total.",
+   "excel": "Three columns from a PivotTable on customer: latest date, count of orders and sum of order value.",
+   "notes": "Most customer segments start from three numbers, and the set has a short name. RFM.\n\nR is recency, which means how many days since the customer last ordered. F is frequency, which means how many orders they made. M is monetary value, which is how much they spent. We will simply call that spend.\n\nTake customer C0001. Their last order was six days before the last date in our file. They made fifteen orders, and they spent nine hundred and sixty nine thousand six hundred and ninety shillings in total.\n\nIn a spreadsheet you would get these three columns from a PivotTable with the customer on the rows. Latest date, count of orders, and sum of order value. We will make the same table in pandas."
+  },
+  {
+   "type": "code",
+   "title": "Build recency, frequency and spend per customer",
+   "lang": "python",
+   "code": "end = loyal['order_date'].max()\nrfm = loyal.groupby('customer_id').agg(\n    last_order=('order_date', 'max'),\n    frequency=('order_id', 'count'),\n    spend=('order_value_ugx', 'sum'))\nrfm['recency'] = (end - rfm['last_order']).dt.days\nrfm = rfm[['recency', 'frequency', 'spend']]\nprint('end date:', end.date())\nrfm.head(3)",
+   "output": "end date: 2025-12-28\n             recency  frequency   spend\ncustomer_id                            \nC0001              6         15  969690\nC0002            119          4  107745\nC0003              1          6  437465",
+   "says": [
+    "The end date is the last order date in the file.",
+    "groupby builds one row per customer. agg makes the three summaries.",
+    "Recency is the end date minus each customer's last order, in days."
+   ],
+   "notes": "Building it takes one row per customer and three columns.\n\nFirst we need a today. Our data stops at a certain date, so we use the last order date in the file as the end date. It is the twenty eighth of December twenty twenty five. Recency counts back from there. If we used the date on your laptop, every customer would look more lapsed each day you reopened the notebook.\n\nThen groupby gathers the orders of each customer, and agg makes three summaries. The latest date, the count of orders, and the sum of order value.\n\nThe last two lines turn the latest date into days and keep just the three columns we want. Look at the first three rows. C0001 is six days, fifteen orders. C0002 has gone quiet for a hundred and nineteen days. We now have a table of two thousand four hundred and ninety nine customers, ready for a model."
+  },
+  {
+   "type": "code",
+   "title": "Spend has a long tail, and a log squeezes it",
+   "lang": "python",
+   "code": "import numpy as np\n\nprint('mean spend  ', round(rfm['spend'].mean()))\nprint('median spend', round(rfm['spend'].median()))\nprint('skew before ', round(rfm['spend'].skew(), 2))\nprint('skew after log', round(np.log1p(rfm['spend']).skew(), 2))",
+   "output": "mean spend   399687\nmedian spend 290090\nskew before  3.09\nskew after log -0.01",
+   "says": [
+    "A mean far above the median is the sign of a long right tail, as in Session 3.",
+    "A log transform replaces each value by its logarithm. Big values shrink most.",
+    "A skew near zero means the tail has gone."
+   ],
+   "notes": "Remember skew from Session 3. A few very large values drag the average to the right of the typical value.\n\nSpend has exactly that shape. The mean is about three hundred and ninety nine thousand seven hundred shillings. The median is two hundred and ninety thousand and ninety. The skew number is three point oh nine, which is strongly right heavy. A handful of customers spend millions, and they would pull a model toward themselves.\n\nThe cure is a log transform. It replaces each number by its logarithm, a scale where each step up means multiplying by a fixed amount. Big values shrink a lot and small values shrink a little. It's the same as putting a log scale on a chart axis in Excel.\n\nThe skew after the log is almost exactly zero. We use log1p, which adds one before taking the log, so a customer with zero days since their last order does not break it."
+  },
+  {
+   "type": "code",
+   "title": "Scaling puts every column on the same footing",
+   "lang": "python",
+   "code": "logged = np.log1p(rfm)\nprint('spread of each column, raw:')\nprint(rfm.std().round(1))\nscaled = (logged - logged.mean()) / logged.std()\nprint('spread of each column, logged and scaled:')\nprint(scaled.std().round(1))",
+   "output": "spread of each column, raw:\nrecency          88.7\nfrequency         2.9\nspend        374077.7\ndtype: float64\nspread of each column, logged and scaled:\nrecency      1.0\nfrequency    1.0\nspend        1.0\ndtype: float64",
+   "says": [
+    "Raw spread: spend is in the hundreds of thousands, frequency in single digits.",
+    "Subtract the column average, divide by its spread. This is standard scaling.",
+    "Now every column has a spread of 1."
+   ],
+   "notes": "There's one more step before any grouping. k-means works by measuring distances between customers. If one column is in hundreds of thousands and another in single digits, the big one decides everything.\n\nLook at the first printout. Spend has a spread of about three hundred and seventy four thousand. Frequency has a spread of about three. A distance between two customers would be all about spend, and orders would hardly count.\n\nStandard scaling fixes that. For each column you subtract its average and divide by its spread. In Excel that is the z score, cell minus average, divided by STDEV. After the log and the scaling, all three columns have a spread of one, so each gets an equal voice.\n\nLog the skewed columns first, then scale every column."
+  },
+  {
+   "type": "code",
+   "title": "k-means in scikit-learn: scale, fit and label",
+   "lang": "python",
+   "code": "from sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans\n\nX = StandardScaler().fit_transform(logged)\nkm = KMeans(n_clusters=4, n_init=10, random_state=42)\nrfm['segment'] = km.fit_predict(X)\n\nprint(rfm['segment'].value_counts())\nrfm.groupby('segment')[['recency', 'frequency', 'spend']].mean().round()",
+   "says": [
+    "StandardScaler does the same scaling as the line you just wrote.",
+    "n_clusters is k. random_state fixes the starting guess so a rerun repeats.",
+    "fit_predict returns a group number for every customer."
+   ],
+   "notes": "The model itself is ready made in scikit-learn.\n\nStandardScaler does the scaling we just did by hand, and fit_transform gives back a clean table of numbers called X. You will see the same two steps in any scikit-learn code.\n\nKMeans takes the number of groups we want. We said four. The random state fixes the starting guess, so you get the same answer if you run it again. The n_init setting runs it ten times and keeps the best.\n\nfit_predict gives each customer a group number, and we store it in a new column called segment. The last two lines count the customers in each group and show the average recency, orders and spend of each.\n\nYour group sizes will land close to what I show you next and differ a little. The numbers zero to three are only labels, and which group gets which number can change from run to run."
+  },
+  {
+   "type": "flow",
+   "title": "What k-means does, in four moves",
+   "steps": [
+    {
+     "h": "Pick k centres",
+     "t": "Drop four points among the customers."
+    },
+    {
+     "h": "Assign",
+     "t": "Each customer joins the nearest centre."
+    },
+    {
+     "h": "Move",
+     "t": "Each centre moves to the middle of its group."
+    },
+    {
+     "h": "Repeat",
+     "t": "Stop when nobody changes group."
+    }
+   ],
+   "caption": "You choose k. The method does the rest.",
+   "notes": "Inside k-means there are four moves.\n\nFirst, you choose k, the number of groups. The method drops that many centre points among the customers, at the start in more or less random places.\n\nSecond, every customer is given to the nearest centre. Distance here is the straight line distance on our scaled columns, which is why scaling mattered.\n\nThird, each centre moves to the middle of the customers who joined it. The middle is simply the average of their three numbers.\n\nFourth, repeat. Because the centres moved, some customers are now closer to a different centre, so they switch. This goes on until nobody switches. The word means in k-means is that average. And the thing you must choose yourself is k. That's the next question."
+  },
+  {
+   "type": "figure",
+   "title": "Choosing k: look for the bend",
+   "fig": "elbow_plot",
+   "look": [
+    "More groups always shrink the spread inside groups.",
+    "The big drops come early, then the line flattens.",
+    "A gentle bend appears around four, marked in red."
+   ],
+   "caption": "The elbow is a hint. Usefulness to the business also counts.",
+   "alt": "Line chart of within-cluster spread against the number of clusters, with a bend near four.",
+   "notes": "How many groups should we ask for? This chart helps. For each k from one to eight, I ran k-means and measured how spread out the customers are inside their own groups. Smaller means tighter groups.\n\nThe first point is that the line only ever goes down. More groups always give tighter groups. With one group per customer the spread would be zero, and that would be useless. So we cannot just pick the lowest point.\n\nThe second point is where the picture helps. The line drops steeply from one to two, then to three, and then it flattens out.\n\nThe bend, called the elbow, sits around four. That's marked in red. Adding a fifth group buys much less than adding the fourth.\n\nThe bend is gentle, and two people could argue for three or five. The elbow is a hint. We also ask whether four groups are ones a manager can act on. Four is."
+  },
+  {
+   "type": "figure",
+   "title": "Four customer groups on recency and spend",
+   "fig": "kmeans_segments",
+   "look": [
+    "Each dot is one customer. Spend is on a log scale.",
+    "Dark grey and red dots came recently. Red spent the most.",
+    "Light grey dots spent little. Green dots are in the middle on spend and have been away longer."
+   ],
+   "caption": "k-means with k = 4 on the loyalty customers.",
+   "alt": "Scatter of customers by days since last order and total spend, coloured in four segments.",
+   "notes": "Here are the groups, drawn on two of the three columns. Days since the last order runs along the bottom. Total spend runs up the side, on a log scale so the big spenders do not squash everyone else.\n\nEach dot is one customer. The colours are the four groups the method found, and nobody told it where the lines go.\n\nDark grey and red dots ordered recently, so they sit at the left. Red sits higher up, because those customers spend the most.\n\nLight grey dots sit low, because those customers spent little, and many of them have been away a long time. Green dots sit in the middle on spend and further to the right. These are the customers drifting away.\n\nThe groups overlap at their edges, which is normal. Real customers do not fall into neat boxes. The method draws the best lines it can, and a customer near a line could have gone either way."
+  },
+  {
+   "type": "figure",
+   "title": "PCA: many columns, one flat picture",
+   "fig": "pca_view",
+   "look": [
+    "PCA mixes the three columns into two new axes.",
+    "The axes keep 57 and 29 percent of the variation.",
+    "The groups sit in separate regions that touch at the edges."
+   ],
+   "caption": "PCA is a picture for people. It does not change the groups.",
+   "alt": "Scatter of customers on two principal components, coloured by segment, showing separated groups.",
+   "notes": "A screen is flat, so we can show two columns at a time. We have three, and a real customer file might have thirty. How do you draw that?\n\nThe answer is PCA, short for principal component analysis. It mixes the columns into two new axes that keep as much of the variation as possible. Think of photographing a statue. You choose the angle that shows the most of it.\n\nThe axis labels tell you how well the photograph does. The first axis keeps fifty seven percent of the variation, and the second keeps twenty nine. Together that is most of what the three columns hold.\n\nThe colours are the same four groups as before. They sit in clear regions, with some overlap at the edges. That tells us the groups are not an accident of one chart. It does not prove they are real, because k-means finds groups in any cloud of dots. PCA only draws the picture. It does not change the groups."
+  },
+  {
+   "type": "figure",
+   "title": "What each segment is like, in one chart",
+   "fig": "segment_profile",
+   "look": [
+    "Segment 3 has the most orders and the most spend, and ordered recently.",
+    "Segment 2 has the longest gap and the lowest orders and spend.",
+    "Segments 1 and 4 sit in between, and differ in how recently they came."
+   ],
+   "caption": "Each bar is scaled 0 to 1 across segments, so the heights compare groups.",
+   "alt": "Grouped bars comparing recency, frequency and spend across four customer segments.",
+   "notes": "To name a group you need to know what its customers are like. This chart gives the average recency, frequency and spend of each segment. Each is scaled from zero to one across the four groups, so you can compare heights.\n\nSegment three has the tallest bars for orders and for spend. Those customers order the most and spend the most. Their red bar for recency is short, which is good, because short means they came recently.\n\nSegment two is the opposite. Its red bar is the tallest, so it has the longest gap since the last order, and its other bars are the lowest.\n\nSegments one and four sit in the middle. They look alike on orders. What separates them is the red bar. Segment one came recently, and segment four has been away much longer.\n\nNow we can name them."
+  },
+  {
+   "type": "table",
+   "title": "Naming each segment in business words",
+   "header": [
+    "Name",
+    "Customers",
+    "Days since last order",
+    "Orders",
+    "Average spend (UGX)",
+    "Suggested action"
+   ],
+   "rows": [
+    [
+     "Top spenders",
+     "584",
+     "42",
+     "12",
+     "826,220",
+     "Thank them, early access"
+    ],
+    [
+     "Recent regulars",
+     "570",
+     "11",
+     "8",
+     "284,683",
+     "Encourage a bigger basket"
+    ],
+    [
+     "Drifting regulars",
+     "883",
+     "113",
+     "8",
+     "326,264",
+     "Reminder before they lapse"
+    ],
+    [
+     "Lapsed light buyers",
+     "462",
+     "142",
+     "5",
+     "142,739",
+     "Cheap win-back or leave"
+    ]
+   ],
+   "colw": [
+    2.6,
+    1.5,
+    2.0,
+    1.2,
+    2.3,
+    3.2
+   ],
+   "caption": "In a typical run. Your group numbers and exact counts will differ a little.",
+   "notes": "Here's how a manager would read the four groups. These figures come from a typical run. Your own run in scikit-learn will give close numbers that differ a little, and your group numbers may come in a different order. Match groups by what they look like and ignore the number.\n\nThe top row is our best customers. About five hundred and eighty four of them, twelve orders each, spending about eight hundred and twenty six thousand shillings. I call them top spenders.\n\nRecent regulars came in about eleven days ago. They buy often but spend a modest amount, so the chance is a bigger basket.\n\nDrifting regulars are the biggest group, about eight hundred and eighty three. They used to order as often as the recent regulars, but it has been over a hundred days. A reminder now may bring them back before they are gone.\n\nLapsed light buyers have been quiet for about a hundred and forty days and spent least. Maybe a cheap offer, maybe leave them be.\n\nThe model found the groups. The names and the actions are your work."
+  },
+  {
+   "type": "trap",
+   "title": "The groups look neat, so people treat them as facts",
+   "looks": "You run k-means, get four tidy groups with colours, and report that segment 2 is the best segment. Next week a colleague reruns it and segment 2 is now the weakest one.",
+   "why": "k-means always returns k groups, even in data with no real groups. Its numbers are arbitrary labels, and a different start or a new month of orders can shuffle them.",
+   "fix": "Name groups by what they contain. Fix random_state, check sizes and averages each run, and test whether the groups help a decision.",
+   "notes": "This trap runs with no error at all.\n\nYou run the model, and out come four tidy groups with colours. You tell the manager that segment two is your best segment. A week later a colleague reruns the notebook, and segment two is now the weakest group.\n\nNothing was wrong with the code. The number on a segment is only a label, and the method hands out labels in whatever order it finds the groups.\n\nThere is a deeper reason too. k-means will always give you the number of groups you ask for, even when the customers have no real groups in them. It never says there is nothing here.\n\nSo the fix is a set of habits. Name the groups by what the customers in them do, such as drifting regulars. Fix the random state and check the sizes and averages every time you rerun. And ask whether the groups change a decision. A segment nobody can act on is just a coloured chart."
+  },
+  {
+   "type": "code",
+   "title": "Unusual orders with a simple rule: the top 1 percent",
+   "lang": "python",
+   "code": "v = orders['order_value_ugx']\np99 = v.quantile(0.99)\nbig = orders[v > p99]\nprint('99th percentile:', round(p99), 'UGX')\nprint(len(big), 'orders above it')\nprint('median of all orders:', v.median())\nprint('median of flagged:', big['order_value_ugx'].median())",
+   "output": "99th percentile: 468620 UGX\n303 orders above it\nmedian of all orders: 23200.0\nmedian of flagged: 829200.0",
+   "says": [
+    "quantile(0.99) is the value that 99 percent of orders fall below.",
+    "The rule flags 303 orders. By design it always flags about 1 percent.",
+    "Flagged orders are a list for a person to review."
+   ],
+   "notes": "The second job is spotting orders that look odd. An odd order is called an anomaly. It's a row that looks very different from the rest and deserves a human look.\n\nThe simplest rule is one you could do in a spreadsheet. Take the value that ninety nine percent of orders fall below, which is the ninety ninth percentile, and flag everything above it. Here that cutoff is four hundred and sixty eight thousand six hundred and twenty shillings.\n\nThat flags three hundred and three orders out of thirty thousand. This rule flags one percent of orders whatever the data looks like, because that is how it is built.\n\nThe median of all orders is twenty three thousand two hundred. The median of the flagged ones is over eight hundred thousand. The flagged orders are a different kind of order.\n\nWhat do we do with the list? We review it. A big order could be a wedding catering job, a bulk buy for a school, or a keying mistake. We never delete it just because it is big."
+  },
+  {
+   "type": "code",
+   "title": "IsolationForest flags customers who look strange as a whole",
+   "lang": "python",
+   "code": "from sklearn.ensemble import IsolationForest\n\niso = IsolationForest(contamination=0.01, random_state=42)\nrfm['odd'] = iso.fit_predict(X)\nodd_customers = rfm[rfm['odd'] == -1]\nprint(len(odd_customers), 'customers flagged')",
+   "says": [
+    "contamination is the share you expect to be odd. One percent is a guess you choose.",
+    "fit_predict gives -1 for odd rows and 1 for normal rows.",
+    "It looks at all three columns together."
+   ],
+   "notes": "The percentile rule looks at one column. Sometimes a customer is odd only because of the combination. Plenty of orders but tiny spend, for instance. IsolationForest looks at all the columns together.\n\nThe idea is easy to say. It builds random trees that cut the data into pieces. A normal customer needs many cuts before they are alone in a piece. A strange customer is cut off after just a few. Fewer cuts means stranger.\n\nThe contamination setting is how much of the data you expect to be odd. We say one percent, which is a number we choose, so it is a guess about our own business. On our customers it should flag about twenty five.\n\nfit_predict gives minus one for the odd rows and one for the normal rows. We keep the minus ones in a table and count them. As before, the result is a list for people to check. It does not decide anything."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: segment the Lakeside customers",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 18 notebook and run the setup cell",
+    "Keep loyalty orders, then build recency, frequency and spend",
+    "Log and scale the columns",
+    "Run k-means with k = 4",
+    "Draw the elbow chart and profile the groups",
+    "Flag the top 1 percent of orders",
+    "Name each segment in a markdown cell"
+   ],
+   "done": "Your table has 2,499 customers, four groups, and a business name and action for each.",
+   "notes": "The first task is to keep only the orders that name a customer. Open the Session 18 notebook, run the setup cell and start there. It's forty minutes in Google Colab.\n\nThe next tasks build recency, frequency and spend, then log and scale them. Their checks tell you straight away if your counts are right. The k-means task and the elbow chart use scikit-learn, and their checks allow a range, because your groups will land close to mine and differ a little.\n\nThe last task is the part no model can write for you. Give each segment a name in business words and one line on what you would do for them. The group numbers can change between runs, so describe the customers."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Why are walk-in orders left out of the customer segments?",
+     "a": "They have no customer_id, so we cannot add up one person's orders. Say this when you report."
+    },
+    {
+     "q": "Why log and scale the columns before k-means?",
+     "a": "Spend is skewed and its numbers are huge. Without the steps, spend would decide every distance."
+    },
+    {
+     "q": "Your colleague's rerun shows segment 2 as the weakest. What went wrong?",
+     "a": "Nothing. Group numbers are arbitrary labels. Name groups by what the customers do."
+    }
+   ],
+   "notes": "Walk-in orders, log and scale, and a rerun that changed the segment numbers. Three questions on those.\n\nQuestion one. Why are walk-in orders left out of the customer segments? Sit with it for a second.\n\nThey have no customer id. Without it we cannot add up one person's orders into recency, frequency and spend. And when you report, you say that walk-ins are not in the groups.\n\nQuestion two. Why do we log and scale the columns before k-means? Think it over.\n\nSpend is skewed, with a few huge values, and its numbers are far larger than the others. Without the log and the scaling, spend would decide every distance and the other columns would barely count.\n\nQuestion three. A colleague reruns the notebook and segment two now looks like the weakest group. What went wrong? Give that a moment.\n\nNothing went wrong. The numbers are only labels, handed out in whatever order the groups are found. That's why we name groups by what their customers do."
+  },
+  {
+   "type": "summary",
+   "points": [
+    "Without an answer column, we look for structure: RFM features, logged and scaled, then k-means.",
+    "Choose k with the elbow and with usefulness. PCA draws the groups flat for people.",
+    "Name each segment in business words. Flag anomalies and review them. Never delete them just for being big."
+   ],
+   "next": "Forecasting and a first end-to-end model",
+   "notes": "One. With no answer column, we look for structure. We turn each customer into three numbers, recency, frequency and spend, log the skewed ones, scale them all, and let k-means find the groups.\n\nTwo. We choose k with the elbow chart and with common sense about what a manager can use. PCA draws the groups on a flat picture so people can see them.\n\nThree. The groups get their names from you, in business words. Odd orders and odd customers go on a list for review. Big does not mean wrong.\n\nNext session we forecast. We predict next month's numbers, and we package a whole modelling job from start to finish, which is also Checkpoint 3. Bring your best questions about time and seasons."
+  }
+ ],
+ "lab": {
+  "intro": "Segment the Lakeside Mart loyalty customers with recency, frequency and spend. Walk-in orders have no customer id and are left out. Pandas cells check exact counts. The k-means and elbow cells check tolerant ranges, because scikit-learn groups will be close to the class numbers and differ a little.",
+  "cells": [
+   {
+    "md": "## Task 1. Keep loyalty orders\nRead `orders.csv` into `orders`, turn `order_date` into dates, and keep only the orders that have a `customer_id`. Call the result `loyal`. Walk-in orders have a blank id and are left out."
+   },
+   {
+    "code": "import pandas as pd\nimport numpy as np\n\norders = pd.read_csv('orders.csv')\norders['order_date'] = pd.to_datetime(orders['order_date'])\nloyal = orders.dropna(subset=['customer_id'])\nprint(len(loyal), loyal['customer_id'].nunique())",
+    "starter": "import pandas as pd\nimport numpy as np\n\n# Your turn: read orders.csv into orders and convert order_date to dates\n# Your turn: loyal holds only the orders where customer_id is not blank\n"
+   },
+   {
+    "code": "assert len(orders) - len(loyal) == 9171, 'Walk-in orders (blank customer_id) must be dropped'\nassert len(loyal) == 21058, 'loyal should have 21058 orders. Drop the rows where customer_id is blank'\nassert loyal['customer_id'].nunique() == 2499, 'There should be 2499 loyalty customers'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Build recency, frequency and spend\nMake `rfm`, one row per customer id, with columns `recency` (days from the customer's last order to the last order date in the file), `frequency` (number of orders) and `spend` (sum of `order_value_ugx`), in that order."
+   },
+   {
+    "code": "end = loyal['order_date'].max()\nrfm = loyal.groupby('customer_id').agg(\n    last_order=('order_date', 'max'),\n    frequency=('order_id', 'count'),\n    spend=('order_value_ugx', 'sum'))\nrfm['recency'] = (end - rfm['last_order']).dt.days\nrfm = rfm[['recency', 'frequency', 'spend']]\nrfm.head()",
+    "starter": "# Your turn: end is the latest order date in loyal\n# Your turn: group loyal by customer_id and work out each customer's last order date, number of orders and total spend\n# Your turn: recency is the number of days from the last order to end. Keep only recency, frequency and spend in rfm\n"
+   },
+   {
+    "code": "assert rfm.shape == (2499, 3), 'One row per loyalty customer, three columns'\nassert list(rfm.columns) == ['recency', 'frequency', 'spend'], 'The columns must be recency, frequency, spend in that order'\nassert rfm.loc['C0001', 'recency'] == 6 and rfm.loc['C0001', 'frequency'] == 15, 'Check customer C0001: recency 6 days, 15 orders'\nassert rfm['frequency'].sum() == 21058, 'frequency is the count of orders for each customer'\nassert rfm['spend'].sum() == 998818340, 'spend is the sum of order_value_ugx for each customer'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Log and scale\nMake `logged` with `np.log1p(rfm)`. Then make `scaled` by subtracting each column's mean and dividing by its standard deviation. Every column of `scaled` should have mean 0 and spread 1."
+   },
+   {
+    "code": "logged = np.log1p(rfm)\nscaled = (logged - logged.mean()) / logged.std()\nprint(scaled.mean().round(3))\nprint(scaled.std().round(3))",
+    "starter": "# Your turn: logged is the log1p of rfm\n# Your turn: scaled is logged with each column's mean taken off and divided by its standard deviation\n"
+   },
+   {
+    "code": "assert abs(scaled.mean()).max() < 1e-6, 'Subtract the column mean'\nassert abs(scaled.std() - 1).max() < 1e-6, 'Divide by the column standard deviation'\nassert abs(np.log1p(rfm['spend']).skew()) < 0.1, 'logged should come from np.log1p(rfm)'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Cluster with k-means\nScale `logged` with scikit-learn's `StandardScaler` into `X`, then use `KMeans` with 4 clusters, `n_init=10` and `random_state=42`. Store each customer's group in `rfm['segment']`. Your groups will be close to the ones in class and will differ a little, and the numbers 0 to 3 are only labels."
+   },
+   {
+    "code": "from sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans\n\nX = StandardScaler().fit_transform(logged)\nkm = KMeans(n_clusters=4, n_init=10, random_state=42)\nrfm['segment'] = km.fit_predict(X)\nprint(rfm['segment'].value_counts())",
+    "starter": "from sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans\n\n# Your turn: X is logged, scaled with StandardScaler\n# Your turn: make the KMeans model with the settings in the task\n# Your turn: fit it and store each customer's group in rfm['segment']\n"
+   },
+   {
+    "code": "# sklearn result: tolerant check, because exact groups can differ\nsizes = rfm['segment'].value_counts()\nassert len(sizes) == 4, 'Four segments expected: use n_clusters=4'\nassert sizes.sum() == 2499, 'Every customer needs a segment'\nassert sizes.min() > 250 and sizes.max() < 1300, 'Sizes should be near 460 to 880 in a typical run. Cluster the scaled columns in X'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Choose k with the elbow\nFor k from 1 to 8, fit `KMeans` on `X` (`n_init=10`, `random_state=42`) and store each fit's `inertia_`, the spread inside the groups, in the list `inertias`. Plot it against k. Where does the line bend, and would you still choose 4?"
+   },
+   {
+    "code": "# uses KMeans from scikit-learn (sklearn) above\nimport matplotlib.pyplot as plt\n\ninertias = []\nfor k in range(1, 9):\n    m = KMeans(n_clusters=k, n_init=10, random_state=42).fit(X)\n    inertias.append(m.inertia_)\nplt.plot(range(1, 9), inertias, marker='o')\nplt.xlabel('Number of clusters k')\nplt.ylabel('Spread inside the groups')\nplt.show()",
+    "starter": "import matplotlib.pyplot as plt\n\ninertias = []\nfor k in range(1, 9):\n    # Your turn: fit KMeans with k clusters (n_init=10, random_state=42) on X\n    # Your turn: add the fit's inertia_ to inertias\n    pass\n# Your turn: plot inertias against k from 1 to 8, with axis labels\n"
+   },
+   {
+    "code": "# sklearn result: tolerant check, because exact groups can differ\nassert len(inertias) == 8, 'Add one value for each k from 1 to 8'\nassert all(a > b for a, b in zip(inertias, inertias[1:])), 'More groups always shrink the spread. Check you fitted a new KMeans with k clusters each time'\nassert 7000 < inertias[0] < 8000, 'With k = 1 the spread is about 3 columns times 2499 customers. Fit on X'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Profile each segment\nMake `profile`, a table with one row per segment and four columns: `customers` (the number of customers), `recency`, `orders` and `spend` (the averages of recency, frequency and spend). Round to whole numbers."
+   },
+   {
+    "code": "# uses the segment column from scikit-learn (sklearn) above\nprofile = rfm.groupby('segment').agg(\n    customers=('spend', 'size'),\n    recency=('recency', 'mean'),\n    orders=('frequency', 'mean'),\n    spend=('spend', 'mean')).round()\nprofile",
+    "starter": "# Your turn: group rfm by segment and work out customers, recency, orders and spend as the task describes\n# Your turn: round to whole numbers and call the table profile\n"
+   },
+   {
+    "code": "# sklearn result: tolerant check, because exact groups can differ\nassert profile['customers'].sum() == 2499, 'Customer counts must add up to all 2499 loyalty customers'\nassert profile['spend'].max() > 2 * profile['spend'].min(), 'spend should be the average spend. The best segment should spend over twice the weakest'\nassert profile['recency'].max() > 100 and profile['recency'].min() < 60, 'recency should be the average days since the last order'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Flag unusual orders\nUsing all of `orders` (walk-ins included), store the 99th percentile of `order_value_ugx` in `p99` and keep the orders above it in `big`."
+   },
+   {
+    "code": "p99 = orders['order_value_ugx'].quantile(0.99)\nbig = orders[orders['order_value_ugx'] > p99]\nprint(round(p99), len(big))",
+    "starter": "# Your turn: p99 is the 99th percentile of order_value_ugx\n# Your turn: big holds the orders with order_value_ugx above p99\n"
+   },
+   {
+    "code": "assert round(p99) == 468620, 'p99 is the 99th percentile (0.99 quantile) of order_value_ugx over all orders'\nassert len(big) == 303, 'Keep orders strictly above the percentile: 303 orders'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Name and describe each segment\nDouble click this cell and write one line per segment, using business words in place of group numbers. Say what the customers do, how many there are, and what you would do for them. A table like the one below is fine.\n\n| Name | Who they are | What I would do |\n|---|---|---|\n| (name) | (recency, orders, spend, count) | (one action) |\n\nThen write one sentence: you flagged 303 big orders. What would you check before treating any of them as a mistake?"
+   }
+  ]
+ }
+}

@@ -1,0 +1,4 @@
+model,test AUC,parameters or trees
+Logistic regression,0.737,11
+"MLPClassifier (16, 8)",0.74,321
+Random forest (200 trees),0.737,200

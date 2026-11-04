@@ -1,0 +1,2500 @@
+customer_id,recency,frequency,spend,segment,segment_name
+C0001,6,15,969690,1,Best customers
+C0002,119,4,107745,2,Lapsed low spenders
+C0003,1,6,437465,3,Recent regulars
+C0004,1,16,377210,3,Recent regulars
+C0005,263,9,198855,0,Drifting regulars
+C0006,34,11,294430,0,Drifting regulars
+C0007,8,10,442900,3,Recent regulars
+C0008,6,9,161195,3,Recent regulars
+C0009,2,9,236080,3,Recent regulars
+C0010,2,5,130590,3,Recent regulars
+C0011,39,13,386420,1,Best customers
+C0012,132,9,321070,0,Drifting regulars
+C0013,20,8,177410,3,Recent regulars
+C0014,41,10,433975,1,Best customers
+C0015,2,4,59000,3,Recent regulars
+C0016,322,6,597010,0,Drifting regulars
+C0017,91,5,236600,2,Lapsed low spenders
+C0018,123,10,284430,0,Drifting regulars
+C0019,425,3,40650,2,Lapsed low spenders
+C0020,8,4,281895,3,Recent regulars
+C0021,73,7,180090,0,Drifting regulars
+C0022,42,10,271290,0,Drifting regulars
+C0023,84,6,136100,2,Lapsed low spenders
+C0024,48,6,223685,0,Drifting regulars
+C0025,57,18,558295,1,Best customers
+C0026,40,6,364135,0,Drifting regulars
+C0027,100,12,670945,1,Best customers
+C0028,12,9,307010,3,Recent regulars
+C0029,143,8,217800,0,Drifting regulars
+C0030,137,5,364150,0,Drifting regulars
+C0031,33,10,330790,0,Drifting regulars
+C0032,68,6,256060,0,Drifting regulars
+C0033,7,14,303150,3,Recent regulars
+C0034,51,4,199100,2,Lapsed low spenders
+C0035,51,3,44140,2,Lapsed low spenders
+C0036,66,11,442285,1,Best customers
+C0037,141,9,261185,0,Drifting regulars
+C0038,36,6,247610,0,Drifting regulars
+C0039,59,6,131400,2,Lapsed low spenders
+C0040,13,14,795315,1,Best customers
+C0041,221,8,543210,0,Drifting regulars
+C0042,33,5,440700,0,Drifting regulars
+C0043,29,9,198990,3,Recent regulars
+C0044,72,9,229810,0,Drifting regulars
+C0045,14,8,159075,3,Recent regulars
+C0046,18,11,281315,3,Recent regulars
+C0047,175,3,90380,2,Lapsed low spenders
+C0048,231,5,223270,2,Lapsed low spenders
+C0049,174,4,69000,2,Lapsed low spenders
+C0050,30,16,973940,1,Best customers
+C0051,60,11,387210,0,Drifting regulars
+C0052,20,12,599335,1,Best customers
+C0053,3,5,79800,3,Recent regulars
+C0054,157,4,138100,2,Lapsed low spenders
+C0055,130,6,159620,2,Lapsed low spenders
+C0056,248,10,397115,0,Drifting regulars
+C0057,79,12,282240,0,Drifting regulars
+C0058,20,6,158820,3,Recent regulars
+C0059,35,7,245730,0,Drifting regulars
+C0060,65,9,231355,0,Drifting regulars
+C0061,9,6,100020,3,Recent regulars
+C0062,39,13,426720,1,Best customers
+C0063,111,5,80800,2,Lapsed low spenders
+C0064,77,7,236300,0,Drifting regulars
+C0065,22,11,325045,1,Best customers
+C0066,9,6,175115,3,Recent regulars
+C0067,73,6,110200,2,Lapsed low spenders
+C0068,88,4,117100,2,Lapsed low spenders
+C0069,18,8,955240,1,Best customers
+C0070,172,7,210930,0,Drifting regulars
+C0071,120,7,197300,0,Drifting regulars
+C0072,25,12,355085,1,Best customers
+C0073,323,11,316820,0,Drifting regulars
+C0074,112,8,267050,0,Drifting regulars
+C0075,105,16,598825,1,Best customers
+C0076,55,8,366810,0,Drifting regulars
+C0077,143,9,336170,0,Drifting regulars
+C0078,110,7,490850,0,Drifting regulars
+C0079,12,8,212475,3,Recent regulars
+C0080,47,5,237275,2,Lapsed low spenders
+C0081,5,7,257240,3,Recent regulars
+C0082,4,8,172820,3,Recent regulars
+C0083,8,12,1265085,1,Best customers
+C0084,11,10,623930,1,Best customers
+C0085,51,10,282800,0,Drifting regulars
+C0086,96,3,80800,2,Lapsed low spenders
+C0087,6,14,634775,1,Best customers
+C0088,30,9,688740,1,Best customers
+C0089,0,5,183205,3,Recent regulars
+C0090,74,8,453475,0,Drifting regulars
+C0091,15,12,276695,3,Recent regulars
+C0092,54,12,661440,1,Best customers
+C0093,456,4,147665,2,Lapsed low spenders
+C0094,58,13,286210,0,Drifting regulars
+C0095,25,11,2060080,1,Best customers
+C0096,13,9,149300,3,Recent regulars
+C0097,240,5,528940,0,Drifting regulars
+C0098,33,10,496830,1,Best customers
+C0099,16,7,260815,3,Recent regulars
+C0100,35,6,570425,0,Drifting regulars
+C0101,50,5,105385,2,Lapsed low spenders
+C0102,22,9,322855,3,Recent regulars
+C0103,15,13,752915,1,Best customers
+C0104,139,9,523170,0,Drifting regulars
+C0105,39,10,626950,1,Best customers
+C0106,98,6,245985,0,Drifting regulars
+C0107,42,6,116035,2,Lapsed low spenders
+C0108,190,13,1997155,1,Best customers
+C0109,33,11,365085,1,Best customers
+C0110,5,6,218615,3,Recent regulars
+C0111,23,14,352660,1,Best customers
+C0112,45,7,99920,2,Lapsed low spenders
+C0113,392,2,11700,2,Lapsed low spenders
+C0114,269,6,84400,2,Lapsed low spenders
+C0115,0,8,440700,3,Recent regulars
+C0116,24,13,2358480,1,Best customers
+C0117,132,11,313135,0,Drifting regulars
+C0118,70,11,277110,0,Drifting regulars
+C0119,10,7,197850,3,Recent regulars
+C0120,73,8,1731800,1,Best customers
+C0121,77,13,566855,1,Best customers
+C0122,61,10,312110,0,Drifting regulars
+C0123,16,9,257755,3,Recent regulars
+C0124,32,10,353015,0,Drifting regulars
+C0125,317,8,250545,0,Drifting regulars
+C0126,60,9,280135,0,Drifting regulars
+C0127,71,10,212435,0,Drifting regulars
+C0128,131,10,700355,0,Drifting regulars
+C0129,89,6,147310,2,Lapsed low spenders
+C0130,42,8,586500,1,Best customers
+C0131,12,10,247435,3,Recent regulars
+C0132,10,13,399060,1,Best customers
+C0133,38,13,712390,1,Best customers
+C0134,74,14,714200,1,Best customers
+C0135,27,8,289090,3,Recent regulars
+C0136,42,12,453715,1,Best customers
+C0137,116,12,462850,0,Drifting regulars
+C0138,131,11,589150,0,Drifting regulars
+C0139,67,9,433350,0,Drifting regulars
+C0140,35,8,329670,0,Drifting regulars
+C0141,294,3,120770,2,Lapsed low spenders
+C0142,14,8,172060,3,Recent regulars
+C0143,43,7,170935,0,Drifting regulars
+C0144,61,8,333120,0,Drifting regulars
+C0145,38,5,120350,2,Lapsed low spenders
+C0146,60,11,534220,1,Best customers
+C0147,55,13,376175,1,Best customers
+C0148,143,6,201920,2,Lapsed low spenders
+C0149,40,10,245105,0,Drifting regulars
+C0150,43,13,378730,1,Best customers
+C0151,7,8,235565,3,Recent regulars
+C0152,22,10,240695,3,Recent regulars
+C0153,90,5,96910,2,Lapsed low spenders
+C0154,334,4,96400,2,Lapsed low spenders
+C0155,286,9,211705,0,Drifting regulars
+C0156,233,6,271350,0,Drifting regulars
+C0157,234,7,187155,0,Drifting regulars
+C0158,6,8,301630,3,Recent regulars
+C0159,37,5,96605,2,Lapsed low spenders
+C0160,24,6,236010,3,Recent regulars
+C0161,13,8,273825,3,Recent regulars
+C0162,14,10,206200,3,Recent regulars
+C0163,164,10,281985,0,Drifting regulars
+C0164,88,13,594790,1,Best customers
+C0165,62,8,149460,0,Drifting regulars
+C0166,38,8,189555,0,Drifting regulars
+C0167,62,10,752175,1,Best customers
+C0168,6,17,564900,1,Best customers
+C0169,26,13,1839300,1,Best customers
+C0170,122,9,392145,0,Drifting regulars
+C0171,19,16,418345,1,Best customers
+C0172,120,5,70365,2,Lapsed low spenders
+C0173,9,10,1581605,1,Best customers
+C0174,26,12,436135,1,Best customers
+C0175,11,7,229950,3,Recent regulars
+C0176,270,3,90350,2,Lapsed low spenders
+C0177,25,9,872755,1,Best customers
+C0178,8,11,345955,3,Recent regulars
+C0179,114,8,188265,0,Drifting regulars
+C0180,191,10,267110,0,Drifting regulars
+C0181,162,7,916375,0,Drifting regulars
+C0182,6,7,257130,3,Recent regulars
+C0183,142,8,221595,0,Drifting regulars
+C0184,134,6,161540,2,Lapsed low spenders
+C0185,238,9,325080,0,Drifting regulars
+C0186,20,12,509725,1,Best customers
+C0187,109,8,161810,0,Drifting regulars
+C0188,1,10,291200,3,Recent regulars
+C0189,19,7,148250,3,Recent regulars
+C0190,416,3,66200,2,Lapsed low spenders
+C0191,118,8,256520,0,Drifting regulars
+C0192,208,7,818820,0,Drifting regulars
+C0194,106,7,565565,0,Drifting regulars
+C0195,12,5,112250,2,Lapsed low spenders
+C0196,22,6,204430,3,Recent regulars
+C0197,186,7,113145,2,Lapsed low spenders
+C0198,149,9,268200,0,Drifting regulars
+C0199,44,7,264970,0,Drifting regulars
+C0200,20,7,600450,1,Best customers
+C0201,123,10,255110,0,Drifting regulars
+C0202,17,9,341550,3,Recent regulars
+C0203,50,5,230685,2,Lapsed low spenders
+C0204,87,4,72850,2,Lapsed low spenders
+C0205,131,6,220030,0,Drifting regulars
+C0206,138,8,156255,0,Drifting regulars
+C0207,5,13,482425,1,Best customers
+C0208,4,6,349030,3,Recent regulars
+C0209,147,4,134180,2,Lapsed low spenders
+C0210,77,12,640130,1,Best customers
+C0211,13,5,1053650,1,Best customers
+C0212,0,12,688215,3,Recent regulars
+C0213,1,11,487605,3,Recent regulars
+C0214,209,7,240775,0,Drifting regulars
+C0215,11,9,179645,3,Recent regulars
+C0216,27,8,229525,3,Recent regulars
+C0217,44,4,407940,2,Lapsed low spenders
+C0218,111,10,774370,1,Best customers
+C0219,20,9,394035,3,Recent regulars
+C0220,218,7,204320,0,Drifting regulars
+C0221,244,5,127040,2,Lapsed low spenders
+C0222,3,7,1202610,1,Best customers
+C0223,116,9,1060110,1,Best customers
+C0224,10,13,1254785,1,Best customers
+C0225,44,4,81030,2,Lapsed low spenders
+C0226,17,4,83280,2,Lapsed low spenders
+C0227,122,11,301900,0,Drifting regulars
+C0228,191,13,347325,0,Drifting regulars
+C0229,111,8,255200,0,Drifting regulars
+C0230,49,7,2212045,1,Best customers
+C0231,9,10,573100,1,Best customers
+C0232,37,10,393995,1,Best customers
+C0233,132,7,390905,0,Drifting regulars
+C0234,8,10,807155,1,Best customers
+C0235,5,8,301960,3,Recent regulars
+C0236,73,9,512910,0,Drifting regulars
+C0237,94,11,314140,0,Drifting regulars
+C0238,245,7,1027210,0,Drifting regulars
+C0239,182,5,213680,2,Lapsed low spenders
+C0240,173,7,97070,2,Lapsed low spenders
+C0241,106,9,332955,0,Drifting regulars
+C0242,26,9,174580,3,Recent regulars
+C0243,245,5,118050,2,Lapsed low spenders
+C0244,45,4,122470,2,Lapsed low spenders
+C0245,5,8,169590,3,Recent regulars
+C0246,105,4,188460,2,Lapsed low spenders
+C0247,82,10,844825,1,Best customers
+C0248,409,8,913495,0,Drifting regulars
+C0249,4,11,435875,3,Recent regulars
+C0250,115,4,158375,2,Lapsed low spenders
+C0251,30,11,332390,1,Best customers
+C0252,150,8,249565,0,Drifting regulars
+C0253,129,14,307935,0,Drifting regulars
+C0254,37,7,116125,2,Lapsed low spenders
+C0255,33,12,264855,0,Drifting regulars
+C0256,87,5,205670,2,Lapsed low spenders
+C0257,57,14,1555200,1,Best customers
+C0258,50,14,602925,1,Best customers
+C0259,63,11,563670,1,Best customers
+C0260,5,12,1524945,1,Best customers
+C0261,40,12,465675,1,Best customers
+C0262,22,7,188130,3,Recent regulars
+C0263,154,6,373675,0,Drifting regulars
+C0264,3,8,230275,3,Recent regulars
+C0265,136,9,346755,0,Drifting regulars
+C0266,113,8,343300,0,Drifting regulars
+C0267,75,6,137940,2,Lapsed low spenders
+C0268,44,10,530810,1,Best customers
+C0269,0,9,272535,3,Recent regulars
+C0270,23,7,163670,3,Recent regulars
+C0271,244,9,262760,0,Drifting regulars
+C0272,49,11,460855,1,Best customers
+C0273,264,8,147730,0,Drifting regulars
+C0274,7,10,343660,3,Recent regulars
+C0275,12,10,208130,3,Recent regulars
+C0276,52,8,552215,0,Drifting regulars
+C0277,84,10,447370,0,Drifting regulars
+C0278,5,6,420120,3,Recent regulars
+C0279,143,7,286590,0,Drifting regulars
+C0280,19,5,156800,2,Lapsed low spenders
+C0281,15,11,465580,1,Best customers
+C0282,30,10,401300,1,Best customers
+C0283,17,10,176690,3,Recent regulars
+C0284,28,7,265660,3,Recent regulars
+C0285,20,11,395280,1,Best customers
+C0286,96,6,541060,0,Drifting regulars
+C0287,33,14,408020,1,Best customers
+C0288,1,6,174730,3,Recent regulars
+C0289,14,8,225995,3,Recent regulars
+C0290,28,9,470170,1,Best customers
+C0291,22,12,1459420,1,Best customers
+C0292,70,8,372395,0,Drifting regulars
+C0293,20,12,413290,1,Best customers
+C0294,116,9,510765,0,Drifting regulars
+C0295,12,8,119490,3,Recent regulars
+C0296,79,11,331415,0,Drifting regulars
+C0297,321,8,194300,0,Drifting regulars
+C0298,50,5,117140,2,Lapsed low spenders
+C0299,48,12,438170,1,Best customers
+C0300,9,14,1226710,1,Best customers
+C0301,44,5,108210,2,Lapsed low spenders
+C0302,73,11,883055,1,Best customers
+C0303,130,10,480245,0,Drifting regulars
+C0304,29,11,180960,3,Recent regulars
+C0305,134,7,327370,0,Drifting regulars
+C0306,14,10,227390,3,Recent regulars
+C0307,118,9,366400,0,Drifting regulars
+C0308,15,10,729520,1,Best customers
+C0309,105,5,382085,0,Drifting regulars
+C0310,60,7,214270,0,Drifting regulars
+C0311,177,8,227740,0,Drifting regulars
+C0312,129,5,195585,2,Lapsed low spenders
+C0313,58,8,257350,0,Drifting regulars
+C0314,6,9,364565,3,Recent regulars
+C0315,32,19,662895,1,Best customers
+C0316,14,9,286090,3,Recent regulars
+C0317,74,11,346925,0,Drifting regulars
+C0318,26,9,213940,3,Recent regulars
+C0319,55,8,206530,0,Drifting regulars
+C0320,209,4,180900,2,Lapsed low spenders
+C0321,100,9,761815,1,Best customers
+C0322,111,6,224270,0,Drifting regulars
+C0323,2,7,254300,3,Recent regulars
+C0324,27,12,827140,1,Best customers
+C0325,34,6,226550,0,Drifting regulars
+C0326,57,8,238330,0,Drifting regulars
+C0327,0,10,235115,3,Recent regulars
+C0328,36,8,295575,0,Drifting regulars
+C0329,21,11,285875,3,Recent regulars
+C0330,10,10,388825,3,Recent regulars
+C0331,569,4,202410,2,Lapsed low spenders
+C0332,11,11,396635,1,Best customers
+C0333,225,8,361585,0,Drifting regulars
+C0334,26,9,1229065,1,Best customers
+C0335,182,4,470525,2,Lapsed low spenders
+C0336,56,12,559405,1,Best customers
+C0337,53,6,216890,0,Drifting regulars
+C0338,228,5,113475,2,Lapsed low spenders
+C0339,111,7,298355,0,Drifting regulars
+C0340,22,5,224800,2,Lapsed low spenders
+C0341,47,3,121250,2,Lapsed low spenders
+C0342,177,5,246470,2,Lapsed low spenders
+C0343,98,9,160900,0,Drifting regulars
+C0344,3,6,571275,3,Recent regulars
+C0345,24,12,999895,1,Best customers
+C0346,144,8,263140,0,Drifting regulars
+C0347,6,14,531525,1,Best customers
+C0348,144,8,164520,0,Drifting regulars
+C0349,146,10,377330,0,Drifting regulars
+C0350,48,5,117880,2,Lapsed low spenders
+C0351,116,9,418200,0,Drifting regulars
+C0352,6,10,237895,3,Recent regulars
+C0353,10,9,717220,1,Best customers
+C0354,54,5,207310,2,Lapsed low spenders
+C0355,6,9,247095,3,Recent regulars
+C0356,495,3,131945,2,Lapsed low spenders
+C0357,27,3,122500,2,Lapsed low spenders
+C0358,103,5,50000,2,Lapsed low spenders
+C0359,116,6,79400,2,Lapsed low spenders
+C0360,50,5,327500,0,Drifting regulars
+C0361,49,7,113715,2,Lapsed low spenders
+C0362,8,18,1955915,1,Best customers
+C0363,16,13,634140,1,Best customers
+C0364,2,7,213900,3,Recent regulars
+C0365,72,9,475155,0,Drifting regulars
+C0366,24,6,172030,3,Recent regulars
+C0367,6,8,202015,3,Recent regulars
+C0368,128,8,668920,0,Drifting regulars
+C0369,164,11,238550,0,Drifting regulars
+C0370,169,4,121850,2,Lapsed low spenders
+C0371,10,13,1091290,1,Best customers
+C0372,109,10,630015,0,Drifting regulars
+C0373,38,7,315945,0,Drifting regulars
+C0374,1,3,90850,3,Recent regulars
+C0375,68,6,240000,0,Drifting regulars
+C0376,4,5,174300,3,Recent regulars
+C0377,113,10,265825,0,Drifting regulars
+C0378,8,10,322250,3,Recent regulars
+C0379,471,2,10600,2,Lapsed low spenders
+C0380,247,6,168225,2,Lapsed low spenders
+C0381,85,7,273820,0,Drifting regulars
+C0382,33,10,678890,1,Best customers
+C0383,141,13,926885,1,Best customers
+C0384,58,5,98550,2,Lapsed low spenders
+C0385,3,8,263500,3,Recent regulars
+C0386,136,11,225790,0,Drifting regulars
+C0387,142,11,380915,0,Drifting regulars
+C0388,165,6,539570,0,Drifting regulars
+C0389,8,7,135890,3,Recent regulars
+C0390,16,11,270470,3,Recent regulars
+C0391,27,10,485960,1,Best customers
+C0392,84,7,303170,0,Drifting regulars
+C0393,226,10,236395,0,Drifting regulars
+C0394,20,4,43900,2,Lapsed low spenders
+C0395,106,6,284655,0,Drifting regulars
+C0396,114,3,17800,2,Lapsed low spenders
+C0397,12,10,245580,3,Recent regulars
+C0398,25,10,316690,3,Recent regulars
+C0399,38,5,49370,2,Lapsed low spenders
+C0400,103,6,222900,0,Drifting regulars
+C0401,192,3,86500,2,Lapsed low spenders
+C0402,45,12,322180,1,Best customers
+C0403,123,11,546200,0,Drifting regulars
+C0404,5,7,374710,3,Recent regulars
+C0405,11,4,30400,2,Lapsed low spenders
+C0406,67,9,188915,0,Drifting regulars
+C0407,107,8,238320,0,Drifting regulars
+C0408,248,8,452695,0,Drifting regulars
+C0409,11,12,288325,3,Recent regulars
+C0410,82,4,840120,0,Drifting regulars
+C0411,62,6,144640,2,Lapsed low spenders
+C0412,104,7,192080,0,Drifting regulars
+C0413,26,8,235950,3,Recent regulars
+C0414,27,12,499300,1,Best customers
+C0415,19,10,423755,1,Best customers
+C0416,59,6,142995,2,Lapsed low spenders
+C0417,54,10,667865,1,Best customers
+C0418,180,6,161240,2,Lapsed low spenders
+C0419,147,4,90990,2,Lapsed low spenders
+C0420,139,8,286890,0,Drifting regulars
+C0421,52,5,195600,2,Lapsed low spenders
+C0422,9,8,196845,3,Recent regulars
+C0423,13,6,398675,3,Recent regulars
+C0424,52,9,256355,0,Drifting regulars
+C0425,110,8,164930,0,Drifting regulars
+C0426,11,11,495655,1,Best customers
+C0427,43,10,251680,0,Drifting regulars
+C0428,1,7,176280,3,Recent regulars
+C0429,117,11,200740,0,Drifting regulars
+C0430,129,6,183020,2,Lapsed low spenders
+C0431,10,7,539695,3,Recent regulars
+C0432,30,10,739325,1,Best customers
+C0433,120,7,271200,0,Drifting regulars
+C0434,82,13,359610,0,Drifting regulars
+C0435,138,6,178680,2,Lapsed low spenders
+C0436,34,9,321430,0,Drifting regulars
+C0437,212,8,181580,0,Drifting regulars
+C0438,168,7,340030,0,Drifting regulars
+C0439,52,9,283320,0,Drifting regulars
+C0440,13,5,256055,3,Recent regulars
+C0441,18,8,308830,3,Recent regulars
+C0442,47,7,117550,2,Lapsed low spenders
+C0443,80,10,311755,0,Drifting regulars
+C0444,3,11,751340,1,Best customers
+C0445,139,10,239395,0,Drifting regulars
+C0446,18,6,267095,3,Recent regulars
+C0447,62,10,201610,0,Drifting regulars
+C0448,41,9,204360,0,Drifting regulars
+C0449,116,8,552050,0,Drifting regulars
+C0450,23,16,491520,1,Best customers
+C0451,76,4,160725,2,Lapsed low spenders
+C0452,63,9,1173100,1,Best customers
+C0453,32,8,373045,0,Drifting regulars
+C0454,4,7,302315,3,Recent regulars
+C0455,144,11,330290,0,Drifting regulars
+C0456,61,11,412330,0,Drifting regulars
+C0457,8,13,355165,1,Best customers
+C0458,71,6,291885,0,Drifting regulars
+C0459,10,8,275050,3,Recent regulars
+C0460,22,6,141625,3,Recent regulars
+C0461,0,7,240215,3,Recent regulars
+C0462,88,5,233800,2,Lapsed low spenders
+C0463,10,8,257340,3,Recent regulars
+C0464,330,6,229630,0,Drifting regulars
+C0465,22,5,341880,3,Recent regulars
+C0466,233,7,170575,0,Drifting regulars
+C0467,22,11,285380,3,Recent regulars
+C0468,99,7,228175,0,Drifting regulars
+C0469,3,8,410735,3,Recent regulars
+C0470,34,7,218670,0,Drifting regulars
+C0471,26,9,315050,3,Recent regulars
+C0472,205,4,191390,2,Lapsed low spenders
+C0473,4,8,162755,3,Recent regulars
+C0474,212,8,269670,0,Drifting regulars
+C0475,101,8,2035260,1,Best customers
+C0476,15,11,356910,1,Best customers
+C0477,20,9,327145,3,Recent regulars
+C0478,111,6,209660,0,Drifting regulars
+C0479,32,9,350935,0,Drifting regulars
+C0480,56,7,255960,0,Drifting regulars
+C0481,118,13,408700,0,Drifting regulars
+C0482,127,5,61850,2,Lapsed low spenders
+C0483,2,11,514065,3,Recent regulars
+C0484,34,9,225650,0,Drifting regulars
+C0485,19,10,318685,3,Recent regulars
+C0486,34,11,1195595,1,Best customers
+C0487,84,8,185960,0,Drifting regulars
+C0488,20,10,1178155,1,Best customers
+C0489,159,10,212135,0,Drifting regulars
+C0490,10,10,584990,1,Best customers
+C0491,76,9,913520,1,Best customers
+C0492,104,5,198165,2,Lapsed low spenders
+C0493,55,12,257115,0,Drifting regulars
+C0494,6,4,95750,2,Lapsed low spenders
+C0495,113,8,246675,0,Drifting regulars
+C0496,69,8,291130,0,Drifting regulars
+C0497,198,7,249335,0,Drifting regulars
+C0498,196,7,983965,0,Drifting regulars
+C0499,201,5,96690,2,Lapsed low spenders
+C0500,0,8,137455,3,Recent regulars
+C0501,74,12,711685,1,Best customers
+C0502,7,5,161700,3,Recent regulars
+C0503,11,6,160170,3,Recent regulars
+C0504,53,9,136360,0,Drifting regulars
+C0505,48,10,396250,0,Drifting regulars
+C0506,16,12,619800,1,Best customers
+C0507,74,5,150420,2,Lapsed low spenders
+C0508,23,11,218685,3,Recent regulars
+C0509,48,3,82060,2,Lapsed low spenders
+C0510,46,13,1547970,1,Best customers
+C0511,21,16,338635,1,Best customers
+C0512,40,6,1269110,1,Best customers
+C0513,91,3,109590,2,Lapsed low spenders
+C0514,147,8,613890,0,Drifting regulars
+C0515,129,13,682900,1,Best customers
+C0516,67,8,340235,0,Drifting regulars
+C0517,11,3,213280,2,Lapsed low spenders
+C0518,27,13,402225,1,Best customers
+C0519,91,9,251200,0,Drifting regulars
+C0520,106,10,760110,1,Best customers
+C0521,49,5,259725,2,Lapsed low spenders
+C0522,0,8,221990,3,Recent regulars
+C0523,225,5,113725,2,Lapsed low spenders
+C0524,10,12,995990,1,Best customers
+C0525,28,11,315450,1,Best customers
+C0526,140,11,421885,0,Drifting regulars
+C0527,96,7,150455,0,Drifting regulars
+C0528,12,9,196230,3,Recent regulars
+C0529,51,11,479660,1,Best customers
+C0530,136,7,333470,0,Drifting regulars
+C0531,93,10,299100,0,Drifting regulars
+C0532,89,7,154010,0,Drifting regulars
+C0533,162,6,350170,0,Drifting regulars
+C0534,14,10,1757470,1,Best customers
+C0535,54,7,105210,2,Lapsed low spenders
+C0536,28,6,143700,2,Lapsed low spenders
+C0537,22,9,532630,1,Best customers
+C0538,35,6,211920,0,Drifting regulars
+C0539,0,13,266070,3,Recent regulars
+C0540,7,9,134875,3,Recent regulars
+C0541,213,11,258900,0,Drifting regulars
+C0542,61,6,230415,0,Drifting regulars
+C0543,42,8,186100,0,Drifting regulars
+C0544,199,8,262980,0,Drifting regulars
+C0545,15,10,306830,3,Recent regulars
+C0546,59,11,483470,1,Best customers
+C0547,45,9,291300,0,Drifting regulars
+C0548,73,11,462725,1,Best customers
+C0549,12,10,304785,3,Recent regulars
+C0550,117,10,451900,0,Drifting regulars
+C0551,0,7,950970,3,Recent regulars
+C0552,147,8,258020,0,Drifting regulars
+C0553,8,10,236300,3,Recent regulars
+C0554,134,4,43405,2,Lapsed low spenders
+C0555,13,10,333110,3,Recent regulars
+C0556,11,6,2183930,1,Best customers
+C0557,39,5,193000,2,Lapsed low spenders
+C0558,12,9,382380,3,Recent regulars
+C0559,352,5,84310,2,Lapsed low spenders
+C0560,255,5,127900,2,Lapsed low spenders
+C0561,135,10,463870,0,Drifting regulars
+C0562,3,9,1185965,1,Best customers
+C0563,31,10,324460,0,Drifting regulars
+C0564,1,9,1440585,1,Best customers
+C0565,75,6,243890,0,Drifting regulars
+C0566,50,17,555675,1,Best customers
+C0567,17,8,142965,3,Recent regulars
+C0568,182,8,320635,0,Drifting regulars
+C0569,110,6,91520,2,Lapsed low spenders
+C0570,32,6,185420,2,Lapsed low spenders
+C0571,2,12,660650,1,Best customers
+C0572,200,5,89985,2,Lapsed low spenders
+C0573,108,9,221145,0,Drifting regulars
+C0574,141,7,271155,0,Drifting regulars
+C0575,27,12,785830,1,Best customers
+C0576,76,11,355230,0,Drifting regulars
+C0577,53,6,320265,0,Drifting regulars
+C0578,9,12,415660,1,Best customers
+C0579,58,12,265305,0,Drifting regulars
+C0580,88,7,303020,0,Drifting regulars
+C0581,28,10,380005,1,Best customers
+C0582,27,10,468290,1,Best customers
+C0583,122,7,210490,0,Drifting regulars
+C0584,31,8,183995,0,Drifting regulars
+C0585,23,13,784710,1,Best customers
+C0586,15,8,428555,3,Recent regulars
+C0587,109,10,311900,0,Drifting regulars
+C0588,5,11,372820,3,Recent regulars
+C0589,108,7,404550,0,Drifting regulars
+C0590,34,7,517485,0,Drifting regulars
+C0591,208,8,102020,0,Drifting regulars
+C0592,73,6,264850,0,Drifting regulars
+C0593,2,9,240775,3,Recent regulars
+C0594,20,8,416640,3,Recent regulars
+C0595,9,7,233395,3,Recent regulars
+C0596,84,13,435170,1,Best customers
+C0597,25,8,511315,1,Best customers
+C0598,48,11,1103175,1,Best customers
+C0599,4,11,348295,3,Recent regulars
+C0600,26,13,295785,1,Best customers
+C0601,291,7,257380,0,Drifting regulars
+C0602,74,10,277815,0,Drifting regulars
+C0603,10,8,294500,3,Recent regulars
+C0604,12,12,492550,1,Best customers
+C0605,551,1,12390,2,Lapsed low spenders
+C0606,12,11,323930,3,Recent regulars
+C0607,194,6,177100,2,Lapsed low spenders
+C0608,14,5,144040,3,Recent regulars
+C0609,4,6,242530,3,Recent regulars
+C0610,89,9,136400,0,Drifting regulars
+C0611,209,6,148860,2,Lapsed low spenders
+C0612,28,8,211490,3,Recent regulars
+C0613,248,3,160150,2,Lapsed low spenders
+C0614,228,8,161670,0,Drifting regulars
+C0615,50,11,440565,1,Best customers
+C0616,9,8,185005,3,Recent regulars
+C0617,69,6,225125,0,Drifting regulars
+C0618,21,7,243820,3,Recent regulars
+C0619,22,10,314810,3,Recent regulars
+C0620,56,7,254535,0,Drifting regulars
+C0621,228,5,237665,2,Lapsed low spenders
+C0622,13,10,348680,3,Recent regulars
+C0623,5,5,63435,3,Recent regulars
+C0624,80,5,105045,2,Lapsed low spenders
+C0625,95,5,26595,2,Lapsed low spenders
+C0626,9,7,126175,3,Recent regulars
+C0627,80,12,446350,1,Best customers
+C0628,67,12,298370,0,Drifting regulars
+C0629,67,10,257550,0,Drifting regulars
+C0630,69,10,253085,0,Drifting regulars
+C0631,90,12,412300,0,Drifting regulars
+C0632,26,9,567330,1,Best customers
+C0633,15,10,309225,3,Recent regulars
+C0634,11,12,1239835,1,Best customers
+C0635,233,11,257640,0,Drifting regulars
+C0636,446,8,1249175,0,Drifting regulars
+C0637,20,9,202800,3,Recent regulars
+C0638,35,6,376535,0,Drifting regulars
+C0639,46,7,132435,2,Lapsed low spenders
+C0640,147,8,205880,0,Drifting regulars
+C0641,25,6,363350,3,Recent regulars
+C0642,37,10,675680,1,Best customers
+C0643,12,8,1515500,1,Best customers
+C0644,23,7,293850,3,Recent regulars
+C0645,198,7,113600,2,Lapsed low spenders
+C0646,51,6,3198600,1,Best customers
+C0647,24,16,794580,1,Best customers
+C0648,18,5,235000,3,Recent regulars
+C0649,79,5,172490,2,Lapsed low spenders
+C0650,2,10,232235,3,Recent regulars
+C0651,36,6,112050,2,Lapsed low spenders
+C0652,16,8,198100,3,Recent regulars
+C0653,204,7,568560,0,Drifting regulars
+C0654,26,12,430610,1,Best customers
+C0655,103,9,199370,0,Drifting regulars
+C0656,15,8,199710,3,Recent regulars
+C0657,122,12,504925,0,Drifting regulars
+C0658,225,8,374500,0,Drifting regulars
+C0659,18,11,389105,1,Best customers
+C0660,80,6,280930,0,Drifting regulars
+C0661,10,11,247780,3,Recent regulars
+C0662,62,12,452020,1,Best customers
+C0663,22,6,413750,3,Recent regulars
+C0664,117,7,169380,0,Drifting regulars
+C0665,10,10,183435,3,Recent regulars
+C0666,1,6,71440,3,Recent regulars
+C0667,145,10,259870,0,Drifting regulars
+C0668,5,7,245365,3,Recent regulars
+C0669,93,6,120000,2,Lapsed low spenders
+C0670,40,6,175975,2,Lapsed low spenders
+C0671,65,7,219820,0,Drifting regulars
+C0672,37,9,165000,0,Drifting regulars
+C0673,65,8,218365,0,Drifting regulars
+C0674,21,9,148070,3,Recent regulars
+C0675,139,7,75515,2,Lapsed low spenders
+C0676,4,8,296470,3,Recent regulars
+C0677,193,9,1502575,1,Best customers
+C0678,32,10,209220,0,Drifting regulars
+C0679,111,3,87265,2,Lapsed low spenders
+C0680,113,12,177585,0,Drifting regulars
+C0681,10,10,308760,3,Recent regulars
+C0682,20,12,463910,1,Best customers
+C0683,16,6,363300,3,Recent regulars
+C0684,21,9,2865040,1,Best customers
+C0685,3,11,443030,3,Recent regulars
+C0686,114,5,92575,2,Lapsed low spenders
+C0687,294,7,230225,0,Drifting regulars
+C0688,20,11,281685,3,Recent regulars
+C0689,12,8,150240,3,Recent regulars
+C0690,45,9,221460,0,Drifting regulars
+C0691,17,10,409765,1,Best customers
+C0692,61,10,457600,0,Drifting regulars
+C0693,287,4,1621435,0,Drifting regulars
+C0694,130,10,137920,0,Drifting regulars
+C0695,16,3,56560,2,Lapsed low spenders
+C0696,14,8,194490,3,Recent regulars
+C0697,39,14,407020,1,Best customers
+C0698,230,3,69785,2,Lapsed low spenders
+C0699,144,8,285770,0,Drifting regulars
+C0700,37,12,318815,1,Best customers
+C0701,34,16,650200,1,Best customers
+C0702,176,4,227870,2,Lapsed low spenders
+C0703,48,3,285475,2,Lapsed low spenders
+C0704,20,9,326400,3,Recent regulars
+C0705,1,14,544695,3,Recent regulars
+C0706,4,10,308250,3,Recent regulars
+C0707,135,7,133745,2,Lapsed low spenders
+C0708,1,9,329310,3,Recent regulars
+C0709,41,11,348920,0,Drifting regulars
+C0710,125,5,82030,2,Lapsed low spenders
+C0711,79,10,424555,0,Drifting regulars
+C0712,7,15,1698280,1,Best customers
+C0713,5,7,180015,3,Recent regulars
+C0714,81,8,1131160,1,Best customers
+C0715,11,13,391120,1,Best customers
+C0716,15,11,345445,3,Recent regulars
+C0717,9,9,648495,1,Best customers
+C0718,25,7,428990,3,Recent regulars
+C0719,34,8,437900,0,Drifting regulars
+C0720,46,12,1972725,1,Best customers
+C0721,78,11,670935,1,Best customers
+C0722,45,10,240575,0,Drifting regulars
+C0723,179,3,82960,2,Lapsed low spenders
+C0724,39,13,371140,1,Best customers
+C0725,139,13,387895,0,Drifting regulars
+C0726,16,12,690810,1,Best customers
+C0727,60,10,288665,0,Drifting regulars
+C0728,108,8,636535,0,Drifting regulars
+C0729,72,8,606785,0,Drifting regulars
+C0730,247,7,115360,2,Lapsed low spenders
+C0731,507,3,54660,2,Lapsed low spenders
+C0732,56,13,705905,1,Best customers
+C0733,0,12,415965,3,Recent regulars
+C0734,12,13,1589510,1,Best customers
+C0735,102,8,270650,0,Drifting regulars
+C0736,3,7,190770,3,Recent regulars
+C0737,96,9,372130,0,Drifting regulars
+C0738,41,5,628180,0,Drifting regulars
+C0739,70,8,625920,0,Drifting regulars
+C0740,23,14,636880,1,Best customers
+C0741,164,5,101970,2,Lapsed low spenders
+C0742,113,11,447550,0,Drifting regulars
+C0743,12,5,194585,3,Recent regulars
+C0744,23,11,302115,3,Recent regulars
+C0745,23,5,150360,2,Lapsed low spenders
+C0746,33,7,88715,2,Lapsed low spenders
+C0747,203,8,212790,0,Drifting regulars
+C0748,43,7,188300,0,Drifting regulars
+C0749,50,6,217530,0,Drifting regulars
+C0750,15,14,812580,1,Best customers
+C0751,20,5,258765,3,Recent regulars
+C0752,104,11,459460,0,Drifting regulars
+C0753,33,14,491335,1,Best customers
+C0754,50,7,1767095,1,Best customers
+C0755,13,8,277820,3,Recent regulars
+C0756,269,6,83000,2,Lapsed low spenders
+C0757,23,8,630185,1,Best customers
+C0758,173,6,158185,2,Lapsed low spenders
+C0759,81,4,181875,2,Lapsed low spenders
+C0760,104,9,368780,0,Drifting regulars
+C0761,60,11,306065,0,Drifting regulars
+C0762,140,6,211315,0,Drifting regulars
+C0763,143,9,664500,0,Drifting regulars
+C0764,36,6,214615,0,Drifting regulars
+C0765,311,5,151795,2,Lapsed low spenders
+C0766,57,4,193055,2,Lapsed low spenders
+C0767,104,10,1394845,1,Best customers
+C0768,181,3,42125,2,Lapsed low spenders
+C0769,47,3,798700,2,Lapsed low spenders
+C0770,105,6,268040,0,Drifting regulars
+C0771,17,13,894720,1,Best customers
+C0772,151,5,156050,2,Lapsed low spenders
+C0773,213,9,1095975,1,Best customers
+C0774,15,5,87900,2,Lapsed low spenders
+C0775,94,9,165035,0,Drifting regulars
+C0776,237,14,387545,0,Drifting regulars
+C0777,72,13,501635,1,Best customers
+C0778,35,7,211545,0,Drifting regulars
+C0779,34,8,165470,0,Drifting regulars
+C0780,51,3,77500,2,Lapsed low spenders
+C0781,26,6,138350,2,Lapsed low spenders
+C0782,31,10,295025,0,Drifting regulars
+C0783,13,8,231200,3,Recent regulars
+C0784,148,6,387465,0,Drifting regulars
+C0785,0,7,256630,3,Recent regulars
+C0786,61,5,533330,0,Drifting regulars
+C0787,232,9,363365,0,Drifting regulars
+C0788,43,10,196580,0,Drifting regulars
+C0789,63,11,691950,1,Best customers
+C0790,25,5,555185,3,Recent regulars
+C0791,176,5,152260,2,Lapsed low spenders
+C0792,40,6,187055,2,Lapsed low spenders
+C0793,20,9,599450,1,Best customers
+C0794,6,9,179510,3,Recent regulars
+C0795,408,7,668285,0,Drifting regulars
+C0796,53,6,161615,2,Lapsed low spenders
+C0797,99,6,160300,2,Lapsed low spenders
+C0798,27,11,517180,1,Best customers
+C0799,19,6,227380,3,Recent regulars
+C0800,45,8,261150,0,Drifting regulars
+C0801,199,6,131250,2,Lapsed low spenders
+C0802,365,8,428685,0,Drifting regulars
+C0803,83,10,398270,0,Drifting regulars
+C0804,197,3,147430,2,Lapsed low spenders
+C0805,14,13,604065,1,Best customers
+C0806,250,3,88150,2,Lapsed low spenders
+C0807,38,9,2651365,1,Best customers
+C0808,303,2,17450,2,Lapsed low spenders
+C0809,260,6,367970,0,Drifting regulars
+C0810,1,8,261645,3,Recent regulars
+C0811,8,4,1244100,3,Recent regulars
+C0812,154,6,105660,2,Lapsed low spenders
+C0813,40,10,234350,0,Drifting regulars
+C0814,58,7,246120,0,Drifting regulars
+C0815,173,5,149020,2,Lapsed low spenders
+C0816,8,13,1298730,1,Best customers
+C0817,67,13,684410,1,Best customers
+C0818,6,7,241510,3,Recent regulars
+C0819,42,7,272995,0,Drifting regulars
+C0820,106,9,375145,0,Drifting regulars
+C0821,13,16,456785,1,Best customers
+C0822,29,8,240420,0,Drifting regulars
+C0823,352,5,82250,2,Lapsed low spenders
+C0824,1,10,347530,3,Recent regulars
+C0825,2,11,306430,3,Recent regulars
+C0826,59,4,53230,2,Lapsed low spenders
+C0827,17,8,1398190,1,Best customers
+C0828,72,8,304810,0,Drifting regulars
+C0829,45,7,253190,0,Drifting regulars
+C0830,10,9,213815,3,Recent regulars
+C0831,133,8,217605,0,Drifting regulars
+C0832,11,5,218040,3,Recent regulars
+C0833,120,5,109415,2,Lapsed low spenders
+C0834,146,11,266480,0,Drifting regulars
+C0835,11,8,1150100,1,Best customers
+C0836,21,8,350825,3,Recent regulars
+C0837,92,9,272600,0,Drifting regulars
+C0838,73,11,656325,1,Best customers
+C0839,38,7,183040,0,Drifting regulars
+C0840,88,7,358785,0,Drifting regulars
+C0841,113,7,166160,0,Drifting regulars
+C0842,73,8,381330,0,Drifting regulars
+C0843,69,9,167755,0,Drifting regulars
+C0844,18,16,522725,1,Best customers
+C0845,29,8,193670,3,Recent regulars
+C0846,25,8,84045,3,Recent regulars
+C0847,31,9,427500,1,Best customers
+C0848,7,10,318950,3,Recent regulars
+C0849,13,16,1110835,1,Best customers
+C0850,153,3,900200,2,Lapsed low spenders
+C0851,26,12,484565,1,Best customers
+C0852,90,5,101580,2,Lapsed low spenders
+C0853,48,9,242365,0,Drifting regulars
+C0854,12,12,274660,3,Recent regulars
+C0855,71,6,321940,0,Drifting regulars
+C0856,58,9,730870,1,Best customers
+C0857,87,11,258685,0,Drifting regulars
+C0858,20,8,150750,3,Recent regulars
+C0859,39,9,251145,0,Drifting regulars
+C0860,30,6,193855,3,Recent regulars
+C0861,22,10,305050,3,Recent regulars
+C0862,0,11,250085,3,Recent regulars
+C0863,6,11,697585,1,Best customers
+C0864,358,8,500630,0,Drifting regulars
+C0865,24,4,101300,2,Lapsed low spenders
+C0866,69,10,328550,0,Drifting regulars
+C0867,105,12,398885,0,Drifting regulars
+C0868,15,15,992600,1,Best customers
+C0869,24,9,139265,3,Recent regulars
+C0870,197,4,135700,2,Lapsed low spenders
+C0871,249,4,674005,0,Drifting regulars
+C0872,59,11,473435,1,Best customers
+C0873,80,12,278960,0,Drifting regulars
+C0874,62,8,996090,1,Best customers
+C0875,41,7,257150,0,Drifting regulars
+C0876,93,6,168345,2,Lapsed low spenders
+C0877,91,5,97480,2,Lapsed low spenders
+C0878,359,3,100065,2,Lapsed low spenders
+C0879,41,13,587645,1,Best customers
+C0880,85,9,1541110,1,Best customers
+C0881,7,4,310195,3,Recent regulars
+C0882,178,9,245000,0,Drifting regulars
+C0883,12,9,173330,3,Recent regulars
+C0884,363,4,42350,2,Lapsed low spenders
+C0885,1,7,114560,3,Recent regulars
+C0886,38,7,252900,0,Drifting regulars
+C0887,119,15,657450,1,Best customers
+C0888,2,10,211080,3,Recent regulars
+C0889,90,7,228065,0,Drifting regulars
+C0890,47,11,3152545,1,Best customers
+C0891,43,8,867015,1,Best customers
+C0892,119,13,584035,1,Best customers
+C0893,9,7,243635,3,Recent regulars
+C0894,38,14,1390505,1,Best customers
+C0895,67,5,105030,2,Lapsed low spenders
+C0896,95,9,199680,0,Drifting regulars
+C0897,24,10,200390,3,Recent regulars
+C0898,73,3,52840,2,Lapsed low spenders
+C0899,79,11,464320,0,Drifting regulars
+C0900,370,6,606330,0,Drifting regulars
+C0901,44,9,146850,0,Drifting regulars
+C0902,23,16,546825,1,Best customers
+C0903,22,11,531980,1,Best customers
+C0904,62,9,289785,0,Drifting regulars
+C0905,191,11,465265,0,Drifting regulars
+C0906,119,2,113310,2,Lapsed low spenders
+C0907,52,8,404400,0,Drifting regulars
+C0908,30,9,314515,0,Drifting regulars
+C0909,282,6,123510,2,Lapsed low spenders
+C0910,9,11,394775,3,Recent regulars
+C0911,57,14,491870,1,Best customers
+C0912,18,8,277525,3,Recent regulars
+C0913,559,1,22880,2,Lapsed low spenders
+C0914,1,14,556395,3,Recent regulars
+C0915,0,6,168820,3,Recent regulars
+C0916,29,11,292050,0,Drifting regulars
+C0917,147,8,181280,0,Drifting regulars
+C0918,161,11,503410,0,Drifting regulars
+C0919,21,12,675520,1,Best customers
+C0920,113,14,566790,1,Best customers
+C0921,28,8,130275,3,Recent regulars
+C0922,3,8,294040,3,Recent regulars
+C0923,252,6,211505,0,Drifting regulars
+C0924,25,7,1369815,1,Best customers
+C0925,45,9,376525,0,Drifting regulars
+C0926,291,7,236000,0,Drifting regulars
+C0927,5,17,568180,1,Best customers
+C0928,140,7,431905,0,Drifting regulars
+C0929,57,13,1165505,1,Best customers
+C0930,61,9,326540,0,Drifting regulars
+C0931,30,14,437250,1,Best customers
+C0932,31,12,341970,1,Best customers
+C0933,24,9,577305,1,Best customers
+C0934,15,13,441750,1,Best customers
+C0935,6,11,307400,3,Recent regulars
+C0936,18,12,1134215,1,Best customers
+C0937,207,8,1728505,1,Best customers
+C0938,73,9,312220,0,Drifting regulars
+C0939,83,8,262105,0,Drifting regulars
+C0940,132,7,1981605,1,Best customers
+C0941,48,10,398250,0,Drifting regulars
+C0942,52,13,419280,1,Best customers
+C0943,63,11,251150,0,Drifting regulars
+C0944,44,8,336550,0,Drifting regulars
+C0945,18,6,501920,3,Recent regulars
+C0946,22,10,240995,3,Recent regulars
+C0947,352,8,2944675,1,Best customers
+C0948,136,6,183530,2,Lapsed low spenders
+C0949,142,9,235470,0,Drifting regulars
+C0950,245,11,404250,0,Drifting regulars
+C0951,84,2,82750,2,Lapsed low spenders
+C0952,7,7,412085,3,Recent regulars
+C0953,89,10,311560,0,Drifting regulars
+C0954,129,5,321080,2,Lapsed low spenders
+C0955,91,7,310265,0,Drifting regulars
+C0956,39,5,127055,2,Lapsed low spenders
+C0957,96,8,348710,0,Drifting regulars
+C0958,13,8,162340,3,Recent regulars
+C0959,20,4,142185,2,Lapsed low spenders
+C0960,96,7,152400,0,Drifting regulars
+C0961,275,10,280220,0,Drifting regulars
+C0962,5,7,325095,3,Recent regulars
+C0963,5,7,340470,3,Recent regulars
+C0964,47,11,368250,0,Drifting regulars
+C0965,87,8,194900,0,Drifting regulars
+C0966,140,7,136830,2,Lapsed low spenders
+C0967,80,5,241200,2,Lapsed low spenders
+C0968,70,11,316935,0,Drifting regulars
+C0969,40,7,282400,0,Drifting regulars
+C0970,138,12,335635,0,Drifting regulars
+C0971,44,6,179380,2,Lapsed low spenders
+C0972,0,6,353475,3,Recent regulars
+C0973,2,9,201440,3,Recent regulars
+C0974,12,7,280400,3,Recent regulars
+C0975,215,6,111900,2,Lapsed low spenders
+C0976,41,7,234610,0,Drifting regulars
+C0977,7,10,528980,1,Best customers
+C0978,4,13,581645,1,Best customers
+C0979,77,4,142100,2,Lapsed low spenders
+C0980,4,8,175580,3,Recent regulars
+C0981,72,7,173050,0,Drifting regulars
+C0982,13,10,960600,1,Best customers
+C0983,18,10,300935,3,Recent regulars
+C0984,6,10,265765,3,Recent regulars
+C0985,7,3,99400,2,Lapsed low spenders
+C0986,4,8,192215,3,Recent regulars
+C0987,26,9,326865,3,Recent regulars
+C0988,20,9,597240,1,Best customers
+C0989,34,8,806750,1,Best customers
+C0990,0,13,521615,3,Recent regulars
+C0991,143,8,321805,0,Drifting regulars
+C0992,32,7,216270,0,Drifting regulars
+C0993,1,11,353725,3,Recent regulars
+C0994,32,10,197100,0,Drifting regulars
+C0995,54,10,276040,0,Drifting regulars
+C0996,26,13,616565,1,Best customers
+C0997,40,8,1107165,1,Best customers
+C0998,116,8,217425,0,Drifting regulars
+C0999,46,4,489500,2,Lapsed low spenders
+C1000,8,9,220080,3,Recent regulars
+C1001,187,3,777950,2,Lapsed low spenders
+C1002,115,11,400965,0,Drifting regulars
+C1003,15,8,1005865,1,Best customers
+C1004,14,8,399315,3,Recent regulars
+C1005,376,4,280555,2,Lapsed low spenders
+C1006,5,11,286655,3,Recent regulars
+C1007,280,8,215290,0,Drifting regulars
+C1008,34,6,195075,2,Lapsed low spenders
+C1009,23,9,621080,1,Best customers
+C1010,22,17,455520,1,Best customers
+C1011,40,7,210300,0,Drifting regulars
+C1012,37,6,433570,0,Drifting regulars
+C1013,13,4,126570,2,Lapsed low spenders
+C1014,453,5,187420,2,Lapsed low spenders
+C1015,11,12,883175,1,Best customers
+C1016,11,5,90165,2,Lapsed low spenders
+C1017,13,6,820565,1,Best customers
+C1018,44,8,336020,0,Drifting regulars
+C1019,25,9,379450,3,Recent regulars
+C1020,83,6,149500,2,Lapsed low spenders
+C1021,226,2,58800,2,Lapsed low spenders
+C1022,7,10,370165,3,Recent regulars
+C1023,126,6,362430,0,Drifting regulars
+C1024,78,11,346540,0,Drifting regulars
+C1025,1,21,868155,1,Best customers
+C1026,5,6,301000,3,Recent regulars
+C1027,237,4,156300,2,Lapsed low spenders
+C1028,134,8,132700,0,Drifting regulars
+C1029,78,8,176700,0,Drifting regulars
+C1030,9,11,432500,1,Best customers
+C1031,140,6,330225,0,Drifting regulars
+C1032,65,13,413255,1,Best customers
+C1033,173,8,773225,0,Drifting regulars
+C1034,179,12,3039355,1,Best customers
+C1035,20,11,760675,1,Best customers
+C1036,171,10,420610,0,Drifting regulars
+C1037,78,9,495865,0,Drifting regulars
+C1038,18,5,227070,3,Recent regulars
+C1039,236,3,52600,2,Lapsed low spenders
+C1040,9,15,1094025,1,Best customers
+C1041,59,9,414120,0,Drifting regulars
+C1042,56,7,224450,0,Drifting regulars
+C1043,2,11,232830,3,Recent regulars
+C1044,19,6,270695,3,Recent regulars
+C1045,8,7,434425,3,Recent regulars
+C1046,372,4,77860,2,Lapsed low spenders
+C1047,18,8,651575,1,Best customers
+C1048,115,9,308785,0,Drifting regulars
+C1049,30,8,253370,0,Drifting regulars
+C1050,158,10,787915,1,Best customers
+C1051,126,10,755320,1,Best customers
+C1052,14,13,847780,1,Best customers
+C1053,33,9,221935,0,Drifting regulars
+C1054,75,13,381755,1,Best customers
+C1055,177,3,414900,2,Lapsed low spenders
+C1056,22,4,201375,2,Lapsed low spenders
+C1057,92,5,200250,2,Lapsed low spenders
+C1058,485,4,57100,2,Lapsed low spenders
+C1059,58,8,228055,0,Drifting regulars
+C1060,4,9,262615,3,Recent regulars
+C1061,100,11,353540,0,Drifting regulars
+C1062,68,13,545395,1,Best customers
+C1063,90,9,166035,0,Drifting regulars
+C1064,30,10,340495,0,Drifting regulars
+C1065,248,6,134315,2,Lapsed low spenders
+C1066,132,8,292300,0,Drifting regulars
+C1067,78,10,405490,0,Drifting regulars
+C1068,178,8,167820,0,Drifting regulars
+C1069,32,6,361190,0,Drifting regulars
+C1070,37,6,148350,2,Lapsed low spenders
+C1071,0,10,522230,3,Recent regulars
+C1072,164,7,176220,0,Drifting regulars
+C1073,9,8,299350,3,Recent regulars
+C1074,76,4,161650,2,Lapsed low spenders
+C1075,29,11,712360,1,Best customers
+C1076,12,7,345595,3,Recent regulars
+C1077,69,10,236090,0,Drifting regulars
+C1078,12,10,836820,1,Best customers
+C1079,28,10,317235,0,Drifting regulars
+C1080,19,7,375225,3,Recent regulars
+C1081,3,12,1191810,1,Best customers
+C1082,259,5,104105,2,Lapsed low spenders
+C1083,1,7,97920,3,Recent regulars
+C1084,46,15,1432670,1,Best customers
+C1085,23,8,201815,3,Recent regulars
+C1086,72,11,304680,0,Drifting regulars
+C1087,91,9,246980,0,Drifting regulars
+C1088,402,4,58075,2,Lapsed low spenders
+C1089,39,6,253725,0,Drifting regulars
+C1090,174,7,93500,2,Lapsed low spenders
+C1091,104,16,1300510,1,Best customers
+C1092,11,13,526100,1,Best customers
+C1093,44,7,288490,0,Drifting regulars
+C1094,106,10,383530,0,Drifting regulars
+C1095,15,10,215900,3,Recent regulars
+C1096,4,8,247000,3,Recent regulars
+C1097,219,7,239200,0,Drifting regulars
+C1098,83,11,889250,1,Best customers
+C1099,173,7,225385,0,Drifting regulars
+C1100,9,10,422290,3,Recent regulars
+C1101,35,8,224400,0,Drifting regulars
+C1102,15,7,272200,3,Recent regulars
+C1103,100,11,239940,0,Drifting regulars
+C1104,85,9,236640,0,Drifting regulars
+C1105,16,2,413250,2,Lapsed low spenders
+C1106,149,4,83730,2,Lapsed low spenders
+C1107,19,11,293820,3,Recent regulars
+C1108,67,4,140020,2,Lapsed low spenders
+C1109,81,11,268655,0,Drifting regulars
+C1110,188,9,157760,0,Drifting regulars
+C1111,19,7,311460,3,Recent regulars
+C1112,125,9,615415,0,Drifting regulars
+C1113,23,12,364685,1,Best customers
+C1114,13,12,393585,1,Best customers
+C1115,35,9,994630,1,Best customers
+C1116,116,7,164895,0,Drifting regulars
+C1117,42,9,835190,1,Best customers
+C1118,159,5,246430,2,Lapsed low spenders
+C1119,11,7,331690,3,Recent regulars
+C1120,41,7,93000,2,Lapsed low spenders
+C1121,9,7,127500,3,Recent regulars
+C1122,125,8,226070,0,Drifting regulars
+C1123,63,10,433605,0,Drifting regulars
+C1124,31,8,226100,0,Drifting regulars
+C1125,1,16,1151545,1,Best customers
+C1126,73,10,496150,0,Drifting regulars
+C1127,15,11,435365,1,Best customers
+C1128,62,10,547775,1,Best customers
+C1129,83,11,274210,0,Drifting regulars
+C1130,122,12,875755,1,Best customers
+C1131,86,13,715070,1,Best customers
+C1132,59,8,300950,0,Drifting regulars
+C1133,151,5,123660,2,Lapsed low spenders
+C1134,22,11,365450,1,Best customers
+C1135,189,10,402345,0,Drifting regulars
+C1136,41,9,291740,0,Drifting regulars
+C1137,88,11,242050,0,Drifting regulars
+C1138,7,8,91895,3,Recent regulars
+C1139,55,10,225460,0,Drifting regulars
+C1140,181,5,265190,2,Lapsed low spenders
+C1141,42,7,320695,0,Drifting regulars
+C1142,10,9,233865,3,Recent regulars
+C1143,18,10,326105,3,Recent regulars
+C1144,48,5,135100,2,Lapsed low spenders
+C1145,50,5,298480,2,Lapsed low spenders
+C1146,52,10,316945,0,Drifting regulars
+C1147,0,7,226080,3,Recent regulars
+C1148,10,12,3098235,1,Best customers
+C1149,187,11,394355,0,Drifting regulars
+C1150,83,10,389330,0,Drifting regulars
+C1151,13,8,429030,3,Recent regulars
+C1152,42,4,261430,2,Lapsed low spenders
+C1153,172,6,262460,0,Drifting regulars
+C1154,232,11,229850,0,Drifting regulars
+C1155,0,5,70060,3,Recent regulars
+C1156,6,10,274970,3,Recent regulars
+C1157,118,9,277995,0,Drifting regulars
+C1158,30,8,226535,0,Drifting regulars
+C1159,214,13,1489480,1,Best customers
+C1160,147,7,277030,0,Drifting regulars
+C1161,331,5,153050,2,Lapsed low spenders
+C1162,148,12,336900,0,Drifting regulars
+C1163,108,4,199380,2,Lapsed low spenders
+C1164,25,14,419320,1,Best customers
+C1165,3,8,363610,3,Recent regulars
+C1166,169,5,1531925,0,Drifting regulars
+C1167,40,4,121970,2,Lapsed low spenders
+C1168,40,14,1163200,1,Best customers
+C1169,47,6,134700,2,Lapsed low spenders
+C1170,58,8,1030355,1,Best customers
+C1171,8,9,264520,3,Recent regulars
+C1172,74,15,363905,1,Best customers
+C1173,43,8,192755,0,Drifting regulars
+C1174,43,9,285300,0,Drifting regulars
+C1175,149,7,660500,0,Drifting regulars
+C1176,14,9,258430,3,Recent regulars
+C1177,66,3,39200,2,Lapsed low spenders
+C1178,151,8,250230,0,Drifting regulars
+C1179,47,13,344320,1,Best customers
+C1180,61,11,375205,0,Drifting regulars
+C1181,31,10,340605,0,Drifting regulars
+C1182,26,12,725670,1,Best customers
+C1183,25,6,187945,3,Recent regulars
+C1184,29,13,547360,1,Best customers
+C1185,19,15,536580,1,Best customers
+C1186,14,9,252950,3,Recent regulars
+C1187,80,12,1445115,1,Best customers
+C1188,92,8,317660,0,Drifting regulars
+C1189,27,10,396045,1,Best customers
+C1190,13,10,211300,3,Recent regulars
+C1191,19,6,163070,3,Recent regulars
+C1192,15,9,363340,3,Recent regulars
+C1193,7,8,229770,3,Recent regulars
+C1194,10,12,403875,1,Best customers
+C1195,32,12,470615,1,Best customers
+C1196,21,13,825230,1,Best customers
+C1197,48,7,139045,0,Drifting regulars
+C1198,2,11,461000,3,Recent regulars
+C1199,173,2,28000,2,Lapsed low spenders
+C1200,19,8,2830645,1,Best customers
+C1201,283,9,315795,0,Drifting regulars
+C1202,196,9,521465,0,Drifting regulars
+C1203,26,11,607080,1,Best customers
+C1204,20,8,228990,3,Recent regulars
+C1205,42,15,484490,1,Best customers
+C1206,61,14,438435,1,Best customers
+C1207,362,8,218920,0,Drifting regulars
+C1208,49,9,285950,0,Drifting regulars
+C1209,225,5,881200,0,Drifting regulars
+C1210,3,6,273615,3,Recent regulars
+C1211,25,6,984145,1,Best customers
+C1212,37,8,171520,0,Drifting regulars
+C1213,155,10,312105,0,Drifting regulars
+C1214,40,8,204340,0,Drifting regulars
+C1215,15,6,191660,3,Recent regulars
+C1216,83,7,279500,0,Drifting regulars
+C1217,6,14,348005,3,Recent regulars
+C1218,4,12,460725,3,Recent regulars
+C1219,70,9,341465,0,Drifting regulars
+C1220,112,5,218340,2,Lapsed low spenders
+C1221,2,7,170570,3,Recent regulars
+C1222,473,3,58550,2,Lapsed low spenders
+C1223,45,15,311165,1,Best customers
+C1224,552,3,110480,2,Lapsed low spenders
+C1225,189,10,284155,0,Drifting regulars
+C1226,178,11,332260,0,Drifting regulars
+C1227,235,8,214405,0,Drifting regulars
+C1228,313,3,49800,2,Lapsed low spenders
+C1229,23,6,937150,1,Best customers
+C1230,101,11,490835,0,Drifting regulars
+C1231,70,9,1059285,1,Best customers
+C1232,51,11,654720,1,Best customers
+C1233,25,9,628800,1,Best customers
+C1234,0,8,212060,3,Recent regulars
+C1235,61,9,1352380,1,Best customers
+C1236,73,5,270405,2,Lapsed low spenders
+C1237,159,8,233420,0,Drifting regulars
+C1238,41,9,332820,0,Drifting regulars
+C1239,51,8,274865,0,Drifting regulars
+C1240,37,10,1327735,1,Best customers
+C1241,50,4,212050,2,Lapsed low spenders
+C1242,22,9,292700,3,Recent regulars
+C1243,31,11,520900,1,Best customers
+C1244,7,7,155355,3,Recent regulars
+C1245,205,8,123790,0,Drifting regulars
+C1246,98,10,267085,0,Drifting regulars
+C1247,72,8,179910,0,Drifting regulars
+C1248,289,2,121085,2,Lapsed low spenders
+C1249,118,7,253600,0,Drifting regulars
+C1250,20,9,328070,3,Recent regulars
+C1251,26,5,138435,2,Lapsed low spenders
+C1252,184,11,248690,0,Drifting regulars
+C1253,127,5,247080,2,Lapsed low spenders
+C1254,1,12,280540,3,Recent regulars
+C1255,31,9,253050,0,Drifting regulars
+C1256,21,9,355470,3,Recent regulars
+C1257,4,7,331960,3,Recent regulars
+C1258,338,7,206450,0,Drifting regulars
+C1259,42,9,310765,0,Drifting regulars
+C1260,10,12,477175,1,Best customers
+C1261,118,8,507175,0,Drifting regulars
+C1262,26,10,261320,3,Recent regulars
+C1263,2,7,357805,3,Recent regulars
+C1264,582,4,275465,2,Lapsed low spenders
+C1265,50,6,479540,0,Drifting regulars
+C1266,135,7,218075,0,Drifting regulars
+C1267,26,9,197225,3,Recent regulars
+C1268,37,10,294100,0,Drifting regulars
+C1269,23,11,507915,1,Best customers
+C1270,165,6,97110,2,Lapsed low spenders
+C1271,15,12,541930,1,Best customers
+C1272,20,12,537625,1,Best customers
+C1273,79,7,237905,0,Drifting regulars
+C1274,14,5,248870,3,Recent regulars
+C1275,166,5,125800,2,Lapsed low spenders
+C1276,82,10,347070,0,Drifting regulars
+C1277,45,8,349910,0,Drifting regulars
+C1278,442,5,972420,0,Drifting regulars
+C1279,64,4,112180,2,Lapsed low spenders
+C1280,206,7,925835,0,Drifting regulars
+C1281,5,12,423150,3,Recent regulars
+C1282,193,10,235230,0,Drifting regulars
+C1283,397,4,129950,2,Lapsed low spenders
+C1284,33,11,2765655,1,Best customers
+C1285,6,10,486140,3,Recent regulars
+C1286,28,11,2205640,1,Best customers
+C1287,190,5,408935,0,Drifting regulars
+C1288,66,9,106500,0,Drifting regulars
+C1289,35,16,385170,1,Best customers
+C1290,139,8,309330,0,Drifting regulars
+C1291,132,7,218800,0,Drifting regulars
+C1292,19,11,548230,1,Best customers
+C1293,3,13,1140275,1,Best customers
+C1294,87,8,290330,0,Drifting regulars
+C1295,29,13,433530,1,Best customers
+C1296,30,10,103345,3,Recent regulars
+C1297,170,8,304515,0,Drifting regulars
+C1298,30,9,309225,0,Drifting regulars
+C1299,41,5,154645,2,Lapsed low spenders
+C1300,118,5,304185,2,Lapsed low spenders
+C1301,13,9,308505,3,Recent regulars
+C1302,31,10,411925,1,Best customers
+C1303,47,9,398545,0,Drifting regulars
+C1304,17,4,169160,2,Lapsed low spenders
+C1305,44,4,268865,2,Lapsed low spenders
+C1306,8,4,137100,2,Lapsed low spenders
+C1307,165,5,166200,2,Lapsed low spenders
+C1308,15,18,893990,1,Best customers
+C1309,1,9,229865,3,Recent regulars
+C1310,7,6,111425,3,Recent regulars
+C1311,189,5,166620,2,Lapsed low spenders
+C1312,41,8,238310,0,Drifting regulars
+C1313,32,6,66380,2,Lapsed low spenders
+C1314,1,10,295440,3,Recent regulars
+C1315,175,7,400820,0,Drifting regulars
+C1316,17,10,199140,3,Recent regulars
+C1317,58,13,1270655,1,Best customers
+C1318,93,9,190155,0,Drifting regulars
+C1319,127,8,1277485,1,Best customers
+C1320,1,7,138675,3,Recent regulars
+C1321,49,9,312770,0,Drifting regulars
+C1322,36,7,2575255,1,Best customers
+C1323,54,8,278505,0,Drifting regulars
+C1324,202,11,420260,0,Drifting regulars
+C1325,70,12,292670,0,Drifting regulars
+C1326,133,4,252740,2,Lapsed low spenders
+C1327,42,4,118700,2,Lapsed low spenders
+C1328,386,8,425970,0,Drifting regulars
+C1329,60,4,112945,2,Lapsed low spenders
+C1330,99,6,859525,0,Drifting regulars
+C1331,1,8,565445,3,Recent regulars
+C1332,114,9,431680,0,Drifting regulars
+C1333,15,13,558285,1,Best customers
+C1334,44,7,195115,0,Drifting regulars
+C1335,8,10,411355,3,Recent regulars
+C1336,79,7,193970,0,Drifting regulars
+C1337,45,7,306760,0,Drifting regulars
+C1338,5,9,322490,3,Recent regulars
+C1339,156,10,319485,0,Drifting regulars
+C1340,6,5,220755,3,Recent regulars
+C1341,7,7,291160,3,Recent regulars
+C1342,14,8,210050,3,Recent regulars
+C1343,11,13,565700,1,Best customers
+C1344,15,7,274240,3,Recent regulars
+C1345,53,6,199385,2,Lapsed low spenders
+C1346,76,9,317415,0,Drifting regulars
+C1347,65,6,83630,2,Lapsed low spenders
+C1348,11,11,493570,1,Best customers
+C1349,66,7,112600,2,Lapsed low spenders
+C1350,0,16,592500,3,Recent regulars
+C1351,60,9,257750,0,Drifting regulars
+C1352,6,10,302405,3,Recent regulars
+C1353,88,7,341855,0,Drifting regulars
+C1354,16,7,182740,3,Recent regulars
+C1355,73,7,80100,2,Lapsed low spenders
+C1356,78,9,636040,0,Drifting regulars
+C1357,55,3,226310,2,Lapsed low spenders
+C1358,23,6,86160,2,Lapsed low spenders
+C1359,3,9,369580,3,Recent regulars
+C1360,61,11,222655,0,Drifting regulars
+C1361,97,6,528845,0,Drifting regulars
+C1362,255,8,306610,0,Drifting regulars
+C1363,10,7,152900,3,Recent regulars
+C1364,24,9,227250,3,Recent regulars
+C1365,243,9,635535,0,Drifting regulars
+C1366,41,5,139300,2,Lapsed low spenders
+C1367,30,8,1284550,1,Best customers
+C1368,46,11,267255,0,Drifting regulars
+C1369,80,6,191760,2,Lapsed low spenders
+C1370,55,10,558575,1,Best customers
+C1371,138,12,1289985,1,Best customers
+C1372,19,9,276125,3,Recent regulars
+C1373,93,10,191335,0,Drifting regulars
+C1374,6,8,1354790,1,Best customers
+C1375,188,6,152720,2,Lapsed low spenders
+C1376,238,4,841080,0,Drifting regulars
+C1377,12,5,254020,3,Recent regulars
+C1378,21,6,199950,3,Recent regulars
+C1379,2,10,280400,3,Recent regulars
+C1380,374,2,50400,2,Lapsed low spenders
+C1381,68,7,265540,0,Drifting regulars
+C1382,10,8,500660,3,Recent regulars
+C1383,114,7,212670,0,Drifting regulars
+C1384,29,8,214110,3,Recent regulars
+C1385,136,6,165145,2,Lapsed low spenders
+C1386,166,7,292210,0,Drifting regulars
+C1387,9,8,1621325,1,Best customers
+C1388,74,5,90525,2,Lapsed low spenders
+C1389,360,4,141465,2,Lapsed low spenders
+C1390,333,5,156440,2,Lapsed low spenders
+C1391,121,12,335220,0,Drifting regulars
+C1392,9,7,253760,3,Recent regulars
+C1393,93,10,252770,0,Drifting regulars
+C1394,124,9,297735,0,Drifting regulars
+C1395,30,5,126940,2,Lapsed low spenders
+C1396,17,4,28910,2,Lapsed low spenders
+C1397,93,8,187150,0,Drifting regulars
+C1398,37,9,290630,0,Drifting regulars
+C1399,13,7,316005,3,Recent regulars
+C1400,72,7,384540,0,Drifting regulars
+C1401,14,13,410015,1,Best customers
+C1402,103,14,367005,0,Drifting regulars
+C1403,16,9,1533825,1,Best customers
+C1404,5,7,573780,3,Recent regulars
+C1405,67,5,93220,2,Lapsed low spenders
+C1406,4,9,2000300,1,Best customers
+C1407,179,9,314160,0,Drifting regulars
+C1408,65,11,641800,1,Best customers
+C1409,57,9,262485,0,Drifting regulars
+C1410,21,11,179250,3,Recent regulars
+C1411,11,13,339050,1,Best customers
+C1412,145,7,172400,0,Drifting regulars
+C1413,186,7,309700,0,Drifting regulars
+C1414,82,10,403260,0,Drifting regulars
+C1415,23,7,311975,3,Recent regulars
+C1416,65,9,414255,0,Drifting regulars
+C1417,115,10,305830,0,Drifting regulars
+C1418,52,7,303880,0,Drifting regulars
+C1419,22,13,376180,1,Best customers
+C1420,40,10,675850,1,Best customers
+C1421,1,7,692550,3,Recent regulars
+C1422,69,6,222720,0,Drifting regulars
+C1423,55,6,229980,0,Drifting regulars
+C1424,17,8,425910,3,Recent regulars
+C1425,31,10,293780,0,Drifting regulars
+C1426,55,10,222830,0,Drifting regulars
+C1427,96,11,1973105,1,Best customers
+C1428,97,7,487400,0,Drifting regulars
+C1429,152,8,1223700,1,Best customers
+C1430,116,6,253010,0,Drifting regulars
+C1431,20,10,327420,3,Recent regulars
+C1432,90,8,217180,0,Drifting regulars
+C1433,89,12,857265,1,Best customers
+C1434,40,6,262210,0,Drifting regulars
+C1435,5,7,102700,3,Recent regulars
+C1436,57,5,115770,2,Lapsed low spenders
+C1437,24,3,41900,2,Lapsed low spenders
+C1438,19,5,125570,2,Lapsed low spenders
+C1439,159,6,47630,2,Lapsed low spenders
+C1440,8,6,210790,3,Recent regulars
+C1441,61,10,235490,0,Drifting regulars
+C1442,338,6,390275,0,Drifting regulars
+C1443,95,9,1571345,1,Best customers
+C1444,18,13,542030,1,Best customers
+C1445,416,6,216835,0,Drifting regulars
+C1446,155,9,360995,0,Drifting regulars
+C1447,281,9,200105,0,Drifting regulars
+C1448,13,11,174305,3,Recent regulars
+C1449,27,10,281615,3,Recent regulars
+C1450,41,8,1037740,1,Best customers
+C1451,158,14,586095,1,Best customers
+C1452,74,12,370700,0,Drifting regulars
+C1453,40,13,428935,1,Best customers
+C1454,2,10,1124720,1,Best customers
+C1455,160,7,1771935,1,Best customers
+C1456,11,4,75265,2,Lapsed low spenders
+C1457,40,8,159670,0,Drifting regulars
+C1458,33,8,557540,1,Best customers
+C1459,176,6,103600,2,Lapsed low spenders
+C1460,131,8,300170,0,Drifting regulars
+C1461,5,8,170510,3,Recent regulars
+C1462,79,6,315545,0,Drifting regulars
+C1463,18,6,264925,3,Recent regulars
+C1464,60,6,112870,2,Lapsed low spenders
+C1465,7,5,73825,3,Recent regulars
+C1466,110,5,83400,2,Lapsed low spenders
+C1467,17,6,275300,3,Recent regulars
+C1468,124,6,111245,2,Lapsed low spenders
+C1469,151,5,836020,0,Drifting regulars
+C1470,111,8,189630,0,Drifting regulars
+C1471,123,8,201490,0,Drifting regulars
+C1472,136,9,252540,0,Drifting regulars
+C1473,14,7,243305,3,Recent regulars
+C1474,1,11,417025,3,Recent regulars
+C1475,182,7,359015,0,Drifting regulars
+C1476,32,10,256625,0,Drifting regulars
+C1477,3,7,276625,3,Recent regulars
+C1478,143,13,1321730,1,Best customers
+C1479,93,9,209230,0,Drifting regulars
+C1480,361,4,105300,2,Lapsed low spenders
+C1481,536,3,485310,2,Lapsed low spenders
+C1482,42,11,307455,0,Drifting regulars
+C1483,0,8,770945,3,Recent regulars
+C1484,38,12,345370,1,Best customers
+C1485,185,7,251630,0,Drifting regulars
+C1486,4,10,308155,3,Recent regulars
+C1487,25,8,165645,3,Recent regulars
+C1488,45,11,283240,0,Drifting regulars
+C1489,176,8,189580,0,Drifting regulars
+C1490,10,11,399840,3,Recent regulars
+C1491,5,11,536260,1,Best customers
+C1492,8,5,421610,3,Recent regulars
+C1493,111,10,1993100,1,Best customers
+C1494,456,5,142705,2,Lapsed low spenders
+C1495,184,9,203885,0,Drifting regulars
+C1496,226,6,180765,2,Lapsed low spenders
+C1497,182,10,343035,0,Drifting regulars
+C1498,2,10,281355,3,Recent regulars
+C1499,23,10,234620,3,Recent regulars
+C1500,117,7,688035,0,Drifting regulars
+C1501,5,8,263570,3,Recent regulars
+C1502,7,6,158700,3,Recent regulars
+C1503,24,11,400970,1,Best customers
+C1504,193,3,75200,2,Lapsed low spenders
+C1505,317,9,279200,0,Drifting regulars
+C1506,61,15,397890,1,Best customers
+C1507,309,6,1212800,0,Drifting regulars
+C1508,42,10,338250,0,Drifting regulars
+C1509,46,6,154685,2,Lapsed low spenders
+C1510,365,6,157245,2,Lapsed low spenders
+C1511,68,10,1552350,1,Best customers
+C1512,18,9,300430,3,Recent regulars
+C1513,88,8,299350,0,Drifting regulars
+C1514,23,5,94680,2,Lapsed low spenders
+C1515,37,14,374240,1,Best customers
+C1516,138,3,72730,2,Lapsed low spenders
+C1517,12,9,280195,3,Recent regulars
+C1518,35,11,1167370,1,Best customers
+C1519,44,9,247460,0,Drifting regulars
+C1520,23,8,280845,3,Recent regulars
+C1521,6,10,428520,3,Recent regulars
+C1522,8,14,454420,1,Best customers
+C1523,43,15,545975,1,Best customers
+C1524,105,5,236235,2,Lapsed low spenders
+C1525,57,7,313660,0,Drifting regulars
+C1526,68,10,363235,0,Drifting regulars
+C1527,37,8,1175230,1,Best customers
+C1528,213,4,71800,2,Lapsed low spenders
+C1529,213,5,222445,2,Lapsed low spenders
+C1530,4,11,1000755,1,Best customers
+C1531,16,10,525500,1,Best customers
+C1532,5,15,542030,1,Best customers
+C1533,64,10,878065,1,Best customers
+C1534,12,12,554100,1,Best customers
+C1535,31,5,281450,2,Lapsed low spenders
+C1536,8,6,619880,3,Recent regulars
+C1537,141,5,93570,2,Lapsed low spenders
+C1538,34,11,459095,1,Best customers
+C1539,34,9,166080,0,Drifting regulars
+C1540,67,6,193130,2,Lapsed low spenders
+C1541,23,6,182480,3,Recent regulars
+C1542,112,8,294025,0,Drifting regulars
+C1543,38,9,212895,0,Drifting regulars
+C1544,15,8,116150,3,Recent regulars
+C1545,66,9,295680,0,Drifting regulars
+C1546,22,4,251375,2,Lapsed low spenders
+C1547,11,5,182900,3,Recent regulars
+C1548,96,8,194485,0,Drifting regulars
+C1549,28,10,746530,1,Best customers
+C1550,26,8,425165,0,Drifting regulars
+C1551,177,4,150775,2,Lapsed low spenders
+C1552,76,8,192920,0,Drifting regulars
+C1553,2,8,206920,3,Recent regulars
+C1554,66,6,497140,0,Drifting regulars
+C1555,75,9,243735,0,Drifting regulars
+C1556,88,8,347900,0,Drifting regulars
+C1557,1,8,168955,3,Recent regulars
+C1558,118,5,113720,2,Lapsed low spenders
+C1559,126,9,211565,0,Drifting regulars
+C1560,96,8,231760,0,Drifting regulars
+C1561,85,8,165040,0,Drifting regulars
+C1562,134,7,169880,0,Drifting regulars
+C1563,367,9,444370,0,Drifting regulars
+C1564,213,7,196425,0,Drifting regulars
+C1565,23,17,564280,1,Best customers
+C1566,104,8,230075,0,Drifting regulars
+C1567,83,9,420855,0,Drifting regulars
+C1568,23,12,254275,3,Recent regulars
+C1569,239,9,243280,0,Drifting regulars
+C1570,295,7,80160,2,Lapsed low spenders
+C1571,20,10,454630,1,Best customers
+C1572,54,11,310850,0,Drifting regulars
+C1573,68,10,1052030,1,Best customers
+C1574,41,11,1419985,1,Best customers
+C1575,79,12,339200,0,Drifting regulars
+C1576,30,7,345020,0,Drifting regulars
+C1577,44,14,674290,1,Best customers
+C1578,15,5,94660,2,Lapsed low spenders
+C1579,16,11,393850,1,Best customers
+C1580,7,11,416385,3,Recent regulars
+C1581,91,8,686910,0,Drifting regulars
+C1582,7,8,276230,3,Recent regulars
+C1583,30,11,234390,0,Drifting regulars
+C1584,13,11,182245,3,Recent regulars
+C1585,6,10,277385,3,Recent regulars
+C1586,97,7,736155,0,Drifting regulars
+C1587,93,5,92975,2,Lapsed low spenders
+C1588,72,10,453360,0,Drifting regulars
+C1589,47,9,413765,0,Drifting regulars
+C1590,25,10,285870,3,Recent regulars
+C1591,58,12,315960,0,Drifting regulars
+C1592,74,11,382440,0,Drifting regulars
+C1593,1,14,510550,3,Recent regulars
+C1594,21,8,767465,1,Best customers
+C1595,108,10,463570,0,Drifting regulars
+C1596,27,10,412035,1,Best customers
+C1597,20,14,563155,1,Best customers
+C1598,5,7,194210,3,Recent regulars
+C1599,151,8,1754060,1,Best customers
+C1600,48,7,233585,0,Drifting regulars
+C1601,62,9,353695,0,Drifting regulars
+C1602,28,7,111855,2,Lapsed low spenders
+C1603,48,6,118890,2,Lapsed low spenders
+C1604,320,4,104380,2,Lapsed low spenders
+C1605,37,6,215690,0,Drifting regulars
+C1606,18,10,343835,3,Recent regulars
+C1607,116,10,258740,0,Drifting regulars
+C1608,47,6,137250,2,Lapsed low spenders
+C1609,147,6,329000,0,Drifting regulars
+C1610,24,6,141280,2,Lapsed low spenders
+C1611,189,9,196265,0,Drifting regulars
+C1612,76,9,306130,0,Drifting regulars
+C1613,67,10,729150,1,Best customers
+C1614,7,3,45465,2,Lapsed low spenders
+C1615,340,5,108280,2,Lapsed low spenders
+C1616,154,8,106915,0,Drifting regulars
+C1617,12,8,1154090,1,Best customers
+C1618,8,17,970085,1,Best customers
+C1619,64,11,894340,1,Best customers
+C1620,2,9,412230,3,Recent regulars
+C1621,8,6,154575,3,Recent regulars
+C1622,68,5,73465,2,Lapsed low spenders
+C1623,0,6,440950,3,Recent regulars
+C1624,370,4,72200,2,Lapsed low spenders
+C1625,15,5,803000,3,Recent regulars
+C1626,105,10,557210,0,Drifting regulars
+C1627,25,14,331285,1,Best customers
+C1628,30,12,199585,0,Drifting regulars
+C1629,204,5,108710,2,Lapsed low spenders
+C1630,7,11,548760,1,Best customers
+C1631,63,9,2320530,1,Best customers
+C1632,28,7,230395,3,Recent regulars
+C1633,14,14,316455,1,Best customers
+C1634,3,10,528120,3,Recent regulars
+C1635,4,9,745895,1,Best customers
+C1636,98,6,202025,2,Lapsed low spenders
+C1637,46,11,449335,1,Best customers
+C1638,39,12,920860,1,Best customers
+C1639,35,10,1145290,1,Best customers
+C1640,173,9,214410,0,Drifting regulars
+C1641,333,5,217305,2,Lapsed low spenders
+C1642,181,6,191505,2,Lapsed low spenders
+C1643,96,10,206305,0,Drifting regulars
+C1644,341,6,106960,2,Lapsed low spenders
+C1645,8,4,132550,2,Lapsed low spenders
+C1646,10,7,98990,3,Recent regulars
+C1647,115,5,82355,2,Lapsed low spenders
+C1648,5,8,192880,3,Recent regulars
+C1649,260,7,253055,0,Drifting regulars
+C1650,46,5,72500,2,Lapsed low spenders
+C1651,37,8,355220,0,Drifting regulars
+C1652,183,7,188500,0,Drifting regulars
+C1653,133,7,240110,0,Drifting regulars
+C1654,10,5,186410,3,Recent regulars
+C1655,70,11,1203940,1,Best customers
+C1656,48,10,510875,1,Best customers
+C1657,57,7,240900,0,Drifting regulars
+C1658,20,11,448405,1,Best customers
+C1659,89,7,78430,2,Lapsed low spenders
+C1660,169,5,154610,2,Lapsed low spenders
+C1661,13,11,381835,1,Best customers
+C1662,6,9,388300,3,Recent regulars
+C1663,140,7,180625,0,Drifting regulars
+C1664,166,8,526020,0,Drifting regulars
+C1665,50,8,146040,0,Drifting regulars
+C1666,59,11,260450,0,Drifting regulars
+C1667,132,7,185480,0,Drifting regulars
+C1668,39,7,214250,0,Drifting regulars
+C1669,16,4,210415,2,Lapsed low spenders
+C1670,77,11,266300,0,Drifting regulars
+C1671,29,4,140780,2,Lapsed low spenders
+C1672,30,10,324445,0,Drifting regulars
+C1673,5,13,423545,1,Best customers
+C1674,7,8,532330,3,Recent regulars
+C1675,49,6,591670,0,Drifting regulars
+C1676,40,8,655980,1,Best customers
+C1677,12,5,127650,3,Recent regulars
+C1678,271,9,230130,0,Drifting regulars
+C1679,140,9,685665,0,Drifting regulars
+C1680,9,13,804870,1,Best customers
+C1681,3,9,305830,3,Recent regulars
+C1682,60,10,968405,1,Best customers
+C1683,11,6,203600,3,Recent regulars
+C1684,87,11,245330,0,Drifting regulars
+C1685,8,9,553980,3,Recent regulars
+C1686,152,10,365805,0,Drifting regulars
+C1687,27,8,160570,3,Recent regulars
+C1688,62,11,1866670,1,Best customers
+C1689,55,7,267140,0,Drifting regulars
+C1690,42,12,574980,1,Best customers
+C1691,513,3,117595,2,Lapsed low spenders
+C1692,24,11,373275,1,Best customers
+C1693,42,7,158190,0,Drifting regulars
+C1694,294,6,110780,2,Lapsed low spenders
+C1695,7,4,108620,2,Lapsed low spenders
+C1696,6,12,479920,1,Best customers
+C1697,33,10,390330,1,Best customers
+C1698,81,3,54900,2,Lapsed low spenders
+C1699,54,14,1116575,1,Best customers
+C1700,21,14,366800,1,Best customers
+C1701,12,9,313625,3,Recent regulars
+C1702,8,11,675480,1,Best customers
+C1703,294,9,348710,0,Drifting regulars
+C1704,86,8,323970,0,Drifting regulars
+C1705,27,10,642190,1,Best customers
+C1706,15,10,345445,3,Recent regulars
+C1707,13,14,675565,1,Best customers
+C1708,25,13,756955,1,Best customers
+C1709,85,4,176315,2,Lapsed low spenders
+C1710,23,7,225265,3,Recent regulars
+C1711,213,5,109590,2,Lapsed low spenders
+C1712,17,10,1379085,1,Best customers
+C1713,110,6,301955,0,Drifting regulars
+C1714,20,10,262085,3,Recent regulars
+C1715,26,7,258450,3,Recent regulars
+C1716,155,11,374335,0,Drifting regulars
+C1717,97,12,405850,0,Drifting regulars
+C1718,14,9,463685,3,Recent regulars
+C1719,73,8,239910,0,Drifting regulars
+C1720,13,8,983220,1,Best customers
+C1721,60,5,589090,0,Drifting regulars
+C1722,169,9,182710,0,Drifting regulars
+C1723,72,11,526375,1,Best customers
+C1724,215,6,223840,0,Drifting regulars
+C1725,24,8,369400,3,Recent regulars
+C1726,69,5,99800,2,Lapsed low spenders
+C1727,67,9,249700,0,Drifting regulars
+C1728,79,8,222270,0,Drifting regulars
+C1729,44,11,442465,1,Best customers
+C1730,38,7,277005,0,Drifting regulars
+C1731,10,12,273880,3,Recent regulars
+C1732,163,7,739090,0,Drifting regulars
+C1733,16,7,216740,3,Recent regulars
+C1734,77,10,1188740,1,Best customers
+C1735,10,9,445425,3,Recent regulars
+C1736,9,8,287375,3,Recent regulars
+C1737,92,11,627680,1,Best customers
+C1738,15,12,524090,1,Best customers
+C1739,38,8,529270,0,Drifting regulars
+C1740,36,10,278745,0,Drifting regulars
+C1741,0,9,806740,3,Recent regulars
+C1742,164,4,137075,2,Lapsed low spenders
+C1743,4,9,155220,3,Recent regulars
+C1744,100,5,87800,2,Lapsed low spenders
+C1745,259,5,129850,2,Lapsed low spenders
+C1746,73,4,99050,2,Lapsed low spenders
+C1747,9,10,611610,1,Best customers
+C1748,0,14,344565,3,Recent regulars
+C1749,91,8,231270,0,Drifting regulars
+C1750,89,11,937960,1,Best customers
+C1751,70,10,445875,0,Drifting regulars
+C1752,35,9,378615,0,Drifting regulars
+C1753,250,5,200025,2,Lapsed low spenders
+C1754,2,8,265060,3,Recent regulars
+C1755,25,6,180925,3,Recent regulars
+C1756,11,14,585355,1,Best customers
+C1757,105,6,176940,2,Lapsed low spenders
+C1758,282,6,485260,0,Drifting regulars
+C1759,70,2,57650,2,Lapsed low spenders
+C1760,198,7,260760,0,Drifting regulars
+C1761,62,8,226700,0,Drifting regulars
+C1762,33,7,201750,0,Drifting regulars
+C1763,18,8,1024050,1,Best customers
+C1764,6,5,196370,3,Recent regulars
+C1765,26,7,949480,1,Best customers
+C1766,142,8,130945,0,Drifting regulars
+C1767,11,10,318795,3,Recent regulars
+C1768,19,10,502415,1,Best customers
+C1769,37,9,142660,0,Drifting regulars
+C1770,64,9,246015,0,Drifting regulars
+C1771,79,6,186250,2,Lapsed low spenders
+C1772,49,4,120340,2,Lapsed low spenders
+C1773,225,6,179750,2,Lapsed low spenders
+C1774,62,6,321290,0,Drifting regulars
+C1775,7,6,116775,3,Recent regulars
+C1776,10,12,436780,1,Best customers
+C1777,35,9,292740,0,Drifting regulars
+C1778,136,7,161080,0,Drifting regulars
+C1779,106,5,203740,2,Lapsed low spenders
+C1780,15,14,367295,1,Best customers
+C1781,36,9,352400,0,Drifting regulars
+C1782,498,6,249095,0,Drifting regulars
+C1783,17,9,260160,3,Recent regulars
+C1784,68,5,114300,2,Lapsed low spenders
+C1785,8,10,655745,1,Best customers
+C1786,186,9,219230,0,Drifting regulars
+C1787,3,11,263530,3,Recent regulars
+C1788,12,9,314600,3,Recent regulars
+C1789,14,9,262295,3,Recent regulars
+C1790,60,7,333980,0,Drifting regulars
+C1791,153,8,817805,0,Drifting regulars
+C1792,34,14,476045,1,Best customers
+C1793,202,5,62300,2,Lapsed low spenders
+C1794,61,5,256610,2,Lapsed low spenders
+C1795,13,11,325255,3,Recent regulars
+C1796,87,7,201315,0,Drifting regulars
+C1797,12,6,55045,2,Lapsed low spenders
+C1798,156,8,166570,0,Drifting regulars
+C1799,35,4,67125,2,Lapsed low spenders
+C1800,38,5,355755,0,Drifting regulars
+C1801,45,7,310765,0,Drifting regulars
+C1802,65,14,648650,1,Best customers
+C1803,77,8,170795,0,Drifting regulars
+C1804,164,8,396135,0,Drifting regulars
+C1805,30,3,77760,2,Lapsed low spenders
+C1806,20,13,603015,1,Best customers
+C1807,39,9,666510,1,Best customers
+C1808,81,9,593145,0,Drifting regulars
+C1809,106,6,166930,2,Lapsed low spenders
+C1810,162,8,290090,0,Drifting regulars
+C1811,101,3,99920,2,Lapsed low spenders
+C1812,32,12,207800,0,Drifting regulars
+C1813,12,4,150240,2,Lapsed low spenders
+C1814,59,6,196250,2,Lapsed low spenders
+C1815,370,7,767020,0,Drifting regulars
+C1816,25,7,185410,3,Recent regulars
+C1817,56,10,391255,0,Drifting regulars
+C1818,47,11,318920,0,Drifting regulars
+C1819,341,4,81480,2,Lapsed low spenders
+C1820,36,8,1408315,1,Best customers
+C1821,337,6,196920,2,Lapsed low spenders
+C1822,80,6,208985,0,Drifting regulars
+C1823,196,7,319260,0,Drifting regulars
+C1824,101,9,300885,0,Drifting regulars
+C1825,46,13,232535,0,Drifting regulars
+C1826,110,8,730820,0,Drifting regulars
+C1827,18,9,159380,3,Recent regulars
+C1828,91,2,209720,2,Lapsed low spenders
+C1829,10,9,338795,3,Recent regulars
+C1830,26,7,371750,3,Recent regulars
+C1831,14,6,146890,3,Recent regulars
+C1832,36,11,708405,1,Best customers
+C1833,146,11,876090,1,Best customers
+C1834,13,15,693155,1,Best customers
+C1835,27,8,361705,0,Drifting regulars
+C1836,266,5,245750,2,Lapsed low spenders
+C1837,17,17,929830,1,Best customers
+C1838,84,5,122340,2,Lapsed low spenders
+C1839,190,6,215790,0,Drifting regulars
+C1840,41,8,506455,0,Drifting regulars
+C1841,14,7,178200,3,Recent regulars
+C1842,20,8,276050,3,Recent regulars
+C1843,98,7,304825,0,Drifting regulars
+C1844,165,8,540990,0,Drifting regulars
+C1845,21,4,155650,2,Lapsed low spenders
+C1846,14,5,227550,3,Recent regulars
+C1847,33,11,1156030,1,Best customers
+C1848,43,14,524040,1,Best customers
+C1849,84,11,325030,0,Drifting regulars
+C1850,239,5,170160,2,Lapsed low spenders
+C1851,95,8,1047150,1,Best customers
+C1852,102,8,433585,0,Drifting regulars
+C1853,16,8,273190,3,Recent regulars
+C1854,28,7,119375,3,Recent regulars
+C1855,114,6,267535,0,Drifting regulars
+C1856,40,17,1814785,1,Best customers
+C1857,149,4,93360,2,Lapsed low spenders
+C1858,103,11,317000,0,Drifting regulars
+C1859,4,15,556115,1,Best customers
+C1860,99,6,149785,2,Lapsed low spenders
+C1861,33,5,155700,2,Lapsed low spenders
+C1862,56,8,972120,1,Best customers
+C1863,290,8,205990,0,Drifting regulars
+C1864,291,10,682810,0,Drifting regulars
+C1865,157,7,523335,0,Drifting regulars
+C1866,73,10,352645,0,Drifting regulars
+C1867,25,13,319580,1,Best customers
+C1868,5,15,359280,1,Best customers
+C1869,17,14,559285,1,Best customers
+C1870,6,7,213270,3,Recent regulars
+C1871,8,10,176335,3,Recent regulars
+C1872,93,10,178705,0,Drifting regulars
+C1873,27,8,126065,3,Recent regulars
+C1874,99,11,344260,0,Drifting regulars
+C1875,3,7,250255,3,Recent regulars
+C1876,142,11,1853480,1,Best customers
+C1877,19,12,531800,1,Best customers
+C1878,229,6,121540,2,Lapsed low spenders
+C1879,131,8,169395,0,Drifting regulars
+C1880,175,3,205310,2,Lapsed low spenders
+C1881,96,10,325680,0,Drifting regulars
+C1882,21,4,122670,2,Lapsed low spenders
+C1883,63,13,452850,1,Best customers
+C1884,13,8,306230,3,Recent regulars
+C1885,14,5,84105,2,Lapsed low spenders
+C1886,171,9,368200,0,Drifting regulars
+C1887,78,7,170470,0,Drifting regulars
+C1888,45,3,17350,2,Lapsed low spenders
+C1889,8,8,1379920,1,Best customers
+C1890,357,5,105235,2,Lapsed low spenders
+C1891,25,12,330500,1,Best customers
+C1892,9,15,790610,1,Best customers
+C1893,175,7,177130,0,Drifting regulars
+C1894,289,10,495175,0,Drifting regulars
+C1895,0,7,139675,3,Recent regulars
+C1896,5,17,592150,1,Best customers
+C1897,3,5,80700,3,Recent regulars
+C1898,61,8,238170,0,Drifting regulars
+C1899,2,9,1198960,1,Best customers
+C1900,104,5,125795,2,Lapsed low spenders
+C1901,6,14,385670,1,Best customers
+C1902,16,8,1334205,1,Best customers
+C1903,49,11,348380,0,Drifting regulars
+C1904,200,8,392910,0,Drifting regulars
+C1905,16,5,77320,2,Lapsed low spenders
+C1906,10,9,1223260,1,Best customers
+C1907,170,7,190735,0,Drifting regulars
+C1908,128,8,410355,0,Drifting regulars
+C1909,12,11,347865,3,Recent regulars
+C1910,106,10,231560,0,Drifting regulars
+C1911,39,9,206475,0,Drifting regulars
+C1912,31,8,254890,0,Drifting regulars
+C1913,15,10,416050,1,Best customers
+C1914,112,3,44500,2,Lapsed low spenders
+C1915,66,13,347750,1,Best customers
+C1916,36,10,322735,0,Drifting regulars
+C1917,127,7,703080,0,Drifting regulars
+C1918,91,10,225530,0,Drifting regulars
+C1919,57,10,228680,0,Drifting regulars
+C1920,20,8,1104225,1,Best customers
+C1921,78,12,618140,1,Best customers
+C1922,19,7,312455,3,Recent regulars
+C1923,98,11,1817245,1,Best customers
+C1924,14,8,272690,3,Recent regulars
+C1925,4,21,815040,1,Best customers
+C1926,57,10,286200,0,Drifting regulars
+C1927,6,6,76800,3,Recent regulars
+C1928,90,8,370585,0,Drifting regulars
+C1929,3,9,588160,3,Recent regulars
+C1930,288,7,171505,0,Drifting regulars
+C1931,9,10,595145,1,Best customers
+C1932,26,7,273690,3,Recent regulars
+C1933,11,7,328575,3,Recent regulars
+C1934,90,7,327085,0,Drifting regulars
+C1935,66,12,243580,0,Drifting regulars
+C1936,137,8,271270,0,Drifting regulars
+C1937,36,13,405530,1,Best customers
+C1938,114,4,446800,2,Lapsed low spenders
+C1939,664,1,392500,2,Lapsed low spenders
+C1940,41,4,163845,2,Lapsed low spenders
+C1941,104,7,143650,0,Drifting regulars
+C1942,145,5,119090,2,Lapsed low spenders
+C1943,144,5,90520,2,Lapsed low spenders
+C1944,1,6,150740,3,Recent regulars
+C1945,12,7,156300,3,Recent regulars
+C1946,22,7,370820,3,Recent regulars
+C1947,40,8,276490,0,Drifting regulars
+C1948,6,9,187710,3,Recent regulars
+C1949,15,11,414600,1,Best customers
+C1950,99,8,429245,0,Drifting regulars
+C1951,18,7,943490,1,Best customers
+C1952,24,6,230380,3,Recent regulars
+C1953,7,14,639925,1,Best customers
+C1954,77,8,221875,0,Drifting regulars
+C1955,36,8,269890,0,Drifting regulars
+C1956,23,7,189830,3,Recent regulars
+C1957,23,3,118380,2,Lapsed low spenders
+C1958,2,10,211520,3,Recent regulars
+C1959,27,12,662445,1,Best customers
+C1960,125,6,100500,2,Lapsed low spenders
+C1961,88,6,1348415,1,Best customers
+C1962,233,4,210990,2,Lapsed low spenders
+C1963,104,6,356140,0,Drifting regulars
+C1964,22,13,442440,1,Best customers
+C1965,88,5,130285,2,Lapsed low spenders
+C1966,10,9,190130,3,Recent regulars
+C1967,42,8,294315,0,Drifting regulars
+C1968,175,9,212255,0,Drifting regulars
+C1969,269,6,1356230,0,Drifting regulars
+C1970,12,9,281190,3,Recent regulars
+C1971,135,6,253550,0,Drifting regulars
+C1972,6,9,208375,3,Recent regulars
+C1973,28,9,318065,0,Drifting regulars
+C1974,176,6,179315,2,Lapsed low spenders
+C1975,17,6,302780,3,Recent regulars
+C1976,83,13,339420,0,Drifting regulars
+C1977,223,7,512280,0,Drifting regulars
+C1978,73,10,369750,0,Drifting regulars
+C1979,17,13,404100,1,Best customers
+C1980,52,11,193130,0,Drifting regulars
+C1981,45,10,210210,0,Drifting regulars
+C1982,121,7,121900,2,Lapsed low spenders
+C1983,98,5,904265,0,Drifting regulars
+C1984,7,9,90845,3,Recent regulars
+C1985,114,14,629040,1,Best customers
+C1986,87,11,1205495,1,Best customers
+C1987,28,8,190150,3,Recent regulars
+C1988,10,13,881200,1,Best customers
+C1989,2,12,529275,3,Recent regulars
+C1990,36,7,77950,2,Lapsed low spenders
+C1991,16,9,177575,3,Recent regulars
+C1992,35,10,404540,1,Best customers
+C1993,58,10,728435,1,Best customers
+C1994,90,10,267810,0,Drifting regulars
+C1995,1,13,424630,3,Recent regulars
+C1996,14,16,862330,1,Best customers
+C1997,3,13,511365,1,Best customers
+C1998,112,8,239675,0,Drifting regulars
+C1999,26,14,567855,1,Best customers
+C2000,10,7,198675,3,Recent regulars
+C2001,9,7,135740,3,Recent regulars
+C2002,36,12,286955,0,Drifting regulars
+C2003,3,3,197860,3,Recent regulars
+C2004,233,6,204025,2,Lapsed low spenders
+C2005,48,6,251170,0,Drifting regulars
+C2006,29,10,355235,1,Best customers
+C2007,15,12,186155,3,Recent regulars
+C2008,22,12,177665,3,Recent regulars
+C2009,22,8,181340,3,Recent regulars
+C2010,41,3,337015,2,Lapsed low spenders
+C2011,41,5,150440,2,Lapsed low spenders
+C2012,14,8,232070,3,Recent regulars
+C2013,82,8,236030,0,Drifting regulars
+C2014,5,6,194215,3,Recent regulars
+C2015,15,9,571815,1,Best customers
+C2016,4,6,285090,3,Recent regulars
+C2017,162,6,157980,2,Lapsed low spenders
+C2018,1,9,533750,3,Recent regulars
+C2019,22,13,438610,1,Best customers
+C2020,15,11,424060,1,Best customers
+C2021,49,9,350675,0,Drifting regulars
+C2022,39,9,299840,0,Drifting regulars
+C2023,4,15,413735,1,Best customers
+C2024,34,9,201210,0,Drifting regulars
+C2025,70,9,321050,0,Drifting regulars
+C2026,242,4,131105,2,Lapsed low spenders
+C2027,21,7,566210,1,Best customers
+C2028,310,3,109400,2,Lapsed low spenders
+C2029,172,7,168080,0,Drifting regulars
+C2030,5,9,194265,3,Recent regulars
+C2031,55,9,1868845,1,Best customers
+C2032,708,1,75320,2,Lapsed low spenders
+C2033,87,11,493415,0,Drifting regulars
+C2034,59,3,61200,2,Lapsed low spenders
+C2035,29,7,140945,3,Recent regulars
+C2036,15,12,882525,1,Best customers
+C2037,30,7,287970,0,Drifting regulars
+C2038,22,11,418440,1,Best customers
+C2039,32,10,526020,1,Best customers
+C2040,4,10,286950,3,Recent regulars
+C2041,45,8,227480,0,Drifting regulars
+C2042,42,8,181500,0,Drifting regulars
+C2043,50,7,408590,0,Drifting regulars
+C2044,33,9,207640,0,Drifting regulars
+C2045,85,12,299920,0,Drifting regulars
+C2046,41,6,277545,0,Drifting regulars
+C2047,16,11,321385,3,Recent regulars
+C2048,199,9,199200,0,Drifting regulars
+C2049,420,6,415455,0,Drifting regulars
+C2050,13,11,320810,3,Recent regulars
+C2051,41,7,177240,0,Drifting regulars
+C2052,289,2,110835,2,Lapsed low spenders
+C2053,3,13,2264400,1,Best customers
+C2054,18,12,486605,1,Best customers
+C2055,46,9,252320,0,Drifting regulars
+C2056,124,11,367445,0,Drifting regulars
+C2057,72,9,464315,0,Drifting regulars
+C2058,31,5,277870,2,Lapsed low spenders
+C2059,65,8,698720,1,Best customers
+C2060,44,16,657640,1,Best customers
+C2061,41,9,710350,1,Best customers
+C2062,189,5,207950,2,Lapsed low spenders
+C2063,134,7,411775,0,Drifting regulars
+C2064,3,8,455095,3,Recent regulars
+C2065,0,8,168075,3,Recent regulars
+C2066,69,14,320740,1,Best customers
+C2067,8,9,349800,3,Recent regulars
+C2068,39,6,316235,0,Drifting regulars
+C2069,47,10,2232110,1,Best customers
+C2070,141,3,72400,2,Lapsed low spenders
+C2071,181,5,302650,2,Lapsed low spenders
+C2072,142,8,231495,0,Drifting regulars
+C2073,153,5,335965,0,Drifting regulars
+C2074,131,10,276740,0,Drifting regulars
+C2075,292,8,508815,0,Drifting regulars
+C2076,19,7,186920,3,Recent regulars
+C2077,9,6,101255,3,Recent regulars
+C2078,35,10,257290,0,Drifting regulars
+C2079,79,11,328785,0,Drifting regulars
+C2080,19,12,249665,3,Recent regulars
+C2081,12,8,1061325,1,Best customers
+C2082,92,7,341220,0,Drifting regulars
+C2083,41,15,779270,1,Best customers
+C2084,35,9,236870,0,Drifting regulars
+C2085,18,15,533845,1,Best customers
+C2086,41,17,456840,1,Best customers
+C2087,163,6,75230,2,Lapsed low spenders
+C2088,26,8,125685,3,Recent regulars
+C2089,0,9,393005,3,Recent regulars
+C2090,6,7,239345,3,Recent regulars
+C2091,195,9,1740195,1,Best customers
+C2092,29,10,437135,1,Best customers
+C2093,44,12,384890,1,Best customers
+C2094,2,11,239760,3,Recent regulars
+C2095,31,11,319135,1,Best customers
+C2096,291,6,84120,2,Lapsed low spenders
+C2097,13,8,225075,3,Recent regulars
+C2098,141,6,376675,0,Drifting regulars
+C2099,183,8,662350,0,Drifting regulars
+C2100,74,11,948870,1,Best customers
+C2101,355,6,184735,2,Lapsed low spenders
+C2102,30,9,383800,0,Drifting regulars
+C2103,31,7,133535,3,Recent regulars
+C2104,139,5,947685,0,Drifting regulars
+C2105,30,9,601910,1,Best customers
+C2106,17,16,1097405,1,Best customers
+C2107,430,8,262070,0,Drifting regulars
+C2108,66,11,832825,1,Best customers
+C2109,135,9,246235,0,Drifting regulars
+C2110,49,5,179395,2,Lapsed low spenders
+C2111,281,4,208650,2,Lapsed low spenders
+C2112,84,11,399750,0,Drifting regulars
+C2113,151,5,146100,2,Lapsed low spenders
+C2114,9,12,346670,3,Recent regulars
+C2115,6,9,128220,3,Recent regulars
+C2116,10,13,2236040,1,Best customers
+C2117,191,6,1219490,0,Drifting regulars
+C2118,46,9,1359795,1,Best customers
+C2119,42,9,309350,0,Drifting regulars
+C2120,294,2,199300,2,Lapsed low spenders
+C2121,19,8,311390,3,Recent regulars
+C2122,35,8,634255,1,Best customers
+C2123,203,3,61500,2,Lapsed low spenders
+C2124,76,10,279500,0,Drifting regulars
+C2125,21,7,177730,3,Recent regulars
+C2126,126,8,413005,0,Drifting regulars
+C2127,122,10,348840,0,Drifting regulars
+C2128,171,6,100175,2,Lapsed low spenders
+C2129,190,6,93820,2,Lapsed low spenders
+C2130,17,18,520870,1,Best customers
+C2131,153,5,178595,2,Lapsed low spenders
+C2132,3,12,480350,3,Recent regulars
+C2133,1,10,535290,3,Recent regulars
+C2134,21,14,487040,1,Best customers
+C2135,13,10,280540,3,Recent regulars
+C2136,9,13,544700,1,Best customers
+C2137,68,13,347030,0,Drifting regulars
+C2138,33,11,499890,1,Best customers
+C2139,67,16,1425565,1,Best customers
+C2140,79,6,162500,2,Lapsed low spenders
+C2141,3,9,63125,3,Recent regulars
+C2142,144,9,330270,0,Drifting regulars
+C2143,20,11,444120,1,Best customers
+C2144,28,9,315965,0,Drifting regulars
+C2145,68,10,440370,0,Drifting regulars
+C2146,16,7,623355,1,Best customers
+C2147,23,10,574840,1,Best customers
+C2148,85,6,340590,0,Drifting regulars
+C2149,6,5,287490,3,Recent regulars
+C2150,57,9,367420,0,Drifting regulars
+C2151,137,12,480510,0,Drifting regulars
+C2152,42,7,559055,0,Drifting regulars
+C2153,102,5,113420,2,Lapsed low spenders
+C2154,181,11,765250,1,Best customers
+C2155,16,8,488205,3,Recent regulars
+C2156,403,6,236425,0,Drifting regulars
+C2157,150,9,392125,0,Drifting regulars
+C2158,9,9,192380,3,Recent regulars
+C2159,339,3,62970,2,Lapsed low spenders
+C2160,69,13,466970,1,Best customers
+C2161,55,9,268660,0,Drifting regulars
+C2162,118,9,270260,0,Drifting regulars
+C2163,101,13,418280,0,Drifting regulars
+C2164,100,6,294650,0,Drifting regulars
+C2165,28,12,809480,1,Best customers
+C2166,55,11,345810,0,Drifting regulars
+C2167,55,6,188905,2,Lapsed low spenders
+C2168,51,10,350650,0,Drifting regulars
+C2169,13,9,293955,3,Recent regulars
+C2170,180,10,1476135,1,Best customers
+C2171,12,9,347765,3,Recent regulars
+C2172,9,15,555865,1,Best customers
+C2173,1,5,78300,3,Recent regulars
+C2174,117,8,315040,0,Drifting regulars
+C2175,26,8,185220,3,Recent regulars
+C2176,92,5,206920,2,Lapsed low spenders
+C2177,129,6,280355,0,Drifting regulars
+C2178,113,6,183700,2,Lapsed low spenders
+C2179,152,3,17800,2,Lapsed low spenders
+C2180,1,10,392320,3,Recent regulars
+C2181,16,11,375050,1,Best customers
+C2182,178,10,297150,0,Drifting regulars
+C2183,233,7,179780,0,Drifting regulars
+C2184,14,5,156870,3,Recent regulars
+C2185,128,9,342350,0,Drifting regulars
+C2186,261,7,165885,0,Drifting regulars
+C2187,9,6,213875,3,Recent regulars
+C2188,18,4,286650,2,Lapsed low spenders
+C2189,23,8,157320,3,Recent regulars
+C2190,61,11,381290,0,Drifting regulars
+C2191,122,7,217720,0,Drifting regulars
+C2192,47,6,232190,0,Drifting regulars
+C2193,12,2,47770,2,Lapsed low spenders
+C2194,41,7,340535,0,Drifting regulars
+C2195,12,6,420080,3,Recent regulars
+C2196,1,17,977590,1,Best customers
+C2197,26,7,396790,3,Recent regulars
+C2198,45,11,401495,1,Best customers
+C2199,30,8,426200,0,Drifting regulars
+C2200,178,5,119555,2,Lapsed low spenders
+C2201,97,3,62480,2,Lapsed low spenders
+C2202,5,10,325775,3,Recent regulars
+C2203,8,8,1071020,1,Best customers
+C2204,42,6,298300,0,Drifting regulars
+C2205,108,7,224500,0,Drifting regulars
+C2206,41,11,474155,1,Best customers
+C2207,24,8,608260,1,Best customers
+C2208,88,5,590330,0,Drifting regulars
+C2209,3,7,151910,3,Recent regulars
+C2210,365,3,48120,2,Lapsed low spenders
+C2211,28,6,174200,2,Lapsed low spenders
+C2212,44,6,178905,2,Lapsed low spenders
+C2213,209,9,548905,0,Drifting regulars
+C2214,101,9,193980,0,Drifting regulars
+C2215,112,7,214850,0,Drifting regulars
+C2216,77,9,361970,0,Drifting regulars
+C2217,130,7,374480,0,Drifting regulars
+C2218,1,9,1576550,1,Best customers
+C2219,12,11,278455,3,Recent regulars
+C2220,10,9,502935,3,Recent regulars
+C2221,7,14,652235,1,Best customers
+C2222,35,9,390470,0,Drifting regulars
+C2223,20,11,340070,1,Best customers
+C2224,39,7,274735,0,Drifting regulars
+C2225,100,5,925940,0,Drifting regulars
+C2226,45,14,272690,1,Best customers
+C2227,45,7,230400,0,Drifting regulars
+C2228,61,13,725170,1,Best customers
+C2229,147,6,183665,2,Lapsed low spenders
+C2230,3,5,130800,3,Recent regulars
+C2231,34,8,913940,1,Best customers
+C2232,164,9,193305,0,Drifting regulars
+C2233,14,12,566785,1,Best customers
+C2234,3,15,434385,1,Best customers
+C2235,62,11,330085,0,Drifting regulars
+C2236,16,9,421310,3,Recent regulars
+C2237,11,10,248975,3,Recent regulars
+C2238,8,8,430735,3,Recent regulars
+C2239,23,9,279730,3,Recent regulars
+C2240,159,3,93210,2,Lapsed low spenders
+C2241,12,8,223225,3,Recent regulars
+C2242,25,12,472020,1,Best customers
+C2243,37,13,486450,1,Best customers
+C2244,75,14,839035,1,Best customers
+C2245,179,9,246310,0,Drifting regulars
+C2246,26,10,146275,3,Recent regulars
+C2247,3,15,2400020,1,Best customers
+C2248,129,10,642535,0,Drifting regulars
+C2249,17,9,275160,3,Recent regulars
+C2250,99,5,653750,0,Drifting regulars
+C2251,16,8,326240,3,Recent regulars
+C2252,22,5,361395,3,Recent regulars
+C2253,37,10,1079560,1,Best customers
+C2254,39,15,658435,1,Best customers
+C2255,62,11,386370,0,Drifting regulars
+C2256,34,11,484290,1,Best customers
+C2257,61,11,239315,0,Drifting regulars
+C2258,76,9,408525,0,Drifting regulars
+C2259,106,15,788430,1,Best customers
+C2260,55,11,306070,0,Drifting regulars
+C2261,3,6,74295,3,Recent regulars
+C2262,230,6,204450,2,Lapsed low spenders
+C2263,15,14,266040,1,Best customers
+C2264,15,9,409640,3,Recent regulars
+C2265,21,10,604325,1,Best customers
+C2266,208,7,429545,0,Drifting regulars
+C2267,52,8,169500,0,Drifting regulars
+C2268,2,7,261980,3,Recent regulars
+C2269,7,17,430785,1,Best customers
+C2270,72,8,1534870,1,Best customers
+C2271,2,13,330405,3,Recent regulars
+C2272,35,9,582060,1,Best customers
+C2273,52,9,162280,0,Drifting regulars
+C2274,62,6,58300,2,Lapsed low spenders
+C2275,23,7,231215,3,Recent regulars
+C2276,178,8,400110,0,Drifting regulars
+C2277,13,12,1460455,1,Best customers
+C2278,51,9,218810,0,Drifting regulars
+C2279,275,7,109655,2,Lapsed low spenders
+C2280,39,12,866240,1,Best customers
+C2281,299,8,244010,0,Drifting regulars
+C2282,59,5,2432925,1,Best customers
+C2283,66,3,64110,2,Lapsed low spenders
+C2284,41,4,403315,2,Lapsed low spenders
+C2285,11,11,386270,3,Recent regulars
+C2286,78,9,250655,0,Drifting regulars
+C2287,10,3,41930,2,Lapsed low spenders
+C2288,41,7,176670,0,Drifting regulars
+C2289,34,7,328250,0,Drifting regulars
+C2290,171,8,380260,0,Drifting regulars
+C2291,17,8,259515,3,Recent regulars
+C2292,72,7,158850,0,Drifting regulars
+C2293,7,10,367085,3,Recent regulars
+C2294,371,3,243950,2,Lapsed low spenders
+C2295,86,13,578585,1,Best customers
+C2296,26,11,283405,3,Recent regulars
+C2297,22,8,148000,3,Recent regulars
+C2298,70,12,364055,0,Drifting regulars
+C2299,291,6,101755,2,Lapsed low spenders
+C2300,212,10,395775,0,Drifting regulars
+C2301,1,11,2594930,1,Best customers
+C2302,27,14,287670,1,Best customers
+C2303,161,8,188710,0,Drifting regulars
+C2304,10,8,169840,3,Recent regulars
+C2305,238,6,353955,0,Drifting regulars
+C2306,98,7,234180,0,Drifting regulars
+C2307,140,9,158800,0,Drifting regulars
+C2308,75,11,290070,0,Drifting regulars
+C2309,15,11,414260,1,Best customers
+C2310,169,8,613285,0,Drifting regulars
+C2311,190,7,159745,0,Drifting regulars
+C2312,76,12,391690,0,Drifting regulars
+C2313,45,10,204155,0,Drifting regulars
+C2314,165,4,1573200,0,Drifting regulars
+C2315,25,3,24610,2,Lapsed low spenders
+C2316,180,6,101670,2,Lapsed low spenders
+C2317,9,11,179790,3,Recent regulars
+C2318,46,8,209215,0,Drifting regulars
+C2319,100,13,412665,0,Drifting regulars
+C2320,21,9,192280,3,Recent regulars
+C2321,15,7,98035,3,Recent regulars
+C2322,100,5,110520,2,Lapsed low spenders
+C2323,7,9,1134165,1,Best customers
+C2324,27,9,278250,3,Recent regulars
+C2325,127,6,127900,2,Lapsed low spenders
+C2326,8,6,257525,3,Recent regulars
+C2327,230,6,139690,2,Lapsed low spenders
+C2328,63,5,74225,2,Lapsed low spenders
+C2329,61,5,98830,2,Lapsed low spenders
+C2330,8,9,728270,1,Best customers
+C2331,291,5,101120,2,Lapsed low spenders
+C2332,14,7,946710,1,Best customers
+C2333,157,9,156675,0,Drifting regulars
+C2334,133,10,328425,0,Drifting regulars
+C2335,56,5,156300,2,Lapsed low spenders
+C2336,16,10,378175,3,Recent regulars
+C2337,36,5,186310,2,Lapsed low spenders
+C2338,19,7,270680,3,Recent regulars
+C2339,0,7,253000,3,Recent regulars
+C2340,59,8,217950,0,Drifting regulars
+C2341,25,14,317880,1,Best customers
+C2342,8,10,1179375,1,Best customers
+C2343,14,9,1333800,1,Best customers
+C2344,17,8,613400,1,Best customers
+C2345,133,11,243360,0,Drifting regulars
+C2346,176,6,86670,2,Lapsed low spenders
+C2347,27,7,264945,3,Recent regulars
+C2348,340,7,90140,2,Lapsed low spenders
+C2349,61,7,314655,0,Drifting regulars
+C2350,4,9,328430,3,Recent regulars
+C2351,41,11,326130,0,Drifting regulars
+C2352,46,10,531125,1,Best customers
+C2353,8,12,469905,1,Best customers
+C2354,9,5,88180,2,Lapsed low spenders
+C2355,48,5,154720,2,Lapsed low spenders
+C2356,4,6,162495,3,Recent regulars
+C2357,17,5,306195,3,Recent regulars
+C2358,26,7,289200,3,Recent regulars
+C2359,141,7,131175,2,Lapsed low spenders
+C2360,85,6,133850,2,Lapsed low spenders
+C2361,61,6,433615,0,Drifting regulars
+C2362,55,13,714585,1,Best customers
+C2363,132,7,337720,0,Drifting regulars
+C2364,91,12,1442340,1,Best customers
+C2365,50,5,81400,2,Lapsed low spenders
+C2366,14,3,129900,2,Lapsed low spenders
+C2367,47,5,218060,2,Lapsed low spenders
+C2368,66,8,401700,0,Drifting regulars
+C2369,46,10,258820,0,Drifting regulars
+C2370,14,6,215155,3,Recent regulars
+C2371,21,7,1077200,1,Best customers
+C2372,139,9,181010,0,Drifting regulars
+C2373,73,9,205835,0,Drifting regulars
+C2374,22,10,293200,3,Recent regulars
+C2375,108,7,207050,0,Drifting regulars
+C2376,185,4,259605,2,Lapsed low spenders
+C2377,246,2,12000,2,Lapsed low spenders
+C2378,6,12,392700,3,Recent regulars
+C2379,153,12,279185,0,Drifting regulars
+C2380,185,6,184095,2,Lapsed low spenders
+C2381,77,6,207280,0,Drifting regulars
+C2382,67,9,162080,0,Drifting regulars
+C2383,20,11,364285,1,Best customers
+C2384,33,7,351600,0,Drifting regulars
+C2385,120,8,238530,0,Drifting regulars
+C2386,16,7,797530,1,Best customers
+C2387,7,11,347330,3,Recent regulars
+C2388,67,10,682950,1,Best customers
+C2389,45,8,593630,1,Best customers
+C2390,91,5,266875,2,Lapsed low spenders
+C2391,91,6,296470,0,Drifting regulars
+C2392,6,10,184600,3,Recent regulars
+C2393,43,7,135095,2,Lapsed low spenders
+C2394,325,6,215010,0,Drifting regulars
+C2395,1,12,444610,3,Recent regulars
+C2396,79,7,469050,0,Drifting regulars
+C2397,4,10,326915,3,Recent regulars
+C2398,27,7,188400,3,Recent regulars
+C2399,86,8,197655,0,Drifting regulars
+C2400,83,5,235530,2,Lapsed low spenders
+C2401,77,12,308480,0,Drifting regulars
+C2402,37,13,306380,1,Best customers
+C2403,107,5,127790,2,Lapsed low spenders
+C2404,278,9,817280,0,Drifting regulars
+C2405,164,8,258650,0,Drifting regulars
+C2406,16,14,375945,1,Best customers
+C2407,55,11,299860,0,Drifting regulars
+C2408,67,13,582915,1,Best customers
+C2409,21,4,286000,2,Lapsed low spenders
+C2410,112,2,403900,2,Lapsed low spenders
+C2411,26,6,144040,2,Lapsed low spenders
+C2412,26,7,309675,3,Recent regulars
+C2413,3,8,747250,3,Recent regulars
+C2414,25,12,791300,1,Best customers
+C2415,69,10,402610,0,Drifting regulars
+C2416,16,8,170485,3,Recent regulars
+C2417,15,4,150200,2,Lapsed low spenders
+C2418,123,6,322210,0,Drifting regulars
+C2419,1,11,449150,3,Recent regulars
+C2420,113,6,399905,0,Drifting regulars
+C2421,8,9,585235,1,Best customers
+C2422,66,9,222680,0,Drifting regulars
+C2423,23,5,169400,2,Lapsed low spenders
+C2424,37,5,216945,2,Lapsed low spenders
+C2425,16,12,527400,1,Best customers
+C2426,156,8,1379340,1,Best customers
+C2427,35,13,387880,1,Best customers
+C2428,62,8,248920,0,Drifting regulars
+C2429,4,8,198960,3,Recent regulars
+C2430,98,7,584295,0,Drifting regulars
+C2431,35,9,425195,0,Drifting regulars
+C2432,54,8,216500,0,Drifting regulars
+C2433,106,5,174490,2,Lapsed low spenders
+C2434,59,10,699600,1,Best customers
+C2435,67,5,268040,2,Lapsed low spenders
+C2436,36,7,165520,0,Drifting regulars
+C2437,56,7,261395,0,Drifting regulars
+C2438,24,12,2103815,1,Best customers
+C2439,9,10,123435,3,Recent regulars
+C2440,2,11,439360,3,Recent regulars
+C2441,20,8,285630,3,Recent regulars
+C2442,78,5,180610,2,Lapsed low spenders
+C2443,145,9,211890,0,Drifting regulars
+C2444,39,6,214210,0,Drifting regulars
+C2445,20,6,191870,3,Recent regulars
+C2446,92,9,285720,0,Drifting regulars
+C2447,204,8,341225,0,Drifting regulars
+C2448,30,7,269260,0,Drifting regulars
+C2449,75,9,375110,0,Drifting regulars
+C2450,18,9,554470,1,Best customers
+C2451,97,11,295800,0,Drifting regulars
+C2452,20,6,210020,3,Recent regulars
+C2453,166,8,249070,0,Drifting regulars
+C2454,109,8,609385,0,Drifting regulars
+C2455,98,10,610960,0,Drifting regulars
+C2456,27,6,503800,0,Drifting regulars
+C2457,84,12,228320,0,Drifting regulars
+C2458,118,9,419075,0,Drifting regulars
+C2459,5,6,184420,3,Recent regulars
+C2460,32,8,343690,0,Drifting regulars
+C2461,51,13,973160,1,Best customers
+C2462,8,7,299220,3,Recent regulars
+C2463,9,11,314235,3,Recent regulars
+C2464,278,6,222900,0,Drifting regulars
+C2465,119,7,548335,0,Drifting regulars
+C2466,116,6,87100,2,Lapsed low spenders
+C2467,3,9,399800,3,Recent regulars
+C2468,96,8,189600,0,Drifting regulars
+C2469,59,12,313420,0,Drifting regulars
+C2470,35,6,125320,2,Lapsed low spenders
+C2471,83,10,222860,0,Drifting regulars
+C2472,286,4,41150,2,Lapsed low spenders
+C2473,258,3,130620,2,Lapsed low spenders
+C2474,54,10,325855,0,Drifting regulars
+C2475,17,7,181875,3,Recent regulars
+C2476,82,8,214100,0,Drifting regulars
+C2477,55,12,436095,1,Best customers
+C2478,1,5,650420,3,Recent regulars
+C2479,118,11,1568075,1,Best customers
+C2480,25,8,151000,3,Recent regulars
+C2481,168,3,1239840,0,Drifting regulars
+C2482,2,12,913945,1,Best customers
+C2483,28,10,361150,1,Best customers
+C2484,4,14,1199470,1,Best customers
+C2485,66,9,402450,0,Drifting regulars
+C2486,26,13,201910,3,Recent regulars
+C2487,7,7,95370,3,Recent regulars
+C2488,26,10,371060,1,Best customers
+C2489,2,10,372375,3,Recent regulars
+C2490,23,12,448895,1,Best customers
+C2491,67,10,655565,1,Best customers
+C2492,113,4,119700,2,Lapsed low spenders
+C2493,7,9,250210,3,Recent regulars
+C2494,203,6,193450,2,Lapsed low spenders
+C2495,310,3,38580,2,Lapsed low spenders
+C2496,36,8,160450,0,Drifting regulars
+C2497,28,8,674720,1,Best customers
+C2498,42,9,786605,1,Best customers
+C2499,365,7,308720,0,Drifting regulars
+C2500,19,14,455145,1,Best customers

@@ -1,0 +1,5 @@
+model,train_auc,cv_auc,test_auc,gap
+Logistic regression,0.762,0.757,0.747,0.015
+"Decision tree, depth 3",0.733,0.712,0.717,0.016
+Tuned random forest,0.813,0.75,0.739,0.074
+"Gradient boosting, 100 trees",0.838,0.742,0.735,0.103

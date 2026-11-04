@@ -1,0 +1,86 @@
+{
+ "loan_model_numpy_logistic": {
+  "note": "75/25 random split with seed 1, standardised features, plain logistic regression. scikit-learn LogisticRegression will be close, not identical.",
+  "n_test": 2000,
+  "defaults_in_test": 275,
+  "auc_honest": 0.76,
+  "auc_with_leaked_collection_calls": 0.995,
+  "confusion": [
+   {
+    "threshold": 0.5,
+    "tp": 40,
+    "fp": 13,
+    "fn": 235,
+    "tn": 1712,
+    "accuracy": 0.876,
+    "precision": 0.755,
+    "recall": 0.145
+   },
+   {
+    "threshold": 0.3,
+    "tp": 73,
+    "fp": 52,
+    "fn": 202,
+    "tn": 1673,
+    "accuracy": 0.873,
+    "precision": 0.584,
+    "recall": 0.265
+   },
+   {
+    "threshold": 0.2,
+    "tp": 120,
+    "fp": 142,
+    "fn": 155,
+    "tn": 1583,
+    "accuracy": 0.852,
+    "precision": 0.458,
+    "recall": 0.436
+   },
+   {
+    "threshold": 0.15,
+    "tp": 151,
+    "fp": 268,
+    "fn": 124,
+    "tn": 1457,
+    "accuracy": 0.804,
+    "precision": 0.36,
+    "recall": 0.549
+   }
+  ],
+  "accuracy_if_always_no": 0.863
+ },
+ "customer_segments_numpy_kmeans_k4": {
+  "note": "RFM on log scale, standardised, seed 3. scikit-learn KMeans gives similar groups; their numbering may differ.",
+  "segments": [
+   {
+    "seg": 0,
+    "customers": 570,
+    "mean_recency_days": 11.0,
+    "mean_orders": 8.0,
+    "mean_spend_ugx": 284683.0
+   },
+   {
+    "seg": 1,
+    "customers": 462,
+    "mean_recency_days": 142.0,
+    "mean_orders": 5.0,
+    "mean_spend_ugx": 142739.0
+   },
+   {
+    "seg": 2,
+    "customers": 584,
+    "mean_recency_days": 42.0,
+    "mean_orders": 12.0,
+    "mean_spend_ugx": 826220.0
+   },
+   {
+    "seg": 3,
+    "customers": 883,
+    "mean_recency_days": 113.0,
+    "mean_orders": 8.0,
+    "mean_spend_ugx": 326264.0
+   }
+  ],
+  "customers": 2499
+ }
+}

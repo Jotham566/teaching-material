@@ -1,0 +1,38 @@
+AI AND DATA SCIENCE PROFESSIONAL
+24 sessions of 2 hours | 48 hours | free tools only | Windows or Mac, in a browser
+
+For working professionals who are confident in Excel or Google Sheets, with no code and no statistics. They finish able to take a business question from raw data to a tested model or analysis, explain it to a manager, and run it as a small app.
+
+01 Course Overview
+Student Roadmap (one page).pdf is the page to share with students. The .pptx beside it is the editable version.
+
+02 Class Slides
+One PowerPoint per session, numbered in teaching order. 545 slides in all: 320 are animated (895 click reveals), and every slide has speaker notes written as a script to read aloud. Play the animated slides in Slide Show mode; editing view shows the finished diagram.
+
+03 Learner Materials
+Student Setup Guide.docx: what to do before Session 1. Send it before the course starts.
+Sheets Lab Sheets.docx: the task lists for Sessions 1 to 4 (Google Sheets) and the presentation preparation in Session 24. Hand out in Session 1.
+Glossary.docx: all 161 vocabulary terms, each with the spreadsheet idea it matches. Hand out in Session 1.
+Assessment and Capstone Guide.docx: how the marks are made, the three checkpoints, the capstone steps, the presentation and its rubric. Hand out in Session 1.
+Practice Files/data: the generated data (see DATA DICTIONARY.txt), lakeside.db (SQLite) and lakeside_for_sheets.xlsx. Practice Files/data.zip is the same set for students to upload.
+Practice Files/notebooks: the student lab notebook for each coding session. Open them in Google Colab.
+
+04 Facilitator Materials
+Course Plan and Tutor Guide.docx: the session shape, all 24 sessions, assessment, tools, data, what to do before the course starts, and what is in each folder.
+Sheets Lab Answers.docx: the answers to the Sheets tasks, with the numbers from the 2,000-order workbook. Tutor only; do not hand out.
+Benchmark and Design Report.docx: how the course compares with roadmap.sh and the Google, IBM, DeepLearning.AI and free courses, what it leaves out, tool licences, the sources, and what is and is not verified.
+Lab Solutions: the solution notebook for each coding session (tutor only).
+run_all_labs.py: runs every solution notebook top to bottom. Run it once before you teach.
+Playback and Rehearsal Checklist.txt: every animated slide with its click count, and the demonstrations that need your own accounts.
+
+05 Course Maintenance
+Authoring: everything needed to rebuild the decks, notebooks, data, figures and documents. Read Authoring/README - Read First.txt.
+Research/Research Notes.txt: where the benchmark research is kept.
+Verification Record.txt: what was checked, what could not be, and what you must do before the first class.
+Authoring/REVIEW BRIEF.md and AUTHOR BRIEF.md: the instructions the sessions were written and reviewed under.
+
+BEFORE THE FIRST CLASS
+1 Upload data.zip somewhere students can reach it.
+2 Run run_all_labs.py in 04 Facilitator Materials (or open each solution notebook in Colab and choose Run all). The authoring machine could not run the scikit-learn, SciPy, statsmodels, sentence-transformers or Streamlit cells.
+3 Play every animated slide in PowerPoint.
+4 Read the notes aloud once per session.

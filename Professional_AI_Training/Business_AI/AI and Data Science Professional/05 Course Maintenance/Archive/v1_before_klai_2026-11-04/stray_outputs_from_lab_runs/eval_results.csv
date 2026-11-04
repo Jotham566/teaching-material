@@ -1,0 +1,13 @@
+question,policy,rank_of_right,top1_correct,precision_at_3,recall_at_3
+How long do points last?,loyalty_programme.txt,4,False,0.0,0.0
+How many days do I have to return an item?,returns_policy.txt,1,True,0.3333333333333333,1.0
+How long do mobile money refunds take?,returns_policy.txt,1,True,0.3333333333333333,1.0
+Which towns does delivery not reach?,delivery.txt,2,False,0.3333333333333333,1.0
+What is the delivery fee within 5 kilometres?,delivery.txt,1,True,0.3333333333333333,1.0
+What percent discount do Gold customers get?,loyalty_programme.txt,1,True,0.3333333333333333,1.0
+How long is customer data kept?,data_privacy.txt,1,True,0.3333333333333333,1.0
+What temperature must dairy be stored at?,food_safety.txt,1,True,0.3333333333333333,1.0
+When do branches open on Sunday?,opening_hours.txt,1,True,0.3333333333333333,1.0
+What happens when more than 5 percent of a delivery is damaged?,supplier_complaints.txt,1,True,0.3333333333333333,1.0
+Does Lakeside Mart ask for my PIN?,mobile_money.txt,1,True,0.3333333333333333,1.0
+Can points be exchanged for cash?,loyalty_programme.txt,1,True,0.3333333333333333,1.0

@@ -1,0 +1,4 @@
+,MAE (cases),RMSE (cases),MAPE (percent)
+Seasonal naive baseline,460.7,748.6,18.5
+Lag model (numpy),338.0,490.9,16.3
+Pipeline with district indicator variables,217.1,322.5,11.8

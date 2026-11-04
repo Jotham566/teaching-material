@@ -1,0 +1,377 @@
+{
+ "session": 7,
+ "notes_title": "Today the file gets big. Until now you've worked with a few numbers and a price list. In Session 7 we open the Lakeside Mart orders, thirty thousand two hundred rows of them, and start asking questions in Python. By the end you'll have loaded the file, looked it over before trusting it, and answered six questions that you can check against Sheets.",
+ "notes_outcomes": "You'll leave able to load a CSV file into what Python calls a DataFrame, inspect its size, column types and gaps before you trust any answer, and then select columns and filter rows to ask focused questions. The live part sits in the middle, where we load orders.csv together and watch one filter fail on purpose. The lab is six questions about Jinja, mobile money and the biggest orders, and every answer gets checked against Sheets.",
+ "notes_words": "Six words today, listed with their spreadsheet cousins on the right. A DataFrame is a worksheet that lives in Python, and a Series is one column of it. The index is the row numbers down the left side. A boolean mask is a helper column of True and False that decides which rows you keep. A method is an action such as head, and an attribute is a fact such as shape. You've used every one of these ideas in a spreadsheet. Only the names are new.",
+ "vocab": [
+  [
+   "DataFrame",
+   "A table held in Python's memory, with named columns and numbered rows.",
+   "A worksheet"
+  ],
+  [
+   "Series",
+   "One column of a DataFrame.",
+   "A column"
+  ],
+  [
+   "Index",
+   "The row labels down the left edge of a DataFrame.",
+   "The row numbers"
+  ],
+  [
+   "Boolean mask",
+   "A column of True and False values used to choose rows.",
+   "A helper column saying Keep or Drop"
+  ],
+  [
+   "Method",
+   "An action attached to an object, written with a dot and brackets, such as head().",
+   "A menu command"
+  ],
+  [
+   "Attribute",
+   "A fact stored on an object, written without brackets, such as shape.",
+   "A value in the status bar"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 6",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "You wrote a function that gives a loyalty tier from spend. How did you know it worked?",
+     "a": "Test it on examples where you already know the answer, including the edge values."
+    },
+    {
+     "q": "What does a for loop replace in a spreadsheet?",
+     "a": "Dragging a formula down a column, row by row."
+    }
+   ],
+   "notes": "Session 6 first. You wrote a function that gives a loyalty tier from spend. How did you know it worked? Cast your mind back.\n\nYou tested it on examples where you already knew the right answer, and you included the edge values, such as a spend exactly on a tier boundary. That habit matters even more today, because we'll check every pandas answer against Sheets.\n\nSecond. What does a for loop replace in a spreadsheet? Take it slowly.\n\nIt replaces dragging a formula down a column. Today we go a step further. pandas applies a calculation to a whole column without any loop at all."
+  },
+  {
+   "type": "concept",
+   "title": "A DataFrame is a worksheet that lives in Python",
+   "lead": "Every pandas job starts with one of these. Learn its four parts and the rest follows.",
+   "points": [
+    {
+     "h": "Columns",
+     "t": "Each has a name and one type, such as text or whole number."
+    },
+    {
+     "h": "Rows",
+     "t": "Each row is one case. Here, one order."
+    },
+    {
+     "h": "Index",
+     "t": "The numbers down the left edge. They start at zero."
+    },
+    {
+     "h": "Cell",
+     "t": "One value, found by its row and column."
+    }
+   ],
+   "fig": "dataframe_anatomy",
+   "alt": "The first five rows of the orders table with column names, the index and one cell labelled.",
+   "notes": "You'll use this object from here to the end of the course. A DataFrame is a worksheet that lives in Python.\n\nOn the right are the first five orders in the Lakeside Mart file. The names across the top are the columns. Each column holds one kind of thing, so order_id is text and promo_week is a whole number.\n\nEach row is one order. The numbers on the far left are the index, and they start at zero. Excel starts its rows at one, so this takes a day or two to feel natural.\n\nOne cell is the value where a row meets a column. The red box shows the branch for the row labelled four. Find the row, then the column."
+  },
+  {
+   "type": "compare",
+   "title": "The same five jobs in Excel and in pandas",
+   "left": {
+    "h": "Excel or Sheets",
+    "points": [
+     "Open the file",
+     "Look at the first rows",
+     "Filter with AutoFilter",
+     "Sort a column",
+     "Count with a PivotTable"
+    ]
+   },
+   "right": {
+    "h": "pandas",
+    "points": [
+     "read_csv('orders.csv')",
+     ".head()",
+     "orders[orders.branch_id == 'B04']",
+     ".sort_values('order_value_ugx')",
+     ".value_counts()"
+    ]
+   },
+   "verdict": "Same jobs. Python writes each step down, so you can repeat it on tomorrow's file.",
+   "notes": "On the left, the five jobs you already do in a spreadsheet. On the right, the pandas line for each.\n\nOpening the file becomes read_csv. The first rows appear with head.\n\nFiltering comes next. Where AutoFilter has you open a dropdown, pandas has you write the condition. After that, sorting a column becomes sort_values.\n\nThe fifth job is counting. A PivotTable gives you counts by group. In pandas that's value_counts, and we'll use it at the end of the demonstration.\n\nThe verdict at the bottom says the rest. Same jobs. The difference is that Python writes each step down, so next month you run the same lines on a new file and get the same answers without clicking anything."
+  },
+  {
+   "type": "code",
+   "title": "Load the file, then look before you ask",
+   "lang": "python",
+   "code": "import pandas as pd\n\norders = pd.read_csv('orders.csv')\nprint(orders.shape)\norders.head(3)",
+   "says": [
+    "Bring in pandas and call it pd, the name everyone uses.",
+    "Read the file into a DataFrame and name it orders.",
+    "shape is an attribute with rows then columns. head shows the first rows."
+   ],
+   "output": "(30229, 7)\n  order_id  order_date branch_id customer_id payment_method  promo_week  order_value_ugx\nO000001  2024-01-06 B01 C0495 Card 0 56000",
+   "notes": "Let's do it live, with the first thing you do to any file.\n\nimport pandas as pd brings in the table library and gives it the short name pd. Everyone writes it exactly this way, so you'll recognise it in any code you ever read.\n\nread_csv reads the file, and we store the result under a name, orders. The name is ours to choose, so pick one that says what is inside.\n\nThen shape gives the size. Thirty thousand two hundred and twenty nine rows and seven columns. And head shows the first rows, so we see what we're dealing with before we ask anything."
+  },
+  {
+   "type": "code",
+   "title": "Check the types and what is missing",
+   "lang": "python",
+   "code": "print(orders.dtypes)\nprint()\nprint(orders.isna().sum())",
+   "output": "order_id           object\norder_date         object\nbranch_id          object\ncustomer_id        object\npayment_method     object\npromo_week          int64\norder_value_ugx     int64\ncustomer_id    9171",
+   "says": [
+    "dtypes lists each column's type. Text shows as object.",
+    "isna marks the empty cells. sum counts them for each column."
+   ],
+   "notes": "Second look. Types and missing values.\n\nThe dtypes line gives each column's type. Python calls text object, and whole numbers int64. Notice that order_date is shown as object. Python is treating the date as plain text, and we'll fix that in the next session.\n\nThe next line asks which cells are empty and counts them for each column. Only customer_id has gaps, nine thousand one hundred and seventy one of them. Those are walk-in customers who didn't give a loyalty number, so the gap tells us something about the shoppers."
+  },
+  {
+   "type": "code",
+   "title": "info and describe: two summaries in one line each",
+   "lang": "python",
+   "code": "orders.info()\nprint()\norders.order_value_ugx.describe().round().astype(int)",
+   "says": [
+    "info lists every column with its count of filled cells and its type.",
+    "describe gives count, mean, spread and quartiles for one number column.",
+    "The 50% row is the median. It is 23,200 here."
+   ],
+   "output": "RangeIndex: 30229 entries, 0 to 30228\n 3   customer_id      21058 non-null  object\n 6   order_value_ugx  30229 non-null  int64\n\ncount      30229\nmean       47491\nstd       123574\nmin          800\n25%         9940\n50%        23200\n75%        47300\nmax      3104000",
+   "notes": "Two more calls that you'll use on every new file. info and describe.\n\nStart with info. It lists every column with its type and how many cells are filled. Thirty thousand two hundred and twenty nine orders, but customer_id has only twenty one thousand and fifty eight filled. That's the same gap we just counted, seen from the other side.\n\nThen describe, which works on a number column. It's the summary row you'd build in Excel with COUNT, AVERAGE, MIN and MAX, all in one go.\n\nThe 50 percent line is the median, twenty three thousand two hundred shillings. The mean above it is forty seven thousand four hundred and ninety one, and the biggest order is over three million. That gap between mean and median is worth a picture, and we'll draw one shortly."
+  },
+  {
+   "type": "flow",
+   "title": "The first five minutes with any new file",
+   "steps": [
+    {
+     "h": "Load",
+     "t": "pd.read_csv('file.csv')"
+    },
+    {
+     "h": "Size",
+     "t": ".shape"
+    },
+    {
+     "h": "Look",
+     "t": ".head()"
+    },
+    {
+     "h": "Types",
+     "t": ".dtypes"
+    },
+    {
+     "h": "Missing",
+     "t": ".isna().sum()"
+    }
+   ],
+   "caption": "Run these five in this order on every file you ever meet.",
+   "notes": "Here's the routine to memorise. Five steps, same order, every file.\n\nFirst you load the file. It sounds obvious, but loading is where wrong separators and wrong file names show up first.\n\nSecond, size. How many rows and columns?\n\nThird, you look, with head. A table that has twelve columns when you expected seven tells you something is off.\n\nFourth, types. A date held as text or a number held as text will quietly break your sums later.\n\nFifth, missing values. Count them by column. After these five steps you know the file well enough to ask it proper questions. Don't skip them just because you're in a hurry."
+  },
+  {
+   "type": "concept",
+   "title": "Choosing columns and rows",
+   "lead": "Square brackets do both jobs. What goes inside decides which.",
+   "points": [
+    {
+     "h": "One column",
+     "t": "orders['branch_id'] gives a Series."
+    },
+    {
+     "h": "Several columns",
+     "t": "orders[['branch_id', 'payment_method']] uses a list inside the brackets."
+    },
+    {
+     "h": "Some rows",
+     "t": "orders[orders.branch_id == 'B04'] keeps the rows where the test is True."
+    }
+   ],
+   "notes": "Square brackets do two jobs, and what you put inside them decides which. This confuses people at first.\n\nOne name in quotes gives you one column. That column is called a Series. Two names in a list, so double brackets, give you a smaller table with just those columns.\n\nThe third form is the one you'll use all day. Inside the brackets you put a test. The test runs on every row and gives back True or False. pandas keeps the rows that are True. That column of True and False values is called a boolean mask. It's exactly the helper column you'd add in Excel before filtering, only you never see it."
+  },
+  {
+   "type": "code",
+   "title": "Filter rows with a test",
+   "lang": "python",
+   "code": "jinja = orders[orders.branch_id == 'B04']\nprint(len(jinja))\njinja.payment_method.value_counts()",
+   "says": [
+    "The test gives True or False for every row. Only True rows are kept.",
+    "len counts rows. B04 is the Jinja branch.",
+    "Count the payment methods inside that filtered table."
+   ],
+   "output": "3562\nMobile money    1695\nCash            1619\nCard             248",
+   "notes": "Jinja is branch B04, so let's filter for it.\n\nThe condition says branch_id equals B04. Note the double equals sign. A single equals stores a value. A double equals asks a question. We keep only the rows where the answer is True and store them in a new table called jinja.\n\nNext we count the rows with len. Jinja has three thousand five hundred and sixty two orders in the file.\n\nThen value_counts on the payment column shows how those orders were paid. Mobile money leads with sixteen hundred and ninety five, cash follows with sixteen hundred and nineteen, and cards are rare at two hundred and forty eight. AutoFilter in Sheets should give you the same counts, and in the lab you'll check that."
+  },
+  {
+   "type": "code",
+   "title": "Two conditions: use & and brackets",
+   "lang": "python",
+   "code": "mm_jinja = orders[(orders.branch_id == 'B04') & (orders.payment_method == 'Mobile money')]\nprint(len(mm_jinja))",
+   "says": [
+    "Each test goes in its own brackets.",
+    "& means AND. A bar, |, means OR."
+   ],
+   "output": "1695",
+   "notes": "Two conditions at once. Orders from Jinja that were paid by mobile money.\n\nEach test sits in its own round brackets, and the ampersand joins them. Ampersand means and. A vertical bar means or. The brackets matter. Without them Python reads the line in the wrong order and stops with an error.\n\nThe answer is sixteen hundred and ninety five, the same number we saw a moment ago for mobile money in Jinja. When two routes give the same answer, you can trust it more."
+  },
+  {
+   "type": "code",
+   "title": "What happens if you write and",
+   "lang": "python",
+   "expect_error": true,
+   "code": "orders[orders.branch_id == 'B04' and orders.payment_method == 'Mobile money']",
+   "output": "ValueError: The truth value of a Series is ambiguous.",
+   "says": [
+    "Python's own word and is for single True or False values."
+   ],
+   "notes": "Now the mistake nearly everyone makes. You write the English word and between two tests.\n\nPython stops with an error that ends: the truth value of a Series is ambiguous. Read that last line, as we practised in Session 5. It says Python can't decide a single True or False for a whole column.\n\nThe cure is the ampersand with brackets, exactly as on the last slide."
+  },
+  {
+   "type": "trap",
+   "title": "A filter that quietly drops the wrong rows",
+   "looks": "You filter orders with promo_week == 1 and report the average. It runs, with no error, and the number looks sensible.",
+   "why": "A filter keeps only part of the data. If you forget the rest is gone, you report a figure for promo weeks as if it were all weeks.",
+   "fix": "Name the filtered table something that says what it holds, such as promo_orders, and print len() beside every figure you report.",
+   "notes": "This one produces no error at all.\n\nYou filter the orders to promotion weeks, calculate an average, and the number looks perfectly reasonable. Nothing warns you.\n\nThe trouble is that you've thrown away every order outside promotion weeks. If you then say the average order value is such and such, you've answered a question about promotions and presented it as an answer about everything.\n\nSo name the filtered table for what it holds, such as promo_orders, and print the row count next to every figure you report. A reader who sees the count knows what the figure covers."
+  },
+  {
+   "type": "code",
+   "title": "Sort and keep the top five",
+   "lang": "python",
+   "code": "top5 = orders.sort_values('order_value_ugx', ascending=False).head(5)\ntop5[['order_id', 'branch_id', 'order_value_ugx']]",
+   "says": [
+    "Sort by value, largest first.",
+    "Keep five rows, then show three columns."
+   ],
+   "output": "order_id branch_id order_value_ugx\nO014303 B04 3104000\nO029299 B08 2795740\nO003810 B01 2771200",
+   "notes": "Sorting and keeping the top few. In Excel you'd sort a column from largest to smallest and look at the top.\n\nsort_values takes the column name. For largest first, set ascending to False. Then head with five keeps the first five rows.\n\nThe last line chooses just three columns to show. The biggest order in the file is O014303, from Jinja, at over three million shillings. Remember that number. Next we'll see why a few orders like this change the story."
+  },
+  {
+   "type": "figure",
+   "title": "A few very large orders pull the average up",
+   "fig": "order_value_hist",
+   "look": [
+    "Most orders are small. The tallest bars sit on the left.",
+    "A long tail of large orders runs to the right.",
+    "The mean is more than double the median."
+   ],
+   "caption": "Median 23,200 UGX. Mean 47,491 UGX. Use the median when a few big orders distort the average.",
+   "notes": "Here's every order's value drawn as a histogram.\n\nMost orders are small. The tallest bars sit on the left side. Then a long tail of large orders stretches to the right.\n\nBecause of those big orders, the mean, the red line, is pulled to the right. It's forty seven thousand four hundred and ninety one shillings. The median, the gold line, is twenty three thousand two hundred. The mean is more than double the median.\n\nSo which number do you report to a manager who asks about a typical order? Think about what you would say. The median, because it describes the typical order, and the mean describes a figure that few orders actually look like. You met this in Session 3, and it returns whenever a few big values bend an average."
+  },
+  {
+   "type": "define",
+   "title": "Boolean mask",
+   "definition": "A column of True and False values, one per row, that decides which rows to keep.",
+   "example": "orders.branch_id == 'B04' gives True for every Jinja order and False for all others. orders[mask] keeps the True rows.",
+   "excel": "The helper column you add next to the data, with Keep or Drop in each row, before you filter on it.",
+   "notes": "The word for today is boolean mask.\n\nIn plain words, it's a column of True and False values, one for each row, that decides which rows to keep.\n\nIn our data, when you ask which orders have branch B04, Python builds that column. True for Jinja orders, False for every other branch. Put that mask inside the square brackets and you keep only the True rows.\n\nYou already do this in Excel. You add a helper column next to the data that says keep or drop, then filter on it. pandas builds the helper column for you and hides it."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: six questions, six checks",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 7 notebook and run the setup cell",
+    "Load orders.csv, print its shape and missing values",
+    "Count the orders from Jinja (branch B04)",
+    "List the ten largest orders by value",
+    "Count Jinja orders paid by mobile money",
+    "Count all orders by payment method",
+    "Compare every answer with Sheets"
+   ],
+   "done": "All six answers match Sheets. Where they differ, you can say why.",
+   "notes": "The lab is six questions about the orders, and it runs forty minutes in Google Colab.\n\nOpen the Session 7 notebook and run the setup cell. The first task is to load orders.csv and print its shape, and the check cell tells you straight away if you have it. Each later task has a blank for you to fill and a check underneath.\n\nThe last step is to take every answer and find it again in Sheets, with AutoFilter or a PivotTable. If Python and Sheets disagree, find out why before you pick one. I'll be around. If you get an error, read the last line first, then ask me."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Your file has 30,229 rows. Which two lines tell you its size and its column types?",
+     "a": "orders.shape for the size, and orders.dtypes for the types."
+    },
+    {
+     "q": "Why does orders[a == 1 and b == 2] fail, and what is the fix?",
+     "a": "Python's and cannot handle a whole column. Use & with each test in brackets."
+    },
+    {
+     "q": "You report an average from a filtered table. What must sit beside it?",
+     "a": "The row count, so the reader knows what the figure covers."
+    }
+   ],
+   "notes": "Start with size. Your file has thirty thousand rows. Which two lines tell you its size and its column types? Have a go.\n\nThe size comes from shape, and the types come from dtypes.\n\nNext, a filter that fails. Why does a filter written with the word and fail, and what's the fix? Mull it over.\n\nPython's own and can't handle a whole column of True and False values. Use the ampersand, with each test inside round brackets.\n\nLast, an average from a filtered table. What must sit beside it? Give it a second.\n\nThe row count. It tells the reader how many rows the figure covers, and it protects you from reporting a part as if it were the whole."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A DataFrame is a worksheet in Python: columns have types, rows have an index.",
+    "Look before you ask: shape, head, dtypes, missing values, in that order.",
+    "A filter is a True or False test per row. Use & and brackets, and report the row count."
+   ],
+   "next": "pandas II: cleaning the mess",
+   "notes": "A DataFrame is a worksheet that lives in Python. Its columns have types and its rows have an index.\n\nLook before you ask. Size, first rows, types, then missing values, in that order, on every file.\n\nA filter is a True or False test for each row. Join tests with an ampersand and brackets, and always report the row count beside any figure from a filtered table.\n\nNext session we open the till system's raw export of these orders, with duplicate lines, dates in two formats and prices stored as text, and clean it up."
+  }
+ ],
+ "lab": {
+  "intro": "Six questions about the Lakeside Mart orders. Answer each in pandas, then find the same answer in Sheets.",
+  "cells": [
+   {
+    "md": "## Task 1. Load and inspect the file\nRead `orders.csv` into a DataFrame called `orders` and print its shape. Then store the number of missing values in each column in `missing` and print it."
+   },
+   {
+    "code": "import pandas as pd\n\norders = pd.read_csv('orders.csv')\nprint(orders.shape)\nmissing = orders.isna().sum()\nprint(missing)",
+    "starter": "import pandas as pd\n\n# Your turn: read orders.csv into a DataFrame called orders, then print its shape\n# Your turn: count the missing values in each column into missing, then print it\n"
+   },
+   {
+    "code": "assert orders.shape == (30229, 7), 'Check the file name and the shape'\nassert missing['customer_id'] == 9171, 'missing should count the blanks in every column. customer_id has 9171'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Jinja orders\nBranch B04 is Jinja. Keep its orders in a table called `jinja` and count them."
+   },
+   {
+    "code": "jinja = orders[orders.branch_id == 'B04']\nprint(len(jinja))",
+    "starter": "# Your turn: filter orders to branch B04, call it jinja, print how many rows\n"
+   },
+   {
+    "code": "assert len(jinja) == 3562, 'Use a double equals sign and the text B04 in quotes'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. The ten largest orders\nSort `orders` by `order_value_ugx`, largest first, and keep the top ten in `top10`."
+   },
+   {
+    "code": "top10 = orders.sort_values('order_value_ugx', ascending=False).head(10)\ntop10[['order_id', 'branch_id', 'order_value_ugx']]",
+    "starter": "# Your turn: sort by order_value_ugx, largest first, keep ten rows, call it top10\n"
+   },
+   {
+    "code": "assert top10.iloc[0].order_id == 'O014303', 'The largest order should be O014303'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Jinja and mobile money\nHow many Jinja orders were paid by `Mobile money`? Store the count in `n_mm`."
+   },
+   {
+    "code": "n_mm = len(orders[(orders.branch_id == 'B04') & (orders.payment_method == 'Mobile money')])\nprint(n_mm)",
+    "starter": "# Your turn: count the Jinja orders paid by Mobile money into n_mm\n# Two conditions are needed at once, so join them with & and put each in its own brackets\n"
+   },
+   {
+    "code": "assert n_mm == 1695, 'Use & and put each test in round brackets'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Payment methods\nCount all orders by payment method."
+   },
+   {
+    "code": "pay = orders.payment_method.value_counts()\npay",
+    "starter": "# Your turn: count orders for each payment method into pay\n"
+   },
+   {
+    "code": "assert pay['Mobile money'] == 14312, 'Count the payment_method column'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Check against Sheets\nOpen `orders.csv` in Google Sheets. Use AutoFilter to reproduce Tasks 2 and 4, and a PivotTable for Task 5. Write one sentence below about anything that did not match."
+   }
+  ]
+ }
+}

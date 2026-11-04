@@ -1,0 +1,8 @@
+,dtype,missing,missing_pct
+order_id,object,0,0.0
+order_date,object,0,0.0
+branch_id,object,0,0.0
+customer_id,object,9171,30.3
+payment_method,object,0,0.0
+promo_week,int64,0,0.0
+order_value_ugx,int64,0,0.0

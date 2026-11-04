@@ -1,38 +1,43 @@
-AI AND DATA SCIENCE PROFESSIONAL
+AI AND DATA SCIENCE PROFESSIONAL (KLAi edition)
 24 sessions of 2 hours | 48 hours | free tools only | Windows or Mac, in a browser
 
-For working professionals who are confident in Excel or Google Sheets, with no code and no statistics. They finish able to take a business question from raw data to a tested model or analysis, explain it to a manager, and run it as a small app.
+For working professionals who are confident in Excel or Google Sheets, with no code and no statistics. They finish able to take a business question from raw data to a tested model or analysis, explain it to a manager, and run it as a small app. All course data is fictional and generated (Lakeside Mart retail, Nile Microfinance loans, District Clinics, customer feedback messages; Uganda; UGX).
+
+Every session has the same shape: recall, then concepts with laptops closed (picture, plain words, one example by hand), a break, then one switch to the notebook or the sheet for a lab (predict, run, read, change), then an exit check. Concepts are named with the real industry term and a plain explanation beside it.
 
 01 Course Overview
 Student Roadmap (one page).pdf is the page to share with students. The .pptx beside it is the editable version.
+Course Outline.docx and .pdf: four pages for prospective learners and employers (audience, entry requirements, outcomes, the 24-session syllabus, tools, no-exam statement, certificate wording, what the course does not cover). It has no price. Fees and dates are on the flyer.
 
 02 Class Slides
-One PowerPoint per session, numbered in teaching order. 545 slides in all: 320 are animated (895 click reveals), and every slide has speaker notes written as a script to read aloud. Play the animated slides in Slide Show mode; editing view shows the finished diagram.
+One PowerPoint per session, numbered in teaching order, in the KLAi look (black, white, red, gold, Lato). Every slide has speaker notes written as a script to read aloud. Each deck has a concepts half, a black "Part 2" divider, then the lab slides.
 
 03 Learner Materials
-Student Setup Guide.docx: what to do before Session 1. Send it before the course starts.
-Sheets Lab Sheets.docx: the task lists for Sessions 1 to 4 (Google Sheets) and the presentation preparation in Session 24. Hand out in Session 1.
-Glossary.docx: all 161 vocabulary terms, each with the spreadsheet idea it matches. Hand out in Session 1.
-Assessment and Capstone Guide.docx: how the marks are made, the three checkpoints, the capstone steps, the presentation and its rubric. Hand out in Session 1.
-Practice Files/data: the generated data (see DATA DICTIONARY.txt), lakeside.db (SQLite) and lakeside_for_sheets.xlsx. Practice Files/data.zip is the same set for students to upload.
-Practice Files/notebooks: the student lab notebook for each coding session. Open them in Google Colab.
+Start Here.docx: the first page a learner reads.
+Student Setup Guide.docx: what to do before Session 1 (Google account, Colab, the data.zip step through the tutor's Google Drive link (DATA_LINK), Sheets or Excel, GitHub, Streamlit Community Cloud, what to do when Colab disconnects). Send it before the course starts.
+Sheets Lab Sheets.docx: the task lists for Sessions 1 to 4 (Google Sheets) and the presentation preparation in Session 24.
+Glossary.docx: the course vocabulary, with the real industry term and the spreadsheet idea it matches.
+Course Projects Guide.docx and .pdf: the projects built across the course, the three project milestones (Sessions 8, 13, 19), the course project and how to present it, the project checklist for self and peer feedback, what the check cells mean, and what the certificate of completion means. There are no exams, marks or grades in this course (decision of 4 November 2026).
+Practice Files/data: the generated data (see DATA DICTIONARY.txt), lakeside.db (SQLite) and lakeside_for_sheets.xlsx. Practice Files/data.zip is the same set. The first cell of each notebook downloads it from the tutor's Google Drive link (KLAi Build/data_zip_url.txt, baked in as DATA_LINK), or asks the learner to upload it when the link is empty.
+Practice Files/notebooks: the learner lab notebook for each coding session. Open them in Google Colab.
 
-04 Facilitator Materials
-Course Plan and Tutor Guide.docx: the session shape, all 24 sessions, assessment, tools, data, what to do before the course starts, and what is in each folder.
-Sheets Lab Answers.docx: the answers to the Sheets tasks, with the numbers from the 2,000-order workbook. Tutor only; do not hand out.
-Benchmark and Design Report.docx: how the course compares with roadmap.sh and the Google, IBM, DeepLearning.AI and free courses, what it leaves out, tool licences, the sources, and what is and is not verified.
-Lab Solutions: the solution notebook for each coding session (tutor only).
-run_all_labs.py: runs every solution notebook top to bottom. Run it once before you teach.
-Playback and Rehearsal Checklist.txt: every animated slide with its click count, and the demonstrations that need your own accounts.
+04 Facilitator Materials (keep private)
+Facilitator Guide.docx: the clock, the slide map, misconceptions, probing questions, lab steps, rescue plans and what to do afterwards, for every session.
+Presenter Script.docx: the spoken notes of every slide in one document.
+Sheets Lab Answers.docx: the answers to the Sheets tasks, with numbers from the 2,000-order workbook.
+Benchmark and Design Report.docx: how the course compares with roadmap.sh and the Google, IBM and DeepLearning.AI programmes and free courses (external facts as at 28 October 2026), the KLAi design, the terminology rule, tool licences and sources.
+Lab Solutions: the solution notebook for each coding session.
+run_all_labs.py: runs every solution notebook top to bottom (the older runner from October; make_notebooks.py in the build folder does the same job for the current notebooks).
+Playback and Rehearsal Checklist.docx: the current checklist. Playback and Rehearsal Checklist.txt and Course Plan and Tutor Guide.docx are the October 2026 versions. They are superseded by the checklist .docx and the Facilitator Guide and are kept only for reference.
 
 05 Course Maintenance
-Authoring: everything needed to rebuild the decks, notebooks, data, figures and documents. Read Authoring/README - Read First.txt.
+KLAi Build: everything needed to rebuild the decks, notebooks, figures and documents. Read KLAi Build/README.md first, then AUTHORING_GUIDE.md and TERMS.md.
+Verification Record.txt: what was built on 4 November 2026, how to rebuild it, what was checked here, and what was not.
+Archive/v1_before_klai_2026-11-04: the October 2026 version (old look, old decks, old documents, old records). Nothing there is current.
 Research/Research Notes.txt: where the benchmark research is kept.
-Verification Record.txt: what was checked, what could not be, and what you must do before the first class.
-Authoring/REVIEW BRIEF.md and AUTHOR BRIEF.md: the instructions the sessions were written and reviewed under.
 
 BEFORE THE FIRST CLASS
-1 Upload data.zip somewhere students can reach it.
-2 Run run_all_labs.py in 04 Facilitator Materials (or open each solution notebook in Colab and choose Run all). The authoring machine could not run the scikit-learn, SciPy, statsmodels, sentence-transformers or Streamlit cells.
-3 Play every animated slide in PowerPoint.
-4 Read the notes aloud once per session.
+1 Upload data.zip to Google Drive and share it with 'Anyone with the link'. Paste the link on one line in KLAi Build/data_zip_url.txt, then regenerate the notebooks (python3 kit/make_notebooks.py N for each coding session). Until then every learner uploads data.zip by hand.
+2 Open each notebook in Google Colab and choose Runtime, Restart session and run all (Sessions 12 to 18, 20 and 23 have never run on the real libraries; see the Verification Record).
+3 Confirm the wording on the certificate of completion (given for completing the course project, no other criteria).
+4 Read the notes of each session aloud once.

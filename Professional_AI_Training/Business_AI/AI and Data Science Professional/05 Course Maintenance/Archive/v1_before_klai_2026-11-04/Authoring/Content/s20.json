@@ -1,0 +1,462 @@
+{
+ "session": 20,
+ "notes_title": "Today we open the box that everyone talks about, the neural network, and we do it without any hard maths. Last session you forecast malaria cases and built a pipeline. We'll build one neuron by hand, watch a tiny network learn in the browser, then train one on the loans and compare it with the forest. You will also see a model that someone else trained, which you can use for free.",
+ "notes_outcomes": "Today has two live moments. The first is one neuron computed by hand in numpy. The second is TensorFlow Playground in your browser, where you watch a network learn and overfit. In the lab you train a network on the loans and compare it with the forest. By the end you can describe layers, weights and training in plain words, and say when a simpler model is the better choice, which for a table is often the case.",
+ "notes_words": "Eight words today. A neuron is one small calculation, like a SUMPRODUCT cell. A weight is a multiplier, and an activation function is the bend. A hidden layer is a row of helper columns. The loss is your error total, and the learning rate is the size of each nudge. An epoch is one full pass over the data. A pretrained model is a template someone has already filled in for you.",
+ "vocab": [
+  [
+   "Neuron",
+   "A small calculation that multiplies inputs by weights, adds them and bends the total.",
+   "One SUMPRODUCT cell"
+  ],
+  [
+   "Weight",
+   "A number that says how much one input counts. Training adjusts it.",
+   "The multiplier beside each input"
+  ],
+  [
+   "Activation function",
+   "The bend applied to a neuron's total, such as sigmoid or ReLU.",
+   "An IF or MAX wrapped around a formula"
+  ],
+  [
+   "Hidden layer",
+   "A row of neurons between the inputs and the output.",
+   "Helper columns between the data and the answer"
+  ],
+  [
+   "Loss",
+   "One number that says how wrong the guesses are. Training tries to shrink it.",
+   "The total of an error column"
+  ],
+  [
+   "Learning rate",
+   "How big a step each correction takes.",
+   "How far you move a cell on each try"
+  ],
+  [
+   "Epoch",
+   "One full pass through all the training data.",
+   "One pass down the whole sheet"
+  ],
+  [
+   "Pretrained model",
+   "A model already trained by someone else, used as it is.",
+   "A filled in template workbook"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 19",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "Why do we split a time series by date and never at random?",
+     "a": "A random split lets the model peek at the future. Train on the past, test on later months."
+    },
+    {
+     "q": "What must a forecast beat before we trust it?",
+     "a": "The seasonal naive baseline: repeat the same month from last year."
+    }
+   ],
+   "notes": "Time series first. Two questions from Session 19.\n\nFirst. Why do we split a time series by date and never at random? Have a think.\n\nBecause a random split lets the model peek at the future. You train on the past and test on the months that come later, the way real life works.\n\nSecond. What must a forecast beat before you trust it? No rush.\n\nThe seasonal naive baseline. That's the forecast that simply repeats the same month from last year. If a clever model can't beat that, it isn't worth using. Keep that idea close today, because a neural network faces the same test."
+  },
+  {
+   "type": "concept",
+   "title": "A neuron is a weighted sum plus a bend",
+   "lead": "One neuron is a small calculation. It adds up its inputs, each multiplied by a weight, then bends the total.",
+   "points": [
+    {
+     "h": "Weights",
+     "t": "One multiplier per input. A big weight means that input matters."
+    },
+    {
+     "h": "Add up",
+     "t": "Multiply, add, then add one starting number, the bias."
+    },
+    {
+     "h": "Bend",
+     "t": "Squash the total into a score between 0 and 1."
+    }
+   ],
+   "notes": "The smallest piece of a neural network is one neuron.\n\nYou already build one in a spreadsheet. Take a few input cells, a column of multipliers beside them, and a SUMPRODUCT formula. Add one extra number on the end. That's the weighted sum.\n\nThe multipliers are called weights. A big weight says that input matters a lot. A weight below zero says that input pushes the answer down.\n\nThe extra number is called the bias. It sets where the neuron starts before any input arrives. This bias is a different idea from the bias in bias and variance. Here it is just a starting number.\n\nThen comes the bend. We take the total and squash it into a score between zero and one. You met that squash in Session 15 as the sigmoid curve. So a neuron is the logistic regression you already know, packaged as a small unit."
+  },
+  {
+   "type": "code",
+   "title": "One neuron by hand with NumPy",
+   "lang": "python",
+   "code": "import numpy as np\n\nx = np.array([2, 0.4, 0.6])\nw = np.array([0.9, -1.2, 1.5])\nb = -1.0\nz = np.dot(x, w) + b\nprint('weighted sum plus bias:', round(z, 2))\np = 1 / (1 + np.exp(-z))\nprint('after the bend:', round(p, 3))",
+   "output": "weighted sum plus bias: 1.22\nafter the bend: 0.772",
+   "says": [
+    "Three inputs for one loan: late payments, savings in millions, repayment burden. Three weights and a bias.",
+    "np.dot multiplies each pair and adds them up. It is SUMPRODUCT.",
+    "The sigmoid bends 1.22 into a score of 0.772."
+   ],
+   "notes": "We compute one neuron live, with no library except NumPy.\n\nWe describe one loan with three numbers. Two late payments, savings of four hundred thousand shillings written as zero point four million, and a repayment burden of zero point six. The weights say late payments and burden push risk up, and savings pushes it down. The bias is minus one.\n\nThe dot function multiplies each input by its weight and adds the results. It's SUMPRODUCT. Add the bias and the weighted sum is one point two two.\n\nThen the bend. One divided by one plus e to the power of minus z gives zero point seven seven two. So this neuron says the loan looks risky, with a score of about seventy seven percent. Every step was ours. A neural network is this calculation repeated many times."
+  },
+  {
+   "type": "figure",
+   "title": "Activation functions bend the total",
+   "fig": "activation_functions",
+   "look": [
+    "Sigmoid squashes any total into a score from 0 to 1.",
+    "Tanh does the same but runs from minus 1 to 1.",
+    "ReLU returns 0 for negative totals and passes positive ones through."
+   ],
+   "caption": "The bend is what lets a network learn more than a straight line.",
+   "alt": "Three small plots of the sigmoid, tanh and ReLU activation functions.",
+   "notes": "The bend has a proper name. It's called an activation function, and here are the three you will meet most.\n\nOn the left, the sigmoid. Whatever total goes in, a score between zero and one comes out. That's the one we just used.\n\nIn the middle, tanh. It has the same S shape, but the scores run from minus one to one.\n\nOn the right, ReLU. It looks odd, and it's the most popular of the three. If the total is below zero it gives zero. Above zero it passes the total straight through.\n\nWhy do we bend at all? Without a bend, stacking neurons would still give you a straight line, however many you stack. The bend is what lets a network draw curves."
+  },
+  {
+   "type": "concept",
+   "title": "Layers stack neurons into a network",
+   "lead": "Put neurons side by side and you have a layer. Feed one layer into the next and you have a network.",
+   "points": [
+    {
+     "h": "Input layer",
+     "t": "Your columns go in here. One node per column."
+    },
+    {
+     "h": "Hidden layers",
+     "t": "Neurons in the middle. They build new columns from the old ones."
+    },
+    {
+     "h": "Output",
+     "t": "The final score, such as the chance a loan defaults."
+    }
+   ],
+   "fig": "nn_diagram",
+   "alt": "Diagram of a neural network with three input nodes, two hidden layers of four nodes and one output node, all connected.",
+   "notes": "Next we stack them. The picture on the right shows a small network.\n\nOn the left are three input nodes. Think of them as three columns of your loans table. Every input connects to every neuron in the first hidden layer, and each line carries its own weight.\n\nA hidden layer is a row of neurons between the input and the answer. It's hidden because you never see its values in your data. In a spreadsheet it's like helper columns that you build from the original columns, then build more helper columns from those.\n\nHere there are two hidden layers of four neurons each. The last circle on the right is the output, the single score. A network is a pile of small weighted sums, each one bent. The weights are what training adjusts."
+  },
+  {
+   "type": "cycle",
+   "title": "Training is repeated small corrections",
+   "steps": [
+    {
+     "h": "Guess",
+     "t": "Run the loans through the network."
+    },
+    {
+     "h": "Measure",
+     "t": "Compute the loss, the size of the error."
+    },
+    {
+     "h": "Nudge",
+     "t": "Shift each weight a little to cut the loss."
+    },
+    {
+     "h": "Repeat",
+     "t": "Do it again with the new weights."
+    }
+   ],
+   "center": "One pass over all the data is an epoch",
+   "notes": "So how does a network find good weights? It starts with random ones, and then it corrects itself, over and over.\n\nFirst, it guesses. It runs the loans through with its current weights and produces a score for each.\n\nSecond, it measures. The loss is one number that says how wrong the guesses were. It's the total of your error column in a spreadsheet, the cell that Solver tries to shrink.\n\nThird, it nudges. Each weight moves a small step in the direction that makes the loss smaller.\n\nFourth, it repeats with the new weights. One full pass through all the data is called an epoch. A network may run for tens or hundreds of epochs. Each correction is tiny. The skill is in doing a great many of them."
+  },
+  {
+   "type": "code",
+   "title": "A teaching toy: one weight learns",
+   "lang": "python",
+   "code": "import numpy as np\n\nx, target = 2.0, 6.0\nw, lr = 0.0, 0.05\nfor step in range(1, 9):\n    pred = w * x\n    loss = (pred - target) ** 2\n    grad = 2 * (pred - target) * x\n    w = w - lr * grad\n    print(step, round(w, 3), round(loss, 3))",
+   "output": "1 1.2 36.0\n2 1.92 12.96\n3 2.352 4.666\n4 2.611 1.68\n5 2.767 0.605\n6 2.86 0.218\n7 2.916 0.078\n8 2.95 0.028",
+   "says": [
+    "One input, one weight, and a target of 6. The right weight is 3.",
+    "grad says which way, and how steeply, the loss slopes. lr is the learning rate.",
+    "The weight creeps toward 3 and the loss falls each step."
+   ],
+   "notes": "This is a teaching toy, a network with one weight, so you can watch training happen.\n\nThe input is two, and we want the answer to be six. So the perfect weight is three, but the computer doesn't know that. It starts the weight at zero.\n\nEach turn of the loop does the four steps we just saw. It predicts, then measures the loss as the squared error, then finds the slope, then moves the weight. The learning rate, lr, is the size of each step. Here it's zero point zero five.\n\nRead the printout. After step one the weight is one point two and the loss was thirty six. By step eight the weight is two point nine five and the loss is under three hundredths. The loss falls every step, and the steps get smaller as it nears the answer. A real network does this for thousands of weights at once."
+  },
+  {
+   "type": "figure",
+   "title": "Overfitting again: more flexibility, worse test",
+   "fig": "overfit_curve",
+   "look": [
+    "Training error stays low as the model gets more flexible.",
+    "Test error jumps once the model is too flexible.",
+    "A network with many neurons can memorise its training rows too."
+   ],
+   "caption": "Same lesson as Session 17: judge every model on rows it has not seen.",
+   "alt": "Two curves against model flexibility. Training error stays low and flat. Test error stays low, then jumps off the top of the chart.",
+   "notes": "You've met this picture before, in Session 17. Here the flexibility is the polynomial degree on the Jinja weeks, and the lesson matters even more for networks.\n\nThe dark line is training error. It stays low however flexible the model becomes.\n\nThe red line is test error. For the first few steps it follows the dark line. Then it shoots up. The model has stopped learning the pattern and started memorising the training rows.\n\nA network with many layers and many neurons has a huge number of weights, so it can memorise easily. It can score close to perfect on the data it trained on, and then do badly on a new loan.\n\nThe cure is the one you already know. Hold back a test set and trust only the test score. The Playground will let you see this happen with your own eyes."
+  },
+  {
+   "type": "concept",
+   "title": "TensorFlow Playground: watch a network learn",
+   "lead": "A free page in your browser. No login and nothing to install. Everything is drawn live.",
+   "points": [
+    {
+     "h": "Pick a data set",
+     "t": "Dots of two colours. The network must separate them."
+    },
+    {
+     "h": "Build the network",
+     "t": "Choose features, add hidden layers, set neurons per layer."
+    },
+    {
+     "h": "Press play",
+     "t": "Watch the epoch count rise and the colours settle."
+    }
+   ],
+   "notes": "TensorFlow Playground is a free page in your browser. It needs no login and nothing to install.\n\nYou begin by picking a data set. These are dots of two colours, and the network has to learn to separate the two groups.\n\nThen you build the network. You choose which features go in, you add hidden layers, and you choose how many neurons each layer gets. You can also set the learning rate, pick the activation function, and turn on something called regularisation, which discourages huge weights.\n\nThen you press play. Watch the epoch counter go up and the coloured background change as the network learns. Here you watch training happen. I'll show you one example, and then you try four challenges."
+  },
+  {
+   "type": "steps",
+   "title": "Playground: four challenges",
+   "tool": "TensorFlow Playground",
+   "time": "15 minutes",
+   "steps": [
+    "Circle: solve the circle data set with one hidden layer",
+    "Spiral: fail with a few neurons, then succeed by adding neurons and layers",
+    "Noise: raise the noise on a data set and watch it overfit",
+    "Rate: change the learning rate and activation and note what changes",
+    "Write what you saw for each in your notebook"
+   ],
+   "done": "Four short notes written, each saying what you changed and what happened.",
+   "notes": "Four challenges. Work in pairs if you like. The Playground is in your browser, and you'll record what you see in the notebook later.\n\nFirst, the circle data set. Solve it with one hidden layer. Try a few neurons and see how few you need.\n\nSecond, the spiral. It's much harder. Start with a small network and let it fail. Then add neurons and layers until it succeeds. Notice how long it takes.\n\nThird, noise. Raise the noise on a data set. Watch how the network starts to draw wiggly islands around single dots. That's overfitting, live. Then try regularisation and see if it calms down.\n\nFourth, change the learning rate and the activation function and say what happens.\n\nFor each one, write down what you changed and what you saw."
+  },
+  {
+   "type": "code",
+   "title": "A network in scikit-learn on the loan data",
+   "lang": "python",
+   "code": "from sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.neural_network import MLPClassifier\n\nmlp = make_pipeline(\n    SimpleImputer(strategy='median'),\n    StandardScaler(),\n    MLPClassifier(hidden_layer_sizes=(16, 8),\n                  max_iter=500, random_state=42))\nmlp.fit(X_train, y_train)",
+   "says": [
+    "Fill missing incomes, then scale every column. Networks need scaled inputs.",
+    "hidden_layer_sizes=(16, 8) means two hidden layers, 16 and 8 neurons.",
+    "fit trains it. Same fit and predict as every model so far."
+   ],
+   "notes": "Back to the Nile Microfinance loans. scikit-learn has a network called MLPClassifier. MLP stands for multi layer perceptron, which is just a network with hidden layers.\n\nWe use a pipeline, as in Session 19. First fill the missing incomes with the median. Then scale every column. Networks are fussy about this. If one column runs to millions of shillings and another is an age, the big column swamps the rest.\n\nThen the network itself. The hidden layer sizes are sixteen and eight, so two hidden layers. Max iter says how many epochs to allow at most. Random state forty two keeps your result repeatable.\n\nThe last line is fit, the same word as every model since Session 14. X train and y train come from the split in the lab. Your score should land near the loan models from Session 17, an AUC of about zero point seven six. Your own run will differ a little from mine."
+  },
+  {
+   "type": "code",
+   "title": "A mistake that stops the network",
+   "lang": "python",
+   "expect_error": true,
+   "code": "from sklearn.neural_network import MLPClassifier\n\nraw = MLPClassifier(max_iter=500, random_state=42)\nraw.fit(X_train_with_gaps, y_train)",
+   "says": [
+    "Raw columns still hold empty incomes. The network has no rule for a blank."
+   ],
+   "notes": "You'll meet this error sooner or later. This time we skip the imputer and the scaler and hand the loans straight to the network, with the empty incomes still in place.\n\nPython stops, and the last line of the message tells you the input contains NaN. That's the marker for a missing value. Some models in scikit-learn cope with gaps, but this one does not. A weighted sum has no way to add a blank.\n\nYou already know the fix. Fill the gaps first, as we did in Session 8, and put that step inside the pipeline so it can never be forgotten."
+  },
+  {
+   "type": "compare",
+   "title": "Network or forest on the loans table?",
+   "left": {
+    "h": "MLPClassifier",
+    "points": [
+     "Needs scaled, complete inputs",
+     "More settings to tune",
+     "Hard to explain a decision",
+     "Slower to train"
+    ]
+   },
+   "right": {
+    "h": "Random forest (Session 17)",
+    "points": [
+     "Needs little preparation",
+     "Good results with few settings",
+     "Feature importance to read",
+     "Fast on a table this size"
+    ]
+   },
+   "verdict": "On a table of 8,000 loans, expect scores within a few points of each other.",
+   "notes": "Let's put the two side by side, on the same loans.\n\nOn the left, the network. It needs complete and scaled inputs. It has more settings to tune, layers, neurons, learning rate, epochs. It's hard to explain why it refused one loan. And it's slower.\n\nOn the right, the forest from Session 17. It takes the table nearly as it comes. It does well with few settings. You can read its feature importance, with care. And on a table this size it trains in seconds.\n\nIn the lab you'll compare them yourselves. The verdict is a prediction. I expect scores within a few points of each other. If the network wins by a hair, ask whether it's worth the extra work."
+  },
+  {
+   "type": "concept",
+   "title": "Pretrained models: use them, do not train them",
+   "lead": "Training a large network needs millions of examples and a lot of computing. Someone has already done it.",
+   "points": [
+    {
+     "h": "Download once",
+     "t": "The model file is fetched the first time and kept in Colab."
+    },
+    {
+     "h": "Use it directly",
+     "t": "Hand it your image and it returns labels with scores."
+    },
+    {
+     "h": "Read the model card",
+     "t": "It states what the model was trained on and its licence."
+    }
+   ],
+   "notes": "Real image models have millions of weights and learn from millions of photos. Nobody in this room is going to train one, and you don't have to.\n\nThink of a pretrained model as a template workbook that someone else has already filled in with the right weights. You download it once, and then you use it.\n\nThe first time you run it, Colab downloads the model file. After that it's kept for the session. You hand it an image and it gives back labels with scores.\n\nOne duty before you use any model. Read the model card. That's a short page that says what data it learned from, what it's good at, and what licence it comes under. Some licences allow business use and some don't. In Uganda you also owe the Data Protection and Privacy Act of 2019 a thought if the images show people. Check before you build on it."
+  },
+  {
+   "type": "code",
+   "title": "Use a pretrained image classifier",
+   "lang": "python",
+   "code": "from google.colab import files\nfrom transformers import pipeline\n\nname = list(files.upload())[0]\nclassifier = pipeline('image-classification')\nprint(classifier(name)[:3])",
+   "says": [
+    "files.upload opens a file picker. Choose any photo of an object, with no people in it.",
+    "pipeline downloads the model once and wraps the network and its labels. It returns the best three guesses with scores."
+   ],
+   "notes": "Here's what using a pretrained model looks like. It's a few lines. I'm not running it live, because the first run downloads a model and that would take a while on our network, so look at the syntax.\n\nFirst, files dot upload opens a file picker in Colab. You choose any photo of an object from your phone, with no people in it, and the code keeps its file name.\n\nThen pipeline fetches the model once, loads it, and prepares the image for you. We ask for image classification and print the best three guesses with their scores.\n\nA reminder for your own use. The model downloads once, and you must read its model card and licence before relying on it. Treat the labels as suggestions, and check a few by eye."
+  },
+  {
+   "type": "compare",
+   "title": "Where deep learning is worth using",
+   "left": {
+    "h": "Use a deep network for",
+    "points": [
+     "Images and photos",
+     "Sound and speech",
+     "Free text and language"
+    ]
+   },
+   "right": {
+    "h": "Use a forest or regression for",
+    "points": [
+     "Tables like loans",
+     "Small data, a few thousand rows",
+     "Decisions you must explain"
+    ]
+   },
+   "verdict": "Deep learning is for raw images, sound and text. A table of loans is not that.",
+   "notes": "A word about scope before you leave.\n\nDeep learning shines where the input is raw and has no tidy columns. Images, with their thousands of pixels. Sound. Free text. In those fields nothing else comes close, and it's why you hear so much about it.\n\nYour loans table is different. It already has clean columns that a person chose, such as late payments and savings. For tables like this, a forest or a regression is usually as good as a network, and it's quicker, cheaper and easier to explain.\n\nSo the next time someone says we should use a neural network, ask what the input is. If it's a table, try the forest first. If it's photos or voice, then yes, and probably start from a pretrained model."
+  },
+  {
+   "type": "trap",
+   "title": "The network that scores 100 percent on training",
+   "looks": "You train a big network and print its accuracy on the training rows. It is near perfect, so you report it to your manager.",
+   "why": "A network with many weights can memorise its training rows. The score on data it has seen says nothing about a new loan.",
+   "fix": "Always report the score on a held back test set, and compare it with a simple baseline such as the forest.",
+   "notes": "This trap catches people on the day they first get a network working.\n\nYou build a large network, train it for many epochs, and print its accuracy on the same rows it learned from. The number is close to perfect. It feels like a triumph, and no error appears.\n\nBut a network with thousands of weights can simply memorise the answers. The training score tells you how well it remembers, and says nothing about a loan it has never met.\n\nThe fix is the same as in Sessions 14 and 17. Score on the test set, and compare against a plain baseline. If the test score is far below the training score, you've overfit.\n\nTell your manager the test number, every time."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: a neuron, a loop and a network",
+   "tool": "Google Colab and TensorFlow Playground",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 20 notebook and run the setup cell",
+    "Build one neuron in NumPy and change its weights",
+    "Run the training loop and try two learning rates",
+    "Record your four Playground results in the notebook",
+    "Fit MLPClassifier on the loans and score it",
+    "Compare it with the forest and write one sentence"
+   ],
+   "done": "Every check cell prints correct and your sentence names which model you would choose.",
+   "notes": "The first task is a function called neuron, the same weighted sum and bend you computed live. Open the Session 20 notebook, run the setup cell and start there. You have forty minutes in Google Colab.\n\nThe early tasks use NumPy only. You'll change a neuron's weights, then run the training loop from today with two learning rates, one that works and one that goes wrong.\n\nThen the Playground. Do your four challenges in the browser and write down what you saw in the notebook cell that's waiting for you.\n\nAfter that you fit the MLPClassifier on the loan data, score it on the test rows, and compare it with the random forest from Session 17. Your scores will land near what I described and differ a little. The last step is one sentence. Which model would you hand to a loans manager, and why?"
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "In plain words, what does one neuron do?",
+     "a": "It multiplies each input by a weight, adds them with a bias, then bends the total with an activation function."
+    },
+    {
+     "q": "What happens inside training, and what is an epoch?",
+     "a": "Guess, measure the loss, nudge the weights, repeat. An epoch is one full pass over the data."
+    },
+    {
+     "q": "Why might a forest beat a network on the loans table?",
+     "a": "Tables suit forests. They need less tuning, explain more easily, and score about as well."
+    }
+   ],
+   "notes": "One neuron, one round of training, and forest against network. One question for each idea.\n\nQuestion one. In plain words, what does one neuron do? Sit with it for a second.\n\nIt multiplies each input by a weight and adds them up with the bias. Then it bends the total with an activation function.\n\nQuestion two. What happens inside training, and what's an epoch? Give that a moment.\n\nThe network guesses, measures the loss, nudges the weights a little, and repeats. An epoch is one full pass over all the data.\n\nQuestion three. Why might a forest beat a network on the loans table? Think it over.\n\nBecause a table suits a forest. It needs less tuning, it's easier to explain, and it usually scores about as well."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "A neuron is a weighted sum plus a bend. Layers of them make a network.",
+    "Training repeats small corrections to the weights. Judge the result on test rows.",
+    "Use deep learning for images, sound and text. Use a pretrained model, and try a forest on tables."
+   ],
+   "next": "Text as data and meaning as numbers",
+   "notes": "One. A neuron is a weighted sum plus a bend, and layers of neurons make a network.\n\nTwo. Training is a great many small corrections to the weights, and you judge the result on rows the network has never seen, because it can overfit like any model.\n\nThree. Deep learning is for images, sound and text, and there you start from a pretrained model after reading its card. For a table like the loans, try the forest first.\n\nNext session we turn customer messages into numbers, so a computer can count words and compare meaning. Bring a few customer messages in mind that you would like to sort."
+  }
+ ],
+ "lab": {
+  "intro": "Build a neuron and a training loop with NumPy, record four TensorFlow Playground challenges, then fit a network on the loans and compare it with the forest. Your scores will land inside the ranges in the checks and differ a little from the class numbers.",
+  "cells": [
+   {
+    "md": "## Task 1. One neuron\nWrite a function `neuron(x, w, b)` that returns the sigmoid of the weighted sum plus the bias. Test it on a loan with inputs `[1, 0.8, 0.3]`, weights `[0.9, -1.2, 1.5]` and bias `-1.0`."
+   },
+   {
+    "code": "import numpy as np\n\ndef neuron(x, w, b):\n    z = np.dot(x, w) + b\n    return 1 / (1 + np.exp(-z))\n\nscore = neuron(np.array([1, 0.8, 0.3]), np.array([0.9, -1.2, 1.5]), -1.0)\nprint(round(score, 3))",
+    "starter": "import numpy as np\n\ndef neuron(x, w, b):\n    # Your turn: weighted sum with np.dot, add b, then apply the sigmoid\n    return None\n\nscore = neuron(np.array([1, 0.8, 0.3]), np.array([0.9, -1.2, 1.5]), -1.0)\nprint(score)\n"
+   },
+   {
+    "code": "assert score is not None, 'neuron returns None. Replace the return None line with the sigmoid of the weighted sum plus b'\nassert abs(score - 0.352) < 0.001, 'The score should be about 0.352. Check np.dot, the bias and the sigmoid formula 1 / (1 + exp(-z))'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Change the weights\nThe loan in Task 1 scores about 0.35. Change the first weight so the same loan scores above 0.9. Store the new score in `new_score`."
+   },
+   {
+    "code": "new_score = neuron(np.array([1, 0.8, 0.3]), np.array([4.5, -1.2, 1.5]), -1.0)\nprint(round(new_score, 3))",
+    "starter": "# Your turn: call neuron again with a bigger first weight. Store the result in new_score\n"
+   },
+   {
+    "code": "assert new_score > 0.9, 'new_score should be above 0.9. Call neuron again with a bigger first weight and keep the other numbers'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. A training loop\nOne weight must learn that 2 times the weight gives 6. Start at `w = 0.0`, use a learning rate of 0.05 and run 8 steps. Store the final weight in `w`."
+   },
+   {
+    "code": "x, target = 2.0, 6.0\nw, lr = 0.0, 0.05\nfor step in range(8):\n    pred = w * x\n    grad = 2 * (pred - target) * x\n    w = w - lr * grad\nprint(round(w, 3))",
+    "starter": "x, target = 2.0, 6.0\nw, lr = 0.0, 0.05\nfor step in range(8):\n    # Your turn: predict, find the slope of the loss, then move w against the slope\n    pass\nprint(round(w, 3))\n"
+   },
+   {
+    "code": "assert 2.9 < w < 3.0, 'After 8 steps w should be close to 3 but still below it. Move w against the slope: w = w - lr * slope'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. A learning rate that is too big\nRun the same loop with `lr = 0.5` and store the final loss in `loss_big`, where the loss is `(w * x - target) ** 2`. Print the weight at each step, then add a text cell and write down what happens."
+   },
+   {
+    "code": "w, lr = 0.0, 0.5\nfor step in range(8):\n    pred = w * x\n    grad = 2 * (pred - target) * x\n    w = w - lr * grad\nloss_big = (w * x - target) ** 2\nprint(round(loss_big, 1))",
+    "starter": "w, lr = 0.0, 0.5\n# Your turn: run the same loop with the bigger step, then store the final loss in loss_big\n"
+   },
+   {
+    "code": "assert loss_big > 100, 'loss_big should be above 100. With lr = 0.5 each step overshoots, so run all 8 steps and use the final w'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Playground results\nOpen TensorFlow Playground in your browser. Add a text cell below and record each challenge in your own words: what you changed and what you saw.\n\n1. Circle, one hidden layer: \n2. Spiral, small network then bigger: \n3. Noise raised, overfitting: \n4. Learning rate and activation changed: "
+   },
+   {
+    "md": "## Task 6. Prepare the loan data\nLoad `loans.csv`. Keep ages from 18 to 100. Drop the column `collection_calls`, which leaks the answer. Build `X` from the remaining numeric columns and `y` from `default`, then split 75 and 25 with `random_state=42`."
+   },
+   {
+    "code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\n\nloans = pd.read_csv('loans.csv')\nloans = loans[(loans.age >= 18) & (loans.age <= 100)]\ncols = ['age', 'monthly_income_ugx', 'loan_amount_ugx', 'term_months',\n        'previous_loans', 'previous_late_payments', 'group_loan',\n        'savings_balance_ugx', 'has_mobile_money', 'distance_to_branch_km']\nX = loans[cols]\ny = loans['default']\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, random_state=42)\nprint(X_train.shape, X_test.shape)",
+    "starter": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\n\nloans = pd.read_csv('loans.csv')\n# Your turn: keep ages 18 to 100\n# Your turn: put the ten numeric columns, without collection_calls, in cols\ncols = []\n# Your turn: make X and y, then split 75 and 25 with random_state=42\n"
+   },
+   {
+    "code": "assert 'collection_calls' not in X.columns, 'Leave collection_calls out of X: it leaks the answer'\nassert 7900 < len(X) < 8000, 'Keep ages 18 to 100 and put the ten numeric columns in cols (X should have just under 8,000 rows)'\nassert abs(len(X_test) / len(X) - 0.25) < 0.01, 'Split 75 and 25 with test_size=0.25'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Fit the network\nBuild a pipeline of a median imputer, a standard scaler and `MLPClassifier(hidden_layer_sizes=(16, 8), max_iter=500, random_state=42)`. Fit it, then store the AUC on the test rows in `auc_mlp`."
+   },
+   {
+    "code": "from sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import roc_auc_score\n\nmlp = make_pipeline(\n    SimpleImputer(strategy='median'),\n    StandardScaler(),\n    MLPClassifier(hidden_layer_sizes=(16, 8), max_iter=500, random_state=42))\nmlp.fit(X_train, y_train)\nauc_mlp = roc_auc_score(y_test, mlp.predict_proba(X_test)[:, 1])\nprint(round(auc_mlp, 3))",
+    "starter": "from sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.neural_network import MLPClassifier\nfrom sklearn.metrics import roc_auc_score\n\n# Your turn: build mlp, a pipeline of the imputer, the scaler and the network, and fit it on the training rows\n# Your turn: store the AUC of the predicted probabilities on the test rows in auc_mlp\n"
+   },
+   {
+    "code": "assert 0.65 <= auc_mlp <= 0.85, 'auc_mlp should be between 0.65 and 0.85. Did you scale, fit on the training rows, and score the test rows with predict_proba?'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Compare with the forest\nFit the random forest from Session 17 on the same rows, using the same imputer, and store its test AUC in `auc_rf`."
+   },
+   {
+    "code": "from sklearn.ensemble import RandomForestClassifier\n\nrf = make_pipeline(\n    SimpleImputer(strategy='median'),\n    RandomForestClassifier(n_estimators=200, random_state=42))\nrf.fit(X_train, y_train)\nauc_rf = roc_auc_score(y_test, rf.predict_proba(X_test)[:, 1])\nprint(round(auc_mlp, 3), round(auc_rf, 3))",
+    "starter": "from sklearn.ensemble import RandomForestClassifier\n\n# Your turn: build rf, a pipeline of the same imputer and a random forest of 200 trees with random_state=42\n# Your turn: fit it on the training rows, then store the test AUC in auc_rf\n"
+   },
+   {
+    "code": "assert 0.65 <= auc_rf <= 0.85, 'auc_rf should be between 0.65 and 0.85. Score the test rows with predict_proba'\nassert abs(auc_mlp - auc_rf) < 0.12, 'The two AUCs should be within 0.12 of each other. Check both used the same split'\nprint('Task 8 correct')"
+   },
+   {
+    "md": "## Task 9. Reflect\nWrite one sentence: which model would you give a loans manager, and why? Mention the scores, the effort to tune and how easily each can be explained."
+   },
+   {
+    "md": "## Task 10 (optional). A pretrained model, used and checked\nThis cell needs Colab and an internet connection, and it opens a second file picker for your photo. Upload one photo of an everyday object. Run the pipeline from the slide, read the three labels, and write one sentence on whether you would trust them."
+   },
+   {
+    "code": "from google.colab import files\nfrom transformers import pipeline\n\nname = list(files.upload())[0]\nclassifier = pipeline('image-classification')\nprint(classifier(name)[:3])",
+    "starter": "# Your turn: upload one photo, load the image-classification pipeline and print its best three guesses\n"
+   }
+  ]
+ }
+}

@@ -1,3 +1,5 @@
+NOTE (4 Nov 2026): this folder is the October 2026 build and is superseded by ../KLAi Build. Its documents and its assessment wording (checkpoints, rubric) are no longer used. The course has no assessment.
+
 AUTHORING SOURCES: HOW THE COURSE IS BUILT
 
 Everything students and the tutor see is generated from files in this folder. Edit a source, rebuild, check.

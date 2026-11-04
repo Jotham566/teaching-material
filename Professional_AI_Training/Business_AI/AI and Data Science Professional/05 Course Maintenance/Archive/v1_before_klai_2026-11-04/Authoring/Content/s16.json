@@ -1,0 +1,412 @@
+{
+ "session": 16,
+ "notes_title": "Last time you built models that give each loan a probability of default. Today's question is harder. How do we tell a model that works from one that only looks good? We stay with the Nile Microfinance loans. By the end you'll read a confusion matrix, say what precision and recall mean in plain words, and catch a model that cheats.",
+ "notes_outcomes": "You'll read a confusion matrix and work out precision and recall from its four counts. You'll choose between precision, recall and AUC by asking what each mistake costs. And you'll find and remove a leaked column, then test the model with cross-validation. The live part does the division by hand before any library appears, and the leak hunt comes after the ROC curve. In the lab you hunt the leak yourself and then draw the ROC curve for the model without it.",
+ "notes_words": "Eight words today. A confusion matrix is a count table of right and wrong answers, like a COUNTIFS table. Precision asks how many of our flags were right. Recall asks how many real defaulters we caught. The ROC curve and its area, AUC, judge a model at every threshold at once. Class weight makes rare cases count more. Data leakage means a column hides the answer. Cross-validation means testing several times on different parts of the data.",
+ "vocab": [
+  [
+   "Confusion matrix",
+   "A count table of right and wrong answers.",
+   "A COUNTIFS table"
+  ],
+  [
+   "Precision",
+   "Of the loans flagged, the share that defaulted.",
+   "Hits divided by flags"
+  ],
+  [
+   "Recall",
+   "Of the loans that defaulted, the share flagged.",
+   "Hits divided by defaults"
+  ],
+  [
+   "ROC curve",
+   "Defaults caught against false alarms, at every threshold.",
+   null
+  ],
+  [
+   "AUC",
+   "The area under the ROC curve. 0.5 is a coin flip.",
+   null
+  ],
+  [
+   "Class weight",
+   "A setting that makes rare cases count more as the model learns.",
+   null
+  ],
+  [
+   "Data leakage",
+   "A column that hides the answer.",
+   "A Paid column predicting payment"
+  ],
+  [
+   "Cross-validation",
+   "Testing several times on different parts.",
+   null
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 15",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "A logistic regression gives each loan a number between 0 and 1. What is that number?",
+     "a": "A probability of default. A threshold turns it into a yes or no."
+    },
+    {
+     "q": "How did you choose your threshold last time?",
+     "a": "From the cost of a missed default compared with the cost of turning away a good customer."
+    }
+   ],
+   "notes": "Last session's probabilities and thresholds come first, then we judge those models properly.\n\nFirst. A logistic regression gives every loan a number between zero and one. What is that number? Have a think.\n\nIt's the model's probability that the loan defaults. A threshold turns that probability into a yes or no. Pick a threshold of point two and every loan at or above point two gets flagged.\n\nSecond. How did you choose your threshold? Sit with it for a second.\n\nYou chose it from costs. Missing a defaulter costs one thing. Turning away a good customer costs another. Today we put numbers on both mistakes, and we find out why a model that looks wonderful can still be useless."
+  },
+  {
+   "type": "code",
+   "title": "A model that never works can score 87 percent",
+   "lang": "python",
+   "code": "import pandas as pd\n\nloans = pd.read_csv('loans.csv')\nprint(loans.default.value_counts())\nalways_no = (loans.default == 0).mean()\nprint('Always say no:', round(always_no, 4))",
+   "output": "default\n0    6996\n1    1004\nName: count, dtype: int64\nAlways say no: 0.8745",
+   "says": [
+    "Count the loans that were repaid (0) and defaulted (1).",
+    "A lazy model says no default for every loan. This is how often it is right."
+   ],
+   "notes": "Let's start with a trick question. Take a model that does no work at all.\n\nWe load the Nile Microfinance loans and count the outcomes. Six thousand nine hundred and ninety six loans were repaid, and one thousand and four defaulted.\n\nNow imagine a lazy model that says no default for every single loan. It's right whenever the loan is repaid. That's about eighty seven and a half percent of the time. It never finds one defaulter, and it still gets a score that looks like a good exam mark.\n\nSo the score called accuracy, which is the share of answers that are right, can't tell us whether a model is any use when the thing we hunt for is rare."
+  },
+  {
+   "type": "figure",
+   "title": "Defaults are rare, so accuracy flatters",
+   "fig": "class_imbalance",
+   "look": [
+    "Most loans are repaid. That bar is tall.",
+    "About one loan in eight defaults.",
+    "A model can ignore the short bar and still look good."
+   ],
+   "caption": "87.5 percent repaid, 12.5 percent defaulted. This lopsided split is class imbalance.",
+   "alt": "Two bars showing most loans are repaid and about one in eight defaults.",
+   "notes": "The same split makes a picture. You've met this lopsided split before. It's the class imbalance we saw in Session 14, where one outcome is much rarer than the other.\n\nThe tall bar is the repaid loans. Nearly everything sits there.\n\nThe short bar is the defaults. About one loan in eight, and that's the group the lender worries about.\n\nA model can ignore that short bar entirely and still score high. In a spreadsheet, it's like averaging a whole column and never looking at the few rows that matter. We need measures that look at the short bar on purpose."
+  },
+  {
+   "type": "matrix",
+   "title": "The confusion matrix counts every kind of right and wrong",
+   "cells": {
+    "tp": [
+     "Defaulter, flagged",
+     120
+    ],
+    "fn": [
+     "Defaulter, missed",
+     155
+    ],
+    "fp": [
+     "Repaid, flagged",
+     142
+    ],
+    "tn": [
+     "Repaid, cleared",
+     1583
+    ]
+   },
+   "pos": "Default",
+   "neg": "No default",
+   "side": "A typical run: yours will be close but not identical. 2,000 test loans, flagged at threshold 0.2.",
+   "notes": "This table is the most useful picture in model judging. It's called a confusion matrix, and it's just a count table. In Excel you'd build it with COUNTIFS.\n\nThe columns are what the model said, and the rows are what really happened. These numbers come from a typical run at a threshold of point two on two thousand test loans. Yours will be close but not identical.\n\nTop left. One hundred and twenty defaulters that the model flagged. Good catches.\n\nTop right. One hundred and fifty five defaulters the model missed. These are the expensive ones, because the lender lends and never gets the money back.\n\nBottom left. One hundred and forty two good customers flagged by mistake. These are false alarms, and each one is a customer we might turn away.\n\nBottom right. Fifteen hundred and eighty three good customers rightly cleared.\n\nNotice the total of defaulters in the test set is one hundred and twenty plus one hundred and fifty five, which is two hundred and seventy five. The matrix shows us what accuracy hid."
+  },
+  {
+   "type": "compare",
+   "title": "Two mistakes with two different costs",
+   "left": {
+    "h": "A missed default",
+    "points": [
+     "The loan is not repaid",
+     "A typical defaulted loan is about 1.6 million UGX",
+     "Learned months later"
+    ]
+   },
+   "right": {
+    "h": "A false alarm",
+    "points": [
+     "A good customer is turned away",
+     "Interest income is lost",
+     "The customer may go to a rival"
+    ]
+   },
+   "verdict": "The costs differ. The cost you fear more decides which number you watch.",
+   "notes": "Before we name any measure, look at what each mistake costs the lender.\n\nA missed default means the money goes out and doesn't come back. The typical defaulted loan in our file is about one point six million shillings. You learn about it months later, when it's too late to act.\n\nA false alarm turns away a good customer. The lender loses the interest on that loan, and the customer might walk to a rival.\n\nIn most lending, the first mistake costs more than the second, but not always. A lender short of cash may fear false alarms more. Which mistake you fear decides which measure you watch."
+  },
+  {
+   "type": "code",
+   "title": "Precision and recall from the four counts",
+   "lang": "python",
+   "code": "tp, fp, fn, tn = 120, 142, 155, 1583\n\nprecision = tp / (tp + fp)\nrecall = tp / (tp + fn)\naccuracy = (tp + tn) / (tp + fp + fn + tn)\n\nprint('precision', round(precision, 3))\nprint('recall', round(recall, 3))\nprint('accuracy', round(accuracy, 3))",
+   "output": "precision 0.458\nrecall 0.436\naccuracy 0.852",
+   "says": [
+    "Type in the four counts from the matrix.",
+    "Each measure is one division.",
+    "Accuracy is the one we already knew."
+   ],
+   "notes": "We'll compute the measures ourselves, with just the four counts and some division.\n\nHere are the four counts from the matrix, stored under their short names. TP means true positive, a defaulter we flagged. FP is a false alarm. FN is a missed default. TN is a good customer cleared.\n\nPrecision is flagged defaulters divided by everything we flagged. Recall is flagged defaulters divided by all the defaulters there were. You could write both as a COUNTIFS over a COUNTIF in Sheets.\n\nAccuracy is everything right divided by everything. The answers are point four five eight for precision, point four three six for recall, and point eight five two for accuracy. Compare that accuracy with the lazy model's. The lazy model beats it, at about eighty six percent on this test set. Yet this model finds defaulters and the lazy one finds none."
+  },
+  {
+   "type": "concept",
+   "title": "Precision and recall in plain words",
+   "lead": "Each answers a different question about the same flags.",
+   "points": [
+    {
+     "h": "Precision",
+     "t": "Of the loans we flagged, how many really defaulted? Here 120 of 262."
+    },
+    {
+     "h": "Recall",
+     "t": "Of the loans that really defaulted, how many did we catch? Here 120 of 275."
+    },
+    {
+     "h": "Choose by cost",
+     "t": "Fear missed defaults? Watch recall. Fear false alarms? Watch precision."
+    }
+   ],
+   "notes": "Let's say both in plain words.\n\nPrecision asks, when the model raises a flag, how often is it right? Of the two hundred and sixty two loans flagged, one hundred and twenty really defaulted. Think of a smoke alarm. High precision means when it rings, there's a fire.\n\nRecall asks, of all the real defaulters, how many did we catch? Of two hundred and seventy five, we caught one hundred and twenty. High recall means the alarm rarely stays silent during a fire.\n\nYou choose by cost. If missing a defaulter hurts most, watch recall. If turning away good customers hurts most, watch precision. You can almost never push both to the top at once, and the next picture shows why."
+  },
+  {
+   "type": "figure",
+   "title": "Moving the threshold trades precision for recall",
+   "fig": "threshold_tradeoff",
+   "look": [
+    "At a low threshold we flag many loans. Recall is high and precision is low.",
+    "At a high threshold we flag few loans. Precision rises and recall falls.",
+    "The lines cross near 0.2, the threshold we used."
+   ],
+   "alt": "Two curves: recall falls and precision rises as the decision threshold increases.",
+   "notes": "You met this trade last session. Now both lines have names. The red line is recall and the blue line is precision.\n\nStart at the left, where the threshold is low. We flag almost every loan, so we catch most defaulters, and recall is high. But most of our flags are false alarms, so precision is low.\n\nMove right. We flag only the loans we're very sure about. Precision climbs, because those flags are mostly right. Recall falls, because many defaulters slip below the line.\n\nThe two lines cross close to point two. That's the threshold we chose for the matrix. Where you stand on this picture is a business decision, and it comes from the costs we just talked about."
+  },
+  {
+   "type": "concept",
+   "title": "ROC and AUC judge the model at every threshold at once",
+   "lead": "Precision and recall depend on one threshold. The ROC curve removes that choice.",
+   "points": [
+    {
+     "h": "ROC curve",
+     "t": "Slide the threshold from high to low. Plot defaults caught against false alarms."
+    },
+    {
+     "h": "AUC",
+     "t": "The area under that curve. 0.5 is a coin flip. 1.0 is perfect."
+    },
+    {
+     "h": "Read it",
+     "t": "AUC is the chance that a random defaulter scores higher than a random repaid loan."
+    }
+   ],
+   "notes": "Precision and recall describe one threshold. Often we want one number that judges the model before we choose a threshold at all. That's the job of the ROC curve.\n\nImagine sliding the threshold from very high to very low. At each position you note two things. How many defaulters you caught, and how many good customers you wrongly flagged. Plot those points and join them. That's the ROC curve.\n\nThe area under the curve is called AUC. A coin flip gives point five. A perfect model gives one.\n\nA plain way to read it is this. Pick one defaulter and one repaid loan at random. AUC is the chance that the model gave the defaulter the higher risk score. In a spreadsheet you'd sort by risk score and look at how well the defaulters rise to the top."
+  },
+  {
+   "type": "figure",
+   "title": "An AUC of 0.995 should make you suspicious",
+   "fig": "roc_honest_vs_leaky",
+   "look": [
+    "The blue curve is the model without the extra column. Its AUC is about 0.76.",
+    "The red curve hugs the top left corner. Its AUC is about 0.995.",
+    "Same loans, same method. One extra column made the difference."
+   ],
+   "caption": "Typical run. Your numbers will be close and will differ a little.",
+   "alt": "Two ROC curves. The leaky model hugs the top-left corner, far above the honest model.",
+   "notes": "Here are two models drawn on the same picture, on the same loans. Which one would you rather deploy? Give that a moment.\n\nThe blue line is the model without the extra column. Its AUC is about point seven six. That's decent. It ranks defaulters above repaid loans about three times in four.\n\nThe red line leaps up the left edge and runs along the top. Its AUC is about point nine nine five. It's almost perfect.\n\nBoth used the same loans and the same method. The red one had one extra column. Predicting who defaults from a customer's file is hard, and nobody gets near perfect. When a result looks too good, our first thought must be that something is wrong. Let's find that column."
+  },
+  {
+   "type": "code",
+   "title": "Defaulters have far more collection calls",
+   "lang": "python",
+   "code": "print(loans.groupby('default').collection_calls.mean().round(2))\ncorr = loans.corr(numeric_only=True)['default'].abs()\nprint(corr.nlargest(3).round(3))",
+   "output": "default\n0    0.24\n1    4.55\nName: collection_calls, dtype: float64\ndefault             1.000\ncollection_calls    0.872\nloan_amount_ugx     0.211\nName: default, dtype: float64",
+   "says": [
+    "Average collection calls for repaid (0) and defaulted (1) loans.",
+    "Rank the columns by how strongly they move with default."
+   ],
+   "notes": "Let's investigate with pandas. First, the average number of collection calls for repaid loans and for defaulted loans.\n\nA repaid loan averages about a quarter of a call. A defaulted loan averages four and a half calls. That's roughly nineteen times as many.\n\nThe second block ranks the number columns by how strongly they move with default. Default matches itself perfectly, so it comes first. Then collection calls at about point eight seven. The next column, the loan amount, is only about point two one.\n\nThat one column stands far above the rest. And then comes the key question. When is a collection call made? Think about the answer before you read on."
+  },
+  {
+   "type": "code",
+   "title": "Every defaulter had at least one call",
+   "lang": "python",
+   "code": "flagged_by_calls = loans.collection_calls > 0\nprint(loans.groupby('default').collection_calls.max())\nprint(loans[loans.default == 1].collection_calls.min())\nprint(round(flagged_by_calls[loans.default == 0].mean(), 2))",
+   "output": "default\n0     5\n1    12\nName: collection_calls, dtype: int64\n1\n0.21",
+   "says": [
+    "The most calls in each group.",
+    "The fewest calls any defaulter had.",
+    "Share of repaid loans that had a call."
+   ],
+   "notes": "One more look, to be sure.\n\nThe first result gives the most calls in each group. Repaid loans top out at five, and defaulters reach twelve.\n\nThe second result is the fewest calls any defaulter had. It's one, so every defaulter was called at least once.\n\nThe third is the share of repaid loans that had a call, about twenty one percent. So a loan with zero calls is almost surely fine.\n\nThe data dictionary explains why. Collection calls are made only after a loan goes bad. When we use that column to predict default, we hand the model the answer. And when the lender needs a prediction, at the moment of approval, that column doesn't exist yet."
+  },
+  {
+   "type": "trap",
+   "title": "Data leakage: the model that peeks at the answer",
+   "looks": "You add every column, train, and see an AUC near 0.995. It runs with no error and the score looks like a triumph.",
+   "why": "A column such as collection_calls is only recorded after a loan goes bad. The model reads the outcome through it. This is data leakage. It will fail on new loans, where that column is still empty.",
+   "fix": "Ask of every column: would I know this at the moment I make the prediction? Drop any that fail. Treat a score that is too good as a warning and look for the leak before you celebrate.",
+   "notes": "Today's trap throws no error at all.\n\nYou add every column to the model, as you might add every column to a pivot table. The score comes back near point nine nine five. It looks like a triumph, and you might send it to your manager.\n\nThe problem is that collection calls happen after the loan goes bad. The model isn't predicting default. It's reading the result of default through a side door. We call this data leakage. On the day a new loan is approved, no calls have been made, and the model collapses.\n\nThe fix is a question you ask about every column. Would I know this at the moment I make the prediction? If not, drop it.\n\nA model that looks too good is a warning sign. Data about people is messy, so a near perfect score is suspect. When the result is that good, look for the leak first."
+  },
+  {
+   "type": "code",
+   "title": "Class weights and thresholds handle rare events",
+   "lang": "python",
+   "code": "from sklearn.linear_model import LogisticRegression\n\nplain = LogisticRegression(max_iter=1000)\nweighted = LogisticRegression(max_iter=1000, class_weight='balanced')\nweighted.fit(X_train, y_train)\nprob = weighted.predict_proba(X_test)[:, 1]\nflag = prob >= 0.2",
+   "says": [
+    "The usual model, and one that is told defaults matter more.",
+    "balanced makes each default count about as much as seven repaid loans.",
+    "Then choose the threshold yourself from the costs."
+   ],
+   "notes": "Two tools help when one outcome is rare. This code is for you to read now and run in the lab. The numbers will be close to those on our slides but not identical.\n\nThe first model is the one you know. The second adds class weight set to balanced.\n\nThe setting is called class weight. It tells the model to treat each default as more important, in proportion to how rare defaults are. Here, one default counts about as much as seven repaid loans. The model then pays attention to the short bar.\n\nThe second tool is the threshold. We take the probabilities and flag any loan at or above point two. Lowering the threshold is the quickest way to catch more defaulters, and we pay with more false alarms."
+  },
+  {
+   "type": "figure",
+   "title": "Cross-validation tests the model five times",
+   "fig": "cv_folds",
+   "look": [
+    "Split the loans into five equal parts.",
+    "Each part takes one turn as the test part.",
+    "Average the five scores."
+   ],
+   "alt": "Five bars, each with a different fifth highlighted as the test fold.",
+   "caption": "One split can be lucky or unlucky. Five give a steadier score.",
+   "notes": "One more idea. So far we split once, into training and test. One split can be lucky. Cross-validation is a fix for that. It means testing the model several times on different parts.\n\nWe cut the loans into five equal parts. Statisticians call each part a fold.\n\nIn round one, the gold part is the test and the blue parts train the model. In round two, a different part takes the test seat. After five rounds, every loan has been in a test part exactly once.\n\nThen we average the five scores. If the five scores are close, we trust the result. If they jump around, the model is shaky. It's like checking a sum five times with five different calculators."
+  },
+  {
+   "type": "code",
+   "title": "Cross-validation in one line",
+   "lang": "python",
+   "code": "from sklearn.model_selection import cross_val_score\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\nmodel = make_pipeline(SimpleImputer(strategy='median'), StandardScaler(),\n                      LogisticRegression(max_iter=1000))\nscores = cross_val_score(model, X, y, cv=5, scoring='roc_auc')\nprint(scores.round(2), scores.mean().round(2))",
+   "says": [
+    "The pipeline fills blanks, scales the numbers, then fits the model.",
+    "cv=5 means five folds. roc_auc asks for AUC.",
+    "Five scores, then their average."
+   ],
+   "notes": "One call does all five rounds.\n\nFirst we build a small pipeline, which is a chain of steps that run in order. Session 19 returns to it. This one fills the blank incomes with the median, scales the numbers to a similar size, and fits the logistic regression. You met the median in Session 3.\n\nThen cross_val_score does the five rounds. We set cv to five, and ask for the AUC as the score.\n\nIt returns five numbers, and we print them with their average. Without the leaked column, expect an average near point seven six, with the five scores close together. Add collection calls to X, and the average jumps above point nine five. You know what that jump means."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: catch the leak and judge the model",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 16 notebook and run the setup cell",
+    "Check how rare defaults are",
+    "Find the leaking column with pandas",
+    "Work out precision and recall by hand with numpy",
+    "Cross-validate without the leak, then with it",
+    "Draw the ROC and count the matrix at 0.2"
+   ],
+   "done": "You can name the leaking column, say why, and show the AUC before and after.",
+   "notes": "The first task asks how rare defaults are. You load loans.csv and find the share that were repaid, the eighty seven percent we saw earlier. Run the setup cell in the Session 16 notebook first. Task two hunts for the leaking column with correlations, and task three shows why it leaks.\n\nTask four is my favourite. A simple rule flags any loan with a previous late payment, and you count the four cells of the confusion matrix in numpy and work out precision and recall yourself.\n\nTasks five and six cross-validate the model, first without the leaked column and then with it, and you compare the two AUC averages. Task seven draws the ROC curve for the model without the leak and counts its confusion matrix at a threshold of point two. The checks accept a range, because your numbers will be close to mine but will differ a little.\n\nThe last task is a few sentences, including whether you would watch precision or recall. You have forty minutes, and I'm around when an error stops you."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A model is right 87 percent of the time on loans where 12.5 percent default. Is that good?",
+     "a": "Not on its own. Always saying no scores the same. Look at precision and recall."
+    },
+    {
+     "q": "Your model finds 120 of 275 defaulters and flags 262 loans. Give precision and recall.",
+     "a": "Precision is 120 out of 262, about 0.46. Recall is 120 out of 275, about 0.44."
+    },
+    {
+     "q": "Your AUC jumps from 0.76 to 0.995 after adding one column. What do you do?",
+     "a": "Suspect leakage. Ask whether you would know that column at prediction time."
+    }
+   ],
+   "notes": "Question one is about an accuracy score, question two about a pair of counts, and question three about an AUC that jumped. Answer each in your head before I give mine.\n\nOne. A model is right eighty seven percent of the time on loans where one in eight defaults. Is that good? No rush.\n\nNot on its own. A model that always says no scores the same. Look at precision and recall.\n\nTwo. Your model finds one hundred and twenty of two hundred and seventy five defaulters, and flags two hundred and sixty two loans. Give the precision and the recall. Think it over.\n\nPrecision is one hundred and twenty out of two hundred and sixty two, about point four six. Recall is one hundred and twenty out of two hundred and seventy five, about point four four.\n\nThree. Your AUC jumps from point seven six to point nine nine five after you add one column. What do you do? Work it through first.\n\nSuspect leakage. Ask whether you would know that column at the moment of prediction. If you wouldn't, drop it."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Accuracy fails on rare events. Read the confusion matrix, then precision, recall and AUC.",
+    "Choose precision or recall by the cost of each mistake, and move the threshold to match.",
+    "A score that is too good is a warning. Hunt for leakage, and cross-validate."
+   ],
+   "next": "Forests, boosting and overfitting",
+   "notes": "One. Accuracy fails on rare events. Open the confusion matrix and read precision, recall and AUC.\n\nTwo. Choose between precision and recall by the cost of each mistake, and move the threshold to match. That's a business decision and you make it.\n\nThree. A score that looks too good is a warning sign. Check every column against the question, would I know this at prediction time, and cross-validate before you trust a number.\n\nNext session we build stronger models, forests and boosting, and meet the opposite danger. A model can learn the training data too well and fail on new loans. Bring today's matrix, because we'll use it all the time."
+  }
+ ],
+ "lab": {
+  "intro": "Find the column that leaks the answer, work out precision and recall by hand, cross-validate the model with and without the leak, then draw the ROC curve and count the confusion matrix at one threshold.",
+  "cells": [
+   {
+    "md": "## Task 1. How rare are defaults?\nLoad `loans.csv` into `loans`. Store the share of loans that were repaid (`default == 0`) in `share_repaid`."
+   },
+   {
+    "code": "import pandas as pd\nimport numpy as np\n\nloans = pd.read_csv('loans.csv')\nshare_repaid = (loans.default == 0).mean()\nprint(round(share_repaid, 3))",
+    "starter": "import pandas as pd\nimport numpy as np\n\n# Your turn: read loans.csv into a DataFrame called loans\n# Your turn: share_repaid is the share of loans where default is 0\n"
+   },
+   {
+    "code": "assert loans.shape == (8000, 18), 'Read loans.csv into loans. It should have 8000 rows and 18 columns'\nassert 0.87 < share_repaid < 0.88, 'share_repaid should be the mean of a True or False test on default, near 0.875'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Find the column that leaks\nCorrelate every number column with `default`. Keep the absolute values without `default` itself, sort largest first, and store the name of the top column in `leak`."
+   },
+   {
+    "code": "corr = loans.corr(numeric_only=True)['default'].drop('default').abs().sort_values(ascending=False)\nleak = corr.index[0]\nprint(corr.head(3).round(3))\nprint(leak)",
+    "starter": "# Your turn: find the correlation of every number column with default\n# Your turn: drop default itself, take absolute values, and sort largest first\n# Your turn: leak is the name of the top column\n"
+   },
+   {
+    "code": "assert leak == 'collection_calls', 'Drop default itself, use absolute values, sort largest first, then take the first name of the index'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Show why it leaks\nFind the average `collection_calls` for repaid and for defaulted loans, in `calls_by_outcome`. Then store in `min_calls_defaulters` the fewest calls any defaulter had."
+   },
+   {
+    "code": "calls_by_outcome = loans.groupby('default').collection_calls.mean()\nmin_calls_defaulters = loans[loans.default == 1].collection_calls.min()\nprint(calls_by_outcome.round(2))\nprint(min_calls_defaulters)",
+    "starter": "# Your turn: calls_by_outcome is the average collection_calls for each value of default\n# Your turn: min_calls_defaulters is the fewest collection_calls among loans with default equal to 1\n"
+   },
+   {
+    "code": "assert calls_by_outcome[1] > 4 and calls_by_outcome[0] < 0.5, 'calls_by_outcome should show defaulters averaging over 4 calls and repaid loans under 0.5'\nassert min_calls_defaulters == 1, 'min_calls_defaulters is the smallest collection_calls among defaulters only. Every defaulter has at least one call'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Precision and recall by hand\nA simple rule flags a loan when `previous_late_payments` is 1 or more. Using numpy, count `tp`, `fp`, `fn` and `tn` against `default`. Then compute `precision` and `recall`."
+   },
+   {
+    "code": "flag = (loans.previous_late_payments >= 1).to_numpy()\nactual = (loans.default == 1).to_numpy()\ntp = int(np.sum(flag & actual))\nfp = int(np.sum(flag & ~actual))\nfn = int(np.sum(~flag & actual))\ntn = int(np.sum(~flag & ~actual))\nprecision = tp / (tp + fp)\nrecall = tp / (tp + fn)\nprint(tp, fp, fn, tn)\nprint(round(precision, 3), round(recall, 3))",
+    "starter": "flag = (loans.previous_late_payments >= 1).to_numpy()\nactual = (loans.default == 1).to_numpy()\n# Your turn: tp counts loans that are flagged AND actually defaulted\n# Your turn: fp, fn and tn are the other three corners of the matrix (use ~ for NOT)\n# Your turn: precision is tp over everything flagged, recall is tp over every real default\n"
+   },
+   {
+    "code": "assert tp + fp + fn + tn == 8000, 'The four counts must add up to 8000'\nassert (tp, fn) == (421, 583), 'Check the flag and actual tests. tp is flagged and defaulted, fn is not flagged but defaulted'\nassert abs(precision - 0.15) < 0.005, 'precision is tp divided by tp + fp'\nassert abs(recall - 0.419) < 0.005, 'recall is tp divided by tp + fn'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Cross-validate without the leak\nBuild `X_honest` from the ten safe number columns, and `y` from `default`. Cross-validate a pipeline with 5 folds and AUC scoring. Store the average in `auc_honest`."
+   },
+   {
+    "code": "from sklearn.model_selection import cross_val_score\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\nhonest_cols = ['age', 'monthly_income_ugx', 'loan_amount_ugx', 'term_months',\n               'previous_loans', 'previous_late_payments', 'group_loan',\n               'savings_balance_ugx', 'has_mobile_money', 'distance_to_branch_km']\nX_honest = loans[honest_cols]\ny = loans.default\nmodel = make_pipeline(SimpleImputer(strategy='median'), StandardScaler(),\n                      LogisticRegression(max_iter=1000, random_state=42))\nscores = cross_val_score(model, X_honest, y, cv=5, scoring='roc_auc')\nauc_honest = scores.mean()\nprint(scores.round(2), round(auc_honest, 3))",
+    "starter": "from sklearn.model_selection import cross_val_score\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\nhonest_cols = ['age', 'monthly_income_ugx', 'loan_amount_ugx', 'term_months',\n               'previous_loans', 'previous_late_payments', 'group_loan',\n               'savings_balance_ugx', 'has_mobile_money', 'distance_to_branch_km']\n# Your turn: X_honest holds the honest_cols columns of loans, and y is the default column\n# Your turn: model is a pipeline that fills blanks with the median, scales, then fits a logistic regression\n# Your turn: scores holds the AUC from 5 folds of cross validation\n# Your turn: auc_honest is the average of scores\n"
+   },
+   {
+    "code": "assert 0.70 <= auc_honest <= 0.85, 'auc_honest should be between 0.70 and 0.85. Use scoring=\\'roc_auc\\' with cv=5 and take the mean'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. The same test with the leak\nAdd the leaking column to the features, cross-validate the same way, and store the average in `auc_leaky`."
+   },
+   {
+    "code": "X_leaky = loans[honest_cols + [leak]]\nscores_leaky = cross_val_score(model, X_leaky, y, cv=5, scoring='roc_auc')\nauc_leaky = scores_leaky.mean()\nprint(round(auc_honest, 3), round(auc_leaky, 3))",
+    "starter": "# Your turn: X_leaky holds the honest columns plus the leak column\n# Your turn: run cross validation as in Task 5 and store the mean AUC in auc_leaky\n"
+   },
+   {
+    "code": "assert auc_leaky > 0.95, 'auc_leaky should be above 0.95. Add the leak column to the features, cross validate with AUC scoring, and take the mean'\nassert auc_leaky > auc_honest + 0.1, 'The leaky AUC should be well above auc_honest. Did you add the leak column?'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. The ROC curve and the confusion matrix\nSplit `X_honest` and `y` with `test_size=0.25`, `stratify=y` and `random_state=42`. Fit the pipeline `model` on the training part, and get the chance of default for each test loan in `p`. Store the AUC in `auc` and draw the ROC curve. Then count the confusion matrix at a threshold of 0.2 into `tn_m`, `fp_m`, `fn_m` and `tp_m`."
+   },
+   {
+    "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.metrics import roc_curve, roc_auc_score, confusion_matrix\nimport matplotlib.pyplot as plt\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X_honest, y, test_size=0.25, stratify=y, random_state=42)\nmodel.fit(X_train, y_train)\np = model.predict_proba(X_test)[:, 1]\nauc = roc_auc_score(y_test, p)\nfpr, tpr, _ = roc_curve(y_test, p)\nplt.plot(fpr, tpr)\nplt.plot([0, 1], [0, 1], linestyle='--')\nplt.xlabel('False alarm rate')\nplt.ylabel('Defaults caught')\nplt.show()\ncm = confusion_matrix(y_test, (p >= 0.2).astype(int))\ntn_m, fp_m, fn_m, tp_m = cm.ravel()\nprint(round(auc, 3))\nprint(cm)",
+    "starter": "from sklearn.model_selection import train_test_split\nfrom sklearn.metrics import roc_curve, roc_auc_score, confusion_matrix\nimport matplotlib.pyplot as plt\n\n# Your turn: split X_honest and y using the settings in the task\n# Your turn: fit model on the training part, then p is the chance of default for each test loan\n# Your turn: auc is the AUC of p against y_test. Draw the ROC curve\n# Your turn: count the confusion matrix at a threshold of 0.2 and unpack it into tn_m, fp_m, fn_m, tp_m\n"
+   },
+   {
+    "code": "assert 0.70 <= auc <= 0.85, 'auc should be near 0.76. Use roc_auc_score(y_test, p) with p from predict_proba, column 1'\nassert tp_m + fn_m == int(y_test.sum()), 'tp_m and fn_m together are all the defaults in y_test'\nassert tp_m + fp_m + fn_m + tn_m == 2000, 'The four counts cover 2000 test loans. Flag with p >= 0.2'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Reflect\nWrite three sentences below. First, why would the leaky model fail on a loan approved today? Second, in a spreadsheet, which column would you check first for the same problem, and what question would you ask of it? Third, a missed default costs ten times a refused loan: do you watch precision or recall, and why?"
+   }
+  ]
+ }
+}

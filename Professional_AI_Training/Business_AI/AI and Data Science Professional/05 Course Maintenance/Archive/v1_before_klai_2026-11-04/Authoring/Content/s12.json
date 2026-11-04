@@ -1,0 +1,430 @@
+{
+ "session": 12,
+ "notes_title": "A gap between two averages is easy to find. Deciding whether it is luck is today's job. Last time you explored data and found findings worth reporting. Today we test one, from Lakeside Mart. Did a loyalty offer raise how much customers spend? By the end you'll have a confidence interval, a p-value and a decision you can defend to a manager, and you'll know the two ways these tests mislead people.",
+ "notes_outcomes": "You'll build and read a confidence interval, starting from how much an average wobbles. You'll run and read a t test and a proportion test, and say what a p-value does and doesn't tell you. And you'll state a decision with its effect size and its uncertainty, and know why many tests and early peeks create false alarms. Most of the two hours is live code, and in the lab you rerun the offer question with a fixed seed so your numbers repeat.",
+ "notes_words": "Seven words today. Standard error is how much an average wobbles. A confidence interval is a range built to catch the true value. The bootstrap re-draws your own data to measure that wobble. The null hypothesis is the claim that nothing is going on, and the p-value tells you how surprising your data would be if it were true. Effect size says how big the gap is in useful units. Multiple testing is the trap of running many tests until one looks good. Read the right-hand column. Most of these have a cousin in your spreadsheet.",
+ "vocab": [
+  [
+   "Standard error",
+   "How much a sample average wobbles from one sample to the next. It shrinks as the sample grows.",
+   "STDEV.S of a column divided by SQRT of COUNT"
+  ],
+  [
+   "Confidence interval",
+   "A range built from the data to catch the true value most of the time, usually at 95 percent.",
+   "A low and a high column either side of the average"
+  ],
+  [
+   "Bootstrap",
+   "Re-drawing your own data many times, putting each row back after it is picked, to see how much a result wobbles.",
+   "Re-drawing rows with RAND thousands of times"
+  ],
+  [
+   "Null hypothesis",
+   "The starting claim that nothing is going on, so any gap is luck.",
+   "A zero in the difference column"
+  ],
+  [
+   "p-value",
+   "How often luck alone would give a gap at least this big if the null hypothesis were true.",
+   "The result of the T.TEST function"
+  ],
+  [
+   "Effect size",
+   "The size of the gap in units a person can feel, such as shillings or percent.",
+   "The difference column itself"
+  ],
+  [
+   "Multiple testing",
+   "Running many tests so that some look like findings by luck alone.",
+   null
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 11",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "One branch has the most returns of all. Is it the branch with the worst return problem?",
+     "a": "Not yet known. Bigger branches sell more, so divide returns by lines sold and compare the rates."
+    },
+    {
+     "q": "What should every written finding contain?",
+     "a": "A number, a comparison and a limit."
+    }
+   ],
+   "notes": "Two questions on rates and findings, from Session 11, before we test anything.\n\nFirst. One branch has the most returns of all the branches. Does that make it the branch with the worst return problem? Have a think.\n\nWe can't tell yet. A bigger branch sells more, so it has more returns even when its customers return things less often. Divide the returns by the lines sold to get a rate, then compare the rates. That was the lesson on rates and counts.\n\nSecond. What should every written finding contain? No rush.\n\nA number, a comparison and a limit. The number says how big the thing is, the comparison says against what, and the limit says what the data can't tell us. Today we use both, because a test result with no limit is easy to misuse."
+  },
+  {
+   "type": "code",
+   "title": "Two groups, two averages",
+   "lang": "python",
+   "code": "import pandas as pd\nimport numpy as np\n\ntest = pd.read_csv('offer_test.csv')\nprint(test.groupby('group').size())\ntest.groupby('group')['next_month_spend_ugx'].mean().round(0)",
+   "says": [
+    "Each row is one loyalty customer. group says who got the offer.",
+    "size counts the customers in each group.",
+    "The average spend next month, for each group."
+   ],
+   "output": "control 1255\noffer 1245\ncontrol 61660.0\noffer 66704.0",
+   "notes": "Today's question comes from a manager. We gave some customers a loyalty offer. Did it work?\n\nThe test was set up by chance. Lakeside Mart took twenty five hundred loyalty customers and gave a random half the offer. The other half got nothing. We call them the offer group and the control group. Because chance chose who got what, the two groups should be alike in everything except the offer. The file has one row per customer. It holds the group, the spend next month, and whether they came back to shop within thirty days.\n\nGroup size first. Twelve hundred and forty five in the offer group, twelve hundred and fifty five in control.\n\nNow the averages. Offer customers spent sixty six thousand seven hundred and four shillings. Control customers spent sixty one thousand six hundred and sixty. A gap of about five thousand shillings. In Sheets this is an AVERAGEIF. The question is whether the five thousand comes from the offer or from the luck of who landed in which group."
+  },
+  {
+   "type": "figure",
+   "title": "One sample's average is a guess",
+   "fig": "sampling_means",
+   "look": [
+    "Each bar counts samples of 30 orders. Same shop, 200 different averages.",
+    "Most averages sit near the red line. Some land far away.",
+    "The long right tail comes from samples that caught a few huge orders."
+   ],
+   "caption": "Same shop, same true mean, 200 different answers.",
+   "alt": "Histogram of 200 sample means, each from 30 random orders, centred near the true mean and spread out around it.",
+   "notes": "To judge a gap we first need to see how much an average wobbles. You met this in Session 4 with RAND in Sheets. Here it is again, with Lakeside Mart orders.\n\nTake thirty orders at random and find their average. Do it two hundred times. Every bar in this picture counts how many of those samples gave an average in that range. Same shop, two hundred different answers.\n\nMost averages sit close to the red line, which is the true average of all the orders. But look at how far some land. Any one sample is a guess.\n\nThe long tail on the right comes from samples that happened to catch a few very large orders. Remember the three million shilling order from Session 7.\n\nSo when we compare two groups, each average carries this wobble, and the gap carries it too."
+  },
+  {
+   "type": "figure",
+   "title": "Bigger samples wobble less",
+   "fig": "sampling_n_compare",
+   "look": [
+    "n = 5 means five orders per sample. The averages scatter widely.",
+    "n = 30 is tighter. The hill is narrower.",
+    "n = 200 gives a narrow hill around the red line."
+   ],
+   "caption": "The spread falls from 64.4 thousand shillings to 8.4 thousand as the sample grows from 5 to 200.",
+   "alt": "Three histograms of sample means for sample sizes 5, 30 and 200. The spread narrows as the sample grows.",
+   "notes": "Now the same experiment with three different sample sizes. The letter n means how many orders are in each sample.\n\nWith five orders in each sample, the averages scatter all over the place. The label says the spread is sixty four thousand four hundred shillings.\n\nWith thirty orders, the hill gets narrower. The spread is twenty two thousand eight hundred.\n\nWith two hundred orders, the averages crowd around the true value. The spread drops to eight thousand four hundred. Notice too that the shape turns into a neat bell.\n\nSo a bigger sample wobbles less. That is why a test with twenty five hundred customers can say more than one with fifty. The size of the wobble has a name, and we measure it next."
+  },
+  {
+   "type": "code",
+   "title": "Standard error: the wobble, measured",
+   "lang": "python",
+   "code": "orders = pd.read_csv('orders.csv')\nv = orders.order_value_ugx.values\nrng = np.random.default_rng(42)\nmeans = [rng.choice(v, 30).mean() for _ in range(1000)]\nprint('simulated:', round(np.std(means)))\nprint('formula  :', round(v.std(ddof=1) / np.sqrt(30)))",
+   "says": [
+    "Draw 30 orders at random, take the average, and repeat 1,000 times.",
+    "The spread of those 1,000 averages is the standard error.",
+    "A formula gets close without any simulation."
+   ],
+   "output": "simulated: 24663\nformula : 22561",
+   "notes": "Here is the wobble as a number. We call it the standard error. It is how much a sample average wobbles from one sample to the next.\n\nThe code draws thirty orders at random, takes the average, and does that a thousand times. The name rng is a random number maker, and the seed forty two makes it repeat the same draws every time you run it.\n\nThe spread of those thousand averages, using the standard deviation from Session 3, is the standard error. We get twenty four thousand six hundred and sixty three shillings.\n\nYou don't have to simulate it. The standard deviation of the orders divided by the square root of the sample size gives twenty two thousand five hundred and sixty one. Close, but not equal, because order values are so skewed. In Sheets that formula is STDEV.S of the column divided by SQRT of COUNT.\n\nNotice the square root of n. A sample four times bigger halves the wobble."
+  },
+  {
+   "type": "code",
+   "title": "A 95 percent interval for the lift",
+   "lang": "python",
+   "code": "offer = test[test.group == 'offer'].next_month_spend_ugx\ncontrol = test[test.group == 'control'].next_month_spend_ugx\ndiff = offer.mean() - control.mean()\nse = np.sqrt(offer.var()/len(offer) + control.var()/len(control))\nprint(round(diff), round(se))\nprint(round(diff - 1.96*se), round(diff + 1.96*se))",
+   "says": [
+    "The lift is the offer average minus the control average.",
+    "The standard error of a gap combines the wobble of both groups.",
+    "Go 1.96 standard errors either side of the lift."
+   ],
+   "output": "5044 1526\n2054 8035",
+   "notes": "Now we use the standard error to build a confidence interval. A confidence interval is a range around your result that is built to catch the true value most of the time. We use the 95 percent kind.\n\nFirst we split the spend into the two groups. The lift is the offer average minus the control average. It is five thousand and forty four shillings.\n\nThe standard error of that gap combines the wobble of both groups. It comes out at fifteen hundred and twenty six.\n\nThen the interval. Averages from big samples form a bell shape, as you saw with n of two hundred, and ninety five percent of a bell lies within one point nine six standard errors of the middle. So we go that far each side of the lift.\n\nThe interval runs from two thousand and fifty four to eight thousand and thirty five shillings. We estimate that the true lift per customer sits somewhere in that range."
+  },
+  {
+   "type": "figure",
+   "title": "Each group's average with its own interval",
+   "fig": "ab_test_ci",
+   "look": [
+    "Control averages 61.7 thousand shillings, offer 66.7 thousand.",
+    "Each whisker is a 95 percent interval for that group's average.",
+    "The whiskers nearly touch, which hints at a real gap."
+   ],
+   "caption": "Next-month spend per customer. Control 61,660 UGX, offer 66,704 UGX.",
+   "alt": "Two bars with error bars of next-month spend for offer and control groups; the intervals nearly touch.",
+   "notes": "Here are the two groups drawn side by side. The light grey bar is control, and the dark bar is the offer group.\n\nThe control average is about sixty one thousand seven hundred shillings. The offer average is about sixty six thousand seven hundred.\n\nEach bar has a whisker. The whisker is that group's own ninety five percent interval for its average.\n\nSee how the whiskers nearly touch. Some people use overlap as a quick test. It's a rough guide only. The better move is to build one interval for the gap itself, which is what we did on the last slide, and draw that next."
+  },
+  {
+   "type": "figure",
+   "title": "The lift with its interval",
+   "fig": "difference_ci",
+   "look": [
+    "The dot is the lift, 5,044 shillings.",
+    "The line runs from 2,054 to 8,035.",
+    "The dashed line at zero sits outside the interval."
+   ],
+   "caption": "Zero is outside the interval. Every gap from 2 thousand to 8 thousand shillings fits the data.",
+   "alt": "A point with an interval showing the spend difference between offer and control, entirely to the right of zero.",
+   "notes": "This is the picture a manager can read in five seconds.\n\nThe dot is our best estimate of the lift. Five thousand and forty four shillings per customer.\n\nThe line around it is the ninety five percent interval, from two thousand and fifty four to eight thousand and thirty five.\n\nAnd the dashed line is zero, which means no difference at all. It sits to the left of the whole interval. So a gap of zero doesn't fit our data well. The data point to a real rise in spend.\n\nNow picture the same chart where the interval crossed the dashed line. Then zero would still be a possible answer, and we couldn't say the offer worked. Always check where zero falls."
+  },
+  {
+   "type": "code",
+   "title": "The bootstrap: re-draw your own data",
+   "lang": "python",
+   "code": "rng = np.random.default_rng(42)\nlifts = []\nfor _ in range(5000):\n    a = rng.choice(offer.values, len(offer))\n    b = rng.choice(control.values, len(control))\n    lifts.append(a.mean() - b.mean())\nlow, high = np.percentile(lifts, [2.5, 97.5])\nprint(round(np.std(lifts)), round(low), round(high))",
+   "says": [
+    "Pick customers at random from each group. Each one goes back after it is picked.",
+    "Repeat 5,000 times and keep the gap each time.",
+    "Cut off the lowest 2.5 percent and the highest 2.5 percent of gaps."
+   ],
+   "output": "1522 1959 8004",
+   "notes": "There is a second way to get an interval, and it needs no formula. It's called the bootstrap. You re-draw your own data many times, and see how much the answer wobbles.\n\nInside the loop, we pick customers at random from the offer group, as many as the group holds. Each customer goes back after being picked, so the same customer can appear twice. We do the same for the control group. Then we record the gap between the two averages.\n\nWe repeat that five thousand times. In Sheets you could do the same with RAND, but you would copy the sheet five thousand times.\n\nAt the end we sort the five thousand gaps and cut off the lowest two and a half percent and the highest two and a half percent. What remains runs from nineteen hundred and fifty nine to eight thousand and four. The standard error is fifteen hundred and twenty two. Both are close to what the formula gave. Two routes, one answer."
+  },
+  {
+   "type": "concept",
+   "title": "The null idea and the p-value",
+   "lead": "Another way to ask if a gap is real: pretend the offer did nothing and see how surprising the data look.",
+   "points": [
+    {
+     "h": "Null hypothesis",
+     "t": "The starting claim that nothing is going on. Any gap is luck."
+    },
+    {
+     "h": "p-value",
+     "t": "How often luck alone gives a gap at least this big."
+    },
+    {
+     "h": "Small p",
+     "t": "Luck explains the gap badly. Below 0.05 is the usual line."
+    }
+   ],
+   "fig": "pvalue_curve",
+   "alt": "A bell curve with both tails shaded to show the chance of a result at least this extreme if nothing is going on.",
+   "notes": "A second way to judge a gap starts from a pretend world. In that world the offer did nothing at all. That starting claim has a name, the null hypothesis. Null means nothing.\n\nIf the null were true, any gap between the groups would be pure luck. Most of the time luck gives small gaps, and the bell in the middle shows that. Now and then it gives a big one. Those are the two shaded tails.\n\nThe p-value is the chance of landing in the shaded tails, which means a gap at least as big as ours, if the null were true.\n\nA small p-value says luck is a poor explanation for what we saw. People often draw the line at zero point zero five. The p-value describes how surprising the data would be in the pretend world. It gives no chance that the offer works."
+  },
+  {
+   "type": "code",
+   "title": "A permutation test by shuffling labels",
+   "lang": "python",
+   "code": "spend = test.next_month_spend_ugx.values\nis_off = (test.group == 'offer').values\nrng = np.random.default_rng(42)\ngaps = []\nfor _ in range(5000):\n    s = rng.permutation(is_off)\n    gaps.append(spend[s].mean() - spend[~s].mean())\nhits = np.abs(gaps) >= abs(diff)\nprint(hits.sum(), 'of 5000', hits.mean())",
+   "says": [
+    "Shuffle who is labelled offer. Now the label means nothing.",
+    "Record the gap each shuffle gives, 5,000 times.",
+    "Count how often luck gives a gap as big as 5,044."
+   ],
+   "output": "7 of 5000 0.0014",
+   "notes": "We can build that pretend world on the computer. If the offer did nothing, then the labels offer and control are just names. So we shuffle them, like shuffling a deck of cards.\n\nAfter each shuffle we find the gap between the two groups. Because the labels were shuffled, any gap we get is pure luck. We shuffle five thousand times. This is called a permutation test.\n\nThen we count how often luck alone gave a gap as big as ours, either way round. The answer is seven times in five thousand.\n\nSeven over five thousand is zero point zero zero one four. That is our p-value, about one in seven hundred. Our gap of five thousand shillings is very hard to explain by luck.\n\nThe shuffled gaps wobble by about fifteen hundred, which matches the standard error. Same wobble, seen from a different side."
+  },
+  {
+   "type": "code",
+   "title": "A proportion test: did more customers come back?",
+   "lang": "python",
+   "code": "import math\noffer_df = test[test.group == 'offer']\ncontrol_df = test[test.group == 'control']\np1 = offer_df.returned_within_30d.mean()\np2 = control_df.returned_within_30d.mean()\ngap = p1 - p2\nse_p = math.sqrt(p1*(1-p1)/len(offer_df) + p2*(1-p2)/len(control_df))\nprint(round(p1, 4), round(p2, 4), round(gap, 4))\nprint(round(gap - 1.96*se_p, 4), round(gap + 1.96*se_p, 4))",
+   "says": [
+    "The share who came back within 30 days, in each group.",
+    "The same recipe: the gap, its standard error, then 1.96 either side."
+   ],
+   "output": "0.4514 0.4295 0.0219\n-0.017 0.0608",
+   "notes": "The test file holds a second outcome. Did the customer come back to shop within thirty days? Each row says one or zero. The average of ones and zeros is a share, so this is a question about shares.\n\nComparing two shares has its own name, a proportion test. Comparing two averages, like spend, is usually done with a t test. Same idea, different recipe.\n\nThe offer group came back at forty five point one percent. The control group came back at forty two point nine percent. The gap is two point two percentage points.\n\nThe same recipe gives the interval. From minus one point seven points to plus six point one points. This interval crosses zero. So the true gap could be a small drop or a decent gain. A test that gives a p-value near zero point two seven, as this one does, can't tell us.\n\nThis is a result in its own right. With these customers we can't tell, and we say so."
+  },
+  {
+   "type": "code",
+   "title": "The same tests in SciPy and statsmodels",
+   "lang": "python",
+   "code": "from scipy import stats\nfrom statsmodels.stats.proportion import proportions_ztest\n\nres = stats.ttest_ind(offer, control, equal_var=False)\nprint(res.statistic, res.pvalue)\nprint(res.confidence_interval())\n\ncounts = [562, 539]\nsizes = [1245, 1255]\nprint(proportions_ztest(counts, sizes))",
+   "says": [
+    "ttest_ind is the t test for two groups. It gives a statistic and a p-value.",
+    "confidence_interval gives the interval for the gap in averages.",
+    "proportions_ztest compares two shares from counts and sizes."
+   ],
+   "notes": "Everything we built by hand has a ready made version in the libraries. In Colab they are already installed. You'll reach for these in any analysis you do at work.\n\nThe first call is the t test for two groups. We set equal_var to False, which lets the two groups have different spread. It gives a test statistic and a p-value. The statistic is the gap divided by its standard error, so it's about three point three here. The p-value comes out near one in a thousand, matching our permutation test.\n\nThe second line gives the confidence interval for the gap. It needs SciPy version one point eleven or newer, which Colab has. Expect a range very close to two thousand and fifty four to eight thousand and thirty five. Your run will be close to our numbers, and may differ in the last digits.\n\nThe last call is the proportion test. Give it the counts of customers who came back, five hundred and sixty two and five hundred and thirty nine, and the group sizes. The p-value will be near zero point two seven.\n\nWhichever route you take, the reading of the answer is the same."
+  },
+  {
+   "type": "table",
+   "title": "Two questions, two different answers",
+   "header": [
+    "Question",
+    "Gap",
+    "95% interval",
+    "p-value",
+    "Reading"
+   ],
+   "rows": [
+    [
+     "Spend next month",
+     "5,044 UGX",
+     "2,054 to 8,035",
+     "about 0.001",
+     "A clear lift"
+    ],
+    [
+     "Came back within 30 days",
+     "2.2 points",
+     "-1.7 to 6.1",
+     "about 0.27",
+     "Cannot tell"
+    ]
+   ],
+   "colw": [
+    3.2,
+    1.8,
+    2.6,
+    2.0,
+    2.1
+   ],
+   "caption": "Cannot tell means the test is too small to say. It does not show the offer did nothing.",
+   "notes": "Let's put both results in one table, the way you would show a manager.\n\nThe first row is spend. The lift is five thousand and forty four shillings. The interval stays above zero and the p-value is about one in a thousand. A clear lift.\n\nThe second row is customers coming back. The gap is two point two percentage points. The interval runs from below zero to above zero, and the p-value is about zero point two seven. We can't tell.\n\nLook at the caption, because this is where people trip. When an interval includes zero, the right words are that we can't tell. They aren't that the offer failed. With more customers in the test, the interval might shrink to one side of zero. Only a bigger test can settle it."
+  },
+  {
+   "type": "stat",
+   "title": "The lift is clear. Is it big enough to matter?",
+   "stats": [
+    {
+     "n": "5,044 UGX",
+     "label": "more per customer"
+    },
+    {
+     "n": "8.2%",
+     "label": "above the control average"
+    },
+    {
+     "n": "0.13",
+     "label": "standard deviations apart"
+    },
+    {
+     "n": "6.3 million",
+     "label": "extra UGX across the 1,245 offer customers"
+    }
+   ],
+   "caption": "Effect size is the gap in useful units. A small p-value says luck explains the gap badly. It does not say the gap is big.",
+   "notes": "A small p-value tells us luck is a poor explanation for the gap. It does not tell us the gap is worth having. For that we look at the effect size, which is the size of the gap in units a person can feel.\n\nFive thousand and forty four shillings more per customer. Against the control average, that is eight point two percent more.\n\nNow compare the gap with how much customers differ from each other. Spend varies a lot between customers, and the gap is only about zero point one three of one standard deviation. That is a small effect on this scale.\n\nMultiply the lift by the twelve hundred and forty five customers in the offer group and you get about six point three million shillings of extra spend in the month.\n\nSo is that big? Think about it. It depends on what the offer costs. If the discounts cost more than six million shillings, the lift loses money. Only the business can answer that, and your job is to put the number in front of it."
+  },
+  {
+   "type": "code",
+   "title": "A hundred fake tests and seven false alarms",
+   "lang": "python",
+   "code": "rng = np.random.default_rng(42)\nfalse_alarms = 0\nfor _ in range(100):\n    half = rng.permutation(len(spend)) < 1250\n    a, b = spend[half], spend[~half]\n    se_ab = np.sqrt(a.var(ddof=1)/len(a) + b.var(ddof=1)/len(b))\n    z = (a.mean() - b.mean()) / se_ab\n    false_alarms += int(abs(z) > 1.96)\nprint(false_alarms, 'of 100 fake tests had p below 0.05')",
+   "says": [
+    "Split the customers into two random halves. No offer at all.",
+    "Run the same test on the two halves, 100 times.",
+    "Count how many fake tests look like a finding."
+   ],
+   "output": "7 of 100 fake tests had p below 0.05",
+   "notes": "This is the problem of multiple testing. Running many tests until one looks good.\n\nWatch what happens when nothing is going on. The code splits the customers into two random halves. There's no offer here, the halves are just names. Then it runs the same test as before. It does this a hundred times.\n\nSeven of the hundred fake tests came out with a p-value below zero point zero five. If you draw the line at zero point zero five, you expect about five in a hundred by luck alone. We got seven, which is near that.\n\nThink of it this way. Test twenty ideas on one dataset, such as twenty branches, twenty products or twenty customer groups, and the chance of at least one false alarm is about sixty four percent. Say a report lists fifty things and highlights the three with small p-values. Without a plan for this, those three may be luck.\n\nThe fix is to decide your questions before you look, and to treat a lone surprise as a lead worth testing again."
+  },
+  {
+   "type": "trap",
+   "title": "Peeking: stopping the test when it looks good",
+   "looks": "Each morning you check the test. On day nine the p-value dips below 0.05, so you stop and announce a win.",
+   "why": "Every look is another chance for luck to cross the line. Checking often turns one test into many.",
+   "fix": "Fix the sample size and the stopping day before you start. Look once, at the end.",
+   "notes": "Here's the trap, and it runs with no error at all.\n\nYou start a test and check it every morning. On day nine the p-value dips below zero point zero five, so you stop and announce a win. It feels careful, and it misleads you.\n\nThe gap between two groups drifts up and down from day to day, just from luck. If you look every day, you give luck many chances to cross the line, and you stop the moment it does. That is the same as running many tests and keeping the best one.\n\nThe fix needs discipline. Decide how many customers you need, and the day you will stop, before the test begins. Then look once, at the end. If your manager wants to check along the way, check by all means, but don't act on early p-values."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: did the offer work?",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 12 notebook and run the setup cell",
+    "Split offer_test.csv and find the lift",
+    "Bootstrap the lift 5,000 times with a fixed seed",
+    "Cut the 95 percent interval from the bootstrap",
+    "Apply the decision rule to spend, then to coming back",
+    "Run a permutation test and a t test, and read both p-values"
+   ],
+   "done": "You can state the lift, the interval and the decision in two sentences for a manager.",
+   "notes": "The lab is forty minutes in Google Colab and it asks the question we started with. Did the loyalty offer work? The first task is to split offer_test.csv into the two groups and print how many customers each has.\n\nRun the setup cell in the Session 12 notebook, then work down the tasks. You'll find the lift, bootstrap it five thousand times with a fixed seed so your numbers repeat, and cut the interval from the bootstrap.\n\nThen you apply a decision rule that the notebook states before you see the answer. You use it on spend and again on customers coming back.\n\nThe last coding task is a permutation test, with a t test from SciPy as a cross check. Finish by checking the lift against the Sheets formula for the standard error.\n\nYou're done when you can say, in two sentences, what the lift is, how sure we are, and what the decision is. I'll be around if an error stops you."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "The lift is 5,044 UGX with an interval of 2,054 to 8,035. What does that tell a manager?",
+     "a": "The true lift plausibly sits anywhere in that range, and zero is outside it."
+    },
+    {
+     "q": "What does a p-value of 0.001 measure?",
+     "a": "How often luck alone would give a gap this big if the offer did nothing."
+    },
+    {
+     "q": "You test twenty ideas and one has p of 0.04. What do you say?",
+     "a": "Expect about one false alarm in twenty tests. Treat it as a lead and retest it."
+    }
+   ],
+   "notes": "Three questions on intervals and p-values. Answer each in your head first.\n\nQuestion one. The lift is five thousand and forty four shillings, with an interval from two thousand and fifty four to eight thousand and thirty five. What does that tell a manager? Take your time.\n\nThe true lift plausibly sits anywhere in that range, and zero lies outside it. So the data point to a real rise in spend, by somewhere between two thousand and eight thousand shillings per customer.\n\nQuestion two. What does a p-value of zero point zero zero one measure? Think it over.\n\nHow often luck alone would give a gap this big, or bigger, if the offer did nothing. It says nothing about how big the effect is.\n\nQuestion three. You test twenty ideas and one has a p-value of zero point zero four. What do you say? Give that a moment.\n\nExpect about one false alarm in twenty tests. Call it a lead, and test it again on fresh data before anyone acts."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Standard error measures the wobble of an average. Bigger samples wobble less.",
+    "Report the gap with its 95 percent interval, and check where zero falls.",
+    "A small p-value says luck explains the gap badly. Effect size says if it matters. Many tests and early peeks create false alarms."
+   ],
+   "next": "Regression: explaining and predicting a number",
+   "notes": "One. Standard error measures how much an average wobbles. Bigger samples wobble less, by the square root of the sample size.\n\nTwo. Report the gap together with its ninety five percent interval, and check where zero falls. If zero is inside, say you can't tell.\n\nThree. A small p-value says luck explains the gap badly. The effect size says whether it matters. And many tests, or early peeks at one test, create false alarms.\n\nNext session we move from comparing two groups to explaining a number with other numbers. We'll ask how much weekly orders change when footfall changes, and draw a line through the cloud. Bring a pair of things at work that you suspect move together."
+  }
+ ],
+ "lab": {
+  "intro": "Did the loyalty offer lift spend? Find the lift, bootstrap its 95 percent interval, apply a decision rule you state in advance, and check with a permutation test and a t test.",
+  "cells": [
+   {
+    "md": "## Task 1. Split the test\nLoad `offer_test.csv`. Keep the spend of the offer group in `offer` and of the control group in `control`. Print how many customers each group has."
+   },
+   {
+    "code": "import pandas as pd\nimport numpy as np\n\ntest = pd.read_csv('offer_test.csv')\noffer = test[test.group == 'offer'].next_month_spend_ugx\ncontrol = test[test.group == 'control'].next_month_spend_ugx\nprint(len(offer), len(control))",
+    "starter": "import pandas as pd\nimport numpy as np\n\ntest = pd.read_csv('offer_test.csv')\n# Your turn: offer = spend of the rows where group is 'offer'\n# Your turn: control = spend of the rows where group is 'control'\n# Your turn: print how many customers each has\n"
+   },
+   {
+    "code": "assert len(offer) == 1245 and len(control) == 1255, 'Filter on group with a double equals sign'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. The observed lift\nCompute `lift`, the offer average minus the control average."
+   },
+   {
+    "code": "lift = offer.mean() - control.mean()\nprint(round(lift))",
+    "starter": "# Your turn: lift = offer average minus control average\n"
+   },
+   {
+    "code": "assert round(lift) == 5044, 'Subtract the control mean from the offer mean'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Bootstrap the lift\nUse `rng = np.random.default_rng(12)`. Repeat 5,000 times: draw a resample of each group (same size, each customer put back after it is picked) and keep the gap between the two averages. Store the gaps in a numpy array called `lifts`."
+   },
+   {
+    "code": "rng = np.random.default_rng(12)\nlifts = []\nfor _ in range(5000):\n    a = rng.choice(offer.values, len(offer))\n    b = rng.choice(control.values, len(control))\n    lifts.append(a.mean() - b.mean())\nlifts = np.array(lifts)\nprint(round(lifts.std()))",
+    "starter": "rng = np.random.default_rng(12)\nlifts = []\nfor _ in range(5000):\n    # Your turn: draw one resample of each group (same size, picked with replacement, use rng.choice)\n    # Your turn: append the gap between the two resample averages to lifts\n    pass\nlifts = np.array(lifts)\n"
+   },
+   {
+    "code": "assert len(lifts) == 5000, 'Repeat 5,000 times'\nassert 1350 < lifts.std() < 1700, 'The wobble of the gap should be near 1,500'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. The 95 percent interval\nCut off the lowest 2.5 percent and the highest 2.5 percent of `lifts`. Store the two ends in `low` and `high`."
+   },
+   {
+    "code": "low, high = np.percentile(lifts, [2.5, 97.5])\nprint(round(low), round(high))",
+    "starter": "# Your turn: use np.percentile on lifts to find the two cut points, into low and high\n"
+   },
+   {
+    "code": "assert 1700 < low < 2400, 'The lower end should be near 2,000'\nassert 7600 < high < 8400, 'The upper end should be near 8,000'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Decide with a rule stated in advance\nRule: roll out the offer only if the whole 95 percent interval lies above zero. Otherwise the answer is `cannot tell`. Store `'roll out'` or `'cannot tell'` in `decision`."
+   },
+   {
+    "code": "decision = 'roll out' if low > 0 else 'cannot tell'\nprint(decision)",
+    "starter": "# Your turn: decision = 'roll out' if the lower end is above zero, else 'cannot tell'\n"
+   },
+   {
+    "code": "assert decision == 'roll out', \"Use 'roll out' when low is above zero, otherwise 'cannot tell'\"\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Did more customers come back?\nRepeat Tasks 3 to 5 for the column `returned_within_30d` (0 or 1), the share who came back within 30 days. Bootstrap the gap in shares 5,000 times with the same `rng`, store the interval in `low2` and `high2`, and apply the same rule in `decision2`."
+   },
+   {
+    "code": "back_o = test[test.group == 'offer'].returned_within_30d.values\nback_c = test[test.group == 'control'].returned_within_30d.values\ngaps2 = []\nfor _ in range(5000):\n    a = rng.choice(back_o, len(back_o))\n    b = rng.choice(back_c, len(back_c))\n    gaps2.append(a.mean() - b.mean())\nlow2, high2 = np.percentile(gaps2, [2.5, 97.5])\ndecision2 = 'roll out' if low2 > 0 else 'cannot tell'\nprint(round(low2, 3), round(high2, 3), decision2)",
+    "starter": "back_o = test[test.group == 'offer'].returned_within_30d.values\nback_c = test[test.group == 'control'].returned_within_30d.values\n# Your turn: bootstrap the gap in shares 5,000 times into gaps2\n# Your turn: low2, high2 = the 2.5 and 97.5 percentiles\n# Your turn: decision2 using the same rule\n"
+   },
+   {
+    "code": "assert -0.035 < low2 < 0.0, 'The lower end should be a little below zero'\nassert 0.045 < high2 < 0.08, 'The upper end should be near 0.06'\nassert decision2 == 'cannot tell', 'The interval includes zero'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. A permutation test and a t test\nShuffle the offer labels 5,000 times with `rng.permutation`. After each shuffle record the gap in average spend. Store the share of shuffles whose gap is at least as big as `lift` (ignoring sign) in `p_value`. Then run `stats.ttest_ind(offer, control, equal_var=False)` from SciPy and store its p-value in `p_t`."
+   },
+   {
+    "code": "spend = test.next_month_spend_ugx.values\nis_offer = (test.group == 'offer').values\nperm_gaps = []\nfor _ in range(5000):\n    s = rng.permutation(is_offer)\n    perm_gaps.append(spend[s].mean() - spend[~s].mean())\np_value = (np.abs(perm_gaps) >= abs(lift)).mean()\nprint(p_value)\n\nfrom scipy import stats\np_t = stats.ttest_ind(offer, control, equal_var=False).pvalue\nprint(p_t)",
+    "starter": "spend = test.next_month_spend_ugx.values\nis_offer = (test.group == 'offer').values\nperm_gaps = []\nfor _ in range(5000):\n    # Your turn: s = rng.permutation(is_offer)\n    # Your turn: append the gap in spend between the two shuffled groups\n    pass\n# Your turn: p_value = share of shuffled gaps at least as big as lift\n\n# Your turn: import stats from scipy, run ttest_ind on offer and control as in the task, and keep the p-value in p_t\n"
+   },
+   {
+    "code": "assert p_value < 0.01, 'Count shuffled gaps at least as big as the real lift, ignoring sign'\nassert p_t < 0.01, 'Use equal_var=False and take .pvalue'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Check against Sheets, then write it up\nOpen `offer_test.csv` in Google Sheets. Use AVERAGEIF to reproduce the two averages. Then compute the standard error of the gap with STDEV.S and SQRT (a FILTER inside STDEV.S gives each group's spread) and the interval as the lift plus or minus 1.96 times it. It should be close to your bootstrap interval. Finish with two sentences for a manager that give the lift, the interval, the decision and one limit."
+   }
+  ]
+ }
+}

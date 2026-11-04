@@ -1,0 +1,393 @@
+{
+ "session": 14,
+ "notes_title": "Until now you've described data and explained it. Today we start to predict. We'll take eight thousand loans from Nile Microfinance, a fictional lender in Uganda, and ask which ones are likely to go unpaid. By the end you'll have prepared the loan file in pandas, split it into a part to learn from and a part to test on, fitted a first model, and compared it with the laziest guesser we can build. That comparison will change how you read every accuracy figure you meet.",
+ "notes_outcomes": "You'll name the parts of a learning problem: the features, the target, the training data and the test data. You'll split the loans and fit a first model with scikit-learn, and I'll show you the syntax live. And you'll compare that model with a baseline, a guesser that learns nothing at all. The data preparation comes first today, in the pandas you already know, so the scikit-learn lines arrive late in the live part. In the lab you prepare the loans yourself before you fit anything, and you choose your capstone dataset before you leave.",
+ "notes_words": "Six words today, and each has a spreadsheet cousin. A feature is an input column, such as the loan amount. The target is the column you want to predict, here whether the loan defaulted. The training set is the part of the loans the model learns from. The test set is the part we hide until the end, like covering the last rows of a sheet with paper. A baseline is the score of a guesser that learns nothing. Class imbalance means one answer is far more common than the other. Read the right hand column and you'll see the ideas are old friends.",
+ "vocab": [
+  [
+   "Feature",
+   "An input column the model learns from, such as loan amount or age.",
+   "An input column"
+  ],
+  [
+   "Target",
+   "The column we want to predict. In the loans file it is default, 1 or 0.",
+   "The column you wish you could fill in"
+  ],
+  [
+   "Training set",
+   "The rows the model is allowed to learn from.",
+   "The rows you study"
+  ],
+  [
+   "Test set",
+   "Rows kept hidden until the end, then used once to score the model.",
+   "Rows covered with a sheet of paper"
+  ],
+  [
+   "Baseline",
+   "The score of a guesser that learns nothing, such as always saying no default.",
+   "Forecasting next month with this month's number"
+  ],
+  [
+   "Class imbalance",
+   "One answer is far more common than the other.",
+   "A pivot table where one count dwarfs the other"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 13",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "In Session 13 your regression predicted a number. Which number, and for what?",
+     "a": "Weekly orders for a branch, from inputs such as footfall and rain."
+    },
+    {
+     "q": "Explaining and predicting are different jobs. Which one is today about?",
+     "a": "Predicting: guessing the outcome for a loan the model has never seen."
+    }
+   ],
+   "notes": "Let's recall what the regression in Session 13 did before we start something new.\n\nFirst. In Session 13 your regression predicted a number. Which number, and for what? Have a think.\n\nIt predicted weekly orders for a branch, using inputs such as footfall and rainfall. The answer was a number on a scale.\n\nSecond. Explaining and predicting are different jobs. Which one is today about? Sit with it for a second.\n\nPredicting. Today we guess the outcome for a loan the computer has never seen. The answer is a yes or a no, and that change brings a new way of checking our work."
+  },
+  {
+   "type": "compare",
+   "title": "A rule you write, and a rule found from examples",
+   "left": {
+    "h": "A spreadsheet rule",
+    "points": [
+     "You write the formula yourself",
+     "IF(instalment > 60% of income, \"Risky\", \"OK\")",
+     "You pick the 60% by hunch"
+    ]
+   },
+   "right": {
+    "h": "Learning from examples",
+    "points": [
+     "You show 8,000 past loans and what happened",
+     "The computer finds the rule itself",
+     "You test the rule on loans it has not seen"
+    ]
+   },
+   "verdict": "In a spreadsheet you give the rule. In machine learning you give examples.",
+   "notes": "Machine learning rests on one idea, and you already know half of it.\n\nOn the left is a spreadsheet rule. You write an IF formula. Flag the loan as risky when the instalment is more than sixty percent of income. The sixty percent came from your gut.\n\nOn the right, we hand the computer eight thousand past loans, with what happened to each one. It searches for a rule that fits those examples.\n\nThen we check that rule on loans it has not seen. A rule that only works on the past is no use to a lender.\n\nSo the verdict is short. In a spreadsheet you give the rule. In machine learning you give examples, and you check the rule it finds."
+  },
+  {
+   "type": "code",
+   "title": "Meet the Nile Microfinance loans",
+   "lang": "python",
+   "code": "import pandas as pd\n\nloans = pd.read_csv('loans.csv')\nprint(loans.shape)\nprint(loans.default.mean())\nprint(loans.default.value_counts().to_dict())",
+   "says": [
+    "Load the file, as in Session 7.",
+    "The mean of a column of 1s and 0s is the share of 1s.",
+    "Count the two answers: 0 repaid, 1 defaulted."
+   ],
+   "output": "(8000, 18)\n0.1255\n{0: 6996, 1: 1004}",
+   "notes": "Let's meet the data. Nile Microfinance is a fictional lender in Uganda, and this file has one row for each loan.\n\nFirst we load it, exactly as we did with the orders in Session 7.\n\nEight thousand loans and eighteen columns. The last column is default. A one means the borrower defaulted, which means they stopped repaying. A zero means the loan was repaid.\n\nA small trick helps here. The average of a column of ones and zeros is the share of ones. So the mean is point one two five five. About twelve and a half percent of these loans defaulted.\n\nThe counts say the same thing. Six thousand nine hundred and ninety six loans repaid, and one thousand and four defaulted."
+  },
+  {
+   "type": "figure",
+   "title": "Only about one loan in eight defaults",
+   "fig": "class_imbalance",
+   "look": [
+    "Repaid loans tower over defaulted ones.",
+    "Defaulted loans are 1,004 of 8,000, about 12.5 percent.",
+    "One answer is far more common than the other."
+   ],
+   "caption": "Class imbalance: the answer we care about is the rare one.",
+   "alt": "Two bars showing most loans are repaid and about one in eight defaults.",
+   "notes": "Here are those two counts as a picture. Remember this chart. It will matter again in a few minutes.\n\nThe tall bar is the repaid loans. Almost all of them.\n\nThe short bar is the defaulted loans, one thousand and four out of eight thousand. The chart rounds the share to twelve point six percent. The exact figure is twelve point five five, and we say about twelve and a half.\n\nWhen one answer is far more common than the other, we say the data has class imbalance. Lenders live with this all the time. The loans that hurt are the ones that are rare.\n\nWhy does that matter? Give that a moment.\n\nBecause a lazy guesser who says repaid every time would be right almost nine times in ten. Hold that thought."
+  },
+  {
+   "type": "concept",
+   "title": "Features go in, the target comes out",
+   "lead": "Every learning problem has two kinds of columns. Name them before you do anything else.",
+   "points": [
+    {
+     "h": "Features",
+     "t": "The input columns: age, income, loan amount, savings and so on."
+    },
+    {
+     "h": "Target",
+     "t": "The column to predict. Here it is default, 1 or 0."
+    },
+    {
+     "h": "One row",
+     "t": "One loan. The model learns from many rows with known targets."
+    }
+   ],
+   "notes": "Two words to settle first, because the rest of today uses them.\n\nA feature is an input column. Age, monthly income, loan amount, savings, how many earlier late payments. Anything we know about the borrower when the loan is made.\n\nThe target is the column we want to predict. Here that's default. Think of it as the cell you wish you could fill in before the loan is approved.\n\nEach row is one loan. During learning, the computer sees the features and the known target for thousands of rows, and works out how the two are linked. Later it sees only the features of a new loan and has to guess the target."
+  },
+  {
+   "type": "code",
+   "title": "Fix the impossible ages first",
+   "lang": "python",
+   "code": "print(loans.age.sort_values().head(3).tolist())\nprint(loans.age.sort_values().tail(3).tolist())\n\nbad_age = (loans.age < 18) | (loans.age > 100)\nprint(bad_age.sum())\ngood_median = int(loans.loc[~bad_age, 'age'].median())\nloans.loc[bad_age, 'age'] = good_median\nprint(loans.age.min(), loans.age.max())",
+   "says": [
+    "Sorting shows a borrower aged 0 and one aged 199.",
+    "Mark any age under 18 or over 100 with a True and False test.",
+    "Replace those with the median of the good ages, which is 36."
+   ],
+   "output": "[0, 20, 20]\n[68, 68, 199]\n2\n20 68",
+   "notes": "Models learn from whatever we give them, so we prepare the data first, with the pandas you already know.\n\nStart with a look. Sort the ages and print the smallest and the largest three. The smallest is zero, and the largest is one hundred and ninety nine. Nobody is a hundred and ninety nine, and a lender does not lend to a newborn. Those are data entry errors.\n\nWe mark the bad ages with a True and False test, the boolean mask from Session 7. Under eighteen, or over a hundred. Two loans fail the test.\n\nWe replace them with the median of the good ages, which is thirty six. Ages now run from twenty to sixty eight. We changed only two rows out of eight thousand, and we know exactly which ones."
+  },
+  {
+   "type": "code",
+   "title": "Fill missing incomes and remember which ones",
+   "lang": "python",
+   "code": "loans['income_missing'] = loans.monthly_income_ugx.isna().astype(int)\nmedian_income = loans.monthly_income_ugx.median()\nloans['monthly_income_ugx'] = loans.monthly_income_ugx.fillna(median_income)\nprint(median_income, loans.income_missing.sum())",
+   "says": [
+    "Add a flag column: 1 where income was blank, 0 elsewhere.",
+    "Fill the blanks with the median income."
+   ],
+   "output": "642600.0 379",
+   "notes": "Next, the missing incomes. Three hundred and seventy nine loans have a blank income.\n\nA model cannot learn from a blank cell. Most scikit-learn models stop with an error that says the input contains NaN, which is the computer's word for missing. So we must fill them, and we must say how.\n\nFirst we add a flag. That's a new column of ones and zeros that remembers which rows were blank. Filling hides the gap, and the flag keeps the memory of it. A missing income might itself tell us something.\n\nThen we fill the blanks with the median income, six hundred and forty two thousand six hundred shillings. The median, because a few big earners would drag the mean up.\n\nOne detail you should know. We worked out the median using all eight thousand loans, before the split we make shortly. The effect is tiny. In Session 19 you'll learn a pipeline that does this the careful way."
+  },
+  {
+   "type": "code",
+   "title": "Build a feature: the repayment burden",
+   "lang": "python",
+   "code": "loans['burden'] = (loans.loan_amount_ugx * 1.15\n                  / loans.term_months\n                  / loans.monthly_income_ugx)\nprint(loans.burden.median().round(2), loans.burden.max().round(2))",
+   "says": [
+    "Loan plus 15 percent charges, shared over the months, divided by income.",
+    "A burden of 0.29 means the instalment takes 29 percent of income."
+   ],
+   "output": "0.29 9.11",
+   "notes": "We can also build a new feature from the old ones. Data scientists call this feature engineering. In a spreadsheet you'd call it adding a calculated column.\n\nOur question is simple. How heavy is the monthly instalment compared with what the borrower earns? Take the loan amount, add fifteen percent for interest and charges, divide by the number of months, then divide by monthly income.\n\nThe typical loan has a burden of point two nine. That means the instalment eats twenty nine percent of income. The heaviest burden in the file is over nine. That borrower faces an instalment of more than nine times their monthly income.\n\nDoes this number tell us anything about default? Let's draw it."
+  },
+  {
+   "type": "figure",
+   "title": "Default climbs steeply with repayment burden",
+   "fig": "default_by_burden",
+   "look": [
+    "The lightest fifth of burdens default 4.8 percent of the time.",
+    "Default rises slowly through the middle.",
+    "The heaviest fifth defaults 31.7 percent of the time."
+   ],
+   "caption": "Borrowers split into fifths by burden. The top fifth defaults about 6.6 times as often as the bottom fifth.",
+   "alt": "Bar chart showing default rate rising with repayment burden.",
+   "notes": "We split the borrowers into five equal groups by burden, lightest to heaviest, and worked out the default rate in each.\n\nIn the lightest group, four point eight percent default. Not many.\n\nThrough the middle groups the rate creeps up, from five point seven to about eleven percent.\n\nThen the heaviest fifth jumps to thirty one point seven percent. Nearly one borrower in three. That's about six and a half times the rate of the lightest group.\n\nSo the burden column carries signal. A model can only learn from what we show it, and a well chosen column often does more than a fancier method."
+  },
+  {
+   "type": "code",
+   "title": "Choose features, leave one column out",
+   "lang": "python",
+   "code": "features = ['age', 'monthly_income_ugx', 'income_missing',\n            'loan_amount_ugx', 'term_months', 'previous_loans',\n            'previous_late_payments', 'group_loan',\n            'savings_balance_ugx', 'has_mobile_money',\n            'distance_to_branch_km', 'burden']\n# collection_calls is left out on purpose.\nX = loans[features]\ny = loans['default']\nprint(X.shape, y.shape)",
+   "says": [
+    "Twelve input columns go into X, a table of features.",
+    "y holds the target, the column default."
+   ],
+   "output": "(8000, 12) (8000,)",
+   "notes": "Time to separate the features from the target. By convention a capital X holds the features, and a small y holds the target.\n\nWe list twelve columns by name. The list includes our new burden, our income flag and the cleaned age and income. The target goes in y.\n\nThe comment in the code matters. The file has a column called collection_calls, and I'm leaving it out on purpose. Session 16 explains why, and the reason surprises most people. For today, leave it out too.\n\nCheck the shapes. X has eight thousand rows and twelve columns, and y has eight thousand values. Same rows, same order. That's the pairing the computer needs."
+  },
+  {
+   "type": "figure",
+   "title": "Hold back a test set before the model sees anything",
+   "fig": "train_test_split",
+   "look": [
+    "Most loans go in the training set.",
+    "A smaller part is locked away as the test set.",
+    "We open the test set once, at the end."
+   ],
+   "caption": "Here: 6,000 loans to learn from and 2,000 kept hidden.",
+   "alt": "A long bar divided into a larger training part and a smaller test part held back.",
+   "notes": "Splitting the data is the most important habit in this module, so here is why we do it.\n\nImagine a student who gets the exam paper a week early and memorises the answers. Full marks on the exam tells you nothing about what they understand. A model is the same. If we score it on the loans it learned from, we only learn that it can remember.\n\nSo before the model sees anything, we cover part of the data with a sheet of paper. In Excel terms, hide the last rows and promise not to peek.\n\nThe big part is the training set. The model learns here. The smaller part is the test set, locked away until the end. We use it once, and the score on it is our best guess of how the model will do on tomorrow's loans.\n\nHere, six thousand loans to learn from and two thousand to test on."
+  },
+  {
+   "type": "code",
+   "title": "Split the data with train_test_split",
+   "lang": "python",
+   "code": "from sklearn.model_selection import train_test_split\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, stratify=y, random_state=42)",
+   "says": [
+    "test_size=0.25 hides a quarter of the loans: 2,000 of 8,000.",
+    "stratify=y keeps about 12.5 percent defaults in both parts.",
+    "random_state=42 makes the shuffle repeatable."
+   ],
+   "notes": "From here on the code needs scikit-learn, which is free and already installed in Colab. You'll run it in the lab.\n\nThe function is train_test_split. We give it X and y, and it hands back four things: the training features, the test features, the training targets and the test targets. Always in that order.\n\ntest_size of point two five hides a quarter of the loans, so two thousand are kept for testing.\n\nstratify equals y makes sure the training and test parts both keep about twelve and a half percent defaults. Without it, a lucky or unlucky shuffle could leave the test set with too few defaults to judge anything.\n\nrandom_state is a seed. It fixes the shuffle, so you and I get the same split. Any number works. Forty two is a tradition."
+  },
+  {
+   "type": "code",
+   "title": "The baseline: always say no default",
+   "lang": "python",
+   "code": "from sklearn.dummy import DummyClassifier\n\nbaseline = DummyClassifier(strategy='most_frequent')\nbaseline.fit(X_train, y_train)\nprint(baseline.score(X_test, y_test))",
+   "says": [
+    "The dummy learns only the most common answer: 0.",
+    "fit means learn from the training data.",
+    "score gives the share of test loans it got right."
+   ],
+   "notes": "Before we build a clever model, we build a stupid one. A baseline is the score of a guesser that learns nothing.\n\nDummyClassifier with the setting most frequent always gives the most common answer in the training data. Here that's zero, no default, for every single loan. In a spreadsheet it's like forecasting next month by repeating this month.\n\nFit is the word for learning. The dummy fits the training data, which for it just means counting.\n\nScore gives the accuracy on the test set. Accuracy is the share of loans where the answer was right. Because about eighty seven and a half percent of loans are repaid, this lazy guesser scores close to that. Expect a number between eighty six and eighty eight percent. Your run may differ from mine by a little.\n\nThis number is the bar. Every model we build has to beat it."
+  },
+  {
+   "type": "code",
+   "title": "Fit a first model and predict",
+   "lang": "python",
+   "code": "from sklearn.tree import DecisionTreeClassifier\n\nfirst = DecisionTreeClassifier(max_depth=3, random_state=42)\nfirst.fit(X_train, y_train)\npred = first.predict(X_test)\nprint(first.score(X_test, y_test))",
+   "says": [
+    "Choose a model and keep its settings small.",
+    "fit learns from the training set. predict answers for the test loans.",
+    "score compares the answers with the truth."
+   ],
+   "notes": "Now a model that learns something. The code changes very little: choose a model, fit it, predict with it. That pattern runs through almost every model in scikit-learn.\n\nThe model here is a small decision tree. Don't worry about how it works. We open it in Session 15. Today only the pattern matters.\n\nFit hands the model the training features and the true answers. It learns.\n\nPredict hands it the test features only, with no answers, and it returns a guess of zero or one for each of the two thousand test loans.\n\nScore compares those guesses with the truth we kept hidden. You should land close to the baseline, somewhere between eighty five and ninety percent. Probably only a little above the lazy guesser, and that's a finding in itself. The trap for today explains why."
+  },
+  {
+   "type": "trap",
+   "title": "A high score that proves nothing",
+   "looks": "Your first model scores about eighty seven percent on the test set. That sounds excellent, and nothing warns you.",
+   "why": "Always answering no default also scores about eighty seven percent, because only one loan in eight defaults. The model may have learned very little.",
+   "fix": "Print the baseline score beside the model score every time. Session 16 gives scores that suit rare events.",
+   "notes": "Today's trap runs without any error.\n\nYou fit your first model, and it scores about eighty seven percent on the test set. You feel clever. Eighty seven percent would be a fine mark in most exams.\n\nBut look at what the lazy guesser scored on the same loans. About the same. The model has just matched a guesser who never looks at any borrower.\n\nThe reason is class imbalance. When only one loan in eight defaults, answering no every time is right most of the time, and it catches no defaults at all. The score hides that.\n\nTo fix it, print the baseline next to the model score every time. If your model cannot beat the baseline, it hasn't earned a place yet. In Session 16 we meet scores that look at the rare defaults directly."
+  },
+  {
+   "type": "code",
+   "title": "A misspelt column name stops the build",
+   "lang": "python",
+   "expect_error": true,
+   "code": "raw = pd.read_csv('loans.csv')\nraw['burden'] = raw.loan_amount_ugx * 1.15 / raw.term_months / raw.monthly_income",
+   "output": "AttributeError: 'DataFrame' object has no attribute 'monthly_income'",
+   "says": [
+    "Read the last line first. The column is monthly_income_ugx."
+   ],
+   "notes": "Preparing data is where most of your errors will happen, so let's read one together.\n\nWe rebuild the burden, but we type monthly income and forget the underscore ugx at the end.\n\nPython stops, and the last line says the data frame has no attribute called monthly income. Remember Session 5. Read the last line first. It says the column doesn't exist under that name.\n\nThe cure is to print loans dot columns and copy the name exactly. Column names in a CSV are fussy. One missing letter and the whole line fails."
+  },
+  {
+   "type": "figure",
+   "title": "Today's steps on the workflow loop",
+   "fig": "ml_workflow",
+   "look": [
+    "Question, data and features come first.",
+    "Split, train and evaluate follow, in that order.",
+    "A weak result sends us round the loop again."
+   ],
+   "caption": "Most of the work sits in the first three boxes.",
+   "alt": "A loop of steps: question, data, features, split, train, evaluate, then improve or deliver.",
+   "notes": "Let's put the whole session on one picture. This loop is the machine learning workflow, and you'll walk round it again in every session until the end of the module.\n\nIt starts with a question. Will this borrower default? Then the data, the eight thousand loans. Then the features, where we cleaned the ages, filled the incomes and built the burden.\n\nThen the split, with a test set locked away. Then training, where the model learns. Then evaluate, the gold box, where we score on the test set and compare with the baseline.\n\nThe red arrow is the way back. If the result is weak, we go back round. Better features, a different model, a closer look at the question. Real projects loop many times.\n\nNotice how much of today went into the first three boxes. That's normal. Most of the work is the data."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: prepare the loans and fit a first model",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 14 notebook and run the setup cell",
+    "Fix the two impossible ages",
+    "Fill the missing incomes and add the flag",
+    "Build the burden feature and choose features",
+    "Split the loans and score the baseline",
+    "Fit a first model and compare with the baseline",
+    "Write down your capstone dataset"
+   ],
+   "done": "Your model score and the baseline score printed side by side with one sentence on what they tell you, and your capstone dataset named.",
+   "notes": "The first task loads loans.csv and prints the shape and the default rate, the same lines we ran together. Run the setup cell in the Session 14 notebook before it. Tasks two to four are pandas you've met already: the impossible ages, the blank incomes with their flag, and the burden column.\n\nThen you choose the features, split the loans, score the baseline and fit your first tree. Those cells use scikit-learn, and the checks accept a range of scores, because your numbers will be close to mine but will differ a little.\n\nThe last task asks for one sentence on whether your model beat the baseline. It also asks you to write down your capstone dataset, which you choose today: Lakeside Mart, Nile Microfinance loans, District Clinics visits or Lakeside Mart feedback. You wrote your question in Session 13, so pick the table that can answer it.\n\nYou have forty minutes, and I'm around when an error stops you."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A model scores 87 percent on the loans. What must you print beside it?",
+     "a": "The baseline score. Always saying no default also scores about 87 percent."
+    },
+    {
+     "q": "Why do we hide a test set before the model learns?",
+     "a": "To score the model on loans it has never seen, which tells us how it will do in future."
+    },
+    {
+     "q": "Name the three scikit-learn words for the pattern of every model.",
+     "a": "Choose it, fit it on the training set, predict on the test set."
+    }
+   ],
+   "notes": "The first question is about an eighty seven percent score, so keep the baseline in mind.\n\nQuestion one. A model scores eighty seven percent on the loans. What must you print beside it? Take your time.\n\nThe baseline score. Always saying no default also scores about eighty seven percent, so the model has to beat that to mean anything.\n\nQuestion two. Why do we hide a test set before the model learns? No rush.\n\nSo we score the model on loans it has never seen. That tells us how it will behave on tomorrow's borrowers.\n\nQuestion three. What's the pattern of every scikit-learn model? Think it over.\n\nChoose the model, fit it on the training set, then predict on the test set. Fit, then predict. You'll write those two words hundreds of times."
+  },
+  {
+   "type": "summary",
+   "points": [
+    "Machine learning finds the rule from examples: features go in, the target comes out.",
+    "Hide a test set first. Score on it once, and always beside a baseline.",
+    "Most of the work is preparing features. Leave collection_calls out until Session 16."
+   ],
+   "next": "Classification: yes or no questions",
+   "notes": "One. Machine learning finds the rule from examples. The features go in, and the target comes out.\n\nTwo. Hide a test set before the model learns. Score on it once, and always put the baseline beside it. Eighty seven percent can mean nothing.\n\nThree. Most of the work is preparing the features. And remember, collection_calls stays out for now. Session 16 will tell you why.\n\nNext session is Classification. We'll turn that first guess into a probability for every loan, and meet logistic regression and the decision tree properly. By then your capstone dataset should be written down, which is the last task in today's lab."
+  }
+ ],
+ "lab": {
+  "intro": "Prepare the Nile Microfinance loans with pandas, then fit a first model and compare it with the baseline. The pandas cells run exactly as shown. Scores from scikit-learn will be close to the lesson, not identical.",
+  "cells": [
+   {
+    "md": "## Task 1. Load the loans\nRead `loans.csv` into a DataFrame called `loans` and print its shape and the default rate."
+   },
+   {
+    "code": "import pandas as pd\n\nloans = pd.read_csv('loans.csv')\nprint(loans.shape)\nprint(loans.default.mean())",
+    "starter": "import pandas as pd\n\n# Your turn: read loans.csv into a DataFrame called loans\n# Your turn: print its shape, then print the mean of the default column\n"
+   },
+   {
+    "code": "assert loans.shape == (8000, 18), 'Check the file name'\nassert abs(loans.default.mean() - 0.1255) < 0.001, 'Use the mean of the default column'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Fix the impossible ages\nAn age under 18 or over 100 is an error. Replace each with the median of the good ages. Store the mask in `bad_age`."
+   },
+   {
+    "code": "bad_age = (loans.age < 18) | (loans.age > 100)\nprint(bad_age.sum())\nloans.loc[bad_age, 'age'] = int(loans.loc[~bad_age, 'age'].median())\nprint(loans.age.min(), loans.age.max())",
+    "starter": "# Your turn: make a True or False mask called bad_age that is True for ages under 18 or over 100\n# (put each test in brackets and join them with the | sign)\n# Your turn: replace those ages with the median of the other ages\n"
+   },
+   {
+    "code": "assert bad_age.sum() == 2, 'Two ages should be flagged'\nassert loans.age.between(18, 100).all(), 'Every age should now be between 18 and 100'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Missing incomes\nAdd a column `income_missing` that is 1 where income is blank and 0 elsewhere. Then fill the blanks in `monthly_income_ugx` with the median income, and store that median in `median_income`."
+   },
+   {
+    "code": "loans['income_missing'] = loans.monthly_income_ugx.isna().astype(int)\nmedian_income = loans.monthly_income_ugx.median()\nloans['monthly_income_ugx'] = loans.monthly_income_ugx.fillna(median_income)\nprint(median_income, loans.income_missing.sum())",
+    "starter": "# Your turn: first make the flag column income_missing\n# Your turn: store the median income in median_income, then fill the blanks with it\n# Make the flag first. If you fill first, the blanks are gone and the flag is all zeros.\n"
+   },
+   {
+    "code": "assert loans.income_missing.sum() == 379, 'Make the flag before you fill'\nassert loans.monthly_income_ugx.isna().sum() == 0, 'Fill every blank income'\nassert median_income == 642600.0, 'Use the median of monthly_income_ugx'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. The burden feature\nAdd `burden` = loan amount times 1.15, divided by term in months, divided by monthly income."
+   },
+   {
+    "code": "loans['burden'] = loans.loan_amount_ugx * 1.15 / loans.term_months / loans.monthly_income_ugx\nprint(loans.burden.median().round(2))",
+    "starter": "# Your turn: add a burden column to loans, built as the task describes\n# Take care with the order of the divisions\n"
+   },
+   {
+    "code": "assert round(loans.burden.median(), 2) == 0.29, 'Check the order of the divisions'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Features and target\nBuild `X` from these twelve columns of `loans`: `age`, `monthly_income_ugx`, `income_missing`, `loan_amount_ugx`, `term_months`, `previous_loans`, `previous_late_payments`, `group_loan`, `savings_balance_ugx`, `has_mobile_money`, `distance_to_branch_km` and `burden`. Build `y` from `default`. Leave `collection_calls` out. Session 16 explains why."
+   },
+   {
+    "code": "features = ['age', 'monthly_income_ugx', 'income_missing',\n            'loan_amount_ugx', 'term_months', 'previous_loans',\n            'previous_late_payments', 'group_loan',\n            'savings_balance_ugx', 'has_mobile_money',\n            'distance_to_branch_km', 'burden']\nX = loans[features]\ny = loans['default']\nprint(X.shape, y.shape)",
+    "starter": "# Your turn: put the twelve column names from the task in a list called features\n# Your turn: X holds those columns of loans, and y is the default column\n"
+   },
+   {
+    "code": "assert X.shape == (8000, 12), 'X should have 12 columns and 8000 rows'\nassert 'collection_calls' not in X.columns, 'Leave collection_calls out'\nassert X.isna().sum().sum() == 0, 'No blanks should remain. Did you fill the incomes in Task 3?'\nassert len(y) == 8000, 'y should be the default column'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Split and score the baseline\nSplit with `test_size=0.25`, `stratify=y` and `random_state=42`. Fit a `DummyClassifier(strategy='most_frequent')` and store its test accuracy in `base_acc`."
+   },
+   {
+    "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.dummy import DummyClassifier\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, stratify=y, random_state=42)\nbaseline = DummyClassifier(strategy='most_frequent')\nbaseline.fit(X_train, y_train)\nbase_acc = baseline.score(X_test, y_test)\nprint(len(X_test), base_acc)",
+    "starter": "from sklearn.model_selection import train_test_split\nfrom sklearn.dummy import DummyClassifier\n\n# Your turn: split X and y into X_train, X_test, y_train, y_test using the settings in the task\n# Your turn: make the dummy model, fit it on the training part, and put its test accuracy in base_acc\n"
+   },
+   {
+    "code": "assert 0.80 <= base_acc <= 0.92, 'The baseline accuracy should be near 0.87. Score it on X_test and y_test'\nassert len(X_test) == 2000, 'Use test_size=0.25 so the test part has 2000 loans'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. A first model\nFit `DecisionTreeClassifier(max_depth=3, random_state=42)` on the training set, predict on the test set and store the test accuracy in `model_acc`. Print it beside `base_acc`."
+   },
+   {
+    "code": "from sklearn.tree import DecisionTreeClassifier\n\nfirst = DecisionTreeClassifier(max_depth=3, random_state=42)\nfirst.fit(X_train, y_train)\npred = first.predict(X_test)\nmodel_acc = first.score(X_test, y_test)\nprint('baseline', round(base_acc, 3), 'model', round(model_acc, 3))",
+    "starter": "from sklearn.tree import DecisionTreeClassifier\n\n# Your turn: make the tree model, fit it on the training part\n# Your turn: predict on X_test and keep the predictions in pred\n# Your turn: put the test accuracy in model_acc and print it beside base_acc\n"
+   },
+   {
+    "code": "assert 0.80 <= model_acc <= 0.92, 'The test accuracy should be near 0.87 to 0.89. Score the test part, not the training part'\nassert len(pred) == 2000, 'Predict on X_test'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Reflect and choose your dataset\nWrite one sentence below: did the model beat the baseline, and by how much? What does that tell you about accuracy on rare events? Then choose your capstone dataset and write its name: Lakeside Mart, Nile Microfinance loans, District Clinics visits or Lakeside Mart feedback. Check that it can answer the question you wrote in Session 13."
+   }
+  ]
+ }
+}

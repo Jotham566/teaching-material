@@ -1,0 +1,6 @@
+Lakeside Mart Supplier Quality. Suppliers must deliver fresh goods with a delivery note and a
+temperature record. A branch manager inspects every delivery. If more than 5 percent of a delivery
+is damaged or spoiled, the delivery is rejected and the supplier is told the same day. A supplier
+with three rejected deliveries in a quarter is placed on review for 60 days. Complaints from
+customers about a supplier's product are logged by item and branch and reviewed monthly by the
+buyer. Payment to suppliers is made within 30 days of an accepted delivery.

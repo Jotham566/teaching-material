@@ -1,0 +1,20 @@
+DATA DICTIONARY. Every table is fictional. orders.csv is a random 5 percent sample of till transactions, to keep files small; all revenue figures describe the sample.
+
+LAKESIDE MART (eight mini-markets in Uganda)
+branches.csv        grain: one branch. branch_id (key), branch_name, region, size (relative size), opened_year.
+products.csv        grain: one product. product_id (key), product_name, category, unit_cost_ugx, unit_price_ugx.
+customers.csv       grain: one loyalty customer. customer_id (key), home_branch_id, signup_date, age_band, loyalty_tier.
+orders.csv          grain: one till order. order_id (key), order_date, branch_id, customer_id (blank for walk-in), payment_method, promo_week (1 if the branch ran a promotion that week), order_value_ugx (the sum of the order's lines).
+order_lines.csv     grain: one product on one order. line_id (key), order_id, product_id, quantity, unit_price_ugx, discount (0 to 0.10), line_revenue_ugx = quantity * unit_price * (1 - discount).
+returns.csv         grain: one returned line. return_id (key), order_id, product_id, quantity, line_revenue_ugx, reason.
+branch_weeks.csv    grain: one branch in one week. footfall (door counter), rainfall_mm, promo_on, orders (sampled orders that week), sales_ugx (their value). Orders is the cleaner regression target because it is not inflated by a few very large baskets.
+offer_test.csv      grain: one loyalty customer in a randomised loyalty-offer test. group (offer or control), next_month_spend_ugx, returned_within_30d (0 or 1).
+feedback.csv        grain: one customer message. message, rating (1 to 5), sentiment (positive, negative, neutral; about 6 percent of labels are noisy on purpose), theme (queue, payment, freshness, price, staff, stock, cleanliness, loyalty, delivery, or question). Theme is what the message is about, so it can score a search.
+policies/*.txt      eight short policy documents used in Session 22.
+orders_raw.csv      the dirty export of order lines used in Session 8, with eight seeded defects. Returns appear as negative quantities.
+
+NILE MICROFINANCE
+loans.csv           grain: one loan. default (1 = defaulted). collection_calls is recorded only after a loan goes bad: it leaks the answer. Missing incomes and two impossible ages are seeded.
+
+DISTRICT CLINICS
+clinic_visits.csv   grain: one district in one month, January 2021 to December 2025. total_visits has 18 blank months.

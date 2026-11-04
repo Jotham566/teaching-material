@@ -1,0 +1,506 @@
+{
+ "session": 24,
+ "notes_title": "This is the last session. Over twenty three sessions you've gone from a spreadsheet to a tested model and a small app. Today you present what you built. We'll practise telling the story of a result, saying its limits first, and answering the hard questions a manager or a colleague will ask. We'll also list what this course did not cover, and build your six month plan for what to learn next, using free courses.",
+ "notes_outcomes": "You leave able to present a result in ten minutes, with its limits, in words a manager can use. You'll answer questions on method and risk without panic, because you'll have prepared three of them in advance. And you'll choose your next free courses from a gap list. There's no code today. The teaching half covers the story, the limits and the likely questions. The lab is a rehearsal where you present to a partner and score each other against a marking guide.",
+ "notes_words": "Six words today. A capstone is the big project that finishes a course, and you built yours across the last sessions. A limitation is something your result cannot tell you. An executive summary is the short top paragraph a busy person reads first. A portfolio is a small set of your projects that a stranger can open. A rubric is a marking guide, the way a checklist works in a spreadsheet. A learning path is the plan for what you study next, month by month.",
+ "vocab": [
+  [
+   "Capstone",
+   "The larger project that ends a course and shows what you can do with it.",
+   "The final workbook that uses every skill"
+  ],
+  [
+   "Limitation",
+   "Something your result cannot tell you, such as who the data left out.",
+   "A note under a table saying what it excludes"
+  ],
+  [
+   "Executive summary",
+   "A short opening paragraph with the answer and the decision, for a busy reader.",
+   "The summary cell at the top of a report sheet"
+  ],
+  [
+   "Portfolio",
+   "A small set of your projects that others can open and judge.",
+   "A folder of your best workbooks"
+  ],
+  [
+   "Rubric",
+   "A marking guide that lists what good work looks like for each criterion.",
+   "A checklist column beside a task list"
+  ],
+  [
+   "Learning path",
+   "A plan of what to study next, in order, with time set aside.",
+   "A project plan with dates"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 23",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "What is data drift, and how do you watch for it?",
+     "a": "The incoming data slowly changes, so an old model gets worse. Compare key inputs with the training data each month, and predicted with actual outcomes."
+    },
+    {
+     "q": "A rule never uses gender but flags many more men than women. What is going on?",
+     "a": "A proxy variable, such as occupation, carries the information. Measure the rate for every group and report the gap."
+    }
+   ],
+   "notes": "Two questions on last session's checks, before we turn to presenting.\n\nFirst. What is data drift, and how do you watch for it? Have a think.\n\nThe data coming in slowly changes, so a model built on old data gets worse. Each month you compare the key inputs with the training data, and when outcomes arrive you compare predicted with actual. Today you'll learn to say that watch out loud, as part of your limits.\n\nSecond. A rule never uses gender but flags many more men than women. What is going on? No rush.\n\nA proxy variable is at work. In our loans, occupation carries information about gender. You measure the rate for every group, and you report the gap."
+  },
+  {
+   "type": "concept",
+   "title": "A result tells a story in three parts",
+   "lead": "Question, evidence, decision. If one part is missing, the room will not know what to do with your work.",
+   "points": [
+    {
+     "h": "Question",
+     "t": "Which loans may go bad, so officers know where to look first?"
+    },
+    {
+     "h": "Evidence",
+     "t": "A model that finds defaults on loans it never saw, beside a baseline."
+    },
+    {
+     "h": "Decision",
+     "t": "Use it to choose which loans get a closer look, with an officer making the call."
+    }
+   ],
+   "notes": "Every good result tells a story with three parts. The question, the evidence, and the decision.\n\nThe question is what someone needs to decide. In our loan example, the question is which loans may go bad, so that loan officers know where to look first. Notice it's a question about a decision, and it has nothing to do with algorithms.\n\nThe evidence is what you found, with the baseline beside it. Our model finds defaults among loans it never saw before.\n\nThe decision is what you recommend. Here, the model chooses which loans get a closer look, and an officer makes the final call. When you hold those three in your head, your presentation almost writes itself."
+  },
+  {
+   "type": "stat",
+   "title": "The evidence behind the loan story",
+   "stats": [
+    {
+     "n": "8,000",
+     "label": "loans in the Nile Microfinance file"
+    },
+    {
+     "n": "1,004",
+     "label": "of them defaulted"
+    },
+    {
+     "n": "87.5%",
+     "label": "right by always saying repaid"
+    },
+    {
+     "n": "about 0.76",
+     "label": "AUC of the model without the leaked column"
+    }
+   ],
+   "caption": "The baseline is the number a model has to beat.",
+   "notes": "Here's the evidence we'll use for practice. These are the Nile Microfinance loans from Sessions 14 to 17.\n\nThere are eight thousand loans, and one thousand and four of them defaulted. That's about one in eight.\n\nNow the number people forget. If you said repaid for every single loan, you'd be right about eighty seven and a half percent of the time. That's the baseline, and it needs no model at all.\n\nWithout the leaked column, the model reaches an AUC of about zero point seven six. Your own run will land near that figure. A result like this only means something when the baseline sits beside it, and that's what you'll show a manager."
+  },
+  {
+   "type": "compare",
+   "title": "Say the limits before the result",
+   "left": {
+    "h": "Result first",
+    "points": [
+     "Opens with the best number",
+     "Limits squeezed into the last minute",
+     "The room hears the claim before the caveat"
+    ]
+   },
+   "right": {
+    "h": "Limits first",
+    "points": [
+     "Opens with what the data covers",
+     "Names what the model cannot do",
+     "Then shows the result"
+    ]
+   },
+   "verdict": "When you name the limits first, the room trusts the result that follows.",
+   "notes": "Two ways to open a presentation.\n\nOn the left, the result comes first. You open with your best number. The limits arrive in the last minute, when people have stopped listening, or you run out of time before you reach them.\n\nThe room has already heard the claim. Anything you say afterwards sounds like a retreat.\n\nOn the right, you open with what the data covers. Eight thousand loans, ten districts, a few years. Then you name what the model cannot do. It can't tell you why a borrower defaults, and it knows nothing about borrowers who were refused a loan. Then you show the result.\n\nAt the bottom, the verdict. When you name the limits first, people trust what follows. Try it in your own words in the lab."
+  },
+  {
+   "type": "trap",
+   "title": "A model that is 87.6 percent accurate",
+   "looks": "You tell the manager the loan model is 87.6 percent accurate. The number is real and it sounds strong.",
+   "why": "Saying repaid for every loan scores 86.3 percent on the same test loans. At the usual cut off the model finds only about 15 of every 100 defaults.",
+   "fix": "Report the baseline, the share of defaults found, and the limit in the same sentence.",
+   "notes": "Here's the trap for today. It runs without an error and the number is true.\n\nYou tell the manager the loan model is eighty seven point six percent accurate. That sounds strong.\n\nThen a careful person asks what a model that always says repaid would score. On the same test loans, it scores eighty six point three percent. Your model is barely ahead. And at the usual cut off, it finds only about fifteen out of every hundred defaults. Your own run will land near these figures.\n\nA correct number can still leave the wrong impression.\n\nThe fix is to put three things in one sentence. The baseline, the share of defaults found, and the limit."
+  },
+  {
+   "type": "table",
+   "title": "Five slides, ten minutes",
+   "header": [
+    "Slide",
+    "What it says",
+    "Minutes"
+   ],
+   "rows": [
+    [
+     "1 Question",
+     "The decision someone faces",
+     "1"
+    ],
+    [
+     "2 Data",
+     "What the data covers and leaves out",
+     "2"
+    ],
+    [
+     "3 Evidence",
+     "The result beside its baseline",
+     "3"
+    ],
+    [
+     "4 Risk",
+     "What could go wrong and who checks",
+     "2"
+    ],
+    [
+     "5 Decision",
+     "What you recommend and the next step",
+     "2"
+    ]
+   ],
+   "colw": [
+    2.6,
+    6.4,
+    1.6
+   ],
+   "caption": "The executive summary goes in your opening sentence. Rehearse with a timer.",
+   "notes": "Here's a plan for your presentation. Five slides, ten minutes.\n\nSlide one is the question. One minute. Who needs to decide what?\n\nSlide two is the data. Two minutes. What it covers, and what it leaves out. This is where you say your first limits.\n\nSlide three is the evidence. Three minutes, the longest. Show the result beside its baseline, in units the manager cares about, such as loans or shillings.\n\nSlide four is the risk. Two minutes. What could go wrong, whether the model treats groups differently, and who will keep checking it.\n\nSlide five is the decision. Two minutes. What you recommend and what happens next.\n\nOne more thing. Open with your executive summary, the answer in one sentence, before slide one. Then rehearse with a timer."
+  },
+  {
+   "type": "concept",
+   "title": "Presenting to a manager",
+   "lead": "A manager has a few minutes of attention and a decision to make.",
+   "points": [
+    {
+     "h": "Start with the answer",
+     "t": "One sentence on what you recommend, before any detail."
+    },
+    {
+     "h": "Use plain words",
+     "t": "Say defaults we miss when you mean recall."
+    },
+    {
+     "h": "One number per slide",
+     "t": "Give the number, its baseline and what it means in loans or shillings."
+    },
+    {
+     "h": "Keep code out",
+     "t": "Hold the notebook ready for questions."
+    }
+   ],
+   "notes": "Now a few habits for the room itself. Your audience is a manager, and managers have little time.\n\nStart with the answer. One sentence on what you recommend, before any detail. If you get cut off after thirty seconds, they still have what they need.\n\nUse plain words. When you mean recall, say the defaults we miss. When you mean the cut off, say how cautious we want to be.\n\nGive one number per slide, with its baseline and what it means in loans or shillings. Four numbers on a slide means none of them is heard.\n\nAnd keep code out of the slides. Keep the notebook open in another tab. When someone asks how you did something, you can show them, and that earns respect."
+  },
+  {
+   "type": "check",
+   "title": "Three questions on method",
+   "kicker": "Likely questions",
+   "questions": [
+    {
+     "q": "How do you know it works on new loans?",
+     "a": "I kept a test set the model never saw, and I compared it with a simple baseline."
+    },
+    {
+     "q": "Why did you choose that metric?",
+     "a": "Because of the cost. Missing a default costs more than a closer look at a good loan, so I watched recall and AUC."
+    },
+    {
+     "q": "Could this result be luck?",
+     "a": "I used cross validation. The score held across the folds, and I report the range."
+    }
+   ],
+   "notes": "People will ask questions after you present. Here are three about method, with answers you can borrow. Answer each in your head first.\n\nFirst. How do you know it works on new loans? Take your time.\n\nI kept a test set that the model never saw, and I compared the score with a simple baseline. Both parts matter.\n\nSecond. Why did you choose that metric? Think it over.\n\nBecause of the cost. Missing a default costs more than a closer look at a good loan. So I watched recall and AUC, and not accuracy alone.\n\nThird. Could this result be luck? Give that a moment.\n\nI used cross validation, which tests the model on several different splits of the data. The score held across them, and I report the range. Use your own words and your own numbers."
+  },
+  {
+   "type": "check",
+   "title": "Two questions on risk",
+   "kicker": "Likely questions",
+   "questions": [
+    {
+     "q": "What could go wrong once people use it?",
+     "a": "Customers change and the model drifts. I would track the error monthly and set a date to review."
+    },
+    {
+     "q": "Is it fair, and are we allowed to use this data?",
+     "a": "I compared error rates across groups and checked our duties under the Data Protection and Privacy Act of 2019. A person makes the final call."
+    }
+   ],
+   "notes": "Two more questions, about risk. These are the ones that separate a careful analyst from an excited one.\n\nFirst. What could go wrong once people use it? Sit with it for a second.\n\nThe customers will change, and the model will drift. So I would track the error every month, and set a date when someone reviews the model and decides whether to retrain it. Name an owner for that job, too.\n\nSecond. Is it fair, and are we allowed to use this data? Mull it over.\n\nIt's two questions, so answer both. I compared the error rates across groups such as district and gender, and I checked our duties under the Data Protection and Privacy Act of 2019. And a person makes the final call. If you have not finished a check, say so. Saying what you have not checked yet is a strength, as long as you also say when you will."
+  },
+  {
+   "type": "concept",
+   "title": "A portfolio on GitHub",
+   "lead": "A portfolio is a few projects a stranger can open and understand in five minutes.",
+   "points": [
+    {
+     "h": "A README first",
+     "t": "The question, the result, the limits and how to run it."
+    },
+    {
+     "h": "A notebook that runs",
+     "t": "Restart and run all, top to bottom, before you publish."
+    },
+    {
+     "h": "Data you may share",
+     "t": "Use generated or public data, and leave out personal data."
+    },
+    {
+     "h": "Two or three projects",
+     "t": "Choose the ones you can explain best, with a link to your app."
+    }
+   ],
+   "notes": "After the presentation, keep the work. A portfolio is a few projects that a stranger can open and understand in five minutes. GitHub is the free place to put it, and you met it in Session 23.\n\nStart each project with a README. It's the front page. The question, the result, the limits and how to run it.\n\nMake sure the notebook runs from the top to the bottom on a fresh start. In Colab, restart the session and run everything. If it breaks halfway, so will a stranger's attempt.\n\nUse data you're allowed to share. The generated data from this course is fine.\n\nAnd keep it small. Two or three projects you can explain well beat ten you can't."
+  },
+  {
+   "type": "trap",
+   "title": "A public repository with real customer data",
+   "looks": "You publish your project and the repository looks tidy. One file holds real customer names and phone numbers from your workplace.",
+   "why": "Anyone can read a public repository, and copies can outlive your deletion. The Data Protection and Privacy Act of 2019 puts duties on whoever holds personal data.",
+   "fix": "Use generated or public data. Open every file before the first push, and keep workplace data in workplace systems.",
+   "notes": "One more trap, and it also runs without any error.\n\nYou're proud of your project, so you publish it. The repository looks tidy. But one file holds real customer names and phone numbers from your workplace, because that's the data you used when you practised.\n\nA public repository can be read by anyone. Copies can be made, and deleting the file later does not undo them. The Data Protection and Privacy Act of 2019 puts duties on whoever holds personal data, and I'm not a lawyer, so if you're unsure, ask your organisation's data protection officer before you publish anything.\n\nThe fix is simple. Use the generated data from this course, or data you're allowed to share. Open every file before your first push. And keep workplace data inside workplace systems."
+  },
+  {
+   "type": "table",
+   "title": "What this course did not cover",
+   "header": [
+    "Area",
+    "What that means for you"
+   ],
+   "rows": [
+    [
+     "Mathematics by hand",
+     "You can read results. You have not derived them."
+    ],
+    [
+     "Data structures and algorithms",
+     "Interview puzzles need separate practice."
+    ],
+    [
+     "Big data tools",
+     "Your data fitted in one notebook."
+    ],
+    [
+     "Cloud platforms",
+     "You used free browser tools only."
+    ],
+    [
+     "Deep learning from scratch",
+     "You used a small network and a pretrained model."
+    ],
+    [
+     "Production MLOps with containers",
+     "Your app is small and has no container."
+    ]
+   ],
+   "colw": [
+    4.0,
+    6.6
+   ],
+   "caption": "Say these gaps yourself, before anyone asks.",
+   "notes": "Here's what this course did not cover.\n\nMathematics by hand. You can read a result and know what it means. You have not derived the formulas or calculated them on paper.\n\nData structures and algorithms. Many job interviews test them with puzzles. That needs its own practice.\n\nBig data tools. Everything we used fitted in one notebook.\n\nCloud platforms. We used free browser tools only, so you have not worked on the big paid platforms.\n\nDeep learning from scratch. You trained a small network and used a pretrained one. You did not build one from the ground up.\n\nAnd production MLOps with containers. Your app is small and has no container around it.\n\nSay these gaps yourself, before anyone asks. It makes the rest of what you say easier to believe."
+  },
+  {
+   "type": "stat",
+   "title": "The size of this course",
+   "stats": [
+    {
+     "n": "48",
+     "label": "hours in this course"
+    },
+    {
+     "n": "24",
+     "label": "sessions of two hours"
+    },
+    {
+     "n": "150 to 240",
+     "label": "hours often quoted for the Google and IBM data certificates"
+    }
+   ],
+   "caption": "Check each provider's current figure. This course gave you a base, and the certificates go further.",
+   "notes": "A number to keep in mind. This course is forty eight hours, in twenty four sessions of two hours.\n\nThe Google and IBM data certificates are often quoted at around one hundred and fifty to two hundred and forty hours each, depending on the source. Providers change their figures, so check the current number on each course page.\n\nThat is roughly three to five times the time. When you describe your learning, say what you did, which is a focused, practical course that took you from a spreadsheet to a tested model and a small app.\n\nIt's a good base. The next slides show you how to build on it for free."
+  },
+  {
+   "type": "table",
+   "title": "The gap list and free next steps",
+   "header": [
+    "Gap",
+    "Free next step"
+   ],
+   "rows": [
+    [
+     "Python habits",
+     "Harvard CS50P"
+    ],
+    [
+     "Everyday data work",
+     "Kaggle Learn: Pandas"
+    ],
+    [
+     "Models beyond this course",
+     "Kaggle Learn: Intermediate Machine Learning"
+    ],
+    [
+     "Machine learning basics again",
+     "Google Machine Learning Crash Course"
+    ],
+    [
+     "Deep learning",
+     "fast.ai Practical Deep Learning for Coders"
+    ],
+    [
+     "AI ideas and ethics",
+     "University of Helsinki Elements of AI"
+    ],
+    [
+     "Language models",
+     "DeepLearning.AI materials"
+    ]
+   ],
+   "colw": [
+    4.4,
+    6.2
+   ],
+   "caption": "Check the current terms before you start. Free audit and certificate rules change.",
+   "notes": "Here's your gap list, with a free next step for each. You don't need all of them. Pick two.\n\nFor Python habits, Harvard's CS50P. For everyday data work, the Kaggle Learn Pandas course. For models beyond what we did, Kaggle Learn's Intermediate Machine Learning.\n\nGoogle's Machine Learning Crash Course covers the basics again from a different angle, which helps. For deep learning, fast.ai's Practical Deep Learning for Coders. For AI ideas and ethics in plain language, the University of Helsinki's Elements of AI. And for language models, the DeepLearning.AI materials.\n\nOne warning. Check the current terms before you start. Free audit and certificate rules change, and a course that was free to certify last year may not be this year."
+  },
+  {
+   "type": "figure",
+   "title": "Your six month learning path",
+   "fig": "learning_path",
+   "look": [
+    "Months one and two: repeat the labs on new data.",
+    "Months three and four: go deeper in one area.",
+    "Months five and six: publish two projects and one app."
+   ],
+   "caption": "Set a weekly hour budget you can keep.",
+   "alt": "Three-step path with months one to two, three to four and five to six listing practice, depth and portfolio goals.",
+   "notes": "And here's the path, six months in three steps.\n\nMonths one and two are for repeating what you did on new data. Take the labs again with a different file, say your own sector's data if you can share it. Kaggle Learn's Pandas and data cleaning fit here.\n\nMonths three and four are for depth in one area. Pick one. The Google Crash Course, or fast.ai, whichever matches the work you do.\n\nMonths five and six are for publishing. Two projects on GitHub and one deployed app. This is the step that turns learning into evidence.\n\nThen choose a weekly hour budget you can keep. Three hours every week beats twenty hours in one weekend and then nothing. In the lab you'll write your own version."
+  },
+  {
+   "type": "table",
+   "title": "How your presentation is marked",
+   "header": [
+    "Criterion",
+    "Strong work looks like"
+   ],
+   "rows": [
+    [
+     "Question and evidence",
+     "A one sentence question. Every claim points to data."
+    ],
+    [
+     "Metric and baseline",
+     "A metric chosen for the cost, on unseen data, beside a simple baseline."
+    ],
+    [
+     "Limits and fairness",
+     "Limits stated first. Risks named. Groups compared. Data duties checked."
+    ],
+    [
+     "Clarity",
+     "Five slides, ten minutes, plain words, one decision."
+    ]
+   ],
+   "colw": [
+    3.6,
+    7.0
+   ],
+   "caption": "Use the same four rows to give your partner feedback.",
+   "notes": "Here's the rubric, the marking guide, for your presentation and for the feedback you give.\n\nQuestion and evidence. Your question fits in one sentence, and every claim points back to data.\n\nMetric and baseline. You chose a metric because of what a mistake costs. You measured it on data the model never saw, and you put a simple baseline beside it.\n\nLimits and fairness. You say the limits first, you name the risks, you compare how the model treats different groups, and you've checked your data protection duties.\n\nClarity. Five slides, ten minutes, plain words, and one decision at the end.\n\nIn the lab you'll use these same four rows to give a partner feedback. Be kind and be specific. Point to a slide."
+  },
+  {
+   "type": "concept",
+   "title": "Looking back at Session 1",
+   "lead": "In Session 1 you wrote a business question of your own. Read it again today.",
+   "points": [
+    {
+     "h": "Rewrite your question",
+     "t": "Say it with what you know now."
+    },
+    {
+     "h": "Name one thing you can do",
+     "t": "Pick a skill you did not have in Session 1."
+    },
+    {
+     "h": "Name one thing you cannot do yet",
+     "t": "Put it on your gap list."
+    }
+   ],
+   "notes": "Before the lab, a moment to look back. In Session 1 you wrote a business question of your own. Find it and read it again.\n\nFirst, rewrite it using what you know now. You'll probably make it smaller and sharper, and you'll know what data it needs.\n\nSecond, name one thing you can do today that you could not do in Session 1. Maybe it's loading a file. Maybe it's reading a confusion matrix. Say it plainly.\n\nThird, name one thing you cannot do yet. That goes on your gap list, and it tells you where to start your six months.\n\nYou started this course with a spreadsheet and a question."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: prepare, rehearse and give feedback",
+   "tool": "Slides, a timer and your capstone notebook",
+   "time": "40 minutes",
+   "steps": [
+    "Write the five slide outline with minutes",
+    "Rehearse aloud with a timer",
+    "Prepare answers to three likely questions",
+    "Present for ten minutes to a partner",
+    "Score your partner on the four rubric rows",
+    "Write your six month path"
+   ],
+   "done": "You finish near ten minutes, have three answers written, and hold feedback on all four rubric rows.",
+   "notes": "The first task is the five slide outline for your own capstone, with the minutes beside each slide. There's no code today, only your voice and your slides. Then rehearse aloud with a timer. Everyone runs long the first time, so cut a sentence from the slide that ran longest.\n\nNext, write answers to three likely questions. One on method, one on metric, one on risk.\n\nThen pair up. Present for ten minutes. Your partner scores you on the four rows of the rubric, and writes one comment for each, pointing to a slide. Then swap.\n\nLast, write your six month path. Three blocks, one named free course in each, and a weekly hour budget. Check the current terms for each course.\n\nYou're done when you finish near ten minutes and hold feedback on all four rows. I'll be walking round to listen."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "Which three parts make a result into a story?",
+     "a": "The question, the evidence and the decision."
+    },
+    {
+     "q": "Name two things to say before you show a result.",
+     "a": "What the data covers and what the model cannot do. Name the baseline too."
+    },
+    {
+     "q": "Where do you confirm the terms of a free course?",
+     "a": "On the provider's own page, before you start, because free audit and certificate rules change."
+    }
+   ],
+   "notes": "First, the three parts that turn a result into a story. Which three? Picture it for a second.\n\nThe question, the evidence and the decision.\n\nSecond, what to say before you show a result. Name two things. Let it settle.\n\nWhat the data covers, and what the model cannot do. Naming the baseline helps too.\n\nThird, where do you confirm the terms of a free course? Pause on that.\n\nOn the provider's own page, before you start. Free audit and certificate rules change, and you don't want a surprise halfway through."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Tell a result as question, evidence and decision, and say the limits first.",
+    "Report the baseline and the cost with every number, and answer risk questions plainly.",
+    "Pick two free courses from the gap list, check their terms, and keep a weekly hour budget."
+   ],
+   "next": "No more sessions. Your six month path starts now.",
+   "notes": "Tell a result as a question, evidence and a decision, and say the limits first.\n\nReport the baseline and the cost beside every number, and answer questions about risk in plain words, including what you haven't checked yet.\n\nPick two free courses from the gap list, check their current terms, and set a weekly hour budget you can keep.\n\nThis is the last session, so there's no next one. Your six month path starts now. Thank you for the twenty four sessions, and for the questions you asked. Publish your work, keep practising, and tell me what you build."
+  }
+ ],
+ "lab": {
+  "intro": "Prepare and rehearse the ten minute presentation of your capstone, then give and receive feedback with the rubric. No code today.",
+  "sheet_tasks": [
+   {
+    "task": "Write the outline of your presentation: five slides, one sentence each, with minutes beside each slide.",
+    "answer": "Five rows: question, data, evidence, risk and decision, each with one sentence about your own capstone. The minutes add up to ten, for example 1, 2, 3, 2, 2."
+   },
+   {
+    "task": "Rehearse aloud with a timer. Note the time and which slide ran longest.",
+    "answer": "A finishing time between nine and eleven minutes. One sentence cut from the slide that ran longest."
+   },
+   {
+    "task": "Prepare three answers: one question on method, one on the metric, one on risk. Write each in two sentences.",
+    "answer": "Method: the answer names the test data or the baseline the result was judged against. Metric: it names the cost behind the number, for example what a missed default costs. Risk: it names one risk with an owner and a review date. An answer that says a check is not finished counts as a good answer."
+   },
+   {
+    "task": "Present to a partner for ten minutes. Score them 1 to 3 on each of the four rubric rows (question and evidence, metric and baseline, limits and fairness, clarity) and write one comment per row. Then swap.",
+    "answer": "Four scores, one per rubric row, and four comments. Each comment points to a named slide, and at least one says what to keep."
+   },
+   {
+    "task": "Write your six month learning path: three blocks of two months, one named free course in each, and hours per week.",
+    "answer": "Three blocks for months 1 to 2, 3 to 4 and 5 to 6. Each has one named course from the gap list, a weekly hour budget the student can keep, and a note that the current terms were checked."
+   }
+  ]
+ }
+}

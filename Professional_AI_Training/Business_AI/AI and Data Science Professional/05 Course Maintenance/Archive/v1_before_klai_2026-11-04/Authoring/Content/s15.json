@@ -1,0 +1,439 @@
+{
+ "session": 15,
+ "notes_title": "Last session you built a first model for loan default. Today's question is sharper. How confident is the model, and what do we do with that confidence? You'll fit two kinds of model on the Nile Microfinance loans, learn to read what they say, and choose a cutoff using the cost of a mistake. That last part is where data science meets a manager's budget. By the end you'll have both models, a tree you can read, and a threshold you can defend.",
+ "notes_outcomes": "You'll fit a logistic regression and a decision tree, and read the probabilities they give. You'll turn text columns such as occupation into numbers a model can use. And you'll choose a threshold from the cost of a missed default, working out the cheapest one with a short table. The live part fits both models in the middle, and the costing comes last, which is the order the lab follows too.",
+ "notes_words": "Seven words today, and most have a spreadsheet cousin. Classification is filling in a Yes or No column. A predicted probability is a percentage beside each row. The sigmoid curve and logistic regression are a trendline bent to stay between zero and one. A decision tree is a nested IF written by the computer. A threshold is the cutoff in your IF formula. And one hot encoding is a helper column for each category. Read the right hand column and you'll see the thinking is familiar.",
+ "vocab": [
+  [
+   "Classification",
+   "Predicting which category a case belongs to, such as default or repaid.",
+   "A Yes or No column you want to fill in"
+  ],
+  [
+   "Predicted probability",
+   "The model's chance, from 0 to 1, that a case is a yes.",
+   "A percentage beside each row"
+  ],
+  [
+   "Sigmoid curve",
+   "The S shaped curve that squeezes any score into a number between 0 and 1.",
+   "A trendline bent to stay between 0 and 100 percent"
+  ],
+  [
+   "Logistic regression",
+   "A model that builds a score from a line, then bends it with the sigmoid curve to give a probability.",
+   "A trendline that returns a chance"
+  ],
+  [
+   "Decision tree",
+   "A model made of yes or no questions that end in a verdict.",
+   "A nested IF formula the computer writes"
+  ],
+  [
+   "Threshold",
+   "The probability at or above which we say yes.",
+   "The cutoff in an IF formula on a score column"
+  ],
+  [
+   "One hot encoding",
+   "Turning each category into its own column of 1 and 0.",
+   "A helper column for each category"
+  ]
+ ],
+ "slides": [
+  {
+   "type": "check",
+   "title": "Warm-up from Session 14",
+   "kicker": "Recall",
+   "questions": [
+    {
+     "q": "In the first loan model, what were the features and what was the target?",
+     "a": "Features are the columns the model looks at, such as income. The target is default, the answer we want to predict."
+    },
+    {
+     "q": "Why did we hide a test set from the model?",
+     "a": "To judge it on loans it has never seen, like a fair exam with new questions."
+    }
+   ],
+   "notes": "Last session's first model had features and a target, and a test set to score it on.\n\nFirst. When we built the first loan model, what were the features and what was the target? Have a think.\n\nThe features are the columns the model looks at, such as income and loan size. The target is the column we want to predict, which is default. One means the loan defaulted, zero means it was repaid.\n\nSecond. Why did we keep a slice of the loans hidden in a test set? Mull it over.\n\nSo we can judge the model on loans it has never seen. It's a fair exam with new questions. Today we use the same loans and the same habit."
+  },
+  {
+   "type": "concept",
+   "title": "Classification predicts a yes or no answer",
+   "lead": "Last session's loan question was a classification question. Today we make the answer sharper and learn to act on it.",
+   "points": [
+    {
+     "h": "Classification",
+     "t": "Predict a category. Here the category is default or repaid."
+    },
+    {
+     "h": "Predicted probability",
+     "t": "A number from 0 to 1 for each loan."
+    },
+    {
+     "h": "Threshold",
+     "t": "The cutoff where we switch from no to yes."
+    }
+   ],
+   "notes": "Last session you predicted whether a loan would default. That kind of question has a name. It's called classification, and it means predicting a category. Here the category is yes or no.\n\nIn Excel you would have a column called Defaulted with a one or a zero in every row. That column is what we want to fill in for new loans.\n\nA good model gives a number between zero and one for each loan, called the predicted probability. Point eight means the model thinks default is very likely. Point zero five means unlikely.\n\nThen you decide where to draw the line between yes and no. That line is the threshold. Choosing it is the business decision of today."
+  },
+  {
+   "type": "code",
+   "title": "Load the loans and build a repayment burden",
+   "lang": "python",
+   "code": "import pandas as pd\nloans = pd.read_csv('loans.csv')\nprint(loans.shape, round(loans.default.mean(), 4))\nloans = loans[loans.age.between(18, 80)].copy()\ninc = loans.monthly_income_ugx\ninc = inc.fillna(inc.median())\nloans['monthly_income_ugx'] = inc\nloans['burden'] = loans.loan_amount_ugx * 1.15 / loans.term_months / inc\nprint(loans.shape)",
+   "output": "(8000, 18) 0.1255\n(7998, 19)",
+   "says": [
+    "Eight thousand loans. About 12.5 percent defaulted.",
+    "Drop two impossible ages. Fill missing incomes with the median.",
+    "Burden is the monthly instalment divided by monthly income."
+   ],
+   "notes": "Let's get our hands on the loans. We start from the Nile Microfinance file again, eight thousand loans.\n\nThe first lines read the file and print its size and the default rate. Eight thousand rows, eighteen columns, and about twelve and a half percent of the loans defaulted. Keep that figure in mind. It matters at the end.\n\nNext we tidy two things, the same way we did in Session 8. Two rows have impossible ages, so we keep ages from eighteen to eighty. Missing incomes get filled with the median.\n\nLast, a new column called burden. It's the monthly instalment divided by the monthly income. To get the instalment we assume a fifteen percent charge on the loan, spread over the term. That's an assumption for teaching. Burden answers one question. How big a bite does this loan take out of a month's income? We finish with seven thousand nine hundred and ninety eight loans and nineteen columns."
+  },
+  {
+   "type": "figure",
+   "title": "Default climbs with repayment burden",
+   "fig": "default_by_burden",
+   "look": [
+    "The lightest fifth of loans: 4.8 percent defaulted.",
+    "The middle three fifths climb slowly, to 10.9 percent.",
+    "The heaviest fifth: 31.7 percent defaulted."
+   ],
+   "caption": "Loans split into five equal groups by burden. About 1,600 loans in each.",
+   "alt": "Bar chart of default rate for five repayment burden groups, rising from 4.8 percent to 31.7 percent.",
+   "notes": "Before any model, look at the data. Here the loans are sorted into five equal groups by burden, from the lightest to the heaviest.\n\nIn the lightest fifth, where the instalment is a small bite of income, four point eight percent of the loans defaulted. About five in a hundred.\n\nThe middle three groups climb slowly, from five point seven to ten point nine percent.\n\nThen the heaviest fifth jumps to thirty one point seven percent. That's more than six times the rate of the lightest group.\n\nThis jump is the pattern a model has to find."
+  },
+  {
+   "type": "figure",
+   "title": "Default rate differs by occupation",
+   "fig": "default_by_occupation",
+   "look": [
+    "Boda riders default most: 19.8 percent.",
+    "Teachers default least: 8.0 percent.",
+    "The five jobs in between sit from 11.0 to 14.2 percent."
+   ],
+   "caption": "Share of loans that defaulted, for each of the seven occupations.",
+   "alt": "Bar chart of default rate for seven occupations, from boda riders at 19.8 percent to teachers at 8.0 percent.",
+   "notes": "Next, the same question by job. Occupation is text, so a model can't use it yet. First, let's see whether it's worth using.\n\nBoda riders default most, at nineteen point eight percent. That's about one loan in five.\n\nTeachers default least, at eight percent.\n\nThe five jobs in between sit from eleven to fourteen percent. So job carries some information, though the gap from top to bottom is smaller than the gap across the burden groups.\n\nWe need a way to hand these job names to a model as numbers. We'll do that in a few minutes."
+  },
+  {
+   "type": "figure",
+   "title": "The S curve turns any score into a probability",
+   "fig": "sigmoid_curve",
+   "look": [
+    "A very low score gives a probability near 0.",
+    "A very high score gives a probability near 1.",
+    "The dashed line at 0.5 is the usual cutoff."
+   ],
+   "caption": "A schematic of the sigmoid curve. Scores along the bottom, probability up the side.",
+   "alt": "S shaped curve from 0 to 1 with a dashed line at 0.5 showing where the model switches from no to yes.",
+   "notes": "In Session 13 you drew a straight line to predict a number. Now we predict a chance, and a chance has to stay between zero and one. A straight line has no such limit. It will happily climb past one or sink below zero.\n\nThe fix is the curve you see. It's called the sigmoid curve, or the S curve. Whatever score goes in along the bottom, the height of the curve stays between zero and one.\n\nA very low score gives a probability near zero. That loan is very unlikely to default.\n\nA very high score gives a probability near one.\n\nThe dashed line at point five is the usual cutoff. A model that builds a score from a line and then bends it with this curve is called logistic regression. In Excel terms, it's a trendline bent so it can never leave the box between zero and one."
+  },
+  {
+   "type": "code",
+   "title": "Five scores, five probabilities",
+   "lang": "python",
+   "code": "import numpy as np\n\nscores = np.array([-4, -2, 0, 2, 4])\nprobs = 1 / (1 + np.exp(-scores))\nprint(probs.round(3))",
+   "output": "[0.018 0.119 0.5   0.881 0.982]",
+   "says": [
+    "np.exp does the exponential for all five scores at once.",
+    "A score of 0 gives exactly 0.5.",
+    "A score of 4 gives 0.982. Close to 1, never reaching it."
+   ],
+   "notes": "Let's put numbers on the S curve. We make five scores, from minus four to plus four.\n\nThe formula is one divided by one plus e to the power of minus the score. You don't need to remember it. Numpy applies it to all five scores at once, like filling a formula down a column.\n\nA score of zero gives exactly point five. The curve crosses its cutoff right there.\n\nA score of four gives point nine eight two. Very likely a default, but never exactly one. The curve flattens near the ends, so even a huge score stays below one."
+  },
+  {
+   "type": "code",
+   "title": "Text in the inputs stops the model",
+   "lang": "python",
+   "expect_error": true,
+   "code": "loans[['age', 'occupation']].astype(float)",
+   "output": "ValueError: could not convert string to float: 'Mechanic'",
+   "says": [
+    "A model does sums on every input. Mechanic is not a number."
+   ],
+   "notes": "Hand a model a text column and see what happens. We try to turn age and occupation into numbers.\n\nPython stops. The last line says it could not convert string to float, and it names Mechanic, the first value it tried. Read the last line first, as you learned in Session 5.\n\nA model does arithmetic on every input. It can't add Mechanic to forty eight.\n\nThe cure keeps occupation in the data, because we've just seen it carries information. We change how we write it down. We'll do that next."
+  },
+  {
+   "type": "code",
+   "title": "get_dummies gives each category its own column",
+   "lang": "python",
+   "code": "features = loans.drop(columns=['loan_id', 'disbursed_date', 'district',\n                               'collection_calls', 'default'])\nX = pd.get_dummies(features, dtype=int)\nprint(features.shape, X.shape)\nprint(X.loc[0, 'occupation_Mechanic'], X.loc[0, 'occupation_Teacher'])",
+   "output": "(7998, 14) (7998, 26)\n1 0",
+   "says": [
+    "Leave out identifiers, the date, district and collection_calls.",
+    "Every text column becomes columns of 1 and 0.",
+    "Loan 0 is a mechanic: a 1 in one column, a 0 in the other."
+   ],
+   "notes": "One call makes text usable. In a spreadsheet you would add helper columns. One that holds a one when the borrower is a mechanic and a zero otherwise. Another for teacher, and so on. The name is one hot encoding, and pandas does it in one call, get_dummies.\n\nFirst we choose what the model may see. We drop the loan number and the date. We drop district, because thirty districts would add thirty columns, so we leave it for later. And we drop collection calls. Those are recorded only after a loan goes bad, so they give away the answer. Session 16 shows what that does to a model.\n\nThen get_dummies turns every text column into zero and one columns. We go from fourteen columns to twenty six. Eleven stay as they were, gender adds two, occupation adds seven, and loan purpose adds six.\n\nCheck the first loan. It's a mechanic, so the Mechanic column holds a one and the Teacher column holds a zero. That's the helper column idea exactly."
+  },
+  {
+   "type": "code",
+   "title": "Fit a logistic regression and ask for probabilities",
+   "lang": "python",
+   "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\nmoney = ['monthly_income_ugx', 'loan_amount_ugx', 'savings_balance_ugx']\nX[money] = X[money] / 1_000_000\ny = loans['default']\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, random_state=42)\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train)\np = model.predict_proba(X_test)[:, 1]",
+   "says": [
+    "Money in millions keeps all numbers a similar size. Then split.",
+    "fit learns from the training loans.",
+    "predict_proba gives the chance of default for each test loan."
+   ],
+   "notes": "Next, the model itself. These are scikit learn lines, so they run in your Colab. Your numbers will come out close to mine, never exactly the same.\n\nFirst we write the three money columns in millions of shillings. That keeps every number a similar size, so the model settles down quickly. Then we split the loans, seventy five percent to train on and twenty five percent to test on, with a seed so everyone gets the same split.\n\nNext, fit. It's the same call you used last session. The model learns its weights from the training loans.\n\nLast, predict_proba. It returns two columns, the chance of repaid and the chance of default. The bracket at the end keeps the second column. That gives one number per test loan, the predicted probability of default, and those numbers are what we work with from here."
+  },
+  {
+   "type": "compare",
+   "title": "A nested IF and a decision tree ask the same kind of question",
+   "left": {
+    "h": "Nested IF in Excel",
+    "points": [
+     "You write every rule yourself",
+     "The cutoffs come from your guess",
+     "Each IF sits inside the last"
+    ]
+   },
+   "right": {
+    "h": "Decision tree",
+    "points": [
+     "The computer finds the questions",
+     "It picks the cutoffs that best split repaid from default",
+     "You read it as plain rules"
+    ]
+   },
+   "verdict": "Same shape of rule. The tree takes its questions from the loans.",
+   "notes": "The second kind of model has a spreadsheet cousin too. Think of the nested IF formulas you have written. IF the burden is high, check savings, and IF savings are low, flag the loan. Each IF sits inside the last.\n\nOn the left, that spreadsheet habit. You write every rule yourself. You choose the cutoffs by guessing, and each IF sits inside the one before.\n\nOn the right, a decision tree. The computer finds the questions, and it picks the cutoffs that best separate repaid loans from defaults. You read the result as plain rules.\n\nThe verdict says it. The rule has the same shape you already write. The only change is that the questions come from the loans."
+  },
+  {
+   "type": "figure",
+   "title": "A decision tree is a set of yes or no questions",
+   "fig": "decision_tree_schematic",
+   "look": [
+    "Start at the top question.",
+    "Each answer sends you down one branch.",
+    "The box at the bottom is the verdict."
+   ],
+   "caption": "Schematic only. The questions and cutoffs here are illustrative, not fitted to loans.csv.",
+   "alt": "A three level decision tree of yes and no questions about repayment burden, late payments and savings that ends in low, medium and high risk.",
+   "notes": "This is what a tree looks like, with one warning. The picture is a schematic. The questions and cutoffs are invented to show the shape. The tree you fit in a minute will have its own.\n\nYou always start at the top. The first question is whether the burden is above point four.\n\nEach answer sends you down one branch. A yes goes right, a no goes left, and you meet the next question. That's reading a tree.\n\nThe box at the bottom is the verdict. In a real tree each of these boxes also holds a share, the proportion of past loans that ended up there and defaulted. That share is the predicted probability for any new loan that lands in the box."
+  },
+  {
+   "type": "code",
+   "title": "Fit a small tree and print its rules",
+   "lang": "python",
+   "code": "from sklearn.tree import DecisionTreeClassifier, export_text\n\ntree = DecisionTreeClassifier(max_depth=3, random_state=42)\ntree.fit(X_train, y_train)\nprint(export_text(tree, feature_names=list(X.columns)))\np_tree = tree.predict_proba(X_test)[:, 1]",
+   "says": [
+    "max_depth=3 allows at most three questions in a row.",
+    "export_text prints the tree as indented rules."
+   ],
+   "notes": "Next we fit a tree to the same training loans. Again this is scikit learn, so run it in Colab. I won't read out numbers, because your tree is yours.\n\nmax depth three allows at most three questions in a row. That keeps the tree small enough to read. A tree allowed to keep asking will memorise the training loans, and we'll come back to that in Session 17.\n\nexport text prints the tree as indented rules. Each line is a question, and the lines indented under it are the next questions, until you reach a leaf with the verdict. Check which question comes first in your tree. The bar charts we saw suggest repayment burden might lead, but your run decides.\n\nThe last line asks the tree for probabilities, just as we did for logistic regression. A tree of depth three has at most eight leaves, so it can only give at most eight different probabilities. That surprises people. In the lab you compare the tree with the logistic regression, by counting how many defaults each one catches at the same threshold."
+  },
+  {
+   "type": "figure",
+   "title": "Moving the threshold trades one error for the other",
+   "fig": "threshold_tradeoff",
+   "look": [
+    "Red: the share of defaults caught. It falls as the threshold rises.",
+    "Blue: the share of flags that were right. It rises.",
+    "No threshold wins on both lines."
+   ],
+   "caption": "A logistic regression on 2,000 test loans. Your scikit-learn run will be close but not identical.",
+   "alt": "Two curves: defaults caught falls and flags that were right rises as the threshold increases.",
+   "notes": "Back to the threshold. Remember, it's the probability at or above which we say yes and flag the loan. In Excel, it's the cutoff in an IF formula on a score column.\n\nThe red line shows the share of defaults we catch. At a low threshold we flag many loans and catch most defaults. As the threshold rises, we flag fewer, and the red line falls. At the usual point five, this model catches only about one default in seven.\n\nThe blue line shows how often a flag turns out right. It does the opposite and rises.\n\nSo no threshold wins on both lines. Sliding it only trades one kind of mistake for the other. Which trade is best depends on what each mistake costs, and we'll price them next."
+  },
+  {
+   "type": "table",
+   "title": "What four thresholds cost, with teaching prices",
+   "header": [
+    "Threshold",
+    "Defaults missed",
+    "Good loans refused",
+    "Missed x 1,000,000",
+    "Refused x 100,000",
+    "Total cost"
+   ],
+   "rows": [
+    [
+     "0.5",
+     "235",
+     "13",
+     "235.0 million",
+     "1.3 million",
+     "236.3 million"
+    ],
+    [
+     "0.3",
+     "202",
+     "52",
+     "202.0 million",
+     "5.2 million",
+     "207.2 million"
+    ],
+    [
+     "0.2",
+     "155",
+     "142",
+     "155.0 million",
+     "14.2 million",
+     "169.2 million"
+    ],
+    [
+     "0.15",
+     "124",
+     "268",
+     "124.0 million",
+     "26.8 million",
+     "150.8 million"
+    ]
+   ],
+   "hl": [
+    4
+   ],
+   "caption": "Invented teaching costs in UGX: a missed default loses 1,000,000 of principal. A refused good loan loses 100,000 of interest. Counts are from 2,000 test loans, 275 of them defaults.",
+   "notes": "Let's price the mistakes. These costs are invented for teaching, so don't quote them outside this room. A missed default loses one million shillings of principal. A good loan we refuse loses one hundred thousand shillings of interest we would have earned.\n\nThe counts come from our logistic regression on two thousand test loans, of which two hundred and seventy five defaulted. Take the first row, threshold point five. We missed two hundred and thirty five defaults, and that costs two hundred and thirty five million. We refused thirteen good loans, which costs one point three million. The total is two hundred and thirty six point three million.\n\nDo the rest in your head or with a calculator. The total falls row by row. At point one five, we miss only one hundred and twenty four defaults. We refuse two hundred and sixty eight good loans, but each of those costs a tenth as much. The total is one hundred and fifty point eight million, the cheapest of the four.\n\nA missed default costs ten times a refused loan, so it pays to flag many more loans than the default threshold flags."
+  },
+  {
+   "type": "code",
+   "title": "The same sum in NumPy",
+   "lang": "python",
+   "code": "import numpy as np\n\nthresholds = np.array([0.5, 0.3, 0.2, 0.15])\nmissed = np.array([235, 202, 155, 124])\nrefused = np.array([13, 52, 142, 268])\ncost = missed * 1_000_000 + refused * 100_000\nprint(cost)\nprint(thresholds[cost.argmin()])",
+   "output": "[236300000 207200000 169200000 150800000]\n0.15",
+   "says": [
+    "Multiply each count by its price and add. One line, four answers.",
+    "argmin gives the position of the smallest cost."
+   ],
+   "notes": "The table is a spreadsheet job, and NumPy does it in one line. It's the same job as SUMPRODUCT in Excel.\n\nWe store the counts as arrays. The cost line multiplies every missed default by a million and every refused loan by a hundred thousand, then adds them up. One line gives all four totals, and they match the table.\n\nargmin finds the position of the smallest cost. We use it to look up the threshold in that position, and it gives point one five. In the lab you'll do the same on a small array of your own.\n\nOne warning. That is the cheapest of the four thresholds we tried. A different threshold could be cheaper still, so in practice you try many."
+  },
+  {
+   "type": "trap",
+   "title": "The default cutoff of 0.5 can fit the wrong business",
+   "looks": "You call predict. It gives yes or no answers, and about 88 loans in 100 are called correctly. It runs with no error and the score looks good.",
+   "why": "Only 12.5 percent of loans default, so almost no loan reaches 0.5. Saying no to everyone also scores about 86 in 100 on these test loans. At 0.5 the model catches about 40 of 275 defaults.",
+   "fix": "Ask for probabilities. Choose the threshold from the cost of each mistake. Report defaults caught beside the score.",
+   "notes": "Today's trap gives no error at all.\n\nYou call predict, the model gives yes or no answers, and about eighty eight loans in a hundred are called correctly. That sounds good. Nothing warns you.\n\nThe problem is that only twelve and a half percent of loans default. Very few loans reach a probability of point five. A model that said no to every loan would also score about eighty six in a hundred on these test loans, which hold a few more defaults than the average. At point five, our model catches about forty of the two hundred and seventy five defaults in the test loans.\n\nThe fix has three parts. Ask the model for probabilities instead of yes and no. Choose the threshold from what each mistake costs. And always report the defaults you caught next to the headline score."
+  },
+  {
+   "type": "steps",
+   "title": "Lab: encode, fit and price the mistakes",
+   "tool": "Google Colab",
+   "time": "40 minutes",
+   "steps": [
+    "Open the Session 15 notebook and run setup",
+    "Load the loans and build the burden column",
+    "Encode the text columns with get_dummies",
+    "Fit a logistic regression and a small tree",
+    "Count the defaults each model catches",
+    "Find the occupation with the highest default rate",
+    "Choose a threshold by the cost of each mistake"
+   ],
+   "done": "Both models fit, and you can say why your threshold is below 0.5.",
+   "notes": "The first task prepares the loans, the same three steps as the live part: keep ages from eighteen to eighty, fill the missing incomes, and add the burden column. Run the setup cell in the Session 15 notebook before it. Task two is the encoding, and you'll see the column count change.\n\nTasks three and four fit the two models. Those use scikit learn, so your numbers will be near mine but will differ a little, and the checks allow for that. Task five compares them. At a threshold of point two, you count how many defaults each one catches and how many loans it flags to do it.\n\nThen comes the occupation question, and the last coding task is the one that matters most. You price each mistake and pick the cheapest threshold on a small set of loans. You have forty minutes, and I'm around if an error stops you."
+  },
+  {
+   "type": "check",
+   "title": "Questions to finish",
+   "kicker": "Exit check",
+   "questions": [
+    {
+     "q": "A logistic regression gives 0.3 for a loan. What does that mean, and what do you do with it?",
+     "a": "A 30 percent chance of default. You compare it with your threshold to decide yes or no."
+    },
+    {
+     "q": "Why does a model need get_dummies for the occupation column?",
+     "a": "A model does sums on numbers. get_dummies gives each job its own column of 1 and 0."
+    },
+    {
+     "q": "A missed default costs ten times a refused good loan. Should your threshold sit above or below 0.5?",
+     "a": "Below. Flagging more loans costs less than missing defaults."
+    }
+   ],
+   "notes": "This set starts with a probability of point three, so keep the threshold in mind. Answer each in your head before I give mine.\n\nQuestion one. A logistic regression gives point three for a loan. What does that mean, and what do you do with it? Take your time.\n\nIt means a thirty percent chance of default. You compare it with your threshold, and at or above the threshold you say yes.\n\nQuestion two. Why does a model need get dummies for the occupation column? Think it over.\n\nA model does sums on numbers, and Mechanic is not a number. get dummies gives each job its own column of ones and zeros.\n\nQuestion three. A missed default costs ten times a refused good loan. Should your threshold sit above or below point five? Give that a moment.\n\nBelow. Flagging more loans costs less than missing defaults. In the table the cheapest row was the lowest threshold."
+  },
+  {
+   "type": "summary",
+   "title": "Summary",
+   "points": [
+    "Classification gives a probability. A threshold turns it into yes or no.",
+    "Models need numbers. get_dummies gives every category its own 1 and 0 column.",
+    "Choose the threshold from what each mistake costs."
+   ],
+   "next": "Judging a model: metrics, leakage and imbalance",
+   "notes": "One. A classification model gives a probability for every loan. A threshold that you choose turns it into yes or no.\n\nTwo. A model needs numbers, so every category gets its own column of ones and zeros with get dummies.\n\nThree. Pick the threshold from what each mistake costs. The default point five suits nobody in particular.\n\nNext session we ask how to tell a model that works from one that only looks good. We'll meet the confusion matrix, find the column that leaks the answer, and learn why accuracy can mislead. Bring your Session 15 notebook."
+  }
+ ],
+ "lab": {
+  "intro": "Encode the loan categories, fit a logistic regression and a small tree, compare them at one threshold, then choose a threshold from the cost of each mistake. Your scikit-learn numbers will be close to the slides but will differ a little.",
+  "cells": [
+   {
+    "md": "## Task 1. Load and prepare the loans\nRead `loans.csv`. Keep ages from 18 to 80, fill missing incomes with the median, and add a `burden` column: loan amount times 1.15, divided by the term, divided by income."
+   },
+   {
+    "code": "import pandas as pd\nimport numpy as np\n\nloans = pd.read_csv('loans.csv')\nloans = loans[loans.age.between(18, 80)].copy()\nmed = loans.monthly_income_ugx.median()\nloans['monthly_income_ugx'] = loans.monthly_income_ugx.fillna(med)\nloans['burden'] = (loans.loan_amount_ugx * 1.15 / loans.term_months\n                   / loans.monthly_income_ugx)\nprint(loans.shape)",
+    "starter": "import pandas as pd\nimport numpy as np\n\nloans = pd.read_csv('loans.csv')\n# Your turn: keep ages from 18 to 80 and make a copy\n# Your turn: fill missing monthly_income_ugx with its median\n# Your turn: add the burden column\n"
+   },
+   {
+    "code": "assert loans.shape == (7998, 19), 'Keep ages 18 to 80 (7998 loans) and add one column, burden'\nassert loans.monthly_income_ugx.isna().sum() == 0, 'Fill the missing incomes'\nassert 'burden' in loans.columns, 'Add the burden column'\nprint('Task 1 correct')"
+   },
+   {
+    "md": "## Task 2. Encode the categories\nDrop `loan_id`, `disbursed_date`, `district`, `collection_calls` and `default` from `loans` to make `features`. Then use `pd.get_dummies(features, dtype=int)` to make `X`, and print its shape."
+   },
+   {
+    "code": "features = loans.drop(columns=['loan_id', 'disbursed_date', 'district',\n                               'collection_calls', 'default'])\nX = pd.get_dummies(features, dtype=int)\nprint(X.shape)",
+    "starter": "# Your turn: drop the five columns to make features\n# Your turn: one hot encode features into X with pd.get_dummies\n# Your turn: print the shape of X\n"
+   },
+   {
+    "code": "assert X.shape == (7998, 26), 'Drop the five columns, then expect 26 columns after encoding'\nassert 'occupation_Teacher' in X.columns, 'get_dummies makes one column per occupation. Pass the text columns through it'\nprint('Task 2 correct')"
+   },
+   {
+    "md": "## Task 3. Fit a logistic regression\nWrite the three money columns in millions, split 75 and 25 with `random_state=42`, fit a `LogisticRegression(max_iter=1000)` and store the chance of default for each test loan in `p`."
+   },
+   {
+    "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\nmoney = ['monthly_income_ugx', 'loan_amount_ugx', 'savings_balance_ugx']\nX[money] = X[money] / 1_000_000\ny = loans['default']\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, random_state=42)\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train)\np = model.predict_proba(X_test)[:, 1]\nprint(p.round(3)[:5])",
+    "starter": "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\nmoney = ['monthly_income_ugx', 'loan_amount_ugx', 'savings_balance_ugx']\n# Your turn: divide the money columns of X by 1_000_000\n# Your turn: y is the default column. Split 75 and 25 with random_state=42\n# Your turn: fit the logistic regression on the training part\n# Your turn: p holds the chance of default for each test loan\n# Your turn: print the first five values of p, rounded\n"
+   },
+   {
+    "code": "assert len(p) == len(X_test), 'One probability for each test loan'\nassert 0.08 <= p.mean() <= 0.17, 'The average chance should be near 0.125. Take the column for class 1, the chance of default'\nprint('Task 3 correct')"
+   },
+   {
+    "md": "## Task 4. Fit a decision tree\nFit a `DecisionTreeClassifier(max_depth=3, random_state=42)` on the same training loans. Print its rules with `export_text`, then draw it with `plot_tree`."
+   },
+   {
+    "code": "from sklearn.tree import DecisionTreeClassifier, export_text, plot_tree\nimport matplotlib.pyplot as plt\n\ntree = DecisionTreeClassifier(max_depth=3, random_state=42)\ntree.fit(X_train, y_train)\nprint(export_text(tree, feature_names=list(X.columns)))\nplt.figure(figsize=(14, 6))\nplot_tree(tree, feature_names=list(X.columns), filled=True, fontsize=8)\nplt.show()",
+    "starter": "from sklearn.tree import DecisionTreeClassifier, export_text, plot_tree\nimport matplotlib.pyplot as plt\n\n# Your turn: make the tree with max_depth=3 and random_state=42, call it tree, then fit it\n# Your turn: print its rules in words\n# Your turn: draw it, with the feature names and filled boxes\n"
+   },
+   {
+    "code": "assert tree.get_depth() <= 3, 'Use max_depth=3'\nassert tree.get_n_leaves() >= 2, 'Fit the tree on X_train and y_train'\nprint('Task 4 correct')"
+   },
+   {
+    "md": "## Task 5. Compare the two models\nBoth models give a probability for every test loan. Store the tree's chances for the test loans in `p_tree`. Flag the loans with a probability of 0.2 or more. For each model, store the number of real defaults it caught in `caught_lr` and `caught_tree`, and the number of loans it flagged in `flagged_lr` and `flagged_tree`."
+   },
+   {
+    "code": "p_tree = tree.predict_proba(X_test)[:, 1]\nreal = (y_test == 1).to_numpy()\ncaught_lr = int(((p >= 0.2) & real).sum())\ncaught_tree = int(((p_tree >= 0.2) & real).sum())\nflagged_lr = int((p >= 0.2).sum())\nflagged_tree = int((p_tree >= 0.2).sum())\nprint('defaults in the test loans:', int(real.sum()))\nprint('logistic regression caught', caught_lr, 'from', flagged_lr, 'flags')\nprint('tree caught', caught_tree, 'from', flagged_tree, 'flags')",
+    "starter": "# Your turn: p_tree is the chance of default from the tree for each loan in X_test\n# Your turn: caught_lr is the number of loans with p of 0.2 or more that really defaulted\n# Your turn: do the same for the tree, then count the flags for each model\n"
+   },
+   {
+    "code": "real_n = int(y_test.sum())\nassert flagged_lr == int((p >= 0.2).sum()), 'flagged_lr counts the loans with p of 0.2 or more'\nassert flagged_tree == int((p_tree >= 0.2).sum()), 'flagged_tree counts the loans with p_tree of 0.2 or more'\nassert 0 < caught_lr <= flagged_lr, 'Caught cannot exceed flagged. Count flagged loans that really defaulted'\nassert 0 <= caught_tree <= flagged_tree, 'Caught cannot exceed flagged. Count flagged loans that really defaulted'\nassert caught_lr <= real_n and caught_tree <= real_n, 'Caught cannot exceed the real defaults in the test loans'\nprint('Task 5 correct')"
+   },
+   {
+    "md": "## Task 6. Which occupation defaults most?\nCompute the default rate for each `occupation`, sorted from highest to lowest, in `rates`. Store the name of the highest in `worst`."
+   },
+   {
+    "code": "rates = loans.groupby('occupation').default.mean().sort_values(ascending=False)\nworst = rates.index[0]\nprint(rates.round(3))\nprint(worst)",
+    "starter": "# Your turn: group the loans by occupation, take the mean of default, and sort from high to low\n# Your turn: worst is the name at the top of rates\n"
+   },
+   {
+    "code": "assert worst == 'Boda rider', 'Sort the rates from highest to lowest, then take the first name of the index'\nassert abs(rates.iloc[0] - 0.198) < 0.005, 'rates should hold the mean of default for each occupation, highest first'\nprint('Task 6 correct')"
+   },
+   {
+    "md": "## Task 7. Choose a threshold from costs\nThe starter cell gives ten test loans with a predicted probability `prob` and a true outcome `truth` (1 means default). A missed default costs 1,000,000 UGX. A refused good loan costs 100,000 UGX. These are invented teaching costs. For each threshold in `thresholds`, add the total cost to the list `costs`, and store the cheapest threshold in `best_t`."
+   },
+   {
+    "code": "prob = np.array([0.04, 0.08, 0.10, 0.15, 0.22, 0.28, 0.35, 0.45, 0.60, 0.75])\ntruth = np.array([0, 0, 0, 1, 0, 1, 0, 1, 1, 1])\nthresholds = [0.05, 0.1, 0.2, 0.3, 0.5]\ncosts = []\nfor t in thresholds:\n    flagged = prob >= t\n    missed = ((~flagged) & (truth == 1)).sum()\n    refused = (flagged & (truth == 0)).sum()\n    costs.append(missed * 1_000_000 + refused * 100_000)\nbest_t = thresholds[int(np.argmin(costs))]\nprint(costs)\nprint(best_t)",
+    "starter": "prob = np.array([0.04, 0.08, 0.10, 0.15, 0.22, 0.28, 0.35, 0.45, 0.60, 0.75])\ntruth = np.array([0, 0, 0, 1, 0, 1, 0, 1, 1, 1])\nthresholds = [0.05, 0.1, 0.2, 0.3, 0.5]\ncosts = []\nfor t in thresholds:\n    flagged = prob >= t\n    # Your turn: count the defaults that were not flagged (missed)\n    # Your turn: count the good loans that were flagged (refused)\n    # Your turn: add the total cost for this threshold to costs\n    pass\n# Your turn: best_t is the threshold with the smallest cost\n# Your turn: print costs and best_t\n"
+   },
+   {
+    "code": "assert len(costs) == 5, 'Add one cost for each of the five thresholds'\nassert costs[2] == 1_200_000, 'Cost = missed * 1,000,000 + refused * 100,000. The total at threshold 0.2 should be 1,200,000'\nassert best_t == 0.1, 'best_t is the threshold with the smallest cost. Try np.argmin(costs)'\nprint('Task 7 correct')"
+   },
+   {
+    "md": "## Task 8. Reflect\nWrite two sentences. First, which model caught more defaults at the 0.2 threshold, and how many loans did it flag to do it? Second, why is the cheapest threshold well below 0.5 when a missed default costs ten times a refused loan? Then change the cost of a refused loan to 500,000 in Task 7 and see how `best_t` moves."
+   }
+  ]
+ }
+}
