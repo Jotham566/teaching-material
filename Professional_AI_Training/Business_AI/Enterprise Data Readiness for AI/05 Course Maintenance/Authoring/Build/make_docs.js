@@ -84,7 +84,7 @@ async function workbook() {
   c.push(H1('How to use the course'));
   c.push(H3('The pair'));
   c.push(P('Each organisation sends a decision maker and a data or IT colleague. The pairing rule is that the two attend together where possible. The decision maker is the CIO, CTO, chief data officer, head of operations or a business owner. The colleague works in data, IT or information management.'));
-  c.push(B('The decision maker answers the decision question at the end of each session, names the owners, and signs off the three workpieces.'));
+  c.push(B('The decision maker answers the decision question at the end of each session, names the owners, and signs off the three project milestones for their own organisation.'));
   c.push(B('The data or IT colleague runs the team notebook, counts the results and checks the numbers that go on the pages.'));
   c.push(B('Both write the answers to the workshop tasks. Leaders do not write code.'));
   c.push(P('The course runs either as a cohort of organisations or in house for one organisation. The sessions and pages are the same.'));
@@ -109,12 +109,12 @@ async function workbook() {
   c.push(P(''));
   c.push(table(['Level', 'Name', 'What it looks like', 'Evidence you would expect'], data.levels_guide, [700, 1300, 3900, 3738], { size: 19, boldFirst: true }));
 
-  c.push(H1p('The three workpieces'));
-  c.push(P('No exam is set. The learning is carried by three workpieces, each built on your own organisation.'));
-  c.push(table(['Workpiece', 'What it contains', 'Files'], [
-    ['1. Baseline scorecard. Session 2', 'Five dimensions scored 1 to 5. Each score has evidence items and a named person who could verify them. The summary gives each dimension mean, the evidence-adjusted mean, the overall level and the weakest dimension. A target level for each dimension. The name of the executive who signs it off.', 'Readiness Scorecard.xlsx'],
-    ['2. Search pilot report. Session 7', 'At least 30 test questions with the right document marked. Recall at 3, 5 and 10 and mean reciprocal rank for each method tested. A failure list with fixes. A permission test. The limits of the test. The named person who approves production.', 'Search Test Sheet.xlsx and the page Search pilot report outline'],
-    ['3. Roadmap and board presentation. Session 12', 'A roadmap of up to 20 work items with effort, value, dependency and start month. A target score for each dimension. A board paper with the decision asked, the baseline, the plan, cost lines, risks and measures. A ten-minute presentation.', 'Roadmap Planner.xlsx, Board Paper Outline.docx and the page Board presentation outline'],
+  c.push(H1p('Your project: three milestones'));
+  c.push(P('There is no exam, no mark and no grade. You build one practical project on your own organisation, in three milestones, which the sessions call workpieces, and you keep it. Reflection questions, recall questions and self-checks help you practise. They are never marked. You receive a certificate of completion from KLAi Professional Learning for completing the course and your project. Nothing else is required.'));
+  c.push(table(['Milestone', 'What it contains', 'Files'], [
+    ['Milestone 1. Baseline scorecard. Session 2', 'Five dimensions scored 1 to 5. Each score has evidence items and a named person who could verify them. The summary gives each dimension mean, the evidence-adjusted mean, the overall level and the weakest dimension. A target level for each dimension. The name of the executive who signs it off.', 'Readiness Scorecard.xlsx'],
+    ['Milestone 2. Search pilot report. Session 7', 'At least 30 test questions with the right document marked. Recall at 3, 5 and 10 and mean reciprocal rank for each method tested. A failure list with fixes. A permission test. The limits of the test. The named person who approves production.', 'Search Test Sheet.xlsx and the page Search pilot report outline'],
+    ['Milestone 3. Roadmap and board presentation. Session 12', 'A roadmap of up to 20 work items with effort, value, dependency and start month. A target score for each dimension. A board paper with the decision asked, the baseline, the plan, cost lines, risks and measures. A ten-minute presentation.', 'Roadmap Planner.xlsx, Board Paper Outline.docx and the page Board presentation outline'],
   ], [2400, 5300, 1938], { boldFirst: true }));
 
   c.push(P(''));
@@ -179,7 +179,7 @@ async function workbook() {
   pc.push(new Paragraph({ spacing: { before: 60, after: 120 }, children: [run('Failure types: stale version, paraphrase, other language, wrong passage, missing document.', { size: 19, color: SOFT })] }));
   pc.push(H3('5. Permissions test'));
   pc.push(emptyTable(['User', 'Question', 'Restricted document id', 'In top 5 without the filter (Y or N)', 'In top 5 with the filter (Y or N)'], [1500, 3100, 1700, 1700, 1638], 5, { h: 560, size: 19 }));
-  pc.push(new Paragraph({ spacing: { before: 60, after: 120 }, children: [run('A pass is N with the filter on.', { size: 19, color: SOFT })] }));
+  pc.push(new Paragraph({ spacing: { before: 60, after: 120 }, children: [run('The filter works when every row shows N with the filter on.', { size: 19, color: SOFT })] }));
   sec('6. Limits', 'What the test does not show.', 3);
   sec('7. Recommendation', 'Approve, approve with conditions or do not approve. Name the person who approves production and what that person must have seen.', 3);
   secs.push({ children: pc });
@@ -231,8 +231,8 @@ async function plan() {
   c.push(P('The case is Kitara Group, a fictional bank and insurer in Kampala with a subsidiary in Nairobi and about 1,800 staff. All data in the course is fictional and the currency is UGX. The same case runs through all twelve sessions. The workshops move the work to the participants\' own organisation.'));
   c.push(H3('Modules'));
   data.modules.forEach(([m, name, rng, desc]) => c.push(bl(`Module ${m}, ${name}. Sessions ${rng[0]} to ${rng[rng.length - 1]}.`, desc)));
-  c.push(H3('Dimensions, levels and workpieces'));
-  c.push(P(`Readiness is scored on five dimensions (${data.dimensions.join('; ')}) and five levels (${data.levels.join(', ').toLowerCase()}). Each score needs one piece of evidence that someone outside the team could check. Three workpieces carry the assessment: ${Object.entries(data.workpieces).map(([k, v]) => `${v.toLowerCase()} in Session ${k}`).join(', ')}. There is no exam. KLAi issues no certificate for the course.`));
+  c.push(H3('Dimensions, levels and project milestones'));
+  c.push(P(`Readiness is scored on five dimensions (${data.dimensions.join('; ')}) and five levels (${data.levels.join(', ').toLowerCase()}). Each score needs one piece of evidence that someone outside the team could check. Your project has three milestones: ${Object.entries(data.workpieces).map(([k, v]) => `${v.toLowerCase()} in Session ${k}`).join(', ')}. There is no exam and nothing is marked. You receive a certificate of completion from KLAi Professional Learning for completing the course and your project. Nothing else is required.`));
   c.push(H3('What was built'));
   c.push(table(['Item', 'Quantity'], [
     ['Class slides', `${T.slides} slides in ${data.course.sessions} decks`],
@@ -321,14 +321,14 @@ async function plan() {
     c.push(new Paragraph({ spacing: { after: 60, line: 264 }, children: [bold('A sound answer. '), run(s.decision.a)] }));
   });
 
-  c.push(H1p('7. Workpiece checklists'));
-  c.push(P('Mark a workpiece complete when every line under Complete is true. Otherwise mark it needs revision and write which line failed. The participants keep their own work. Look at it on their screen.'));
+  c.push(H1p('7. Milestone checklists'));
+  c.push(P('These checklists are for giving feedback. Nothing is marked, scored or graded, and no result is recorded against a participant. Walk through each milestone with the pair and say which lines are already true and which still need work. The participants keep their own work. Look at it on their screen. The certificate of completion from KLAi Professional Learning goes to participants who complete the course and their project.'));
   const check = (h, ses, files, complete, revise) => {
     c.push(H2(h)); c.push(P(`Session ${ses}. Files: ${files}.`, { keepNext: true }));
-    c.push(H3('Complete when')); complete.forEach(x => c.push(B(x)));
-    c.push(H3('Needs revision when')); revise.forEach(x => c.push(B(x)));
+    c.push(H3('The milestone is finished when')); complete.forEach(x => c.push(B(x)));
+    c.push(H3('Give feedback if')); revise.forEach(x => c.push(B(x)));
   };
-  check('Workpiece 1. Baseline scorecard', 2, 'Readiness Scorecard.xlsx', [
+  check('Milestone 1. Baseline scorecard', 2, 'Readiness Scorecard.xlsx', [
     'The organisation and the date are entered.',
     'Each of the five dimensions has at least one evidence item, up to six, and each item is scored 1 to 5 against the Levels guide tab.',
     'Every item names who could verify it. Evidence seen is Y only where someone outside the team has seen the evidence.',
@@ -336,7 +336,7 @@ async function plan() {
     'A target level is set for each dimension.',
     'One sentence says what the weakest dimension blocks for the first AI use, and a named executive signs off the scorecard.'],
     ['A dimension has no evidence item.', 'An item has no verifier, or Evidence seen is Y for evidence that only the team has seen.', 'The weakest dimension is missing, or the sentence on what it blocks is missing.', 'A target level is missing for any dimension.', 'The sign-off names no executive.']);
-  check('Workpiece 2. Search pilot report', 7, 'Search Test Sheet.xlsx and the one page report', [
+  check('Milestone 2. Search pilot report', 7, 'Search Test Sheet.xlsx and the one page report', [
     'The Tests sheet holds at least 30 questions in the words staff use. Each has a document id and a phrase from the right passage.',
     'At least 3 questions are ones where an old version gives a different answer, and some are ones where staff would use none of the words in the document.',
     'Every question has a rank, or a blank when the right document is not in the top 10. Recall at 3 and 5 and mean reciprocal rank show on the sheet, and recall at 10 is worked out from the ranks.',
@@ -344,7 +344,7 @@ async function plan() {
     'The Permission test sheet holds at least 5 questions that the named user must not answer. Each ran with and without the filter.',
     'The report states the scope, the test set, the scores for each method, the failure list, the permission test, logging and retention, the limits and the named person who approves production.'],
     ['Fewer than 30 questions, or every question repeats words from its answer passage.', 'Scores are given for one method and the report does not say that other methods were not tested.', 'A permission row shows Y with the filter on and the report still calls the pilot ready.', 'A hit is counted when the right document appears but the chunk shown does not hold the answer, and the report does not say so.', 'The limits or the approver are missing.']);
-  check('Workpiece 3. Roadmap and board presentation', 12, 'Roadmap Planner.xlsx, Readiness Scorecard.xlsx and Board Paper Outline.docx', [
+  check('Milestone 3. Roadmap and board presentation', 12, 'Roadmap Planner.xlsx, Readiness Scorecard.xlsx and Board Paper Outline.docx', [
     'The roadmap lists up to 20 work items that close the scorecard gaps. Each has effort in person-days, a value from 1 to 5, a dependency, a start month and a duration.',
     'No row in the Dependency check column shows Starts before dependency ends. The chain of dependent items that sets the end date is named.',
     'The busiest month is found, and either a named person covers it or an item moves.',

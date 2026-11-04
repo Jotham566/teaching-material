@@ -393,7 +393,7 @@ def search_test_sheet(path):
         "Run each question through the search. Write the rank at which the right document first appears (1 is best). Leave rank blank if it is not in the top ten.",
         "The sheet counts a hit at 3 and a hit at 5, then works out recall at 3, recall at 5 and mean reciprocal rank (MRR).",
         "Record the reason for each miss in the Failure type column. Group the misses before you propose a fix.",
-        "On the Permission test sheet list questions that a given user must not be able to answer. A pass means the restricted document did not appear.",
+        "On the Permission test sheet list questions that a given user must not be able to answer. The filter works when the restricted document does not appear.",
     ])
     ws = wb.create_sheet("Tests", 1)
     ws.sheet_view.showGridLines = False

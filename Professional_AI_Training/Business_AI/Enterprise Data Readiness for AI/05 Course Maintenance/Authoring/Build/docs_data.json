@@ -2374,7 +2374,7 @@
      "example": "Keyword search misses 11 of Kitara's first 30 questions in the top 10: Q11, Q14, Q20 to Q23, Q25 to Q28 and Q30. Nine of the eleven are paraphrases, so the fix is meaning search plus better chunks. Q11 (shopkeeper and secret number against 'agents cannot reset a PIN') needs a human read. For all 60 questions, hybrid misses 12: 9 paraphrase, 2 Swahili on English documents, 1 other."
     },
     {
-     "task": "On the Permission test sheet list 5 or more questions that a named user must not be able to answer. Run each with and without the permission filter and enter Y or N for 'appeared in top 5'. A pass is N with the filter on.",
+     "task": "On the Permission test sheet list 5 or more questions that a named user must not be able to answer. Run each with and without the permission filter and enter Y or N for 'appeared in top 5'. The filter works when every row shows N with the filter on.",
      "example": "Kitara Q55 to Q60 with users from users.csv, hybrid search, top 5: the restricted document appears without a filter for 6 of 6 and with the filter for 0 of 6, so the sheet shows 6 passes. For Q55 Winnie Atim (all_staff) must not see D004, the salary bands, which are open to hr and executive."
     },
     {
@@ -3615,7 +3615,7 @@
    "clicks": 41,
    "animated": 14,
    "minutes_spoken": 27,
-   "words": 3463,
+   "words": 3478,
    "vocab": [
     {
      "term": "Quick win",
@@ -3865,7 +3865,7 @@
   "slides": 276,
   "clicks": 441,
   "animated": 157,
-  "words": 40335,
+  "words": 40350,
   "vocab": 84,
   "workshop_tasks": 70,
   "notebook_tasks": 64,

@@ -70,12 +70,12 @@ for i, m in enumerate(C['modules']):
 # ---- below the table
 y += 0.1
 dot(MX + 0.11, y + 0.13, 0.22, '', True)
-text(MX + 0.32, y, 4.6, 0.28, 'Workpiece sessions: 2, 7 and 12', T['small'], SANS, BODY)
+text(MX + 0.32, y, 4.6, 0.28, 'Project milestones: sessions 2, 7 and 12', T['small'], SANS, BODY)
 text(MX, y + 0.3, 5.0, 0.5, [[('Case. ', {'bold': True, 'color': INK}), ('We work on Kitara Group, a fictional bank and insurer, then on your own organisation.', {})]], T['body'], SANS, BODY)
 text(6.0, y, PW - MX - 6.0, 0.5, [[('Every session. ', {'bold': True, 'color': INK}), ('Case 10 minutes, teach 30, live demo 25, break 5, workshop 40, decide 10.', {})]], T['body'], SANS, BODY)
 text(6.0, y + 0.5, PW - MX - 6.0, 0.5, [[('Everything is free. ', {'bold': True, 'color': INK}), ('No paid tool, cloud account or graphics card. We read each tool’s licence in session 10.', {})]], T['body'], SANS, BODY)
 text(MX, PH - 0.33, 8, 0.26, 'KLAi Professional Learning. Tutor: Jotham Martin Wambi.', T['small'], SANS, SOFT)
 
 pp = OUT / 'Course Roadmap (one page).pptx'; prs.save(str(pp))
-subprocess.run(['soffice', '--headless', '--convert-to', 'pdf', '--outdir', str(OUT), str(pp)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=200)
+subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_ee', '--headless', '--convert-to', 'pdf', '--outdir', str(OUT), str(pp)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=200)
 print('written', pp.name)

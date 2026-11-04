@@ -7,7 +7,7 @@ tpl = ', '.join(d['templates'])
 start = f"""ENTERPRISE DATA READINESS FOR AI
 {d['course']['sessions']} sessions of 2 hours | {d['course']['total_hours']} hours | free tools only | for a decision maker and a data or IT colleague from the same organisation
 
-{d['course']['start']} They finish with a scored baseline, a tested search over the organisation's own documents and a twelve-month plan presented as a board paper. Delivery is either a cohort of organisations or in house for one organisation. Pairing a decision maker with a data colleague is preferred. KLAi issues no certificate for the course.
+{d['course']['start']} They finish with a scored baseline, a tested search over the organisation's own documents and a twelve-month plan presented as a board paper. Delivery is either a cohort of organisations or in house for one organisation. Pairing a decision maker with a data colleague is preferred. There is no exam and nothing is marked. KLAi Professional Learning gives a certificate of completion for completing the course and the project, with no other criteria.
 
 STATUS: built. {T['slides']} slides, {d['course']['sessions']} team notebooks with solutions, the Kitara Group case data, the workpiece templates and the handouts exist. See 05 Course Maintenance/Verification Record.txt for what is and is not checked.
 
