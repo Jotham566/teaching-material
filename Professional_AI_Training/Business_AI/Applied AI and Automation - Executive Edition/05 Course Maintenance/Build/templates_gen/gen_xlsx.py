@@ -99,7 +99,7 @@ def inventory():
     ws = wb.active; ws.title = 'Inventory'
     H = ['#', 'Source (what it is)', 'Owner', 'Format', 'Where it lives', 'Who may see it', 'Sensitivity', 'Ready for AI', 'What to fix first']
     setup(ws, 'Information Inventory: what your task needs to know, and who may see it',
-          'Session 4. List every source of information your own task uses, one per row, from row 7. Include the awkward ones: WhatsApp messages, paper files, a spreadsheet on one laptop. If you do not know the owner, write unknown: that is a finding. Aim for at least six sources. '
+          'Session 14. List every source of information your own task uses, one per row, from row 7. Include the awkward ones: WhatsApp messages, paper files, a spreadsheet on one laptop. If you do not know the owner, write unknown: that is a finding. Aim for at least six sources. '
           'Sensitivity: Public (published), Internal (staff only), Confidential (would hurt if it leaked). Add "+ Personal" to any level when the information names a living person. '
           'Ready for AI: Yes, Fix first (write what to fix) or No (keep it away from AI tools). Then rate the six areas on the sheet Readiness scorecard. See the sheet Key. ' + NVF_NOTE,
           H, [5, 34, 18, 14, 28, 30, 22, 13, 44], 32)
@@ -121,9 +121,9 @@ def inventory():
     # readiness scorecard
     wr = wb.create_sheet('Readiness scorecard')
     setup(wr, 'Readiness scorecard: six areas, each Green, Amber or Red',
-          'Session 4 (the scorecard from Session 0). Look at your Inventory rows for each area, rate it Green, Amber or Red by the rule in the table, and write one line of evidence that names the file or fact behind the rating. '
+          'Session 14. Look at your Inventory rows for each area, rate it Green, Amber or Red by the rule in the table, and write one line of evidence that names the file or fact behind the rating. '
           'Green scores 2, Amber 1, Red 0, so the total is out of 12. Amber means usable after a named fix. Be strict on rights: if you do not know who may see a source, or whether it holds personal data, it is Red until someone confirms. '
-          'The total is a conversation starter. Then choose your top three data gaps below. The NVF columns show the worked example from the Session 4 slides. ' + NVF_NOTE,
+          'The total is a conversation starter. Then choose your top three data gaps below. The NVF columns show the worked example from the Session 14 slides. ' + NVF_NOTE,
           ['Area', 'Green when', 'Red when', 'NVF example rating', 'NVF example reason', 'My rating', 'Points', 'My reason (evidence)'],
           [22, 32, 32, 12, 40, 11, 9, 46], 32)
     areas = [
@@ -153,7 +153,7 @@ def inventory():
     wr.conditional_formatting.add('F4:F9', FormulaRule(formula=['$F4="Green"'], font=Font(name=FONT, bold=True, color='000000')))
     # top three gaps
     wr.cell(12, 1).value = 'My top three data gaps'; wr.cell(12, 1).font = f(11, True)
-    wr.cell(13, 1).value = 'Pick the three Red or Amber areas that block your task most. For each write the evidence, one first fix that a person could finish in days, and who could own it. Session 12 turns these lines into your data roadmap.'
+    wr.cell(13, 1).value = 'Pick the three Red or Amber areas that block your task most. For each write the evidence, one first fix that a person could finish in days, and who could own it. Session 14 turns these lines into your data roadmap.'
     wr.merge_cells(start_row=13, start_column=1, end_row=13, end_column=8)
     wr.cell(13, 1).font = f(9.5); wr.cell(13, 1).alignment = Alignment(wrap_text=True, vertical='top'); wr.row_dimensions[13].height = 28
     for i, h in enumerate(['Gap', 'Evidence', 'First fix', 'Possible owner'], 1):
@@ -301,7 +301,7 @@ def risk():
     ws = wb.active; ws.title = 'Register'
     H = ['#', 'Risk', 'Cause', 'Effect', 'Likelihood 1-5', 'Impact 1-5', 'Score', 'Level', 'Owner', 'Control', 'Residual risk (after the control)']
     setup(ws, 'Risk Register: what could go wrong with your own task',
-          'Session 9. The eight grey rows are typical AI risks. Edit each one for your own task, delete what does not apply, then add a ninth row for over-reliance (trusting results because they are usually right, and checking less and less) and any risk of your own. Likelihood: how likely in the next year (1 rare, 5 almost certain). Impact: how bad if it happens (1 small, 5 severe). '
+          'Session 13. The eight grey rows are typical AI risks. Edit each one for your own task, delete what does not apply, then add a ninth row for over-reliance (trusting results because they are usually right, and checking less and less) and any risk of your own. Likelihood: how likely in the next year (1 rare, 5 almost certain). Impact: how bad if it happens (1 small, 5 severe). '
           'Score is Likelihood x Impact; Level is High from 15, Medium from 8 to 14, Low below 8. Name one owner and one real control for every row: a control is an action a person actually does, and a row without an owner and a control is only a worry. Scales are on the sheet Scale.',
           H, [5, 24, 36, 36, 11, 10, 10, 10, 20, 46, 14], 34)
     seeds = [

@@ -144,7 +144,7 @@ def boundary():
     d = new_doc(name)
     title(d, 'Tool Boundary Sheet', 'One page that says what an automation or AI assistant may do on its own, what needs a person, and how to stop it.')
     box(d, 'How to use this sheet', [
-        'Session 7 is a writing exercise: you build nothing. Fill this sheet for one automation or assistant you might use in your own company, before anyone switches it on. Name the mail label, folder or sheet: "company data" is too vague to enforce. Start narrow: you can widen a limit later.',
+        'Session 11 is a writing exercise: you build nothing. Fill this sheet for one automation or assistant you might use in your own company, before anyone switches it on. Name the mail label, folder or sheet: "company data" is too vague to enforce. Start narrow: you can widen a limit later.',
         'Grey italic text is an example from the fictional company Nile Valley Foods Ltd (NVF), a supplier email assistant. Type over it.'], size=8.5)
     grid(d, [['Automation or assistant', '~Supplier email assistant', 'Date set', '~16 Nov 2026'],
              ['Owner (one named person)', '~Grace Akello, Operations Manager', 'Reviewed with', '~Joseph Mugisha, Finance Manager']],
@@ -183,7 +183,7 @@ def policy():
     title(d, 'AI Use Policy', '[Company name]  |  Version [1.0]  |  Effective [date]')
     box(d, 'How to use this template', [
         'Replace every [square bracket] with your own text and delete this box when you finish. The wording is plain on purpose: every member of staff should understand it in one reading.',
-        'Draft it in Session 9, share it with the people it affects, and have your lawyer check it before the owner signs. In class you write sections 3, 4, 5, 7, 8 and 10 (approved tools, the data table, review and records, ownership, incidents and the review date); the other sections can follow.'], size=9)
+        'Draft it in Session 13, share it with the people it affects, and have your lawyer check it before the owner signs. In class you write sections 3, 4, 5, 7, 8 and 10 (approved tools, the data table, review and records, ownership, incidents and the review date); the other sections can follow.'], size=9)
     S = lambda n, t: h2(d, f'{n}. {t}', before=6, after=2)
     B = lambda t, **k: para(d, t, 9.5, after=3, **k)
     S(1, 'Purpose')
@@ -239,14 +239,14 @@ def checkin():
           '~Week 2: the wrong week was selected because the sheet had two tabs. The brief now names the tab. The check caught it before sending.',
           '~Rule added: no customer names in prompts. Policy owner named. Roadmap: 2 of 6 actions done, both on time.',
           '~Write the data dictionary (Peter Okello, due 26 Mar).'],
-         'Are the Session 9 controls in place? Is gap 1 closed?', '~Yes: policy owner named and the rule signed. Gap 1 (rights) moves from Red to Amber.'),
+         'Are the Session 13 controls in place? Is gap 1 closed?', '~Yes: policy owner named and the rule signed. Gap 1 (rights) moves from Red to Amber.'),
         (60, 'Day 60 check-in', 'Is it stable, and has anything changed in how we work?',
          ['~The same Monday email routine, plus the weekly stock summary drafted the same way. The data dictionary is done (26 Mar) and phone numbers are masked in the export (2 Apr).',
           '~Total 7.3 hours saved so far, from the Results Tracker.',
           '~One incident: a draft was shared with the wrong person. The boundary sheet now says the assistant drafts only and Peter sends. No stop rule met.',
           '~The policy now lists the two approved tools. Roadmap: 4 of 6 actions done, none late.',
           '~Test retrieval on 20 questions (Grace Akello, due 23 Apr). Start the business case for the invoice check.'],
-         'Is any Session 11 stop rule met? Are actions on time?', '~No stop rule met. All four due actions are done on time.'),
+         'Is any Session 12 stop rule met? Are actions on time?', '~No stop rule met. All four due actions are done on time.'),
         (90, 'Day 90 check-in', 'Decide: continue, expand, pause or stop.',
          ['~The Monday email and stock summary routines continue. The retrieval test ran on 20 questions with known answers: 16 right, none invented.',
           '~Total 11 hours saved. Errors in the Monday email: 0 in the last 6 weeks.',

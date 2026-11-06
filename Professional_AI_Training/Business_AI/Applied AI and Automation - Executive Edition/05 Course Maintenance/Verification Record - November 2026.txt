@@ -1,26 +1,34 @@
-VERIFICATION RECORD, 1 NOVEMBER 2026 (built in a sandbox without access to Zapier, Google or any AI tool)
+VERIFICATION RECORD, VERSION 3 (14 sessions), 6 NOVEMBER 2026 (updated after the full review)
 
 Passed here:
-  Session files: kit/lint_content.py, 0 problems in 12 sessions (schema, word limits, notes length, banned words, price, exam language, X-not-Y, dashes, pronouns).
-  Decks: 12 decks built, 18 or 19 slides each (227 slides), all with spoken-script notes; kit/audit_specs.py shows no slide content below the footer line, off the slide edge, under 14 pt or colliding with a title.
-  Speaker notes: all 227 slides have a spoken script (median 88 words, split into short paragraphs; recall slides read each question, pause, then give the answer); the same text is in 04 Facilitator Materials/Presenter Script (47 pages).
-  Visual coverage (kit/visual_report.py): of 227 slides, 127 carry a drawn diagram, 72 carry pictogram rows, 13 carry one pictogram or the cover, 3 are text only (before the visual pass: 47 diagrams and 87 text-only). Every practice slide shows a drawn example of the finished page; every demonstration slide has a drawn visual.
-  Teaching review (3 independent reviewers, coherence / flow / teachability): findings fixed in the sessions, templates and guides: missing demo materials written out, contradictions removed, clocks rebalanced, over-claims softened, close returns to the cover question, slide map and probes added to the Facilitator Guide, one incident list and one set of numbers across Sessions 8, 11 and 12. Reviewer scores before fixes: coherence 6 to 7, flow 5 to 6.5, teachability 5.5 to 6.5 out of 10. Not re-scored after the fixes.
-  Whole-edition scan, kit/scan_edition.py: 0 findings.
-  Case data: data_gen/verify_case_data.py, 722 checks passed.
-  Templates: templates_gen/verify_templates.py, 0 problems (about 570 formulas recalculated in LibreOffice, 0 errors).
-  Apps Script: tests/run_tests.js 50 passed; tests/integration_case_data.js 16 passed on the full invoice and sales files (8 planted invoice errors found, no false positives; weekly totals match).
-  Business case numbers (Session 11): monthly net UGX 169,000, payback 2.8 months, 12-month net UGX 1,548,000, UGX 417,600 after a 30% haircut, recomputed from the workbook.
-  Independent visual review of all 12 decks, then a fix pass (see Review notes below).
+  Session files: kit/lint_content.py, 0 problems in 15 sessions (Session 0 to 14: schema, word limits, notes length, banned words, price, exam language, X-not-Y, dashes, pronouns).
+  Decks: 15 decks built from content/s00.py to s14.py (02 Class Slides), 372 slides, all with speaker notes; rendered with LibreOffice and looked at slide by slide by independent reviewers, who fixed what they found. 251 slides carry a drawn diagram.
+  Review: seven reviewers read every session against its run records and checked accuracy, clarity, consistency, illustrations; the documents were reviewed separately (worksheets added, layout fixed, answer-key mapping corrected).
+  Demonstrations: every script named in a session's demo_steps was re-run on 6 November 2026 and matched its saved record (demo_runs/README_RERUN.md lists commands and runtimes; S6 takes about 55 seconds, S6, S7 and S9 download models on first run).
+  Case data: data_gen/verify_case_data.py, 767 checks passed.
+  Templates: templates_gen/verify_templates.py, 0 problems (every workbook recalculated in LibreOffice on a copy, 0 formula errors). The Business Case Workbook gives a 12-month net of UGX 1,428,000 and UGX 333,600 after a 30% haircut; the Stop rules text and the Session 12 slides quote the same figures.
+  Course Handbook and the Word documents: regenerated for the 14-session design (Word and PDF).
+  Flyer: flyer v7 (28 hours, 14 sessions) built from source/make_flyer_v7.py; only the AI & Automation row differs from v6.
 
-NOT verified (needs a real account; record results in 04 Facilitator Materials/Rehearsal Record.docx):
-  Zapier: what the free trial allows, whether AI by Zapier runs without your own key, whether an outside approver needs a login, screen names, task use per run.
-  Google: permission prompt wording, Script Properties steps, trigger set-up, Gmail draft, time zone behaviour of dates.
-  Gemini API: key creation from Uganda, current model name (default gemini-2.5-flash may be retired), free-tier limits and data terms.
-  No AI output has been observed. Slides label every example illustrative. Observed runs are to be recorded by the instructor.
-  Facts about plan limits, quotas and regulation come from search summaries dated 1 November 2026 and must be re-checked the week of teaching, especially the Uganda national AI strategy status and the Data Protection and Privacy Act guidance.
+Recorded runs (real outputs, kept with their inputs and scripts in Build/demo_runs/):
+  s01_seeing.md, s02_learning.md, s03_measuring_a_model.md, s04_words_as_numbers.md, s05_language_model_runs.md, s06_comparison_runs.md, s07_sizes_run.md, s08_prompting_runs.md (payroll comparison: plain 2 runs, plain plus re-add 3, framed without re-add 3, framed plus re-add 2; 9 of 10 right; a pattern, not proof), s09_runs.md, s10_scoring.md, s12_rule_vs_ai.md, s14_nvf_file_check.md, with sources_sNN.md for the external facts. Earlier recorded runs F1 to F7 are in Case Runs/runs; the twelve customer message results are in 04 Facilitator Materials/Twelve-Message AI Demonstration Results (4 Nov 2026).md.
+  Assistant runs were made with Claude in fresh subagent sessions and are labelled so on the slides.
+
+External facts checked at the source on 6 November 2026:
+  OSI statement of 18 February 2025 that Llama 3.x licence is not open source (opensource.org blog); GPT-2 model card (MIT, 124M, about 40 GB WebText); Qwen2.5-1.5B-Instruct model card (Apache-2.0, 1.54B parameters); African Union Continental AI Strategy (au.int, July 2024); EU AI Act Article 2(1); Google prompting strategies page (varied examples, overfitting warning, thinking models).
+
+NOT verified:
+  Session 11 mailbox agent run: not recorded. Six attempts on three models were stopped by the platform's safety filter, including a 13-mail version without the planted instruction, so the filter reacts to the prompt style, not one mail. The lecturer records it live with demo_runs/s11/prompts/agent_task.md. No agent output is shown on any slide.
+  Reasoning model against a standard model (Session 8): not recorded; the lecturer runs it live.
+  No run was made in ChatGPT or Gemini. Slides say which assistant produced each recorded run.
+  Uganda Data Protection and Privacy Act: the ULII page returned 403 and the PDFs could not be read here. Claims on sections 1, 19 and 23 are cross-checked against a law-firm summary (DLA Piper); sections 21 and 29 rest on an earlier full-text read recorded in sources_s13.md. Slides use "my understanding" wording.
+  ISO/IEC 42001: iso.org returned 403; "2023, certifiable" rests on secondary sources. NIST AI RMF and OECD AI Principles: checked earlier, not re-fetched.
+  Uganda national AI strategy: reported to be in draft with a June 2026 target, no approval found; re-check in the week of teaching.
+  The slides were checked by LibreOffice render only, not in PowerPoint (all 15 files do load in python-pptx).
   Templates: Excel files carry no cached values (they calculate on opening in Excel or Google Sheets); a preview tool that does not calculate shows blank formula cells.
+  The Zapier and Apps Script practice folders were verified for the earlier edition only; they are archived in Archive/v2_before_technical_2026-11-05/practice_files and are not part of the taught course.
 
 Open items for the owner:
-  Decide the follow-up dates for each learner cohort; the 90-Day Roadmap template examples use December 2026 to February 2027 dates while the Session 12 slides use a 1 February 2027 start.
-  Review the Facilitator Guide sections once as the teacher; wording is written for you to read aloud or adapt.
+  Decide the follow-up dates for each cohort; the 90-Day Roadmap template examples and the Session 14 slides should use the same start date.
+  Review the Facilitator Guide once as the teacher.
+  Run the demonstrations once before teaching (README_RERUN.md), and record the Session 11 mailbox run.

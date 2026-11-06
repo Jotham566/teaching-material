@@ -97,19 +97,19 @@ def business_case():
     # Inputs
     ws = wb.active; ws.title = 'Inputs'
     setup(ws, 'Business Case: step 1, inputs',
-          'Session 11. Describe your own task in the boxed cells in column B. Every grey italic value is an example to overwrite: type your own over it and it turns black. Money is in UGX. Every other sheet is calculated from these cells, so change them here only. '
-          'Where the examples come from: times a month, minutes today, share of runs with an error and cost of one error are the Session 1 Task Card numbers of the fictional company Nile Valley Foods Ltd (NVF) for the Monday sales email (4 times, 90 minutes, 4 runs in 10, UGX 150,000). '
+          'Session 12. Describe your own task in the boxed cells in column B. Every grey italic value is an example to overwrite: type your own over it and it turns black. Money is in UGX. Every other sheet is calculated from these cells, so change them here only. '
+          'Where the examples come from: times a month, minutes today, share of runs with an error and cost of one error are the Session 12 Task Card numbers of the fictional company Nile Valley Foods Ltd (NVF) for the Monday sales email (4 times, 90 minutes, 4 runs in 10, UGX 150,000). '
           'The hourly cost, the licence price and the plan numbers (minutes with the new routine, review minutes, share of errors removed) are invented NVF estimates that nobody has measured. Estimates are fine: say which ones in the Note column, and replace them with your own timing or a pilot result when you have one.',
           ['Item', 'Your value', 'Unit', 'Note'], [52, 26, 16, 70], 24)
     items = [
-        ('Task', 'Monday sales summary email', '', 'The task from your Task Card (Session 1)', '@'),
+        ('Task', 'Monday sales summary email', '', 'The task from your Task Card (Session 12)', '@'),
         ('Who does it today', 'Sales Manager', '', '', '@'),
-        ('Times a month', 4, 'times', 'Session 1 Task Card (NVF: measured). How many times the task is done in a month', '0.0'),
-        ('Minutes each time today', 90, 'minutes', 'Session 1 Task Card baseline (NVF: estimate)', '0'),
+        ('Times a month', 4, 'times', 'Session 12 Task Card (NVF: measured). How many times the task is done in a month', '0.0'),
+        ('Minutes each time today', 90, 'minutes', 'Session 12 Task Card baseline (NVF: estimate)', '0'),
         ('People involved each time', 1, 'people', '', '0'),
         ('Loaded hourly cost of staff time', 30000, 'UGX per hour', 'Pay plus employer contributions and benefits, divided by hours worked. NVF: (4,500,000 + 500,000) / 160 = about 31,250, rounded to 30,000. Invented figure.', UGX),
-        ('Share of runs with an error today', 0.4, 'share of runs', 'Session 1 Task Card (NVF: estimate). 0.4 means 4 runs in 10 contain an error', '0%'),
-        ('Cost of one error', 150000, 'UGX', 'Session 1 Task Card (NVF: estimate). Staff time to fix it plus any loss. Say how you got it.', UGX),
+        ('Share of runs with an error today', 0.4, 'share of runs', 'Session 12 Task Card (NVF: estimate). 0.4 means 4 runs in 10 contain an error', '0%'),
+        ('Cost of one error', 150000, 'UGX', 'Session 12 Task Card (NVF: estimate). Staff time to fix it plus any loss. Say how you got it.', UGX),
         ('Minutes each time with the new routine (your own work, before review)', 10, 'minutes', 'Nile Valley Foods example: overwrite with your numbers. Plan only, nothing measured yet. NVF: the Task Card target is a draft in 10 minutes, so 10 of your own minutes. Review is counted separately below.', '0'),
         ('Review minutes each time (checking the result)', 20, 'minutes', 'Plan. The Task Card target is checked in 20 minutes. Never set this to 0: a person checks every result', '0'),
         ('Share of errors the new routine removes', 0.6, 'share of errors', 'Plan only, nothing measured yet. Use a pilot or your own checks when you have them. Be cautious.', '0%'),
@@ -225,7 +225,7 @@ def business_case():
     wst = wb.create_sheet('Stop rules')
     setup(wst, 'Business Case: step 6, what would stop it',
           'Write your stop rules now, before you start, while you are calm. Each rule is a number somebody can check, and says Stop or Revise. Then record the decision you will take to your sponsor: go to a pilot, revise or stop, and the number that decided it. '
-          'Grey italic rules are NVF examples: type over them. In Session 12 these rules become part of your 90-day plan, so choose numbers you can read from your own records.',
+          'Grey italic rules are NVF examples: type over them. In Session 14 these rules become part of your 90-day plan, so choose numbers you can read from your own records.',
           ['#', 'Stop rule (a number you can check)', 'Stop or revise?', 'Where I will read the number', 'Owner'], [5, 62, 14, 40, 22], 28)
     rules = [('Stop if one error reaches a customer or the bank, until the cause is fixed.', 'Stop', 'Error log', 'Peter Okello'),
              ('Revise if review minutes rise above 30 a run.', 'Revise', 'Results Tracker', 'Peter Okello'),
@@ -239,7 +239,7 @@ def business_case():
     add_list(wst, 'C4:C14', ['Stop', 'Revise'])
     for i, (lab, val) in enumerate([('Sponsor (the person who owns the result and asks for the decision)', 'Sarah Namukasa, Managing Director'),
                                     ('Decision: go to a pilot, revise or stop', 'Go to a pilot'),
-                                    ('The number that decided it', 'Base 12-month net UGX 1,548,000; UGX 417,600 after a 30% haircut')], 16):
+                                    ('The number that decided it', 'Base 12-month net UGX 1,428,000; UGX 333,600 after a 30% haircut')], 16):
         style_row(wst, i, 5); wst.merge_cells(start_row=i, start_column=1, end_row=i, end_column=2)
         wst.cell(i, 1).value = lab; wst.cell(i, 1).font = f(10, True); wst.cell(i, 3).value = val; wst.merge_cells(start_row=i, start_column=3, end_row=i, end_column=5)
         wst.cell(i, 3).font = F_EX; wst.cell(i, 3).border = INPUT_BORDER; wst.row_dimensions[i].height = 28
@@ -255,7 +255,7 @@ def roadmap():
     H = ['Phase', 'Action', 'Owner', 'Start', 'Due', 'Effort (hours)', 'Depends on', 'Success measure', 'Status']
     PH = ['Protect and clean', 'Describe and prepare', 'Test and decide']
     setup(ws, '90-Day Roadmap: your data roadmap in three phases',
-          'Session 12. Turn each gap from your Session 4 scorecard into one line: one action a person can finish, one owner, a start and a due date, the hours (your estimate), what it waits for, and a success measure that is a number someone else can check (a number, a date and a checker). '
+          'Session 14. Turn each gap from your readiness scorecard into one line: one action a person can finish, one owner, a start and a due date, the hours (your estimate), what it waits for, and a success measure that is a number someone else can check (a number, a date and a checker). '
           'Number each action at the start of its text (1, 2, 3) and write those numbers in Depends on, so nothing is tested before the data is ready and allowed. Aim for three to six actions in each phase (Protect and clean is days 1 to 30, Describe and prepare days 31 to 60, Test and decide days 61 to 90). Update the status every week. '
           'Type your plan start date in the boxed cell at the right: the day 30, 60 and 90 check-in dates are worked out for you. The NVF example starts on 1 February 2027, so day 30 is 3 March 2027, day 60 is 2 April 2027 and day 90 is 2 May 2027. '
           'Decisions, risks and check-ins have their own sheets. In the example the lawyer\'s time is not counted in the hours. ' + NVF_NOTE,
@@ -323,10 +323,10 @@ def roadmap():
     # check-ins
     wc = wb.create_sheet('Check-ins')
     setup(wc, 'Check-ins: day 30, day 60 and day 90',
-          'Session 12. The dates come from your plan start date on the sheet Roadmap. Your lecturer contacts you by message or call at day 30, day 60 and day 90. At each check-in you bring the 30-60-90 Check-in Form and the test below. Nobody is scored: the check-in reports what happened so that the plan can change. ' + NVF_NOTE,
+          'Session 14. The dates come from your plan start date on the sheet Roadmap. Your lecturer contacts you by message or call at day 30, day 60 and day 90. At each check-in you bring the 30-60-90 Check-in Form and the test below. Nobody is scored: the check-in reports what happened so that the plan can change. ' + NVF_NOTE,
           ['Day', 'Date', 'You bring', 'The test', 'What I found'], [10, 16, 40, 56, 50], 28)
-    cks = [(30, '=Roadmap!L5', 'Check-in Form, roadmap', 'Are the Session 9 controls in place? Is gap 1 closed?'),
-           (60, '=Roadmap!L6', 'Form and a Results Tracker row', 'Is any Session 11 stop rule met? Are actions on time?'),
+    cks = [(30, '=Roadmap!L5', 'Check-in Form, roadmap', 'Are the Session 13 controls in place? Is gap 1 closed?'),
+           (60, '=Roadmap!L6', 'Form and a Results Tracker row', 'Is any Session 12 stop rule met? Are actions on time?'),
            (90, '=Roadmap!L7', 'Form and Sponsor Briefing', 'Re-score the six areas. Continue, expand, pause or stop.')]
     for i, (dday, dt, bring, test) in enumerate(cks, 4):
         style_row(wc, i, 5, False, (1, 2), {2: 'dd mmm yyyy'}); fill_values(wc, i, [f'Day {dday}', dt, bring, test]); wc.row_dimensions[i].height = 30
@@ -342,7 +342,7 @@ def tracker():
     H = ['Month (first day)', 'Workflow or task', 'Runs', 'Minutes by hand per run (baseline)', 'Minutes planned per run', 'Minutes now per run (measured, with checking)', 'Hours saved (computed)',
          'Errors caught before release', 'Errors that got through', 'Incidents (any time the work broke a boundary or was stopped)', 'Cost this month (UGX)', 'Cumulative hours saved (this workflow)', 'Notes']
     setup(ws, 'Results Tracker: one row for each workflow each month',
-          'Use it for the task you chose in Session 1. Each month add one row for each workflow you changed. Type the first day of the month (for example 01/02/2027). Baseline minutes come from your Task Card; planned minutes come from your business case; minutes now are measured by timing the real work and include the time spent checking. Leave the measured columns empty until you have a measurement. Hours saved use the baseline and the measured minutes. Count an incident whenever the work went outside its boundary sheet or you had to stop it. Record roadmap actions closed in the Notes column. '
+          'Use it for the workflow you mapped in Session 12. Each month add one row for each workflow you changed. Type the first day of the month (for example 01/02/2027). Baseline minutes come from your Task Card; planned minutes come from your business case; minutes now are measured by timing the real work and include the time spent checking. Leave the measured columns empty until you have a measurement. Hours saved use the baseline and the measured minutes. Count an incident whenever the work went outside its boundary sheet or you had to stop it. Record roadmap actions closed in the Notes column. '
           'Hours saved and the running total are calculated. The sheet Summary adds the months together and draws the chart. The three grey rows are NVF examples (fictional): delete them when you add your first real month.',
           H, [15, 32, 8, 17, 14, 17, 14, 15, 15, 20, 16, 20, 36], 60)
     ex = [(datetime.date(2027, 2, 1), 4, 90, 25, 35, 1, 0, 0, 145000), (datetime.date(2027, 3, 1), 4, 90, 25, 35, 0, 0, 1, 145000), (datetime.date(2027, 4, 1), 4, 90, 25, 35, 0, 0, 0, 145000)]

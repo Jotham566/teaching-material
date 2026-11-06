@@ -1,0 +1,10 @@
+Description: What happens if heavy rain floods the road and the delivery cannot get through?
+Vectors: 384 numbers each; length of the description vector 1.00  (all lengths are 1)
+
+Meaning search, closest first (cosine; straight line; city blocks; agreement score):
+  Force majeure                  cosine 0.361  straight 1.130  blocks  17.89  agreement 0.361
+  Limitation of liability        cosine 0.241  straight 1.232  blocks  19.43  agreement 0.241
+  Indemnity                      cosine 0.198  straight 1.266  blocks  19.70  agreement 0.198
+Who wins under each measure: {'cosine': 'Force majeure', 'straight line': 'Force majeure', 'city blocks': 'Force majeure', 'agreement score': 'Force majeure'}
+
+Word search (TF-IDF, shared words only): no passage shares a word with the description

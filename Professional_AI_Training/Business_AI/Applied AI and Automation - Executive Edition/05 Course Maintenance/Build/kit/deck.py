@@ -38,6 +38,7 @@ SPEC_DIR = BUILD / '_specs'
 OUT_DIR = EDITION / '02 Class Slides'
 PPTX_SKILL_SCRIPTS = os.environ.get('PPTX_SKILL_SCRIPTS', '/sessions/focused-youthful-einstein/mnt/.claude/skills/pptx/scripts')
 COURSE = 'Applied AI and Automation'
+NSESS = 14   # numbered sessions after Session 0 (v3, 5 November 2026)
 X0, XW = 0.7, 11.9
 Y0, YB = 1.95, 6.85
 
@@ -454,7 +455,7 @@ def add_cover(d):
     ts, tl = K.fit_lines(s['title'], 'bold', 11.0, 2.6, 56, 34, lead=1.1)
     qy = 2.3 + len(tl) * ts * 1.1 / 72 + 0.5
     q = text(X0, qy, 10.8, 1.4, s['question'], 30, 22, color=B.GOLD, italic=True)
-    meta = K.text_obj(X0, 6.55, 11.8, 0.5, text=(f'{COURSE}  |  Session {s["num"]} of 12' if s['num'] else f'{COURSE}  |  Session 0, the introduction') + '\nKLAi Professional Learning  |  Jotham Martin Wambi', size=16, color='B5B5B5', lead=1.45)
+    meta = K.text_obj(X0, 6.55, 11.8, 0.5, text=(f'{COURSE}  |  Session {s["num"]} of {NSESS}' if s['num'] else f'{COURSE}  |  Session 0, the introduction') + '\nKLAi Professional Learning  |  Jotham Martin Wambi', size=16, color='B5B5B5', lead=1.45)
     sl = {'layout': 'dark', 'section': 'Opening', 'title': {'text': K.balance(s['title'], ts, 'bold', 11.0), 'size': ts, 'lead': round(ts * 1.1, 1)}, 'title_raw': None, 'objects': [q, meta],
           'notes': cover_script(s)}
     d.slides.append(sl)
@@ -514,12 +515,12 @@ def add_keep(d):
     s = d.s
     objs = [text(X0, Y0 + 0.05, 7.4, 0.7, 'What you keep from today', 30, 24, bold=True)]
     objs.append(K.line_obj(X0, Y0 + 0.85, X0 + 7.4, Y0 + 0.85, color='111111', w=2.0))
-    objs.append(paras(X0, Y0 + 1.0, 7.4, 1.6, [s['keep']], 24, 18, gap=0.2))
+    objs.append(paras(X0, Y0 + 1.0, 7.4, 1.4, [s['keep']], 24, 18, gap=0.2))
     if s.get('keep_returns') is not False:
-        objs.append(text(X0, Y0 + 2.65, 7.4, 0.4, 'Our question today', 20, 16, bold=True, color=B.RED))
-        objs.append(text(X0, Y0 + 3.05, 7.4, 0.75, s['question'], 22, 16, italic=True, color=B.BODY))
-    objs.append(text(X0, Y0 + 3.9, 7.4, 0.4, s.get('next_label', 'Next session'), 20, 16, bold=True, color=B.RED))
-    objs.append(text(X0, Y0 + 4.3, 7.4, 0.65, s['next'], 20, 15, color=B.BODY))
+        objs.append(text(X0, Y0 + 2.45, 7.4, 0.4, 'Our question today', 20, 16, bold=True, color=B.RED))
+        objs.append(text(X0, Y0 + 2.85, 7.4, 0.85, s['question'], 22, 16, italic=True, color=B.BODY))
+    objs.append(text(X0, Y0 + 3.8, 7.4, 0.4, s.get('next_label', 'Next session'), 20, 16, bold=True, color=B.RED))
+    objs.append(text(X0, Y0 + 4.18, 7.4, 0.72, s['next'], 20, 15, color=B.BODY))
     if s.get('keep_visual'):
         objs.append(img(s['keep_visual'], 8.5, Y0 + 0.1, 4.1, 4.5, 'What you keep from today'))
     else:
@@ -529,6 +530,17 @@ def add_keep(d):
 
 
 # ------------------------------------------------------------------ build
+def _footer(sess):
+    """Footer text that fits one line: the full form if short enough, else without the course name, else cut at a word with an ellipsis."""
+    full = f'KLAi  |  {COURSE}  |  Session {sess["num"]}: {sess["title"]}'
+    if len(full) <= 88:
+        return full
+    short = f'KLAi  |  Session {sess["num"]}: {sess["title"]}'
+    if len(short) <= 88:
+        return short
+    return short[:85].rsplit(' ', 1)[0].rstrip(',:') + '...'
+
+
 def build_spec(sess):
     d = Deck(sess)
     add_cover(d)
@@ -550,7 +562,7 @@ def build_spec(sess):
     import re as _re
     out = OUT_DIR / (f'{sess["num"]:02d} - ' + _re.sub(r'[:/\\?*"<>|]', '', sess['title']) + '.pptx')
     return {'out': str(out), 'title': f'Session {sess["num"]}: {sess["title"]}', 'subject': COURSE,
-            'footer': f'KLAi  |  {COURSE}  |  Session {sess["num"]}: {sess["title"]}'[:90],
+            'footer': _footer(sess),
             'fonts': {'head': B.HEAD_FONT, 'body': B.BODY_FONT, 'mono': B.MONO_FONT}, 'brand': {}, 'logo': _logo(), 'slides': d.slides}
 
 

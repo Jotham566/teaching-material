@@ -1,0 +1,5 @@
+900 test invoices, 83 really late.  Always saying "on time" scores 90.8% accuracy.
+threshold flagged caught false_alarms missed precision recall   F1  accuracy  cost_UGX
+     0.50       9      6            3     77       67%     7%   13%     91.1%    7,880,000
+     0.20     102     35           67     48       34%    42%   38%     87.2%    6,840,000
+     0.05     526     78          448      5       15%    94%   26%     49.7%   11,020,000

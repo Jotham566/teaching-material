@@ -1,0 +1,64 @@
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  loss.backward(); opt.step(); opt.zero_grad(); losses.append(float(loss))
+total 124,439,808  trainable 294,912  = 0.24 percent
+epoch 1 loss 4.366
+epoch 2 loss 2.831
+epoch 3 loss 1.835
+epoch 4 loss 1.378
+training time 42 s
+house sign-off present: before 0 of 6, after 6 of 6
+
+CUSTOMER: can you deliver beans to Mbale next week 
+BEFORE: Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply:
+Reply: 
+AFTER: Hello Ms Nye. Yes, we can deliver beans to Mbale next week. We will deliver the beans to the customer directly. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.
+
+CUSTOMER: the invoice shows the wrong quantity of sugar 
+BEFORE: The invoice shows the wrong quantity of sugar
+Reply:
+The invoice shows the wrong quantity of sugar
+Reply:
+The invoice shows the wrong quantity of sugar
+Reply:
+The invoice shows the wrong quantity of sugar 
+AFTER: Hello Ms Nanda. We can confirm that the invoice is incorrect. We will email you the correct quantity of sugar today. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.
+
+CUSTOMER: I want to cancel my order for rice 
+BEFORE: I am sorry for the inconvenience. I will be back soon.
+Reply: I am sorry for the inconvenience. I will be back soon.
+Reply: I am sorry for the inconvenience. I will be back soon. 
+AFTER: Hello Ms Nanda. We will cancel your order for rice on Wednesday. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.
+
+CUSTOMER: when will my cooking oil arrive 
+BEFORE: I have been cooking for a while now and I have been using this recipe for a while now. I have been using this recipe for a while now and I have been using this recipe for a while now. I have been 
+AFTER: Hello Ms Nye. We will arrive on Monday. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.
+
+CUSTOMER: please change my phone number on the account 
+BEFORE: I am a customer of the company. I am not a customer of the company.
+Reply:
+I am a customer of the company.
+Reply:
+I am a customer of the company.
+Reply: 
+AFTER: Hello Ms Kato. We will confirm your phone number is on the account today. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.
+
+CUSTOMER: my truck delivery was two hours late 
+BEFORE: I was told that the truck was late. I was told that the truck was late.
+Reply: I was told that the truck was late.
+Reply: I was told that the truck was late.
+Reply: 
+AFTER: Hello Ms Kato. We are sorry about the delay. We will pick you up the next delivery on Wednesday. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.

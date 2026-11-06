@@ -20,8 +20,15 @@ W = CONTENT_CM
 BODY_SIZE = 10.5
 
 
+def page_break(doc):
+    p = doc.add_paragraph(); fmt(p, 0, 0)
+    p.paragraph_format.page_break_before = True
+    p.paragraph_format.line_spacing = Pt(1)
+    r = p.add_run(''); r.font.size = Pt(1)
+
+
 def to_pdf(path):
-    subprocess.run(['soffice', '--headless', '--convert-to', 'pdf', '--outdir', str(path.parent), str(path)], capture_output=True)
+    subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_docs', '--headless', '--convert-to', 'pdf', '--outdir', str(path.parent), str(path)], capture_output=True)
 
 
 def bullets(d, items, size=BODY_SIZE, after=2):
@@ -47,6 +54,8 @@ def fig(d, data, h_in, w_in=13.0, caption=None):
     except KeyError as e:
         print('SKIPPED FIGURE', data['kind'], e)
         return
+    if d.paragraphs:
+        d.paragraphs[-1].paragraph_format.keep_with_next = True
     p = d.add_paragraph(); fmt(p, 2, 2 if caption else 6, keep=bool(caption))
     p.add_run().add_picture(str(path), width=Cm(16.0))
     if caption:
@@ -68,11 +77,11 @@ def build():
 
     # ---------------------------------------------------------------- cover block and contents
     title(d, 'Course Handbook', 'Applied AI and Automation for Executives  |  KLAi Professional Learning, Kampala  |  Instructor: Jotham Martin Wambi')
-    body(d, 'This handbook is yours to keep. It gives you the words and the pictures behind the course, so that you arrive at Session 1 able to follow every idea, and so that you can come back to it whenever a term needs a reminder. Read it in any order. Parts 3 to 15 explain how AI works and how to judge it. Part 16 tells you what to prepare. Part 17 is a glossary. Part 18 is the twelve sessions on one page.')
+    body(d, 'This handbook is yours to keep. It gives you the words and the pictures behind the course, so that you arrive at Session 1 able to follow every idea, and so that you can come back to it whenever a term needs a reminder. Read it in any order. Parts 3 to 15 explain how AI works and how to judge it. Part 16 tells you what to bring. Part 17 is a glossary. Part 18 is the fourteen sessions on one page.')
     h2(d, 'What is inside')
     grid(d, [
         ['1', 'Welcome and how the course works'],
-        ['2', 'Why this first session matters'],
+        ['2', 'Why this introduction matters'],
         ['3', 'AI, machine learning, deep learning and generative AI'],
         ['4', 'How machines learn'],
         ['5', 'How a model is trained'],
@@ -86,9 +95,9 @@ def build():
         ['13', 'Foundation models, open models, fine-tuning and cost'],
         ['14', 'Is our data ready for AI?'],
         ['15', 'From model to working product: workflows, agents and tools'],
-        ['16', 'Before Session 1'],
+        ['16', 'What to bring to Session 1'],
         ['17', 'Glossary'],
-        ['18', 'The twelve sessions at a glance'],
+        ['18', 'The fourteen sessions at a glance'],
     ], [1.2, W - 1.2], header=['Part', 'Title'], size=10, label_cols=(0,))
     spacer(d, 6)
     box(d, 'A note on simplification', [
@@ -97,40 +106,42 @@ def build():
 
     # ---------------------------------------------------------------- 1 welcome
     section(d, 1, 'Welcome and how the course works')
-    body(d, 'The course has twelve sessions of two hours each, 24 hours in all. You choose the dates and the place with the instructor: in person, online or at your workplace. The group is small, from one to five executives, so the time is spent on your company.')
-    h2(d, 'One task from your own company')
-    body(d, 'In Session 1 you choose one real task that recurs in your company: a weekly report, a stream of customer messages, a pile of invoices, a set of contracts. This is your own task. It stays with you for all twelve sessions. You measure it, test an AI tool on it, brief the tool, prepare its information, build an automation for it, set limits, count the savings and write the business case. Nothing is left as theory.')
+    body(d, 'The course has fourteen sessions of two hours each, 28 hours in all. You choose the dates and the place with the instructor: in person, online or at your workplace. The group is small, from one to five executives, so the time is spent on the work you do.')
+    h2(d, 'Two kinds of session')
+    body(d, 'Sessions 1 to 11 explain how AI works, one idea at a time: how a machine sees, how it learns from examples, how a model is measured, how words become numbers, how language models, foundation models and open models work, how to prompt and check them, and how agents act. In each of these sessions the instructor runs live demonstrations while you watch, and you may join in on your own laptop. Each session also has a short paper exercise that needs no computer. There is no coding.')
+    body(d, 'Sessions 12 to 14 are practicals. You work on your own organisation, with the instructor beside you: you map one workflow and work out the hours it could save, you write a first AI use policy and a vendor question list, and you assess how ready your information is and plan the next 90 days.')
+    h2(d, 'Nothing to prepare')
+    body(d, 'There is nothing to prepare before Session 1 except reading this handbook. Bring a laptop and an AI assistant account you already use, so that you can join the demonstrations if you wish. Use invented or sample information only.')
     h2(d, 'No tests and no marks')
-    body(d, 'There are no tests, no marks and no required homework. You show progress by what you build and keep. Anything you do between sessions is optional.')
+    body(d, 'There are no tests and no required homework. Anything you do between sessions is optional. You show progress by what you understand and what you keep.')
     h2(d, 'What you keep')
-    bullets(d, ['A written AI-use policy for your company.',
-                'Two or three working automations.',
-                'A costed business case and a 90-day roadmap.',
-                'A set of templates, one for each session, filled in for your own task.',
+    bullets(d, ['A one-page take-away sheet from every session, such as a distance cheat sheet, a decision tree for giving a model your knowledge and a boundary sheet for agents.',
+                'From the practicals: your workflow map and a costed business case, a first AI use policy, a risk register and a vendor question list.',
+                'A readiness scorecard, a data roadmap and a 90-day plan.',
                 'The confidence to question a vendor and to supervise a pilot.'])
-    h2(d, 'The two build tools', before=8)
-    body(d, 'You see two example automations at work, both on the same customer messages. In Session 6 the messages are routed by plain rules, in a spreadsheet and in a no-code automation tool such as Zapier. In Session 8 an AI assistant sorts the same messages and drafts replies, and a person checks them. You do not need to build either. The hands-on work is about your own company: choosing the right workflow, checking how ready your data is, writing your AI use policy and planning your data roadmap. Other tools exist and we compare them in Part 15 and in Sessions 7 and 10, so that you can choose well.')
+    h2(d, 'Automation tools', before=8)
+    body(d, 'The course shows two example automations at work on the same twelve customer messages: one that routes them by plain rules, and one where an AI assistant sorts them and a person checks. You do not build either. Other tools exist and Part 15 describes some of them as options, so that you can choose well when the time comes.')
     h2(d, 'After the course')
     body(d, 'The instructor follows up with you at 30, 60 and 90 days. You return a one-page check-in form and a results tracker. The follow-up asks what is running, how much time it saves and what changed in your policy.')
     h2(d, 'How a session runs')
-    fig(d, {'kind': 'bars', 'unit': ' min', 'items': [{'label': 'Recall and check-in', 'value': 10}, {'label': 'One idea, explained', 'value': 25}, {'label': 'Demonstration', 'value': 20}, {'label': 'Break', 'value': 5}, {'label': 'Your own task', 'value': 45, 'hl': True}, {'label': 'Decision', 'value': 10}, {'label': 'Close', 'value': 5}]}, 2.6, caption='The usual shape of a two-hour session. Sessions 6 and 8 are build sessions with more time for your own build.')
+    fig(d, {'kind': 'bars', 'unit': ' min', 'items': [{'label': 'Recall', 'value': 10}, {'label': 'The ideas', 'value': 35}, {'label': 'Demonstrations', 'value': 25}, {'label': 'Break', 'value': 5}, {'label': 'Paper exercise', 'value': 25, 'hl': True}, {'label': 'What it means for your work', 'value': 15}, {'label': 'Close', 'value': 5}]}, 2.6, caption='The usual shape of a two-hour session in Sessions 1 to 11. In the practicals, Sessions 12 to 14, about 55 minutes go to your own work.')
 
     # ---------------------------------------------------------------- 2 why
-    section(d, 2, 'Why this first session matters')
+    section(d, 2, 'Why this introduction matters')
     body(d, 'You cannot judge a claim, a vendor or a result unless you have the words and a picture of how the thing works. A vendor who says "our model learns from your data" or "the agent acts on its own" is saying something specific. With the picture in your head you can ask what data, learns how, and acts on what. Without the picture you can only nod.')
-    body(d, 'This handbook gives you that picture once. Every idea in it comes back later in the course, applied to your own task.')
+    body(d, 'This handbook gives you that picture once. Every idea in it comes back later in the course, taught in more depth.')
     grid(d, [
-        ['Training, error and adjusting', 'Session 2: why a tool is right most of the time and wrong some of the time'],
-        ['Training, validation and test data', 'Session 2 (testing for mistakes) and Session 8 (measuring against a baseline)'],
-        ['Data types and data quality', 'Session 4: your information inventory'],
-        ['Privacy and bias', 'Sessions 4 and 9: sensitivity marks, risk register, policy'],
-        ['Language models, tokens, context window', 'Session 3: how to brief a tool and check what it returns'],
-        ['Hallucination and retrieval', 'Sessions 3 and 5: source-linked document review'],
-        ['Prompt injection', 'Sessions 7 and 9: limits on what an automation may do'],
-        ['Workflow, trigger and human in the loop', 'Sessions 6 and 8: the two demonstrated automations'],
-        ['Agents and limits', 'Session 7: the tool boundary sheet'],
-        ['Baseline, pilot and ROI', 'Sessions 8 and 11: measurement and the business case'],
-        ['Vendor and model terms', 'Session 10: questions for vendors'],
+        ['Training, error and adjusting', 'Sessions 1 and 2: how a network and a tree learn from examples'],
+        ['Training, validation and test data', 'Session 3: honest scores and overfitting'],
+        ['Data types and data quality', 'Session 14: your information inventory and readiness scorecard'],
+        ['Privacy and bias', 'Session 13: risk register and policy; Session 14: sensitive data'],
+        ['Language models, tokens, context window', 'Session 5: tokens and next-word probability; Session 8: prompting'],
+        ['Hallucination and retrieval', 'Session 9: giving a model your documents; Session 10: checking answers'],
+        ['Prompt injection', 'Sessions 10 and 11: limits on what an agent may do'],
+        ['Workflow, trigger and human in the loop', 'Session 12: mapping a workflow'],
+        ['Agents and limits', 'Session 11: the Tool Boundary Sheet'],
+        ['Baseline, pilot and ROI', 'Session 12: the hours-saved estimate and the business case'],
+        ['Vendor and model terms', 'Sessions 6 and 7: model families and open weights; Session 13: questions for vendors'],
     ], [6.4, W - 6.4], header=['Idea in this handbook', 'Where it returns'], size=9.5, label_cols=(0,))
 
     # ---------------------------------------------------------------- 3 nested
@@ -225,7 +236,7 @@ def build():
                 ('In who is missing.', 'If few rural customers are in the data, the model serves them badly.'),
                 ('In how the result is used.', 'A sensible score used for a purpose it was not built for can still do harm.')])
     h2(d, 'Privacy and the law in Uganda', before=8)
-    body(d, 'Data about identifiable people (names, phone numbers, ID numbers, health or pay details) is personal data. In my understanding, the Data Protection and Privacy Act 2019 applies to personal data, including when it goes into an AI tool; confirm your company\'s duties with a lawyer. Session 4 and Session 9 turn this into practical rules for your company.', after=0)
+    body(d, 'Data about identifiable people (names, phone numbers, ID numbers, health or pay details) is personal data. In my understanding, the Data Protection and Privacy Act 2019 applies to personal data, including when it goes into an AI tool; confirm your company\'s duties with a lawyer. Sessions 13 and 14 turn this into practical rules for your company.', after=0)
 
     # ---------------------------------------------------------------- 7 language models
     section(d, 7, 'Language models and generative AI')
@@ -240,7 +251,7 @@ def build():
     h2(d, 'Context window')
     body(d, 'The context window is how much text the model can keep in view at once: your question, any files you give it, and its own answer so far. It is like the desk the model works on. If a document is larger than the desk, parts fall off, and the model may miss or mix them up. Windows are now large, but a bigger desk does not guarantee that the model attends to every part equally well.')
     h2(d, 'Why a model can sound sure and be wrong')
-    body(d, 'The model is built to produce text that reads well and fits the pattern. It is not built to check facts. When it lacks the information, it can still write a smooth, confident sentence that is false. This is called a hallucination. It can include invented figures, names, quotes and sources. The tone does not tell you whether it is right. This is why the course teaches you to ask for sources, to check, and to test your own task for mistakes (Session 2).')
+    body(d, 'The model is built to produce text that reads well and fits the pattern. It is not built to check facts. When it lacks the information, it can still write a smooth, confident sentence that is false. This is called a hallucination. It can include invented figures, names, quotes and sources. The tone does not tell you whether it is right. This is why the course teaches you to ask for sources, to check, and to test a tool on your own work (Session 10).')
     h2(d, 'What changes with search, files and memory')
     body(d, 'On its own, a model answers from what it learned in training, which stops at a date and knows nothing about your company. Assistants can add three things.')
     bullets(d, [('Search.', 'The assistant looks up the web and writes from what it found. You can open the sources.'),
@@ -268,7 +279,7 @@ def build():
         {'icon': 'chart', 'head': 'Patterns', 'text': 'Find regularities in data. Use machine learning.'},
         {'icon': 'doc', 'head': 'Drafting', 'text': 'Produce a first version. Use generative AI, then check.'},
         {'icon': 'person', 'head': 'Judgement', 'text': 'Weigh people, risk and values. Keep it with a person.'}]}, 3.6)
-    body(d, 'A good first task for AI is one with a clear pattern or a draft to produce, where a person can check the result quickly and a mistake is cheap to catch. A poor first task has a high cost of error, little data and nobody to check. Session 1 gives you a scorecard for this choice. A rule is often better done with a formula, which is cheaper, faster and always the same.', after=0)
+    body(d, 'A good first task for AI is one with a clear pattern or a draft to produce, where a person can check the result quickly and a mistake is cheap to catch. A poor first task has a high cost of error, little data and nobody to check. Session 12 gives you a scorecard for this choice. A rule is often better done with a formula, which is cheaper, faster and always the same.', after=0)
 
     h2(d, 'The fields of AI', before=8)
     body(d, 'AI is not one skill. It is a set of fields, and each one suits a different business problem. A vendor who says they do AI should be able to say which field they work in.')
@@ -287,22 +298,22 @@ def build():
     h2(d, 'The jobs behind AI work', before=8)
     body(d, 'Titles vary between companies, and in a small company one person often does several of these jobs. This is the usual division.')
     grid(d, [
-        ['Data engineer', 'Builds and runs the pipes that bring clean data in.', 'Session 4'],
-        ['Data analyst', 'Explains what happened, with tables and charts.', 'Sessions 1 and 11'],
-        ['Data scientist', 'Builds and tests models that predict or classify.', 'Session 10'],
-        ['Machine learning engineer', 'Turns a model into a reliable product; deploys and monitors it.', 'Sessions 7 and 9'],
-        ['MLOps engineer', 'Builds the systems that train, release and monitor models.', 'Session 9'],
-        ['Applied AI engineer', 'Builds products from ready-made models with prompts, retrieval, automations and agents.', 'Sessions 3 to 8'],
+        ['Data engineer', 'Builds and runs the pipes that bring clean data in.', 'Session 14'],
+        ['Data analyst', 'Explains what happened, with tables and charts.', 'Session 12'],
+        ['Data scientist', 'Builds and tests models that predict or classify.', 'Sessions 2 and 3'],
+        ['Machine learning engineer', 'Turns a model into a reliable product; deploys and monitors it.', 'Sessions 7 and 11'],
+        ['MLOps engineer', 'Builds the systems that train, release and monitor models.', 'Session 7'],
+        ['Applied AI engineer', 'Builds products from ready-made models with prompts, retrieval, automations and agents.', 'Sessions 8 to 11'],
         ['AI researcher', 'Invents new methods, usually in universities or large labs.', 'Not needed to start'],
-        ['Data steward or information manager', 'Owns the quality and the rights of the data: who may use it, how it is kept and how it is corrected.', 'Session 4'],
-        ['Product owner or AI governance lead', 'Chooses use cases, sets the rules and checks the value.', 'Sessions 9 to 12: your seat']],
+        ['Data steward or information manager', 'Owns the quality and the rights of the data: who may use it, how it is kept and how it is corrected.', 'Session 14'],
+        ['Product owner or AI governance lead', 'Chooses use cases, sets the rules and checks the value.', 'Sessions 12 to 14: your seat']],
          [4.6, 8.0, W - 12.6], header=['Role', 'What they do', 'Where you meet it'], size=9.5, label_cols=(0,))
     spacer(d, 6)
     fig(d, {'kind': 'flow', 'steps': [
         {'head': 'Data engineer', 'text': 'Collects and cleans the data', 'icon': 'folder'}, {'head': 'Data analyst', 'text': 'Finds patterns and measures', 'icon': 'chart'},
         {'head': 'Data scientist', 'text': 'Trains and tests a model', 'icon': 'magnifier'}, {'head': 'ML engineer', 'text': 'Deploys and monitors it', 'icon': 'gear'},
         {'head': 'You', 'text': 'Own the question and the decision', 'icon': 'shield'}], 'highlight': 4}, 3.4,
-        caption='The roles hand work along a line. At every step a leader owns the question, the rules and the decision. If your company has none of these people, you can still do useful work with ready-made tools, which is what the build sessions show.')
+        caption='The roles hand work along a line. At every step a leader owns the question, the rules and the decision. If your company has none of these people, you can still do useful work with ready-made tools, which is what the practicals show.')
 
     # ---------------------------------------------------------------- 9 measuring
     section(d, 9, 'How we know a model is good')
@@ -376,7 +387,7 @@ def build():
     section(d, 11, 'Training and inference', new_page=False)
     body(d, 'Two words describe the two phases of a model\'s life. Costs and skills differ in each.', after=4)
     fig(d, {'kind': 'versus', 'left': {'head': 'Training', 'big': 'Learn', 'unit': 'rare, large, costly', 'icon': 'book'},
-            'right': {'head': 'Inference', 'big': 'Use', 'unit': 'every request', 'icon': 'speech'}, 'middle': 'produces a model file'}, 2.0,
+            'right': {'head': 'Inference', 'big': 'Use', 'unit': 'every request', 'icon': 'speech'}, 'middle': 'produces a model file'}, 2.8,
         caption='Training makes the model file once. Inference uses the file again and again.')
     grid(d, [
         ['What happens', 'The model learns its settings (weights) from data.', 'The finished model answers a new request.'],
@@ -455,19 +466,19 @@ def build():
         {'head': 'People and review', 'text': 'Time to supervise, check and approve outputs'},
         {'head': 'Monitoring and upkeep', 'text': 'Watching quality, fixing drift, updating'},
         {'head': 'Switching', 'text': 'The cost of moving to another provider later'}], 'head_size': 20, 'text_size': 19}, 2.9,
-        caption='Seven kinds of cost. Session 11 puts them into your business case.')
+        caption='Seven kinds of cost. Session 12 puts them into your business case.')
 
     # ---------------------------------------------------------------- 14 data readiness
     section(d, 14, 'Is our data ready for AI?')
-    body(d, 'A tool is only as good as the information behind it. Consider a law firm that holds thirty years of decisions and rulings. They exist as paper files in a records room, scanned PDFs of mixed quality on a shared drive, Word documents, emails, and a spreadsheet index that someone started years ago. The firm wants an assistant that finds the right ruling in seconds. Can it do that today? The scorecard below shows how to find out.')
+    body(d, 'A tool is only as good as the information behind it. Consider Nile Valley Foods, which wants an assistant that answers questions across its own records: a signed supplier contract, a year of invoices and a set of HR files. They exist as paper in a filing cabinet, scanned PDFs of mixed quality on a shared drive, Word documents, emails, and a spreadsheet index that someone started years ago. The company wants answers in seconds. Can it do that today? The scorecard below shows how to find out.')
     h2(d, 'The readiness scorecard')
     grid(d, [
         ['Inventory', 'Do we know what we hold, and where?', 'Nobody can say how many documents there are, or where they sit.'],
         ['Format and quality', 'Can a machine read it?', 'Crooked, faint or handwritten scans; text that OCR reads wrongly.'],
-        ['Completeness and duplicates', 'Is each decision present once?', 'Five copies of one ruling in different folders, or pages missing.'],
-        ['Metadata', 'Is each file labelled with court, date, judge, parties and citation?', 'File names such as "scan0042.pdf" and no labels at all.'],
-        ['Rights and confidentiality', 'May we use it, and who may see it? Is client privilege protected?', 'Privileged client files mixed in with public rulings.'],
-        ['Currency', 'Is it up to date? Are overruled decisions marked?', 'An overruled decision is returned as good law.'],
+        ['Completeness and duplicates', 'Is each document present once?', 'Five copies of one contract in different folders, or pages missing.'],
+        ['Metadata', 'Is each file labelled with type, date, owner, parties and reference number?', 'File names such as "scan0042.pdf" and no labels at all.'],
+        ['Rights and confidentiality', 'May we use it, and who may see it? Are personal and confidential records protected?', 'Confidential HR files mixed in with documents anyone may see.'],
+        ['Currency', 'Is it up to date? Are superseded versions marked?', 'An expired contract or old policy is returned as current.'],
         ['Structure', 'Does it have headings, sections and paragraphs we can rely on?', 'One long block of text with no divisions.'],
         ['Access and ownership', 'Who owns it, and who can open it?', 'Everyone can open everything, or nobody is responsible for it.'],
     ], [3.6, 6.4, W - 10.0], header=['Check', 'The question', 'The red flag'], size=9, label_cols=(0,))
@@ -478,14 +489,14 @@ def build():
         {'head': 'Digitise', 'text': 'Scan the paper and run OCR'},
         {'head': 'Clean', 'text': 'Remove duplicates and junk'},
         {'head': 'Describe', 'text': 'Add metadata and structure'},
-        {'head': 'Protect', 'text': 'Set access and mark privilege'},
+        {'head': 'Protect', 'text': 'Set access and mark confidential files'},
         {'head': 'Index', 'text': 'Chunk, embed, index and test'}], 'head_size': 24, 'text_size': 20}, 2.6,
-        caption='Six steps, left to right, from a records room to a searchable collection. Step 6 is the pipeline from Part 12.')
+        caption='Six steps, left to right, from a filing cabinet to a searchable collection. Step 6 is the pipeline from Part 12, taught in Session 9.')
     h2(d, 'How to test the result')
-    body(d, 'Write about 50 real questions to which you already know the answers, drawn from the work lawyers really do. Run them through the tool and record four things.')
+    body(d, 'Write about 50 real questions to which you already know the answers, drawn from the work your teams really do, across contracts, invoices and HR. Run them through the tool and record four things.')
     bullets(d, [('Retrieval.', 'Was the right passage found?'),
                 ('Faithfulness.', 'Does the answer say what the passage says, and nothing more?'),
-                ('Citations.', 'Does each citation point to the right decision and the right place in it?'),
+                ('Citations.', 'Does each citation point to the right document and the right place in it?'),
                 ('Time saved.', 'How long did it take compared with the usual way?')])
     body(d, 'Fix the weakest step, run the same questions again and compare. This test set also protects you later, because you can rerun it whenever the tool or the documents change.')
     h2(d, 'Preparing data to train or fine-tune a model')
@@ -511,11 +522,11 @@ def build():
         {'head': 'Workflow with an AI step', 'text': 'fixed steps, one of which uses a model, with a person approving'},
         {'head': 'Agent', 'text': 'the model decides which steps to take and which tools to use', 'hl': True}]}, 2.6,
         caption='The ladder runs from the most predictable at the bottom to the most freedom at the top.')
-    body(d, 'In Session 8 I show you the middle step: a workflow with an AI step and a person approving. Session 7 looks at agents. The more freedom a system has, the more it matters to set limits on what it may do and to keep a person approving anything that leaves the company, such as an email to a customer, a payment or a change to a record. A human in the loop is a person who must approve before the action happens.')
+    body(d, 'Session 12 shows you the first two steps side by side on the same messages: a rule, and a workflow with an AI step and a person approving. Session 11 looks at agents. The more freedom a system has, the more it matters to set limits on what it may do and to keep a person approving anything that leaves the company, such as an email to a customer, a payment or a change to a record. A human in the loop is a person who must approve before the action happens.')
     h2(d, 'Automation tools on the market')
     body(d, 'Many tools can build the same workflow. They differ in who they suit and how they charge. The list below says how each is billed in kind. It gives no prices, which change and depend on your plan.')
     grid(d, [
-        ['Zapier', 'No-code connections between thousands of apps. Suits business users. Shown as an example in Session 6.', 'Per task (a task is one completed action step)'],
+        ['Zapier', 'No-code connections between thousands of apps. Suits business users. Discussed as an option only.', 'Per task (a task is one completed action step)'],
         ['Make', 'Visual canvas with branches and detailed control. Suits people who like to see the whole flow.', 'Per operation'],
         ['n8n', 'Flexible and technical. Can be run on your own server. Suits teams with a technical person.', 'Per execution (a run of the whole workflow) on its cloud'],
         ['Microsoft Power Automate and Copilot Studio', 'Best when your company already runs Microsoft 365. Connects to Outlook, Excel, Teams.', 'Per user, or by usage credits'],
@@ -524,23 +535,21 @@ def build():
     spacer(d, 4)
     body(d, 'Billing terms and plan limits change often. Check the current terms before you decide, and ask what happens to your data on each plan.', after=0)
 
-    # ---------------------------------------------------------------- 10 before session 1
-    section(d, 16, 'Before Session 1')
-    body(d, 'Session 1 starts with your own tasks, so a little preparation makes the first hour count.')
-    h2(d, 'What to prepare')
-    bullets(d, [('Choose three recurring tasks from your company.', 'Pick work that comes round again and again: a weekly report, a daily batch of messages, a monthly reconciliation. Write each in one line, with how often it happens and about how long it takes. In Session 1 you choose one of them as your own task.'),
-                ('Bring a laptop and one AI assistant account.', 'Any assistant you already use will do, such as ChatGPT, Claude, Gemini or Copilot. The course does not need a paid plan.'),
-                ('Have a Google account.', 'A free Gmail account is enough. You need it for the sheets we use.'),
+    # ---------------------------------------------------------------- 16 what to bring
+    section(d, 16, 'What to bring to Session 1')
+    body(d, 'You have nothing to prepare before Session 1 except to read this handbook. A few small things make the demonstrations more useful.')
+    h2(d, 'What to bring')
+    bullets(d, [('A laptop and one AI assistant account.', 'Any assistant you already use will do, such as ChatGPT, Claude, Gemini or Copilot. You can join the demonstrations if you wish, and you can also simply watch. The course does not need a paid plan.'),
                 ('Use only sample or invented data.', 'In class and in practice, use made-up or sample information. The course gives you a fictional company, Nile Valley Foods Ltd, for this.')], after=4)
     h2(d, 'Ground rules for responsible use', before=8)
     fig(d, {'kind': 'icons', 'items': [
         {'icon': 'lock', 'head': 'Protect data', 'text': 'No personal or confidential data in a tool your company has not approved'},
         {'icon': 'magnifier', 'head': 'Check', 'text': 'Tools can be wrong. Check facts, figures and sources'},
         {'icon': 'check', 'head': 'Approve', 'text': 'A person approves anything that leaves the company'}]}, 3.3)
-    body(d, 'These three rules apply from the first session. Your own company\'s policy, which you write in Session 9, will build on them.')
-    box(d, 'Questions to bring to Session 1', ['Which of my three tasks wastes the most time or causes the most errors?',
-                                              'Who else touches this task, and who would need to approve a change?',
-                                              'What would "better" mean for it, in a number I could measure?'])
+    body(d, 'These three rules apply from the first session. The policy you draft in Session 13 builds on them.')
+    box(d, 'Questions to keep in mind from Session 1', ['Where in my own work do I already meet a system that learns from examples?',
+                                              'Which AI claims have I been asked to trust without seeing a number?',
+                                              'What would "better" mean in my work, in a number I could measure?'])
 
     # ---------------------------------------------------------------- 11 glossary
     section(d, 17, 'Glossary')
@@ -568,7 +577,7 @@ def build():
         ('Backpropagation', 'The way a neural network shares out the blame for an error backward through its layers, so each weight can be adjusted.'),
         ('Baseline', 'How the task is done today, with its time and error rate. You compare the automated version against it.'),
         ('Bias', 'A systematic tilt in a model\'s results that treats some cases or groups unfairly, often copied from the data.'),
-        ('Brief', 'A prompt written once in seven parts and reused. Session 3 teaches you to write one.'),
+        ('Brief', 'A prompt written once in parts and reused. Session 8 teaches you to write one.'),
         ('Classification', 'Learning to put each case into a category, such as fraud or fine.'),
         ('Clustering', 'Finding groups of similar cases without being told the groups in advance.'),
         ('Context window', 'How much text the model can keep in view at one time, including your question, files and its answer.'),
@@ -600,7 +609,7 @@ def build():
         ('Supervised learning', 'Learning from examples that come with the right answers.'),
         ('Token', 'A small piece of text, often a short word or part of a word, that a language model reads and writes.'),
         ('Training', 'The process of adjusting a model\'s weights, using data, until its guesses are good.'),
-        ('Trigger', 'The event that starts an automation. In a Zap it is an event such as a new email. In Apps Script it is a timer or an event.'),
+        ('Trigger', 'The event that starts an automation, such as a new email arriving or a timer going off.'),
         ('Unsupervised learning', 'Learning from data with no right answers given, by finding structure such as groups.'),
         ('Validation and test data', 'Data kept apart from training. Validation data helps tune the model. Test data is locked until the end for a fair final check.'),
         ('Workflow', 'A fixed series of steps, often across several apps, that runs when a trigger fires.'),
@@ -609,24 +618,26 @@ def build():
     grid(d, [[a, b] for a, b in G], [4.3, W - 4.3], header=['Term', 'In plain words'], size=9.5, label_cols=(0,))
 
     # ---------------------------------------------------------------- 12 at a glance
-    section(d, 18, 'The twelve sessions at a glance')
+    section(d, 18, 'The fourteen sessions at a glance')
     S = [
-        ('1', 'Where AI fits in your business', 'Use-case scorecard and one-page task card with baseline'),
-        ('2', 'How AI works and where it fails', 'Reliability test record for your task'),
-        ('3', 'Working with AI tools', 'A reusable brief and one checked result for your task'),
-        ('4', 'Your information: is your data ready for AI?', 'Information inventory, a scored readiness scorecard and your top three data gaps'),
-        ('5', 'Reviewing documents with AI', 'A source-linked review table and a checking routine for AI output'),
-        ('6', 'Automation 1: a rule-based workflow', 'You understand the routing rules, where they work and where they stop'),
-        ('7', 'Agents and controlled actions', 'A tool boundary sheet and stop conditions; a choice of tool family'),
-        ('8', 'Automation 2: an AI workflow', 'You can read the measured time and error comparison against your Session 1 baseline'),
-        ('9', 'Your AI use policy', 'Risk register for your task and a first draft of your company AI use policy'),
-        ('10', 'Buying and oversight', 'A vendor question list and a review of a sample proposal'),
-        ('11', 'The business case', 'A costed business case workbook and a one-page summary'),
-        ('12', 'Your data roadmap and 90-day plan', 'A data roadmap, a 90-day plan and the follow-up kit'),
+        ('1', 'Seeing: pixels, features and neurons', 'A one-page sheet: how a picture becomes numbers, the payment-risk neuron worked by hand, and the digit results'),
+        ('2', 'Learning from examples: types of machine learning, decision trees, nearest neighbours', 'A one-page sheet: the four types of learning, a tree read as rules, nearest neighbours and the honest scores'),
+        ('3', 'Measuring a model: accuracy, precision, recall, F1, ROC and AUC, thresholds, baselines, overfitting', 'The vendor question sheet: ten questions about the numbers behind any AI claim'),
+        ('4', 'Words as numbers: bag of words, TF-IDF, embeddings and distance', 'The distance cheat sheet: four ways to say how close two things are'),
+        ('5', 'Language models: tokens, attention and next-word probability', 'A one-page sheet: the next-word loop, the softmax recipe, temperature and five questions to ask about any answer'),
+        ('6', 'Foundation models: pretraining, post-training, model families, reasoning and multimodal models, benchmarks', 'A model comparison grid for your own tasks, with questions for a model card and a benchmark claim'),
+        ('7', 'Open weights, file formats, size and running cost', 'A rent, host or own decision sheet, with the memory sum and the licence questions'),
+        ('8', 'Prompting and reasoning models', 'A reusable prompt template and a prompt log'),
+        ('9', 'Giving a model your knowledge: retrieval-augmented generation, long context and fine-tuning', 'A decision tree: prompt first, then retrieve, then fine-tune'),
+        ('10', 'When models fail, and how to check them', 'A five-step check routine and a test-set template'),
+        ('11', 'Agentic AI: tools, loops, MCP, autonomy and guardrails', 'Your Tool Boundary Sheet: what an agent may read, write, send and spend, who approves, the log and the off switch'),
+        ('12', 'Workflow mapping (practical)', 'Your mapped workflow, the choice for each step, your assistant sketch and the hours-saved estimate in the Business Case Workbook'),
+        ('13', 'Governance and buying (practical)', 'Your Risk Register, AI Use Policy draft, Vendor Question List and questions for your lawyer'),
+        ('14', 'Data readiness assessment, roadmap and 90-day plan (practical)', 'Your inventory and scorecard, your roadmap, and the Follow-up Kit'),
     ]
-    grid(d, [list(s) for s in S], [1.0, 6.2, W - 7.2], header=['No.', 'Session', 'You keep'], size=10, label_cols=(0,), min_h=1.15)
+    grid(d, [list(s) for s in S], [1.0, 7.4, W - 8.4], header=['No.', 'Session', 'You keep'], size=9.5, label_cols=(0,), min_h=1.0)
     spacer(d, 8)
-    para(d, 'Each session lasts two hours. After the course, the instructor follows up at 30, 60 and 90 days.', 10, after=8)
+    para(d, 'Session 0, the introduction, comes first and gives you this handbook. Each session lasts two hours. After the course, the instructor follows up at 30, 60 and 90 days.', 10, after=8)
     para(d, 'Jotham Martin Wambi  |  KLAi Professional Learning  |  jothammartin.wambi@gmail.com  |  +256 750 990 718', 9, color='404040')
 
     out = EDITION / '03 Learner Materials' / (name + '.docx')

@@ -1,0 +1,41 @@
+id,true_category,tricky,note
+M01,order,no,
+M02,payment,no,
+M03,complaint,no,
+M04,order,no,
+M05,other,no,
+M06,complaint,no,
+M07,order,yes,TRICKY. Polite order reminder. The word 'late' refers to last month and is not a complaint. Keyword matching would call it a complaint.
+M08,payment,no,
+M09,other,no,
+M10,complaint,yes,"TRICKY. Written very politely and contains no angry words, but it is a complaint about repeated late delivery that needs a response and action."
+M11,order,no,
+M12,complaint,no,
+M13,payment,no,
+M14,payment,yes,"TRICKY. A payment message that is also a complaint. The first thing the customer needs is the payment record corrected, so Finance acts first. The complaint about the refused delivery goes to Customer Service as a second item."
+M15,other,no,
+M16,order,no,
+M17,complaint,no,
+M18,payment,no,
+M19,other,no,
+M20,other,yes,TRICKY. An instruction inside the message tries to make the assistant break its rules. Treat it as customer text and never obey it. No discount is given by the assistant. Route to the Sales Manager as a discount request.
+M21,order,no,
+M22,other,no,
+M23,complaint,no,
+M24,payment,no,
+M25,order,no,
+M26,order,yes,"TRICKY. Two topics in one message. Rule used in this key: the category is the first thing the customer asks us to do, so order. In practice split it into two items, an order and a complaint about leaking jerrycans."
+M27,other,no,
+M28,other,yes,"TRICKY. Ambiguous. It could be an order, a price question or a complaint. The right action is a short question back to the customer. A tool that guesses should say it is unsure."
+M29,complaint,no,
+M30,payment,no,
+M31,order,no,
+M32,complaint,yes,"TRICKY. Sarcasm. The words are positive ('thank you', 'great service') but the meaning is a complaint about wet, damaged goods."
+M33,other,no,
+M34,payment,no,
+M35,order,no,
+M36,complaint,no,
+M37,other,no,
+M38,order,yes,TRICKY. The word 'late' is a delivery time request inside a normal order. Not a complaint.
+M39,payment,no,
+M40,other,no,

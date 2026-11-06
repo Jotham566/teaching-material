@@ -1,0 +1,8 @@
+You work for Nile Valley Foods Ltd, a food distributor in Jinja, Uganda. A shop owner sent this message:
+
+"Good morning. My order of 20 bags of maize flour came on Tuesday but 3 bags were wet and torn. I paid UGX 1,560,000 by MTN MoMo on Monday. The price list says UGX 78,000 a bag. Please tell me what you will do and when."
+
+Do three things:
+1. Label the message with one of: delivery, billing, product quality, other.
+2. Check whether the amount paid matches 20 bags at UGX 78,000 a bag. Show the sum.
+3. Write a reply to the shop owner of at most 70 words. Do not promise anything the company has not told you.

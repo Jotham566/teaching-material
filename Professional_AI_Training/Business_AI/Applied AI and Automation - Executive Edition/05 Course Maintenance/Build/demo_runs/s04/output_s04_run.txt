@@ -1,0 +1,696 @@
+{
+ "tool": "Python 3.12.10, scikit-learn 1.9.1, sentence-transformers 6.2.0, model all-MiniLM-L6-v2",
+ "run_date": "2026-11-06",
+ "bow": {
+  "ids": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "texts": [
+   "Please send 20 bags of maize flour to Mbale",
+   "The maize flour was late and the invoice is wrong",
+   "Please send the invoice for the rice order",
+   "Rice delivery was late again, please call me"
+  ],
+  "vocab": [
+   "20",
+   "again",
+   "and",
+   "bags",
+   "call",
+   "delivery",
+   "flour",
+   "for",
+   "invoice",
+   "is",
+   "late",
+   "maize",
+   "mbale",
+   "me",
+   "of",
+   "order",
+   "please",
+   "rice",
+   "send",
+   "the",
+   "to",
+   "was",
+   "wrong"
+  ],
+  "counts": [
+   [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+   ]
+  ]
+ },
+ "tfidf": {
+  "vocab": [
+   "20",
+   "again",
+   "and",
+   "bags",
+   "call",
+   "delivery",
+   "flour",
+   "for",
+   "invoice",
+   "is",
+   "late",
+   "maize",
+   "mbale",
+   "me",
+   "of",
+   "order",
+   "please",
+   "rice",
+   "send",
+   "the",
+   "to",
+   "was",
+   "wrong"
+  ],
+  "weights": [
+   [
+    0.371,
+    0.0,
+    0.0,
+    0.371,
+    0.0,
+    0.0,
+    0.292,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.292,
+    0.371,
+    0.0,
+    0.371,
+    0.0,
+    0.237,
+    0.0,
+    0.292,
+    0.0,
+    0.371,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.341,
+    0.0,
+    0.0,
+    0.0,
+    0.269,
+    0.0,
+    0.269,
+    0.341,
+    0.269,
+    0.269,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.538,
+    0.0,
+    0.269,
+    0.341
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.385,
+    0.303,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.385,
+    0.246,
+    0.303,
+    0.303,
+    0.607,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.399,
+    0.0,
+    0.0,
+    0.399,
+    0.399,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.315,
+    0.0,
+    0.0,
+    0.399,
+    0.0,
+    0.0,
+    0.255,
+    0.315,
+    0.0,
+    0.0,
+    0.0,
+    0.315,
+    0.0
+   ]
+  ],
+  "idf": {
+   "20": 1.916,
+   "again": 1.916,
+   "and": 1.916,
+   "bags": 1.916,
+   "call": 1.916,
+   "delivery": 1.916,
+   "flour": 1.511,
+   "for": 1.916,
+   "invoice": 1.511,
+   "is": 1.916,
+   "late": 1.511,
+   "maize": 1.511,
+   "mbale": 1.916,
+   "me": 1.916,
+   "of": 1.916,
+   "order": 1.916,
+   "please": 1.223,
+   "rice": 1.511,
+   "send": 1.511,
+   "the": 1.511,
+   "to": 1.916,
+   "was": 1.511,
+   "wrong": 1.916
+  }
+ },
+ "m06_words": [
+  {
+   "word": "104",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "2305",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "98",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "agreed",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "correct",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "each",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "jerrycan",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "foods",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "invoice",
+   "count": 2,
+   "in_messages": 4,
+   "simple": 20.0,
+   "real": 0.335
+  },
+  {
+   "word": "nile",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "one",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "shows",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "us",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "valley",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "new",
+   "count": 1,
+   "in_messages": 3,
+   "simple": 13.3,
+   "real": 0.179
+  },
+  {
+   "word": "dear",
+   "count": 1,
+   "in_messages": 4,
+   "simple": 10.0,
+   "real": 0.167
+  },
+  {
+   "word": "000",
+   "count": 2,
+   "in_messages": 10,
+   "simple": 8.0,
+   "real": 0.25
+  },
+  {
+   "word": "cooking",
+   "count": 1,
+   "in_messages": 5,
+   "simple": 8.0,
+   "real": 0.158
+  },
+  {
+   "word": "ugx",
+   "count": 2,
+   "in_messages": 10,
+   "simple": 8.0,
+   "real": 0.25
+  },
+  {
+   "word": "we",
+   "count": 1,
+   "in_messages": 5,
+   "simple": 8.0,
+   "real": 0.158
+  },
+  {
+   "word": "oil",
+   "count": 1,
+   "in_messages": 6,
+   "simple": 6.7,
+   "real": 0.149
+  },
+  {
+   "word": "and",
+   "count": 1,
+   "in_messages": 8,
+   "simple": 5.0,
+   "real": 0.136
+  },
+  {
+   "word": "send",
+   "count": 1,
+   "in_messages": 8,
+   "simple": 5.0,
+   "real": 0.136
+  },
+  {
+   "word": "for",
+   "count": 1,
+   "in_messages": 13,
+   "simple": 3.1,
+   "real": 0.112
+  },
+  {
+   "word": "please",
+   "count": 1,
+   "in_messages": 17,
+   "simple": 2.4,
+   "real": 0.098
+  },
+  {
+   "word": "of",
+   "count": 1,
+   "in_messages": 22,
+   "simple": 1.8,
+   "real": 0.085
+  },
+  {
+   "word": "the",
+   "count": 1,
+   "in_messages": 22,
+   "simple": 1.8,
+   "real": 0.085
+  }
+ ],
+ "tfidf40": {
+  "n_messages": 40,
+  "vocab_size": 340,
+  "docfreq": {
+   "the": 22,
+   "please": 17,
+   "and": 8,
+   "to": 11,
+   "my": 15,
+   "of": 22,
+   "bags": 11,
+   "sugar": 3,
+   "invoice": 4,
+   "jerrycans": 3,
+   "maize": 5,
+   "flour": 5,
+   "late": 2,
+   "damaged": null,
+   "wet": 1,
+   "credit": 2,
+   "mbale": 4
+  },
+  "idf": {
+   "the": 1.578,
+   "please": 1.823,
+   "bags": 2.229,
+   "invoice": 3.104,
+   "jerrycans": 3.327,
+   "sugar": 3.327,
+   "wet": 4.02
+  },
+  "tops": {
+   "M01": {
+    "text": "Good morning. Please send me 20 bags of maize flour 25kg and 6 jerrycans of cooking oil 20L. Delivery to Bugembe market by Friday. Thanks.",
+    "top": [
+     [
+      "market",
+      0.271,
+      1
+     ],
+     [
+      "bugembe",
+      0.271,
+      1
+     ],
+     [
+      "thanks",
+      0.271,
+      1
+     ],
+     [
+      "by",
+      0.243,
+      1
+     ],
+     [
+      "20",
+      0.243,
+      1
+     ]
+    ],
+    "n_words": 24
+   },
+   "M03": {
+    "text": "The 5 bags of sugar delivered today were wet at the bottom and two are torn. Your driver left before I could count. I want a replacement or a credit.",
+    "top": [
+     [
+      "left",
+      0.243,
+      1
+     ],
+     [
+      "or",
+      0.243,
+      1
+     ],
+     [
+      "torn",
+      0.243,
+      1
+     ],
+     [
+      "replacement",
+      0.243,
+      1
+     ],
+     [
+      "count",
+      0.243,
+      1
+     ]
+    ],
+    "n_words": 25
+   },
+   "M06": {
+    "text": "Dear Nile Valley Foods, invoice 2305 shows UGX 104,000 for each jerrycan of cooking oil. We agreed UGX 98,000. Please correct the invoice and send us a new one.",
+    "top": [
+     [
+      "invoice",
+      0.335,
+      2
+     ],
+     [
+      "000",
+      0.25,
+      2
+     ],
+     [
+      "ugx",
+      0.25,
+      2
+     ],
+     [
+      "agreed",
+      0.217,
+      1
+     ],
+     [
+      "2305",
+      0.217,
+      1
+     ]
+    ],
+    "n_words": 30
+   },
+   "M08": {
+    "text": "I will pay the balance of UGX 820,000 on Friday through Airtel Money. Can you hold the next order until then?",
+    "top": [
+     [
+      "through",
+      0.274,
+      1
+     ],
+     [
+      "hold",
+      0.274,
+      1
+     ],
+     [
+      "until",
+      0.274,
+      1
+     ],
+     [
+      "820",
+      0.274,
+      1
+     ],
+     [
+      "next",
+      0.274,
+      1
+     ]
+    ],
+    "n_words": 21
+   }
+  }
+ },
+ "model_modules": [
+  "Transformer",
+  "Pooling",
+  "Normalize"
+ ],
+ "dim": 384,
+ "skins": {
+  "contracts": {
+   "title": "Contract clauses",
+   "ids": [
+    "K1",
+    "K2",
+    "K3",
+    "K4",
+    "K5",
+    "K6",
+    "K7",
+    "K8",
+    "K9",
+    "K10"
+   ],
+   "heads": [
+    "Force majeure",
+    "Indemnity",
+    "Limitation of liability",
+    "Termination for convenience",
+    "Confidentiality",
+    "Automatic renewal",
+    "Price adjustment",
+    "Governing law",
+    "Assignment",
+    "Data protection"
+   ],
+   "queries": [
+    {
+     "qid": "Q1",
+     "query": "What happens if heavy rain floods the road and the delivery cannot get through?",
+     "want": "K1",
+     "top3": [
+      {
+       "id": "K1",
+       "head": "Force majeure",
+       "cosine": 0.361
+      },
+      {
+       "id": "K3",
+       "head": "Limitation of liability",
+       "cosine": 0.241
+      }

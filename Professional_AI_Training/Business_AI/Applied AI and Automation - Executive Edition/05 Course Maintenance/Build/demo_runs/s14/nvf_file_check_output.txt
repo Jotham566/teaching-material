@@ -1,0 +1,16 @@
+supplier_invoices.csv rows: 60
+rows where qty x price x (1+VAT) does not equal the total (includes the zero-VAT row if its total matches 0 percent): 4
+      invoice_id  vat_pct  total_ugx  calculated
+6   LL-2026-0449       18    2400000   2832000.0
+19  PP-2026-0159       18     973050    973500.0
+31  EM-2026-0250       18   14732000  14632000.0
+48  PP-2026-0174       18     371700    377600.0
+missing PO number: 2 ['BO-2026-0422', 'BO-2026-0452']
+rows with VAT 0 percent: 1 ['LL-2026-0464']
+rows sharing an invoice_id: 2 ['TR-2026-0093']
+
+customer_messages.csv rows: 40
+sender cells holding a phone number (personal data): 32
+
+weekly_sales.csv rows: 360 from 2026-08-03 to 2026-10-19
+columns: ['week_start', 'region', 'product', 'units', 'revenue_ugx'] (no definition of revenue: VAT included or not is not stated anywhere in the file)

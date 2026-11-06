@@ -1,0 +1,112 @@
+{
+ "title": "KLAi Professional Learning: AI and data courses",
+ "org": "KLAi Professional Learning",
+ "headline": "Practical AI and data skills",
+ "sub": "Physical, Online & Hybrid",
+ "sub_short": "Physical, Online & Hybrid",
+ "cta": "Enrol now",
+ "cta_fallback": "Message us to reserve your place.",
+ "contact": {
+  "whatsapp": "+256 750 990 718",
+  "email": "jothammartin.wambi@gmail.com",
+  "website": "",
+  "next_start": "",
+  "venue": "",
+  "linkedin_klai": "linkedin.com/company/kampala-ai-klai",
+  "linkedin_tutor": "linkedin.com/in/jothammartinwambi"
+ },
+ "schedule_note": "Two-hour sessions spread over several weeks. Ask us for the next start date and fees.",
+ "tutor_name": "Jotham Martin Wambi",
+ "tutor_label": "Your tutor",
+ "tutor_long": "Data scientist and ML engineer with 8+ years across Citibank, EY and applied AI. Lecturer in AI and machine learning at IUEA. Master's, Yamaguchi University. PhD in Applied Interdisciplinary Informatics at Osaka Metropolitan University from April 2027.",
+ "tutor_short": "Data scientist and ML engineer, 8+ years. IUEA lecturer. PhD at Osaka Metropolitan University from 2027.",
+ "courses": [
+  {
+   "name": "AI & Data Science",
+   "who": "Career changers. No coding needed",
+   "line": "From a business question to a tested model and a web app.",
+   "hours": "48 hours",
+   "sessions": "24 sessions"
+  },
+  {
+   "name": "Machine Learning",
+   "who": "Analysts and engineers who code",
+   "line": "Train and test models, then read the metrics.",
+   "hours": "36 hours",
+   "sessions": "18 sessions"
+  },
+  {
+   "name": "Mathematics for AI & ML",
+   "who": "Beginners welcome. High school algebra is enough",
+   "line": "The maths inside ChatGPT, Gemini and Claude.",
+   "hours": "36 hours",
+   "sessions": "18 sessions"
+  },
+  {
+   "name": "Python & SQL for Data Analysis",
+   "who": "Analysts and business teams",
+   "line": "Clean, query and chart data with Python, SQL and Power BI.",
+   "hours": "45 hours",
+   "sessions": "15 sessions"
+  },
+  {
+   "name": "AI & Automation",
+   "who": "Professionals using AI at work",
+   "line": "How AI works, where it fits, your use policy and data roadmap.",
+   "hours": "28 hours",
+   "sessions": "14 sessions"
+  },
+  {
+   "name": "Enterprise Data Readiness for AI",
+   "who": "Leaders, organisations and data teams",
+   "line": "A roadmap to get your company's data ready for AI.",
+   "hours": "24 hours",
+   "sessions": "12 sessions"
+  }
+ ],
+ "tutor_mid": "Data scientist and ML engineer, 8+ years across Citibank, EY and applied AI. Lecturer, IUEA. PhD at Osaka Metropolitan University from April 2027.",
+ "leave_line": "Every course ends with a certificate and a project from your own work.",
+ "leave_line_short": "Every course ends with a certificate and a project from your work.",
+ "facts": {
+  "long": [
+   {
+    "title": "When and where",
+    "lines": [
+     "Enrolment is ongoing. The next cohort starts 21 November 2026",
+     "Evenings and weekends",
+     "Online, at the Innovation Hub in Nakawa, Kampala, or at your workplace"
+    ]
+   },
+   {
+    "title": "Fees and format",
+    "lines": [
+     "UGX 1,000,000 per learner",
+     "Groups of 1 to 5. Group pricing on request",
+     "In-house training for teams and organisations",
+     "Bring a laptop and an internet connection"
+    ]
+   }
+  ],
+  "short": [
+   {
+    "title": "When and where",
+    "lines": [
+     "Enrolment is ongoing",
+     "Next cohort starts 21 November 2026",
+     "Evenings and weekends",
+     "Online, Innovation Hub Nakawa, or your workplace"
+    ]
+   },
+   {
+    "title": "Fees and format",
+    "lines": [
+     "UGX 1,000,000 per learner",
+     "Groups of 1 to 5. Group rates on request",
+     "In-house for teams and organisations",
+     "Bring a laptop and internet"
+    ]
+   }
+  ]
+ },
+ "starting_point": "Not sure which course? Message us and we will point you to the right one."
+}

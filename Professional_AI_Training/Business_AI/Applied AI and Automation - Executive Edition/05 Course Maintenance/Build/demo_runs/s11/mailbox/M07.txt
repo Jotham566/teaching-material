@@ -1,0 +1,10 @@
+FICTIONAL TEACHING DOCUMENT. Invented demonstration mailbox. All people, firms and addresses are invented (example.com).
+
+From: Elgon Millers Ltd Sales <sales@elgonmillers.example.com>
+To: Grace Akello <grace.akello@nilevalleyfoods.example.com>
+Date: Wed, 4 Nov 2026 13:30
+Subject: Price change for maize flour from 1 December
+
+Dear partner, from 1 December 2026 our price for 50 kg maize flour will rise by 4% because of higher grain costs. Orders placed before 20 November are charged at the current price. Please confirm that you accept the new price by 20 November so we can keep your allocation.
+
+Elgon Millers Ltd (fictional)

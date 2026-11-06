@@ -1,0 +1,10 @@
+Description: Make sure our books match what the bank says.
+Vectors: 384 numbers each; length of the description vector 5.20  (raw lengths)
+
+Meaning search, closest first (cosine; straight line; city blocks; agreement score):
+  Bad debt write-off             cosine 0.514  straight 5.195  blocks  80.33  agreement 14.251
+  Bank reconciliation            cosine 0.461  straight 5.065  blocks  77.96  agreement 10.753
+  Three-way match                cosine 0.306  straight 5.547  blocks  85.42  agreement 6.516
+Who wins under each measure: {'cosine': 'Bad debt write-off', 'straight line': 'Bank reconciliation', 'city blocks': 'Bank reconciliation', 'agreement score': 'Bad debt write-off'}
+
+Word search (TF-IDF, shared words only): Bad debt write-off (0.35), Bank reconciliation (0.28)

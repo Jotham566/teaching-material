@@ -1,0 +1,4 @@
+# Sources verified for Session 5 (6 November 2026)
+- GPT-2 model card, https://huggingface.co/openai-community/gpt2 : licence MIT; 124M parameters (smallest GPT-2); training data WebText (about 40 GB of pages linked from Reddit, not released); card says the model cannot tell fact from fiction ("we don't support use-cases that require the generated text to be true") and reflects biases in its training data.
+- Attention Is All You Need, https://arxiv.org/abs/1706.03762 : submitted 12 June 2017; the Transformer is based solely on attention mechanisms.
+- Re-verified 6 Nov 2026 at https://huggingface.co/openai-community/gpt2 : MIT; about 124M parameters; WebText "about 40GB" built from pages linked on Reddit with at least 3 karma, not released. Slide "about 40 GB of web pages" supported. (The GPT-2 paper PDF could not be text-extracted here.)

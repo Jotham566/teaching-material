@@ -60,8 +60,8 @@ def lint(num):
     if errs:
         return errs
     sl = s['slides']
-    if not (10 <= len(sl) <= 14 or (num == 0 and 14 <= len(sl) <= 38) or (1 <= num <= 12 and 10 <= len(sl) <= 20)):
-        errs.append(f'S{num}: {len(sl)} authored slides (want 10 to 14, up to 20 for results sessions)')
+    if not (10 <= len(sl) <= 14 or (num == 0 and 14 <= len(sl) <= 38) or (1 <= num <= 14 and 10 <= len(sl) <= 22)):
+        errs.append(f'S{num}: {len(sl)} authored slides (want 10 to 22)')
     alltext = []
     for i, x in enumerate(sl, 1):
         tag = f'S{num} slide {i} ({x.get("title", "")[:40]})'

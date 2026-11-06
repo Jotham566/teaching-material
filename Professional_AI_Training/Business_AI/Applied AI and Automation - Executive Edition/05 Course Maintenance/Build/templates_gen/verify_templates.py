@@ -128,16 +128,15 @@ def check_docx(path):
     print(f'OK  {path.name}: opens, footer ok, A4, logo present')
 
 
-GUIDES = [('Practice Files/03 Apps Script Build', 'Apps Script Build Guide', True), ('Practice Files/03 Apps Script Build', 'Apps Script Rehearsal Checklist', False),
-          ('Practice Files/02 Zapier Build', 'Zapier Build Guide', True), ('Practice Files/02 Zapier Build', 'Zapier Rehearsal Checklist', False)]
+GUIDES = []   # the Zapier and Apps Script build guides moved to Archive/v2_before_technical_2026-11-05/practice_files on 6 Nov 2026
 
 
 def check_docx_sections(path, d, body):
-    """Session 7 boundary table and Session 9 policy sections must match the slides."""
+    """Session 11 boundary table and Session 13 policy sections must match the slides."""
     if path.stem == 'Tool Boundary Sheet':
         for must in ('It may', 'A person approves', 'It must never', 'Read', 'Write', 'Send', 'Spend', 'Limits', 'Stop conditions', 'Off switch', 'Review date', 'Owner', 'Reviewed with', 'Level of freedom'):
             if must not in body:
-                bad(f'Tool Boundary Sheet: lacks "{must}" from the Session 7 boundary table')
+                bad(f'Tool Boundary Sheet: lacks "{must}" from the Session 11 boundary table')
     if path.stem == 'AI Use Policy Template':
         heads = [p.text for p in d.paragraphs if re.match(r'\d+\. ', p.text)]
         want = ['Purpose', 'Scope', 'Approved tools', 'What data may and may not go in', 'Human review and records', 'Disclosure', 'Accounts and ownership', 'Incidents', 'Training and AI literacy', 'Review date', 'Approval']
@@ -225,14 +224,14 @@ def check_dates_and_columns():
             s0 = st.date() if hasattr(st, 'date') else st
             blk = blocks.get(tag)
             if blk is None:
-                bad(f'90-Day Roadmap: Phase "{tag}" is not one of the three Session 12 phase names'); continue
+                bad(f'90-Day Roadmap: Phase "{tag}" is not one of the three Session 14 phase names'); continue
             if not (blk[0] <= d0 <= blk[1]):
                 bad(f'90-Day Roadmap: example due date {d0} is outside phase {tag}')
             if s0 > d0:
                 bad(f'90-Day Roadmap: start {s0} is after due {d0}')
             k = act.split()[0]
             if k not in slide or slide[k] != (own, d0, eff):
-                bad(f'90-Day Roadmap: row "{act}" differs from the Session 12 slide: {own}, {d0}, {eff}')
+                bad(f'90-Day Roadmap: row "{act}" differs from the Session 14 slide: {own}, {d0}, {eff}')
     if n != 6:
         bad(f'90-Day Roadmap: expected 6 example rows, found {n}')
     r = wb['Roadmap']
@@ -240,7 +239,7 @@ def check_dates_and_columns():
         bad('90-Day Roadmap: example start date must be 1 February 2027')
     if [r['L5'].value, r['L6'].value, r['L7'].value] != ['=IF(L4="","",L4+30)', '=IF(L4="","",L4+60)', '=IF(L4="","",L4+90)']:
         bad('90-Day Roadmap: check-in formulas must be start + 30, 60, 90')
-    # the Risk Register columns (Session 9) and the Information Inventory (Session 4)
+    # the Risk Register columns (Session 13) and the Information Inventory (Session 14)
     wr = load_workbook(TEMPLATES / 'Risk Register.xlsx')
     hr = [c.value for c in wr['Register'][3]]
     for must in ('Risk', 'Score', 'Level', 'Owner', 'Control'):
@@ -265,14 +264,14 @@ def check_dates_and_columns():
             bad('Readiness scorecard: NVF example must total 6 of 12')
         if sc['G10'].value != '=IF(COUNT(G4:G9)=6,SUM(G4:G9),"")':
             bad('Readiness scorecard: total formula missing')
-    # Business case defaults come from the Session 1 Task Card
+    # Business case defaults come from the Session 12 Task Card
     wbk = load_workbook(TEMPLATES / 'Business Case Workbook.xlsx')
     inp = wbk['Inputs']
     vals = {inp.cell(r_, 1).value: inp.cell(r_, 2).value for r_ in range(4, 15)}
     if (vals['Times a month'], vals['Minutes each time today'], vals['Share of runs with an error today'], vals['Cost of one error']) != (4, 90, 0.4, 150000):
-        bad('Business Case Workbook: baseline defaults differ from the Session 1 Task Card (4, 90, 0.4, 150000)')
+        bad('Business Case Workbook: baseline defaults differ from the Session 12 Task Card (4, 90, 0.4, 150000)')
     if inp['B12'].value != 10 or inp['B13'].value != 20:
-        bad('Business Case Workbook: own minutes B12 must be 10 and review B13 20 (Session 11 slides)')
+        bad('Business Case Workbook: own minutes B12 must be 10 and review B13 20 (Session 12 slides)')
     if 'Stop rules' not in wbk.sheetnames:
         bad('Business Case Workbook: lacks the sheet Stop rules')
     print('OK  follow-up dates and new columns')

@@ -557,13 +557,13 @@ def x_roc(w, h, size=16, **_):
     py = lambda v: y0 + v * (y1 - y0)
     us = np.linspace(0, 1, 80)
     curve = lambda u: u ** 0.163
-    s.ax.fill_between([px(u) for u in us], [py(u) for u in us], [py(curve(u)) for u in us], color=GOLD, alpha=0.45, zorder=1)
+    s.ax.fill_between([px(u) for u in us], [py(0)] * len(us), [py(curve(u)) for u in us], color=GOLD, alpha=0.45, zorder=1)
     s.ax.plot([px(0), px(1)], [py(0), py(1)], color=MUTE, lw=2, ls='--', zorder=2)
     s.ax.plot([px(u) for u in us], [py(curve(u)) for u in us], color=INK, lw=3.4, zorder=3)
     s.circle(px(0.1), py(curve(0.1)), 0.11, fill=RED, edge=INK, lw=1.6, z=5)
     s.text(px(0.1) + 0.2, py(curve(0.1)) - 0.3, 'one threshold', size=size, ha='left', color=RED, weight='bold')
-    s.text(px(0.76), py(0.30), 'Dashed line:\na coin flip, AUC 0.5', size=size, color=MUTE)
-    s.text(px(0.45), py(0.68), 'Gold area = AUC', size=size, ha='center', weight='bold')
+    s.text(px(0.76), py(0.10), 'Dashed line: coin flip,\narea 0.5', size=size, color=MUTE)
+    s.text(px(0.76), py(0.36), 'Gold area under\nthe curve = AUC', size=size, ha='center', weight='bold')
     return s
 
 
@@ -583,3 +583,11 @@ for _m in ('diagrams_x_a', 'diagrams_x_b', 'diagrams_x_c', 'diagrams_x_d', 'diag
         __import__(_m)
     except ModuleNotFoundError:
         pass
+
+
+import glob as _glob, os as _os   # v3 technical sessions: one figure module per session, diagrams_t01.py ... diagrams_t14.py
+for _f in sorted(_glob.glob(_os.path.join(_os.path.dirname(__file__), 'diagrams_t*.py'))):
+    try:
+        __import__(_os.path.basename(_f)[:-3])
+    except Exception as _e:   # a half-written module of another writer must not break every build
+        print('WARNING: could not import', _f, type(_e).__name__, str(_e)[:200])
