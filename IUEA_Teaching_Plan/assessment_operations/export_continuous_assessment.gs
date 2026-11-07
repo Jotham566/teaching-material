@@ -1,4 +1,4 @@
-/** ONE private ZIP: original files, recorded Sheet scores, audit and deadlines.
+/** Private export folder: original file parts, recorded scores, audit and deadlines.
  * Run exportCAGradingZip once. Inspect progress for the download link.
  * No source form, response, mark, sharing permission or deadline is changed.
  */
@@ -26,7 +26,7 @@ function startCAExport(requestId){
  if(Object.keys(deadlines).length!==15)throw Error('Incomplete quiz timing mirror');
  var cutoff=Date.now(),folder=DriveApp.createFolder('Private CA grading '+new Date(cutoff).toISOString());
  p.setProperties({CA_EXPORT_FOLDER:folder.getId(),CA_EXPORT_CURSOR:'0',CA_QUIZ_CURSOR:'0',CA_EXPORT_CUTOFF:String(cutoff),CA_EXPORT_STATE:'RUNNING',CA_EXPORT_ZIP:'',CA_EXPORT_REQUEST_ID:requestId||''},false);
- caJson_(folder,'quiz_deadlines.json',deadlines);caProgress_('RUNNING','Preparing one private ZIP. Submissions after '+new Date(cutoff).toISOString()+' will be in the next batch.');
+ caJson_(folder,'quiz_deadlines.json',deadlines);caProgress_('RUNNING','Preparing a private export. Submissions after '+new Date(cutoff).toISOString()+' will be in the next batch.');
 }
 function exportCAGradingZip(){
  var p=PropertiesService.getScriptProperties();
@@ -110,16 +110,38 @@ function exportCAQuizzes(){
  p.setProperty('CA_QUIZ_CURSOR',String(cursor+1));Logger.log(key+': '+records.length+' recorded scores copied.');
 }
 function finishCAGradingZip_(){
- var p=PropertiesService.getScriptProperties(),folder=caFolder_(),files=folder.getFiles(),blobs=[],entries=[];
- while(files.hasNext()){var f=files.next(),name=f.getName();if(name==='ca_bundle.json'||name.indexOf('IUEA_CA_')===0)continue;
-  if(!/^(quiz_deadlines\.json|CML311[123]_(W0[1-5]_(manifest\.json|files_\d+\.zip)|Q[1-5]_quiz\.json))$/.test(name))throw Error('Unexpected export file '+name);
-  var blob=f.getBlob().setName(name),bytes=blob.getBytes();blobs.push(blob);entries.push({name:name,sha256:caHash_(bytes),bytes:bytes.length});
+ var p=PropertiesService.getScriptProperties(),folder=caFolder_(),checkpointName='ca_index_checkpoint.json';
+ var saved=folder.getFilesByName(checkpointName),checkpoint;
+ if(saved.hasNext())checkpoint=JSON.parse(saved.next().getBlob().getDataAsString());
+ else{
+  var files=folder.getFiles(),members=[],names={};
+  while(files.hasNext()){
+   var f=files.next(),name=f.getName();
+   if(name==='ca_bundle.json')continue;
+   if(!/^(quiz_deadlines\.json|CML311[123]_(W0[1-5]_(manifest\.json|files_\d+\.zip)|Q[1-5]_quiz\.json))$/.test(name))throw Error('Unexpected export file '+name);
+   if(names[name])throw Error('Duplicate export file '+name);
+   names[name]=true;members.push({name:name,id:f.getId()});
+  }
+  if(members.filter(function(x){return /_manifest\.json$/.test(x.name);}).length!==15||
+     members.filter(function(x){return /_quiz\.json$/.test(x.name);}).length!==15||!names['quiz_deadlines.json'])
+   throw Error('Incomplete export: no folder released');
+  members.sort(function(a,b){return a.name.localeCompare(b.name);});
+  checkpoint={members:members,entries:[]};caJson_(folder,checkpointName,checkpoint);
  }
- if(entries.filter(function(x){return /_manifest\.json$/.test(x.name);}).length!==15||entries.filter(function(x){return /_quiz\.json$/.test(x.name);}).length!==15)throw Error('Incomplete export: no ZIP released');
- var metadata={format:'IUEA_CA_BUNDLE',version:1,complete:true,cutoff:new Date(caCutoff_()).toISOString(),exported_at:new Date().toISOString(),files:entries};
- blobs.push(Utilities.newBlob(JSON.stringify(metadata),MimeType.PLAIN_TEXT,'ca_bundle.json'));
- var name='IUEA_CA_'+Utilities.formatDate(new Date(caCutoff_()),'Africa/Kampala','yyyyMMdd_HHmmss')+'.zip',zip=caPut_(folder,Utilities.zip(blobs,name));
- p.setProperty('CA_EXPORT_ZIP',zip.getId());caProgress_('COMPLETE',zip.getUrl());Logger.log('DOWNLOAD ONE ZIP: '+zip.getUrl());
+ var started=Date.now(),processed=0;
+ while(checkpoint.entries.length<checkpoint.members.length&&processed<10&&Date.now()-started<20000){
+  var member=checkpoint.members[checkpoint.entries.length],file=DriveApp.getFileById(member.id);
+  if(file.getName()!==member.name)throw Error('Export file renamed while indexing: '+member.name);
+  var bytes=file.getBlob().getBytes();
+  checkpoint.entries.push({name:member.name,sha256:caHash_(bytes),bytes:bytes.length});processed++;
+ }
+ caJson_(folder,checkpointName,checkpoint);
+ if(checkpoint.entries.length<checkpoint.members.length)return false;
+ var metadata={format:'IUEA_CA_BUNDLE',version:1,complete:true,cutoff:new Date(caCutoff_()).toISOString(),exported_at:new Date().toISOString(),files:checkpoint.entries};
+ caJson_(folder,'ca_bundle.json',metadata);
+ var temporary=folder.getFilesByName(checkpointName);while(temporary.hasNext())temporary.next().setTrashed(true);
+ p.setProperty('CA_EXPORT_ZIP','');caProgress_('COMPLETE',folder.getUrl());
+ Logger.log('DOWNLOAD PRIVATE EXPORT FOLDER: '+folder.getUrl());return true;
 }
 function exportCANext(){
  var lock=LockService.getScriptLock();if(!lock.tryLock(1000)){
@@ -134,13 +156,13 @@ function exportCANext(){
   while(Date.now()-started<30000){
    if(Number(p.getProperty('CA_QUIZ_CURSOR'))<15)exportCAQuizzes();
    else if(Number(p.getProperty('CA_EXPORT_CURSOR'))<15)exportCAAssignments();
-   else {finishCAGradingZip_();return;}
+   else if(finishCAGradingZip_())return;
   }
   caProgress_('RUNNING');ScriptApp.newTrigger('exportCANext').timeBased().after(1000).create();
  }catch(e){caProgress_('STOPPED',String(e));throw e;}finally{lock.releaseLock();}
 }
 function inspectCAExportProgress(){
- var p=PropertiesService.getScriptProperties();Logger.log(JSON.stringify({state:p.getProperty('CA_EXPORT_STATE'),assignments:p.getProperty('CA_EXPORT_CURSOR'),quizzes:p.getProperty('CA_QUIZ_CURSOR'),download:p.getProperty('CA_EXPORT_ZIP')?'https://drive.google.com/file/d/'+p.getProperty('CA_EXPORT_ZIP')+'/view':null}));
+ var p=PropertiesService.getScriptProperties();Logger.log(JSON.stringify({state:p.getProperty('CA_EXPORT_STATE'),assignments:p.getProperty('CA_EXPORT_CURSOR'),quizzes:p.getProperty('CA_QUIZ_CURSOR'),download:p.getProperty('CA_EXPORT_ZIP')?'https://drive.google.com/file/d/'+p.getProperty('CA_EXPORT_ZIP')+'/view':(p.getProperty('CA_EXPORT_STATE')==='COMPLETE'?caFolder_().getUrl():null)}));
 }
 
 /** Install once in the existing standalone assignment project. */

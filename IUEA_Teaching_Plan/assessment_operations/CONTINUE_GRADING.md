@@ -13,7 +13,7 @@ Use the workflow that matches the submission:
 | Quizzes 1–5 | The same ZIP and command imports the recorded Google Forms scores. |
 | Test 1 notebooks (there is no Test 2) | [Test checklist](../test_operations/TEST_CHECKLIST.md#after-each-test): Export Test ZIP → `Grade_Tests.command`; updates both test marks and the cumulative workbook automatically. |
 
-After downloading, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
+After preparing the grading ZIP, **one command imports, grades and updates Excel**. Google downloads are still manual. Keep native Ollama running; the command starts Docker when needed and stops it before written grading.
 
 ## When Docker and Ollama are used
 
@@ -66,9 +66,18 @@ Sign into Google as **wirmbeesubs@gmail.com**.
 
 1. Open the [assignment collection workbook](https://docs.google.com/spreadsheets/d/1FxAVXwSvLEd7TEd3pJ2E0_ka7Mp6ZM6pW1yNsXKWdm4/edit#gid=534991827). Choose **Export Grading ZIP → Start / resume export**. Refresh the workbook once if the menu is missing. On first use, Google may ask you to authorize the workbook’s menu script.
 2. Allow about a minute for the request to start. Choose **Export Grading ZIP → View progress / download** to open **CA Export**. Wait until the new export says **COMPLETE**; while the request says **PENDING**, the previous download may still be displayed. Large batches can take tens of minutes. You can close the browser while Google collects the files.
-3. Open the **Download / detail** link and download that **one ZIP**. Do not download the whole folder or any Excel source files. Keep the ZIP unchanged. If Google shows its large-file scan notice, choose **Download anyway**.
+3. Open **Download / detail**. New exports link to a private Drive folder: download the entire folder as a ZIP and keep the download unchanged. Older completed exports may instead link directly to a single grading ZIP.
+4. For a folder download, create the grading ZIP locally (use distinct input and output filenames):
 
-The ZIP contains original submissions, recorded quiz scores, assignment audit details and quiz deadlines for all three programmes. It uses a fixed cutoff: later submissions belong to the next export. Existing marks, forms and deadlines are unchanged.
+   ```sh
+   cd ~/Projects/teaching-material
+   .iuea-grader-env/bin/python scripts/recover_ca_bundle.py ~/Downloads/DRIVE_FOLDER.zip ~/Downloads/IUEA_CA_ready.zip
+   ./grade-submissions ~/Downloads/IUEA_CA_ready.zip --check
+   ```
+
+   Replace the input with the downloaded folder ZIP path. The exporter-generated inventory is verified against every part before the output is released; stop if either command fails. The grader still enforces a 500 MB extraction limit. Use the resulting `IUEA_CA_ready.zip` in step 4 below.
+
+The export contains original submissions, recorded quiz scores, assignment audit details and quiz deadlines for all three programmes. It uses a fixed cutoff: later submissions belong to the next export. Existing marks, forms and deadlines are unchanged.
 
 If the status says **STOPPED**, read its explanation. After resolving the issue, choose **Export Grading ZIP → Start / resume export** again. A running export is not restarted. If **Request status** shows **ERROR**, read that explanation before trying again.
 
@@ -82,7 +91,7 @@ cd ~/Projects/teaching-material
 ./grade-submissions ~/Downloads/IUEA_CA_recovered.zip --check
 ```
 
-Replace the first ZIP path with the actual download; dragging the file into Terminal avoids typing its name. The recovery checks all 30 manifests, their shared cutoff, and attachment hashes from the saved assignment manifests. Its bundle inventory is generated **locally**, not by the exporter, so it cannot independently authenticate quiz data or prove an omitted receipt was collected. The second command validates the bundle and source data without grading. If either command fails, keep the download and existing marks and investigate; do not grade an incomplete export. Keep the recovered ZIP private.
+Replace the first ZIP path with the actual download; dragging the file into Terminal avoids typing its name. The recovery checks all 30 manifests, their shared cutoff, and attachment hashes from the saved assignment manifests. If there is no exporter-generated inventory, the tool says that it generated one **locally**; this cannot independently authenticate quiz data or prove an omitted receipt was collected. The second command validates the bundle and source data without grading. If either command fails, keep the download and existing marks and investigate; do not grade an incomplete export. Keep the recovered ZIP private.
 
 ## 3. Start the local model server
 

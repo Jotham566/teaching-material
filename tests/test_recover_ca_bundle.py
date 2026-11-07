@@ -46,11 +46,25 @@ class RecoveryTests(unittest.TestCase):
 
     def test_complete_recovery(self):
         output = self.root / "recovered.zip"
-        recover(self.source(), output)
+        _, exported_inventory = recover(self.source(), output)
+        self.assertFalse(exported_inventory)
         self.assertEqual(verify_bundle(output)["cutoff"], self.cutoff)
         self.assertEqual(output.stat().st_mode & 0o777, 0o600)
         with self.assertRaises(FileExistsError):
             recover(self.source(), output)
+
+    def test_exporter_inventory_is_verified_not_replaced(self):
+        entries = [{"name": n, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+                   for n, data in self.members.items()]
+        metadata = {"format": "IUEA_CA_BUNDLE", "version": 1, "complete": True,
+                    "cutoff": self.cutoff, "files": entries}
+        self.members["ca_bundle.json"] = json.dumps(metadata).encode()
+        self.members["quiz_deadlines.json"] = b'{"changed": true}'
+        with self.assertRaisesRegex(ValueError, "checksum"):
+            recover(self.source(), self.root / "recovered.zip")
+        self.members["quiz_deadlines.json"] = b"{}"
+        _, exported_inventory = recover(self.source(), self.root / "recovered.zip")
+        self.assertTrue(exported_inventory)
 
     def test_missing_manifest_or_attachment_part_stops(self):
         for name in ("CML3111_Q1_quiz.json", "CML3111_W01_files_1.zip"):

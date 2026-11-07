@@ -28,7 +28,7 @@ def recover(source, output):
     with tempfile.TemporaryDirectory(prefix=".ca-recovery-", dir=output.parent) as tmp:
         os.chmod(tmp, 0o700)
         candidate = Path(tmp) / "bundle.zip"
-        entries, cutoffs, seen = [], set(), set()
+        entries, cutoffs, seen, exported_metadata = [], set(), set(), None
         with zipfile.ZipFile(source) as incoming, zipfile.ZipFile(candidate, "w", allowZip64=True) as bundle:
             total = 0
             for item in incoming.infolist():
@@ -38,7 +38,7 @@ def recover(source, output):
                 if item.is_dir():
                     continue
                 name = path.name
-                if not MEMBER.fullmatch(name):
+                if name != "ca_bundle.json" and not MEMBER.fullmatch(name):
                     raise ValueError("Unexpected export file: " + item.filename)
                 if name in seen:
                     raise ValueError("Duplicate export file: " + name)
@@ -47,6 +47,9 @@ def recover(source, output):
                 if total > MAX_BYTES:
                     raise ValueError("Export exceeds the grader's extraction limit.")
                 content = incoming.read(item)
+                if name == "ca_bundle.json":
+                    exported_metadata = json.loads(content)
+                    continue
                 if name.endswith("_manifest.json") or name.endswith("_quiz.json"):
                     meta = json.loads(content)
                     if not isinstance(meta.get("cutoff"), str):
@@ -74,22 +77,27 @@ def recover(source, output):
                 raise ValueError("Incomplete download; missing: " + ", ".join(sorted(missing)))
             if len(cutoffs) != 1:
                 raise ValueError("Export pieces have inconsistent cutoffs.")
-            metadata = {"format": "IUEA_CA_BUNDLE", "version": 1, "complete": True,
-                        "cutoff": cutoffs.pop(), "files": entries}
+            cutoff = cutoffs.pop()
+            metadata = exported_metadata if exported_metadata is not None else {
+                "format": "IUEA_CA_BUNDLE", "version": 1,
+                "complete": True, "cutoff": cutoff, "files": entries,
+            }
+            if metadata.get("cutoff") != cutoff:
+                raise ValueError("Bundle cutoff differs from the export pieces.")
             bundle.writestr("ca_bundle.json", json.dumps(metadata))
         verify_bundle(candidate)
         _, issues = unpack(candidate, Path(tmp) / "check")
         if issues:
             raise ValueError("Missing or unreadable attachments; retain all downloaded parts.")
-        with output.open("xb") as target, candidate.open("rb") as source_file:
-            os.chmod(output, 0o600)
-            try:
+        descriptor = os.open(output, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        try:
+            with os.fdopen(descriptor, "wb") as target, candidate.open("rb") as source_file:
                 while block := source_file.read(1024 * 1024):
                     target.write(block)
-            except BaseException:
-                output.unlink(missing_ok=True)
-                raise
-    return output
+        except BaseException:
+            output.unlink(missing_ok=True)
+            raise
+    return output, exported_metadata is not None
 
 
 def main():
@@ -97,8 +105,10 @@ def main():
     parser.add_argument("download", help="Drive folder ZIP from the stopped export")
     parser.add_argument("output", help="New private grading ZIP path")
     args = parser.parse_args()
-    print("Recovered:", recover(args.download, args.output))
-    print("Bundle inventory was generated locally; attachment hashes were checked against the saved manifests.")
+    output, source_inventory = recover(args.download, args.output)
+    print("Recovered:", output)
+    print("Bundle inventory:", "exporter-generated and verified." if source_inventory else
+          "generated locally; attachment hashes were checked against the saved manifests.")
 
 
 if __name__ == "__main__":

@@ -66,7 +66,7 @@ This is needed because workbook generation uses Codex's bundled runtime. The ref
 
 The repeat checklist covers notebook assignments, written/document assignments and recorded quiz marks together. You do not need a separate notebook-assignment command. Use it for every new batch. Do not use the old dated refresh script or `Resume_Written_Grading.command` for this workflow.
 
-For new submissions, follow **[New submissions: repeat checklist](CONTINUE_GRADING.md)** in order: synchronize → export one ZIP from the spreadsheet menu → start Ollama → run one grading command → review → save. For existing unresolved records, use the workbook's **Review needed** sheet.
+For new submissions, follow **[New submissions: repeat checklist](CONTINUE_GRADING.md)** in order: synchronize → export and prepare the grading ZIP → start Ollama → run one grading command → review → save. For existing unresolved records, use the workbook's **Review needed** sheet.
 
 **One Mac grades at a time. Finish Docker work before written grading. The written grader stops Docker before inference and refuses to proceed if shutdown cannot be verified; keep Docker closed during the run.**
 
