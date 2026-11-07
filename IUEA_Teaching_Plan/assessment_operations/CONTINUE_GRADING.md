@@ -72,6 +72,18 @@ The ZIP contains original submissions, recorded quiz scores, assignment audit de
 
 If the status says **STOPPED**, read its explanation. After resolving the issue, choose **Export Grading ZIP → Start / resume export** again. A running export is not restarted. If **Request status** shows **ERROR**, read that explanation before trying again.
 
+### Recover a stopped export whose final ZIP exceeded the file-size limit
+
+Only use this for an export that reached **15/15 assignments and 15/15 quizzes** and stopped while creating the final `IUEA_CA_...zip`. Do not restart or delete its Drive folder. Download that private `Private CA grading ...` folder as one ZIP, then use a new output filename:
+
+```sh
+cd ~/Projects/teaching-material
+.iuea-grader-env/bin/python scripts/recover_ca_bundle.py ~/Downloads/DRIVE_FOLDER.zip ~/Downloads/IUEA_CA_recovered.zip
+./grade-submissions ~/Downloads/IUEA_CA_recovered.zip --check
+```
+
+Replace the first ZIP path with the actual download; dragging the file into Terminal avoids typing its name. The recovery checks all 30 manifests, their shared cutoff, and attachment hashes from the saved assignment manifests. Its bundle inventory is generated **locally**, not by the exporter, so it cannot independently authenticate quiz data or prove an omitted receipt was collected. The second command validates the bundle and source data without grading. If either command fails, keep the download and existing marks and investigate; do not grade an incomplete export. Keep the recovered ZIP private.
+
 ## 3. Start the local model server
 
 If your native Ollama server is already running with the setup-guide settings, leave it running. Otherwise, open Terminal (press Command–Space, type `Terminal`, then press Return). Choose **Shell → New Window** and run:
