@@ -31,27 +31,33 @@ def _short(t, n):
     return cut + ' ...'
 
 
-# ------------------------------------------------------------------ labelled examples
+# ------------------------------------------------------------------ labelled examples: a category and a number
 @fig('x_t02_labelled')
 def x_t02_labelled(w, h, **_):
-    rows = list(csv.DictReader(open(RUN / 'customer_messages.csv')))
-    key = {r['id']: r['true_category'] for r in csv.DictReader(open(RUN / 'customer_messages_key.csv'))}
-    by = {r['id']: r['text'] for r in rows}
-    pick = [('M01', 62), ('M02', 62), ('M03', 62), ('M09', 62)]
     s = Scene(w, h)
-    s.text(0.1, h - 0.3, 'The example (what it sees)', size=17, weight='bold', ha='left')
-    s.text(w - 1.0, h - 0.3, 'The label', size=17, weight='bold', ha='center', color=RED)
-    top = h - 0.6
-    rh = 0.95
-    for i, (mid, n) in enumerate(pick):
+    s.text(0.1, h - 0.28, 'Classification: the label is a category', size=17, weight='bold', ha='left')
+    rh = 0.58
+    top = h - 0.5
+    msgs = [('You have won UGX 5,000,000. Send a fee to claim it.', 'spam'),
+            ('You have received UGX 20,000 from Grace.', 'not spam'),
+            ('The meeting is moved to 3 pm.', 'not spam')]
+    for i, (m, lab) in enumerate(msgs):
         y = top - (i + 1) * rh
-        s.box(0.05, y + 0.08, w - 2.2, rh - 0.16, '', fill=PAPER, lw=1.6, r=0.06)
-        lines = K.wrap(mid + ': ' + _short(by[mid], n), 16, 'regular', w - 2.6)
-        s.text(0.2, y + rh / 2, '\n'.join(lines[:2]), size=16, ha='left')
-        s.arrow(w - 2.1, y + rh / 2, w - 1.85, y + rh / 2, lw=2)
-        cat = key[mid]
-        s.box(w - 1.75, y + 0.17, 1.65, rh - 0.34, cat, size=17, fill=GOLD, lw=1.8, weight='bold', r=0.08)
-    s.text(w / 2, 0.25, 'Real NVF messages, shortened. The label comes from the answer key.', size=15, color=BODY)
+        s.box(0.05, y + 0.05, w - 2.1, rh - 0.1, '', fill=PAPER, lw=1.5, r=0.05)
+        s.text(0.18, y + rh / 2, m, size=15, ha='left')
+        s.arrow(w - 2.0, y + rh / 2, w - 1.8, y + rh / 2, lw=2, head=12)
+        s.box(w - 1.7, y + 0.07, 1.6, rh - 0.14, lab, size=16, fill=GOLD if lab == 'spam' else PAPER, lw=1.8, weight='bold', r=0.06)
+    y0 = top - 3 * rh - 0.4
+    s.line(0.05, y0 + 0.18, w - 0.05, y0 + 0.18, color=HAIR, lw=1.2)
+    s.text(0.1, y0 - 0.1, 'Regression: the label is a number', size=17, weight='bold', ha='left')
+    hs = [('80 m\u00b2, 3 bedrooms', 'UGX 220 million'), ('50 m\u00b2, 2 bedrooms', 'UGX 150 million'), ('120 m\u00b2, 4 bedrooms', 'UGX 310 million')]
+    for i, (m, lab) in enumerate(hs):
+        y = y0 - 0.3 - (i + 1) * rh
+        s.box(0.05, y + 0.05, w - 2.1, rh - 0.1, '', fill=PAPER, lw=1.5, r=0.05)
+        s.text(0.18, y + rh / 2, m, size=15, ha='left')
+        s.arrow(w - 2.0, y + rh / 2, w - 1.8, y + rh / 2, lw=2, head=12)
+        s.box(w - 1.7, y + 0.07, 1.6, rh - 0.14, lab, size=14, fill=GOLD, lw=1.8, weight='bold', r=0.06)
+    s.text(w - 1.0, h - 0.28, 'label', size=15, color=RED, weight='bold')
     return s
 
 
@@ -162,6 +168,64 @@ def x_t02_tree(w, h, **_):
     return s
 
 
+# ------------------------------------------------------------------ an everyday decision tree: carry an umbrella?
+@fig('x_t02_umbrella')
+def x_t02_umbrella(w, h, **_):
+    s = Scene(w, h)
+    bw, bh = 2.0, 0.8
+    lw_ = 1.9
+    ys = [h - 0.75, h - 2.15, h - 3.5]
+
+    def q(x, y, text):
+        s.box(x - bw / 2, y - bh / 2, bw, bh, text, size=16, fill=PAPER, lw=1.8, r=0.08)
+
+    def leaf(x, y, head, sub, gold):
+        s.box(x - lw_ / 2, y - bh / 2, lw_, bh, head + '\n' + sub, size=15, fill=GOLD if gold else PAPER, lw=2.2, weight='bold', r=0.08)
+
+    def edge(x1, y1, x2, y2, lab, dx):
+        s.line(x1, y1 - bh / 2, x2, y2 + bh / 2, lw=1.8, z=1)
+        s.text((x1 + x2) / 2 + dx, (y1 + y2) / 2 + 0.02, lab, size=15, weight='bold', color=RED, z=8)
+    xl, xa, xb = 1.2, 4.4, 6.5
+    xq = (xa + xb) / 2
+    xr = (xl + xq) / 2
+    q(xr, ys[0], 'Is the sky\ncloudy?')
+    leaf(xl, ys[1], 'No umbrella', '0 of 5 days rained', False)
+    edge(xr, ys[0], xl, ys[1], 'no', -0.3)
+    q(xq, ys[1], 'Forecast over\n50% rain?')
+    edge(xr, ys[0], xq, ys[1], 'yes', 0.3)
+    leaf(xa, ys[2], 'No umbrella', '0 of 2 days rained', False)
+    edge(xq, ys[1], xa, ys[2], 'no', -0.3)
+    leaf(xb, ys[2], 'Carry it', '4 of 5 days rained', True)
+    edge(xq, ys[1], xb, ys[2], 'yes', 0.3)
+    s.text(0.15, 1.45, 'Each question is a split.', size=15, ha='left', color=BODY)
+    s.text(0.15, 1.15, 'Each answer box is a leaf.', size=15, ha='left', color=BODY)
+    s.text(0.15, 0.85, 'Longest path: 2 questions,', size=15, ha='left', color=BODY)
+    s.text(0.15, 0.55, 'so the depth is 2.', size=15, ha='left', color=BODY)
+    s.text(w - 0.1, 0.25, '12 past days, invented for illustration', size=14, ha='right', color=MUTE)
+    return s
+
+
+# ------------------------------------------------------------------ what makes a good question: the umbrella days
+@fig('x_t02_split_umbrella')
+def x_t02_split_umbrella(w, h, **_):
+    s = Scene(w, h)
+    bars = [('All 12 past days', 12, 4, 3.65), ('Sky cloudy: 7 days', 7, 4, 1.75), ('Sky clear: 5 days', 5, 0, 0.45)]
+    bx, bw_, bh = 0.1, w - 0.2, 0.6
+    for lab, n, q, y in bars:
+        s.text(bx, y + bh + 0.28, f'{lab}: {q / n * 100:.0f}% rained', size=18, weight='bold', ha='left')
+        gi = 1 - (q / n) ** 2 - (1 - q / n) ** 2
+        s.text(bx + bw_, y + bh + 0.28, f'Gini G = {gi:.2f}', size=17, weight='bold', ha='right', color=RED)
+        qw = bw_ * q / n
+        if q:
+            s.rect(bx, y, qw, bh, fill=GOLD, edge=INK, lw=1.8, z=3)
+            s.text(bx + qw / 2, y + bh / 2, f'{q} rained', size=17, weight='bold', z=6)
+        s.rect(bx + qw, y, bw_ - qw, bh, fill=PAPER, edge=INK, lw=1.8, z=3)
+        s.text(bx + qw + (bw_ - qw) / 2, y + bh / 2, f'{n - q} dry', size=17, color=BODY, z=6)
+    s.arrow(w / 2, 3.45, w / 2, 2.95, lw=2.4)
+    s.text(w / 2 + 0.2, 3.2, 'ask: is the sky cloudy?', size=17, weight='bold', color=RED, ha='left')
+    return s
+
+
 # ------------------------------------------------------------------ what makes a good question
 @fig('x_t02_split')
 def x_t02_split(w, h, **_):
@@ -259,7 +323,7 @@ def x_t02_precedent(w, h, idx=0, **_):
 @fig('x_t02_folds')
 def x_t02_folds(w, h, **_):
     s = Scene(w, h)
-    s.text(0.1, h - 0.3, '40 messages in 5 groups of 8', size=18, weight='bold', ha='left')
+    s.text(0.1, h - 0.3, '40 messages in 5 folds of 8 (k = 5)', size=18, weight='bold', ha='left')
     bw, bh = 0.78, 0.5
     x0 = 1.35
     for r in range(5):
@@ -269,10 +333,10 @@ def x_t02_folds(w, h, **_):
             test = c == r
             s.box(x0 + c * (bw + 0.06), y, bw, bh, '8', size=16, fill=GOLD if test else PAPER, lw=1.6, r=0.04, weight='bold' if test else 'normal')
     s.box(x0, 0.6, 0.5, 0.3, '', fill=GOLD, lw=1.4, r=0.03)
-    s.text(x0 + 0.65, 0.75, 'test: keep hidden', size=15, ha='left')
+    s.text(x0 + 0.65, 0.75, 'test fold: held out', size=15, ha='left')
     s.box(x0 + 2.55, 0.6, 0.5, 0.3, '', fill=PAPER, lw=1.4, r=0.03)
-    s.text(x0 + 3.2, 0.75, 'train: learn from these', size=15, ha='left')
-    s.text(w / 2, 0.2, 'Average the five scores. Then reshuffle and repeat.', size=16, color=BODY)
+    s.text(x0 + 3.2, 0.75, 'training folds: learn from these', size=15, ha='left')
+    s.text(w / 2, 0.2, 'Score = (s1 + s2 + s3 + s4 + s5) / 5, the mean of the k scores. Then reshuffle.', size=16, color=BODY)
     return s
 
 
@@ -280,7 +344,7 @@ def x_t02_folds(w, h, **_):
 @fig('x_t02_cv')
 def x_t02_cv(w, h, **_):
     r = _res()['cv_messages']
-    order = [('always the commonest', 'Always say the commonest category', GREY), ('keyword rule (no training)', 'Keyword rule (no training)', PAPER),
+    order = [('always the commonest', 'Majority-class baseline', GREY), ('keyword rule (no training)', 'Keyword rule (no training)', PAPER),
              ('decision tree on words', 'Decision tree on words', GOLD), ('nearest neighbours k=1 (TF-IDF)', 'Nearest neighbours, k = 1', GOLD),
              ('nearest neighbours k=3 (TF-IDF)', 'Nearest neighbours, k = 3', GOLD), ('nearest neighbours k=5 (TF-IDF)', 'Nearest neighbours, k = 5', GOLD)]
     s = Scene(w, h)
@@ -319,5 +383,112 @@ def x_t02_scaling(w, h, **_):
         s.text(x + 1.0, base - 0.3, lab, size=18, weight='bold')
     s.line(0.7, base, w - 0.2, base, lw=2)
     s.text(w / 2, 0.6, 'amount runs to 2,500 (UGX thousands), days to 90', size=16, color=BODY)
+    s.text(w / 2, 0.15, 'min-max scaling: x\u2032 = (x \u2212 min) / (max \u2212 min)', size=16, weight='bold')
     s.text(w / 2, h - 0.3, 'Nearest neighbours, 5 neighbours, 240 fictional claims', size=16, weight='bold')
+    return s
+
+
+# ------------------------------------------------------------------ shared grid: houses by floor area and distance to the town centre
+def _house_grid(s, ox=1.0, oy=0.85, sc=0.42, xm=8, ym=8):
+    """Squared paper. Across: floor area, 4 squares = 40 m2 at the left edge, 1 square = 10 m2. Up: km to the town centre, 1 square = 1 km."""
+    for i in range(xm + 1):
+        s.line(ox + i * sc, oy, ox + i * sc, oy + ym * sc, color=HAIR, lw=0.9, z=0)
+    for j in range(ym + 1):
+        s.line(ox, oy + j * sc, ox + xm * sc, oy + j * sc, color=HAIR, lw=0.9, z=0)
+    s.line(ox, oy, ox + xm * sc + 0.12, oy, lw=2, z=1)
+    s.line(ox, oy, ox, oy + ym * sc + 0.12, lw=2, z=1)
+    for i in range(0, xm + 1, 2):
+        s.text(ox + i * sc, oy - 0.2, str(40 + 10 * i), size=14, color=BODY)
+    for j in range(0, ym + 1, 2):
+        s.text(ox - 0.14, oy + j * sc, str(j), size=14, color=BODY, ha='right')
+    s.text(ox + xm * sc / 2, 0.17, 'Floor area, m\u00b2 (1 square = 10 m\u00b2)', size=14, color=BODY)
+    s.text(0.2, oy + ym * sc / 2, 'Km to town centre', size=14, color=BODY, rot=90)
+    return lambda area, km: (ox + (area / 10.0 - 4) * sc, oy + km * sc)
+
+
+# ------------------------------------------------------------------ distance on squared paper (houses)
+@fig('x_t02_grid')
+def x_t02_grid(w, h, **_):
+    s = Scene(w, h)
+    to = _house_grid(s)
+    n = to(80, 3)
+    p = to(110, 7)
+    s.line(n[0], n[1], p[0], n[1], color=MUTE, lw=2, dash=True, z=2)
+    s.line(p[0], n[1], p[0], p[1], color=MUTE, lw=2, dash=True, z=2)
+    s.arrow(n[0], n[1], p[0], p[1], color=RED, lw=3.2, head=14, z=6)
+    s.text((n[0] + p[0]) / 2, n[1] - 0.22, '3 across', size=14, color=BODY)
+    s.text(p[0] + 0.1, (n[1] + p[1]) / 2, '4 up', size=14, color=BODY, ha='left')
+    for (a_, k_, lab) in ((110, 7, 'P'), (90, 4, 'Q'), (60, 4, 'R')):
+        c = to(a_, k_)
+        s.circle(c[0], c[1], 0.1, fill=PAPER, edge=INK, lw=1.6, z=5)
+        s.text(c[0] + 0.22, c[1] + 0.18, lab, size=15, weight='bold')
+    s.ax.scatter([n[0]], [n[1]], s=330, marker='*', c=RED, edgecolors=INK, linewidths=1.1, zorder=8)
+    s.text(n[0] - 0.12, n[1] - 0.3, 'N', size=15, weight='bold', ha='right')
+    x0 = 5.0
+    cw = w - x0 - 0.1
+    s.text(x0 + cw / 2, h - 0.3, 'Euclidean distance from N', size=16, weight='bold')
+    rows = [('N to P', '3\u00b2 + 4\u00b2 = 25, root 5', '5', PAPER), ('N to Q', '1\u00b2 + 1\u00b2 = 2, root 1.4', '1.4', GOLD), ('N to R', '2\u00b2 + 1\u00b2 = 5, root 2.2', '2.2', PAPER)]
+    for k, (a, b, c, f) in enumerate(rows):
+        y = h - 1.65 - k * 1.05
+        s.box(x0, y, cw, 0.95, '', fill=f, edge=INK, lw=1.8)
+        s.text(x0 + 0.12, y + 0.7, a, size=16, weight='bold', ha='left')
+        s.text(x0 + 0.12, y + 0.27, b, size=14, ha='left')
+        s.text(x0 + cw - 0.1, y + 0.62, c, size=24, weight='bold', ha='right')
+    s.text(x0 + cw / 2, 0.45, 'Smallest = nearest: Q', size=16, weight='bold', color=RED)
+    return s
+
+
+# ------------------------------------------------------------------ k-NN estimates a house price
+@fig('x_t02_knn_house')
+def x_t02_knn_house(w, h, **_):
+    s = Scene(w, h)
+    to = _house_grid(s)
+    houses = [('A', 90, 4, 250), ('B', 60, 4, 190), ('C', 80, 1, 270), ('D', 110, 7, 330), ('E', 40, 2, 120), ('F', 100, 5, 300)]
+    n = to(80, 3)
+    dist = {}
+    for lab, a_, k_, pr in houses:
+        dist[lab] = math.hypot((a_ - 80) / 10.0, k_ - 3)
+    near = sorted(dist, key=dist.get)[:3]
+    for lab, a_, k_, pr in houses:
+        c = to(a_, k_)
+        if lab in near:
+            s.circle(c[0], c[1], 0.2, fill='none', edge=RED, lw=2.8, z=6)
+            s.line(n[0], n[1], c[0], c[1], color=RED, lw=1.4, dash=True, z=2)
+        s.circle(c[0], c[1], 0.1, fill=GOLD if lab in near else PAPER, edge=INK, lw=1.6, z=5)
+        s.text(c[0] + 0.24, c[1] + 0.2, lab, size=15, weight='bold')
+    s.ax.scatter([n[0]], [n[1]], s=330, marker='*', c=RED, edgecolors=INK, linewidths=1.1, zorder=8)
+    s.text(n[0] - 0.12, n[1] - 0.3, 'N', size=15, weight='bold', ha='right')
+    x0 = 5.0
+    cw = w - x0 - 0.1
+    s.text(x0 + cw / 2, h - 0.3, 'Sold houses, nearest first', size=16, weight='bold')
+    order = sorted(dist, key=dist.get)
+    price = {lab: pr for lab, a_, k_, pr in houses}
+    rows = [['House', 'Distance', 'Price']] + [[lab, f'{dist[lab]:.1f}', str(price[lab])] for lab in order]
+    s.table(x0, h - 0.6, [0.8, 1.0, 0.9], 0.38, rows, size=15, hl_rows=(1, 2, 3), hl_fill=GOLD, align=['center'] * 3)
+    avg = sum(price[l] for l in near) / 3.0
+    s.text(x0 + cw / 2, 0.95, '(250 + 270 + 190) / 3', size=15, color=BODY)
+    s.box(x0, 0.2, cw, 0.55, f'Estimate for N: {avg:.0f}', size=17, fill=PAPER, edge=RED, lw=2.4, weight='bold', r=0.08)
+    return s
+
+
+# ------------------------------------------------------------------ words first become counts (a taste of Session 4)
+@fig('x_t02_counts')
+def x_t02_counts(w, h, **_):
+    s = Scene(w, h)
+    words_ = ['pay', 'invoice', 'sugar', 'wet']
+    msgs = [('M-a', 'Please can I pay my invoice', [1, 1, 0, 0]), ('M-b', 'Pay the invoice in two parts', [1, 1, 0, 0]),
+            ('M-c', 'The delivered sugar is wet', [0, 0, 1, 1])]
+    s.text(0.1, h - 0.3, 'Step 1: count a few words in each message (bag of words)', size=17, weight='bold', ha='left')
+    x0 = 4.7
+    cw = (w - x0 - 0.1) / 4
+    for j, wd in enumerate(words_):
+        s.text(x0 + j * cw + cw / 2, h - 0.85, wd, size=15, weight='bold')
+    rh = 0.75
+    for i, (mid, txt, cnt) in enumerate(msgs):
+        y = h - 1.2 - (i + 1) * rh
+        s.text(0.1, y + rh / 2, txt, size=15, ha='left')
+        for j, v in enumerate(cnt):
+            s.box(x0 + j * cw + 0.04, y + 0.12, cw - 0.08, rh - 0.24, str(v), size=18, fill=GOLD if v else PAPER, lw=1.5, r=0.04, weight='bold' if v else 'normal')
+    s.text(w / 2, 1.2, 'Similar counts, so close. Different counts, so far apart.', size=16, color=BODY)
+    s.box(0.05, 0.1, w - 0.1, 0.75, 'Session 4 builds this properly: TF-IDF weighting, then embeddings', size=17, fill=PAPER, edge=RED, lw=2.4, weight='bold', r=0.08)
     return s

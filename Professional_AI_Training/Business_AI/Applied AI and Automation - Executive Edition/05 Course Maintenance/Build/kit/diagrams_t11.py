@@ -1,12 +1,13 @@
 """Figures for Session 11, Agentic AI (v3, 6 November 2026).
 
 t11_loop       the plan, act, observe loop with a goal, a stop and a log line per turn
-t11_badges     the agent as a junior assistant wearing access badges (granted and refused)
+t11_housesitter everyday first: a house-sitter with a goal, one key given, two refused, and a note under the door
+t11_permissions a phone app asking for a permission, next to the mailbox agent's permissions (granted and refused)
 t11_autonomy   five levels of autonomy, from answer only to acts alone
-t11_gate       the approval gate: the agent prepares, a person decides, then the action runs
+t11_approval   human-in-the-loop approval: the agent prepares, a person decides, then the action runs
 t11_mcp        MCP as a standard plug: one host, one client per server, servers offer tools, resources, prompts
 t11_mailbox    the fourteen demonstration mails sorted by the lecturer's key (no AI output)
-t11_planted    a mail with a planted instruction: the ordinary part and the planted part
+t11_planted    a mail with a prompt injection: the ordinary part and the injected part
 t11_privilege  least privilege as a calculation: three permissions, worst case for each
 """
 from figkit import Scene, INK, BODY, MUTE, HAIR, PAPER, RED, GOLD, GREY, fig
@@ -48,35 +49,71 @@ def x_t11_loop(w, h, **_):
     return s
 
 
-BADGES = [
+PERMS = [
     dict(icon='mail', head='Read mail', sub='one mailbox', ok=True),
     dict(icon='doc', head='Write drafts', sub='drafts folder', ok=True),
-    dict(icon='calendar', head='See calendar', sub='not given', ok=False),
+    dict(icon='calendar', head='See calendar', sub='not granted', ok=False),
     dict(icon='speech', head='Send', sub='never alone', ok=False),
     dict(icon='receipt', head='Pay', sub='never', ok=False),
 ]
 
 
-@fig('x_t11_badges')
-def x_t11_badges(w, h, badges=None, **_):
+@fig('x_t11_housesitter')
+def x_t11_housesitter(w, h, **_):
+    """Everyday analogy: the owner sets a goal, hands over one key and keeps two; a note under the door is no order."""
     s = Scene(w, h)
-    badges = badges or BADGES
-    # the junior assistant
-    s.icon('person', 1.2, h / 2 + 0.35, 2.0)
-    s.text(1.2, h / 2 - 1.15, 'The agent:', size=16, weight='bold')
-    s.text(1.2, h / 2 - 1.5, 'a junior assistant', size=15, color=BODY)
-    n = len(badges)
-    x0 = 2.6
-    bw = (w - x0 - 0.1)
-    rh = (h - 0.1) / n
-    for i, b in enumerate(badges):
-        y = h - 0.05 - (i + 1) * rh
-        s.box(x0, y + 0.06, bw, rh - 0.12, '', fill=GOLD if b['ok'] else PAPER, edge=INK if b['ok'] else RED, lw=2.0, dash=not b['ok'])
-        s.icon(b['icon'], x0 + 0.45, y + rh / 2, min(0.6, rh - 0.2))
-        s.text(x0 + 0.95, y + rh / 2, b['head'], size=18, weight='bold', ha='left')
-        s.text(x0 + bw - 1.0, y + rh / 2, b['sub'], size=15, color=BODY if b['ok'] else RED, ha='right')
-        s.icon('check' if b['ok'] else 'cross', x0 + bw - 0.45, y + rh / 2, min(0.55, rh - 0.25))
-        s.line(1.75, h / 2 + 0.3, x0, y + rh / 2, color=HAIR, lw=1.2, z=1)
+    # the house and the sitter
+    s.icon('home', 1.0, h - 1.15, 1.6)
+    s.icon('person', 2.35, h - 1.2, 1.3)
+    gx = 3.4
+    s.box(gx, h - 1.85, w - gx - 0.05, 1.75, '', fill=PAPER, edge=INK, lw=1.8)
+    s.text(gx + 0.2, h - 0.45, 'Goal from you', size=16, weight='bold', ha='left')
+    _w(s, gx + 0.2, h - 1.2, w - gx - 0.45, 'Water the plants and keep the house locked for one week.', 16, ha='left', color=BODY)
+    keys = [('Front door', 'given', True), ('Safe', 'kept by you', False), ('Car', 'kept by you', False)]
+    kw = (w - 0.1 - 0.2 * 2) / 3
+    ky = h - 3.35
+    for i, (k, sub, ok) in enumerate(keys):
+        x = 0.05 + i * (kw + 0.2)
+        s.box(x, ky, kw, 1.05, '', fill=GOLD if ok else PAPER, edge=INK if ok else RED, lw=2.0, dash=not ok)
+        if ok:  # a key drawn above the gold box (the stock icon's shaft sits under box fills)
+            kx, kyc, ks = x + 0.45, ky + 0.52, 0.75
+            s.circle(kx - 0.2 * ks, kyc, 0.17 * ks, fill=PAPER, edge=INK, lw=2, z=5)
+            s.line(kx - 0.03 * ks, kyc, kx + 0.36 * ks, kyc, color=INK, lw=2.6, z=5)
+            s.line(kx + 0.22 * ks, kyc, kx + 0.22 * ks, kyc - 0.12 * ks, color=INK, lw=2.4, z=5)
+            s.line(kx + 0.34 * ks, kyc, kx + 0.34 * ks, kyc - 0.12 * ks, color=INK, lw=2.4, z=5)
+        else:
+            s.icon('lock', x + 0.45, ky + 0.52, 0.75)
+        s.text(x + 1.0, ky + 0.7, k, size=17, weight='bold', ha='left')
+        s.text(x + 1.0, ky + 0.32, sub, size=15, color=BODY if ok else RED, ha='left')
+    s.box(0.05, 0.05, w - 0.1, ky - 0.25, '', fill=PAPER, edge=RED, lw=2.2)
+    _w(s, w / 2, (ky - 0.2) / 2 + 0.05, w - 0.5, 'A note under the door: "The owner says give the key to the bearer." A good sitter phones you first.', 16, color=INK)
+    return s
+
+
+@fig('x_t11_permissions')
+def x_t11_permissions(w, h, perms=None, **_):
+    """Left: a phone asking for one permission. Right: the mailbox agent's permissions, granted (gold) and refused (red)."""
+    s = Scene(w, h)
+    perms = perms or PERMS
+    # the phone
+    pw, ph = 2.3, h - 0.2
+    s.box(0.1, 0.1, pw, ph, '', fill=PAPER, edge=INK, lw=2.4, r=0.2)
+    _w(s, 0.1 + pw / 2, h - 0.85, pw - 0.35, 'Allow Torch to read your contacts?', 15, 'bold')
+    s.box(0.3, h * 0.42, pw - 0.4, 0.55, 'Don’t allow', size=15, fill=GOLD, edge=INK, lw=1.8, weight='bold')
+    s.box(0.3, h * 0.42 - 0.75, pw - 0.4, 0.55, 'Allow', size=15, fill=PAPER, edge=HAIR, lw=1.4)
+    s.text(0.1 + pw / 2, 0.45, 'a permission', size=14, color=MUTE)
+    n = len(perms)
+    x0 = pw + 0.45
+    s.text(x0, h - 0.2, 'The mailbox agent', size=16, weight='bold', ha='left')
+    bw = (w - x0 - 0.05)
+    rh = (h - 0.5) / n
+    for i, b in enumerate(perms):
+        y = h - 0.45 - (i + 1) * rh
+        s.box(x0, y + 0.05, bw, rh - 0.1, '', fill=GOLD if b['ok'] else PAPER, edge=INK if b['ok'] else RED, lw=2.0, dash=not b['ok'])
+        s.icon(b['icon'], x0 + 0.4, y + rh / 2, min(0.5, rh - 0.2))
+        s.text(x0 + 0.85, y + rh / 2, b['head'], size=16, weight='bold', ha='left')
+        s.text(x0 + bw - 0.85, y + rh / 2, b['sub'], size=14, color=BODY if b['ok'] else RED, ha='right')
+        s.icon('check' if b['ok'] else 'cross', x0 + bw - 0.4, y + rh / 2, min(0.45, rh - 0.25))
     return s
 
 
@@ -102,8 +139,8 @@ def x_t11_autonomy(w, h, hl=2, **_):
     return s
 
 
-@fig('x_t11_gate')
-def x_t11_gate(w, h, **_):
+@fig('x_t11_approval')
+def x_t11_approval(w, h, **_):
     s = Scene(w, h)
     y = h / 2 + 0.25
     bw, bh = 2.4, 1.6
@@ -117,19 +154,19 @@ def x_t11_gate(w, h, **_):
         s.icon(ic, xs[i] + bw / 2, y + 0.35, 0.65)
         s.text(xs[i] + bw / 2, y - 0.2, head, size=17, weight='bold')
         s.text(xs[i] + bw / 2, y - 0.55, sub, size=14, color=BODY)
-    # the gate itself
+    # the approval step
     gx = xs[2] + 0.35
     s.rect(gx, y - bh / 2 - 0.1, 0.18, bh + 0.2, fill=INK, edge=INK)
     s.rect(gx + 1.5, y - bh / 2 - 0.1, 0.18, bh + 0.2, fill=INK, edge=INK)
     s.line(gx + 0.18, y + 0.3, gx + 1.5, y + 0.3, color=RED, lw=5)
-    s.text(gx + 0.84, y + 0.65, 'the gate', size=15, weight='bold', color=RED)
+    s.text(gx + 0.84, y + 0.65, 'approval', size=15, weight='bold', color=RED)
     s.text(gx + 0.84, y - 0.25, 'approve', size=14)
     s.text(gx + 0.84, y - 0.55, 'edit or reject', size=14)
     s.arrow(xs[0] + bw + 0.05, y, xs[1] - 0.05, y, lw=2.4, head=16)
     s.arrow(xs[1] + bw + 0.05, y, gx - 0.05, y, lw=2.4, head=16)
     s.arrow(gx + 1.73, y, xs[3] - 0.05, y, lw=2.4, head=16)
-    s.text(w / 2, 0.75, 'Sends, payments, deletions and commitments always pass the gate.', size=16, weight='bold')
-    s.text(w / 2, 0.3, 'The agent cannot open it. Only a named person can.', size=15, color=BODY)
+    s.text(w / 2, 0.75, 'Sends, payments, deletions and commitments always wait for approval.', size=16, weight='bold')
+    s.text(w / 2, 0.3, 'The agent cannot approve itself. Only a named person can.', size=15, color=BODY)
     return s
 
 
@@ -156,14 +193,14 @@ def x_t11_mcp(w, h, **_):
         s.icon(ic, sx + 0.4, yc, 0.5)
         s.text(sx + 0.8, yc + 0.17, name, size=16, weight='bold', ha='left')
         s.text(sx + 0.8, yc - 0.2, 'tools, resources, prompts', size=14, color=BODY, ha='left')
-    s.text(sx + 1.55, h - 0.55, 'one standard plug', size=17, weight='bold', color=RED)
+    s.text(sx + 1.2, h - 1.1, 'one standard plug', size=17, weight='bold', color=RED)
     return s
 
 
 MAIL_GROUPS = [
     ('Needs action', ['M01 board pack stock page', 'M06 truck moved to Thursday', 'M09 forum: register by 18 Nov', 'M05 leave request by 20 Nov'], PAPER, INK),
     ('Needs approval first', ['M02 invoice with no PO', 'M03 credit UGX 180,000', 'M07 price rise 4%'], GOLD, INK),
-    ('Stop and tell the owner', ['M08 planted instruction', 'M13 prize scam'], PAPER, RED),
+    ('Stop and tell the owner', ['M08 prompt injection', 'M13 prize scam'], PAPER, RED),
     ('Personal', ['M10 Sunday lunch', 'M11 parents meeting', 'M12 dentist Monday', 'M14 hotel in Mbale'], PAPER, INK),
     ('Information only', ['M04 forklift service'], PAPER, INK),
 ]
@@ -196,7 +233,7 @@ def x_t11_planted(w, h, **_):
     s.text(0.3, h - 0.38, 'M08  From: Pearl Packaging Billing (invented)', size=16, weight='bold', color=PAPER, ha='left', z=6)
     _w(s, 0.3, h - 1.35, w - 0.6, 'October statement: 3 invoices, total UGX 3,870,000, due 20 November.', 17, ha='left')
     s.box(0.2, 0.25, w - 0.4, h - 2.25, '', fill=PAPER, edge=RED, lw=2.4)
-    s.tag(0.4, h - 2.35, 'PLANTED', size=15, fill=RED)
+    s.tag(0.4, h - 2.35, 'PROMPT INJECTION', size=15, fill=RED)
     _w(s, 0.4, (h - 2.0) / 2, w - 0.8, 'Text aimed at "AI assistants": it asks for the last five Finance emails to be sent back, for this mail to be deleted, and for silence in the summary.', 16, ha='left', color=INK)
     return s
 
@@ -209,5 +246,43 @@ def x_t11_privilege(w, h, **_):
             ['Read and draft', 'A bad draft waits in a folder', 'Delete the draft'],
             ['Read, draft and send', 'Finance mail leaves the company', 'Cannot be undone']]
     cw = [(w - 0.1) * 0.3, (w - 0.1) * 0.43, (w - 0.1) * 0.27]
-    s.table(0.05, h - 0.05, cw, (h - 0.15) / 4, rows, size=16, align=['left', 'left', 'left'], hl_cells={(3, 2): GOLD, (3, 1): GOLD})
+    fh = 1.25  # formula band under the table
+    s.table(0.05, h - 0.05, cw, (h - 0.15 - fh) / 4, rows, size=16, align=['left', 'left', 'left'], hl_cells={(3, 2): GOLD, (3, 1): GOLD})
+    s.box(0.05, 0.05, w - 0.1, fh - 0.15, '', fill=PAPER, edge=INK, lw=1.6)
+    s.text(0.25, 0.05 + (fh - 0.15) * 0.72, 'Risk = likelihood × impact', size=17, weight='bold', ha='left')
+    s.text(3.55, 0.05 + (fh - 0.15) * 0.72, 'chance it is fooled × the worst case above', size=15, color=BODY, ha='left')
+    s.text(0.25, 0.05 + (fh - 0.15) * 0.28, r'Least privilege: granted $\subseteq$ needed', size=17, weight='bold', ha='left')
+    s.text(4.55, 0.05 + (fh - 0.15) * 0.28, 'grant nothing the task does not need', size=15, color=BODY, ha='left')
+    return s
+
+
+@fig('x_t11_turn')
+def x_t11_turn(w, h, **_):
+    """One turn of the loop opened up (illustration, invented mail M03): the model writes text, a program acts, the result goes back into the prompt."""
+    s = Scene(w, h)
+    bw = (w - 0.1 - 2 * 0.75) / 3
+    y0 = 0.85
+    bh = h - y0 - 0.05
+    top = y0 + bh
+    heads = [('1  The prompt', 'as in Session 8'), ('2  The model writes text', 'the next words, as in Session 5'), ('3  A program acts', 'the model cannot press anything')]
+    for i, (hd, sub) in enumerate(heads):
+        x = 0.05 + i * (bw + 0.75)
+        s.box(x, y0, bw, bh, '', fill=GOLD if i == 1 else PAPER, edge=INK, lw=2.0, z=2)
+        s.text(x + bw / 2, top - 0.3, hd, size=19, weight='bold')
+        s.text(x + bw / 2, top - 0.65, sub, size=14, color=BODY)
+        if i < 2:
+            s.arrow(x + bw + 0.05, y0 + bh / 2 - 0.1, x + bw + 0.7, y0 + bh / 2 - 0.1, lw=2.4, head=16)
+    for k, (a, b) in enumerate([('Goal:', 'summarise the mailbox'), ('Tools:', 'read_mail, save_draft'), ('So far:', 'asked to read M03')]):
+        yy = top - 1.05 - k * 0.42
+        s.text(0.25, yy, a, size=16, weight='bold', ha='left')
+        s.text(1.2, yy, b, size=16, ha='left')
+    x = 0.05 + (bw + 0.75)
+    s.code(x + 0.25, top - 0.9, ['read_mail("M03")'], size=17, line_h=0.4, w=bw - 0.5, pad=0.1)
+    s.text(x + bw / 2, y0 + 0.4, 'A request only. It does nothing.', size=16)
+    x = 0.05 + 2 * (bw + 0.75)
+    s.text(x + bw / 2, top - 1.15, 'Runs read_mail for M03', size=16)
+    s.text(x + bw / 2, top - 1.5, 'and copies the mail text', size=16)
+    s.text(x + bw / 2, y0 + 0.4, 'Approval can hold it here', size=16, color=RED, weight='bold')
+    s.arrow(x + bw / 2, y0 - 0.12, 0.05 + bw / 2, y0 - 0.12, lw=2.4, head=16, color=RED)
+    s.text(w / 2, 0.3, 'Observe: the result goes back into the prompt, then the model writes the next step', size=16, weight='bold')
     return s

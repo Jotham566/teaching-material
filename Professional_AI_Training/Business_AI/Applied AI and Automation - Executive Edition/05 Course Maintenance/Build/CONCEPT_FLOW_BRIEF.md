@@ -1,0 +1,24 @@
+# Concept-flow brief (6 November 2026): build concepts gradually, in order, all the way to the main idea
+
+The lecturer's instruction: all slides from Session 0 to Session 14 must flow chronologically and logically, with concepts built gradually so structured learning happens. Never jump from one concept to a far one. The learner must be able to connect concepts, see the flow and the relationships. Keep using visuals, for example a peek inside a neuron (the maths behind it). Break every concept down so that someone new to the field can follow.
+
+Read first: `V3_AUTHORING_BRIEF.md` (design and rules), `REVIEW_BRIEF.md` (standards, render and check workflow: `$S/render_one.sh N`), `FLOW_BRIEF.md` (spoken script flow). Setup: `. /private/tmp/claude-501/-Users-jothamwambi-Projects-IUEA-Teaching-Resources/64326435-6d94-43f3-a671-3bf5787b895f/scratchpad/env.sh; cd "$B"`.
+
+## What already exists
+`kit/chain.py` and the generated slide 'How today connects' (after the recall slide) show for each session what it builds on, what it adds and what it feeds. Keep your sessions consistent with the entries in `kit/chain.py` (you may propose edits to your sessions' entries: change them if the session content changes, keep phrases short). Prerequisite chain as designed: 0 map (training loop, gradient descent, backprop, metrics, data, stages of a language model) then 1 numbers, features, neuron, layers; 2 learning from examples (types, trees, nearest neighbours); 3 measuring; 4 words as numbers (bag of words, TF-IDF, embeddings, four distances); 5 language models (tokens, attention, next-word list); 6 foundation models; 7 weights, formats, size, licences; 8 prompting; 9 giving a model knowledge (retrieval uses 4, fine-tuning uses 0 and 1); 10 failures (uses 3 to 9); 11 agents (uses 8 and 10); 12 to 14 practicals.
+
+## Gaps found in the current build (fix those assigned to you)
+1. Session 0 teaches the training loop, gradient descent and backpropagation (slides 10 to 12) before the learner has seen what a model's adjustable numbers are. Session 1 shows the neuron only as a 'weighted checklist' (tick, multiply, add, compare) and never opens it up as maths: no bias, no activation, no layer as a table of weights, and no worked example of one weight being nudged by gradient descent.
+2. Session 2 uses nearest neighbours on words (TF-IDF, cosine, 'words they share') and the notion of distance BEFORE Session 4 teaches bag of words, TF-IDF, embeddings and distance. Either teach what is needed at the level needed in Session 2 (one mini slide, flagged 'full treatment in Session 4'), or move the dependency out.
+3. Session 5 does not show where the neurons and layers of Session 1 sit inside a language model, and does not connect training a language model to the loop of Session 0 and the 'learning from examples without labels' of Session 2.
+4. Sessions 6 and 7 use 'weights', 'parameters', 'layers' as if known; link them explicitly to the neuron weights of Session 1 and show the scale (124 million weights in GPT-2 small, which has 12 blocks) as a build-up, not a jump.
+5. Check that every later session uses a concept only after it has been built (see the chain above), and that when a concept returns, a one-sentence recall points to where it was first built ('as in Session 4').
+
+## How to fix: rules
+- Add or rework slides where needed (authored slides per session up to 22; keep every deck coherent; keep the clock at 120 minutes and the plan slide consistent: add the new slides inside existing clock blocks, or adjust clock lines). Update the session's `clock`, `words`, `recall` if affected, `keep`/`takeaway`, workbook and facilitator `demo_steps`/probes only where the new slides change them.
+- Each new concept slide follows the ladder: picture, everyday analogy, a small calculation with at most three numbers shown step by step, the real term, then (where there is one) a demonstration. 'A peek inside': when a concept hides maths (a neuron, a layer, a gradient step, attention, softmax, an embedding, quantisation), draw it opened up with the real numbers, simplified honestly, with the real name introduced last.
+- Draw new figures in your session's `kit/diagrams_tNN.py` (or tNN module; Session 0 uses `kit/diagrams_t00.py`), reuse real numbers from `demo_runs/` where possible (for example the trained digit network in `demo_runs/s01/results_s01.npz`), and look at every changed slide image. Same lint rules (word limits, no em dashes, no 'X, not Y', no banned words). Spoken notes: first person, flowing with bridges (see FLOW_BRIEF.md), 45 to 150 words.
+- Do not break recorded numbers or facts. Do not edit files outside your assignment. Rebuild only your sessions with `$S/render_one.sh N`, run `python kit/lint_content.py N` to 0 problems.
+
+## Report (under 250 words)
+What you added, moved or reworded (slide titles), which gaps are closed, what you left and why, and any change you made to `kit/chain.py` entries.

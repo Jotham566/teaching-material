@@ -20,3 +20,7 @@ print('payback months', round(one_off / net, 2), '12-month net', round(net * 12 
 hc = 0.3
 print('after 30% haircut 12-month net', round((benefit * (1 - hc) - monthly_cost) * 12 - one_off))
 print('break-even haircut', round(1 - (monthly_cost * 12 + one_off) / (benefit * 12), 3))
+# ROI over the first 12 months (added 6 November 2026; the workbook itself has no ROI cell): net benefit / total cost, where
+# net benefit = the workbook's 12-month net and total cost = 12 months of running cost + the one-off cost.
+total_cost_12 = monthly_cost * 12 + one_off
+print('12-month total cost', round(total_cost_12), 'ROI first year', round((net * 12 - one_off) / total_cost_12, 3))

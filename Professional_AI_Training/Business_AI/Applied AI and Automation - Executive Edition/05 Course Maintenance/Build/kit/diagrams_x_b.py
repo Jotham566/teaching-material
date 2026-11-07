@@ -84,7 +84,10 @@ def x_roadmap(w, h, items=(), marks=(), size=16, **_):
         s.line(0, y1 - rh, w, y1 - rh, color=HAIR, lw=0.8)
     for i, it in enumerate(items):
         for j in it.get('after', []) or []:
-            x1, y1 = X(items[j]['end']), ys[j] - 0.19
-            x2, y2 = X(it['start']), ys[i] + 0.19
-            s.arrow(x1, y1, x2, y2, color=RED, lw=1.8, head=11, z=5, rad=0.0)
+            x1, yj = X(items[j]['end']), ys[j]
+            x2, yi = X(it['start']), ys[i]
+            xv = x1 + 0.12 if x2 - x1 > 0.3 else x2 - 0.12     # elbow route: out of the bar, down the gutter, into the next bar
+            s.line(x1, yj, xv, yj, color=RED, lw=1.8, z=5)
+            s.line(xv, yj, xv, yi, color=RED, lw=1.8, z=5)
+            s.arrow(xv, yi, x2 - 0.02, yi, color=RED, lw=1.8, head=11, z=5, rad=0.0)
     return s

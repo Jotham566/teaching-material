@@ -17,11 +17,11 @@ def wt(s, x, y, w, text, size=16, weight='normal', color=INK, ha='center', va='c
 @fig('x_t10_causes')
 def causes(w, h, **_):
     s = Scene(w, h)
-    items = [('speech', 'Likely, not checked', 'It writes probable next words', 'Session 5'),
-             ('book', 'Old or missing knowledge', 'Training stops at a date; your files unseen', 'Sessions 6 and 9'),
-             ('magnifier', 'The wrong page fetched', 'Retrieval can miss or split a rule', 'Session 9'),
-             ('pin', 'An unclear request', 'A weak prompt gets a weak answer', 'Session 8'),
-             ('people', 'Patterns in the data', 'It can repeat habits it was shown', 'Sessions 2 and 4')]
+    items = [('speech', 'Hallucination', 'Next-token prediction writes likely text, and likely is not always true', 'Session 5'),
+             ('book', 'Knowledge cut-off', 'Training stops at a date; your files unseen', 'Sessions 6 and 9'),
+             ('magnifier', 'Retrieval miss', 'The retriever can fetch the wrong chunk or split a rule', 'Session 9'),
+             ('pin', 'Weak prompt', 'An unclear request gets a weak answer', 'Session 8'),
+             ('people', 'Bias', 'It can repeat the skew of its training data', 'Sessions 2 and 4')]
     n = len(items)
     gap = 0.25
     bw = (w - 0.2 - gap * (n - 1)) / n
@@ -30,8 +30,36 @@ def causes(w, h, **_):
         s.box(x, 0.1, bw, h - 0.2, '', lw=2.0, fill=GOLD if i == 0 else PAPER)
         s.icon(ic, x + bw / 2, h - 0.75, 0.85)
         wt(s, x + bw / 2, h - 1.75, bw - 0.25, head, 19, weight='bold')
-        wt(s, x + bw / 2, h - 2.75, bw - 0.25, txt, 16, color=BODY)
+        wt(s, x + bw / 2, h - 2.95, bw - 0.25, txt, 15, color=BODY)
         wt(s, x + bw / 2, 0.5, bw - 0.25, ses, 16, weight='bold', color=RED)
+    return s
+
+
+# ------------------------------------------------------------------ everyday examples
+def _panel(s, x, y, pw, ph, head, lines, bad, fill=PAPER):
+    s.box(x, y, pw, ph, '', fill=fill, lw=2.0)
+    wt(s, x + pw / 2, y + ph - 0.35, pw - 0.3, head, 17, weight='bold')
+    yy = y + ph - 0.95
+    for ln, red in lines:
+        used = wt(s, x + pw / 2, yy - 0.2, pw - 0.3, ln, 16, color=RED if red else BODY, weight='bold' if red else 'normal')
+        yy -= used + 0.3
+
+
+@fig('x_t10_everyday')
+def everyday(w, h, **_):
+    s = Scene(w, h)
+    pw = (w - 0.3) / 2
+    _panel(s, 0.1, 0.1, pw, h - 0.2, 'Calculator typo', [('4 items at UGX 15,000 = 60,000', False), ('Typed 1,500: shows 6,000', True), ('The sum was exact. The input was wrong.', False), ('Check: estimate 4 x 15,000', False)], True)
+    _panel(s, 0.2 + pw, 0.1, pw, h - 0.2, 'Confident rumour', [('Three people say the road opens Friday', False), ('All heard it from one person', True), ('Confident is not the same as true', False), ('Check: ask for the source', False)], True, fill=GOLD)
+    return s
+
+
+@fig('x_t10_everyday2')
+def everyday2(w, h, **_):
+    s = Scene(w, h)
+    pw = (w - 0.3) / 2
+    _panel(s, 0.1, 0.1, pw, h - 0.2, 'Bias: asking friends', [('10 friends pick the best film', False), ('All 10 pick the same one', False), ('Only your friends were asked', True), ('Check: who is missing?', False)], True)
+    _panel(s, 0.2 + pw, 0.1, pw, h - 0.2, 'Data leakage: early answers', [('Read the answer sheet the night before', False), ('Full score next morning', True), ('The score no longer shows ability', False), ('Check: keep the test apart', False)], True, fill=GOLD)
     return s
 
 
@@ -158,16 +186,20 @@ def matrix(w, h, **_):
 @fig('x_t10_baseline')
 def baseline(w, h, **_):
     s = Scene(w, h)
-    cell = (w - 0.2) / 5
-    wt(s, w / 2, h - 0.4, w - 0.2, 'Say "not stated" to every question', 19, weight='bold')
+    cell = min((w - 0.2) / 5, 0.78)
+    x0 = (w - 5 * cell) / 2
+    wt(s, w / 2, h - 0.35, w - 0.2, 'Say "not stated" to every question', 19, weight='bold')
     for i in range(10):
         r, c = divmod(i, 5)
         right = i >= 8
-        x = 0.1 + c * cell
-        y = h - 1.2 - (r + 1) * cell
+        x = x0 + c * cell
+        y = h - 0.75 - (r + 1) * cell
         s.rect(x + 0.03, y + 0.03, cell - 0.06, cell - 0.06, fill=GOLD if right else PAPER, edge=INK, lw=1.6)
         s.text(x + cell / 2, y + cell / 2, f'Q{i + 1}', size=16, weight='bold')
-    wt(s, w / 2, 0.55, w - 0.2, 'Gold: right, because the handbook is silent', 16, color=BODY)
+    wt(s, w / 2, 1.75, w - 0.2, 'Gold: right, because the handbook is silent', 15, color=BODY)
+    wt(s, w / 2, 1.38, w - 0.2, 'accuracy = correct \u00f7 total', 17, weight='bold')
+    wt(s, w / 2, 1.02, w - 0.2, 'Baseline: 2 \u00f7 10 = 20 percent', 17, weight='bold')
+    wt(s, w / 2, 0.66, w - 0.2, 'Three clauses: 10 \u00f7 10 = 100 percent', 15, color=BODY)
     return s
 
 
@@ -183,14 +215,19 @@ def routine(w, h, **_):
     n = len(steps)
     gap = 0.38
     bw = (w - 0.2 - gap * (n - 1)) / n
+    by = 1.25
+    bh = h - by - 0.1
     for i, (ic, head, txt) in enumerate(steps):
         x = 0.1 + i * (bw + gap)
-        s.box(x, 0.1, bw, h - 0.2, '', lw=2.0, fill=GOLD if i == n - 1 else PAPER)
-        s.icon(ic, x + bw / 2, h - 0.75, 0.85)
-        wt(s, x + bw / 2, h - 1.65, bw - 0.25, head, 21, weight='bold')
-        wt(s, x + bw / 2, h - 2.75, bw - 0.25, txt, 17, color=BODY)
+        s.box(x, by, bw, bh, '', lw=2.0, fill=GOLD if i == n - 1 else PAPER)
+        s.icon(ic, x + bw / 2, h - 0.65, 0.7)
+        wt(s, x + bw / 2, h - 1.35, bw - 0.25, head, 21, weight='bold')
+        wt(s, x + bw / 2, h - 2.25, bw - 0.25, txt, 17, color=BODY)
         if i < n - 1:
-            s.arrow(x + bw + 0.03, h / 2, x + bw + gap - 0.03, h / 2, lw=2.4, head=18)
+            s.arrow(x + bw + 0.03, by + bh / 2, x + bw + gap - 0.03, by + bh / 2, lw=2.4, head=18)
+    s.text(w / 2, 0.92, 'Expected cost of an error = P(error) \u00d7 cost of an error', size=18, weight='bold')
+    s.text(w / 2, 0.58, 'Illustration: hand summary, 2 of 12 totals wrong, so P(error) = 2 \u00f7 12 \u2248 0.17.', size=15, color=BODY)
+    s.text(w / 2, 0.25, 'If a wrong total costs UGX 1,000,000 (invented figure): 0.17 \u00d7 1,000,000 \u2248 UGX 167,000.', size=15, color=BODY)
     return s
 
 
@@ -198,8 +235,8 @@ def routine(w, h, **_):
 @fig('x_t10_template')
 def template(w, h, **_):
     s = Scene(w, h)
-    wt(s, w / 2, h - 0.3, w - 0.3, 'Test set: ten questions, a key and a score', 19, weight='bold')
-    rows = [['Id', 'Question', 'Known answer', 'Source', 'Run result'],
+    wt(s, w / 2, h - 0.3, w - 0.3, 'Evaluation set: ten questions, ground truth and a score', 19, weight='bold')
+    rows = [['Id', 'Question', 'Ground truth', 'Source', 'Run result'],
             ['Q03', 'Who approves UGX 1,500,000?', 'Finance Manager', 'Clause 3.2', 'right'],
             ['Q09', 'Paid sick days a year?', 'Not stated', 'none', 'invented'],
             ['Q10', 'Rate per kilometre?', 'Not stated', 'none', 'right']]
@@ -216,11 +253,11 @@ def takeaway(w, h, **_):
     half = (w - 0.3) / 2
     s.box(0.1, 0.1, half, h - 0.2, '', lw=2.0, fill=GOLD)
     s.text(0.3, h - 0.45, 'Five-step check', size=21, weight='bold', ha='left')
-    for i, t in enumerate(['1  Source: open the quote', '2  Recount the numbers', '3  Compare with a key', '4  Run it twice', '5  A named person signs']):
+    for i, t in enumerate(['1  Source: open the quote', '2  Recount the numbers', '3  Compare with ground truth', '4  Run it twice', '5  A named person signs']):
         s.text(0.35, h - 1.15 - i * 0.65, t, size=18, ha='left')
     x = 0.2 + half
     s.box(x, 0.1, half, h - 0.2, '', lw=2.0)
-    s.text(x + 0.2, h - 0.45, 'Test set', size=21, weight='bold', ha='left')
-    for i, t in enumerate(['10 questions', 'Known answers', 'Source for each', 'Run twice, score it', 'Right, missed, invented']):
+    s.text(x + 0.2, h - 0.45, 'Evaluation set', size=21, weight='bold', ha='left')
+    for i, t in enumerate(['10 questions', 'Ground truth', 'Source for each', 'Run twice, score it', 'Right, missed, invented']):
         s.text(x + 0.25, h - 1.15 - i * 0.65, t, size=18, ha='left')
     return s

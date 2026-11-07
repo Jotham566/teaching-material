@@ -131,35 +131,30 @@ def x_t01_features(w, h, **_):
     return s
 
 
-# ------------------------------------------------------------------ 4. a neuron as a weighted checklist
-@fig('x_t01_checklist')
-def x_t01_checklist(w, h, inputs=(1, 1, 0), title='Payment A', threshold=4, **_):
-    names = ['Amount over UGX 1,200,000', 'New payee', 'Outside office hours']
-    wts = [3, 2, 1]
+# ------------------------------------------------------------------ 4. a weighted sum with a bias: the price of a house
+@fig('x_t01_weighted')
+def x_t01_weighted(w, h, area=80, beds=3, title='House A', **_):
+    w_area, w_bed, bias = 2, 10, 30
     s = Scene(w, h)
-    s.text(0.1, h - 0.3, f'{title}: a risk checklist', size=18, weight='bold', ha='left')
-    s.text(w - 1.7, h - 0.75, 'yes (1) or no (0) x weight', size=15, color=MUTE, ha='right')
-    s.text(w - 0.15, h - 0.75, 'points', size=15, color=MUTE, ha='right')
+    s.text(0.1, h - 0.3, f'{title}: price from floor area and bedrooms', size=18, weight='bold', ha='left')
+    s.text(w - 1.9, h - 0.75, 'input x weight', size=15, color=MUTE, ha='right')
+    s.text(w - 0.15, h - 0.75, 'UGX million', size=15, color=MUTE, ha='right')
     top = h - 0.95
-    rh = 0.7
-    pts = []
-    for i, (nm, wt, v) in enumerate(zip(names, wts, inputs)):
+    rh = 0.6
+    rows = [(f'Floor area: {area} m\u00b2', f'{area} x {w_area}', area * w_area),
+            (f'Bedrooms: {beds}', f'{beds} x {w_bed}', beds * w_bed),
+            ('Base price (the bias)', 'added once', bias)]
+    for i, (nm, calc, val) in enumerate(rows):
         y = top - (i + 1) * rh
-        s.box(0.1, y + 0.07, 0.55, 0.55, '', fill=GOLD if v else PAPER, lw=2, r=0.04)
-        if v:
-            s.line(0.2, y + 0.35, 0.33, y + 0.21, lw=3.4, z=5)
-            s.line(0.33, y + 0.21, 0.56, y + 0.51, lw=3.4, z=5)
-        s.text(0.85, y + 0.35, nm, size=18, ha='left', weight='bold' if v else 'normal', color=INK if v else MUTE)
-        s.text(w - 1.7, y + 0.35, f'{v} x {wt}', size=18, ha='right', color=BODY)
-        s.text(w - 0.15, y + 0.35, f'= {v * wt}', size=20, ha='right', weight='bold')
+        s.text(0.15, y + 0.35, nm, size=18, ha='left', weight='bold' if i < 2 else 'normal', color=INK if i < 2 else BODY)
+        s.text(w - 1.9, y + 0.35, calc, size=18, ha='right', color=BODY)
+        s.text(w - 0.15, y + 0.35, ('+ ' if i == 2 else '= ') + str(val), size=20, ha='right', weight='bold')
         s.line(0.1, y, w - 0.1, y, color=HAIR, lw=1)
-        pts.append(v * wt)
-    tot = sum(pts)
+    tot = area * w_area + beds * w_bed + bias
     y = top - 3 * rh - 0.3
-    s.text(0.1, y + 0.1, f'Total score: {" + ".join(str(p) for p in pts)} = {tot}', size=21, weight='bold', ha='left')
-    flag = tot >= threshold
-    s.box(0.1, y - 1.0, w - 0.2, 0.7, f'{tot} is {"at least" if flag else "below"} {threshold}: ' + ('send to a person to check' if flag else 'let it through'),
-          size=19, fill=GOLD if flag else PAPER, lw=2, weight='bold')
+    s.text(0.1, y + 0.1, f'{area * w_area} + {beds * w_bed} + {bias} = {tot}', size=21, weight='bold', ha='left')
+    s.box(0.1, y - 1.0, w - 0.2, 0.7, f'Price: UGX {tot} million', size=19, fill=GOLD, lw=2, weight='bold')
+    s.text(w / 2, y - 1.4, 'weighted sum + bias:  z = w1x1 + w2x2 + b  (also z = Σ wx + b)', size=15, color=BODY)
     return s
 
 
@@ -174,20 +169,20 @@ def x_t01_layers(w, h, **_):
     gx, gy = xs[0] - 4 * c, 1.35
     img = r['images'][int(r['img_i'])]
     _gray(s, img, gx, gy, 8 * c)
-    s.text(xs[0], gy + 8 * c + 0.45, '64 numbers in', size=17, weight='bold')
+    s.text(xs[0], gy + 8 * c + 0.45, 'Input layer: 64', size=17, weight='bold')
     # hidden: 16 neurons (two columns of 8 drawn as 8 + 8)
     hy = [0.95 + k * 0.33 for k in range(8)]
     hx = [xs[1] - 0.3, xs[1] + 0.3]
     for xx in hx:
         for yy in hy:
             s.circle(xx, yy + 0.45, 0.13, fill=PAPER, edge=INK, lw=1.6, z=4)
-    s.text(xs[1], 0.95 + 8 * 0.33 + 0.55, '16 neurons', size=17, weight='bold')
+    s.text(xs[1], 0.95 + 8 * 0.33 + 0.55, 'Hidden layer: 16', size=17, weight='bold')
     # output: 10 circles
     oy = [0.55 + k * 0.33 for k in range(10)]
     for k, yy in enumerate(oy):
         s.circle(xs[2], yy + 0.18, 0.14, fill=GOLD if k == 3 else PAPER, edge=INK, lw=1.6, z=4)
         s.text(xs[2] + 0.45, yy + 0.18, str(k), size=15, ha='left', weight='bold' if k == 3 else 'normal')
-    s.text(xs[2] + 0.3, 0.55 + 10 * 0.33 + 0.4, '10 scores out', size=17, weight='bold')
+    s.text(xs[2] - 0.1, 0.55 + 10 * 0.33 + 0.4, 'Output layer: 10', size=17, weight='bold')
     # a few connecting lines
     for yy in (gy + 0.3, gy + 1.0, gy + 1.7):
         for ty in (hy[1] + 0.45, hy[4] + 0.45, hy[7] + 0.45):
@@ -195,7 +190,7 @@ def x_t01_layers(w, h, **_):
     for ty in (hy[1] + 0.45, hy[4] + 0.45, hy[7] + 0.45):
         for k in (1, 3, 6):
             s.line(hx[1] + 0.13, ty, xs[2] - 0.14, oy[k] + 0.18, color=HAIR, lw=0.9, z=1)
-    s.text(3.9, 0.22, 'every neuron has its own checklist of 64 weights', size=15, color=BODY)
+    s.text(3.9, 0.22, 'every hidden neuron has 64 weights and one bias', size=15, color=BODY)
     return s
 
 
@@ -249,7 +244,7 @@ def x_t01_forward(w, h, **_):
     hm = hid.max()
     bw = 0.17
     hx = 2.3
-    s.text(hx + 8 * bw, 3.95, '16 neurons: how much each fired', size=15, weight='bold')
+    s.text(hx + 8 * bw, 3.95, 'hidden layer: 16 neurons, how much each fired', size=15, weight='bold')
     for k, v in enumerate(hid):
         hgt = 2.4 * v / hm
         s.rect(hx + k * bw, base, bw - 0.03, max(hgt, 0.02), fill=GOLD if v > 2.4 else INK, edge=INK, lw=0.8, z=3)
@@ -269,7 +264,7 @@ def x_t01_forward(w, h, **_):
     return s
 
 
-# ------------------------------------------------------------------ 8. training: accuracy rises with passes
+# ------------------------------------------------------------------ 8. training: accuracy rises with epochs
 @fig('x_t01_learning')
 def x_t01_learning(w, h, **_):
     r = _res()
@@ -291,11 +286,11 @@ def x_t01_learning(w, h, **_):
             s.text(px(i), ay0 - 0.3, str(e), size=15)
     s.text(px(0) + 0.15, py(curve[0][1]) + 0.4, f'{curve[0][1] * 100:.0f}%', size=16, weight='bold', ha='left')
     s.text(px(n - 1) - 0.1, py(curve[-1][1]) + 0.4, f'{curve[-1][1] * 100:.0f}%', size=16, weight='bold', ha='right')
-    s.text((ax0 + ax1) / 2 + 0.2, 0.2, 'passes over the training images', size=15, color=BODY)
+    s.text((ax0 + ax1) / 2 + 0.2, 0.2, 'epochs (full passes over the training images)', size=15, color=BODY)
     s.text(0.25, (ay0 + ay1) / 2, 'right on unseen images', size=15, color=BODY, rot=90)
     cmap = LinearSegmentedColormap.from_list('kl', [RED, '#FFFFFF', INK])
     k = 11
-    for j, (key, lab) in enumerate((('w1_pass1', 'one neuron, 1 pass'), ('w1_final', 'same, 200 passes'))):
+    for j, (key, lab) in enumerate((('w1_pass1', 'one neuron, 1 epoch'), ('w1_final', 'same, 200 epochs'))):
         t = r[key][:, k].reshape(8, 8)
         m = np.abs(t).max()
         y = 2.65 - j * 1.9
@@ -370,4 +365,197 @@ def x_t01_handlearned(w, h, **_):
         s.text(6.2, y - 0.8, note, size=15, color=BODY)
     s.line(0.1, h / 2, w - 0.1, h / 2, color=HAIR, lw=1.2)
     _frame(s)
+    return s
+
+
+# ================================================================== peek inside a neuron (concept-flow additions, 6 November 2026)
+_P = {}
+
+
+def _peek():
+    if not _P:
+        z = np.load(RUN / 'neuron_peek.npz')
+        _P.update({k: z[k] for k in z.files})
+    return _P
+
+
+# ------------------------------------------------------------------ 4b. a neuron, opened up on an everyday decision: carry an umbrella?
+@fig('x_t01_neuron_toy')
+def x_t01_neuron_toy(w, h, **_):
+    s = Scene(w, h)
+    names = [('Chance of rain: 70', 'x 0.1', '= 7.0'), ('Minutes outside: 30', 'x 0.05', '= 1.5')]
+    ys = [2.75, 1.55]
+    heads = [(1.4, 'inputs'), (3.55, 'weight'), (4.75, 'product'), (6.5, 'weighted sum'), (8.3, 'plus bias'), (10.0, 'activation'), (11.2, 'output')]
+    for x, t in heads:
+        s.text(x, 3.8, t, size=15, color=MUTE, weight='bold')
+    for (nm, wt, pr), y in zip(names, ys):
+        s.box(0.1, y - 0.3, 2.65, 0.6, nm, size=15, fill=GOLD, weight='bold')
+        s.arrow(2.85, y, 3.1, y, lw=2)
+        s.box(3.15, y - 0.28, 0.95, 0.56, wt, size=16, weight='bold')
+        s.arrow(4.2, y, 4.4, y, lw=2)
+        s.text(4.8, y, pr, size=19, weight='bold')
+        s.line(5.2, y, 5.5, 2.15, color=BODY, lw=1.6, z=1)
+    s.box(5.5, 1.5, 1.9, 1.3, 'w1x1 + w2x2\n7.0 + 1.5\n= 8.5', size=15, weight='bold')
+    s.arrow(7.5, 2.15, 7.75, 2.15, lw=2.2)
+    s.box(7.8, 1.5, 1.45, 1.3, 'bias b = -6\n8.5 - 6\n= 2.5', size=15, weight='bold')
+    s.arrow(9.35, 2.15, 9.6, 2.15, lw=2.2)
+    s.box(9.45, 1.5, 1.15, 1.3, 'Step:\nabove 0\nis 1', size=15, weight='bold')
+    s.arrow(10.65, 2.15, 10.85, 2.15, lw=2.2)
+    s.circle(11.25, 2.15, 0.34, fill=GOLD, edge=INK, lw=2.2, z=3)
+    s.text(11.25, 2.15, '1', size=24, weight='bold', z=6)
+    s.text(11.25, 1.5, 'carry it', size=14, weight='bold')
+    s.text(w / 2, 1.02, 'z = w1x1 + w2x2 + b = 7.0 + 1.5 − 6 = 2.5        a = f(z) = step(2.5) = 1', size=17, weight='bold')
+    s.text(w / 2, 0.62, 'A second day: 20% chance, 30 minutes: 2.0 + 1.5 - 6 = -2.5, below 0, so the output is 0: leave it at home.', size=14, color=BODY)
+    s.text(w / 2, 0.22, 'Simplified: real neurons have many inputs. A step is the simplest activation function; ReLU and sigmoid come next.', size=14, color=MUTE)
+    return s
+
+
+# ------------------------------------------------------------------ 4c. a real neuron of the trained digit network, opened up
+@fig('x_t01_neuron_real')
+def x_t01_neuron_real(w, h, **_):
+    p = _peek()
+    raw, x, W, b, total, out = p['raw'], p['x'], p['W'], p['b'], p['total'], p['out']
+    s = Scene(w, h)
+    top0 = [int(i) for i in p['top0']]
+    sz = 2.3
+    ix, iy = 0.1, 1.15
+    _gray(s, raw.reshape(8, 8), ix, iy, sz)
+    cell = sz / 8
+    for lab, i in zip('ABC', top0):
+        r, c = divmod(i, 8)
+        px, py = ix + c * cell, iy + (7 - r) * cell
+        s.rect(px, py, cell, cell, fill='none', edge=RED, lw=3, z=5)
+        s.text(px + cell / 2, py + cell / 2, lab, size=14, weight='bold', color=PAPER, z=7)
+    s.text(ix + sz / 2, iy + sz + 0.3, 'The 3: 64 inputs', size=16, weight='bold')
+    s.text(ix + sz / 2, iy - 0.3, 'Neuron 1 looks at all 64', size=14, color=BODY)
+    # the products, rounded so that the column adds up exactly
+    k = 0
+    prod = x * W[:, k]
+    pr = [round(float(prod[i]), 2) for i in top0]
+    tot_sum = round(float(prod.sum()), 2)
+    rest = round(tot_sum - sum(pr), 2)
+    rows = [['pixel', 'input', 'x  weight', '=  product']]
+    for lab, i, q in zip('ABC', top0, pr):
+        rows.append([lab, f'{x[i]:.2f}', f'x  {W[i, k]:.2f}', f'=  {q:.2f}'])
+    rows.append(['61 more', '...', '...', f'=  {rest:.2f}'])
+    s.table(2.95, 3.95, [0.95, 0.95, 1.35, 1.35], 0.5, rows, size=16, hl_rows=(), hl_cols=(3,), hl_fill=PAPER, align=['center'] * 4)
+    s.text(2.95 + 2.3, 1.15, 'Simplified: the 3 biggest of 64 products are shown and\nthe other 61 are added in one lump. Input = ink / 16.', size=14, color=MUTE)
+    # right: the chain
+    bx, bw = 8.0, 3.8
+    s.box(bx, 3.0, bw, 0.7, f'Weighted sum Σ wx of 64 inputs: {tot_sum:.2f}', size=15, weight='bold')
+    s.arrow(bx + bw / 2, 3.0, bx + bw / 2, 2.78, lw=2)
+    s.box(bx, 2.1, bw, 0.7, f'Add bias b = {b[k]:.2f}: z = {total[k]:.2f}', size=15, weight='bold')
+    s.arrow(bx + bw / 2, 2.1, bx + bw / 2, 1.88, lw=2)
+    s.box(bx, 1.2, bw, 0.7, f'a = ReLU(z) = max(0, z) = {out[k]:.2f}', size=15, weight='bold', fill=GOLD)
+    s.text(bx + bw / 2, 3.95, 'Neuron 1, step by step', size=16, weight='bold')
+    s.text(bx + bw / 2, 0.6, f'Neuron 2, same 3: z = {float(x @ W[:, 1]):.3f} + {b[1]:.3f} = {total[1]:.3f}.\nBelow 0, so a = max(0, z) = {out[1]:.0f}.', size=14, color=RED, weight='bold')
+    return s
+
+
+# ------------------------------------------------------------------ 4d. why the activation exists
+@fig('x_t01_activation')
+def x_t01_activation(w, h, **_):
+    p = _peek()
+    s = Scene(w, h)
+    s.text(2.85, 3.95, 'Without an activation function', size=17, weight='bold')
+    y = 2.75
+    xs = [0.45, 2.95, 5.35]
+    for xx, v in zip(xs, (5, 10, 30)):
+        s.circle(xx, y, 0.32, fill=PAPER, edge=INK, lw=2, z=3)
+        s.text(xx, y, str(v), size=19, weight='bold')
+    for xx, t in ((1.7, 'Layer 1\nx 2'), (4.15, 'Layer 2\nx 3')):
+        s.box(xx - 0.55, y - 0.4, 1.1, 0.8, t, size=15, weight='bold')
+    for a, b_ in ((0.8, 1.1), (2.3, 2.58), (3.3, 3.58), (4.78, 5.0)):
+        s.arrow(a, y, b_, y, lw=2, head=13)
+    s.text(2.85, 1.85, 'Two layers, one after the other', size=15, color=BODY)
+    s.box(1.0, 0.85, 3.7, 0.7, 'Same as ONE layer: x 6.   5 x 6 = 30', size=16, fill=GOLD, weight='bold')
+    s.text(2.85, 0.4, 'Stacking gives nothing new.', size=15, color=RED, weight='bold')
+    s.line(6.0, 0.3, 6.0, 3.9, color=HAIR, lw=1.4)
+    # ReLU graph
+    gx0, gx1, gy0, gy1 = 7.0, 11.6, 0.95, 3.5
+    xlo, xhi, ylo, yhi = -2.0, 5.0, -0.0, 5.0
+    px = lambda v: gx0 + (v - xlo) / (xhi - xlo) * (gx1 - gx0)
+    py = lambda v: gy0 + (v - ylo) / (yhi - ylo) * (gy1 - gy0)
+    s.text(9.3, 3.95, 'With ReLU: a bend', size=17, weight='bold')
+    s.line(gx0, gy0, gx1, gy0, lw=2)
+    s.line(px(0), gy0, px(0), gy1 + 0.1, lw=2)
+    s.text(9.3, 0.4, 'total before the activation function', size=14, color=MUTE)
+    s.text(6.65, 2.2, 'output', size=14, color=MUTE, rot=90)
+    s.line(px(xlo), py(0), px(0), py(0), color=INK, lw=4, z=3)
+    s.line(px(0), py(0), px(5), py(5), color=INK, lw=4, z=3)
+    t1, o1 = float(p['total'][0]), float(p['out'][0])
+    t2, o2 = float(p['total'][1]), float(p['out'][1])
+    s.circle(px(t1), py(o1), 0.13, fill=GOLD, edge=INK, lw=2, z=6)
+    s.text(px(t1) - 0.15, py(o1) + 0.28, f'neuron 1: {t1:.2f} stays {o1:.2f}', size=14, weight='bold', ha='right')
+    s.circle(px(t2), py(o2), 0.13, fill=RED, edge=INK, lw=2, z=6)
+    s.text(px(t2) - 0.55, py(o2) + 0.6, f'neuron 2: {t2:.2f}\nbecomes 0', size=14, weight='bold', color=RED, ha='center')
+    return s
+
+
+# ------------------------------------------------------------------ 4e. from neuron to layer: a table of weights
+@fig('x_t01_layer_table')
+def x_t01_layer_table(w, h, **_):
+    p = _peek()
+    x, W, b, out = p['x'], p['W'], p['b'], p['out']
+    cols_px = [int(i) for i in p['top0']]       # pixels A, B, C
+    s = Scene(w, h)
+    f = lambda v: f'{v:.2f}'
+    rows = [['', 'weight on A', 'weight on B', 'weight on C', '61 more', 'bias', 'output'],
+            ['The 3: input'] + [f(x[i]) for i in cols_px] + ['...', '', '']]
+    for k in (0, 1, 2):
+        rows.append([f'Neuron {k + 1}'] + [f(W[i, k]) for i in cols_px] + ['...', f(b[k]), f(out[k])])
+    rows.append(['...', '', '', '', '', '', ''])
+    rows.append(['Neuron 16'] + [f(W[i, 15]) for i in cols_px] + ['...', f(b[15]), f(out[15])])
+    cw = [1.55, 1.3, 1.3, 1.3, 1.1, 0.9, 1.0]
+    s.table(0.1, 4.2, cw, 0.5, rows, size=15, hl_rows=(2,), hl_cols=(), hl_fill=GOLD, dim_rows=(5,), align=['center'] * 7)
+    tx = 9.0
+    s.text(tx, 3.85, '16 rows = 16 neurons', size=17, weight='bold', ha='left')
+    s.text(tx, 3.3, 'Each row: 64 weights\nand one bias.', size=15, ha='left', color=BODY)
+    s.text(tx, 2.7, 'a = f(Wx + b)', size=22, ha='left', weight='bold')
+    s.text(tx, 1.95, 'W: 16 rows x 64 columns\nx: the 64 inputs\nb: 16 biases, f: ReLU,\na: the 16 outputs', size=14, ha='left', color=BODY)
+    s.text(tx, 1.0, '64 x 16 = 1,024 weights\n+ 16 biases', size=15, ha='left', color=BODY)
+    s.text(tx, 0.4, 'Gold row: neuron 1 from the\nlast slide, output 4.58.', size=14, ha='left', color=MUTE)
+    return s
+
+
+# ------------------------------------------------------------------ 4f. how one weight learns: the training loop on a single parameter
+@fig('x_t01_one_weight')
+def x_t01_one_weight(w, h, **_):
+    s = Scene(w, h)
+    bw, gap = 2.7, 0.26
+    boxes = [('1  Prediction', 'input 2 x weight 0.5\n= prediction 1.0'),
+             ('2  Loss', 'target 3, so error 2.0\nloss = 1/2 x 2.0\u00b2 = 2.0'),
+             ('3  Gradient step', 'gradient = -4\nw = 0.5 − 0.1 x (−4)\n= 0.9'),
+             ('4  Repeat', 'new prediction 1.8\nerror 1.2, loss 0.72')]
+    for i, (hd, tx) in enumerate(boxes):
+        x0 = 0.1 + i * (bw + gap)
+        s.box(x0, 2.45, bw, 1.55, '', fill=GOLD if i == 2 else PAPER, lw=2)
+        s.text(x0 + bw / 2, 3.7, hd, size=16, weight='bold')
+        s.text(x0 + bw / 2, 3.0, tx, size=14, color=INK)
+        if i < 3:
+            s.arrow(x0 + bw + 0.02, 3.22, x0 + bw + gap - 0.02, 3.22, lw=2, head=12)
+    rows = [['Round', '0', '1', '2', '3'],
+            ['Weight', '0.5', '0.9', '1.14', '1.284'],
+            ['Prediction', '1.0', '1.8', '2.28', '2.568'],
+            ['Loss', '2.0', '0.72', '0.26', '0.09']]
+    s.table(0.1, 2.2, [1.5, 1.2, 1.2, 1.2, 1.2], 0.45, rows, size=16, hl_rows=(3,), hl_fill=GOLD, align=['center'] * 5)
+    s.text(8.35, 1.8, 'Gradient descent: repeated\nsmall steps against the\ngradient.', size=15, weight='bold', ha='left')
+    s.text(8.35, 0.95, 'Backpropagation: finds the\ngradient for every weight.', size=15, ha='left', color=BODY)
+    s.text(8.35, 0.3, '0.1 = learning rate η (step size)', size=14, ha='left', color=MUTE)
+    return s
+
+
+# ------------------------------------------------------------------ 4g. the formulas behind one learning step, with the slide's numbers
+@fig('x_t01_formulas')
+def x_t01_formulas(w, h, **_):
+    s = Scene(w, h)
+    rows = [['Step', 'Standard formula', 'With the numbers of the toy'],
+            ['Prediction', 'ŷ = w × x', '0.5 × 2 = 1.0'],
+            ['Loss: squared error', 'L = ½ (y − ŷ)²', '½ × (3 − 1)² = 2.0'],
+            ['Gradient', '∂L/∂w = −x (y − ŷ)', '−2 × (3 − 1) = −4'],
+            ['Update: gradient descent', 'w ← w − η ∂L/∂w', '0.5 − 0.1 × (−4) = 0.9'],
+            ['Backpropagation: chain rule', '∂L/∂w = ∂L/∂ŷ · ∂ŷ/∂z · ∂z/∂w', '(−2) × 1 × 2 = −4'],
+            ['Many examples: MSE', 'MSE = (1/n) Σ (yᵢ − ŷᵢ)²', 'sold 230, 150, 300: (100+0+100)/3 = 66.7']]
+    s.table(0.1, 4.25, [2.8, 4.0, 4.7], 0.46, rows, size=15, hl_rows=(4,), hl_fill=GOLD, align=['left'] * 3)
+    s.text(0.1, 0.5, 'z = wx + b is the weighted sum. Here b = 0 and there is no activation, so \u0177 = z.\nThe \u00bd makes the gradient tidy: L = (y \u2212 \u0177)\u00b2 gives \u22128 and \u03b7 = 0.05 gives the same steps.', size=14, ha='left', color=MUTE)
     return s

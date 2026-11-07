@@ -132,11 +132,11 @@ GUIDES = []   # the Zapier and Apps Script build guides moved to Archive/v2_befo
 
 
 def check_docx_sections(path, d, body):
-    """Session 11 boundary table and Session 13 policy sections must match the slides."""
+    """Session 11 permissions table and Session 13 policy sections must match the slides."""
     if path.stem == 'Tool Boundary Sheet':
         for must in ('It may', 'A person approves', 'It must never', 'Read', 'Write', 'Send', 'Spend', 'Limits', 'Stop conditions', 'Off switch', 'Review date', 'Owner', 'Reviewed with', 'Level of freedom'):
             if must not in body:
-                bad(f'Tool Boundary Sheet: lacks "{must}" from the Session 11 boundary table')
+                bad(f'Tool Boundary Sheet: lacks "{must}" from the Session 11 permissions table')
     if path.stem == 'AI Use Policy Template':
         heads = [p.text for p in d.paragraphs if re.match(r'\d+\. ', p.text)]
         want = ['Purpose', 'Scope', 'Approved tools', 'What data may and may not go in', 'Human review and records', 'Disclosure', 'Accounts and ownership', 'Incidents', 'Training and AI literacy', 'Review date', 'Approval']

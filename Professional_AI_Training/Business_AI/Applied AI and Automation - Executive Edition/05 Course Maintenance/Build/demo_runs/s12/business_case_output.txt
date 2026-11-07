@@ -5,3 +5,4 @@ monthly cost 145000 one-off 480000 monthly net 159000
 payback months 3.02 12-month net 1428000
 after 30% haircut 12-month net 333600
 break-even haircut 0.391
+12-month total cost 2220000 ROI first year 0.643

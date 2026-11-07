@@ -591,3 +591,55 @@ for _f in sorted(_glob.glob(_os.path.join(_os.path.dirname(__file__), 'diagrams_
         __import__(_os.path.basename(_f)[:-3])
     except Exception as _e:   # a half-written module of another writer must not break every build
         print('WARNING: could not import', _f, type(_e).__name__, str(_e)[:200])
+
+
+# ------------------------------------------------------------------ chain: where a session sits in the course
+@fig('x_chain')
+def x_chain(w, h, current=1, on=(), adds='', leads='', short=None, size=16, **_):
+    """A strip of 15 dots (Session 0 to 14) with the current one in gold, then three boxes: already built, today adds, feeds next."""
+    s = Scene(w, h)
+    n = 15
+    x0, x1, yy = 0.55, w - 0.55, h - 0.62
+    step = (x1 - x0) / (n - 1)
+    s.line(x0, yy, x1, yy, color=INK, lw=2.0, z=1)
+    on_nums = {a for a, _b in on}
+    for i in range(n):
+        cx = x0 + i * step
+        if i == current:
+            s.circle(cx, yy, 0.27, fill=GOLD, edge=INK, lw=2.4, z=3)
+            s.text(cx, yy, str(i), size=16, weight='bold', z=6)
+        elif i < current:
+            s.circle(cx, yy, 0.2, fill=INK if i in on_nums else PAPER, edge=INK, lw=2.0, z=3)
+            s.text(cx, yy, str(i), size=14, weight='bold', color=PAPER if i in on_nums else INK, z=6)
+        else:
+            s.circle(cx, yy, 0.2, fill=PAPER, edge=MUTE, lw=1.6, z=3)
+            s.text(cx, yy, str(i), size=14, color=MUTE, z=6)
+    s.text(min(max(x0 + current * step, 0.95), w - 0.95), yy - 0.5, 'You are here', size=15, weight='bold', color=RED)
+    gap = 0.35
+    bw = (w - 0.1 - 2 * gap) / 3
+    by0, bh = 0.1, h - 1.55
+    titles = ['Already built', 'Today adds', 'This feeds']
+    for k in range(3):
+        x = 0.05 + k * (bw + gap)
+        s.box(x, by0, bw, bh, '', fill=GOLD if k == 1 else PAPER, edge=INK, lw=2.0, r=0.07)
+        s.text(x + 0.2, by0 + bh - 0.32, titles[k], size=17, weight='bold', ha='left', color=RED if k != 1 else INK)
+        if k < 2:
+            s.arrow(x + bw + 0.03, by0 + bh / 2, x + bw + gap - 0.03, by0 + bh / 2, lw=2.4, head=16)
+    inner = bw - 0.4
+    # box 1: the earlier ideas, each tagged with its session; shrink the type until they fit
+    items = [f'Session {a}: {b}' for a, b in on]
+    avail = bh - 0.95
+    fs = size
+    while fs > 14:
+        tot = sum(_lines(it, fs, inner) * fs * 1.15 / 72 + 0.16 for it in items)
+        if tot <= avail:
+            break
+        fs -= 1
+    ytop = by0 + bh - 0.72
+    for it in items:
+        hh = _lines(it, fs, inner) * fs * 1.15 / 72
+        _wrap(s, 0.05 + 0.2, ytop - hh / 2, inner, it, fs, ha='left')
+        ytop -= hh + 0.16
+    _wrap(s, 0.05 + (bw + gap) + bw / 2, by0 + (bh - 0.55) / 2, inner, adds, size + 2, 'bold')
+    _wrap(s, 0.05 + 2 * (bw + gap) + bw / 2, by0 + (bh - 0.55) / 2, inner, leads, size)
+    return s

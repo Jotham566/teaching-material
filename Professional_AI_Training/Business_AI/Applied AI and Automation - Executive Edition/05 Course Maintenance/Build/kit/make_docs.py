@@ -60,6 +60,8 @@ def slide_map(s, spec):
     meta = ['Cover', 'Outcomes', 'Plan']
     if s['recall']:
         meta.append('Recall')
+    if s['num'] >= 1:
+        meta.append('How today connects')
     if s.get('words'):
         meta.append('Words')
     seen_demo = False
@@ -306,7 +308,7 @@ def start_here():
     h2(d, 'What is in this folder')
     grid(d, [['01 Course Overview', 'One page to share with a learner before the course.'],
              ['02 Class Slides', 'Fifteen decks (Session 0 to Session 14), with a spoken script in the speaker notes.'],
-             ['03 Learner Materials', 'The Learner Workbook, the Take-away Sheets (one page per session), the Templates for the practicals, the Follow-up Kit, and the Practice Files (the case company data).'],
+             ['03 Learner Materials', 'The Learner Workbook, the Take-away Sheets (one page per session), the Formula Sheet (every formula with its symbols named), the Templates for the practicals, the Follow-up Kit, and the Practice Files (the case company data).'],
              ['04 Facilitator Materials', 'The Presenter Script (every slide’s spoken script in order, to read from paper or a tablet), the Facilitator Guide with answers and fallbacks, the Answer Keys and the Rehearsal Record. Keep this folder away from learners.'],
              ['05 Course Maintenance', 'The sources that build the decks and documents, checks, and notes for whoever maintains the course.']], [5.0, 12.4], label_cols=(0,), size=9.5)
     h2(d, 'Before the first class')
@@ -339,6 +341,8 @@ def presenter_script():
         meta = ['Cover', 'Outcomes for today', 'The plan for the two hours']
         if s['recall']:
             meta.append('Recall: ask the questions, then give the answers')
+        if s['num'] >= 1:
+            meta.append('How today connects to the sessions before and after')
         if s.get('words'):
             meta.append('Words for today')
         for sl in s['slides']:
@@ -385,3 +389,4 @@ def takeaways():
 
 if __name__ == '__main__':
     overview(); workbook(); facilitator(); rehearsal(); start_here(); presenter_script(); takeaways()
+    import make_formulas; make_formulas.build()

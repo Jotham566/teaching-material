@@ -72,7 +72,7 @@ def reliability():
               '~Removed the invoice number from a payment query and asked "which invoice is this about?"',
               '~Guessed',
               '~It named a real-looking invoice number that was not in the text',
-              '~Add to the brief: "If a fact is missing, write MISSING and ask me." Check every reference number against the sheet before sending.'],
+              '~Add to the prompt: "If a fact is missing, write MISSING and ask me." Check every reference number against the sheet before sending.'],
              ['', '', '', '', '']], widths, header=hdr, min_h=[2.8, 2.0], size=9.5)
     h2(d, 'Test 3: Ask for the source')
     para(d, 'Ask the tool to show exactly where in your text each part of its answer comes from. Check three of the quotes yourself.', 9.5, color='404040', after=3)
@@ -93,15 +93,15 @@ def reliability():
     save(d, TEMPLATES / 'Reliability Test Record.docx')
 
 
-# ---------------------------------------------------- Reusable Brief
+# ---------------------------------------------------- Reusable prompt template (file name keeps 'Brief')
 def brief():
     name = 'Reusable Brief Template'
     d = new_doc(name)
-    title(d, 'Reusable Brief Template', 'A brief is the instruction you give an AI tool. Write it once, check it, and reuse it every time.')
+    title(d, 'Reusable Brief Template', 'A prompt template: a prompt is the instruction you give an AI tool. Write it once, check it, and reuse it every time.')
     box(d, 'How to use this template', [
         'Write one line or short paragraph for each of the seven parts. Grey italic text is an example from NVF: the Monday sales email. Type over it with your own task. ' + NVF,
         'Part 7 matters most. Telling the tool what to say when it is unsure is the cheapest way to stop invented answers.',
-        'When your brief works, copy it into a saved note and change only the inputs each time.'])
+        'When your prompt works, copy it into a saved note and change only the inputs each time.'])
     rows = [
         ['1  Goal\nWhat should exist at the end, and who will read it?', "~Draft the Monday email to the directors that summarises last week's sales, ready for me to check and send."],
         ['2  Context\nWho we are, who reads it, what they care about', '~Nile Valley Foods Ltd, a food distributor in Jinja. The readers are the directors. They want to see which regions grew or fell and which products drove it.'],
@@ -111,7 +111,7 @@ def brief():
         ['6  How I will check\nWhat I will compare before I send', '~I will add up the table and compare it with the sheet total, and recompute the change for the top two regions myself.'],
         ['7  What to say when unsure\nThe words I want instead of a guess', '~If a figure is missing or two figures disagree, write NOT IN DATA next to it and list your questions at the end. Do not estimate.'],
     ]
-    grid(d, rows, [5.0, 12.4], header=['Part', 'Your brief'], min_h=[1.6, 1.8, 1.6, 1.9, 1.6, 1.6, 1.8], size=9.5)
+    grid(d, rows, [5.0, 12.4], header=['Part', 'Your prompt'], min_h=[1.6, 1.8, 1.6, 1.9, 1.6, 1.6, 1.8], size=9.5)
     spacer(d, 8)
     h2(d, 'Ready to paste')
     para(d, 'Replace everything in square brackets with your own text, then paste the whole block into your AI tool.', 9.5, color='404040', after=3)
@@ -119,7 +119,7 @@ def brief():
     c = t.rows[0].cells[0]; cell_borders(c, '808080')
     lines = ['Goal: [what should exist at the end, and who reads it]', 'Context: [who we are, who reads it, what they care about]',
              'Inputs: [what I am giving you; use only these]', 'Constraints: [length, tone, what to leave out]',
-             'Output format: [the exact shape of the answer]', 'Checks I will make: [what I will compare]',
+             'Output format: [the exact shape of the answer]', 'Constraints on checking: [what you must show so that I can compare it]',
              'If you are unsure: [write NOT IN DATA, list questions, do not guess]']
     c.paragraphs[0].text = ''
     for i, l in enumerate(lines):
@@ -127,12 +127,12 @@ def brief():
         add_run(p, l, 9.5)
     spacer(d, 8)
     h2(d, 'One checked result')
-    para(d, 'Run the brief once on real input and record what you found.', 9.5, color='404040', after=3)
+    para(d, 'Run the prompt once on real input and record what you found.', 9.5, color='404040', after=3)
     grid(d, [
         ['Date and tool used', '~12 Nov 2026, (name of your assistant)'],
         ['What I checked', '~Table total against the sheet; change on the week for Jinja and Mbale'],
         ['What was wrong', '~Mbale change was rounded to 8% when the sheet gives 7.6%'],
-        ['What I changed in the brief', '~Added "give percentages to one decimal place"'],
+        ['What I changed in the prompt', '~Added "give percentages to one decimal place"'],
         ['Would I send it now?', '~Yes, after my 20-minute check'],
     ], [5.0, 12.4], min_h=0.9, size=9.5)
     save(d, TEMPLATES / 'Reusable Brief Template.docx')
@@ -142,7 +142,7 @@ def brief():
 def boundary():
     name = 'Tool Boundary Sheet'
     d = new_doc(name)
-    title(d, 'Tool Boundary Sheet', 'One page that says what an automation or AI assistant may do on its own, what needs a person, and how to stop it.')
+    title(d, 'Tool Boundary Sheet', 'One page, a permissions table, that says what an automation or AI assistant may do on its own, what needs a person to approve (human-in-the-loop), and how to stop it.')
     box(d, 'How to use this sheet', [
         'Session 11 is a writing exercise: you build nothing. Fill this sheet for one automation or assistant you might use in your own company, before anyone switches it on. Name the mail label, folder or sheet: "company data" is too vague to enforce. Start narrow: you can widen a limit later.',
         'Grey italic text is an example from the fictional company Nile Valley Foods Ltd (NVF), a supplier email assistant. Type over it.'], size=8.5)
@@ -150,8 +150,8 @@ def boundary():
              ['Owner (one named person)', '~Grace Akello, Operations Manager', 'Reviewed with', '~Joseph Mugisha, Finance Manager']],
          [3.4, 7.0, 2.4, 4.6], label_cols=(0, 2), min_h=1.0)
     spacer(d, 2)
-    h2(d, 'The boundary table', before=2, after=1)
-    para(d, 'Four rows: read, write, send and spend. Name a place in every cell.', 9, color='404040', after=2)
+    h2(d, 'The permissions table', before=2, after=1)
+    para(d, 'Four rows: read, write, send and spend. Name a place in every cell. The column A person approves is the human-in-the-loop approval step. Apply least privilege: give the smallest permissions that let it do the job.', 9, color='404040', after=2)
     grid(d, [
         ['Read', '~One mail label: Suppliers', '~The price list, if a task needs it', '~Other mail, Drive, payroll'],
         ['Write', '~A summary and a draft reply', '~A change to a saved file', '~Delete mail or files'],
@@ -163,9 +163,9 @@ def boundary():
     rows = [
         ['Limits\n(cost, count, hours)', '~Cost: at most UGX 20,000 a month for AI calls. Count: at most 20 supplier emails a day. Hours: working days only. These are invented NVF values.'],
         ['The log\n(what it records)', '~Every tool call: the time, the tool, what it did and who approved it.'],
-        ['Stop conditions\n(it stops and tells a person when)', '~A line in an email aimed at assistants. A figure that differs from the source.'],
+        ['Stop conditions\n(it stops and tells a person when)', '~A prompt injection: a line in an email aimed at assistants. A figure that differs from the source.'],
         ['Off switch\n(who, where, how fast)', '~Grace or Joseph remove its access to the Suppliers label. Takes under 2 minutes. If nobody could do this in minutes today, write that here.'],
-        ['Tested against the hidden instruction\n(which row stops it?)', '~The Send row: it may send nothing alone, and may never forward outside NVF. The log would show the attempted forward and that nobody approved it.'],
+        ['Tested against a prompt injection\n(which row stops it?)', '~The Send row: it may send nothing alone, and may never forward outside NVF. The log would show the attempted forward and that nobody approved it.'],
         ['Level of freedom I chose, and why', '~An agent that drafts only: it chooses its steps but cannot send or pay. A person approves every reply.'],
         ['Review date', '~Every 3 months, and after any incident'],
     ]
@@ -234,9 +234,9 @@ def checkin():
     d = new_doc(name)
     pts = [
         (30, 'Day 30 check-in', 'Short and practical: what is running, what did it save, what went wrong.',
-         ['~The data-sharing rule is signed and filed (24 Feb). The invoice file is fixed: 0 faults on the recheck. The Monday sales email is drafted by one approved assistant on a company account, from a written brief, and Peter checks every figure before it is sent.',
+         ['~The data-sharing rule is signed and filed (24 Feb). The invoice file is fixed: 0 faults on the recheck. The Monday sales email is drafted by one approved assistant on a company account, from a written prompt, and Peter checks every figure before it is sent.',
           '~From 90 to 35 minutes an email, with checking (plan was 25). About 3.7 hours saved this month, from timing four emails.',
-          '~Week 2: the wrong week was selected because the sheet had two tabs. The brief now names the tab. The check caught it before sending.',
+          '~Week 2: the wrong week was selected because the sheet had two tabs. The prompt now names the tab. The check caught it before sending.',
           '~Rule added: no customer names in prompts. Policy owner named. Roadmap: 2 of 6 actions done, both on time.',
           '~Write the data dictionary (Peter Okello, due 26 Mar).'],
          'Are the Session 13 controls in place? Is gap 1 closed?', '~Yes: policy owner named and the rule signed. Gap 1 (rights) moves from Red to Amber.'),
@@ -301,7 +301,7 @@ def sponsor():
     box(d, 'How to use this page', [
         'One page for the board or owner: plain words, real numbers, one decision. Fill it in now with the planned numbers from your Business Case Workbook and label them plan. At day 90 replace them with the measured numbers from your Results Tracker. Grey italic text is an example from the fictional company Nile Valley Foods Ltd (NVF), with invented figures. Type over it.'], size=9)
     h2(d, 'What we did', before=2)
-    grid(d, [['~We changed how the Monday sales email is made. One approved assistant drafts it from the weekly sales sheet using a written brief, and Peter checks every figure before it is sent. We used it every week for 12 weeks. We also fixed the invoice file, wrote a data-sharing rule and a data dictionary, and masked phone numbers in the export. A test of 20 questions with known answers scored 16 right, none invented.']],
+    grid(d, [['~We changed how the Monday sales email is made. One approved assistant drafts it from the weekly sales sheet using a written prompt, and Peter checks every figure before it is sent. We used it every week for 12 weeks. We also fixed the invoice file, wrote a data-sharing rule and a data dictionary, and masked phone numbers in the export. A test of 20 questions with known answers scored 16 right, none invented.']],
          [W], label_cols=(), min_h=0.9, size=9)
     spacer(d, 1)
     h2(d, 'Result against baseline', before=2)

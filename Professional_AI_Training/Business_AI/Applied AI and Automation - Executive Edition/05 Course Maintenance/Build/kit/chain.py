@@ -1,0 +1,52 @@
+"""The thread of the course: for every session, what it builds on, what it adds and what it feeds (v3, 6 November 2026).
+
+Used by kit/deck.py to draw the 'How today connects' slide of each session. One short phrase per link; the session number says where the learner met it.
+Keep phrases under about 45 characters. `on` lists up to three earlier ideas this session uses.
+"""
+SHORT = {0: 'Map', 1: 'Seeing', 2: 'Examples', 3: 'Measuring', 4: 'Words', 5: 'Next word', 6: 'Foundation', 7: 'Weights', 8: 'Prompts', 9: 'Knowledge',
+         10: 'Failures', 11: 'Agents', 12: 'Workflow', 13: 'Rules', 14: 'Data plan'}
+
+CHAIN = {
+    1: dict(on=[(0, 'parameters, the loop, gradient descent')],
+            adds='A neuron: weighted sum, bias, activation',
+            leads='Session 2: learning rules from labelled examples'),
+    2: dict(on=[(0, 'supervised learning and labels'), (1, 'features, and the house price sum')],
+            adds='Decision trees and k-nearest neighbours',
+            leads='Session 3: how to tell whether a learned rule is any good'),
+    3: dict(on=[(0, 'training, validation and test data'), (2, 'a decision tree that can overfit')],
+            adds='Confusion matrix, threshold, baseline, overfitting',
+            leads='Session 4: turning words into numbers we can measure'),
+    4: dict(on=[(1, 'a picture as a list of numbers'), (2, 'k-NN: distance between houses')],
+            adds='Vectors, four distance measures, embeddings',
+            leads='Session 5: how a language model uses those numbers'),
+    5: dict(on=[(0, 'the training loop'), (1, 'neurons and layers'), (4, 'embeddings: words as numbers')],
+            adds='Next-token prediction, softmax, self-attention',
+            leads='Session 6: what happens when this is done at huge scale'),
+    6: dict(on=[(5, 'next-token prediction and its training'), (0, 'the training loop')],
+            adds='Pretraining and post-training: that loop at scale',
+            leads='Session 7: parameters, file size, who runs a model'),
+    7: dict(on=[(1, 'weights and biases are parameters'), (5, 'GPT-2: 12 transformer blocks'), (6, 'families of foundation models')],
+            adds='Precision, quantisation, file formats, hosting',
+            leads='Session 8: how to prompt the model you have chosen'),
+    8: dict(on=[(5, 'next-token prediction continues the text'), (6, 'instruction-tuned assistants')],
+            adds='Prompts, few-shot, JSON output, evaluation sets',
+            leads='Session 9: giving the model facts it never saw'),
+    9: dict(on=[(4, 'embeddings and cosine similarity'), (8, 'a prompt with pasted text')],
+            adds='Prompting, RAG or fine-tuning on your data',
+            leads='Session 10: what still goes wrong, and how to check'),
+    10: dict(on=[(5, 'next-token prediction'), (9, 'a retriever can miss'), (3, 'baseline, test set')],
+             adds='Hallucination, prompt injection; a check routine',
+             leads='Session 11: a model that can act as well as answer'),
+    11: dict(on=[(8, 'a clear prompt'), (10, 'the check routine before trust'), (7, 'hosting and where data goes')],
+             adds='Agent loop, tool use, permissions, approval',
+             leads='Session 12: rule-based automation, AI step or agent'),
+    12: dict(on=[(11, 'agents, permissions and approval'), (3, 'a baseline to beat')],
+             adds='Workflow mapped; baseline, net benefit, payback',
+             leads='Session 13: the rules and questions around that choice'),
+    13: dict(on=[(10, 'the failure modes to plan for'), (12, 'the workflow you mapped')],
+             adds='Acceptable use policy, risk register, due diligence',
+             leads='Session 14: whether your data is ready, and a plan'),
+    14: dict(on=[(9, 'retrieval needs findable text'), (13, 'data classification and the policy')],
+             adds='Data inventory, quality checks, roadmap with KPIs',
+             leads='After the course: check-ins at day 30, 60 and 90'),
+}

@@ -77,7 +77,7 @@ def build():
 
     # ---------------------------------------------------------------- cover block and contents
     title(d, 'Course Handbook', 'Applied AI and Automation for Executives  |  KLAi Professional Learning, Kampala  |  Instructor: Jotham Martin Wambi')
-    body(d, 'This handbook is yours to keep. It gives you the words and the pictures behind the course, so that you arrive at Session 1 able to follow every idea, and so that you can come back to it whenever a term needs a reminder. Read it in any order. Parts 3 to 15 explain how AI works and how to judge it. Part 16 tells you what to bring. Part 17 is a glossary. Part 18 is the fourteen sessions on one page.')
+    body(d, 'This handbook is yours to keep. It gives you the words and the pictures behind the course, so that you arrive at Session 1 able to follow every idea, and so that you can come back to it whenever a term needs a reminder. Read it in any order. Parts 3 to 15 explain how AI works and how to judge it, using the standard terms of the field, each explained when it first appears. Part 16 tells you what to bring. Part 17 is a glossary with the session where each term returns. Part 18 is the fourteen sessions on one page.')
     h2(d, 'What is inside')
     grid(d, [
         ['1', 'Welcome and how the course works'],
@@ -115,7 +115,7 @@ def build():
     h2(d, 'No tests and no marks')
     body(d, 'There are no tests and no required homework. Anything you do between sessions is optional. You show progress by what you understand and what you keep.')
     h2(d, 'What you keep')
-    bullets(d, ['A one-page take-away sheet from every session, such as a distance cheat sheet, a decision tree for giving a model your knowledge and a boundary sheet for agents.',
+    bullets(d, ['A one-page take-away sheet from every session, such as a distance cheat sheet, a decision tree for giving a model your knowledge and a permissions table for agents.',
                 'From the practicals: your workflow map and a costed business case, a first AI use policy, a risk register and a vendor question list.',
                 'A readiness scorecard, a data roadmap and a 90-day plan.',
                 'The confidence to question a vendor and to supervise a pilot.'])
@@ -131,17 +131,18 @@ def build():
     body(d, 'You cannot judge a claim, a vendor or a result unless you have the words and a picture of how the thing works. A vendor who says "our model learns from your data" or "the agent acts on its own" is saying something specific. With the picture in your head you can ask what data, learns how, and acts on what. Without the picture you can only nod.')
     body(d, 'This handbook gives you that picture once. Every idea in it comes back later in the course, taught in more depth.')
     grid(d, [
-        ['Training, error and adjusting', 'Sessions 1 and 2: how a network and a tree learn from examples'],
-        ['Training, validation and test data', 'Session 3: honest scores and overfitting'],
-        ['Data types and data quality', 'Session 14: your information inventory and readiness scorecard'],
-        ['Privacy and bias', 'Session 13: risk register and policy; Session 14: sensitive data'],
-        ['Language models, tokens, context window', 'Session 5: tokens and next-word probability; Session 8: prompting'],
-        ['Hallucination and retrieval', 'Session 9: giving a model your documents; Session 10: checking answers'],
+        ['Weighted sum, weight, bias, parameters, loss, gradient descent', 'Sessions 0 and 1: how a model is a weighted sum with adjustable numbers, and how training adjusts them'],
+        ['Training, validation and test sets', 'Sessions 0 and 3: honest scores and overfitting'],
+        ['k-nearest neighbours and cross-validation', 'Session 2: learning from examples, and testing without fooling yourself'],
+        ['Data quality dimensions and the data inventory', 'Session 14: your data inventory and readiness scorecard'],
+        ['Bias, privacy and personal data', 'Session 13: risk register and policy; Session 14: sensitive data'],
+        ['Token, softmax, temperature, self-attention, transformer', 'Session 5: how a language model predicts the next token; Session 8: prompting'],
+        ['Hallucination, retrieval-augmented generation (RAG)', 'Session 9: giving a model your documents; Session 10: checking answers'],
         ['Prompt injection', 'Sessions 10 and 11: limits on what an agent may do'],
-        ['Workflow, trigger and human in the loop', 'Session 12: mapping a workflow'],
-        ['Agents and limits', 'Session 11: the Tool Boundary Sheet'],
+        ['Workflow, trigger and human-in-the-loop approval', 'Session 12: mapping a workflow'],
+        ['Agents, permissions, least privilege and guardrails', 'Session 11: the Tool Boundary Sheet, a permissions table for an agent'],
         ['Baseline, pilot and ROI', 'Session 12: the hours-saved estimate and the business case'],
-        ['Vendor and model terms', 'Sessions 6 and 7: model families and open weights; Session 13: questions for vendors'],
+        ['Foundation model, open weights, quantisation', 'Sessions 6 and 7: model families and open weights; Session 13: questions for vendors'],
     ], [6.4, W - 6.4], header=['Idea in this handbook', 'Where it returns'], size=9.5, label_cols=(0,))
 
     # ---------------------------------------------------------------- 3 nested
@@ -153,61 +154,73 @@ def build():
         {'head': 'Deep learning', 'text': 'Machine learning with many layers (neural networks)', 'icon': 'grid'},
         {'head': 'Generative AI', 'text': 'Deep learning that creates text, images, sound or code', 'icon': 'robot'}]}, 3.3, caption='The nested picture. Each layer is part of the one above it. Simplified: the boundaries are fuzzy in practice.')
     grid(d, [
-        ['Artificial intelligence (AI)', 'A set of written rules that approves a mobile money transfer only if the amount is under a limit and the account is verified. This is old-style AI: people wrote the rules.'],
-        ['Machine learning (ML)', 'A fraud detector that has studied thousands of past transactions marked "fraud" or "fine" and learned which patterns tend to go with fraud. Nobody wrote the rules by hand.'],
-        ['Deep learning', 'A system that reads a photo of a maize leaf and tells you which disease it has. It uses a neural network with many layers, which suits photos, sound and language.'],
-        ['Generative AI', 'An assistant that drafts a reply to a customer, summarises a board meeting or writes a first version of a policy. It generates something new each time.'],
+        ['Artificial intelligence (AI)', 'A set of written rules that sorts an email into spam if it contains the word "lottery". This is old-style AI: a person wrote every rule.'],
+        ['Machine learning (ML)', 'A spam filter that has studied thousands of emails already marked spam or not spam, and learned which words tend to go with spam. Nobody wrote the rules by hand.'],
+        ['Deep learning', 'A system that reads a photo of a handwritten digit and says which digit it is. It uses a neural network with many layers, which suits photos, sound and language.'],
+        ['Generative AI', 'An assistant that drafts a reply to a customer, summarises a meeting or writes a first version of a policy. It generates something new each time.'],
     ], [4.4, W - 4.4], header=['Term', 'A business example'], size=10, label_cols=(0,))
     spacer(d, 6)
     body(d, 'Most of what you will use in this course is generative AI, built on deep learning, which is a kind of machine learning, which is a part of AI. When a vendor says "AI", ask which of the four they mean.', after=4)
 
     # ---------------------------------------------------------------- 4 how machines learn
     section(d, 4, 'How machines learn')
-    body(d, 'A machine learns from experience, which for a machine means data. There are four main ways of learning. Each suits a different business problem.')
+    body(d, 'A machine learns from experience, which for a machine means data. There are four main types of learning. Each suits a different problem. The first example in each row is from everyday life.')
     grid(d, [
-        ['Supervised learning', 'The machine studies examples that come with the right answer (a label). It learns to give the right answer for new cases.',
-         'Classification: sort invoices into "fine" or "needs checking".\nRegression: predict next month\'s sales of cooking oil from the past.'],
-        ['Unsupervised learning', 'No right answers are given. The machine looks for structure and finds groups on its own.',
-         'Grouping 300 shops into types of buyer by how and when they order, so that each type gets a different offer.'],
+        ['Supervised learning', 'The machine studies examples that come with the correct answer, called the label. It learns to give the right answer for new cases.',
+         'Everyday: spam or not spam; a house price from its floor area and bedrooms.\nAt work: sort a customer message as order, payment or complaint.'],
+        ['Unsupervised learning', 'No labels are given. The machine finds groups and structure in the data on its own.',
+         'Everyday: grouping songs that sound alike.\nAt work: grouping 300 shops into types of buyer by how and when they order.'],
         ['Reinforcement learning', 'The machine tries actions and receives a reward or a penalty. Over many tries it learns which actions pay off.',
-         'Choosing delivery routes: each route that saves fuel and arrives on time earns a reward.'],
-        ['Self-supervised learning', 'The machine makes its own exercise out of raw data by hiding part of it and guessing it. For text, the hidden part is the next word.',
-         'The base of language models. Reading huge amounts of text and guessing the next word, again and again, is how they learn language.'],
-    ], [3.6, 6.6, W - 10.2], header=['Way of learning', 'In plain words', 'A business example'], size=9.5, label_cols=(0,))
+         'Everyday: a program learning to play a board game.\nAt work: choosing delivery routes that save fuel and arrive on time.'],
+        ['Self-supervised learning', 'The machine predicts a hidden part of its own data, so the data supplies the labels.',
+         'Everyday: phone autocomplete predicting the next word of a sentence.\nAt work: the first stage of every language model.'],
+    ], [3.6, 6.6, W - 10.2], header=['Type of learning', 'How it learns', 'Examples'], size=9.5, label_cols=(0,))
     spacer(d, 6)
-    h2(d, 'Two words you will meet often')
-    bullets(d, [('Classification', 'gives a category as the answer: spam or not spam, fraud or fine, urgent or routine.'),
-                ('Regression', 'gives a number as the answer: next week\'s demand, the likely delivery time, the price.'),
-                ('Clustering', 'is the unsupervised cousin: it makes the groups itself, without being told the categories.')])
-    body(d, 'Simplified: real systems often mix these ways. A language model, for example, learns by self-supervised learning first and is then improved with other methods (Part 7).', after=0)
+    h2(d, 'Words you will meet often')
+    bullets(d, [('Feature, label, example.', 'A feature is one input measurement, such as the floor area of a house. The label is the correct answer, such as its price. An example (or training example) is one row of data: the features and the label together.'),
+                ('Classification', 'predicts a category as the answer: spam or not spam, urgent or routine.'),
+                ('Regression', 'predicts a number as the answer: a house price, next week\'s demand, a delivery time.'),
+                ('Clustering', 'is the unsupervised cousin: it makes the groups itself, without being told the categories.'),
+                ('Decision tree.', 'A model made of yes-or-no questions on features. Each question is a split, each final answer is a leaf, and depth is the number of questions on the longest path. Example: should you carry an umbrella? Is the sky cloudy? If yes, is the chance of rain over 50 percent? Session 2 builds one from twelve past days.'),
+                ('k-nearest neighbours (k-NN).', 'To predict for a new case, find the k most similar training examples, measured with a distance metric, and take their answer. Example: a new house of 80 square metres, 3 km from town. Its 3 nearest sold neighbours cost UGX 250, 270 and 190 million, so the estimate is the average, (250 + 270 + 190) / 3 = 237 million. For a category, the neighbours take a majority vote.')])
+    body(d, 'Simplified: real systems often mix these types. A language model, for example, learns by self-supervised learning first and is then improved with other methods (Part 7).', after=0)
 
     # ---------------------------------------------------------------- 5 training
     section(d, 5, 'How a model is trained')
-    body(d, 'A model is a program whose behaviour comes from numbers it has learned. No person typed in the rules. Training is the process of finding good numbers. It follows one loop, repeated millions of times.')
-    fig(d, {'kind': 'cycle', 'items': ['Guess', 'Measure the error', 'Adjust', 'Repeat'], 'center': 'Training loop'}, 3.0,
-        caption='The training loop. The error has a technical name, the loss. A smaller loss means better guesses.')
-    h2(d, 'Parameters and weights')
-    body(d, 'The numbers a model learns are called parameters. Many of them are called weights: each weight says how strongly one piece of information should influence the answer, like the volume knob on one input. A small model may have thousands of weights. The large language models behind today\'s assistants have billions. Training sets all of them.')
-    h2(d, 'Gradient descent: walking downhill in fog')
-    body(d, 'Imagine you stand on a hill in thick fog and want to reach the lowest point. You cannot see the valley. You feel the slope under your feet and take a small step downhill. Then you feel the slope again and take another step. Eventually the ground stops falling and you are at a low point. Gradient descent does exactly this. The "hill" is the error. The "step" is a small change to the weights. Each step makes the error a little smaller.')
-    fig(d, {'kind': 'descent', 'labels': ['Start: a big error', 'Each step: adjust a little', 'Bottom']}, 2.9,
-        caption='Gradient descent. At the bottom the error is the smallest the model has found. Simplified: the real hill has millions of directions, and the lowest point found is usually a good one rather than the best possible.')
-    h2(d, 'Backpropagation: sharing out the blame')
-    body(d, 'A neural network has layers, and an answer passes forward through all of them. When the answer is wrong, which weight is to blame? Backpropagation works that out. It starts from the error at the output and moves backward through the layers, sharing out the blame: weights that contributed more to the mistake get changed more, weights that contributed less get changed less. Then the next guess is made with the adjusted weights.')
-    fig(d, {'kind': 'network'}, 3.0, caption='Forward the network guesses. Backward it shares out the blame and adjusts every connection.')
+    body(d, 'A model is a program whose behaviour comes from numbers it has learned. No person typed in the rules. Training is the process of finding good numbers. We start with a case anyone knows: predicting the price of a house from its floor area and its number of bedrooms.')
+    h2(d, 'A weighted sum: the smallest model')
+    body(d, 'Each input, called a feature, is multiplied by a number called a weight, which says how much that input counts. The results are added, and one more number, the bias, is added once. This is a weighted sum: output = w1 x1 + w2 x2 + b. Here x1 is the floor area in square metres, x2 is the number of bedrooms, w1 and w2 are their weights, and b is the bias, a number that shifts the result up or down whatever the inputs are.')
+    body(d, 'Let w1 = 2 (UGX 2 million per square metre), w2 = 10 (UGX 10 million per bedroom) and b = 30 (a base price of UGX 30 million). For a house of 100 square metres with 3 bedrooms the weighted sum is 2 x 100 + 10 x 3 + 30 = 260, so the predicted price is UGX 260 million. If the house really sold for UGX 300 million, the error is 300 - 260 = 40 million.')
+    fig(d, {'kind': 't00_weighted'}, 3.0, caption='A house price as a weighted sum. The weights and the bias together are the parameters of the model.')
+    h2(d, 'Parameters')
+    body(d, 'The weights and the biases of a model are together called its parameters: the numbers that training adjusts. The model above has three. The large language models behind today\'s assistants have billions.')
+    h2(d, 'Neuron and activation function')
+    body(d, 'A neuron is the same weighted sum with one more step. It computes the weighted sum, adds the bias, and applies an activation function: a simple function that turns the result into the neuron\'s output and adds non-linearity. Everyday example: should you carry an umbrella? The inputs are the chance of rain in percent and the minutes you will be outside. Take the weights 0.1 and 0.05 and the bias -6. With a 70 percent chance and 30 minutes outside: 0.1 x 70 + 0.05 x 30 - 6 = 7.0 + 1.5 - 6 = 2.5. The activation function here is a step: above 0 the output is 1 (carry it), otherwise 0. So you carry it. With a 20 percent chance: 2.0 + 1.5 - 6 = -2.5, below 0, so the output is 0 and the umbrella stays at home.')
+    body(d, 'Real networks use smoother activation functions. ReLU (rectified linear unit) outputs 0 for negative values and the value itself otherwise. The sigmoid function squeezes any value into the range 0 to 1. Without an activation function, stacked layers would collapse into a single weighted sum, so it is the activation function that lets a network learn curved patterns. A layer is a set of neurons that take the same inputs. Layers between the input and the output are hidden layers.')
+    h2(d, 'The training loop and the loss')
+    body(d, 'Training follows one loop, repeated many times. The parameters start as random numbers. The model predicts, and the loss is measured. The loss (also called the loss function, or the error) is one number that says how wrong the predictions are, and training tries to make it small. For house prices a natural loss is the average size of the price errors. Then the parameters are updated a little, and the loop repeats. One full pass over the training data is an epoch.')
+    fig(d, {'kind': 'cycle', 'items': ['Predict', 'Measure the loss', 'Update parameters', 'Repeat (epochs)'], 'center': 'Training loop'}, 3.0,
+        caption='The training loop. A smaller loss means better predictions.')
+    h2(d, 'Gradient descent')
+    body(d, 'The gradient says, for each weight, in which direction and how steeply the loss changes when that weight changes. Gradient descent changes every weight by a small step against the gradient, so the loss falls. The learning rate is the size of each step: too big and the steps overshoot, too small and training is slow. As an analogy, think of walking downhill in thick fog: you cannot see the valley, but you feel the slope under your feet and step downhill. The analogy breaks in one place. The real "hill" has a direction for every weight, millions of them, and the walk can settle in a local minimum that is above the lowest point.')
+    fig(d, {'kind': 'descent', 'labels': ['Start: a large loss', 'Each step: against the gradient', 'Bottom: a small loss']}, 2.9,
+        caption='Gradient descent. At the bottom the loss is the smallest the model has found. Simplified: the lowest point found is usually a good one rather than the best possible.')
+    h2(d, 'Backpropagation')
+    body(d, 'A neural network has layers, and a prediction passes forward through all of them: the forward pass. The loss is measured at the output. Backpropagation then works out the gradient for every weight, layer by layer from the output backwards, using the chain rule of calculus. Gradient descent uses these gradients to update every weight. Together they train almost every modern neural network.')
+    fig(d, {'kind': 'network'}, 3.0, caption='Forward the network predicts and the loss is measured. Backward, backpropagation works out each weight\'s gradient, and every connection is adjusted.')
     h2(d, 'Why training needs data and computing power')
-    body(d, 'The model improves only by seeing many examples, so it needs a lot of data. Each guess, error measure and adjustment is a calculation, and a large model needs a huge number of them. That takes powerful specialised computers running for days or weeks. This is why only a few organisations train the largest models, and why most companies use a model someone else trained.')
-    h2(d, 'Training, validation and test data')
-    body(d, 'You do not judge a model on the examples it studied. You split the data into three parts.')
+    body(d, 'The model improves only by seeing many examples, so it needs a lot of data. Each prediction, loss measurement and update is a calculation, and a large model needs a huge number of them. That takes powerful specialised computers running for days or weeks. This is why only a few organisations train the largest models, and why most companies use a model someone else trained.')
+    h2(d, 'Training, validation and test sets')
+    body(d, 'You do not judge a model on the examples it studied. You split the data into three sets.')
     grid(d, [
-        ['Training data', 'The examples the model learns from. Most of the data goes here.'],
-        ['Validation data', 'Examples set aside while building. The builder uses them to compare versions and to tune settings, and they are not used for learning.'],
-        ['Test data', 'A locked set, used once at the end to see how the final model does on cases it has never met. Nobody tunes the model on it, because then it would no longer be a fair check.'],
-    ], [3.6, W - 3.6], header=['Part', 'What it is for'], size=10, label_cols=(0,))
+        ['Training set', 'The examples the model learns its parameters from. Most of the data goes here.'],
+        ['Validation set', 'Examples set aside while building. You use them to compare models and tune settings such as the learning rate. They are not used for learning.'],
+        ['Test set', 'A locked set, used once at the end for an honest score on cases the model has never met. Nobody tunes the model on it, because then it would no longer be a fair check.'],
+    ], [3.6, W - 3.6], header=['Set', 'What it is for'], size=10, label_cols=(0,))
     spacer(d, 6)
-    h2(d, 'Overfitting: a model that memorises')
-    body(d, 'A student who memorises last year\'s answers does well on last year\'s paper and badly on a new one. A model can do the same. It can learn the training examples so closely, including their accidents and noise, that it has not learned the general pattern. This is overfitting.')
-    body(d, 'This is why a model that is 99 percent right on its training data can still fail on new data. The 99 percent only says it remembers what it saw. The test data answers the real question: how does it do on cases it has not seen? A fair result on the locked test data means more than any score on the training data. Keep this in mind when anyone shows you a very high accuracy figure: ask which data it was measured on.', after=0)
+    h2(d, 'Overfitting')
+    body(d, 'Overfitting is when a model fits its training data, including its noise, and does worse on new data. Plainly put, the model has memorised its examples. Everyday example: a spam filter learns from 2,000 example emails, its training set. If it memorises those exact emails, word for word, it can score 100 percent on them. Then new spam arrives with different words, and the filter fails on it. Suppose it scores 80 percent on a test set of new emails (invented numbers). The big gap between 100 and 80 is the warning sign.')
+    body(d, 'This is why a model that is 99 percent right on its training data can still fail on new data. The 99 percent only says it remembers what it saw. The test set answers the real question: how does it do on cases it has not seen? More varied data, a simpler model, or stopping training earlier all help. Keep this in mind when anyone shows you a very high accuracy figure: ask which data it was measured on.', after=0)
 
     # ---------------------------------------------------------------- 6 data
     section(d, 6, 'Data: the fuel and the risk', new_page=False)
@@ -221,14 +234,14 @@ def build():
     ], [3.4, 6.2, W - 9.6], header=['Kind', 'What it looks like', 'In a company'], size=9.5, label_cols=(0,))
     spacer(d, 6)
     body(d, 'Data can also be labelled or unlabelled. Labelled data carries the right answer: an email marked "complaint", an invoice marked "wrong total". Unlabelled data has no answer attached. Labelled data is needed for supervised learning and is usually costly, because a person has to do the marking.')
-    h2(d, 'Data quality: five questions')
+    h2(d, 'Data quality dimensions')
     fig(d, {'kind': 'icons', 'items': [
-        {'icon': 'check', 'head': 'Complete', 'text': 'Nothing important is missing'},
-        {'icon': 'magnifier', 'head': 'Correct', 'text': 'Values are accurate'},
-        {'icon': 'calendar', 'head': 'Current', 'text': 'Up to date'},
-        {'icon': 'gear', 'head': 'Consistent', 'text': 'Same format everywhere'},
-        {'icon': 'people', 'head': 'Representative', 'text': 'Covers the cases you care about'}]}, 2.1)
-    body(d, 'A tool fed with poor data gives poor answers, quickly and with confidence. A simple example: sales data where half the shops write "Mbale" and half write "MBL" will be counted as two places.')
+        {'icon': 'check', 'head': 'Completeness', 'text': 'No large gaps'},
+        {'icon': 'magnifier', 'head': 'Accuracy', 'text': 'Values match the source'},
+        {'icon': 'calendar', 'head': 'Timeliness', 'text': 'Not out of date'},
+        {'icon': 'gear', 'head': 'Consistency', 'text': 'One name and one format for one thing'},
+        {'icon': 'people', 'head': 'Representativeness', 'text': 'Covers the cases you will meet'}]}, 2.1)
+    body(d, 'A tool fed with poor data gives poor answers, quickly and with confidence. A simple example of poor consistency: sales data where half the shops write "Mbale" and half write "MBL" will be counted as two places.')
     h2(d, 'Bias and where it enters')
     body(d, 'A model reflects the data it learned from. Bias means a systematic tilt that treats some cases or groups unfairly. It can enter at four points:')
     bullets(d, [('In the data collected.', 'If past hiring favoured one kind of candidate, a model trained on it will too.'),
@@ -240,24 +253,31 @@ def build():
 
     # ---------------------------------------------------------------- 7 language models
     section(d, 7, 'Language models and generative AI')
-    body(d, 'The assistants you use, such as ChatGPT, Claude, Gemini and Copilot, are built on large language models. A language model is a model trained on a very large amount of text to predict what comes next.')
-    h2(d, 'Tokens and the next-word idea')
-    body(d, 'A model does not read whole words. It splits text into small pieces called tokens. A token may be a short word, part of a long word or a punctuation mark. Given the tokens so far, the model works out which token is most likely to come next, adds it, and repeats. An answer of a hundred words is built one token at a time. Simplified: it chooses among likely tokens with a little controlled randomness, which is why the same question can give different answers.')
+    body(d, 'The assistants you use, such as ChatGPT, Claude, Gemini and Copilot, are built on large language models (LLMs). A language model is a model trained on a very large amount of text to predict what comes next.')
+    h2(d, 'Words as numbers: vectors and embeddings')
+    body(d, 'A computer handles only numbers, so text must become numbers. A vector is a list of numbers, and each position in the list is a dimension. Everyday example: three friends rate two films out of 10. Ana rates Film 1 a 3 and Film 2 a 4, so Ana is the vector (3, 4). Ben is (6, 8) and Chloe is (4, 3). Who has a taste closest to Ana? It depends on the measure. Euclidean distance is the straight-line gap: Ana to Ben is the square root of (3 - 6)^2 + (4 - 8)^2 = the square root of 25 = 5, and Ana to Chloe is 1.4. Manhattan distance adds the gaps along each axis: |3 - 6| + |4 - 8| = 7 for Ben and 2 for Chloe. The dot product multiplies matching ratings and adds them: 3 x 6 + 4 x 8 = 50 for Ben and 3 x 4 + 4 x 3 = 24 for Chloe. Cosine similarity compares only the angle between the two vectors: Ben points exactly the same way as Ana (1.00) and Chloe is slightly off (0.96). So the two distances pick Chloe, and the dot product and cosine similarity pick Ben. Know which measure a tool uses.')
+    body(d, 'An embedding is a vector, produced by a trained model, that represents the meaning of a text, so that texts with similar meaning sit close together. A real embedding has hundreds of dimensions, and nobody reads the numbers: tools compare them, usually with cosine similarity. Older methods are simpler. A bag of words counts how often each word appears in a message and loses the word order. TF-IDF (term frequency times inverse document frequency) is a count in which rare terms weigh more than common ones.')
+    h2(d, 'Tokens and next-token prediction')
+    body(d, 'Your phone keyboard suggests the next word as you type. A language model does the same thing at far greater scale. It does not read whole words. A tokenizer splits text into tokens: short words, parts of long words or punctuation marks, taken from a fixed list called the vocabulary (50,257 tokens in GPT-2, an open model). The model gives a score, called a logit, to every token in its vocabulary. Softmax turns the logits into probabilities that add up to 100 percent. For example, logits of 2, 1 and 0 become about 67, 24 and 9 percent. The formula in words: the probability of a token is e raised to its logit, divided by the total of those values for all tokens, where e is about 2.72. The model picks one token, adds it to the text, and repeats with the longer text. This is next-token prediction, and an answer of a hundred words is built one token at a time.')
+    h2(d, 'Temperature and sampling')
+    body(d, 'Choosing a token from the probabilities is called sampling. Temperature is a setting that divides the logits before softmax: a low temperature sharpens the probabilities so the top token wins more often, and a high temperature flattens them so answers vary more. Top-k sampling keeps only the k most likely tokens. Top-p sampling keeps the smallest group of tokens whose probabilities add up to p. Greedy decoding always takes the single top token. This is why the same question can give different answers.')
+    h2(d, 'Self-attention and the transformer')
+    body(d, 'To predict well, each token must take account of the other tokens. Self-attention does this: each token weighs the earlier tokens by how relevant they are. Simplified: each token makes a query (what it is looking for), each earlier token offers a key (what it offers, to be matched) and a value (the information it hands over). How well a query matches a key sets how much of that token\'s value is taken. An attention head is one set of queries, keys and values. A transformer block is self-attention followed by a feed-forward network, and a transformer, the architecture of modern language models, is a stack of such blocks (GPT-2 small has 12). Before the first block, each token is turned into a row of numbers taken from the embedding matrix, a lookup table with one row per token, and positional encoding adds numbers that tell the model where the token sits.')
     h2(d, 'How a language model gets built')
     fig(d, {'kind': 'flow', 'steps': [
-        {'head': 'Read', 'text': 'Learn from huge amounts of text by guessing the next token', 'icon': 'book'},
-        {'head': 'Tune', 'text': 'Practise on examples of following instructions', 'icon': 'notebook'},
-        {'head': 'Improve', 'text': 'People rate answers and the model is adjusted toward the good ones', 'icon': 'people'}]}, 1.9, caption='Three stages in plain words. The third is often called human feedback. Simplified: companies combine several methods.')
+        {'head': 'Pretraining', 'text': 'Learn to predict the next token from huge amounts of text', 'icon': 'book'},
+        {'head': 'Instruction tuning', 'text': 'Supervised fine-tuning on examples of good answers', 'icon': 'notebook'},
+        {'head': 'RLHF', 'text': 'Reinforcement learning from human feedback: people rate answers', 'icon': 'people'}]}, 1.9, caption='Pretraining gives a base model, which continues text. The next two stages are post-training and give an instruction-tuned model. Simplified: companies combine several methods.')
     h2(d, 'Context window')
-    body(d, 'The context window is how much text the model can keep in view at once: your question, any files you give it, and its own answer so far. It is like the desk the model works on. If a document is larger than the desk, parts fall off, and the model may miss or mix them up. Windows are now large, but a bigger desk does not guarantee that the model attends to every part equally well.')
+    body(d, 'The context window is how many tokens the model can keep in view at once: your prompt, any files you give it, and its own answer so far. As an analogy, think of the desk the model works on. If a document is larger than the desk, parts fall off, and the model may miss or mix them up. Windows are now large, but a bigger desk does not guarantee that the model attends to every part equally well.')
     h2(d, 'Why a model can sound sure and be wrong')
-    body(d, 'The model is built to produce text that reads well and fits the pattern. It is not built to check facts. When it lacks the information, it can still write a smooth, confident sentence that is false. This is called a hallucination. It can include invented figures, names, quotes and sources. The tone does not tell you whether it is right. This is why the course teaches you to ask for sources, to check, and to test a tool on your own work (Session 10).')
+    body(d, 'The model is built to produce likely text that reads well. It is not built to check facts. When it lacks the information, it can still write a smooth, confident sentence that is false. This is called a hallucination. It can include invented figures, names, quotes and sources. The tone does not tell you whether it is right. This is why the course teaches you to ask for sources, to check, and to test a tool on your own work (Session 10).')
     h2(d, 'What changes with search, files and memory')
     body(d, 'On its own, a model answers from what it learned in training, which stops at a date and knows nothing about your company. Assistants can add three things.')
     bullets(d, [('Search.', 'The assistant looks up the web and writes from what it found. You can open the sources.'),
                 ('Files.', 'You give it a document and it answers from that document.'),
                 ('Memory.', 'Some assistants keep notes about you between chats. Check what is kept and who can see it.')])
-    body(d, 'Giving the model the right passages from your own documents before it answers is called retrieval. Think of an open-book answer: the assistant finds the relevant pages first and then writes from them. This cuts down mistakes, but does not remove them: the retrieval can fetch the wrong page, and the model can still misread the right one. Always check the answer against the source.', after=0)
+    body(d, 'Giving the model the right passages from your own documents before it answers is called retrieval-augmented generation (RAG). A retriever finds the relevant passages first and the model writes from them, like an open-book answer. This cuts down mistakes but does not remove them: the retriever can fetch the wrong passage, and the model can still misread the right one. Always check the answer against the source.', after=0)
 
     # ---------------------------------------------------------------- 8 industry
     section(d, 8, 'Where AI is used in industry')
@@ -319,41 +339,51 @@ def build():
     section(d, 9, 'How we know a model is good')
     body(d, 'Every vendor quotes a number: "95 percent accurate", "an AUC of 0.9". This part gives you the words to read those numbers and the questions to ask about them. All figures in this part are illustrative.')
     h2(d, 'Accuracy, and why it can mislead')
-    body(d, 'Accuracy is the share of all cases the model got right. It sounds like the whole story, and for rare events it is not. If one transaction in a hundred is fraud, a model that calls every transaction "fine" is right 99 times in 100 and catches no fraud at all. A high accuracy can hide a useless model, so we look at the kinds of right and wrong.')
+    body(d, 'Accuracy is the share of all cases the model got right. It sounds like the whole story, and for rare events it is not. Everyday example: a spam filter checks 1,000 emails, and 50 of them are really spam. A majority-class baseline, a simple reference model that always predicts the most common class (here, "not spam"), is right 950 times in 1,000 and catches no spam at all. A high accuracy can hide a useless model, so we look at the kinds of right and wrong.')
     h2(d, 'The confusion matrix')
-    body(d, 'For a model that sorts cases into two groups, such as fraud and fine, every case lands in one of four boxes. The table of the four boxes is the confusion matrix.')
+    body(d, 'For a model that sorts cases into two groups, such as spam and not spam, every case lands in one of four outcomes. The table that counts them is the confusion matrix.')
     grid(d, [
-        ['True positive (TP)', 'The model says fraud, and it is fraud. A catch.'],
-        ['False positive (FP)', 'The model says fraud, and it is fine. A false alarm.'],
-        ['False negative (FN)', 'The model says fine, and it is fraud. A miss.'],
-        ['True negative (TN)', 'The model says fine, and it is fine. A correct pass.'],
-    ], [4.4, W - 4.4], header=['Box', 'What it means'], size=10, label_cols=(0,))
+        ['True positive (TP)', 'The filter says spam, and it is spam. A catch.'],
+        ['False positive (FP)', 'The filter says spam, and it is a good email. A false alarm.'],
+        ['False negative (FN)', 'The filter says not spam, and it is spam. A miss.'],
+        ['True negative (TN)', 'The filter says not spam, and it is a good email. A correct pass.'],
+    ], [4.4, W - 4.4], header=['Outcome', 'What it means'], size=10, label_cols=(0,))
     spacer(d, 6)
     h2(d, 'One worked example (illustrative)')
-    body(d, 'A fraud model checks 1,000 transactions. In truth, 10 are fraud. The model raises 20 alerts. Of the 20 alerts, 8 are real fraud and 12 are false alarms. It misses the other 2 frauds. The remaining 978 are correctly passed. These numbers are made up to show the arithmetic.')
-    fig(d, {'kind': 'confusion', 'tp': 8, 'fp': 12, 'fn': 2, 'tn': 978}, 3.0, caption='Illustrative confusion matrix for a fraud model on 1,000 transactions.')
+    body(d, 'The filter flags 40 of the 1,000 emails as spam. Of those 40, 30 are really spam (TP) and 10 are good emails (FP). It misses the other 20 spam emails (FN). The remaining 940 good emails are correctly passed (TN). These numbers are made up to show the arithmetic.')
+    fig(d, {'kind': 't00_confusion', 'tp': 30, 'fp': 10, 'fn': 20, 'tn': 940}, 3.0, caption='Illustrative confusion matrix for a spam filter on 1,000 emails.')
     grid(d, [
-        ['Accuracy', 'Right answers out of all cases', '(8 + 978) / 1,000 = 986 / 1,000', '98.6 percent'],
-        ['Precision', 'Of the alerts raised, how many were real', '8 / (8 + 12) = 8 / 20', '40 percent'],
-        ['Recall', 'Of the real frauds, how many were caught', '8 / (8 + 2) = 8 / 10', '80 percent'],
-        ['F1', 'One number that balances precision and recall', '2 x 0.40 x 0.80 / (0.40 + 0.80) = 0.64 / 1.20', 'about 53 percent'],
+        ['Accuracy', 'Right answers out of all cases', '(30 + 940) / 1,000 = 970 / 1,000', '97 percent'],
+        ['Precision', 'When it says spam, how often is it right?', '30 / (30 + 10) = 30 / 40', '75 percent'],
+        ['Recall', 'Of the real spam, how much did it catch?', '30 / (30 + 20) = 30 / 50', '60 percent'],
+        ['F1 score', 'One number that balances precision and recall', '2 x 0.75 x 0.60 / (0.75 + 0.60) = 0.90 / 1.35', 'about 67 percent'],
     ], [2.6, 5.4, 6.0, W - 14.0], header=['Measure', 'The question it answers', 'Arithmetic', 'Result'], size=9.5, label_cols=(0,))
     spacer(d, 6)
-    body(d, 'The accuracy of 98.6 percent looks excellent. Yet only 40 percent of the alerts are real, so the fraud team spends most of its day on false alarms, and one fraud in five still gets through. Precision protects your staff time. Recall protects your money. Which one matters more depends on what a false alarm and a miss cost you.')
-    h2(d, 'The threshold')
-    body(d, 'Most models give a score, for example "0.73 likely to be fraud". The threshold is the score above which you raise an alert. Set it low and you catch more fraud (recall rises) but raise more false alarms (precision falls). Set it high and the reverse happens. The threshold is a business decision about cost, and the data scientist should not choose it alone.')
+    body(d, 'The accuracy of 97 percent looks excellent, yet the baseline that never flags anything scores 95 percent. The filter catches only 60 percent of the spam, and 10 good emails are lost. Precision protects the good emails. Recall protects you from spam. Which matters more depends on what a false alarm and a miss cost you. The F1 score is the harmonic mean of precision and recall, so it stays near the weaker of the two: precision 90 percent with recall 10 percent has an average of 50 but an F1 of only 18.')
+    h2(d, 'The threshold, shown by a smoke alarm')
+    body(d, 'Most models give a score. The threshold is the score at or above which the model says positive, and you choose it. Everyday example: a smoke alarm rings when the smoke level passes its threshold. In 1,000 kitchen events, 20 are real fires. Our alarm rings 50 times: 16 are fires (TP) and 34 are false alarms (FP). It stays silent for 4 real fires (FN) and for 946 harmless events (TN). Precision is 16 / 50 = 32 percent, recall is 16 / 20 = 80 percent, accuracy is 962 / 1,000 = 96.2 percent, and F1 is 2 x 0.32 x 0.80 / 1.12 = 46 percent. An alarm that never rings is 98 percent accurate and catches no fire, so it is the baseline to beat on recall.')
+    fig(d, {'kind': 't03_alarm', 'hl': 'tp'}, 3.0, caption='The smoke alarm confusion matrix (invented numbers): 1,000 kitchen events, 20 real fires.')
+    grid(d, [
+        ['High (rings late)', '12 of 20', '8'],
+        ['Ours', '16 of 20', '34'],
+        ['Low (rings early)', '19 of 20', '181'],
+    ], [4.4, 5.6, W - 10.0], header=['Threshold', 'Fires caught', 'False alarms'], size=10, label_cols=(0,))
+    spacer(d, 6)
+    body(d, 'Set the threshold low and you catch more fires (recall rises) but raise more false alarms (precision falls). Set it high and the reverse happens. The threshold is a business decision about cost, and the data scientist should not choose it alone.')
     h2(d, 'The ROC curve and AUC')
-    body(d, 'The ROC curve shows what happens as you slide the threshold from high to low. It plots the share of real frauds caught against the share of fine cases wrongly flagged. A curve that bows toward the top left corner is a better model. The area under the curve is called AUC. An AUC of 0.5 is a coin flip, and 1.0 is perfect. In the illustration below the AUC is about 0.86. When fraud is very rare, the precision-recall curve is the more honest picture, because it shows how many of the alerts are real.')
-    fig(d, {'kind': 'roc'}, 3.2, caption='Illustrative ROC curve. The diagonal is a coin flip. The further the curve bows toward the top left, the better the model.')
+    body(d, 'The ROC curve (receiver operating characteristic) shows what happens as you slide the threshold. It plots the share of real positives caught (the true positive rate, which is recall) against the share of negatives wrongly flagged (the false positive rate). A curve that bows toward the top left corner is a better model. The area under the curve is called AUC. An AUC of 0.5 is a coin flip and 1.0 is perfect. In the illustration below the AUC is about 0.86. One way to read it: an AUC of 0.80 means a randomly chosen positive case gets a higher score than a randomly chosen negative case 80 times in 100. When positives are very rare, also check precision.')
+    fig(d, {'kind': 't00_roc'}, 3.2, caption='Illustrative ROC curve for the spam filter. The dashed diagonal is a coin flip. The further the curve bows toward the top left, the better the model.')
+    h2(d, 'Cross-validation: an honest score from limited data')
+    body(d, 'When you have little data, a single split into training and test sets can flatter or punish a model by luck. Cross-validation (k-fold) fixes this. Split the data into k parts, called folds. Train on k - 1 folds and test on the one held-out fold, then rotate so that each fold is the test fold once, and average the k scores. With 40 messages and k = 5, each fold holds 8 messages: train on 32, test on 8, five times. Session 2 shows it.')
     h2(d, 'Measures for models that give a number')
     grid(d, [
-        ['MAE (mean absolute error)', 'On average, how far off the forecast is, in the same unit as the thing forecast. If the MAE is 20 bags of rice, the forecast is typically 20 bags away from the truth.'],
+        ['MAE (mean absolute error)', 'On average, how far off the prediction is, in the same unit as the thing predicted. If the MAE of a house price model is UGX 20 million, a predicted price is typically 20 million away from the real one.'],
         ['RMSE (root mean squared error)', 'Like the MAE, but a big miss counts for much more than a small one. Use it when large errors hurt most.'],
         ['R squared', 'How much of the ups and downs in the real numbers the model explains. 1 means all of it, 0 means none.'],
     ], [4.8, W - 4.8], header=['Measure', 'In plain words'], size=9.5, label_cols=(0,))
     spacer(d, 6)
     h2(d, 'Measures for ranking and recommendation')
-    body(d, 'When a system suggests a list, such as products to offer a shop, a simple measure is the top-k hit rate: in how many cases was what the customer really wanted among the first k suggestions? With k = 5, a hit rate of 60 percent would mean that in 6 cases out of 10 the right item was in the top five.')
+    body(d, 'When a system suggests a list, such as films to watch next, a simple measure is the top-k hit rate: in how many cases was what the person really wanted among the first k suggestions? With k = 5, a hit rate of 60 percent would mean that in 6 cases out of 10 the right film was in the top five.')
     h2(d, 'Measures for language models')
     body(d, 'A language model writes free text, so there is no single right answer to count. Five checks are in common use.')
     grid(d, [
@@ -369,19 +399,20 @@ def build():
         '1. Measured on which data? Was it data the model had never seen, and does it look like ours?',
         '2. At which threshold? A figure at one threshold says little about another.',
         '3. What does a miss cost us, and what does a false alarm cost us?',
-        '4. Compared with what? How does the task get done today, or by a very simple method?'])
+        '4. Compared with which baseline? How does the task get done today, or by a very simple method?'])
 
     # ---------------------------------------------------------------- 10 benchmarks
     section(d, 10, 'Benchmarks', new_page=False)
     body(d, 'A benchmark is a set of standard test questions given to many models, so that their scores can be compared. You will see them in vendor announcements.')
     bullets(d, [('MMLU', 'tests broad knowledge across many school and professional subjects, by multiple-choice questions.'),
+                ('GSM8K', 'tests grade-school maths word problems.'),
                 ('HumanEval', 'tests coding: the model writes small programs, and the programs are run to see whether they work.'),
                 ('Chatbot Arena', 'a public site where people compare two anonymous answers and vote for the better one. The votes build a ranking of human preference.')])
     h2(d, 'Limits of benchmarks')
     bullets(d, [('Contamination.', 'If the test questions were in the text the model learned from, the model may have seen them. The score then overstates what it can do.'),
                 ('Who ran it.', 'A vendor-run score deserves less weight than an independent one. Ask who ran the test and whether others can repeat it.'),
                 ('Your task is different.', 'A model that is strong on school-style questions may be weak on your contracts, your language or your forms.')])
-    body(d, 'Use benchmarks to shortlist two or three candidates. Then test those candidates on your own documents, with your own questions, before you decide.', after=0)
+    body(d, 'The maker also publishes a model card: a page that states the model\'s licence, size, intended uses and limits. Use benchmarks and the model card to shortlist two or three candidates. Then test those candidates on your own documents, with your own questions, before you decide.', after=0)
 
     # ---------------------------------------------------------------- 11 training vs inference
     section(d, 11, 'Training and inference', new_page=False)
@@ -390,10 +421,11 @@ def build():
             'right': {'head': 'Inference', 'big': 'Use', 'unit': 'every request', 'icon': 'speech'}, 'middle': 'produces a model file'}, 2.8,
         caption='Training makes the model file once. Inference uses the file again and again.')
     grid(d, [
-        ['What happens', 'The model learns its settings (weights) from data.', 'The finished model answers a new request.'],
+        ['What happens', 'The model learns its parameters (weights and biases) from data.', 'The finished model answers a new request.'],
         ['How often', 'Rarely: once, and again when the model is updated.', 'Every time someone asks.'],
         ['What it needs', 'Large data and a great deal of computing power.', 'Fast, reliable serving, so that answers come back quickly.'],
         ['What it produces', 'A model file.', 'An answer.'],
+        ['Speed', 'Takes days or weeks, but nobody waits for the answer.', 'Latency is the wait for an answer. Throughput is how many requests are served per second.'],
         ['Where the cost sits', 'A large one-off cost, paid by the model maker.', 'Billed per use, which is the cost you pay and which grows with your volume.'],
     ], [3.4, 6.4, W - 9.8], header=['', 'Training', 'Inference'], size=9.5, label_cols=(0,))
     spacer(d, 4)
@@ -430,8 +462,8 @@ def build():
     # ---------------------------------------------------------------- 13 foundation models
     section(d, 13, 'Foundation models, open models, fine-tuning and cost', new_page=False)
     body(d, 'A foundation model is trained once on broad data and then adapted for many tasks. Few companies train one. Most use one. The questions for you are which kind to use, how far to adapt it, and what it will cost to run.')
-    h2(d, 'Proprietary and open-weight models')
-    body(d, 'A proprietary model is reached by subscription or through an API, and the maker keeps the model file. An open-weight model can be downloaded and run on your own machines. Be careful with the words "open source": the licence of an open-weight model may limit how you use it, so read the licence.')
+    h2(d, 'Proprietary models and open weights')
+    body(d, 'A proprietary model is reached by subscription or through an API, and the maker keeps the model file. A model with open weights can be downloaded and run on your own machines. Be careful with the words "open source": under the Open Source Initiative (OSI) definition open source needs more than the weights, and the licence of an open-weights model may still limit how you use it, so read the licence.')
     grid(d, [
         ['Set-up effort', 'Low: sign up and start.', 'Higher: you set up the servers and the software.'],
         ['Control of data', 'Your data goes to the provider. Check the terms and where it is processed.', 'Data can stay on your own machines.'],
@@ -439,21 +471,23 @@ def build():
         ['Skills needed', 'Little technical skill.', 'Engineers who can run and secure the model.'],
         ['Running cost (kind)', 'Pay per use or per user.', 'Computers and people, whether or not the model is busy.'],
         ['Who maintains it', 'The provider.', 'You, or a partner you hire.'],
-    ], [3.6, 6.2, W - 9.8], header=['', 'Proprietary', 'Open-weight'], size=9.5, label_cols=(0,))
+    ], [3.6, 6.2, W - 9.8], header=['', 'Proprietary', 'Open weights'], size=9.5, label_cols=(0,))
     spacer(d, 6)
-    h2(d, 'Four ways to get a model to do your task')
-    body(d, 'Fine-tuning teaches style and skills. Retrieval supplies facts. Most business needs start with prompting and retrieval.')
+    h2(d, 'Size, precision and quantisation')
+    body(d, 'A model file is a list of parameters, so its size is a counting problem: the number of parameters times the bits stored for each. Precision is the number of bits per parameter: FP32 is 32-bit floating point and FP16 is 16-bit. Quantisation lowers the bits per parameter, for example to 8-bit integers (INT8) or 4-bit, so that the file is smaller and runs on cheaper hardware, usually with a small loss of quality. A file format such as safetensors, GGUF or ONNX is only the container that packs the parameters, and it says nothing about the precision. Session 7 works the memory sum.')
+    h2(d, 'Four ways to adapt a model to your task')
+    body(d, 'Fine-tuning, for example with LoRA (low-rank adaptation, which trains a small adapter and leaves the original parameters unchanged), teaches style and skills. Retrieval supplies facts. Most business needs start with prompting and retrieval.')
     fig(d, {'kind': 'ladder', 'items': [
         {'head': 'Prompting', 'text': 'write clear instructions and examples', 'hl': True},
-        {'head': 'Retrieval', 'text': 'give the model the right passages from your documents'},
-        {'head': 'Fine-tune', 'text': 'teach an existing model your style or skill with examples'},
-        {'head': 'Train from scratch', 'text': 'build a new model on your own huge data'}]}, 2.6,
+        {'head': 'Retrieval (RAG)', 'text': 'give the model the right passages from your documents'},
+        {'head': 'Fine-tuning (for example LoRA)', 'text': 'train an existing model a little on your examples'},
+        {'head': 'Pretraining from scratch', 'text': 'build a new model on your own huge data'}]}, 2.6,
         caption='Start at the bottom. Move up only when the step below cannot do the job.')
     grid(d, [
         ['Prompting', 'The instructions the model sees.', 'Always the first step.', 'Hours'],
-        ['Retrieval', 'The facts the model can see when it answers.', 'The answer must come from your own, changing documents.', 'Days to weeks'],
-        ['Fine-tuning', 'The model\'s style, format and skills.', 'You need a steady tone or format that prompts cannot give, and you have good examples.', 'Weeks, with specialists'],
-        ['Training from scratch', 'Everything.', 'Almost never for a company.', 'Months, large teams and data'],
+        ['Retrieval-augmented generation (RAG)', 'The facts the model can see when it answers.', 'The answer must come from your own, changing documents.', 'Days to weeks'],
+        ['Fine-tuning (for example LoRA)', 'The model\'s parameters, a little: its style, format and skills.', 'You need a steady tone or format that prompts cannot give, and you have good examples.', 'Weeks, with specialists'],
+        ['Pretraining from scratch', 'Everything.', 'Almost never for a company.', 'Months, large teams and data'],
     ], [3.4, 4.4, 6.0, W - 13.8], header=['Method', 'What it changes', 'When to use it', 'Effort'], size=9, label_cols=(0,))
     spacer(d, 6)
     h2(d, 'Where AI costs come from')
@@ -473,12 +507,12 @@ def build():
     body(d, 'A tool is only as good as the information behind it. Consider Nile Valley Foods, which wants an assistant that answers questions across its own records: a signed supplier contract, a year of invoices and a set of HR files. They exist as paper in a filing cabinet, scanned PDFs of mixed quality on a shared drive, Word documents, emails, and a spreadsheet index that someone started years ago. The company wants answers in seconds. Can it do that today? The scorecard below shows how to find out.')
     h2(d, 'The readiness scorecard')
     grid(d, [
-        ['Inventory', 'Do we know what we hold, and where?', 'Nobody can say how many documents there are, or where they sit.'],
-        ['Format and quality', 'Can a machine read it?', 'Crooked, faint or handwritten scans; text that OCR reads wrongly.'],
+        ['Data inventory', 'Do we know what we hold, and where?', 'Nobody can say how many documents there are, or where they sit.'],
+        ['Readability and accuracy', 'Can a machine read it?', 'Crooked, faint or handwritten scans; text that OCR reads wrongly.'],
         ['Completeness and duplicates', 'Is each document present once?', 'Five copies of one contract in different folders, or pages missing.'],
         ['Metadata', 'Is each file labelled with type, date, owner, parties and reference number?', 'File names such as "scan0042.pdf" and no labels at all.'],
         ['Rights and confidentiality', 'May we use it, and who may see it? Are personal and confidential records protected?', 'Confidential HR files mixed in with documents anyone may see.'],
-        ['Currency', 'Is it up to date? Are superseded versions marked?', 'An expired contract or old policy is returned as current.'],
+        ['Timeliness', 'Is it up to date? Are superseded versions marked?', 'An expired contract or old policy is returned as current.'],
         ['Structure', 'Does it have headings, sections and paragraphs we can rely on?', 'One long block of text with no divisions.'],
         ['Access and ownership', 'Who owns it, and who can open it?', 'Everyone can open everything, or nobody is responsible for it.'],
     ], [3.6, 6.4, W - 10.0], header=['Check', 'The question', 'The red flag'], size=9, label_cols=(0,))
@@ -522,7 +556,13 @@ def build():
         {'head': 'Workflow with an AI step', 'text': 'fixed steps, one of which uses a model, with a person approving'},
         {'head': 'Agent', 'text': 'the model decides which steps to take and which tools to use', 'hl': True}]}, 2.6,
         caption='The ladder runs from the most predictable at the bottom to the most freedom at the top.')
-    body(d, 'Session 12 shows you the first two steps side by side on the same messages: a rule, and a workflow with an AI step and a person approving. Session 11 looks at agents. The more freedom a system has, the more it matters to set limits on what it may do and to keep a person approving anything that leaves the company, such as an email to a customer, a payment or a change to a record. A human in the loop is a person who must approve before the action happens.')
+    body(d, 'Session 12 shows you the first two steps side by side on the same messages: a rule, and a workflow with an AI step and a person approving. Session 11 looks at agents. The more freedom a system has, the more it matters to set limits on what it may do and to keep a person approving anything that leaves the company, such as an email to a customer, a payment or a change to a record. Human-in-the-loop means an approval step: a person must approve, edit or reject the action before it runs.')
+    h2(d, 'Agents: tools, permissions and guardrails')
+    body(d, 'An agent is an AI model given a goal and tools, which chooses its own next step in a loop of plan, act and observe. Tool use (also called function calling) means the model writes a request to run a named tool, such as read_mail, and a program runs it and returns the result. The Model Context Protocol (MCP) is an open standard for connecting models to tools and data in a common way. Four ideas keep an agent safe.')
+    bullets(d, [('Permissions (scopes).', 'What the agent may read, write, send and spend, written down in a permissions table. Session 11 gives you the Tool Boundary Sheet for this.'),
+                ('Least privilege.', 'Give the agent the smallest set of permissions that still lets it do the job.'),
+                ('Guardrails.', 'Checks and limits around the agent, such as spending limits, filters and an off switch, with an audit log that records each action.'),
+                ('Prompt injection.', 'Text hidden in an email, web page or file, written to make the agent follow orders its owner never gave. Treat everything the agent reads as untrusted.')])
     h2(d, 'Automation tools on the market')
     body(d, 'Many tools can build the same workflow. They differ in who they suit and how they charge. The list below says how each is billed in kind. It gives no prices, which change and depend on your plan.')
     grid(d, [
@@ -545,7 +585,7 @@ def build():
     fig(d, {'kind': 'icons', 'items': [
         {'icon': 'lock', 'head': 'Protect data', 'text': 'No personal or confidential data in a tool your company has not approved'},
         {'icon': 'magnifier', 'head': 'Check', 'text': 'Tools can be wrong. Check facts, figures and sources'},
-        {'icon': 'check', 'head': 'Approve', 'text': 'A person approves anything that leaves the company'}]}, 3.3)
+        {'icon': 'check', 'head': 'Human-in-the-loop', 'text': 'A person approves anything that leaves the company'}]}, 3.3)
     body(d, 'These three rules apply from the first session. The policy you draft in Session 13 builds on them.')
     box(d, 'Questions to keep in mind from Session 1', ['Where in my own work do I already meet a system that learns from examples?',
                                               'Which AI claims have I been asked to trust without seeing a number?',
@@ -555,82 +595,106 @@ def build():
     section(d, 17, 'Glossary')
     body(d, 'Terms in plain words, from A to Z.', after=4)
     G = [
-        ('Agent', 'An AI system that decides for itself which steps to take and which tools to use to reach a goal. It needs firm limits.'),
-        ('AI literacy', 'Knowing enough about how AI works, where it fails and what rules apply, to use it and supervise it well.'),
-        ('Algorithm', 'A set of steps a computer follows to solve a problem or make a calculation.'),
-        ('API', 'A door that lets one program talk to another. A tool uses an API to ask an AI model for a result.'),
-        ('Automation', 'Letting software do repeated steps without a person doing each one.'),
-        ('Accuracy', 'The share of all cases a model got right. It can mislead when the event is rare.'),
-        ('AUC', 'The area under the ROC curve. 0.5 is a coin flip and 1.0 is perfect.'),
-        ('Benchmark', 'A set of standard test questions given to many models so that their scores can be compared.'),
-        ('Chunk', 'A passage of a document, cut to a workable size so that it can be embedded and retrieved.'),
-        ('Confusion matrix', 'A table of the four outcomes of a yes or no model: true positives, false positives, false negatives and true negatives.'),
-        ('F1', 'One number that balances precision and recall.'),
-        ('MAE and RMSE', 'Measures of how far a number forecast is from the truth, on average. RMSE punishes big misses more.'),
-        ('OCR', 'Optical character recognition: reading the text from a scan or a photo.'),
-        ('Open-weight model', 'A model whose file can be downloaded and run on your own machines. The licence may limit use.'),
-        ('Precision', 'Of the cases the model flagged, the share that were truly positive.'),
-        ('Recall', 'Of the truly positive cases, the share the model caught.'),
-        ('ROC curve', 'A curve that shows how catches and false alarms change as the threshold moves.'),
-        ('Threshold', 'The score above which a model raises an alert. Moving it trades false alarms against misses.'),
-        ('Vector database', 'A store of embeddings that finds quickly the ones closest in meaning to a question.'),
-        ('Backpropagation', 'The way a neural network shares out the blame for an error backward through its layers, so each weight can be adjusted.'),
-        ('Baseline', 'How the task is done today, with its time and error rate. You compare the automated version against it.'),
-        ('Bias', 'A systematic tilt in a model\'s results that treats some cases or groups unfairly, often copied from the data.'),
-        ('Brief', 'A prompt written once in parts and reused. Session 8 teaches you to write one.'),
-        ('Classification', 'Learning to put each case into a category, such as fraud or fine.'),
-        ('Clustering', 'Finding groups of similar cases without being told the groups in advance.'),
-        ('Context window', 'How much text the model can keep in view at one time, including your question, files and its answer.'),
-        ('Deep learning', 'Machine learning with neural networks of many layers. It suits images, sound and language.'),
-        ('Drift', 'A model getting worse over time because the world has changed since it was trained.'),
-        ('Embedding', 'A list of numbers that stands for the meaning of a piece of text or an image, so that similar things are close together.'),
-        ('Feature', 'One piece of information the model uses as input, such as the amount of a payment or the day of the week.'),
-        ('Fine-tuning', 'Training an existing model a little more on your own examples so that it fits a particular style or task.'),
-        ('Foundation model', 'A large model trained on broad data that can be adapted to many tasks. Language models are one kind.'),
-        ('Governance', 'The rules, roles and checks that decide who may use AI, for what, and who answers when something goes wrong.'),
-        ('Gradient descent', 'Improving a model by taking many small steps that each make the error a little smaller, like walking downhill in fog.'),
-        ('Hallucination', 'A confident answer from a model that is false or invented.'),
-        ('Human in the loop', 'A person who must approve or edit before an automated action goes ahead.'),
-        ('Inference', 'Using a trained model to produce an answer for a new case. Training is learning; inference is using.'),
-        ('Label', 'The correct answer attached to an example, used in supervised learning.'),
-        ('Loss or error', 'A number that says how far the model\'s guess is from the right answer. Training tries to make it smaller.'),
-        ('Machine learning', 'Computer systems that learn patterns from data instead of following only hand-written rules.'),
-        ('Model', 'The result of training: a program whose behaviour comes from the numbers it has learned.'),
-        ('Neural network', 'A model made of layers of simple connected units, loosely inspired by the brain.'),
-        ('Overfitting', 'A model learning its training examples too closely, so that it does badly on new cases.'),
-        ('Parameter or weight', 'A number inside a model that training adjusts. It sets how strongly one input influences the answer.'),
-        ('Pilot', 'A small, time-limited trial in real work, with a measure of success set in advance.'),
-        ('Prompt', 'Anything you type or send to an AI model.'),
-        ('Prompt injection', 'Hidden instructions in an email, web page or document that try to make an AI tool do what its owner did not intend.'),
-        ('Regression', 'Learning to give a number as the answer, such as a forecast of sales.'),
-        ('Reinforcement learning', 'Learning by trial and reward: actions that pay off are repeated.'),
-        ('Retrieval', 'Fetching the relevant passages from your own documents and giving them to the model before it answers.'),
-        ('ROI (return on investment)', 'What you gain compared with what you spend, for example time saved against cost.'),
-        ('Supervised learning', 'Learning from examples that come with the right answers.'),
-        ('Token', 'A small piece of text, often a short word or part of a word, that a language model reads and writes.'),
-        ('Training', 'The process of adjusting a model\'s weights, using data, until its guesses are good.'),
-        ('Trigger', 'The event that starts an automation, such as a new email arriving or a timer going off.'),
-        ('Unsupervised learning', 'Learning from data with no right answers given, by finding structure such as groups.'),
-        ('Validation and test data', 'Data kept apart from training. Validation data helps tune the model. Test data is locked until the end for a fair final check.'),
-        ('Workflow', 'A fixed series of steps, often across several apps, that runs when a trigger fires.'),
+        ('Accuracy', 'The share of all cases a model got right. It can mislead when the event is rare.', '0, 3'),
+        ('Activation function', 'A simple function applied to the weighted sum that adds non-linearity. ReLU (rectified linear unit) outputs 0 for negative values and the value itself otherwise; a step gives 1 or 0; sigmoid squeezes the value into 0 to 1.', '1'),
+        ('Agent', 'An AI model given a goal and tools, which chooses its own next step in a loop of plan, act and observe. It needs firm limits.', '11'),
+        ('AI literacy', 'Knowing enough about how AI works, where it fails and what rules apply, to use it and supervise it well.', '0'),
+        ('Algorithm', 'A set of steps a computer follows to solve a problem or make a calculation.', '0'),
+        ('API', 'Application programming interface: a door that lets one program talk to another. A tool uses an API to ask an AI model for a result.', '7, 11'),
+        ('AUC', 'Area under the ROC curve: one number from 0.5 (a coin flip) to 1.0 (perfect).', '3'),
+        ('Automation', 'Letting software do repeated steps without a person doing each one.', '12'),
+        ('Backpropagation', 'The method that works out the gradient for every weight, layer by layer from the output backwards, so gradient descent can update them.', '0, 1'),
+        ('Baseline', 'A simple reference model to beat, such as the majority-class baseline that always predicts the most common class. In a business case, how the task is done today.', '3, 12'),
+        ('Benchmark', 'A fixed set of standard test questions with a score, used to compare models. Examples: MMLU, GSM8K, HumanEval.', '6'),
+        ('Bias (in a model)', 'The number added to the weighted sum that shifts when a neuron switches on. Not to be confused with unfairness.', '1'),
+        ('Bias (unfairness)', 'A systematic tilt in a model\'s results that treats some cases or groups unfairly, often copied from the data.', '10, 13'),
+        ('Chunk, chunking', 'A passage of a document, cut to a workable size so that it can be embedded and retrieved.', '9'),
+        ('Classification', 'Predicting a category, such as spam or not spam.', '2'),
+        ('Clustering', 'Finding groups of similar cases without being told the groups in advance.', '2'),
+        ('Confusion matrix', 'The table that counts the four outcomes of a classifier: true positives, false positives, false negatives and true negatives.', '0, 3'),
+        ('Context window', 'The number of tokens a model can keep in view at one time, including your prompt, files and its answer so far.', '5, 9'),
+        ('Cosine similarity', 'A measure of how closely two vectors point the same way: the dot product divided by the product of their lengths. 1 means the same direction.', '4'),
+        ('Cross-validation (k-fold)', 'Split the data into k parts, train on k - 1, test on the held-out part, rotate so each part is the test part once, and average the scores.', '2'),
+        ('Data inventory', 'A list of what data the organisation holds, where it is, who owns it and in what format. The first step of data readiness.', '14'),
+        ('Data quality dimensions', 'The standard ways to judge data: completeness, accuracy, timeliness, consistency and representativeness.', '0, 14'),
+        ('Decision tree', 'A model made of yes-or-no questions on features. Each question is a split, each final answer a leaf, and depth is the number of questions on the longest path.', '2'),
+        ('Deep learning', 'Machine learning with neural networks of many layers. It suits images, sound and language.', '0, 1'),
+        ('Drift', 'A model getting worse over time because the world has changed since it was trained.', '0, 10'),
+        ('Embedding', 'A vector, produced by a trained model, that represents the meaning of a text or an image, so that similar meanings sit close together.', '4, 9'),
+        ('Epoch', 'One full pass over the training data.', '0, 1'),
+        ('Euclidean distance', 'The straight-line gap between two vectors: the square root of the sum of the squared differences. For (3, 4) and (6, 8): 5.', '2, 4'),
+        ('F1 score', 'The harmonic mean of precision and recall, so it stays near the weaker of the two: 2 x P x R / (P + R).', '3'),
+        ('Feature', 'One input measurement the model uses, such as the floor area of a house.', '1, 2'),
+        ('Few-shot prompting', 'A prompt that includes a few worked examples (shots) before the real request. Zero-shot gives only the instruction.', '8'),
+        ('Fine-tuning', 'More training of an existing model on your own examples, so that it fits a particular style or task.', '9'),
+        ('Foundation model', 'A large model pretrained once on broad data that many products are built on. A large language model (LLM) is one kind.', '6'),
+        ('Governance', 'The rules, roles and checks that decide who may use AI, for what, and who answers when something goes wrong.', '13'),
+        ('Gradient descent', 'Repeated small steps against the gradient of the loss, which lower the loss. The learning rate is the size of each step.', '0, 1'),
+        ('Guardrails', 'Checks and limits placed around an AI system, such as input filters, output checks, spending limits and an off switch.', '11'),
+        ('Hallucination', 'A confident answer from a model that is false or invented.', '10'),
+        ('Human-in-the-loop', 'An approval step: a person approves, edits or rejects an action before it runs.', '11, 12'),
+        ('Inference', 'Using a trained model to produce an answer for a new case. Training is learning; inference is using.', '0, 7'),
+        ('k-nearest neighbours (k-NN)', 'Predict from the k most similar training examples, found with a distance metric: average their numbers, or take a majority vote.', '2'),
+        ('Label', 'The correct answer attached to an example, used in supervised learning.', '2'),
+        ('Least privilege', 'Give an agent the smallest set of permissions (scopes) that still lets it do the job.', '11'),
+        ('LoRA', 'Low-rank adaptation: a fine-tuning method that trains a small adapter and leaves the original parameters unchanged.', '9'),
+        ('Loss (loss function, error)', 'A number that measures how wrong the model\'s predictions are. Training tries to make it small.', '0, 1'),
+        ('Machine learning', 'Computer systems that learn patterns from data instead of following only hand-written rules.', '0'),
+        ('Manhattan distance', 'The gap measured along each axis and added: |3 - 6| + |4 - 8| = 7. Also called city-block distance.', '2, 4'),
+        ('MCP (Model Context Protocol)', 'An open standard for connecting an AI model to tools and data sources in a common way.', '11'),
+        ('Model', 'The result of training: a function with adjustable parameters whose behaviour comes from the numbers it has learned.', '0'),
+        ('Neural network', 'A model made of layers of neurons, loosely inspired by the brain.', '1'),
+        ('OCR', 'Optical character recognition: reading the text from a scan or a photo.', '0, 14'),
+        ('Open weights', 'A model whose trained parameters can be downloaded and run on your own machines. The licence may still limit use, and open source in the OSI sense needs more.', '7'),
+        ('Overfitting', 'The model fits its training data, including its noise, and does worse on new data. Plainly: it has memorised its examples.', '0, 3'),
+        ('Parameters', 'All the weights and biases of a model: the numbers that training adjusts.', '0, 1, 7'),
+        ('Permissions (scopes)', 'What an agent or tool is allowed to read, write, send or spend. Listed in a permissions table.', '11'),
+        ('Pilot', 'A small, time-limited trial in real work, with a measure of success set in advance.', '12'),
+        ('Post-training', 'Training after pretraining to make a model useful: supervised fine-tuning (instruction tuning) and RLHF.', '6'),
+        ('Precision', 'Of the cases the model flagged, the share that were truly positive: TP / (TP + FP).', '3'),
+        ('Pretraining', 'The first stage of building a language model: learning to predict the next token from huge amounts of text. The result is a base model.', '5, 6'),
+        ('Prompt', 'The input text you give a model. A system prompt holds standing instructions; a user prompt is the current request.', '8'),
+        ('Prompt injection', 'Text hidden in an email, page or file, written to make an AI follow orders its owner never gave.', '10, 11'),
+        ('Quantisation', 'Lowering the number of bits stored per parameter, for example to INT8 or 4-bit, so the model file is smaller.', '7'),
+        ('RAG (retrieval-augmented generation)', 'A retriever fetches relevant passages from your documents and the model answers from them.', '9'),
+        ('Recall', 'Of the truly positive cases, the share the model caught: TP / (TP + FN).', '3'),
+        ('Regression', 'Predicting a number, such as a house price.', '2'),
+        ('Reinforcement learning', 'Learning by trial and error, guided by rewards and penalties.', '0'),
+        ('RLHF', 'Reinforcement learning from human feedback: people rate answers and the model is adjusted toward the ones they prefer.', '6'),
+        ('ROC curve', 'Receiver operating characteristic: a curve of true positive rate against false positive rate at every threshold.', '3'),
+        ('ROI (return on investment)', 'What you gain compared with what you spend, for example time saved against cost.', '12'),
+        ('Self-attention', 'Each token weighs the earlier tokens by relevance, using a query, a key and a value.', '5'),
+        ('Softmax', 'A function that turns the model\'s scores (logits) into probabilities that add up to 1.', '5'),
+        ('Supervised learning', 'Learning from examples that come with the correct answer (the label).', '0, 2'),
+        ('Temperature', 'A setting that divides the logits before softmax: low gives safer, repeatable text and high gives more varied text.', '5, 8'),
+        ('Threshold', 'The score at or above which a model says positive. Moving it trades false alarms against misses.', '3'),
+        ('Token', 'A piece of text, a word or part of a word, that a language model reads and writes. A tokenizer cuts text into tokens from a fixed vocabulary.', '5'),
+        ('Training, validation and test sets', 'Training: the model learns from it. Validation: used to compare models and tune settings. Test: used once at the end for an honest score.', '0, 3'),
+        ('Transformer', 'The architecture of modern language models: a stack of identical blocks, each made of self-attention and a feed-forward network.', '5'),
+        ('Trigger', 'The event that starts an automation, such as a new email arriving or a timer going off.', '12'),
+        ('Unsupervised learning', 'Learning from data with no labels, by finding structure such as groups.', '0, 2'),
+        ('Vector, vector database', 'A vector is a list of numbers. A vector database stores embeddings and finds quickly the ones closest in meaning to a question.', '4, 9'),
+        ('Weight', 'A number that says how much one input counts. Training adjusts the weights.', '0, 1'),
+        ('Weighted sum', 'Multiply each input by its weight and add the results: w1 x1 + w2 x2 + b, with the bias b added once.', '0, 1'),
+        ('Workflow', 'A fixed series of steps, often across several apps, that runs when a trigger fires.', '12'),
     ]
     G.sort(key=lambda t: t[0].lower())
-    grid(d, [[a, b] for a, b in G], [4.3, W - 4.3], header=['Term', 'In plain words'], size=9.5, label_cols=(0,))
+    grid(d, [[a, b, c] for a, b, c in G], [4.2, W - 6.4, 2.2], header=['Term', 'In plain words', 'Session'], size=9, label_cols=(0,))
 
     # ---------------------------------------------------------------- 12 at a glance
     section(d, 18, 'The fourteen sessions at a glance')
     S = [
-        ('1', 'Seeing: pixels, features and neurons', 'A one-page sheet: how a picture becomes numbers, the payment-risk neuron worked by hand, and the digit results'),
-        ('2', 'Learning from examples: types of machine learning, decision trees, nearest neighbours', 'A one-page sheet: the four types of learning, a tree read as rules, nearest neighbours and the honest scores'),
-        ('3', 'Measuring a model: accuracy, precision, recall, F1, ROC and AUC, thresholds, baselines, overfitting', 'The vendor question sheet: ten questions about the numbers behind any AI claim'),
-        ('4', 'Words as numbers: bag of words, TF-IDF, embeddings and distance', 'The distance cheat sheet: four ways to say how close two things are'),
-        ('5', 'Language models: tokens, attention and next-word probability', 'A one-page sheet: the next-word loop, the softmax recipe, temperature and five questions to ask about any answer'),
+        ('1', 'Seeing: pixels, features and neurons', 'A one-page sheet: how a picture becomes numbers, a house price as a weighted sum, the umbrella neuron worked by hand, and the digit results'),
+        ('2', 'Learning from examples: types of machine learning, decision trees, nearest neighbours', 'A one-page sheet: the four types of learning, a decision tree read as rules, k-nearest neighbours, cross-validation and the honest scores'),
+        ('3', 'Measuring a model: accuracy, precision, recall, F1, ROC and AUC, thresholds, baselines, overfitting', 'The vendor question sheet: questions about the numbers behind any AI claim'),
+        ('4', 'Words as numbers: bag of words, TF-IDF, embeddings and distance', 'The distance cheat sheet: Euclidean, Manhattan, dot product and cosine similarity'),
+        ('5', 'Language models: tokens, attention and next-word probability', 'A one-page sheet: the next-token loop, the softmax recipe, temperature and five questions to ask about any answer'),
         ('6', 'Foundation models: pretraining, post-training, model families, reasoning and multimodal models, benchmarks', 'A model comparison grid for your own tasks, with questions for a model card and a benchmark claim'),
         ('7', 'Open weights, file formats, size and running cost', 'A rent, host or own decision sheet, with the memory sum and the licence questions'),
         ('8', 'Prompting and reasoning models', 'A reusable prompt template and a prompt log'),
-        ('9', 'Giving a model your knowledge: retrieval-augmented generation, long context and fine-tuning', 'A decision tree: prompt first, then retrieve, then fine-tune'),
+        ('9', 'Giving a model your knowledge: retrieval-augmented generation, long context and fine-tuning', 'A decision tree: prompt first, then retrieve (RAG), then fine-tune'),
         ('10', 'When models fail, and how to check them', 'A five-step check routine and a test-set template'),
-        ('11', 'Agentic AI: tools, loops, MCP, autonomy and guardrails', 'Your Tool Boundary Sheet: what an agent may read, write, send and spend, who approves, the log and the off switch'),
+        ('11', 'Agentic AI: tools, loops, MCP, autonomy and guardrails', 'Your Tool Boundary Sheet, a permissions table: what an agent may read, write, send and spend, who approves, the log and the off switch'),
         ('12', 'Workflow mapping (practical)', 'Your mapped workflow, the choice for each step, your assistant sketch and the hours-saved estimate in the Business Case Workbook'),
         ('13', 'Governance and buying (practical)', 'Your Risk Register, AI Use Policy draft, Vendor Question List and questions for your lawyer'),
         ('14', 'Data readiness assessment, roadmap and 90-day plan (practical)', 'Your inventory and scorecard, your roadmap, and the Follow-up Kit'),

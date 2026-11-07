@@ -30,6 +30,7 @@ sys.path.insert(0, str(HERE))
 import brand as B  # noqa: E402
 import figkit  # noqa: E402
 import slidekit as K  # noqa: E402
+import chain as CH  # noqa: E402
 import diagrams as DG  # noqa: E402
 
 BUILD = HERE.parent
@@ -47,7 +48,7 @@ Y0, YB = 1.95, 6.85
 # ------------------------------------------------------------------ speaker notes: spoken script, paragraphs, pauses
 import re as _re
 
-PAUSES = ['Take a moment.', 'Say it to yourself first.', 'Think about your own task as you answer.']
+PAUSES = ['Take a moment.', 'Say it to yourself first.', 'Think about your own work as you answer.']
 ANSWERS = ['Here is how I would answer it.', 'The answer is this.', 'Let me say it plainly.', 'This is the answer I am looking for.', 'Here is the short version.', 'What I would say is this.']
 ORDINALS = ['One', 'Two', 'Three', 'Four']
 
@@ -84,7 +85,7 @@ def recall_script(s):
     for i, (q, a) in enumerate(s['recall']):
         paras.append(f'Question {ORDINALS[i].lower()}. {q} {PAUSES[i % 3]}')
         paras.append(f'A good answer is this. {a}')
-    paras.append('If an answer was missing, your own task card or last workbook page has it. Now to today.')
+    paras.append('If an answer was missing, last session’s take-away sheet or workbook page has it. Now to today.')
     return '\n\n'.join(paras)
 
 
@@ -94,6 +95,7 @@ def words_script(s):
     paras = [f'{k.capitalize()} words for today. I give the plain meaning of each, and we use every one of them before the end of the session.']
     for term, meaning in words:
         paras.append(f'{term}. {meaning}')
+    paras.append('Keep those words close. The first idea uses them straight away, so let us begin.')
     return '\n\n'.join(paras)
 
 
@@ -487,6 +489,34 @@ def add_recall(d):
     d.add({1: 'A question from last time', 2: 'Two questions from last time', 3: 'Three questions from last time'}.get(len(s['recall']), 'Questions from last time'), objs, recall_script(s))
 
 
+def chain_script(s):
+    c = CH.CHAIN[s['num']]
+    n = s['num']
+    bits = [f'So where does today sit in the story? The dots along the top are the fifteen sessions, from the map at Session 0 to your plan at Session 14, and the gold one is today.']
+    pieces = []
+    for a, b in c['on']:
+        pieces.append(f'{b} from Session {a}')
+    if len(pieces) == 1:
+        built = pieces[0]
+    else:
+        built = ', '.join(pieces[:-1]) + ' and ' + pieces[-1]
+    bits.append(f'We already hold {built}. Nothing today starts from zero.')
+    bits.append(f'What today adds is this: {c["adds"][:1].lower() + c["adds"][1:]}.')
+    lead = c['leads']
+    bits.append(f'And it feeds straight into what comes next. {lead}. Keep that chain in mind, because each idea you learn today is a step on it.')
+    return '\n\n'.join(bits)
+
+
+def add_chain(d):
+    s = d.s
+    c = CH.CHAIN.get(s['num'])
+    if not c:
+        return
+    objs = [img({'kind': 'chain', 'current': s['num'], 'on': [list(x) for x in c['on']], 'adds': c['adds'], 'leads': c['leads']}, X0, Y0, XW, 4.45, 'How today connects to the sessions before and after it')]
+    objs.append(text(X0, 6.45, XW, 0.45, 'Each session is built on the ones before it.', 20, 16, color=B.MUTE))
+    d.add('How today connects: what we already have and what it feeds', objs, chain_script(s))
+
+
 def add_words(d):
     s = d.s
     words = s.get('words')
@@ -548,6 +578,7 @@ def build_spec(sess):
     add_plan(d)
     if sess['num'] > 1:
         add_recall(d)
+    add_chain(d)
     add_words(d)
     d.section = 'Learn'
     for sl in sess['slides']:

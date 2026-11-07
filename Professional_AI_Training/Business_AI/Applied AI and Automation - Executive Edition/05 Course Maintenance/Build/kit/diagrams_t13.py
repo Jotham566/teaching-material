@@ -189,9 +189,10 @@ def x_t13_contract(w, h, size=16, **_):
     s.text(bx + 3 * uw + 0.9, by + bh * 0.66, 'Year 4 on', size=size, weight='bold', color=RED)
     s.text(bx + 3 * uw + 0.9, by + bh * 0.3, 'price unknown', size=size - 1, color=RED)
     s.brace(bx, bx + 3 * uw - 0.06, by - 0.14, depth=0.16, up=True)
-    s.text(bx + 1.5 * uw, by - 0.52, '36 months, no early exit', size=size, weight='bold')
-    s.text(bx + 1.5 * uw, by - 0.95, 'USD 2,400 x 36 = USD 86,400 at least', size=size + 1, weight='bold', color=INK)
-    y2 = by - 1.65
+    s.text(bx + 1.5 * uw, by - 0.48, '36 months, no early exit', size=size, weight='bold')
+    s.text(bx + 1.5 * uw, by - 0.84, 'TCO = set-up + months × fee', size=size, weight='bold', color=INK)
+    s.text(bx + 1.5 * uw, by - 1.18, '= 0 + 36 × 2,400 = USD 86,400 at least', size=size, weight='bold', color=INK)
+    y2 = by - 1.95
     s.box(0.1, y2 - 0.55, w - 0.2, 0.9, '', fill=GOLD, edge=INK, lw=1.6)
     s.text(w / 2, y2 - 0.1, 'On top: USD 0.40 an action, no monthly cap, and nobody defines an action', size=size, weight='bold')
     s.arrow(0.4, y2 - 0.8, w - 0.4, y2 - 0.8, color=RED, lw=2.6, head=18)

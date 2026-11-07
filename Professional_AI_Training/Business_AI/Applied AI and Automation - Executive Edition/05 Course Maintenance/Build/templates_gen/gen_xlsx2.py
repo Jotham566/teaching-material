@@ -16,7 +16,7 @@ QUESTIONS = [
     ('Security', 'Which independent audits or certifications do you hold, and can we see the report?', 'A certificate or audit report is evidence. A claim is not.', '"We are very secure." No report. Certificates that belong to a parent company or are out of date.'),
     ('Security', 'How do our staff sign in, and can we turn on two-step sign-in and set who sees what?', 'Shared logins and no roles are how most small-company breaches start.', 'Shared logins. No roles. Two-step sign-in costs extra or is missing.'),
     ('Security', 'Is our data kept apart from other customers\' data, and is it encrypted in transit and at rest?', 'A mistake in another customer\'s account must not expose yours.', 'Cannot explain how data is separated. No encryption detail.'),
-    ('Security', 'How does the tool defend against hidden instructions in the emails and documents it reads (prompt injection)?', 'An incoming email can contain text that tricks a tool into acting. It is the top-ranked risk for AI applications in the OWASP list for 2025.', '"That is not a risk." Cannot describe any defence. The tool acts on incoming text without a person.'),
+    ('Security', 'How does the tool defend against prompt injection: hidden instructions in the emails and documents it reads?', 'An incoming email can contain text that tricks a tool into acting. It is the top-ranked risk for AI applications in the OWASP list for 2025.', '"That is not a risk." Cannot describe any defence. The tool acts on incoming text without a person.'),
     ('Security', 'What can the tool do in our systems, and can we limit it to read-only or require approval for each action?', 'The wider the permission, the larger the damage from one mistake.', 'Needs full administrator access. No approval step. No activity log.'),
     ('Accuracy evidence', 'What evidence shows it works on tasks like ours, and how was it measured?', 'Demonstrations are chosen to look good. Measured results on similar work are evidence.', 'Only a demo. Only the vendor\'s own examples. No numbers. "Customers love it."'),
     ('Accuracy evidence', 'Can we run a pilot on our own data, with our own success measure, before we sign?', 'A pilot on your own data is the only test that matters for your task.', 'Refuses a pilot. Pilot only after payment. Vendor chooses the data.'),
@@ -130,7 +130,7 @@ def business_case():
           ['Cost item', 'Quantity (hours)', 'Rate (UGX per hour)', 'One-off (UGX)', 'Monthly (UGX)', 'Note'], [46, 14, 18, 16, 16, 60], 32)
     rows = [
         ('Tool licence', None, None, None, 60000, 'Monthly price quoted by the vendor, converted to UGX. The NVF figure is invented.'),
-        ('Set-up and data preparation (hours)', 12, '=Inputs!$B$9', '=B5*C5', None, 'Your hours to prepare the data, write the brief and test it'),
+        ('Set-up and data preparation (hours)', 12, '=Inputs!$B$9', '=B5*C5', None, 'Your hours to prepare the data, write the prompt and test it'),
         ('Training (hours, everyone involved)', 4, '=Inputs!$B$9', '=B6*C6', None, 'Time for staff to learn the new routine'),
         ('Review (hours a month)', '=Inputs!$B$6*Inputs!$B$13/60', '=Inputs!$B$9', None, '=B7*C7', 'Times a month x review minutes / 60, from the Inputs sheet'),
         ('Upkeep (hours a month)', 1.5, '=Inputs!$B$9', None, '=B8*C8', 'Fixing, updating, answering questions'),

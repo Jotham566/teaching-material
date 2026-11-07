@@ -309,7 +309,7 @@ def risk():
          'Approved tools only, and a data table in the policy. No personal data in free or personal accounts.', 'Medium'),
         ('Wrong answer', 'The AI misreads or invents a figure or fact.', 'A wrong number reaches a customer, the bank or the board.', 4, 4, 'Task owner',
          'A named reviewer checks figures and quotes against the source before anything is released.', 'Medium'),
-        ('Prompt injection', 'An incoming email or document hides an instruction that the tool follows.', 'The tool shares data or takes an action nobody approved.', 3, 4, 'Operations Manager',
+        ('Prompt injection', 'Prompt injection: an incoming email or document hides an instruction that the tool follows.', 'The tool shares data or takes an action nobody approved.', 3, 4, 'Operations Manager',
          'The tool drafts, and a person approves every send. Treat incoming text as data.', 'Medium'),
         ('Over-broad permission', 'A tool or assistant is connected with full access to a mailbox or drive.', 'One fault or stolen key exposes everything in that account.', 3, 5, 'Finance Manager',
          'Give each tool its own narrow access, read-only where possible. Record it on the Tool Boundary Sheet.', 'Low'),
