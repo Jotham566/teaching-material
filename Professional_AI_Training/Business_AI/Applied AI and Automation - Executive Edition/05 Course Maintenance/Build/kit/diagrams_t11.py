@@ -241,18 +241,14 @@ def x_t11_planted(w, h, **_):
 @fig('x_t11_privilege')
 def x_t11_privilege(w, h, **_):
     s = Scene(w, h)
-    rows = [['Permission given', 'Worst case if it is fooled', 'Undo?'],
-            ['Read one mailbox', 'It reads what it was meant to read', 'Nothing to undo'],
-            ['Read and draft', 'A bad draft waits in a folder', 'Delete the draft'],
-            ['Read, draft and send', 'Finance mail leaves the company', 'Cannot be undone']]
-    cw = [(w - 0.1) * 0.3, (w - 0.1) * 0.43, (w - 0.1) * 0.27]
-    fh = 1.25  # formula band under the table
-    s.table(0.05, h - 0.05, cw, (h - 0.15 - fh) / 4, rows, size=16, align=['left', 'left', 'left'], hl_cells={(3, 2): GOLD, (3, 1): GOLD})
-    s.box(0.05, 0.05, w - 0.1, fh - 0.15, '', fill=PAPER, edge=INK, lw=1.6)
-    s.text(0.25, 0.05 + (fh - 0.15) * 0.72, 'Risk = likelihood × impact', size=17, weight='bold', ha='left')
-    s.text(3.55, 0.05 + (fh - 0.15) * 0.72, 'chance it is fooled × the worst case above', size=15, color=BODY, ha='left')
-    s.text(0.25, 0.05 + (fh - 0.15) * 0.28, r'Least privilege: granted $\subseteq$ needed', size=17, weight='bold', ha='left')
-    s.text(4.55, 0.05 + (fh - 0.15) * 0.28, 'grant nothing the task does not need', size=15, color=BODY, ha='left')
+    rows = [['Permission', 'Needed?', 'Worst case if it is fooled', 'Undo?'],
+            ['Read one mailbox', 'Yes', 'It reads what it was meant to read', 'Nothing to undo'],
+            ['Write drafts', 'Yes', 'A bad draft waits in a folder', 'Delete the draft'],
+            ['Send', 'No', 'Finance mail leaves the company', 'Cannot be undone']]
+    cw = [(w - 0.1) * f for f in (0.22, 0.2, 0.36, 0.22)]
+    fh = 0.85
+    s.table(0.05, h - 0.05, cw, (h - 0.15 - fh) / 4, rows, size=16, align=['left', 'left', 'left', 'left'], hl_cells={(3, 1): GOLD, (3, 3): GOLD})
+    s.text(w / 2, 0.4, 'Least privilege: grant only the permissions the task needs. Here: read and draft.', size=17, weight='bold')
     return s
 
 
@@ -285,4 +281,137 @@ def x_t11_turn(w, h, **_):
     s.text(x + bw / 2, y0 + 0.4, 'Approval can hold it here', size=16, color=RED, weight='bold')
     s.arrow(x + bw / 2, y0 - 0.12, 0.05 + bw / 2, y0 - 0.12, lw=2.4, head=16, color=RED)
     s.text(w / 2, 0.3, 'Observe: the result goes back into the prompt, then the model writes the next step', size=16, weight='bold')
+    return s
+
+
+# ================================================================== 11 November 2026 rework: explain before use
+@fig('x_t11_build')
+def x_t11_build(w, h, **_):
+    """An agent built in three steps: a model that answers, plus tools, plus a loop."""
+    s = Scene(w, h)
+    gap = 0.35
+    pw = (w - 0.1 - 2 * gap) / 3
+    heads = ['1  A model that answers', '2  + tools', '3  + a loop']
+    subs = ['Sessions 5 and 8', 'a program does the act', 'until the goal is met']
+    for i in range(3):
+        x = 0.05 + i * (pw + gap)
+        s.box(x, 0.05, pw, h - 0.1, '', fill=GOLD if i == 2 else PAPER, edge=INK, lw=2.0)
+        s.text(x + pw / 2, h - 0.38, heads[i], size=19, weight='bold')
+        s.text(x + pw / 2, h - 0.75, subs[i], size=15, color=BODY)
+    # panel 1: prompt -> model -> answer, stacked
+    x = 0.05
+    for k, lab in enumerate(['Prompt', 'Model: next tokens', 'Answer: you act']):
+        yy = h - 1.45 - k * 0.95
+        s.box(x + 0.35, yy - 0.3, pw - 0.7, 0.6, lab, size=16, fill=PAPER, edge=INK, lw=1.6)
+        if k < 2:
+            s.arrow(x + pw / 2, yy - 0.32, x + pw / 2, yy - 0.63, lw=2.0, head=12)
+    # panel 2: model writes request, program runs tool
+    x = 0.05 + pw + gap
+    s.box(x + 0.35, h - 1.75, pw - 0.7, 0.6, 'Model writes:', size=16, fill=PAPER, edge=INK, lw=1.6)
+    s.code(x + 0.45, h - 2.0, ['read_mail("M03")'], size=16, line_h=0.4, w=pw - 0.9, pad=0.08)
+    s.arrow(x + pw / 2, h - 2.55, x + pw / 2, h - 2.85, lw=2.0, head=12)
+    s.box(x + 0.35, h - 3.5, pw - 0.7, 0.6, 'Program runs the tool', size=16, fill=PAPER, edge=INK, lw=1.6)
+    s.text(x + pw / 2, 0.35, 'tool: a named action', size=15, color=BODY)
+    # panel 3: loop
+    x = 0.05 + 2 * (pw + gap)
+    cx, cy, r = x + pw / 2, h / 2 - 0.35, 1.0
+    pos = [(cx, cy + r * 0.85, 'Plan'), (cx + r * 1.05, cy - r * 0.55, 'Act'), (cx - r * 1.05, cy - r * 0.55, 'Observe')]
+    for k in range(3):
+        x1, y1, _a = pos[k]
+        x2, y2, _b = pos[(k + 1) % 3]
+        s.arrow(x1 + (x2 - x1) * 0.3, y1 + (y2 - y1) * 0.3, x1 + (x2 - x1) * 0.7, y1 + (y2 - y1) * 0.7, lw=2.2, head=14, rad=-0.25)
+    for xx, yy, lab in pos:
+        s.box(xx - 0.6, yy - 0.25, 1.2, 0.5, lab, size=16, fill=PAPER, edge=INK, lw=1.6, weight='bold', z=3)
+    return s
+
+
+@fig('x_t11_injectsteps')
+def x_t11_injectsteps(w, h, **_):
+    s = Scene(w, h)
+    steps = [('1  Act', 'read_mail(M08)', 'a permitted read'),
+             ('2  Observe', 'The mail text enters the prompt', 'hidden order included'),
+             ('3  Plan', 'The model may write: forward 5 Finance mails', 'one stream of text (Session 10)'),
+             ('4  Program', 'Is forward permitted?', 'No: refused'),
+             ('5  Stop', 'Warn the owner', 'stop condition')]
+    n = len(steps)
+    gap = 0.3
+    bw = (w - 0.1 - gap * (n - 1)) / n
+    by = 0.75
+    for i, (head, mid, sub) in enumerate(steps):
+        x = 0.05 + i * (bw + gap)
+        red = i == 2
+        s.box(x, by, bw, h - by - 0.05, '', fill=GOLD if i == 3 else PAPER, edge=RED if red else INK, lw=2.2)
+        s.text(x + bw / 2, h - 0.4, head, size=18, weight='bold', color=RED if red else INK)
+        wt_ = _w(s, x + bw / 2, h / 2 + 0.25, bw - 0.25, mid, 16, 'bold')
+        _w(s, x + bw / 2, by + 0.45, bw - 0.25, sub, 15, color=BODY)
+        if i < n - 1:
+            s.arrow(x + bw + 0.02, h / 2, x + bw + gap - 0.02, h / 2, lw=2.2, head=14)
+    s.text(w / 2, 0.3, 'Only the permissions and the program stop step 3 becoming an act.', size=16, weight='bold', color=RED)
+    return s
+
+
+@fig('x_t11_risk')
+def x_t11_risk(w, h, **_):
+    s = Scene(w, h)
+    rows = [['Permissions', 'Likelihood', 'Impact (UGX)', 'Risk (UGX)'],
+            ['Read only', '0.01', '0', '0.01 \u00d7 0 = 0'],
+            ['Read, draft', '0.01', '20,000', '0.01 \u00d7 20,000 = 200'],
+            ['Read, draft, send', '0.01', '20,000,000', '0.01 \u00d7 20,000,000 = 200,000']]
+    s.table(0.05, h - 0.05, [1.85, 1.2, 1.55, 3.0], 0.68, rows, size=15, align=['left', 'center', 'right', 'left'], hl_cells={(3, 3): GOLD})
+    s.text(w / 2, 1.35, 'Risk = likelihood \u00d7 impact', size=19, weight='bold')
+    s.text(w / 2, 0.85, 'Likelihood 0.01: 1 in 100 injected mails fools it', size=15, color=BODY)
+    s.text(w / 2, 0.35, 'Illustration: all figures invented, per injected mail', size=15, color=MUTE)
+    return s
+
+
+@fig('x_t11_approvaltime')
+def x_t11_approvaltime(w, h, **_):
+    s = Scene(w, h)
+    s.text(w / 2, h - 0.3, '14 mails in the demonstration mailbox', size=17, weight='bold')
+    need = {2, 3, 7}
+    cw = (w - 0.1) / 7
+    for i in range(14):
+        r, c = divmod(i, 7)
+        x = 0.05 + c * cw
+        y = h - 1.05 - r * 0.95
+        s.rect(x + 0.05, y - 0.38, cw - 0.1, 0.76, fill=GOLD if (i + 1) in need else PAPER, edge=INK, lw=1.4)
+        s.text(x + cw / 2, y, f'M{i + 1:02d}', size=15, weight='bold' if (i + 1) in need else 'normal')
+    s.text(0.1, 1.45, 'Gold: needs approval', size=16, ha='left', weight='bold')
+    s.text(w - 0.1, 1.45, '2 + 2 + 2 = 6 minutes', size=17, ha='right', weight='bold')
+    s.text(w / 2, 0.85, 'T = n \u00d7 t = 3 \u00d7 2 = 6 minutes', size=19, weight='bold', color=RED)
+    s.text(w / 2, 0.3, 'n: approvals   t: minutes each (my estimate)   T: total', size=15, color=BODY)
+    return s
+
+
+@fig('x_t11_mcpcount')
+def x_t11_mcpcount(w, h, **_):
+    s = Scene(w, h)
+    half = (w - 0.3) / 2
+    apps = ['App A', 'App B', 'App C']
+    tools = ['Mail', 'Calendar', 'Files', 'Accounts']
+    def side(x0, hub):
+        ay = [h - 1.2 - k * 0.95 for k in range(3)]
+        ty = [h - 1.0 - k * 0.72 for k in range(4)]
+        ax_, tx_ = x0 + 0.7, x0 + half - 0.75
+        if hub:
+            hx, hy = x0 + half / 2, h / 2 - 0.3
+            for y in ay:
+                s.line(ax_ + 0.5, y, hx - 0.35, hy, lw=2.0)
+            for y in ty:
+                s.line(hx + 0.35, hy, tx_ - 0.55, y, lw=2.0)
+            s.box(hx - 0.4, hy - 0.3, 0.8, 0.6, 'MCP', size=15, fill=GOLD, edge=INK, lw=1.8, weight='bold', z=4)
+        else:
+            for y in ay:
+                for t in ty:
+                    s.line(ax_ + 0.5, y, tx_ - 0.55, t, lw=1.4, color=RED)
+        for k, y in enumerate(ay):
+            s.box(ax_ - 0.55, y - 0.25, 1.05, 0.5, apps[k], size=15, fill=PAPER, edge=INK, lw=1.6, z=4)
+        for k, y in enumerate(ty):
+            s.box(tx_ - 0.55, y - 0.25, 1.25, 0.5, tools[k], size=15, fill=PAPER, edge=INK, lw=1.6, z=4)
+    side(0.05, False)
+    side(0.25 + half, True)
+    s.text(0.05 + half / 2, h - 0.3, 'No standard', size=17, weight='bold', color=RED)
+    s.text(0.25 + half * 1.5, h - 0.3, 'One standard', size=17, weight='bold')
+    s.text(0.05 + half / 2, 0.35, '3 \u00d7 4 = 12 connectors', size=17, weight='bold', color=RED)
+    s.text(0.25 + half * 1.5, 0.35, '3 + 4 = 7 pieces', size=17, weight='bold')
     return s

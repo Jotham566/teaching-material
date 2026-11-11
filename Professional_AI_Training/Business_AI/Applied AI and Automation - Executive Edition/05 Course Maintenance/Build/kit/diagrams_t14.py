@@ -4,6 +4,9 @@ t14_fivekinds : the five kinds of data, an NVF example of each and the first act
 t14_docjourney: one document from paper to an index a model can search, and whether a model can use it at each stage.
 t14_course    : the 14 sessions as one chain: the Session 0 question, three rows joined end to start, and an arrow from 14 back to the question.
 t14_shelf     : everything the learner now holds, as tiles grouped by purpose.
+t14_invhome   : a tiny data inventory of the data on your own phone: source, owner, where, who may see, sensitivity (11 Nov 2026).
+t14_tiny      : a five-row contact list with one blank phone and one duplicate person, for completeness and uniqueness by hand (11 Nov 2026).
+t14_kpichange : KPI change built by hand: 6 to 9 is +3, 3 / 6 = +50%; 8 faults to 0 is -8, -8 / 8 = -100% (11 Nov 2026).
 t14_checkins  : the day 0, 30, 60 and 90 timeline with what you bring and the test at each check-in.
 """
 from figkit import Scene, INK, BODY, MUTE, HAIR, PAPER, RED, GOLD, GREY, LayoutError, fig
@@ -202,4 +205,75 @@ def x_t14_checkins(w, h, start=None, stops=(), size=17, **_):
         for ln, kind, colr in lines:
             s.text(bx + 0.15, yy, ln, size=size, weight='bold' if kind == 'bold' else 'normal', color=colr, ha='left')
             yy -= lh
+    return s
+
+
+# ------------------------------------------------------------------ inventory at home
+@fig('x_t14_invhome')
+def x_t14_invhome(w, h, size=15, **_):
+    s = Scene(w, h)
+    rows = [['Source', 'Owner', 'Where it lives', 'Sensitivity'],
+            ['Contacts', 'You', 'Phone and cloud', 'Personal'],
+            ['Mobile money SMS', 'You', 'Phone inbox', 'Confidential'],
+            ['Family photos', 'You', 'Phone gallery', 'Personal'],
+            ['School timetable', 'The school', 'A shared PDF', 'Public']]
+    cw = [(w - 0.1) * f for f in (0.30, 0.18, 0.27, 0.25)]
+    s.table(0.05, h - 0.05, cw, (h - 0.15) / len(rows), rows, size=size, align=['left'] * 4, hl_cols=(0,))
+    return s
+
+
+# ------------------------------------------------------------------ tiny contact list
+@fig('x_t14_tiny')
+def x_t14_tiny(w, h, mode='complete', size=15, **_):
+    """mode 'complete': the blank phone cell is marked; mode 'unique': the repeated row is marked."""
+    s = Scene(w, h)
+    rows = [['Row', 'Name', 'Phone'],
+            ['1', 'Amina', '0700 000 001'],
+            ['2', 'Brian', '0700 000 002'],
+            ['3', 'Carol', ''],
+            ['4', 'David', '0700 000 004'],
+            ['5', 'Brian', '0700 000 002']]
+    tw = 4.3
+    cw = [0.7, 1.6, tw - 2.3]
+    rh = (h - 0.15) / len(rows)
+    hl = {(3, 2): RED} if mode == 'complete' else {(5, 1): GOLD, (5, 2): GOLD, (2, 1): GOLD, (2, 2): GOLD}
+    s.table(0.05, h - 0.05, cw, rh, rows, size=size, align=['center', 'left', 'left'], hl_cells=hl)
+    x = tw + 0.35
+    if mode == 'complete':
+        lines = [('Phone cells: 5', INK), ('Filled: 4 (row 3 is blank)', INK), ('4 ÷ 5 = 0.8', INK), ('0.8 × 100% = 80%', RED)]
+        head = 'Completeness'
+    else:
+        lines = [('Rows: 5', INK), ('Different people: 4', INK), ('(Brian appears twice)', BODY), ('4 ÷ 5 = 0.8 = 80%', RED), ('Duplicates: 1 − 0.8 = 20%', BODY)]
+        head = 'Uniqueness'
+    s.text(x, h - 0.35, head, size=size + 2, weight='bold', ha='left')
+    y = h - 0.95
+    for t, c in lines:
+        s.text(x, y, t, size=size + 1, weight='bold' if c == RED else 'normal', color=c, ha='left')
+        y -= 0.55
+    return s
+
+
+# ------------------------------------------------------------------ KPI change
+@fig('x_t14_kpichange')
+def x_t14_kpichange(w, h, size=15, **_):
+    s = Scene(w, h)
+    half = w / 2
+    y0 = 0.55
+    def pair(x0, old, new, top, unit_lab, lines):
+        s.text(x0 + 0.2, h - 0.25, unit_lab, size=size + 1, weight='bold', ha='left')
+        yy = h - 0.7
+        for t, c in lines:
+            s.text(x0 + 0.2, yy, t, size=size, color=c, weight='bold', ha='left')
+            yy -= 0.42
+        unit = (h - 2.35) / top
+        bw = 1.0
+        for k, (v, lab, fill) in enumerate([(old, 'Today', PAPER), (new, 'Day 90', GOLD)]):
+            x = x0 + 0.4 + k * 1.5
+            s.rect(x, y0, bw, max(v * unit, 0.02), fill=fill, edge=INK, lw=2)
+            s.text(x + bw / 2, y0 + v * unit + 0.22, str(v), size=size + 1, weight='bold')
+            s.text(x + bw / 2, y0 - 0.28, lab, size=size, weight='bold')
+        s.line(x0 + 0.2, y0, x0 + 3.2, y0, lw=2)
+    pair(0.05, 6, 9, 9, 'Readiness score (of 12)', [('Change: 9 − 6 = +3', INK), ('3 ÷ 6 = 0.5 = +50%', RED)])
+    pair(half + 0.05, 8, 0, 9, 'Invoice faults', [('Change: 0 − 8 = −8', INK), ('−8 ÷ 8 = −1 = −100%', RED)])
+    s.line(half, 0.2, half, h - 0.1, color=HAIR, lw=1)
     return s

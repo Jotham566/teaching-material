@@ -1,0 +1,5 @@
+Label each mobile money SMS below.
+
+1. You have received UGX 8,000 from John.
+2. You have paid UGX 35,000 to Kampala Water.
+3. You have received UGX 120,000 from Grace.

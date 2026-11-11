@@ -81,7 +81,7 @@ def weightsfile(w, h, **_):
     s = Scene(w, h)
     s.icon('doc', 0.55, h - 0.6, 0.8)
     s.text(1.1, h - 0.45, 'model.safetensors', size=22, weight='bold', ha='left')
-    s.text(1.1, h - 0.88, 'SmolLM2-135M, FP16 (16-bit): 269 MB', size=16, color=BODY, ha='left')
+    s.text(1.1, h - 0.88, 'SmolLM2-135M-Instruct, Apache 2.0: the first block', size=16, color=BODY, ha='left')
     vals = [[-0.075, 0.162, -0.099, -0.730, 1.172, -0.119],
             [-0.099, 0.398, 0.027, -1.273, 0.816, -0.355],
             [-0.133, 0.104, -0.283, -0.346, 0.945, -0.090],
@@ -208,7 +208,7 @@ def container(w, h, **_):
     top = h - 0.05
     s.text(0.05, top - 0.2, 'FILE FORMAT (container): how the file is packed', size=17, weight='bold', ha='left', color=RED)
     items = [('safetensors', 'Parameters only, in a format built to load safely'),
-             ('GGUF', 'Parameters plus settings, read by local tools such as llama.cpp'),
+             ('GGUF', 'Parameters plus metadata, read by local tools such as llama.cpp'),
              ('ONNX', 'Open Neural Network Exchange: parameters plus the calculation')]
     bh = 1.5
     for i, (hd, tx) in enumerate(items):
@@ -353,12 +353,10 @@ def breakeven(w, h, **_):
     s.line(X(0), Y(3.0), X(6000), Y(3.0), color=RED, lw=3)
     s.circle(X(3000), Y(3.0), 0.13, fill=GOLD, edge=INK, lw=2, z=5)
     s.text(X(3000) + 0.2, Y(3.0) - 0.45, '3,000 requests', size=16, weight='bold', ha='left')
-    s.text(X(4900), Y(3.85), 'Pay per use', size=16, weight='bold')
-    s.text(ax0 + 0.2, Y(5.55), 'Break-even volume = F ÷ (p − v)', size=21, weight='bold', ha='left')
-    s.text(ax0 + 0.2, Y(4.9), 'F = fixed cost a month', size=15, ha='left', color=BODY)
-    s.text(ax0 + 0.2, Y(4.45), 'p = price per use if renting', size=15, ha='left', color=BODY)
-    s.text(ax0 + 0.2, Y(4.0), 'v = running cost per use if hosting', size=15, ha='left', color=BODY)
-    s.text(X(1000), Y(3.0) - 0.3, 'Fixed monthly cost', size=16, weight='bold', color=RED)
+    s.text(X(1900), Y(1.0), 'Rent: 1,000 a request', size=16, weight='bold', ha='left')
+    s.text(X(300), Y(3.0) + 0.3, 'Host: 3,000,000 a month', size=16, weight='bold', color=RED, ha='left')
+    for xv in (2000, 5000):
+        s.circle(X(xv), Y(xv / 1000), 0.08, fill=PAPER, edge=INK, lw=1.6, z=5)
     return s
 
 
@@ -377,7 +375,7 @@ def weights_link(w, h, **_):
             s.arrow(x + pw + 0.04, y0 + ph / 2, xs[i + 1] - 0.04, y0 + ph / 2, color=RED, lw=2.6)
     # neuron: weighted sum
     x = xs[0]
-    s.text(x + pw / 2, y0 + 1.95, 'w1x1 + w2x2 + b', size=18, weight='bold')
+    s.text(x + pw / 2, y0 + 1.95, 'w₁x₁ + w₂x₂ + b', size=18, weight='bold')
     s.text(x + pw / 2, y0 + 1.35, '2 weights + 1 bias', size=16, color=BODY)
     s.text(x + pw / 2, y0 + 0.62, '= 3 parameters', size=24, weight='bold', color=RED)
     # digit net
@@ -387,10 +385,11 @@ def weights_link(w, h, **_):
     s.text(x + pw / 2, y0 + 0.62, '= 1,210', size=24, weight='bold', color=RED)
     # GPT-2
     x = xs[2]
-    s.text(x + pw / 2, y0 + 1.95, '12 blocks x 7,087,872', size=16, weight='bold')
-    s.text(x + pw / 2, y0 + 1.5, '+ embedding matrix 38,597,376', size=15, color=BODY)
-    s.text(x + pw / 2, y0 + 1.1, '+ position embeddings, final layer norm', size=14, color=BODY)
-    s.text(x + pw / 2, y0 + 0.5, '= 124,439,808', size=22, weight='bold', color=RED)
+    s.text(x + 0.15, y0 + 2.15, '12 blocks × 7,087,872', size=15, ha='left')
+    s.text(x + 0.15, y0 + 1.78, '+ token table 50,257 × 768', size=15, ha='left')
+    s.text(x + 0.15, y0 + 1.41, '+ position table 1,024 × 768', size=15, ha='left')
+    s.text(x + 0.15, y0 + 1.04, '+ 1,536 final scaling numbers', size=15, ha='left')
+    s.text(x + pw / 2, y0 + 0.45, '= 124,439,808', size=22, weight='bold', color=RED)
     s.text(w / 2, 0.52, 'Every parameter was adjusted by the training loop of Session 0.', size=17, weight='bold')
     s.text(w / 2, 0.15, 'Weights multiply an input. Biases are added. Together they are the parameters.', size=15, color=MUTE)
     return s
@@ -460,36 +459,160 @@ def rounding(w, h, **_):
 @fig('x_t07_quantformula')
 def quantformula(w, h, **_):
     s = Scene(w, h)
-    s.text(0.05, h - 0.3, 'q = round(x ÷ s) + z', size=26, weight='bold', ha='left')
-    s.text(5.0, h - 0.3, 'x̂ = s × (q − z)', size=26, weight='bold', ha='left')
-    s.text(0.05, h - 0.68, 'store the integer q', size=16, color=BODY, ha='left')
-    s.text(5.0, h - 0.68, 'read it back as x̂ ("x hat", the approximate value)', size=16, color=BODY, ha='left')
-    s.text(0.05, h - 1.05, 'x: the parameter.  s: the scale, the step between levels.  z: the zero point, the integer that stands for 0.', size=16, ha='left')
-    s.text(0.05, h - 1.4, 'Toy setting: 4-bit integers q from 0 to 15, s = 0.1, z = 8 (so x from −0.8 to 0.7).', size=16, weight='bold', ha='left')
-    heads = ['x', 'x ÷ s', 'round, + z = q', 'x̂ = s × (q − z)', 'error |x − x̂|']
-    rows = [['0.42', '4.2', '4 + 8 = 12', '0.1 × 4 = 0.4', '0.02'],
-            ['−0.26', '−2.6', '−3 + 8 = 5', '0.1 × (−3) = −0.3', '0.04'],
-            ['0.64', '6.4', '6 + 8 = 14', '0.1 × 6 = 0.6', '0.04']]
-    cwid = [1.5, 1.6, 2.5, 3.0, 2.2]
-    x0 = 0.05
-    ytop = h - 1.7
-    rh = 0.5
-    xx = x0
+    s.text(0.05, h - 0.35, 'q = round(x ÷ s) + z', size=26, weight='bold', ha='left')
+    s.text(6.1, h - 0.35, 'x̂ = s × (q − z)', size=26, weight='bold', ha='left')
+    s.text(0.05, h - 0.8, 'store: steps 1 to 3 in one line', size=16, color=BODY, ha='left')
+    s.text(6.1, h - 0.8, 'read back: undo the steps', size=16, color=BODY, ha='left')
+    parts = [('x', 'the parameter, e.g. 0.42'), ('s', 'the scale: the step between levels, 0.1'), ('z', 'the zero point: the stored value for 0, here 8'),
+             ('q', 'the whole number stored, 12'), ('x̂', '"x hat": the value read back, 0.4')]
+    g = 0.12
+    pw = (w - 0.1 - g * 4) / 5
+    for i, (a, b) in enumerate(parts):
+        x = 0.05 + i * (pw + g)
+        s.box(x, 1.05, pw, 1.75, '', fill=PAPER, lw=1.4)
+        s.text(x + pw / 2, 2.45, a, size=22, weight='bold', color=RED)
+        _wrap(s, x + pw / 2, 1.6, pw - 0.25, b, 15)
+    s.text(0.05, 0.62, 'Rounding error |x − x̂| is at most s ÷ 2. 4-bit: s = 0.1, error up to 0.05.', size=16, weight='bold', ha='left')
+    s.text(0.05, 0.2, 'INT8 has 256 levels over the same range: s = 1.5 ÷ 255 ≈ 0.006, error up to 0.003. Fewer bits, bigger steps, bigger error.', size=15, ha='left', color=BODY)
+    return s
+
+
+# ================================================================================================ 11 Nov 2026 rework: explain before use
+@fig('x_t07_bits')
+def bits(w, h, **_):
+    s = Scene(w, h)
+    s.text(0.05, h - 0.25, 'A bit is a switch: off (0) or on (1)', size=18, weight='bold', ha='left')
+    rows = [(1, '2 patterns: 0, 1'), (2, '4 patterns: 00, 01, 10, 11'), (3, '8 patterns'), (4, '16 patterns'), (8, '256 patterns = one byte')]
+    top = h - 0.75
+    rh = 0.62
+    for i, (n, lab) in enumerate(rows):
+        y = top - i * rh
+        s.text(0.05, y, f'{n} bit' + ('s' if n > 1 else ''), size=16, weight='bold', ha='left')
+        for k in range(n):
+            on = (k % 3 == 0)
+            s.box(1.0 + k * 0.38, y - 0.2, 0.32, 0.4, '1' if on else '0', size=15, weight='bold', fill=GOLD if on else PAPER, r=0.03, lw=1.2)
+        s.text(4.2, y, lab, size=16, ha='left', weight='bold' if n == 8 else 'normal', color=RED if n == 8 else INK)
+    s.text(0.05, 0.95, 'Each extra bit doubles the patterns. A byte (8 bits) holds', size=15, ha='left', color=BODY)
+    s.text(0.05, 0.62, '0 to 255, like a pixel brightness in Session 1.', size=15, ha='left', color=BODY)
+    s.text(0.05, 0.2, '1 MB = 1 million bytes.  1 GB = 1 billion bytes.', size=16, weight='bold', ha='left')
+    return s
+
+
+@fig('x_t07_digits')
+def digits(w, h, **_):
+    s = Scene(w, h)
+    s.text(0.05, h - 0.25, 'One parameter, 0.4321357, stored four ways', size=18, weight='bold', ha='left')
+    ws = [2.1, 2.0, 3.6, 2.0, 2.15]
+    xs = [0.05]
+    for c in ws[:-1]:
+        xs.append(xs[-1] + c)
+    heads = ['Precision', 'Bytes each', 'What we keep', 'Stored as', 'Error']
+    top = h - 0.6
     for j, hd in enumerate(heads):
-        s.text(xx + cwid[j] / 2, ytop - rh / 2, hd, size=16, weight='bold')
-        xx += cwid[j]
-    s.line(x0, ytop - rh, x0 + sum(cwid), ytop - rh, color=INK, lw=2)
+        s.box(xs[j], top - 0.55, ws[j], 0.55, hd, size=15, weight='bold', fill=PALE, r=0.02, lw=1.2)
+    rows = [('FP32', '4 (32 bits)', 'about 7 digits', '0.4321357', 'about 0'),
+            ('FP16', '2 (16 bits)', 'about 3 to 4 digits', '0.4321', '0.000007'),
+            ('INT8', '1 (8 bits)', 'one of 256 levels', '0.4297', '0.0024'),
+            ('4-bit', '0.5 (4 bits)', 'one of 16 levels', '0.375', '0.057')]
+    rh = 0.6
     for i, r in enumerate(rows):
-        yy = ytop - rh * (i + 1)
-        xx = x0
-        for j, c in enumerate(r):
-            if j == 2:
-                s.box(xx + 0.1, yy - rh + 0.07, cwid[j] - 0.2, rh - 0.14, c, size=17, weight='bold', fill=GOLD, lw=1.6)
-            elif j == 3:
-                s.text(xx + cwid[j] / 2, yy - rh / 2, c, size=17)
-            else:
-                s.text(xx + cwid[j] / 2, yy - rh / 2, c, size=17, weight='bold' if j == 0 else 'normal', color=RED if j == 4 else INK)
-            xx += cwid[j]
-        s.line(x0, yy - rh, x0 + sum(cwid), yy - rh, color=HAIR, lw=1)
-    s.text(0.05, 0.2, 'Gold: what is stored. Every error is at most half a step, 0.05. Real tools keep one scale for each small group.', size=15, color=BODY, ha='left')
+        y = top - 0.55 - (i + 1) * rh
+        for j, v in enumerate(r):
+            fill = GOLD if (j == 3) else PAPER
+            s.box(xs[j], y, ws[j], rh, v, size=17 if j != 2 else 16, weight='bold' if j in (0, 3) else 'normal', fill=fill, r=0.02, lw=1.2,
+                  color=RED if (j == 4 and i == 3) else INK)
+    s.text(0.05, 0.2, 'FP: floating point, a number with a decimal point that can move. INT8: 8-bit integer (whole number).', size=15, ha='left', color=BODY)
+    return s
+
+
+def _numline(s, x0, x1, y, lo, hi, step, label_every=None, size=14):
+    def X(v):
+        return x0 + (v - lo) / (hi - lo) * (x1 - x0)
+    s.line(x0, y, x1, y, color=INK, lw=2)
+    n = int(round((hi - lo) / step))
+    for k in range(n + 1):
+        v = lo + k * step
+        s.line(X(v), y - 0.1, X(v), y + 0.1, color=INK, lw=1.4)
+    return X
+
+
+@fig('x_t07_quant_step1')
+def quant_step1(w, h, **_):
+    s = Scene(w, h)
+    s.text(0.05, h - 0.25, 'Three parameters: 0.42, −0.26, 0.64.  4 bits give 16 levels.', size=17, weight='bold', ha='left')
+    s.text(0.05, h - 0.65, 'Step 1, the scale s: 16 levels, 0.1 apart, cover −0.8 to 0.7, so s = 0.1 (the step between levels).', size=16, ha='left')
+    x0, x1, y = 0.6, w - 0.6, h - 1.75
+    X = _numline(s, x0, x1, y, -0.8, 0.7, 0.1)
+    for v in (-0.8, -0.3, 0.0, 0.4, 0.6, 0.7):
+        s.text(X(v), y - 0.35, ('%.1f' % v).replace('-', '−'), size=14, color=MUTE)
+    for v, near in ((0.42, 0.4), (-0.26, -0.3), (0.64, 0.6)):
+        s.circle(X(v), y + 0.38, 0.07, fill=PAPER, edge=INK, lw=1.6, z=5)
+        s.arrow(X(v), y + 0.3, X(near), y + 0.08, color=RED, lw=1.6, head=8)
+        s.circle(X(near), y, 0.08, fill=GOLD, edge=INK, lw=1.6, z=5)
+        s.text(X(v), y + 0.65, ('%.2f' % v).replace('-', '−'), size=15, weight='bold')
+    s.text(0.05, 1.45, 'Step 2, divide by s and round to the nearest whole number:', size=16, weight='bold', ha='left')
+    ws = [1.8, 3.2, 3.2, 3.6]
+    xs = [0.05]
+    for c in ws[:-1]:
+        xs.append(xs[-1] + c)
+    rows = [['x', 'x ÷ s', 'round', 'level on the line'],
+            ['0.42 | −0.26 | 0.64', '4.2 | −2.6 | 6.4', '4 | −3 | 6', '0.4 | −0.3 | 0.6']]
+    for i, r in enumerate(rows):
+        for j, v in enumerate(r):
+            s.box(xs[j], 0.6 - i * 0.5, ws[j], 0.5, v, size=15, weight='bold' if (i == 0 or j == 2) else 'normal',
+                  fill=PALE if i == 0 else (GOLD if j == 2 else PAPER), r=0.02, lw=1.2)
+    return s
+
+
+@fig('x_t07_quant_step2')
+def quant_step2(w, h, **_):
+    s = Scene(w, h)
+    s.text(0.05, h - 0.25, 'Step 3, the zero point z: 4 bits store only 0 to 15, with no minus sign.', size=17, weight='bold', ha='left')
+    s.text(0.05, h - 0.65, 'Add z = 8 to every rounded value, so −8 to 7 becomes 0 to 15. The level for zero is stored as 8.', size=16, ha='left')
+    ws = [1.25, 1.2, 2.3, 2.95, 1.2]
+    xs = [0.05]
+    for c in ws[:-1]:
+        xs.append(xs[-1] + c)
+    heads = ['x', 'round', '+ z = q (stored)', 'read back: s × (q − z)', 'error']
+    rows = [['0.42', '4', '4 + 8 = 12', '0.1 × 4 = 0.4', '0.02'],
+            ['−0.26', '−3', '−3 + 8 = 5', '0.1 × (−3) = −0.3', '0.04'],
+            ['0.64', '6', '6 + 8 = 14', '0.1 × 6 = 0.6', '0.04']]
+    top = h - 1.0
+    for j, hd in enumerate(heads):
+        s.box(xs[j], top - 0.55, ws[j], 0.55, hd, size=15, weight='bold', fill=PALE, r=0.02, lw=1.2)
+    for i, r in enumerate(rows):
+        y = top - 0.55 - (i + 1) * 0.55
+        for j, v in enumerate(r):
+            s.box(xs[j], y, ws[j], 0.55, v, size=16, weight='bold' if j in (0, 2) else 'normal', fill=GOLD if j == 2 else PAPER,
+                  color=RED if j == 4 else INK, r=0.02, lw=1.2)
+    xr = sum(ws) + 0.3
+    s.box(xr, 0.2, w - xr - 0.05, top - 0.2, '', fill=PAPER, lw=1.4)
+    s.text(xr + 0.15, top - 0.35, 'Stored: 12, 5, 14', size=16, weight='bold', ha='left')
+    s.text(xr + 0.15, top - 0.8, 'each fits in 4 bits', size=15, ha='left')
+    s.text(xr + 0.15, top - 1.35, 'Kept once for the', size=15, ha='left')
+    s.text(xr + 0.15, top - 1.7, 'group: s = 0.1, z = 8', size=15, ha='left', weight='bold')
+    s.text(xr + 0.15, top - 2.25, 'Every error is at most', size=15, ha='left')
+    s.text(xr + 0.15, top - 2.6, 'half a step: 0.05', size=15, ha='left', weight='bold', color=RED)
+    return s
+
+
+@fig('x_t07_breakeven_formula')
+def breakeven_formula(w, h, **_):
+    s = Scene(w, h)
+    pw = 5.7
+    s.box(0.05, 0.1, pw, h - 0.2, '', fill=PAPER, lw=1.6)
+    s.text(0.25, h - 0.4, 'Add a running cost when you host', size=17, weight='bold', color=RED, ha='left')
+    lines = [('Renting costs p = 1,000 a request.', False), ('Hosting costs v = 200 a request', False), ('(power, upkeep) plus F = 3,000,000 a month.', False),
+             ('Each request you host saves', False), ('p − v = 1,000 − 200 = 800.', True), ('Requests needed to pay back F:', False), ('3,000,000 ÷ 800 = 3,750 a month.', True)]
+    for i, (tx, b) in enumerate(lines):
+        s.text(0.25, h - 0.95 - i * 0.43, tx, size=16, ha='left', weight='bold' if b else 'normal')
+    x2 = pw + 0.25
+    s.box(x2, 0.1, w - x2 - 0.05, h - 0.2, '', fill=PAPER, lw=1.6)
+    s.text(x2 + 0.2, h - 0.4, 'The formula', size=17, weight='bold', color=RED, ha='left')
+    s.box(x2 + 0.2, h - 1.45, w - x2 - 0.45, 0.75, 'Break-even volume = F ÷ (p − v)', size=19, weight='bold', fill=GOLD)
+    defs = ['F: fixed cost a month (the server)', 'p: price per request if you rent', 'v: running cost per request if you host',
+            'Check, with v = 0: 3,000,000 ÷ 1,000 = 3,000']
+    for i, d in enumerate(defs):
+        s.text(x2 + 0.2, h - 1.95 - i * 0.48, d, size=16, ha='left', weight='bold' if i == 3 else 'normal')
+    s.text(x2 + 0.2, 0.35, 'Above break-even, hosting is cheaper.', size=15, ha='left', color=BODY)
     return s

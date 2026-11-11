@@ -1,4 +1,4 @@
-scikit-learn 1.9.1 numpy 2.5.4
+scikit-learn 1.9.1 numpy 2.2.6
 
 === A. FICTIONAL expense claims: 240 rows, 75 queried, 165 paid
 tree depth 1: cross-validated accuracy 0.800 (spread 0.050)
@@ -115,3 +115,30 @@ Tree on words (depth 3, all 40 messages):
 |   |   |--- weights: [1.00, 0.00, 0.00, 0.00] class: complaint
 
 vocabulary size (words used at least twice): 133   accuracy on the 40 it trained on: 0.825
+
+Claims, tree depth 3, one 5-fold split (repeat 1):
+  fold 1: test 44 of 48 = 0.9167   training 184 of 192 = 0.9583
+  fold 2: test 44 of 48 = 0.9167   training 184 of 192 = 0.9583
+  fold 3: test 45 of 48 = 0.9375   training 184 of 192 = 0.9583
+  fold 4: test 45 of 48 = 0.9375   training 185 of 192 = 0.9635
+  fold 5: test 45 of 48 = 0.9375   training 184 of 192 = 0.9583
+  mean of the 5 test scores 0.9292; worst 0.9167; best 0.9375
+
+Claims, tree unlimited, one 5-fold split (repeat 1):
+  fold 1: test 42 of 48 = 0.8750   training 192 of 192 = 1.0000
+  fold 2: test 42 of 48 = 0.8750   training 192 of 192 = 1.0000
+  fold 3: test 43 of 48 = 0.8958   training 192 of 192 = 1.0000
+  fold 4: test 44 of 48 = 0.9167   training 192 of 192 = 1.0000
+  fold 5: test 41 of 48 = 0.8542   training 192 of 192 = 1.0000
+  mean of the 5 test scores 0.8833; worst 0.8542; best 0.9167
+
+40 messages, tree depth 3 on words, one 5-fold split (repeat 1):
+  fold 1: 2 of 8 = 0.250
+  fold 2: 3 of 8 = 0.375
+  fold 3: 5 of 8 = 0.625
+  fold 4: 6 of 8 = 0.750
+  fold 5: 7 of 8 = 0.875
+  mean 0.575
+
+kNN k=5 on all three measurements, min-max scaling first: 0.889  (standard scaling above: 0.904; raw: 0.690)
+feature ranges in the claims: amount (UGX thousands) 5.0 to 1567.0 ; days to file 0.0 to 66.0

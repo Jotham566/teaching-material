@@ -169,4 +169,41 @@ tw = DecisionTreeClassifier(max_depth=3, random_state=0).fit(Wm, lab)
 print('\nTree on words (depth 3, all 40 messages):\n' + export_text(tw, feature_names=list(cvz.get_feature_names_out()), show_weights=True))
 print('vocabulary size (words used at least twice):', Wm.shape[1], '  accuracy on the 40 it trained on:', round(float(tw.score(Wm, lab)), 3))
 out['words_tree_train_acc'] = float(tw.score(Wm, lab))
+
+# ============================== C. five fold scores of ONE 5-fold split (added 11 November 2026 for the worked cross-validation slide)
+# The first 5 of the 100 tests above are one complete 5-fold split (repeat 1 of RepeatedStratifiedKFold, random_state=0).
+first = list(cv.split(X, y))[:5]
+folds = {}
+for name, d in (('depth 3', 3), ('unlimited', None)):
+    rowsf = []
+    for f, (tr, te) in enumerate(first, 1):
+        m = DecisionTreeClassifier(max_depth=d, random_state=0).fit(X[tr], y[tr])
+        ok_te = int((m.predict(X[te]) == y[te]).sum())
+        ok_tr = int((m.predict(X[tr]) == y[tr]).sum())
+        rowsf.append(dict(fold=f, test_n=len(te), test_right=ok_te, test_acc=ok_te / len(te), train_n=len(tr), train_right=ok_tr, train_acc=ok_tr / len(tr)))
+    mean = sum(r['test_acc'] for r in rowsf) / 5
+    folds[name] = dict(folds=rowsf, mean=mean, worst=min(r['test_acc'] for r in rowsf), best=max(r['test_acc'] for r in rowsf))
+    print(f'\nClaims, tree {name}, one 5-fold split (repeat 1):')
+    for r in rowsf:
+        print(f"  fold {r['fold']}: test {r['test_right']} of {r['test_n']} = {r['test_acc']:.4f}   training {r['train_right']} of {r['train_n']} = {r['train_acc']:.4f}")
+    print(f"  mean of the 5 test scores {mean:.4f}; worst {folds[name]['worst']:.4f}; best {folds[name]['best']:.4f}")
+out['claims_one_split'] = folds
+first_m = list(cv2.split(texts, lab))[:5]
+rm = []
+for f, (tr, te) in enumerate(first_m, 1):
+    pm = Pipeline([('v', CountVectorizer(binary=True, min_df=2)), ('m', DecisionTreeClassifier(max_depth=3, random_state=0))])
+    pm.fit([texts[i] for i in tr], lab[tr])
+    ok = int((pm.predict([texts[i] for i in te]) == lab[te]).sum())
+    rm.append(dict(fold=f, test_n=len(te), test_right=ok, test_acc=ok / len(te)))
+print('\n40 messages, tree depth 3 on words, one 5-fold split (repeat 1):')
+for r in rm:
+    print(f"  fold {r['fold']}: {r['test_right']} of {r['test_n']} = {r['test_acc']:.3f}")
+print(f"  mean {sum(r['test_acc'] for r in rm) / 5:.3f}")
+out['messages_one_split'] = rm
+# min-max scaling (the method taught by hand on the slides) for the same k = 5 model on the claims
+from sklearn.preprocessing import MinMaxScaler
+mm = cross_val_score(make_pipeline(MinMaxScaler(), KNeighborsClassifier(5)), X, y, cv=cv).mean()
+print(f'\nkNN k=5 on all three measurements, min-max scaling first: {mm:.3f}  (standard scaling above: {scaled:.3f}; raw: {raw:.3f})')
+print('feature ranges in the claims: amount (UGX thousands)', X[:, 0].min(), 'to', X[:, 0].max(), '; days to file', X[:, 2].min(), 'to', X[:, 2].max())
+out['scaling_minmax'] = dict(minmax=float(mm), amount_min=float(X[:, 0].min()), amount_max=float(X[:, 0].max()), days_min=float(X[:, 2].min()), days_max=float(X[:, 2].max()))
 json.dump(out, open(HERE / 'results_s02.json', 'w'), indent=1)

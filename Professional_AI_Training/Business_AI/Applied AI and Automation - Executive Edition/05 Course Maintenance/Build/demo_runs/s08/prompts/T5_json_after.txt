@@ -1,0 +1,1 @@
+A customer at a restaurant says: "Two chapati and a tea for table 4, no sugar please." Return the order as JSON only, with these fields: table (a number), items (a list, each with dish and quantity), note (text, or null if there is none). No text before or after the JSON.

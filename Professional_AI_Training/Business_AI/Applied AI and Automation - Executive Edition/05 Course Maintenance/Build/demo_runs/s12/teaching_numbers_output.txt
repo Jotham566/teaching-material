@@ -1,0 +1,5 @@
+kettle net saving a month 20000 | cumulative [20000, 40000, 60000, 80000] | payback months 3.0
+kettle first year benefits 360000 costs 180000 net 180000 (check 12 x saving - kettle = 180000 ) ROI 1.0
+NVF minutes saved 320 hours 5.33 | after review minutes 240 hours 4.0
+NVF benefits 160000 144000 304000 | one-off 480000 | monthly 145000 | net a month 159000
+NVF payback 3.02 | 12-month net 1428000 | 12-month costs 2220000 | ROI 0.643

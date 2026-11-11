@@ -5,6 +5,8 @@ t13_riskgrid  : the 5 x 5 likelihood and impact grid with the eight typical risk
 t13_dataflow  : four questions that decide where a piece of information may go (personal, confidential, internal, public).
 t13_layers    : four layers of rules: the law, standards, guides, your own policy.
 t13_redflags  : eight lines from the OrbitDesk proposal with the red flag each one raises.
+t13_scales    : the two 1 to 5 scales of the Risk Register template (likelihood, impact) with a flat tyre and a stolen car placed (11 Nov 2026).
+t13_tco       : total cost of ownership on an everyday phone contract: 0 today + 24 x UGX 100,000 = UGX 2,400,000 (11 Nov 2026).
 t13_contract  : the OrbitDesk commitment drawn as three paid years with no exit, an unknown renewal and an open usage bill.
 """
 from figkit import Scene, INK, BODY, MUTE, HAIR, PAPER, RED, GOLD, LayoutError, fig
@@ -58,7 +60,7 @@ def x_t13_bridge(w, h, rows=(), heads=('What the model does', 'The rule you writ
 
 # ------------------------------------------------------------------ risk grid
 @fig('x_t13_riskgrid')
-def x_t13_riskgrid(w, h, risks=(), size=15, **_):
+def x_t13_riskgrid(w, h, risks=(), size=15, scores=False, formula=False, **_):
     """risks: [{n: 1, name: 'Data leakage', l: 3, i: 5}]; cell colour by score: High 15+, Medium 8 to 14, Low below 8."""
     s = Scene(w, h)
     cell = min((h - 0.95) / 5.0, 0.78)
@@ -68,6 +70,8 @@ def x_t13_riskgrid(w, h, risks=(), size=15, **_):
             sc = L * I
             fill = RED if sc >= 15 else (GOLD if sc >= 8 else PAPER)
             s.rect(gx + (L - 1) * cell, gy + (I - 1) * cell, cell, cell, fill=fill, edge=INK, lw=1.0, z=1)
+            if scores:
+                s.text(gx + (L - 1) * cell + 0.07, gy + I * cell - 0.15, str(sc), size=14, ha='left', color=PAPER if fill == RED else BODY)
     for k in range(1, 6):
         s.text(gx + (k - 0.5) * cell, gy - 0.22, str(k), size=15, weight='bold')
         s.text(gx - 0.2, gy + (k - 0.5) * cell, str(k), size=15, weight='bold')
@@ -86,15 +90,18 @@ def x_t13_riskgrid(w, h, risks=(), size=15, **_):
     lx = gx + 5 * cell + 0.3
     y0 = gy + 5 * cell
     s.text(lx, y0 + 0.02, 'Risk and score', size=15, weight='bold', ha='left')
-    step = min(0.44, (y0 - 0.1) / (len(risks) + 2))
+    step = min(0.44, (y0 - 0.3) / (len(risks) + 3.4))
     for k, r in enumerate(sorted(risks, key=lambda q: q['n'])):
         yy = y0 - 0.32 - k * step
-        s.text(lx, yy, f"{r['n']}  {r['name']}  {r['l'] * r['i']}", size=14, ha='left', color=BODY)
+        lab = f"{r['n']}  {r['name']}: {r['l']} × {r['i']} = {r['l'] * r['i']}" if formula else f"{r['n']}  {r['name']}  {r['l'] * r['i']}"
+        s.text(lx, yy, lab, size=15 if formula else 14, ha='left', color=INK if formula else BODY, weight='bold' if formula else 'normal')
     yy = y0 - 0.32 - len(risks) * step - 0.1
     s.rect(lx, yy - 0.09, 0.24, 0.24, fill=RED, edge=INK, lw=1.0)
     s.text(lx + 0.34, yy + 0.03, 'High 15 or more', size=14, ha='left')
     s.rect(lx, yy - 0.09 - step, 0.24, 0.24, fill=GOLD, edge=INK, lw=1.0)
     s.text(lx + 0.34, yy + 0.03 - step, 'Medium 8 to 14', size=14, ha='left')
+    s.rect(lx, yy - 0.09 - 2 * step, 0.24, 0.24, fill=PAPER, edge=INK, lw=1.0)
+    s.text(lx + 0.34, yy + 0.03 - 2 * step, 'Low 1 to 7', size=14, ha='left')
     return s
 
 
@@ -162,14 +169,14 @@ def x_t13_redflags(w, h, rows=(), size=15, **_):
     for i, r in enumerate(rows):
         y = h - 0.02 - (i + 1) * rh - i * gap
         s.box(0.02, y, w - 0.04, rh, '', fill=PAPER, edge=HAIR, lw=1.0, r=0.04)
-        s.text(0.14, y + rh / 2, r['sec'], size=size - 1, weight='bold', ha='left', color=MUTE)
+        s.text(0.14, y + rh / 2, r['sec'], size=max(14, size - 1), weight='bold', ha='left', color=MUTE)
         ls = _lines('“' + r['quote'] + '”', size, qw - 0.1)
         if len(ls) * size * 1.17 / 72 > rh - 0.03:
             raise LayoutError('redflags quote too tall: ' + r['quote'])
         s.text(secw + 0.1, y + rh / 2, '\n'.join(ls), size=size, ha='left', italic=True, color=INK)
         fx = w - flw - 0.06
         s.box(fx, y + 0.04, flw, rh - 0.08, '', fill=RED, edge=RED, lw=0, r=0.05, z=3)
-        s.text(fx + flw / 2, y + rh / 2, r['flag'], size=size - 1, weight='bold', color=PAPER, z=6)
+        s.text(fx + flw / 2, y + rh / 2, r['flag'], size=max(14, size - 1), weight='bold', color=PAPER, z=6)
     return s
 
 
@@ -197,4 +204,51 @@ def x_t13_contract(w, h, size=16, **_):
     s.text(w / 2, y2 - 0.1, 'On top: USD 0.40 an action, no monthly cap, and nobody defines an action', size=size, weight='bold')
     s.arrow(0.4, y2 - 0.8, w - 0.4, y2 - 0.8, color=RED, lw=2.6, head=18)
     s.text(w / 2, y2 - 1.1, 'The bill has no ceiling', size=size, color=RED, weight='bold')
+    return s
+
+
+# ------------------------------------------------------------------ scales
+@fig('x_t13_scales')
+def x_t13_scales(w, h, size=15, **_):
+    """Likelihood and impact, 1 to 5, in the words of the Risk Register template (Scale sheet); a flat tyre and a stolen car placed."""
+    s = Scene(w, h)
+    L = ['Rare', 'Unlikely', 'Possible', 'Likely', 'Almost certain']
+    I = ['Small', 'Minor', 'Moderate', 'Major', 'Severe']
+    cw = 2.05
+    cols = [(0.05, 'Likelihood: how probable?', L, {4: ('Flat tyre', RED), 1: ('Car stolen', INK)}),
+            (w / 2 - 0.05, 'Impact: how bad?', I, {2: ('Flat tyre', RED), 5: ('Car stolen', INK)})]
+    rh = (h - 0.65) / 5
+    for x, head, words, marks in cols:
+        s.text(x, h - 0.25, head, size=size + 1, weight='bold', ha='left')
+        for k in range(5):
+            v = k + 1
+            y = 0.05 + k * rh
+            s.box(x, y + 0.04, cw, rh - 0.08, '', fill=GOLD if v in marks else PAPER, edge=INK, lw=1.6)
+            s.text(x + 0.15, y + rh / 2, f'{v}  {words[k]}', size=size, weight='bold', ha='left')
+            if v in marks:
+                t, col = marks[v]
+                s.arrow(x + cw + 0.45, y + rh / 2, x + cw + 0.05, y + rh / 2, color=col, lw=2, head=12)
+                s.text(x + cw + 0.5, y + rh / 2, t, size=size, color=col, weight='bold', ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ total cost of ownership, everyday
+@fig('x_t13_tco')
+def x_t13_tco(w, h, size=16, **_):
+    """A 'free' phone on a 24-month plan at UGX 100,000 a month: what you commit to is 0 + 24 x 100,000."""
+    s = Scene(w, h)
+    s.icon('phone', 0.55, h - 0.6, 0.8)
+    s.text(1.1, h - 0.45, 'Phone today: UGX 0', size=size + 1, weight='bold', ha='left')
+    s.text(1.1, h - 0.85, 'on a 24-month plan', size=size, color=BODY, ha='left')
+    bw = (w - 0.5) / 12
+    for k in range(24):
+        r, c = divmod(k, 12)
+        x = 0.25 + c * bw
+        y = h - 1.75 - r * 0.5
+        s.rect(x + 0.03, y, bw - 0.06, 0.4, fill=GOLD, edge=INK, lw=1.2)
+    s.brace(0.25, w - 0.25, h - 2.35, depth=0.15, up=True)
+    s.text(w / 2, h - 2.6, '24 months × 100,000 = 2,400,000', size=size, weight='bold')
+    s.box(0.2, 0.75, w - 0.4, 0.8, '', fill=PAPER, edge=INK, lw=1.8)
+    s.text(w / 2, 1.15, 'You commit to: 0 + 2,400,000 = UGX 2,400,000', size=size, weight='bold')
+    s.text(w / 2, 0.35, 'Extra data bundles come on top: usage', size=size - 1, color=RED, weight='bold')
     return s

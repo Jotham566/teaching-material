@@ -88,30 +88,6 @@ def tokens(w, h, **_):
     return s
 
 
-# ------------------------------------------------------------------ the RAG pipeline
-@fig('x_t09_librarian')
-def librarian(w, h, **_):
-    s = Scene(w, h)
-    steps = [('person', 'Query', 'Who must approve a claim of UGX 1,500,000?'),
-             ('grid', 'Embedding', 'The query becomes 384 numbers; every chunk has its own'),
-             ('magnifier', 'Retriever', 'Scores every chunk in the vector database'),
-             ('doc', 'Top-k, k = 3', '3.2 scores 0.73, 3.1 scores 0.47, 3.5 scores 0.46'),
-             ('robot', 'Generation', 'The model answers from the chunks: the Finance Manager (3.2)')]
-    n = len(steps)
-    gap = 0.4
-    bw = (w - 0.2 - gap * (n - 1)) / n
-    bh = h - 0.3
-    for i, (ic, head, ex) in enumerate(steps):
-        x = 0.1 + i * (bw + gap)
-        s.box(x, 0.1, bw, bh, '', fill=GOLD if i == 3 else PAPER, lw=2.0)
-        s.icon(ic, x + bw / 2, 0.1 + bh - 0.65, 0.85)
-        used = wt(s, x + bw / 2, 0.1 + bh - 1.5, bw - 0.25, head, 19, weight='bold')
-        wt(s, x + bw / 2, 0.1 + bh - 1.75 - 0.95, bw - 0.25, ex, 16, color=BODY)
-        if i < n - 1:
-            s.arrow(x + bw + 0.03, 0.1 + bh / 2, x + bw + gap - 0.03, 0.1 + bh / 2, lw=2.4, head=18)
-    return s
-
-
 # ------------------------------------------------------------------ the open-book test (everyday) with the industry terms underneath
 @fig('x_t09_openbook')
 def openbook(w, h, **_):
@@ -158,43 +134,6 @@ def chunks(w, h, **_):
     return s
 
 
-# ------------------------------------------------------------------ scores for one question
-def _bars(s, x0, y_top, w, rows, rowh, size=17, hl=0, label_w=2.6, vmax=1.0, red_rows=()):
-    bw = w - label_w - 0.9
-    for i, (lab, v) in enumerate(rows):
-        y = y_top - (i + 0.5) * rowh
-        s.text(x0, y, lab, size=size, ha='left', weight='bold' if i == hl else 'normal')
-        L = bw * v / vmax
-        s.rect(x0 + label_w, y - rowh * 0.3, L, rowh * 0.6, fill=(RED if i in red_rows else GOLD) if i == hl else PALE, edge=INK, lw=1.4)
-        s.text(x0 + label_w + L + 0.1, y, f'{v:.2f}', size=size, weight='bold', ha='left')
-    s.line(x0 + label_w, y_top - len(rows) * rowh, x0 + label_w, y_top, color=INK, lw=1.4)
-
-
-@fig('x_t09_scores_q03')
-def scores_q03(w, h, **_):
-    s = Scene(w, h)
-    wt(s, w / 2, h - 0.5, w - 0.3, 'Who must approve an expense claim of UGX 1,500,000?', 19, weight='bold')
-    rows = [('3.2 Approval limits', 0.73), ('3.1 Receipts', 0.47), ('3.5 Paid with salary', 0.46), ('3.6 No receipt', 0.40), ('3.3 Travel allowance', 0.29)]
-    _bars(s, 0.1, h - 1.05, w - 0.2, rows, 0.55, size=17, label_w=2.7)
-    s.text(w / 2, 0.78, 'cos θ = q·c / (|q| |c|); 1.00 is identical meaning', size=16, weight='bold')
-    s.text(w / 2, 0.47, 'Top-k: keep the k chunks with the largest cos θ (k = 3)', size=16, color=BODY)
-    s.text(w / 2, 0.15, 'all-MiniLM-L6-v2, cosine similarity, real run', size=14, color=MUTE)
-    return s
-
-
-@fig('x_t09_miss')
-def miss(w, h, **_):
-    s = Scene(w, h)
-    wt(s, w / 2, h - 0.45, w - 0.3, 'Best score for two different questions', 19, weight='bold')
-    s.text(0.1, h - 1.15, 'Q03 has an answer in the handbook', size=17, ha='left', weight='bold')
-    _bars(s, 0.1, h - 1.4, w - 0.2, [('3.2 Approval limits', 0.73)], 0.6, size=17, label_w=2.7)
-    s.text(0.1, h - 2.4, 'Q09 asks for paid sick days: none stated', size=17, ha='left', weight='bold', color=RED)
-    _bars(s, 0.1, h - 2.65, w - 0.2, [('2.1 Annual leave', 0.70)], 0.6, size=17, label_w=2.7, red_rows=(0,))
-    wt(s, w / 2, 1.1, w - 0.3, '0.73 against 0.70: a score cannot tell the two cases apart', 18, weight='bold', color=RED)
-    s.text(w / 2, 0.45, 'Q10 (car mileage rate, not stated): best score 0.32', size=16, color=BODY)
-    return s
-
-
 # ------------------------------------------------------------------ all ten questions
 @fig('x_t09_retrieval_table')
 def retrieval_table(w, h, **_):
@@ -235,49 +174,6 @@ def with_without(w, h, **_):
             cx += cw[c]
         y -= rh[r]
     wt(s, w / 2, 0.3, w - 0.3, 'Claude, fresh subagent sessions, 6 November 2026; full handbook runs from 4 November. Not ChatGPT or Gemini.', 15, color=MUTE)
-    return s
-
-
-# ------------------------------------------------------------------ long context
-@fig('x_t09_context')
-def context(w, h, **_):
-    s = Scene(w, h)
-    s.text(0.1, h - 0.3, 'The context window: everything the model reads at once', size=18, weight='bold', ha='left')
-    bx, bw = 0.1, w - 0.2
-    zone = bw / 3
-    labels = [('Start', 'Used well', GOLD), ('Middle', 'Can be missed', PALE), ('End', 'Used well', GOLD)]
-    for i, (a, b, f) in enumerate(labels):
-        s.rect(bx + i * zone, h - 2.0, zone, 1.2, fill=f, edge=INK, lw=2)
-        s.text(bx + i * zone + zone / 2, h - 1.2, a, size=20, weight='bold')
-        s.text(bx + i * zone + zone / 2, h - 1.6, b, size=17)
-    s.text(w / 2, h - 2.3, 'Pattern reported by Liu and others (2023), not a measure of your product', size=14, color=MUTE)
-    s.text(w / 2, h - 2.75, 'Budget: prompt + retrieved text + answer \u2264 context window', size=18, weight='bold')
-    s.text(w / 2, h - 3.15, 'RAG for Q03: 94 + 104 + 300 = 498 tokens', size=16)
-    s.text(w / 2, h - 3.5, 'Whole handbook pasted: 94 + 1,074 + 300 = 1,468 tokens', size=16)
-    s.text(w / 2, 0.98, 'Counts: cl100k_base. The answer limit of 300 is a setting you choose.', size=14, color=MUTE)
-    for i, (ic, tx) in enumerate([('clock', 'Longer input, slower and dearer'), ('folder', 'A whole archive does not fit'), ('lock', 'Everything pasted is seen by the model')]):
-        x = 0.1 + i * (w - 0.2) / 3
-        s.icon(ic, x + 0.4, 0.42, 0.55)
-        wt(s, x + 0.75 + (w - 0.2) / 6 - 0.4, 0.42, (w - 0.2) / 3 - 1.0, tx, 14, ha='center')
-    return s
-
-
-# ------------------------------------------------------------------ LoRA
-@fig('x_t09_lora')
-def lora(w, h, **_):
-    s = Scene(w, h)
-    s.text(0.1, h - 0.3, 'GPT-2: 124,439,808 weights', size=18, weight='bold', ha='left')
-    s.box(0.1, h - 2.4, 3.6, 1.8, 'Pretrained weights\n(frozen)', size=20, fill=PALE, weight='bold', lw=2)
-    s.text(4.2, h - 1.5, '+', size=34, weight='bold')
-    s.box(4.7, h - 1.95, 0.7, 1.35, '', fill=GOLD, lw=2)
-    s.box(5.55, h - 2.4, 1.35, 0.5, '', fill=GOLD, lw=2)
-    s.text(5.05, h - 1.28, 'B', size=18, weight='bold')
-    s.text(6.2, h - 2.15, 'A', size=18, weight='bold')
-    s.text(5.9, h - 2.75, 'Adapter: matrices B and A', size=16, weight='bold')
-    s.text(1.9, h - 2.75, 'W\u2032 = W + B A', size=22, weight='bold')
-    s.text(0.1, 1.55, 'LoRA trains only the adapter:', size=19, weight='bold', ha='left')
-    s.text(0.1, 1.0, '294,912 weights = 0.24 percent', size=24, weight='bold', ha='left', color=RED)
-    wt(s, w / 2, 0.3, w - 0.3, 'Rank 8, in the attention step of each block. A drawing of the idea, not to scale.', 15, color=MUTE)
     return s
 
 
@@ -369,25 +265,266 @@ def peek_score(w, h, **_):
     rh = min(0.62, (h - 1.0) / 6)
     s.table(0.05, h - 0.05, cw, rh, rows, size=16, hl_cells={(4, 8): GOLD, (5, 8): GOLD, (4, 0): PALE, (5, 0): PALE}, align=['left'] + ['center'] * 8)
     s.text(w / 2, 0.62, 'cos θ = q·c / (|q| |c|) = q1·c1 + q2·c2 + ... + q384·c384, because both lengths are 1', size=17, weight='bold')
-    s.text(w / 2, 0.2, 'q: query, c: chunk, |q|: length of q. First 6 of 384 shown; all 384 products add to 0.73 and 0.47.', size=15, color=BODY)
+    s.text(w / 2, 0.2, 'q: query, c: chunk, q1: first number of q, |q|: length of q, θ: the angle between them. First 6 of 384 shown.', size=15, color=BODY)
     return s
 
 
-# ------------------------------------------------------------------ peek inside LoRA: where 294,912 comes from
+
+
+# ------------------------------------------------------------------ the RAG pipeline (overview; scores come later in the session)
+@fig('x_t09_librarian')
+def librarian(w, h, **_):
+    s = Scene(w, h)
+    steps = [('doc', 'Chunking', 'Cut the handbook into 30 chunks, one per clause'),
+             ('grid', 'Embedding', 'Each chunk, and later the query, becomes a vector (Session 4)'),
+             ('magnifier', 'Retriever', 'Gives every chunk a closeness score against the query'),
+             ('pin', 'Top-k', 'Keeps the k closest chunks; here k = 3'),
+             ('robot', 'Generation', 'The model answers from those chunks and cites the clause')]
+    n = len(steps)
+    gap = 0.4
+    bw = (w - 0.2 - gap * (n - 1)) / n
+    bh = h - 0.75
+    for i, (ic, head, ex) in enumerate(steps):
+        x = 0.1 + i * (bw + gap)
+        s.box(x, 0.65, bw, bh, '', fill=GOLD if i == 3 else PAPER, lw=2.0)
+        s.icon(ic, x + bw / 2, 0.65 + bh - 0.6, 0.8)
+        wt(s, x + bw / 2, 0.65 + bh - 1.4, bw - 0.25, head, 19, weight='bold')
+        wt(s, x + bw / 2, 0.65 + bh - 2.45, bw - 0.25, ex, 16, color=BODY)
+        if i < n - 1:
+            s.arrow(x + bw + 0.03, 0.65 + bh / 2, x + bw + gap - 0.03, 0.65 + bh / 2, lw=2.4, head=18)
+    s.text(0.1, 0.3, 'Done once, ahead of time: chunking and embedding the chunks (stored in a vector database).', size=15, ha='left', color=BODY)
+    return s
+
+
+# ------------------------------------------------------------------ cosine similarity recalled from Session 4, and what a score of 0.6 means
+@fig('x_t09_cosine')
+def cosine(w, h, **_):
+    import math
+    s = Scene(w, h)
+    ox, oy, L = 0.3, 0.55, 2.6
+    s.arrow(ox, oy, ox + L, oy, lw=3.0, head=18)
+    s.text(ox + L + 0.1, oy + 0.05, 'query', size=16, weight='bold', ha='left')
+    for c, lab, col in [(0.96, '0.96', GOLD), (0.6, '0.60', INK), (0.0, '0.00', MUTE)]:
+        a = math.acos(c)
+        x2, y2 = ox + L * math.cos(a), oy + L * math.sin(a)
+        s.arrow(ox, oy, x2, y2, lw=2.6, head=16, color=INK if col != MUTE else MUTE)
+        deg = round(math.degrees(a))
+        s.text(x2 + 0.12, y2 + 0.12, f'cos = {lab}, {deg}°', size=16, weight='bold', ha='left', color=RED if c == 0.6 else INK)
+    x0 = 4.65
+    s.text(x0, h - 0.3, 'Worked: q = (4, 3), c = (3, 4)', size=16, weight='bold', ha='left')
+    lines = ['dot product: 4×3 + 3×4 = 24', 'length of q: √(16 + 9) = 5; of c: 5', 'cos = 24 ÷ (5 × 5) = 0.96']
+    for i, l in enumerate(lines):
+        s.text(x0, h - 0.75 - 0.4 * i, l, size=15, ha='left')
+    s.box(x0, 0.1, w - x0 - 0.05, 2.3, '', fill=PALE, lw=1.4)
+    wt(s, x0 + (w - x0) / 2, 2.0, w - x0 - 0.3, 'Range: 1 same direction, 0 unrelated.', 15, weight='bold')
+    wt(s, x0 + (w - x0) / 2, 0.95, w - x0 - 0.3, '0.6 is about 53° apart: related, far from the same. No score is good in itself; compare scores for one question.', 15)
+    return s
+
+
+# ------------------------------------------------------------------ scores for one question, with the top-k cut drawn
+def _bars(s, x0, y_top, w, rows, rowh, size=17, hl=0, label_w=2.6, vmax=1.0, red_rows=(), gold_rows=None):
+    bw = w - label_w - 0.9
+    for i, (lab, v) in enumerate(rows):
+        y = y_top - (i + 0.5) * rowh
+        gold = (i == hl) if gold_rows is None else (i in gold_rows)
+        s.text(x0, y, lab, size=size, ha='left', weight='bold' if gold else 'normal')
+        L = bw * v / vmax
+        s.rect(x0 + label_w, y - rowh * 0.3, L, rowh * 0.6, fill=(RED if i in red_rows else GOLD) if gold else PALE, edge=INK, lw=1.4)
+        s.text(x0 + label_w + L + 0.1, y, f'{v:.2f}', size=size, weight='bold', ha='left')
+    s.line(x0 + label_w, y_top - len(rows) * rowh, x0 + label_w, y_top, color=INK, lw=1.4)
+
+
+@fig('x_t09_scores_q03')
+def scores_q03(w, h, **_):
+    s = Scene(w, h)
+    wt(s, w / 2, h - 0.3, w - 0.3, 'Who must approve an expense claim of UGX 1,500,000?', 18, weight='bold')
+    rows = [('3.2 Approval limits', 0.73), ('3.1 Receipts', 0.47), ('3.5 Paid with salary', 0.46), ('3.6 No receipt', 0.40), ('3.3 Travel allowance', 0.29)]
+    rowh = 0.55
+    top = h - 0.7
+    _bars(s, 0.1, top, w - 1.3, rows, rowh, size=16, label_w=2.55, gold_rows=(0, 1, 2))
+    ycut = top - 3 * rowh
+    s.line(0.1, ycut, w - 0.1, ycut, color=RED, lw=2.2, dash=True)
+    s.line(w - 0.75, top - 0.05, w - 0.75, ycut + 0.05, color=INK, lw=2)
+    s.text(w - 0.45, top - 1.5 * rowh, 'top-k\nk = 3:\nsent', size=14, weight='bold', color=INK)
+    s.text(w - 0.45, ycut - rowh, 'left\nout', size=14, color=MUTE)
+    s.text(0.1, 0.55, 'Gap: 0.73 − 0.47 = 0.26. The right clause leads clearly.', size=15, weight='bold', ha='left')
+    s.text(0.1, 0.18, 'Recorded run, all-MiniLM-L6-v2, cosine similarity, 6 Nov 2026', size=14, color=MUTE, ha='left')
+    return s
+
+
+@fig('x_t09_miss')
+def miss(w, h, **_):
+    s = Scene(w, h)
+    wt(s, w / 2, h - 0.45, w - 0.3, 'Best score for two different questions', 19, weight='bold')
+    s.text(0.1, h - 1.15, 'Q03 has an answer in the handbook', size=17, ha='left', weight='bold')
+    _bars(s, 0.1, h - 1.4, w - 0.2, [('3.2 Approval limits', 0.73)], 0.6, size=17, label_w=2.7)
+    s.text(0.1, h - 2.4, 'Q09 asks for paid sick days: none stated', size=17, ha='left', weight='bold', color=RED)
+    _bars(s, 0.1, h - 2.65, w - 0.2, [('2.1 Annual leave', 0.70)], 0.6, size=17, label_w=2.7, red_rows=(0,))
+    wt(s, w / 2, 1.1, w - 0.3, '0.73 against 0.70: a score cannot tell the two cases apart', 18, weight='bold', color=RED)
+    s.text(w / 2, 0.45, 'Q10 (car mileage rate, not stated): best score 0.32', size=16, color=BODY)
+    return s
+
+
+# ------------------------------------------------------------------ the context window and the prompt budget
+@fig('x_t09_context')
+def context(w, h, **_):
+    s = Scene(w, h)
+    s.text(0.1, h - 0.3, 'Budget: instructions and question + retrieved text + answer ≤ context window', size=17, weight='bold', ha='left')
+    s.text(0.1, h - 0.68, '≤ means "no more than". Counted in tokens (cl100k_base).', size=15, color=BODY, ha='left')
+    rows = [('RAG for Q03', [(94, 'instructions + question', PALE), (104, '3 clauses', GOLD), (300, 'answer', PAPER)], 498),
+            ('Whole handbook', [(94, '', PALE), (1074, 'whole handbook, 1,074', GOLD), (300, 'answer', PAPER)], 1468)]
+    x0 = 2.4
+    scale = (w - x0 - 1.2) / 1468
+    for i, (lab, segs, tot) in enumerate(rows):
+        y = h - 1.45 - i * 0.95
+        s.text(0.1, y, lab, size=17, weight='bold', ha='left')
+        x = x0
+        for v, t, f in segs:
+            L = v * scale
+            s.rect(x, y - 0.3, L, 0.6, fill=f, edge=INK, lw=1.4)
+            if t and L > 1.0:
+                wt(s, x + L / 2, y, L - 0.1, t, 14)
+            x += L
+        s.text(x + 0.1, y, f'{tot:,}', size=17, weight='bold', ha='left')
+        if i == 0:
+            s.text(x0, y - 0.5, '94: instructions + question;  104: the 3 retrieved clauses', size=14, ha='left', color=BODY)
+    s.text(0.1, h - 3.0, '94 + 104 + 300 = 498 tokens.   94 + 1,074 + 300 = 1,468 tokens.   300 is a limit you choose.', size=15, ha='left')
+    s.text(0.1, 0.62, 'Long inputs: facts in the middle can be missed (Liu and others, 2023, in their tests).', size=15, ha='left', color=BODY)
+    for i, (ic, tx) in enumerate([('clock', 'More tokens: slower, dearer'), ('lock', 'All of it goes to the model')]):
+        x = 0.1 + i * (w - 0.2) / 2
+        s.icon(ic, x + 0.3, 0.2, 0.4)
+        s.text(x + 0.65, 0.2, tx, size=15, ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ fine-tuning is the Session 0 training loop, started from trained weights
+@fig('x_t09_ftloop')
+def ftloop(w, h, **_):
+    s = Scene(w, h)
+    s.box(0.05, h - 1.0, w - 0.1, 0.9, '', fill=PALE, lw=1.6)
+    wt(s, w / 2, h - 0.55, w - 0.4, 'Start: the trained weights of GPT-2, all 124,439,808 (Session 7), instead of random numbers', 15, weight='bold')
+    steps = [('Predict', 'a reply to one of your 48 example messages'), ('Loss', 'how far it is from your reply'), ('Adjust', 'move the weights a little against the gradient'), ('Repeat', 'over all examples, 4 epochs')]
+    bw = (w - 0.1 - 3 * 0.25) / 4
+    for i, (hd, tx) in enumerate(steps):
+        x = 0.05 + i * (bw + 0.25)
+        s.box(x, 1.05, bw, 1.85, '', fill=GOLD if i == 2 else PAPER, lw=1.8)
+        s.text(x + bw / 2, 2.6, hd, size=18, weight='bold')
+        wt(s, x + bw / 2, 1.75, bw - 0.2, tx, 14, color=BODY)
+        if i < 3:
+            s.arrow(x + bw + 0.02, 1.98, x + bw + 0.23, 1.98, lw=2, head=13)
+    s.arrow(w - 0.3, 1.0, 0.35, 1.0, lw=1.8, head=13, rad=-0.0, color=MUTE)
+    wt(s, w / 2, 0.42, w - 0.2, 'Problem: adjusting every weight is slow, and each task needs a full copy of the model.', 15, weight='bold', color=RED)
+    return s
+
+
+# ------------------------------------------------------------------ a matrix is a table of numbers
+@fig('x_t09_matrix')
+def matrix(w, h, **_):
+    s = Scene(w, h)
+    vals = [[2, 0, 1, 3], [1, 1, 0, 2], [0, 2, 1, 1]]
+    cw, ch = 0.75, 0.62
+    x0, ytop = 1.1, h - 0.75
+    for j in range(4):
+        s.text(x0 + (j + 0.5) * cw, ytop + 0.25, f'col {j + 1}', size=14, color=MUTE)
+    for i, row in enumerate(vals):
+        s.text(x0 - 0.15, ytop - (i + 0.5) * ch, f'row {i + 1}', size=14, color=MUTE, ha='right')
+        for j, v in enumerate(row):
+            s.box(x0 + j * cw, ytop - (i + 1) * ch, cw, ch, str(v), size=18, fill=GOLD if (i, j) == (1, 3) else PAPER, r=0.02)
+    s.text(x0, ytop - 3 * ch - 0.35, '3 rows × 4 columns = 12 numbers', size=17, weight='bold', ha='left')
+    s.text(x0, ytop - 3 * ch - 0.75, 'Gold: row 2, column 4 holds 2', size=15, color=BODY, ha='left')
+    s.box(0.05, 0.1, w - 0.1, 1.1, '', fill=PALE, lw=1.4)
+    wt(s, w / 2, 0.85, w - 0.4, 'One GPT-2 weight table: 768 rows × 2,304 columns', 16, weight='bold')
+    wt(s, w / 2, 0.42, w - 0.4, '768 × 2,304 = 1,769,472 weights, in each of the 12 blocks', 16)
+    return s
+
+
+# ------------------------------------------------------------------ low rank: a times table is rebuilt from two short lists
+@fig('x_t09_lowrank')
+def lowrank(w, h, **_):
+    s = Scene(w, h)
+    cw, ch = 0.66, 0.5
+    col = [1, 2, 3, 4]
+    row = [1, 2, 3, 4]
+    x0, ytop = 1.3, h - 0.95
+    s.text(0.05, h - 0.25, 'A times table: each cell = its row number × its column number', size=17, weight='bold', ha='left')
+    for j, v in enumerate(row):
+        s.box(x0 + j * cw, ytop + 0.1, cw, ch, str(v), size=17, fill=GOLD, r=0.02)
+    for i, v in enumerate(col):
+        s.box(x0 - cw - 0.1, ytop - (i + 1) * ch, cw, ch, str(v), size=17, fill=GOLD, r=0.02)
+        for j, u in enumerate(row):
+            s.box(x0 + j * cw, ytop - (i + 1) * ch, cw, ch, str(v * u), size=17, fill=PALE if (i, j) == (2, 1) else PAPER, r=0.02)
+    s.text(x0 + 4 * cw + 0.15, ytop + 0.35, 'row list A', size=14, color=RED, weight='bold', ha='left')
+    s.text(x0 - cw - 0.1, ytop - 4 * ch - 0.3, 'column list B', size=14, color=RED, weight='bold', ha='left')
+    s.text(x0 + 4 * cw + 0.15, ytop - 2.5 * ch, 'row 3, column 2:\n3 × 2 = 6', size=15, ha='left')
+    xr = 6.4
+    lines = [('16 numbers in the table', False), ('rebuilt from 4 + 4 = 8 numbers', True), ('', False),
+             ('Written B A: the column B times the row A', False), ('The width of B and A is the rank, r.', False), ('Here r = 1.', False)]
+    for i, (t, b) in enumerate(lines):
+        if t:
+            s.text(xr, h - 0.85 - 0.45 * i, t, size=16, weight='bold' if b else 'normal', color=RED if b else INK, ha='left')
+    s.text(0.05, 0.25, 'A table built this way is low rank. In LoRA the numbers in B and A are learned in training.', size=15, color=BODY, ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ W' = W + B A on a 4 x 4 example (numbers from demo_runs/s09/check_numbers.py)
+@fig('x_t09_lora_small')
+def lora_small(w, h, **_):
+    s = Scene(w, h)
+    W = [[2, 0, 1, 3], [1, 1, 0, 2], [0, 2, 1, 1], [3, 1, 2, 0]]
+    B = [1, 0, 2, 0]
+    A = [1, 0, 0, 1]
+    BA = [[b * a for a in A] for b in B]
+    Wp = [[W[i][j] + BA[i][j] for j in range(4)] for i in range(4)]
+    c = 0.45
+    ytop = h - 0.75
+
+    def grid(x, M, fill=PAPER, hl=None):
+        for i, r in enumerate(M):
+            for j, v in enumerate(r):
+                s.box(x + j * c, ytop - (i + 1) * c, c, c, str(v), size=16, fill=GOLD if (hl and hl(i, j)) else fill, r=0.01)
+    xw = 0.1
+    grid(xw, W, PALE)
+    s.text(xw + 2 * c, ytop - 4 * c - 0.3, 'W (frozen)', size=15, weight='bold')
+    s.text(xw + 4 * c + 0.25, ytop - 2 * c, '+', size=26, weight='bold')
+    xb = xw + 4 * c + 0.5
+    for i, v in enumerate(B):
+        s.box(xb, ytop - (i + 1) * c, c, c, str(v), size=16, fill=GOLD, r=0.01)
+    s.text(xb + c / 2, ytop + 0.3, 'B', size=15, weight='bold', color=RED)
+    xg = xb + c + 0.1
+    for j, v in enumerate(A):
+        s.box(xg + j * c, ytop + 0.1, c, c, str(v), size=16, fill=GOLD, r=0.01)
+    s.text(xg + 4 * c + 0.2, ytop + 0.1 + c / 2, 'A', size=15, weight='bold', color=RED)
+    grid(xg, BA)
+    s.text(xg + 2 * c, ytop - 4 * c - 0.3, 'B A', size=15, weight='bold')
+    s.text(xg + 4 * c + 0.25, ytop - 2 * c, '=', size=26, weight='bold')
+    xp = xg + 4 * c + 0.55
+    grid(xp, Wp, PAPER, hl=lambda i, j: BA[i][j] != 0)
+    s.text(xp + 2 * c, ytop - 4 * c - 0.3, "W\u2032 (after training)", size=15, weight='bold')
+    xt = xp + 4 * c + 0.35
+    notes = ['W: the original table, d rows \u00d7 k columns', 'B: a tall thin table, d \u00d7 r', 'A: a short wide table, r \u00d7 k',
+             'r: the rank, the width of B and A', "W\u2032 = W + B A: the table used after", '', 'Here d = 4, k = 4, r = 1:', 'W has d \u00d7 k = 16 numbers', 'B and A have r(d + k) = 8']
+    for i, t_ in enumerate(notes):
+        if t_:
+            s.text(xt, h - 0.3 - 0.38 * i, t_, size=15, ha='left', weight='bold' if i >= 6 else 'normal', color=RED if i == 8 else INK)
+    s.text(0.1, 0.55, 'B A is a times table of B and A: row 3 is 2 \u00d7 (1, 0, 0, 1) = (2, 0, 0, 2).', size=15, ha='left')
+    s.text(0.1, 0.18, 'Add cell by cell: row 3 of W\u2032 is (0, 2, 1, 1) + (2, 0, 0, 2) = (2, 2, 1, 3). Gold: the cells that changed.', size=15, ha='left', color=BODY)
+    return s
+
+
+# ------------------------------------------------------------------ the same count with GPT-2's numbers: where 294,912 comes from
 @fig('x_t09_lora_peek')
 def lora_peek(w, h, **_):
     s = Scene(w, h)
-    rows = [['One block of GPT-2', 'Table size', 'Weights', 'Trained?'],
-            ['Original attention matrix', '768 × 2,304', '1,769,472', 'Frozen'],
-            ['Adapter matrix A (rank 8)', '8 × 2,304', '18,432', 'Yes'],
-            ['Adapter matrix B (rank 8)', '768 × 8', '6,144', 'Yes'],
-            ['Adapter A plus B', '18,432 + 6,144', '24,576', 'Yes'],
-            ['All 12 blocks', '24,576 × 12', '294,912', 'Yes']]
-    cw = [3.7, 2.7, 1.9, 1.5]
-    rh = 0.46
-    s.table(0.05, h - 0.05, cw, rh, rows, size=16, hl_cells={(5, 2): GOLD, (5, 0): PALE, (5, 1): PALE, (5, 3): PALE, (4, 2): PALE}, align=['left', 'center', 'center', 'center'])
-    s.text(w / 2, 1.2, 'W\u2032 = W + B A: W is frozen, only B and A are trained', size=17, weight='bold')
-    s.text(w / 2, 0.88, 'Trainable r(d + k) = 8 × (768 + 2,304) = 24,576, against d × k = 1,769,472', size=17, weight='bold')
-    s.text(w / 2, 0.57, 'd = 768 rows, k = 2,304 columns, r = 8 (rank). B is d × r, A is r × k.', size=15, color=BODY)
-    s.text(w / 2, 0.22, '294,912 of 124,439,808 weights is 0.24 percent', size=18, weight='bold', color=RED)
+    rows = [['In each of 12 blocks', 'Size', 'Count', 'Trained?'],
+            ['W, one weight table', 'd × k = 768 × 2,304', '1,769,472', 'Frozen'],
+            ['B (tall, thin)', 'd × r = 768 × 8', '6,144', 'Yes'],
+            ['A (short, wide)', 'r × k = 8 × 2,304', '18,432', 'Yes'],
+            ['B and A together', 'r(d + k) = 8 × 3,072', '24,576', 'Yes']]
+    cw = [3.3, 3.6, 1.9, 1.5]
+    rh = 0.5
+    s.table(0.05, h - 0.05, cw, rh, rows, size=16, hl_cells={(4, 2): GOLD}, align=['left', 'left', 'center', 'center'])
+    y = h - 0.05 - 5 * rh - 0.4
+    s.text(0.1, y, 'All 12 blocks: 12 × 24,576 = 294,912 trained weights', size=18, weight='bold', ha='left')
+    s.text(0.1, y - 0.45, 'Share of GPT-2: 294,912 ÷ 124,439,808 = 0.0024, about 0.24 percent', size=18, weight='bold', ha='left', color=RED)
+    s.text(0.1, 0.2, 'd = 768 rows, k = 2,304 columns as stored in GPT-2; r = 8. Matches the recorded run: trainable 294,912.', size=14, ha='left', color=BODY)
     return s

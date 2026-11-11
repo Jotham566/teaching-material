@@ -1,6 +1,7 @@
 """Figure kinds for Session 4 (Words as numbers). Numbers come from demo_runs/s04/results.json (a real recorded run of demo_runs/s04/s04_run.py).
 
-Kinds (use as dict(kind='t04_<name>')): bow, tfidf, plane, numbers, euclid, manhattan, dot, cosine, compare4, search (skin='contracts'|'finance'|'hr'), agree, map, blank, cheat
+Kinds (use as dict(kind='t04_<name>')): list, arrow, recall, dot, dotread, length, angle, cosine, scale, compare4, bowhand, bowcos, df, log, tfidf_text, tfidf,
+noshare, plane, network, numbers, search (skin='contracts'|'finance'|'hr'), agree, blank, cheat. Rebuilt 11 November 2026 (explain before use).
 """
 import json
 import math
@@ -59,105 +60,6 @@ def _card(s, x, y, w, h, head, big, sub=None, fill=PAPER, hsize=16, bsize=26):
         s.text(x + w / 2, y + 0.26, sub, size=14, color=BODY)
 
 
-# ------------------------------------------------------------------ 1. bag of words
-@fig('x_t04_bow')
-def bow(w, h, **_):
-    s = Scene(w, h)
-    B = _R['bow']
-    show = ['maize', 'flour', 'send', 'invoice', 'rice', 'late', 'the']
-    idx = [B['vocab'].index(v) for v in show]
-    y = h - 0.15
-    for i, t in zip(B['ids'], B['texts']):
-        s.text(0.05, y - 0.18, f'{i}', size=15, weight='bold', ha='left')
-        s.text(0.45, y - 0.18, t, size=15, ha='left')
-        y -= 0.37
-    top = y - 0.2
-    cw = [0.55] + [0.97] * len(show)
-    sc = (w - 0.1) / sum(cw)
-    cw = [c * sc for c in cw]
-    rows = [[''] + show] + [[i] + [str(B['counts'][r][j]) for j in idx] for r, i in enumerate(B['ids'])]
-    hl = {(r + 1, c + 1): GOLD for r in range(4) for c in range(len(show)) if B['counts'][r][idx[c]] > 0}
-    s.table(0.05, top, cw, (top - 0.1) / 5, rows, size=16, hl_cells=hl)
-    return s
-
-
-# ------------------------------------------------------------------ 2. tf-idf on message M06
-@fig('x_t04_tfidf')
-def tfidf(w, h, **_):
-    """The recorded run used scikit-learn TfidfVectorizer defaults: idf = ln((1 + N) / (1 + df)) + 1, weight = tf x idf, then each message vector divided by its length."""
-    s = Scene(w, h)
-    M = {m['word']: m for m in _R['m06_words']}
-    words = ['jerrycan', 'invoice', 'oil', 'send', 'please', 'the']
-    N = 40
-    idf = lambda df: math.log((1 + N) / (1 + df)) + 1
-    length = math.sqrt(sum((m['count'] * idf(m['in_messages'])) ** 2 for m in _R['m06_words']))
-    rows = [['Term in\nmessage M06', 'tf', 'df', 'Simplified:\ntf × N ÷ df', 'idf (scikit-learn)\nln(41 ÷ (1 + df)) + 1', f'Real weight: tf × idf ÷ {length:.2f}']]
-    for wd in words:
-        m = M[wd]
-        v = m['count'] * idf(m['in_messages']) / length
-        assert abs(v - m['real']) < 0.0006, (wd, v, m['real'])
-        rows.append([wd, str(m['count']), str(m['in_messages']), f"{m['count']} × 40 ÷ {m['in_messages']} = {m['simple']:g}", f"{idf(m['in_messages']):.2f}",
-                     f"{m['count']} × {idf(m['in_messages']):.2f} ÷ {length:.2f} = {m['real']:.3f}"])
-    cw = [1.55, 0.7, 0.7, 2.5, 2.6, 3.4]
-    sc = (w - 0.1) / sum(cw)
-    cw = [c * sc for c in cw]
-    rh = (h - 1.25) / 7
-    s.table(0.05, h - 0.05, cw, rh, rows, size=14, hl_cells={(r, 3): GOLD for r in (1, 2)}, align=['left', 'center', 'center', 'center', 'center', 'center'])
-    s.text(0.1, 0.9, 'TF-IDF(t, d) = tf(t, d) × idf(t), idf(t) = ln[(1 + N) ÷ (1 + df(t))] + 1, then divide by the length of the message vector.', size=14, weight='bold', ha='left')
-    s.text(0.1, 0.55, 't: a term. d: a message. N = 40 messages. df(t): messages containing t. ln: natural logarithm. This is scikit-learn\'s default, used in the run.', size=14, color=BODY, ha='left')
-    s.text(0.1, 0.2, 'Textbook form: tf × log(N ÷ df). The simplified column drops the log. Rare term (small df): high weight.', size=14, color=BODY, ha='left')
-    return s
-
-
-# ------------------------------------------------------------------ 3. words as arrows in a plane
-@fig('x_t04_plane')
-def plane(w, h, **_):
-    s = Scene(w, h)
-    P = _Plane(s, 1.0, 0.95, 0.56, 7, 6, labels=('dimension 1: about money', 'dimension 2: trucks'))
-    items = [('invoice', 4, 1, INK, 0.12, -0.28), ('receipt', 3, 1.5, INK, -0.1, 0.35), ('lorry', 1, 4, RED, 0.14, 0.05), ('truck', 1.5, 3.3, RED, 0.12, -0.3)]
-    for nm, x, y, c, dx, dy in items:
-        P.arrow(x, y, color=c, label=None)
-    s.text(P.to(4, 1)[0] + 0.2, P.to(4, 1)[1] - 0.3, 'invoice (4, 1)', size=15, weight='bold', ha='left')
-    s.text(P.to(3, 1.5)[0] - 0.05, P.to(3, 1.5)[1] + 0.38, 'receipt (3, 1.5)', size=15, weight='bold', ha='center')
-    s.text(P.to(1, 4)[0] + 0.15, P.to(1, 4)[1] + 0.1, 'lorry (1, 4)', size=15, weight='bold', color=RED, ha='left')
-    s.text(P.to(1.5, 3.3)[0] + 0.2, P.to(1.5, 3.3)[1] - 0.3, 'truck (1.5, 3.3)', size=15, weight='bold', color=RED, ha='left')
-    s.box(5.15, 2.9, w - 5.3, 1.35, 'Money words\npoint to the right', size=16, fill=PAPER, lw=1.8)
-    s.box(5.15, 1.2, w - 5.3, 1.35, 'Truck words\npoint upwards', size=16, fill=PAPER, lw=1.8, edge=RED)
-    return s
-
-
-
-# ------------------------------------------------------------------ 3b. a network produces the vector (simplified)
-@fig('x_t04_network')
-def network(w, h, **_):
-    s = Scene(w, h)
-    V = _R['sample_vectors']['first8']['query']
-    cy = h / 2 + 0.25
-    # left: the text
-    s.box(0.1, cy - 0.85, 2.7, 1.7, 'What happens if\nheavy rain floods\nthe road...', size=16, fill=PAPER, lw=2)
-    s.text(1.45, cy + 1.2, 'Text goes in', size=17, weight='bold')
-    # middle: a small network, drawn like Session 1
-    cols = [4.0, 5.2, 6.4]
-    ys = [[cy + 0.9 - k * 0.45 for k in range(5)], [cy + 0.9 - k * 0.45 for k in range(5)], [cy + 0.9 - k * 0.45 for k in range(5)]]
-    for a in range(2):
-        for ya in ys[a]:
-            for yb in ys[a + 1]:
-                s.line(cols[a], ya, cols[a + 1], yb, color=HAIR, lw=0.9, z=1)
-    for c, col in zip(cols, ys):
-        for yy in col:
-            s.circle(c, yy, 0.14, fill=PAPER, edge=INK, lw=1.6, z=4)
-    s.arrow(2.85, cy, 3.75, cy, lw=2.4)
-    s.arrow(6.6, cy, 7.5, cy, lw=2.4)
-    s.text(5.2, cy + 1.45, 'A network like Session 1\'s', size=17, weight='bold')
-    s.text(5.2, cy - 1.3, 'drawn small: the real one is much bigger', size=14, color=MUTE)
-    # right: the 384 numbers
-    s.text(9.5, cy + 1.45, '384 numbers out', size=17, weight='bold')
-    for j, v in enumerate(V[:6]):
-        s.box(8.55, cy + 0.95 - j * 0.38, 1.9, 0.34, f'{v:+.2f}'.replace('-', '\u2212'), size=14, fill=GOLD, lw=1.3, r=0.04)
-    s.text(9.5, cy - 1.3, '... and 378 more', size=14, color=MUTE)
-    # bottom: how it was trained
-    s.box(0.1, 0.02, w - 0.2, 0.42, 'Trained on over a billion pairs of related sentences, so that similar meanings land close. Simplified.', size=14, fill=PALE, lw=1.2)
-    return s
 
 # ------------------------------------------------------------------ 4. the first numbers of a real embedding
 @fig('x_t04_numbers')
@@ -180,113 +82,6 @@ def numbers(w, h, **_):
             s.box(x0 + j * cw, y + 0.2, cw - 0.05, 0.62, f'{v:+.2f}'.replace('-', '−'), size=15, fill=GOLD if (cs and cs > 0.3) else PAPER, lw=1.3, r=0.04)
         s.text(x0 + 8 * cw + 0.2, y + 0.51, '...', size=20, weight='bold')
         s.text(w - 1.2, y + 0.51, '' if cs is None else f'{cs:.2f}', size=24, weight='bold')
-    return s
-
-
-# ------------------------------------------------------------------ 5. Euclidean
-@fig('x_t04_euclid')
-def euclid(w, h, **_):
-    s = Scene(w, h)
-    P = _Plane(s, 0.7, 0.75, 0.43, 7, 9, labels=('', ''))
-    a, b = P.to(3, 4), P.to(6, 8)
-    P.arrow(3, 4, color=INK, label='a (3, 4)', dx=-0.2, dy=0.25, ha='right')
-    P.arrow(6, 8, color=GREY, label='b (6, 8)', dx=-0.12, dy=0.2, ha='right')
-    s.line(a[0], a[1], b[0], a[1], color=MUTE, lw=2, dash=True, z=2)
-    s.line(b[0], a[1], b[0], b[1], color=MUTE, lw=2, dash=True, z=2)
-    s.arrow(a[0], a[1], b[0], b[1], color=RED, lw=3.4, head=16, z=6)
-    s.text((a[0] + b[0]) / 2, a[1] - 0.22, '3 across', size=15, color=BODY)
-    s.text(b[0] + 0.1, (a[1] + b[1]) / 2, '4 up', size=15, color=BODY, ha='left')
-    s.text(5.3, 3.9, 'Straight line from a to b', size=17, weight='bold', ha='left') if False else None
-    s.box(5.0, 2.4, w - 5.15, 1.9, '', fill=GOLD, edge=INK, lw=2)
-    s.text(5.0 + (w - 5.15) / 2, 3.75, 'Euclidean distance', size=18, weight='bold')
-    s.text(5.0 + (w - 5.15) / 2, 3.15, '3 across, 4 up', size=17)
-    s.text(5.0 + (w - 5.15) / 2, 2.7, '= 5', size=30, weight='bold')
-    return s
-
-
-# ------------------------------------------------------------------ 6. Manhattan
-@fig('x_t04_manhattan')
-def manhattan(w, h, **_):
-    s = Scene(w, h)
-    P = _Plane(s, 0.7, 0.75, 0.43, 7, 9, labels=('', ''))
-    a, b = P.to(3, 4), P.to(6, 8)
-    pts = [(3, 4), (3, 5), (4, 5), (4, 6), (5, 6), (5, 7), (6, 7), (6, 8)]   # stairs of city blocks: 3 across and 4 up
-    s.arrow(a[0], a[1], b[0], b[1], color=HAIR, lw=2.6, head=12, z=2)
-    for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
-        p, q = P.to(x1, y1), P.to(x2, y2)
-        s.line(p[0], p[1], q[0], q[1], color=RED, lw=4.2, z=5)
-    P.dot(3, 4, INK)
-    P.dot(6, 8, INK)
-    s.text(a[0] - 0.15, a[1] - 0.25, 'a', size=17, weight='bold', ha='right')
-    s.text(b[0] - 0.15, b[1] + 0.2, 'b', size=17, weight='bold', ha='right')
-    s.box(5.0, 2.4, w - 5.15, 1.9, '', fill=GOLD, edge=INK, lw=2)
-    s.text(5.0 + (w - 5.15) / 2, 3.75, 'Manhattan distance', size=18, weight='bold')
-    s.text(5.0 + (w - 5.15) / 2, 3.15, '3 across + 4 up', size=17)
-    s.text(5.0 + (w - 5.15) / 2, 2.7, '= 7', size=30, weight='bold')
-    s.text(5.0 + (w - 5.15) / 2, 1.6, 'Grey: the Euclidean\ndistance, 5', size=15, color=MUTE)
-    return s
-
-
-# ------------------------------------------------------------------ 7. dot product
-@fig('x_t04_dot')
-def dot(w, h, **_):
-    s = Scene(w, h)
-    P = _Plane(s, 0.7, 0.75, 0.43, 7, 9, labels=('', ''))
-    P.arrow(3, 4, color=INK, label='a', dx=-0.2, dy=0.15, ha='right')
-    P.arrow(6, 8, color=GREY, label='b', dx=-0.12, dy=0.2, ha='right')
-    P.arrow(4, 3, color=RED, label='c', dx=0.1, dy=-0.2, ha='left')
-    x0 = 4.35
-    cw = w - x0 - 0.1
-    for k, (head, who, r1, r2, tot, fill) in enumerate((('a with b', 'b', '3 × 6 = 18', '4 × 8 = 32', '50', GOLD), ('a with c', 'c', '3 × 4 = 12', '4 × 3 = 12', '24', PAPER))):
-        y = h - 2.3 - k * 2.35
-        s.box(x0, y, cw, 2.1, '', fill=fill, edge=INK, lw=2)
-        s.text(x0 + cw / 2, y + 1.78, head, size=18, weight='bold')
-        s.text(x0 + cw / 2, y + 1.32, r1 + '   (across)', size=16)
-        s.text(x0 + cw / 2, y + 0.92, r2 + '   (up)', size=16)
-        s.text(x0 + cw / 2, y + 0.36, 'add: ' + tot, size=24, weight='bold')
-    return s
-
-
-# ------------------------------------------------------------------ 8. cosine
-@fig('x_t04_cosine')
-def cosine(w, h, **_):
-    s = Scene(w, h)
-    P = _Plane(s, 0.7, 0.75, 0.43, 7, 9, labels=('', ''))
-    P.arrow(6, 8, color=GREY, lw=5, head=16)
-    P.arrow(3, 4, color=INK, label='a  and  b point the same way', dx=-0.6, dy=-0.3, ha='left', size=14) if False else P.arrow(3, 4, color=INK)
-    P.arrow(4, 3, color=RED)
-    o = P.to(0, 0)
-    s.text(P.to(6, 8)[0] - 0.1, P.to(6, 8)[1] + 0.2, 'b', size=17, weight='bold', ha='right')
-    s.text(P.to(3, 4)[0] - 0.2, P.to(3, 4)[1] + 0.1, 'a', size=17, weight='bold', ha='right')
-    s.text(P.to(4, 3)[0] + 0.12, P.to(4, 3)[1] - 0.15, 'c', size=17, weight='bold', color=RED, ha='left')
-    s.ax.add_patch(Arc(o, 4.2, 4.2, theta1=36.87, theta2=53.13, color=RED, lw=3.4, zorder=6))
-    s.text(o[0] + 2.6 * math.cos(math.radians(45)), o[1] + 2.6 * math.sin(math.radians(45)), '16°', size=16, weight='bold', color=RED)
-    x0 = 4.85
-    cw = w - x0 - 0.1
-    s.box(x0, 3.05, cw, 1.55, '', fill=GOLD, edge=INK, lw=2)
-    s.text(x0 + cw / 2, 4.3, 'a and b: no angle', size=17, weight='bold')
-    s.text(x0 + cw / 2, 3.65, 'cosine 1.00', size=24, weight='bold')
-    s.box(x0, 1.2, cw, 1.6, '', fill=PAPER, edge=INK, lw=2)
-    s.text(x0 + cw / 2, 2.5, 'a and c: 16°', size=17, weight='bold')
-    s.text(x0 + cw / 2, 1.85, 'cosine 0.96', size=24, weight='bold')
-    s.text(x0 + cw / 2, 1.42, '24 ÷ (5 × 5)', size=15, color=BODY)
-    return s
-
-
-# ------------------------------------------------------------------ 9. the four measures disagree on the toy vectors
-@fig('x_t04_compare4')
-def compare4(w, h, **_):
-    s = Scene(w, h)
-    rows = [['Measure', 'Ana to Ben\n(long arrow)', 'Ana to Chloe\n(short arrow)', 'Closer\nto Ana'],
-            ['Euclidean distance', '5', '1.4', 'Chloe'], ['Manhattan distance', '7', '2', 'Chloe'], ['Dot product', '50', '24', 'Ben'], ['Cosine similarity', '1.00', '0.96', 'Ben']]
-    cw = [2.5, 1.55, 1.75, 1.2]
-    sc = (w - 0.1) / sum(cw)
-    cw = [c * sc for c in cw]
-    rh = (h - 0.9) / 5
-    hl = {(1, 3): GOLD, (2, 3): GOLD, (3, 3): RED, (4, 3): RED}
-    s.table(0.05, h - 0.05, cw, rh * 1.3 if False else rh, rows, size=17, hl_cells={(1, 3): GOLD, (2, 3): GOLD, (3, 3): GOLD, (4, 3): GOLD}, align=['left', 'center', 'center', 'center'])
-    s.text(0.1, 0.62, 'Euclidean and Manhattan distance: smaller is closer.', size=15, color=BODY, ha='left')
-    s.text(0.1, 0.25, 'Dot product and cosine similarity: bigger is closer.', size=15, color=BODY, ha='left')
     return s
 
 
@@ -358,39 +153,6 @@ def agree(w, h, **_):
     return s
 
 
-# ------------------------------------------------------------------ 12. a 2D map of the 384-number vectors
-@fig('x_t04_map')
-def mapfig(w, h, **_):
-    s = Scene(w, h)
-    pts = _R['pca']['points']
-    xs = [p['x'] for p in pts]
-    ys = [p['y'] for p in pts]
-    x0, x1, y0, y1 = 0.35, w - 0.3, 0.85, h - 0.65
-    px = lambda v: x0 + (v - min(xs)) / (max(xs) - min(xs)) * (x1 - x0 - 0.2) + 0.1
-    py = lambda v: y0 + (v - min(ys)) / (max(ys) - min(ys)) * (y1 - y0 - 0.2) + 0.1
-    s.rect(x0, y0, x1 - x0, y1 - y0, fill=PAPER, edge=HAIR, lw=1.2, z=0)
-    col = {'contracts': INK, 'finance': GOLD, 'hr': RED}
-    byid = {p['id']: p for p in pts}
-    for sk, d in _R['skins'].items():
-        for q in d['queries']:
-            qp, ap = byid[q['qid']], byid[q['want']]
-            s.line(px(qp['x']), py(qp['y']), px(ap['x']), py(ap['y']), color=GREY, lw=1.3, dash=True, z=1)
-    for p in pts:
-        if p['kind'] == 'passage':
-            s.circle(px(p['x']), py(p['y']), 0.11, fill=col[p['skin']], edge=INK, lw=1.3, z=4)
-        else:
-            s.ax.scatter([px(p['x'])], [py(p['y'])], marker='*', s=260, c=PAPER, edgecolors=INK, linewidths=1.6, zorder=6)
-    lx = 0.4
-    for sk, t in (('contracts', 'Contract clauses'), ('finance', 'Finance terms'), ('hr', 'HR policy')):
-        s.circle(lx + 0.1, h - 0.3, 0.11, fill=col[sk], edge=INK, lw=1.3, z=4)
-        s.text(lx + 0.3, h - 0.3, t, size=16, weight='bold', ha='left')
-        lx += 0.5 + 0.115 * len(t) * 1.15
-    ex = _R['pca']['explained']
-    s.text(0.4, 0.55, 'Dots: passages. Stars: plain descriptions. Dashed: to the right answer.', size=14, color=BODY, ha='left')
-    s.text(0.4, 0.2, f"The map keeps only {100 * _R['pca']['total']:.0f}% of the information in the 384 numbers.", size=14, color=BODY, ha='left')
-    return s
-
-
 # ------------------------------------------------------------------ 13. blank table for the hands-on exercise
 @fig('x_t04_blank')
 def blank(w, h, size=15, **_):
@@ -450,142 +212,460 @@ def cheat(w, h, **_):
     return s
 
 
-# ------------------------------------------------------------------ the bridge: picture, claim, text (all numbers)
-@fig('x_t04_bridge')
-def bridge(w, h, **_):
+# ================================================================== 11 November 2026: explain-before-use figures
+# Toy vectors (invented, worked by hand): Ana (3, 4), Ben (6, 8), Chloe (4, 3), ratings out of 10.
+ANA, BEN, CHLOE = (3, 4), (6, 8), (4, 3)
+SUB = '₁₂'
+
+
+def _col(s, x, y, lines, w):
+    """Draw lines top-down from y. Each line: (text, size, weight, color, gap_after). Wraps to width w."""
+    for t, size, wt, col, gap in lines:
+        ln = K.wrap(t, size, 'bold' if wt == 'bold' else 'regular', w)
+        s.text(x, y, '\n'.join(ln), size=size, weight=wt, color=col, ha='left', va='top')
+        y -= len(ln) * size * 1.2 / 72 + gap
+    return y
+
+
+def _films(s, ox=0.75, oy=0.7, sc=0.38, xmax=7, ymax=9, arrows=True, who=('Ana', 'Ben', 'Chloe'), size=14):
+    P = _Plane(s, ox, oy, sc, xmax, ymax, labels=('Film 1 rating', 'Film 2 rating'), size=size)
+    pos = {'Ana': (ANA, INK), 'Ben': (BEN, GREY), 'Chloe': (CHLOE, RED)}
+    for nm in sorted(who, key=lambda n: n != 'Ben'):
+        (x, y), c = pos[nm]
+        if arrows:
+            P.arrow(x, y, color=c, lw=4.5 if nm == 'Ben' else 3.0)
+        else:
+            P.dot(x, y, c, r=0.08)
+    off = {'Ana': (-0.12, 0.22, 'right'), 'Ben': (-0.12, 0.1, 'right'), 'Chloe': (0.14, -0.2, 'left')}
+    for nm in who:
+        (x, y), c = pos[nm]
+        dx, dy, ha = off[nm]
+        tx, ty = P.to(x, y)
+        s.text(tx + dx, ty + dy, nm, size=15, weight='bold', color=RED if nm == 'Chloe' else INK, ha=ha)
+    return P
+
+
+# ------------------------------------------------------------------ a vector is a list of numbers in a fixed order
+@fig('x_t04_list')
+def vlist(w, h, **_):
     s = Scene(w, h)
-    cw_ = (w - 0.1 - 2 * 0.5) / 3
-    cards = [('Session 1', 'A picture', '192 numbers', 'for an 8 by 8 colour picture', PAPER),
-             ('Session 2', 'A house', '2 numbers', 'floor area, km to town; nearest = smallest distance', PAPER),
-             ('Today', 'A text', 'many numbers', 'counts, weights, then an embedding; then measure distance', GOLD)]
-    for i, (a, b, c, d, f) in enumerate(cards):
-        x = 0.05 + i * (cw_ + 0.5)
-        s.box(x, 0.3, cw_, h - 0.6, '', fill=f, edge=INK, lw=2, r=0.08)
-        s.text(x + cw_ / 2, h - 0.8, a, size=16, color=MUTE, weight='bold')
-        s.text(x + cw_ / 2, h - 1.4, b, size=22, weight='bold')
-        s.text(x + cw_ / 2, h / 2 - 0.1, c, size=22, weight='bold', color=RED)
-        ln = K.wrap(d, 15, 'regular', cw_ - 0.4)
-        s.text(x + cw_ / 2, 1.2, '\n'.join(ln), size=15, color=BODY)
-        if i < 2:
-            s.arrow(x + cw_ + 0.05, h / 2, x + cw_ + 0.45, h / 2, lw=2.4)
+    x0, cw, ch = 1.45, 1.25, 0.85
+    s.text(x0 + cw / 2, 4.5, 'Film 1', size=16, weight='bold', color=MUTE)
+    s.text(x0 + cw * 1.5, 4.5, 'Film 2', size=16, weight='bold', color=MUTE)
+    for k, (nm, v, hl) in enumerate((('Ana', ANA, True), ('Chloe', CHLOE, False))):
+        y = 3.3 - k * 1.2
+        s.text(0.1, y + ch / 2, nm, size=20, weight='bold', ha='left', color=RED if k else INK)
+        s.cells(x0, y, list(v), w=cw, h=ch, size=28, hl=(0, 1) if hl else ())
+        s.text(x0 + 2 * cw + 0.3, y + ch / 2, f'=  ({v[0]}, {v[1]})', size=26, weight='bold', ha='left')
+    s.text(x0 + 2 * cw + 0.3, 1.65, 'same numbers, other order:\na different vector', size=15, color=RED, ha='left', va='top')
+    _col(s, 0.1, 1.05, [('Position 1 is always Film 1, position 2 always Film 2.', 16, 'normal', BODY, 0.12),
+                        ('Each position is a dimension: 2 numbers, 2 dimensions.', 16, 'bold', INK, 0)], w - 0.2)
     return s
 
 
-# ------------------------------------------------------------------ the grid calculation of Session 2, again
-@fig('x_t04_met')
-def met(w, h, **_):
+# ------------------------------------------------------------------ a vector drawn as an arrow from 0
+@fig('x_t04_arrow')
+def varrow(w, h, **_):
     s = Scene(w, h)
-    P = _Plane(s, 0.7, 0.75, 0.43, 7, 9, labels=('', ''))
-    a, b = P.to(3, 4), P.to(6, 8)
-    s.line(a[0], a[1], b[0], a[1], color=MUTE, lw=2, dash=True, z=2)
-    s.line(b[0], a[1], b[0], b[1], color=MUTE, lw=2, dash=True, z=2)
-    s.arrow(a[0], a[1], b[0], b[1], color=RED, lw=3.4, head=16, z=6)
-    P.dot(3, 4, INK)
-    P.dot(6, 8, INK)
-    s.text(a[0] - 0.15, a[1] - 0.25, 'N  (3, 4)', size=15, weight='bold', ha='right')
-    s.text(b[0] - 0.15, b[1] + 0.2, 'P  (6, 8)', size=15, weight='bold', ha='right')
-    s.text((a[0] + b[0]) / 2, a[1] - 0.22, '3 across', size=15, color=BODY)
-    s.text(b[0] + 0.1, (a[1] + b[1]) / 2, '4 up', size=15, color=BODY, ha='left')
-    x0 = 5.0
-    cw = w - x0 - 0.1
-    s.box(x0, 3.35, cw, 1.15, 'Session 2: houses N and P\n3 across, 4 up, so 5', size=16, fill=PAPER, lw=1.8)
-    s.arrow(x0 + cw / 2, 3.3, x0 + cw / 2, 2.85, lw=2.2)
-    s.box(x0, 1.45, cw, 1.35, 'Today: arrow tips a and b\nsame numbers, same 5', size=16, fill=GOLD, lw=2, weight='bold')
-    s.text(x0 + cw / 2, 0.9, 'Only the list gets longer', size=15, color=BODY)
+    P = _films(s, ox=0.75, oy=0.75, sc=0.4, xmax=7, ymax=9)
+    a0, a1, a2 = P.to(0, 0), P.to(3, 0), P.to(3, 4)
+    s.line(a0[0], a0[1] + 0.03, a1[0], a1[1] + 0.03, color=GOLD, lw=5, z=3)
+    s.line(a1[0], a1[1], a2[0], a2[1], color=GOLD, lw=5, z=3)
+    s.text(a1[0] + 0.12, a1[1] + 0.25, '3 across, then 4 up', size=14, color=BODY, ha='left')
+    x0 = 4.3
+    _col(s, x0, h - 0.1, [('Ana (3, 4): go 3 across, then 4 up. Draw the arrow from 0 to that point.', 15, 'normal', INK, 0.25),
+                          ('Direction = the mix', 17, 'bold', INK, 0.05),
+                          ('Ben (6, 8) is Ana\'s numbers times 2: the same direction.', 15, 'normal', BODY, 0.25),
+                          ('Length = how strong', 17, 'bold', INK, 0.05),
+                          ('Ben\'s arrow is twice as long as Ana\'s.', 15, 'normal', BODY, 0.25),
+                          ('Chloe (4, 3) leans the other way.', 15, 'normal', RED, 0)], w - x0 - 0.1)
     return s
 
 
-# ------------------------------------------------------------------ everyday: three friends rate two films (vectors)
-@fig('x_t04_tastes')
-def tastes(w, h, **_):
+# ------------------------------------------------------------------ Session 2's two distances on the film vectors
+@fig('x_t04_recall')
+def recall2(w, h, **_):
     s = Scene(w, h)
-    P = _Plane(s, 0.95, 0.85, 0.42, 7, 9, labels=('Film 1 rating (comedy)', 'Film 2 rating (action)'), size=14)
-    P.arrow(3, 4, color=INK)
-    P.arrow(6, 8, color=GREY)
-    P.arrow(4, 3, color=RED)
-    s.text(P.to(3, 4)[0] - 0.12, P.to(3, 4)[1] + 0.2, 'Ana', size=16, weight='bold', ha='right')
-    s.text(P.to(6, 8)[0] - 0.12, P.to(6, 8)[1] + 0.05, 'Ben', size=16, weight='bold', ha='right')
-    s.text(P.to(4, 3)[0] + 0.12, P.to(4, 3)[1] - 0.2, 'Chloe', size=16, weight='bold', color=RED, ha='left')
-    x0 = 4.55
-    cw = [1.15, 1.0, 1.0]
-    rows = [['Ratings\nout of 10', 'Film 1', 'Film 2'], ['Ana', '3', '4'], ['Ben', '6', '8'], ['Chloe', '4', '3']]
-    s.table(x0, h - 0.55, cw, 0.62, rows, size=16, align=['left', 'center', 'center'], hl_cells={(1, 1): GOLD, (1, 2): GOLD})
-    s.text(x0, 0.95, 'Ana is the vector (3, 4):\na list of two numbers,\none dimension per film.', size=15, color=BODY, ha='left')
+    P = _films(s, arrows=False)
+    a, b, c = P.to(*ANA), P.to(*BEN), P.to(*CHLOE)
+    for q in (b, c):
+        s.line(a[0], a[1], q[0], a[1], color=GOLD, lw=3.2, z=2)
+        s.line(q[0], a[1], q[0], q[1], color=GOLD, lw=3.2, z=2)
+        s.line(a[0], a[1], q[0], q[1], color=RED, lw=3.2, z=3)
+    x0 = 3.95
+    rows = [['', 'Ana (3, 4) to Ben (6, 8)', 'Ana (3, 4) to Chloe (4, 3)'],
+            ['Gap on each film', '3 and 4', '1 and 1'],
+            ['Euclidean (red line):\n√(gap₁² + gap₂²)', '√(9 + 16) = √25 = 5', '√(1 + 1) = √2 = 1.41'],
+            ['Manhattan (gold path):\ngap₁ + gap₂', '3 + 4 = 7', '1 + 1 = 2']]
+    cw = [3.05, 2.4, 2.45]
+    s.table(x0, h - 0.05, cw, 0.8, rows, size=15, align=['left', 'center', 'center'], hl_cells={(2, 2): GOLD, (3, 2): GOLD})
+    _col(s, x0, h - 3.35, [('gap₁ is the gap on Film 1, counted as a positive number. Both distances: smaller is closer, so Chloe is closer to Ana.', 15, 'normal', BODY, 0)], sum(cw))
     return s
 
 
-# ------------------------------------------------------------------ the four measures, wide: plane on the left, formula and worked numbers on the right
-_MEASURES = {
-    'euclid': dict(name='Euclidean distance', sub='The straight-line distance. Smaller means closer.',
-                   formula='d(a, b) = \u221a[ (a\u2081 \u2212 b\u2081)\u00b2 + (a\u2082 \u2212 b\u2082)\u00b2 ]',
-                   sym=['a\u2081, a\u2082: Ana\'s ratings of Film 1 and Film 2. b\u2081, b\u2082: Ben\'s.', 'a\u2081 \u2212 b\u2081 is the gap on Film 1. Square each gap, add, take the root.', 'n films: d(a, b) = \u221a\u03a3 (a\u1d62 \u2212 b\u1d62)\u00b2. Industry name: L2 distance.'],
-                   worked=['Ana (3, 4) and Ben (6, 8):', '\u221a[ (3 \u2212 6)\u00b2 + (4 \u2212 8)\u00b2 ] = \u221a(9 + 16) = \u221a25 = 5']),
-    'manhattan': dict(name='Manhattan distance', sub='Also called city-block distance: add the gaps, as if walking a street grid. Smaller means closer.',
-                      formula='d(a, b) = |a\u2081 \u2212 b\u2081| + |a\u2082 \u2212 b\u2082|',
-                      sym=['| | means the size of the gap, ignoring its sign.', 'Same a\u2081, a\u2082, b\u2081, b\u2082 as before. No squares, no root.', 'n films: d(a, b) = \u03a3 |a\u1d62 \u2212 b\u1d62|. Industry name: L1 distance.'],
-                      worked=['Ana (3, 4) and Ben (6, 8):', '|3 \u2212 6| + |4 \u2212 8| = 3 + 4 = 7']),
-    'dot': dict(name='Dot product', sub='Multiply matching ratings, then add. Bigger means closer.',
-                formula='a \u00b7 b = a\u2081b\u2081 + a\u2082b\u2082',
-                sym=['a\u2081b\u2081 means a\u2081 \u00d7 b\u2081: the two Film 1 ratings multiplied.', 'Big ratings give big scores, so long arrows score high.', 'n films: a \u00b7 b = \u03a3 a\u1d62b\u1d62 (\u03a3: add up over every film i). Also the inner product.'],
-                worked=['Ana with Ben: 3 \u00d7 6 + 4 \u00d7 8 = 18 + 32 = 50', 'Ana with Chloe: 3 \u00d7 4 + 4 \u00d7 3 = 12 + 12 = 24']),
-    'cosine': dict(name='Cosine similarity', sub='The dot product divided by both lengths, so only the angle counts. 1 means the same direction.',
-                   formula='cos(\u03b8) = (a \u00b7 b) \u00f7 (\u2016a\u2016 \u00d7 \u2016b\u2016)',
-                   sym=['\u03b8 (theta) is the angle between the two arrows.', '\u2016a\u2016 is the length of a: \u221a(a\u2081\u00b2 + a\u2082\u00b2). Ana: \u221a(9 + 16) = 5. Ben 10. Chloe 5.', 'n films: \u2016a\u2016 = \u221a\u03a3 a\u1d62\u00b2. Cosine distance = 1 \u2212 cos(\u03b8).'],
-                   worked=['Ana with Ben: 50 \u00f7 (5 \u00d7 10) = 1.00, same direction', 'Ana with Chloe: 24 \u00f7 (5 \u00d7 5) = 0.96, angle 16\u00b0'])}
-
-
-def _measure_fig(w, h, kind):
+# ------------------------------------------------------------------ dot product: worked first, then the formula
+@fig('x_t04_dot')
+def dotw(w, h, **_):
     s = Scene(w, h)
-    M = _MEASURES[kind]
-    P = _Plane(s, 0.95, 0.7, 0.42, 7, 8, labels=('Film 1 rating', 'Film 2 rating'), size=14)
-    a, b, c = P.to(3, 4), P.to(6, 8), P.to(4, 3)
-    if kind == 'euclid':
-        P.arrow(3, 4, color=INK)
-        P.arrow(6, 8, color=GREY)
-        s.line(a[0], a[1], b[0], a[1], color=MUTE, lw=2, dash=True, z=2)
-        s.line(b[0], a[1], b[0], b[1], color=MUTE, lw=2, dash=True, z=2)
-        s.arrow(a[0], a[1], b[0], b[1], color=RED, lw=3.4, head=16, z=6)
-        s.text((a[0] + b[0]) / 2, a[1] - 0.2, 'gap 3', size=14, color=BODY)
-        s.text(b[0] + 0.1, (a[1] + b[1]) / 2, 'gap 4', size=14, color=BODY, ha='left')
-    elif kind == 'manhattan':
-        pts = [(3, 4), (3, 5), (4, 5), (4, 6), (5, 6), (5, 7), (6, 7), (6, 8)]
-        s.arrow(a[0], a[1], b[0], b[1], color=HAIR, lw=2.6, head=12, z=2)
-        for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
-            p, q = P.to(x1, y1), P.to(x2, y2)
-            s.line(p[0], p[1], q[0], q[1], color=RED, lw=4.2, z=5)
-        P.dot(3, 4, INK)
-        P.dot(6, 8, INK)
-    elif kind == 'dot':
-        P.arrow(3, 4, color=INK)
-        P.arrow(6, 8, color=GREY)
-        P.arrow(4, 3, color=RED)
-    else:
-        P.arrow(6, 8, color=GREY, lw=5, head=16)
-        P.arrow(3, 4, color=INK)
-        P.arrow(4, 3, color=RED)
-        o = P.to(0, 0)
-        s.ax.add_patch(Arc(o, 3.6, 3.6, theta1=36.87, theta2=53.13, color=RED, lw=3.4, zorder=6))
-        s.text(o[0] + 2.2 * math.cos(math.radians(45)), o[1] + 2.2 * math.sin(math.radians(45)), '16\u00b0', size=15, weight='bold', color=RED)
-    s.text(a[0] - 0.12, a[1] + 0.2 if kind != 'euclid' else a[1] + 0.25, 'Ana', size=15, weight='bold', ha='right')
-    s.text(b[0] - 0.12, b[1] + 0.05, 'Ben', size=15, weight='bold', ha='right')
-    if kind in ('dot', 'cosine'):
-        s.text(c[0] + 0.12, c[1] - 0.18, 'Chloe', size=15, weight='bold', color=RED, ha='left')
-    x0 = 4.7
+    _films(s)
+    x0 = 3.95
     pw = w - x0 - 0.1
-    s.text(x0, h - 0.3, M['name'], size=22, weight='bold', ha='left')
-    sub = K.wrap(M['sub'], 15, 'regular', pw - 0.1)
-    s.text(x0, h - 0.72 - 0.12 * (len(sub) - 1), '\n'.join(sub), size=15, color=RED, weight='bold', ha='left')
-    yf = h - 1.5
-    s.text(x0, yf, M['formula'], size=21, weight='bold', ha='left')
-    for i, line in enumerate(M['sym']):
-        s.text(x0, yf - 0.5 - i * 0.34, line, size=14, color=BODY, ha='left')
-    by = 0.15
-    s.box(x0, by, pw, 1.15, '', fill=GOLD, edge=INK, lw=2)
-    two = kind in ('dot', 'cosine')
-    s.text(x0 + 0.15, by + 0.82, M['worked'][0], size=17 if two else 15, weight='bold', ha='left')
-    s.text(x0 + 0.15, by + 0.38, M['worked'][1], size=17 if two else 18, weight='bold', ha='left')
+    s.text(x0, h - 0.25, 'Step 1: multiply the matching ratings.  Step 2: add.', size=17, weight='bold', ha='left')
+    s.box(x0, 2.45, pw, 1.15, '', fill=GOLD, edge=INK, lw=2)
+    s.text(x0 + 0.15, 3.25, 'Ana with Ben:', size=17, weight='bold', ha='left')
+    s.text(x0 + 2.25, 3.25, '3 × 6 = 18,   4 × 8 = 32,   18 + 32 = 50', size=17, weight='bold', ha='left')
+    s.text(x0 + 0.15, 2.8, 'Ana with Chloe:', size=17, weight='bold', ha='left')
+    s.text(x0 + 2.25, 2.8, '3 × 4 = 12,   4 × 3 = 12,   12 + 12 = 24', size=17, weight='bold', ha='left')
+    s.text(x0, 2.05, 'The formula:   a · b = a₁b₁ + a₂b₂', size=21, weight='bold', ha='left')
+    _col(s, x0, 1.65, [('a = (a₁, a₂) is Ana, b = (b₁, b₂) is Ben. a₁b₁ means a₁ × b₁.', 14, 'normal', BODY, 0.06),
+                       ('Longer lists: a · b = Σ aᵢbᵢ. Σ means add up, one term for each position i.', 14, 'normal', BODY, 0.06),
+                       ('Session 1\'s weighted sum (inputs times weights, added) is a dot product.', 14, 'normal', BODY, 0)], pw)
     return s
 
 
-for _k in ('euclid', 'manhattan', 'dot', 'cosine'):
-    fig('x_t04_m_' + _k)(lambda w, h, _k=_k, **_: _measure_fig(w, h, _k))
+# ------------------------------------------------------------------ how to read a dot product: three cases
+@fig('x_t04_dotread')
+def dotread(w, h, **_):
+    s = Scene(w, h)
+    pw = (w - 0.2) / 3
+    cases = [('Same mix', [(BEN, GREY), (ANA, INK)], ['Ana with Ben', '3 × 6 + 4 × 8'], '= 50, big'),
+             ('Nothing shared', [((5, 0), INK), ((0, 5), RED)], ['(5, 0) with (0, 5)', '5 × 0 + 0 × 5'], '= 0'),
+             ('Long arrows win', [(BEN, GREY), (ANA, INK)], ['Ana with Ana: 25', 'Ana with Ben: 50'], 'Ben beats Ana')]
+    for i, (head, arrows, calc, res) in enumerate(cases):
+        x = 0.05 + i * (pw + 0.05)
+        s.box(x, 0.05, pw, h - 0.1, '', fill=PAPER, edge=HAIR, lw=1.4)
+        s.text(x + pw / 2, h - 0.35, head, size=18, weight='bold')
+        P = _Plane(s, x + 0.45, 1.85, 0.2, 9, 9, ticks=False)
+        for (vx, vy), c in arrows:
+            P.arrow(vx, vy, color=c, lw=4.5 if c == GREY else 2.8, head=14)
+        s.text(x + pw / 2, 1.42, calc[0], size=15)
+        s.text(x + pw / 2, 1.02, calc[1], size=15)
+        s.text(x + pw / 2, 0.5, res, size=19, weight='bold', color=RED if i == 2 else INK)
+    return s
+
+
+# ------------------------------------------------------------------ length of an arrow (Pythagoras)
+@fig('x_t04_length')
+def length(w, h, **_):
+    s = Scene(w, h)
+    P = _Plane(s, 0.75, 0.7, 0.38, 7, 9, labels=('Film 1 rating', 'Film 2 rating'))
+    o, r, t = P.to(0, 0), P.to(3, 0), P.to(3, 4)
+    s.poly([o, r, t], fill=PALE, edge=PALE, lw=0.5, z=1)
+    s.line(o[0], o[1] + 0.02, r[0], r[1] + 0.02, color=GOLD, lw=5, z=3)
+    s.line(r[0], r[1], t[0], t[1], color=GOLD, lw=5, z=3)
+    P.arrow(3, 4, color=INK, lw=3.4)
+    s.text((o[0] + r[0]) / 2, o[1] + 0.22, '3', size=16, weight='bold')
+    s.text(r[0] + 0.15, (r[1] + t[1]) / 2, '4', size=16, weight='bold', ha='left')
+    s.text((o[0] + t[0]) / 2 - 0.2, (o[1] + t[1]) / 2 + 0.2, '5', size=18, weight='bold', color=RED, ha='right')
+    s.text(t[0] - 0.12, t[1] + 0.22, 'Ana', size=15, weight='bold', ha='right')
+    x0 = 3.95
+    pw = w - x0 - 0.1
+    s.text(x0, h - 0.25, 'Square each number, add, then take the square root.', size=17, weight='bold', ha='left')
+    s.box(x0, 2.05, pw, 1.6, '', fill=GOLD, edge=INK, lw=2)
+    for k, (nm, line) in enumerate((('Ana (3, 4):', '3² + 4² = 9 + 16 = 25,    √25 = 5'), ('Ben (6, 8):', '6² + 8² = 36 + 64 = 100,    √100 = 10'),
+                                    ('Chloe (4, 3):', '4² + 3² = 16 + 9 = 25,    √25 = 5'))):
+        s.text(x0 + 0.15, 3.3 - k * 0.45, nm, size=17, weight='bold', ha='left')
+        s.text(x0 + 1.85, 3.3 - k * 0.45, line, size=17, weight='bold', ha='left')
+    s.text(x0, 1.65, 'The formula:   ‖a‖ = √(a₁² + a₂²)', size=21, weight='bold', ha='left')
+    _col(s, x0, 1.25, [('‖a‖ is read "the length of a". a₁² (a₁ squared) means a₁ × a₁.', 14, 'normal', BODY, 0.06),
+                       ('√ is the square root: √25 = 5 because 5 × 5 = 25.', 14, 'normal', BODY, 0.06),
+                       ('It is the Euclidean distance from 0 to the tip. Longer lists: ‖a‖ = √Σ aᵢ².', 14, 'normal', BODY, 0)], pw)
+    return s
+
+
+# ------------------------------------------------------------------ what an angle and its cosine mean
+@fig('x_t04_angle')
+def angle(w, h, **_):
+    s = Scene(w, h)
+    pw = (w - 0.3) / 4
+    cases = [('0°', 53.13, 53.13, 'Same direction', 'cos = 1'), ('16°', 53.13, 36.87, 'Ana and Chloe', 'cos = 0.96'),
+             ('90°', 90, 0, 'Right angle:\nnothing shared', 'cos = 0'), ('180°', 180, 0, 'Opposite\ndirections', 'cos = −1')]
+    for i, (head, t1, t2, cap, cs) in enumerate(cases):
+        x = 0.05 + i * (pw + 0.066)
+        s.box(x, 0.05, pw, h - 0.1, '', fill=PAPER, edge=HAIR, lw=1.4)
+        s.text(x + pw / 2, h - 0.35, head, size=22, weight='bold')
+        ox = x + pw / 2 if t1 == 180 else (x + 0.75 if t1 == 90 else x + 0.7)
+        oy = 1.75
+        L = 1.45
+        for t, c, lw, f in ((t1, GREY if i == 0 else INK, 5.5 if i == 0 else 3, 1.0), (t2, RED if i else INK, 3, 0.55 if i == 0 else 1.0)):
+            s.arrow(ox, oy, ox + f * L * math.cos(math.radians(t)), oy + f * L * math.sin(math.radians(t)), color=c, lw=lw, head=15)
+        if t1 != t2:
+            s.ax.add_patch(Arc((ox, oy), 1.1, 1.1, theta1=min(t1, t2), theta2=max(t1, t2), color=RED, lw=3, zorder=6))
+        s.circle(ox, oy, 0.05, fill=INK, edge=INK)
+        s.text(x + pw / 2, 0.95, cap, size=15, color=BODY)
+        s.text(x + pw / 2, 0.35, cs, size=20, weight='bold', color=RED)
+    return s
+
+
+# ------------------------------------------------------------------ cosine similarity: worked first, then the formula
+@fig('x_t04_cosine')
+def cosw(w, h, **_):
+    s = Scene(w, h)
+    P = _films(s)
+    o = P.to(0, 0)
+    s.ax.add_patch(Arc(o, 2.6, 2.6, theta1=36.87, theta2=53.13, color=RED, lw=3.4, zorder=6))
+    s.text(o[0] + 1.6 * math.cos(math.radians(45)), o[1] + 1.6 * math.sin(math.radians(45)), '16°', size=15, weight='bold', color=RED)
+    x0 = 3.95
+    pw = w - x0 - 0.1
+    s.text(x0, h - 0.25, 'Divide the dot product by the two lengths multiplied.', size=17, weight='bold', ha='left')
+    s.box(x0, 2.45, pw, 1.15, '', fill=GOLD, edge=INK, lw=2)
+    s.text(x0 + 0.15, 3.25, 'Ana with Ben:', size=17, weight='bold', ha='left')
+    s.text(x0 + 2.25, 3.25, '50 ÷ (5 × 10) = 50 ÷ 50 = 1.00', size=17, weight='bold', ha='left')
+    s.text(x0 + 0.15, 2.8, 'Ana with Chloe:', size=17, weight='bold', ha='left')
+    s.text(x0 + 2.25, 2.8, '24 ÷ (5 × 5) = 24 ÷ 25 = 0.96, so 16°', size=17, weight='bold', ha='left')
+    s.text(x0, 2.05, 'The formula:   cos(θ) = (a · b) ÷ (‖a‖ × ‖b‖)', size=21, weight='bold', ha='left')
+    _col(s, x0, 1.65, [('θ (theta) is the angle between the arrows. a · b is the dot product, ‖a‖ and ‖b‖ the lengths.', 14, 'normal', BODY, 0.06),
+                       ('Bigger is closer: 1 same direction, 0 right angle, −1 opposite.', 14, 'normal', BODY, 0.06),
+                       ('Some tools report cosine distance, which is 1 − cos(θ): smaller is closer.', 14, 'normal', BODY, 0)], pw)
+    return s
+
+
+# ------------------------------------------------------------------ cosine ignores length
+@fig('x_t04_scale')
+def scale(w, h, **_):
+    s = Scene(w, h)
+    P = _films(s, ox=0.7, oy=0.7, sc=0.36, xmax=7, ymax=9, who=('Ana', 'Ben'))
+    x0 = 3.55
+    rows = [['', 'Ana with Ana', 'Ana with Ben'], ['Dot product', '25', '50'], ['Lengths', '5 × 5 = 25', '5 × 10 = 50'], ['Cosine', '25 ÷ 25 = 1', '50 ÷ 50 = 1']]
+    cw = [1.3, 1.4, 1.4]
+    s.table(x0, h - 0.1, cw, 0.68, rows, size=15, align=['left', 'center', 'center'], hl_cells={(3, 1): GOLD, (3, 2): GOLD})
+    _col(s, x0, h - 3.0, [('Ben doubles every rating. The dot product doubles, the lengths double, and the two cancel.', 15, 'normal', BODY, 0)], sum(cw))
+    return s
+
+
+# ------------------------------------------------------------------ the four measures compared, with the working
+@fig('x_t04_compare4')
+def compare4(w, h, **_):
+    s = Scene(w, h)
+    rows = [['Measure', 'Ana to Ben', 'Ana to Chloe', 'Closer is', 'Picks'],
+            ['Euclidean distance', '√(3² + 4²) = 5', '√(1² + 1²) = 1.41', 'smaller', 'Chloe'],
+            ['Manhattan distance', '3 + 4 = 7', '1 + 1 = 2', 'smaller', 'Chloe'],
+            ['Dot product', '18 + 32 = 50', '12 + 12 = 24', 'bigger', 'Ben'],
+            ['Cosine similarity', '50 ÷ (5 × 10) = 1.00', '24 ÷ (5 × 5) = 0.96', 'bigger', 'Ben']]
+    cw = [2.75, 3.0, 3.0, 1.45, 1.55]
+    s.table(0.05, h - 0.05, cw, 0.62, rows, size=17, align=['left', 'center', 'center', 'center', 'center'],
+            hl_cells={(r, 4): GOLD for r in range(1, 5)})
+    s.text(0.1, 0.75, 'Distances see both length and direction. The dot product rewards long arrows.', size=15, color=BODY, ha='left')
+    s.text(0.1, 0.35, 'Cosine similarity sees direction only.', size=15, color=BODY, ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ bag of words built on three tiny messages
+TINY = [('S1', 'send the invoice'), ('S2', 'the invoice is late'), ('S3', 'the rice is late')]
+VOCAB = ['send', 'the', 'invoice', 'is', 'late', 'rice']
+
+
+def _counts(t):
+    ws = t.split()
+    return [ws.count(v) for v in VOCAB]
+
+
+@fig('x_t04_bowhand')
+def bowhand(w, h, **_):
+    s = Scene(w, h)
+    s.text(0.1, h - 0.25, 'Three tiny messages', size=17, weight='bold', ha='left')
+    for k, (i, t) in enumerate(TINY):
+        s.text(0.1, h - 0.85 - k * 0.55, i, size=17, weight='bold', ha='left')
+        s.text(0.65, h - 0.85 - k * 0.55, f'"{t}"', size=17, ha='left')
+    s.arrow(3.35, 2.75, 3.95, 2.75, lw=2.4)
+    x0 = 4.15
+    s.text(x0, h - 0.25, 'Step 1: list every word once.  Step 2: count it in each message.', size=17, weight='bold', ha='left')
+    rows = [[''] + VOCAB] + [[i] + [str(c) for c in _counts(t)] for i, t in TINY]
+    cw = [0.75] + [1.12] * 6
+    hl = {(r + 1, c + 1): GOLD for r, (_, t) in enumerate(TINY) for c, v in enumerate(_counts(t)) if v}
+    s.table(x0, h - 0.6, cw, 0.5, rows, size=17, hl_cells=hl)
+    _col(s, 0.1, 1.35, [('6 words in the list, so each message is a vector of 6 numbers: S2 = (0, 1, 1, 1, 1, 0). This list of words is the vocabulary.', 15, 'normal', INK, 0.08),
+                        ('The order of the words is lost: "dog bites man" and "man bites dog" get the same counts.', 15, 'normal', BODY, 0)], w - 0.2)
+    return s
+
+
+@fig('x_t04_bowcos')
+def bowcos(w, h, **_):
+    s = Scene(w, h)
+    import numpy as np_
+    V = {i: np_.array(_counts(t)) for i, t in TINY}
+    pw = (w - 0.15) / 2
+    for k, (other, shared) in enumerate((('S1', 'the, invoice'), ('S3', 'the, is, late'))):
+        a, b = V['S2'], V[other]
+        dt = int(a @ b)
+        la, lb = float(np_.linalg.norm(a)), float(np_.linalg.norm(b))
+        cs = dt / (la * lb)
+        x = 0.05 + k * (pw + 0.05)
+        s.box(x, 0.95, pw, h - 1.0, '', fill=GOLD if k else PAPER, edge=INK, lw=1.8)
+        s.text(x + pw / 2, h - 0.35, f'S2 with {other}', size=19, weight='bold')
+        s.text(x + pw / 2, h - 0.8, f'"{TINY[1][1]}"', size=14, color=BODY)
+        s.text(x + pw / 2, h - 1.15, f'"{dict(TINY)[other]}"', size=14, color=BODY)
+        lb_s = '√3 = 1.73' if other == 'S1' else '√4 = 2'
+        lines = [f'Shared: {shared}', f'Dot product: {dt}', f'Lengths: 2 and {lb_s}', f'Cosine: {dt} ÷ (2 × {lb:.2f}) = {cs:.2f}' if other == 'S1' else f'Cosine: {dt} ÷ (2 × 2) = {cs:.2f}']
+        assert abs(la - 2) < 1e-9
+        for j, ln in enumerate(lines):
+            s.text(x + 0.15, h - 1.7 - j * 0.5, ln, size=15 if j < 3 else 16, weight='bold' if j == 3 else 'normal', ha='left')
+    s.text(w / 2, 0.55, 'Two of the three shared words, the and is, say nothing about the topic.', size=15, color=RED, weight='bold')
+    s.text(w / 2, 0.18, 'Lengths: √ of the sum of the squared counts, as for Ana.', size=14, color=BODY)
+    return s
+
+
+# ------------------------------------------------------------------ tf and df on message M06 and the 40 messages
+_M06 = {m['word']: m for m in _R['m06_words']}
+SIX = ['the', 'please', 'send', 'oil', 'invoice', 'jerrycan']
+
+
+@fig('x_t04_df')
+def dfig(w, h, **_):
+    s = Scene(w, h)
+    s.text(0.1, h - 0.22, 'Six words from message M06, out of 40 messages', size=17, weight='bold', ha='left')
+    x0, xmax = 1.45, 5.35
+    sc = (xmax - x0) / 40
+    s.text(x0, h - 0.68, 'df: messages that contain the word', size=14, color=MUTE, ha='left')
+    s.text(w - 0.55, h - 0.68, 'tf in M06', size=14, color=MUTE)
+    for k, wd in enumerate(SIX):
+        m = _M06[wd]
+        y = h - 1.25 - k * 0.5
+        s.text(0.1, y, wd, size=16, weight='bold', ha='left')
+        s.rect(x0, y - 0.16, 40 * sc, 0.32, fill=PALE, edge=HAIR, lw=0.8, z=1)
+        s.rect(x0, y - 0.16, m['in_messages'] * sc, 0.32, fill=RED if m['in_messages'] <= 4 else GREY, edge=INK, lw=1, z=2)
+        s.text(x0 + m['in_messages'] * sc + 0.1, y, f"{m['in_messages']} of 40", size=14, weight='bold', ha='left')
+        s.text(w - 0.55, y, str(m['count']), size=16, weight='bold')
+    s.text(0.1, 0.55, 'Common word, big df: a weak clue to what M06 is about.', size=15, color=BODY, ha='left')
+    s.text(0.1, 0.18, 'Rare word, small df: a strong clue.', size=15, color=RED, weight='bold', ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ inverse document frequency and the log
+def _ln2(x):
+    return f'{math.log(x):.2f}'
+
+
+@fig('x_t04_log')
+def logfig(w, h, **_):
+    s = Scene(w, h)
+    rows = [['Word', 'df', 'N ÷ df', 'ln(N ÷ df)']]
+    for wd in SIX[::-1]:
+        d = _M06[wd]['in_messages']
+        r = 40 / d
+        rows.append([wd, str(d), f'40 ÷ {d} = {r:.1f}'.replace('.0 ', ' ') if r != int(r) else f'40 ÷ {d} = {int(r)}', _ln2(r)])
+    cw = [1.5, 0.75, 2.2, 1.75]
+    s.table(0.05, h - 0.05, cw, 0.58, rows, size=16, align=['left', 'center', 'center', 'center'], hl_cols=(3,), hl_fill=GOLD)
+    x0 = 6.6
+    _col(s, x0, h - 0.1, [('N = 40 messages. N ÷ df runs from 1.8 to 40, so one rare word would outweigh the rest.', 15, 'normal', INK, 0.18),
+                          ('The log grows slowly: 40 becomes 3.69 and 1.8 becomes 0.60. The order stays the same.', 15, 'normal', INK, 0.18),
+                          ('ln x: how many times you multiply by e (about 2.718) to reach x.', 15, 'bold', INK, 0.1),
+                          ('ln 1 = 0,  ln 2.718 = 1,  ln 10 = 2.30,  ln 100 = 4.61', 15, 'bold', RED, 0.18),
+                          ('A word in every message: ln(40 ÷ 40) = ln 1 = 0.', 15, 'normal', BODY, 0)], w - x0 - 0.1)
+    return s
+
+
+# ------------------------------------------------------------------ TF-IDF worked on M06, textbook form
+@fig('x_t04_tfidf_text')
+def tfidf_text(w, h, **_):
+    s = Scene(w, h)
+    rows = [['Word in M06', 'tf', 'df', 'idf = ln(40 ÷ df)', 'tf × idf']]
+    for wd in SIX[::-1]:
+        m = _M06[wd]
+        idf = round(math.log(40 / m['in_messages']), 2)
+        rows.append([wd, str(m['count']), str(m['in_messages']), f'{idf:.2f}', f"{m['count']} × {idf:.2f} = {m['count'] * idf:.2f}"])
+    cw = [1.75, 0.7, 0.7, 2.2, 2.35]
+    s.table(0.05, h - 0.05, cw, 0.45, rows, size=16, align=['left', 'center', 'center', 'center', 'center'], hl_cells={(2, 4): GOLD, (1, 4): PALE})
+    x0 = 8.15
+    _col(s, x0, h - 0.1, [('invoice wins: it is repeated (tf 2) and rare (df 4).', 16, 'bold', INK, 0.15),
+                          ('jerrycan is rarer but appears once. the is everywhere, so it weighs least.', 15, 'normal', BODY, 0)], w - x0 - 0.1)
+    s.text(0.1, 0.62, 'The formula:   TF-IDF(t, d) = tf(t, d) × ln(N ÷ df(t))', size=20, weight='bold', ha='left')
+    s.text(0.1, 0.2, 't: a word (term). d: a message (document). tf: count of t in d. df: messages containing t. N = 40. Numbers rounded to 2 decimals.', size=14, color=BODY, ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ TF-IDF as recorded: scikit-learn smoothed form, then length 1
+@fig('x_t04_tfidf')
+def tfidf(w, h, **_):
+    """The recorded run used scikit-learn TfidfVectorizer defaults: idf = ln((1 + N) / (1 + df)) + 1, weight = tf x idf, then each message vector divided by its length."""
+    s = Scene(w, h)
+    N = 40
+    idf = lambda df: math.log((1 + N) / (1 + df)) + 1
+    length = math.sqrt(sum((m['count'] * idf(m['in_messages'])) ** 2 for m in _R['m06_words']))
+    rows = [['Word in M06', 'tf', 'df', 'idf = ln(41 ÷ (1 + df)) + 1', 'tf × idf', f'÷ {length:.2f}, recorded']]
+    for wd in SIX[::-1]:
+        m = _M06[wd]
+        i3 = round(idf(m['in_messages']), 3)
+        p3 = round(m['count'] * i3, 3)
+        v = p3 / round(length, 2)
+        assert f'{v:.3f}' == f"{m['real']:.3f}", (wd, v, m['real'])
+        rows.append([wd, str(m['count']), str(m['in_messages']), f'{i3:.3f}', f"{m['count']} × {i3:.3f} = {p3:.3f}", f"{m['real']:.3f}"])
+    cw = [1.75, 0.65, 0.65, 3.2, 2.65, 2.0]
+    s.table(0.05, h - 0.05, cw, 0.42, rows, size=15, align=['left', 'center', 'center', 'center', 'center', 'center'], hl_cells={(2, 5): GOLD})
+    _col(s, 0.1, 1.1, [('The +1s act as if one extra message held every word: no division by 0, and a word in every message keeps a little weight.', 14, 'normal', BODY, 0.05),
+                       (f'{length:.2f} is the length of M06\'s vector of 27 weights, √(sum of the squares), as for Ana\'s arrow. Dividing by it makes the length 1.', 14, 'normal', BODY, 0)], w - 0.2)
+    return s
+
+
+# ------------------------------------------------------------------ counts see no link between a question and its clause
+@fig('x_t04_noshare')
+def noshare(w, h, **_):
+    s = Scene(w, h)
+    S = _R['skins']['contracts']
+    q = S['queries'][0]
+    import importlib.util as _iu
+    _sp = _iu.spec_from_file_location('s04_corpus', Path(__file__).resolve().parent.parent / 'demo_runs' / 's04' / 's04_corpus.py')
+    _m = _iu.module_from_spec(_sp)
+    _sp.loader.exec_module(_m)
+    _SK = _m.SKINS
+    k1 = [t for i, _, t in _SK['contracts']['passages'] if i == 'K1'][0]
+    for k, (head, txt, edge) in enumerate((('Plain question', q['query'], INK), ('Clause: Force majeure', k1, RED))):
+        y = h - 0.1 - (k + 1) * 1.65
+        s.box(0.05, y, w - 0.1, 1.5, '', fill=PAPER, edge=edge, lw=1.8)
+        s.text(0.2, y + 1.22, head, size=17, weight='bold', ha='left', color=edge)
+        s.text(0.2, y + 0.92, '\n'.join(K.wrap(txt, 15, 'regular', w - 0.5)), size=15, ha='left', va='top')
+    s.text(0.1, 1.05, 'Words in common: none. Dot product of the counts: 0, so cosine 0.', size=16, weight='bold', ha='left')
+    s.text(0.1, 0.6, 'Yet both are about a flood that stops a delivery.', size=16, color=RED, weight='bold', ha='left')
+    s.text(0.1, 0.2, 'Recorded run: the keyword search found no shared word for this question.', size=14, color=BODY, ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ an embedding toy: words as arrows in a plane, with cosine
+@fig('x_t04_plane')
+def plane(w, h, **_):
+    s = Scene(w, h)
+    P = _Plane(s, 1.0, 0.95, 0.56, 7, 6, labels=('dimension 1: about money', 'dimension 2: trucks'))
+    for x, y, c in ((4, 1, INK), (3, 1.5, INK), (1, 4, RED)):
+        P.arrow(x, y, color=c)
+    s.text(P.to(4, 1)[0] + 0.15, P.to(4, 1)[1] - 0.3, 'invoice (4, 1)', size=15, weight='bold', ha='left')
+    s.text(P.to(3, 1.5)[0] - 0.05, P.to(3, 1.5)[1] + 0.38, 'receipt (3, 1.5)', size=15, weight='bold', ha='center')
+    s.text(P.to(1, 4)[0] + 0.15, P.to(1, 4)[1] + 0.1, 'lorry (1, 4)', size=15, weight='bold', color=RED, ha='left')
+    x0 = 5.1
+    s.box(x0, 2.75, w - x0 - 0.05, 1.75, '', fill=GOLD, lw=1.8)
+    s.text(x0 + (w - x0) / 2, 4.15, 'invoice, receipt', size=16, weight='bold')
+    s.text(x0 + (w - x0) / 2, 3.6, '13.5 ÷ (4.12 × 3.35)', size=15)
+    s.text(x0 + (w - x0) / 2, 3.1, 'cosine 0.98', size=19, weight='bold')
+    s.box(x0, 0.75, w - x0 - 0.05, 1.75, '', fill=PAPER, lw=1.8, edge=RED)
+    s.text(x0 + (w - x0) / 2, 2.15, 'invoice, lorry', size=16, weight='bold', color=RED)
+    s.text(x0 + (w - x0) / 2, 1.6, '8 ÷ (4.12 × 4.12)', size=15)
+    s.text(x0 + (w - x0) / 2, 1.1, 'cosine 0.47', size=19, weight='bold')
+    return s
+
+
+# ------------------------------------------------------------------ a network produces the vector (simplified)
+@fig('x_t04_network')
+def network(w, h, **_):
+    s = Scene(w, h)
+    V = _R['sample_vectors']['first8']['query']
+    cy = h / 2 + 0.25
+    s.box(0.1, cy - 0.85, 2.7, 1.7, 'What happens if\nheavy rain floods\nthe road...', size=16, fill=PAPER, lw=2)
+    s.text(1.45, cy + 1.2, 'Text goes in', size=17, weight='bold')
+    cols = [4.0, 5.2, 6.4]
+    ys = [cy + 0.9 - k * 0.45 for k in range(5)]
+    for a in range(2):
+        for ya in ys:
+            for yb in ys:
+                s.line(cols[a], ya, cols[a + 1], yb, color=HAIR, lw=0.9, z=1)
+    for c in cols:
+        for yy in ys:
+            s.circle(c, yy, 0.14, fill=PAPER, edge=INK, lw=1.6, z=4)
+    s.arrow(2.85, cy, 3.75, cy, lw=2.4)
+    s.arrow(6.6, cy, 7.5, cy, lw=2.4)
+    s.text(5.2, cy + 1.45, 'A network like Session 1\'s', size=17, weight='bold')
+    s.text(5.2, cy - 1.3, 'drawn small: the real one is much bigger', size=14, color=MUTE)
+    s.text(9.5, cy + 1.45, '384 numbers out', size=17, weight='bold')
+    for j, v in enumerate(V[:6]):
+        s.box(8.55, cy + 0.95 - j * 0.38, 1.9, 0.34, f'{v:+.2f}'.replace('-', '−'), size=14, fill=GOLD, lw=1.3, r=0.04)
+    s.text(9.5, cy - 1.3, '... and 378 more', size=14, color=MUTE)
+    s.box(0.1, 0.02, w - 0.2, 0.42, 'Fine-tuned on more than a billion pairs of related sentences, so that similar meanings land close (model card).', size=14, fill=PALE, lw=1.2)
+    return s

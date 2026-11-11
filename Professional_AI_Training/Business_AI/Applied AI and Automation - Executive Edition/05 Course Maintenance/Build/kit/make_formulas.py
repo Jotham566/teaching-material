@@ -53,7 +53,7 @@ def entries():
               'F1 is the harmonic mean of precision (P) and recall (R). The ROC curve plots TPR (recall) against FPR for every threshold; AUC is the area under that curve (1 is perfect, 0.5 is a coin flip).',
               f'P = 0.32, R = 0.80: F1 = {2*0.32*0.8/(0.32+0.8):.2f}. FPR = 34 / 980 = {34/980*100:.1f}%.', '0, 3'))
     E.append(('Examples and measuring', 'k-fold cross-validation', 'score = (1/k) Σ scoreᵢ',
-              'Split the data into k parts; train on k − 1 parts, test on the held-out part; rotate; average the k scores.', 'Five folds scoring 0.90, 0.85, 0.80, 0.90, 0.85 give 0.86.', '2'))
+              'Split the data into k parts; train on k − 1 parts, test on the held-out part; rotate; average the k scores.', 'Session 2 claims: fold scores 44/48, 44/48, 45/48, 45/48, 45/48 (0.917, 0.917, 0.938, 0.938, 0.938) give 4.646 / 5 = 0.929.', '2'))
     # --- words as numbers
     E.append(('Words and language models', 'TF-IDF', 'tf-idf(t, d) = tf(t, d) × log(N / df(t))      scikit-learn: idf = ln[(1 + N) / (1 + df)] + 1',
               't: a term. d: a document. tf: how often t appears in d. N: number of documents. df: how many documents contain t.',
@@ -96,7 +96,7 @@ def entries():
               'Flat tyre: 4 × 2 = 8. Data leakage: 3 × 5 = 15. Three approvals at 2 minutes: 3 × 2 = 6 minutes.', '11, 13'))
     E.append(('Agents, governance and plan', 'Hours saved, net benefit, payback and ROI', 'H = n × (t₀ − t₁) / 60      net benefit = benefits − costs      payback = set-up cost / net benefit per month      ROI = net benefit / cost × 100%',
               'n: runs a month. t₀, t₁: minutes before and after. Payback is in months.',
-              'n = 4, t₀ = 90, t₁ = 10: H = 5.3 hours. Kettle: saving 20,000 a month, cost 60,000: payback 3 months; first-year net 180,000; ROI 300%.', '12'))
+              'n = 4, t₀ = 90, t₁ = 10: H = 5.3 hours. Kettle: saving 20,000 a month, cost 60,000: payback 3 months; first-year net 180,000; first-year costs 180,000; ROI 100%.', '12'))
     E.append(('Agents, governance and plan', 'Total cost of ownership', 'TCO = set-up + months × monthly fee',
               'All the money over the whole contract, not only the first month.', 'Set-up 0, 36 months at USD 2,400: 36 × 2,400 = USD 86,400.', '13'))
     E.append(('Agents, governance and plan', 'Data quality and readiness', 'completeness = filled / all × 100%      uniqueness = distinct / all      readiness = Σ points (Green 2, Amber 1, Red 0)      change = (new − old) / old',

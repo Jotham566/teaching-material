@@ -1,0 +1,373 @@
+{
+ "date": "11 November 2026",
+ "model": "GPT-2 small (124M), Hugging Face gpt2 weights, snapshot 607a30d783dfa663caf39e06633721c8d4cfcd7e",
+ "engine": "numpy 2.2.6, Python 3.12.14 (no torch in the venv); forward pass written out in this file",
+ "runs": [
+  {
+   "prompt": "Please pay the invoice within thirty",
+   "tokens": [
+    "Please",
+    " pay",
+    " the",
+    " invoice",
+    " within",
+    " thirty"
+   ],
+   "token_ids": [
+    5492,
+    1414,
+    262,
+    45458,
+    1626,
+    12277
+   ],
+   "vocab": 50257,
+   "logit_min": -55.925,
+   "logit_max": -20.702,
+   "top10": [
+    {
+     "token": " (",
+     "id": 357,
+     "logit": -20.702,
+     "prob": 0.69334
+    },
+    {
+     "token": " days",
+     "id": 1528,
+     "logit": -22.061,
+     "prob": 0.17809
+    },
+    {
+     "token": "-",
+     "id": 12,
+     "logit": -22.62,
+     "prob": 0.1018
+    },
+    {
+     "token": " minutes",
+     "id": 2431,
+     "logit": -25.791,
+     "prob": 0.00427
+    },
+    {
+     "token": " business",
+     "id": 1597,
+     "logit": -25.908,
+     "prob": 0.0038
+    },
+    {
+     "token": " calendar",
+     "id": 11845,
+     "logit": -26.354,
+     "prob": 0.00243
+    },
+    {
+     "token": " working",
+     "id": 1762,
+     "logit": -27.061,
+     "prob": 0.0012
+    },
+    {
+     "token": " seconds",
+     "id": 4201,
+     "logit": -27.374,
+     "prob": 0.00088
+    },
+    {
+     "token": " day",
+     "id": 1110,
+     "logit": -27.587,
+     "prob": 0.00071
+    },
+    {
+     "token": " six",
+     "id": 2237,
+     "logit": -27.689,
+     "prob": 0.00064
+    }
+   ]
+  },
+  {
+   "prompt": "Thank you for your",
+   "tokens": [
+    "Thank",
+    " you",
+    " for",
+    " your"
+   ],
+   "token_ids": [
+    10449,
+    345,
+    329,
+    534
+   ],
+   "vocab": 50257,
+   "logit_min": -138.462,
+   "logit_max": -106.108,
+   "top10": [
+    {
+     "token": " support",
+     "id": 1104,
+     "logit": -106.108,
+     "prob": 0.30349
+    },
+    {
+     "token": " continued",
+     "id": 3767,
+     "logit": -107.191,
+     "prob": 0.10277
+    },
+    {
+     "token": " patience",
+     "id": 16336,
+     "logit": -107.835,
+     "prob": 0.05399
+    },
+    {
+     "token": " interest",
+     "id": 1393,
+     "logit": -108.04,
+     "prob": 0.04399
+    },
+    {
+     "token": " help",
+     "id": 1037,
+     "logit": -108.343,
+     "prob": 0.03247
+    },
+    {
+     "token": " time",
+     "id": 640,
+     "logit": -108.363,
+     "prob": 0.03185
+    },
+    {
+     "token": " understanding",
+     "id": 4547,
+     "logit": -108.703,
+     "prob": 0.02267
+    },
+    {
+     "token": " consideration",
+     "id": 9110,
+     "logit": -108.851,
+     "prob": 0.01953
+    },
+    {
+     "token": " feedback",
+     "id": 7538,
+     "logit": -108.911,
+     "prob": 0.01841
+    },
+    {
+     "token": " comments",
+     "id": 3651,
+     "logit": -109.042,
+     "prob": 0.01615
+    }
+   ]
+  },
+  {
+   "prompt": "The customer was angry because the delivery was",
+   "tokens": [
+    "The",
+    " customer",
+    " was",
+    " angry",
+    " because",
+    " the",
+    " delivery",
+    " was"
+   ],
+   "token_ids": [
+    464,
+    6491,
+    373,
+    7954,
+    780,
+    262,
+    7585,
+    373
+   ],
+   "vocab": 50257,
+   "logit_min": -161.893,
+   "logit_max": -129.615,
+   "top10": [
+    {
+     "token": " delayed",
+     "id": 11038,
+     "logit": -129.615,
+     "prob": 0.11435
+    },
+    {
+     "token": " not",
+     "id": 407,
+     "logit": -129.888,
+     "prob": 0.08708
+    },
+    {
+     "token": " late",
+     "id": 2739,
+     "logit": -130.403,
+     "prob": 0.052
+    },
+    {
+     "token": " too",
+     "id": 1165,
+     "logit": -130.723,
+     "prob": 0.03775
+    },
+    {
+     "token": " so",
+     "id": 523,
+     "logit": -130.759,
+     "prob": 0.03642
+    },
+    {
+     "token": " a",
+     "id": 257,
+     "logit": -130.968,
+     "prob": 0.02957
+    },
+    {
+     "token": " delivered",
+     "id": 6793,
+     "logit": -131.504,
+     "prob": 0.0173
+    },
+    {
+     "token": " slow",
+     "id": 3105,
+     "logit": -131.529,
+     "prob": 0.01687
+    },
+    {
+     "token": " in",
+     "id": 287,
+     "logit": -131.738,
+     "prob": 0.01369
+    },
+    {
+     "token": " very",
+     "id": 845,
+     "logit": -131.837,
+     "prob": 0.01239
+    }
+   ]
+  }
+ ],
+ "chains": [
+  {
+   "sentence": "Thank you for your support",
+   "first_token_given": "Thank",
+   "steps": [
+    {
+     "given": "Thank",
+     "token": " you",
+     "prob": 0.02215,
+     "loss": 3.8098
+    },
+    {
+     "given": "Thank you",
+     "token": " for",
+     "prob": 0.42714,
+     "loss": 0.8507
+    },
+    {
+     "given": "Thank you for",
+     "token": " your",
+     "prob": 0.27334,
+     "loss": 1.297
+    },
+    {
+     "given": "Thank you for your",
+     "token": " support",
+     "prob": 0.30349,
+     "loss": 1.1924
+    }
+   ],
+   "product": 0.0007848588317420467,
+   "average_loss": 1.7875
+  },
+  {
+   "sentence": "Please pay the invoice within thirty days",
+   "first_token_given": "Please",
+   "steps": [
+    {
+     "given": "Please",
+     "token": " pay",
+     "prob": 0.00071,
+     "loss": 7.2494
+    },
+    {
+     "given": "Please pay",
+     "token": " the",
+     "prob": 0.03907,
+     "loss": 3.2424
+    },
+    {
+     "given": "Please pay the",
+     "token": " invoice",
+     "prob": 0.00238,
+     "loss": 6.0388
+    },
+    {
+     "given": "Please pay the invoice",
+     "token": " within",
+     "prob": 0.0198,
+     "loss": 3.9223
+    },
+    {
+     "given": "Please pay the invoice within",
+     "token": " thirty",
+     "prob": 0.01251,
+     "loss": 4.3815
+    },
+    {
+     "given": "Please pay the invoice within thirty",
+     "token": " days",
+     "prob": 0.17809,
+     "loss": 1.7255
+    }
+   ],
+   "product": 2.9123311195492948e-12,
+   "average_loss": 4.4266
+  }
+ ],
+ "lookup": {
+  "sentence": "Please pay the invoice",
+  "token": " invoice",
+  "token_id": 45458,
+  "position_index0": 3,
+  "position_counted_from_1": 4,
+  "E_first4": [
+   0.0688,
+   -0.3022,
+   0.1568,
+   -0.2135
+  ],
+  "P_first4": [
+   -0.0003,
+   -0.0738,
+   0.1055,
+   0.0007
+  ],
+  "sum_first4": [
+   0.0685,
+   -0.376,
+   0.2623,
+   -0.2129
+  ],
+  "numbers_per_row": 768,
+  "token_rows": 50257,
+  "position_rows": 1024
+ },
+ "block0": {
+  "total": 7087872,
+  "attention": 2362368,
+  "feed_forward": 4722432,
+  "layer_norm": 3072,
+  "ff_hidden_neurons": 3072,
+  "ff_inputs": 768
+ }
+}
