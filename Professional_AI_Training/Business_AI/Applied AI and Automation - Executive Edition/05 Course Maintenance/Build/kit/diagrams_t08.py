@@ -473,6 +473,18 @@ def ba_context(w, h, **_):
     return s
 
 
+@fig('x_t08_ba_constraints')
+def ba_constraints(w, h, **_):
+    s = Scene(w, h)
+    _ba(s, w, h, [('Before: context, no constraints', 'Four people, one vegetarian; beans, rice, tomatoes and onions at home; 45 minutes.',
+                   '"Make a vegetarian bean and tomato stew... add diced tomatoes, garlic, cumin, paprika and salt... with a fried egg on top..."',
+                   'Fits, but adds four things not at home', False),
+                  ('After: add the constraints', 'Adds: "Use only the ingredients I listed, plus salt, oil and water. If a good dish needs anything else, say so."',
+                   '"Fry the onions in oil, add chopped tomatoes and salt... 45 minutes only if the beans are canned or precooked. Garlic, chili or cumin would improve it, but you didn\'t list them."',
+                   'Kept to the list, and said what it lacked', True)])
+    return s
+
+
 @fig('x_t08_ba_fewshot')
 def ba_fewshot(w, h, **_):
     s = Scene(w, h)

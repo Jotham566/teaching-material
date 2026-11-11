@@ -127,7 +127,12 @@ def ranks(w, h, **_):
         s.text(xl - 0.1, y1, f'{i + 1}  {nm}', size=17, ha='right', weight='bold' if nm in keyshort else 'normal')
         lab = f'{nm}  {r2}' if nm not in ('Prossy', 'Dennis') else f'{nm}  {r2}'
         s.text(xr + 0.1, y2, lab, size=17, ha='left', weight='bold' if nm in keyshort else 'normal')
-    wt(s, w / 2, 0.4, w - 0.3, 'Bold: on the answer key shortlist. Red: the order changed between runs. Prossy and Dennis were not shortlisted in either run.', 14, color=MUTE)
+    # where each run's own shortlist ends (F3b run 1: top 4, Samuel reserve; run 2: top 6)
+    y4 = top - 4 * rh
+    y6 = top - 6 * rh
+    s.line(0.15, y4, xl, y4, color=RED, lw=2.0, dash=True, z=3)
+    s.line(xr, y6, w - 0.15, y6, color=RED, lw=2.0, dash=True, z=3)
+    wt(s, w / 2, 0.4, w - 0.3, 'Bold: on the key shortlist. Dashed red: where each run ended its shortlist. Run 1 kept 4, so Lillian, 6th, was left off.', 14, color=MUTE)
     return s
 
 

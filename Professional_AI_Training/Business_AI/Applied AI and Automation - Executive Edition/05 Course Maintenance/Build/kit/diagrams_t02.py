@@ -650,7 +650,7 @@ def x_t02_memorise(w, h, **_):
     return s
 
 
-# ------------------------------------------------------------------ overfitting in numbers: practice claims against held-out claims (real, fold 1)
+# ------------------------------------------------------------------ overfitting in numbers: training claims against held-out claims (real, fold 1)
 @fig('x_t02_overfit')
 def x_t02_overfit(w, h, **_):
     d = _res()['claims_one_split']
@@ -660,7 +660,7 @@ def x_t02_overfit(w, h, **_):
     bw = 1.35
     for gi, (lab, f) in enumerate(groups):
         gx = 0.45 + gi * 3.75
-        for bi, (key, n, right, fill, cap) in enumerate((('train', f['train_n'], f['train_right'], PAPER, 'practice'), ('test', f['test_n'], f['test_right'], GOLD, 'held out'))):
+        for bi, (key, n, right, fill, cap) in enumerate((('train', f['train_n'], f['train_right'], PAPER, 'training'), ('test', f['test_n'], f['test_right'], GOLD, 'held out'))):
             v = right / n
             x = gx + bi * (bw + 0.2)
             hh = (top - base) * (v - 0.5) / 0.5

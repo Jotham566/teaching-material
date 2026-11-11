@@ -116,7 +116,7 @@ def _matrix(w, h, vals, rows, cols, descs, hl='tp', size=17):
 @fig('x_t03_confusion')
 def confusion(w, h, t=0.2, size=17, **_):
     r = _row(t)
-    return _matrix(w, h, (r['tp'], r['fp'], r['fn'], r['tn']), ('Model said\n"late"', 'Model said\n"on time"'), ('Really late', 'Really on time'),
+    return _matrix(w, h, (r['tp'], r['fp'], r['fn'], r['tn']), ('Model said\n“late”', 'Model said\n“on time”'), ('Really late', 'Really on time'),
                    ('caught', 'false alarm', 'missed', 'rightly cleared'), hl='tp', size=size)
 
 
@@ -138,8 +138,8 @@ def alarm_thr(w, h, **_):
         ys = y0 + curve(m, sd) * (y1 - y0 - 0.3)
         s.ax.fill_between([px(v) for v in xs], y0, ys, color=col, alpha=0.75 if col == RED else 1.0, ec=ec, lw=1.5, zorder=2)
     s.line(x0, y0, x1, y0, lw=2)
-    s.text((x0 + x1) / 2, 0.3, 'smoke level the alarm senses (a score from 0 to 10)', size=14, color=MUTE)
-    s.text(px(1.6), y0 + 1.2, 'No fire:\ncooking, toast', size=15, weight='bold')
+    s.text((x0 + x1) / 2, 0.3, 'smoke score from 0 to 10 (each hill drawn to the same height)', size=14, color=MUTE)
+    s.text(x0, y1 - 0.25, 'No fire:\ncooking, toast', size=15, weight='bold', ha='left')
     s.text(px(8.6), y0 + 1.2, 'Real\nfire', size=15, weight='bold')
     for v, lab in ((7.4, 'High\nthreshold'), (5.0, 'Our\nsetting'), (3.6, 'Low\nthreshold')):
         s.line(px(v), y0, px(v), y1 + 0.05, color=INK, lw=2.4, dash=True, z=5)

@@ -147,7 +147,7 @@ def scale(w, h, **_):
     gh = (h - 0.55) / 3
     s.text(0.05, h - 0.2, 'Model size', size=16, weight='bold', ha='left', color=MUTE)
     s.tag(x0, h - 0.4, 'FP16', size=15, fill=GOLD, color=INK)
-    s.tag(x0 + 1.4, h - 0.4, '4-bit', size=15, fill=INK)
+    s.box(x0 + 1.4, h - 0.4, 0.13 * 5 * 15 / 16 + 0.32, 0.4, '4-bit', size=15, fill=PAPER, edge=INK, color=INK, weight='bold', r=0.06)
     for i, (lab, a, b) in enumerate(groups):
         top = h - 0.6 - i * gh
         s.text(0.05, top - gh / 2 + 0.05, lab + '\nparameters', size=17, weight='bold', ha='left')

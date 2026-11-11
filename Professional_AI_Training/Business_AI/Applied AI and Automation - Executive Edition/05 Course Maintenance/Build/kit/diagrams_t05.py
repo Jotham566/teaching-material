@@ -337,7 +337,7 @@ def head_grid(w, h, **_):
                 v = g[L][H]
                 s.rect(gx + H * cell, gy + (11 - L) * cell, cell, cell, fill=shade(v), edge=HAIR, lw=0.5, z=2)
         s.rect(gx + 3 * cell, gy + (11 - 4) * cell, cell, cell, fill='none', edge=GOLD, lw=3.2, z=5)
-        put(s, gx - 0.12, gy + 12 * cell / 2, 'block 1 to 12 (up)', size=14, rot=90, ha='right')
+        put(s, gx - 0.12, gy + 12 * cell / 2, 'block 1 to 12 (down)', size=14, rot=90, ha='right')
         put(s, gx + 6 * cell, gy - 0.22, 'head 1 to 12 (right)', size=14)
         put(s, gx + 6 * cell, h - 0.65, note, size=15, color=BODY)
     return s
@@ -354,7 +354,7 @@ def toy_attention(w, h, **_):
     shr = [round(100 * e / tot) for e in ex]
     prod = [p / 100 * v for p, (_, _, v) in zip(shr, words)]
     colw = [1.8, 1.0, 2.1, 1.7, 1.8, 1.1, 1.8]
-    heads = ['Earlier token', 'Key', 'Score =\nquery 2 x key', 'e to\nthe score', 'Attention\nweight', 'Value', 'Weight\nx value']
+    heads = ['Earlier token', 'Key', 'Score =\nquery 2 × key', 'e to\nthe score', 'Attention\nweight', 'Value', 'Weight\n× value']
     xs = [0.1]
     for c in colw:
         xs.append(xs[-1] + c)
@@ -372,8 +372,8 @@ def toy_attention(w, h, **_):
     y = top - hh - 3 * rh - 0.22
     put(s, xs[3] + colw[3] / 2, y, 'Total %.1f' % tot, size=16, weight='bold')
     put(s, xs[6] + colw[6] / 2, y, 'Sum %.2f' % sum(prod), size=16, weight='bold', color=RED)
-    put(s, 0.1, 1.08, 'Output for "it" = 0.09 x 2 + 0.67 x 6 + 0.24 x 4 = %.2f. It leans towards the value of "invoice" (6).' % sum(prod), size=15, weight='bold', ha='left')
-    put(s, 0.1, 0.68, 'Score = query x key: the Session 4 dot product, with only one number in each vector.', size=15, ha='left', color=BODY)
+    put(s, 0.1, 1.08, 'Output for "it" = 0.09 × 2 + 0.67 × 6 + 0.24 × 4 = %.2f. It leans towards the value of "invoice" (6).' % sum(prod), size=15, weight='bold', ha='left')
+    put(s, 0.1, 0.68, 'Score = query × key: the Session 4 dot product, with only one number in each vector.', size=15, ha='left', color=BODY)
     put(s, 0.1, 0.3, 'Simplified: a real GPT-2 head uses 64 numbers in each query, key and value.', size=15, ha='left', color=BODY)
     return s
 
@@ -463,12 +463,12 @@ def learn_loop(w, h, **_):
 def block_peek(w, h, **_):
     s = Scene(w, h)
     X = json.loads((Path(__file__).resolve().parent.parent / 'demo_runs' / 's07' / 'gpt2_count.json').read_text())
-    inv = X['invoice_piece_numbers']
+    inv = LG['lookup']['sum_first4']  # token row + position row, as on the position slide (11 Nov 2026 record)
     top = h - 0.1
     # in
     s.box(0.1, 1.95, 2.35, 1.95, '', fill=PAPER, edge=INK, lw=1.8)
-    put(s, 1.275, 3.62, 'Embedding in', size=17, weight='bold')
-    put(s, 1.275, 3.18, 'token "invoice":', size=14, color=BODY)
+    put(s, 1.275, 3.62, 'Input numbers', size=17, weight='bold')
+    put(s, 1.275, 3.18, '"invoice": token + position', size=14, color=BODY)
     for k, v in enumerate(inv):
         s.box(0.28 + k * 0.5, 2.32, 0.5, 0.5, ('%.2f' % v).replace('-', '\u2212').replace('0.', '.'), size=14, r=0.02, lw=1.1, fill=GOLD if k == 0 else PAPER)
     put(s, 1.275, 2.62 - 0.55, '... 768 numbers', size=14, color=BODY)

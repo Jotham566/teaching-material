@@ -1,0 +1,1 @@
+Cook vegetarian beans and rice so all four of you can eat the same meal. Fry the onions in oil, add chopped tomatoes and salt, and simmer into a sauce. Stir in the beans and boil the rice separately. This takes 45 minutes only if the beans are canned or precooked. Garlic, chili or cumin would improve it, but you didn't list them.

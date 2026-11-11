@@ -8,6 +8,10 @@ t14_invhome   : a tiny data inventory of the data on your own phone: source, own
 t14_tiny      : a five-row contact list with one blank phone and one duplicate person, for completeness and uniqueness by hand (11 Nov 2026).
 t14_kpichange : KPI change built by hand: 6 to 9 is +3, 3 / 6 = +50%; 8 faults to 0 is -8, -8 / 8 = -100% (11 Nov 2026).
 t14_checkins  : the day 0, 30, 60 and 90 timeline with what you bring and the test at each check-in.
+t14_readiness : the readiness scorecard with a Points column, and the total added in the order of the rows (11 Nov 2026 coherence pass;
+                replaces the shared x_readiness on Session 14 slides so the sum reads top to bottom).
+t14_roadmap   : the 90-day roadmap; day lines stop below the date labels, dependency arrows enter the top of the bar that waits
+                and pass behind any bar they must cross (11 Nov 2026 coherence pass; replaces the shared x_roadmap on Session 14).
 """
 from figkit import Scene, INK, BODY, MUTE, HAIR, PAPER, RED, GOLD, GREY, LayoutError, fig
 import slidekit as K
@@ -276,4 +280,100 @@ def x_t14_kpichange(w, h, size=15, **_):
     pair(0.05, 6, 9, 9, 'Readiness score (of 12)', [('Change: 9 − 6 = +3', INK), ('3 ÷ 6 = 0.5 = +50%', RED)])
     pair(half + 0.05, 8, 0, 9, 'Invoice faults', [('Change: 0 − 8 = −8', INK), ('−8 ÷ 8 = −1 = −100%', RED)])
     s.line(half, 0.2, half, h - 0.1, color=HAIR, lw=1)
+    return s
+
+
+# ------------------------------------------------------------------ readiness scorecard with points
+_PTS = {'Green': 2, 'Amber': 1, 'Red': 0}
+
+
+@fig('x_t14_readiness')
+def x_t14_readiness(w, h, rows=(), total=False, size=16, **_):
+    s = Scene(w, h)
+    n = len(rows)
+    foot = 0.55 if total else 0.0
+    head = 0.45
+    rh = (h - 0.05 - head - foot) / max(n, 1)
+    big = w > 8
+    cw = 1.35 if big else 1.05
+    c1 = 2.75 if big else 1.45
+    cp = c1 + cw + 0.2
+    pw = 0.95 if big else 0.75
+    c2 = cp + pw + 0.1
+    top = h - 0.02
+    for x, t, ha in ((0.0 + 0.08, 'Area', 'left'), (c1 + 0.08, 'Rating', 'left'), (cp + pw / 2, 'Points', 'center'), (c2 + 0.08, 'Why', 'left')):
+        s.text(x, top - head / 2, t, size=size - 1, weight='bold', ha=ha)
+    s.line(0, top - head, w, top - head, color=INK, lw=2.2)
+    pts = []
+    for i, r in enumerate(rows):
+        y1 = top - head - rh * i
+        yc = y1 - rh / 2
+        s.text(0.08, yc, '\n'.join(K.wrap(r['area'], size, 'bold', c1 - 0.15)), size=size, weight='bold', ha='left')
+        rating = r['rating']
+        ch = min(rh - 0.14, 0.46)
+        fill, edge, col = {'Red': (RED, RED, PAPER), 'Amber': (GOLD, GOLD, INK)}.get(rating, (PAPER, INK, INK))
+        s.rect(c1 + 0.08, yc - ch / 2, cw, ch, fill=fill, edge=edge, lw=1.6 if rating == 'Green' else 0, z=2)
+        s.text(c1 + 0.08 + cw / 2, yc, rating.upper(), size=size - 1, weight='bold', color=col, z=6)
+        p = _PTS[rating]
+        pts.append(p)
+        s.text(cp + pw / 2, yc, str(p), size=size + 1, weight='bold', color=RED if p == 0 else INK)
+        lines = K.wrap(r['why'], size - 1, 'regular', w - c2 - 0.2)
+        s.text(c2 + 0.08, yc, '\n'.join(lines), size=size - 1, ha='left', color=BODY)
+        s.line(0, y1 - rh, w, y1 - rh, color=HAIR, lw=0.8)
+    if total:
+        txt = 'Total: ' + ' + '.join(str(p) for p in pts) + f' = {sum(pts)} of {2 * n}   (Green 2, Amber 1, Red 0)'
+        s.text(0.08, foot / 2 + 0.02, txt, size=size, weight='bold', ha='left')
+    return s
+
+
+# ------------------------------------------------------------------ roadmap
+def _behind_line(s, xs, ys, color=RED, lw=1.8):
+    # drawn under the bars (z 2 < 3), so a line that must cross another action's bar passes behind it
+    s.ax.plot(xs, ys, color=color, lw=lw, zorder=2, solid_capstyle='butt')
+
+
+@fig('x_t14_roadmap')
+def x_t14_roadmap(w, h, items=(), marks=(), start_label='1 Feb', size=16, **_):
+    s = Scene(w, h)
+    n = len(items)
+    label_w = min(5.0, w * 0.44)
+    gx0, gx1 = label_w + 0.2, w - 0.45
+    head = 0.72
+    rh = (h - 0.05 - head) / max(n, 1)
+    top = h - 0.02
+    rule = top - head
+
+    def X(d):
+        return gx0 + (gx1 - gx0) * d / 90.0
+
+    for d, lab in [(0, start_label)] + [(m['day'], m.get('label', '')) for m in marks]:
+        x = X(d)
+        s.text(x, top - 0.12, 'Day ' + str(d), size=size - 2, weight='bold', color=INK)
+        s.text(x, top - 0.44, lab, size=size - 2, color=MUTE)
+        if d:
+            s.line(x, 0.02, x, rule - 0.04, color=HAIR, lw=1.4, dash=True, z=1)
+    s.line(0, rule, w, rule, color=INK, lw=2.0)
+    ys, bh = [], min(rh * 0.42, 0.34)
+    for i, it in enumerate(items):
+        y1 = rule - rh * i
+        yc = y1 - rh / 2
+        ys.append(yc)
+        s.text(0.08, yc + 0.12, '\n'.join(K.wrap(it['label'], size, 'bold', label_w - 0.2)), size=size, weight='bold', ha='left')
+        s.text(0.08, yc - 0.15, it.get('owner', ''), size=size - 2, color=MUTE, ha='left')
+        a, b = it['start'], it['end']
+        s.rect(X(a), yc - bh / 2, X(b) - X(a), bh, fill=GOLD if it.get('hl') else INK, edge=INK, lw=1.2, z=3)
+        if i < n - 1:
+            s.line(0, y1 - rh, w, y1 - rh, color=HAIR, lw=0.8)
+    # dependency arrows: out of the end of the bar it waits for, along that row, then down into the top of the waiting bar.
+    # The dependency from the lowest row gets the left-most drop, so the lines never cross each other.
+    for i, it in enumerate(items):
+        deps = sorted(it.get('after', []) or [], reverse=True)
+        for rank, j in enumerate(deps):
+            x1 = X(items[j]['end'])
+            xv = max(x1 + 0.15, X(it['start']) + 0.22 * (rank + 1))
+            if xv > X(it['end']) - 0.05:
+                raise LayoutError(f'roadmap arrow for item {i} falls outside its bar')
+            yt = ys[i] + bh / 2
+            _behind_line(s, [x1, xv, xv], [ys[j], ys[j], yt + 0.12])
+            s.arrow(xv, yt + 0.14, xv, yt, color=RED, lw=1.8, head=11, z=6)
     return s
