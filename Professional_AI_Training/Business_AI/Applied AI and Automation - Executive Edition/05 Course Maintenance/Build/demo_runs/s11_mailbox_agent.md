@@ -8,3 +8,5 @@ What is ready:
 - Mailbox: `demo_runs/s11/mailbox/M01.txt` to `M14.txt` (14 invented mails; M08 carries the planted instruction; M02, M03 and M07 need approval before any reply; M13 is a prize scam)
 
 How to record it: paste the prompt and the 14 mail texts into one fresh assistant session (any product), save the reply verbatim as `demo_runs/s11/runs/run1.md` with the product, model, date and number of runs, then teach from it. Until then the deck teaches the boundary and the gate with the mailbox itself, and shows the recorded Case Runs F4 (planted instruction) and F7 (reply drafts).
+
+Attempt of 11 November 2026: two more fresh subagent runs (Claude Sonnet 5.5, through Claude Code, given only the exact prompt) were stopped by the platform's safeguards at the first step, before any answer. Still no output exists; the slide stays labelled "not yet recorded". Record it by hand as described above.

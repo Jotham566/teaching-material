@@ -830,3 +830,43 @@ def x_t02_minmax(w, h, **_):
     scale_line(h - 1.25, 'Floor area: smallest 40, largest 120', 40, 120, 80, 'm²', '(80 − 40) ÷ (120 − 40) = 40 ÷ 80 = 0.5')
     scale_line(h - 3.3, 'Distance to town: smallest 0, largest 8', 0, 8, 3, 'km', '(3 − 0) ÷ (8 − 0) = 3 ÷ 8 = 0.375')
     return s
+
+
+# ------------------------------------------------------------------ two questions compared by the Gini drop (umbrella days)
+@fig('x_t02_two_questions')
+def x_t02_two_questions(w, h, **_):
+    """The sky question against the forecast question on the same 12 invented days.
+    Sky: cloudy 7 (4 rain, 3 dry), clear 5 (0 rain). Forecast over 50%: 8 (4 rain, 4 dry), 50% or less: 4 (0 rain)."""
+    s = Scene(w, h)
+
+    def gini(q, n):
+        p = q / n
+        return 1 - p * p - (1 - p) ** 2
+    blocks = [('Ask: is the sky cloudy?', [('Cloudy', 7, 4), ('Clear', 5, 0)], True),
+              ('Ask: is the forecast over 50% rain?', [('Over 50%', 8, 4), ('50% or less', 4, 0)], False)]
+    g0 = gini(4, 12)
+    y = h - 0.35
+    sq, gap = 0.3, 0.06
+    for title, groups, win in blocks:
+        s.text(0.1, y, title, size=17, weight='bold', ha='left', color=RED if win else INK)
+        y -= 0.55
+        terms = []
+        for lab, n, q in groups:
+            s.text(0.1, y + sq / 2, lab, size=16, ha='left')
+            x_end = _days(s, 1.75, y, q, n - q, size=sq, gap=gap)
+            g = gini(q, n)
+            s.text(w - 0.1, y + sq / 2, f'{q} of {n} rained: Gini {g:.2f}', size=16, ha='right', color=BODY)
+            terms.append((n, g))
+            y -= 0.48
+        wsum = sum(n / 12 * g for n, g in terms)
+        line = ' + '.join(f'{n}/12 × {g:.2f}' for n, g in terms)
+        s.text(0.1, y + 0.1, f'Weighted: {line} = {wsum:.2f}', size=16, ha='left')
+        s.text(w - 0.1, y + 0.1, f'Drop: 0.44 − {wsum:.2f} = {g0 - wsum:.2f}', size=17, weight='bold', ha='right',
+               color=RED if win else INK)
+        y -= 0.75
+    s.rect(0.1, 0.12, 0.28, 0.28, fill=GOLD, edge=INK, lw=1.4)
+    s.text(0.48, 0.26, 'rained', size=15, ha='left')
+    s.rect(1.6, 0.12, 0.28, 0.28, fill=PAPER, edge=INK, lw=1.4)
+    s.text(1.98, 0.26, 'dry', size=15, ha='left')
+    s.text(w - 0.1, 0.26, 'Larger drop wins: ask about the sky first', size=16, weight='bold', ha='right', color=RED)
+    return s
