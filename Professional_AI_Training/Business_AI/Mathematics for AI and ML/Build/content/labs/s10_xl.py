@@ -15,10 +15,10 @@ def build(solution):
     R = n['runs']
     x = X.XL('Session 10: Gradient descent for a line fit', 'One row per step, on the same eight boda boda trips as the Python notebook', solution)
     x.start('Fit a line to eight trips (distance in km, fare in thousand UGX) by gradient descent. Each row of the Steps sheet is one step of the update rule. You fill the gold cells of the first block, then compare four learning rates.',
-            ['Sheet Data: fill the gold cell with the formula AVERAGE over the distance column (do not type the number). The centred distance is the distance minus the mean.',
-             'Sheet Steps, first block (eta = 0.1): row 6 is step 0 with w = 0 and b = 0. Fill the gold cells D6, E6 and F6 (the loss and the two slopes) and then B7 and C7 (w and b after one step). The rows below are given.',
-             'Predict first: which of the four learning rates makes the loss grow? Then look at the loss column of each block.',
-             'Sheet Compare: the chart shows the four loss curves. Fill the gold cells with the least squares slope and intercept (SLOPE and INTERCEPT) and compare with w and b at step 30.',
+            ['Step 1, sheet Data: fill the gold cell F3 with the formula AVERAGE over the distance column (do not type the number). The centred distance in column D is the distance minus your mean.',
+             'Steps 2 and 3, sheet Steps, first block (eta = 0.1): row 6 is step 0 with w = 0 and b = 0. Fill the gold cells D6, E6 and F6 (the loss and the two slopes) and then B7 and C7 (w and b after one step).',
+             'Step 4: the rows below your gold cells repeat the same update 30 times. On sheet Compare, fill the gold cells with the least squares slope and intercept (SLOPE and INTERCEPT) and compare with w and b at step 30.',
+             'Step 5: predict first which of the four learning rates makes the loss grow. The other three blocks on sheet Steps are given (read only); the chart on sheet Compare shows the four loss curves. Fill the gold cell H5 (did the eta = 0.2 loss grow?).',
              'Change one thing: type 0.19 into the eta cell W3 of the fourth block (it holds 0.2) and watch its loss column. Afterwards put 0.2 back, so the checks stay green.'])
 
     d = x.sheet('Data', {'A': 8, 'B': 16, 'C': 18, 'D': 18, 'E': 4, 'F': 14, 'G': 40})
@@ -30,10 +30,10 @@ def build(solution):
         x.text(d, f'A{r}', i + 1, border=True)
         x.text(d, f'B{r}', float(n['x'][i]), border=True)
         x.text(d, f'C{r}', float(n['y'][i]), border=True)
-        x.formula(d, f'D{r}', f'=B{r}-AVERAGE($B$3:$B$10)')
+        x.formula(d, f'D{r}', f'=B{r}-$F$3')     # built from the learner's own mean
     x.text(d, 'F2', 'Mean distance', bold=True)
     x.input(d, 'F3', answer='=AVERAGE(B3:B10)')
-    x.text(d, 'G3', 'Fill F3 with the mean of the distance column.', italic=True, color=X.GREY)
+    x.text(d, 'G3', 'Fill F3 with the mean of the distance column. The centred column D uses it.', italic=True, color=X.GREY)
     x.text(d, 'F4', 'n (rows)', bold=True)
     x.formula(d, 'F5', '=COUNT(B3:B10)')
     x.check('Mean distance is 4.5 km', '=Data!F3', 4.5, 0.001)
@@ -87,9 +87,9 @@ def build(solution):
     x.check('w after one step (eta = 0.1)', '=Steps!B7', n['w1'], 0.001)
     x.check('b after one step (eta = 0.1)', '=Steps!C7', n['b1'], 0.001)
     x.check('Loss after 30 steps, eta = 0.1', '=Steps!D36', R[0.1]['L'][-1], 0.001)
-    x.check('Loss after 30 steps, eta = 0.01', '=Steps!K36', R[0.01]['L'][-1], 0.01)
-    x.check('Loss after 30 steps, eta = 0.05', '=Steps!R36', R[0.05]['L'][-1], 0.01)
-    x.check('Loss after 30 steps, eta = 0.2', '=Steps!Y36', R[0.2]['L'][-1], 0.1)
+    x.check('Loss after 30 steps, eta = 0.01 (given block, read only)', '=Steps!K36', R[0.01]['L'][-1], 0.01)
+    x.check('Loss after 30 steps, eta = 0.05 (given block, read only)', '=Steps!R36', R[0.05]['L'][-1], 0.01)
+    x.check('Loss after 30 steps, eta = 0.2 (given block, read only)', '=Steps!Y36', R[0.2]['L'][-1], 0.1)
 
     c = x.sheet('Compare', {'A': 10, 'B': 14, 'C': 14, 'D': 14, 'E': 14, 'F': 4, 'G': 34, 'H': 14})
     x.band(c, 1, 'Four loss curves, and the least squares answer', 8)

@@ -38,6 +38,9 @@ def main(argv):
             sol = m.build(True)
             ps = sol.save(Path(t) / f'S{n:02d}_solution.xlsx')
             s1, r1 = summary(recalc(ps, Path(t) / 'r1'))
+            SOLX = BUILD.parent / 'Facilitator Materials' / 'Solution Workbooks'
+            SOLX.mkdir(parents=True, exist_ok=True)
+            sol.save(SOLX / f'Session {n:02d} - {sol.title.split(": ", 1)[-1]} (solution).xlsx')
             lr = m.build(False)
             lp = lr.save(OUT / f'Session {n:02d} - {sol.title.split(": ", 1)[-1]}.xlsx')
             s2, r2 = summary(recalc(lp, Path(t) / 'r2'))

@@ -20,7 +20,7 @@ def build(solution):
     x = XL.XL('Session 3: Matrices', 'Shape, matrix products, a moved shape, a layer y = W x + b and a count of parameters', solution=solution)
     x.start('Compute in cells the numbers from the slides: the shape and the transpose, A x, A B, a shape moved by a matrix, one layer y = W x + b, two layers in a row, and the number of parameters. The numbers are the same as in the Python notebook.',
             ['Open the sheet Products. Gold cells are yours. Predict first, then type the formula.',
-             'A matrix answer fills a whole gold range. Excel: select the whole range, type the formula and press Ctrl+Shift+Enter (Cmd+Return on a Mac). Google Sheets: type the formula in the first gold cell and press Enter; the answer fills the range.',
+             'A matrix answer fills a whole gold range. Excel: select the whole range, type the formula and press Ctrl+Shift+Enter (Cmd+Return on a Mac). Google Sheets: type the formula in the first gold cell and press Enter; MMULT and TRANSPOSE fill the range. If only one cell fills, press Ctrl+Shift+Enter instead, which wraps the formula in ARRAYFORMULA.',
              'Open the sheet Layers and do the same for the layer and the parameters.', 'Open the sheet Check. Every line must say OK.',
              'The weights are illustrative (made-up numbers to show the arithmetic).'])
     ws = x.sheet('Products', {'A': 46, 'B': 9, 'C': 9, 'D': 9, 'E': 9, 'F': 9, 'G': 9, 'H': 40})
@@ -37,6 +37,10 @@ def build(solution):
     x.text(ws, 'A16', 'Step 2. Matrix times vector', bold=True)
     x.text(ws, 'A17', 'x (as a column)'); block(x, ws, 17, 2, [[1], [2], [3]])
     x.text(ws, 'A21', 'A x, 2 entries  (gold range B21:B22)', bold=True); x.array(ws, 'B21:B22', '=MMULT(B9:D10,B17:B19)', gold=True)
+    x.text(ws, 'D16', 'I (identity)', bold=True); block(x, ws, 17, 4, [[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    x.text(ws, 'G16', 'I x', bold=True); x.array(ws, 'G17:G19', '=MMULT(D17:F19,B17:B19)')
+    x.text(ws, 'H17', 'READ: D17:F19 is the identity I, and G17:G19 is I x (given). Is it equal to x?', italic=True, color='666666', wrap=True)
+    ws.row_dimensions[17].height = 30
     x.text(ws, 'A24', 'Step 3. Matrix times matrix', bold=True)
     x.text(ws, 'A25', 'B (3 by 2)'); block(x, ws, 25, 2, s03.B)
     x.text(ws, 'A29', 'A B, 2 by 2  (gold range B29:C30)', bold=True); x.array(ws, 'B29:C30', '=MMULT(B9:D10,B25:C27)', gold=True)
@@ -57,18 +61,30 @@ def build(solution):
     x.text(ly, 'A4', 'W1 (4 by 3)'); block(x, ly, 4, 2, s03.W1)
     x.text(ly, 'A8', 'x (as a column)'); block(x, ly, 8, 2, [[1], [2], [3]])
     x.text(ly, 'A12', 'b1 (as a column)'); block(x, ly, 12, 2, [[v] for v in s03.B1])
-    x.text(ly, 'A17', 'y1 = W1 x + b1, 4 entries  (gold range B17:B20)', bold=True); x.array(ly, 'B17:B20', '=MMULT(B4:D7,B8:B10)+B12:B15', gold=True)
-    x.text(ly, 'F17', 'CHANGE: set the first bias to 2.5. Which entries move?', italic=True, color='666666', wrap=True)
+    x.text(ly, 'B16', 'W1 x', bold=True); x.text(ly, 'C16', 'y1', bold=True)
+    x.text(ly, 'A17', 'W1 x in B17:B20 (MMULT), then y1 = W1 x + b1 in C17:C20 (one cell each)', bold=True, wrap=True); x.array(ly, 'B17:B20', '=MMULT(B4:D7,B8:B10)', gold=True)
+    for i in range(4):
+        x.input(ly, f'C{17 + i}', answer=f'=B{17 + i}+B{12 + i}')
+    ly.row_dimensions[17].height = 30
+    x.text(ly, 'F17', 'CHANGE: set the first bias to 2.5. Which entries of y1 move? Set it back to 0.5.', italic=True, color='666666', wrap=True)
     x.text(ly, 'A22', 'Step 6. Two layers in a row', bold=True)
     x.text(ly, 'A23', 'W2 (2 by 4)'); block(x, ly, 23, 2, s03.W2)
     x.text(ly, 'A26', 'b2 (as a column)'); block(x, ly, 26, 2, [[v] for v in s03.B2])
-    x.text(ly, 'A29', 'Layer 2 output = W2 y1 + b2, 2 entries  (gold range B29:B30)', bold=True); x.array(ly, 'B29:B30', '=MMULT(B23:E24,B17:B20)+B26:B27', gold=True)
+    x.text(ly, 'B28', 'W2 y1', bold=True); x.text(ly, 'C28', 'output', bold=True)
+    x.text(ly, 'A29', 'W2 y1 in B29:B30 (MMULT), then the output W2 y1 + b2 in C29:C30', bold=True, wrap=True); x.array(ly, 'B29:B30', '=MMULT(B23:E24,C17:C20)', gold=True)
+    for i in range(2):
+        x.input(ly, f'C{29 + i}', answer=f'=B{29 + i}+B{26 + i}')
+    ly.row_dimensions[29].height = 30
     x.text(ly, 'A32', 'W2 W1, 2 by 3  (gold range B32:D33)', bold=True); x.array(ly, 'B32:D33', '=MMULT(B23:E24,B4:D7)', gold=True)
     x.text(ly, 'A35', 'W2 W1 x, 2 entries  (gold range B35:B36)', bold=True); x.array(ly, 'B35:B36', '=MMULT(B32:D33,B8:B10)', gold=True)
     x.text(ly, 'A38', 'Step 7. Parameters', bold=True)
     x.text(ly, 'A39', 'Parameters of the toy network  (weights plus biases of both layers)', bold=True); x.input(ly, 'B39', answer='=ROWS(B4:D7)*COLUMNS(B4:D7)+ROWS(B12:B15)+ROWS(B23:E24)*COLUMNS(B23:E24)+ROWS(B26:B27)')
     x.text(ly, 'A40', 'Parameters of a 1,000 by 1,000 layer  (m times n plus m)', bold=True); x.input(ly, 'B40', answer='=1000*1000+1000')
     x.text(ly, 'A41', 'Gigabytes for 7 billion numbers at 2 bytes each', bold=True); x.input(ly, 'B41', answer='=7000000000*2/1000000000')
+    x.text(ly, 'A43', 'Step 6, READ. A batch: two inputs, one per row of X (2 by 3)', bold=True); block(x, ly, 44, 2, [[1, 2, 3], [0, 1, 1]])
+    x.text(ly, 'A47', 'X W1ᵀ, 2 by 4 (given): row 1 is W1 x from Step 5', bold=True); x.array(ly, 'B47:E48', '=MMULT(B44:D45,TRANSPOSE(B4:D7))')
+    x.text(ly, 'F47', 'READ: W1 is 4 by 3 (outputs by inputs). With one input per row, the layer uses W1 transposed. Why?', italic=True, color='666666', wrap=True)
+    ly.row_dimensions[47].height = 45
     x.text(ly, 'F40', 'CHANGE: make the hidden layer 5 numbers wide. Count the parameters by hand and with a formula.', italic=True, color='666666', wrap=True)
 
     x.check('Step 1a: rows of L = 3', '=Products!B7', 3); x.check('Step 1b: entry in row 2, column 3 = 58', '=Products!B8', 58)
@@ -78,8 +94,9 @@ def build(solution):
     x.check('Step 3c: multiplications = 12', '=Products!B32', 12)
     x.check('Step 4a: shear sends the corner (1, 3) to x = 4', '=Products!F40', 4); x.check('Step 4b: and y = 3', '=Products!F41', 3)
     x.check('Step 4c: rotation sends it to x = -3', '=Products!F46', -3); x.check('Step 4d: and y = 1', '=Products!F47', 1)
-    x.check('Step 5: y1 = (7.5, -1, 3, 4.5), first entry', '=Layers!B17', 7.5); x.check('Step 5: y1, fourth entry', '=Layers!B20', 4.5)
-    x.check('Step 6a: layer 2 output, first entry = 10.5', '=Layers!B29', 10.5); x.check('Step 6b: layer 2 output, second entry = 9', '=Layers!B30', 9)
+    x.check('Step 5: W1 x = (7, -1, 4, 4), first entry', '=Layers!B17', 7)
+    x.check('Step 5: y1 = (7.5, -1, 3, 4.5), first entry', '=Layers!C17', 7.5); x.check('Step 5: y1, third entry', '=Layers!C19', 3); x.check('Step 5: y1, fourth entry', '=Layers!C20', 4.5)
+    x.check('Step 6a: layer 2 output, first entry = 10.5', '=Layers!C29', 10.5); x.check('Step 6b: layer 2 output, second entry = 9', '=Layers!C30', 9)
     x.check('Step 6c: W2 W1, row 1 column 1 = 3', '=Layers!B32', 3); x.check('Step 6d: W2 W1 x = (11, 7), first entry', '=Layers!B35', 11)
     x.check('Step 7a: toy parameters = 26', '=Layers!B39', 26); x.check('Step 7b: 1,001,000', '=Layers!B40', 1001000); x.check('Step 7c: 14 gigabytes', '=Layers!B41', 14)
     return x

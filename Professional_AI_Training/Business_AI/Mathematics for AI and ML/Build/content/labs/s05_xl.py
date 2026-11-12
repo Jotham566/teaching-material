@@ -21,7 +21,7 @@ def build(solution: bool):
              'Part 4: the eigenvalues of the covariance matrix, the top eigenvector (scaled to length 1) and the share of the variance.',
              'Part 5: power iteration. Fill the gold guess cells so that each row divides the previous product by its largest entry. The last row is the sixth multiplication (k = 5).',
              'Part 6: change one thing, replace physics by 100 minus physics.',
-             'For a matrix result, select the whole gold block, type the formula, then press Ctrl+Shift+Enter in Excel or Enter in Google Sheets.'])
+             'For a matrix result, select the whole gold block and type the formula. In older Excel, confirm with Ctrl+Shift+Enter. In Excel 365 and Google Sheets, Enter works. #SPILL! means the cells below are not empty.'])
     ws = x.sheet('Work', {'A': 50, 'B': 13, 'C': 13, 'D': 13, 'E': 13, 'F': 13, 'G': 4})
 
     # ---- Part 1
@@ -71,7 +71,7 @@ def build(solution: bool):
     x.text(ws, 'A28', 'Mean of each column (given)', bold=True)
     x.formula(ws, 'B28', '=AVERAGE(B20:B27)')
     x.formula(ws, 'C28', '=AVERAGE(C20:C27)')
-    x.text(ws, 'A30', 'Covariance matrix C is the block B31:C32. Divide by n − 1 (n is the number of students).', bold=True)
+    x.text(ws, 'A30', 'Covariance matrix C is the block B31:C32. Divide by n − 1 (n is the number of students): the sample version, as VAR.S does.', bold=True)
     x.text(ws, 'A31', 'Row 1 of C: variance of maths in B31, covariance in C31', wrap=True)
     ws.row_dimensions[31].height = 30
     x.input(ws, 'B31', answer='=SUMPRODUCT(D20:D27,D20:D27)/(COUNT(D20:D27)-1)')
@@ -94,7 +94,8 @@ def build(solution: bool):
     x.input(ws, 'B40', answer='=(B37+B39)/2')
     x.text(ws, 'A41', 'Smaller eigenvalue of C')
     x.input(ws, 'B41', answer='=(B37-B39)/2')
-    x.text(ws, 'A42', 'Top eigenvector before scaling: (C31, larger eigenvalue − B31) (given)')
+    x.text(ws, 'A42', 'Top eigenvector before scaling (given). Row 1 of (C − λI)v = 0 says (66 − λ)s + 48t = 0, so (s, t) = (48, λ − 66) = (C31, B40 − B31)', wrap=True)
+    ws.row_dimensions[42].height = 45
     x.formula(ws, 'B42', '=C31')
     x.formula(ws, 'C42', '=B40-B31')
     x.text(ws, 'A43', 'Length of that vector (given)')

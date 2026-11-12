@@ -65,8 +65,10 @@ def build(solution=False):
           '**How the self-checks work.** There is no exam and there are no marks. Type a student ID in the first code cell (any text you like, even your own name). It only creates a personal dataset, so your numbers are your own and nobody else has the same ones. It is not a test and nothing is sent anywhere. '
           'The checks call YOUR functions on YOUR data and on a second dataset, and compare the results with a reference. Each check shows OK or NOT YET, so you can see which build still needs work. No expected number is printed, so the way to see OK is to write a function that really computes the answer. '
           'Each check names its build. The last cell says "All N checks pass" when everything is right.\n\n'
+          '**In class and at home.** Aim to finish Builds 1, 2, 3 and 5 in class. Build 4 (the network) is the take-home build: its backward pass is scaffolded, with the shapes given and two lines for you to write.\n\n'
           '**Rules.** Use numpy only. Run the cells in order from the top. You may look at your notes, the slides and earlier notebooks, and you may talk with others and ask an assistant to explain an idea. The project is yours to build and keep. '
-          'The spreadsheet version is a guided workbook with fixed toy numbers and its own checks.')
+          'The spreadsheet version is a guided workbook with fixed toy numbers and its own checks.\n\n'
+          '**Completing the project.** Show the last line of this notebook (the show_checks() result), or the Check sheet of the guided workbook, to your facilitator. Either one counts as completing the course project.')
     nb.code(f'STUDENT_ID = "{SOLUTION_ID if solution else PLACEHOLDER}"      # type your student ID between the quotes, then run this cell')
     nb.check_setup()
     nb.code('# Self-check helper: data generators, reference implementations and checks. Run this cell once. You do not need to read it.\n' + shared_source().strip('\n') + '\n' + HELPER_EXTRA)
@@ -76,20 +78,25 @@ def build(solution=False):
             'print("student ID:", STUDENT_ID, "  your seed:", SEED)')
 
     # ================================================================== build 1
-    nb.step('1', 'Build 1: linear regression (normal equation and gradient descent)', 'Eight readings: hours of use x and energy used y in kWh. The model is y-hat = w0 + w1 x. '
-            'The design matrix X has a column of ones first (for w0) and the hours second. Write two functions that return the weights w.')
+    nb.step('1', 'Build 1: linear regression (normal equation and gradient descent)', 'Eight readings: hours of use x and energy used y in kWh. The model is y-hat = b + w1 x, the line fit of Session 4. '
+            'The design matrix X has a column of ones first (it multiplies the intercept b) and the hours second, so the weight vector is w = (b, w1). Write two functions that return w. '
+            'Write fit_linear for any number of columns: one check gives it an X with a third column, x squared.')
     nb.code('X, y = lin["X"], lin["y"]                  # your design matrix (8 rows, 2 columns) and your energy readings\nprint("hours of use:", lin["x"])\nprint("energy used (kWh):", y)')
     nb.predict('Look at your own numbers. Roughly what slope w1 do you expect? (How much does y rise per extra hour?)')
-    _todo(nb, solution, 'fit_linear(X, y): the weights that minimise the sum of squared errors, in one step (Build 1 slide). fit_linear_gd(X, y, lr, steps): the same weights by repeated small steps from w = 0',
+    _todo(nb, solution, 'fit_linear(X, y): the weights that minimise the sum of squared errors, in one step (Build 1 slide). fit_linear_gd(X, y, lr, steps): repeated small steps from w = 0 with learning rate lr (eta on the slide)',
           'def fit_linear(X, y):\n    return None  # your code here\n\ndef fit_linear_gd(X, y, lr, steps):\n    return None  # your code here',
           'def fit_linear(X, y):\n    return np.linalg.solve(X.T @ X, X.T @ y)\n\n'
           'def fit_linear_gd(X, y, lr, steps):\n    w = np.zeros(X.shape[1])\n    for _ in range(steps):\n        residual = X @ w - y\n        w = w - lr * 2 * X.T @ residual / len(y)\n    return w')
-    nb.code('show("normal equation weights (w0, w1)", lambda: fit_linear(X, y))\nshow("gradient descent, lr 0.005, 400 steps", lambda: fit_linear_gd(X, y, 0.005, 400))\n'
+    nb.code('show("normal equation weights (b, w1)", lambda: fit_linear(X, y))\n'
+            'show("gradient descent, lr 0.005, 400 steps (not there yet: the intercept is slow to catch up)", lambda: fit_linear_gd(X, y, 0.005, 400))\n'
+            'show("gradient descent, lr 0.01, 20000 steps", lambda: fit_linear_gd(X, y, 0.01, 20000))\n'
+            'show("largest gap between the two methods after 20000 steps (below 0.001)", lambda: np.max(np.abs(fit_linear_gd(X, y, 0.01, 20000) - fit_linear(X, y))))\n'
             'show("your mean squared error", lambda: np.mean((X @ fit_linear(X, y) - y) ** 2))\nrun_build(1)')
+    nb.read('After 400 small steps gradient descent is still far from the normal equation, mostly in the intercept b. After 20,000 steps the two agree to three decimals. Why does the intercept move so slowly when the hours are all far from 0?')
     nb.change('Call `fit_linear_gd(X, y, 0.05, 400)` in a new cell. What happens to the weights, and why?')
 
     # ================================================================== build 2
-    nb.step('2', 'Build 2: logistic regression (gradient descent)', 'Forty students: hours of study x and y = 1 if they passed. The model gives p = sigmoid(w0 + w1 x). The loss is the mean binary cross-entropy from Session 16. '
+    nb.step('2', 'Build 2: logistic regression (gradient descent)', 'Forty students: hours of study x and y = 1 if they passed. Logistic regression passes a straight-line score through the sigmoid of Session 11: p = sigmoid(b + w1 x), the probability of passing. The loss is the mean binary cross-entropy from Session 16, and its gradient for the score is p - y (Session 17, two-class form). '
             'Write the sigmoid, the loss and the gradient descent function.')
     nb.code('Xl, yl = logd["X"], logd["y"]\nprint("hours of study (first 10):", logd["x"][:10])\nprint("passed (first 10):", yl[:10], "  share who passed:", yl.mean())')
     nb.predict('The gradient starts from w = 0, where every predicted probability is 0.5. Will w1 move up or down in the first step?')
@@ -103,25 +110,34 @@ def build(solution=False):
     nb.read('Is the model confident (probabilities near 0 or 1)? Why does the overlap between passes and fails stop it from being sure?')
 
     # ================================================================== build 3
-    nb.step('3', 'Build 3: PCA via the covariance eigen-decomposition', 'Thirty points in two dimensions, in a tilted cloud that is not centred on zero. PCA centres the data, forms the covariance matrix (divide by n, the course convention) and finds its eigenvectors. '
+    nb.step('3', 'Build 3: PCA via the covariance eigen-decomposition', 'Thirty points in two dimensions, in a tilted cloud that is not centred on zero. PCA centres the data, forms the sample covariance matrix (divide by n - 1, as in Session 5 and np.cov) and finds its eigenvectors. '
             'The eigenvector with the largest eigenvalue is the first principal component. The sign of an eigenvector is arbitrary, so the checks accept either sign.')
     nb.code('P = pca_data["P"]                         # 30 rows, 2 columns\nprint("column means:", P.mean(axis=0))')
     nb.predict('Look at the first few rows of P. Do the two columns rise together? Which way will the first principal component point: along (1, 1), along (1, -1), or along (1, 0)?')
     _todo(nb, solution, 'pca_first_component(P): the unit vector of largest variance. pca_variance_share(P): the first eigenvalue divided by the sum of both (Build 3 slides)',
           'def pca_first_component(P):\n    return None  # your code here\n\ndef pca_variance_share(P):\n    return None  # your code here',
-          'def pca_first_component(P):\n    Pc = P - P.mean(axis=0)\n    cov = Pc.T @ Pc / len(P)\n    vals, vecs = np.linalg.eigh(cov)\n    return vecs[:, np.argmax(vals)]\n\n'
-          'def pca_variance_share(P):\n    Pc = P - P.mean(axis=0)\n    vals = np.linalg.eigvalsh(Pc.T @ Pc / len(P))\n    return vals.max() / vals.sum()')
+          'def pca_first_component(P):\n    Pc = P - P.mean(axis=0)\n    cov = Pc.T @ Pc / (len(P) - 1)          # sample covariance, as np.cov\n    vals, vecs = np.linalg.eigh(cov)\n    return vecs[:, np.argmax(vals)]\n\n'
+          'def pca_variance_share(P):\n    Pc = P - P.mean(axis=0)\n    vals = np.linalg.eigvalsh(Pc.T @ Pc / (len(P) - 1))\n    return vals.max() / vals.sum()')
     nb.code('show("first principal component", lambda: pca_first_component(P))\nshow("share of the variance on it", lambda: pca_variance_share(P))\nrun_build(3)')
     nb.read('If you keep only the position of each point along the first component (one number per point), how much of the spread do you keep?')
 
     # ================================================================== build 4
-    nb.step('4', 'Build 4: a small neural network with backpropagation', 'Forty points around the corners of the unit square. The label is XOR: 1 when exactly one of the two inputs is near 1. The network has two inputs, a hidden layer of tanh units and one sigmoid output; '
+    nb.step('4', 'Build 4 (take-home): a small neural network with backpropagation', 'Forty points around the corners of the unit square. The label is XOR: 1 when exactly one of the two inputs is near 1, which no single straight line can separate (see the XOR picture on the slides). The network has two inputs, a hidden layer of tanh units (Session 11: slope 1 - h squared) and one sigmoid output; '
             'the loss is the mean binary cross-entropy. The starting weights are drawn by `np.random.default_rng(seed)` in this order: W1 = normal(0, 0.5, (hidden, 2)), then W2 = normal(0, 0.5, (1, hidden)); both biases start at 0. '
             'Shapes: W1 is (hidden, 2), b1 is (hidden,), W2 is (1, hidden), b2 is (1,). Write the forward pass, the backward pass and the training function.')
     nb.code('Xn, yn = xor_data["X"], xor_data["y"]\nprint("first rows of X:", Xn[:3].tolist(), "...  labels:", yn[[0, 10, 20, 30]])')
     nb.predict('Before any training, will the network give answers close to 0 and 1, or all near 0.5?')
     _todo(nb, solution, 'mlp_forward returns (h, p); mlp_backward returns (gW1, gb1, gW2, gb2) for the mean loss; mlp_train(X, y, hidden, lr, steps, seed) returns (W1, b1, W2, b2) (Build 4 slides)',
-          'def mlp_forward(W1, b1, W2, b2, X):\n    return None, None  # your code here: return h, p\n\ndef mlp_backward(W1, b1, W2, b2, X, y):\n    return None  # your code here: return gW1, gb1, gW2, gb2\n\n'
+          'def mlp_forward(W1, b1, W2, b2, X):\n    return None, None  # your code here: return h, p\n\n'
+          'def mlp_backward(W1, b1, W2, b2, X, y):\n'
+          '    h, p = mlp_forward(W1, b1, W2, b2, X)          # h: (rows, hidden), p: (rows,)\n'
+          '    delta = ((p - y) / len(y)).reshape(-1, 1)       # (rows, 1): error signal at the output, p - y, averaged over the rows\n'
+          '    gW2 = delta.T @ h                                # (1, hidden)\n'
+          '    gb2 = delta.sum(axis=0)                          # (1,)\n'
+          '    delta_h = None  # your code here: (rows, hidden), the error signal at the hidden layer (Build 4 formula slide)\n'
+          '    gW1 = None  # your code here: (hidden, 2), built from delta_h the way gW2 is built from delta\n'
+          '    gb1 = None if delta_h is None else delta_h.sum(axis=0)   # (hidden,)\n'
+          '    return gW1, gb1, gW2, gb2\n\n'
           'def mlp_train(X, y, hidden, lr, steps, seed):\n    return None  # your code here: return W1, b1, W2, b2',
           'def mlp_forward(W1, b1, W2, b2, X):\n    h = np.tanh(X @ W1.T + b1)              # hidden activations, one row per point\n    p = sigmoid(h @ W2.T + b2)[:, 0]        # output probabilities\n    return h, p\n\n'
           'def mlp_backward(W1, b1, W2, b2, X, y):\n    h, p = mlp_forward(W1, b1, W2, b2, X)\n    delta = ((p - y) / len(y)).reshape(-1, 1)   # error signal at the output (p - y from Session 17), averaged over the rows\n'
@@ -167,6 +183,13 @@ def toy():
     X = np.column_stack([np.ones(6), x])
     w = np.linalg.solve(X.T @ X, X.T @ y)
     T.update(x=x, y=y, w_normal=w, mse=float(np.mean((X @ w - y) ** 2)), pred_7=float(w @ [1, 7]))
+
+    def gd_lin(lr, steps):
+        w_ = np.zeros(2)
+        for _ in range(steps):
+            w_ = w_ - lr * 2 * X.T @ (X @ w_ - y) / len(y)
+        return w_
+    T.update(w_gd100=gd_lin(0.02, 100), w_gd5000=gd_lin(0.02, 5000))
     xl = np.arange(1, 9, dtype=float)
     yl = np.array([0, 0, 0, 1, 0, 1, 1, 1], dtype=float)
     Xl = np.column_stack([np.ones(8), xl])
@@ -183,7 +206,7 @@ def toy():
     b = np.array([2.4, 0.7, 2.9, 2.2, 3.0, 2.7, 1.6, 1.1, 1.6, 0.9])
     Dc = np.column_stack([a, b])
     Dc = Dc - Dc.mean(axis=0)
-    cov = Dc.T @ Dc / len(a)
+    cov = Dc.T @ Dc / (len(a) - 1)          # sample covariance (n - 1), as in Session 5 and np.cov
     vals, vecs = np.linalg.eigh(cov)
     pc1 = vecs[:, -1] * (1 if vecs[0, -1] > 0 else -1)
     T.update(a=a, b=b, cov=cov, eigvals=vals, pc1=pc1, ratio=float(vals[-1] / vals.sum()), pca_scores=Dc @ pc1)

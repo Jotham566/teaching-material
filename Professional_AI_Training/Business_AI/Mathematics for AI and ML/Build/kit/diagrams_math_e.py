@@ -29,13 +29,14 @@ def _lines_h(n, size):
 
 # ------------------------------------------------------------------ e_grid
 @fig('x_e_grid')
-def x_e_grid(w, h, cells=(), hl=(), row_label='Die 2', col_label='Die 1', size=18, head_fill=PALE, **_):
+def x_e_grid(w, h, cells=(), hl=(), soft=(), row_label='Die 2', col_label='Die 1', size=18, head_fill=PALE, **_):
     s = Scene(w, h)
     nr, nc = len(cells), len(cells[0])
     left, top = 1.5, h - 0.7
     cw = min((w - left - 0.1) / nc, 1.0)
     ch = min((top - 0.1) / nr, 0.68)
     hs = {(a, b) for a, b in hl}
+    ss = {(a, b) for a, b in soft}
     s.text(left + nc * cw / 2, h - 0.25, col_label + ' (columns)', size=size, weight='bold', color=MUTE)
     s.text(0.1, top - nr * ch / 2, row_label + '\n(rows)', size=size, weight='bold', color=MUTE, ha='left')
     for c in range(nc):
@@ -44,7 +45,7 @@ def x_e_grid(w, h, cells=(), hl=(), row_label='Die 2', col_label='Die 1', size=1
         s.text(left - 0.3, top - r * ch - ch / 2, str(r + 1), size=size, weight='bold')
         for c in range(nc):
             on = (r, c) in hs
-            s.rect(left + c * cw, top - (r + 1) * ch, cw, ch, fill=GOLD if on else PAPER, edge=INK, lw=1.2)
+            s.rect(left + c * cw, top - (r + 1) * ch, cw, ch, fill=GOLD if on else ('#F2E3A0' if (r, c) in ss else PAPER), edge=INK, lw=1.2)
             s.text(left + c * cw + cw / 2, top - r * ch - ch / 2, str(cells[r][c]), size=size, weight='bold' if on else 'normal', color=INK if on else BODY, z=5)
     return s
 
@@ -96,7 +97,7 @@ def _curve(kind, x, mu=0.0, sigma=1.0, a=0.0, b=1.0):
 
 @fig('x_e_pdf')
 def x_e_pdf(w, h, curve='normal', lo=-4, hi=4, mu=0.0, sigma=1.0, a=0.0, b=1.0, shade=(), xticks=(), xlabel='', ylabel='density', notes=(), size=16,
-            ymax=None, ytick_texts=(), **_):
+            ymax=None, ytick_texts=(), brackets=(), **_):
     s = Scene(w, h)
     x0, x1 = 1.0, w - 0.3
     base, top = 0.95, h - 0.3
@@ -123,6 +124,14 @@ def x_e_pdf(w, h, curve='normal', lo=-4, hi=4, mu=0.0, sigma=1.0, a=0.0, b=1.0, 
         yv, txt = t
         s.line(x0 - 0.08, py(yv), x0, py(yv), color=INK, lw=1.6)
         s.text(x0 - 0.12, py(yv), txt, size=14, ha='right')
+    for br in brackets:                      # a two-headed arrow from a to b at height y, with a label above it
+        yb = py(br['y'])
+        col = br.get('color', INK)
+        s.arrow(px((br['a'] + br['b']) / 2), yb, px(br['a']), yb, color=col, lw=2, head=12, z=7)
+        s.arrow(px((br['a'] + br['b']) / 2), yb, px(br['b']), yb, color=col, lw=2, head=12, z=7)
+        s.line(px(br['a']), yb - 0.1, px(br['a']), yb + 0.1, color=col, lw=2, z=7)
+        s.line(px(br['b']), yb - 0.1, px(br['b']), yb + 0.1, color=col, lw=2, z=7)
+        s.text(px((br['a'] + br['b']) / 2), yb + 0.22, br['text'], size=br.get('size', size), color=col, weight='bold', z=8)
     for nt in notes:
         s.text(px(nt['x']), py(nt['y']), nt['text'], size=nt.get('size', size), color=nt.get('color', INK), weight=nt.get('weight', 'bold'), ha=nt.get('ha', 'center'))
         if nt.get('to'):
@@ -133,7 +142,7 @@ def x_e_pdf(w, h, curve='normal', lo=-4, hi=4, mu=0.0, sigma=1.0, a=0.0, b=1.0, 
 
 # ------------------------------------------------------------------ e_cov
 @fig('x_e_cov')
-def x_e_cov(w, h, points=(), mx=0.0, my=0.0, xlabel='', ylabel='', size=16, labels=True, **_):
+def x_e_cov(w, h, points=(), mx=0.0, my=0.0, xlabel='', ylabel='', size=16, labels=True, xticks=(), yticks=(), **_):
     s = Scene(w, h)
     x0, x1, y0, y1 = 1.15, w - 0.3, 0.95, h - 0.3
     xs = [p[0] for p in points]
@@ -155,6 +164,12 @@ def x_e_cov(w, h, points=(), mx=0.0, my=0.0, xlabel='', ylabel='', size=16, labe
     for (x, y) in points:
         pos = (x - mx) * (y - my)
         s.circle(px(x), py(y), 0.11, fill=INK if pos > 0 else (PAPER if pos < 0 else GREY), edge=INK, lw=2, z=5)
+    for v in xticks:
+        s.line(px(v), y0, px(v), y0 - 0.08, color=INK, lw=1.6)
+        s.text(px(v), y0 - 0.26, f'{v:g}', size=14)
+    for v in yticks:
+        s.line(x0, py(v), x0 - 0.08, py(v), color=INK, lw=1.6)
+        s.text(x0 - 0.12, py(v), f'{v:g}', size=14, ha='right')
     if labels:
         for sx, sy, sg in ((0.5, 0.65, '+'), (-0.5, -0.65, '+'), (-0.5, 0.65, '-'), (0.5, -0.65, '-')):
             s.text(px(mx + sx), py(my + sy), sg, size=30, weight='bold', color=MUTE)

@@ -1,4 +1,4 @@
-"""Session 14 spreadsheet lab: binomial, normal, fixed samples and the CLT, confidence interval, A/B test, temperature and top-p. No RAND."""
+"""Session 14 spreadsheet lab: binomial, normal, fixed samples and the CLT, confidence interval, A/B test, drawing words from their slices. No RAND."""
 import sys
 from pathlib import Path
 
@@ -14,13 +14,13 @@ COLS = 'BCDEFGHIJKLM'
 
 
 def build(solution: bool):
-    x = XL('Session 14: Distributions and sampling', 'Binomial, Gaussian, sampling, a confidence interval, an A/B test, temperature and top-p', solution)
+    x = XL('Session 14: Distributions and sampling', 'Binomial, Gaussian, sampling, a confidence interval, an A/B test and drawing the next word', solution)
     x.start('You calculate the same numbers as the Python notebook. The sample columns are fixed values, so nothing changes when the sheet recalculates. A sheet cannot hold the notebook\'s 20,000 samples of 30 dice, so the Sampling sheet holds the first 12 of them. The averages of those 12 are therefore the notebook\'s first 12 averages, and the standard error from the formula is the same 0.3118.',
-            ['Sheet Binomial: fill the gold cells with COMBIN and BINOM.DIST.',
+            ['Sheet Binomial: fill the column P(X = k) with BINOM.DIST(k,10,0.3,FALSE), then the gold cells below it with COMBIN and BINOM.DIST.',
              'Sheet Normal: the z-score and two areas with NORM.DIST.',
-             'Sheet Sampling: the average of each of the 12 samples of 30 dice is given. Fill the mean and standard deviation of the 12 averages, the standard error from the formula and the interval of the 60 rolls.',
+             'Sheet Sampling: the average of each of the 12 samples of 30 dice is given. Fill the mean and the sample standard deviation (STDEV.S) of the 12 averages, the standard error from the formula and the interval of the 60 rolls (STDEV.S, n - 1).',
              'Sheet ABtest: the rates, the pooled rate, the standard error, z, the p-value and the interval for the gap.',
-             'Sheet Temperature: softmax at T = 0.5, 1 and 2, then the top-p cut and the drawn words.',
+             'Sheet Words: the running totals (slice edges) of the next-word probabilities, then the word each fixed random number u picks.',
              'Sheet Check: it says All the checks pass when every answer is right.'])
 
     ws = x.sheet('Binomial', {'A': 46, 'B': 14})
@@ -29,13 +29,13 @@ def build(solution: bool):
     x.text(ws, 'B3', 'P(X = k)', bold=True, border=True)
     for k in range(11):
         x.text(ws, f'A{4 + k}', k, border=True, align='right')
-        x.formula(ws, f'B{4 + k}', f'=_xlfn.BINOM.DIST(A{4 + k},10,0.3,FALSE)')
-    rows = [('P(X = 3) by the formula COMBIN(10,3) * 0.3^3 * 0.7^7', '=COMBIN(10,3)*0.3^3*0.7^7', 16, 0.2668), ('P(X = 3) with BINOM.DIST(3,10,0.3,FALSE)', '=_xlfn.BINOM.DIST(3,10,0.3,FALSE)', 17, 0.2668),
+        x.input(ws, f'B{4 + k}', f'=_xlfn.BINOM.DIST(A{4 + k},10,0.3,FALSE)')
+    rows = [('10 choose 3 = COMBIN(10,3) = 10! / (3! 7!)', '=COMBIN(10,3)', 15, 120), ('P(X = 3) by the formula COMBIN(10,3) * 0.3^3 * 0.7^7', '=COMBIN(10,3)*0.3^3*0.7^7', 16, 0.2668), ('P(X = 3) with BINOM.DIST(3,10,0.3,FALSE)', '=_xlfn.BINOM.DIST(3,10,0.3,FALSE)', 17, 0.2668),
             ('P(X at most 3) with BINOM.DIST(3,10,0.3,TRUE)', '=_xlfn.BINOM.DIST(3,10,0.3,TRUE)', 18, 0.6496), ('Sum of the 11 probabilities', '=SUM(B4:B14)', 19, 1), ('Mean = SUMPRODUCT of k and P(X = k)', '=SUMPRODUCT(A4:A14,B4:B14)', 20, 3)]
     for label, f, r, exp in rows:
         x.text(ws, f'A{r}', label, wrap=True)
         x.input(ws, f'B{r}', f)
-        x.check(label.split(' with ')[0].split(' by ')[0] if False else label, f'=Binomial!B{r}', exp, 0.0001)
+        x.check(label, f'=Binomial!B{r}', exp, 0.0001)
 
     ws = x.sheet('Normal', {'A': 52, 'B': 14})
     x.band(ws, 1, 'Gaussian: quiz scores with mean 60 and standard deviation 10 (illustrative)', cols=3)
@@ -63,7 +63,7 @@ def build(solution: bool):
     for k, v in enumerate(ROLLS60):
         x.text(ws, f'O{4 + k}', k + 1, border=True)
         x.text(ws, f'P{4 + k}', v, border=True)
-    lines = [('Mean of the 12 averages (row 34)', '=AVERAGE(B34:M34)', 4, 3.3972, 0.0005), ('Standard deviation of the 12 averages (STDEV.P)', '=_xlfn.STDEV.P(B34:M34)', 5, 0.3589, 0.0005),
+    lines = [('Mean of the 12 averages (row 34)', '=AVERAGE(B34:M34)', 4, 3.3972, 0.0005), ('Sample standard deviation of the 12 averages (STDEV.S)', '=_xlfn.STDEV.S(B34:M34)', 5, 0.3748, 0.0005),
              ('Standard error from the formula: sqrt(35/12) / sqrt(30)', '=SQRT(35/12)/SQRT(30)', 6, 0.3118, 0.0005), ('Sample standard deviation of the 60 rolls (STDEV.S)', '=_xlfn.STDEV.S(P4:P63)', 7, 1.7847, 0.0005),
              ('Interval of the 60 rolls, lower end: mean - 1.96 * s / sqrt(60)', '=AVERAGE(P4:P63)-1.96*_xlfn.STDEV.S(P4:P63)/SQRT(60)', 8, 3.515, 0.001),
              ('Interval of the 60 rolls, upper end', '=AVERAGE(P4:P63)+1.96*_xlfn.STDEV.S(P4:P63)/SQRT(60)', 9, 4.418, 0.001)]
@@ -71,6 +71,8 @@ def build(solution: bool):
         x.text(ws, f'R{r}', lab, wrap=True)
         x.input(ws, f'S{r}', f)
         x.check(lab, f'=Sampling!S{r}', exp, tol)
+    x.text(ws, 'R11', 'Why 0.3748 and not 0.3118? Twelve averages are too few to show the standard error exactly. The notebook uses 20,000 averages and gets 0.311.', color='666666', wrap=True)
+    ws.row_dimensions[11].height = 45
 
     ws = x.sheet('ABtest', {'A': 50, 'B': 14, 'C': 14})
     x.band(ws, 1, 'A/B test: two proportions (illustrative counts)', cols=3)
@@ -88,32 +90,26 @@ def build(solution: bool):
         x.input(ws, f'B{r}', f)
         x.check(lab, f'=ABtest!B{r}', exp, tol)
 
-    ws = x.sheet('Temperature', {'A': 12, 'B': 10, 'C': 12, 'D': 12, 'E': 12, 'F': 14, 'G': 12, 'H': 3, 'I': 10, 'J': 12, 'K': 40, 'L': 14})
-    x.band(ws, 1, 'Next-word probabilities with temperature and a top-p cut (illustrative)', cols=12)
-    x.text(ws, 'A3', 'Word', bold=True, border=True); x.text(ws, 'B3', 'Logit z', bold=True, border=True)
-    for c, T in (('C', 0.5), ('D', 1), ('E', 2)):
-        x.text(ws, f'{c}2', T, bold=True, align='center')
-        x.text(ws, f'{c}3', f'p at T = {T}', bold=True, border=True)
-    x.text(ws, 'F3', 'Cumulative (T = 1)', bold=True, border=True, wrap=True)
-    x.text(ws, 'G3', 'Kept (1 = yes)', bold=True, border=True, wrap=True)
-    x.text(ws, 'A2', 'T values:', color='666666')
+    ws = x.sheet('Words', {'A': 12, 'B': 10, 'C': 14, 'D': 16, 'E': 3, 'F': 8, 'G': 10, 'H': 34})
+    x.band(ws, 1, 'Drawing the next word: slices of 0 to 1 (illustrative)', cols=8)
+    x.text(ws, 'A2', 'The probabilities are the Session 13 softmax of the logits. Each word owns a slice as wide as its probability; the running total is the slice edge.', color='666666')
+    for c, h in zip('ABCD', ['Word', 'Logit z', 'Probability p', 'Running total (gold)']):
+        x.text(ws, f'{c}3', h, bold=True, border=True, wrap=True)
     for i, (w_, z) in enumerate(zip(WORDS, LOGITS)):
         r = 4 + i
         x.text(ws, f'A{r}', w_, border=True); x.text(ws, f'B{r}', z, border=True)
-        for c in 'CDE':
-            x.input(ws, f'{c}{r}', f'=EXP((B{r}-MAX($B$4:$B$8))/{c}$2)/SUMPRODUCT(EXP(($B$4:$B$8-MAX($B$4:$B$8))/{c}$2))')
-        x.formula(ws, f'F{r}', f'=SUM($D$4:D{r})')
-        x.formula(ws, f'G{r}', '=1' if i == 0 else f'=IF(F{r - 1}<0.8,1,0)')
-    x.text(ws, 'I3', 'Draw', bold=True, border=True); x.text(ws, 'J3', 'u', bold=True, border=True)
-    x.text(ws, 'K3', 'Word at T = 1 (first word whose cumulative total reaches u)', bold=True, wrap=True)
+        x.formula(ws, f'C{r}', f'=EXP(B{r}-MAX($B$4:$B$8))/SUMPRODUCT(EXP($B$4:$B$8-MAX($B$4:$B$8)))')
+        x.input(ws, f'D{r}', f'=SUM($C$4:C{r})')
+    x.text(ws, 'F3', 'Draw', bold=True, border=True); x.text(ws, 'G3', 'u', bold=True, border=True)
+    x.text(ws, 'H3', 'Word picked: the first word whose running total reaches u', bold=True, wrap=True)
     for i, u in enumerate(U):
         r = 4 + i
-        x.text(ws, f'I{r}', i + 1, border=True); x.text(ws, f'J{r}', u, border=True)
-        x.input(ws, f'K{r}', f'=INDEX($A$4:$A$8,COUNTIF($F$4:$F$8,"<"&J{r})+1)')
-    x.text(ws, 'A11', 'Words kept at top-p 0.8'); x.input(ws, 'D11', '=SUM(G4:G8)')
-    x.text(ws, 'A12', 'Renormalised P(tea)'); x.input(ws, 'D12', '=D4*G4/SUMPRODUCT(D4:D8,G4:G8)')
-    x.text(ws, 'A13', 'Draws equal to tea'); x.input(ws, 'D13', '=COUNTIF(K4:K11,"tea")')
-    for lab, ref, exp, tol in [('P(tea) at T = 0.5', 'C4', 0.6278, 0.0005), ('P(tea) at T = 1', 'D4', 0.4459, 0.0005), ('P(tea) at T = 2', 'E4', 0.3252, 0.0005), ('P(soup) at T = 2', 'E8', 0.0886, 0.0005),
-                               ('Words kept at top-p 0.8', 'D11', 3, 0), ('Renormalised P(tea)', 'D12', 0.4992, 0.0005), ('Draws equal to tea at T = 1', 'D13', 4, 0)]:
-        x.check(lab, f'=Temperature!{ref}', exp, tol)
+        x.text(ws, f'F{r}', i + 1, border=True); x.text(ws, f'G{r}', u, border=True)
+        x.input(ws, f'H{r}', f'=INDEX($A$4:$A$8,COUNTIF($D$4:$D$8,"<"&G{r})+1)')
+    x.text(ws, 'A13', 'Hint for column H: COUNTIF($D$4:$D$8,"<"&G4) counts the slice edges below u; the word is the next one: INDEX($A$4:$A$8, that count + 1).', color='666666')
+    x.text(ws, 'A14', 'Draws equal to tea'); x.input(ws, 'D14', '=COUNTIF(H4:H11,"tea")')
+    x.text(ws, 'A15', 'CHANGE: type 0.9 in G4 and watch H4. Then type 0.42 back.', italic=True)
+    for lab, ref, exp, tol in [('Running total after coffee', 'D5', 0.7448, 0.0005), ('Running total after soup', 'D8', 1, 0.000001), ('Word picked by u = 0.926', 'H5', 'milk', 0),
+                               ('Draws equal to tea', 'D14', 4, 0)]:
+        x.check(lab, f'=Words!{ref}', exp, tol)
     return x

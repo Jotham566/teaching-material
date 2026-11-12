@@ -12,6 +12,7 @@ import deck  # noqa: E402
 REQ = ['num', 'block', 'short_title', 'title', 'question', 'outcomes', 'clock', 'words', 'cover_note', 'outcome_note', 'plan_note', 'words_note', 'keep_note', 'keep', 'next', 'slides', 'recall', 'facilitator']
 BAN = [r'honestly', r'genuinely', r'straightforward', r'dive into', r'\bunlock', r'\bjourney\b', r'embark', r'game-changer', r"in today's world", r'delve', r'leverage\b']
 ANTI = [r',\s+not\s+(a|an|the|just|only|about|because|to|for|in|on|by|with|every|all|any)\b', r'\bnot\s+just\b', r'\bnot\s+only\b[^.]*\bbut\b', r'\binstead of\b[^.]*\bnot\b']
+SLOP_NOTES = [(r'\b(simply|just|really|actually|clearly|obviously)\b', 5), (r'\b(Think of|Imagine|Picture)\b', 3), (r'\bthe key\b', 2), (r'\bin plain words\b', 2), (r'\bThat is (why|the point)\b', 2), (r'\bNotice\b', 3)]
 STAGE = [r'\[[^\]]*\]', r'\(pause\)', r'\bclick\b', r'\bnext slide\b']
 LIMITS = {'practice': 85, 'decision': 85, 'steps': 100, 'idea': 100, 'list': 90, 'table': 150, 'example': 110, 'compare': 70, 'demo': 70, 'statement': 60, 'code': 90, 'divider': 30, 'formula': 120}
 
@@ -99,6 +100,21 @@ def lint(num):
     for m in re.finditer(r'\b(he|she|his|her)\b', blob):
         a = max(0, m.start() - 30)
         errs.append(f'{tagc}: gendered pronoun: …{blob[a:m.end() + 20]!r}')
+    # ---- house style against formulaic, machine-sounding writing (12 November 2026)
+    sl_ = s['slides']
+    titles = [x.get('title', '') for x in sl_]
+    notes = [x.get('notes', '').strip() for x in sl_]
+    here = sum(1 for n in notes if re.match(r'(Here (is|are)|Let me|Let us|Let’s|Now,? let)', n))
+    if here > 3:
+        errs.append(f'S{num}: {here} notes open with "Here is", "Let me", "Let us" or "Now let" (at most 3)')
+    q_end = sum(1 for n in notes if n.endswith('?'))
+    if q_end > max(4, len(notes) * 0.35):
+        errs.append(f'S{num}: {q_end} of {len(notes)} notes end on a question (at most 35%)')
+    allnotes = ' '.join(notes)
+    for pat, lim in SLOP_NOTES:
+        k = len(re.findall(pat, allnotes))
+        if k > lim:
+            errs.append(f'S{num}: {k} uses of {pat!r} in the notes (at most {lim})')
     return errs
 
 

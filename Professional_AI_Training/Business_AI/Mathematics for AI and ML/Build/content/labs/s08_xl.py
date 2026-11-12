@@ -13,16 +13,16 @@ BV = [-1 + i * 0.5 for i in range(9)]     # -1 to 3
 
 def build(solution: bool) -> XL:
     x = XL('Session 8: Partial derivatives and the gradient', 'The loss of a line fit with two parameters, its gradient, and a grid of losses', solution)
-    x.start('You compute the loss of the line y-hat = w x + b, its gradient (one partial derivative for each parameter), check the gradient by nudging one parameter at a time, '
+    x.start('You compute the loss of the line y-hat = b + w x, its gradient (one partial derivative for each parameter), check the gradient by nudging one parameter at a time, '
             'and build a grid of losses, which is the contour map written as numbers. The numbers are the same as in the Python notebook. Gold cells are yours to fill.',
             ['Sheet Gradient: fill the gold cells for the loss, the errors, the gradient and the nudged estimates. Predict the signs of the two partial derivatives first.',
              'Sheet Grid: write one loss formula in the first gold cell and copy it across the whole grid. Find the smallest value.',
-             'Back on Gradient: fill the length of the gradient and the steepest downhill direction in degrees.',
+             'Back on Gradient: fill the length of the gradient and the steepest downhill direction as a unit vector (two cells).',
              'Open the sheet Check. It must say All checks pass. Then save the file.'])
 
     # ---------------------------------------------------------------- Gradient
     g = x.sheet('Gradient', {'A': 26, 'B': 16, 'C': 16, 'D': 18, 'E': 18, 'F': 16})
-    x.band(g, 1, 'Part A: loss and gradient of the line y-hat = w x + b', cols=6)
+    x.band(g, 1, 'Part A: loss and gradient of the line y-hat = b + w x', cols=6)
     x.text(g, 'A3', 'Distance x (km)', bold=True, border=True)
     x.text(g, 'B3', 'Fee y (thousand UGX)', bold=True, border=True, wrap=True)
     g.row_dimensions[3].height = 32
@@ -44,10 +44,10 @@ def build(solution: bool) -> XL:
     x.text(g, 'B14', 0, border=True, bold=True)
     x.text(g, 'C14', 1, border=True, bold=True)
     x.text(g, 'A15', 'Loss L(w, b)', bold=True)
-    x.text(g, 'A16', 'Gradient dL/dw', bold=True)
-    x.text(g, 'A17', 'Gradient dL/db', bold=True)
-    x.text(g, 'A18', 'Nudged estimate of dL/dw')
-    x.text(g, 'A19', 'Nudged estimate of dL/db')
+    x.text(g, 'A16', 'Gradient ∂L/∂w', bold=True)
+    x.text(g, 'A17', 'Gradient ∂L/∂b', bold=True)
+    x.text(g, 'A18', 'Nudged estimate of ∂L/∂w')
+    x.text(g, 'A19', 'Nudged estimate of ∂L/∂b')
     for c in 'BC':
         x.input(g, f'{c}15', answer=f'=SUMPRODUCT(({c}13*$A$4:$A$7+{c}14-$B$4:$B$7)^2)/$B$9')
         x.input(g, f'{c}16', answer=f'=2/$B$9*SUMPRODUCT($A$4:$A$7,{c}13*$A$4:$A$7+{c}14-$B$4:$B$7)')
@@ -78,25 +78,29 @@ def build(solution: bool) -> XL:
     x.text(g, 'A29', 'Length of the gradient at the start', bold=True)
     x.input(g, 'B29', answer='=SQRT(B16^2+B17^2)')
     x.text(g, 'C29', 'the steepness: square root of the two entries squared', italic=True, color='666666')
-    x.text(g, 'A30', 'Steepest downhill direction (degrees above the w axis)', bold=True, wrap=True)
-    g.row_dimensions[30].height = 32
-    x.input(g, 'B30', answer='=DEGREES(ATAN2(-B16,-B17))')
-    x.text(g, 'C30', 'direction of minus the gradient. ATAN2 returns radians (use DEGREES) and takes x first; numpy takes y first', italic=True, color='666666')
-    for c in ('B29', 'B30'):
-        g[c].number_format = '0.00'
-    x.text(g, 'A32', 'PREDICT first: both entries at the start are negative. READ: which entry is larger, and what does that say about moving w versus b?', italic=True, color='666666')
-    x.text(g, 'A33', 'CHANGE one thing: set the start to w = 3 and b = 0 in B13:B14. Predict whether the steepest way down points left or right, then read B30.', italic=True, color='666666')
+    x.text(g, 'A30', 'Steepest way down, unit vector: w entry', bold=True, wrap=True)
+    x.input(g, 'B30', answer='=-B16/B29')
+    x.text(g, 'C30', 'minus the gradient, divided by its length', italic=True, color='666666')
+    x.text(g, 'A31', 'Steepest way down, unit vector: b entry', bold=True, wrap=True)
+    x.input(g, 'B31', answer='=-B17/B29')
+    x.text(g, 'C31', 'the two entries together have length 1', italic=True, color='666666')
+    g['B29'].number_format = '0.00'
+    for c in ('B30', 'B31'):
+        g[c].number_format = '0.000'
+    x.text(g, 'A33', 'PREDICT first: both entries at the start are negative. READ: which entry is larger, and what does that say about moving w versus b?', italic=True, color='666666')
+    x.text(g, 'A34', 'CHANGE one thing: set the start to w = 3 and b = 0 in B13:B14. Predict the signs of B30 and B31 first, then read them. Set it back to 1 for the Check sheet.', italic=True, color='666666')
 
     x.check('Loss at the start (1, 0)', '=Gradient!B15', 11.75)
     x.check('Loss at the best line (1.9, 1)', '=Gradient!C15', 0.175, tol=0.001)
-    x.check('dL/dw at the start', '=Gradient!B16', -18.5)
-    x.check('dL/db at the start', '=Gradient!B17', -6.5)
+    x.check('∂L/∂w at the start', '=Gradient!B16', -18.5)
+    x.check('∂L/∂b at the start', '=Gradient!B17', -6.5)
     x.check('Gradient at the best line is zero', '=IF(ISNUMBER(Gradient!C16),ABS(Gradient!C16)+ABS(Gradient!C17),99)', 0, tol=0.001)
-    x.check('Nudged estimate of dL/dw agrees', '=IF(ISNUMBER(Gradient!B18),Gradient!B18,99)', -18.5, tol=0.001)
-    x.check('Nudged estimate of dL/db agrees', '=IF(ISNUMBER(Gradient!B19),Gradient!B19,99)', -6.5, tol=0.001)
+    x.check('Nudged estimate of ∂L/∂w agrees', '=IF(ISNUMBER(Gradient!B18),Gradient!B18,99)', -18.5, tol=0.001)
+    x.check('Nudged estimate of ∂L/∂b agrees', '=IF(ISNUMBER(Gradient!B19),Gradient!B19,99)', -6.5, tol=0.001)
     x.check('Sum of the errors at the start', '=Gradient!B27', -13)
     x.check('Length of the gradient', '=Gradient!B29', 19.61, tol=0.01)
-    x.check('Steepest downhill direction in degrees', '=Gradient!B30', 19.4, tol=0.2)
+    x.check('Steepest downhill unit vector: w entry', '=Gradient!B30', 0.943, tol=0.002)
+    x.check('Steepest downhill unit vector: b entry', '=Gradient!B31', 0.331, tol=0.002)
 
     # ---------------------------------------------------------------- Grid
     wg = x.sheet('Grid', {'A': 12})
@@ -118,7 +122,7 @@ def build(solution: bool) -> XL:
     x.text(wg, 'A15', 'Loss at w = 1, b = 0 (read from the grid)', bold=True)
     x.input(wg, 'D15', answer='=D6')
     x.text(wg, 'A17', 'Write ONE formula in B4: the loss for the w at the top of its column and the b at the left of its row. Put $ on the row of w (row 3) and on the column of b (column A), then copy it across B4:I12.', italic=True, color='666666')
-    x.text(wg, 'A18', 'READ: where is the smallest value? Two cells tie. The true minimum 0.175 lies between grid points, at w = 1.9 and b = 1. CHANGE one thing: change the grid steps to 0.1 around the minimum.', italic=True, color='666666')
+    x.text(wg, 'A18', 'READ: where is the smallest value, and is it the true minimum of the loss? CHANGE one thing: change the grid steps to 0.1 around the smallest cell and predict first whether the minimum gets smaller.', italic=True, color='666666')
     x.check('Smallest loss on the grid', '=Grid!D14', 0.25)
     x.check('Grid loss at w = 1, b = 0', '=Grid!D15', 11.75)
     x.check('Grid loss at w = 2, b = 1', '=Grid!F8', 0.25)

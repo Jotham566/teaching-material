@@ -24,11 +24,21 @@ def main(argv):
         m = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(m)
         title = getattr(m, 'TITLE', f'Lab {n}')
+        title = re.sub(r'^Session\s*\d+\s*[:\-]?\s*', '', title)   # the file name adds 'Session NN - ' itself
         name = f'Session {n:02d} - {re.sub(chr(58) + "|/", "", title)}.ipynb'
         lp = OUT / name
         sp = SOL / name.replace('.ipynb', ' (solution).ipynb')
-        m.build(False).save(lp)
-        m.build(True).save(sp)
+        sol_nb = m.build(True)
+        sol_nb.save(sp)
+        rs0 = NB.run(sp, DATA)
+        mm = [re.search(r'All (\d+) checks pass', o) for _, o, _ in rs0 if o]
+        total = next((int(x.group(1)) for x in mm if x), None)
+        if total:   # every learner and solution notebook knows its full count
+            sol_nb.set_total(total); sol_nb.save(sp)
+        ln = m.build(False)
+        if total:
+            ln.set_total(total)
+        ln.save(lp)
         rs = NB.run(sp, DATA)
         errs = [f'cell {i}: {e.strip().splitlines()[-1]}' for i, _, e in rs if e]
         out_s = '\n'.join(o for _, o, _ in rs)

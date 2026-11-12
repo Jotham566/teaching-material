@@ -36,6 +36,7 @@ def build(solution):
     x.text(ws, 'A22', 'Norm of b'); x.formula(ws, 'B22', '=SQRT(SUMPRODUCT(B5:C5,B5:C5))')
     x.text(ws, 'A23', 'Cosine similarity of a and b', bold=True); x.input(ws, 'B23', answer='=SUMPRODUCT(B4:C4,B5:C5)/(B13*B22)')
     x.text(ws, 'A24', 'Angle in degrees', bold=True); x.input(ws, 'B24', answer='=DEGREES(ACOS(B23))')
+    x.text(ws, 'E24', 'Hint: ACOS gives the angle in radians; DEGREES converts it.', italic=True, color='666666')
     sh = x.sheet('Search', {'A': 40, 'B': 8, 'C': 8, 'D': 8, 'E': 8, 'F': 14, 'G': 14, 'H': 14})
     x.band(ws if False else sh, 1, 'Step 5 and 6. Rank six sentences against the query', 8)
     for c, h in zip('ABCDEFGH', ('Sentence', 'd1', 'd2', 'd3', 'd4', 'Dot with query', 'Norm', 'Cosine')):
@@ -52,6 +53,7 @@ def build(solution):
     for c, v in zip('BCDE', s02.Q):
         x.formula(sh, f'{c}11', float(v))
     x.formula(sh, 'G11', '=SQRT(SUMPRODUCT(B11:E11,B11:E11))')
+    x.text(sh, 'A12', 'Hint for B13: =INDEX(A4:A9, MATCH(MAX(H4:H9), H4:H9, 0)). MAX finds the largest cosine, MATCH its row, INDEX the sentence.', italic=True, color='666666')
     x.text(sh, 'A13', 'Best match (the sentence with the largest cosine)', bold=True)
     x.input(sh, 'B13', answer='=INDEX(A4:A9,MATCH(MAX(H4:H9),H4:H9,0))')
     x.text(sh, 'A15', 'Step 7. Stretch the picnic sentence: row 16 is row 9 multiplied by the factor in B14 (20). Compare the dot product with the cosine.', italic=True, color='666666', wrap=True)

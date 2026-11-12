@@ -53,9 +53,16 @@ class Notebook:
                   '        ok = False\n'
                   '    _results[label] = ok\n'
                   '    print(("OK       " if ok else "NOT YET  ") + label)\n'
-                  'def show_checks():\n'
-                  '    n = len(_results); k = sum(_results.values())\n'
+                  'def show_checks(total=None):\n'
+                  '    # total = how many checks this notebook has; a skipped or crashed cell still counts as NOT YET\n'
+                  '    k = sum(_results.values()); n = max(total or 0, len(_results))\n'
                   '    print("All %d checks pass" % n if k == n and n else "%d of %d checks pass" % (k, n))')
+
+    def set_total(self, total):
+        """Write the notebook's full number of checks into its show_checks() call, so skipped tasks cannot give 'All checks pass'."""
+        for c in self.cells:
+            if c['cell_type'] == 'code':
+                c['source'] = [l.replace('show_checks()', f'show_checks({total})') for l in c['source']]
 
     def save(self, path):
         nb = {'cells': self.cells, 'metadata': {'kernelspec': {'display_name': 'Python 3', 'language': 'python', 'name': 'python3'}, 'language_info': {'name': 'python'}},

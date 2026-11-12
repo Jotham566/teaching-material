@@ -16,9 +16,10 @@ def build(solution: bool):
     x.start('You calculate the same numbers as the Python notebook. First a softmax that overflows and its stable version, then the limits of 16-bit numbers, then a ridge fit of a degree 9 curve to ten points with MMULT and MINVERSE.',
             ['Sheet Softmax: the naive column overflows on purpose. Fill the gold cells: the maximum, the shifted exponentials, the probabilities, the log-sum-exp and the log-probabilities.',
              'Sheet Formats: the largest 16-bit number, what exp(12) does in 16 bits, and the sum of logs for 400 tokens.',
-             'Sheet Ridge: predict first, then fill the gold blocks from top to bottom: X^T X + lambda P, X^T y, the inverse, the weights, then the errors. For a matrix result, select the whole gold block first, type the formula, then confirm with Ctrl+Shift+Enter (Excel) or just Enter in Google Sheets (the file already holds it as an array formula).',
+             'Sheet Ridge: predict first, then fill the gold blocks from top to bottom: X^T X + lambda P, X^T y, the inverse, the weights, then the training and validation errors. For a matrix result in Excel, select the whole gold block, type the formula and confirm with Ctrl+Shift+Enter. In Google Sheets, type the formula in the top-left gold cell of the block and press Enter; it fills the block.',
+             'Still on sheet Ridge: choose lambda by the lowest validation error (try the six values 0, 0.001, 0.01, 0.1, 1, 10 in B2), put your chosen value back in B2, and only then fill the test error at the bottom. Report it once.',
              'Sheet Small: one weight by hand with several values of lambda, one weight-decay step, the best point on a line, and a clipped gradient.',
-             'Change one thing: type 10 into the lambda cell (B2) of the Ridge sheet. The error on the 20 new points should rise to 0.4198. Afterwards put 0.1 back, because the Check sheet expects the lambda = 0.1 values.',
+             'Change one thing: type 10 into the lambda cell (B2) of the Ridge sheet. The validation error should rise to %.4f. Afterwards put 0.1 back, because the Check sheet expects the lambda = 0.1 values.' % r5['rmse_te'],
              'Sheet Check: it says All the checks pass when every answer is right.'])
 
     # ------------------------------------------------------------------ Softmax
@@ -110,7 +111,7 @@ def build(solution: bool):
     x.text(ws, 'A96', 'Training error RMSE = SQRT(SUMXMY2(C85:C94, B6:B15) / 10)', bold=True, wrap=True)
     x.input(ws, 'C96', '=SQRT(SUMXMY2(C85:C94,B6:B15)/10)')
     # held-out points
-    x.text(ws, 'A99', 'Held-out points (never used to fit): x, y and the powers', bold=True)
+    x.text(ws, 'A99', 'Validation points (never used to fit; they choose lambda): x, y and the powers', bold=True)
     x.text(ws, 'A100', 'x', bold=True, border=True); x.text(ws, 'B100', 'y', bold=True, border=True)
     for k in range(10):
         x.text(ws, f'{"CDEFGHIJKL"[k]}100', f'x^{k}', bold=True, border=True)
@@ -121,15 +122,29 @@ def build(solution: bool):
             ws[f'{"CDEFGHIJKL"[k]}{r}'] = f'=$A{r}^{k}'
         for c in 'ABCDEFGHIJKL':
             ws[f'{c}{r}'].border = BOX
-    x.text(ws, 'A122', 'Predictions on the 20 held-out points (C123:C142)', bold=True, wrap=True)
+    x.text(ws, 'A122', 'Predictions on the 20 validation points (C123:C142)', bold=True, wrap=True)
     x.array(ws, 'C123:C142', '=MMULT(C101:L120,C70:C79)', gold=True)
-    x.text(ws, 'A144', 'Error on the 20 new points RMSE', bold=True, wrap=True)
+    x.text(ws, 'A144', 'Validation error RMSE (choose lambda by this)', bold=True, wrap=True)
     x.input(ws, 'C144', '=SQRT(SUMXMY2(C123:C142,B101:B120)/20)')
-    x.text(ws, 'D82', 'Expected at lambda = 0.1: %.4f' % r3['norm2'], color='666666')
-    x.text(ws, 'D96', 'Expected: %.4f' % r3['rmse_tr'], color='666666')
-    x.text(ws, 'D144', 'Expected: %.4f. At lambda = 10: %.4f' % (r3['rmse_te'], r5['rmse_te']), color='666666')
+    # test points: untouched until lambda is chosen, then used once
+    x.text(ws, 'A147', 'Test points (use once, after lambda is chosen): x, y and the powers', bold=True)
+    x.text(ws, 'A148', 'x', bold=True, border=True); x.text(ws, 'B148', 'y', bold=True, border=True)
+    for k in range(10):
+        x.text(ws, f'{"CDEFGHIJKL"[k]}148', f'x^{k}', bold=True, border=True)
+    for i in range(20):
+        r = 149 + i
+        ws[f'A{r}'] = float(d['xts'][i]); ws[f'B{r}'] = float(d['yts'][i])
+        for k in range(10):
+            ws[f'{"CDEFGHIJKL"[k]}{r}'] = f'=$A{r}^{k}'
+        for c in 'ABCDEFGHIJKL':
+            ws[f'{c}{r}'].border = BOX
+    x.text(ws, 'A170', 'Predictions on the 20 test points (C171:C190, given)', bold=True, wrap=True)
+    x.array(ws, 'C171:C190', '=MMULT(C149:L168,C70:C79)')
+    x.text(ws, 'A192', 'Test error RMSE, reported once', bold=True, wrap=True)
+    x.input(ws, 'C192', '=SQRT(SUMXMY2(C171:C190,B149:B168)/20)')
     for lab, ref, exp, tol in [('Weight w0 (intercept) at lambda = 0.1', 'C70', float(r3['w'][0]), 0.001), ('Weight w1 at lambda = 0.1', 'C71', float(r3['w'][1]), 0.001), ('Sum of the squared weights at lambda = 0.1', 'C82', r3['norm2'], 0.0005),
-                               ('Training error at lambda = 0.1', 'C96', r3['rmse_tr'], 0.0002), ('Error on the 20 new points at lambda = 0.1', 'C144', r3['rmse_te'], 0.0002)]:
+                               ('Training error at lambda = 0.1', 'C96', r3['rmse_tr'], 0.0002), ('Validation error at lambda = 0.1', 'C144', r3['rmse_te'], 0.0002),
+                               ('Test error at the chosen lambda = 0.1', 'C192', d['rmse_test'], 0.0002)]:
         x.check(lab, f'=Ridge!{ref}', exp, tol)
 
     # ------------------------------------------------------------------ Small

@@ -9,17 +9,18 @@ Session 1 (functions and logarithms)
   ma_nextword  words, probs, loss  five possible next words as bars, with minus ln p beside each
 Session 2 (vectors)
   ma_rowvec    headers, rows, row  one row of a table becomes a vector
-  ma_vec2d     arrows, dots, segments, arc, xlim, ylim
+  ma_vec2d     arrows, dots, segments, arc, arcs, xlim, ylim
+  ma_trig      deg                 trigonometry refresher: an arrow of length 1, its cosine, and angles in degrees and radians
   ma_dot       u, v                the dot product as matching products added up
   ma_rank      items, best         horizontal bars of a score, best one in gold
 Session 3 (matrices)
   ma_matgrid   values, hl          a matrix with row and column indices and its shape
   ma_transform panels, shape       a shape and its image under a matrix, with the images of the two axis arrows
-  ma_matvec    A, x, row           matrix times vector, one row at a time
-  ma_matmul    A, B, row, col      matrix times matrix, one entry at a time
+  ma_matvec    A, x, row, names    matrix times vector, one row at a time
+  ma_matmul    A, B, row, col, names  matrix times matrix, one entry at a time
   ma_shapes    (none)              shapes that match and shapes that do not
   ma_transpose A                   a matrix and its transpose
-  ma_layer     x, y                one layer y = W x + b drawn as inputs, weights and outputs
+  ma_layer     x, y, hl, wrow      one layer y = W x + b; the weights into output hl are dark and labelled
   ma_params    (none)              the toy network 3, 4, 2 with the count of its numbers
   ma_logbars   items               bars on a logarithmic scale, from 26 numbers to billions
 """
@@ -250,7 +251,7 @@ def x_ma_rowvec(w, h, headers=(), rows=(), row=0, vec_label='', size=19, **_):
 
 
 @fig('x_ma_vec2d')
-def x_ma_vec2d(w, h, arrows=(), dots=(), segments=(), arc=None, xlim=(0, 8), ylim=(0, 8), size=18, grid=True, **_):
+def x_ma_vec2d(w, h, arrows=(), dots=(), segments=(), arc=None, arcs=(), xlim=(0, 8), ylim=(0, 8), size=18, grid=True, **_):
     """arrows: [{'v': (3, 4), 'o': (0, 0), 'label': 'a', 'color': 'ink'|'red'|'grey', 'dash': False, 'dx': .., 'dy': .., 'ha': ..}]."""
     s = Scene(w, h)
     ax0, ax1, ay0, ay1 = 0.75, w - 0.3, 0.6, h - 0.3
@@ -286,13 +287,44 @@ def x_ma_vec2d(w, h, arrows=(), dots=(), segments=(), arc=None, xlim=(0, 8), yli
         s.circle(px(d['p'][0]), py(d['p'][1]), 0.1, fill=d.get('fill', GOLD), edge=INK, lw=1.6, z=6)
         if d.get('label'):
             s.text(px(d['p'][0]) + d.get('dx', 0.15), py(d['p'][1]) + d.get('dy', 0.2), d['label'], size=size, ha=d.get('ha', 'left'), weight='bold', z=8)
-    if arc:
-        a1, a2 = math.degrees(math.atan2(arc['b'][1], arc['b'][0])), math.degrees(math.atan2(arc['a'][1], arc['a'][0]))
+    for ac in ([arc] if arc else []) + list(arcs):
+        a1, a2 = math.degrees(math.atan2(ac['b'][1], ac['b'][0])), math.degrees(math.atan2(ac['a'][1], ac['a'][0]))
         lo, hi = min(a1, a2), max(a1, a2)
-        r = arc.get('r', 1.0) * unit
-        s.ax.add_patch(Arc((px(0), py(0)), 2 * r, 2 * r, theta1=lo, theta2=hi, color=RED, lw=2.4, zorder=6))
-        mid = math.radians((lo + hi) / 2)
-        s.text(px(0) + (r + arc.get('lr', 0.45)) * math.cos(mid), py(0) + (r + arc.get('lr', 0.45)) * math.sin(mid), arc['label'], size=size, color=RED, weight='bold')
+        r = ac.get('r', 1.0) * unit
+        col = cmap.get(ac.get('color', 'red'), RED)
+        s.ax.add_patch(Arc((px(0), py(0)), 2 * r, 2 * r, theta1=lo, theta2=hi, color=col, lw=2.4, zorder=6))
+        if ac.get('label'):
+            mid = math.radians(ac.get('at', (lo + hi) / 2))
+            s.text(px(0) + (r + ac.get('lr', 0.45)) * math.cos(mid), py(0) + (r + ac.get('lr', 0.45)) * math.sin(mid), ac['label'], size=ac.get('size', size), color=col, weight='bold')
+    return s
+
+
+@fig('x_ma_trig')
+def x_ma_trig(w, h, deg=60, size=17, **_):
+    """Trigonometry refresher: an arrow of length 1 at angle theta; cos theta is how far it reaches along the horizontal. A small table of angles in degrees and radians beside it."""
+    s = Scene(w, h)
+    tw = [0.8, 1.25, 0.9]
+    R_ = min(2.4, h - 1.7, (w - sum(tw) - 0.75) / 2.15)
+    cx, cy = 0.3 + R_ * 1.08, 0.95
+    th = np.linspace(0, math.pi, 200)
+    s.ax.plot(cx + R_ * np.cos(th), cy + R_ * np.sin(th), color=HAIR, lw=1.6, zorder=1)
+    s.line(cx - R_ - 0.15, cy, cx + R_ + 0.2, cy, lw=2, z=1)
+    for v in (-1, 0, 1):
+        s.line(cx + v * R_, cy - 0.07, cx + v * R_, cy + 0.07, lw=2, z=1)
+        s.text(cx + v * R_, cy - 0.3, _fmt(v), size=15, color=GREY)
+    a = math.radians(deg)
+    tx, ty = cx + R_ * math.cos(a), cy + R_ * math.sin(a)
+    s.line(tx, ty, tx, cy, color=MUTE, lw=1.8, dash=True, z=2)
+    s.line(cx, cy, tx, cy, color=RED, lw=5, z=3)
+    s.arrow(cx, cy, tx, ty, lw=3.0, head=18, z=5)
+    s.text(cx + (tx - cx) / 2 - 0.3, cy + (ty - cy) / 2 + 0.12, 'length 1', size=15, color=INK, ha='right', rot=0)
+    s.ax.add_patch(Arc((cx, cy), 0.9, 0.9, theta1=0, theta2=deg, color=GOLD, lw=3, zorder=6))
+    s.text(cx + 0.68 * math.cos(a / 2) + 0.05, cy + 0.68 * math.sin(a / 2), 'θ', size=19, color=INK, weight='bold', ha='left')
+    s.text(cx + (tx - cx) / 2, cy - 0.62, f'cos {deg}° = {math.cos(a):.1f}', size=size, color=RED, weight='bold')
+    s.text(0.1, h - 0.3, f'An arrow of length 1 at angle θ = {deg}°', size=15, color=MUTE, ha='left')
+    rows = [['angle', 'radians', 'cosine'], ['0°', '0', '1'], [f'{deg}°', f'{math.radians(deg):.3f}', f'{math.cos(a):.1f}'], ['90°', '1.571', '0'], ['180°', '3.142 (π)', '−1']]
+    x0 = w - sum(tw) - 0.05
+    s.table(x0, h - 0.55, tw, 0.5, rows, size=15, hl_rows=(2,))
     return s
 
 
@@ -405,7 +437,7 @@ def x_ma_transform(w, h, panels=(), shape=((0, 0), (2, 0), (2, 1), (1, 1), (1, 3
 
 
 @fig('x_ma_matvec')
-def x_ma_matvec(w, h, A=(), x=(), row=0, work='', size=20, **_):
+def x_ma_matvec(w, h, A=(), x=(), row=0, work='', size=20, names=('A', 'x', 'y = A x'), caption=None, **_):
     s = Scene(w, h)
     A = [list(r) for r in A]
     m, n = len(A), len(A[0])
@@ -422,16 +454,16 @@ def x_ma_matvec(w, h, A=(), x=(), row=0, work='', size=20, **_):
     s.text(xx + wx + 0.3, ytop - ha_ / 2, '=', size=26)
     xy = xx + wx + 0.6
     wy, hy = draw_matrix(s, xy, ytop, y, cw=cw, ch=ch, size=size, hl_cells=[(row, 0)])
-    s.text(xA + wa / 2, ytop + 0.3, 'A', size=20, color=RED, weight='bold')
-    s.text(xx + wx / 2, ytop - off + 0.3, 'x', size=20, color=RED, weight='bold')
-    s.text(xy + wy / 2, ytop + 0.3, 'y = A x', size=20, color=RED, weight='bold')
+    s.text(xA + wa / 2, ytop + 0.3, names[0], size=20, color=RED, weight='bold')
+    s.text(xx + wx / 2, ytop - off + 0.3, names[1], size=20, color=RED, weight='bold')
+    s.text(xy + wy / 2, ytop + 0.3, names[2], size=20, color=RED, weight='bold')
     s.text(w / 2, 0.45, work, size=19, weight='bold')
-    s.text(w / 2, 0.98, 'The gold row of A, times x, gives the gold entry of y', size=16, color=MUTE)
+    s.text(w / 2, 0.98, caption or f'The gold row of {names[0]}, times {names[1]}, gives the gold entry of the answer', size=16, color=MUTE)
     return s
 
 
 @fig('x_ma_matmul')
-def x_ma_matmul(w, h, A=(), B=(), row=0, col=1, work='', size=20, **_):
+def x_ma_matmul(w, h, A=(), B=(), row=0, col=1, work='', size=20, names=('A', 'B', 'C = A B'), caption=None, **_):
     s = Scene(w, h)
     A = np.array(A, float)
     B = np.array(B, float)
@@ -449,11 +481,11 @@ def x_ma_matmul(w, h, A=(), B=(), row=0, col=1, work='', size=20, **_):
     s.text(xB + wb + 0.3, ytop - ha_ / 2, '=', size=26)
     xC = xB + wb + 0.6
     wc, hc = draw_matrix(s, xC, ytop, C.tolist(), cw=cw, ch=ch, size=size, hl_cells=[(row, col)])
-    s.text(xA + wa / 2, ytop + 0.3, 'A', size=20, color=RED, weight='bold')
-    s.text(xB + wb / 2, ytop + 0.3, 'B', size=20, color=RED, weight='bold')
-    s.text(xC + wc / 2, ytop + 0.3, 'C = A B', size=20, color=RED, weight='bold')
+    s.text(xA + wa / 2, ytop + 0.3, names[0], size=20, color=RED, weight='bold')
+    s.text(xB + wb / 2, ytop + 0.3, names[1], size=20, color=RED, weight='bold')
+    s.text(xC + wc / 2, ytop + 0.3, names[2], size=20, color=RED, weight='bold')
     s.text(w / 2, 0.45, work, size=19, weight='bold')
-    s.text(w / 2, 0.98, 'Gold row of A, gold column of B: together they give the gold entry of C', size=16, color=MUTE)
+    s.text(w / 2, 0.98, caption or 'Gold row of A, gold column of B: together they give the gold entry of C', size=16, color=MUTE)
     return s
 
 
@@ -510,24 +542,31 @@ def x_ma_transpose(w, h, A=((1, 2, 3), (4, 5, 6)), size=22, **_):
 
 
 @fig('x_ma_layer')
-def x_ma_layer(w, h, x=(), y=(), size=18, **_):
+def x_ma_layer(w, h, x=(), y=(), size=18, hl=0, wrow=None, **_):
+    """One layer y = W x + b. The lines into output hl are drawn dark; with wrow (row hl of W) each is labelled with its weight, and a zero weight is dashed."""
     s = Scene(w, h)
     nin, nout = len(x), len(y)
     xl, xr = 1.4, w - 1.5
     yin = np.linspace(h - 1.15, 1.2, nin)
     yout = np.linspace(h - 0.95, 0.95, nout)
-    for yi in yin:
+    for i, yi in enumerate(yin):
         for j, yj in enumerate(yout):
-            s.line(xl + 0.28, yi, xr - 0.28, yj, color=GREY if j == 1 else HAIR, lw=1.8 if j == 1 else 1.0, z=1)
+            on = j == hl
+            zero = on and wrow is not None and wrow[i] == 0
+            s.line(xl + 0.28, yi, xr - 0.28, yj, color=(MUTE if zero else INK) if on else HAIR, lw=2.6 if on else 1.0, dash=zero, z=2 if on else 1)
+            if on and wrow is not None:
+                t_ = 0.3
+                lx, ly = xl + 0.28 + t_ * (xr - xl - 0.56), yi + t_ * (yj - yi)
+                s.box(lx - 0.42, ly - 0.17, 0.84, 0.34, f'w = {_fmt(wrow[i])}', size=15, fill=PAPER, edge=RED, lw=1.2, color=RED, weight='bold', z=6)
     for i, yi in enumerate(yin):
         s.circle(xl, yi, 0.28, fill=PAPER, edge=INK, lw=2, z=3)
         s.text(xl, yi, _fmt(x[i]), size=17, weight='bold', z=5)
         s.text(xl - 0.5, yi, rf'$x_{i + 1}$', size=18, ha='right')
     for j, yj in enumerate(yout):
-        s.circle(xr, yj, 0.28, fill=GOLD, edge=INK, lw=2, z=3)
+        s.circle(xr, yj, 0.28, fill=GOLD if j == hl else PAPER, edge=INK, lw=2, z=3)
         s.text(xr, yj, _fmt(y[j]), size=17, weight='bold', z=5)
         s.text(xr + 0.5, yj, rf'$y_{j + 1}$', size=18, ha='left')
-    s.text(w / 2, h - 0.25, 'Each line is one weight, one number in W', size=16, color=MUTE)
+    s.text(w / 2, h - 0.25, f'Each line is one weight. Dark: the weights into y{chr(0x2080 + hl + 1)}', size=16, color=MUTE)
     s.text(xl, 0.3, 'inputs x', size=16, color=MUTE)
     s.text(xr, 0.3, 'outputs y', size=16, color=MUTE)
     return s

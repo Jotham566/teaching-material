@@ -25,7 +25,7 @@ def build(solution: bool):
              'Sheet Deflation: the rank 1 error, then round 2. The deflated matrix is given. Fill the gold guess cells of the power iteration, then sigma2, the unit vector, u2 and the rank 2 error. Round 3 is filled in, so you can read sigma3 and the rank 3 error.',
              'Sheet PCA: centre the marks, build the covariance matrix, find the eigenvalues and the top direction, then the scores, their variance, the explained variance and the squared distance lost.',
              'Sheet LoRA: count the numbers in a full update and in B and A together.',
-             'For a matrix result, select the whole gold block, type the formula, then press Ctrl+Shift+Enter in Excel or Enter in Google Sheets.'])
+             'For a matrix result, select the whole gold block and type the formula. In older Excel, confirm with Ctrl+Shift+Enter. In Excel 365 and Google Sheets, Enter works. #SPILL! means the cells below are not empty.'])
 
     # ------------------------------------------------------------------ Small
     ws = x.sheet('Small', {'A': 54, 'B': 13, 'C': 13})
@@ -76,7 +76,7 @@ def build(solution: bool):
     for j in range(8):
         x.text(ws, f'{COLS[j]}24', f'v{j + 1}', bold=True, border=True, align='center')
         x.text(ws, f'{MVCOLS[j]}24', f'M v {j + 1}', bold=True, border=True, align='center')
-    x.text(ws, 'R24', 'Largest', bold=True, border=True, align='center')
+    x.text(ws, 'R24', 'Largest size', bold=True, border=True, align='center')
     for k in range(10):
         r = 25 + k
         ws[f'A{r}'] = k
@@ -88,7 +88,7 @@ def build(solution: bool):
             else:
                 x.input(ws, f'{COLS[j]}{r}', answer=f'={MVCOLS[j]}{r - 1}/$R{r - 1}')
             x.formula(ws, f'{MVCOLS[j]}{r}', f'=SUMPRODUCT($B${14 + j}:$I${14 + j},$B{r}:$I{r})')
-        x.formula(ws, f'R{r}', f'=MAX(J{r}:Q{r})')
+        x.formula(ws, f'R{r}', f'=MAX(MAX(J{r}:Q{r}),-MIN(J{r}:Q{r}))')
     x.text(ws, 'A35', 'Gold cells in rows 26 to 34: each guess is the previous M v divided by the previous largest entry.', italic=True)
     x.text(ws, 'A36', 'Guess after 10 steps (M v / largest, row 34)')
     for j in range(8):
@@ -98,14 +98,15 @@ def build(solution: bool):
         x.input(ws, f'{COLS[j]}37', answer=f'={COLS[j]}36/SQRT(SUMSQ($B$36:$I$36))')
     x.text(ws, 'A39', 'sigma1 = square root of the largest entry (R34)')
     x.input(ws, 'B39', answer='=SQRT(R34)')
-    x.text(ws, 'A40', 'u1 = noisy v1 / sigma1 (select B41:B48)')
+    x.text(ws, 'A40', 'u1 = N v1 / sigma1, N the noisy image (select B41:B48)')
     x.array(ws, 'B41:B48', '=MMULT(B4:I11,TRANSPOSE(B37:I37))/B39', gold=True)
     x.text(ws, 'A50', 'Rank 1 term = sigma1 × u1 × v1ᵀ. Cell in row i, column j: sigma1 × (i-th entry of u1) × (j-th entry of v1) (B52:I59)', wrap=True)
     ws.row_dimensions[50].height = 30
     for i in range(8):
         for j in range(8):
             x.input(ws, f'{COLS[j]}{52 + i}', answer=f'=$B$39*$B${41 + i}*{COLS[j]}$37')
-    x.text(ws, 'A60', 'Read: every row of the grid is a multiple of v1. The grid holds 64 cells but only 8 + 8 + 1 numbers.', italic=True)
+    x.text(ws, 'A60', 'Read: every row of the grid is a multiple of v1. The grid holds 64 cells but only 8 + 8 + 1 numbers. Values can leave the 0 to 9 range (row 4, column 2 is about 10.4): it is an approximation.', italic=True, wrap=True)
+    ws.row_dimensions[60].height = 45
 
     # ------------------------------------------------------------------ Deflation
     ws = x.sheet('Deflation', {'A': 34, **{c: 9 for c in COLS}, **{c: 10 for c in MVCOLS}, 'R': 11})
@@ -149,7 +150,7 @@ def build(solution: bool):
                 else:
                     x.formula(ws, f'{COLS[j]}{r}', f'={MVCOLS[j]}{r - 1}/$R{r - 1}')
                 x.formula(ws, f'{MVCOLS[j]}{r}', f'=SUMPRODUCT($B{m0 + j}:$I{m0 + j},$B{r}:$I{r})')
-            x.formula(ws, f'R{r}', f'=MAX(J{r}:Q{r})')
+            x.formula(ws, f'R{r}', f'=MAX(MAX(J{r}:Q{r}),-MIN(J{r}:Q{r}))')
         last = h0 + 10
         g0 = last + 2
         put = x.input if gold else None
@@ -230,7 +231,8 @@ def build(solution: bool):
     x.input(ws, 'B21', answer='=(B18+B20)/2')
     x.text(ws, 'A22', 'Smaller eigenvalue of C')
     x.input(ws, 'B22', answer='=(B18-B20)/2')
-    x.text(ws, 'A23', 'Top eigenvector before scaling: (C15, B21 - B15) (given)')
+    x.text(ws, 'A23', 'Top eigenvector before scaling (given). Row 1 of (C − λI)v = 0 gives (s, t) = (C15, B21 − B15)', wrap=True)
+    ws.row_dimensions[23].height = 30
     x.formula(ws, 'B23', '=C15')
     x.formula(ws, 'C23', '=B21-B15')
     x.text(ws, 'A24', 'Length of that vector (given)')

@@ -513,8 +513,7 @@ def add_plan(d):
 def add_recall(d):
     s = d.s
     qs = [f'{i + 1}.  {q}' for i, (q, a) in enumerate(s['recall'])]
-    objs = [paras(X0, Y0 + 0.2, 8.6, 3.9, qs, 30, 22, gap=0.45)]
-    objs.append(icon_img('question', 2.8, 9.9, Y0 + 0.5, 'Three questions'))
+    objs = [paras(X0, Y0 + 0.2, XW - 1.0, 3.9, qs, 30, 22, gap=0.45)]   # no decorative question-mark badge
     objs.append(text(X0, 6.2, XW, 0.6, 'Answer aloud first. Then we check together.', 22, 18, color=B.MUTE))
     d.add({1: 'A question from last time', 2: 'Two questions from last time', 3: 'Three questions from last time'}.get(len(s['recall']), 'Questions from last time'), objs, recall_script(s))
 

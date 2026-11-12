@@ -12,7 +12,8 @@ def build(solution: bool):
             ['Sheet Counts: joint, marginal and conditional probabilities, and the expected count if "free" and spam were independent.',
              'Sheet Medical: the evidence, the posterior after one positive test, and after a second one.',
              'Sheet NaiveBayes: smoothed likelihoods, the scores and the posterior of two emails.',
-             'CHANGE task: at the bottom of NaiveBayes, the posterior of email 1 without smoothing. Why is it 1?',
+             'CHANGE task: in NaiveBayes, the posterior of email 1 without smoothing. Why is it 1?',
+             'Then, below it, the log scores of email 1 and the posterior from them, and the posterior with a spam prior of 0.01.',
              'Sheet Check: it says All the checks pass when every answer is right.'])
 
     ws = x.sheet('Counts', {'A': 52, 'B': 14, 'C': 14, 'D': 12})
@@ -65,6 +66,15 @@ def build(solution: bool):
              ('Email 1 posterior probability of spam', '=B12/(B12+B13)', 14, 0.9955, 0.0001), ('Email 2 spam score', '=B9*PRODUCT(J4:J6)', 15, 0.01644, 0.00005), ('Email 2 ham score', '=C9*PRODUCT(K4:K6)', 16, 0.03332, 0.00005),
              ('Email 2 posterior probability of spam', '=B15/(B15+B16)', 17, 0.3304, 0.0001),
              ('CHANGE: email 1 posterior with no smoothing (plain counts / class size)', '=(B9*(B4/B8)*(B5/B8)*(1-B6/B8))/((B9*(B4/B8)*(B5/B8)*(1-B6/B8))+(C9*(C4/C8)*(C5/C8)*(1-C6/C8)))', 19, 1.0, 0.0001)]
+    for lab, f, r, exp, tol in items:
+        x.text(ws, f'A{r}', lab, wrap=True)
+        x.input(ws, f'B{r}', f)
+        x.check(lab, f'=NaiveBayes!B{r}', exp, tol)
+        ws.row_dimensions[r].height = 30
+    x.text(ws, 'A21', 'Long emails: add logarithms in place of multiplying', bold=True)
+    items = [('Email 1: LN of the spam score', '=LN(B12)', 22, -2.1066, 0.0005), ('Email 1: LN of the ham score', '=LN(B13)', 23, -7.5123, 0.0005),
+             ('Email 1 posterior from the logs: 1 / (1 + EXP(ln ham - ln spam)), the two-class softmax', '=1/(1+EXP(B23-B22))', 24, 0.9955, 0.0001),
+             ('CHANGE: email 1 posterior with a spam prior of 0.01 (a rare-spam mailbox)', '=0.01*PRODUCT(H4:H6)/(0.01*PRODUCT(H4:H6)+0.99*PRODUCT(I4:I6))', 25, 0.7714, 0.0005)]
     for lab, f, r, exp, tol in items:
         x.text(ws, f'A{r}', lab, wrap=True)
         x.input(ws, f'B{r}', f)

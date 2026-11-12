@@ -2,7 +2,7 @@
 
 Session 16 (maximum likelihood, MAP, bias-variance)
   f_coin_curve   k, n, mode ('lik' | 'loglik' | 'both'), marks, best      the likelihood (or log-likelihood) of k heads in n flips against p
-  f_underflow    (none)                                                   log10 of a product of fair-coin probabilities against the number of flips
+  f_underflow    (none)                                                   ln of a product of fair-coin probabilities against the number of flips
   f_gauss_noise  (none)                                                   a line with Gaussian noise drawn as bell curves
   f_gauss_scan   xs, ys, best, data                                       log-likelihood against mu, with the data strip
   f_ce_curve     marks                                                    the loss -ln(p) against the probability given to the true answer
@@ -68,18 +68,18 @@ def _coin_panel(s, ox, oy, pw, ph, k, n, mode, marks, best, size):
     if mode == 'lik':
         f = lambda p: p ** k * (1 - p) ** (n - k)
         lo, hi = 0.0, f(k / n) * 1.3
-        ylab, ytv = 'likelihood L(p)', [0, f(k / n)]
+        ylab, ytv = 'likelihood p(data | theta)', [0, f(k / n)]
         ytl = ['0', f'{f(k / n):.4f}']
         fmt = lambda v: f'{v:.5f}'.rstrip('0')
     else:
         f = lambda p: k * math.log(p) + (n - k) * math.log(1 - p)
         lo, hi = -22.0, f(k / n) + 3.0
-        ylab, ytv = 'log-likelihood ln L(p)', [f(k / n), -10, -15]
+        ylab, ytv = 'log-likelihood l(theta)', [f(k / n), -10, -15]
         ytl = [f'{f(k / n):.2f}', '-10', '-15']
         fmt = lambda v: f'{v:.2f}'
     px = _lin(0, 1, x0, x1)
     py = _lin(lo, hi, y0, y1)
-    _axes(s, x0, x1, y0, y1, 'p, the chance of heads', ylab, size, xl_y=oy + 0.22, yl_x=ox + 0.3)
+    _axes(s, x0, x1, y0, y1, 'theta, the chance of heads', ylab, size, xl_y=oy + 0.22, yl_x=ox + 0.3)
     _xticks(s, px, [0, 0.5, 1], ['0', '0.5', '1'], y0)
     _yticks(s, py, ytv, ytl, x0)
     ps = [p for p in ps if f(p) >= lo]
@@ -89,9 +89,10 @@ def _coin_panel(s, ox, oy, pw, ph, k, n, mode, marks, best, size):
         s.line(px(p), y0, px(p), py(f(p)), color=RED if hit else GREY, lw=2.0 if hit else 1.4, dash=not hit, z=2)
         s.circle(px(p), py(f(p)), 0.11 if hit else 0.085, fill=GOLD if hit else PAPER, edge=INK, lw=1.8, z=5)
         if not hit:
-            s.text(px(p) + 0.17, py(f(p)) + 0.2, f'p = {p:g}', size=14, color=BODY, ha='left')
+            right = p > 0.8
+            s.text(px(p) + (-0.17 if right else 0.17), py(f(p)) + 0.2, f'theta = {p:g}', size=14, color=BODY, ha='right' if right else 'left')
     if best is not None:
-        s.text(px(best) + 0.2, py(f(best)) + 0.12, (f'maximum at\np = {best:g}' if pw > 6.5 else f'p = {best:g}'), size=size - 1, color=RED, weight='bold', ha='left')
+        s.text(px(best) + 0.2, py(f(best)) + 0.12, (f'maximum at\ntheta = {best:g}' if pw > 6.5 else f'theta = {best:g}'), size=size - 1, color=RED, weight='bold', ha='left')
     return fmt
 
 
@@ -108,22 +109,24 @@ def f_coin_curve(w, h, k=7, n=10, mode='lik', marks=(0.5, 0.7, 0.9), best=0.7, s
 
 @fig('x_f_underflow')
 def f_underflow(w, h, size=16, **_):
+    """ln of the likelihood of n fair flips (n ln 0.5) against n, with the limit below which a computer stores 0 (ln of 4.9e-324 = -744.4)."""
     s = Scene(w, h)
     x0, x1, y0, y1 = 1.35, w - 0.3, 0.95, h - 0.45
     px = _lin(0, 1200, x0, x1)
-    py = _lin(-450, 0, y0, y1)
-    _axes(s, x0, x1, y0, y1, 'number of coin flips', 'log10 of the likelihood', size, xl_y=0.22, yl_x=0.3)
+    py = _lin(-850, 0, y0, y1)
+    _axes(s, x0, x1, y0, y1, 'number of fair coin flips', 'ln of the likelihood (nats)', size, xl_y=0.22, yl_x=0.3)
     _xticks(s, px, [0, 400, 800, 1200], ['0', '400', '800', '1200'], y0)
-    _yticks(s, py, [0, -100, -200, -300], ['0', '-100', '-200', '-300'], x0)
-    s.ax.plot([px(0), px(1200)], [py(0), py(-0.30103 * 1200)], color=INK, lw=3.2, zorder=3)
-    s.ax.plot([x0, x1], [py(-324), py(-324)], color=RED, lw=2.4, ls='--', zorder=3)
-    s.text(x0 + 0.2, py(-324) - 0.3, 'below this line a computer stores 0', size=size - 1, color=RED, weight='bold', ha='left')
-    for n_, lab, dy in ((10, '10 flips', 0.4), (100, '100 flips', 0.4), (1100, '1,100 flips', 0.35)):
-        v = -0.30103 * n_
-        s.circle(px(n_), py(v), 0.1, fill=GOLD, edge=INK, lw=1.8, z=5)
-    s.text(px(10) + 0.2, py(-3) + 0.35, '10 flips: 0.001', size=size - 2, ha='left')
-    s.text(px(100) + 0.25, py(-30) + 0.15, '100 flips: 0.0000...(30 zeros)', size=size - 2, ha='left')
-    s.text(px(1100), py(-331) - 0.5, '1,100 flips', size=size - 2, ha='center', weight='bold')
+    _yticks(s, py, [0, -200, -400, -600, -800], ['0', '-200', '-400', '-600', '-800'], x0)
+    ln2 = math.log(2)
+    s.ax.plot([px(0), px(1200)], [py(0), py(-ln2 * 1200)], color=INK, lw=3.2, zorder=3)
+    lim = math.log(4.9e-324)
+    s.ax.plot([x0, x1], [py(lim), py(lim)], color=RED, lw=2.4, ls='--', zorder=3)
+    s.text(x0 + 0.2, py(lim) + 0.25, 'below -744 a computer stores the likelihood as 0', size=size - 1, color=RED, weight='bold', ha='left')
+    for n_ in (10, 100, 1100):
+        s.circle(px(n_), py(-ln2 * n_), 0.1, fill=GOLD, edge=INK, lw=1.8, z=5)
+    s.text(px(10) + 0.25, py(-ln2 * 10) + 0.12, '10 flips: ln 0.001 = -6.9', size=size - 2, ha='left')
+    s.text(px(100) + 0.25, py(-ln2 * 100) + 0.18, '100 flips: -69.3 (likelihood about 10^-30)', size=size - 2, ha='left')
+    s.text(px(1050), py(-800), '1,100 flips: -762.5', size=size - 2, ha='right', weight='bold')
     return s
 
 
@@ -390,6 +393,50 @@ def f_tokens(w, h, tokens=(), probs=(), base='e', total_label='', size=16, **_):
     return s
 
 
+# ------------------------------------------------------------------ session 17 (temperature and top-p, moved here from Session 14)
+@fig('x_f_topp')
+def f_topp(w, h, words=(), probs=(), top_p=0.8, size=16, **_):
+    """Top-p (nucleus) sampling. Left: sorted probabilities with the running total under each bar; words after the cut are grey and hatched. Right: the kept words rescaled to add to 1."""
+    s = Scene(w, h)
+    probs = list(probs)
+    cum = np.cumsum(probs)
+    keep = [c - p < top_p for c, p in zip(cum, probs)]
+    kept = [p for p, k in zip(probs, keep) if k]
+    tot = sum(kept)
+    resc = [p / tot for p in kept]
+    panels = [('Softmax at T = 1, sorted', probs, keep, True), (f'top-p = {top_p:g}: kept words rescaled', resc + [0.0] * (len(probs) - len(resc)), keep, False)]
+    pw = (w - 0.2) / 2
+    vmax = max(resc) * 1.18
+    for i, (title, vals, kp, show_cum) in enumerate(panels):
+        ox = 0.1 + i * pw
+        x0, x1 = ox + 0.25, ox + pw - 0.25
+        y0, y1 = 1.25, h - 1.0
+        py = _lin(0, vmax, y0, y1)
+        s.text((x0 + x1) / 2, h - 0.35, title, size=size + 1, weight='bold')
+        bw = (x1 - x0) / len(vals)
+        for j, v in enumerate(vals):
+            cx = x0 + j * bw
+            if kp[j]:
+                s.rect(cx + 0.06, y0, bw - 0.12, max(py(v) - y0, 0.012), fill=GOLD if not show_cum else PALE, edge=INK, lw=1.4, z=3)
+                s.text(cx + bw / 2, py(v) + 0.24, f'{v:.3f}', size=size - 2, weight='bold' if not show_cum else 'normal', color=INK)
+            elif show_cum:
+                s.rect(cx + 0.06, y0, bw - 0.12, max(py(v) - y0, 0.012), fill=PAPER, edge=GREY, lw=1.2, z=3)
+                s.ax.add_patch(__import__('matplotlib').patches.Rectangle((cx + 0.06, y0), bw - 0.12, max(py(v) - y0, 0.012), fill=False, hatch='///', edgecolor=GREY, lw=0, zorder=4))
+                s.text(cx + bw / 2, py(v) + 0.24, f'{v:.3f}', size=size - 2, color=GREY)
+            else:
+                s.text(cx + bw / 2, y0 + 0.24, 'cut', size=size - 2, color=GREY)
+            s.text(cx + bw / 2, y0 - 0.3, words[j], size=size - 1, color=INK if kp[j] else GREY)
+            if show_cum:
+                s.text(cx + bw / 2, y0 - 0.72, f'{cum[j]:.3f}', size=size - 2, color=RED if kp[j] else GREY, weight='bold' if kp[j] else 'normal')
+        s.line(x0, y0, x1, y0, color=INK, lw=2)
+        if show_cum:
+            s.text(0.1, 0.15, f'Red: the running total. Cut once it reaches {top_p:g}.', size=size - 2, color=MUTE, ha='left')
+            n_keep = sum(kp)
+            xc = x0 + n_keep * bw
+            s.line(xc, y0 - 0.95, xc, y1, color=RED, lw=2.2, dash=True, z=5)
+    return s
+
+
 # ------------------------------------------------------------------ session 18
 def _blend(t):
     """White to gold, t in 0..1."""
@@ -446,4 +493,76 @@ def f_network(w, h, layers=(('Inputs', 2), ('Hidden (tanh)', 4), ('Output', 1)),
     s.text((xs[0] + xs[-1]) / 2, 0.1, 'forward: the guess', size=size, color=INK)
     s.arrow(xs[-1] - 0.3, h - 1.2, xs[0] + 0.3, h - 1.2, color=RED, lw=2.4, head=16)
     s.text((xs[0] + xs[-1]) / 2, h - 0.85, 'backward: pass the error signal back, then adjust each weight', size=size, color=RED, weight='bold')
+    return s
+
+
+@fig('x_f_xor')
+def f_xor(w, h, size=16, **_):
+    """XOR: the four corners of the unit square in two colours (gold = 1, white = 0), with one straight line that fails and the two lines a hidden layer can draw."""
+    s = Scene(w, h)
+    pw = (w - 0.2) / 2
+    pts = [((0, 0), 0), ((0, 1), 1), ((1, 0), 1), ((1, 1), 0)]
+    for i, title in enumerate(('One straight line fails', 'Two lines (a hidden layer) succeed')):
+        ox = 0.1 + i * pw
+        x0, x1, y0, y1 = ox + 0.9, ox + pw - 0.4, 0.95, h - 0.85
+        px = _lin(-0.25, 1.25, x0, x1)
+        py = _lin(-0.25, 1.25, y0, y1)
+        s.text((x0 + x1) / 2, h - 0.35, title, size=size + 1, weight='bold')
+        s.line(px(-0.2), py(0), px(1.2), py(0), color=HAIR, lw=1.2)
+        s.line(px(0), py(-0.2), px(0), py(1.2), color=HAIR, lw=1.2)
+        _xticks(s, px, [0, 1], ['0', '1'], y0 + 0.05)
+        s.text((x0 + x1) / 2, 0.25, 'input 1', size=size - 1, color=MUTE)
+        s.text(ox + 0.3, (y0 + y1) / 2, 'input 2', size=size - 1, color=MUTE, rot=90)
+        if i == 0:
+            s.ax.plot([px(0.5), px(0.5)], [py(-0.2), py(1.2)], color=RED, lw=2.6, ls='--', zorder=3)
+            s.text(px(0.62), py(0.5), 'each side mixes\ngold and white', size=size - 2, color=RED, ha='left')
+        else:
+            for (ax_, ay_), (bx_, by_) in (((0.7, -0.2), (-0.2, 0.7)), ((1.2, 0.3), (0.3, 1.2))):
+                s.ax.plot([px(ax_), px(bx_)], [py(ay_), py(by_)], color=RED, lw=2.6, ls='--', zorder=3)
+            s.text(px(0.5), py(0.5), 'gold between\nthe lines', size=size - 2, color=RED)
+        for (a, b), lab in pts:
+            s.circle(px(a), py(b), 0.16, fill=GOLD if lab else PAPER, edge=INK, lw=2, z=5)
+            if i == 0:
+                s.text(px(a) + (0.25 if a == 0 else -0.25), py(b) + (0.3 if b == 1 else -0.3), f'({a}, {b}) -> {lab}', size=size - 2, ha='left' if a == 0 else 'right')
+    return s
+
+
+@fig('x_f_logistic')
+def f_logistic(w, h, xs=(), ys=(), b=0.0, w1=1.0, size=16, **_):
+    """Logistic regression as a model: pass (1) or fail (0) dots against hours, with the fitted sigmoid curve p = sigmoid(b + w1 x) and the 0.5 line."""
+    s = Scene(w, h)
+    x0, x1, y0, y1 = 1.35, w - 0.3, 0.95, h - 0.4
+    lo, hi = 0.0, max(xs) + 1
+    px = _lin(lo, hi, x0, x1)
+    py = _lin(-0.08, 1.08, y0, y1)
+    _axes(s, x0, x1, y0, y1, 'hours of study, x', 'p = probability of passing', size, xl_y=0.22, yl_x=0.3)
+    _xticks(s, px, list(range(0, int(hi) + 1, 2)), [str(v) for v in range(0, int(hi) + 1, 2)], y0)
+    _yticks(s, py, [0, 0.5, 1], ['0', '0.5', '1'], x0)
+    xx = np.linspace(lo, hi, 120)
+    pp = 1 / (1 + np.exp(-(b + w1 * xx)))
+    s.ax.plot([px(v) for v in xx], [py(v) for v in pp], color=RED, lw=3.2, zorder=3)
+    s.line(x0, py(0.5), x1, py(0.5), color=GREY, lw=1.4, dash=True)
+    for a, c in zip(xs, ys):
+        s.circle(px(a), py(c), 0.11, fill=GOLD if c else PAPER, edge=INK, lw=1.8, z=5)
+    xb = -b / w1
+    s.line(px(xb), y0, px(xb), py(0.5), color=RED, lw=1.6, dash=True)
+    s.text(px(xb) + 0.15, py(0.5) - 0.3, f'p = 0.5 at x = {xb:.1f}', size=size - 2, color=RED, ha='left', weight='bold')
+    s.text(px(0.3), py(0.92), 'gold: passed (y = 1)\nwhite: failed (y = 0)', size=size - 2, ha='left')
+    return s
+
+
+@fig('x_f_attn_ladder')
+def f_attn_ladder(w, h, rungs=(), size=16, **_):
+    """Attention as a ladder of five steps, each built from an earlier session, with the numbers for token 1. rungs: [{head, src, num, new}]"""
+    s = Scene(w, h)
+    n = len(rungs)
+    rh = (h - 0.15) / n
+    bw = w - 0.1 - (n - 1) * 0.35
+    for i, r in enumerate(rungs):
+        x = 0.05 + i * 0.35
+        y = h - 0.05 - (i + 1) * rh
+        s.box(x, y + 0.05, bw, rh - 0.1, '', fill=GOLD if r.get('new') else PAPER, edge=INK, lw=1.8, r=0.05)
+        s.text(x + 0.18, y + rh / 2 + 0.17, f"{i + 1}  {r['head']}", size=size, weight='bold', ha='left')
+        s.text(x + 0.18, y + rh / 2 - 0.2, r['src'], size=size - 2, color=MUTE if not r.get('new') else INK, ha='left')
+        s.text(x + bw - 0.18, y + rh / 2, r['num'], size=size - 1, ha='right', color=RED, weight='bold')
     return s

@@ -9,7 +9,7 @@ SENT_P = np.array([0.30, 0.20, 0.50, 0.40, 0.70, 0.62])
 
 def facts():
     neg_log_p = -np.log(P)
-    return dict(p=P, words=WORDS, total=float(P.sum()), f3=2 * 3 + 1, ln6=float(np.log(6)), ln2=float(np.log(2)), ln3=float(np.log(3)),
+    return dict(p=P, words=WORDS, total=float(P.sum()), f3=2 * 3 + 1, ln6=float(np.log(6)), ln9=float(np.log(9)), ln2=float(np.log(2)), ln3=float(np.log(3)),
                 neg_log_p=neg_log_p, avg_neg_log_p=float(np.sum(P * neg_log_p)), sent_p=SENT_P, sent_prod=float(np.prod(SENT_P)),
                 sent_logsum=float(np.sum(np.log(SENT_P))), sent_avg=float(-np.mean(np.log(SENT_P))), long_logsum=float(1000 * np.log(0.2)),
                 three_p=[0.30, 0.20, 0.50], three_prod=0.03, three_logsum=float(np.sum(np.log([0.30, 0.20, 0.50]))))
@@ -26,7 +26,7 @@ def build():
                   'Use exponentials and logarithms, and the three log rules, to turn a product into a sum',
                   'Compute the log-probability of a word and of a sentence in Python and in a spreadsheet'],
         outcome_icons=['calculator', 'chart', 'check'],
-        outcome_note=('Here is what you can do by the end of today. You can read sigma notation and function notation and work them out by hand. '
+        outcome_note=('By the end of today you can read sigma notation and function notation and work them out by hand. '
                       'You can use exponentials and logarithms, with the three log rules, to turn a product into a sum. And you can compute the log-probability of a word and of a whole sentence, in Python or in a spreadsheet, with the same answers in both. '
                       'We build up to one real question from AI, and you will be able to answer it before we leave.'),
         clock=[(10, 'Welcome and what we will do'), (35, 'Concept: a picture, then one example by hand'), (10, 'Break'), (45, 'Lab: predict, run, then change one thing'),
@@ -38,14 +38,14 @@ def build():
         words=[('Sigma notation', 'The symbol Σ means add up. Sigma notation is a short way to write a long sum.'),
                ('Function', 'A rule that turns each input number into one output number, written f(x).'),
                ('Exponential function', 'A function where the input is a power, such as 2ˣ (2 to the power x). It grows by repeated multiplying.'),
-               ('Logarithm (ln)', 'The inverse of an exponential. The natural logarithm ln uses the base e = 2.71828.'),
+               ('Logarithm (ln)', 'The inverse of an exponential. The natural logarithm ln uses the base e ≈ 2.71828.'),
                ('Log-probability', 'The natural logarithm of a probability. It is zero or negative, because a probability is at most 1.')],
         word_icons=['calculator', 'gear', 'chart', 'magnifier', 'check'],
         words_note=('Five words for today. Sigma notation is the symbol that means add up. A function is a rule from one number to one number. '
                     'An exponential function has the input as a power. A logarithm undoes it, and the natural logarithm, written ln, is the one AI uses. '
                     'And a log-probability is the natural logarithm of a probability. We use every one of them before the end of the session.'),
         keep='Keep your saved notebook or workbook, with every check on OK. Keep the one idea of the day: the logarithm of a product is the sum of the logarithms, and that is why AI adds log-probabilities.',
-        keep_visual=dict(kind='card', title='Take away', fields=[dict(label='Your lab file', value='Saved, all checks OK'), dict(label='The idea', value='ln(ab) = ln a + ln b'),
+        keep_visual=dict(kind='card', title='Take away', fields=[dict(label='Your lab file', value='Saved, all checks OK'), dict(label='The idea', value='ln(u × v) = ln u + ln v'),
                                                                  dict(label='Formula sheet', value='Σ, f(x) = wx + b, log rules'), dict(label='Next session', value='Vectors')]),
         keep_title='Save your lab file and start your formula sheet',
         next='Session 2: Vectors. A row of data becomes a list of numbers that we can add, scale and compare.', next_label='Next session',
@@ -60,10 +60,10 @@ def build():
                   visual=dict(kind='ma_sigma', values=[3, 5, 2, 8], name='x'),
                   lead='Sigma notation: the capital Greek letter Σ means add up.',
                   points=['Below Σ, i = 1 is where to start. Above Σ, the 4 is where to stop.', 'Each box is one value, x with its index i.', 'The values 3, 5, 2 and 8 add up to 18.'],
-                  notes=('This is sigma notation. The big symbol is the Greek capital letter sigma, and it simply means add up. '
+                  notes=('This is sigma notation. The big symbol is the Greek capital letter sigma, and it means add up. '
                          'Underneath it, i equals one tells you where to start counting. On top, the four tells you where to stop. Then x with a little i is the value at position i. '
                          'So this expression says add the first, second, third and fourth values. Here that is three plus five plus two plus eight, which is eighteen. '
-                         'The small letter i is called the index, and it just counts the position in the list. Can you write the sum of the first three values?')))
+                         'The small letter i is called the index, and it counts the position in the list. Try writing the sum of the first three values yourself: it comes to ten.')))
 
     S.append(dict(kind='formula', title='Sigma notation in action: the five next-word probabilities add up to 1',
                   formulas=[('General sum', r'$\sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n$'),
@@ -71,10 +71,10 @@ def build():
                   symbols=[['Σ (sigma)', 'Add up everything after it.', 'a sum of five numbers'], ['i', 'The index: the position in the list (1, 2, 3 ...).', 'i = 1 to 5'],
                            ['n', 'How many values there are.', 'n = 5 words'], ['pᵢ', 'The probability of word i after "The capital of Uganda is".', 'p₁ = 0.62 for Kampala']],
                   size=20, note='Illustrative (made-up numbers): Kampala 0.62, Entebbe 0.18, a 0.10, the 0.06, Nairobi 0.04.',
-                  notes=('Now the same idea with numbers we will use all day. Imagine a model that has to guess the next word after the capital of Uganda is. It gives five candidate words a probability each. '
+                  notes=('The same idea now meets the numbers we use all day. A language model has to guess the next word after the capital of Uganda is. It gives five candidate words a probability each. '
                          'A probability is a number from zero to one, where one means certain. These numbers are made up to show the arithmetic. '
                          'The sigma sum adds them: zero point six two, plus zero point one eight, plus zero point one, plus zero point zero six, plus zero point zero four. The total is exactly one, because the model must choose something. '
-                         'What would it mean if the total were two?')))
+                         'A total of two would be a mistake: the model would be more than certain, which makes no sense.')))
 
     S.append(dict(kind='idea', title='A function turns each input number into exactly one output number',
                   visual=dict(kind='ma_function', rule='f(x) = 2x + 1', pairs=[(0, 1), (1, 3), (2, 5), (3, 7)]),
@@ -82,28 +82,28 @@ def build():
                   points=['Here the rule is f(x) = 2x + 1: double the input, then add 1.', 'Put in x = 3. Double it to get 6, add 1, and f(3) = 7.', 'The same input always gives the same output.'],
                   notes=('A function is a rule with one job. You give it an input, called x, and it gives back exactly one output, which we write f of x. '
                          'In this picture the rule is two x plus one. So double the input and add one. If x is three, double it to get six, add one, and f of three is seven. '
-                         'The machine in the middle is just the rule. And the key property is that the same input always gives the same output. '
+                         'The machine in the middle is the rule. The important property is that the same input always gives the same output, every time you ask. '
                          'What does f of ten give?')))
 
     S.append(dict(kind='idea', title='A graph draws every input and its output as a point',
-                  visual=dict(kind='ma_graph', curves=[dict(fn='2*x+1', color='ink', label='f(x) = 2x + 1', lx=0.15, ly=10.3)], points=[dict(x=0, y=1, label='(0, 1)', dx=0.25, dy=0.25), dict(x=1, y=3, label='(1, 3)', dx=0.2, dy=-0.4),
+                  visual=dict(kind='ma_graph', curves=[dict(fn='2*x+1', color='ink', label='f(x) = 2x + 1', lx=0.15, ly=10.3)], points=[dict(x=0, y=1, label='(0, 1)', dx=0.1, dy=0.75), dict(x=1, y=3, label='(1, 3)', dx=0.2, dy=-0.4),
                                                                                            dict(x=2, y=5, label='(2, 5)', dx=0.2, dy=-0.4), dict(x=3, y=7, label='(3, 7)', dx=0.2, dy=-0.4)],
                               xlim=(0, 5), ylim=(0, 12), yticks=[0, 2, 4, 6, 8, 10, 12], xlabel='input x', ylabel='output f(x)'),
                   lead='A graph plots each pair (x, f(x)) as a point. Joining the points draws the curve.',
                   points=['Across: the inputs x. Up: the outputs f(x).', 'Each gold dot is one pair, such as x = 3 and f(3) = 7.', 'Each step of 1 in x adds 2: a straight line.'],
                   notes=('A graph is a picture of a function. The horizontal axis holds the inputs and the vertical axis holds the outputs. Each gold dot is one pair, an input and the output the rule gave. '
                          'At x equals three the output is seven, so there is a dot at three across and seven up. Join all the dots and you get the curve of the function. '
-                         'For this rule the curve is a straight line, because every step of one in x adds two to the output. That number two is the slope. What would the slope be if the rule were three x plus one?')))
+                         'For this rule the curve is a straight line, because every step of one in x adds two to the output. That number two is the slope. With the rule three x plus one, the slope would be three.')))
 
     S.append(dict(kind='formula', title='The function f(x) = wx + b is the building block of machine learning',
                   formulas=[('A linear function', r'$f(x) = w\,x + b$'), ('With w = 2 and b = 1, at x = 3', r'$f(3) = 2 \times 3 + 1 = 7$')],
                   symbols=[['x', 'The input.', 'x = 3'], ['f(x)', 'The output for the input x.', 'f(3) = 7'], ['w', 'The weight: how much the output grows when x grows by 1. It is also called the slope.', 'w = 2'],
                            ['b', 'The bias (intercept): the output when the input is 0.', 'b = 1']],
-                  size=26, note='w and b are parameters: numbers a model learns. Session 3 writes y = Wx + b for many inputs.',
-                  notes=('Here is the same function written with letters, because this exact shape is the building block of machine learning. F of x equals w times x plus b. '
+                  size=26, note='w and b are parameters: numbers a model learns. In this course b always means the bias.',
+                  notes=('The same function, written with letters, is the building block of machine learning. F of x equals w times x plus b. '
                          'The letter w is the weight, how much the output grows for each extra unit of input. The letter b is the bias, also called the intercept, which is the output when the input is zero. '
                          'With w equal to two and b equal to one, and x equal to three, we get seven again. In machine learning, w and b are the parameters, the numbers a model learns from data. '
-                         'Which one of the two decides how steep the line is?')))
+                         'From today, the letter b in this course always means the bias, so whenever you see it, you know what it is.')))
 
     S.append(dict(kind='idea', title='An exponential function multiplies again and again, so it grows very fast',
                   visual=dict(kind='ma_graph', curves=[dict(fn='2**x', color='red', label='$2^x$', lx=3.3, ly=29)],
@@ -111,10 +111,11 @@ def build():
                                       dict(x=4, y=16, label='16', dx=-0.12, dy=0.25, ha='right'), dict(x=5, y=32, label='32', dx=-0.15, dy=-0.1, ha='right')],
                               xlim=(0, 5), ylim=(0, 34), yticks=[0, 8, 16, 24, 32], xlabel='power x', ylabel='$2^x$'),
                   lead='Exponential function: the input is the power. 2ˣ means x copies of 2 multiplied together: 2³ = 2 × 2 × 2 = 8.',
-                  points=['2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32. Each step to the right doubles the height.', 'The special base e = 2.71828 gives eˣ. It is EXP(x) in a spreadsheet and np.exp(x) in Python.'],
+                  points=['2¹ = 2, 2² = 4, 2³ = 8: each step right doubles. Each step left halves, so 2⁰ = 1.',
+                          'The base e ≈ 2.71828 gives eˣ: EXP(x), np.exp(x). eˣ is always above 0: e⁻¹ ≈ 0.37.'],
                   notes=('An exponential function has the input up in the power. Two to the power x means x copies of two multiplied together, so two to the power three is two times two times two, which is eight. The values for one to five are two, four, eight, sixteen, thirty-two. '
-                         'Each step to the right doubles the height, and that is why the curve takes off. There is one special base in mathematics and machine learning, and it is e, about two point seven one eight. '
-                         'It gives e to the x. In a spreadsheet you write EXP, and in Python you write np dot exp. What is two to the power ten?')))
+                         'Each step to the right doubles the height. Walk the other way and each step halves, so two to the power zero is one. There is one special base in mathematics and machine learning, e, about two point seven one eight. '
+                         'In a spreadsheet you write EXP, and in Python np dot exp. And e to any power is above zero, even for a negative power.')))
 
     S.append(dict(kind='idea', title='A logarithm undoes an exponential: it answers "which power gives this number?"',
                   visual=dict(kind='ma_graph', curves=[dict(fn='np.exp(x)', color='red', label='$e^x$', lx=-2.9, ly=3.6), dict(fn='np.log(x)', color='ink', label='ln x', lx=3.6, ly=0.35)],
@@ -124,18 +125,17 @@ def build():
                   points=['The curves eˣ and ln x are mirror images across the dashed line y = x.', 'ln x is the natural logarithm: the logarithm with base e.', 'ln 1 = 0, because e⁰ = 1. And ln x exists only for x above 0.'],
                   notes=('A logarithm answers one question: which power gives this number? Two to the power three is eight, so the logarithm base two of eight is three. '
                          'In machine learning we almost always use the natural logarithm, written ln, which has base e. Look at the picture. The red curve is e to the x, and the black curve is ln of x. '
-                         'They are mirror images across the dashed line, which is what inverse means. Notice that ln of one is zero, and that ln only exists for numbers above zero. '
+                         'They are mirror images across the dashed line, which is what inverse means. Look where ln of one sits: at zero. And ln only exists for numbers above zero. '
                          'What do you think happens to ln x as x gets closer and closer to zero?')))
 
     S.append(dict(kind='formula', title='The logarithm as a formula: the answer x is the power that gives y',
-                  formulas=[('Definition, base b', r'$\log_b(y) = x \;\Longleftrightarrow\; b^{x} = y$'), ('Examples', r'$\log_2 8 = 3,\quad \log_{10} 1000 = 3,\quad \ln e = 1$')],
-                  symbols=[['b', 'The base: the number that is multiplied by itself. Common bases are 2, 10 and e = 2.71828.', 'b = 2 in log₂ 8 = 3'], ['ln', 'The natural logarithm: the logarithm with base e.', 'ln 6 = 1.7918'],
-                           ['y', 'The number we take the logarithm of. It must be above 0.', 'y = 8 in log₂ 8 = 3'], ['x', 'The answer: the power that b must be raised to, to give y.', 'x = 3 in log₂ 8 = 3']],
+                  formulas=[('Definition, base a', r'$\log_a(y) = x \;\Longleftrightarrow\; a^{x} = y$'), ('Examples', r'$\log_2 8 = 3,\quad \log_{10} 1000 = 3,\quad \ln e = 1$')],
+                  symbols=[['a', 'The base: the number that is multiplied by itself. Common bases are 2, 10 and e ≈ 2.71828. (b stays the bias.)', 'a = 2 in log₂ 8 = 3'], ['ln', 'The natural logarithm: the logarithm with base e.', 'ln 6 = 1.7918'],
+                           ['y', 'The number we take the logarithm of. It must be above 0.', 'y = 8 in log₂ 8 = 3'], ['x', 'The answer: the power that a must be raised to, to give y.', 'x = 3 in log₂ 8 = 3']],
                   size=26, note='Python: np.log is natural, np.log10 is base 10. Spreadsheet: LN is natural, LOG10 is base 10.',
-                  notes=('Here is the definition as a formula. The logarithm base b of y equals x exactly when b to the power x equals y. '
-                         'So log base two of eight is three, log base ten of a thousand is three, and ln of e is one. The base b is the number being multiplied. The number y must be above zero. '
-                         'And the answer x is the power. Watch the names in the tools. In Python, np dot log is the natural logarithm, and the base ten one is np dot log ten. In a spreadsheet, LN is natural. '
-                         'Which function would you use to get log base ten in Python?')))
+                  notes=('As a formula: the logarithm base a of y equals x exactly when a to the power x equals y. I call the base a, because b is kept for the bias. '
+                         'So log base two of eight is three, log base ten of a thousand is three, and ln of e is one. The base is the number being multiplied. The number y must be above zero. '
+                         'And the answer x is the power. Watch the names in the tools. In Python, np dot log is the natural logarithm, and the base ten one is np dot log ten. In a spreadsheet, LN is natural and LOG10 is base ten.')))
 
     S.append(dict(kind='idea', title='A probability lies between 0 and 1, so its natural logarithm is zero or negative',
                   visual=dict(kind='ma_graph', curves=[dict(fn='np.log(x)', color='ink', x0=0.01, label='ln p', lx=0.62, ly=-0.9)],
@@ -143,72 +143,70 @@ def build():
                                       dict(x=0.01, y=float(np.log(0.01)), label='0.01: −4.605', dx=0.2, dy=0.3)],
                               xlim=(0, 1), ylim=(-5, 1), xticks=[0, 0.25, 0.5, 0.75, 1], yticks=[-5, -4, -3, -2, -1, 0, 1], xlabel='probability p', ylabel='ln p'),
                   lead='A certain event (p = 1) has ln p = 0. The smaller the probability, the more negative ln p.',
-                  points=['p = 1 gives 0. p = 0.5 gives −0.693.', 'Minus ln p is the negative log-probability. It grows as p shrinks.', 'Training uses it for the correct word as the loss.'],
-                  notes=('Now we connect logarithms to probabilities. A probability is between zero and one. Look at the curve of ln p on that range. At p equals one, the logarithm is zero. '
+                  points=['p = 1 gives 0. p = 0.5 gives −0.693.', 'Minus ln p grows as p shrinks.', 'For the right word it is the loss (the number training makes small).'],
+                  notes=('Logarithms and probabilities meet on this slide. A probability is between zero and one. Look at the curve of ln p on that range. At p equals one, the logarithm is zero. '
                          'At one half it is minus zero point six nine three. At one tenth it is minus two point three, and at one in a hundred it is minus four point six. The smaller the probability, the more negative the logarithm. '
-                         'If we flip the sign we get minus ln p, the negative log-probability, which is positive and grows as the event gets less likely. This is the number that training will use. '
-                         'What is ln of a probability of zero?')))
+                         'If we flip the sign we get minus ln p, the negative log-probability, which is positive and grows as the event gets less likely. Training calls this number the loss, the score it tries to make small, and we see it at work near the end of today.')))
 
     S.append(dict(kind='formula', title='Log rules: a logarithm turns multiplying into adding',
-                  formulas=[('Product rule', r'$\ln(a \times b) = \ln a + \ln b$'), ('Quotient rule', r'$\ln\!\left(\frac{a}{b}\right) = \ln a - \ln b$'), ('Power rule', r'$\ln(a^{k}) = k\,\ln a$')],
-                  symbols=[['a and b', 'Any two numbers above 0.', 'a = 2, b = 3'], ['k', 'Any number, used as a power.', 'k = 2'],
-                           ['Worked example', 'ln 6 = ln 2 + ln 3', f'{F["ln6"]:.4f} = {F["ln2"]:.4f} + {F["ln3"]:.4f}']],
+                  formulas=[('Product rule', r'$\ln(u \times v) = \ln u + \ln v$'), ('Quotient rule', r'$\ln\!\left(\frac{u}{v}\right) = \ln u - \ln v$'), ('Power rule', r'$\ln(u^{k}) = k\,\ln u$')],
+                  symbols=[['u and v', 'Any two numbers above 0.', 'u = 2, v = 3'], ['k', 'Any number, used as a power.', 'k = 2'],
+                           ['Product rule', 'ln 6 = ln 2 + ln 3', f'{F["ln6"]:.4f} = {F["ln2"]:.4f} + {F["ln3"]:.4f}'], ['Power rule', 'ln 9 = ln(3²) = 2 ln 3', f'{F["ln9"]:.4f} = 2 × {F["ln3"]:.4f}']],
                   size=22, note='Check the quotient rule: ln(6 ÷ 2) = ln 3 = 1.0986, and ln 6 − ln 2 = 1.7918 − 0.6931 = 1.0986.',
-                  notes=('Here are the three log rules. The product rule says the log of a times b is the log of a plus the log of b. The quotient rule says the log of a divided by b is the log of a minus the log of b. '
-                         'And the power rule says the log of a to the power k is k times the log of a. All three rules say the same thing in different ways: a logarithm turns multiplying into adding. '
-                         'Look at the worked example. The natural log of six is one point seven nine one eight, and the natural logs of two and three are zero point six nine three one and one point zero nine eight six. They add up. '
-                         'What would the log of a hundred be, if you know the log of ten?')))
+                  notes=('Three log rules. The product rule says the log of u times v is the log of u plus the log of v. The quotient rule says the log of u divided by v is the log of u minus the log of v. '
+                         'And the power rule says the log of u to the power k is k times the log of u. All three say one thing: a logarithm turns multiplying into adding. '
+                         'In the worked rows, ln six is one point seven nine one eight, the sum of ln two and ln three. And ln nine is twice ln three, two point one nine seven two, because nine is three squared. '
+                         'If you know the log of ten, what is the log of a hundred?')))
 
     S.append(dict(kind='idea', title='Check the product rule on the curve: ln 2 plus ln 3 equals ln 6',
                   visual=dict(kind='ma_graph', curves=[dict(fn='np.log(x)', color='ink', x0=0.3, label='ln x', lx=4.2, ly=1.35)],
                               points=[dict(x=2, y=F['ln2'], label='ln 2 = 0.693', dx=0.15, dy=-0.18), dict(x=3, y=F['ln3'], label='ln 3 = 1.099', dx=0.15, dy=-0.18), dict(x=6, y=F['ln6'], label='ln 6 = 1.792', dx=-0.2, dy=0.28, ha='right')],
                               segs=[(0, F['ln2'], 2, F['ln2']), (2, 0, 2, F['ln2']), (0, F['ln3'], 3, F['ln3']), (3, 0, 3, F['ln3']), (0, F['ln6'], 6, F['ln6']), (6, 0, 6, F['ln6'])],
                               xlim=(0, 7), ylim=(0, 2.2), xticks=list(range(8)), yticks=[0, 0.5, 1, 1.5, 2], xlabel='x', ylabel='ln x'),
-                  lead='Product rule check with a = 2 and b = 3: ln 2 + ln 3 should equal ln 6.',
+                  lead='Product rule check with u = 2 and v = 3: ln 2 + ln 3 should equal ln 6.',
                   points=['ln 2 = 0.6931 and ln 3 = 1.0986. Their sum is 1.7918.', 'The height of the curve at x = 6 is also 1.7918, because 2 × 3 = 6.', 'Heights on the curve add when the inputs multiply.'],
-                  notes=('Let us check the product rule by hand. Read the heights from the curve. The natural log of two is zero point six nine three one. The natural log of three is one point zero nine eight six. Add them and you get one point seven nine one eight. '
-                         'Now read the height of the curve at six, and it is one point seven nine one eight too. That is no accident, because two times three is six. The rule says heights on the curve add when the inputs multiply. '
-                         'This picture is the whole reason logarithms matter in AI. Can you see why that helps when we have to multiply a lot of probabilities?')))
+                  notes=('We can check the product rule by hand. Read the heights from the curve. The natural log of two is zero point six nine three one. The natural log of three is one point zero nine eight six. Add them and you get one point seven nine one eight. '
+                         'Now read the height of the curve at six, and it is one point seven nine one eight too, because two times three is six. The rule says heights on the curve add when the inputs multiply. '
+                         'This picture is the whole reason logarithms matter in AI: a long chain of multiplications becomes a chain of additions.')))
 
     S.append(dict(kind='wide', title='A sentence has the probability of all its words multiplied together',
                   visual=dict(kind='ma_chain', words=SENT_WORDS, probs=[float(v) for v in SENT_P], sentence_note='The lab sentence, one word at a time (illustrative: made-up probabilities)'),
                   caption='Multiply the six word probabilities for the sentence. Add their logarithms for its log-probability.',
-                  notes=('Here is the sentence you will use in the lab, six words, with made-up probabilities. Each word has a probability that the model gave it, knowing the words before it. The sentence probability is all six multiplied: zero point three, times zero point two, times zero point five, times zero point four, times zero point seven, times zero point six two. That is zero point zero zero five two zero eight. '
-                         'Now take the natural log of each word probability and add the six numbers. We get minus five point two five seven six, and the natural log of the product is the same number. Same answer, and now only additions. Which would you rather do for a thousand words?')))
+                  notes=('This is the sentence you will use in the lab, six words, with made-up probabilities. Each word has a probability that the model gave it, knowing the words before it. The sentence probability is all six multiplied: zero point three, times zero point two, times zero point five, times zero point four, times zero point seven, times zero point six two. That is zero point zero zero five two zero eight. '
+                         'Now take the natural log of each word probability and add the six numbers. We get minus five point two five seven six, and the natural log of the product is the same number. Same answer, and now only additions, which is what you want for a thousand words.')))
 
     S.append(dict(kind='formula', title='The log of a product is the sum of the logs: ln P is the sum of the ln pᵢ',
                   formulas=[r'$P = \prod_{i=1}^{n} p_i \quad\Longrightarrow\quad \ln P = \sum_{i=1}^{n} \ln p_i$', ('Our six words', r'$\ln P = -1.204 - 1.609 - 0.693 - 0.916 - 0.357 - 0.478 = -5.2576$')],
                   symbols=[['Π (capital pi)', 'Multiply everything that comes after it. It is the product symbol.', 'six probabilities'], ['pᵢ', 'The probability the model gave to word i, knowing the words before it.', '0.3, 0.2, 0.5, 0.4, 0.7, 0.62'],
                            ['P', 'The probability of the whole sentence.', f'{F["sent_prod"]:.6f}'], ['ln P', 'The log-probability of the sentence: zero or negative.', f'{F["sent_logsum"]:.4f}'.replace('-', '−')]],
-                  size=18, note='Average of minus ln p per word: 5.2576 ÷ 6 = 0.8763. Each ln value above is rounded.',
-                  notes=('Now the formula. A capital pi means multiply, the way a capital sigma means add. So P equals the product of all the word probabilities, p one times p two, and so on up to p n. '
+                  size=18, note='Plain average per word: 5.2576 ÷ 6 = 0.8763 nats, the training loss (cross-entropy, Session 17).',
+                  notes=('The formula has a new symbol. A capital pi means multiply, the way a capital sigma means add. So P equals the product of all the word probabilities, p one times p two, and so on up to p n. '
                          'The product rule, used again and again, says the log of P is the sum of the logs of the p values. The right side has only additions. '
-                         'For our six words, the product is zero point zero zero five two zero eight, and the sum of the logs is minus five point two five seven six. Divide by six and you get the average per word, zero point eight seven six three. '
-                         'This identity is the bridge from probabilities to the training of language models. Why is it good that the right side has only additions?')))
+                         'For our six words, the product is zero point zero zero five two zero eight, and the sum of the logs is minus five point two five seven six. Flip the sign and divide by six: the plain average per word is zero point eight seven six three. '
+                         'That average over the words of a real text is the training loss of a language model, called cross-entropy, and its unit is nats because we used ln. Session seventeen returns to it.')))
 
     S.append(dict(kind='wide', title='A long product of probabilities shrinks to zero, but the sum of the logarithms stays usable',
                   visual=dict(kind='ma_scale'),
                   caption='A computer stores numbers down to about 10⁻³⁰⁸. Below that, a product rounds to 0 (underflow).',
-                  notes=('Here is the practical reason. A computer stores numbers only down to about ten to the minus three hundred and eight. Below that it rounds to zero, which is called underflow. '
+                  notes=('The practical reason is about storage. A computer stores numbers only down to about ten to the minus three hundred and eight. Below that it rounds to zero, which is called underflow. '
                          'Take a text of one thousand words, where each word has probability zero point two. The product is about ten to the minus six hundred and ninety-nine, far below the limit, so the computer shows zero. '
-                         'But the sum of the logarithms is one thousand times minus one point six one, which is minus one thousand six hundred and nine, an ordinary number. Real texts are long, so AI software always works with log-probabilities. '
-                         'Does that make sense?')))
+                         'But the sum of the logarithms is one thousand times minus one point six one, which is minus one thousand six hundred and nine, an ordinary number. Real texts are long, so AI software always works with log-probabilities.')))
 
-    S.append(dict(kind='compare', title='Common mistake: ln(a + b) differs from ln a + ln b',
+    S.append(dict(kind='compare', title='Common mistake: ln(u + v) differs from ln u + ln v',
                   left=dict(head='Wrong', points=['ln(2 + 3) = ln 2 + ln 3', 'That gives 1.7918, but ln 5 is 1.6094.', 'np.log is base 10.']),
                   right=dict(head='Right', points=['ln(2 + 3) = ln 5 = 1.6094.', 'ln(2 × 3) = ln 2 + ln 3 = 1.7918.', 'np.log is the natural logarithm (base e).']),
                   verdict='The log rules are for products only.',
-                  notes=('Here is the mistake I see most often. People read that a logarithm turns multiplying into adding, and then apply it to a sum. It does not. Take the natural log of two plus three. That is the log of five, which is one point six zero nine four. '
+                  notes=('This is the mistake I see most often. People read that a logarithm turns multiplying into adding, and then apply it to a sum. It does not. Take the natural log of two plus three. That is the log of five, which is one point six zero nine four. '
                          'The log of two plus the log of three is one point seven nine one eight, a different number. The rules are about products, quotients and powers only. '
                          'The second trap is about tools. In Python, np dot log is the natural logarithm, and the base ten one has its own name. Which of the two traps would catch you first?')))
 
     S.append(dict(kind='code', title='Read the recipe before you run it: sums, logarithms and exponentials',
-                  code='p = np.array([0.62, 0.18, 0.10, 0.06, 0.04])\ntotal = np.sum(p)\nneg_log_p = -np.log(p)\navg_neg_log_p = np.sum(p * neg_log_p)\nback = np.exp(np.log(6))',
+                  code='p = np.array([0.62, 0.18, 0.10, 0.06, 0.04])\ntotal = np.sum(p)\nneg_log_p = -np.log(p)\nentropy = np.sum(p * neg_log_p)\nsentence_p = np.prod(word_p)\nback = np.exp(np.log(6))',
                   reads=['Line 1: the five probabilities in a list called an array.', 'Line 2: add them up, which is the sigma sum.', 'Line 3: minus ln of each one, all at once.',
-                         'Line 4: multiply each p by its minus ln p, then add: the average of minus ln p, weighted by p. This is the entropy (Session 17). Spreadsheet: SUMPRODUCT.', 'Line 5: EXP undoes LN, so you get 6 back. Spreadsheet: =EXP(LN(6)).'],
-                  notes=('Before the lab, read the recipe. In Python, np dot array makes a list of numbers we can compute with. Np dot sum is the sigma sum. Minus np dot log of p takes minus ln of every probability at once. '
-                         'Line four multiplies each probability by its own minus ln and adds the results. In a spreadsheet that is called SUMPRODUCT, and you will use it in the lab. '
-                         'The last line shows that EXP and LN undo each other. In a spreadsheet the same steps are SUM, minus LN, SUMPRODUCT and EXP. Which function adds up a column of cells?')))
+                         'Line 4: each p times its minus ln p, added up: the entropy, 1.133 nats (Session 17). Spreadsheet: SUMPRODUCT.', 'Line 5: multiply all six word probabilities. Spreadsheet: =PRODUCT(B27:B32).', 'Line 6: EXP undoes LN, so you get 6 back.'],
+                  notes=('Read the recipe before the lab. In Python, np dot array makes a list of numbers we can compute with. Np dot sum is the sigma sum. Minus np dot log of p takes minus ln of every probability at once. '
+                         'Line four multiplies each probability by its own minus ln and adds the results. That number has a name, the entropy, one point one three three nats, and Session seventeen explains it. In a spreadsheet it is SUMPRODUCT. '
+                         'Line five multiplies a whole list, np dot prod in Python and PRODUCT in a spreadsheet. The last line shows that EXP and LN undo each other.')))
 
     S.append(dict(kind='divider', title='Part 2: the lab', lead='Close the slides. Open the notebook or the workbook.', section='Lab',
                   notes=('That is the end of the ideas. Everything you need is on the slides you have just seen, and the notebook and the workbook explain every step again. '
@@ -218,23 +216,23 @@ def build():
     S.append(dict(kind='steps', title='The lab has seven steps, and each one uses a number from the slides',
                   steps=[dict(head='1 Add up', text='Sigma sum', icon='calculator'), dict(head='2 Function', text='f(3) for 2x + 1', icon='gear'),
                          dict(head='3 LN, EXP', text='ln 6, product rule', icon='chart'), dict(head='4 Minus ln p', text='Each word', icon='magnifier'),
-                         dict(head='5 Average', text='p times minus ln p', icon='folder'), dict(head='6 Sentence', text='Product and sum of logs', icon='check'), dict(head='7 1000 words', text='Underflow', icon='clock')], highlight=3,
+                         dict(head='5 Entropy', text='p times minus ln p, added', icon='folder'), dict(head='6 Sentence', text='Product and sum of logs', icon='check'), dict(head='7 1000 words', text='Underflow', icon='clock')], highlight=3,
                   caption='Predict first, run, read, then change one thing. Steps 6 and 7 are the sentence of six words, then the 1000-word test.',
-                  notes=('Here is the map of the lab. Step one, the sigma sum of the five probabilities. Step two, the function f of three. Step three, the natural log and the product rule. '
-                         'Step four, minus ln p for each candidate word. Step five, the average of minus ln p, weighted by each probability. Step six, a six-word sentence, once as a product and once as a sum of logs, with its average per word. Step seven tests a thousand words. '
+                  notes=('The lab has seven steps. Step one, the sigma sum of the five probabilities. Step two, the function f of three. Step three, the natural log and the product rule. '
+                         'Step four, minus ln p for each candidate word. Step five, the entropy: each probability times its minus ln p, added up. Step six, a six-word sentence, once as a product and once as a sum of logs, with its plain average per word. Step seven tests a thousand words. '
                          'In every step, predict first, then run, then read the output, then change one thing. Please do not skip the predictions.')))
 
     S.append(dict(kind='table', title='Check your numbers before you move on',
                   headers=['What you compute', 'You should get'],
                   rows=[['Sum of the five probabilities', f'{F["total"]:.2f}'], ['f(3) for f(x) = 2x + 1', '7'], ['ln 6, and ln 2 + ln 3', f'{F["ln6"]:.4f}'],
-                        ['Minus ln p for Kampala (p = 0.62)', f'{sp[0]:.3f}'], ['Sum of p times minus ln p, five words', f'{F["avg_neg_log_p"]:.3f}'],
-                        ['Six word p: product, then sum of ln', f'{F["sent_prod"]:.6f} and ' + f'{F["sent_logsum"]:.4f}'.replace('-', '−')], ['Average minus ln p per word, sentence', f'{F["sent_avg"]:.4f}'],
+                        ['Minus ln p for Kampala (p = 0.62)', f'{sp[0]:.3f}'], ['Entropy: sum of p times minus ln p, five words', f'{F["avg_neg_log_p"]:.3f} nats'],
+                        ['Six word p: product, then sum of ln', f'{F["sent_prod"]:.6f} and ' + f'{F["sent_logsum"]:.4f}'.replace('-', '−')], ['Plain average of minus ln p per word, sentence', f'{F["sent_avg"]:.4f}'],
                         ['1000 words, p = 0.2: sum of logs', f'{F["long_logsum"]:.2f}'.replace('-', '−')]],
                   widths=[7.2, 4.0], icons=['calculator', 'gear', 'chart', 'magnifier', 'check', 'folder', 'calculator', 'clock'],
                   note='If your number differs, find the step that went wrong. Do not change a number to match.',
                   notes=('Use this table as your checkpoint. If your numbers match, carry on. If one does not, stop and call me, because later steps use the earlier ones. '
                          'The most common cause is a cell run out of order, or a minus sign missing in front of the logarithm. Do not change a number to make it match. Find out why it is different. '
-                         'The Check sheet in the workbook and the last cell of the notebook do the same comparison for you.')))
+                         'The Check sheet in the workbook and the last cell of the notebook do the same comparison for you, so you never have to judge a number by eye alone.')))
 
     S.append(dict(kind='table', title='Four messages you may meet, what they mean and what to do',
                   headers=['What you see', 'What it means', 'What to do'],
@@ -250,34 +248,33 @@ def build():
     S.append(dict(kind='idea', title='Where this appears in AI: a probability for every possible next word',
                   visual=dict(kind='ma_nextword', words=WORDS, probs=[float(x) for x in P], highlight=0, prompt='The capital of Uganda is ...', loss=False),
                   lead='Language models of this kind give every possible next token a probability.',
-                  points=['A token is a piece of text, often a word or part of a word.', 'These numbers are illustrative (made up). They add up to 1.', 'Open models publish vocabularies of 32,000 to over 250,000 tokens.'],
-                  notes=('Now to where this appears. ChatGPT, Gemini, Claude and other assistants are products built on large language models. Their exact designs are not published, but published research describes how models of this kind work. '
+                  points=['A token is a piece of text, often a word or part of a word.', 'These numbers are illustrative (made up). They add up to 1.', 'Vocabulary of open models: Llama 2, 32,000 tokens; Gemma, 256,000.'],
+                  notes=('ChatGPT, Gemini, Claude and other assistants are products built on large language models. Their exact designs are not published, but published research describes how models of this kind work. '
                          'They read the text so far and give every possible next token a probability. A token is a piece of text, often a word or part of a word. '
-                         'Here are five candidate tokens with made-up probabilities that add up to one. Open models publish vocabularies from roughly thirty-two thousand to more than two hundred and fifty thousand tokens, and score all of them at every step. '
+                         'Here are five candidate tokens with made-up probabilities that add up to one. Open models publish their vocabulary size: Llama 2 has thirty-two thousand tokens and Gemma about two hundred and fifty-six thousand, and the model scores all of them at every step. '
                          'Which token would the model most likely choose here?')))
 
     S.append(dict(kind='idea', title='Where this appears in AI: training uses ln of the right word probability',
                   visual=dict(kind='ma_graph', curves=[dict(fn='-np.log(x)', color='red', x0=0.02, label='loss = −ln p', lx=0.38, ly=3.55)],
                               points=[dict(x=0.62, y=float(sp[0]), label='Kampala 0.62: 0.478', dx=0.04, dy=0.4), dict(x=0.18, y=float(sp[1]), label='0.18: 1.715', dx=0.04, dy=0.4), dict(x=0.04, y=float(sp[4]), label='0.04: 3.219', dx=0.04, dy=0.4)],
-                              xlim=(0, 1), ylim=(0, 4), xticks=[0, 0.25, 0.5, 0.75, 1], yticks=[0, 1, 2, 3, 4], xlabel='probability the model gave to the right word', ylabel='loss for that word'),
+                              xlim=(0, 1), ylim=(0, 4), xticks=[0, 0.25, 0.5, 0.75, 1], yticks=[0, 1, 2, 3, 4], xlabel='probability the model gave to the right word', ylabel='loss for that word (nats)'),
                   lead='Training scores the model by minus ln p, where p is the probability it gave the word that really came next.',
-                  points=['The right word is Kampala. With p = 0.62 the loss is 0.478.', 'With only p = 0.04 the loss is 3.219. A low probability on the right word gives a high loss.', 'The average is the cross-entropy loss (Session 17).'],
-                  notes=('Here is the link to training. Published research describes language models of this kind as trained to predict the next token. For each position in a text, the model gives a probability to the token that really came next. '
+                  points=['The right word is Kampala. With p = 0.62 the loss is 0.478.', 'With only p = 0.04 the loss is 3.219. A low probability on the right word gives a high loss.', 'Averaged over a text: cross-entropy (Session 17).'],
+                  notes=('This graph is the link to training. Published research describes language models of this kind as trained to predict the next token. For each position in a text, the model gives a probability to the token that really came next. '
                          'The training score for that position is minus ln of that probability, called the loss. If the model gave Kampala zero point six two, the loss is zero point four seven eight. If it gave only zero point zero four, the loss is three point two one nine. '
-                         'So a low probability on the right word means a high loss, and training pushes the loss down. The average of these numbers is called the cross-entropy loss, and we meet it properly in Session seventeen. '
-                         'Why does a sum of logs suit a whole text?')))
+                         'So a low probability on the right word means a high loss, and training pushes the loss down. Averaged over every word of a text, as you did for the six-word sentence, it is called the cross-entropy loss, and we meet it properly in Session seventeen.')))
 
     S.append(dict(kind='practice', title='Where this appears in AI: check an assistant with your numbers', minutes=8, label='Hands-on activity',
                   task='Ask any AI assistant: "What is ln 6, and what is ln 2 plus ln 3?"',
                   steps=['Use only public maths. Never paste confidential data.', 'Compare its ln 6 with your lab number, 1.7918.', 'Ask why the two answers agree. Does the reasoning match the product rule?', 'Ask the same question again. Does the answer change?'],
                   output='A note: the assistant answer, your lab number, and whether they agree.',
-                  notes=('Now a short activity. Open any AI assistant you like. Ask it: what is ln six, and what is ln two plus ln three. Then compare its answer with the number you computed in the lab, one point seven nine one eight. '
+                  notes=('A short activity. Open any AI assistant you like. Ask it: what is ln six, and what is ln two plus ln three. Then compare its answer with the number you computed in the lab, one point seven nine one eight. '
                          'Ask it to explain why the two agree, and judge for yourself whether its explanation matches the product rule from today. Then ask the same question a second time. Does the answer stay the same? '
-                         'Never paste anything confidential into an assistant. These numbers are public maths, so they are safe. Write down what you found. Who trusts the answer, and why?')))
+                         'Never paste anything confidential into an assistant. These numbers are public maths, so they are safe. Write down what you found, because we compare notes before the exit check.')))
 
     S.append(dict(kind='table', title='Exit check: three questions, then compare with the short answers',
                   headers=['Question', 'Short answer'],
-                  rows=[['What is the sum from i = 1 to 3 of p_i, when p_1 = 0.5, p_2 = 0.3 and p_3 = 0.2?', '1.0. Sigma means add: 0.5 + 0.3 + 0.2.'],
+                  rows=[['What is Σ pᵢ for i = 1 to 3, when p₁ = 0.5, p₂ = 0.3 and p₃ = 0.2?', '1.0. Sigma means add: 0.5 + 0.3 + 0.2.'],
                         ['Fill the gap: ln 12 = ln 3 + ln ?', 'ln 4, because 3 × 4 = 12 and the logarithm of a product is the sum of the logarithms.'],
                         ['Why do AI programs add log-probabilities instead of multiplying probabilities?', 'A product of many small probabilities underflows to 0. A sum of logs stays an ordinary number.']],
                   widths=[5.4, 6.6], icons=['calculator', 'chart', 'check'],
@@ -291,8 +288,9 @@ def build():
               'Write the "check your numbers" table on the board before the lab.',
               'Have a calculator with an LN key at hand. A phone calculator in scientific mode is enough.',
               'This is the first session. Spend the welcome ten minutes on the course shape: picture, hand example, lab, then AI. Explain that there are no exams and no marks, only automatic checks that learners run for themselves, and that each learner finishes with a course project to keep.'],
-        misconceptions=[('A logarithm of a probability should be positive', 'Probabilities are at most 1, so their natural logarithms are zero or negative. We use minus ln p when we want a positive number.'),
-                        ('ln(a + b) equals ln a + ln b', 'The rule is for products: ln(a × b) = ln a + ln b. The log of a sum has no simple rule.'),
+        misconceptions=[('The entropy (1.133) and the per-word loss (0.876) are the same kind of average', 'The entropy weights minus ln p by p over the five candidates. The per-word loss is a plain average over the words of a real text. Session 17 links them.'),
+                        ('A logarithm of a probability should be positive', 'Probabilities are at most 1, so their natural logarithms are zero or negative. We use minus ln p when we want a positive number.'),
+                        ('ln(u + v) equals ln u + ln v', 'The rule is for products: ln(u × v) = ln u + ln v. The log of a sum has no simple rule.'),
                         ('np.log is the base 10 logarithm', 'np.log is the natural logarithm (base e). Base 10 is np.log10. In a spreadsheet LN is natural and LOG is base 10.'),
                         ('The probabilities of a model are chosen by a person', 'The model computes them from the text so far. In this session the numbers are made up only to show the arithmetic.')],
         probes=[('What does the index i do in sigma notation?', 'It counts the position of a value in the list, from the start value to the stop value.'),
@@ -306,9 +304,9 @@ def build():
         lab_steps=[('Step 1: sigma sum', 'Python: np.sum(p) gives 1.0. Spreadsheet: =SUM of the five cells. Anyone who gets 0.9 or 1.1 has mistyped a probability.'),
                    ('Step 2: the function', 'f(3) = 7 in both. In the workbook the gold cell is a formula with the cell reference for x, not the typed number 3.'),
                    ('Step 3: LN and EXP', 'ln 6 = 1.7918 and ln 2 + ln 3 is the same. Python: np.log, not np.log10. Spreadsheet: LN, not LOG.'),
-                   ('Step 4: minus ln p', 'Five numbers, 0.478 to 3.219. The common slip is a missing minus sign, which gives negative numbers.'),
-                   ('Step 5: average with SUMPRODUCT or a dot product', 'Result 1.133. In the spreadsheet it is SUMPRODUCT of the p column and the minus ln p column.'),
-                   ('Step 6: product against sum of logs', 'Product 0.005208, sum of logs −5.2576, and EXP of the sum equals the product. The average per word is 0.876.'),
+                   ('Step 4: minus ln p', 'Five numbers, 0.478 to 3.219, adding up to 10.528. The common slip is a missing minus sign, which gives negative numbers.'),
+                   ('Step 5: entropy with SUMPRODUCT or a dot product', 'Result 1.133 nats (1.634 bits if someone uses log base 2). In the spreadsheet it is SUMPRODUCT of the p column and the minus ln p column. It is a p-weighted sum over the five candidates, unlike the plain average per word in Step 6.'),
+                   ('Step 6: product against sum of logs', 'Product 0.005208 (np.prod or PRODUCT), sum of logs −5.2576, and EXP of the sum equals the product. The plain average per word is 0.876 nats: the training loss of this text.'),
                    ('Step 7: 1000 words', 'Python prints 0.0 for the product and −1609.44 for the sum of logs. The spreadsheet formula for the product may show 0 or an error, and that is the lesson.')],
         rescue=['If the concepts run over, skip the quotient rule and the power rule on the log-rules slide. The product rule is what the lab needs.',
                 'If only thirty minutes of lab remain, do steps 1 to 5 and step 7, and leave the six-word sentence for homework.',
@@ -320,6 +318,8 @@ def build():
                         ['Step 3 READ: ln 2 + ln 3 and ln 6?', 'Both are 1.7918. The product rule works.'],
                         ['Step 4 PREDICT: which word has the biggest minus ln p?', 'Nairobi, the least likely word: 3.219.'],
                         ['Step 4 CHANGE: run p[0] = 0.9 and repeat Step 4. What happens to its minus ln p?', 'It falls to 0.105. A more confident right answer means a lower loss.'],
+                        ['Step 5 PREDICT and READ: entropy near 0.5 or 3? Why do nats and bits differ?', '1.133 nats, nearer 0.5 than 3, because Kampala holds most of the probability. In bits it is 1.634: log base 2 of a number is ln of it divided by ln 2 (0.693), so the unit changes the size of the number.'],
                         ['Step 6 READ: how does exp of the sum of logs compare with the product?', 'They are equal, 0.005208.'],
+                        ['Step 6c PREDICT: is the per-word loss closer to 0.1 or to 1?', 'Closer to 1: 0.876 nats per word.'],
                         ['Step 7 READ: why is the product 0.0 and the sum of logs fine?', 'The product underflows below about 10^-308. The sum of logs is −1609.44, an ordinary number.']])
     return s

@@ -30,7 +30,7 @@ def build(solution=False):
             'Build 3 with the formula for a 2 by 2 covariance matrix. Build 4 as ONE forward and backward step for ONE example (the notebook trains a network on 40 points). Build 5 for 3 tokens with d = 2.',
             ['Sheet Linear: build the normal equation with MMULT and MINVERSE, then the mean squared error.',
              'Sheet Logistic: a table of 5 gradient steps. Fill the gradient columns and the weight updates.',
-             'Sheet PCA: the covariance entries (divide by n), the two eigenvalues from the 2 by 2 formula, the first component and the scores.',
+             'Sheet PCA: the sample covariance entries (divide by n - 1 = 9), the two eigenvalues from the 2 by 2 formula, the first component and the scores.',
              'Sheet Network: one forward step and one backward step through the 2-4-1 network for the input (1, 2) and target 1, then one weight update.',
              'Sheet Attention: queries, keys and values with MMULT, scaled scores, a stable softmax in cells, and the output.',
              'Open the sheet Check. Every check names its build. It says All checks pass when everything is right.'])
@@ -38,7 +38,7 @@ def build(solution=False):
     # ------------------------------------------------------------------ Build 1: Linear
     ws = x.sheet('Linear', {'A': 26, 'B': 12, 'C': 12, 'D': 14, 'E': 4, 'F': 14, 'G': 12, 'H': 4, 'I': 12, 'J': 12, 'K': 4, 'L': 12})
     x.band(ws, 1, 'Build 1: linear regression by the normal equation', cols=12)
-    x.text(ws, 'A2', 'w = (X^T X)^-1 X^T y. Column x0 is all ones, so w0 is the intercept.', color=xl.GREY, italic=True)
+    x.text(ws, 'A2', 'w = (X^T X)^-1 X^T y. Column x0 is all ones, so the first weight is the intercept b and the second is the slope w1.', color=xl.GREY, italic=True)
     x.table(ws, 'A3', ['x0 (ones)', 'x (hours)', 'y (kWh)', 'Prediction'], [[1, float(a), float(b), None] for a, b in zip(N['x'], N['y'])])
     x.array(ws, 'D4:D9', '=MMULT(A4:B9,F8:F9)', gold=True)
     x.text(ws, 'F3', 'X^T X', bold=True)
@@ -47,22 +47,22 @@ def build(solution=False):
     x.array(ws, 'I4:J5', '=MINVERSE(F4:G5)', gold=True)
     x.text(ws, 'L3', 'X^T y', bold=True)
     x.array(ws, 'L4:L5', '=MMULT(TRANSPOSE(A4:B9),C4:C9)', gold=True)
-    x.text(ws, 'F7', 'Weights w0 and w1', bold=True)
+    x.text(ws, 'F7', 'Weights b and w1', bold=True)
     x.array(ws, 'F8:F9', '=MMULT(I4:J5,L4:L5)', gold=True)
     x.text(ws, 'A12', 'Mean squared error', bold=True)
     x.input(ws, 'B12', answer='=SUMPRODUCT((D4:D9-C4:C9)^2)/6')
     x.text(ws, 'A13', 'Prediction for 7 hours', bold=True)
     x.input(ws, 'B13', answer='=F8+F9*7')
     x.text(ws, 'A15', 'Change one thing: change one y value by 1 and watch w1.', italic=True, color=xl.GREY)
-    x.check('Build 1 (linear regression): weight w0', '=Linear!F8', 1.12, 0.001)
-    x.check('Build 1 (linear regression): weight w1', '=Linear!F9', 0.98, 0.001)
+    x.check('Build 1 (linear regression): intercept b', '=Linear!F8', 1.12, 0.001)
+    x.check('Build 1 (linear regression): slope w1', '=Linear!F9', 0.98, 0.001)
     x.check('Build 1 (linear regression): mean squared error', '=Linear!B12', 0.02133, 0.0005)
     x.check('Build 1 (linear regression): prediction for 7 hours', '=Linear!B13', 7.98, 0.01)
 
     # ------------------------------------------------------------------ Build 2: Logistic
     wl = x.sheet('Logistic', {'A': 16, **{c: 9 for c in 'BCDEFGHIJK'}, 'L': 11, 'M': 11, 'N': 10})
     x.band(wl, 1, 'Build 2: logistic regression, 5 gradient steps', cols=14)
-    x.text(wl, 'A2', 'Each row is one step. p = 1 / (1 + EXP(-(w0 + w1 x))). Gradient of the loss: average of (p - y) and of (p - y) × x. Update: w = w - learning rate × gradient.', color=xl.GREY, italic=True)
+    x.text(wl, 'A2', 'Each row is one step. p = 1 / (1 + EXP(-(b + w1 x))), the sigmoid of Session 11. Gradient of the loss (Session 17, two-class form): average of (p - y) and of (p - y) × x. Update: w = w - learning rate × gradient.', color=xl.GREY, italic=True)
     x.text(wl, 'A3', 'x (hours)', bold=True)
     x.text(wl, 'A4', 'y (passed)', bold=True)
     for j in range(8):
@@ -71,7 +71,7 @@ def build(solution=False):
     x.text(wl, 'A6', 'Learning rate', bold=True)
     wl['B6'] = 0.1
     wl['B6'].border = xl.BOX
-    hdr = ['Step', 'w0', 'w1'] + [f'p{i}' for i in range(1, 9)] + ['grad w0', 'grad w1', 'Loss']
+    hdr = ['Step', 'b', 'w1'] + [f'p{i}' for i in range(1, 9)] + ['grad w0', 'grad w1', 'Loss']
     x.table(wl, 'A8', hdr, [[s] + [None] * 13 for s in range(6)])
     cols = 'DEFGHIJK'
     xc = 'BCDEFGHI'
@@ -97,7 +97,7 @@ def build(solution=False):
     x.text(wl, 'A19', 'Read: the loss starts at 0.693 (every p is 0.5). Does it fall at every step?', italic=True, color=xl.GREY)
     x.text(wl, 'A20', 'Change one thing: set the learning rate to 2 and watch the weights.', italic=True, color=xl.GREY)
     w5 = N['w5']
-    x.check('Build 2 (logistic regression): w0 after 5 steps', '=Logistic!B14', round(float(w5[0]), 5), 0.0005)
+    x.check('Build 2 (logistic regression): b after 5 steps', '=Logistic!B14', round(float(w5[0]), 5), 0.0005)
     x.check('Build 2 (logistic regression): w1 after 5 steps', '=Logistic!C14', round(float(w5[1]), 5), 0.0005)
     x.check('Build 2 (logistic regression): loss after 5 steps', '=Logistic!N14', round(float(N['loss5']), 5), 0.0005)
     x.check('Build 2 (logistic regression): probability at 4.5 hours after 5 steps', '=Logistic!A17', round(float(1 / (1 + np.exp(-(w5[0] + w5[1] * 4.5)))), 5), 0.0005)
@@ -105,7 +105,7 @@ def build(solution=False):
     # ------------------------------------------------------------------ Build 3: PCA
     wp = x.sheet('PCA', {'A': 12, 'B': 12, 'C': 14, 'D': 14, 'E': 14, 'F': 36, 'G': 14, 'H': 4, 'I': 16, 'J': 16})
     x.band(wp, 1, 'Build 3: PCA by formulas', cols=7)
-    x.text(wp, 'A2', 'Centre the data, form the covariance matrix (divide by n, the course convention), find its eigenvalues with the 2 by 2 formula, then project on the first component.', color=xl.GREY, italic=True)
+    x.text(wp, 'A2', 'Centre the data, form the sample covariance matrix (divide by n - 1 = 9, as in Session 5), find its eigenvalues with the 2 by 2 formula, then project on the first component.', color=xl.GREY, italic=True)
     x.table(wp, 'A3', ['a', 'b', 'a centred', 'b centred', 'Score on PC1'], [[float(p), float(q), None, None, None] for p, q in zip(N['a'], N['b'])])
     for r in range(4, 14):
         x.formula(wp, f'C{r}', f'=A{r}-$A$15')
@@ -117,7 +117,7 @@ def build(solution=False):
     x.formula(wp, 'A15', '=AVERAGE(A4:A13)')
     x.formula(wp, 'B15', '=AVERAGE(B4:B13)')
     x.text(wp, 'C15', '<- means', italic=True)
-    rows = [('c11 (variance of a)', '=SUMPRODUCT(C4:C13,C4:C13)/10'), ('c12 (covariance)', '=SUMPRODUCT(C4:C13,D4:D13)/10'), ('c22 (variance of b)', '=SUMPRODUCT(D4:D13,D4:D13)/10'),
+    rows = [('c11 (variance of a)', '=SUMPRODUCT(C4:C13,C4:C13)/9'), ('c12 (covariance)', '=SUMPRODUCT(C4:C13,D4:D13)/9'), ('c22 (variance of b)', '=SUMPRODUCT(D4:D13,D4:D13)/9'),
             ('Eigenvalue 1 (larger)', '=(G4+G6)/2+SQRT(((G4-G6)/2)^2+G5^2)'), ('Eigenvalue 2', '=(G4+G6)/2-SQRT(((G4-G6)/2)^2+G5^2)'),
             ('PC1, a part: c12 / length', '=G5/SQRT(G5^2+(G7-G4)^2)'), ('PC1, b part: (eigenvalue 1 - c11) / length', '=(G7-G4)/SQRT(G5^2+(G7-G4)^2)'), ('Share of variance on PC1', '=G7/(G7+G8)')]
     for i, (lab, f) in enumerate(rows):
@@ -133,7 +133,7 @@ def build(solution=False):
     # ------------------------------------------------------------------ Build 4: Network
     wn = x.sheet('Network', {'A': 24, 'B': 10, 'C': 10, 'D': 12, 'E': 14, 'F': 10, 'G': 16, 'H': 26, 'I': 14, 'J': 14, 'K': 16})
     x.band(wn, 1, 'Build 4: the 2-4-1 network, one forward and one backward step', cols=11)
-    x.text(wn, 'A2', 'ONE illustrative example, not an XOR row: input (1, 2), target 1. Hidden layer: tanh. Output: sigmoid. Loss: -ln p. The notebook trains on 40 points; here you do one step by hand.', color=xl.GREY, italic=True)
+    x.text(wn, 'A2', 'ONE illustrative example, not an XOR row: input (1, 2), target 1. Hidden layer: tanh (Session 11, slope 1 - h^2). Output: sigmoid. Loss: -ln p. The notebook trains on 40 points; here you do one step by hand.', color=xl.GREY, italic=True)
     x.table(wn, 'A3', ['Hidden unit', 'W1 col 1', 'W1 col 2', 'z1 = W1 x', 'h = tanh(z1)', 'W2', 'gW2 = delta × h', 'delta_h = delta × W2 × (1 - h^2)', 'gW1 col 1', 'gW1 col 2', 'W2 after 1 step'],
             [[k + 1, float(E['W1'][k, 0]), float(E['W1'][k, 1]), None, None, float(E['W2'][k]), None, None, None, None, None] for k in range(4)])
     for r in range(4, 8):

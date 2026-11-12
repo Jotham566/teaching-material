@@ -50,7 +50,7 @@ def build(solution: bool):
     n.change('Run the experiment cell: P(ham | free). Predict it first. It must add up with P(spam | free) to 1.')
     n.code('print("P(ham | free) =", round(6 / 34, 4))')
 
-    n.step(2, 'Independence', 'If "free" and spam were independent, the count of spam emails with "free" would be total × P(spam) × P(free).')
+    n.step(2, 'Independence (recall Session 13)', 'Independent events satisfy P(A and B) = P(A) × P(B). If "free" and spam were independent, the count of spam emails with "free" would be total × P(spam) × P(free).')
     n.predict('Will the expected count be bigger or smaller than the observed 28?')
     todo('expected = total * 0.4 * p_free                  # expected spam emails with "free" if independent\n'
          'print(expected, "expected against", table[0, 0], "observed")\n'
@@ -102,8 +102,15 @@ def build(solution: bool):
          'check("posterior spam probability of email 1", p1, 0.9955, 0.0001)\n'
          'check("posterior spam probability of email 2", p2, 0.3304, 0.0001)',
          'def posterior(has, smooth=True):\n'
-         '    # Hint: smoothed likelihoods as on the slides. add = 1 smooths; with add = 0 the likelihood is just count / class size. An absent word counts the opposite way. Compare the two scores.\n'
-         '    return None  # your code here\n'
+         '    add = 1 if smooth else 0                                   # add = 1 smooths; add = 0 uses plain counts\n'
+         '    like_s = (spam_counts + add) / (n_spam + 2 * add)          # likelihood of each word in spam\n'
+         '    like_h = None  # your code here: the same line for ham\n'
+         '    score_s = (n_spam / 100) * np.prod(np.where(has == 1, like_s, 1 - like_s))   # prior times one factor per word\n'
+         '    score_h = None  # your code here: the same line for ham\n'
+         '    if like_h is None or score_h is None:\n'
+         '        return None\n'
+         '    return score_s / (score_s + score_h)\n'
+         '# Hint: copy the spam lines and change spam to ham (60 ham emails). Then fill the two single likelihoods below by hand: (count + 1) / (class size + 2).\n'
          'like_free_spam = None  # your code here\n'
          'like_prize_ham = None  # your code here\n'
          'p1, p2 = posterior(email1), posterior(email2)\n'
@@ -111,14 +118,19 @@ def build(solution: bool):
          'check("smoothed likelihood of prize in ham", like_prize_ham, 0.0161, 0.0001)\n'
          'check("posterior spam probability of email 1", p1, 0.9955, 0.0001)\n'
          'check("posterior spam probability of email 2", p2, 0.3304, 0.0001)')
-    todo('# Long emails: add logarithms instead of multiplying (no underflow), then softmax.\n'
+    todo('# Long emails: add logarithms (no underflow), then the two-class softmax, which is the sigmoid of the gap (Session 11).\n'
          'log_s = np.log(0.4) + np.log(np.where(email1 == 1, (spam_counts + 1) / 42, 1 - (spam_counts + 1) / 42)).sum()\n'
          'log_h = np.log(0.6) + np.log(np.where(email1 == 1, (ham_counts + 1) / 62, 1 - (ham_counts + 1) / 62)).sum()\n'
-         'p_log = 1 / (1 + np.exp(log_h - log_s))              # softmax of two scores\n'
-         'print(round(log_s, 3), round(log_h, 3), round(p_log, 4))\n'
-         'check("posterior of email 1 computed with logs", p_log, 0.9955, 0.0001)',
-         '# Hint: work with the sum of logs for each class, then turn the two log scores back into a probability with a softmax of two numbers.\n'
+         'p_log = 1 / (1 + np.exp(log_h - log_s))              # softmax of two scores = sigmoid of log_s - log_h\n'
+         'check("log score of ham for email 1", log_h, -7.5123, 0.0005)\n'
+         'check("posterior of email 1 computed with logs", p_log, 0.9955, 0.0001)\n'
+         'print(round(log_s, 3), round(log_h, 3), round(p_log, 4))',
+         '# Long emails: add logarithms (no underflow), then the two-class softmax, which is the sigmoid of the gap (Session 11).\n'
+         'log_s = np.log(0.4) + np.log(np.where(email1 == 1, (spam_counts + 1) / 42, 1 - (spam_counts + 1) / 42)).sum()   # given: the spam log score\n'
+         '# Hint: copy the line above for ham (prior 0.6, 60 ham emails, so divide by 62). Then p_log = 1 / (1 + np.exp(log_h - log_s)).\n'
+         'log_h = None  # your code here\n'
          'p_log = None  # your code here\n'
+         'check("log score of ham for email 1", log_h, -7.5123, 0.0005)\n'
          'check("posterior of email 1 computed with logs", p_log, 0.9955, 0.0001)')
     n.read('Which words pushed email 2 towards ham? Is the filter sure about it?')
 
@@ -134,6 +146,6 @@ def build(solution: bool):
     n.change('Run the experiment cell: the effect of the prior. Use a prior of 0.01 for spam (a rare-spam mailbox) with the smoothed likelihoods of email 1 and see how far the posterior moves.')
     n.code('ls = (spam_counts + 1) / 42\nlh = (ham_counts + 1) / 62\nss = 0.01 * np.prod(np.where(email1 == 1, ls, 1 - ls))\nsh = 0.99 * np.prod(np.where(email1 == 1, lh, 1 - lh))\nprint(round(ss / (ss + sh), 4))')
 
-    n.step(6, 'Show the checks', 'Run this last cell. A learner who has filled every answer sees "All 14 checks pass".')
+    n.step(6, 'Show the checks', 'Run this last cell. A learner who has filled every answer sees "All 15 checks pass".')
     n.code('show_checks()')
     return n

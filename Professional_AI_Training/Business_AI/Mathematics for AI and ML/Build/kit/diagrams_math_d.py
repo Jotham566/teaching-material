@@ -94,6 +94,13 @@ def n10():
     for _ in range(3):
         d['sgd_steps'].append(d['sgd_steps'][-1] - 0.1 * 2 * (d['sgd_steps'][-1] - 3))
     d['mom'] = momentum_steps([2, 2, 2], 0.9)
+    # the same line fit with three forms of the squared-error loss (Session 10 owns this comparison)
+    sse0 = float((y ** 2).sum())
+    d['forms'] = dict(mse=d['loss0'], half=0.5 * sse0, sse=sse0, dw_mse=d['dw0'], dw_half=-float((xc * y).sum()), dw_sse=-2 * float((xc * y).sum()),
+                      eta_half=0.1 * 2 / n, eta_sse=0.1 / n)
+    d['eta_max_w'] = float(1 / (xc ** 2).mean())                     # centred: w is stable below this learning rate
+    Xu = np.c_[x, np.ones(n)]
+    d['eta_max_uncentred'] = float(2 / np.linalg.eigvalsh(2 / n * Xu.T @ Xu).max())
     return d
 
 
@@ -139,6 +146,13 @@ def n11():
     Wp[0, 0] += h
     Wm[0, 0] -= h
     out['fd_W1_00'] = (loss_with(Wp) - loss_with(Wm)) / (2 * h)
+    # the sigmoid and tanh slopes (Session 11 owns both)
+    out['sig_z'] = -0.3
+    out['sig_a'] = float(_sig(-0.3))
+    out['sig_slope'] = out['sig_a'] * (1 - out['sig_a'])
+    out['tanh_z'] = 0.5
+    out['tanh_h'] = float(np.tanh(0.5))
+    out['tanh_slope'] = 1 - out['tanh_h'] ** 2
     return out
 
 
@@ -159,8 +173,10 @@ def n12():
     xtr = np.linspace(-1, 1, 10)
     f = lambda x: np.sin(1.5 * x) + 0.4 * x ** 2
     ytr = np.round(f(xtr) + rng.normal(0, 0.15, 10), 2)
-    xte = np.linspace(-0.97, 0.97, 20)
+    xte = np.linspace(-0.97, 0.97, 20)                     # validation points: used to choose lambda
     yte = np.round(f(xte) + rng.normal(0, 0.15, 20), 2)
+    xts = np.linspace(-0.95, 0.95, 20)                     # test points: used once, after lambda is chosen
+    yts = np.round(f(xts) + rng.normal(0, 0.15, 20), 2)
     deg = 9
     Xtr, Xte = poly_features(xtr, deg), poly_features(xte, deg)
     lams = [0.0, 0.001, 0.01, 0.1, 1.0, 10.0]
@@ -169,7 +185,14 @@ def n12():
         w = ridge_fit(Xtr, ytr, lam)
         rows.append(dict(lam=lam, w=w, norm2=float(w[1:] @ w[1:]), rmse_tr=float(np.sqrt(np.mean((Xtr @ w - ytr) ** 2))), rmse_te=float(np.sqrt(np.mean((Xte @ w - yte) ** 2)))))
     xg = np.linspace(-1, 1, 120)
-    d = dict(xtr=xtr, ytr=ytr, xte=xte, yte=yte, deg=deg, lams=lams, rows=rows, xg=xg, f=f, Xtr=Xtr, Xte=Xte)
+    Xts = poly_features(xts, deg)
+    d = dict(xtr=xtr, ytr=ytr, xte=xte, yte=yte, xts=xts, yts=yts, deg=deg, lams=lams, rows=rows, xg=xg, f=f, Xtr=Xtr, Xte=Xte, Xts=Xts)
+    d['lam_best'] = min(rows, key=lambda r: r['rmse_te'])['lam']          # chosen on the validation points only
+    wb = ridge_fit(Xtr, ytr, d['lam_best'])
+    d['rmse_test'] = float(np.sqrt(np.mean((Xts @ wb - yts) ** 2)))        # reported once
+    d['rmse_val_02'] = float(np.sqrt(np.mean((Xte @ ridge_fit(Xtr, ytr, 0.2) - yte) ** 2)))
+    d['cond0'] = float(np.linalg.cond(Xtr.T @ Xtr))
+    d['xrow'] = Xtr[6]                                                   # the row for x = 0.333
     d['curves'] = {r['lam']: poly_features(xg, deg) @ r['w'] for r in rows}
     z = np.array([1000.0, 1001.0, 1002.0])
     e = np.exp(z - z.max())
@@ -177,6 +200,7 @@ def n12():
     z2 = np.array([2.0, 1.0, 0.1])
     e2 = np.exp(z2)
     d['soft_small'] = e2 / e2.sum()
+    d['exp_small'] = e2
     d['lse_big'] = float(z.max() + np.log(np.exp(z - z.max()).sum()))
     return d
 
@@ -424,7 +448,7 @@ def d_net(w, h, inputs=(), hidden=(), out='', edges1=(), edges2=(), foot='', hea
             s.line(xi1, yi[i], xh0, yh[j], color=ecolor, lw=1.8, z=1)
     for j in range(2):
         for i in range(2):
-            t = 0.3 if i != j else 0.62
+            t = 0.2 if i != j else 0.62      # a crossing line is labelled near its own input, far from the crossing point
             lab(xi1, yi[i], xh0, yh[j], t, str(edges1[j][i]), ecolor)
     for j in range(2):
         s.line(xh1, yh[j], xo0, yo, color=ecolor, lw=1.8, z=1)
@@ -456,8 +480,8 @@ def d_backprop_flow(w, h, size=16, **_):
             s.arrow(xs[i] + bw + 0.03, ytop + bh / 2, xs[i + 1] - 0.03, ytop + bh / 2, lw=2.2, head=15)
     s.text(0.05, 2.05, 'Backward pass: right to left, reusing the stored values', size=size, weight='bold', color=RED, ha='left')
     yb = 0.35
-    bot = [(0, [r'$\nabla W^{(1)} = \delta^{(1)} x^T$'], PAPER), (1, [r'$\delta^{(1)} = (W^{(2)T} \delta^{(2)})$', r'$\odot\; a^{(1)} \odot (1 - a^{(1)})$'], GOLD),
-           (2, [r'$\nabla W^{(2)} = \delta^{(2)} a^{(1)T}$'], PAPER), (3, [r'$\delta^{(2)} = \hat{y} - y$'], GOLD)]
+    bot = [(0, [r'$\partial L / \partial W^{(1)}$', r'$= \delta^{(1)} x^T$'], PAPER), (1, [r'$\delta^{(1)} = (W^{(2)T} \delta^{(2)})$', r'$\odot\; a^{(1)} \odot (1 - a^{(1)})$'], GOLD),
+           (2, [r'$\partial L / \partial W^{(2)}$', r'$= \delta^{(2)} a^{(1)T}$'], PAPER), (3, [r'$\delta^{(2)} = \hat{y} - y$'], GOLD)]
     for i, lines, fill in bot:
         s.box(xs[i], yb, bw, bh, '', fill=fill, edge=INK, lw=2.0)
         if len(lines) == 1:
@@ -467,7 +491,6 @@ def d_backprop_flow(w, h, size=16, **_):
             s.text(xs[i] + bw / 2, yb + bh / 2 - 0.19, lines[1], size=size - 1)
         if i < 3:
             s.arrow(xs[i + 1] - 0.03, yb + bh / 2, xs[i] + bw + 0.03, yb + bh / 2, color=RED, lw=2.2, head=15)
-    s.arrow(xs[4] + bw / 2, ytop - 0.55, xs[3] + bw - 0.2, yb + bh + 0.05, color=RED, lw=2.0, head=14, rad=0.0) if False else None
     return s
 
 
@@ -517,7 +540,65 @@ def d_cost(w, h, size=15, **_):
     return s
 
 
+@fig('x_d_sig_tanh')
+def d_sig_tanh(w, h, size=15, **_):
+    """Session 11: the sigmoid and tanh (black) with their slopes (red dashed), each slope at its largest at z = 0."""
+    s = Scene(w, h)
+    gap = 0.9
+    pw = (w - 1.2 - gap) / 2
+    zs = np.linspace(-6, 6, 241)
+    sg = _sig(zs)
+    th = np.tanh(zs)
+    panels = [('Sigmoid: a = 1 / (1 + e^-z)', (-0.1, 1.1), [0, 0.25, 0.5, 1], sg, sg * (1 - sg), 'slope a(1 - a)', 0.25, 'largest slope 0.25', 'a between 0 and 1'),
+              ('Tanh: h = (e^z - e^-z) / (e^z + e^-z)', (-1.15, 1.15), [-1, 0, 1], th, 1 - th ** 2, 'slope 1 - h^2', 1.0, 'largest slope 1', 'h between -1 and 1')]
+    for i, (title, yl, yt, f, df, dlab, top, toplab, flab) in enumerate(panels):
+        x0 = 0.85 + i * (pw + gap)
+        a = Ax(s, x0, 0.95, x0 + pw, h - 0.75, (-6, 6), yl, 'z (the weighted sum)', '', size=size, xt=[-6, -3, 0, 3, 6], yt=yt)
+        s.line(a.px(-6), a.py(0), a.px(6), a.py(0), color=HAIR, lw=1.2, z=1)
+        a.plot(zs, f, INK, 3.4)
+        a.plot(zs, df, RED, 3.0, '--')
+        a.dot(0, top, 0.1, GOLD)
+        s.text(a.px(0) + 0.15, a.py(top) + 0.25, toplab, size=size, color=RED, weight='bold', ha='left')
+        s.text(a.px(-5.8), a.py(yl[1]) - 0.15, dlab + ' (dashed)', size=size, color=RED, ha='left')
+        s.text(a.px(5.8), a.py(0.5 if i == 0 else -0.4), flab, size=size, color=INK, ha='right')   # clear of both curves
+        s.text(x0 + pw / 2, h - 0.3, title, size=size + 1, weight='bold')
+    return s
+
+
 # =====================================================================  session 12
+@fig('x_d_softmax_bars')
+def d_softmax_bars(w, h, scores=(2.0, 1.0, 0.1), size=16, **_):
+    """Session 12: scores (logits) on the left become probabilities that add to 1 on the right."""
+    s = Scene(w, h)
+    z = np.asarray(scores, float)
+    p = np.exp(z) / np.exp(z).sum()
+    names = ['A', 'B', 'C']          # three candidate tokens
+    bw, gap = 0.5, 0.2
+    base = 1.0
+    top = h - 1.0
+    lx = 0.35
+    rx = w - 0.35 - (3 * bw + 2 * gap)
+
+    def group(x0, vals, vmax, fmt, fill, head):
+        s.text(x0 + (3 * bw + 2 * gap) / 2, h - 0.3, head, size=size, weight='bold')
+        s.line(x0 - 0.1, base, x0 + 3 * bw + 2 * gap + 0.1, base, color=INK, lw=2)
+        for k, v in enumerate(vals):
+            x = x0 + k * (bw + gap)
+            hh = (top - base) * v / vmax
+            s.rect(x, base, bw, max(hh, 0.02), fill=fill, edge=INK, lw=1.6)
+            s.text(x + bw / 2, base + hh + 0.22, fmt(v), size=size, weight='bold')
+            s.text(x + bw / 2, base - 0.28, names[k], size=size - 1, color=MUTE)
+    group(lx, z, z.max(), lambda v: f'{v:g}', PAPER, 'Scores (logits)')
+    group(rx, p, p.max(), lambda v: f'{v:.3f}', GOLD, 'Probabilities')
+    ax0 = lx + 3 * bw + 2 * gap + 0.25
+    s.arrow(ax0, (base + top) / 2, rx - 0.3, (base + top) / 2, color=RED, lw=2.8, head=18)
+    s.text((ax0 + rx - 0.3) / 2, (base + top) / 2 + 0.38, 'softmax', size=size + 1, color=RED, weight='bold')
+    s.text((ax0 + rx - 0.3) / 2, (base + top) / 2 - 0.4, 'e^z, then divide\nby the total', size=size - 1, color=MUTE)
+    s.text(rx + (3 * bw + 2 * gap) / 2, 0.25, f'{p[0]:.3f} + {p[1]:.3f} + {p[2]:.3f} = 1', size=size, weight='bold')
+    s.text(lx + (3 * bw + 2 * gap) / 2, 0.25, 'tokens A, B, C', size=size, color=MUTE)
+    return s
+
+
 @fig('x_d_ridge')
 def d_ridge(w, h, panels=(), size=15, **_):
     """panels: [{title, note, x, y (curve), xt, yt (training points), xf, yf (true curve)}]"""
@@ -541,6 +622,9 @@ def d_ridge(w, h, panels=(), size=15, **_):
 def d_lagrange(w, h, which='line', size=15, **_):
     s = Scene(w, h)
     xl, yl = ((-0.5, 6.0), (-0.5, 3.3)) if which == 'line' else ((-2.2, 5.0), (-1.7, 2.33))
+    # equal aspect: one unit of w2 is as long on the page as one unit of w1, so a circle looks round
+    mid, half = (yl[0] + yl[1]) / 2, (xl[1] - xl[0]) * (h - 0.6) / (w - 0.7) / 2
+    yl = (mid - half, mid + half)
     a = Ax(s, 0.5, 0.35, w - 0.2, h - 0.25, xl, yl, axes=False)
     s.line(a.px(xl[0] + 0.1), a.py(0), a.px(xl[1] - 0.1), a.py(0), color=GREY, lw=1.4, z=1)
     s.line(a.px(0), a.py(yl[0] + 0.1), a.px(0), a.py(yl[1] - 0.1), color=GREY, lw=1.4, z=1)

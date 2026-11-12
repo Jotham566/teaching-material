@@ -26,10 +26,14 @@ def x_scatter(w, h, points=(), xlabel='', ylabel='', hline=None, line=None, resi
     s.line(x0, y0, x0, y1, color=INK, lw=2)
     s.text((x0 + x1) / 2, 0.28, xlabel, size=size, color=MUTE)
     s.text(0.3, (y0 + y1) / 2, ylabel, size=size, color=MUTE, rot=90)
+    def _tick(v, span):   # enough decimals to tell the two end ticks apart and show the true value
+        d = 0 if span >= 20 else (1 if span >= 2 else 2)
+        txt = f'{v:.{d}f}'
+        return txt.rstrip('0').rstrip('.') if '.' in txt else txt
     for v in (lo_x + padx, hi_x - padx):
-        s.text(px(v), y0 - 0.22, f'{v:.0f}', size=14, color=GREY)
+        s.text(px(v), y0 - 0.22, _tick(v, hi_x - lo_x - 2 * padx), size=14, color=GREY)
     for v in (lo_y + pady, hi_y - pady):
-        s.text(x0 - 0.12, py(v), f'{v:.0f}', size=14, color=GREY, ha='right')
+        s.text(x0 - 0.12, py(v), _tick(v, hi_y - lo_y - 2 * pady), size=14, color=GREY, ha='right')
     if line:
         b, m = line
         if residuals:

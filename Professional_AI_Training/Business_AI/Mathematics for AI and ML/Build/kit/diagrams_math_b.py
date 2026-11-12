@@ -21,6 +21,8 @@ Figure kinds registered here (use as visual=dict(kind='name', ...)):
   outer     a column times a row makes a rank 1 pattern
   lowrank   a big matrix as thin matrices (storage counts)
   lora      the published LoRA picture: frozen W plus trainable B and A
+  designmat_bw  as designmat, unknowns named b and w (Session 4 from 12 Nov 2026)
+  eigpic_v  as eigpic, eigenvectors labelled v₁, v₂ (Session 5 from 12 Nov 2026)
 """
 import math
 from functools import lru_cache
@@ -909,4 +911,88 @@ def x_lora(w, h, d=1000, r=8, size=16, **_):
     full, small = d * d, 2 * d * r
     s.text(w - 0.15, 0.45, f'Full update of W: {full:,} numbers.   B and A together: {small:,} numbers.', size=16, ha='right', color=BODY)
     s.text(w - 0.15, h - 0.35, '(illustrative sizes: d = 1000, r = 8)', size=15, ha='right', color=MUTE)
+    return s
+
+
+# =====================================================================================================
+# Redrawn versions (12 November 2026 fixes). New names only: the originals above are unchanged.
+# =====================================================================================================
+@fig('x_designmat_bw')
+def x_designmat_bw(w, h, xs=(), ys=(), size=18, xname='spend', yname='sales', **_):
+    """Session 4: the tall system X w = y with the unknowns named b (intercept) and w (slope), as in the rest of the course."""
+    s = Scene(w, h)
+    n = len(xs)
+    top = h - 0.95
+    rh = min(0.46, (top - 0.1) / n)
+    colw = 0.95
+    x = 0.15
+    s.text(x, h - 0.3, 'X: one row per point', size=16, weight='bold', color=INK, ha='left')
+    s.text(x + colw / 2, h - 0.75, 'ones', size=15, color=MUTE)
+    s.text(x + colw * 1.5, h - 0.75, xname, size=15, color=MUTE)
+    for r in range(n):
+        yy = top - rh * (r + 0.5)
+        s.text(x + colw / 2, yy, '1', size=size)
+        s.text(x + colw * 1.5, yy, _fmt(xs[r]), size=size)
+    s.line(x - 0.05, top, x - 0.05, top - rh * n, color=INK, lw=2.2)
+    s.line(x + 2 * colw + 0.05, top, x + 2 * colw + 0.05, top - rh * n, color=INK, lw=2.2)
+    xm = x + 2 * colw + 0.55
+    s.text(xm, top - rh * n / 2, '×', size=26)
+    wx = xm + 0.75
+    s.text(wx + 0.1, h - 0.3, 'the two\nunknowns', size=16, weight='bold', ha='center')
+    s.text(wx + 0.1, top - rh * n / 2 + 0.4, '$b$', size=24)
+    s.text(wx + 0.1, top - rh * n / 2 - 0.4, '$w$', size=24)
+    s.line(wx - 0.4, top - rh * n / 2 + 0.85, wx - 0.4, top - rh * n / 2 - 0.85, color=INK, lw=2.2)
+    s.line(wx + 0.6, top - rh * n / 2 + 0.85, wx + 0.6, top - rh * n / 2 - 0.85, color=INK, lw=2.2)
+    am = wx + 1.35
+    s.text(am, top - rh * n / 2, '$\\approx$', size=30)
+    yx = am + 1.0
+    s.text(yx, h - 0.3, 'y: ' + yname, size=16, weight='bold')
+    for r in range(n):
+        s.text(yx, top - rh * (r + 0.5), _fmt(ys[r]), size=size)
+    s.line(yx - 0.45, top, yx - 0.45, top - rh * n, color=INK, lw=2.2)
+    s.line(yx + 0.45, top, yx + 0.45, top - rh * n, color=INK, lw=2.2)
+    return s
+
+
+@fig('x_eigpic_v')
+def x_eigpic_v(w, h, A=((2, 1), (1, 2)), size=16, **_):
+    """Session 5: as x_eigpic, but the eigenvectors are labelled v₁ and v₂ (e₁, e₂ usually name the axis arrows) and the arrow that turns is u."""
+    s = Scene(w, h)
+    M = np.array(A, float)
+    ev, V = np.linalg.eigh(M)
+    ev, V = ev[::-1], V[:, ::-1]
+    if V[0, 0] < 0:
+        V[:, 0] = -V[:, 0]
+    if V[0, 1] < 0:
+        V[:, 1] = -V[:, 1]
+    R = 3.0
+    pw = (w - 0.3) / 2
+    ttl = ['Before: the unit circle', 'After the matrix: an ellipse']
+    for i in range(2):
+        x0 = 0.05 + i * (pw + 0.2)
+        F = Frame(x0, 0.2, x0 + pw, h - 0.65, (-R, R), (-R, R))
+        s.text(x0 + pw / 2, h - 0.33, ttl[i], size=18, weight='bold')
+        _frame_bg(s, F, grid=True)
+        o = F.p(0, 0)
+        for k, col in ((0, RED), (1, INK)):
+            v = V[:, k]
+            a, b = F.p(*(-R * v)), F.p(*(R * v))
+            s.line(a[0], a[1], b[0], b[1], color=col, lw=1.6, dash=True, z=2)
+        T = np.eye(2) if i == 0 else M
+        pts = _ellipse_pts(T)
+        q = [F.p(px, py) for px, py in pts.T]
+        s.ax.add_patch(Polygon(q, closed=True, fc=GOLD_SOFT if i else PALE, ec=INK, lw=2, zorder=3))
+        u = np.array([1.0, 0.0])
+        for vec, col in ((u, GREY), (V[:, 0], RED), (V[:, 1], INK)):
+            p = F.p(*(T @ vec))
+            s.arrow(o[0], o[1], p[0], p[1], color=col, lw=3.2, head=20, z=5)
+        halo = dict(boxstyle='square,pad=0.12', fc='white', ec='none')
+        if i == 0:
+            s.text(*F.p(1.5, 0.3), 'u', size=size, weight='bold', color=GREY, z=7, bbox=halo)
+            s.text(*F.p(0.2, 1.25), 'v₁', size=size, weight='bold', color=RED, z=7, bbox=halo)
+            s.text(*F.p(0.35, -1.3), 'v₂', size=size, weight='bold', color=INK, z=7, bbox=halo)
+        else:
+            s.text(*F.p(2.15, 0.35), 'u turned', size=size, weight='bold', color=GREY, z=7, bbox=halo)
+            s.text(*F.p(0.9, 2.55), f'v₁ × {ev[0]:g}', size=size, weight='bold', color=RED, z=7, bbox=halo)
+            s.text(*F.p(0.5, -1.55), f'v₂ × {ev[1]:g}', size=size, weight='bold', color=INK, z=7, bbox=halo)
     return s

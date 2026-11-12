@@ -57,7 +57,7 @@ def build(solution: bool) -> XL:
     x.input(c, 'B19', answer='=(EXP(2*(B14+B10))-EXP(2*(B14-B10)))/(2*B10)')
     for r in (16, 18, 19):
         c[f'B{r}'].number_format = '0.000'
-    x.text(c, 'A21', 'READ: if you see 14 in B9, which slope did you forget? CHANGE one thing: set the inner function to 5x by editing B8 and the formulas for u. Predict first.', italic=True, color='666666')
+    x.text(c, 'A21', 'READ: if you see 14 in B9, which slope did you forget? CHANGE one thing in example 2: make the inner function 5x (B15 =5*B14, B17 = 5, and both 2s in B19 become 5). Predict B18 first, then undo.', italic=True, color='666666')
     x.check('Outer slope at u = 7', '=Chain!B7', 14)
     x.check('Chain rule slope at x = 2', '=Chain!B9', 42)
     x.check('Nudged slope agrees with 42', '=IF(ISNUMBER(Chain!B11),Chain!B11,99)', 42, tol=0.001)
@@ -108,7 +108,7 @@ def build(solution: bool) -> XL:
     x.input(b, 'E24', answer='=AVERAGE(E20:E23)')
     x.text(b, 'A26', 'Session 8 slope of the loss in w at (1, 0)')
     x.text(b, 'E26', -18.5, border=True)
-    x.text(b, 'A28', 'READ: row 3 is the same graph as the top block. CHANGE one thing: set w to 2 in B3 and predict the sign of the mean before you read E24 (answer -3.5).', italic=True, color='666666')
+    x.text(b, 'A28', 'READ: row 3 is the same graph as the top block. CHANGE one thing: set w to 2 in B3 and predict the sign of the mean before you read E24. Set it back to 1 afterwards.', italic=True, color='666666')
     x.check('Forward p', '=Backward!B8', 3)
     x.check('Forward L', '=Backward!B9', 9)
     x.check('Backward dL/dp', '=Backward!B13', -6)
@@ -161,19 +161,19 @@ def build(solution: bool) -> XL:
     x.formula(j, 'B18', '=B6')
     x.text(j, 'A19', 'ds/dv = u')
     x.formula(j, 'B19', '=B5')
-    x.text(j, 'A20', 'ds/dx1 = J transposed, first row', bold=True)
+    x.text(j, 'A20', 'ds/dx1: path through u + path through v', bold=True)
     x.input(j, 'B20', answer='=B9*B18+B10*B19')
-    x.text(j, 'D20', 'column 1 of J times (ds/du, ds/dv)', italic=True, color='666666')
-    x.text(j, 'A21', 'ds/dx2 = J transposed, second row', bold=True)
+    x.text(j, 'D20', 'column 1 of J dotted with (ds/du, ds/dv): row 1 of J transposed times them', italic=True, color='666666')
+    x.text(j, 'A21', 'ds/dx2: path through u + path through v', bold=True)
     x.input(j, 'B21', answer='=C9*B18+C10*B19')
-    x.text(j, 'D21', 'column 2 of J times (ds/du, ds/dv)', italic=True, color='666666')
+    x.text(j, 'D21', 'column 2 of J dotted with (ds/du, ds/dv): row 2 of J transposed times them', italic=True, color='666666')
     x.text(j, 'A22', 'Nudged ds/dx1 (check)')
     x.input(j, 'B22', answer='=(((B3+D12)*B4)*((B3+D12)+B4^2)-((B3-D12)*B4)*((B3-D12)+B4^2))/(2*D12)')
     x.text(j, 'A23', 'Nudged ds/dx2 (check)')
     x.input(j, 'B23', answer='=((B3*(B4+D12))*(B3+(B4+D12)^2)-(B3*(B4-D12))*(B3+(B4-D12)^2))/(2*D12)')
     for cell in ('B22', 'B23'):
         j[cell].number_format = '0.000'
-    x.text(j, 'A25', 'READ: which entry is largest, and which input does that output depend on most? CHANGE one thing: set x1 = 1 and x2 = 2 in B3:B4. Predict the Jacobian (answer rows (2, 1) and (1, 4)) and the gradient of s (answer 12 and 13).', italic=True, color='666666', wrap=True)
+    x.text(j, 'A25', 'READ: which entry is largest, and which input does that output depend on most? CHANGE one thing: set x1 = 1 and x2 = 2 in B3:B4. Predict the Jacobian and the gradient of s by hand first, then read them. Set the point back to (2, 3) afterwards.', italic=True, color='666666', wrap=True)
     j.row_dimensions[25].height = 48
     x.check('du/dx1', '=Jacobian!B9', 3)
     x.check('du/dx2', '=Jacobian!C9', 2)

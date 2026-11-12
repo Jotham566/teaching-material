@@ -18,16 +18,16 @@ def build(solution=False):
     x = xl.XL('Session 16: Maximum likelihood and MAP', 'Likelihood tables, squared error, cross-entropy and weight decay in cells', solution)
     x.start('The same maths as the Python notebook, in cells. You scan a likelihood over a grid, find the maximum with MAX and INDEX with MATCH, show that squared error and the Gaussian log-likelihood peak together, '
             'compute a cross-entropy, add a prior (MAP) and shrink a weight.',
-            ['Sheet Coin: fill the gold cells. Predict first which p is best. Columns B to E hold the likelihood of the exact sequence, its log, the prior weight and their product for each p. Then read the maximum likelihood estimate (MLE) and the MAP estimate.',
-             'Sheet Gaussian: in the first gold cell (B8) write the natural log of the Gaussian density of the first width at mu = 9 (use LN of NORM.DIST with FALSE). The other cells of that block are already filled. Then fill the three gold columns J, K and L: the sum of the eight log densities, the sum of squared errors and the gap.',
+            ['Sheet Coin: fill the gold cells. Predict first which theta (the chance of heads) is best. Columns B to E hold the likelihood p(data | theta) of the exact sequence, its log l(theta) in nats, the prior weight and their product for each theta. Then read the maximum likelihood estimate (MLE) and the MAP estimate.',
+             'Sheet Gaussian: in the first gold cell (B8) write the natural log of the Gaussian density of the first width at mu = 9 (use LN of NORM.DIST with FALSE). The other cells of that block are already filled. Then fill the three gold columns J, K and L: the sum of the eight log densities, the sum of squared errors and the gap, minus the log-likelihood minus SSE / (2 sigma squared).',
              'Sheet Shrink: the loss of each of the four labels and their mean (the cross-entropy), the loss of the 3-class example, then the best weight for each penalty (lambda).',
              'Sheet Bias-variance: the three results come from the Python simulation. Add them up. Change one thing: read which degree has the smallest total.',
              'Open the sheet Check. It says All checks pass when every gold cell is right.'])
 
     # ------------------------------------------------------------------ Coin
     ws = x.sheet('Coin', {'A': 30, 'B': 16, 'C': 18, 'D': 14, 'E': 18, 'F': 12, 'G': 12, 'H': 12, 'I': 12, 'J': 12, 'K': 12})
-    x.band(ws, 1, 'Coin: likelihood over a grid of p', cols=11)
-    x.text(ws, 'A2', 'Flips: 1 = heads, 0 = tails. Predict first: which p will make these flips most likely?', color=xl.GREY, italic=True)
+    x.band(ws, 1, 'Coin: likelihood over a grid of theta, the chance of heads', cols=11)
+    x.text(ws, 'A2', 'Flips: 1 = heads, 0 = tails. Predict first: which theta (chance of heads) will make these flips most likely?', color=xl.GREY, italic=True)
     flips = [int(v) for v in N['flips']]
     x.text(ws, 'A3', 'Flips', bold=True)
     for j, v in enumerate(flips):
@@ -37,8 +37,8 @@ def build(solution=False):
     x.formula(ws, 'B4', '=SUM(B3:K3)')
     x.text(ws, 'A5', 'Flips n', bold=True)
     x.formula(ws, 'B5', '=COUNT(B3:K3)')
-    heads = ['p', 'Likelihood L(p)', 'Log-likelihood ln L(p)', 'Prior weight', 'Likelihood × prior']
-    x.table(ws, 'A8', heads, [[float(p), None, None, int(round(float(w))), None] for p, w in zip(N['p_grid'], N['prior'])])
+    heads = ['theta', 'Likelihood p(data | theta)', 'Log-likelihood l(theta), nats', 'Prior weight', 'Likelihood × prior']
+    x.table(ws, 'A8', heads, [[float(p), None, None, int(round(float(w))), None] for p, w in zip(N['theta_grid'], N['prior'])])
     for i in range(9):
         r = 9 + i
         x.input(ws, f'B{r}', answer=f'=A{r}^$B$4*(1-A{r})^($B$5-$B$4)')
@@ -50,27 +50,27 @@ def build(solution=False):
     x.text(ws, 'A19', 'Largest likelihood', bold=True)
     x.input(ws, 'B19', answer='=MAX(B9:B17)')
     ws['B19'].number_format = '0.000000'
-    x.text(ws, 'A20', 'MLE of p (the p beside it)', bold=True)
+    x.text(ws, 'A20', 'MLE of theta (the theta beside it)', bold=True)
     x.input(ws, 'B20', answer='=INDEX(A9:A17,MATCH(MAX(B9:B17),B9:B17,0))')
-    x.text(ws, 'A21', 'MAP estimate of p', bold=True)
+    x.text(ws, 'A21', 'MAP estimate of theta', bold=True)
     x.input(ws, 'B21', answer='=INDEX(A9:A17,MATCH(MAX(E9:E17),E9:E17,0))')
-    x.text(ws, 'A22', 'Probability of 7 heads in any order at p = 0.7', bold=True)
+    x.text(ws, 'A22', 'Probability of 7 heads in any order at theta = 0.7', bold=True)
     x.input(ws, 'B22', answer='=COMBIN(B5,B4)*B15')
     ws['B22'].number_format = '0.0000'
-    x.text(ws, 'A23', 'Read: is the MLE the same as k / n? Which way did the prior move the answer? The likelihood columns are for the exact sequence; the row above multiplies by 120 for any order.', italic=True, color=xl.GREY)
+    x.text(ws, 'A23', 'Read: is the MLE the same as k / n? Which way did the prior move the answer? The likelihood columns are for the exact sequence; the row above multiplies by 120 for any order. Dividing the prior weights by their total, 25, makes them probabilities and does not change the MAP estimate.', italic=True, color=xl.GREY)
     x.text(ws, 'A24', 'Change one thing: set all ten flips to 1 and watch the MLE.', italic=True, color=xl.GREY)
-    x.check('Likelihood of the exact sequence at p = 0.7', '=Coin!B15', 0.0022236, 0.000001)
-    x.check('Probability of 7 heads in any order at p = 0.7', '=Coin!B22', 0.2668, 0.0001)
-    x.check('Log-likelihood of the exact sequence at p = 0.7', '=Coin!C15', -6.1086, 0.001)
+    x.check('Likelihood of the exact sequence at theta = 0.7', '=Coin!B15', 0.0022236, 0.000001)
+    x.check('Probability of 7 heads in any order at theta = 0.7', '=Coin!B22', 0.2668, 0.0001)
+    x.check('Log-likelihood of the exact sequence at theta = 0.7', '=Coin!C15', -6.1086, 0.001)
     x.check('Largest likelihood', '=Coin!B19', 0.0022236, 0.000001)
-    x.check('MLE of p', '=Coin!B20', 0.7, 0.0001)
-    x.check('Likelihood × prior at p = 0.6', '=Coin!E14', 0.0071664, 0.000001)
-    x.check('MAP estimate of p', '=Coin!B21', 0.6, 0.0001)
+    x.check('MLE of theta', '=Coin!B20', 0.7, 0.0001)
+    x.check('Likelihood × prior at theta = 0.6', '=Coin!E14', 0.0071664, 0.000001)
+    x.check('MAP estimate of theta', '=Coin!B21', 0.6, 0.0001)
 
     # ------------------------------------------------------------------ Gaussian
     wg = x.sheet('Gaussian', {'A': 14, **{c: 11 for c in 'BCDEFGHI'}, 'J': 16, 'K': 12, 'L': 14})
     x.band(wg, 1, 'Gaussian mean: log-likelihood and squared error', cols=12)
-    x.text(wg, 'A2', 'Widths of a part in mm. Gaussian noise with a known standard deviation sigma. Predict the best mu before you look.', color=xl.GREY, italic=True)
+    x.text(wg, 'A2', 'Widths of a part in mm. The model predicts the same width mu for every part (y-hat = mu), plus Gaussian noise with a known standard deviation sigma. Predict the best mu before you look.', color=xl.GREY, italic=True)
     x.text(wg, 'A3', 'Widths y', bold=True)
     for j, v in enumerate(N['y']):
         c = wg.cell(row=3, column=2 + j, value=float(v))
@@ -93,7 +93,7 @@ def build(solution=False):
             wg[f'{cl}{r}'].number_format = '0.000'
         x.input(wg, f'J{r}', answer=f'=SUM(B{r}:I{r})')
         x.input(wg, f'K{r}', answer=f'=SUMPRODUCT(($B$3:$I$3-A{r})^2)')
-        x.input(wg, f'L{r}', answer=f'=-J{r}-K{r}/2')
+        x.input(wg, f'L{r}', answer=f'=-J{r}-K{r}/(2*$B$4^2)')
         wg[f'J{r}'].number_format = '0.0000'
         wg[f'K{r}'].number_format = '0.00'
         wg[f'L{r}'].number_format = '0.0000'
@@ -105,12 +105,12 @@ def build(solution=False):
     x.input(wg, 'B22', answer='=INDEX(K8:K18,MATCH(MAX(J8:J18),J8:J18,0))')
     x.text(wg, 'A23', 'The constant (average gap)', bold=True)
     x.input(wg, 'B23', answer='=AVERAGE(L8:L18)')
-    x.text(wg, 'A25', 'Read: the gap column is the same number in every row. What does that say about squared error and the log-likelihood?', italic=True, color=xl.GREY)
-    x.text(wg, 'A26', 'Change one thing: set sigma (B4) to 2 and watch which mu is best.', italic=True, color=xl.GREY)
+    x.text(wg, 'A25', 'Read: the gap column is the same number in every row: n/2 ln(2 pi sigma squared), 7.3515 when sigma = 1. What does that say about squared error and the log-likelihood?', italic=True, color=xl.GREY)
+    x.text(wg, 'A26', 'Change one thing: set sigma (B4) to 2 and watch which mu is best and what the gap becomes (12.8967). Then set it back to 1.', italic=True, color=xl.GREY)
     x.check('Best mu', '=Gaussian!B20', 10.25, 0.0001)
     x.check('Largest log-likelihood', '=Gaussian!B21', -10.0215, 0.001)
     x.check('Sum of squared errors at the best mu', '=Gaussian!B22', 5.34, 0.001)
-    x.check('The constant n/2 ln(2 pi)', '=Gaussian!B23', 7.3515, 0.001)
+    x.check('The constant n/2 ln(2 pi sigma^2), sigma = 1', '=Gaussian!B23', 7.3515, 0.001)
 
     # ------------------------------------------------------------------ Shrink
     wsh = x.sheet('Shrink', {'A': 34, 'B': 16, 'C': 16, 'D': 14})
@@ -121,7 +121,7 @@ def build(solution=False):
         r = 5 + i
         x.input(wsh, f'C{r}', answer=f'=-(A{r}*LN(B{r})+(1-A{r})*LN(1-B{r}))')
         wsh[f'C{r}'].number_format = '0.0000'
-    x.text(wsh, 'A10', 'Binary cross-entropy (mean loss)', bold=True)
+    x.text(wsh, 'A10', 'Binary cross-entropy (mean loss, nats)', bold=True)
     x.input(wsh, 'B10', answer='=AVERAGE(C5:C8)')
     x.text(wsh, 'A11', 'Three classes: probabilities', bold=True)
     for j, v in enumerate(N['probs3']):

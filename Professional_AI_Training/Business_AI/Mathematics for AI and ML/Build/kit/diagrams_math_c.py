@@ -9,6 +9,7 @@ Registered like the kinds in diagrams_ml.py; render with diagrams.render({'kind'
   mc_warp     jac, at                                                                    a small square and what the Jacobian does to it
   mc_product  f, g, df, dg                                                               the product rule as a rectangle that grows
   mc_entries  a gradient vector with one entry per parameter
+  mc_sheet    cols, rows, cells, hl                                                      a spreadsheet region drawn with its real column letters and row numbers
 """
 import math
 import numpy as np
@@ -167,8 +168,10 @@ def x_mc_contour(w, h, fn='bowl', xlim=(-3, 3), ylim=(-2, 2), xlabel='x', ylabel
     for sd in side:
         s.text(sd['x'], sd['y'], sd['text'], size=sd.get('size', 16), color=sd.get('color', INK), weight=sd.get('weight', 'normal'), ha=sd.get('ha', 'left'))
     cs, Z, xs, ys = _contour_core(s, fr, f, list(levels))
+    rays = []
     if level_ray:
-        x0, y0, ang = level_ray
+        rays = list(level_ray) if isinstance(level_ray[0], (list, tuple)) else [level_ray]   # one ray, or a list of rays (labels on both sides of the bowl)
+    for x0, y0, ang in rays:
         for lv in levels:
             c = _ray_cross(f, lv, x0, y0, ang)
             if c and xlim[0] < c[0] < xlim[1] and ylim[0] < c[1] < ylim[1]:
@@ -205,8 +208,10 @@ def x_mc_slice(w, h, fn='loss_wb', fixed='b', value=0.0, xlim=(0, 3.5), ylim=(-1
     lw_ = w * 0.45
     fr = Frame(s, 1.2, lw_, 0.85, h - 0.3, xlim, ylim, xlabel, ylabel, [0, 1, 2, 3], [-1, 0, 1, 2, 3])
     cs, Z, xs, ys = _contour_core(s, fr, f2, list(levels))
+    rays = []
     if level_ray:
-        x0, y0, ang = level_ray
+        rays = list(level_ray) if isinstance(level_ray[0], (list, tuple)) else [level_ray]
+    for x0, y0, ang in rays:
         for lv in levels:
             c = _ray_cross(f2, lv, x0, y0, ang)
             if c and xlim[0] < c[0] < xlim[1] and ylim[0] < c[1] < ylim[1]:
@@ -326,16 +331,16 @@ def x_mc_warp(w, h, jac=((3, 2), (1, 6)), at=(2, 3), size=16, sc=0.42, **_):
     s.rect(ox, oy, side, side, fill=PALE, edge=INK, lw=2, z=2)
     s.arrow(ox, oy, ox + side, oy, color=RED, lw=3.4, head=20, z=5)
     s.arrow(ox, oy, ox, oy + side, color=INK, lw=3.4, head=20, z=5)
-    s.text(ox + side / 2, oy - 0.0 + 0.3, 'one step\nin x1', size=15, color=RED, weight='bold', z=6)
-    s.text(ox + side + 0.1, oy + side + 0.2, 'one step in x2', size=15, weight='bold', ha='left')
-    qx, qy = ox1 + 0.6, 0.95
+    s.text(ox + side / 2, oy - 0.0 + 0.3, 'tiny step\nh in x1', size=15, color=RED, weight='bold', z=6)
+    s.text(ox + side + 0.1, oy + side + 0.2, 'tiny step h in x2', size=15, weight='bold', ha='left')
+    qx, qy = ox1 + 1.6, 0.95
     c1 = (J[0, 0] * sc, J[1, 0] * sc)
     c2 = (J[0, 1] * sc, J[1, 1] * sc)
     s.poly([(qx, qy), (qx + c1[0], qy + c1[1]), (qx + c1[0] + c2[0], qy + c1[1] + c2[1]), (qx + c2[0], qy + c2[1])], fill=PALE, edge=INK, lw=2, z=2)
     s.arrow(qx, qy, qx + c1[0], qy + c1[1], color=RED, lw=3.4, head=20, z=5)
     s.arrow(qx, qy, qx + c2[0], qy + c2[1], color=INK, lw=3.4, head=20, z=5)
-    s.text(qx + c1[0] + 0.12, qy + c1[1] - 0.25, f'column 1\n({_fmt(J[0, 0])}, {_fmt(J[1, 0])})', size=15, color=RED, weight='bold', ha='left')
-    s.text(qx + c2[0] + 0.0, qy + c2[1] + 0.3, f'column 2: ({_fmt(J[0, 1])}, {_fmt(J[1, 1])})', size=15, weight='bold', ha='center')
+    s.text(qx + c1[0] + 0.12, qy + c1[1] - 0.25, f'h × column 1\n= h × ({_fmt(J[0, 0])}, {_fmt(J[1, 0])})', size=15, color=RED, weight='bold', ha='left')
+    s.text(qx + c2[0] - 0.2, qy + c2[1] - 0.1, f'h × column 2\n= h × ({_fmt(J[0, 1])}, {_fmt(J[1, 1])})', size=15, weight='bold', ha='right')
     s.arrow(ox0 + pw + 0.12, h / 2, ox1 - 0.12, h / 2, color=INK, lw=2.6, head=20)
     s.text((ox0 + pw + ox1) / 2, h / 2 + 0.3, 'J', size=22, weight='bold')
     return s
@@ -363,7 +368,7 @@ def x_mc_product(w, h, f='f', g='g', df='df', dg='dg', size=17, **_):
 
 
 @fig('x_mc_entries')
-def x_mc_entries(w, h, count_label='8 billion entries', size=18, **_):
+def x_mc_entries(w, h, count_label='8 billion entries', size=18, sub='N = number of parameters', **_):
     """A gradient vector drawn as a tall column: one entry per parameter, with the middle left out."""
     s = Scene(w, h)
     bx, bw, bh = 0.7, 3.2, 0.62
@@ -385,7 +390,7 @@ def x_mc_entries(w, h, count_label='8 billion entries', size=18, **_):
     tx = bx + bw + 0.5
     mid = (top + bot) / 2
     s.text(tx, mid + 0.8, 'One entry for every\nparameter of the model', size=size, weight='bold', ha='left', va='center')
-    s.text(tx, mid - 0.2, 'N = number of parameters', size=size - 2, color=BODY, ha='left')
+    s.text(tx, mid - 0.2, sub, size=size - 2, color=BODY, ha='left')
     s.text(tx, mid - 0.95, count_label, size=size + 1, weight='bold', color=RED, ha='left')
     return s
 
@@ -411,4 +416,34 @@ def x_mc_scale(w, h, items=(), size=17, **_):
         s.text(x0 + 0.05, yc + 0.5, it['label'], size=size, weight='bold', ha='left')
         s.text(min(px(e) + 0.1, x1 - 2.2) if px(e) + 2.4 < x1 else px(e) - 0.1, yc - 0.0, it['text'], size=size - 1, ha='left' if px(e) + 2.4 < x1 else 'right',
                color=INK if px(e) + 2.4 < x1 else PAPER, weight='bold', z=6)
+    return s
+
+
+# ------------------------------------------------------------------ a spreadsheet region drawn with its real cell addresses
+@fig('x_mc_sheet')
+def x_mc_sheet(w, h, cols=('A', 'B'), rows=(1, 2), cells=(), hl=(), bold_first=True, size=16, **_):
+    """cols: column letters shown across the top; rows: row numbers shown down the left; cells: [[text]] one list per row ;
+    hl: [(i, j)] cells (row index, column index into cells) filled gold. The first row and first column are drawn bold (the headers)."""
+    s = Scene(w, h)
+    nr, nc = len(rows), len(cols)
+    rw = 0.55
+    cw = (w - 0.2 - rw) / nc
+    rh = min(0.62, (h - 0.2 - 0.45) / nr)
+    x0, top = 0.1 + rw, h - 0.1
+    s.rect(0.1, top - 0.45 - nr * rh, rw + nc * cw, 0.45 + nr * rh, fill=PAPER, edge=INK, lw=1.8)
+    for j, c in enumerate(cols):
+        s.text(x0 + (j + 0.5) * cw, top - 0.22, c, size=14, color=GREY)
+    s.line(0.1, top - 0.45, x0 + nc * cw, top - 0.45, color=HAIR, lw=1.2)
+    s.line(x0, top, x0, top - 0.45 - nr * rh, color=HAIR, lw=1.2)
+    for i, r in enumerate(rows):
+        yc = top - 0.45 - (i + 0.5) * rh
+        s.text(0.1 + rw / 2, yc, str(r), size=14, color=GREY)
+        s.line(0.1, top - 0.45 - (i + 1) * rh, x0 + nc * cw, top - 0.45 - (i + 1) * rh, color=HAIR, lw=0.8)
+        for j in range(nc):
+            if (i, j) in [tuple(q) for q in hl]:
+                s.rect(x0 + j * cw + 0.03, top - 0.45 - (i + 1) * rh + 0.03, cw - 0.06, rh - 0.06, fill=GOLD, edge=GOLD, lw=0, z=2)
+            head = bold_first and (i == 0 or j == 0)
+            s.text(x0 + (j + 0.5) * cw, yc, str(cells[i][j]), size=size, weight='bold' if head else 'normal', color=INK if head else BODY, z=5)
+    for j in range(1, nc):
+        s.line(x0 + j * cw, top - 0.45, x0 + j * cw, top - 0.45 - nr * rh, color=HAIR, lw=0.8)
     return s

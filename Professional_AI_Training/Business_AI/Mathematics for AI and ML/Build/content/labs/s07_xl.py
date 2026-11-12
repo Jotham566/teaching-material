@@ -50,7 +50,7 @@ def build(solution: bool) -> XL:
     x.input(ws, 'B20', answer='=(B19-B18)/(2*B17)')
     ws['B20'].number_format = '0.0000'
     x.text(ws, 'C20', '(f(x + h) - f(x - h)) / (2 h)', italic=True, color='666666')
-    x.text(ws, 'A22', 'CHANGE one thing: set the step in A12 to 0.00000000001 and look at D12. Why does the slope become unreliable?', italic=True, color='666666')
+    x.text(ws, 'A22', 'CHANGE one thing: set the step in A12 to 1E-15 and predict D12 before you look. Why is the slope now far from 6 (or exactly 0)?', italic=True, color='666666')
     x.check('Slope of x squared at 3 with h = 1', '=Shrink!D8', 7)
     x.check('Slope with h = 0.01', '=Shrink!D11', 6.01)
     x.check('Slope with h = 0.001', '=Shrink!D12', 6.001, tol=0.0005)
@@ -116,9 +116,9 @@ def build(solution: bool) -> XL:
     x.input(wl, 'B25', answer='=2/B9*SUMPRODUCT(A4:A7,B23*A4:A7-B4:B7)')
     for c in ('B23', 'B24', 'B25'):
         wl[c].number_format = '0.0000'
-    x.text(wl, 'A27', 'At w = 1 the slope is negative. Type raise or lower:')
+    x.text(wl, 'A27', 'At w = 1 the slope is negative. Type raise or lower (as in column E):')
     x.input(wl, 'B27', answer='raise')
-    x.text(wl, 'A29', 'CHANGE one thing: change the last fee in B7 from 9 to 10. Predict the new best w, then read B23 (answer 2.367).', italic=True, color='666666')
+    x.text(wl, 'A29', 'CHANGE one thing: change the last fee in B7 from 9 to 10. Predict whether the best w goes up or down, then read B23. Change it back to 9 for the Check sheet.', italic=True, color='666666')
     ch = ScatterChart()
     ch.title = 'Loss L(w)'
     ch.style = 13
@@ -136,6 +136,6 @@ def build(solution: bool) -> XL:
     x.check('Formula and finite difference agree at w = 1', '=ABS(Loss!C14-Loss!D14)', 0, tol=0.001)
     x.check('Best w', '=Loss!B23', 2.2333, tol=0.001)
     x.check('Loss at the best w', '=Loss!B24', 0.3417, tol=0.001)
-    x.check('Slope at the best w is zero', '=IF(ISNUMBER(Loss!B25),Loss!B25,99)', 0, tol=0.001)
-    x.check('Direction at w = 1', '=Loss!B27', 'raise')
+    x.check('Slope at the best w is zero (a formula, matching the slope recomputed from B23)', '=IF(AND(ISNUMBER(Loss!B25),_xlfn.ISFORMULA(Loss!B25)),ABS(Loss!B25)+ABS(Loss!B25-2/Loss!B9*SUMPRODUCT(Loss!A4:A7,Loss!B23*Loss!A4:A7-Loss!B4:B7)),99)', 0, tol=0.001)
+    x.check('Direction at w = 1 (raise or raise w)', '=IF(OR(LOWER(TRIM(Loss!B27))="raise",LOWER(TRIM(Loss!B27))="raise w"),"raise",Loss!B27)', 'raise')
     return x

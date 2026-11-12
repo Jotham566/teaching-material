@@ -57,7 +57,7 @@ def build(solution):
            'eta = 0.5                              # the learning rate\n\n'
            'def sigmoid(z):\n    return 1 / (1 + np.exp(-z))')
     todo(b, solution, 'use the forward pass formulas in the step text; @ is matrix multiplication; the output unit gives a one-entry array, so take its entry to get a number',
-         'z1 = None    # your code here: the two weighted sums of the hidden units\na1 = None    # your code here: the sigmoid of z1\nyhat = None  # your code here: the prediction, one number\nL = None     # your code here: 0.5 times (yhat - y) squared',
+         'z1 = None    # your code here: the two weighted sums of the hidden units, plus their biases\na1 = None    # your code here: the sigmoid of z1\nyhat = None  # your code here: the prediction, one number\nL = None     # your code here: half the squared error',
          'z1 = W1 @ x + b1\na1 = sigmoid(z1)\nyhat = (W2 @ a1 + b2)[0]\nL = 0.5 * (yhat - y) ** 2')
     b.code('print("z1 =", z1)\nprint("a1 =", a1)\nprint("y-hat =", yhat, " loss =", L)\n'
            'check("z1 (both hidden units)", z1, [%.4f, %.4f], 0.001)\ncheck("a1 (both hidden units)", a1, [%.4f, %.4f], 0.001)\n'
@@ -69,9 +69,10 @@ def build(solution):
            'The gradient of a weight matrix is the delta times the transposed values that enter it. The gradient of a bias is its delta.')
     b.predict('Will delta(2) be positive or negative? Will the gradients of W(2) have the same sign as delta(2)?')
     todo(b, solution, 'd2 has shape (1,) and d1 has shape (2,). Each weight gradient is a matrix with the same shape as its weights; np.outer builds a matrix from two vectors.',
-         'd2 = None   # your code here: yhat - y, as an array with one entry\nd1 = None   # your code here: (W2.T @ d2) * a1 * (1 - a1), shape (2,)\n'
-         'gW2 = None  # your code here: np.outer(d2, a1), shape (1, 2)\ngb2 = None  # your code here: the same as d2\n'
-         'gW1 = None  # your code here: np.outer(d1, x), shape (2, 2)\ngb1 = None  # your code here: the same as d1',
+         'd2 = None   # your code here: the prediction minus the target, as an array with one entry\n'
+         'd1 = None   # your code here: send d2 back through W2 transposed, then multiply entry by entry by the sigmoid slope of a1; shape (2,)\n'
+         'gW2 = None  # your code here: delta(2) times the transposed hidden outputs; shape (1, 2)\ngb2 = None  # your code here: a bias gradient equals its delta\n'
+         'gW1 = None  # your code here: delta(1) times the transposed inputs; shape (2, 2)\ngb1 = None  # your code here: a bias gradient equals its delta',
          'd2 = np.array([yhat - y])\nd1 = (W2.T @ d2) * a1 * (1 - a1)\ngW2 = np.outer(d2, a1)\ngb2 = d2\ngW1 = np.outer(d1, x)\ngb1 = d1')
     b.code('print("delta2 =", d2, " delta1 =", d1)\nprint("gradient of W2:", gW2)\nprint("gradient of W1:", gW1)\n'
            'check("delta2", d2, %.4f, 0.001)\ncheck("delta1 (two values)", d1, [%.4f, %.4f], 0.001)\n'
@@ -88,11 +89,12 @@ def build(solution):
            '    a_ = sigmoid(W1_ @ x + b1_)\n'
            '    return 0.5 * ((W2_ @ a_ + b2_)[0] - y) ** 2\n\n'
            'p0 = np.concatenate([W1.ravel(), b1, W2.ravel(), b2])             # the nine parameters\n'
-           'backprop = np.concatenate([gW1.ravel(), gb1, gW2.ravel(), gb2])   # the nine gradients from step 2\n'
            'h = 0.00001\nnumeric = np.zeros(9)\n'
            'for i in range(9):\n    up, down = p0.copy(), p0.copy()\n    up[i] += h\n    down[i] -= h\n    numeric[i] = (loss_of(up) - loss_of(down)) / (2 * h)\n'
-           'print("finite differences:", np.round(numeric, 6))\nprint("backpropagation:   ", np.round(backprop, 6))')
-    todo(b, solution, 'the largest absolute difference between the two lists of nine numbers', 'max_diff = None  # your code here',
+           'print("finite differences:", np.round(numeric, 6))\n'
+           'if any(g is None for g in (gW1, gb1, gW2, gb2)):\n    backprop = None\n    print("Fill in the answer cell of step 2 first: its nine gradients are compared here.")\n'
+           'else:\n    backprop = np.concatenate([gW1.ravel(), gb1, gW2.ravel(), gb2])   # the nine gradients from step 2\n    print("backpropagation:   ", np.round(backprop, 6))')
+    todo(b, solution, 'the largest absolute difference between the two lists of nine numbers (np.abs, then np.max)', 'max_diff = None  # your code here',
          'max_diff = np.max(np.abs(numeric - backprop))')
     b.code('print("largest difference:", max_diff)\ncheck("finite differences agree with backpropagation (difference below 1e-7)", max_diff, 0.0, 1e-7)')
     b.change('Break one formula on purpose: in step 2 delete the factor a1 * (1 - a1) from d1, re-run steps 2 and 3, and see which entries of the check disagree. Then put the factor back and re-run.')
@@ -102,9 +104,10 @@ def build(solution):
     todo(b, solution, 'apply the update rule to each of the four groups of parameters',
          'W1n = None  # your code here\nb1n = None   # your code here\nW2n = None   # your code here\nb2n = None   # your code here',
          'W1n = W1 - eta * gW1\nb1n = b1 - eta * gb1\nW2n = W2 - eta * gW2\nb2n = b2 - eta * gb2')
-    b.code('yhat1 = (W2n @ sigmoid(W1n @ x + b1n) + b2n)[0]\nloss1 = 0.5 * (yhat1 - y) ** 2\n'
-           'print("new W1 row 1:", W1n[0])\nprint("new prediction:", yhat1, " new loss:", loss1)\n'
-           'check("new W1 row 1", W1n[0], [%.4f, %.4f], 0.001)\ncheck("new b2", b2n, %.4f, 0.001)\ncheck("loss after one update", loss1, %.4f, 0.0005)'
+    b.code('if any(v is None for v in (W1n, b1n, W2n, b2n)):\n    W1n_row1, loss1 = None, None\n    print("Fill in the four updates above first.")\n'
+           'else:\n    yhat1 = (W2n @ sigmoid(W1n @ x + b1n) + b2n)[0]\n    loss1 = 0.5 * (yhat1 - y) ** 2\n    W1n_row1 = W1n[0]\n'
+           'check("new W1 row 1", W1n_row1, [%.4f, %.4f], 0.001)\ncheck("new b2", b2n, %.4f, 0.001)\ncheck("loss after one update", loss1, %.4f, 0.0005)\n'
+           'if loss1 is not None:\n    print("new W1 row 1:", W1n_row1, " new loss:", loss1)'
            % (nW1[0][0], nW1[0][1], nb2[0], s2['L']))
     b.change('Change eta to 0.1, re-run step 4 and read the new loss. Is a smaller learning rate better or worse here? Put eta back to 0.5 afterwards.')
 
@@ -123,7 +126,7 @@ def build(solution):
            '    return losses\n\n'
            'losses = train(0.5, 50)\nprint("loss at steps 0, 1, 2, 3:", [round(float(l), 6) for l in losses[:4]])\n'
            'plt.plot(losses)\nplt.yscale("log")\nplt.xlabel("step")\nplt.ylabel("loss (log scale)")\nplt.title("Training the tiny network, eta = 0.5")\nplt.show()')
-    b.predict('The log scale shows the loss falling by a roughly constant factor at each step. About what factor: 2, 10 or 50?')
+    b.predict('On the log scale the loss falls by a factor that changes over the first few steps and then settles. Near which factor does it settle: 2, 10 or 60?')
     todo(b, solution, 'losses holds the loss at step 0, 1, 2 and so on; pick the entries you need', 'loss2 = None    # your code here: loss after two updates\nloss50 = None   # your code here: loss after 50 updates',
          'loss2 = losses[2]\nloss50 = losses[50]')
     b.code('print(loss2, loss50)\ncheck("loss after two updates", loss2, %.6f, 0.00002)\ncheck("loss after 50 updates is almost zero (below 1e-6)", loss50, 0.0, 1e-6)' % (s3['L'],))
