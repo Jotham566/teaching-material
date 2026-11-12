@@ -78,4 +78,5 @@ bullets(d, [
 out = EDITION / '01 Course Overview'
 name = 'Course Map for Approval (5 Nov 2026)'
 save(d, out / (name + '.docx'))
+__import__('lo_fonts').seed('-env:UserInstallation=file:///tmp/lo_map')   # brand font for the PDF
 subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_map', '--headless', '--convert-to', 'pdf', '--outdir', str(out), str(out / (name + '.docx'))], capture_output=True, timeout=200)

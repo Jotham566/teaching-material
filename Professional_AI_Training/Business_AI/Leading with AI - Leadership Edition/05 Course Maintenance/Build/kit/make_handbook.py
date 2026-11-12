@@ -102,6 +102,7 @@ def page_break(doc):
 
 
 def to_pdf(path):
+    __import__('lo_fonts').seed('-env:UserInstallation=file:///tmp/lo_docs')   # brand font for the PDF
     subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_docs', '--headless', '--convert-to', 'pdf', '--outdir', str(path.parent), str(path)], capture_output=True)
 
 

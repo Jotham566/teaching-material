@@ -18,6 +18,7 @@ SESS = [deck.load(n) for n in range(1, 19)]
 
 
 def to_pdf(path):
+    __import__('lo_fonts').seed(f'-env:UserInstallation=file:///tmp/lo_docs{os.getpid()}')   # brand font for the PDF
     subprocess.run(['soffice', f'-env:UserInstallation=file:///tmp/lo_docs{os.getpid()}', '--headless', '--convert-to', 'pdf', '--outdir', str(path.parent), str(path)], capture_output=True, timeout=240)
 
 

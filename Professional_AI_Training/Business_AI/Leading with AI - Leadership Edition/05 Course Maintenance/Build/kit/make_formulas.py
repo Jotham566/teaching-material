@@ -124,6 +124,7 @@ def build():
         para(d, 'Session ' + ses, 8.5, color='767676', after=3)
     out = EDITION / '03 Learner Materials' / (name + '.docx')
     save(d, out)
+    __import__('lo_fonts').seed('-env:UserInstallation=file:///tmp/lo_formulas')   # brand font for the PDF
     subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_formulas', '--headless', '--convert-to', 'pdf', '--outdir', str(out.parent), str(out)], capture_output=True)
     print('wrote', out.name)
 

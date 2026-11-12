@@ -14,6 +14,7 @@ OUT = BUILD.parent / 'Workbooks'
 
 
 def recalc(path, tmp):
+    __import__('lo_fonts').seed(f'-env:UserInstallation=file:///tmp/lo_{os.getpid()}')   # brand font for the PDF
     subprocess.run(['soffice', f'-env:UserInstallation=file:///tmp/lo_{os.getpid()}', '--headless', '--calc', '--convert-to', 'xlsx', '--outdir', str(tmp), str(path)], capture_output=True, timeout=180)
     return Path(tmp) / Path(path).name
 

@@ -81,6 +81,7 @@ def _caution(t):
 
 
 def to_pdf(path):
+    __import__('lo_fonts').seed('-env:UserInstallation=file:///tmp/lo_atlas')   # brand font for the PDF
     subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_atlas', '--headless', '--convert-to', 'pdf', '--outdir', str(path.parent), str(path)], capture_output=True)
 
 

@@ -115,5 +115,6 @@ bullets(d, [('Pilot.', 'Sessions 0 and 2 built in full (decks, notes, figures, t
 name = 'Course Map for Approval (11 Nov 2026)'
 out = EDITION / '01 Course Overview'
 save(d, out / (name + '.docx'))
+__import__('lo_fonts').seed('-env:UserInstallation=file:///tmp/lo_map_lead')   # brand font for the PDF
 subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_map_lead', '--headless', '--convert-to', 'pdf', '--outdir', str(out), str(out / (name + '.docx'))], capture_output=True, timeout=200)
 print('wrote', out / (name + '.docx'))
