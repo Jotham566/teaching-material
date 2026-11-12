@@ -11,7 +11,7 @@ PHASES = [
 ]
 
 S = {
- 0: dict(title='The AI landscape for leaders', q='What is AI, in plain words, and where is it already at work in my industry?',
+ 0: dict(title='What AI is, and where it already works', q='What is AI, and where is it already at work in my industry?',
          idea='AI as a family (rules, machine learning, generative AI, agents). A model learns from examples, like a new employee learning from past files. What AI is good and bad at. The four kinds of job AI does: see and read, predict, understand and write language, act.',
          cases=['ADO-05', 'ADO-01', 'ADO-02', 'BNK-02', 'TEL-03', 'AGR-01', 'MFG-04', 'HLT-01', 'PUB-01'],
          demo='The same task done by a rule, a trained model and a chatbot, recorded.',

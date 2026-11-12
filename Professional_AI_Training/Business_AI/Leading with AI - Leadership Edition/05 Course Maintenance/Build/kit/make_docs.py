@@ -57,7 +57,7 @@ def session_table():
 def slide_map(s, spec):
     """Rows [number, title, what it is] for every slide in the deck, so the guide's slide numbers always match the deck."""
     names = {'demo': 'Demonstration', 'practice': 'Learner works', 'decision': 'Decision', 'example': 'Worked example', 'stat': 'One number', 'table': 'Table', 'steps': 'Diagram',
-             'idea': 'Idea', 'wide': 'Diagram', 'list': 'List', 'statement': 'Key points', 'compare': 'Comparison'}
+             'idea': 'Idea', 'wide': 'Diagram', 'list': 'List', 'statement': 'Points', 'compare': 'Comparison'}
     meta = ['Cover', 'Outcomes', 'Plan']
     if s['recall']:
         meta.append('Recall')
@@ -92,25 +92,25 @@ def spec_for(n):
 def overview():
     name = 'Course Overview'
     d = new_doc(name)
-    title(d, 'Leading with AI', 'Where AI pays in your industry, and how to lead your people through it  |  15 sessions of 2 hours  |  dates and format agreed with you')
-    para(d, 'For CEOs, managing directors, board members, directors and senior managers who want to know where AI creates value in their industry, at work and for their employees. No mathematics and no technical background: every idea is a picture, an everyday comparison and real, named cases from banking and microfinance, telecom and mobile money, agriculture, manufacturing and FMCG, healthcare and insurance and the public sector, Uganda and East Africa first.', 10.5, after=4)
+    title(d, 'Leading with AI', 'Where AI pays in your industry, and what it changes for your staff  |  15 sessions of 2 hours  |  dates and format agreed with you')
+    para(d, 'For CEOs, managing directors, board members, directors and senior managers who want to know where AI creates value in their industry, at work and for their employees. No mathematics and no technical background: each idea is taught with a diagram, an everyday comparison and named cases from banking and microfinance, telecom and mobile money, agriculture, manufacturing and FMCG, healthcare and insurance and the public sector, Uganda and East Africa first.', 10.5, after=4)
     para(d, 'Session 0 sets out the map. Sessions 1 to 5 show what AI can do (see and read, predict, understand language, write) and how to judge it. Sessions 6 to 8 cover choosing models and vendors, getting good work from assistants, and making AI know your documents. Sessions 9 and 10 cover failures and agents. Sessions 11 to 14 are practical: you redesign work and cost it, plan for your people, set the rules and check your data, and leave with your AI Opportunity Portfolio and a 90-day plan. Every session ends with a one-page take-away. There are no tests and no marks.', 10.5, after=6)
     h2(d, 'The fifteen sessions')
     grid(d, session_table(), [1.0, 6.4, 10.0], header=['No.', 'Session', 'You keep'], size=9, label_cols=(0,))
     spacer(d, 4)
     h2(d, 'What you will be able to do')
     bullets(d, ['Spot where AI creates value in your industry and your organisation, with named examples from your sector.',
-                'Judge an accuracy claim, a pilot, a vendor and a risk, and ask the questions that matter.',
+                'Judge an accuracy claim, a pilot, a vendor and a risk, and know what to ask about each.',
                 'Get reliable work from AI assistants, and know when not to trust the answer.',
                 'Redesign a workflow, cost it and decide where a rule, an AI step, an agent or a person fits.',
-                'Lead your people through the change: roles, skills, fears and adoption.',
+                'Plan the change for your staff: which roles and tasks change, the skills they need, what they fear and how the tools get used.',
                 'Set the rules, check your data and start a governed 90-day plan from your AI Opportunity Portfolio.'], 10)
     h2(d, 'How we work')
     para(d, 'Each session pairs short explanations with demonstrations that the instructor runs while you watch, and you may join in. Sessions 1 to 10 each end with a hands-on step on your own organisation. Sessions 11 to 14 are practical and most of the time is yours. Examples come from a fictional company, Nile Valley Foods Ltd, and from finance, operations, customer service, HR, sales, compliance and legal settings, so you never need to share company data in class. Other tools on the market are discussed as options only.', 10.5, after=6)
     h2(d, 'Before the first session')
     bullets(d, ['Nothing to prepare. Read the Course Handbook if you can.',
                 'Bring a laptop and one AI assistant account you already use, if you want to join in the demonstrations.',
-                'Choose your industry in Session 0 and think of two or three decisions or workflows in your organisation you would like AI to help with.',
+                'Choose your industry in Session 0 and note two or three decisions or workflows in your organisation you would like AI to help with.',
                 'Use only sample or invented data for practice. Never paste personal or confidential data into a tool you have not approved.'], 10)
     h2(d, 'After the course')
     para(d, 'You receive a follow-up kit. At 30, 60 and 90 days the instructor checks what is running, how much time it saves and what changed in your policy, and you return a one-page check-in form and a results tracker.', 10, after=6)
@@ -185,12 +185,12 @@ def facilitator():
     d = new_doc(name)
     title(d, 'Facilitator Guide', 'Leading with AI. For the instructor only: it holds answers and rehearsal notes.')
     h2(d, 'How to teach this course', before=4, after=2)
-    bullets(d, [('Industries, people, decisions.', 'No maths. Sessions 1 to 10 teach one idea each through pictures, everyday analogies, named industry cases and recorded demonstrations, then the learner adds to the AI Opportunity Portfolio. Sessions 11 to 14 are the practicals. Keep asking “where would this help or hurt in your organisation, and who would it affect?”.'),
+    bullets(d, [('What the course is.', 'No maths. Sessions 1 to 10 teach one idea each through pictures, everyday analogies, named industry cases and recorded demonstrations, then the learner adds to the AI Opportunity Portfolio. Sessions 11 to 14 are the practicals. Keep asking “where would this help or hurt in your organisation, and who would it affect?”.'),
                 ('No tests, no marks.', 'Progress is what the learner builds and keeps. Never rank learners. Give one strength and one next step.'),
                 ('Be honest about AI results.', 'Never describe an AI output as observed unless you ran it. Record real runs in the Rehearsal Record and label saved runs and live runs apart.'),
                 ('Rehearse the demonstrations.', 'Every demonstration has a fallback in this guide. The AI results on the slides are recorded; a live run is optional, and results can differ on another day or product.'),
                 ('Teach the learner’s industry.', 'Each leader chooses an industry in Session 0. In every industry tour, spend longest on their tile and their case. Every case is named and sourced in 05 Course Maintenance/Build/research: re-check figures in the week you teach. Nile Valley Foods Ltd is fictional and always said to be.'),
-                ('Keep the keys apart.', 'Answer keys are in this folder only. Do not send them to learners.')], 10)
+                ('Answer keys stay with you.', 'They are in this folder only. Do not send them to learners.')], 10)
     h2(d, 'Before you teach', before=4, after=2)
     bullets(d, ['Read the saved results in each scenario and demonstration session (Case Runs folder) so you can explain them, and say whose results they are. If you run a case in your own assistant, note it in Rehearsal Record.docx.',
                 'No learner writes code and no trial accounts are needed. Demonstration results are recorded in advance and kept in 05 Course Maintenance/Build/demo_runs; the scripts there can be re-run live. Rehearse each demonstration once.',
@@ -201,8 +201,8 @@ def facilitator():
     h2(d, 'Running each part of a session', before=4, after=2)
     grid(d, [
         ['Open (first 10 minutes)', 'Greet, say the question of the day, then run the recall. Ask for answers aloud and give the good answer. Say what each learner will leave with. In Sessions 11 to 14, if someone has no workflow in mind, use the NVF example and ask them to choose theirs before the next practical.'],
-        ['The idea and the industry tour (about 40 minutes in Sessions 1 to 10, 20 in Sessions 11 to 14)', 'Say the point of each slide in one sentence before you read the notes. Stop at every question in the script and wait for a real answer. Link each idea to the learner’s work: “Where would you meet this?”. Never rush past a diagram: ask “what do you see?”.'],
-        ['The demonstration (about 15 minutes in Sessions 1 to 10, 10 in Sessions 11 to 14)', 'Say what you will do and what to watch for, then do it slowly and out loud. Run it once before class. If it fails, say “That is useful: here is what it tells us”, switch to the saved run and say that it is saved. Ask the learners to predict before you press the key.'],
+        ['The idea and the industry tour (about 40 minutes in Sessions 1 to 10, 20 in Sessions 11 to 14)', 'Before you read the notes for a slide, say in one sentence what it shows. Stop at every question in the script and wait for a real answer. Link each idea to the learner’s work: “Where would you meet this?”. Never rush past a diagram: ask “what do you see?”.'],
+        ['The demonstration (about 15 minutes in Sessions 1 to 10, 10 in Sessions 11 to 14)', 'Say what you will do and what to watch for, then do it slowly and out loud. Run it once before class. If it fails, say what the failure shows, switch to the saved run and tell the room it is saved. Ask the learners to predict before you press the key.'],
         ['The hands-on (about 25 minutes in Sessions 1 to 10 on the AI Opportunity Portfolio; about 60 minutes of the learner’s own work in Sessions 11 to 14)', 'Read the steps once, then be quiet and walk round. Ask three questions: “What did you choose?”, “How will you check it?”, “What would make you stop?”. Do not do it for them. With a group, ask learners who finish early to swap and check each other’s result.'],
         ['Your people and the decision (about 15 minutes in Sessions 1 to 10, 10 in Sessions 11 to 14)', 'Ask each learner to say the decision and the reason in one sentence, and to write it in the workbook. A decision to stop or revise is a good result: praise the reasoning.'],
         ['The close', 'Answer the cover question together. Point to the artefact each learner keeps. Name the optional step before the next session and the first thing you will ask next time.']],
@@ -248,7 +248,7 @@ def facilitator():
                     bullets(d, fb, 9.5)
         if f.get('probes'):
             h2(d, 'If a learner asks', before=4, after=2)
-            grid(d, [[a, b] for a, b in f['probes']], [6.0, 11.4], header=['Question', 'A safe, accurate answer'], size=8.5, label_cols=(0,))
+            grid(d, [[a, b] for a, b in f['probes']], [6.0, 11.4], header=['Question', 'Answer'], size=8.5, label_cols=(0,))
         if f.get('one_learner'):
             h2(d, 'With one learner', before=4, after=2)
             bullets(d, f['one_learner'], 9, after=1)
@@ -307,7 +307,7 @@ def start_here():
     bullets(d, ['Send the Course Overview and the Course Handbook.',
                 'Rehearse each demonstration once and complete the Rehearsal Record. The scripts are in 05 Course Maintenance/Build/demo_runs.',
                 'Read the Facilitator Guide section “How to teach this course”.'], 10)
-    h2(d, 'Rules that keep the course honest')
+    h2(d, 'Three rules')
     bullets(d, ['Never describe an AI result as observed unless you ran it and recorded it.',
                 'Use only sample or invented data with free tools. The demonstration mailbox is invented.',
                 'Rebuild the decks and documents from 05 Course Maintenance/Build. Do not edit generated files by hand.'], 10)
@@ -322,9 +322,9 @@ def presenter_script():
     name = 'Presenter Script'
     d = new_doc(name)
     title(d, 'Presenter Script', 'Leading with AI. The words to say, slide by slide. The same text is in the speaker notes of each deck.')
-    box(d, 'How to use this script', ['Read it aloud in your own rhythm. Where a paragraph ends on a question, pause and let the learner answer before you read the next paragraph.',
+    box(d, 'How to use this script', ['Read it aloud. Where a paragraph ends on a question, stop and wait for an answer before the next paragraph.',
                                      'The grey line under each slide title tells you what kind of slide it is. Steps for demonstrations, answers and fallbacks are in the Facilitator Guide.',
-                                     'Never describe an AI result as observed unless you ran it. Where the script says “you will check the live result”, run it and look.'], size=9.5)
+                                     'Never describe an AI result as observed unless you ran it.'], size=9.5)
     specs = sorted((BUILD / '_specs').glob('[0-9][0-9]_-_*.json'))
     for sp, s in zip(specs, SESS_ALL):
         spec = json.loads(sp.read_text())
@@ -341,7 +341,7 @@ def presenter_script():
             k = sl['kind']
             m = {'demo': 'Demonstration. Steps and fallback: Facilitator Guide, Session %d' % s['num'], 'practice': 'Practice, %d minutes, on the learner’s own task' % sl.get('minutes', 0),
                  'decision': 'Decision. The learner writes the choice and the reason', 'example': 'Worked example from Nile Valley Foods', 'stat': 'One number and its source',
-                 'table': 'Table', 'steps': 'Diagram: steps', 'idea': 'Idea with a diagram', 'wide': 'Diagram', 'list': 'List', 'statement': 'Key points', 'compare': 'Comparison'}.get(k, k)
+                 'table': 'Table', 'steps': 'Diagram: steps', 'idea': 'Idea with a diagram', 'wide': 'Diagram', 'list': 'List', 'statement': 'Points', 'compare': 'Comparison'}.get(k, k)
             meta.append(m)
         meta.append('Close')
         para(d, f'Session {s["num"]}' + (', the introduction' if s['num'] == 0 else ''), 10, True, color=RED, before=6, after=0, keep=True)

@@ -1,4 +1,4 @@
-"""Course Handbook, Leadership Edition: given to every leader in Session 0 and read at their own pace.
+"""Course Handbook, Leadership Edition: given to every leader in Session 0.
 
 Run from Build/:  python3 kit/make_handbook.py
 Writes 03 Learner Materials/Course Handbook.docx and .pdf, with the KLAi Word kit (templates_gen/docx_kit.py) and the drawn figures
@@ -10,6 +10,7 @@ pages quote figures only as stated in research/*.md, and say so where a figure i
 Writing rules: LEADERSHIP_BIBLE.md (plain words, no maths, no em dashes, no prices of AI products).
 """
 import importlib.util
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -74,11 +75,12 @@ def _org(sl):
 
 
 def case_slides(S, seen):
-    """Named case slides (a drawn case card with a source line). Prefers organisations not yet met in an earlier session."""
+    """Named case slides (any drawn case with a source line, not the six-industry tour). Prefers organisations not yet met earlier."""
     cases = []
     for sl in S['slides']:
         v = sl.get('visual') or {}
-        if str(v.get('kind', '')).endswith('_case') and (v.get('source') or v.get('src')):
+        k = str(v.get('kind', ''))
+        if isinstance(v, dict) and (v.get('source') or v.get('src')) and not k.endswith(('_six', '_tour')):
             cases.append(sl)
     fresh = [c for c in cases if _key(c) not in seen]
     pick = fresh[:3]
@@ -154,6 +156,23 @@ def _short(label):
         if key in lo:
             return short
     return label.split(':')[0]
+
+
+def _limit(v, title=''):
+    """The caution of a case slide, as plain sentences (never labelled 'the catch'), without sentences that repeat the title."""
+    t = v.get('catch')
+    if not isinstance(t, str):
+        return ''
+    t = re.sub(r'^\s*the catch\s*[:,.-]?\s*', '', t, flags=re.I).strip()
+    seen = set(re.findall(r'[a-z]{5,}', title.lower()))
+    keep = []
+    for sent in re.split(r'(?<=[.!?])\s+', t):
+        words = set(re.findall(r'[a-z]{5,}', sent.lower()))
+        if words and len(words & seen) / len(words) >= 0.6:
+            continue
+        keep.append(sent)
+    t = ' '.join(keep)
+    return t[:1].upper() + t[1:] if t else ''
 
 
 def _src(text):
@@ -262,10 +281,10 @@ def build():
 
     # ---------------------------------------------------------------- cover and contents
     title(d, 'Course Handbook', SUBTITLE)
-    para(d, 'Where AI pays in your industry, and how to lead your people through it.', 13, True, after=8)
-    body(d, 'This handbook is yours to keep. You receive it in Session 0 and read it at your own pace, in any order. It sets out what the course promises, '
-            'how it runs, one page for each of the fifteen sessions, the four jobs AI does, the six main industries at a glance, the words we use, '
-            'and the templates you take home. Each session page is built from the same files as the slides, so the two always agree.')
+    para(d, 'Where AI pays in your industry, and what it changes for the people who work for you.', 13, True, after=8)
+    body(d, 'You receive this handbook in Session 0; read it in any order. It covers who the course is for, how it runs, one page for each of the fifteen '
+            'sessions, the four jobs AI does, four cases from each of the six main industries, the glossary and the templates. The session pages are '
+            'generated from the same files as the slides, so the two agree.')
     h2(d, 'What is inside')
     grid(d, [
         ['1', 'Who this course is for, and the promise'],
@@ -291,13 +310,13 @@ def build():
             'services also appear. You need no maths and no technical background, and none is taught.')
     fig(d, {'kind': 'l00_promise'}, IDEA_SIZE, 13.0)
     h2(d, 'By the end of Session 14 you will be able to')
-    bullets(d, [('Spot', 'where AI creates value in your industry and your organisation.'),
-                ('Ask', 'vendors and your own teams the right questions.'),
-                ('Judge', 'a claim, a pilot and a risk.'),
-                ('Lead', 'your people through the change.'),
-                ('Start', 'a costed, governed 90-day plan, with an AI Opportunity Portfolio for your organisation.')])
+    bullets(d, ['Name where AI creates value in your industry and in your own organisation.',
+                'Question a vendor or your own team about the evidence, the data, the cost and the risk of an AI proposal.',
+                'Judge an accuracy claim, a pilot result and a risk.',
+                'Plan the change for your staff: which roles and tasks change, what skills they need and what they fear.',
+                'Start a costed, governed 90-day plan from an AI Opportunity Portfolio of your own organisation.'])
     h2(d, 'Uganda and East Africa first')
-    body(d, 'Examples start at home, then the rest of Africa, then the world. Every real case is named, dated and sourced, and told with its catch: '
+    body(d, 'Examples start at home, then the rest of Africa, then the world. Every real case is named, dated and sourced, and comes with its limits: '
             'what it cost, what went wrong, or what the figure does not prove.')
 
     # ---------------------------------------------------------------- 2 how it works
@@ -315,7 +334,7 @@ def build():
     page_break(d)
     h2(d, 'Three threads run through every session', before=0)
     fig(d, {'kind': 'l00_threads'}, WIDE_SIZE, 16.0)
-    bullets(d, [('Your industry.', 'In Session 0 you choose your industry. Sessions 1 to 10 each tour six industries with one use of the day’s idea, then tell one to three named cases as short stories: the problem, what the AI does, the result and the catch.'),
+    bullets(d, [('Your industry.', 'In Session 0 you choose your industry. Sessions 1 to 10 each tour six industries with one use of the day’s idea, then tell one to three named cases: what the AI does, the result, and what the figure leaves out.'),
                 ('Your people.', 'Sessions 1 to 10 each ask which roles use the idea, which tasks change, what skills staff need, and what employees fear or gain. Session 12 brings these together into a people plan.'),
                 ('Your AI Opportunity Portfolio.', 'A one-page register of possible AI uses in your organisation. Sessions 1 to 10 each add one or two entries. Session 11 scores them on value and feasibility, 12 adds the people impact, 13 the risk, and 14 the data readiness and the 90-day plan.')])
     h2(d, 'How a session runs')
@@ -356,7 +375,7 @@ def build():
         if vis:
             size = IDEA_SIZE if vis['kind'] == 'idea' else WIDE_SIZE
             fig(d, vis['visual'], size, 11.0 if size == IDEA_SIZE else 15.0, after=4)
-        h2(d, 'The idea in plain words', before=2, after=2)
+        h2(d, 'What the session explains', before=2, after=2)
         bullets(d, [sl['title'] for sl in ideas], size=9.5, after=1)
         cases = case_slides(S, seen)
         if cases:
@@ -366,13 +385,14 @@ def build():
                 v = sl['visual']
                 p = para(d, '', 9.5, after=0, keep=True)
                 add_run(p, sl['title'] + '.', 9.5, True)
-                if v.get('catch'):
-                    add_run(p, '  The catch: ' + v['catch'], 9.5)
+                lim = _limit(v, sl['title'])
+                if lim:
+                    add_run(p, '  ' + lim, 9.5)
                 para(d, _src(v.get('source') or v.get('src')), 8, italic=True, color='595959', after=4)
         words = [w[0] for w in S.get('words', [])]
         if words:
             p = para(d, '', 9.5, before=2, after=4)
-            add_run(p, 'Words of this session:  ', 9.5, True)
+            add_run(p, 'New words:  ', 9.5, True)
             add_run(p, ', '.join(words) + ' (see the glossary, Part 6).', 9.5)
         box(d, 'What you keep', [S['keep']], size=9.5)
         if n in CH.CHAIN:
@@ -397,13 +417,13 @@ def build():
         grid(d, [[f'{org}\n~{what}', f'{res}\n~{note}', src] for org, what, res, note, src in cases],
              [5.4, 8.6, W - 14.0], header=['Organisation and what the AI does', 'Result as reported', 'Source'], size=8.5, label_cols=())
         p = para(d, '', 9, before=4, after=2)
-        add_run(p, 'Also worth knowing:  ', 9, True)
+        add_run(p, 'Also in this sector:  ', 9, True)
         add_run(p, watch, 9)
 
     # ---------------------------------------------------------------- 6 glossary
     section(d, 6, 'Glossary')
-    body(d, 'Every word from the “Words” slide of every session, in plain words, with the sessions where it is used. Where a word comes back in a later session, '
-            'the first explanation is given here.')
+    body(d, 'Every word from the “Words” slide of each session, with the sessions that use it. Where a word returns in a later session, '
+            'the first explanation is the one given here.')
     G = {}
     for n in range(15):
         for term, text in SS[n].get('words', []):
@@ -413,18 +433,18 @@ def build():
             else:
                 G[k] = [term, text, [n]]
     rows = sorted(G.values(), key=lambda t: t[0].lower())
-    grid(d, [[a, b, ', '.join(str(x) for x in c)] for a, b, c in rows], [4.4, W - 6.2, 1.8], header=['Word', 'In plain words', 'Session'], size=9, label_cols=(0,))
+    grid(d, [[a, b, ', '.join(str(x) for x in c)] for a, b, c in rows], [4.4, W - 6.2, 1.8], header=['Word', 'Meaning', 'Session'], size=9, label_cols=(0,))
 
     # ---------------------------------------------------------------- 7 templates
     section(d, 7, 'The templates and the follow-up kit')
-    body(d, 'Everything you fill in the course is yours to keep and reuse. The templates are in the Templates folder of your learner materials; the follow-up kit is in '
-            'the Follow-up Kit folder. Every session also ends with a one-page take-away sheet.')
+    body(d, 'You keep and reuse everything you fill in during the course. The templates are in the Templates folder of your learner materials, the follow-up kit in '
+            'the Follow-up Kit folder, and each session has a one-page take-away sheet.')
     fig(d, {'kind': 'l00_portfolio'}, IDEA_SIZE, 12.0, caption='The AI Opportunity Portfolio: one row per possible use, one more column every few sessions.')
     grid(d, [list(t) for t in TEMPLATES], [4.6, W - 6.6, 2.0], header=['Template', 'What it is for', 'Session'], size=9, label_cols=(0,))
     h2(d, 'Your other learner materials', before=10)
     grid(d, [['Learner Workbook', 'One page for each session: the steps for the hands-on, the fields to fill in, and your decision.'],
              ['Take-away Sheets', 'One page for each session: what to remember and what you keep.'],
-             ['Industry Use-Case Atlas', 'Every named case of the course and more, grouped by industry: what the AI does, the result, the catch and the source.'],
+             ['Industry Use-Case Atlas', 'Every named case of the course and more, grouped by industry: what the AI does, the result, its limits and the source.'],
              ['Questions to Ask', 'The questions from every session, for your vendors, your IT and data teams and your board.']],
          [4.6, W - 4.6], header=['Document', 'What it is for'], size=9, label_cols=(0,))
     h2(d, 'The follow-up kit', before=10)
@@ -435,11 +455,10 @@ def build():
 
     # ---------------------------------------------------------------- 8 prepare
     section(d, 8, 'What to prepare', new_page=False)
-    para(d, 'Nothing, except one choice.', 13, True, after=6)
-    body(d, 'There is nothing to read, install or study before the course. In Session 0 you choose your industry: the one you lead in, or the one you most want to '
-            'understand. Every session from 1 to 10 then gives your industry one use of the day’s idea, and your portfolio fills with uses for your own organisation.')
-    h2(d, 'Helpful, if you have a moment')
-    bullets(d, ['Think of two or three tasks in your organisation that take many hours, repeat every week, or wait on one person.',
+    body(d, 'There is nothing to read, install or study before the course. The one decision is your industry, which you choose in Session 0: the one you lead in, '
+            'or the one you most want to understand. Sessions 1 to 10 each give your industry one use of the day’s idea, and your portfolio fills with uses for your own organisation.')
+    h2(d, 'If you have time before Session 0')
+    bullets(d, ['Note two or three tasks in your organisation that take many hours, repeat every week, or wait on one person.',
                 'Ask your team three questions, without blame: which AI tools do you already use, for what, and what would help you use them safely?',
                 'Bring a laptop or phone with an AI assistant you already use, if you wish to try the demonstrations. Use invented or sample information only.'])
     spacer(d, 10)

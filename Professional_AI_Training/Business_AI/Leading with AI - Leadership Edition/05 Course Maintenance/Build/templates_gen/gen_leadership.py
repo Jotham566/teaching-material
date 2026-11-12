@@ -94,7 +94,7 @@ def people_plan():
             [5.4, 12.0], header=['What people fear', 'What we say and do'], min_h=0.8, size=9)
     DK.spacer(d, 2)
     DK.h2(d, '4. Communication and champions', before=2, after=1)
-    DK.grid(d, [['The why, in one sentence', '~Customers wait too long; the assistant drafts so you can answer faster and better.'],
+    DK.grid(d, [['Why we are doing this (one sentence)', '~Customers wait too long; the assistant drafts so you can answer faster and better.'],
                 ['What is approved, and what is not', '~Approved: the company assistant for sorting and drafts. Not approved: pasting customer data into personal AI tools.'],
                 ['Champions (names)', '~Two officers who tried it first, one per shift'],
                 ['How people give feedback', '~A weekly 15-minute review and a shared error log'],

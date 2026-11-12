@@ -3,7 +3,7 @@
 Used by kit/deck.py to draw the 'How today connects' slide. One short phrase per link (under about 45 characters). `on` lists up to three earlier ideas.
 Keep in step with kit/sessions_plan.py and LEADERSHIP_BIBLE.md.
 """
-SHORT = {0: 'Landscape', 1: 'See, read', 2: 'Predict', 3: 'Any good?', 4: 'Language', 5: 'Chatbots', 6: 'Market', 7: 'Prompting',
+SHORT = {0: 'What AI is', 1: 'See, read', 2: 'Predict', 3: 'Any good?', 4: 'Language', 5: 'Chatbots', 6: 'Market', 7: 'Prompting',
          8: 'Your docs', 9: 'Failures', 10: 'Agents', 11: 'Workflow', 12: 'People', 13: 'Governance', 14: '90-day plan'}
 
 CHAIN = {

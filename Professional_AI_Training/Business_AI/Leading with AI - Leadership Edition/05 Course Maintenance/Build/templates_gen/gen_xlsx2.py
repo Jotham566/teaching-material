@@ -201,7 +201,7 @@ def business_case():
           'Volume changes the benefit only: review time stays at the base figure, which keeps the low case cautious. Read the low case first: can you live with it?',
           ['Factor or result', 'Low', 'Base', 'High', 'How to read it'], [52, 16, 16, 16, 70], 22)
     fac = [('Volume factor (share of base volume)', 0.7, 1, 1.1, 'Benefit scales with volume'),
-           ('Time saved factor (share of the saving that really happens)', 0.6, 1, 1.2, '0.6 means only 60% of the planned saving'),
+           ('Time saved factor (share of the planned saving that happens)', 0.6, 1, 1.2, '0.6 means only 60% of the planned saving'),
            ('Errors avoided factor', 0.4, 1, 1.2, '0.4 means the new routine removes 40% of what you planned'),
            ('Cost factor (1.3 means costs are 30% higher)', 1.3, 1, 0.9, 'Applies to monthly and one-off costs')]
     for i, row in enumerate(fac, 4):

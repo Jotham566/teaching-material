@@ -63,7 +63,7 @@ def scorecard():
                   '5 one person owns it and will use the result; 6 I can measure it today (time, volume, errors). The example row is not ranked.', 15, 30)
     # sheet 3
     ws3 = wb.create_sheet('Picture')
-    setup(ws3, 'Use-Case Scorecard: step 3 of 3, the picture',
+    setup(ws3, 'Use-Case Scorecard: step 3 of 3, value against risk',
           'Each dot is a task you scored. Across: risk if the result is wrong. Up: value if it works. Start in the top left (high value, low risk). Dots move right when risk is higher; '
           'only go there when you can check results. The grey dot is the NVF example; your tasks appear as black dots when you fill the sheet Score.',
           ['Measure', 'Result'], [34, 56], 22, freeze=False)
@@ -302,7 +302,7 @@ def risk():
     H = ['#', 'Risk', 'Cause', 'Effect', 'Likelihood 1-5', 'Impact 1-5', 'Score', 'Level', 'Owner', 'Control', 'Residual risk (after the control)']
     setup(ws, 'Risk Register: what could go wrong with your own task',
           'Session 13. The eight grey rows are typical AI risks. Edit each one for your own task, delete what does not apply, then add a ninth row for over-reliance (trusting results because they are usually right, and checking less and less) and any risk of your own. Likelihood: how likely in the next year (1 rare, 5 almost certain). Impact: how bad if it happens (1 small, 5 severe). '
-          'Score is Likelihood x Impact; Level is High from 15, Medium from 8 to 14, Low below 8. Name one owner and one real control for every row: a control is an action a person actually does, and a row without an owner and a control is only a worry. Scales are on the sheet Scale.',
+          'Score is Likelihood x Impact; Level is High from 15, Medium from 8 to 14, Low below 8. Name one owner and one real control for every row: a control is an action a person does, and a row without an owner and a control is only a worry. Scales are on the sheet Scale.',
           H, [5, 24, 36, 36, 11, 10, 10, 10, 20, 46, 14], 34)
     seeds = [
         ('Data leakage', 'Staff paste customer or contract data into a free AI account.', 'Personal or confidential data leaves the company and the provider may keep it.', 3, 5, 'Managing Director',

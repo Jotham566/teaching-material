@@ -443,7 +443,7 @@ def x_l14_people(w, h, **_):
 
 
 # ------------------------------------------------------------------ the whole course: fifteen sessions in four phases
-PHASES = [('A', 'Understand what AI can do', [(0, 'Landscape'), (1, 'Sees, reads'), (2, 'Predicts'), (3, 'Any good?'), (4, 'Language'), (5, 'Chatbots')],
+PHASES = [('A', 'Understand what AI can do', [(0, 'What AI is'), (1, 'Sees, reads'), (2, 'Predicts'), (3, 'Any good?'), (4, 'Language'), (5, 'Chatbots')],
            'Say what AI can do, and judge a claim'),
           ('B', 'Choose it and use it well', [(6, 'Market'), (7, 'Assistants'), (8, 'Documents')], 'Choose a supplier; brief it; give it your documents'),
           ('C', 'Control the risk', [(9, 'Failures'), (10, 'Agents')], 'Check it; decide what an agent may do'),

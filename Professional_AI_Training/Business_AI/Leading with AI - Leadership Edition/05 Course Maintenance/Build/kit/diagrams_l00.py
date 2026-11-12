@@ -1,4 +1,4 @@
-"""Figures for Session 0 of the Leadership Edition, The AI landscape for leaders.  Names: x_l00_*  (content kind 'l00_*').
+"""Figures for Session 0 of the Leadership Edition, What AI is, and where it already works.  Names: x_l00_*  (content kind 'l00_*').
 
 No maths. Every figure is a picture with counts, percentages or shillings. Case figures come from research/*.md (IDs in each docstring).
 Demonstration figures come from recorded runs: demo_runs/s02/run_output.txt (40 Nile Valley Foods messages, scikit-learn 1.9.1,
@@ -68,7 +68,7 @@ def x_l00_promise(w, h, **_):
         s.text(x, h - 1.42, r, size=15)
     s.line(0.1, h - 1.72, w - 0.1, h - 1.72, color=HAIR, lw=1.4)
     s.text(0.1, h - 1.98, 'You leave able to', size=17, weight='bold', ha='left', color=RED)
-    items = [('magnifier', 'Spot where AI creates value in your industry'), ('question', 'Ask vendors and your teams the right questions'),
+    items = [('magnifier', 'Spot where AI creates value in your industry'), ('question', 'Test vendor and team claims before you buy'),
              ('shield', 'Judge a claim, a pilot and a risk'), ('people', 'Lead your people through the change'),
              ('calendar', 'Start a governed 90-day plan')]
     rh = (h - 2.2) / len(items)
@@ -525,7 +525,7 @@ def x_l00_threads(w, h, **_):
 
 
 # ------------------------------------------------------------------ fifteen sessions in four phases
-PHASE = [('A', 'Understand what AI can do', [(0, 'The AI landscape'), (1, 'AI that sees and reads'), (2, 'AI that predicts'), (3, 'Is it any good?'),
+PHASE = [('A', 'Understand what AI can do', [(0, 'What AI is'), (1, 'AI that sees and reads'), (2, 'AI that predicts'), (3, 'Is it any good?'),
                                                (4, 'AI and language'), (5, 'How chatbots write')]),
          ('B', 'Choose it and use it well', [(6, 'The AI market'), (7, 'Working with assistants'), (8, 'AI on your documents')]),
          ('C', 'Control the risk', [(9, 'When AI goes wrong'), (10, 'AI agents that act')]),

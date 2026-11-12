@@ -1,7 +1,7 @@
 """Industry Use-Case Atlas and Questions to Ask (Leading with AI, 12 November 2026).
 
 Run from Build/: python kit/make_atlas.py   (also called by make_docs.py).
-Atlas: every case in research/*.md grouped by industry, with what the AI does, the result, the catch and the source, and the sessions that use it (kit/sessions_plan.py).
+Atlas: every case in research/*.md grouped by industry, with what the AI does, the result, its limits and the source, and the sessions that use it (kit/sessions_plan.py).
 Questions to Ask: every 'Questions to ask' table slide of the session files, grouped by session.
 Writes 03 Learner Materials/Industry Use-Case Atlas.docx and Questions to Ask.docx (+ .pdf)."""
 import glob
@@ -74,6 +74,12 @@ def clip(t, n=420):
     return t if len(t) <= n else t[:n].rsplit(' ', 1)[0] + ' ...'
 
 
+def _caution(t):
+    """A research caution without a 'The catch' label."""
+    t = re.sub(r'^\s*the catch\s*[:,.-]?\s*', '', t or '', flags=re.I).strip()
+    return t[:1].upper() + t[1:]
+
+
 def to_pdf(path):
     subprocess.run(['soffice', '-env:UserInstallation=file:///tmp/lo_atlas', '--headless', '--convert-to', 'pdf', '--outdir', str(path.parent), str(path)], capture_output=True)
 
@@ -82,9 +88,9 @@ def atlas():
     C = cases()
     name = 'Industry Use-Case Atlas'
     d = new_doc(name)
-    title(d, 'Industry Use-Case Atlas', f'Leading with AI. {len(C)} named, sourced cases by industry: what the AI does, the result, the catch, and the session that teaches it. Researched 11 November 2026.')
+    title(d, 'Industry Use-Case Atlas', f'Leading with AI. {len(C)} named, sourced cases by industry: what the AI does, the result, its limits, and the sessions that teach it. Researched 11 November 2026.')
     box(d, 'How to read this atlas', [
-        'Each case names a real organisation. Figures are quoted as the source states them; many are the company’s own claims, and the catch says so. Check a figure again before you quote it in your organisation.',
+        'Each case names a real organisation. Figures are quoted as the source states them; many are the company’s own claims, and the Limits column says so. Check a figure again before you quote it in your organisation.',
         'Sessions: where the case is taught in the course. Cases with no session are extra reading for your industry.',
         'Full blocks with links, confidence and cautions are in 05 Course Maintenance/Build/research.'], size=9)
     for code, label in IND:
@@ -96,10 +102,10 @@ def atlas():
         rows = []
         for k in ids:
             c = C[k]
-            ttl = c['title']
+            ttl = re.sub(r'\s*\((?:FAILURE|MIXED|PEOPLE|REGULATOR|MEASURE|GOVERNANCE|CURRENT STATUS)[^)]*\)', '', c['title']).strip()   # drop the research file's internal tags
             src = clip(c.get('source', ''), 160)
-            rows.append([f'{ttl}', clip(c.get('what', ''), 300), clip(c.get('result', ''), 360), clip(c.get('caution', ''), 260) + (f'\nSource: {src}' if src else ''), sessions_using(k, c['title'])])
-        grid(d, rows, [3.4, 3.8, 4.0, 4.6, 1.6], header=['Case', 'What the AI does', 'Result', 'The catch, and the source', 'Sessions'], size=7, hdr_size=7.5)
+            rows.append([f'{ttl}', clip(c.get('what', ''), 300), clip(c.get('result', ''), 360), clip(_caution(c.get('caution', '')), 260) + (f'\nSource: {src}' if src else ''), sessions_using(k, c['title'])])
+        grid(d, rows, [3.4, 3.8, 4.0, 4.6, 1.6], header=['Case', 'What the AI does', 'Result', 'Limits and source', 'Sessions'], size=7, hdr_size=7.5)
     out = EDITION / '03 Learner Materials' / (name + '.docx')
     save(d, out); to_pdf(out)
 
@@ -108,7 +114,7 @@ def questions():
     import deck
     name = 'Questions to Ask'
     d = new_doc(name)
-    title(d, 'Questions to Ask', 'Leading with AI. The questions from every session, for your vendors, your IT and data teams, and your board. Take this page to the next AI proposal.')
+    title(d, 'Questions to Ask', 'Leading with AI. The questions from every session, for your vendors, your IT and data teams, and your board. Bring it to the next AI proposal you review.')
     for n in range(0, deck.NSESS + 1):
         try:
             s = deck.load(n)
@@ -116,7 +122,7 @@ def questions():
             continue
         rows = []
         for sl in s['slides']:
-            if 'question' in sl.get('title', '').lower() and sl.get('rows'):
+            if sl.get('kind') == 'table' and (sl.get('headers') or [''])[0] == 'Ask' and sl.get('rows'):
                 rows += [[r[0], r[1] if len(r) > 1 else ''] for r in sl['rows']]
         if not rows:
             continue

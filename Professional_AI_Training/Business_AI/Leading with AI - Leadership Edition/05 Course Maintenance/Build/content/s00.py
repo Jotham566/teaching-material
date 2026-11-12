@@ -1,4 +1,4 @@
-"""Session 0 (Leadership Edition). The AI landscape for leaders.
+"""Session 0 (Leadership Edition). What AI is, and where it already works.
 
 The introduction: the promise and who the course is for; AI as a family in plain words; a model learns from examples like a new employee;
 the four jobs AI does (Sessions 1 to 10); good and bad at; the industry tour and three cases; adoption reality; a recorded demonstration
@@ -13,14 +13,14 @@ demo_runs/s12_rule_vs_ai.md and the Executive Edition file '04 Facilitator Mater
 
 SESSION = dict(
     num=0,
-    title='The AI landscape for leaders',
-    question='What is AI, in plain words, and where is it already at work in my industry?',
-    outcomes=['A plain picture of AI as a family, the four jobs it does, and what it is good and bad at',
-              'A view of where AI already works in six industries, with real cases and their catches',
+    title='What AI is, and where it already works',
+    question='What is AI, and where is it already at work in my industry?',
+    outcomes=['A map of AI as a family, the four jobs it does, and what it is good and bad at',
+              'Real cases from six industries where AI already works, and where each falls short',
               'Your chosen industry and the first two entries in your AI Opportunity Portfolio'],
     outcome_icons=['robot', 'chart', 'folder'],
     keep='Your chosen industry and the first page of your AI Opportunity Portfolio, with two entries. Session 1 adds a use where AI sees or reads for you.',
-    keep_visual=dict(kind='card', title='Take-away: the landscape', fields=[
+    keep_visual=dict(kind='card', title='Take-away: what AI is', fields=[
         dict(label='Your industry', value='Chosen today, kept all course'),
         dict(label='Your portfolio', value='Two entries on page 1'),
         dict(label='The four jobs', value='See, predict, language, act'),
@@ -28,12 +28,12 @@ SESSION = dict(
     next='Session 1: AI that sees and reads: images, documents and speech.',
     next_label='Next session',
     keep_title='Keep your industry and the first page of your portfolio',
-    clock=[(10, 'Welcome and the promise'), (25, 'AI in plain words: the family and the four jobs'),
+    clock=[(10, 'Welcome and the promise'), (25, 'What AI is: the family and the four jobs'),
            (25, 'Where AI already works: tour, cases, adoption'), (15, 'Demonstration: a rule, a model, a chatbot'), (5, 'Break'),
            (10, 'People: shadow AI'), (10, 'The three threads and the route'), (15, 'Your turn: industry and portfolio'), (5, 'Decision and close')],
     plan_title='Your two hours: the map, the evidence, then your first page',
     plan_caption='Before we close, you choose your industry and start your portfolio.',
-    plan_note='Ten minutes of welcome and the promise of the course. Twenty-five minutes on AI in plain words: the family, how a model learns, and the four jobs. Twenty-five minutes on where AI already works, with an industry tour, three cases and the adoption figures. A fifteen-minute recorded demonstration, then a five-minute break. After the break, ten minutes on your people, ten on the threads and the route of the course, fifteen minutes of your own work, and five minutes to decide and close.',
+    plan_note='Ten minutes of welcome and the promise of the course. Twenty-five minutes on what AI is: the family, how a model learns, and the four jobs. Twenty-five minutes on where AI already works, with an industry tour, three cases and the adoption figures. A fifteen-minute recorded demonstration, then a five-minute break. After the break, ten minutes on your people, ten on the threads and the route of the course, fifteen minutes of your own work, and five minutes to decide and close.',
     words=[('AI', 'Artificial intelligence: software that does tasks we link with human thinking, such as reading, predicting and writing.'),
            ('Machine learning', 'Software that learns a pattern from past examples, where a rule would be written by a person.'),
            ('Model', 'The pattern that machine learning produces, used to make a guess about a new case.'),
@@ -41,9 +41,9 @@ SESSION = dict(
            ('AI Opportunity Portfolio', 'Your one-page register of possible AI uses in your organisation. It grows every session.')],
     word_icons=['robot', 'chart', 'gear', 'speech', 'folder'],
     words_note='Before the first idea, five words we use all course. AI is software doing tasks we link with human thinking. Machine learning learns a pattern from past examples. A model is that learned pattern, used to guess about a new case. Generative AI writes new text, pictures or code. And your AI Opportunity Portfolio is the one-page register you start today. We begin with a number from Uganda.',
-    cover_note='Welcome to Leading with AI. This is Session 0, the introduction, so there is no earlier session to recall. Over fifteen sessions we look at where AI pays in your industry and how to lead your people through it, with no maths and no code. Today draws the map: what AI is in plain words, where it already works in East Africa and beyond, and where your own organisation could start. Our question is this: what is AI, in plain words, and where is it already at work in my industry?',
-    outcome_note='To answer that question, you leave today with three things. A plain picture of AI as a family, the four jobs it does, and what it is good and bad at. A view of where AI already works in six industries, with real cases and their catches. And your own start: your chosen industry and the first two entries in your AI Opportunity Portfolio.',
-    keep_note='That brings us to what you take home. You leave with your chosen industry and the first page of your AI Opportunity Portfolio, with two entries. You also hold the map: AI as a family, the four jobs, where AI already works, and why a person still checks. Before Session 1, ask your team the three questions and note what you hear. Session 1 takes the first job, AI that sees and reads, and you will add a use where AI could see or read for you.',
+    cover_note='Welcome to Leading with AI. This is Session 0, the introduction, so there is nothing earlier to recall. Over fifteen sessions we look at where AI pays in your industry and what changes for your staff when it arrives, with no maths and no code. Today draws the map: what AI is, where it already works in East Africa and beyond, and where your own organisation could start. Our question: what is AI, and where is it already at work in my industry?',
+    outcome_note='You leave today with three things. A map of AI as a family, with the four jobs it does and what it is good and bad at. Real cases from six industries where AI already works, and where each falls short. And your own start: your chosen industry and the first two entries in your AI Opportunity Portfolio.',
+    keep_note='You take home your chosen industry and the first page of your AI Opportunity Portfolio, with two entries, and the map: AI as a family, the four jobs, where AI already works, and why a person still checks. Before Session 1, ask your team the three questions and note what you hear. Session 1 takes the first job, AI that sees and reads, and you will add a use where AI could see or read for you.',
     recall=[],
     recall_note='',
     slides=[
@@ -57,13 +57,13 @@ SESSION = dict(
              visual=dict(kind='l00_promise'),
              lead='No maths, no coding and no technical background needed.',
              points=['Fifteen sessions of two hours, each built on the one before.', 'Uganda and East Africa first, then Africa, then the world.'],
-             notes='Claims like that one land on leaders’ desks every week, and that is who this course is for: chief executives, managing directors, board members, directors and senior managers, in any sector. You need no maths or technical background, and I teach none. By Session 14 you should be able to do five things. Spot where AI creates value in your industry. Ask vendors and your own teams the right questions. Judge a claim, a pilot and a risk. Lead your people through the change. And start a costed, governed ninety-day plan. Each session builds on the one before. Which of those five would matter most to your board this year?'),
+             notes='Claims like that one land on leaders’ desks every week, and that is who this course is for: chief executives, managing directors, board members, directors and senior managers, in any sector. You need no maths or technical background, and I teach none. By Session 14 you should be able to do five things. Spot where AI creates value in your industry. Test what vendors and your own teams claim before you buy. Judge a claim, a pilot and a risk. Lead your people through the change. And start a costed, governed ninety-day plan. Each session builds on the one before. Which of those five would matter most to your board this year?'),
         # ---------------------------------------------------------------- the idea
         dict(kind='idea', section='The idea', title='AI is a family: rules, machine learning, generative AI and agents',
              visual=dict(kind='l00_family'),
              lead='When people say AI today, they usually mean generative AI.',
              points=['Rules are written by people and do not learn.', 'Each inner box is a kind of the one around it.'],
-             notes='Whatever your answer, all five start from knowing what people mean when they say AI. So our first block puts AI in plain words, and by its end you can place any product a vendor shows you on one diagram. AI is a family. The oldest member is rules: a person writes every step, such as ask a manager when a payment is over five million shillings. Machine learning learns the steps from examples, such as which past borrowers repaid. Inside it sits generative AI, which writes new text, pictures or code; ChatGPT is one product of this kind. And inside that sit agents: generative AI given tools so it can act, for example check stock and book a delivery. Session 10 is about agents.'),
+             notes='Whatever your answer, all five start from knowing what people mean when they say AI. So our first block explains what AI is, and by its end you can place any product a vendor shows you on one diagram. AI is a family. The oldest member is rules: a person writes every step, such as ask a manager when a payment is over five million shillings. Machine learning learns the steps from examples, such as which past borrowers repaid. Inside it sits generative AI, which writes new text, pictures or code; ChatGPT is one product of this kind. And inside that sit agents: generative AI given tools so it can act, for example check stock and book a delivery. Session 10 is about agents.'),
         dict(kind='idea', title='A model learns from examples, the way a new employee learns from past files',
              visual=dict(kind='l00_newhire'),
              lead='Past cases with known outcomes go in; a pattern comes out, ready for new cases.',
@@ -189,7 +189,7 @@ SESSION = dict(
              notes='Your two entries are a start, and a leader’s next question is what to do before Session 1. Here are four sensible first steps, and you may choose more than one. Ask: find out, without blame, who already uses AI tools and for what. Protect: tell staff to keep customer and confidential data out of public tools until a policy exists. Pick: choose the portfolio entry where mistakes are cheap and easy to catch. Or wait: learn through Session 3 before committing money. Each is a reasonable choice. Which will you do in the next two weeks, and why? Tell me, and write it in your workbook.'),
     ],
     workbook=dict(
-        question='What is AI, in plain words, and where is it already at work in my industry?',
+        question='What is AI, and where is it already at work in my industry?',
         steps=['Circle your industry for the course.', 'Write two entries in your AI Opportunity Portfolio, each for a different job.',
                'Ask your team the three questions before Session 1 and note the answers.', 'Write your first step for the next two weeks.'],
         fields=['My industry for the course', 'Portfolio entry 1: use, in, out, who uses it, how we would know it works, which job',
@@ -205,7 +205,7 @@ SESSION = dict(
               'Ask each learner at the start for their sector and role, so you can point to the right tile of the tour.'],
         demo_steps=['RECORDED: the twelve-message record (Claude, three fresh sessions, 4 November 2026, answer key hidden; not ChatGPT or Gemini). Rule router: 7 of 12 to the right desk, wrong on M03, M07, M10, M32, M38. Chatbot: 9 of 12 exact, 11 of 12 acceptable (M26 and M28 unsure), wrong on M14 (said complaint; the key says payment first).',
                     'RECORDED, and LIVE if you wish: cd demo_runs/s02; python learn_run.py (about 4 seconds, no internet). It prints the keyword rule 23 of 40 and the learned models on 40 messages: tree on words 0.536, depth-3 tree 0.579, nearest neighbours 0.546 to 0.578, from 100 tests (5 folds x 20 repeats); leave-one-out 3 neighbours 0.50 and tree 0.55; and the list of the 20 messages the 3-neighbour model got wrong. The message slide reads that list: M10 said other, M32 said order, M28 said complaint; M38 and M14 are not in it, so they were right.',
-                    'Say plainly: the rule and the chatbot were tested on the same twelve messages; the trained model on all forty, a different test. Read them side by side and do not subtract. The rule words were chosen after reading the twelve messages, which flatters the rule.',
+                    'Tell the room: the rule and the chatbot were tested on the same twelve messages; the trained model on all forty, a different test. Read them side by side and do not subtract. The rule words were chosen after reading the twelve messages, which flatters the rule.',
                     'Optional LIVE: paste M32 (the sarcastic thanks) into the assistant you use and ask for one category. Say it is live and may differ from the record; if it fails or the room has no connection, use the slide.'],
         fallback=['If the script will not run, read run_output.txt aloud; the slides carry every number.', 'If the room is short of time, show only the message-by-message slide and the totals slide.'],
         misconceptions=[('AI and ChatGPT are the same thing', 'ChatGPT is one product of generative AI, which is one kind of machine learning. Rules are AI too, and do not learn. Use the family slide.'),
@@ -220,11 +220,11 @@ SESSION = dict(
                 'If a learner has no organisation to hand, use a past employer or a public body they know well.'],
         probes=[('Is AI regulated in Uganda?', 'My understanding is that there is no AI statute yet; the Data Protection and Privacy Act, 2019 applies to personal data, and the national AI strategy was still a draft in late 2026. Confirm with a lawyer. Session 13 returns to this.'),
                 ('Which AI product should we buy?', 'This course names no product as best. Start from the job and the cost of a mistake; Session 6 covers the market and vendor questions.'),
-                ('Will AI replace my staff?', 'Some tasks change and some roles shrink, while checking and exception work grows. In BCG’s 2025 survey, 41% of workers feared their job could disappear within ten years. Session 12 is about leading people through it.'),
+                ('Will AI replace my staff?', 'Some tasks change and some roles shrink, while checking and exception work grows. In BCG’s 2025 survey, 41% of workers feared their job could disappear within ten years. Session 12 covers roles, skills and how to tell staff.'),
                 ('Why did the trained model do worse than the chatbot?', 'It learned from only 32 labelled messages at a time; language needs far more. The chatbot was trained beforehand on vast amounts of text. With thousands of your own labelled messages, a trained model can do well and runs cheaply.'),
                 ('Can we trust the URA figure?', 'It is a speech claim with no published method or audit. Treat it as a sign of direction and ask how leakage was counted.'),
                 ('Is the 95% pilot failure figure true?', 'It comes from a small MIT study reported in the press, described differently by different outlets. Treat it as a warning.')],
-        takeaway=['THE AI LANDSCAPE FOR LEADERS',
+        takeaway=['WHAT AI IS, AND WHERE IT ALREADY WORKS',
                   'AI is a family: rules (a person writes every step), machine learning (learns from examples), generative AI (writes new text, pictures or code) and agents (generative AI with tools that act).',
                   'A model learns like a new employee reading past files with their outcomes. Outcomes are labels; learning is training; the guess is a prediction. Old habits in the files are learned too.',
                   'Four jobs: see and read (Session 1); predict (Sessions 2 and 3); understand and write language (Sessions 4 to 8); act (Sessions 9 and 10).',

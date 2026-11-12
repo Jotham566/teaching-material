@@ -76,7 +76,7 @@ def reliability():
              ['', '', '', '', '']], widths, header=hdr, min_h=[2.8, 2.0], size=9.5)
     h2(d, 'Test 3: Ask for the source')
     para(d, 'Ask the tool to show exactly where in your text each part of its answer comes from. Check three of the quotes yourself.', 9.5, color='404040', after=3)
-    grid(d, [['Ask for the source\n\nIs each quote really in the text?',
+    grid(d, [['Ask for the source\n\nIs each quote in the text?',
               '~Asked for a word-for-word quote behind each category and checked 3 of 20',
               '~2 of 3 correct',
               '~One quote was reworded and one was not in the message',
@@ -299,7 +299,7 @@ def sponsor():
     d = new_doc(name)
     title(d, 'Sponsor Briefing', 'Draft now with planned numbers; update at day 90')
     box(d, 'How to use this page', [
-        'One page for the board or owner: plain words, real numbers, one decision. Fill it in now with the planned numbers from your Business Case Workbook and label them plan. At day 90 replace them with the measured numbers from your Results Tracker. Grey italic text is an example from the fictional company Nile Valley Foods Ltd (NVF), with invented figures. Type over it.'], size=9)
+        'One page for the board or owner, with the numbers and the one decision you need. Fill it in now with the planned numbers from your Business Case Workbook and label them plan. At day 90 replace them with the measured numbers from your Results Tracker. Grey italic text is an example from the fictional company Nile Valley Foods Ltd (NVF), with invented figures. Type over it.'], size=9)
     h2(d, 'What we did', before=2)
     grid(d, [['~We changed how the Monday sales email is made. One approved assistant drafts it from the weekly sales sheet using a written prompt, and Peter checks every figure before it is sent. We used it every week for 12 weeks. We also fixed the invoice file, wrote a data-sharing rule and a data dictionary, and masked phone numbers in the export. A test of 20 questions with known answers scored 16 right, none invented.']],
          [W], label_cols=(), min_h=0.9, size=9)
