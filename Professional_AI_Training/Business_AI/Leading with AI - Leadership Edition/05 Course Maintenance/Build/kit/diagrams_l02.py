@@ -74,7 +74,6 @@ def x_l02_bridge(w, h, **_):
         s.icon('robot', x0 + 0.45, h - 3.62, 0.62)
         s.box(x0 + 0.85, h - 3.98, pw - 0.85, 0.72, '', fill=PAPER, lw=1.8, r=0.08)
         _wrap(s, x0 + 0.85 + (pw - 0.85) / 2, h - 3.62, pw - 1.05, out, 15, weight='bold')
-    s.text(w / 2, 0.22, 'The same idea: learn from past examples whose answer is known', size=16, weight='bold', color=RED)
     return s
 
 
@@ -123,7 +122,6 @@ def x_l02_officer(w, h, **_):
         s.box(5.65, y - 0.42, 1.95, 0.84, '', fill=GOLD, lw=1.8, r=0.08)
         _wrap(s, 5.65 + 0.975, y, 1.75, out, 15, weight='bold')
     s.line(0.1, h - 2.18, w - 0.1, h - 2.18, color=HAIR, lw=1.2)
-    s.text(w / 2, 0.45, 'Same habit: judge a new case by what happened to similar past cases', size=15, weight='bold', color=RED)
     s.text(w - 0.1, 0.1, 'The score is illustrative', size=14, color=MUTE, ha='right')
     return s
 

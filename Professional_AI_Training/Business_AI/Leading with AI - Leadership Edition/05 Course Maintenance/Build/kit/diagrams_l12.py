@@ -30,16 +30,15 @@ def x_l12_bridge(w, h, **_):
     y = h - 1.55
     for i, ((st, tag, fill), (who, chg)) in enumerate(zip(steps, people)):
         x = x0 + i * (bw + gap)
-        s.text(x + bw / 2, y + 0.98, tag, size=14, color=RED if tag == 'AI step' else MUTE, weight='bold')
+        s.text(x + bw / 2, y + 0.98, tag, size=14, color=INK if tag == 'AI step' else MUTE, weight='bold')
         s.box(x, y, bw, 0.75, '', fill=fill, lw=1.8, r=0.08)
         _wrap(s, x + bw / 2, y + 0.375, bw - 0.2, st, 15, weight='bold')
         if i < 3:
             s.arrow(x + bw + 0.03, y + 0.375, x + bw + gap - 0.03, y + 0.375, lw=2.0, head=13)
-        s.arrow(x + bw / 2, y - 0.08, x + bw / 2, y - 0.55, color=RED, lw=2.0, head=13)
+        s.arrow(x + bw / 2, y - 0.08, x + bw / 2, y - 0.55, color=INK, lw=2.0, head=13)
         s.icon('person', x + bw / 2, y - 0.98, 0.62, accent=GOLD if who == 'Officer' else PAPER)
         s.text(x + bw / 2, y - 1.48, who, size=15, weight='bold')
         _wrap(s, x + bw / 2, y - 1.72, bw - 0.05, chg, 14, color=BODY, va='top')
-    s.text(w / 2, 0.25, 'Every step that changes lands on someone’s working day', size=16, weight='bold', color=RED)
     return s
 
 
@@ -72,7 +71,7 @@ def x_l12_cba(w, h, **_):
 def x_l12_bundle(w, h, **_):
     s = Scene(w, h)
     cards = [('Read and sort messages', 'AI sorts first', GOLD, INK), ('Draft replies', 'AI drafts first', GOLD, INK), ('Look up orders and payments', 'same as today', PAPER, INK),
-             ('Handle angry or unusual customers', 'more time', PAPER, INK), ('Call customers back', 'more time', PAPER, INK), ('Report AI mistakes', 'a new task', PAPER, RED)]
+             ('Handle angry or unusual customers', 'more time', PAPER, INK), ('Call customers back', 'more time', PAPER, INK), ('Report AI mistakes', 'a new task', PAPER, INK)]
     cw, ch = 2.55, 0.98
     ys = [h - 0.1 - ch - k * (ch + 0.22) for k in range(3)]
     cx, cy = w / 2, ys[1] + ch / 2 + 0.25
@@ -83,11 +82,10 @@ def x_l12_bundle(w, h, **_):
         s.line(x + cw if left else x, y + ch / 2, cx - 0.55 if left else cx + 0.55, cy, color=HAIR, lw=1.6, z=0)
         s.box(x, y, cw, ch, '', fill=fill, edge=edge, lw=2.2 if edge == RED else 1.8, r=0.08)
         _wrap(s, x + 0.15, y + ch - 0.12, cw - 0.3, txt, 15, weight='bold', ha='left', va='top')
-        s.text(x + 0.15, y + 0.2, tag, size=14, ha='left', color=RED if tag != 'same as today' else MUTE, weight='bold')
+        s.text(x + 0.15, y + 0.2, tag, size=14, ha='left', color=MUTE if tag == 'same as today' else INK, weight='bold')
     s.icon('person', cx, cy, 1.1, accent=GOLD)
     s.text(cx, cy - 0.85, 'Customer service', size=15, weight='bold')
     s.text(cx, cy - 1.1, 'officer', size=15, weight='bold')
-    s.text(w / 2, 0.22, 'The job stays. The mix of tasks changes.', size=16, weight='bold', color=RED)
     return s
 
 
@@ -104,12 +102,12 @@ def x_l12_three(w, h, **_):
         cx = x + cw / 2
         if i:
             s.line(x, 0.2, x, h - 0.15, color=HAIR, lw=1.2)
-        s.text(cx, h - 0.35, hd, size=21, weight='bold', color=RED if i == 2 else INK)
+        s.text(cx, h - 0.35, hd, size=21, weight='bold')
         n = len(ics)
         for k, ic in enumerate(ics):
             s.icon(ic, cx + (k - (n - 1) / 2) * 0.85, h - 1.25, 0.75, accent=GOLD)
         _wrap(s, cx, h - 2.05, cw - 0.3, sub, 16, weight='bold')
-        s.box(x + 0.12, 0.35, cw - 0.24, 1.55, '', fill=GOLD if i == 0 else PAPER, lw=1.6, r=0.08)
+        s.box(x + 0.12, 0.35, cw - 0.24, 1.55, '', fill=PAPER, lw=1.2, r=0.08)
         s.text(x + 0.28, 1.68, 'Example', size=14, color=MUTE, ha='left')
         _wrap(s, x + 0.28, 1.45, cw - 0.55, ex, 15, ha='left', va='top', color=INK)
     return s
@@ -124,7 +122,7 @@ def x_l12_exposure(w, h, **_):
     lw_, bx, bw = 2.65, 2.8, 3.75
     y = h - 0.3
     for gi, (head, rows) in enumerate(groups):
-        s.text(0.1, y, head, size=15, weight='bold', ha='left', color=RED if gi else INK)
+        s.text(0.1, y, head, size=15, weight='bold', ha='left')
         y -= 0.4
         for lab, v in rows:
             s.text(0.15, y, lab, size=14, ha='left', color=BODY)
@@ -141,12 +139,13 @@ def x_l12_exposure(w, h, **_):
 @fig('x_l12_wef')
 def x_l12_wef(w, h, **_):
     s = Scene(w, h)
-    tiles = [('170 million', 'jobs created', GOLD), ('92 million', 'jobs displaced', PAPER), ('78 million', 'more jobs, net', PAPER)]
+    tiles = [('170 million', 'jobs created', PAPER), ('92 million', 'jobs displaced', PAPER), ('78 million', 'more jobs, net', PAPER)]
     tw = (w - 0.2 - 0.3) / 3
     for i, (big, txt, fill) in enumerate(tiles):
         x = 0.1 + i * (tw + 0.15)
-        s.box(x, h - 1.2, tw, 1.1, '', fill=fill, lw=1.8, r=0.08)
-        s.text(x + tw / 2, h - 0.5, big, size=22, weight='bold', color=RED if i == 1 else INK)
+        if i:
+            s.line(x - 0.075, h - 1.15, x - 0.075, h - 0.15, color=HAIR, lw=1.2)
+        s.text(x + tw / 2, h - 0.5, big, size=26, weight='bold')
         s.text(x + tw / 2, h - 0.92, txt, size=15, color=BODY)
     rows = [('Workers whose skills will change or go out of date', 39), ('Employers who plan to put upskilling first', 85), ('Employers who expect fewer staff where automation can do the tasks', 40)]
     y = h - 1.65
@@ -155,8 +154,7 @@ def x_l12_wef(w, h, **_):
         _bar(s, 4.0, y, 2.6, v)
         s.text(w - 0.1, y, f'{v} in 100', size=14, weight='bold', ha='right')
         y -= 0.62
-    s.box(0.1, 0.45, w - 0.2, 0.62, '', fill=PAPER, edge=RED, lw=2, r=0.08)
-    _wrap(s, w / 2, 0.76, w - 0.5, 'Employers’ expectations to 2030, for every cause of change, AI among them. Over 1,000 employers in 55 economies.', 14, weight='bold')
+    _wrap(s, 0.1, 0.76, w - 0.2, 'Employers’ expectations to 2030, for every cause of change, AI among them. Over 1,000 employers in 55 economies.', 14, ha='left', color=BODY)
     _source(s, 'Source: WEF Future of Jobs 2025, via People Matters, 24 Feb 2026.', y=0.18)
     return s
 
@@ -186,7 +184,7 @@ def x_l12_six(w, h, **_):
         top -= hh + 0.1
         uh = _wrap(s, tx, top, iw, use, 15, ha='left', va='top', color=BODY)
         top -= uh + 0.08
-        _wrap(s, tx, top, iw, ex, 15, weight='bold', ha='left', va='top', color=RED)
+        _wrap(s, tx, top, iw, ex, 15, weight='bold', ha='left', va='top', color=INK)
     _source(s, 'Sources: TechTrends Kenya 2026; The Guardian 2023; Dataiku 2026; HBS 2025; Penn State 2023; The Citizen 2025.', y=0.16)
     return s
 
@@ -208,7 +206,7 @@ def x_l12_routes(w, h, **_):
         s.text(x + 0.85, h - 0.68, 'announced ' + when, size=14, ha='left', color=MUTE)
         y = h - 1.15
         for big, txt in rows:
-            s.text(x + 0.2, y, big, size=17, weight='bold', ha='left', color=RED)
+            s.text(x + 0.2, y, big, size=17, weight='bold', ha='left')
             hh = _wrap(s, x + 0.2, y - 0.2, pw - 0.4, txt, 14, ha='left', va='top', color=BODY)
             y -= 0.38 + hh + 0.12
         s.text(x + 0.2, 0.75, src, size=14, ha='left', color=MUTE)
@@ -249,7 +247,7 @@ def x_l12_curve(w, h, **_):
     bw = w - rx - 0.85
     for lab, v in rows:
         _wrap(s, rx, y, w - rx - 0.1, lab, 14, ha='left', va='top', color=BODY)
-        _bar(s, rx, y - 0.36, bw, v, h=0.22, fill=RED if v in (51, 25) else GOLD)
+        _bar(s, rx, y - 0.36, bw, v, h=0.22, fill=GOLD if v == 25 else PALE)
         s.text(w - 0.1, y - 0.36, str(v), size=15, weight='bold', ha='right')
         y -= 0.7
     _source(s, 'Source: BCG AI at Work, 26 Jun 2025; office staff in 11 countries. The curve is a sketch.', y=0.18)
@@ -265,13 +263,13 @@ def x_l12_fears(w, h, **_):
             ('Will I be blamed for the AI’s mistakes?', 'The sender owns the reply. The AI only drafts.', 'Reporting an AI error is praised, and logged.')]
     c = [(0.1, 2.3, 'The fear'), (2.75, 2.35, 'What we say'), (5.3, w - 5.4, 'What we do')]
     for x, cw, hd in c:
-        s.text(x + 0.1, h - 0.25, hd, size=16, weight='bold', ha='left', color=RED if hd == 'The fear' else INK)
+        s.text(x + 0.1, h - 0.25, hd, size=16, weight='bold', ha='left')
     s.line(0.1, h - 0.48, w - 0.1, h - 0.48, lw=1.8)
     rh = (h - 1.05) / 3
     for i, row in enumerate(rows):
         y = h - 0.6 - (i + 1) * rh + 0.08
         for k, ((x, cw, _), txt) in enumerate(zip(c, row)):
-            s.box(x, y, cw, rh - 0.14, '', fill=PALE if k == 0 else (GOLD if k == 1 else PAPER), lw=1.6, r=0.08)
+            s.box(x, y, cw, rh - 0.14, '', fill=PALE if k == 0 else PAPER, lw=1.6, r=0.08)
             _wrap(s, x + 0.15, y + (rh - 0.14) / 2, cw - 0.3, txt, 15, weight='bold' if k == 0 else 'normal', ha='left')
             if k < 2:
                 s.arrow(x + cw + 0.02, y + (rh - 0.14) / 2, c[k + 1][0] - 0.03, y + (rh - 0.14) / 2, lw=1.8, head=12)
@@ -342,13 +340,13 @@ def x_l12_champions(w, h, **_):
     s.box(0.1, h - 0.95, 2.05, 0.82, '', fill=PAPER, lw=1.8, r=0.08)
     s.text(1.125, h - 0.38, 'Sponsor', size=15, weight='bold')
     s.text(1.125, h - 0.7, 'Managing Director', size=14, color=BODY)
-    s.box(2.55, h - 0.95, 2.25, 0.82, '', fill=GOLD, lw=1.8, r=0.08)
+    s.box(2.55, h - 0.95, 2.25, 0.82, '', fill=PAPER, lw=1.8, r=0.08)
     s.text(3.675, h - 0.38, 'Plan owner', size=15, weight='bold')
     s.text(3.675, h - 0.7, 'Customer Service Lead', size=14, color=BODY)
     s.arrow(2.17, h - 0.54, 2.53, h - 0.54, lw=1.8, head=12)
     for cx, lab in ((1.25, 'Morning champion'), (3.75, 'Afternoon champion')):
         s.arrow(3.675, h - 0.98, cx, h - 1.48, lw=1.8, head=12)
-        s.icon('person', cx, h - 1.88, 0.66, accent=RED)
+        s.icon('person', cx, h - 1.88, 0.66, accent=GOLD)
         s.text(cx, h - 2.4, lab, size=14, weight='bold')
         for k in range(4):
             px = cx - 0.84 + k * 0.56
@@ -356,8 +354,8 @@ def x_l12_champions(w, h, **_):
             s.line(cx, h - 2.58, px, h - 2.98, color=HAIR, lw=1.2, z=0)
     s.text(2.5, h - 3.72, 'Officers on each shift', size=14, color=BODY)
     rx = 5.15
-    s.box(rx, 0.7, w - rx - 0.1, h - 0.8, '', fill=PAPER, edge=RED, lw=2, r=0.08)
-    s.text(rx + 0.18, h - 0.38, 'The loop', size=16, weight='bold', color=RED, ha='left')
+    s.line(rx - 0.05, 0.7, rx - 0.05, h - 0.1, color=HAIR, lw=1.2)
+    s.text(rx + 0.1, h - 0.38, 'The loop', size=16, weight='bold', ha='left')
     items = ['Tips and answers go out', 'Errors and ideas come back', 'A weekly 15-minute review', 'One shared error log', 'Check-ins at day 30, 60, 90']
     yy = h - 0.75
     for it in items:

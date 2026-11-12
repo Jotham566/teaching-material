@@ -67,7 +67,6 @@ def x_l04_bridge(w, h, **_):
         s.icon('robot', x0 + 0.45, h - 3.68, 0.62)
         s.box(x0 + 0.85, h - 4.04, pw - 0.85, 0.72, '', fill=PAPER, lw=1.8, r=0.08)
         _wrap(s, x0 + 0.85 + (pw - 0.85) / 2, h - 3.68, pw - 1.05, out, 15, weight='bold')
-    s.text(w / 2, 0.22, 'A message is a record too: AI sorts it, and Session 3 judges it', size=16, weight='bold', color=RED)
     return s
 
 

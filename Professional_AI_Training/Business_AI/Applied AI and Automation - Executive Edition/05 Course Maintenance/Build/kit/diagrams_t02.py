@@ -638,7 +638,7 @@ def x_t02_memorise(w, h, **_):
         for c in cuts:
             s.line(px(c), y - 0.4, px(c), y + 0.4, color=RED, lw=2.6, z=5)
     strip(h - 1.3, 'Tree with few questions: queried if filed over 30 days', [30], [(30, 60)])
-    strip(h - 3.0, 'Tree with no limit: adds a rule just for the slip', [30, 10, 12], [(30, 60), (10, 12)])
+    strip(h - 3.0, 'Tree with no limit: adds a rule only for the slip', [30, 10, 12], [(30, 60), (10, 12)])
     s.callout('a slip: queried by mistake', px(slip) + 0.05, h - 3.0 - 0.15, px(slip) + 2.6, h - 3.0 - 0.6, size=15)
     for d in (0, 10, 20, 30, 40, 50, 60):
         s.text(px(d), 0.85, str(d), size=14, color=BODY)

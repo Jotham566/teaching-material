@@ -385,11 +385,11 @@ def stack(w, h, **_):
     s = Scene(w, h)
     c = R['gpt2_config']
     items = [('Your text', 'Please pay the invoice within thirty', PAPER),
-             ('Tokens', 'cut by the tokenizer; each has an id', GOLD),
+             ('Tokens', 'cut by the tokenizer; each has an id', PAPER),
              ('Embeddings', 'numbers per token (Session 4), plus position', PAPER),
              ('%d blocks' % c['layers'], 'each: self-attention, feed-forward (%d heads)' % c['heads'], GOLD),
              ('Logits', 'one score for each of %s tokens' % format(c['vocab'], ','), PAPER),
-             ('Probabilities', 'softmax turns the logits into a distribution', GOLD)]
+             ('Probabilities', 'softmax turns the logits into a distribution', PAPER)]
     n = len(items)
     bh = (h - 0.1) / n - 0.12
     for i, (a, b, f) in enumerate(items):
@@ -431,7 +431,7 @@ def learn_loop(w, h, **_):
     heads = ['1. Hide the next token', '2. The model predicts', '3. Measure the loss, adjust']
     for i, x in enumerate(xs):
         s.box(x, y0, bw, bh, '', fill=PAPER, edge=INK, lw=1.8)
-        s.box(x, y0 + bh - 0.5, bw, 0.5, heads[i], size=17, weight='bold', fill=GOLD, edge=INK, lw=1.8, r=0.05)
+        s.box(x, y0 + bh - 0.5, bw, 0.5, heads[i], size=17, weight='bold', fill=PAPER, edge=INK, lw=1.8, r=0.05)
         if i < 2:
             s.arrow(x + bw + 0.04, y0 + bh / 2, xs[i + 1] - 0.04, y0 + bh / 2, color=RED, lw=2.6)
     # step 1

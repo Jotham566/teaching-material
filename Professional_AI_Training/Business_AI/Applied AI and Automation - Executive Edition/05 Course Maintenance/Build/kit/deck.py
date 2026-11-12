@@ -81,21 +81,20 @@ def recall_script(s):
     num = s['num']
     n = len(s['recall'])
     lead = {1: 'One quick question', 2: 'Two quick questions', 3: 'Three quick questions'}.get(n, f'{n} quick questions')
-    paras = [f'{lead} from Session {num - 1}. Answer aloud first, and then we check together. It is a warm-up to bring last time back.']
+    paras = [f'{lead} from Session {num - 1}. Answer aloud first, and then we check together. ']
     for i, (q, a) in enumerate(s['recall']):
         paras.append(f'Question {ORDINALS[i].lower()}. {q} {PAUSES[i % 3]}')
         paras.append(f'A good answer is this. {a}')
-    paras.append('If an answer was missing, last session’s take-away sheet or workbook page has it. Now to today.')
+    paras.append('If an answer was missing, last session’s take-away sheet has it.')
     return '\n\n'.join(paras)
 
 
 def words_script(s):
     words = s['words']
     k = {3: 'three', 4: 'four', 5: 'five'}.get(len(words), str(len(words)))
-    paras = [f'{k.capitalize()} words for today. I give the plain meaning of each, and we use every one of them before the end of the session.']
+    paras = [f'{k.capitalize()} words for today. We use every one of them before the end of the session.']
     for term, meaning in words:
         paras.append(f'{term}. {meaning}')
-    paras.append('Keep those words close. The first idea uses them straight away, so let us begin.')
     return '\n\n'.join(paras)
 
 
@@ -110,7 +109,7 @@ def plan_script(s):
     parts = []
     for i, (m, label) in enumerate(s['clock']):
         parts.append(f'{order[min(i, len(order) - 1)]}, {_NUM.get(m, str(m))} minutes. {label[:1].upper() + label[1:]}.')
-    return paragraphs(base) + '\n\nHere is how the two hours run. ' + ' '.join(parts)
+    return paragraphs(base) + '\n\nThe two hours run like this. ' + ' '.join(parts)
 
 
 def cover_script(s):
@@ -229,8 +228,9 @@ def auto_icons(items):
 def icon_rows(x, y, w, h, items, icons=None, smax=24, smin=18, bold_first=False):
     """Rows with a pictogram on the left and one item of text each, separated by hairlines. Row heights follow the text. Returns objects."""
     n = len(items)
-    icons = icons or auto_icons(items)
-    tw = w - 1.0
+    plain = icons is False
+    icons = [] if plain else (icons or auto_icons(items))
+    tw = w - (0.0 if plain else 1.0)
     chosen = None
     for sz in range(int(smax), int(smin) - 1, -1):
         hs = [max(0.72 if n < 6 else 0.6, len(K.wrap(str(it), sz, 'regular', tw)) * sz * 1.2 / 72 + (0.2 if n < 6 else 0.12)) for it in items]
@@ -246,8 +246,9 @@ def icon_rows(x, y, w, h, items, icons=None, smax=24, smin=18, bold_first=False)
     for i, it in enumerate(items):
         rh = hs[i] + extra
         isz = min(0.7, rh - 0.1)
-        objs.append(icon_img(icons[i], round(isz, 2), x + 0.05, yy + (rh - isz) / 2))
-        o = K.text_obj(x + 1.0, yy + 0.04, tw, rh - 0.08, text=str(it), size=sz, color=B.INK, valign='middle')
+        if not plain:
+            objs.append(icon_img(icons[i], round(isz, 2), x + 0.05, yy + (rh - isz) / 2))
+        o = K.text_obj(x + (0.0 if plain else 1.0), yy + 0.04, tw, rh - 0.08, text=str(it), size=sz, color=B.INK, valign='middle')
         objs.append(o)
         if i < n - 1:
             objs.append(K.line_obj(x, yy + rh, x + w, yy + rh, color='CFCFCF', w=0.75))
@@ -418,15 +419,17 @@ def k_decision(d, sl):
     n = len(opts)
     gap = 0.3
     bw = (XW - gap * (n - 1)) / n
-    icons = [o.get('icon') or ic for o, ic in zip(opts, ['check', 'chart', 'pin', 'shield'])]
+    icons = [o.get('icon') for o in opts]   # an icon only where the option names one
     # one size for every option text and every head, so no box looks smaller than its neighbours
     s_txt = min(K.fitted_text(X0, Y0, bw - 0.4, 1.5, o['text'], size_max=20, size_min=16)[1] for o in opts)
-    s_head = min(K.fitted_text(X0, Y0, bw - 1.2, 0.8, o['head'], size_max=24, size_min=14, bold=True)[1] for o in opts)
+    hx = 1.05 if any(icons) else 0.2   # heads start at the edge when no option has an icon
+    s_head = min(K.fitted_text(X0, Y0, bw - hx - 0.15, 0.8, o['head'], size_max=24, size_min=14, bold=True)[1] for o in opts)
     for i, o in enumerate(opts):
         x = X0 + i * (bw + gap)
         objs.append(K.rect_obj(x, Y0 + 1.5, bw, 2.6, fill=None, line='111111', line_w=1.5, radius=0.05))
-        objs.append(icon_img(icons[i], 0.8, x + 0.15, Y0 + 1.62))
-        objs.append(text(x + 1.05, Y0 + 1.62, bw - 1.2, 0.8, o['head'], s_head, s_head, bold=True, valign='middle'))
+        if icons[i]:
+            objs.append(icon_img(icons[i], 0.8, x + 0.15, Y0 + 1.62))
+        objs.append(text(x + hx, Y0 + 1.62, bw - hx - 0.15, 0.8, o['head'], s_head, s_head, bold=True, valign='middle'))
         objs.append(text(x + 0.2, Y0 + 2.55, bw - 0.4, 1.5, o['text'], s_txt, s_txt, color=B.BODY))
     objs.append(text(X0, 6.5, XW, 0.4, sl.get('record', 'Write your decision and the reason in your workbook.'), 22, 18, color=B.MUTE))
     return objs
@@ -470,8 +473,8 @@ def add_outcome(d):
     s = d.s
     objs = [text(X0, Y0 + 0.05, XW, 0.7, 'By the end of today you will have', 30, 24, bold=True)]
     objs.append(K.line_obj(X0, Y0 + 0.85, X0 + XW, Y0 + 0.85, color='111111', w=2.0))
-    objs += icon_rows(X0, Y0 + 1.05, XW, 3.6, s['outcomes'], s.get('outcome_icons') or ['check', 'doc', 'chart'][:len(s['outcomes'])], 26, 19)
-    d.add('Today in one view: what you will leave with', objs, s['outcome_note'])
+    objs += icon_rows(X0, Y0 + 1.05, XW, 3.6, s['outcomes'], s.get('outcome_icons') or False, 26, 19)
+    d.add('What you will leave with today', objs, s['outcome_note'])
 
 
 def add_plan(d):
@@ -480,14 +483,13 @@ def add_plan(d):
     h = min(3.95, 0.55 * len(parts) + 0.2)
     objs = [img({'kind': 'plan', 'parts': [[lab, m] for m, lab in parts]}, X0, Y0, XW, h, 'The two hours in parts, in minutes')]
     objs.append(text(X0, Y0 + h + 0.15, XW, 0.6, s.get('plan_caption', 'Most of today is your own work on your own company task.'), 24, 18, color=B.BODY))
-    d.add(s.get('plan_title', 'Your two hours: most of the time is your own work'), objs, plan_script(s))
+    d.add(s.get('plan_title', 'How the two hours run'), objs, plan_script(s))
 
 
 def add_recall(d):
     s = d.s
     qs = [f'{i + 1}.  {q}' for i, (q, a) in enumerate(s['recall'])]
-    objs = [paras(X0, Y0 + 0.2, 8.6, 3.9, qs, 30, 22, gap=0.45)]
-    objs.append(icon_img('question', 2.8, 9.9, Y0 + 0.5, 'Three questions'))
+    objs = [paras(X0, Y0 + 0.2, XW - 1.0, 3.9, qs, 30, 22, gap=0.45)]   # no decorative question-mark badge
     objs.append(text(X0, 6.2, XW, 0.6, 'Answer aloud first. Then we check together.', 22, 18, color=B.MUTE))
     d.add({1: 'A question from last time', 2: 'Two questions from last time', 3: 'Three questions from last time'}.get(len(s['recall']), 'Questions from last time'), objs, recall_script(s))
 
@@ -495,7 +497,7 @@ def add_recall(d):
 def chain_script(s):
     c = CH.CHAIN[s['num']]
     n = s['num']
-    bits = [f'So where does today sit in the story? The dots along the top are the fifteen sessions, from the map at Session 0 to your plan at Session 14, and the gold one is today.']
+    bits = [f'The dots along the top are the fifteen sessions, from the map at Session 0 to your plan at Session 14; the gold one is today.']
     pieces = []
     for a, b in c['on']:
         pieces.append(f'{b} from Session {a}')
@@ -503,10 +505,10 @@ def chain_script(s):
         built = pieces[0]
     else:
         built = ', '.join(pieces[:-1]) + ' and ' + pieces[-1]
-    bits.append(f'We already hold {built}. Nothing today starts from zero.')
-    bits.append(f'What today adds is this: {c["adds"][:1].lower() + c["adds"][1:]}.')
+    bits.append(f'Today uses {built}.')
+    bits.append(f'It adds {c["adds"][:1].lower() + c["adds"][1:]}.')
     lead = c['leads']
-    bits.append(f'And it feeds straight into what comes next. {lead}. Keep that chain in mind, because each idea you learn today is a step on it.')
+    bits.append(f'{lead}.')
     return '\n\n'.join(bits)
 
 
@@ -517,7 +519,7 @@ def add_chain(d):
         return
     objs = [img({'kind': 'chain', 'current': s['num'], 'on': [list(x) for x in c['on']], 'adds': c['adds'], 'leads': c['leads']}, X0, Y0, XW, 4.45, 'How today connects to the sessions before and after it')]
     objs.append(text(X0, 6.45, XW, 0.45, 'Each session is built on the ones before it.', 20, 16, color=B.MUTE))
-    d.add('How today connects: what we already have and what it feeds', objs, chain_script(s))
+    d.add('What today builds on, and where it leads', objs, chain_script(s))
 
 
 def add_words(d):
@@ -525,8 +527,9 @@ def add_words(d):
     words = s.get('words')
     if not words:
         return
-    icons = s.get('word_icons') or auto_icons([a + ' ' + b for a, b in words])
-    t, th = table_obj(X0 + 1.0, Y0, XW - 1.0, ['Word', 'What it means'], [[a, b] for a, b in words], [2.4, 7.0], 24, 17)
+    icons = s.get('word_icons') if s.get('word_icons_on') else []   # plain table: icons only when a session switches them on
+    off = 1.0 if icons else 0.0
+    t, th = table_obj(X0 + off, Y0, XW - off, ['Word', 'What it means'], [[a, b] for a, b in words], [2.4, 7.0], 24, 17)
     objs = [t]
     yy = Y0 + t['rowH'][0]
     for i, ic in enumerate(icons[:len(words)]):
@@ -558,7 +561,7 @@ def add_keep(d):
         objs.append(img(s['keep_visual'], 8.5, Y0 + 0.1, 4.1, 4.5, 'What you keep from today'))
     else:
         objs.append(icon_img('folder', 3.0, 9.4, 2.5, 'folder'))
-    d.add(s.get('keep_title', 'Save it, and bring one question to the next session'), objs, keep_script(s), section='Close')
+    d.add(s.get('keep_title', 'Save it, and bring one question next time'), objs, keep_script(s), section='Close')
 
 
 

@@ -311,7 +311,7 @@ def dotw(w, h, **_):
     x0 = 3.95
     pw = w - x0 - 0.1
     s.text(x0, h - 0.25, 'Step 1: multiply the matching ratings.  Step 2: add.', size=17, weight='bold', ha='left')
-    s.box(x0, 2.45, pw, 1.15, '', fill=GOLD, edge=INK, lw=2)
+    s.box(x0, 2.45, pw, 1.15, '', fill=PAPER, edge=INK, lw=2)
     s.text(x0 + 0.15, 3.25, 'Ana with Ben:', size=17, weight='bold', ha='left')
     s.text(x0 + 2.25, 3.25, '3 × 6 = 18,   4 × 8 = 32,   18 + 32 = 50', size=17, weight='bold', ha='left')
     s.text(x0 + 0.15, 2.8, 'Ana with Chloe:', size=17, weight='bold', ha='left')
@@ -361,7 +361,7 @@ def length(w, h, **_):
     x0 = 3.95
     pw = w - x0 - 0.1
     s.text(x0, h - 0.25, 'Square each number, add, then take the square root.', size=17, weight='bold', ha='left')
-    s.box(x0, 2.05, pw, 1.6, '', fill=GOLD, edge=INK, lw=2)
+    s.box(x0, 2.05, pw, 1.6, '', fill=PAPER, edge=INK, lw=2)
     for k, (nm, line) in enumerate((('Ana (3, 4):', '3² + 4² = 9 + 16 = 25,    √25 = 5'), ('Ben (6, 8):', '6² + 8² = 36 + 64 = 100,    √100 = 10'),
                                     ('Chloe (4, 3):', '4² + 3² = 16 + 9 = 25,    √25 = 5'))):
         s.text(x0 + 0.15, 3.3 - k * 0.45, nm, size=17, weight='bold', ha='left')
@@ -408,7 +408,7 @@ def cosw(w, h, **_):
     x0 = 3.95
     pw = w - x0 - 0.1
     s.text(x0, h - 0.25, 'Divide the dot product by the two lengths multiplied.', size=17, weight='bold', ha='left')
-    s.box(x0, 2.45, pw, 1.15, '', fill=GOLD, edge=INK, lw=2)
+    s.box(x0, 2.45, pw, 1.15, '', fill=PAPER, edge=INK, lw=2)
     s.text(x0 + 0.15, 3.25, 'Ana with Ben:', size=17, weight='bold', ha='left')
     s.text(x0 + 2.25, 3.25, '50 ÷ (5 × 10) = 50 ÷ 50 = 1.00', size=17, weight='bold', ha='left')
     s.text(x0 + 0.15, 2.8, 'Ana with Chloe:', size=17, weight='bold', ha='left')
@@ -545,7 +545,7 @@ def logfig(w, h, **_):
         r = 40 / d
         rows.append([wd, str(d), f'40 ÷ {d} = {r:.1f}'.replace('.0 ', ' ') if r != int(r) else f'40 ÷ {d} = {int(r)}', _ln2(r)])
     cw = [1.5, 0.75, 2.2, 1.75]
-    s.table(0.05, h - 0.05, cw, 0.58, rows, size=16, align=['left', 'center', 'center', 'center'], hl_cols=(3,), hl_fill=GOLD)
+    s.table(0.05, h - 0.05, cw, 0.58, rows, size=16, align=['left', 'center', 'center', 'center'], hl_cells={(1, 3): GOLD})
     x0 = 6.6
     _col(s, x0, h - 0.1, [('N = 40 messages. N ÷ df runs from 1.8 to 40, so one rare word would outweigh the rest.', 15, 'normal', INK, 0.18),
                           ('The log grows slowly: 40 becomes 3.69 and 1.8 becomes 0.60. The order stays the same.', 15, 'normal', INK, 0.18),
@@ -665,7 +665,7 @@ def network(w, h, **_):
     s.text(5.2, cy - 1.3, 'drawn small: the real one is much bigger', size=14, color=MUTE)
     s.text(9.5, cy + 1.45, '384 numbers out', size=17, weight='bold')
     for j, v in enumerate(V[:6]):
-        s.box(8.55, cy + 0.95 - j * 0.38, 1.9, 0.34, ('0.00' if abs(v) < 0.005 else f'{v:+.2f}'.replace('-', '−')), size=14, fill=GOLD, lw=1.3, r=0.04)
+        s.box(8.55, cy + 0.95 - j * 0.38, 1.9, 0.34, ('0.00' if abs(v) < 0.005 else f'{v:+.2f}'.replace('-', '−')), size=14, fill=PAPER, lw=1.3, r=0.04)
     s.text(9.5, cy - 1.3, '... and 378 more', size=14, color=MUTE)
     s.box(0.1, 0.02, w - 0.2, 0.42, 'Fine-tuned on more than a billion pairs of related sentences, so that similar meanings land close (model card).', size=14, fill=PALE, lw=1.2)
     return s

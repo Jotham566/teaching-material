@@ -52,15 +52,14 @@ def x_l14_bridge(w, h, **_):
     centres = []
     for i, (sess, txt, cw) in enumerate(cols):
         last = i == len(cols) - 1
-        s.rect(x, top - 0.5, cw, 0.5, fill=INK if not last else RED, edge=INK, lw=1.2)
+        s.rect(x, top - 0.5, cw, 0.5, fill=INK, edge=INK, lw=1.2)
         s.text(x + cw / 2, top - 0.25, sess, size=14, weight='bold', color=PAPER)
         s.box(x, bot, cw, top - 0.55 - bot, '', fill=GOLD if last else PAPER, lw=1.6, r=0.04)
         _wrap(s, x + cw / 2, (top - 0.55 + bot) / 2, cw - 0.2, txt, 15, weight='bold' if last else 'normal', color=INK if last else BODY)
         centres.append(x + cw / 2)
         x += cw + gap
     s.arrow(w / 2, bot - 0.08, w / 2, 1.2, lw=2.4, head=16)
-    s.box(1.0, 0.55, w - 2.0, 0.62, '', fill=PAPER, edge=RED, lw=2.2, r=0.08)
-    s.text(w / 2, 0.86, 'Your 90-day plan: owners, dates, check-ins', size=16, weight='bold')
+    s.text(w / 2, 0.86, 'Your 90-day plan: owners, dates, check-ins', size=17, weight='bold')
     s.text(w / 2, 0.2, 'Builds on Session 8: good documents. Session 13: who may see which data.', size=14, color=MUTE)
     return s
 
@@ -124,14 +123,14 @@ def x_l14_counts(w, h, **_):
     s.text(0.05, 0.25, 'An invented contact list', size=14, color=MUTE, ha='left')
     x = tw + 0.3
     bw = w - x - 0.05
-    cards = [(h - 0.1, RED, '4 of 5', 'phone numbers filled; row 3 is blank', 'Completeness'),
-             (h / 2 - 0.1, GOLD, '4 of 5', 'rows are different people; Brian is there twice', 'Uniqueness')]
+    cards = [(h - 0.1, INK, '4 of 5', 'phone numbers filled; row 3 is blank', 'Completeness'),
+             (h / 2 - 0.1, INK, '4 of 5', 'rows are different people; Brian is there twice', 'Uniqueness')]
     ch = h / 2 - 0.2
     for top, col, big, txt, term in cards:
-        s.box(x, top - ch, bw, ch, '', fill=PAPER, edge=col, lw=2.4, r=0.08)
-        s.text(x + 0.2, top - 0.42, big, size=28, weight='bold', ha='left', color=RED if col == RED else INK)
-        _wrap(s, x + 0.2, top - 0.8, bw - 0.35, txt, 15, ha='left', va='top', color=BODY)
-        s.text(x + bw - 0.15, top - ch + 0.25, term, size=15, weight='bold', ha='right', color=RED)
+        s.line(x, top - ch, x + bw, top - ch, color=HAIR, lw=1.2)
+        s.text(x + 0.1, top - 0.42, big, size=30, weight='bold', ha='left')
+        _wrap(s, x + 0.1, top - 0.8, bw - 0.2, txt, 15, ha='left', va='top', color=BODY)
+        s.text(x + 0.1, top - ch + 0.25, term, size=15, weight='bold', ha='left', color=MUTE)
     return s
 
 
@@ -192,7 +191,7 @@ def x_l14_six(w, h, **_):
         top -= hh + 0.1
         uh = _wrap(s, tx, top, iw, use, 15, ha='left', va='top', color=BODY)
         top -= uh + 0.08
-        _wrap(s, tx, top, iw, ex, 15, weight='bold', ha='left', va='top', color=RED)
+        _wrap(s, tx, top, iw, ex, 15, weight='bold', ha='left', va='top', color=INK)
     _source(s, 'Sources: The Star 2026; Google Cloud 2025; AgNavigator 2025; Watchdog Uganda 2022; Makerere 2025; Daily Monitor 2026.', y=0.16)
     return s
 
@@ -218,9 +217,9 @@ def x_l14_nds(w, h, **_):
     # panel 2: 36% to 80%
     x = xs[1]
     bl, bw_ = x + 0.1, pw - 0.2
-    for i, (v, lab, fill) in enumerate(((36, 'have data today', RED), (80, 'the five-year target', GOLD))):
+    for i, (v, lab, fill) in enumerate(((36, 'have data today', PALE), (80, 'the five-year target', GOLD))):
         y = h - 1.3 - i * 1.15
-        s.text(bl, y + 0.25, f'{v}%', size=26, weight='bold', ha='left', color=RED if i == 0 else INK)
+        s.text(bl, y + 0.25, f'{v}%', size=26, weight='bold', ha='left')
         s.text(bl + 1.15, y + 0.25, lab, size=15, ha='left', color=BODY)
         s.rect(bl, y - 0.35, bw_, 0.3, fill=PAPER, edge=INK, lw=1.2)
         s.rect(bl, y - 0.35, bw_ * v / 100, 0.3, fill=fill, edge=INK, lw=1.2, z=3)
@@ -228,7 +227,7 @@ def x_l14_nds(w, h, **_):
     # panel 3: three pillars and the people
     x = xs[2]
     for i, p in enumerate(['Pillar 1: governance', 'Pillar 2: infrastructure', 'Pillar 3: use']):
-        s.box(x + 0.1, h - 1.07 - i * 0.48, pw - 0.2, 0.42, p, size=15, weight='bold', fill=GOLD, lw=1.4, r=0.04)
+        s.text(x + 0.1, h - 0.86 - i * 0.48, p, size=16, weight='bold', ha='left')
     _wrap(s, x + pw / 2, 1.62, pw - 0.2, 'A National Data Steering Committee and a National Data Office', 15, color=BODY)
     _wrap(s, x + pw / 2, 0.85, pw - 0.2, 'A data focal point in every institution; public servants trained', 15, weight='bold')
     _source(s, 'Source: Daily Monitor, 21 October 2026. These are targets, not results.', y=0.2)
@@ -436,8 +435,8 @@ def x_l14_people(w, h, **_):
     s.text(x + 0.2, h - 0.33, 'What staff fear and gain', size=16, weight='bold', ha='left')
     hh = _wrap(s, x + 0.2, h - 0.62, pw - 0.4, 'Fear: blamed for old errors, or watched more closely.', 15, ha='left', va='top', color=BODY)
     _wrap(s, x + 0.2, h - 0.75 - hh, pw - 0.4, 'Gain: fewer corrections, and data work that is seen and valued.', 15, ha='left', va='top', color=BODY)
-    s.box(x, 0.05, pw, 2.05, '', fill=PAPER, edge=RED, lw=2.2, r=0.08)
-    s.text(x + 0.2, 1.8, 'In Uganda', size=16, weight='bold', color=RED, ha='left')
+    s.line(x, 2.1, x + pw, 2.1, color=HAIR, lw=1.2)
+    s.text(x + 0.2, 1.8, 'In Uganda', size=16, weight='bold', ha='left')
     hh = _wrap(s, x + 0.2, 1.55, pw - 0.4, 'URA’s own staff wrote the 2019 study of its taxpayer register.', 15, ha='left', va='top', color=BODY)
     _wrap(s, x + 0.2, 1.45 - hh, pw - 0.4, 'The National Data Strategy names a data focal point in every institution.', 15, ha='left', va='top', color=BODY)
     return s
@@ -479,5 +478,5 @@ def x_l14_course(w, h, **_):
         if i < 3:
             s.arrow(0.45, y - 0.005, 0.45, y - gap + 0.005, lw=1.6, head=9)
     s.text(cx1 + 0.1 + can_w / 2, h - 0.02 + 0.0, '', size=14)
-    s.text(w / 2, 0.2, 'Session 14 leads back to the Session 0 question, now answered with your own plan', size=15, weight='bold', color=RED)
+    s.text(w / 2, 0.2, 'Session 14 leads back to the Session 0 question, now answered with your own plan', size=15, weight='bold')
     return s

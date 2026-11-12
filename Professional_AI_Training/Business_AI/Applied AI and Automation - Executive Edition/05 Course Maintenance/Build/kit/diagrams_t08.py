@@ -77,7 +77,7 @@ def fivepart(w, h, **_):
     rh = (h - 0.1) / 5
     for i, (a, b, missing) in enumerate(rows):
         y = h - 0.05 - (i + 1) * rh
-        s.box(0.05, y + 0.06, 1.9, rh - 0.12, a, size=19, weight='bold', fill=PAPER if missing else GOLD, edge=RED if missing else INK, lw=2.0, dash=missing)
+        s.box(0.05, y + 0.06, 1.9, rh - 0.12, a, size=19, weight='bold', fill=PAPER if missing else PALE, edge=RED if missing else INK, lw=2.0, dash=missing)
         s.box(2.05, y + 0.06, w - 2.1, rh - 0.12, '', fill=PAPER, edge=RED if missing else INK, lw=1.4, dash=missing)
         _lt(s, 2.25, y + rh / 2, w - 2.5, b, 17, color=RED if missing else INK)
     return s
@@ -223,13 +223,13 @@ def payroll(w, h, **_):
         for j, v in enumerate(vals):
             ok = v == key
             cx = c0 + j * cw + cw / 2
-            s.box(cx - cw / 2 + 0.08, y + 0.1, cw - 0.16, rh - 0.2, v, size=16, weight='bold', fill=GOLD if ok else PAPER, edge=INK if ok else RED, lw=2.0 if ok else 2.6)
+            s.box(cx - cw / 2 + 0.08, y + 0.1, cw - 0.16, rh - 0.2, v, size=16, weight='bold', fill=PAPER, edge=INK if ok else RED, lw=2.0 if ok else 2.6)
         good = sum(v == key for v in vals)
         s.text(w - rc / 2, y + rh / 2, '%d of %d = %d%%' % (good, len(vals), round(100 * good / len(vals))), size=17, weight='bold')
         s.line(0.05, y, w - 0.05, y, color=HAIR, lw=1)
     s.text(0.1, 0.98, 'Accuracy = correct ÷ total.  All ten runs: 9 ÷ 10 = 90%.', size=16, ha='left', weight='bold', color=RED)
     s.text(0.1, 0.62, 'Boxes show net pay (UGX). Key, worked out separately: 1,802,898. Total cost key: 2,261,250.', size=14, ha='left', weight='bold')
-    s.text(0.1, 0.26, 'Gold = matches the key. Red = wrong. 10 runs, Claude fresh subagents, 6 November 2026.', size=14, ha='left', color=BODY)
+    s.text(0.1, 0.26, 'Red border = wrong; the others match the key. 10 runs, Claude fresh subagents, 6 November 2026.', size=14, ha='left', color=BODY)
     return s
 
 
@@ -306,7 +306,7 @@ def template(w, h, **_):
     rh = (h - 0.7) / 5
     for i, t in enumerate(left):
         y = h - 0.55 - (i + 1) * rh
-        s.box(0.05, y + 0.06, lw_, rh - 0.12, t, size=18, weight='bold', fill=GOLD, lw=1.8)
+        s.box(0.05, y + 0.06, lw_, rh - 0.12, t, size=18, weight='bold', fill=PALE, lw=1.8)
     s.arrow(lw_ + 0.15, h / 2 - 0.1, lw_ + 1.0, h / 2 - 0.1, lw=2.6, head=18)
     x0 = lw_ + 1.15
     s.text(x0 + (w - x0) / 2, h - 0.25, 'Reusable prompt template: seven parts', size=18, weight='bold')
@@ -422,7 +422,7 @@ def brief(w, h, **_):
     rh = (h - 0.1) / 5
     for i, (a, g, ex) in enumerate(rows):
         y = h - 0.05 - (i + 1) * rh
-        s.box(0.05, y + 0.06, 1.75, rh - 0.12, a, size=17, weight='bold', fill=GOLD, lw=1.8)
+        s.box(0.05, y + 0.06, 1.75, rh - 0.12, a, size=17, weight='bold', fill=PALE, lw=1.8)
         s.box(1.9, y + 0.06, w - 1.95, rh - 0.12, '', fill=PAPER, lw=1.4)
         s.text(2.05, y + rh / 2 + 0.17, g, size=15, color=RED, weight='bold', ha='left')
         s.text(2.05, y + rh / 2 - 0.19, ex, size=16, ha='left')
@@ -557,7 +557,7 @@ def evalset(w, h, **_):
     for i in range(10):
         x = 0.05 + i * (bw + 0.12)
         bad = i == 6
-        s.box(x, h - 1.75, bw, 1.05, '', fill=PAPER if bad else GOLD, edge=RED if bad else INK, lw=2.4 if bad else 1.6)
+        s.box(x, h - 1.75, bw, 1.05, '', fill=PAPER if bad else PALE, edge=RED if bad else INK, lw=2.4 if bad else 1.6)
         s.text(x + bw / 2, h - 0.95, f'Bill {i + 1}', size=14, color=BODY)
         s.icon('cross' if bad else 'check', x + bw / 2, h - 1.4, 0.4)
     s.text(0.05 + 6 * (bw + 0.12) + bw / 2, h - 2.05, 'wrote 23,000; key 23,500', size=14, color=RED, weight='bold')

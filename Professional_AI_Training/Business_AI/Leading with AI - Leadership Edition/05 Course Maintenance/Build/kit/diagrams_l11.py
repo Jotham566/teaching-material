@@ -25,16 +25,14 @@ def x_l11_bridge(w, h, **_):
     s.text(0.1, h - 2.3, 'Today: a whole workflow, step by step, with its value', size=16, weight='bold', ha='left')
     steps = [('Message arrives', 'Trigger', PAPER), ('Read and sort', 'AI step', GOLD), ('Draft a reply', 'AI step', GOLD), ('Confirm payment', 'Rule', PAPER), ('Check and send', 'Person', PAPER)]
     bw, gap = 1.22, 0.25
-    y = h - 3.35
+    y = h - 3.5
     for i, (t, tag, fill) in enumerate(steps):
         x = 0.1 + i * (bw + gap)
-        s.box(x, y, bw, 0.85, '', fill=fill, edge=RED if tag == 'Trigger' else INK, lw=1.8, r=0.06)
+        s.box(x, y, bw, 0.85, '', fill=fill, edge=INK, lw=1.8, r=0.06)
         _wrap(s, x + bw / 2, y + 0.55, bw - 0.12, t, 14, weight='bold')
-        s.text(x + bw / 2, y + 0.18, tag, size=14, color=RED if tag == 'Person' else BODY)
+        s.text(x + bw / 2, y + 0.18, tag, size=14, color=BODY)
         if i < len(steps) - 1:
             s.arrow(x + bw + 0.02, y + 0.42, x + bw + gap - 0.02, y + 0.42, lw=2, head=12)
-    s.box(0.1, 0.12, w - 0.2, 0.62, '', fill=PALE, lw=1.4, r=0.06)
-    s.text(w / 2, 0.43, 'Then: what is it worth in shillings, and when does it pay back?', size=15, weight='bold', color=RED)
     return s
 
 
@@ -49,12 +47,13 @@ def x_l11_pilots(w, h, **_):
     cw = (w - 0.2 - 2 * gap) / 3
     for i, (big, txt, src, cav) in enumerate(panels):
         x = 0.1 + i * (cw + gap)
-        s.box(x, 0.75, cw, h - 0.85, '', fill=PAPER, lw=2.0, r=0.08)
-        s.text(x + 0.2, h - 0.55, big, size=30 if len(big) < 5 else 24, weight='bold', color=RED, ha='left')
-        _wrap(s, x + 0.2, h - 1.05, cw - 0.4, txt, 16, ha='left', va='top')
-        s.text(x + 0.2, 1.55, src, size=14, weight='bold', ha='left')
-        _wrap(s, x + 0.2, 1.1, cw - 0.4, cav, 14, ha='left', color=MUTE)
-    s.text(w / 2, 0.35, 'MIT NANDA: the best returns came from back-office work. The value is in redesigning the work.', size=15, weight='bold')
+        if i:
+            s.line(x - gap / 2, 0.75, x - gap / 2, h - 0.1, color=HAIR, lw=1.2)
+        s.text(x + 0.1, h - 0.55, big, size=34 if len(big) < 5 else 28, weight='bold', color=RED if i == 0 else INK, ha='left')
+        _wrap(s, x + 0.1, h - 1.1, cw - 0.3, txt, 17, ha='left', va='top')
+        s.text(x + 0.1, 1.55, src, size=14, weight='bold', ha='left')
+        _wrap(s, x + 0.1, 1.1, cw - 0.3, cav, 14, ha='left', color=MUTE)
+    s.text(0.1, 0.35, 'MIT NANDA found the best returns in back-office work.', size=15, weight='bold', ha='left')
     return s
 
 
@@ -71,7 +70,7 @@ def x_l11_four(w, h, **_):
     lab_y = [h - 1.95, h - 2.75, h - 3.65]
     for i, (ic, head, when, life, work) in enumerate(cols):
         x = 0.1 + i * (cw + gap)
-        s.box(x, 0.1, cw, h - 0.2, '', fill=GOLD if i == 1 else PAPER, edge=RED if i == 3 else INK, lw=2.0, r=0.08)
+        s.box(x, 0.1, cw, h - 0.2, '', fill=GOLD if i == 1 else PAPER, edge=INK, lw=2.0, r=0.08)
         s.icon(ic, x + 0.38, h - 0.5, 0.5)
         s.text(x + 0.72, h - 0.5, head, size=17, weight='bold', ha='left')
         _wrap(s, x + 0.15, h - 0.95, cw - 0.3, when, 16, ha='left', va='top')
@@ -96,11 +95,10 @@ def x_l11_value(w, h, **_):
         s.box(x, 0.85, cw, h - 0.95, '', fill=PAPER, lw=2.0, r=0.08)
         s.icon(ic, x + 0.45, h - 0.5, 0.55)
         s.text(x + 0.85, h - 0.5, head, size=19, weight='bold', ha='left')
-        s.text(x + 0.2, h - 1.1, org, size=15, weight='bold', color=RED, ha='left')
+        s.text(x + 0.2, h - 1.1, org, size=15, weight='bold', ha='left')
         _wrap(s, x + 0.2, h - 1.4, cw - 0.4, txt, 15, ha='left', va='top', color=BODY)
         _wrap(s, x + 0.2, 1.2, cw - 0.4, src, 14, ha='left', color=MUTE)
-    s.box(0.1, 0.08, w - 0.2, 0.62, '', fill=PALE, edge=RED, lw=1.6, r=0.06)
-    s.text(w / 2, 0.39, 'Shell predicts failures on over 10,000 machines, but published no saving. Always ask for the shillings.', size=15, weight='bold')
+    s.text(0.1, 0.39, 'Shell predicts failures on over 10,000 machines, and has published no saving in money.', size=15, weight='bold', ha='left')
     return s
 
 
@@ -124,7 +122,7 @@ def x_l11_coke(w, h, **_):
     bw, gap = 1.85, 0.3
     for r, (lab, steps) in enumerate(rows):
         y = h - 0.95 - r * 1.45
-        s.text(0.1, y + 0.72, lab, size=16, weight='bold', ha='left', color=RED if r else INK)
+        s.text(0.1, y + 0.72, lab, size=16, weight='bold', ha='left')
         for i, (t, fill, tag) in enumerate(steps):
             x = 0.1 + i * (bw + gap)
             s.box(x, y - 0.45, bw, 0.95, '', fill=fill, lw=1.8, r=0.06)
@@ -135,9 +133,8 @@ def x_l11_coke(w, h, **_):
     for i, (big, txt) in enumerate((('83% adopted', 'of shops in the Malaysia campaign, January to April 2026'),
                                     ('3 million+', 'outlets in Latin America got suggestions, early 2024'))):
         x = 0.1 + i * 3.8
-        s.box(x, 0.55, 3.6, 1.05, '', fill=PAPER, lw=1.6, r=0.08)
-        s.text(x + 0.2, 1.33, big, size=20, weight='bold', ha='left', color=RED)
-        _wrap(s, x + 0.2, 0.85, 3.25, txt, 14, ha='left', color=BODY)
+        s.text(x + 0.05, 1.33, big, size=24, weight='bold', ha='left')
+        _wrap(s, x + 0.05, 0.85, 3.4, txt, 14, ha='left', color=BODY)
     _source(s, 'Source: AI News, 8 September 2026. Company figures.', y=0.2)
     return s
 
@@ -164,8 +161,7 @@ def x_l11_hours(w, h, **_):
     y = h - 2.45
     s.text(x0, y - 0.6, 'Gold: your own work, 10 minutes each time', size=14, ha='left', color=BODY)
     s.text(x0, y - 0.95, 'Grey: a person reviews it, 20 minutes each time', size=14, ha='left', color=BODY)
-    s.box(0.1, 0.4, w - 0.2, 0.75, '', fill=GOLD, lw=1.8, r=0.08)
-    s.text(w / 2, 0.78, 'About 4 hours a month freed, after review', size=17, weight='bold')
+    s.text(0.1, 0.78, 'About 4 hours a month freed, after review', size=18, weight='bold', ha='left')
     s.text(w - 0.1, 0.15, 'Plan figures, Nile Valley Foods (fictional)', size=14, color=MUTE, ha='right')
     return s
 
@@ -181,18 +177,17 @@ def x_l11_month(w, h, **_):
                                       ('Upkeep', '1 hour 30 minutes of fixing', '45,000')], '145,000')]
     for i, (head, fill, items, tot) in enumerate(sides):
         x = 0.1 + i * (cw + 0.1)
-        s.text(x + 0.1, h - 0.3, head, size=17, weight='bold', ha='left', color=RED if i else INK)
+        s.text(x + 0.1, h - 0.3, head, size=17, weight='bold', ha='left')
         s.line(x, h - 0.55, x + cw, h - 0.55, lw=1.8)
         for k, (a, b, v) in enumerate(items):
-            y = h - 0.95 - k * 0.62
+            y = h - 0.95 - k * 0.68
             s.text(x + 0.1, y + 0.12, a, size=15, weight='bold', ha='left')
             _wrap(s, x + 0.1, y - 0.2, cw - 1.4, b, 14, ha='left', color=BODY)
             s.text(x + cw - 0.1, y, v, size=16, weight='bold', ha='right')
-        s.box(x, 1.17, cw, 0.55, '', fill=fill, lw=1.8, r=0.06)
-        s.text(x + 0.15, 1.445, 'Total, UGX', size=15, weight='bold', ha='left')
-        s.text(x + cw - 0.15, 1.445, tot, size=17, weight='bold', ha='right')
-    s.box(0.1, 0.35, w - 0.2, 0.65, '', fill=PAPER, edge=RED, lw=2.2, r=0.08)
-    s.text(w / 2, 0.675, 'Net gain a month: UGX 159,000', size=18, weight='bold', color=RED)
+        s.box(x, 0.98, cw, 0.55, '', fill=fill, lw=1.8, r=0.06)
+        s.text(x + 0.15, 1.255, 'Total, UGX', size=15, weight='bold', ha='left')
+        s.text(x + cw - 0.15, 1.255, tot, size=17, weight='bold', ha='right')
+    s.text(0.1, 0.55, 'Net gain a month: UGX 304,000 less UGX 145,000, which is UGX 159,000', size=18, weight='bold', ha='left')
     s.text(w - 0.1, 0.12, 'Plan figures, Nile Valley Foods (fictional)', size=14, color=MUTE, ha='right')
     return s
 
@@ -213,9 +208,9 @@ def x_l11_payback(w, h, **_):
         s.text(x + bw / 2, base + v * unit + 0.2, f'{v:,}', size=14, weight='bold')
         s.text(x + bw / 2, base - 0.25, f'Month {i + 1}', size=14)
     ly = base + 480000 * unit
-    s.line(x0 - 0.2, ly, w - 0.1, ly, color=RED, lw=2.4, dash=True, z=5)
-    s.text(0.1, ly + 0.5, 'One-off cost', size=14, weight='bold', color=RED, ha='left')
-    s.text(0.1, ly + 0.22, 'UGX 480,000', size=14, weight='bold', color=RED, ha='left')
+    s.line(x0 - 0.2, ly, w - 0.1, ly, color=INK, lw=2.0, dash=True, z=5)
+    s.text(0.1, ly + 0.5, 'One-off cost', size=14, weight='bold', ha='left')
+    s.text(0.1, ly + 0.22, 'UGX 480,000', size=14, weight='bold', ha='left')
     s.text(0.1, h - 0.2, 'Savings added up, UGX', size=14, color=MUTE, ha='left')
     s.text(w - 0.1, 0.15, 'Plan figures, Nile Valley Foods (fictional)', size=14, color=MUTE, ha='right')
     return s
@@ -241,7 +236,7 @@ def x_l11_year(w, h, **_):
             ('If hopes run high', 'Count only 70% of the benefits, as careful estimators do, and the first-year gain is still UGX 333,600.')]
     for k, (a, b) in enumerate(rows):
         y = h - 2.15 - k * 0.95
-        s.text(0.15, y, a, size=16, weight='bold', ha='left', color=RED if k else INK)
+        s.text(0.15, y, a, size=16, weight='bold', ha='left')
         _wrap(s, 2.35, y, w - 2.55, b, 15, ha='left', color=BODY)
     s.text(w - 0.1, 0.15, 'Plan figures from the Business Case Workbook example, Nile Valley Foods (fictional)', size=14, color=MUTE, ha='right')
     return s
@@ -260,7 +255,7 @@ def x_l11_grid(w, h, **_):
         s.line(gx, gy + k * gs, gx + 5 * gs, gy + k * gs, color=HAIR, lw=1)
         s.line(gx + k * gs, gy, gx + k * gs, gy + 5 * gs, color=HAIR, lw=1)
     s.rect(gx + 2.5 * gs, gy + 2.5 * gs, 2.5 * gs, 2.5 * gs, fill=PALE, edge=PALE, lw=0, z=0)
-    s.text(gx + 4.0 * gs, gy + 4.6 * gs, 'Start here', size=14, weight='bold', color=RED)
+    s.text(gx + 4.0 * gs, gy + 4.6 * gs, 'Start here', size=14, weight='bold')
     s.text(gx + 1.25 * gs, gy + 0.3 * gs, 'Later, or drop', size=14, color=MUTE)
     for k in range(1, 6):
         s.text(gx + (k - 0.5) * gs, gy - 0.2, str(k), size=14, color=MUTE)
@@ -275,7 +270,7 @@ def x_l11_grid(w, h, **_):
     s.text(x, h - 0.25, 'Priority: value plus feasibility', size=15, weight='bold', ha='left')
     for i, (lab, name, v, f) in enumerate(sorted(PORT, key=lambda r: -(r[2] + r[3]))):
         y = h - 0.75 - i * 0.62
-        s.text(x, y, lab, size=15, weight='bold', ha='left', color=RED if i == 0 else INK)
+        s.text(x, y, lab, size=15, weight='bold', ha='left')
         _wrap(s, x + 0.35, y, w - x - 1.0, name, 14, ha='left', color=BODY)
         s.text(w - 0.15, y, str(v + f), size=16, weight='bold', ha='right')
     s.text(x, 0.55, 'Feasibility: the data exists, it is easy to check, a team can start.', size=14, color=BODY, ha='left')

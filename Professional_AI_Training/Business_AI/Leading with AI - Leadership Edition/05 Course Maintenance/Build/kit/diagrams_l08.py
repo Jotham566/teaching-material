@@ -508,7 +508,7 @@ def x_l08_owners(w, h, **_):
         s.arrow(2.55, y, 3.05, y, lw=2, head=13)
         s.icon('person', 3.3, y, 0.45, accent=GOLD)
         s.text(3.58, y, own, size=15, weight='bold', ha='left')
-        s.tag(5.85, y + 0.03, 'Version', size=14, fill=GOLD, color=INK, h=0.34)
+        s.tag(5.85, y + 0.03, 'Version', size=14, fill=PALE, color=INK, h=0.34)
         s.tag(5.85, y - 0.37, 'Review date', size=14, fill=PALE, color=INK, h=0.34)
     _wrap(s, w / 2, 0.35, w - 0.2, 'Nile Valley Foods (fictional). One owner, one current version, a date to review.', 15, color=BODY)
     return s

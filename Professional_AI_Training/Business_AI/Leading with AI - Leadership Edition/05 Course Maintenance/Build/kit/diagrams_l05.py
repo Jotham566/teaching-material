@@ -327,8 +327,8 @@ def x_l05_citations(w, h, **_):
         hh = _wrap(s, x + 0.15, top, cw - 0.3, who, 16, weight='bold', ha='left', va='top')
         top -= hh + 0.12
         hh = _wrap(s, x + 0.15, top, cw - 0.3, what, 15, ha='left', va='top', color=BODY)
-        s.box(x + 0.1, 0.65, cw - 0.2, 0.95, '', fill=GOLD, lw=1.2, r=0.06)
-        _wrap(s, x + cw / 2, 1.125, cw - 0.4, cost, 15, weight='bold')
+        s.line(x + 0.15, 1.6, x + cw - 0.15, 1.6, color=HAIR, lw=1.0)
+        _wrap(s, x + 0.15, 1.45, cw - 0.3, cost, 15, weight='bold', ha='left', va='top', color=RED)
     _source(s, 'Sources: The Register, 22 Jun 2023 and 6 Oct 2025; Business Day, 10 Jan 2025; TechCentral, 7 Nov 2025.', y=0.2)
     return s
 
@@ -357,8 +357,10 @@ def x_l05_liability(w, h, **_):
         rh = (h - 1.25) / 4
         for k, (tx, f) in enumerate(steps):
             y = h - 0.7 - (k + 0.5) * rh
-            s.box(x, y - rh / 2 + 0.05, cw, rh - 0.1, '', fill=f, lw=1.6, r=0.06)
-            _wrap(s, x + 0.15, y, cw - 0.3, tx, 15, ha='left', weight='bold' if f == GOLD else 'normal', color=INK if f == GOLD else BODY)
+            last = f == GOLD
+            if not last:
+                s.line(x, y - rh / 2 + 0.05, x + cw, y - rh / 2 + 0.05, color=HAIR, lw=1.0)
+            _wrap(s, x + 0.05, y, cw - 0.1, tx, 16 if last else 15, ha='left', weight='bold' if last else 'normal', color=INK if last else BODY)
         s.text(x + 0.05, 0.3, src, size=14, color=MUTE, ha='left')
     return s
 
@@ -410,7 +412,7 @@ def x_l05_courtcase(w, h, **_):
         qh = _wrap(s, x + 0.15, h - 1.95, cw - 0.3, quote, 15, ha='left', va='top', weight='bold', italic=False)
         _wrap(s, x + 0.15, h - 2.1 - qh, cw - 0.3, did, 14, ha='left', va='top', color=BODY)
     x = w - 3.5
-    s.box(x, 0.55, 3.4, h - 1.25 - 0.55, '', fill=GOLD, edge=RED, lw=2.2, r=0.08)
+    s.box(x, 0.55, 3.4, h - 1.25 - 0.55, '', fill=PAPER, edge=RED, lw=2.2, r=0.08)
     s.text(x + 0.15, h - 1.6, 'Read this carefully', size=16, weight='bold', color=RED, ha='left')
     _wrap(s, x + 0.15, h - 1.9, 3.1, 'Same question twice: the same substance in different words. This assistant declined both times. The tools in the court cases did invent. It depends on the tool, its version and how you ask.', 14, ha='left', va='top')
     s.text(0.1, 0.22, 'Recorded runs: Claude, two fresh sessions, 4 November 2026. The case and the company are fictional.', size=14, color=MUTE, ha='left')
@@ -432,8 +434,7 @@ def x_l05_five(w, h, **_):
         s.box(0.1, y - rh / 2 + 0.05, w - 0.2, rh - 0.1, '', fill=GOLD if i == 4 else PAPER, lw=1.6, r=0.08)
         s.circle(0.45, y, 0.22, fill=INK, edge=INK)
         s.text(0.45, y, str(i + 1), size=15, weight='bold', color=PAPER, z=7)
-        s.icon(ic, 1.05, y, 0.5)
-        _wrap(s, 1.5, y, 4.3, q, 16, ha='left', weight='bold')
+        _wrap(s, 0.85, y, 4.9, q, 16, ha='left', weight='bold')
         s.text(w - 0.25, y, sub, size=15, ha='right', color=BODY)
     return s
 
@@ -450,10 +451,144 @@ def x_l05_signoff(w, h, **_):
     for i, (ic, hd, tx, f) in enumerate(steps):
         y = h - 0.1 - (i + 0.5) * rh
         s.box(0.1, y - rh / 2 + 0.08, w - 0.2, rh - 0.16, '', fill=f, lw=1.8, r=0.08)
-        s.icon(ic, 0.55, y, 0.55)
-        s.text(1.05, y + 0.17, hd, size=17, weight='bold', ha='left')
-        s.text(1.05, y - 0.2, tx, size=15, ha='left', color=BODY)
+        s.text(0.35, y + 0.17, hd, size=17, weight='bold', ha='left')
+        s.text(0.35, y - 0.2, tx, size=15, ha='left', color=BODY)
         if i < 3:
-            s.arrow(0.55, y - rh / 2 + 0.06, 0.55, y - rh / 2 - 0.06, lw=1.8, head=10)
+            s.arrow(0.25, y - rh / 2 + 0.06, 0.25, y - rh / 2 - 0.06, lw=1.8, head=10)
     s.text(0.1, 0.35, 'Air Canada: the tribunal held the airline to its chatbot’s words.', size=15, weight='bold', color=RED, ha='left')
+    return s
+
+
+# ================================================================== case layouts shared by Sessions 5 to 9 (de-slop pass, 12 November 2026)
+# Each case gets the layout its story needs instead of one four-box card.  Content kinds: l05_headline, l05_happened, l05_timeline,
+# l05_beforeafter, l05_bars.  No icons, at most one gold mark, red only for a real failure or warning.
+
+def _who(s, w, h, who):
+    if who:
+        sz = 18
+        while sz > 14 and len(K.wrap(who, sz, 'bold', w - 0.2)) > 1:
+            sz -= 1
+        s.text(0.1, h - 0.28, who, size=sz, weight='bold', ha='left')
+        s.line(0.1, h - 0.55, w - 0.1, h - 0.55, lw=1.6)
+
+
+def _stack_h(cw, items, size, gap):
+    return sum(len(K.wrap(t, size, 'bold', cw)) * _lh(size) + gap for t in items)
+
+
+def _stack(s, x, top, cw, items, size=16, gap=0.16, color=BODY, red=(), floor=None):
+    """Paragraphs one under another, each above a hairline; returns the y reached. With floor, shrinks to fit (not below 14 pt)."""
+    if floor is not None:
+        while size > 14 and top - _stack_h(cw, items, size, gap) < floor:
+            size -= 1
+    for i, t in enumerate(items):
+        hh = _wrap(s, x, top, cw, t, size, ha='left', va='top', color=RED if i in red else color, weight='bold' if i in red else 'normal')
+        top -= hh + gap
+        if i < len(items) - 1:
+            s.line(x, top + gap / 2, x + cw, top + gap / 2, color=HAIR, lw=1.0)
+    return top
+
+
+@fig('x_l05_headline')
+def x_l05_headline(w, h, who='', big='', context='', detail=(), red=(), source='', **_):
+    """A headline number with one line of context on the left, two to four plain lines on the right, and the source."""
+    s = Scene(w, h)
+    _who(s, w, h, who)
+    lw_ = w * 0.44
+    top = h - 0.85
+    bs = 54
+    while bs > 30 and len(K.wrap(big, bs, 'bold', lw_ - 0.2)) > 2:
+        bs -= 4
+    bh = _wrap(s, 0.1, top, lw_ - 0.2, big, bs, weight='bold', ha='left', va='top')
+    s.rect(0.1, top - bh - 0.16, 1.2, 0.09, fill=GOLD, edge=GOLD, lw=0.5, z=3)
+    _wrap(s, 0.1, top - bh - 0.4, lw_ - 0.3, context, 18, ha='left', va='top')
+    x = lw_ + 0.3
+    s.line(x - 0.2, top + 0.05, x - 0.2, 0.6, color=HAIR, lw=1.2)
+    _stack(s, x, top, w - x - 0.1, list(detail), 17, 0.2, red=red, floor=0.45)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l05_happened')
+def x_l05_happened(w, h, who='', left=(), right=(), heads=('What happened', 'What it means for you'), red=(), source='', **_):
+    """Two plain columns: what happened, and what it means for a leader. No boxes."""
+    s = Scene(w, h)
+    _who(s, w, h, who)
+    top = h - 0.8 if who else h - 0.1
+    cw = (w - 0.7) / 2
+    for i, (hd, items) in enumerate(zip(heads, (left, right))):
+        x = 0.1 + i * (cw + 0.5)
+        s.text(x, top - 0.18, hd, size=17, weight='bold', ha='left', color=INK)
+        s.line(x, top - 0.42, x + cw, top - 0.42, lw=1.4)
+        _stack(s, x, top - 0.6, cw, list(items), 16, 0.18, red=red if i == 0 else (), floor=0.45)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l05_timeline')
+def x_l05_timeline(w, h, who='', events=(), hl=None, red=(), source='', note='', **_):
+    """A short timeline: dates on a line, what happened under each. Gold dot for the one to look at, red for a failure."""
+    s = Scene(w, h)
+    _who(s, w, h, who)
+    n = len(events)
+    ty = h - 1.25 if who else h - 0.6
+    x0, x1 = 0.35, w - 0.35
+    s.line(x0, ty, x1, ty, lw=2.2)
+    cw = (x1 - x0) / n
+    bottom = 0.95 if note else 0.55
+    for i, (when, what) in enumerate(events):
+        cx = x0 + cw * (i + 0.5)
+        f = GOLD if i == hl else (RED if i in red else PAPER)
+        s.circle(cx, ty, 0.13, fill=f, edge=INK, lw=1.6, z=5)
+        s.text(cx, ty + 0.32, when, size=16, weight='bold')
+        sz = _fit(what, cw - 0.3, ty - 0.3 - bottom, 16, 14)
+        _wrap(s, cx - cw / 2 + 0.15, ty - 0.3, cw - 0.3, what, sz, ha='left', va='top', color=RED if i in red else BODY)
+    if note:
+        _wrap(s, 0.1, 0.62, w - 0.2, note, 16, ha='left', weight='bold')
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l05_beforeafter')
+def x_l05_beforeafter(w, h, who='', before=('', '', ()), after=('', '', ()), red=(), source='', **_):
+    """Before and after: each side a head, a number or short phrase, and two or three lines; an arrow between."""
+    s = Scene(w, h)
+    _who(s, w, h, who)
+    top = h - 0.85 if who else h - 0.1
+    cw = (w - 1.2) / 2
+    for i, (hd, big, lines) in enumerate((before, after)):
+        x = 0.1 + i * (cw + 1.0)
+        s.text(x, top - 0.15, hd, size=17, weight='bold', ha='left', color=MUTE if i == 0 else INK)
+        bs = _fit(big, cw, 0.9, 32, 22, 'bold')
+        bh = _wrap(s, x, top - 0.5, cw, big, bs, weight='bold', ha='left', va='top', color=BODY if i == 0 else INK)
+        if i == 1:
+            s.rect(x, top - 0.62 - bh, 1.0, 0.08, fill=GOLD, edge=GOLD, lw=0.5, z=3)
+        _stack(s, x, top - 0.85 - bh, cw, list(lines), 16, 0.16, red=red if i == 1 else (), floor=0.6)
+    s.arrow(0.1 + cw + 0.2, h / 2, 0.1 + cw + 0.8, h / 2, lw=2.6, head=18)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l05_bars')
+def x_l05_bars(w, h, who='', bars=(), hl=None, red=(), source='', note='', label_w=3.6, **_):
+    """A small bar chart of a case's real figures: (label, value, shown text). One bar in gold at most."""
+    s = Scene(w, h)
+    _who(s, w, h, who)
+    top = h - 0.85 if who else h - 0.1
+    bottom = 1.05 if note else 0.55
+    n = len(bars)
+    rh = min(0.75, (top - bottom) / max(n, 1))
+    vmax = max(v for _l, v, _t in bars) or 1
+    x0 = 0.1 + label_w
+    bw_max = w - x0 - 1.9
+    for i, (lab, v, shown) in enumerate(bars):
+        y = top - rh * (i + 0.5)
+        _wrap(s, 0.1, y, label_w - 0.2, lab, 16, ha='left', color=INK)
+        L = max(0.04, bw_max * v / vmax)
+        f = GOLD if i == hl else (PALE if i not in red else PAPER)
+        s.rect(x0, y - rh * 0.3, L, rh * 0.6, fill=f, edge=RED if i in red else INK, lw=1.6 if i in red else 1.2, z=2)
+        s.text(x0 + L + 0.15, y, shown, size=16, weight='bold', ha='left', color=RED if i in red else INK)
+    if note:
+        _wrap(s, 0.1, 0.72, w - 0.2, note, 16, ha='left')
+    _source(s, source, y=0.2)
     return s

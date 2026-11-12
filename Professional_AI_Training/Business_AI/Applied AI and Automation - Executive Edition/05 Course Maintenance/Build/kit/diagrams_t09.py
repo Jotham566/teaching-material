@@ -103,9 +103,8 @@ def openbook(w, h, **_):
     for i, (ic, txt, term) in enumerate(steps):
         y = h - 0.05 - (i + 1) * rh
         s.box(0.1, y + 0.06, w - 0.2 - tw - 0.15, rh - 0.12, '', fill=PAPER, lw=1.8)
-        s.icon(ic, 0.65, y + rh / 2, 0.55)
-        wt(s, 0.95 + (w - 0.2 - tw - 0.15 - 0.95) / 2 + 0.05, y + rh / 2, w - 0.2 - tw - 0.15 - 1.2, txt, 15, ha='center')
-        s.box(w - 0.1 - tw, y + 0.06, tw, rh - 0.12, '', fill=GOLD, lw=1.8)
+        wt(s, 0.1 + (w - 0.2 - tw - 0.15) / 2, y + rh / 2, w - 0.2 - tw - 0.15 - 0.4, txt, 15, ha='center')
+        s.box(w - 0.1 - tw, y + 0.06, tw, rh - 0.12, '', fill=PALE, lw=1.8)
         wt(s, w - 0.1 - tw / 2, y + rh / 2, tw - 0.2, term, 17, weight='bold')
     return s
 
@@ -392,8 +391,7 @@ def context(w, h, **_):
     s.text(0.1, 0.62, 'Long inputs: facts in the middle can be missed (Liu and others, 2023, in their tests).', size=15, ha='left', color=BODY)
     for i, (ic, tx) in enumerate([('clock', 'More tokens: slower, dearer'), ('lock', 'All of it goes to the model')]):
         x = 0.1 + i * (w - 0.2) / 2
-        s.icon(ic, x + 0.3, 0.2, 0.4)
-        s.text(x + 0.65, 0.2, tx, size=15, ha='left')
+        s.text(x, 0.2, tx, size=15, ha='left')
     return s
 
 

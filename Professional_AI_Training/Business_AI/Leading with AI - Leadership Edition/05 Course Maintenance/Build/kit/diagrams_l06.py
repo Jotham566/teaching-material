@@ -332,8 +332,7 @@ def x_l06_lockin(w, h, **_):
             y = h - 1.15 - k * 0.72
             s.box(x, y - 0.3, pw, 0.6, '', fill=PALE if i == 0 else PAPER, edge=HAIR, lw=1.2, r=0.06)
             _wrap(s, x + 0.15, y, pw - 0.3, it, 15, ha='left', color=BODY)
-    s.box(0.1, 0.12, w - 0.2, 0.55, '', fill=GOLD, lw=1.8, r=0.08)
-    s.text(w / 2, 0.395, 'Plan the exit on the day you sign.', size=16, weight='bold')
+    s.text(0.1, 0.395, 'Every question on the right has an answer you can write into the contract.', size=16, weight='bold', ha='left')
     return s
 
 

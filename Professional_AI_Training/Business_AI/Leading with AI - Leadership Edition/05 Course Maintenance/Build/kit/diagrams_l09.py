@@ -81,7 +81,7 @@ def x_l09_invent(w, h, **_):
     top = h - 0.7 - qh
     for i, (hd, t) in enumerate(runs):
         x = 0.1 + i * (cw + 0.1)
-        s.box(x, 1.25, cw, top - 1.35, '', fill=GOLD, lw=2, r=0.08)
+        s.box(x, 1.25, cw, top - 1.35, '', fill=PAPER, lw=2, r=0.08)
         s.text(x + 0.2, top - 0.35, hd, size=16, weight='bold', ha='left')
         _wrap(s, x + 0.2, (top + 1.25) / 2 - 0.1, cw - 0.4, t, 16, ha='left', italic=True)
     _wrap(s, 0.1, 0.85, w - 0.2, 'Both runs also refused to name three studies they could not find.', 15, ha='left', color=BODY)
@@ -150,7 +150,7 @@ def x_l09_inject(w, h, **_):
     yy = h - 0.15
     for hd, t in res:
         bh = _h(t, 15, cw - 0.3) + 0.55
-        s.box(x, yy - bh, cw, bh, '', fill=GOLD if hd != 'Manager warned' else PAPER, lw=1.8, r=0.08)
+        s.box(x, yy - bh, cw, bh, '', fill=GOLD if hd == 'Manager warned' else PAPER, lw=1.8, r=0.08)
         s.text(x + 0.15, yy - 0.25, hd, size=15, weight='bold', ha='left')
         _wrap(s, x + 0.15, yy - 0.45, cw - 0.3, t, 15, ha='left', va='top', color=BODY)
         yy -= bh + 0.12
@@ -332,7 +332,7 @@ def x_l09_practice(w, h, **_):
         bad = lab != 'right'
         s.text(0.1, y, q, size=14, weight='bold', ha='left')
         s.text(0.75, y, a, size=14, ha='left', color=RED if bad else BODY)
-        s.box(w - 1.45, y - rh / 2 + 0.04, 1.35, rh - 0.08, lab, size=14, weight='bold', fill=GOLD if not bad else (RED if lab == 'invented' else PAPER),
+        s.box(w - 1.45, y - rh / 2 + 0.04, 1.35, rh - 0.08, lab, size=14, weight='bold', fill=PAPER if not bad else (RED if lab == 'invented' else PAPER),
               color=PAPER if lab == 'invented' else (RED if bad else INK), edge=RED if bad else INK, r=0.05)
     s.text(0.1, 0.2, 'Written by the lecturer with three planted faults. Not an AI output.', size=14, color=MUTE, ha='left')
     return s

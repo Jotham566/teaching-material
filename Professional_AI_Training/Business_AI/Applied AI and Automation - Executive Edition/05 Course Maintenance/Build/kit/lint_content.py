@@ -20,6 +20,12 @@ ANTI = [r',\s+not\s+(a|an|the|just|only|about|because|to|for|in|on|by|with|every
 STAGE = [r'\[[^\]]*\]', r'\(pause\)', r'\bclick\b', r'\bnext slide\b']
 
 
+SLOP = [r'^From Session \d+ to today', r'five things to remember', r'one named example', r'^Everyday first', r'^Take-away:', r'^Questions to ask your team and your vendor']
+SLOP_NOTES = [(r'\b(simply|just|really|actually|clearly|exactly)\b', 4), (r'(?-i:\b(Think of|Imagine|Picture)\b)', 2), (r'\bthe catch\b', 1), (r'\bin plain words\b', 1),
+              (r'\b(Three|Two|Four) (stories|cases) follow', 0), (r'\bThat is (why|the point|what)\b', 2), (r'\bNotice\b', 2), (r'\bkey\b', 3)]
+STYLE_EXEMPT = {0: True, 1: True}   # delivered sessions stay as taught
+
+
 def words(s):
     return len(re.findall(r"[A-Za-z0-9’'%$£]+", s))
 
@@ -100,6 +106,29 @@ def lint(num):
     for m in re.finditer(r'\b(he|she|his|her)\b', blob):
         a = max(0, m.start() - 30)
         errs.append(f'S{num}: gendered pronoun: …{blob[a:m.end() + 20]!r}')
+    # ---- house style against formulaic, machine-sounding writing (12 November 2026, see DESLOP_BRIEF.md)
+    if not STYLE_EXEMPT.get(num):
+        sl_ = s['slides']
+        titles = [x.get('title', '') for x in sl_]
+        notes = [x.get('notes', '').strip() for x in sl_]
+        colon = sum(1 for t in titles if ':' in t)
+        if colon > max(4, len(titles) * 0.35):
+            errs.append(f'S{num}: {colon} of {len(titles)} titles use "X: Y" (at most 35%); state the point as a plain sentence')
+        here = sum(1 for n in notes if re.match(r'(Here (is|are)|Let me|Let us|Now,? let)', n))
+        if here > 2:
+            errs.append(f'S{num}: {here} notes open with "Here is", "Let me" or "Now let" (at most 2)')
+        q_end = sum(1 for n in notes if n.endswith('?'))
+        if q_end > max(3, len(notes) * 0.3):
+            errs.append(f'S{num}: {q_end} of {len(notes)} notes end on a question (at most 30%)')
+        for pat in SLOP:
+            for t in titles:
+                if re.search(pat, t, re.I):
+                    errs.append(f'S{num}: formulaic title: {t[:70]!r}')
+        allnotes = ' '.join(notes)
+        for pat, lim in SLOP_NOTES:
+            k = len(re.findall(pat, allnotes, re.I))
+            if k > lim:
+                errs.append(f'S{num}: {k} uses of {pat!r} in the notes (at most {lim})')
     return errs
 
 

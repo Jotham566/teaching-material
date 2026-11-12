@@ -20,16 +20,14 @@ def x_l10_bridge(w, h, **_):
         s.text(0.1, y + 0.75, head, size=17, weight='bold', ha='left')
         for i, (ic, lab) in enumerate(steps):
             x = 0.8 + i * 1.72
-            gold = (ic == 'person') or (ic == 'gear')
+            gold = ic == 'person'
             s.box(x - 0.6, y - 0.55, 1.2, 1.1, '', fill=GOLD if gold else PAPER, lw=1.8, r=0.08)
             s.icon(ic, x, y + 0.1, 0.55)
             s.text(x, y - 0.35, lab, size=14, weight='bold')
             if i < 2:
                 s.arrow(x + 0.64, y, x + 1.1, y, lw=2.2, head=14)
-        s.box(5.6, y - 0.45, w - 5.7, 0.9, '', fill=PAPER, edge=RED if 'reaches' in out else INK, lw=2.0, r=0.08)
-        _wrap(s, 5.6 + (w - 5.7) / 2, y, w - 5.95, out, 15, weight='bold', color=RED if 'reaches' in out else INK)
+        _wrap(s, 5.6, y, w - 5.7, out, 16, weight='bold', ha='left', color=RED if 'reaches' in out else INK)
     s.line(0.1, h - 2.3, w - 0.1, h - 2.3, color=HAIR, lw=1.2)
-    s.text(w / 2, 0.22, 'The person in the middle moves: before the act, or after it', size=15, weight='bold', color=RED)
     return s
 
 
@@ -53,9 +51,8 @@ def x_l10_octopus(w, h, **_):
     for i, (big, txt) in enumerate((('8,000 a week', 'emails answered by Arlo, about 4% of UK customer emails'),
                                     ('76% against 72%', 'customer satisfaction: Arlo, and comparable replies by staff'))):
         x = 0.1 + i * 3.8
-        s.box(x, 0.55, 3.6, 1.2, '', fill=PAPER, lw=1.6, r=0.08)
-        s.text(x + 0.2, 1.42, big, size=21, weight='bold', ha='left', color=RED)
-        _wrap(s, x + 0.2, 0.9, 3.25, txt, 14, ha='left', color=BODY)
+        s.text(x + 0.05, 1.42, big, size=24, weight='bold', ha='left')
+        _wrap(s, x + 0.05, 0.9, 3.4, txt, 14, ha='left', color=BODY)
     _source(s, 'Source: Octopus Energy press release, 7 July 2026. Company figures.', y=0.2)
     return s
 
@@ -70,17 +67,15 @@ def x_l10_build(w, h, **_):
             ('3. Plus a loop', 'robot', 'It looks at each result and picks its next step itself.', ['Plan', 'Act', 'Check', 'Repeat'])]
     for i, (head, ic, txt, chips) in enumerate(cols):
         x = 0.1 + i * (cw + 0.45)
-        s.box(x, 0.55, cw, h - 0.65, '', fill=GOLD if i == 2 else PAPER, lw=2.0, r=0.08)
+        s.box(x, 0.1, cw, h - 0.2, '', fill=GOLD if i == 2 else PAPER, lw=2.0, r=0.08)
         s.icon(ic, x + 0.45, h - 0.55, 0.6)
         s.text(x + 0.85, h - 0.55, head, size=18, weight='bold', ha='left')
         _wrap(s, x + cw / 2, h - 1.6, cw - 0.35, txt, 15, color=BODY)
         for k, c in enumerate(chips):
             yy = h - 2.3 - k * 0.38
-            s.box(x + 0.35, yy - 0.17, cw - 0.7, 0.34, '', fill=PAPER, edge=INK, lw=1.2, r=0.06)
-            s.text(x + cw / 2, yy, c, size=14)
+            s.text(x + cw / 2, yy, c, size=15, weight='bold')
         if i < 2:
             s.arrow(x + cw + 0.05, h / 2, x + cw + 0.4, h / 2, lw=2.4, head=16)
-    s.text(w / 2, 0.22, 'A chatbot with tools and a loop is what the industry calls an agent', size=15, weight='bold', color=RED)
     return s
 
 
@@ -88,8 +83,7 @@ def x_l10_build(w, h, **_):
 @fig('x_l10_loop')
 def x_l10_loop(w, h, **_):
     s = Scene(w, h)
-    s.box(0.1, h - 0.85, w - 0.2, 0.7, '', fill=PAPER, lw=1.8, r=0.08)
-    _wrap(s, w / 2, h - 0.5, w - 0.5, 'Goal from you: draft a reminder to every shop with an overdue invoice', 15, weight='bold')
+    _wrap(s, 0.1, h - 0.5, w - 0.2, 'Goal from you: draft a reminder to every shop with an overdue invoice', 15, weight='bold', ha='left')
     cx, cy, r = 2.05, (h - 0.9) / 2 + 0.05, 0.9
     pos = {'Plan': (cx, cy + r * 0.85), 'Act': (cx + r * 1.25, cy - r * 0.55), 'Check': (cx - r * 1.25, cy - r * 0.55)}
     order = ['Plan', 'Act', 'Check']
@@ -107,8 +101,7 @@ def x_l10_loop(w, h, **_):
         yy = h - 1.55 - i * 0.37
         s.text(tx, yy, k, size=14, weight='bold', ha='left', color=RED if k == 'Act' else INK)
         s.text(tx + 0.8, yy, t, size=14, ha='left', color=BODY)
-    s.box(tx - 0.05, 0.08, w - tx - 0.05, 0.55, '', fill=PAPER, edge=RED, lw=2.0, r=0.08)
-    s.text(tx + 0.1, 0.355, 'Stop: all drafted, hand to a person', size=14, weight='bold', color=RED, ha='left')
+    s.text(tx, 0.355, 'Stop: all drafted, hand to a person', size=15, weight='bold', ha='left')
     s.text(0.1, 0.2, 'Illustration, Nile Valley Foods (fictional)', size=14, color=MUTE, ha='left')
     return s
 
@@ -173,9 +166,8 @@ def x_l10_least(w, h, **_):
             ['Send email', 'No', 'A wrong demand reaches a customer'],
             ['Give a credit', 'No', 'Money leaves the company']]
     cw = [2.55, 1.25, w - 0.2 - 3.8]
-    s.table(0.1, h - 0.6, cw, (h - 1.25) / 5, rows, size=15, align=['left', 'left', 'left'],
+    s.table(0.1, h - 0.6, cw, (h - 0.75) / 5, rows, size=15, align=['left', 'left', 'left'],
             hl_cells={(1, 1): GOLD, (2, 1): GOLD, (3, 1): PALE, (4, 1): PALE})
-    s.text(w / 2, 0.22, 'Least privilege: give only the keys the task needs', size=15, weight='bold', color=RED)
     return s
 
 
@@ -202,7 +194,7 @@ def x_l10_log(w, h, **_):
     ch = (h - 0.3) / 3
     for i, (ic, hd, tx) in enumerate(cards):
         y = h - 0.1 - (i + 1) * ch
-        s.box(x, y + 0.06, w - x - 0.1, ch - 0.12, '', fill=GOLD if i == 2 else PAPER, lw=1.8, r=0.08)
+        s.box(x, y + 0.06, w - x - 0.1, ch - 0.12, '', fill=PAPER, lw=1.6, r=0.08)
         s.icon(ic, x + 0.42, y + ch / 2, 0.5)
         s.text(x + 0.85, y + ch / 2 + 0.17, hd, size=16, weight='bold', ha='left')
         _wrap(s, x + 0.85, y + ch / 2 - 0.2, w - x - 1.05, tx, 14, ha='left', color=BODY)
@@ -245,8 +237,9 @@ def x_l10_good_bad(w, h, **_):
         s.line(x, h - 0.65, x + cw, h - 0.65, lw=1.8)
         for k, it in enumerate(items):
             y = h - 1.25 - k * 0.98
-            s.icon(ic, x + 0.35, y, 0.6)
-            _wrap(s, x + 0.8, y, cw - 0.95, it, 16, ha='left', color=BODY)
+            _wrap(s, x + 0.1, y, cw - 0.2, it, 18, ha='left', color=BODY)
+            if k:
+                s.line(x, y + 0.49, x + cw, y + 0.49, color=HAIR, lw=1.0)
     return s
 
 
@@ -268,7 +261,7 @@ def six(w, h, tiles, source):
         top -= hh + 0.1
         uh = _wrap(s, tx, top, iw, use, 15, ha='left', va='top', color=BODY)
         top -= uh + 0.08
-        _wrap(s, tx, top, iw, ex, 15, weight='bold', ha='left', va='top', color=RED)
+        _wrap(s, tx, top, iw, ex, 15, weight='bold', ha='left', va='top', color=INK)
     _source(s, source, y=0.16)
     return s
 
@@ -357,7 +350,7 @@ def x_l10_people(w, h, roles=None, **_):
             _wrap(s, x + 0.2, y - rh / 2 + 0.02, cw - 0.4, txt, 15, ha='left', color=BODY)
     for r, lab in enumerate(labels):
         y = top - r * rh - rh / 2
-        _wrap(s, 0.1, y, lab_w - 0.1, lab, 15, weight='bold', ha='left', color=RED if r == 3 else INK)
+        _wrap(s, 0.1, y, lab_w - 0.1, lab, 15, weight='bold', ha='left')
     return s
 
 
@@ -418,15 +411,12 @@ def x_l10_f4_result(w, h, **_):
     cw = (w - 0.2 - gap) / 2
     for i, (head, quote, facts) in enumerate(runs):
         x = 0.1 + i * (cw + gap)
-        s.box(x, 0.75, cw, h - 0.85, '', fill=PAPER, lw=2.0, r=0.08)
-        s.icon('robot', x + 0.45, h - 0.5, 0.55)
-        s.text(x + 0.85, h - 0.5, head, size=19, weight='bold', ha='left')
-        s.box(x + 0.25, h - 1.45, cw - 0.5, 0.6, '', fill=GOLD, lw=1.6, r=0.06)
-        s.text(x + cw / 2, h - 1.15, quote, size=17, weight='bold', italic=True)
+        s.box(x, 0.75, cw, h - 0.85, '', fill=PAPER, lw=1.6, r=0.08)
+        s.text(x + 0.3, h - 0.5, head, size=19, weight='bold', ha='left', color=MUTE)
+        s.text(x + 0.3, h - 1.15, quote, size=20, weight='bold', italic=True, ha='left')
         for k, (ic, t) in enumerate(facts):
-            yy = h - 1.95 - k * 0.42
-            s.icon(ic, x + 0.5, yy, 0.32)
-            s.text(x + 0.85, yy, t, size=15, ha='left', color=BODY)
+            yy = h - 1.8 - k * 0.42
+            s.text(x + 0.3, yy, t, size=16, ha='left', color=INK if ic == 'cross' else BODY, weight='bold' if ic == 'cross' else 'normal')
     s.text(0.1, 0.4, 'Claude, fresh sessions given only the prompt, 4 November 2026, two runs; not ChatGPT or Gemini.', size=14, color=MUTE, ha='left')
     return s
 
@@ -450,11 +440,133 @@ def x_l10_f7(w, h, **_):
         _wrap(s, cols[0][0] + 0.8, cy, cols[0][1] - 0.9, msg, 15, weight='bold', ha='left')
         s.arrow(cols[0][0] + cols[0][1] + 0.05, cy, cols[1][0] - 0.05, cy, lw=2.2, head=14)
         s.box(cols[1][0], y + 0.07, cols[1][1], rh - 0.14, '', fill=PAPER, lw=1.8, r=0.08)
-        s.icon('robot', cols[1][0] + 0.38, cy, 0.42)
-        _wrap(s, cols[1][0] + 0.75, cy, cols[1][1] - 0.85, did, 15, ha='left', color=BODY)
+        _wrap(s, cols[1][0] + 0.2, cy, cols[1][1] - 0.35, did, 15, ha='left', color=BODY)
         s.arrow(cols[1][0] + cols[1][1] + 0.05, cy, cols[2][0] - 0.05, cy, lw=2.2, head=14)
-        s.box(cols[2][0], y + 0.07, cols[2][1], rh - 0.14, '', fill=GOLD, lw=1.8, r=0.08)
-        s.icon('check', cols[2][0] + 0.35, cy, 0.4)
-        _wrap(s, cols[2][0] + 0.7, cy, cols[2][1] - 0.8, rule, 15, weight='bold', ha='left')
+        _wrap(s, cols[2][0] + 0.1, cy, cols[2][1] - 0.15, rule, 15, weight='bold', ha='left')
     s.text(0.1, 0.25, 'Claude, fresh session given only the prompt, 4 November 2026, run 1. Rules and messages are fictional.', size=14, color=MUTE, ha='left')
+    return s
+
+
+# ================================================================== case layouts (12 November 2026, de-slop pass)
+# Each case gets the layout its story needs, so the four-box card appears at most once per deck.
+# Used by Sessions 10 to 14.  Red only for a real failure or warning; gold only for the one thing to look at.
+def _org(s, h, org, sub=''):
+    s.text(0.1, h - 0.3, org, size=18, weight='bold', ha='left')
+    if sub:
+        s.text(0.1, h - 0.68, sub, size=15, color=MUTE, ha='left')
+
+
+@fig('x_l10_headline')
+def x_l10_headline(w, h, org='', sub='', big='', line='', facts=(), source='', warn=False, **_):
+    """One headline number with a line of context on the left; up to four plain facts on the right."""
+    s = Scene(w, h)
+    _org(s, h, org, sub)
+    lw_ = min(4.9, w * 0.44)
+    top = h - (1.15 if sub else 0.85)
+    bs = _fit(big, lw_ - 0.1, 1.1, 66, 36, 'bold')
+    s.text(0.1, top - 0.5, big, size=bs, weight='bold', ha='left', color=RED if warn else INK)
+    _wrap(s, 0.1, top - 1.2, lw_ - 0.2, line, 18, ha='left', va='top', color=BODY)
+    x = lw_ + 0.35
+    s.line(x - 0.2, 0.55, x - 0.2, top + 0.1, color=HAIR, lw=1.2)
+    n = max(1, len(facts))
+    fh = (top - 0.55) / n
+    for i, f in enumerate(facts):
+        y = top - i * fh
+        _wrap(s, x, y - 0.05, w - x - 0.1, f, 17, ha='left', va='top', color=INK if i == 0 else BODY, weight='bold' if i == 0 else 'normal')
+        if i:
+            s.line(x, y + 0.08, w - 0.1, y + 0.08, color=HAIR, lw=1.0)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l10_timeline')
+def x_l10_timeline(w, h, org='', sub='', events=(), source='', hl=None, warn=(), **_):
+    """A short dated timeline: events as (date, text). `hl` marks the one to look at in gold; `warn` indexes are drawn in red."""
+    s = Scene(w, h)
+    _org(s, h, org, sub)
+    n = len(events)
+    ly = h - (1.55 if sub else 1.3)
+    s.line(0.25, ly, w - 0.25, ly, color=INK, lw=2.4)
+    cw = (w - 0.2) / n
+    for i, (date, txt) in enumerate(events):
+        cx = 0.1 + i * cw + 0.2
+        red = i in (warn or ())
+        s.circle(cx, ly, 0.13, fill=GOLD if i == hl else (RED if red else PAPER), edge=RED if red else INK, lw=2.0, z=4)
+        s.text(cx - 0.1, ly + 0.42, date, size=18, weight='bold', ha='left', color=RED if red else INK)
+        _wrap(s, cx - 0.1, ly - 0.35, cw - 0.35, txt, 16, ha='left', va='top', color=BODY)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l10_ba')
+def x_l10_ba(w, h, org='', sub='', before=('', '', ''), after=('', '', ''), source='', note='', **_):
+    """Before and after: each side is (heading, big figure or short phrase, one or two lines)."""
+    s = Scene(w, h)
+    _org(s, h, org, sub)
+    top = h - (1.2 if sub else 0.9)
+    cw = (w - 1.0) / 2
+    for i, (hd, big, txt) in enumerate((before, after)):
+        x = 0.1 + i * (cw + 0.8)
+        s.text(x, top, hd, size=17, weight='bold', ha='left', color=MUTE)
+        s.line(x, top - 0.25, x + cw, top - 0.25, color=INK, lw=1.8)
+        bs = _fit(big, cw, 0.8, 40, 22, 'bold')
+        hh = _wrap(s, x, top - 0.45, cw, big, bs, weight='bold', ha='left', va='top')
+        _wrap(s, x, top - 0.65 - hh, cw, txt, 17, ha='left', va='top', color=BODY)
+    s.arrow(0.1 + cw + 0.15, top - 1.0, 0.1 + cw + 0.65, top - 1.0, lw=2.4, head=16)
+    if note:
+        _wrap(s, 0.1, 0.75, w - 0.2, note, 16, ha='left', color=BODY)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l10_means')
+def x_l10_means(w, h, org='', sub='', happened=(), means=(), heads=('What happened', 'What it means for you'), source='', **_):
+    """Two plain columns: what happened, and what it means for a leader. No boxes."""
+    s = Scene(w, h)
+    _org(s, h, org, sub)
+    top = h - (1.2 if sub else 0.9)
+    cw = (w - 0.7) / 2
+    avail = top - 0.45 - 0.45
+
+    def _need(sz, gap):
+        return max(sum(len(K.wrap(it, sz, 'regular', cw - 0.3)) * _lh(sz) + gap for it in items) for items in (happened, means))
+    sz, gap = 14, 0.08
+    for cand in ((17, 0.2), (16, 0.17), (15, 0.14), (14, 0.1)):
+        if _need(*cand) <= avail:
+            sz, gap = cand
+            break
+    for i, (hd, items) in enumerate(zip(heads, (happened, means))):
+        x = 0.1 + i * (cw + 0.5)
+        s.text(x, top, hd, size=17, weight='bold', ha='left', color=MUTE)
+        s.line(x, top - 0.25, x + cw, top - 0.25, color=INK, lw=1.8)
+        y = top - 0.45
+        for it in items:
+            s.text(x, y - 0.02, '•', size=sz, ha='left', va='top', color=INK)
+            y -= _wrap(s, x + 0.25, y, cw - 0.3, it, sz, ha='left', va='top', color=BODY) + gap
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l10_bars')
+def x_l10_bars(w, h, org='', sub='', bars=(), hl=None, warn=(), source='', note='', **_):
+    """A small horizontal bar chart of real figures: bars are (label, value, value text)."""
+    s = Scene(w, h)
+    _org(s, h, org, sub)
+    top = h - (1.25 if sub else 0.95)
+    bot = 0.95 if note else 0.55
+    n = len(bars)
+    rh = (top - bot) / n
+    lab_w = 3.4
+    vmax = max(v for _, v, _t in bars) or 1
+    span = w - lab_w - 1.9
+    for i, (lab, v, vt) in enumerate(bars):
+        y = top - (i + 0.5) * rh
+        red = i in (warn or ())
+        _wrap(s, lab_w - 0.1, y, lab_w - 0.2, lab, 16, ha='right', color=INK)
+        bl = max(0.05, span * v / vmax)
+        s.rect(lab_w + 0.05, y - min(0.24, rh * 0.32), bl, min(0.48, rh * 0.64), fill=GOLD if i == hl else (RED if red else PALE), edge=RED if red else INK, lw=1.2)
+        s.text(lab_w + 0.15 + bl, y, vt, size=17, weight='bold', ha='left', color=RED if red else INK)
+    if note:
+        _wrap(s, 0.1, 0.62, w - 0.2, note, 15, ha='left', color=BODY)
+    _source(s, source, y=0.2)
     return s

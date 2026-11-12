@@ -99,7 +99,7 @@ def x_t11_permissions(w, h, perms=None, **_):
     pw, ph = 2.3, h - 0.2
     s.box(0.1, 0.1, pw, ph, '', fill=PAPER, edge=INK, lw=2.4, r=0.2)
     _w(s, 0.1 + pw / 2, h - 0.85, pw - 0.35, 'Allow Torch to read your contacts?', 15, 'bold')
-    s.box(0.3, h * 0.42, pw - 0.4, 0.55, 'Don’t allow', size=15, fill=GOLD, edge=INK, lw=1.8, weight='bold')
+    s.box(0.3, h * 0.42, pw - 0.4, 0.55, 'Don’t allow', size=15, fill=PAPER, edge=INK, lw=1.8, weight='bold')
     s.box(0.3, h * 0.42 - 0.75, pw - 0.4, 0.55, 'Allow', size=15, fill=PAPER, edge=HAIR, lw=1.4)
     s.text(0.1 + pw / 2, 0.45, 'a permission', size=14, color=MUTE)
     n = len(perms)
@@ -183,7 +183,7 @@ def x_t11_mcp(w, h, **_):
     rh = (h - 1.6) / n
     for i, (ic, name) in enumerate(servers):
         yc = h - 1.35 - (i + 0.5) * rh
-        s.box(0.35, yc - 0.3, hw - 0.6, 0.6, 'client ' + str(i + 1), size=15, fill=GOLD, edge=INK, lw=1.6)
+        s.box(0.35, yc - 0.3, hw - 0.6, 0.6, 'client ' + str(i + 1), size=15, fill=PAPER, edge=INK, lw=1.6)
         s.line(0.05 + hw - 0.3, yc, sx - 0.55, yc, color=INK, lw=3)
         # the plug
         s.rect(sx - 0.55, yc - 0.2, 0.4, 0.4, fill=INK, edge=INK)

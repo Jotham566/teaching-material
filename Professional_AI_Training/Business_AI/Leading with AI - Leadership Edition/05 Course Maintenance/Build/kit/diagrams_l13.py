@@ -45,7 +45,7 @@ def x_l13_ban(w, h, **_):
             ('Policy and approved tools', 'shield', INK, ['Company accounts, each with an owner', 'Data rules by sensitivity', 'Training for every level', 'One place to report an error'])]
     for i, (hd, ic, col, items) in enumerate(cols):
         x = 0.1 + i * (cw + 0.1)
-        s.box(x, 1.25, cw, h - 1.35, '', fill=PALE if i == 0 else GOLD, lw=1.8, r=0.08)
+        s.box(x, 1.25, cw, h - 1.35, '', fill=PALE if i == 0 else PAPER, lw=1.8, r=0.08)
         s.icon(ic, x + 0.45, h - 0.48, 0.6)
         s.text(x + 0.85, h - 0.48, hd, size=16, weight='bold', ha='left', color=col)
         for k, it in enumerate(items):
@@ -146,7 +146,7 @@ def x_l13_row(w, h, **_):
         if i < n - 1:
             s.arrow(x + bw + 0.03, y0 + bh / 2, x + bw + gap - 0.03, y0 + bh / 2, lw=2.2, head=14)
     s.text(0.1, h - 0.22, 'One row of the Risk Register, from its grey example', size=15, weight='bold', ha='left')
-    _wrap(s, 0.1, 0.62, w - 0.2, 'A control is an action that lowers the likelihood or the impact. The risk left after it is called the residual risk.', 15, ha='left', weight='bold', color=RED)
+    _wrap(s, 0.1, 0.62, w - 0.2, 'A control is an action that lowers the likelihood or the impact. The risk left after it is called the residual risk.', 15, ha='left', color=BODY)
     _source(s, 'Template: Risk Register.xlsx, row 1 of the eight typical AI risks.', y=0.18)
     return s
 
@@ -158,7 +158,7 @@ def x_l13_uganda(w, h, **_):
     ev = [('May 2019', 'Data Protection and Privacy Act in force', 'Personal data; fines up to 245 currency points; courts can fine firms up to 2 in 100 of turnover', PAPER),
           ('2021', 'Regulations; the PDPO starts work', 'Register with the PDPO; report a breach immediately', PAPER),
           ('July 2025', 'PDPO rules against Google', 'Register within 30 days and show safe transfers abroad. Google withdrew its appeal.', GOLD),
-          ('July 2025', 'First criminal conviction', 'For not registering: a debt collector that shared a borrower’s photo', GOLD),
+          ('July 2025', 'First criminal conviction', 'For not registering: a debt collector that shared a borrower’s photo', PAPER),
           ('October 2026', 'National Data Strategy launched', 'Groundwork for AI in government', PAPER),
           ('30 Oct 2026', 'National AI strategy', 'Still a draft, awaiting Cabinet', PALE)]
     n = len(ev)
@@ -224,7 +224,7 @@ def x_l13_frameworks(w, h, **_):
     cw = (w - 0.2 - 0.3) / 3
     for i, (ic, hd, txt) in enumerate(cards):
         x = 0.1 + i * (cw + 0.15)
-        s.box(x, 0.45, cw, 1.6, '', fill=GOLD if i == 1 else PAPER, lw=1.6, r=0.08)
+        s.box(x, 0.45, cw, 1.6, '', fill=PAPER, lw=1.6, r=0.08)
         s.icon(ic, x + 0.38, 1.72, 0.5)
         _wrap(s, x + 0.72, 1.72, cw - 0.82, hd, 15, weight='bold', ha='left')
         _wrap(s, x + 0.15, 1.27, cw - 0.3, txt, 14, ha='left', va='top', color=BODY)
@@ -253,11 +253,10 @@ def x_l13_tco(w, h, **_):
         y -= hh
     s.brace(bx - 0.05, bx + bw + 0.05, top + 0.08, depth=-0.08)
     tx = 5.0
-    s.box(tx, top - 1.45, w - tx - 0.1, 1.45, '', fill=GOLD, lw=1.8, r=0.08)
     s.text(tx + 0.15, top - 0.3, 'All of it', size=15, weight='bold', ha='left')
-    s.text(tx + 0.15, top - 0.72, f'UGX {total:,}', size=21, weight='bold', ha='left', color=RED)
+    s.text(tx + 0.15, top - 0.72, f'UGX {total:,}', size=24, weight='bold', ha='left')
     _wrap(s, tx + 0.15, top - 1.0, w - tx - 0.4, 'The licence is about a third', 14, ha='left', va='top')
-    s.box(tx, 0.75, w - tx - 0.1, top - 1.6 - 0.75 - 0.15, '', fill=PAPER, edge=RED, lw=2, r=0.08)
+    s.line(tx, top - 1.7, w - 0.1, top - 1.7, color=HAIR, lw=1.2)
     s.text(tx + 0.15, top - 2.02, 'Not yet counted', size=15, weight='bold', ha='left', color=RED)
     yy = top - 2.3
     for it in ['Use above the plan', 'A price rise at renewal', 'Leaving: getting your data back']:
@@ -275,9 +274,9 @@ def x_l13_check(w, h, **_):
             ('What you still do', 'flag', PAPER, ['Check every quote: run 2 quoted two phrases that are not in the proposal', 'Judge the vendor’s answers yourself', 'Test the claims on your own data'])]
     for i, (hd, ic, fill, items) in enumerate(cols):
         x = 0.1 + i * (cw + 0.1)
-        s.box(x, 0.65, cw, h - 0.75, '', fill=fill, edge=RED if i else INK, lw=2 if i else 1.8, r=0.08)
+        s.box(x, 0.65, cw, h - 0.75, '', fill=PAPER, lw=1.8, r=0.08)
         s.icon(ic, x + 0.42, h - 0.45, 0.55)
-        s.text(x + 0.8, h - 0.45, hd, size=17, weight='bold', ha='left', color=RED if i else INK)
+        s.text(x + 0.8, h - 0.45, hd, size=17, weight='bold', ha='left')
         y = h - 1.0
         for it in items:
             y -= _wrap(s, x + 0.25, y, cw - 0.4, it, 15, ha='left', va='top') + 0.25
@@ -332,4 +331,24 @@ def x_l13_board(w, h, compact=False, **_):
         s.box(x, y, cw, bh, '', fill=GOLD if last else PAPER, lw=1.2, r=0.06)
         s.text(x + 0.15, y + bh - 0.24, hd, size=15 if not compact else 14, weight='bold', ha='left')
         _wrap(s, x + 0.15, y + bh - 0.45, cw - 0.3, txt, 14, ha='left', va='top', color=BODY)
+    return s
+
+
+# ------------------------------------------------------------------ a plain two-column pairing (local variant of t13_bridge, without gold on every row)
+@fig('x_l13_pairs')
+def x_l13_pairs(w, h, rows=(), heads=('', ''), size=16, **_):
+    s = Scene(w, h)
+    n = len(rows)
+    top = h - 0.45
+    rh = (top - 0.05) / n
+    rx = w * 0.5
+    s.text(0.05, h - 0.22, heads[0], size=size + 1, weight='bold', ha='left', color=MUTE)
+    s.text(rx, h - 0.22, heads[1], size=size + 1, weight='bold', ha='left', color=MUTE)
+    s.line(0, top, w, top, color=INK, lw=2.0)
+    for i, r in enumerate(rows):
+        y = top - (i + 0.5) * rh
+        _wrap(s, 0.05, y, rx - 0.75, r['what'], size, ha='left', color=BODY)
+        s.arrow(rx - 0.6, y, rx - 0.15, y, lw=2.0, head=14)
+        _wrap(s, rx, y, w - rx - 0.05, r['rule'], size, weight='bold', ha='left')
+        s.line(0, top - (i + 1) * rh, w, top - (i + 1) * rh, color=HAIR, lw=1.0)
     return s

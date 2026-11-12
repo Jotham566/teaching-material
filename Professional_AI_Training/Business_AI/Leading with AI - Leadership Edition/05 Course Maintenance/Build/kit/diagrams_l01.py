@@ -135,7 +135,6 @@ def x_l01_bridge(w, h, **_):
         s.icon('robot', x + 0.45, h - 3.62, 0.62)
         s.box(x + 0.85, h - 3.98, pw - 0.85, 0.72, '', fill=PAPER, lw=1.8, r=0.08)
         _wrap(s, x + 0.85 + (pw - 0.85) / 2, h - 3.62, pw - 1.05, out, 15, weight='bold')
-    s.text(w / 2, 0.22, 'The same idea: learn from examples whose answer is known', size=16, weight='bold', color=RED)
     return s
 
 
@@ -322,7 +321,7 @@ def x_l01_one_idea(w, h, **_):
     s = Scene(w, h)
     cols = [(0.1, 2.6, 'It is given'), (3.2, 5.0, 'It learned from'), (8.7, 3.1, 'It gives back')]
     for x, cw, hd in cols:
-        s.text(x + 0.1, h - 0.3, hd, size=18, weight='bold', ha='left', color=RED if hd == 'It gives back' else INK)
+        s.text(x + 0.1, h - 0.3, hd, size=18, weight='bold', ha='left', color=INK)
         s.line(x, h - 0.55, x + cw, h - 0.55, lw=1.6)
     rows = [('plant', 'A photo of a leaf', 'Thousands of photos labelled healthy or diseased', 'A label: diseased'),
             ('doc', 'A scanned page', 'Thousands of pages with the right words typed out', 'The words, ready for a table'),
@@ -339,9 +338,8 @@ def x_l01_one_idea(w, h, **_):
         s.box(3.2, y - rh / 2 + 0.12, 5.0, rh - 0.24, '', fill=PAPER, lw=1.6, r=0.08)
         _wrap(s, 3.35, y, 4.7, b, 16, ha='left', color=BODY)
         s.arrow(8.3, y, 8.65, y, lw=2)
-        s.box(8.7, y - rh / 2 + 0.12, 3.1, rh - 0.24, '', fill=GOLD, lw=1.6, r=0.08)
+        s.box(8.7, y - rh / 2 + 0.12, 3.1, rh - 0.24, '', fill=PAPER, lw=1.6, r=0.08)
         _wrap(s, 8.85, y, 2.8, c, 16, weight='bold', ha='left')
-    s.text(w / 2, 0.2, 'Different inputs, one idea: learning from labelled examples', size=16, weight='bold', color=RED)
     return s
 
 
@@ -384,7 +382,6 @@ def x_l01_thailand(w, h, **_):
         y = h - 1.15 - k * 0.85
         s.icon(ic, x + 0.45, y, 0.5)
         _wrap(s, x + 0.85, y, cw - 1.0, t, 15, ha='left', color=BODY)
-    _wrap(s, w / 2, 0.68, w - 0.4, 'Clinic light, internet and workload differed from the tests.', 16, weight='bold', color=RED)
     _source(s, 'Sources: TechCrunch, 27 Apr 2020; Google study, CHI 2020. An early field study.', y=0.18)
     return s
 
@@ -579,4 +576,137 @@ def x_l01_portfolio(w, h, **_):
             ('How we would know it works', 'Of 100 notes a clerk checks, how many fields were right'),
             ('Today: what it reads', 'Handwriting and stamps; poor photos go to a clerk')]
     portfolio_entry(s, w, h, rows)
+    return s
+
+
+# ------------------------------------------------------------------ case layouts other than the four-box card (12 November 2026)
+# Each case gets the layout its story needs: a headline number, a before and after, a timeline, a small chart of its own figures,
+# or two columns, what happened and what it means for you.  Gold marks at most one thing; red only a real failure or warning.
+def _org(s, h, org):
+    s.text(0.1, h - 0.25, org, size=18, weight='bold', ha='left')
+
+
+def _col(s, x, top, cw, items, size=17, gap=0.16, color=BODY):
+    """Short lines stacked from `top` downwards, each under a hairline. Returns the y reached."""
+    y = top
+    for i, t in enumerate(items):
+        if i:
+            s.line(x, y + gap / 2, x + cw, y + gap / 2, color=HAIR, lw=1.0)
+        hh = _wrap(s, x, y, cw, t, size, ha='left', va='top', color=color)
+        y -= hh + gap
+    return y
+
+
+@fig('x_l01_case_number')
+def x_l01_case_number(w, h, org='', big='', big_note='', facts=(), source='', warn=False, **_):
+    """A headline number with one line of context on the left; two or three plain facts on the right."""
+    s = Scene(w, h)
+    _org(s, h, org)
+    lw_ = w * 0.42
+    bs = 66
+    while K.width_in(big, bs, 'bold') > lw_ - 0.2 and bs > 36:
+        bs -= 2
+    s.text(0.1, h - 1.25, big, size=bs, weight='bold', ha='left', color=RED if warn else INK)
+    s.line(0.1, h - 1.95, 0.1 + min(lw_ - 0.3, K.width_in(big, bs, 'bold')), h - 1.95, color=RED if warn else GOLD, lw=5)
+    _wrap(s, 0.1, h - 2.2, lw_ - 0.3, big_note, _fit(big_note, lw_ - 0.3, h - 2.8, 20, 16), ha='left', va='top', color=INK)
+    x = lw_ + 0.3
+    s.line(x - 0.2, 0.55, x - 0.2, h - 0.6, color=HAIR, lw=1.2)
+    cw = w - x - 0.1
+    sz = 15
+    for cand in range(20, 14, -1):
+        if sum(len(K.wrap(t, cand, 'regular', cw)) * _lh(cand) + 0.22 for t in facts) <= h - 1.4:
+            sz = cand
+            break
+    _col(s, x, h - 0.7, cw, list(facts), sz, gap=0.22)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l01_case_twocol')
+def x_l01_case_twocol(w, h, org='', left=(), right=(), heads=('What happened', 'What it means for you'), source='', **_):
+    """Two columns of short lines, what happened and what it means for you. No boxes."""
+    s = Scene(w, h)
+    _org(s, h, org)
+    cw = (w - 0.2 - 0.6) / 2
+    avail = h - 1.6
+    sz = 15
+    for cand in range(20, 14, -1):
+        if all(sum(len(K.wrap(t, cand, 'regular', cw)) * _lh(cand) + 0.2 for t in items) <= avail for items in (left, right)):
+            sz = cand
+            break
+    for i, (hd, items) in enumerate(zip(heads, (left, right))):
+        x = 0.1 + i * (cw + 0.6)
+        s.text(x, h - 0.85, hd, size=18, weight='bold', ha='left', color=INK)
+        s.line(x, h - 1.1, x + cw, h - 1.1, color=INK, lw=2)
+        _col(s, x, h - 1.25, cw, list(items), sz, gap=0.2, color=BODY if i == 0 else INK)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l01_case_beforeafter')
+def x_l01_case_beforeafter(w, h, org='', before=('', '', ''), after=('', '', ''), note='', source='', **_):
+    """Before and after: a label, a value and one line under each, with an arrow between. The after value is the one in gold."""
+    s = Scene(w, h)
+    _org(s, h, org)
+    pw = (w - 0.2 - 1.2) / 2
+    y0, y1 = 0.95 if note else 0.55, h - 0.6
+    for i, (lab, val, txt) in enumerate((before, after)):
+        x = 0.1 + i * (pw + 1.2)
+        s.text(x, y1 - 0.15, lab, size=18, weight='bold', ha='left', color=MUTE if i == 0 else INK)
+        vs = 44
+        while K.width_in(val, vs, 'bold') > pw - 0.1 and vs > 26:
+            vs -= 2
+        s.text(x, y1 - 0.95, val, size=vs, weight='bold', ha='left', color=MUTE if i == 0 else INK)
+        if i == 1:
+            s.line(x, y1 - 1.5, x + K.width_in(val, vs, 'bold'), y1 - 1.5, color=GOLD, lw=5)
+        _wrap(s, x, y1 - 1.75, pw, txt, _fit(txt, pw, y1 - 1.75 - y0, 18, 15), ha='left', va='top', color=BODY)
+    s.arrow(0.1 + pw + 0.25, y1 - 0.95, 0.1 + pw + 0.95, y1 - 0.95, lw=2.6, head=18)
+    if note:
+        _wrap(s, 0.1, 0.62, w - 0.2, note, 15, ha='left', color=INK)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l01_case_timeline')
+def x_l01_case_timeline(w, h, org='', events=(), hl=None, warn=None, source='', **_):
+    """A short timeline: (when, what) on a line, one event in gold, one optionally in red."""
+    s = Scene(w, h)
+    _org(s, h, org)
+    n = len(events)
+    ly = h - 1.35
+    s.line(0.25, ly, w - 0.25, ly, color=INK, lw=2)
+    cw = (w - 0.3) / n
+    sz = min(_fit(t, cw - 0.25, ly - 0.75, 19, 15) for _, t in events)
+    for i, (when, txt) in enumerate(events):
+        x = 0.15 + i * cw + 0.1
+        col = RED if i == warn else INK
+        s.circle(x + 0.12, ly, 0.12, fill=GOLD if i == hl else (RED if i == warn else PAPER), edge=col, lw=2, z=5)
+        s.text(x, ly + 0.42, when, size=17, weight='bold', ha='left', color=col)
+        _wrap(s, x, ly - 0.3, cw - 0.25, txt, sz, ha='left', va='top', color=INK if i in (hl, warn) else BODY)
+    _source(s, source, y=0.2)
+    return s
+
+
+@fig('x_l01_case_bars')
+def x_l01_case_bars(w, h, org='', bars=(), hl=None, note='', source='', label_w=3.6, **_):
+    """A small horizontal bar chart of a case's own figures: (label, value, shown). One bar in gold."""
+    s = Scene(w, h)
+    _org(s, h, org)
+    n = len(bars)
+    top, bot = h - 0.7, (1.0 if note else 0.6)
+    rh = (top - bot) / n
+    bw = min(0.6, rh * 0.62)
+    vmax = max(v for _, v, _ in bars)
+    x0 = 0.1 + label_w
+    span = w - x0 - 0.35 - max(K.width_in(sh, 17, 'bold') for _, _, sh in bars)
+    for i, (lab, v, shown) in enumerate(bars):
+        y = top - (i + 0.5) * rh
+        _wrap(s, 0.1, y, label_w - 0.2, lab, _fit(lab, label_w - 0.2, rh, 17, 14), ha='left', color=INK)
+        L = span * v / vmax
+        s.rect(x0, y - bw / 2, max(L, 0.03), bw, fill=GOLD if i == hl else PAPER, edge=INK, lw=1.4)
+        s.text(x0 + L + 0.12, y, shown, size=17, weight='bold', ha='left')
+    s.line(x0, bot - 0.05, x0, top + 0.05, color=INK, lw=1.4)
+    if note:
+        _wrap(s, 0.1, 0.62, w - 0.2, note, 15, ha='left', color=BODY)
+    _source(s, source, y=0.2)
     return s

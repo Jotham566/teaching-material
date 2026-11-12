@@ -160,7 +160,8 @@ def x_l00_jobs(w, h, **_):
         y = h - 1.35 - hh - 0.15
         gh = wt(s, x + bw / 2, y, bw - 0.3, 'In: ' + goes, 14, color=MUTE, va='top', italic=True)
         wt(s, x + bw / 2, y - gh - 0.18, bw - 0.3, ex, 16, color=BODY, va='top')
-        s.box(x + 0.25, 0.25, bw - 0.5, 0.5, sess, size=16, weight='bold', fill=GOLD, edge=INK, lw=1.4, r=0.06)
+        s.line(x + 0.25, 0.8, x + bw - 0.25, 0.8, color=HAIR, lw=1.2)
+        s.text(x + bw / 2, 0.45, sess, size=17, weight='bold')
     return s
 
 
@@ -179,9 +180,9 @@ def x_l00_goodbad(w, h, **_):
         rh = (h - 1.1) / len(items)
         for i, (ic, t) in enumerate(items):
             yc = h - 1.0 - (i + 0.5) * rh
-            s.circle(x + 0.5, yc, 0.33, fill=fill, edge=INK, lw=1.6)
-            s.icon(ic, x + 0.5, yc, 0.42)
-            wt(s, x + 0.98, yc, cw - 1.15, t, 16, ha='left')
+            if i:
+                s.line(x + 0.3, yc + rh / 2, x + cw - 0.3, yc + rh / 2, color=HAIR, lw=1.0)
+            wt(s, x + 0.4, yc, cw - 0.7, t, 18, ha='left')
     return s
 
 
@@ -317,7 +318,6 @@ def x_l00_eastafrica(w, h, **_):
         bw = bar_max * v / 17.0
         s.rect(lab, yc - rh * 0.3, bw, rh * 0.6, fill=GOLD if hl else (INK if i == 0 else PAPER), edge=INK, lw=1.8)
         s.text(lab + bw + 0.12, yc, f'{v:g}%', size=17, weight='bold', ha='left')
-    s.text(lab + 0.05, 0.85, 'Uganda: about 7 in every 100 people of working age', size=15, ha='left', color=RED, weight='bold')
     source(s, w, 'Microsoft AI Diffusion Report, H2 2025, via Citizen Digital (14 Jan 2026). Estimated from Microsoft product data.', y=0.04)
     return s
 
@@ -443,7 +443,6 @@ def x_l00_lessons(w, h, **_):
         wt(s, xs[0] + cw / 2, y + rh / 2, cw - 0.3, good, 16)
         s.box(xs[1], y + 0.08, cw, rh - 0.16, '', fill=PAPER, edge=RED, lw=1.8, r=0.07)
         wt(s, xs[1] + cw / 2, y + rh / 2, cw - 0.3, bad, 16)
-    s.box(0.05, 0.05, w - 0.1, 0.42, 'All three need a person to check the doubtful cases', size=16, weight='bold', fill=INK, edge=INK, color=PAPER, r=0.06)
     return s
 
 

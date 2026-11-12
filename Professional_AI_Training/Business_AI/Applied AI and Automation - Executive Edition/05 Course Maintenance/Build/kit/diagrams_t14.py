@@ -41,7 +41,7 @@ def x_t14_fivekinds(w, h, items=(), size=15, **_):
         s.box(x + 0.08, h - 2.4, cw - 0.16, 1.05, '', fill=PAPER, edge=INK, lw=1.6)
         _fit_text(s, x + 0.08, h - 2.4, cw - 0.16, 1.05, it['example'], size)
         s.arrow(cx, h - 2.45, cx, h - 2.85, lw=2.2, head=14)
-        s.box(x + 0.08, 0.03, cw - 0.16, h - 2.95, '', fill=GOLD, edge=INK, lw=1.6)
+        s.box(x + 0.08, 0.03, cw - 0.16, h - 2.95, '', fill=PAPER, edge=INK, lw=1.6)
         _fit_text(s, x + 0.08, 0.03, cw - 0.16, h - 2.95, it['action'], size, weight='bold')
     return s
 
@@ -222,7 +222,7 @@ def x_t14_invhome(w, h, size=15, **_):
             ['Family photos', 'You', 'Phone gallery', 'Personal'],
             ['School timetable', 'The school', 'A shared PDF', 'Public']]
     cw = [(w - 0.1) * f for f in (0.30, 0.18, 0.27, 0.25)]
-    s.table(0.05, h - 0.05, cw, (h - 0.15) / len(rows), rows, size=size, align=['left'] * 4, hl_cols=(0,))
+    s.table(0.05, h - 0.05, cw, (h - 0.15) / len(rows), rows, size=size, align=['left'] * 4)
     return s
 
 

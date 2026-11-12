@@ -226,9 +226,8 @@ def bench_cards(w, h, **_):
     for i, (ic, hd, tx) in enumerate(cards):
         x0 = 0.1 + i * (pw + 0.2)
         s.box(x0, 0.05, pw, h - 0.1, '', fill=PAPER, edge=INK, lw=1.8)
-        s.icon(ic, x0 + pw / 2, h - 0.6, 0.7)
-        put(s, x0 + pw / 2, h - 1.2, hd, size=18, weight='bold', color=RED)
-        put(s, x0 + pw / 2, h - 2.5, wrap(tx, pw - 0.3, 16), size=16)
+        put(s, x0 + pw / 2, h / 2 + 0.85, hd, size=18, weight='bold', color=RED)
+        put(s, x0 + pw / 2, h / 2 - 0.35, wrap(tx, pw - 0.3, 16), size=16)
     return s
 
 
@@ -492,9 +491,7 @@ def posttrain(w, h, **_):
     rh = (top - 0.6 - 0.1) / 3
     for i, (a, b, c, f, ic) in enumerate(rows):
         y = top - 0.6 - (i + 1) * rh
-        s.box(xs[0], y + 0.08, ws[0] - 0.15, rh - 0.16, '', fill=f, lw=1.4)
-        s.icon(ic, xs[0] + 0.35, y + rh / 2, 0.5)
-        put(s, xs[0] + 0.7, y + rh / 2, wrap(a, ws[0] - 0.95, 16), size=16, weight='bold', ha='left')
+        put(s, xs[0] + 0.1, y + rh / 2, wrap(a, ws[0] - 0.3, 16), size=16, weight='bold', ha='left')
         put(s, xs[1] + 0.1, y + rh / 2, wrap(b, ws[1] - 0.3, 16), size=16, ha='left')
         put(s, xs[2] + 0.1, y + rh / 2, wrap(c, ws[2] - 0.3, 16), size=16, ha='left')
         s.line(0.05, y, w - 0.05, y, color=HAIR, lw=1)
@@ -668,10 +665,9 @@ def bench_what(w, h, **_):
     pw = (w - 0.3) / 3
     for i, (a, b, ic) in enumerate(parts):
         x = 0.05 + i * (pw + 0.1)
-        s.box(x, h - 1.75, pw, 1.65, '', fill=PALE, lw=1.4)
-        s.icon(ic, x + pw / 2, h - 0.5, 0.55)
-        put(s, x + pw / 2, h - 1.05, a, size=16, weight='bold')
-        put(s, x + pw / 2, h - 1.45, wrap(b, pw - 0.2, 14), size=14, color=BODY)
+        s.box(x, h - 1.75, pw, 1.65, '', fill=PAPER, lw=1.4)
+        put(s, x + pw / 2, h - 0.7, a, size=17, weight='bold')
+        put(s, x + pw / 2, h - 1.25, wrap(b, pw - 0.2, 14), size=14, color=BODY)
     put(s, 0.05, 2.65, 'Accuracy = correct ÷ total (Session 3)', size=18, weight='bold', ha='left', color=RED)
     put(s, 0.05, 2.1, '1,000 questions, 712 right:', size=17, ha='left')
     put(s, 0.05, 1.6, '712 ÷ 1,000 = 0.712 = 71.2%', size=19, weight='bold', ha='left')

@@ -74,8 +74,8 @@ def f2a(w, h, **_):
     quotes = ['Run 1: "I can\'t confirm that this case exists. ... I would be making them up."',
               'Run 2: "I have no record of a case with that name, and I won\'t guess."']
     for y, q in zip(ys, quotes):
-        s.box(0.1, y, w - 0.2, 1.1, '', fill=GOLD, lw=1.8)
-        wt(s, w / 2, y + 0.55, w - 0.5, q, 16, weight='bold')
+        s.line(0.15, y, 0.15, y + 1.1, color=INK, lw=4.0)
+        wt(s, 0.45, y + 0.55, w - 0.7, q, 16, ha='left')
     wt(s, w / 2, 0.45, w - 0.3, 'The case is invented. Both runs said so and told the reader where to check.', 15, color=BODY)
     return s
 
@@ -157,7 +157,7 @@ def inject(w, h, **_):
 @fig('x_t10_matrix')
 def matrix(w, h, **_):
     s = Scene(w, h)
-    heads = ['Q', 'The key says', 'No handbook text', 'Three clauses', 'Whole handbook']
+    heads = ['Q', 'Ground truth', 'No handbook text', 'Three clauses', 'Whole handbook']
     cw = [0.8, 4.7, 2.1, 2.1, 2.2]
     key = ['21 working days (2.1)', 'At least 14 days before (2.2)', 'The Finance Manager (3.2)', 'Within 14 days (3.1)', '2 times the hourly rate (1.3)',
            'Only with written MD approval (4.4)', '4 hours, to the Operations Manager (5.3)', 'UGX 180,000 a night (3.3)', 'Not stated in the handbook', 'Not stated in the handbook']
@@ -179,7 +179,7 @@ def matrix(w, h, **_):
                     ok = q >= 9
                     txt, fill, col, wgt = ('right' if ok else 'missed'), (GOLD if ok else PAPER), (INK if ok else RED), 'bold'
                 else:
-                    txt, fill, col, wgt = 'right', GOLD, INK, 'bold'
+                    txt, fill, col, wgt = 'right', PAPER, INK, 'normal'
                 s.rect(cx, y - rh, cw[c], rh, fill=fill, edge=INK, lw=1.0)
                 s.text(cx + (cw[c] / 2 if c != 1 else 0.1), y - rh / 2, txt, size=14 if c == 1 else 15, weight=wgt, color=col, ha='center' if c != 1 else 'left', z=6)
             cx += cw[c]
@@ -203,7 +203,7 @@ def routine(w, h, **_):
     bh = h - by - 0.1
     for i, (ic, head, txt) in enumerate(steps):
         x = 0.1 + i * (bw + gap)
-        s.box(x, by, bw, bh, '', lw=2.0, fill=GOLD if i == n - 1 else PAPER)
+        s.box(x, by, bw, bh, '', lw=2.0, fill=PAPER)
         s.icon(ic, x + bw / 2, h - 0.65, 0.7)
         wt(s, x + bw / 2, h - 1.35, bw - 0.25, head, 21, weight='bold')
         wt(s, x + bw / 2, h - 2.25, bw - 0.25, txt, 17, color=BODY)
@@ -232,16 +232,18 @@ def template(w, h, **_):
 @fig('x_t10_takeaway')
 def takeaway(w, h, **_):
     s = Scene(w, h)
-    half = (w - 0.3) / 2
-    s.box(0.1, 0.1, half, h - 0.2, '', lw=2.0, fill=GOLD)
-    s.text(0.3, h - 0.45, 'Five-step check', size=21, weight='bold', ha='left')
-    for i, t in enumerate(['1  Source: open the quote', '2  Recount the numbers', '3  Compare with ground truth', '4  Run it twice', '5  A named person signs']):
-        s.text(0.35, h - 1.15 - i * 0.65, t, size=18, ha='left')
-    x = 0.2 + half
-    s.box(x, 0.1, half, h - 0.2, '', lw=2.0)
-    s.text(x + 0.2, h - 0.45, 'Evaluation set', size=21, weight='bold', ha='left')
-    for i, t in enumerate(['10 questions', 'Ground truth', 'Source for each', 'Run twice, label it', 'Right, wrong, missed, invented']):
-        s.text(x + 0.25, h - 1.15 - i * 0.65, t, size=18, ha='left')
+    # the session's own sum on top, then what it decides for one answer and for a whole tool; one highlight only
+    s.rect(0.1, h - 1.15, w - 0.2, 0.95, fill=GOLD, edge=GOLD, lw=0)
+    s.text(w / 2, h - 0.67, '(2 ÷ 12) × UGX 600,000 = UGX 100,000 expected cost per total', size=22, weight='bold')
+    half = (w - 0.6) / 2
+    cols = [('One answer on your desk', ['Open the source it quotes', 'Recount every number', 'Compare with ground truth', 'Run it twice', 'A named person signs']),
+            ('A whole tool', ['Ten questions, two with no answer', 'Run twice; right, wrong, missed, invented', 'Beat the 20 percent baseline', 'Rerun after any change'])]
+    for k, (head, lines) in enumerate(cols):
+        x = 0.15 + k * (half + 0.3)
+        s.text(x, h - 1.55, head, size=19, weight='bold', ha='left')
+        s.line(x, h - 1.82, x + half, h - 1.82, color=INK, lw=1.4)
+        for i, t in enumerate(lines):
+            s.text(x, h - 2.2 - i * 0.42, t, size=17, ha='left', color=BODY)
     return s
 
 
@@ -283,7 +285,7 @@ def rumour(w, h, **_):
         s.icon('person', 3.2, yy, 0.9)
         s.arrow(1.45, h / 2, 2.7, yy, lw=1.8, head=12)
         s.arrow(3.7, yy, 5.0, h / 2, lw=1.8, head=12)
-    s.box(5.1, h / 2 - 1.1, w - 5.15, 2.2, '', fill=GOLD, lw=2.0)
+    s.box(5.1, h / 2 - 1.1, w - 5.15, 2.2, '', fill=PAPER, lw=2.0)
     wt(s, 5.1 + (w - 5.15) / 2, h / 2 + 0.45, w - 5.4, '"The road opens on Friday."', 16, weight='bold')
     wt(s, 5.1 + (w - 5.15) / 2, h / 2 - 0.45, w - 5.4, 'Said three times, with confidence', 15, color=BODY)
     s.text(3.2, h - 0.2, 'three people repeat it', size=15, color=MUTE)
@@ -331,7 +333,7 @@ def friends(w, h, **_):
     s = Scene(w, h)
     pw = (w - 0.3) / 2
     _panel(s, 0.1, 0.1, pw, h - 0.2, 'Everyday: ask only friends', [('10 friends pick the best film', False), ('All 10 pick the same one', False), ('Only your friends were asked', True), ('Check: who is missing?', False)], True)
-    _panel(s, 0.2 + pw, 0.1, pw, h - 0.2, 'A model learns a skew (illustration)', [('Past shortlists rarely kept a career break', False), ('The model learns that pattern', False), ('It repeats the skew on new CVs', True), ('Check: hide names, score job facts', False)], True, fill=GOLD)
+    _panel(s, 0.2 + pw, 0.1, pw, h - 0.2, 'A model learns a skew (illustration)', [('Past shortlists rarely kept a career break', False), ('The model learns that pattern', False), ('It repeats the skew on new CVs', True), ('Check: hide names, score job facts', False)], True)
     return s
 
 
@@ -340,14 +342,14 @@ def leak(w, h, **_):
     s = Scene(w, h)
     pw = (w - 0.3) / 2
     _panel(s, 0.1, 0.1, pw, h - 0.2, 'Everyday: early answers', [('A pupil reads the answer sheet the night before', False), ('Full score next morning', True), ('The score no longer shows ability', False)], True)
-    _panel(s, 0.2 + pw, 0.1, pw, h - 0.2, 'Your test set', [('You tune the prompt on Q01 to Q10', False), ('Then score it on Q01 to Q10', True), ('Check: keep a set you never tuned on', False)], True, fill=GOLD)
+    _panel(s, 0.2 + pw, 0.1, pw, h - 0.2, 'Your test set', [('You tune the prompt on Q01 to Q10', False), ('Then score it on Q01 to Q10', True), ('Check: keep a set you never tuned on', False)], True)
     return s
 
 
 @fig('x_t10_injectmech')
 def injectmech(w, h, **_):
     s = Scene(w, h)
-    s.box(0.05, h - 1.05, w - 0.1, 0.95, '', lw=1.8, fill=GOLD)
+    s.box(0.05, h - 1.05, w - 0.1, 0.95, '', lw=1.8, fill=PAPER)
     wt(s, w / 2, h - 0.57, w - 0.4, 'Grace: "Summarise this email for me."', 16, weight='bold')
     s.box(0.05, 1.75, w - 0.1, h - 3.0, '', lw=1.8)
     wt(s, w / 2, h - 1.55, w - 0.4, 'Email: "Please confirm the trips and the fuel surcharge ..."', 15, color=BODY)
@@ -362,11 +364,11 @@ def injectmech(w, h, **_):
 @fig('x_t10_marks')
 def marks(w, h, **_):
     s = Scene(w, h)
-    wt(s, w / 2, h - 0.3, w - 0.2, 'Q03: Who approves a claim of UGX 1,500,000? Key: the Finance Manager', 16, weight='bold')
-    cells = [('Right', 'Says the Finance Manager', 'matches the key', GOLD, INK),
+    wt(s, w / 2, h - 0.3, w - 0.2, 'Q03: Who approves a claim of UGX 1,500,000? Ground truth: the Finance Manager', 16, weight='bold')
+    cells = [('Right', 'Says the Finance Manager', 'matches the ground truth', PAPER, INK),
              ('Wrong', 'Says the Managing Director', 'a different answer', PAPER, RED),
-             ('Missed', 'Says "not stated"', 'the key has an answer', PAPER, INK),
-             ('Invented', 'Q09: says "10 days"', 'the key says not stated', PAPER, RED)]
+             ('Missed', 'Says "not stated"', 'the handbook has an answer', PAPER, INK),
+             ('Invented', 'Q09: says "10 days"', 'the ground truth is not stated', PAPER, RED)]
     cw = (w - 0.1 - 0.15) / 2
     ch = (h - 0.85 - 0.15) / 2
     for k, (head, a, b, fill, col) in enumerate(cells):
@@ -387,7 +389,7 @@ def baseline2(w, h, **_):
             ['Forecast "no rain" every day', '27', '30', '27 \u00f7 30 = 90%'],
             ['Answer "not stated" every time', '2', '10', '2 \u00f7 10 = 20%'],
             ['Three retrieved clauses', '10', '10', '10 \u00f7 10 = 100%']]
-    s.table(0.05, h - 0.1, [3.55, 0.95, 0.95, 2.1], 0.68, rows, size=16, hl_cells={(2, 3): GOLD, (3, 3): GOLD})
+    s.table(0.05, h - 0.1, [3.55, 0.95, 0.95, 2.1], 0.68, rows, size=16, hl_cells={(2, 3): GOLD})
     s.text(w / 2, 1.3, 'accuracy = correct \u00f7 total  (Session 3)', size=18, weight='bold')
     s.text(w / 2, 0.7, 'Gain over the baseline: 100% \u2212 20% = 80 percentage points', size=17, weight='bold', color=RED)
     s.text(w / 2, 0.25, 'Rows 2 and 3: recorded handbook runs, 6 November 2026', size=15, color=MUTE)

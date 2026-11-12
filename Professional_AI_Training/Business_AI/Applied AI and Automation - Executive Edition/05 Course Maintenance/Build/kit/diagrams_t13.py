@@ -53,7 +53,7 @@ def x_t13_bridge(w, h, rows=(), heads=('What the model does', 'The rule you writ
         s.text(0.14, y + rh / 2, '\n'.join(ls), size=size, weight='bold', ha='left')
         s.text(lw - 0.08, y + rh / 2, r['when'], size=size - 1, color=MUTE, ha='right')
         s.arrow(0.02 + lw + 0.04, y + rh / 2, rx - 0.06, y + rh / 2, lw=2.4, head=16)
-        s.box(rx, y, rw, rh, '', fill=GOLD, edge=INK, lw=1.6)
+        s.box(rx, y, rw, rh, '', fill=PAPER, edge=INK, lw=1.6)
         _centered(s, rx, y, rw, rh, r['rule'], size=size, ha='left', pad=0.14)
     return s
 
@@ -122,7 +122,7 @@ def x_t13_dataflow(w, h, gates=(), size=16, **_):
         _centered(s, 0.02, y, qw, rh, g['q'], size=size, weight='bold')
         s.arrow(0.02 + qw + 0.03, y + rh / 2, ox - 0.04, y + rh / 2, lw=2.4, head=16)
         s.text(0.02 + qw + 0.32, y + rh / 2 + 0.2, 'yes', size=14, color=MUTE)
-        s.box(ox, y, ow, rh, '', fill=GOLD if i < n - 1 else PAPER, edge=INK, lw=1.8)
+        s.box(ox, y, ow, rh, '', fill=PAPER, edge=INK, lw=1.8)
         txt = g['out_head'] + ': ' + g['out']
         ls = _lines(txt, size - 1, ow - 0.28)
         if len(ls) * (size - 1) * 1.17 / 72 > rh - 0.05:

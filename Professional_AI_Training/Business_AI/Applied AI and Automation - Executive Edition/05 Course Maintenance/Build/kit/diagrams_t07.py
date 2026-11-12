@@ -70,8 +70,7 @@ def licence(w, h, **_):
     for i, c in enumerate(conds):
         y = h - 0.05 - (i + 1) * gh - i * 0.15
         s.box(gx0, y, gx1 - gx0, gh, '', fill=PAPER, edge=RED, lw=2)
-        s.icon('lock', gx0 + 0.45, y + gh / 2, 0.6)
-        _wrap(s, gx0 + 0.9 + (gx1 - gx0 - 1.0) / 2, y + gh / 2, gx1 - gx0 - 1.2, c, 16)
+        _wrap(s, (gx0 + gx1) / 2, y + gh / 2, gx1 - gx0 - 0.4, c, 16)
     return s
 
 
@@ -370,7 +369,7 @@ def weights_link(w, h, **_):
     heads = ['Session 1: house price', 'Session 1: digit network', 'GPT-2 small']
     for i, x in enumerate(xs):
         s.box(x, y0, pw, ph, '', fill=PAPER, edge=INK, lw=1.8)
-        s.box(x, y0 + ph - 0.55, pw, 0.55, heads[i], size=17, weight='bold', fill=GOLD, edge=INK, lw=1.8, r=0.05)
+        s.box(x, y0 + ph - 0.55, pw, 0.55, heads[i], size=17, weight='bold', fill=GOLD if i == 2 else PALE, edge=INK, lw=1.8, r=0.05)
         if i < 2:
             s.arrow(x + pw + 0.04, y0 + ph / 2, xs[i + 1] - 0.04, y0 + ph / 2, color=RED, lw=2.6)
     # neuron: weighted sum
@@ -412,14 +411,13 @@ def everyday(w, h, **_):
     rh = (h - 0.65 - 0.9) / 3
     for i, (ic, nm, sub, nums, by, sz) in enumerate(rows):
         y = h - 0.55 - (i + 1) * rh
-        s.icon(ic, 0.55, y + rh / 2, 0.75)
-        s.text(1.15, y + rh * 0.68, nm, size=18, weight='bold', ha='left')
-        s.text(1.15, y + rh * 0.3, sub, size=14, color=BODY, ha='left')
+        s.text(0.15, y + rh * 0.68, nm, size=18, weight='bold', ha='left')
+        s.text(0.15, y + rh * 0.3, sub, size=14, color=BODY, ha='left')
         s.text(c_num, y + rh / 2, nums, size=20, weight='bold')
         s.text((c_num + c_by) / 2 + 0.2, y + rh / 2, 'x', size=22, weight='bold')
         s.text(c_by, y + rh / 2, by, size=20, weight='bold')
         s.text((c_by + c_sz) / 2 + 0.1, y + rh / 2, '=', size=22, weight='bold')
-        s.box(c_sz - 0.8, y + 0.12, 1.6, rh - 0.24, sz, size=19, weight='bold', fill=GOLD, lw=2.0)
+        s.box(c_sz - 0.8, y + 0.12, 1.6, rh - 0.24, sz, size=19, weight='bold', fill=PAPER, lw=2.0)
         s.line(0.05, y, w - 0.05, y, color=HAIR, lw=1)
     s.text(0.05, 0.5, 'Size = how many numbers  x  bytes per number', size=18, weight='bold', ha='left')
     s.text(0.05, 0.15, 'Saved JPEG and MP3 files are compressed, so they are smaller.', size=14, color=BODY, ha='left')
