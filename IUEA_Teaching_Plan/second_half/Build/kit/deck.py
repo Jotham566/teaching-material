@@ -47,7 +47,7 @@ Y0, YB = 1.95, 6.85
 # ------------------------------------------------------------------ speaker notes: spoken script, paragraphs, pauses
 import re as _re
 
-PAUSES = ['Take a moment.', 'Say it to yourself first.', 'Think about your own task as you answer.']
+PAUSES = ['Take a moment.', 'Say it to yourself first.', 'Write a word or two down.']
 ANSWERS = ['Here is how I would answer it.', 'The answer is this.', 'Let me say it plainly.', 'This is the answer I am looking for.', 'Here is the short version.', 'What I would say is this.']
 ORDINALS = ['One', 'Two', 'Three', 'Four']
 
@@ -82,12 +82,14 @@ def recall_script(s):
     paras = [f'{lead} from {s.get("recall_from", "last class")}. Answer aloud first, and then we check together. It is a warm-up to bring last time back.']
     for i, (q, a) in enumerate(s['recall']):
         paras.append(f'Question {ORDINALS[i].lower()}. {q} {PAUSES[i % 3]}')
-        paras.append(f'A good answer is this. {a}')
-    paras.append('If an answer was missing, do not worry. Your notes from last class have it. Now to today.')
+        paras.append(f'{["A good answer:", "What I hope you said:", "The short answer:"][i % 3]} {a}')
+    paras.append('Keep these three in mind, because today builds on them.')
     return '\n\n'.join(paras)
 
 
 def words_script(s):
+    if s.get('words_note'):
+        return paragraphs(s['words_note'])
     words = s['words']
     k = {3: 'three', 4: 'four', 5: 'five'}.get(len(words), str(len(words)))
     paras = [f'{k.capitalize()} words for today. I give the plain meaning of each, and we use every one of them before the end of the session.']

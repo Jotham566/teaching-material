@@ -4,6 +4,8 @@
   curves    points, curves [{label, xs, ys, kind}], xlabel, ylabel                         training dots with fitted curves drawn over them
   knn       train [(x, y)], query (x, y), neighbours [(x, y, label)], xlabel, ylabel, result   the k closest rows and their average
   envelope  head, sub, foot                                                                a sealed envelope: the held-out test set
+  latency   items [{label, value}], limit, unit, note                                      prediction time of each model against the client's limit
+  refit     rows [{label, chips[{t, kind}], band}]                                         choose on E1 to E4 and E5, then refit on E1 to E5 and score E6 once
 """
 import math
 
@@ -172,4 +174,58 @@ def x_memo(w, h, title='', sections=(), size=16, **_):
         s.text(lw_, yc, '\n'.join(lines), size=size, color=BODY, ha='left')
         if i < n - 1:
             s.line(0.3, yc - row / 2, w - 0.3, yc - row / 2, color=HAIR, lw=1.0)
+    return s
+
+
+# ------------------------------------------------------------------ latency: prediction time of each model against the client's limit
+@fig('x_latency')
+def x_latency(w, h, items=(), limit=50, unit=' ms', note='', size=17, **_):
+    """items [{label, value}]: horizontal bars of prediction time; a dashed red line at the client's limit; bars over the limit are red."""
+    s = Scene(w, h)
+    n = len(items)
+    top, foot = 0.55, (0.55 if note else 0.15)
+    lab_w = 3.3
+    bx0 = lab_w + 0.2
+    bar_w = w - bx0 - 1.3
+    mv = max(max(i['value'] for i in items), limit) * 1.05
+    row = (h - top - foot) / n
+    lx = bx0 + bar_w * limit / mv
+    for i, it in enumerate(items):
+        yc = h - top - (i + 0.5) * row
+        over = it['value'] > limit
+        s.text(lab_w, yc, it['label'], size=size, ha='right')
+        bw = max(0.05, bar_w * it['value'] / mv)
+        s.rect(bx0, yc - row * 0.27, bw, row * 0.54, fill=RED if over else PAPER, edge=INK, lw=2)
+        s.text(bx0 + bw + 0.12, yc, f"{it['value']:g}{unit}", size=size, weight='bold', ha='left', color=RED if over else INK)
+    s.line(bx0, foot, bx0, h - top + 0.05, color=INK, lw=2)
+    s.line(lx, foot, lx, h - top + 0.1, color=RED, lw=2.6, dash=True, z=5)
+    s.text(lx, h - top + 0.3, f'Client limit: {limit:g}{unit}', size=size, weight='bold', color=RED)
+    if note:
+        s.text(w / 2, 0.25, note, size=size - 2, color=MUTE)
+    return s
+
+
+# ------------------------------------------------------------------ refit: choose on E1 to E4 and E5, then refit on E1 to E5 and score E6 once
+@fig('x_refit')
+def x_refit(w, h, rows=(), size=17, **_):
+    """rows: [{label, chips: [{t, kind}], band}]; kind is 'train', 'valid', 'dev' or 'test'. band: text under the chips of the row."""
+    s = Scene(w, h)
+    n = len(rows)
+    gap = 0.3
+    rh = (h - 0.1 - gap * (n - 1)) / n
+    style = {'train': (PAPER, INK), 'valid': (GOLD, INK), 'dev': (INK, PAPER), 'test': (RED, PAPER), 'sealed': (PAPER, GREY)}
+    for i, r in enumerate(rows):
+        y = h - 0.05 - (i + 1) * rh - i * gap
+        s.box(0.05, y, w - 0.1, rh, '', fill=PAPER, edge=INK, lw=2.0, r=0.07)
+        s.text(0.3, y + rh - 0.32, r['label'], size=size + 1, weight='bold', ha='left')
+        chips = r['chips']
+        cw = (w - 0.6 - 0.12 * (len(chips) - 1)) / len(chips)
+        cy = y + rh * 0.42
+        for j, c in enumerate(chips):
+            fill, col = style[c.get('kind', 'train')]
+            x = 0.3 + j * (cw + 0.12)
+            s.box(x, cy - 0.32, cw, 0.64, c['t'], size=size, fill=fill, color=col, edge=GREY if c.get('kind') == 'sealed' else INK, lw=2.0, r=0.06,
+                  weight='bold', dash=c.get('kind') == 'sealed')
+        if r.get('band'):
+            s.text(0.3, y + 0.32, r['band'], size=size - 2, color=BODY, ha='left')
     return s

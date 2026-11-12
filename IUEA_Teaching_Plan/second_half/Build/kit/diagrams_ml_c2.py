@@ -5,6 +5,9 @@
   sigmoid       mark (score, prob)      the S-shaped curve that turns a score into a probability, with a straight line for contrast
   threshold     probs, actual, ths, rows  the validation probabilities on a 0 to 1 strip with the threshold lines
   roc_real      points, auc, marks      the real ROC steps (false positive rate against true positive rate)
+  spread        values, mu, sd, mark    training values on a number line with the mean, one standard deviation each side, and the z-score scale
+  logloss       marks                   log loss of one row against its probability, for an actual positive and an actual negative
+  gd_curve      steps, marks            the mean training log loss falling over gradient-descent steps, with the weights written beside it
 """
 import numpy as np
 
@@ -80,7 +83,7 @@ def x_sigmoid(w, h, mark=None, size=16, **_):
     py = lambda p: y0 + (p - plo) / (phi - plo) * (y1 - y0)
     s.line(x0, y0, x1, y0, color=INK, lw=2)
     s.line(x0, y0, x0, y1, color=INK, lw=2)
-    s.text((x0 + x1) / 2, 0.28, 'score (a number built from the features)', size=size, color=MUTE)
+    s.text((x0 + x1) / 2, 0.28, 'score s (a number built from the features)', size=size, color=MUTE)
     s.text(0.3, (y0 + y1) / 2, 'predicted probability (positive class)', size=size, color=MUTE, rot=90)
     for p in (0.0, 0.5, 1.0):
         s.text(x0 - 0.12, py(p), f'{p:g}', size=14, color=GREY, ha='right')
@@ -100,7 +103,8 @@ def x_sigmoid(w, h, mark=None, size=16, **_):
     if mark:
         z, p = mark
         s.circle(px(z), py(p), 0.13, fill=GOLD, edge=INK, lw=2, z=6)
-        s.text(px(z) + 0.25, py(p) - 0.3, f'validation row 3, p = {p:.2f}', size=size, ha='left', weight='bold')
+        where = 'below 0.5' if p < 0.5 else 'above 0.5'
+        s.text(px(z) + 0.25, py(p) - 0.45, f'row 3: s = {z:.2f}\np = {p:.2f} ({where})', size=size, ha='left', weight='bold')
     return s
 
 
@@ -133,6 +137,9 @@ def x_threshold(w, h, probs=(), actual=(), ths=(), rows=(), size=16, **_):
         cx = px(min(1.0, (b + 0.5) * binw)) if stacks[b] > 1 else px(probs[i])
         cy = ax_y + 0.05 + r + k * (2 * r + 0.02)
         s.circle(cx, cy, r, fill=GOLD if actual[i] == 1 else PAPER, edge=INK, lw=1.6, z=5)
+        near = [t_ for t_ in ths if abs(probs[i] - t_) < 0.012]
+        if near:
+            s.text(cx, cy + 0.38, f'p = {probs[i]:.3f}', size=14, weight='bold', color=INK, z=7, bbox=dict(fc='white', ec='none', pad=1.5))
     for th in ths:
         s.line(px(th), ax_y, px(th), h - 0.8, color=RED if abs(th - 0.5) < 1e-9 else MUTE, lw=2.4, dash=True, z=3)
         s.text(px(th), h - 0.5, f'{th:g}', size=18, weight='bold', color=RED if abs(th - 0.5) < 1e-9 else INK)
@@ -200,4 +207,101 @@ def x_roc_smooth(w, h, size=16, **_):
     s.text(px(0.78), py(0.42), 'Dashed line:\nrandom guessing', size=size, color=MUTE)
     s.text(px(0.66), py(0.2), 'Gold area = AUC', size=size + 2, weight='bold')
     s.text(px(0.66), py(0.08), 'Illustrative curve', size=size, color=RED, weight='bold')
+    return s
+
+
+# ------------------------------------------------------------------ standard deviation on a number line
+@fig('x_spread')
+def x_spread(w, h, values=(), mu=0.0, sd=1.0, mark=None, name='load_pct', unit='%', size=16, **_):
+    """Each training value is a dot on the raw axis. The mean is a red line, one standard deviation each side is a gold band.
+    Under it, the same axis is labelled in z-scores (standard deviations from the mean)."""
+    s = Scene(w, h)
+    v = np.asarray(values, float)
+    lo, hi = min(v.min(), mu - 2.2 * sd), max(v.max(), mu + 2.2 * sd)
+    x0, x1 = 0.45, w - 0.35
+    px = lambda u: x0 + (u - lo) / (hi - lo) * (x1 - x0)
+    ax_y = 2.0
+    top = h - 1.15
+    s.rect(px(mu - sd), ax_y, px(mu + sd) - px(mu - sd), top - ax_y, fill=GOLD, edge=GOLD, lw=0.5, z=1)
+    order = np.argsort(v, kind='stable')
+    binw = (hi - lo) / 30
+    stacks = {}
+    r = 0.07
+    for i in order:
+        b = int((v[i] - lo) / binw)
+        k = stacks.get(b, 0)
+        stacks[b] = k + 1
+        hl = mark is not None and i == mark
+        cx = px(v[i]) if hl else px(lo + (b + 0.5) * binw)
+        cy = ax_y + 0.1 + r + k * (2 * r + 0.012)
+        s.circle(cx, cy, r * (1.5 if hl else 1), fill=RED if hl else PAPER, edge=INK, lw=1.2, z=6 if hl else 5)
+    s.line(x0, ax_y, x1, ax_y, color=INK, lw=2)
+    s.line(px(mu), ax_y, px(mu), top, color=RED, lw=2.6, z=3)
+    s.text(px(mu), top + 0.2, f'mean {mu:.2f}', size=size, weight='bold', color=RED)
+    s.arrow(px(mu), top - 0.3, px(mu + sd), top - 0.3, color=INK, lw=2, head=12, z=4)
+    s.text((px(mu) + px(mu + sd)) / 2 + 0.1, top - 0.08, f'1 SD = {sd:.2f}', size=14, weight='bold', ha='left')
+    s.text(x0, h - 0.3, f'Each dot is one training row of {name}.', size=14, ha='left', color=BODY)
+    s.text(x0, h - 0.62, 'Gold band: within one standard deviation (SD) of the mean.', size=14, ha='left', color=BODY)
+    for k in (-2, -1, 0, 1, 2):
+        u = mu + k * sd
+        s.line(px(u), ax_y, px(u), ax_y - 0.1, color=INK, lw=1.4)
+        s.text(px(u), ax_y - 0.28, f'{u:.1f}', size=14, color=GREY)
+        s.text(px(u), ax_y - 1.05, f'{k:+d}' if k else '0', size=16, weight='bold')
+    s.text((x0 + x1) / 2, ax_y - 0.6, f'raw value of {name} ({unit})', size=14, color=MUTE)
+    s.line(x0, ax_y - 1.3, x1, ax_y - 1.3, color=INK, lw=1.4)
+    s.text((x0 + x1) / 2, ax_y - 1.6, 'the same axis as z-scores: standard deviations from the mean', size=14, color=MUTE)
+    return s
+
+
+# ------------------------------------------------------------------ log loss of one row
+@fig('x_logloss')
+def x_logloss(w, h, marks=(), size=16, **_):
+    """Two curves: loss = -ln p for an actual positive (gold), and loss = -ln(1 - p) for an actual negative (black dashed). marks: dicts p, y, label."""
+    s = Scene(w, h)
+    x0, x1, y0, y1 = 1.0, w - 0.3, 0.8, h - 0.3
+    lmax = 3.2
+    px = lambda p: x0 + p * (x1 - x0)
+    py = lambda l: y0 + min(l, lmax) / lmax * (y1 - y0)
+    s.line(x0, y0, x1, y0, color=INK, lw=2)
+    s.line(x0, y0, x0, y1, color=INK, lw=2)
+    s.text((x0 + x1) / 2, 0.28, 'predicted probability p of the positive class', size=size, color=MUTE)
+    s.text(0.3, (y0 + y1) / 2, 'log loss of one row', size=size, color=MUTE, rot=90)
+    for p in (0, 0.5, 1):
+        s.text(px(p), y0 - 0.22, f'{p:g}', size=14, color=GREY)
+    for l in (0, 1, 2, 3):
+        s.text(x0 - 0.12, py(l), f'{l}', size=14, color=GREY, ha='right')
+    ps = np.linspace(0.041, 0.999, 200)
+    s.ax.plot([px(p) for p in ps], [py(-np.log(p)) for p in ps], color=GOLD, lw=4.2, zorder=4)
+    s.ax.plot([px(1 - p) for p in ps], [py(-np.log(p)) for p in ps], color=INK, lw=3.0, ls=(0, (5, 3)), zorder=4)
+    s.text(px(0.13), py(2.95), 'Gold: actual positive (y = 1)\nloss = -ln p', size=size, ha='left', weight='bold')
+    s.text(px(0.73), py(1.75), 'Dashed: actual negative\n(y = 0): loss = -ln(1 - p)', size=size, ha='right', weight='bold')
+    for m in marks:
+        loss = -np.log(m['p']) if m['y'] == 1 else -np.log(1 - m['p'])
+        s.circle(px(m['p']), py(loss), 0.13, fill=RED, edge=INK, lw=1.6, z=6)
+        s.text(px(m['p']) + m.get('dx', 0.2), py(loss) + m.get('dy', 0.35), m['label'], size=size - 1, ha=m.get('ha', 'left'), weight='bold', color=RED)
+    return s
+
+
+# ------------------------------------------------------------------ gradient descent on the training log loss
+@fig('x_gd_curve')
+def x_gd_curve(w, h, steps=(), marks=(), size=16, **_):
+    """steps: (step, mean training log loss) pairs; marks: dicts step, loss, label, dx, dy (label beside the point)."""
+    s = Scene(w, h)
+    x0, x1, y0, y1 = 1.0, w - 0.3, 0.8, h - 0.3
+    smax = max(a for a, _ in steps)
+    lmax = 0.75
+    px = lambda k: x0 + k / smax * (x1 - x0)
+    py = lambda l: y0 + l / lmax * (y1 - y0)
+    s.line(x0, y0, x1, y0, color=INK, lw=2)
+    s.line(x0, y0, x0, y1, color=INK, lw=2)
+    s.text((x0 + x1) / 2, 0.28, 'gradient-descent step (learning rate 0.5)', size=size, color=MUTE)
+    s.text(0.3, (y0 + y1) / 2, 'training loss (mean log loss)', size=size, color=MUTE, rot=90)
+    for k in (0, smax // 2, smax):
+        s.text(px(k), y0 - 0.22, f'{k}', size=14, color=GREY)
+    for l in (0, 0.25, 0.5, 0.75):
+        s.text(x0 - 0.12, py(l), f'{l:g}', size=14, color=GREY, ha='right')
+    s.ax.plot([px(a) for a, _ in steps], [py(b) for _, b in steps], color=INK, lw=3.6, zorder=4)
+    for m in marks:
+        s.circle(px(m['step']), py(m['loss']), 0.12, fill=GOLD, edge=INK, lw=1.6, z=6)
+        s.text(px(m['step']) + m.get('dx', 0.2), py(m['loss']) + m.get('dy', 0.3), m['label'], size=size - 1, ha=m.get('ha', 'left'), weight='bold')
     return s

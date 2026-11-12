@@ -71,14 +71,15 @@ def build(code):
     nb.read('Answering no for every row gives a high accuracy, yet it finds no actual positive case. How many of the actual positive rows does it find, and why does this make accuracy alone a poor score when one class is much rarer than the other (class imbalance)?')
 
     nb.step(3, 'Model 1: standardisation and logistic regression', 'Standardisation (z-score scaling, done by `StandardScaler`) rewrites each feature value as the number of standard deviations it lies above or below the training mean: x\' = (x - mean) / standard deviation. '
-            'The standard deviation is the typical distance of a value from the mean. Logistic regression then builds a score from the standardised features and passes it through the sigmoid (logistic) function, which turns it into a probability between 0 and 1.')
+            'The standard deviation is the typical distance of a value from the mean. Logistic regression then builds a score s from the standardised features and passes it through the sigmoid (logistic) function, which turns it into a probability between 0 and 1. '
+            'It learns its weights by making the **log loss** (binary cross-entropy) small: the loss of one row is -(y ln p + (1 - y) ln(1 - p)), and the training loss is the mean over the training rows.')
     nb.code('from sklearn.preprocessing import StandardScaler\n\n'
             'scaler = StandardScaler().fit(X_train)     # mean and standard deviation from the training set only\n'
             'print(f"training mean of load_pct: {scaler.mean_[0]:.2f}   standard deviation: {scaler.scale_[0]:.2f}")\n'
             'print(f"training mean of ambient_c: {scaler.mean_[1]:.2f}   standard deviation: {scaler.scale_[1]:.2f}")\n'
             'first_row = scaler.transform(X_train[:1])[0]\n'
             'print(f"first training row, standardised: {first_row[0]:.2f} {first_row[1]:.2f}")')
-    nb.read('Check the first standardised load by hand. Print `X_train[0]`. It shows two numbers, and the first number is the load_pct of the first training row. Then work out (that load minus the mean) divided by the standard deviation, using the mean and standard deviation printed above. Does your answer match the first standardised number?')
+    nb.read('Check the first standardised load by hand. Print `X_train[0]`. It shows two numbers, and the first number is the load_pct of the first training row. Then work out (that load minus the mean) divided by the standard deviation, using the mean and standard deviation printed above. Does your answer match the first standardised number? (StandardScaler divides by n, as NumPy `X_train.std(axis=0)` does. The pandas method `.std()` divides by n - 1, so it gives a slightly larger number.)')
     nb.predict('Will the weight (coefficient) for load_pct be positive or negative? What about ambient_c? A positive weight means that more of that feature pushes the prediction toward positive (yes).')
     nb.code('from sklearn.pipeline import make_pipeline\nfrom sklearn.linear_model import LogisticRegression\n\n'
             'logistic_model = make_pipeline(StandardScaler(), LogisticRegression())\n'
@@ -93,20 +94,31 @@ def build(code):
             'print("first 5 probabilities:", " ".join(f"{p:.2f}" for p in y_proba[:5]))\n'
             'print("first 5 actual classes: ", y_valid[:5])')
     nb.read('Both features were standardised, so the two weights can be compared. Which feature has the larger weight? A larger weight means that one standard deviation more of that feature raises the score more.')
-    nb.change('Remove the standardisation. Build `plain_model = LogisticRegression(max_iter=1000)`, fit it on `X_train` and `y_train`, and print its two weights. '
-              'Why do the two weights now look so different from before? Think about what one unit of each feature is now. The last line of the cell multiplies each weight by the standard deviation of its column. Are the products close to the weights printed above?')
+    nb.predict('The training loss starts at 0.69 (every probability 0.5) before training. Will the mean log loss of the trained model on the training set be closer to 0 or to 0.69?')
+    nb.code('p_train = logistic_model.predict_proba(X_train)[:, 1]                               # probability of the positive class for each training row\n'
+            'row_loss = -(y_train * np.log(p_train) + (1 - y_train) * np.log(1 - p_train))     # log loss of each training row\n'
+            'print(f"mean log loss on the training set: {row_loss.mean():.2f}")')
+    nb.read('This is the number that training makes small. scikit-learn minimises it with its solver (lbfgs), plus a small L2 penalty on the size of the weights (C = 1.0 by default).')
+    nb.change('Remove the standardisation. Run the cell below: it fits `plain_model = LogisticRegression(max_iter=1000)` on the raw `X_train` and prints its weights, its confusion matrix at threshold 0.5 and the largest change in a validation probability. '
+              'Compare each weight with the standardised weight above: which changed most? Did the confusion matrix change? '
+              'The reason is the L2 penalty: LogisticRegression adds the squared weights to the loss, in whatever units the features have. One percent of load and one degree of ambient temperature are treated alike, so the fitted model is different. That is one more reason to standardise first.')
     nb.code('# your experiment: no StandardScaler\n'
+            'from sklearn.metrics import confusion_matrix\n\n'
             'plain_model = LogisticRegression(max_iter=1000)\n'
             'plain_model.fit(X_train, y_train)\n'
             'print("weights without standardisation:", np.round(plain_model.coef_[0], 3))\n'
-            'print("weights times the standard deviation:", np.round(plain_model.coef_[0] * X_train.std(axis=0), 2))')
+            'plain_proba = plain_model.predict_proba(X_valid)[:, 1]\n'
+            'print("confusion matrix without standardisation:", confusion_matrix(y_valid, (plain_proba >= 0.5).astype(int)).tolist())\n'
+            'print(f"largest change in a validation probability: {np.max(np.abs(plain_proba - y_proba)):.2f}")')
 
     nb.step(4, 'Model 2: a decision tree classifier', 'A row follows the yes or no questions (internal nodes, each a split on a feature and a threshold) down the tree until it reaches one leaf node at the bottom. That leaf node predicts positive when most of the rows of the training set that ended in it are positive, and negative otherwise. A tree needs no standardisation. `max_depth=3` is a hyperparameter (a setting chosen before training): the largest number of questions a row can be asked on the way down. `random_state=17` fixes the random choices, so everyone gets the same tree.')
+    nb.predict('Will the tree find the same actual positive rows as the logistic regression? Write down your guess before you run the cell.')
     nb.code('from sklearn.tree import DecisionTreeClassifier\n\n'
             'tree_model = DecisionTreeClassifier(max_depth=3, random_state=17)\n'
             'tree_model.fit(X_train, y_train)\n'
             'tree_y_pred = tree_model.predict(X_valid)\n'
             'print("first 5 tree predictions:", tree_y_pred[:5])')
+    nb.read('The tree predicts a class (0 or 1) directly. Step 5 counts how many of its answers are right. On the slide, the numbers in brackets in each leaf node show how many training rows a rule rests on.')
 
     nb.step(5, 'Count the answers: confusion matrix and four scores', 'In the confusion matrix that scikit-learn prints, the rows are the **Actual** class (negative, then positive) and the columns are the **Predicted** class (negative, then positive). '
             'So the matrix reads [[TN, FP], [FN, TP]]. The slides draw it in the same way.')
@@ -132,20 +144,30 @@ def build(code):
     nb.md('**Check by hand.** Take the four counts the logistic model printed. Work out the scores on paper and compare them with the printed scores:\n\n'
           '- accuracy = (TP + TN) / (TP + TN + FP + FN)\n- precision = TP / (TP + FP)\n- recall (sensitivity) = TP / (TP + FN)\n- F1 = 2 x precision x recall / (precision + recall)\n\n> My arithmetic: ')
 
-    nb.step(6, 'Move the decision threshold', 'The model gives a probability for each row. The decision threshold decides how high the probability must be before the prediction is positive. Moving it changes the precision-recall trade-off.')
-    nb.predict('If you lower the decision threshold from 0.5 to 0.3, will recall go up or down? What will happen to the false positives (FP)?')
-    nb.code('for threshold in [0.3, 0.5, 0.7]:\n'
+    nb.step(6, 'Move the decision threshold and choose it with a cost table', 'The model gives a probability for each row. The decision threshold decides how high the probability must be before the prediction is positive. Moving it changes the precision-recall trade-off. '
+            'To choose, we put a price on each mistake: **cost = MISSED_COST x FN + FALSE_ALARM_COST x FP**. The costs 5 and 1 are invented teaching numbers: one missed positive costs as much as five false alarms. '
+            'The rule: choose the threshold with the lowest cost on the validation set; if two tie, take the higher threshold.')
+    nb.predict('If you lower the decision threshold from 0.5 to 0.3, will recall go up or down? What will happen to the false positives (FP)? Which of 0.3, 0.5 and 0.7 do you expect to have the lowest cost?')
+    nb.code('MISSED_COST = 5          # invented teaching cost of one false negative (a missed positive)\n'
+            'FALSE_ALARM_COST = 1     # invented teaching cost of one false positive (a false alarm)\n\n'
+            'cost_table = []\n'
+            'for threshold in [0.3, 0.5, 0.7]:\n'
             '    y_pred_t = (y_proba >= threshold).astype(int)\n'
             '    tn, fp, fn, tp = confusion_matrix(y_valid, y_pred_t).ravel()\n'
             '    precision = precision_score(y_valid, y_pred_t, zero_division=0)\n'
             '    recall = recall_score(y_valid, y_pred_t, zero_division=0)\n'
-            '    f1 = f1_score(y_valid, y_pred_t, zero_division=0)\n'
-            '    print(f"threshold {threshold}: TP {tp}, FN {fn}, FP {fp}, precision {precision:.2f}, recall {recall:.2f}, F1 {f1:.2f}")')
-    nb.read(f'Which decision threshold would you choose for the {thing}? Think about the cost of a false negative and the cost of a false positive, and give one sentence of reasoning.')
-    nb.change('Change the list `[0.3, 0.5, 0.7]` to `[0.1, 0.2, 0.4, 0.6, 0.8, 0.9]` and run the cell again. At which thresholds is recall highest, and does it ever fall to zero? What happens to the false positives at the same thresholds?')
+            '    cost = MISSED_COST * fn + FALSE_ALARM_COST * fp\n'
+            '    cost_table.append({"threshold": threshold, "cost": int(cost)})\n'
+            '    print(f"threshold {threshold}: TP {tp}, FP {fp}, FN {fn}, TN {tn}, recall {recall:.2f}, precision {precision:.2f}, cost {cost}")\n\n'
+            '# lowest cost first; if two tie, the higher threshold comes first\n'
+            'best = sorted(cost_table, key=lambda row: (row["cost"], -row["threshold"]))[0]\n'
+            'print(f"chosen threshold: {best[\'threshold\']} (validation cost {best[\'cost\']})")')
+    nb.read(f'Check one cost by hand: 5 x FN + 1 x FP. Is the chosen threshold the one you would pick for the {thing}? Give one sentence of reasoning.')
+    nb.change('Change the list `[0.3, 0.5, 0.7]` to `[0.1, 0.2, 0.3, 0.5, 0.7]` and run the cell again. At which thresholds do false positives appear? Does recall ever fall as the threshold goes down? Does the chosen threshold change?')
 
     nb.step(7, 'The ROC curve and AUC', 'The ROC curve (receiver operating characteristic) plots the true positive rate (TPR, the same as recall or sensitivity) against the false positive rate (FPR, the share of actual negatives wrongly predicted positive), one point for every decision threshold. '
             'AUC is the area under the curve: how well the model ranks actual positive rows above actual negative rows. With only 15 rows there are only a few points, so the line is a staircase. With thousands of rows it would look smooth.')
+    nb.predict('All three actual positive rows had higher probabilities than most negatives. Will the AUC be above 0.9?')
     nb.code('from sklearn.metrics import roc_curve, roc_auc_score\n\n'
             'fpr, tpr, thresholds = roc_curve(y_valid, y_proba)\n'
             'auc = roc_auc_score(y_valid, y_proba)\n'
@@ -154,7 +176,7 @@ def build(code):
             'plt.plot(fpr, tpr, marker="o")\n'
             'plt.plot([0, 1], [0, 1], linestyle="--")                      # the line for random guessing, AUC 0.5\n'
             'plt.xlabel("false positive rate (FPR)")\nplt.ylabel("true positive rate (TPR, recall)")\nplt.title("ROC curve, validation set")\nplt.show()')
-    nb.read('The dashed line is random guessing, with AUC 0.5. How far above the dashed line does your curve run? The validation set has only 15 rows and 3 actual positives: how much would you trust this AUC?')
+    nb.read('The dashed line is random guessing, with AUC 0.5. How far above the dashed line does your curve run? Your plot shows only a few points, because `roc_curve` keeps only the corners of the staircase (the slide draws every point). The validation set has only 15 rows and 3 actual positives: how much would you trust this AUC?')
 
     nb.step(8, 'Your conclusion', 'Use the numbers you printed.')
     nb.md('**Write your conclusion in three sentences.** Which model found more actual positives? Which decision threshold would you use, and why? What is the biggest weakness of the evidence?\n\n> My conclusion: ')
@@ -162,7 +184,7 @@ def build(code):
           'The test set (E6) has not been used. In Class 3 we learn how to judge a model with more care.')
 
     nb.step(9, 'Save your work', 'Choose **Runtime, then Restart session and run all**. If every cell runs without an error, choose **File, then Save a copy in Drive**. '
-            'This notebook is for learning. It is not the graded upload.')
+            'This notebook is for learning. Part B of the Block 1 assignment (A8, classification and cost) repeats these steps in the assignment notebook. Block work is practice and does not count toward the final mark.')
     return nb
 
 
@@ -184,6 +206,13 @@ def CHECK(code, res, f):
             f'Logistic regression: accuracy {mt["accuracy"]:.2f}, precision {mt["precision"]:.2f}, recall {mt["recall"]:.2f}, F1 {mt["f1"]:.2f}',
             f'Decision tree: accuracy {tmt["accuracy"]:.2f}, precision {tmt["precision"]:.2f}, recall {tmt["recall"]:.2f}, F1 {tmt["f1"]:.2f}',
             f'AUC: {b["auc"]:.2f}']
-    for t in b['thresholds']:
-        want.append(f'threshold {t["th"]}: TP {t["tp"]}, FN {t["fn"]}, FP {t["fp"]}, precision {t["precision"]:.2f}, recall {t["recall"]:.2f}, F1 {t["f1"]:.2f}')
+    import c2
+    M = c2.model_numbers(f)
+    for t in M['cost']:
+        want.append(f'threshold {t["th"]}: TP {t["tp"]}, FP {t["fp"]}, FN {t["fn"]}, TN {t["tn"]}, recall {t["recall"]:.2f}, precision {t["precision"]:.2f}, cost {t["cost"]}')
+    want.append(f'chosen threshold: {M["best"]["th"]} (validation cost {M["best"]["cost"]})')
+    want.append(f'mean log loss on the training set: {M["train_ll"]:.2f}')
+    rc = M['raw']['conf']
+    want.append(f'confusion matrix without standardisation: {[[rc["tn"], rc["fp"]], [rc["fn"], rc["tp"]]]}')
+    want.append(f'largest change in a validation probability: {M["raw"]["maxdiff"]:.2f}')
     return [f'missing expected output: {w!r}' for w in want if w not in text]

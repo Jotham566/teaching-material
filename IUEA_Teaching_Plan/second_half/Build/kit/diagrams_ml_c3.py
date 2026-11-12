@@ -23,7 +23,7 @@ def _nice_ticks(top, n=4):
 
 
 @fig('x_depthcurve')
-def x_depthcurve(w, h, curve=(), best=None, unit='', size=16, **_):
+def x_depthcurve(w, h, curve=(), best=None, unit='', size=16, under=None, over=None, **_):
     s = Scene(w, h)
     depths = [c[0] for c in curve]
     top = max(max(c[1], c[2]) for c in curve)
@@ -61,14 +61,12 @@ def x_depthcurve(w, h, curve=(), best=None, unit='', size=16, **_):
         s.text(xs[-1] + 0.25, (ya + yb) / 2, 'Generalisation gap', size=size, color=MUTE, ha='left', weight='bold')
     # zone labels under the axis
     yz = y0 - 0.5
-    lo_u, hi_u = depths[0], depths[1]
-    lo_o, hi_o = depths[-2], depths[-1]
-    for (a, b, label, col) in ((lo_u, hi_u, 'Underfitting', MUTE), (lo_o, hi_o, 'Overfitting', RED)):
+    # the bands come from the data: under = depths where both errors are high, over = depths where the training error is near 0
+    lo_u, hi_u = under or (depths[0], depths[1])
+    lo_o, hi_o = over or (depths[-2], depths[-1])
+    for (a, b, label, col) in ((lo_u, hi_u, 'Underfitting', MUTE), (lo_o, hi_o, 'Overfitting: training error near 0', RED)):
         s.line(px(a) - 0.15, yz, px(b) + 0.15, yz, color=col, lw=3.2)
         s.text((px(a) + px(b)) / 2, yz - 0.25, label, size=size, weight='bold', color=col)
-    if best is not None:
-        s.line(px(best) - 0.2, yz, px(best) + 0.2, yz, color=INK, lw=3.2)
-        s.text(px(best), yz - 0.25, 'Good fit', size=size, weight='bold', color=INK)
     return s
 
 

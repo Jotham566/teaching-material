@@ -50,6 +50,7 @@ def build(code):
               'What does this tell you about how much one cleaning rule can change your data?')
 
     nb.step(3, 'Hold out data for a fair evaluation', 'Equipment groups E1 to E4 form the training set, E5 the validation set and E6 the test set. The validation set and the test set are held-out data: rows not used to fit the model. The test set stays untouched until the end of the course block.')
+    nb.predict('How many rows will each set (training, validation, test) get? Use the slide about holding out rows.')
     nb.code('train_groups = ["E1", "E2", "E3", "E4"]\n\n'
             'training_data = modelling_data[modelling_data["equipment_id"].isin(train_groups)].copy()\n'
             'validation_data = modelling_data[modelling_data["equipment_id"] == "E5"].copy()\n'
@@ -123,7 +124,7 @@ def build(code):
             'simple_mae = mean_absolute_error(y_valid, simple_model.predict(validation_data[["load_pct"]]))\n'
             f'print("MAE of simple linear regression (load_pct only):", round(simple_mae, 2), "{unit}")')
 
-    nb.step(6, 'Model 3: a decision tree', 'A decision tree asks a short list of yes or no questions about the features (internal nodes) and ends in leaf nodes that give the prediction. `max_depth=4` is a hyperparameter: a setting we choose before training. It allows at most four questions in a row. `random_state=17` makes the result repeatable.')
+    nb.step(6, 'Model 3: a decision tree', 'A decision tree asks a short list of yes or no questions about the features (internal nodes) and ends in leaf nodes that give the prediction. `max_depth=4` is a hyperparameter: a setting we choose before training. It allows at most four questions in a row. `random_state=17` fixes the tree’s random tie-breaking, so everyone gets the same tree (Class 3 explains).')
     nb.predict('Will the decision tree beat multiple linear regression? Give a reason.')
     nb.code('from sklearn.tree import DecisionTreeRegressor\n\n'
             'tree_model = make_pipeline(SimpleImputer(strategy="median"), DecisionTreeRegressor(max_depth=4, random_state=17))\n'
@@ -137,6 +138,7 @@ def build(code):
               'Do not worry about the pattern yet: in Class 3 we explain what you are seeing (overfitting and underfitting).')
 
     nb.step(7, 'The model comparison table', 'All three models were trained on the same training set and evaluated on the same validation set. That is what makes the comparison fair.')
+    nb.predict('Which model will have the smallest RMSE? Will the order be the same as for the MAE?')
     nb.code('baseline_rmse = mean_squared_error(y_valid, y_pred_baseline) ** 0.5\n'
             '# MSE is the mean of the squared errors (unit squared). RMSE is its square root (the unit of the target).\n'
             'mse = [mean_squared_error(y_valid, p) for p in (y_pred_baseline, y_pred_linear, y_pred_tree)]\n'
@@ -156,7 +158,7 @@ def build(code):
           'In Classes 3 and 4 we learn how to judge a model with more care.')
 
     nb.step(8, 'Save your work', 'Choose **Runtime, then Restart session and run all**. If every cell runs without an error, choose **File, then Save a copy in Drive**. '
-            'Keep this notebook file safe. Class 2 uses a new notebook, and you reuse the cleaning steps from this one. This notebook is for learning. It is not the graded upload.')
+            'Keep this notebook file safe. Class 2 uses a new notebook, and you reuse the cleaning steps from this one. This notebook is for learning. It is not the Block 1 assignment upload (the assignment is practice: collected, with feedback, not counted).')
     return nb
 
 

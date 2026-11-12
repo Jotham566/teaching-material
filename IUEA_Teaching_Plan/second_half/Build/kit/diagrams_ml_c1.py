@@ -4,6 +4,8 @@
   tree_c1      node                                          the decision tree with the yes / no labels beside the lines, not on them
   descent_c1   labels                                        gradient descent picture whose y axis says 'loss (MSE)'
   sheet_c1     headers, rows, rowlabels, hl                  a table sketch whose left numbers are the real row numbers of the file
+  scatter_c1   as scatter, plus mid ticks on both axes and the baseline label placed clear of the dots
+  pipe_c1      fit_text, predict_text                        the pipeline drawn as a gold frame around Imputer -> Model, with fit and predict arrows entering it
 """
 import numpy as np
 
@@ -34,7 +36,7 @@ def x_bars_c1(w, h, items=(), unit='', size=18, caption='', **_):
         _wrap(s, lab_w, yc, lab_w - 0.1, it['label'], size, ha='right')
         bw = max(0.04, bar_w * it['value'] / mv)
         s.rect(bx0, yc - row * 0.28, bw, row * 0.56, fill=GOLD if it.get('hl') else SHADE, edge=INK, lw=2)
-        s.text(bx0 + bw + 0.15, yc, f"{it['value']:g}{unit}", size=size, weight='bold', ha='left')
+        s.text(bx0 + bw + 0.15, yc, f"{it['value']:.2f}{unit}", size=size, weight='bold', ha='left')
     s.line(bx0, foot - 0.05, bx0, h - 0.1, color=INK, lw=2)
     _wrap(s, bx0, 0.35, w - bx0 - 0.1, caption, 16, color=MUTE, ha='left')
     return s
@@ -130,4 +132,87 @@ def x_sheet_c1(w, h, headers=(), rows=(), rowlabels=(), hl=None, size=18, **_):
             s.text(x0 - 0.1, y - hh / 2, str(rowlabels[ri - 1]), size=15, color=GREY, ha='right')
         y -= hh
     s.text(x0 - 0.1, top - heights[0] / 2, 'file row', size=14, color=GREY, ha='right')
+    return s
+
+
+def _ticks(lo, hi, n=4):
+    """Round tick values strictly inside [lo, hi]: about n of them, on a 1, 2, 5 or 10 step."""
+    span = hi - lo
+    for step in (0.5, 1, 2, 5, 10, 20, 25, 50):
+        if span / step <= n + 1:
+            break
+    a = np.ceil(lo / step) * step
+    out = []
+    while a <= hi + 1e-9:
+        out.append(float(a))
+        a += step
+    return out
+
+
+@fig('x_scatter_c1')
+def x_scatter_c1(w, h, points=(), xlabel='', ylabel='', hline=None, line=None, residuals=False, hline_label='', line_label='', size=16, dot=0.075, **_):
+    s = Scene(w, h)
+    x0, x1, y0, y1 = 1.15, w - 0.35, 0.8, h - 0.3
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    lo_x, hi_x, lo_y, hi_y = min(xs), max(xs), min(ys), max(ys)
+    padx, pady = (hi_x - lo_x) * 0.05, (hi_y - lo_y) * 0.08
+    px = lambda v: x0 + (v - lo_x + padx) / (hi_x - lo_x + 2 * padx) * (x1 - x0)
+    py = lambda v: y0 + (v - lo_y + pady) / (hi_y - lo_y + 2 * pady) * (y1 - y0)
+    s.line(x0, y0, x1, y0, color=INK, lw=2)
+    s.line(x0, y0, x0, y1, color=INK, lw=2)
+    s.text((x0 + x1) / 2, 0.22, xlabel, size=size, color=MUTE)
+    s.text(0.25, (y0 + y1) / 2, ylabel, size=size, color=MUTE, rot=90)
+    for v in _ticks(lo_x, hi_x):
+        s.line(px(v), y0, px(v), y0 - 0.07, color=INK, lw=1.5)
+        s.text(px(v), y0 - 0.25, f'{v:g}', size=14, color=GREY)
+    for v in _ticks(lo_y, hi_y):
+        s.line(x0, py(v), x0 - 0.07, py(v), color=INK, lw=1.5)
+        s.text(x0 - 0.12, py(v), f'{v:g}', size=14, color=GREY, ha='right')
+    if line and residuals:
+        b, m = line
+        for (x, y) in points:
+            s.line(px(x), py(y), px(x), py(b + m * x), color=RED, lw=1.6, z=2)
+    for (x, y) in points:
+        s.circle(px(x), py(y), dot, fill=INK, edge=INK, lw=1, z=4)
+    if hline is not None:
+        s.ax.plot([x0, x1], [py(hline), py(hline)], color=MUTE, lw=2.6, ls='--', zorder=3)
+        if hline_label:
+            # put the label in the emptiest corner above the line: the left half, top of the plot (targets rise with load)
+            s.text(x0 + 0.2, y1 - 0.1, hline_label, size=size, color=MUTE, weight='bold', ha='left', va='top')
+            s.arrow(x0 + 0.9, y1 - 0.1 - 0.62, x0 + 0.9, py(hline) + 0.08, color=MUTE, lw=1.8, head=12)
+    if line:
+        b, m = line
+        s.ax.plot([px(lo_x), px(hi_x)], [py(b + m * lo_x), py(b + m * hi_x)], color=RED, lw=3.4, zorder=5)
+        if line_label:
+            s.text(x0 + 0.2, y1 - 0.1, line_label, size=size, color=RED, weight='bold', ha='left', va='top')
+    return s
+
+
+@fig('x_pipe_c1')
+def x_pipe_c1(w, h, fit_text='', predict_text='', size=18, **_):
+    """The pipeline is the container: a gold frame around Imputer -> Model. fit and predict enter the frame from the left."""
+    s = Scene(w, h)
+    fx, fw = 3.2, w - 3.3
+    fy, fh = 0.35, h - 0.7
+    s.box(fx, fy, fw, fh, '', fill='#FBF3D5', edge=GOLD, lw=4.0, r=0.12)
+    s.text(fx + 0.25, fy + fh - 0.32, 'Pipeline (make_pipeline)', size=size + 2, weight='bold', ha='left')
+    bw, bh = (fw - 1.5) / 2, fh - 1.45
+    by = fy + 0.4
+    bx1 = fx + 0.45
+    bx2 = bx1 + bw + 0.6
+    s.box(bx1, by, bw, bh, '', fill=PAPER, edge=INK, lw=2.0)
+    s.box(bx2, by, bw, bh, '', fill=PAPER, edge=INK, lw=2.0)
+    s.icon('calculator', bx1 + bw / 2, by + bh - 0.5, 0.7)
+    s.icon('robot', bx2 + bw / 2, by + bh - 0.5, 0.7)
+    _wrap(s, bx1 + bw / 2, by + bh - 1.15, bw - 0.2, 'Step 1: SimpleImputer', size, 'bold')
+    _wrap(s, bx1 + bw / 2, by + (bh - 1.4) / 2, bw - 0.25, 'fills each missing value with the training median', size - 2, color=BODY)
+    _wrap(s, bx2 + bw / 2, by + bh - 1.15, bw - 0.2, 'Step 2: the model', size, 'bold')
+    _wrap(s, bx2 + bw / 2, by + (bh - 1.4) / 2, bw - 0.25, 'LinearRegression, or the baseline model, or the tree', size - 2, color=BODY)
+    s.arrow(bx1 + bw + 0.05, by + bh / 2, bx2 - 0.05, by + bh / 2, lw=2.6, head=18)
+    ya, yb = fy + fh * 0.68, fy + fh * 0.3
+    s.arrow(0.1, ya, fx - 0.05, ya, color=INK, lw=2.6, head=18)
+    s.arrow(0.1, yb, fx - 0.05, yb, color=RED, lw=2.6, head=18)
+    _wrap(s, 1.55, ya + 0.45, 2.9, fit_text, size - 2, 'bold')
+    _wrap(s, 1.55, yb + 0.45, 2.9, predict_text, size - 2, 'bold', color=RED)
     return s

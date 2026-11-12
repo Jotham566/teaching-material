@@ -3,6 +3,7 @@
 Built from the class files so the guide's slide numbers, numbers and clocks always match the decks and notebooks."""
 import importlib.util
 import subprocess
+import tempfile
 import sys
 from pathlib import Path
 
@@ -13,6 +14,7 @@ sys.path.insert(0, str(BUILD / 'templates_gen'))
 sys.path.insert(0, str(BUILD / 'content'))
 import deck  # noqa: E402
 import common as C  # noqa: E402
+import lo_fonts  # noqa: E402
 from docx_kit import *  # noqa: E402,F401,F403
 
 OUT = BUILD.parent / 'Lecturer Guides'
@@ -70,7 +72,7 @@ def main(argv):
             para(d, label, 10, True, before=4, after=2, keep=True)
             grid(d, clock_rows(S[c]), [2.0, 2.0, 13.4], header=['Starts', 'Minutes', 'What happens'], size=9, label_cols=(0,))
         h2(d, 'Slide map')
-        para(d, 'The deck has two halves. Slides up to the divider are concepts: no laptops. After the divider come the lab slides and the notebook. You switch once.', 10, after=3)
+        para(d, 'The deck has two halves. Slides up to the divider are concepts: no laptops. After the divider come the lab slides and the notebook. You switch once. The titles below are from the CML3112 deck. The other two decks have the same slides in the same order; where a title carries a number, their own number replaces it (see the per-cohort table).', 10, after=3)
         rows, sec = [], 'Concepts'
         short = []
         for i, t in enumerate(titles, 1):
@@ -104,7 +106,9 @@ def main(argv):
         para(d, 'Every slide carries its spoken script in the PowerPoint notes (open Presenter View). The scripts are first person and are meant to be read or paraphrased. Pauses are marked by questions.', 10, after=4)
         path = OUT / f'Class{n}_Week{s["week"]}_Lecturer_Guide.docx'
         save(d, path)
-        subprocess.run(['soffice', '--headless', '--convert-to', 'pdf', '--outdir', str(OUT), str(path)], capture_output=True)
+        lo = '-env:UserInstallation=file://' + str(Path(tempfile.gettempdir()) / 'iuea_second_half_lo')
+        lo_fonts.seed(lo)
+        subprocess.run(['soffice', lo, '--headless', '--convert-to', 'pdf', '--outdir', str(OUT), str(path)], capture_output=True)
 
 
 if __name__ == '__main__':

@@ -6,6 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'kit'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from nb import Notebook  # noqa: E402
 import common as C  # noqa: E402
+import c4  # noqa: E402
 
 
 def build(code):
@@ -21,7 +22,7 @@ def build(code):
           '4. If you get an error, read the last line first. The slide called "Four errors you will meet" lists the common ones.\n\n'
           '**The words** (also on the slides): *feature engineering* means building a new feature (an input variable) from features you already have. A *feature ablation* (also called an *ablation study*) is a fair test of one change: train the model with the feature and without it, on the same rows, and compare the two errors. '
           '*Ridge regression* is linear regression with *regularisation*: an L2 penalty on large weights (coefficients). *Alpha* is the regularisation strength. *k-NN* means k-nearest neighbours: to predict a new row, average the targets of the k training rows closest to it. k is a *hyperparameter*, a setting you choose before training. '
-          '*Model selection* means choosing one model from several candidate models. *Parsimony* means preferring the simpler model when scores are close. '
+          '*Model selection* means choosing one model from several candidate models; here we use the client’s rule, as in the project. *Latency* (prediction time) is how long a trained model takes to give one prediction, in milliseconds. *Parsimony* means preferring the simpler model when it is good enough. '
           'A *decision memo* is a one-page note with your choice, your numbers and your limits. A related industry term is *model card*.\n\n'
           '**Two metrics.** *MAE* is the mean absolute error: the average size of the prediction error, in the same unit as the target. *RMSE* is the root mean squared error, which counts large errors more.')
 
@@ -36,7 +37,7 @@ def build(code):
             '# E1 to E4 form the training set, E5 the validation set, E6 the held-out test set\n'
             'train_df = clean_df[clean_df["equipment_id"].isin(["E1", "E2", "E3", "E4"])].copy()\n'
             'valid_df = clean_df[clean_df["equipment_id"] == "E5"].copy()\n'
-            'test_df = clean_df[clean_df["equipment_id"] == "E6"].copy()   # held-out test set: we do not touch it today\n\n'
+            'test_df = clean_df[clean_df["equipment_id"] == "E6"].copy()   # held-out test set: opened once, in step 10, after we choose\n\n'
             'feature_columns = ["load_pct", "ambient_c"]\n'
             'X_train, y_train = train_df[feature_columns], train_df["target"]\n'
             'X_valid, y_valid = valid_df[feature_columns], valid_df["target"]\n'
@@ -73,7 +74,7 @@ def build(code):
             '    mae = mean_absolute_error(y_valid, model.predict(valid_df[columns]))\n'
             f'    print(f"{{name}}: MAE {{mae:.2f}} {unit}")')
     nb.read('Which change moved the error a lot, and which hardly at all? Would you keep `load_x_ambient`? Give the reason in one sentence.')
-    nb.md('**The learned parameters.** Each linear regression model is a formula: prediction = intercept (bias) + weight 1 times feature 1 + weight 2 times feature 2 (and weight 3 times feature 3 for the extended model). The weights are also called coefficients. One more unit of a feature adds its weight to the prediction, when the other features stay fixed. The next cell prints these numbers for model A (multiple linear regression on two features) and model B (plus the interaction feature `load_x_ambient`). They are the numbers on the formula slide.')
+    nb.md('**The learned parameters.** Each linear regression model is a formula: prediction = intercept (bias) + weight 1 times feature 1 + weight 2 times feature 2 (and weight 3 times feature 3 for the extended model). The weights are also called coefficients. In model A, one more unit of a feature adds its weight to the prediction, when the other feature stays fixed. In model B, `load_x_ambient` moves whenever `load_pct` moves, so the effect of one more percent of load is the weight for load_pct plus the weight for load_x_ambient times ambient_c. The next cell prints these numbers for model A (multiple linear regression on two features) and model B (plus the interaction feature `load_x_ambient`). They are the numbers on the formula slide.')
     nb.code('for name, columns in [("Model A, two features", ["load_pct", "ambient_c"]), ("Model B, plus load_x_ambient", ["load_pct", "ambient_c", "load_x_ambient"])]:\n'
             '    pipeline = with_imputer(LinearRegression())\n    pipeline.fit(train_df[columns], y_train)\n    linear_model = pipeline.steps[-1][1]        # the linear regression model itself, without the imputation step\n'
             '    weights = ", ".join(f"weight for {c} {w:.4f}" for c, w in zip(columns, linear_model.coef_))\n'
@@ -81,7 +82,7 @@ def build(code):
     nb.read('Which weight is the smallest in model B? What does a tiny weight on `load_x_ambient` tell you about the new feature?')
     nb.change('Make your own feature, for example `ambient_squared`, on both tables and add it to `feature_sets`. Run the loop again. Did your idea help?')
 
-    nb.step(4, 'One-hot encoding of a categorical feature', 'One-hot encoding turns a categorical feature (here equipment_id) into one column per category. In the training table, a row has a 1 in the column of its own group and a 0 in every other column, so each training row has exactly one 1. The validation group E5 is a machine the model never saw, so it gets a column of its own (`is_E5`) that the training table lacks. If we squeeze E5 into the four training columns, its row is all zeros. We only look at this here. We do not use equipment_id as a feature.')
+    nb.step(4, 'One-hot encoding of a categorical feature', 'One-hot encoding turns a categorical feature (here equipment_id) into one column per category. In the training table, a row has a 1 in the column of its own group and a 0 in every other column, so each training row has exactly one 1. The validation group E5 is equipment the model never saw, so it gets a column of its own (`is_E5`) that the training table lacks. If we squeeze E5 into the four training columns, its row is all zeros. We only look at this here. We do not use equipment_id as a feature.')
     nb.code('one_hot_train = pd.get_dummies(train_df["equipment_id"], prefix="is").astype(int)\n'
             'print(pd.concat([train_df["equipment_id"], one_hot_train], axis=1).head(5).to_string(index=False))\n\n'
             'one_hot_valid = pd.get_dummies(valid_df["equipment_id"], prefix="is").astype(int)\n'
@@ -91,7 +92,8 @@ def build(code):
             'print(one_hot_valid.reindex(columns=one_hot_train.columns, fill_value=0).head(2).to_string(index=False))')
     nb.read(f'The validation group has a column (`is_E5`) that the training table does not, and E5 squeezed into the training columns is all zeros. What can a model say about a {thing} group it has never seen from four zeros? Why do we leave `equipment_id` out of the features?')
 
-    nb.step(5, 'Scaling and ridge regression', 'Ridge regression adds an L2 penalty on large weights. This is regularisation, and alpha is the regularisation strength. The penalty depends on the size of the weights, which depends on the units of the features, so we standardise first: scaled value (z-score) = (value minus the training mean) divided by the training standard deviation. `StandardScaler` is the scikit-learn tool that does this: it learns the mean and standard deviation from the training set only, then applies them to any rows.')
+    nb.step(5, 'Scaling and ridge regression', 'Ridge regression adds an L2 penalty on large weights. This is regularisation, and alpha is the regularisation strength. The penalty depends on the size of the weights, which depends on the units of the features, so we standardise first: standardised value (z-score) = (value minus the training mean) divided by the training standard deviation. `StandardScaler` is the scikit-learn tool that does this: it learns the mean and standard deviation from the training set only, then applies them to any rows.')
+    nb.predict('Linear regression on two features is not very flexible. Will a stronger penalty (a bigger alpha) help it?')
     nb.code('from sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.linear_model import Ridge\n\n'
             'X_train_imputed = SimpleImputer(strategy="median").fit_transform(X_train)   # missing values imputed with the training median\n'
             'scaler = StandardScaler().fit(X_train_imputed)\n'
@@ -100,8 +102,8 @@ def build(code):
             'for alpha in [0.1, 1, 10]:\n    ridge_model = make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), Ridge(alpha=alpha))\n'
             '    ridge_model.fit(X_train, y_train)\n    mae = mean_absolute_error(y_valid, ridge_model.predict(X_valid))\n'
             f'    print(f"Ridge, two features, alpha {{alpha:g}}: MAE {{mae:.2f}} {unit}")')
-    nb.predict('Linear regression on two features is not very flexible. Will a stronger penalty help it?')
     nb.read('Does a bigger alpha lower the error of the linear model? When does ridge regression help, and when does it not?')
+    nb.predict('A sixth-degree curve of load_pct is very flexible. Which alpha will give the lowest validation error: no penalty, 1 or 100?')
     nb.code('# part B: a flexible curve (a sixth-degree polynomial of load_pct alone) with and without regularisation\n'
             'load_train, load_valid = train_df[["load_pct"]], valid_df[["load_pct"]]\n\n'
             'for name, last_step in [("degree 6, no penalty", LinearRegression()), ("degree 6, ridge alpha 1", Ridge(alpha=1)), ("degree 6, ridge alpha 100", Ridge(alpha=100))]:\n'
@@ -139,7 +141,8 @@ def build(code):
             f'print(f"average of the 3 targets: {{neighbours[\'target\'].mean():.1f}} {unit}")')
     nb.change('Change `n_neighbors=3` to 5 in the last cell and run it again. Write down the three or five record numbers you see.')
 
-    nb.step(7, 'The model comparison table', 'Five candidate models, one loop: this is model comparison with the same protocol. Same training set, same validation set, same metrics, same seed. The cross-validated columns use GroupKFold cross-validation: each fold holds out one whole equipment group (E1, then E2, E3 and E4), and the model learns from the other three groups, so each fold plays a machine the model has never met. `CV mean` is the mean of the four fold MAEs. `CV lowest` and `CV highest` are the smallest and largest fold MAE.')
+    nb.step(7, 'The model comparison table', 'Five candidate models, one loop: this is model comparison with the same protocol. Same training set, same validation set, same metrics, same seed. The cross-validated columns use GroupKFold cross-validation: each of E1 to E4 is held out once as a whole equipment group (scikit-learn chooses the order), and the model learns from the other three groups, so each fold plays equipment the model has never met. '
+            '`CV mean` is the mean of the four fold MAEs. `CV SD` is their sample standard deviation: `cv_scores.std(ddof=1)` divides by k minus 1 = 3, as the project does. `CV lowest` and `CV highest` are the smallest and largest fold MAE.')
     nb.predict('Which model will have the lowest cross-validated error? Will the same model win on the validation set?')
     nb.code('from sklearn.model_selection import GroupKFold, cross_val_score\n\n'
             'models["Ridge regression, alpha 1"] = make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), Ridge(alpha=1))\n'
@@ -148,27 +151,104 @@ def build(code):
             'rows = []\nfor name, model in models.items():\n    model.fit(X_train, y_train)\n    y_pred = model.predict(X_valid)\n'
             '    cv_scores = -cross_val_score(model, X_train, y_train, cv=cv, groups=groups, scoring="neg_mean_absolute_error")\n'
             '    mae = mean_absolute_error(y_valid, y_pred)\n    rmse = mean_squared_error(y_valid, y_pred) ** 0.5\n'
-            '    rows.append([name, mae, rmse, cv_scores.mean(), cv_scores.min(), cv_scores.max()])\n'
-            'results = pd.DataFrame(rows, columns=["model", "valid MAE", "valid RMSE", "CV mean", "CV lowest", "CV highest"]).round(2)\n'
+            '    rows.append([name, mae, rmse, cv_scores.mean(), cv_scores.std(ddof=1), cv_scores.min(), cv_scores.max()])   # ddof=1: the sample standard deviation\n'
+            'results = pd.DataFrame(rows, columns=["model", "valid MAE", "valid RMSE", "CV mean", "CV SD", "CV lowest", "CV highest"]).round(2)\n'
             'print(results.to_string(index=False))')
-    nb.read('Which model would you recommend, and why? Use the unit in your answer. If two models are close, prefer the simpler one (parsimony). Which one is simpler to explain?')
+    nb.read('Which model has the lowest validation MAE? Which has the lowest CV mean? We do not choose yet: step 8 applies the client’s rule.')
     nb.code('plt.figure(figsize=(6.5, 3.8))\nplt.barh(results["model"], results["CV mean"])\n'
             f'plt.xlabel("cross-validated mean absolute error ({unit}), lower is better")\nplt.gca().invert_yaxis()\nplt.show()')
-    nb.md(f'**What this table cannot tell you.** The data are synthetic, which means invented for teaching. The validation set has only {len(f["va"])} rows. The held-out test set (E6) has not been used, and it stays held out until you have chosen your model. '
-          'If you use it and then change your choice, it is no longer a fair test.')
     nb.code('print("The test set has", len(test_df), "rows. We have not used it.")')
 
-    nb.step(8, 'Your decision memo', 'Fill in each sentence in your own words, with numbers from your results table and their unit. Double-click the cell to edit it. One page is enough. In industry a related document is called a model card.')
+    mx = c4.MAX_MAE[code]
+    nb.step(8, 'Choose a model by the client’s rule, with a function on records', 'The project gives you rows as **records**: each row is a dictionary, and a table is a list of dictionaries. Its functions take records and return lists. This step rehearses that form. '
+            '`predict_records` wraps a pipeline in a function: it trains on a list of training records and returns one prediction per new record. A *list comprehension* builds a new list in one line. `sorted(..., key=lambda c: ...)` sorts records by the values the small `lambda` function gives. '
+            f'The rule, as in the project: keep the models whose validation MAE is at most the client’s limit ({mx:.1f} {unit}) **and** whose latency (prediction time) is at most 50 ms; choose the lowest validation MAE; break a tie by the smaller latency, then by the name. The limits and latencies are invented teaching numbers. The test set never takes part.')
+    nb.predict('Which model has the lowest validation MAE of all five? Will it pass both limits?')
+    nb.code(f'MAX_MAE = {mx}      # the client accepts a validation MAE of at most this many {unit} (invented teaching number)\n'
+            'MAX_MS = 50         # and a prediction time of at most 50 milliseconds (invented teaching number)\n'
+            'LATENCY_MS = {"Baseline model": 1, "Linear regression": 3, "Decision tree, depth 4": 30,\n              "Ridge regression, alpha 1": 3, "k-NN, k = 3": 60}   # invented teaching numbers; k-NN compares each new row with every training row\n\n'
+            'record_columns = ["record_id", "equipment_id", "load_pct", "ambient_c", "target"]\n'
+            'train_records = train_df[record_columns].to_dict("records")    # a list of dictionaries, one per row\n'
+            'valid_records = valid_df[record_columns].to_dict("records")\n'
+            'print("first training record:", train_records[0])\n\n'
+            'def predict_records(model, training_records, new_records):\n'
+            '    """Train the pipeline on a list of records and return one prediction per new record, in order."""\n'
+            '    table = pd.DataFrame(training_records)\n'
+            '    new_table = pd.DataFrame(new_records)\n'
+            '    model.fit(table[feature_columns], table["target"])\n'
+            '    return model.predict(new_table[feature_columns]).tolist()\n\n'
+            'valid_features = [{key: value for key, value in r.items() if key != "target"} for r in valid_records]   # the new rows have no target\n'
+            'valid_actual = [r["target"] for r in valid_records]\n\n'
+            'candidates = []\nfor name, model in models.items():\n'
+            '    predictions = predict_records(model, train_records, valid_features)\n'
+            '    candidates.append({"name": name, "validation_mae": mean_absolute_error(valid_actual, predictions), "latency_ms": LATENCY_MS[name]})\n\n'
+            'kept = [c for c in candidates if c["validation_mae"] <= MAX_MAE and c["latency_ms"] <= MAX_MS]\n'
+            'ranked = sorted(kept, key=lambda c: (c["validation_mae"], c["latency_ms"], c["name"]))\n'
+            'for c in ranked:\n'
+            f'    print(f"kept: {{c[\'name\']}}, MAE {{c[\'validation_mae\']:.2f}} {unit}, latency {{c[\'latency_ms\']}} ms")\n'
+            'chosen_model = ranked[0]["name"] if ranked else None\n'
+            'print("Chosen model:", chosen_model)')
+    nb.read('Which models were removed by the error limit, and which by the latency limit? Why does the rule not use the cross-validated columns or the test set?')
+    nb.change('Set `MAX_MS = 100` and run the cell again. Which model is chosen now, and why?')
+
+    lim = f['b']['limit']
+    nb.step(9, 'Choose the warning threshold by cost (recall Class 2)', f'The project asks a second question: which rows should raise a warning? A row is a warning (1) when its target is at or above {lim:g} {unit}. A logistic regression pipeline gives each validation row a probability, and the decision threshold turns it into 0 or 1. '
+            'A missed warning (a false negative, FN) costs 5 and a false alarm (a false positive, FP) costs 1. These are invented teaching costs, the same as in the project: cost = 5 x FN + 1 x FP. We try thresholds 0.3, 0.5 and 0.7 and keep the lowest cost; if two tie, the higher threshold.')
+    nb.predict('A lower threshold raises more warnings. Will it lower the cost or raise it?')
+    nb.code('from sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import confusion_matrix, recall_score, precision_score\n\n'
+            f'LIMIT = {lim}                          # a row is a warning (1) at or above this many {unit}\n'
+            'MISSED_COST, FALSE_ALARM_COST = 5, 1   # invented teaching costs\n\n'
+            'warning_model = make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(max_iter=1000))\n'
+            'warning_model.fit(X_train, (y_train >= LIMIT).astype(int))\n'
+            'warning_actual = (y_valid >= LIMIT).astype(int)\n'
+            'probability = warning_model.predict_proba(X_valid)[:, 1]     # column 1: the probability of a warning\n\n'
+            'cost_table = []\nfor threshold in [0.3, 0.5, 0.7]:\n'
+            '    predicted = [1 if p >= threshold else 0 for p in probability]   # a list comprehension\n'
+            '    tn, fp, fn, tp = confusion_matrix(warning_actual, predicted).ravel()\n'
+            '    cost = MISSED_COST * fn + FALSE_ALARM_COST * fp\n'
+            '    cost_table.append({"threshold": threshold, "tp": int(tp), "fp": int(fp), "fn": int(fn), "tn": int(tn), "cost": int(cost)})\n'
+            '    print(f"threshold {threshold}: TP {tp}, FP {fp}, FN {fn}, TN {tn}, cost {cost}")\n\n'
+            'chosen_threshold = sorted(cost_table, key=lambda row: (row["cost"], -row["threshold"]))[0]["threshold"]   # lowest cost; a tie goes to the higher threshold\n'
+            'print("Chosen threshold:", chosen_threshold)')
+    nb.read('Check one cost by hand: 5 x FN + 1 x FP. Why does the minus sign in the sort key give the higher threshold when two costs tie?')
+
+    nb.step(10, 'After the choice: five-group cross-validation, then open the test set once', 'Now the model and the threshold are chosen, the validation group E5 is no longer needed for choosing, so it can join the cross-validation. As in project Task 5, part A holds out each of E1 to E5 in turn, trains linear regression on the other four groups (rows with no missing value, so no imputation is needed) and reports the mean and the sample standard deviation of the five fold MAEs (`np.std(folds, ddof=1)`, which divides by 5 minus 1 = 4). '
+            'Part B opens the held-out test set **once**, as in project Task 8: the chosen model is refitted on all development rows (training plus validation, E1 to E5) and scored on E6, and the chosen threshold is tested at the same time. The refit is allowed because the choice is already fixed and E6 is still unseen. Run part B one time only, and never change your choice after it.')
+    nb.predict('Will the five-fold mean be close to the four-fold mean of step 7? Will the test MAE be larger or smaller than the validation MAE?')
+    nb.code('# part A: group cross-validation over all five development groups, E1 to E5\n'
+            'development_df = pd.concat([train_df, valid_df])                    # E1 to E5\n'
+            'complete_df = development_df[development_df["ambient_c"].notna()]   # rows with no missing value\n'
+            'folds = []\nfor group in ["E1", "E2", "E3", "E4", "E5"]:\n'
+            '    fold_train = complete_df[complete_df["equipment_id"] != group]\n'
+            '    fold_test = complete_df[complete_df["equipment_id"] == group]\n'
+            '    fold_model = LinearRegression().fit(fold_train[feature_columns], fold_train["target"])\n'
+            '    fold_mae = mean_absolute_error(fold_test["target"], fold_model.predict(fold_test[feature_columns]))\n'
+            '    folds.append(fold_mae)\n'
+            f'    print(f"held out {{group}}: {{len(fold_test)}} rows, MAE {{fold_mae:.2f}} {unit}")\n'
+            f'print(f"five-group CV: mean {{np.mean(folds):.2f}}, sample standard deviation {{np.std(folds, ddof=1):.2f}} {unit}")')
+    nb.code('# part B: open the test set ONCE, with the chosen model and the chosen threshold\n'
+            'final_model = models[chosen_model]\n'
+            'final_model.fit(development_df[feature_columns], development_df["target"])            # refit on E1 to E5\n'
+            'test_mae = mean_absolute_error(test_df["target"], final_model.predict(test_df[feature_columns]))\n'
+            'warning_model.fit(development_df[feature_columns], (development_df["target"] >= LIMIT).astype(int))\n'
+            'test_probability = warning_model.predict_proba(test_df[feature_columns])[:, 1]\n'
+            'test_warning = [1 if p >= chosen_threshold else 0 for p in test_probability]\n'
+            'test_actual = (test_df["target"] >= LIMIT).astype(int)\n'
+            f'print(f"Test set opened once: {{len(test_df)}} rows, {{chosen_model}}, MAE {{test_mae:.2f}} {unit}")\n'
+            'print(f"Warnings at threshold {chosen_threshold}: recall {recall_score(test_actual, test_warning, zero_division=0):.2f}, precision {precision_score(test_actual, test_warning, zero_division=0):.2f}")')
+    nb.read('Write the test MAE and the warning recall in your memo, whatever they are. Why would it be unfair to change your model now?')
+
+    nb.step(11, 'Your decision memo', 'Fill in each sentence in your own words, with numbers from your results and their unit. Double-click the cell to edit it. One page is enough. In industry a related document is called a model card.')
     nb.md(f'**Decision memo: predicting {short}**\n\n'
-          f'1. **Question.** We wanted to know whether we can predict ... \n\n'
+          f'1. **Question.** We wanted to know whether we can predict ... on a new {thing}, and which rows should raise a warning.\n\n'
           '2. **Data.** We used ... training rows and ... validation rows. The data are ... \n\n'
           '3. **Models tried.** We tried ... \n\n'
-          f'4. **Result.** The best model on the validation set was ..., with a mean absolute error of ... {unit}. The baseline model had ... {unit}. In cross-validation the ... \n\n'
-          '5. **Limits.** The numbers cannot tell us ... Three limits are ... \n\n'
-          '6. **Recommendation.** I recommend ... because ... \n\n'
-          '7. **Next step.** Before we rely on it, we should ... ')
+          f'4. **Result.** By the client’s rule (MAE at most {mx:.1f} {unit}, latency at most 50 ms) we chose ..., with a validation MAE of ... {unit}. The baseline model had ... {unit}. The five-group cross-validated MAE was ... {unit}. On the test set, opened once, the MAE was ... {unit}.\n\n'
+          '5. **Limits.** The numbers cannot tell us ... Four limits are ... \n\n'
+          '6. **Recommendation.** I recommend ... with a warning threshold of ..., because ... \n\n'
+          '7. **Next step.** Before anyone relies on it, we should ... ')
 
-    nb.step(9, 'Save your work', 'Choose **Runtime, then Restart session and run all**. If every cell runs without an error, choose **File, then Save a copy in Drive**. Keep the notebook and your memo: the project uses these steps. The Engineering ML project is an individual, timed, auto-graded 3-hour sitting in Week 12 (proposed, lecturer to confirm), and a practice version, the rehearsal, is released right after Class 4.')
+    nb.step(12, 'Save your work', 'Choose **Runtime, then Restart session and run all**. If every cell runs without an error, choose **File, then Save a copy in Drive**. Keep the notebook and your memo: the project uses these steps. The Engineering ML project is an individual, timed, auto-graded 3-hour sitting in Week 12 (proposed, lecturer to confirm), and a practice version, the rehearsal, is released right after Class 4.')
     return nb
 
 
@@ -208,7 +288,19 @@ def CHECK(code, res, f):
         want.append(str(rid))
     for n in c4.MODEL_NAMES:
         d = cand[n]
-        want.append(' '.join([n] + [f'{round(v, 2):.2f}' for v in (d['mae'], d['rmse'], d['cv_mean'], d['cv_min'], d['cv_max'])]))
+        want.append(' '.join([n] + [f'{round(v, 2):.2f}' for v in (d['mae'], d['rmse'], d['cv_mean'], d['cv_sd'], d['cv_min'], d['cv_max'])]))
+    for n in k['rule']['kept']:
+        want.append(f'kept: {n}, MAE {cand[n]["mae"]:.2f} {u}, latency {cand[n]["latency"]} ms')
+    want.append(f'Chosen model: {k["rule"]["chosen"]}')
+    for t in k['cost_tab']:
+        want.append(f'threshold {t["th"]:g}: TP {t["tp"]}, FP {t["fp"]}, FN {t["fn"]}, TN {t["tn"]}, cost {t["cost"]}')
+    want.append(f'Chosen threshold: {k["threshold"]["th"]:g}')
+    for d in k['cv5']['folds']:
+        want.append(f'held out {d["group"]}: {d["n"]} rows, MAE {d["mae"]:.2f} {u}')
+    want.append(f'five-group CV: mean {k["cv5"]["mean"]:.2f}, sample standard deviation {k["cv5"]["sd"]:.2f} {u}')
+    t = k['test']
+    want.append(f'Test set opened once: {t["n"]} rows, {k["rule"]["chosen"]}, MAE {t["mae"]:.2f} {u}')
+    want.append(f'Warnings at threshold {k["threshold"]["th"]:g}: recall {t["recall"]:.2f}, precision {t["precision"]:.2f}')
     for w in want:
         if w not in flat:
             probs.append(f'missing expected output: {w}')
