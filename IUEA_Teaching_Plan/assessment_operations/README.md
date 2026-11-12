@@ -70,4 +70,4 @@ For new submissions, follow **[New submissions: repeat checklist](CONTINUE_GRADI
 
 **One Mac grades at a time. Finish Docker work before written grading. The written grader stops Docker before inference and refuses to proceed if shutdown cannot be verified; keep Docker closed during the run.**
 
-Your marks are in `private/IUEA_Continuous_Assessment.xlsx`. For status meanings or marking rules, consult [the reference](reference/GRADING.md) only when needed. A6 and Quiz 6 are waived for all three programmes; their original marks remain recorded but excluded from totals.
+Your marks are in `private/IUEA_Continuous_Assessment.xlsx`. For status meanings or marking rules, consult [the reference](reference/GRADING.md) only when needed. A6 and Quiz 6 are not assigned for any programme and do not count; their original marks remain recorded but are excluded from totals. From 10 November 2026 only A1 to A5 and Q1 to Q5 count (Grading_Policy_2026-11-10.md).

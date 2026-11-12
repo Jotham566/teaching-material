@@ -88,7 +88,7 @@ def student_brief(code):
     u = c['unit']
     limit = P.LIMITS[code]
     d = new(f'{code} Engineering ML project: student brief', 'IUEA Machine Learning for Engineers  |  Student Brief')
-    title(d, f'Engineering ML project: {c["domain"]}', f'{code}  |  {c["name"]}  |  Part A 30 marks + Part B 15 marks = 45 percent of the course  |  One 3-hour sitting, individual work, marked by computer')
+    title(d, f'Engineering ML project: {c["domain"]}', f'{code}  |  {c["name"]}  |  Part A 30 marks + Part B 15 marks = 45 marks, scaled to 40 percent of the course  |  One 3-hour sitting, individual work, marked by computer')
     box(d, 'At a glance', [
         f'The sitting: {PC.SITTING_TEXT[code]}. In Google Colab, with the same entry page, countdown and Submit test steps as Practical Test 1.',
         f'The rehearsal (unmarked): released {PC.REHEARSAL_TEXT[code]}. Same structure and the same kinds of task, on a practice data file. A solved walk-through is not given.',
@@ -182,7 +182,7 @@ def counts():
 
 def marking_guide():
     d = new('Engineering ML project: marking guide', 'IUEA Machine Learning for Engineers  |  Lecturer Marking Guide')
-    title(d, 'Engineering ML project: marking guide', f'CML3111, CML3112 and CML3113  |  {SMALL}  |  Part A 30 + Part B 15 = 45 percent of the course  |  Individual, timed, automatic')
+    title(d, 'Engineering ML project: marking guide', f'CML3111, CML3112 and CML3113  |  {SMALL}  |  Part A 30 + Part B 15 = 45 marks, scaled to 40 percent of the course  |  Individual, timed, automatic')
     h2(d, 'What this is', 0)
     para(d, 'One supervised 3-hour sitting in the Week 12 class slot, in Colab, with the same timed entry, personal deadline and Submit test flow as Practical Test 1. It is marked entirely by computer. You mark nothing by hand. Your only manual work is a short spot-check list of flagged cases. The project covers Weeks 1 to 11 only. An unmarked rehearsal is released after Class 4.', 10, after=4)
     rows = [[c, PC.SITTING_TEXT[c], PC.REHEARSAL_TEXT[c]] for c in PC.CODES]

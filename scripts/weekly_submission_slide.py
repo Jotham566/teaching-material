@@ -14,7 +14,7 @@ WORK={
 
 def add_weekly_submission(prs,aid,code):
     if aid=="W06" and code in ("CML3111","CML3112","CML3113"):
-        slide=s_points(prs,"Practical revision — no submission",[("A6 and Quiz 6 are waived","Save your practice notebook in Drive. Use the Test 1 revision slides and matching practice CSV before the test.")],kicker="UNGRADED PRACTICE",numbered=True)
+        slide=s_points(prs,"Practical revision — no submission",[("A6 and Quiz 6 are not assigned and do not count","Save your practice notebook in Drive. Use the Test 1 revision slides and matching practice CSV before the test.")],kicker="UNGRADED PRACTICE",numbered=True)
         notes(slide,"No A6 or Quiz 6 is assigned. Existing submissions are retained and excluded from coursework totals.")
         return slide
     rubric=json.loads((ROOT/'IUEA_Teaching_Plan/grader/rubrics/hybrid'/f'{aid}.json').read_text())

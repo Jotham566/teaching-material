@@ -1,0 +1,106 @@
+{
+ "version": "2026-11-10",
+ "supersedes": [
+  "data/assessment_blocks_20261103.json (weights, blocks, provisional out-of-55)"
+ ],
+ "note": "Source of truth for the Semester 1 final mark from 10 November 2026. A test keeps grader/continuous_assessment.py and grader/gradebook.gs in step with this file.",
+ "weights": {
+  "assignments": 20,
+  "quizzes": 20,
+  "practical_test_1": 20,
+  "engineering_ml_project": 40
+ },
+ "course_total": 100,
+ "counted": {
+  "assignments": {
+   "ids": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5"
+   ],
+   "ledger_ids": [
+    "W01",
+    "W02",
+    "W03",
+    "W04",
+    "W05"
+   ],
+   "each_max": 20,
+   "rule": "All five count equally. Each is scaled to 4, so the component is the sum of the five marks divided by 5, out of 20. A missing or not-yet-marked item scores 0."
+  },
+  "quizzes": {
+   "ids": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5"
+   ],
+   "ledger_ids": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5"
+   ],
+   "each_max": 5,
+   "rule": "All five count equally. Each is scaled to 4, so the component is the sum of the five marks times 4/5, out of 20. A missing or not-yet-marked item scores 0."
+  },
+  "practical_test_1": {
+   "ledger_id": "TEST1",
+   "max": 100,
+   "rule": "Mark out of 100 scaled to 20."
+  },
+  "engineering_ml_project": {
+   "ledger_id": "ML_PROJECT",
+   "parts": {
+    "A": 30,
+    "B": 15
+   },
+   "raw_max": 45,
+   "scaled_max": 40,
+   "rule": "Part A (30) plus Part B (15), 45 raw, scaled to 40. Counts only when BOTH parts are marked; until then the project is PENDING and the semester result is provisional out of 60."
+  }
+ },
+ "not_counted": {
+  "quizzes": [
+   "Q6",
+   "Q7",
+   "Q8",
+   "Q9",
+   "Q10",
+   "Q11",
+   "Q12",
+   "Q13 (gradebook columns) and the Week 8 to 11 block quizzes"
+  ],
+  "assignments": [
+   "A6",
+   "A7",
+   "A8",
+   "A9",
+   "A10",
+   "A11",
+   "A12 (gradebook columns) and the Week 8 to 11 block assignments"
+  ],
+  "other": [
+   "Data Analysis project (was 10)",
+   "Practical Test 2 (retired)",
+   "Demonstration (retired)",
+   "best-3-of-5 rule and the Week 6 waiver (retired: all five of A1 to A5 and Q1 to Q5 count)"
+  ],
+  "kept": "Receipts for items that do not count are still collected and kept in the ledger; they simply add nothing to the final mark."
+ },
+ "provisional": {
+  "out_of": 60,
+  "components": [
+   "assignments",
+   "quizzes",
+   "practical_test_1"
+  ],
+  "text": "Semester 1 provisional: x of 60 marks, y percent"
+ },
+ "rounding": "Each component is rounded to two decimal places, halves upward (Math.round(x*100)/100); the total is the rounded sum of the rounded components.",
+ "bands": "No letter grades: Faculty grade bands have not been verified."
+}

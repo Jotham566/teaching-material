@@ -2,7 +2,7 @@
 
 <!-- BLOCK_ASSESSMENT_20261103 -->
 <!-- PROJECT_SITTING_20261104 -->
-**What it is:** the Engineering ML project is an INDIVIDUAL, TIMED, AUTO-GRADED sitting of 3 hours in Google Colab. It is worth 45 percent of the course. There is no demo, no upload form and no take-home. It covers only what was taught in Weeks 1 to 11.
+**What it is:** the Engineering ML project is an INDIVIDUAL, TIMED, AUTO-GRADED sitting of 3 hours in Google Colab. It is worth 40 percent of the course (Part A 30 + Part B 15 = 45 marks, scaled to 40). There is no demo, no upload form and no take-home. It covers only what was taught in Weeks 1 to 11.
 
 - **Part A: coded notebook, 30 marks.** Functions you write are run on data you cannot see (24 marks). Six more marks check how you worked: the test set (group E6) is opened **once** and only **after** you have chosen your model and decision threshold; you **fit preprocessing on the training set only** (no data leakage); you keep `random_state=17` so the result is reproducible; and your two charts have a title, named axes and the unit.
 - **Part B: decision memo, 15 marks.** The memo is a form of fields inside the notebook (`MEMO`): the model you recommend, your validation and test numbers, three limits and a next step chosen from lists, and two short written answers. It is marked automatically. Nothing is marked by hand.

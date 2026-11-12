@@ -1,61 +1,96 @@
 import sys,unittest,json,tempfile
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader'))
-from continuous_assessment import choose_current,identity_conflicts,quiz_mark,build,field,norm,recover_quiz_ids,resolve_supported_typos,coursework_totals,BLOCKS,WAIVED_WEEKS,QUIZ_WEEKS,ASSIGNMENT_WEEKS,COURSE_WEIGHTS,COURSEWORK_WEIGHT,RETIRED_QUIZ_WEEKS,round2,semester_totals,write_totals_csv,PROJECT_PARTS,PROJECT_MAX,PROVISIONAL_OUT_OF,PROVISIONAL_KEYS
+import continuous_assessment as ca
+from continuous_assessment import choose_current,identity_conflicts,quiz_mark,build,field,norm,recover_quiz_ids,resolve_supported_typos,coursework_totals,COURSE_WEIGHTS,round2,semester_totals,write_totals_csv,PROJECT_PARTS,PROJECT_MAX,PROVISIONAL_OUT_OF,PROVISIONAL_KEYS,policy_check,QUIZ_IDS,ASSIGNMENT_IDS,COUNTED_IDS,TOTALS_COLUMNS
+ROOT=Path(__file__).resolve().parents[1]
 
 def receipt(**kwargs):
  r=dict(cohort='CML3111',student_id='DEMO-01',email='demo@example.com',assessment='W03',response_id='r1',submitted_at='2026-10-01T08:00:00Z',timing_status='ON_TIME',status='GRADED',score=15)
  r.update(kwargs);return r
-class BlockCourseworkTests(unittest.TestCase):
- """Policy of 2 November 2026: Weeks 1 to 5 weekly (best 3 of 5, Week 6 waived), Block 1 = Q7+Q8 and A7+A8,
- Block 2 = Q9+Q10 and A9+A10+A11. Q11 and Q12 are retired. Quizzes are out of 35, assignments out of 160, 15 percent each."""
- def rows(self,quiz,assign,sid='DEMO-01'):
-  return [receipt(student_id=sid,assessment=a,score=v,response_id=f'{sid}-{a}') for a,v in {**quiz,**assign}.items()]
- def test_full_marks_give_fifteen_percent_each(self):
-  q={f'Q{w}':5 for w in (1,2,3,4,5,8,9,10,11)};a={f'W{w:02}':20 for w in (1,2,3,4,5,8,9,10,11,12)}
-  r=coursework_totals(self.rows(q,a))[0]
-  self.assertEqual((r['quizzes']['available'],r['assignments']['available']),(35,160))
-  self.assertEqual((r['quizzes']['earned'],r['assignments']['earned']),(35,160))
-  self.assertEqual((r['quizzes']['weighted'],r['assignments']['weighted']),(15.0,15.0))
- def test_weekly_drops_two_lowest_of_five_and_blocks_are_never_dropped(self):
-  q={'Q1':0,'Q2':5,'Q3':5,'Q4':5,'Q5':2,'Q8':5,'Q9':5}
-  r=coursework_totals(self.rows(q,{}))[0]['quizzes']
-  self.assertEqual(r['earned'],15+10)   # best 3 of 5 weekly = 5+5+5; Block 1 = 10; Block 2 not sat = 0
-  self.assertEqual(r['weighted'],round(25/35*15,2))
- def test_missing_block_part_scores_zero(self):
-  a={'W08':20,'W10':20,'W11':20}
-  r=coursework_totals(self.rows({},a))[0]['assignments']
-  self.assertEqual(r['blocks'][0],dict(block='Block 1',earned=20,available=40,parts_submitted=1))
-  self.assertEqual(r['blocks'][1],dict(block='Block 2',earned=40,available=60,parts_submitted=2))
- def test_retired_quizzes_q11_and_q12_never_count(self):
-  base={'Q1':5,'Q2':5,'Q3':5,'Q8':5,'Q9':5,'Q10':5,'Q11':5}
-  with_retired={**base,'Q12':5,'Q13':5}
-  a=coursework_totals(self.rows(base,{}))[0]['quizzes'];b=coursework_totals(self.rows(with_retired,{}))[0]['quizzes']
-  self.assertEqual(a,b);self.assertEqual(b['earned'],15+10+10)
- def test_block_one_two_and_weekly_maxima_add_up_to_the_stated_totals(self):
-  r=coursework_totals(self.rows({'Q1':1},{'W01':1}))[0]
-  self.assertEqual([x['available'] for x in r['quizzes']['blocks']],[10,10])
-  self.assertEqual([x['available'] for x in r['assignments']['blocks']],[40,60])
-  self.assertEqual(r['quizzes']['available'],3*5+10+10);self.assertEqual(r['assignments']['available'],3*20+40+60)
- def test_constants_match_policy_file(self):
-  pol=json.loads((Path(__file__).resolve().parents[1]/'data/assessment_blocks_20261103.json').read_text())
-  wk=lambda b:tuple(f'Q{q["week"]}' for q in b['quiz_forms'])
-  self.assertEqual(BLOCKS['quizzes'],tuple((b['label'],wk(b)) for b in pol['blocks']))
-  self.assertEqual(BLOCKS['assignments'],tuple((b['label'],tuple(p['id'] for p in b['assignment_parts'])) for b in pol['blocks']))
-  self.assertEqual(WAIVED_WEEKS,(6,))
-  self.assertEqual(sum(pol['weights_percent'].values()),100);self.assertEqual(sum(COURSE_WEIGHTS.values()),100)
-  self.assertEqual(COURSE_WEIGHTS,{k:v for k,v in pol['weights_percent'].items()})
-  self.assertNotIn('practical_test_2',pol['weights_percent']);self.assertNotIn('demonstration',pol['weights_percent']);self.assertNotIn('demonstration',COURSE_WEIGHTS)
-  self.assertEqual(COURSEWORK_WEIGHT,15);self.assertEqual(COURSE_WEIGHTS['engineering_ml_project'],45)
-  self.assertEqual(tuple((p['part'],p['marks']) for p in pol['engineering_ml_project']['parts']),PROJECT_PARTS);self.assertEqual(PROJECT_MAX,pol['engineering_ml_project']['marks'])
-  self.assertEqual(PROVISIONAL_OUT_OF,pol['provisional_mode']['provisional_weight_total']);self.assertEqual(list(PROVISIONAL_KEYS),pol['provisional_mode']['components_marked_for_provisional'])
-  self.assertEqual(RETIRED_QUIZ_WEEKS,tuple(q['week'] for q in pol['retired_quiz_forms']))
-  for b in pol['blocks']:
-   self.assertEqual(sum(p['marks'] for p in b['assignment_parts']),b['assignment_marks'])
-   self.assertEqual(5*len(b['quiz_forms']),b['quiz_marks'])
-  self.assertEqual([b['assignment_marks'] for b in pol['blocks']],[40,60]);self.assertEqual([b['quiz_marks'] for b in pol['blocks']],[10,10])
-  self.assertEqual(3*5+sum(b['quiz_marks'] for b in pol['blocks']),35);self.assertEqual(3*20+sum(b['assignment_marks'] for b in pol['blocks']),160)
-  self.assertEqual(set(QUIZ_WEEKS)&set(RETIRED_QUIZ_WEEKS),set())
+def graded(sid,assess,score,cohort='CML3111',status='GRADED',**extra):
+ return dict(cohort=cohort,student_id=sid,assessment=assess,score=score,status=status,**extra)
+def marks(sid,quizzes=(),assignments=(),test=None,cohort='CML3111'):
+ """Graded receipts: quizzes Q1.., assignments W01.. from the given lists, and TEST1."""
+ rows=[graded(sid,f'Q{i}',v,cohort) for i,v in enumerate(quizzes,1)]+[graded(sid,f'W{i:02}',v,cohort) for i,v in enumerate(assignments,1)]
+ return rows+([graded(sid,'TEST1',test,cohort)] if test is not None else [])
+def full(sid,cohort='CML3111'):return marks(sid,[5]*5,[20]*5,100,cohort)
+
+class PolicyFileTests(unittest.TestCase):
+ """data/assessment_policy_20261110.json is the source of truth; the module constants must equal it."""
+ def setUp(self):self.pol=json.loads((ROOT/'data/assessment_policy_20261110.json').read_text())
+ def test_policy_check_reports_no_mismatch(self):self.assertEqual(policy_check(),[])
+ def test_policy_check_detects_a_changed_policy(self):
+  bad=json.loads(json.dumps(self.pol));bad['weights']['quizzes']=15;bad['counted']['quizzes']['ledger_ids']=['Q1','Q2','Q3']
+  with tempfile.TemporaryDirectory() as d:
+   (Path(d)/'p.json').write_text(json.dumps(bad));found=policy_check(Path(d)/'p.json')
+  self.assertEqual(len(found),2);self.assertTrue(found[0].startswith('weights'))
+ def test_constants_equal_policy(self):
+  p=self.pol;c=p['counted']
+  self.assertEqual(COURSE_WEIGHTS,p['weights']);self.assertEqual(COURSE_WEIGHTS,dict(assignments=20,quizzes=20,practical_test_1=20,engineering_ml_project=40))
+  self.assertEqual(sum(COURSE_WEIGHTS.values()),p['course_total']);self.assertEqual(p['course_total'],100)
+  self.assertEqual(ASSIGNMENT_IDS,tuple(c['assignments']['ledger_ids']));self.assertEqual(QUIZ_IDS,tuple(c['quizzes']['ledger_ids']))
+  self.assertEqual(ASSIGNMENT_IDS,('W01','W02','W03','W04','W05'));self.assertEqual(QUIZ_IDS,('Q1','Q2','Q3','Q4','Q5'));self.assertEqual(ca.TEST_ID,c['practical_test_1']['ledger_id'])
+  self.assertEqual(COUNTED_IDS,ASSIGNMENT_IDS+QUIZ_IDS+('TEST1',))
+  self.assertEqual((ca.ASSIGNMENT_MAX,ca.QUIZ_MAX,ca.TEST_MAX),(c['assignments']['each_max'],c['quizzes']['each_max'],c['practical_test_1']['max']))
+  self.assertEqual(PROJECT_PARTS,tuple(c['engineering_ml_project']['parts'].items()));self.assertEqual(PROJECT_MAX,c['engineering_ml_project']['raw_max']);self.assertEqual(PROJECT_MAX,45)
+  self.assertEqual(COURSE_WEIGHTS['engineering_ml_project'],c['engineering_ml_project']['scaled_max'])
+  self.assertEqual(PROVISIONAL_OUT_OF,p['provisional']['out_of']);self.assertEqual(PROVISIONAL_OUT_OF,60);self.assertEqual(list(PROVISIONAL_KEYS),p['provisional']['components'])
+  self.assertEqual(PROVISIONAL_OUT_OF+COURSE_WEIGHTS['engineering_ml_project'],100)
+ def test_retired_machinery_is_gone(self):
+  for name in ('BLOCKS','WEEKLY_BEST','WAIVED_WEEKS','WEEKLY_WEEKS','COURSEWORK_WEIGHT','_best_weekly'):self.assertFalse(hasattr(ca,name),name)
+  self.assertNotIn('data_analysis_project',COURSE_WEIGHTS);self.assertNotIn('demonstration',COURSE_WEIGHTS)
+ def test_old_block_file_points_to_the_new_policy(self):
+  old=json.loads((ROOT/'data/assessment_blocks_20261103.json').read_text())
+  self.assertEqual(old['superseded_by'],'data/assessment_policy_20261110.json')
+  self.assertIn('data/assessment_blocks_20261103.json',' '.join(self.pol['supersedes']))
+ def test_registry_weights_equal_policy(self):
+  sys.path.insert(0,str(ROOT/'scripts'))
+  from assessment_registry import WEIGHTS
+  self.assertEqual(sorted(WEIGHTS.values()),sorted(self.pol['weights'].values()));self.assertEqual(sum(WEIGHTS.values()),100)
+  self.assertEqual(WEIGHTS['ml_project'],self.pol['weights']['engineering_ml_project'])
+
+class CourseworkTests(unittest.TestCase):
+ """Assignments A1 to A5 (W01 to W05, /20) and quizzes Q1 to Q5 (/5), all equal, each worth 4 of the 20 for the component."""
+ def test_full_marks_give_twenty_each(self):
+  r=coursework_totals(full('S1'))[0]
+  self.assertEqual((r['assignments']['earned'],r['assignments']['available'],r['assignments']['weighted']),(100,100,20.0))
+  self.assertEqual((r['quizzes']['earned'],r['quizzes']['available'],r['quizzes']['weighted']),(25,25,20.0))
+ def test_each_item_is_worth_four(self):
+  a=coursework_totals(marks('S1',[],[20]))[0];q=coursework_totals(marks('S1',[5]))[0]
+  self.assertEqual(a['assignments']['weighted'],4.0);self.assertEqual(q['quizzes']['weighted'],4.0)
+  self.assertEqual(coursework_totals(marks('S1',[],[10]))[0]['assignments']['weighted'],2.0)   # 10/20 x 4
+ def test_all_five_count_so_nothing_is_dropped(self):
+  r=coursework_totals(marks('S1',[0,5,5,5,2],[20,20,0,20,20]))[0]
+  self.assertEqual(r['quizzes']['earned'],17);self.assertEqual(r['quizzes']['weighted'],round2(17/25*20))   # 13.6, the zero and the 2 both count
+  self.assertEqual(r['assignments']['earned'],80);self.assertEqual(r['assignments']['weighted'],16.0)
+ def test_week_six_has_no_waiver(self):
+  # The old rule dropped Week 6 and the two lowest of five. W06 is not counted and W01..W05 are never dropped.
+  self.assertEqual(coursework_totals(marks('S1',[],[0,20,20,20,20]+[20]))[0]['assignments']['earned'],80)
+ def test_nothing_submitted_scores_zero(self):
+  r=coursework_totals([],extra_students=[('CML3112','NOBODY')])[0]
+  self.assertEqual((r['cohort'],r['student_id']),('CML3112','NOBODY'))
+  for part,top in (('assignments',100),('quizzes',25)):self.assertEqual((r[part]['earned'],r[part]['available'],r[part]['weighted']),(0,top,0.0))
+ def test_items_beyond_the_five_are_ignored(self):
+  base=marks('S1',[5,5,5],[20,20])
+  extra=base+[graded('S1',a,v) for a,v in (('Q6',5),('Q7',5),('Q8',5),('Q9',5),('Q10',5),('Q11',5),('Q12',5),('Q13',5),('W06',20),('W07',20),('W08',20),('W09',20),('W10',20),('W11',20),('W12',20),('DA_PROJECT',100),('TEST2',100),('DEMO',100))]
+  a,b=coursework_totals(base)[0],coursework_totals(extra)[0]
+  self.assertEqual(a,b);self.assertEqual((b['quizzes']['earned'],b['assignments']['earned']),(15,40))
+ def test_only_graded_receipts_add_marks_and_unresolved_are_listed(self):
+  cur=marks('S1',[5,5,5,5,5],[20,20,20,20,20])
+  cur[1]=graded('S1','Q2',None,status='QUIZ_SCORE_PENDING');cur[7]=graded('S1','W03',15,status='IDENTITY_CONFLICT')   # a stray score on a held receipt must not count
+  r=coursework_totals(cur)[0]
+  self.assertEqual(r['quizzes']['earned'],20);self.assertEqual(r['quizzes']['unresolved'],['Q2']);self.assertEqual(r['quizzes']['missing'],[])
+  self.assertEqual(r['assignments']['earned'],80);self.assertEqual(r['assignments']['unresolved'],['W03'])
+ def test_missing_is_not_unresolved(self):
+  r=coursework_totals(marks('S1',[5,5],[20]))[0]
+  self.assertEqual(r['quizzes']['missing'],['Q3','Q4','Q5']);self.assertEqual(r['quizzes']['unresolved'],[]);self.assertEqual(r['assignments']['missing'],['W02','W03','W04','W05'])
+ def test_students_are_kept_apart_by_cohort_and_id(self):
+  rows=coursework_totals(full('S1')+marks('S1',[1],[],None,'CML3112')+marks('S2',[5]))
+  self.assertEqual([(r['cohort'],r['student_id'],r['quizzes']['earned']) for r in rows],[('CML3111','S1',25),('CML3111','S2',5),('CML3112','S1',1)])
+
+class ScheduleTests(unittest.TestCase):
+ """Dates and sittings are scheduling facts recorded in the 3 November file (the policy of 10 November changes marks, not dates)."""
  def test_registry_deadlines_match_policy_file(self):
   root=Path(__file__).resolve().parents[1]
   pol=json.loads((root/'data/assessment_blocks_20261103.json').read_text());rows={r['key']:r for r in json.loads((root/'data/assessments.json').read_text())}
@@ -71,73 +106,91 @@ class BlockCourseworkTests(unittest.TestCase):
    sl=pol['engineering_ml_project']['sitting']['slots'][code];self.assertNotIn('proposed_closes_at',m);self.assertEqual((m['proposed_sitting']['date'],m['proposed_sitting']['start'],m['proposed_sitting']['end']),(sl['date'],sl['start'],sl['end']));self.assertIn('proposed',m['proposed_status'])
    self.assertEqual(m['grading'],'automatic');self.assertEqual(m['formats'],['ipynb']);self.assertNotIn('take-home',m['delivery_note'].lower().replace('no take-home',''))
    self.assertEqual(m['proposed_released_after_class_4'],pol['engineering_ml_project']['released']['dates'][code])
- def test_rounding_halves_go_up_like_the_gradebook(self):
-  # Python's round(8.625, 2) is 8.62; gradebook.gs Math.round gives 8.63. The two must not differ by a hundredth.
-  self.assertEqual(round2(8.625),8.63);self.assertEqual(round2(8.624),8.62);self.assertEqual(round2(0),0);self.assertEqual(round2(15),15)
  def test_grades_template_has_no_practical_test_2_column(self):
   head=(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader/Grades_template.csv').read_text().splitlines()[0].split(',')
   self.assertNotIn('Practical Test 2',head);self.assertIn('Practical Test 1',head)
-def graded(sid,assess,score,cohort='CML3111',status='GRADED',**extra):
- return dict(cohort=cohort,student_id=sid,assessment=assess,score=score,status=status,**extra)
-FULL_QUIZ={f'Q{w}':5 for w in (1,2,3,4,5,8,9,10,11)};FULL_ASSIGN={f'W{w:02}':20 for w in (1,2,3,4,5,8,9,10,11,12)}
-def full_coursework(sid,cohort='CML3111'):
- return [graded(sid,a,v,cohort) for a,v in {**FULL_QUIZ,**FULL_ASSIGN}.items()]
 class SemesterTotalsTests(unittest.TestCase):
- """Decision of 3 November 2026: no demo; project = Part A /30 + Part B /15, weight 45; provisional x of 55 until both parts are marked."""
- def test_weights_sum_to_100_and_provisional_is_55(self):
-  self.assertEqual(sum(COURSE_WEIGHTS.values()),100);self.assertEqual(PROVISIONAL_OUT_OF,55);self.assertEqual(PROVISIONAL_OUT_OF+COURSE_WEIGHTS['engineering_ml_project'],100)
-  self.assertEqual(PROJECT_MAX,45);self.assertEqual(sum(m for _,m in PROJECT_PARTS),COURSE_WEIGHTS['engineering_ml_project'])
-  self.assertEqual(set(COURSE_WEIGHTS),{'quizzes','assignments','data_analysis_project','practical_test_1','engineering_ml_project'})
- def test_provisional_with_no_project(self):
-  cur=full_coursework('S1')+[graded('S1','DA_PROJECT',100),graded('S1','TEST1',100)]
-  r=semester_totals(cur)[0]
-  self.assertIsNone(r['final']);self.assertEqual(r['project_status'],'Project: PENDING');self.assertTrue(r['project']['pending'])
-  self.assertEqual((r['provisional']['marks'],r['provisional']['out_of'],r['provisional']['percent']),(55,55,100))
-  self.assertEqual(r['provisional']['text'],'Semester 1 provisional: 55.00 of 55 marks, 100.00 percent');self.assertEqual(r['missing'],[])
- def test_provisional_with_only_part_a(self):
-  cur=full_coursework('S1')+[graded('S1','DA_PROJECT',72),graded('S1','TEST1',65),graded('S1','ML_PROJECT',None,status='PART_MARKED',part_scores={'A':27,'B':None})]
-  r=semester_totals(cur)[0]
-  self.assertIsNone(r['final']);self.assertEqual(r['project_status'],'Project: PENDING');self.assertEqual((r['project']['part_a'],r['project']['part_b']),(27,None))
-  self.assertEqual(r['provisional']['marks'],round2(15+15+7.2+9.75));self.assertEqual(r['provisional']['text'],'Semester 1 provisional: 46.95 of 55 marks, 85.36 percent')
-  # Part A alone changes nothing in the provisional line
-  without=semester_totals(full_coursework('S1')+[graded('S1','DA_PROJECT',72),graded('S1','TEST1',65)])[0]
-  self.assertEqual(r['provisional'],without['provisional'])
- def test_a_held_receipt_cannot_leak_project_marks_in(self):
-  cur=full_coursework('S1')+[graded('S1','ML_PROJECT',None,status='IDENTITY_CONFLICT',part_scores={'A':30,'B':15})]
-  r=semester_totals(cur)[0];self.assertIsNone(r['final']);self.assertIsNone(r['project']['part_a'])
- def test_full_total_once_both_parts_are_marked(self):
-  cur=full_coursework('S1')+[graded('S1','DA_PROJECT',80),graded('S1','TEST1',60),graded('S1','ML_PROJECT',33,part_scores={'A':24,'B':9})]
-  r=semester_totals(cur)[0]
-  self.assertEqual(r['final'],80.0);self.assertEqual(r['project_status'],'Project: marked');self.assertFalse(r['project']['pending'])
-  self.assertEqual(r['project']['weighted'],33.0);self.assertEqual(r['provisional']['marks'],47.0)   # 15 + 15 + 8 + 9
-  self.assertEqual(r['final'],round2(r['provisional']['marks']+r['project']['weighted']))
- def test_typed_zero_parts_are_a_mark_of_zero_not_pending(self):
-  cur=full_coursework('S1')+[graded('S1','DA_PROJECT',100),graded('S1','TEST1',100),graded('S1','ML_PROJECT',0,part_scores={'A':0,'B':0})]
-  r=semester_totals(cur)[0];self.assertEqual(r['final'],55.0);self.assertFalse(r['project']['pending'])
- def test_student_with_no_submissions(self):
+ """Policy of 10 November 2026: 20 + 20 + 20 + 40; project = Part A /30 + Part B /15 scaled to 40; provisional x of 60 until both parts are marked."""
+ def test_nothing_submitted_is_zero_and_pending(self):
   r=semester_totals([],students=[('CML3112','NOBODY')])[0]
   self.assertEqual((r['cohort'],r['student_id']),('CML3112','NOBODY'));self.assertIsNone(r['final']);self.assertEqual(r['project_status'],'Project: PENDING')
-  self.assertEqual((r['provisional']['marks'],r['provisional']['percent']),(0,0));self.assertEqual(r['provisional']['text'],'Semester 1 provisional: 0.00 of 55 marks, 0.00 percent')
-  self.assertEqual((r['quizzes']['earned'],r['quizzes']['available'],r['assignments']['earned'],r['assignments']['available']),(0,35,0,160))
-  self.assertEqual(r['missing'],['Data Analysis Project','Practical Test 1','Block 1 quiz','Block 2 quiz','Block 1 assignment','Block 2 assignment'])
-  self.assertNotIn('ML Project',' '.join(r['missing']))   # pending is not missing
-  # once the project is marked as 0 and 0 the same student has a final of 0
+  self.assertEqual((r['provisional']['marks'],r['provisional']['percent']),(0,0));self.assertEqual(r['provisional']['text'],'Semester 1 provisional: 0.00 of 60 marks, 0.00 percent')
+  self.assertEqual((r['assignments']['weighted'],r['quizzes']['weighted'],r['practical_test_1']['weighted']),(0,0,0));self.assertIsNone(r['practical_test_1']['mark'])
+  self.assertEqual(r['missing'],['W01','W02','W03','W04','W05','Q1','Q2','Q3','Q4','Q5','TEST1']);self.assertEqual(r['unresolved'],[])
+  self.assertNotIn('ML_PROJECT',' '.join(r['missing']))   # pending is not missing
+  # once the project is marked 0 and 0 the same student has a final of 0
   done=semester_totals([graded('NOBODY','ML_PROJECT',0,cohort='CML3112',part_scores={'A':0,'B':0})])[0];self.assertEqual(done['final'],0.0)
- def test_missing_quiz_or_assignment_part_still_scores_zero(self):
-  cur=[graded('S1','W08',20),graded('S1','W10',20),graded('S1','W11',20),graded('S1','DA_PROJECT',100),graded('S1','TEST1',100)]
-  r=semester_totals(cur)[0];self.assertEqual(r['assignments']['blocks'][0]['earned'],20);self.assertEqual(r['assignments']['blocks'][1]['earned'],40)
-  self.assertEqual(r['quizzes']['earned'],0);self.assertIn('Block 1 quiz',r['missing']);self.assertEqual(r['provisional']['marks'],round2(60/160*15+10+15))
- def test_leftover_demo_and_test2_receipts_are_ignored(self):
-  cur=full_coursework('S1')+[graded('S1','DA_PROJECT',100),graded('S1','TEST1',100),graded('S1','DEMO',100),graded('S1','TEST2',100)]
-  r=semester_totals(cur)[0];self.assertEqual(r['provisional']['marks'],55);self.assertIsNone(r['final'])
+ def test_all_full_marks_are_sixty_provisional_and_a_hundred_with_the_project(self):
+  r=semester_totals(full('S1'))[0]
+  self.assertIsNone(r['final']);self.assertEqual(r['project_status'],'Project: PENDING');self.assertTrue(r['project']['pending'])
+  self.assertEqual((r['provisional']['marks'],r['provisional']['out_of'],r['provisional']['percent']),(60,60,100))
+  self.assertEqual(r['provisional']['text'],'Semester 1 provisional: 60.00 of 60 marks, 100.00 percent');self.assertEqual(r['missing'],[]);self.assertEqual(r['unresolved'],[])
+  r=semester_totals(full('S1')+[graded('S1','ML_PROJECT',45,part_scores={'A':30,'B':15})])[0]
+  self.assertEqual(r['final'],100.0);self.assertEqual(r['project']['weighted'],40.0);self.assertEqual(r['project_status'],'Project: marked');self.assertFalse(r['project']['pending'])
+ def test_mixed_marks_by_hand(self):
+  # assignments 20+10+0+15+5 = 50 of 100 -> 10.00; quizzes 5+4+3+2+1 = 15 of 25 -> 12.00; Test 1 65 -> 13.00
+  cur=marks('S1',[5,4,3,2,1],[20,10,0,15,5],65)
+  r=semester_totals(cur)[0]
+  self.assertEqual((r['assignments']['weighted'],r['quizzes']['weighted'],r['practical_test_1']['weighted']),(10.0,12.0,13.0))
+  self.assertEqual(r['provisional']['marks'],35.0);self.assertEqual(r['provisional']['percent'],58.33);self.assertEqual(r['provisional']['text'],'Semester 1 provisional: 35.00 of 60 marks, 58.33 percent')
+  # project Part A 24 + Part B 9 = 33 of 45 -> 33 x 40 / 45 = 29.33; final = 35 + 29.33
+  r=semester_totals(cur+[graded('S1','ML_PROJECT',33,part_scores={'A':24,'B':9})])[0]
+  self.assertEqual(r['project']['weighted'],29.33);self.assertEqual(r['final'],64.33);self.assertEqual(r['final'],round2(r['provisional']['marks']+r['project']['weighted']))
+ def test_project_with_one_part_marked_stays_pending(self):
+  cur=marks('S1',[5]*5,[20]*5,65)+[graded('S1','ML_PROJECT',None,status='PART_MARKED',part_scores={'A':27,'B':None})]
+  r=semester_totals(cur)[0]
+  self.assertIsNone(r['final']);self.assertEqual(r['project_status'],'Project: PENDING');self.assertEqual((r['project']['part_a'],r['project']['part_b']),(27,None));self.assertEqual(r['project']['weighted'],0)
+  self.assertEqual(r['provisional']['marks'],53.0);self.assertEqual(r['provisional']['text'],'Semester 1 provisional: 53.00 of 60 marks, 88.33 percent')   # 20 + 20 + 13
+  self.assertEqual(r['provisional'],semester_totals(cur[:-1])[0]['provisional'])   # Part A alone changes nothing
+  b_only=semester_totals([graded('S1','ML_PROJECT',None,status='PART_MARKED',part_scores={'A':None,'B':12})])[0]
+  self.assertIsNone(b_only['final']);self.assertEqual(b_only['project_status'],'Project: PENDING')
+ def test_a_held_receipt_cannot_leak_project_marks_in(self):
+  cur=full('S1')+[graded('S1','ML_PROJECT',None,status='IDENTITY_CONFLICT',part_scores={'A':30,'B':15})]
+  r=semester_totals(cur)[0];self.assertIsNone(r['final']);self.assertIsNone(r['project']['part_a'])
+ def test_typed_zero_parts_are_a_mark_of_zero_not_pending(self):
+  r=semester_totals(full('S1')+[graded('S1','ML_PROJECT',0,part_scores={'A':0,'B':0})])[0];self.assertEqual(r['final'],60.0);self.assertFalse(r['project']['pending'])
+ def test_uncounted_items_are_present_but_ignored(self):
+  noise=[graded('S1',a,v) for a,v in (('Q6',5),('Q7',5),('Q8',5),('Q9',5),('Q10',5),('Q11',5),('W06',20),('W07',20),('W08',20),('W09',20),('W10',20),('W11',20),('W12',20),('DA_PROJECT',100),('TEST2',100),('DEMO',100))]
+  r=semester_totals(noise)[0]
+  self.assertEqual(r['provisional']['marks'],0);self.assertEqual(r['quizzes']['earned'],0);self.assertEqual(r['assignments']['earned'],0);self.assertEqual(r['missing'],['W01','W02','W03','W04','W05','Q1','Q2','Q3','Q4','Q5','TEST1'])
+  both=semester_totals(full('S1')+noise)[0];self.assertEqual(both['provisional']['marks'],60);self.assertIsNone(both['final'])
+  self.assertEqual(both,semester_totals(full('S1'))[0])
+ def test_non_graded_counted_items_are_reported_as_unresolved_and_score_zero(self):
+  cur=full('S1')
+  cur=[x for x in cur if x['assessment'] not in ('Q2','W04','TEST1')]
+  cur+=[graded('S1','Q2',None,status='QUIZ_SCORE_PENDING'),graded('S1','W04',None,status='AWAITING_GRADING'),graded('S1','TEST1',None,status='EQUAL_TIME_CONFLICT')]
+  r=semester_totals(cur)[0]
+  self.assertEqual(r['unresolved'],['W04','Q2','TEST1']);self.assertEqual(r['missing'],[])
+  self.assertEqual((r['assignments']['weighted'],r['quizzes']['weighted'],r['practical_test_1']['weighted']),(16.0,16.0,0.0))   # 80/100, 20/25, no test
+  self.assertEqual(r['provisional']['marks'],32.0);self.assertIsNone(r['practical_test_1']['mark'])
+  # an unresolved item on one student does not touch another
+  other=semester_totals(cur+full('S2'))
+  self.assertEqual([x['unresolved'] for x in other],[['W04','Q2','TEST1'],[]])
+ def test_unresolved_is_also_a_column_in_the_csv(self):
+  import csv as _csv
+  rows=semester_totals(marks('S1',[5,5,5,5],[20]*5,100)+[graded('S1','Q5',None,status='AWAITING_GRADING')])
+  with tempfile.TemporaryDirectory() as d:
+   write_totals_csv(rows,Path(d)/'t.csv');out=list(_csv.DictReader(open(Path(d)/'t.csv')))
+  self.assertEqual(out[0]['unresolved'],'Q5');self.assertEqual(out[0]['missing'],'');self.assertEqual(out[0]['provisional_marks'],'56.0')
+ def test_rounding_halves_go_up_each_part_and_the_rounded_sum(self):
+  self.assertEqual(round2(8.625),8.63);self.assertEqual(round2(8.624),8.62);self.assertEqual(round2(0),0);self.assertEqual(round2(15),15)
+  # assignments 43.125 of 100 -> 43.125 x 20 / 100 = 8.625 -> 8.63 (Python round() would give 8.62)
+  r=semester_totals([graded('S1','W01',20),graded('S1','W02',20),graded('S1','W03',3.125)])[0]
+  self.assertEqual(r['assignments']['weighted'],8.63)
+  # Part A 1 + Part B 0 = 1 of 45 -> 40/45 = 0.888.. -> 0.89
+  p=semester_totals([graded('S2','ML_PROJECT',1,part_scores={'A':1,'B':0})])[0];self.assertEqual(p['project']['weighted'],0.89);self.assertEqual(p['final'],0.89)
+  # the total is the rounded sum of the rounded parts
+  cur=[graded('S3','W01',20),graded('S3','W02',20),graded('S3','W03',3.125),graded('S3','Q1',1),graded('S3','TEST1',33)]   # 8.63 + 0.80 + 6.60
+  r=semester_totals(cur)[0];self.assertEqual((r['assignments']['weighted'],r['quizzes']['weighted'],r['practical_test_1']['weighted']),(8.63,0.8,6.6));self.assertEqual(r['provisional']['marks'],16.03)
  def test_totals_csv_has_blank_final_while_pending(self):
   import csv as _csv
-  rows=semester_totals(full_coursework('S1')+[graded('S1','DA_PROJECT',100),graded('S1','TEST1',100)]+full_coursework('S2')+[graded('S2','DA_PROJECT',100),graded('S2','TEST1',100),graded('S2','ML_PROJECT',45,part_scores={'A':30,'B':15})])
+  rows=semester_totals(full('S1')+full('S2')+[graded('S2','ML_PROJECT',45,part_scores={'A':30,'B':15})])
   with tempfile.TemporaryDirectory() as d:
-   write_totals_csv(rows,Path(d)/'t.csv');out={o['student_id']:o for o in _csv.DictReader((Path(d)/'t.csv').open())}
+   write_totals_csv(rows,Path(d)/'t.csv');out={o['student_id']:o for o in _csv.DictReader(open(Path(d)/'t.csv'))}
+  self.assertEqual(tuple(next(iter(out.values())).keys()),TOTALS_COLUMNS);self.assertNotIn('data_analysis_project_weighted',TOTALS_COLUMNS)
   self.assertEqual((out['S1']['final_percent'],out['S1']['project_status']),('','Project: PENDING'))
   self.assertEqual((out['S2']['final_percent'],out['S2']['project_status']),('100.0','Project: marked'))
-  self.assertEqual(out['S1']['provisional_marks'],'55.0')
+  self.assertEqual((out['S1']['provisional_marks'],out['S1']['provisional_out_of']),('60.0','60'))
  def test_build_accepts_part_scores_and_rejects_bad_ones(self):
   def manifest(p):
    (p/'CML3111_ML_PROJECT_manifest.json').write_text(json.dumps(dict(key='CML3111|ML_PROJECT',exported_at='test',window=dict(open='2026-11-24T00:00:00Z',close='2026-12-11T20:59:00Z'),
@@ -150,7 +203,7 @@ class SemesterTotalsTests(unittest.TestCase):
    a=run(p,status='PART_MARKED',score=None,part_scores={'A':24.5});r=semester_totals(a['current'])[0]
    self.assertEqual(r['project_status'],'Project: PENDING');self.assertEqual(r['project']['part_a'],24.5);self.assertEqual(a['current'][0]['maximum'],45)
    b=run(p,status='GRADED',score=None,part_scores={'A':24.5,'B':9});r=semester_totals(b['current'])[0]
-   self.assertEqual(r['project_status'],'Project: marked');self.assertEqual(b['current'][0]['score'],33.5);self.assertEqual(r['project']['weighted'],33.5)
+   self.assertEqual(r['project_status'],'Project: marked');self.assertEqual(b['current'][0]['score'],33.5);self.assertEqual(r['project']['weighted'],29.78)
    for bad in (dict(status='GRADED',score=None,part_scores={'A':31,'B':9}),dict(status='GRADED',score=None,part_scores={'A':24,'B':16}),dict(status='GRADED',score=None,part_scores={'A':24}),
                dict(status='PART_MARKED',score=None,part_scores={'A':24,'B':9}),dict(status='GRADED',score=40,part_scores={'A':24,'B':9}),dict(status='PART_MARKED',score=10,part_scores={'A':24}),
                dict(status='PART_MARKED',score=None,part_scores={'C':1}),dict(status='GRADED',score=33,part_scores={'A':'x','B':9})):
@@ -161,11 +214,11 @@ class CommandLineTotalsTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    led=Path(d)/'ledger.json'
    led.write_text(json.dumps(dict(students=[dict(cohort='CML3111',student_id='S1'),dict(cohort='CML3111',student_id='NOBODY')],attempts=[],
-     current=full_coursework('S1')+[graded('S1','DA_PROJECT',100),graded('S1','TEST1',100)])))
+     current=full('S1'))))
    cmd=[sys.executable,'-I','-B',str(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader/continuous_assessment.py'),'--from-ledger',str(led),'--totals-out',str(Path(d)/'t.csv')]
    r=subprocess.run(cmd,capture_output=True,text=True);self.assertEqual(r.returncode,0,r.stderr)
-   out={o['student_id']:o for o in _csv.DictReader((Path(d)/'t.csv').open())}
-   self.assertEqual(out['S1']['provisional_marks'],'55.0');self.assertEqual(out['S1']['final_percent'],'');self.assertEqual(out['S1']['project_status'],'Project: PENDING')
+   out={o['student_id']:o for o in _csv.DictReader(open(Path(d)/'t.csv'))}
+   self.assertEqual(out['S1']['provisional_marks'],'60.0');self.assertEqual(out['S1']['final_percent'],'');self.assertEqual(out['S1']['project_status'],'Project: PENDING')
    self.assertEqual(out['NOBODY']['provisional_marks'],'0.0')
    bad=subprocess.run(cmd[:-2],capture_output=True,text=True);self.assertNotEqual(bad.returncode,0)   # --from-ledger without --totals-out is refused
 class PolicyFilesInStepTests(unittest.TestCase):
@@ -254,4 +307,3 @@ class ContinuousAssessmentTests(unittest.TestCase):
    with self.assertRaisesRegex(ValueError,'requires evidence'):
     build(p,timing={'r':dict(status='ON_TIME')})
 if __name__=='__main__':unittest.main()
-# TESTS_PATCHED_20261103

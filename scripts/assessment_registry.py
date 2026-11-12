@@ -12,10 +12,11 @@ TZ = timezone(timedelta(hours=3))
 COHORTS = {'CML3112': (1, 11), 'CML3113': (4, 8), 'CML3111': (4, 11)}
 QUIZ_WEEKS = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13]
 CHALLENGE_WEEKS = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12]
-# Weights of 3 November 2026 (no Practical Test 2, no demo; data/assessment_blocks_20261103.json is the source of truth).
+# Weights of 10 November 2026 (data/assessment_policy_20261110.json is the source of truth; a test keeps this in step).
+# challenges = assignments A1 to A5 only, quizzes = Q1 to Q5 only; the Data Analysis project, Practical Test 2 and the demo carry no marks.
 # ml_project = Part A coded notebook /30 + Part B decision memo /15.
-WEIGHTS = {'quizzes': 15, 'challenges': 15, 'data_project': 10, 'test1': 15,
-           'ml_project': 45}
+WEIGHTS = {'quizzes': 20, 'challenges': 20, 'test1': 20,
+           'ml_project': 40}
 TITLES = ['Three problems one dataset', 'Proof of life', 'Engineering functions',
           'Reading report', 'Pandas investigation', 'Cleaning and quality',
           'Regression and baseline', 'Classification and cost', 'Validation and trust',
@@ -87,7 +88,7 @@ def records():
 
 
 def grade_headers():
-    return ['student_id','name','email','cohort'] + [f'Q{i}' for i in range(1,13)] + [f'W{w:02}' for w in CHALLENGE_WEEKS] + ['Data Analysis Project','Practical Test 1','ML Project Part A','ML Project Part B','Semester 1 provisional','Project','Final %','Band','Missing','Challenges done']
+    return ['student_id','name','email','cohort'] + [f'Q{i}' for i in range(1,13)] + [f'W{w:02}' for w in CHALLENGE_WEEKS] + ['Practical Test 1','ML Project Part A','ML Project Part B','Semester 1 provisional','Project','Final %','Band','Missing','Challenges done']
 
 
 if __name__ == '__main__':

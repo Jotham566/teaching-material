@@ -359,7 +359,7 @@ def week2(code):
         "Five people editing the same project without overwriting each other, and a record of who did which "
         "part.",
         "**Which is why it is in this course at all**",
-        "Sixty-five per cent of your mark is individual, and two of your assessments are team projects. The "
+        "All of your mark is individual, and the data analysis project is done in a team. The "
         "commit history is how a team mark becomes an individual one. It is not administrative — it is the "
         "evidence that you did your share.",
         "**And it is what industry uses**",
@@ -367,7 +367,7 @@ def week2(code):
         kicker="VERSION CONTROL")
     notes(s, "The 'final_v3_REAL_final' folder is a problem everybody recognises, and Git is the tool built for "
              "it. The assessment consequence is the part to take seriously: your commit history is the evidence "
-             "of which part of a team project you did, and sixty-five per cent of your mark is "
+             "of which part of a team project you did, and all of your mark is "
              "individual.\n\nTO TEACH: that line usually gets a laugh because everyone has done it — use it, "
              "the problem is familiar even though the solution is not. Be explicit about the assessment "
              "consequence; students engage with Git far more readily once they understand it is how their "
@@ -475,7 +475,7 @@ def week2(code):
 
     # -------- SEGMENT 10
     s = s_points(prs, "Before you leave the room",
-                 [("This week's quiz — five minutes, and it counts for one per cent",
+                 [("This week's quiz — five minutes, and it counts, one mark each",
                    "A QR code goes up, you answer five questions on your phone, and you see your score "
                    "after submission. The questions check notebook state, version control and error diagnosis."),
                   ("Assignment A2 — due at the start of Week 3",
@@ -606,7 +606,7 @@ def week2(code):
 
     s = s_quiz(prs, 2,
                "Out-of-order execution, what Restart and Run All proves, and reading one git status output.", qr_path=qrp(code, 2))
-    notes(s, "The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
+    notes(s, "The last five minutes of every teaching session. Five questions, one mark each, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Quizzes 1 to 5 all count, each worth four of the twenty quiz marks.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
 
     s = s_closing(prs, "Every error today told you\nexactly what it needed.",
                   "Everything you saw go wrong today has gone wrong for every engineer in this building, "
@@ -1154,7 +1154,7 @@ def week3(code):
     s = s_quiz(prs, 3,
                "A unit error that returns a plausible number, a function that prints instead of returning, and "
                         "one traceback.", qr_path=qrp(code, 3))
-    notes(s, "The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
+    notes(s, "The last five minutes of every teaching session. Five questions, one mark each, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Quizzes 1 to 5 all count, each worth four of the twenty quiz marks.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
 
     s = s_closing(prs, "Six functions ran cleanly\nand returned wrong answers.",
                   "Six functions today produced confident, plausible, wrong answers and Python raised no "

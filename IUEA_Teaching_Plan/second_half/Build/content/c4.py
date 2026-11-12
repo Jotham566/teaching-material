@@ -478,13 +478,13 @@ def build(code):
                   steps=[dict(head='1 Rehearse', text='Practice version, not marked, released after this class', icon='folder'), dict(head='2 Sit', text='Week 12 slot: 3 hours, alone, in Colab', icon='clock'),
                          dict(head='3 Code', text='Part A: coded notebook, 30 marks', icon='gear'), dict(head='4 Decide', text='Part B: structured decision memo, 15 marks', icon='doc'),
                          dict(head='5 Submit', text='Same submit steps as Test 1', icon='check')],
-                  highlight=None, caption='The five stages of the project: it is individual, timed and auto-graded, covers only Weeks 1 to 11, and is worth 45 percent. There is no demo, no presentation and no clinic.',
+                  highlight=None, caption='The five stages of the project: it is individual, timed and auto-graded, covers only Weeks 1 to 11, and is worth 40 percent. There is no demo, no presentation and no clinic.',
                   notes=('Here is your project. It works like Practical Test 1. It is individual, timed, highly automated and auto-graded. You sit it alone, for three hours, supervised, in Colab, in your Week 12 class slot. '
-                         'It covers only what we taught in Weeks 1 to 11, and it counts for 45 percent of the course. Part A is the coded notebook, out of 30. Part B is a structured decision memo inside the notebook, out of 15. '
+                         'It covers only what we taught in Weeks 1 to 11, and it counts for 40 percent of the course. Part A is the coded notebook, out of 30. Part B is a structured decision memo inside the notebook, out of 15. '
                          'There is no demo, no presentation and no clinic. Right after this class you get a practice version, the rehearsal, which is not marked. Which step do you want to practise first?')))
 
     # 23 the project: format and marks
-    S.append(dict(kind='table', title='The project is auto-graded and worth 45 percent of the course',
+    S.append(dict(kind='table', title='The project is auto-graded and worth 40 percent of the course',
                   headers=['Item', 'What you need to know'],
                   rows=[['Format', 'Individual, timed, highly automated and auto-graded, like Practical Test 1. A 3-hour supervised practical sitting in Colab. It covers only Weeks 1 to 11.'],
                         ['Part A: 30 marks', 'The coded notebook, auto-graded.'],
@@ -493,7 +493,7 @@ def build(code):
                   note='Nothing in the project is taught after Class 4.',
                   notes=('This slide says what the project is. It is an individual, timed, auto-graded sitting of three hours in Colab, like Practical Test 1, and it covers only Weeks 1 to 11. '
                          'Part A, the coded notebook, is out of 30. Part B is a structured decision memo inside the notebook, out of 15. '
-                         'Both parts are auto-graded. Part B is checked by structured fields that are cross-checked against your own results, plus keyword checks on two short answers. Together they count for 45 percent of the course. Which part do you expect to find harder?')))
+                         'Both parts are auto-graded. Part B is checked by structured fields that are cross-checked against your own results, plus keyword checks on two short answers. Together they count for 40 percent of the course. Which part do you expect to find harder?')))
 
     # 23b the project: rehearsal, dates, submission
     S.append(dict(kind='table', title='A rehearsal comes first, and the sitting is in your Week 12 class slot',
@@ -563,12 +563,12 @@ def build(code):
                          'And a name error on with_imputer means you skipped the helper cell, so run all cells from the top. Read the last line of the error first. It usually tells you the answer.')))
 
     S.append(dict(kind='list', title='How this class counts towards your coursework',
-                  items=['The Block 2 quiz opens in the last 20 minutes of this class and stays open for 24 hours.', f'The Block 2 assignment (A9, A10, A11) closes on {C.COHORTS[code]["b2_close"]} (Kampala time).',
-                         f'The Engineering ML project is an individual, timed, auto-graded 3-hour sitting worth 45 percent (Part A 30, Part B 15). Proposed: {proj}, lecturer to confirm.',
+                  items=['The Block 2 quiz opens in the last 20 minutes of this class and stays open for 24 hours. It is practice and does not count toward your final mark.', f'The Block 2 assignment (A9, A10, A11) closes on {C.COHORTS[code]["b2_close"]} (Kampala time).',
+                         f'The Engineering ML project is an individual, timed, auto-graded 3-hour sitting worth 40 percent (Part A 30, Part B 15, scaled from 45). Proposed: {proj}, lecturer to confirm.',
                          'The rehearsal (a practice project) is released after this class and is not marked.'],
                   icons=['clock', 'doc', 'lock', 'folder'],
-                  notes=('A word on how this counts. The Block 2 quiz opens in the last twenty minutes of this class, after the lab, and stays open for twenty-four hours. The twenty-five minutes on the clock are for opening it and explaining how it works. '
-                         f'The Block 2 assignment has three parts, A9, A10 and A11, and it closes on {C.COHORTS[code]["b2_close"]}, Kampala time. The project is an individual, timed, auto-graded sitting of three hours in Week 12, worth 45 percent of the course: '
+                  notes=('A word on how this counts. The block work is practice: it does not count toward your final mark (only A1 to A5 and Q1 to Q5 do), but it is collected and you get feedback. The Block 2 quiz opens in the last twenty minutes of this class, after the lab, and stays open for twenty-four hours. The twenty-five minutes on the clock are for opening it and explaining how it works. '
+                         f'The Block 2 assignment has three parts, A9, A10 and A11, and it closes on {C.COHORTS[code]["b2_close"]}, Kampala time. The project is an individual, timed, auto-graded sitting of three hours in Week 12, worth 40 percent of the course: '
                          f'Part A, the coded notebook, out of 30, and Part B, the structured decision memo, out of 15. The proposed time for your cohort is {proj}, and your lecturer confirms it. '
                          'The rehearsal is released right after this class and is not marked. Use it to practise.')))
 
@@ -577,7 +577,7 @@ def build(code):
               'Put the lab notebook and engineering_data.csv in the shared class folder and post the link. Every learner needs both files in Colab, in the Files panel.',
               'Write the "check your numbers" table on the board before the lab (numbers for your cohort are in the table below).',
               'Prepare the Block 2 quiz for the end of the class and confirm in writing how long it stays open. The deck says it opens in the last 20 minutes and stays open for 24 hours. The 25-minute slot on the clock is for opening it and explaining it. The deck has 32 authored slides, so keep the formula slides brisk.',
-              'Have the rehearsal (the practice version of the project) ready to release right after the class. The project is an individual, timed, auto-graded 3-hour sitting in the Week 12 class slot, covering Weeks 1 to 11, worth 45 percent (Part A 30, Part B 15). The deck gives the proposed times as lecturer to confirm (CML3112 Tue 1 Dec 11:00 to 14:00, CML3113 Fri 4 Dec 08:00 to 11:00, CML3111 Fri 4 Dec 11:00 to 14:00). Confirm them in writing.'],
+              'Have the rehearsal (the practice version of the project) ready to release right after the class. The project is an individual, timed, auto-graded 3-hour sitting in the Week 12 class slot, covering Weeks 1 to 11, worth 40 percent (Part A 30, Part B 15, scaled from 45). The deck gives the proposed times as lecturer to confirm (CML3112 Tue 1 Dec 11:00 to 14:00, CML3113 Fri 4 Dec 08:00 to 11:00, CML3111 Fri 4 Dec 11:00 to 14:00). Confirm them in writing.'],
         misconceptions=[('A clever new feature must help', 'Test it. Here the load_x_ambient column changes the error by hardly anything.'),
                         ('The model with the lowest number on the table is the one to choose', 'Look at the cross-validated range too, and prefer the simpler model when scores are close.'),
                         ('Equipment_id should be a feature because it is in the file', 'The model must work on a machine it has never met, and a new machine has no column of its own.'),

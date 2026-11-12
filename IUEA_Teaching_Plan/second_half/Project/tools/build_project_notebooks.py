@@ -70,7 +70,7 @@ def intro_cell(code, v, mode, configured):
     else:
         draft = '' if configured or mode == 'solution' else '> **DRAFT. The submission form for this project is not set up yet. Do not hand this notebook out.**\n\n'
         head = f'''{draft}# {code} Machine Learning: Engineering ML project
-**Part A: coded notebook (30 marks) and Part B: decision memo form (15 marks). Together 45 percent of the course. One sitting of 3 hours, individual work, marked automatically.**
+**Part A: coded notebook (30 marks) and Part B: decision memo form (15 marks). Together 45 marks, scaled to 40 percent of the course. One sitting of 3 hours, individual work, marked automatically.**
 **Sitting:** {PC.SITTING_TEXT[code]}. Your own 3 hours start when you press Start on the entry page and cannot be paused; the class closing time is the last cutoff.'''
     return f'''{head}
 

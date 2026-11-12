@@ -251,15 +251,15 @@ def build(code):
              "temptation is to spend forty minutes on admin; do not. The hands-on prediction exercise is what "
              "makes them come back next week.")
 
-    s = s_figure(prs, "How you are assessed", f("assessment.png"),
+    s = s_figure(prs, "How you are assessed", f("assessment_20261110.png"),
                  "No written examination anywhere in this course. Everything is practical: work with data, "
-                 "write and run code, build and evaluate a model, explain your reasoning. Sixty-five per cent "
-                 "of the mark is individual, so you cannot be carried and you cannot be dragged down.",
+                 "write and run code, build and evaluate a model, explain your reasoning. All of the "
+                 "mark is individual: assignments 20, quizzes 20, Practical Test 1 20 and the Engineering ML project 40.",
                  kicker="ASSESSMENT")
     notes(s, "Two details the figure does not carry. Every teaching session ends with a five-minute quiz of "
              "five questions, taken on your phone by QR code, auto-marked, and you have your score before "
-             "you leave the room. There are twelve of them and the best ten count, one per cent each, so "
-             "missing two costs you nothing and there are no resits to arrange. The two practical tests run "
+             "you leave the room. Quizzes 1 to 5 all count, each worth four of the twenty quiz marks, so "
+             "every one matters and there are no resits to arrange. The two practical tests run "
              "offline on lab machines with no internet and no AI assistants. AI tools are permitted and taught "
              "in the coursework provided you declare what you used, because the mark follows what you can "
              "explain.")
@@ -268,8 +268,8 @@ def build(code):
         "**What I expect from you**",
         "Attend. There is one three-hour session a week and no lecture to catch up from — the value is in the "
         "practical and the challenge, which cannot be read later.",
-        "Do the weekly deliverable every week. Eleven small pieces spread over twelve weeks is manageable; "
-        "nine of them attempted in December is not.",
+        "Do the weekly deliverable every week. Five assignments and five quizzes in Weeks 1 to 5 all count; "
+        "none can be dropped.",
         "Ask, but ask well. Bring the error message, what you already tried, and what you expected to happen. "
         "That is not a hurdle in front of help — it is the actual professional skill.",
         "Struggle before you seek rescue. In the challenge segments you are supposed to be stuck for a while.",
@@ -702,16 +702,14 @@ def build(code):
 
     s = s_prose(prs, "How your team works, all semester", [
         "**Teams of four or five, formed today, kept to the end**",
-        "You will do two projects together: a data analysis project due Week 8, and the Engineering ML Project "
-        "from Week 9 to Week 15.",
+        "A team data analysis project due Week 8 (practice, not counted), then the Engineering ML Project: an individual timed sitting in Week 12, worth 40 marks.",
         "**Roles rotate at every milestone**",
         "Data analyst · machine learning engineer · domain engineer · documentation lead · presenter. Nobody "
         "does the same job twice, so nobody hides in one role.",
         "**Individual accountability is built in**",
-        "Sixty-five per cent of the mark is individual. Your team keeps a contribution log, and it is checked "
+        "All of the mark is individual. Your team keeps a contribution log, and it is checked "
         "against the repository history.",
-        "In Week 15 every student answers two unseen questions about their own team's work. That is how a team "
-        "mark becomes an individual one — you cannot be carried, and you will not be dragged down.",
+        "The Engineering ML Project is an individual timed sitting in Week 12, so the project mark is yours alone.",
         "**Sign the team charter before you leave**",
         "Names, contact details, a weekly meeting slot, and what you will do if somebody stops contributing. "
         "Agreeing that now is much easier than agreeing it in November."],
@@ -888,7 +886,7 @@ def build(code):
     s = s_quiz(prs, 1,
                "Features and target read off a table, regression told from classification, and one of the four "
                         "limits applied to a case.", qr_path=qrp(code, 1))
-    notes(s, "The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
+    notes(s, "The last five minutes of every teaching session. Five questions, one mark each, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Quizzes 1 to 5 all count, each worth four of the twenty quiz marks.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
 
     s = s_closing(prs, "You have already done\nmachine learning once.",
                   "You answered a real engineering question today with a pencil and twelve rows of data, and "

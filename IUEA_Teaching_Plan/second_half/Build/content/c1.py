@@ -442,10 +442,10 @@ def build(code):
                          'And a value error about NaN means a missing value reached the model, so use the imputer pipeline. Read the last line of the error first. It usually tells you the answer.')))
 
     S.append(dict(kind='list', title='How this class counts towards your coursework',
-                  items=['Nothing is submitted today.', 'Block 1 is Classes 1 and 2. Its assignment has two parts: A7 (regression) and A8 (classification).',
+                  items=['Nothing is submitted today.', 'Block 1 is Classes 1 and 2. Its assignment has two parts: A7 (regression) and A8 (classification). It is practice: it does not count toward your final mark, but it is collected and you get feedback.',
                          f'The Block 1 assignment closes on {C.COHORTS[code]["b1_close"]} (Kampala time).', 'The Block 1 quiz opens in the last 20 minutes of Class 2 and stays open for 24 hours.', 'Keep your saved Class 1 notebook for the assignment. Class 2 has its own notebook, and you reuse these cleaning steps.'],
                   icons=['lock', 'doc', 'clock', 'clock', 'folder'],
-                  notes=('A word on how this counts. Nothing is submitted today. Block 1 is this class and the next one. Its assignment has two parts: part A on regression, which repeats the steps of today\'s lab with the assignment notebook, and part B on classification, which follows next class. '
+                  notes=('A word on how this counts. The block work is practice: it does not count toward your final mark (only A1 to A5 and Q1 to Q5 do), but it is collected and you get feedback. Nothing is submitted today. Block 1 is this class and the next one. Its assignment has two parts: part A on regression, which repeats the steps of today\'s lab with the assignment notebook, and part B on classification, which follows next class. '
                          f'The Block 1 assignment closes on {C.COHORTS[code]["b1_close"]}, Kampala time. The Block 1 quiz opens in the last 20 minutes of Class 2, stays open for 24 hours, and covers both classes. Keep your saved Class 1 notebook for the assignment. Next class has its own notebook, and you reuse the cleaning steps from this one.')))
 
     s['facilitator'] = dict(

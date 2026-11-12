@@ -73,6 +73,7 @@ class Worker:
             '--tmpfs=/work:rw,nosuid,size=256m,uid=65534,gid=65534',
             '--mount', 'type=bind,src=%s,dst=/inputs,readonly' % Path(work).resolve(),
             '--mount', 'type=bind,src=%s,dst=/worker.py,readonly' % (HERE/'isolated_worker.py'),
+            '--mount', 'type=bind,src=%s,dst=/colab_shim.py,readonly' % (HERE/'colab_shim.py'),
             IMAGE, 'python', '-u', '/worker.py'], stdin=subprocess.PIPE,
             stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=0)
         self.selector = selectors.DefaultSelector()
@@ -109,12 +110,17 @@ class Worker:
 
 
 class Namespace:
-    def __init__(self, worker, per_call):
-        self.worker, self.per_call = worker, per_call
+    def __init__(self, worker, per_call, state=None):
+        # state=None reads the final namespace (the original behaviour); an integer reads
+        # the snapshot taken right after the cell that last changed a graded name.
+        self.worker, self.per_call, self.state = worker, per_call, state
         self.cache = {}
 
+    def _scope(self):
+        return {} if self.state is None else {'state': self.state}
+
     def call_with_dataframe(self,name,rows,column):
-        return decode(self.worker.request(op='call_dataframe',name=name,rows=rows,column=column,timeout=self.per_call))
+        return decode(self.worker.request(op='call_dataframe',name=name,rows=rows,column=column,timeout=self.per_call,**self._scope()))
 
     def has_syntax(self, name, kind):
         import ast
@@ -129,11 +135,12 @@ class Namespace:
 
     def get(self, name, default=None):
         if name not in self.cache:
-            value = self.worker.request(op='get', name=name)
+            value = self.worker.request(op='get', name=name, **self._scope())
             if isinstance(value, dict) and value.get('type') == 'callable':
                 def remote(*args):
                     return decode(self.worker.request(op='call', name=name, args=args, timeout=self.per_call,
-                        preserve_arguments=name in ('clean_records','normalise_orders','clean_line_items','audit_cleaning')))
+                        preserve_arguments=name in ('clean_records','normalise_orders','clean_line_items','audit_cleaning'),
+                        **self._scope()))
                 self.cache[name] = remote
             else:
                 self.cache[name] = decode(value)
@@ -141,12 +148,24 @@ class Namespace:
         return default if isinstance(value, str) and value == '__MISSING__' else value
 
 
-def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_timeout):
+def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_timeout, fairness=None):
+    if assignment == 'TEST1' and fairness is None and os.environ.get('IUEA_TEST1_FAIRNESS', '1') != '0':
+        # Test 1 (10 Nov 2026): the original run, unchanged, then a Colab-shim / own-cell /
+        # alias / reference-input run; each question keeps the higher award.
+        import test1_fairness
+        return test1_fairness.evaluate(evaluate, work, spec_path, hidden_path, cohort, per_cell, total_timeout)
     import iuea_grader as ig
+    import grader_fairness as gf
     spec = ig.load_spec(assignment, spec_path, include_hidden=True, hidden_path=hidden_path)
+    # Colab shims, own-cell snapshots and name aliases (lecturer's order, 10 Nov 2026).
+    # On by default for A2-A5 only; other assessments keep the original behaviour.
+    fair = (assignment in gf.FAIRNESS_ASSESSMENTS) if fairness is None else bool(fairness)
+    extra = {}
+    if fair:
+        extra = dict(colab_shims=True, watch=gf.watch_names(assignment, cohort or getattr(spec, 'DEFAULT_COHORT', '')))
     worker = Worker(work, total_timeout)
     try:
-        meta = worker.request(op='init', timeout=total_timeout, cell_timeout=per_cell)
+        meta = worker.request(op='init', timeout=total_timeout, cell_timeout=per_cell, **extra)
         if not isinstance(meta, dict):
             raise ValueError('Invalid execution metadata')
         declared = str(meta.get('cohort', ''))
@@ -176,6 +195,35 @@ def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_t
             result['questions'][qid] = dict(ok=checked.ok, awarded=checked.awarded,
                 marks=checked.marks, msg=checked.message, visible=bool(question.get('visible', True)), err=checked.error)
         result['fingerprint'] = ig.answer_fingerprint(questions, ns)
+        if fair:
+            result['fairness'] = _fairness_pass(ig, gf, worker, per_cell, ns, meta, assignment,
+                                                use_cohort, questions, result)
         return result
     finally:
         worker.close()
+
+
+def _fairness_pass(ig, gf, worker, per_cell, ns, meta, assignment, cohort, questions, result):
+    """Own-cell snapshots and name aliases (grader_fairness). Only ever adds credit; any
+    problem here keeps the ordinary result."""
+    import copy
+    before = copy.deepcopy(result['questions'])
+    try:
+        snaps = meta.get('snapshots') or []
+        namespaces = [('the whole notebook', ns)]
+        for i, cell in enumerate(snaps):
+            state_ns = Namespace(worker, per_cell, state=i)
+            state_ns.cache['COHORT'] = cohort
+            state_ns.notebook_sources = ns.notebook_sources
+            for k in ('_IUEA_ASSIGNED_DATA', '_IUEA_NOTEBOOK_VERSION'):
+                if k in ns.cache:
+                    state_ns.cache[k] = ns.cache[k]
+            namespaces.append(('cell %s' % cell, state_ns))
+        names = worker.request(op='names')
+        notes = gf.rescore(ig, assignment, cohort, questions, result['questions'],
+                           namespaces, names if isinstance(names, list) else [])
+        return dict(enabled=True, snapshots=len(snaps), notes=notes, worker_notes=meta.get('notes') or [])
+    except Exception as exc:  # noqa: BLE001
+        result['questions'] = before
+        return dict(enabled=True, error='%s: %s' % (type(exc).__name__, str(exc)[:200]), notes={},
+                    worker_notes=meta.get('notes') or [])

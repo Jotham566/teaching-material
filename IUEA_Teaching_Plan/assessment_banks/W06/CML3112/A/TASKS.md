@@ -1,6 +1,6 @@
 # NOT ASSIGNED — optional practice only
 
-A6 and Quiz 6 are waived for this cohort. This is ungraded practical revision. No assignment upload or quiz response is required. Previous submissions remain on record but do not count towards coursework marks.
+A6 and Quiz 6 are not assigned for this cohort and do not count toward the final mark (only A1 to A5 and Q1 to Q5 count). This is ungraded practical revision. No assignment upload or quiz response is required.
 
 # CML3112 A6 — task reference
 

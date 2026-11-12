@@ -115,15 +115,15 @@ Today's segments follow the same pattern. We define the main ideas, we work thro
 
 ## Slide 5: Where this semester goes
 
-Fifteen weeks. Weeks 7 and 14 are practical tests: you are given data you have never seen and asked what you make of it. The project runs from Week 9 to the last session.
+Fifteen weeks. Week 7 is Practical Test 1: you are given data you have never seen and asked what you make of it. The project is an individual timed sitting in Week 12.
 
 **Spoken script**
 
 This slide shows the whole semester. It has fifteen weeks.
 
-The early weeks set you up and teach the basics of Python, which is the programming language we use, and how to prepare data. Weeks 7 and 14 are practical tests. In a practical test you are given a data set you have never seen before, and you are asked what you make of it. This tests whether you can work with real data. You prepare for it by doing the weekly exercises.
+The early weeks set you up and teach the basics of Python, which is the programming language we use, and how to prepare data. Week 7 is Practical Test 1. In the test you are given a data set you have never seen before, and you are asked what you make of it. This tests whether you can work with real data. You prepare for it by doing the weekly exercises.
 
-The project runs from Week 9 to the last session. You will work on it in a team, and I will explain how teams work later today.
+The Engineering ML project is an individual timed sitting in Week 12, and you prepare for it in class. Later today I will explain how project teams work.
 
 Keep this slide in mind when you plan your own time. Check the slide for the weeks that matter most.
 
@@ -153,31 +153,31 @@ A weekly task is a small piece of work. A project milestone is a stage of your t
 
 ## Slide 8: How you are assessed
 
-Assessment includes code, data analysis, models and written explanations. Individual work accounts for 65% of the mark.
+Assessment includes code, data analysis, models and written explanations. All of the mark is individual work.
 
 **Spoken script**
 
 Here is how your marks are built. Assessment includes code, data analysis, models and written explanations. So you will write short pieces of code, analyse data, build models, and explain in writing what you did and what you found.
 
-Individual work accounts for sixty five per cent of the mark. That means most of your result depends on what you can do yourself.
+All of the mark is individual work. That means your result depends on what you can do yourself.
 
 The slide lists the components and their weights, and together they add up to one hundred per cent. Some weekly tasks and quizzes can differ by cohort, so check the details for your own class on the course page. Read the marking criteria for each piece of work before you start it.
 
 ## Slide 9: Quizzes and assignments from Week 8
 
-Weekly in Weeks 1 to 6. Every three classes from Week 8.
+Weekly in Weeks 1 to 5. Every two classes from Week 8.
 
-Weeks 1 to 5: a quiz and an assignment each week, and the best 3 of the 5 count. Week 6 is waived.
-Block 1 is Weeks 8 to 10 and Block 2 is Weeks 11 to 13. Each block has one assignment pack and one quiz.
-A block counts in full and cannot be dropped. Together the two blocks carry about 60 percent of the quiz and assignment marks.
+Weeks 1 to 5: a quiz and an assignment each week. All five of each count, worth 4 of 20 marks each. Week 6 is practice.
+Block 1 is Weeks 8 and 9 and Block 2 is Weeks 10 and 11. Each block has an assignment pack and a quiz.
+Block work is practice: it is marked and you get feedback, but it does not count toward the final mark.
 
 **Spoken script**
 
-Here is how the quizzes and assignments work over the whole semester. In Weeks 1 to 6 you have a short quiz and an assignment each week, and your best four of the six count, so two weak weeks do not hurt you.
+Here is how the quizzes and assignments work over the whole semester. In Weeks 1 to 5 you have a short quiz and an assignment each week, and all five quizzes and all five assignments count. The assignments carry twenty marks and the quizzes carry twenty marks, so each one is worth four. Week 6 is practice and does not count.
 
-From Week 8 we assess every three classes. Block 1 covers Weeks 8 to 10 and Block 2 covers Weeks 11 to 13. Each block has one assignment pack and one quiz, and each is handed in or sat after the third class of the block.
+From Week 8 we assess in two blocks of two classes. Block 1 covers Weeks 8 and 9 and Block 2 covers Weeks 10 and 11. Each block has an assignment pack and a quiz, handed in or sat at the end of the block.
 
-A block counts in full and cannot be dropped, because it holds three weeks of learning. Together the two blocks carry about sixty percent of the quiz and assignment marks. The two practical tests, the projects and the demonstration are unchanged.
+Block work is practice: it is marked and you get feedback, but it does not count toward the final mark. Only Assignments 1 to 5 and Quizzes 1 to 5 count. Practical Test 1 is worth twenty marks, and the Engineering ML Project, an individual timed sitting in Week 12, is worth forty.
 
 ## Slide 10: What I expect, and what you can expect back
 
@@ -185,7 +185,7 @@ What I expect from you
 
 Attend. There is one three-hour session a week and no lecture to catch up from — the value is in the practical and the challenge, which cannot be read later.
 
-Do the weekly deliverable every week. Eleven small pieces spread over twelve weeks is manageable; nine of them attempted in December is not.
+Do the weekly deliverable every week. Five assignments and five quizzes in Weeks 1 to 5 all count; none can be dropped.
 
 When asking for help, include the error message, what you tried and what you expected.
 
@@ -205,7 +205,7 @@ Ask how each topic relates to the engineering problem.
 
 This slide sets out what I expect from you, and what you can expect from me.
 
-First, attend. There is one three hour session a week. The value is in the practical work and the challenge, and you cannot read that later. Second, do the weekly deliverable every week. Eleven small pieces spread over twelve weeks is manageable. Trying nine of them in December is not.
+First, attend. There is one three hour session a week. The value is in the practical work and the challenge, and you cannot read that later. Second, do the weekly deliverable every week. Five assignments and five quizzes in the first five weeks all count, so none can be dropped, and a missed one scores zero. Trying nine of them in December is not.
 
 When you ask for help, include the error message, what you tried and what you expected to happen. When you get stuck, note the step that failed and ask.
 
@@ -837,7 +837,7 @@ Take one candidate problem and answer all six questions for it. Then repeat the 
 
 Project teams of four or five
 
-You will do two projects together: a data analysis project due Week 8, and the Engineering ML Project from Week 9 to Week 15.
+A team data analysis project due Week 8 (practice, not counted), then the Engineering ML Project: an individual timed sitting in Week 12, worth 40 marks.
 
 Roles rotate at every milestone
 
@@ -845,9 +845,9 @@ Project roles: data analysis, modelling, engineering review, documentation and p
 
 Individual accountability is built in
 
-Sixty-five per cent of the mark is individual. Your team keeps a contribution log, and it is checked against the repository history.
+All of the mark is individual. Your team keeps a contribution log, and it is checked against the repository history.
 
-In Week 15, each student submits an individual written defence and reflection according to the published brief.
+The Engineering ML Project is an individual timed sitting in Week 12, according to the published brief.
 
 Sign the team charter before you leave
 
@@ -855,11 +855,11 @@ Names, contact details, a weekly meeting slot, and what you will do if somebody 
 
 **Spoken script**
 
-Now let us talk about how your team works all semester. Project teams have four or five people. You do two projects together. The first is a data analysis project, and the second is the Engineering ML Project, which runs from Week 9 to Week 15. The slide gives the due week for the first one.
+Now let us talk about how your team works all semester. Project teams have four or five people. You do a team data analysis project, which is practice and does not count toward the final mark. The Engineering ML Project is different: it is an individual timed sitting in Week 12 and carries forty marks. The slide gives the due week for the data analysis project.
 
 Roles rotate at every milestone. The roles are data analysis, modelling, engineering review, documentation and presentation. Rotating means each member practises different skills.
 
-Individual accountability is built in. Sixty five per cent of the mark is individual. Your team keeps a contribution log, which is a record of who did what, and I check it against the repository history. The repository is the online folder where your project files and their changes are stored. In Week 15, each student submits an individual written defence and reflection, following the published brief.
+Individual accountability is built in. All of the mark is individual. Your team keeps a contribution log, which is a record of who did what, and I check it against the repository history. The repository is the online folder where your project files and their changes are stored. The Engineering ML Project itself is an individual timed sitting in Week 12, following the published brief.
 
 Before you leave, sign the team charter. Write the names, contact details, a weekly meeting slot, and what you will do if somebody stops contributing. Agreeing that now is much easier than agreeing it in November.
 
@@ -1210,7 +1210,7 @@ Open for 24 hours from lecturer activation, then it closes.
 
 Tap View score and read the feedback after submitting.
 
-Quiz category: 10%. Best nine of eleven count; Quiz 6 is waived.
+Quizzes: Q1 to Q5 all count, 4 of the 20 quiz marks each.
 
 **Spoken script**
 
@@ -1218,7 +1218,7 @@ The Week 1 quiz has five questions and takes about five minutes. It covers featu
 
 Enter your own Student Registration Number exactly as recorded. You have one attempt, from the Google account you are signed in to. The quiz opens when I activate it and stays open for twenty four hours.
 
-After you submit, tap View score and read the feedback. The quiz category is ten per cent, and your best nine of eleven count because Quiz 6 is waived. Check the slide for the link.
+After you submit, tap View score and read the feedback. Quizzes 1 to 5 all count, and each is worth four of the twenty quiz marks. Check the slide for the link.
 
 ## Slide 58: You have practised
 prediction reasoning.

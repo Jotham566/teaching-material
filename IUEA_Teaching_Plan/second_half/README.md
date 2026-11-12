@@ -10,7 +10,7 @@ Four classes, concepts first, then the lab. Read `Plan_Weeks_8-12.pdf` first.
 | `Student Packages/` | ZIP per cohort and class: notebook, CSV, START_HERE. |
 | `Lecturer Guides/` | One guide per class: clock (Tuesday and Friday), slide map, questions to ask, numbers per cohort, rescue plans. |
 | `Build/` | Sources and tools. `AUTHORING_GUIDE.md` explains the pattern. |
-| `Project/` | The Engineering ML project (45 percent of the course): student briefs, Part A notebooks, hidden grader specification with proofs, marking guide. Start with `Project/README.md`. |
+| `Project/` | The Engineering ML project (40 percent of the course): student briefs, Part A notebooks, hidden grader specification with proofs, marking guide. Start with `Project/README.md`. |
 
 Rebuild from `Build/` (set `PPTX_SKILL_SCRIPTS` to the pptx skill scripts folder):
 

@@ -1608,7 +1608,7 @@ Structured interpretation 30.
 
 **Spoken script**
 
-The test is marked out of one hundred, and the marks are shared across five parts.
+The test is marked out of one hundred, and the marks are shared across five parts. The test counts for twenty of the hundred marks of the course.
 
 Cleaning carries twenty marks. Summary statistics carries fifteen.
 

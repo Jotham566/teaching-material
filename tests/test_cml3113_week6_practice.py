@@ -8,7 +8,7 @@ class BeginnerFiltering(unittest.TestCase):
    with self.subTest(cohort=cohort):self.check_cohort(cohort)
  def check_cohort(self,cohort):
   path=BASE/f'guided_practice/{cohort}/W06/guided_practice.ipynb';nb=json.loads(path.read_text())
-  if cohort!='CML3111':self.assertIn('A6 and Quiz 6 are waived',''.join(nb['cells'][0]['source']))
+  if cohort!='CML3111':self.assertIn('A6 and Quiz 6 are not assigned',''.join(nb['cells'][0]['source']))
   else:self.assertNotIn('waived',''.join(nb['cells'][0]['source']))
   d=next(d for d in json.loads((ROOT/'data/iuea_deck_content.json').read_text()) if d['cohort']==cohort and d['week']==6)
   self.assertEqual([''.join(c['source']).strip() for c in nb['cells'] if c['cell_type']=='code'],[s['practice_code'] for s in d['slides'] if s.get('practice_code')])

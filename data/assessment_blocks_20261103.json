@@ -1,4 +1,6 @@
 {
+  "superseded_by": "data/assessment_policy_20261110.json",
+  "superseded_note": "Historical. The weights, block rule, best-3-of-5 rule, Week 6 waiver and provisional out-of-55 in this file were replaced on 10 November 2026; calendar, deadlines and sitting dates here are still used for scheduling.",
   "effective_from": "3 November 2026 (lecturer decision). Block dates, closing times and quiz sittings are exactly those of the 2 November arrangement.",
   "supersedes": "data/assessment_blocks_20261102.json",
   "decided": "2026-11-03",

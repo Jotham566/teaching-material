@@ -1,4 +1,6 @@
 """Patch grader/gradebook.gs for the decision of 3 November 2026 (data/assessment_blocks_20261103.json).
+SUPERSEDED 10 November 2026 (data/assessment_policy_20261110.json): gradebook.gs was then edited by hand and now carries the marker
+GRADEBOOK_POLICY_20261110; this script refuses to touch such a file. Kept as the record of the 3 November change.
 
   * no demo; Engineering ML project = Part A (/30) + Part B (/15) in two columns, weight 45;
   * PROVISIONAL mode: until both project columns hold a mark the sheet shows 'Semester 1 provisional: x of 55 marks, y percent'
@@ -438,6 +440,9 @@ TESTS_PROGRESS_ADD = r'''  var linePend = progressSummary_({
 
 def main():
     text = PATH.read_text()
+    if "GRADEBOOK_POLICY_20261110" in text:
+        print("gradebook.gs: already on the 10 November 2026 policy (20 / 20 / 20 / 40); this 3 November patch is superseded and is not applied")
+        return
     if MARK in text:
         print("gradebook.gs: already patched")
         return

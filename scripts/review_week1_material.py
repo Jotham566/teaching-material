@@ -80,7 +80,7 @@ REPLACE={
 'Cases the model was not shown while it was learning. The only fair test.':'Cases not used to fit the model. They must also be relevant and free from leakage.',
 'Still classification, but multi-class rather than binary. It is harder: with five classes there are far more ways to be wrong, and a single accuracy figure hides which ones you get wrong. Week 9.':'Still classification, but multiclass rather than binary. Difficulty depends on the data. Week 9 examines which categories are confused, beyond a single accuracy score.',
 'If you cannot, you do not have a problem yet.':'A descriptive analysis question may not need a prediction target.',
-'In Week 15, each student answers two unseen questions about the team’s work. The answers contribute to individual assessment.':'In Week 15, each student submits an individual written defence and reflection according to the published brief.'}
+'In Week 15, each student answers two unseen questions about the team’s work. The answers contribute to individual assessment.':'The Engineering ML Project is an individual timed sitting in Week 12, according to the published brief.'}
 def main():
  plans=[]
  for path in sorted((ROOT/'IUEA_Teaching_Plan/decks').glob('*Week01*.pptx')):
@@ -94,8 +94,8 @@ def main():
      runs=list(paragraph.iter(A+'t'));before=''.join(x.text or '' for x in runs);after=before
      for a,b in REPLACE.items():after=after.replace(a,b)
      if i==56:
-      after=after.replace('Twelve this semester, best ten count. No resits.','Quiz category: 10%. Best nine of eleven count; Quiz 6 is waived.' if cohort in ('CML3111','CML3112','CML3113') else 'Quiz category: 10%. Best ten of twelve count.')
-      if cohort in ('CML3112','CML3113'):after=after.replace('One per cent each. Tap View score and read the feedback.','Tap View score and read the feedback after submitting.')
+      after=after.replace('Twelve this semester, best ten count. No resits.','Quizzes: Q1 to Q5 all count, 4 of the 20 quiz marks each.' if cohort in ('CML3111','CML3112','CML3113') else 'Quizzes: Q1 to Q5 all count, 4 of the 20 quiz marks each.')
+      if cohort in ('CML3112','CML3113'):after=after.replace('One mark each. Tap View score and read the feedback.','Tap View score and read the feedback after submitting.')
      if before!=after:
       if runs:runs[0].text=after
       for x in runs[1:]:x.text=''

@@ -7,6 +7,8 @@ from pathlib import Path
 import batch_grade as bg
 import iuea_grader as ig
 import attachment_expand
+import colab_shim
+import grader_fairness
 from registration import filename_id
 from continuous_assessment import norm
 
@@ -38,6 +40,89 @@ def decode_notebook(raw):
  if raw[:2] in (b'\xff\xfe',b'\xfe\xff'):return raw.decode('utf-16')
  return raw.decode('utf-8-sig')
 
+def notebook_sources(notebook_text):
+ try:cells=json.loads(notebook_text).get('cells',[])
+ except ValueError:return []
+ return [''.join(c.get('source','')) if isinstance(c.get('source',''),list) else c.get('source','') for c in cells if c.get('cell_type')=='code']
+
+def docx_text(path):
+ """Plain text of a .docx (paragraphs and line breaks kept). Read only."""
+ import html as htmllib,zipfile
+ try:x=zipfile.ZipFile(path).read('word/document.xml').decode('utf-8','replace')
+ except (zipfile.BadZipFile,KeyError,OSError):return ''
+ out=[]
+ for t,tag,endp in re.findall(r'<w:t(?: [^>]*)?>([^<]*)</w:t>|<w:(br|tab)\b[^>]*?/?>|</w:(p)>',x):
+  out.append(htmllib.unescape(t) if t else '\n' if tag=='br' or endp else '\t')
+ return ''.join(out)
+
+def converted_notebook(path,name):
+ """Notebook JSON text from a Colab .py export or a .docx holding the notebook JSON or pasted
+ code; None when the file cannot be converted. Nothing is executed here."""
+ suffix=Path(name).suffix.lower() or Path(path).suffix.lower()
+ if suffix=='.py':
+  text=Path(path).read_bytes().decode('utf-8-sig','replace')
+  nb=colab_shim.colab_py_to_notebook(text)
+  return json.dumps(nb) if nb['cells'] else None
+ if suffix=='.docx':
+  text=docx_text(path).strip()
+  if text.startswith('{'):
+   try:
+    nb=json.loads(text)
+    if isinstance(nb,dict) and isinstance(nb.get('cells'),list):return json.dumps(nb)
+   except ValueError:pass
+  spans=colab_shim.code_spans(text)
+  if spans:
+   nb=colab_shim.notebook_from_cells(spans,'code pasted in a .docx')
+   return json.dumps(nb)
+ return None
+
+def prepare_submission(r,files,source,cache):
+ """Find the notebook to grade for one receipt (fix 5, 10 Nov 2026).
+ Direct .ipynb first; else notebooks inside ZIPs/GitHub links; else a Colab .py export or a
+ .docx converted to a notebook. Returns a dict with status NOTEBOOK (notebook_text, sha256,
+ original_name, origin_note), NO_NOTEBOOK, AMBIGUOUS, DOWNLOAD_MISSING or CANNOT_JUDGE
+ (reason_code EMPTY or UNREADABLE, with reason)."""
+ source=Path(source);fids=[f for f in r['file_ids'] if f in files]
+ uploaded=sorted({files[f].get('original_name',f) for f in fids})
+ notebooks=[files[f] for f in fids if files[f]['export_name'].lower().endswith('.ipynb')]
+ notebooks=list({n['sha256']:n for n in notebooks}.values())
+ origin_note=''
+ if not notebooks:
+  # No direct notebook: look inside ZIPs and GitHub links submitted instead (read only, never run).
+  for f in fids:
+   for n in attachment_expand.expanded(source/'files'/files[f]['export_name'],cache):
+    if n['original_name'].lower().endswith('.ipynb'):notebooks.append(n)
+  notebooks=list({n['sha256']:n for n in notebooks}.values())
+  if notebooks:origin_note='Notebook was not uploaded directly; '+notebooks[0]['original_name']+' was taken from '+notebooks[0]['origin']+' (no penalty). '
+ if not notebooks:
+  for f in fids:
+   path=source/'files'/files[f]['export_name']
+   if not path.is_file():continue
+   text=converted_notebook(path,files[f].get('original_name',''))
+   if text:
+    return dict(status='NOTEBOOK',notebook_text=text,sha256=files[f]['sha256'],original_name=files[f].get('original_name',''),uploaded=uploaded,
+                origin_note='No .ipynb was uploaded; the notebook was rebuilt from '+files[f].get('original_name','the upload')+' (no penalty). ')
+ if not notebooks:
+  if not uploaded:return dict(status='NO_NOTEBOOK',uploaded=uploaded)
+  return dict(status='CANNOT_JUDGE',reason_code='UNREADABLE',uploaded=uploaded,
+              reason='No notebook could be read from the upload ('+', '.join(uploaded)[:300]+'); cannot judge (no mark) - ask for the notebook.')
+ info=pick_notebook(notebooks,r['assessment'],r['student_id'])
+ if info is None:return dict(status='AMBIGUOUS',uploaded=uploaded)
+ file=info['path'] if info.get('path') else source/'files'/info['export_name']
+ if not Path(file).is_file():return dict(status='DOWNLOAD_MISSING',uploaded=uploaded)
+ raw=Path(file).read_bytes();digest=hashlib.sha256(raw).hexdigest()
+ if digest!=info['sha256']:raise ValueError('Downloaded notebook hash mismatch')
+ if not raw:
+  return dict(status='CANNOT_JUDGE',reason_code='EMPTY',uploaded=uploaded,
+              reason='The uploaded notebook is empty (0 bytes); cannot judge (no mark) - ask for the file again. File: '+info.get('original_name',''))
+ try:
+  text=decode_notebook(raw);nb=json.loads(text)
+  if not isinstance(nb,dict) or not isinstance(nb.get('cells'),list):raise ValueError('Missing cells')
+ except (UnicodeError,ValueError):
+  return dict(status='CANNOT_JUDGE',reason_code='UNREADABLE',uploaded=uploaded,
+              reason='The uploaded file is not a readable notebook; cannot judge (no mark). File: '+info.get('original_name',''))
+ return dict(status='NOTEBOOK',notebook_text=text,sha256=digest,original_name=info.get('original_name',''),origin_note=origin_note,uploaded=uploaded)
+
 def run(source,ledger,out):
  source=Path(source);out=Path(out);out.mkdir(parents=True,exist_ok=True)
  current=json.loads(Path(ledger).read_text())['current'];engine=fingerprint();results=[]
@@ -57,43 +142,25 @@ def run(source,ledger,out):
   if any(fid not in files for fid in r['file_ids']):
    result['status']='DOWNLOAD_MISSING';results.append(result);continue
   result['source_hashes']={fid:files[fid]['sha256'] for fid in r['file_ids']}
-  notebooks=[files[fid] for fid in r['file_ids'] if fid in files and files[fid]['export_name'].endswith('.ipynb')]
-  notebooks=list({n['sha256']:n for n in notebooks}.values())
-  origin_note=''
-  if not notebooks:
-   # No direct notebook: look inside ZIPs and GitHub links submitted instead (read only, never run).
-   for fid in r['file_ids']:
-    for n in attachment_expand.expanded(source/'files'/files[fid]['export_name'],out/'expanded'):
-     if n['original_name'].lower().endswith('.ipynb'):notebooks.append(n)
-   notebooks=list({n['sha256']:n for n in notebooks}.values())
-   if notebooks:origin_note='Notebook was not uploaded directly; '+notebooks[0]['original_name']+' was taken from '+notebooks[0]['origin']+' (no penalty). '
-  info=pick_notebook(notebooks,r['assessment'],r['student_id']) if notebooks else None
-  if info is None and not notebooks and r['assessment']!='W02':
-   # Instructions require a notebook. None was uploaded: scored 0 with the reason recorded.
-   uploaded=', '.join(sorted({files[fid].get('original_name',fid) for fid in r['file_ids']})) or 'no files'
+  prep=prepare_submission(r,files,source,out/'expanded')
+  origin_note=prep.get('origin_note','')
+  if prep['status']=='NO_NOTEBOOK' and r['assessment']!='W02' and not prep.get('uploaded'):
+   # Instructions require a notebook. Nothing at all was uploaded: scored 0 with the reason recorded.
    result.update(status='GRADED',score=0,code_score=0,code_maximum=20,
-                 grading_note='No notebook (.ipynb) was submitted, so the assignment scores 0/20. Uploaded: '+uploaded[:300])
+                 grading_note='No notebook (.ipynb) was submitted, so the assignment scores 0/20. Uploaded: no files')
    results.append(result);continue
-  if info is None:result['status']='NOTEBOOK_MISSING_OR_AMBIGUOUS';results.append(result);continue
-  file=info['path'] if info.get('path') else source/'files'/info['export_name']
-  if not file.is_file():result['status']='DOWNLOAD_MISSING';results.append(result);continue
-  digest=hashlib.sha256(file.read_bytes()).hexdigest()
-  if digest!=info['sha256']:raise ValueError('Downloaded notebook hash mismatch')
-  if not file.stat().st_size and r['assessment']!='W02':
-   result.update(status='GRADED',score=0,code_score=0,code_maximum=20,
-                 grading_note='The uploaded notebook is empty (0 bytes), so the assignment scores 0/20. File: '+info.get('original_name',''))
+  if prep['status'] in ('NO_NOTEBOOK','CANNOT_JUDGE') and r['assessment']!='W02':
+   # Lenient rule (10 Nov 2026): a wrong, empty or unreadable upload is 'cannot judge' (no mark), never 0.
+   result.update(status='CANNOT_JUDGE',score=None,code_score=None,code_maximum=14 if r['assessment']=='W02' else 20,
+                 grading_note=prep.get('reason') or ('No gradable notebook was found; cannot judge. Uploaded: '+', '.join(prep.get('uploaded',[]))[:300]))
    results.append(result);continue
-  if not file.stat().st_size:
-   result['status']='EMPTY_NOTEBOOK';results.append(result);continue
-  try:
-   notebook_text=decode_notebook(file.read_bytes());notebook=json.loads(notebook_text)
-   if not isinstance(notebook,dict) or not isinstance(notebook.get('cells'),list):raise ValueError('Missing cells')
-  except (UnicodeError,ValueError):
-   if r['assessment']!='W02':
-    result.update(status='GRADED',score=0,code_score=0,code_maximum=20,
-                  grading_note='The uploaded file is not a readable notebook, so the assignment scores 0/20. File: '+info.get('original_name',''))
-   else:result['status']='INVALID_NOTEBOOK'
+  if prep['status'] in ('NO_NOTEBOOK','AMBIGUOUS'):result['status']='NOTEBOOK_MISSING_OR_AMBIGUOUS';results.append(result);continue
+  if prep['status']=='DOWNLOAD_MISSING':result['status']='DOWNLOAD_MISSING';results.append(result);continue
+  if prep['status']=='CANNOT_JUDGE':
+   # W02 keeps its earlier statuses so its written part is still graded and reviewed (code part has no mark).
+   result['status']=('EMPTY_NOTEBOOK' if prep.get('reason_code')=='EMPTY' else 'INVALID_NOTEBOOK' if prep.get('original_name') or 'not a readable notebook' in prep.get('reason','') else 'NOTEBOOK_MISSING_OR_AMBIGUOUS')
    results.append(result);continue
+  notebook_text=prep['notebook_text'];digest=prep['sha256']
   assignment=r['assessment'];cohort=r['cohort']
   data_dir=ROOT/('IUEA_Teaching_Plan/setup/'+cohort if assignment=='W02' else 'IUEA_Teaching_Plan/practicals/'+assignment+'/'+cohort)
   data_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(data_dir.glob('*.csv'))}
@@ -117,6 +184,10 @@ def run(source,ledger,out):
   if record['status'] in ('OK','ERRORS') and maximum!=expected:record['status']='CHECK_MAXIMUM_MISMATCH'
   if origin_note:result['grading_note']=origin_note.strip()
   result.update(status=('PARTIAL_CODE_ONLY' if assignment=='W02' else 'GRADED') if valid else record['status'],score=score if valid and assignment!='W02' else None,code_score=score if valid else None,code_maximum=maximum,signature=signature,record=record)
+  # A different notebook scoring 0 is 'cannot judge' (W03-W05; W02's written part stays gradable).
+  wrong=grader_fairness.cannot_judge_reason(assignment,cohort,notebook_sources(notebook_text),score) if valid and assignment!='W02' else ''
+  if wrong:
+   result.update(status='CANNOT_JUDGE',score=None,code_score=None,grading_note=(origin_note+wrong).strip())
   cache.write_text(json.dumps(result,indent=2)+'\n');results.append(result)
   (out/'results.json').write_text(json.dumps(results,indent=2)+'\n')
   print(cohort,assignment,result['status'],flush=True)

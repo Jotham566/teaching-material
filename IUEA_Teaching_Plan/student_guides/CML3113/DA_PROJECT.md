@@ -3,6 +3,7 @@
 **Submit:** TWO files together: your completed notebook (.ipynb) AND one complete report (DOCX or selectable-text PDF).
 
 **Deadline:** 30 October 2026, 08:00 Kampala. The live form shows any later change.
+**Does this count?** No. From 10 November 2026 the Data Analysis project does not count toward your final mark (see Grading_Policy_2026-11-10.md). It is still collected and you get feedback.
 
 ## 1. Start
 

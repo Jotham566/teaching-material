@@ -21,13 +21,13 @@ By the end of the session we will have a clean table, a few summaries and three 
 
 First inspect the original CSV. Then apply the cleaning rules, check the result, and explain the cleaned charts.
 
-This walkthrough supports the existing Week 6 assignment and quiz. Their requirements are unchanged.
+This walkthrough is practice for Week 6. A6 and Quiz 6 do not count toward the final mark.
 
 **Spoken script**
 
 Today we follow one path from start to finish. First we inspect the original file, which means we look at it carefully before changing anything. Then we apply cleaning rules, which are short sentences that say which rows to remove and which blanks to fill. After that we check the result to confirm the rules did what we expected. Finally we draw charts and explain what they show.
 
-This walkthrough supports the assignment and the quiz that already exist for week six. Their requirements have not changed. Everything we do today is practice for them.
+This walkthrough is practice for week six. Assignment six and quiz six do not count toward the final mark. Everything we do today is practice for them.
 
 ## Slide 3: The supplied file
 

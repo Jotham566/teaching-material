@@ -8,12 +8,14 @@ Do not share this workbook with the class: it contains students' private informa
 
 ## What the totals mean
 
-> Policy since 3 and 4 November 2026 (`data/assessment_blocks_20261103.json`): quizzes 15, assignments 15, data analysis project 10, Practical Test 1 15, Engineering ML project 45 (individual timed sitting, Part A 30 + Part B 15). There is no Test 2 and no demo; the semester ends at Week 12; Weeks 1 to 5 are best 3 of 5 and the block rules apply from Week 8. The live gradebook is the Google Sheet driven by `grader/gradebook.gs`. The private workbook described below was last built on 21 October and still uses the older weights: do not use its totals for Semester 1 results.
+> Policy since 10 November 2026 (`data/assessment_policy_20261110.json`, plain note `Grading_Policy_2026-11-10.md`): final mark /100 = assignments 20 + quizzes 20 + Practical Test 1 20 + Engineering ML project 40. The live gradebook is the Google Sheet driven by `grader/gradebook.gs`. The private workbook described below was last built on 21 October and still uses the OLD weights and rules: do not use its totals for Semester 1 results.
 
-- Quiz and assignment marks contribute 10 points each to the semester total.
-- Data project: 10; Test 1: 15; Test 2: 20; ML project: 25; demo/reflection: 10.
-- All three programmes waive A6 and Quiz 6, including previously completed CML3111 work. Use best 9 of 11 quizzes and best 7 of 10 weekly assignments. Separate weekly quizzes/assignments are not assigned in Weeks 7, 14 and 15; Test 1, Test 2, final project and demo retain their own marks and weights.
-- A blank is pending or not yet submitted, **not a zero**. A numeric zero is a completed mark.
+- Assignments: A1 to A5, each marked out of 20, all five count equally. Assignment mark /20 = (A1 + A2 + A3 + A4 + A5) / 5.
+- Quizzes: Q1 to Q5, each marked out of 5, all five count equally. Quiz mark /20 = (Q1 + Q2 + Q3 + Q4 + Q5) x 4 / 5.
+- Practical Test 1: marked out of 100, scaled to 20. Engineering ML project: Part A /30 + Part B /15 = 45, scaled to 40; counted only when both parts are marked.
+- Not counted: Q6 onward and the Week 8 to 11 block quizzes, A6 onward and the Week 8 to 11 block assignments, the Data Analysis project, Practical Test 2 and the demo. Their receipts are still collected and kept; they add nothing to the final mark. The best-3-of-5 rule, the Week 6 waiver and the block rule are retired.
+- Until the project is marked the result is provisional out of 60 (assignments 20 + quizzes 20 + Practical Test 1 20). An unmarked project is never counted as zero.
+- In the private workbook a blank is pending or not yet submitted, **not a zero**, and a numeric zero is a completed mark. In the Semester 1 final mark (policy of 10 November 2026) a missing or not-yet-marked assignment, quiz or Practical Test 1 scores 0; only the project can be PENDING.
 - The total is earned semester points so far, not a final grade.
 - “Source mark” retains a recorded score even when an identity conflict prevents it from entering a student's total.
 - Names were not collected by the original assignment forms. They must come from a verified roster or test receipt; they are not guessed from email addresses.

@@ -1,3 +1,6 @@
+<!-- SUPERSEDED_20261110 -->
+> **Superseded on 10 November 2026 by `Grading_Policy_2026-11-10.md`.** The weights, the best-3-of-5 rule, the Week 6 waiver, the block rule and the provisional total out of 55 recorded below are history. From 10 November only A1 to A5 and Q1 to Q5 count: the final mark is assignments 20 + quizzes 20 + Practical Test 1 20 + Engineering ML project 40, and provisional results are out of 60. The body below is left unchanged as a record.
+
 # What you still do by hand (2 November 2026)
 
 > **Update of 3 November 2026.** Parts A and B below are unchanged. Part C (gradebook) is replaced by `Grading_Update_By_Hand_2026-11-03.md`, and the project and demo items in part D no longer apply (there is no demo).

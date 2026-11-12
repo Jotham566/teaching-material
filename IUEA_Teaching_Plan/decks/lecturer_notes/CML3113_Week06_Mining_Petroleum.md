@@ -21,15 +21,15 @@ The slide says that assignment six and quiz six are not assigned to this group. 
 
 Inspect the CSV → remove duplicate observations → keep valid rows → fill missing temperatures → summarise → plot.
 
-A6 and Quiz 6 are waived for CML3113. This lesson is ungraded practice; no upload or quiz response is required.
+A6 and Quiz 6 are not assigned for CML3113 and do not count toward the final mark. This lesson is ungraded practice; no upload or quiz response is required.
 
 **Spoken script**
 
 Today we follow one path. We inspect the CSV, remove duplicate observations, keep the valid rows, fill missing temperatures, summarise the result and plot it.
 
-Assignment six and quiz six are waived for CML3112. That means this lesson is ungraded practice. No upload and no quiz response is required.
+Assignment six and quiz six are not assigned for CML3112, and they do not count toward the final mark. That means this lesson is ungraded practice. No upload and no quiz response is required.
 
-The aim is to understand each cleaning decision, so you can explain it in your own words. Your practice work stays with you for revision. The waiver covers only this assignment and quiz and does not cancel other assessments.
+The aim is to understand each cleaning decision, so you can explain it in your own words. Your practice work stays with you for revision. This applies only to this assignment and quiz: Assignments 1 to 5 and Quizzes 1 to 5 all count.
 
 ## Slide 3: The supplied file
 
@@ -1057,7 +1057,7 @@ Run the examples in slide order. Explain each result in your own words.
 
 03
 
-A6 and Quiz 6 are waived. No upload is required.
+A6 and Quiz 6 are not assigned. No upload is required.
 
 **Spoken script**
 
@@ -1065,7 +1065,7 @@ This session is ungraded cleaning practice. Open the notebook called guided unde
 
 Run the examples in the same order as the slides. After each result, explain it in your own words.
 
-Assignment six and quiz six are waived, so no upload is required. The purpose is to understand the steps.
+Assignment six and quiz six are not assigned and do not count, so no upload is required. The purpose is to understand the steps.
 
 ## Slide 53: Explain your cleaning choices
 

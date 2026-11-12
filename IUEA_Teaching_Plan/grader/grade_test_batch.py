@@ -4,6 +4,7 @@ import contextlib
 from pathlib import Path
 from exam_intake import connect,process,export
 from isolated_grading import preflight
+from test_collection_issues import import_existing_issues,read_issues,store_issues
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 DEFAULT_OUT=ROOT/'IUEA_Teaching_Plan/test_operations/grading_output'
@@ -19,6 +20,8 @@ def grade_batch(archive,out):
         ids=[j['response_id'] for j in manifest['jobs']]
         if len(ids)!=len(set(ids)):raise ValueError('Duplicate response IDs')
         with connect(out/'ledger.sqlite3') as db:
+            import_existing_issues(db,out)
+            store_issues(db,manifest.get('collection_issues',[]),'batch manifest')
             for index,job in enumerate(manifest['jobs'],1):
                 try:
                     filename=job['file']
@@ -37,11 +40,12 @@ def grade_batch(archive,out):
                     for col,key in [(0,'response_id'),(1,'cohort'),(2,'assessment'),(4,'full_name'),(6,'student_registration_number')]:row[col]=job.get(key,'')
                     row[10]='BATCH_ERROR';row[14]=str(error)
                     manifest.setdefault('collection_issues',[]).append(row)
+                    store_issues(db,[row],'batch error')
                     print(f'{index}/{len(ids)}: BATCH_ERROR: {error}',flush=True)
             export(db,out)
-    # Preserve collection errors as visible exceptions rather than silently dropping students.
-    (out/'collection_issues.json').write_text(json.dumps(manifest.get('collection_issues',[]),indent=2)+'\n')
-    data=json.loads((out/'workbook_data.json').read_text());data['collection_issues']=manifest.get('collection_issues',[])
+            issues=read_issues(db)
+    (out/'collection_issues.json').write_text(json.dumps(issues,indent=2)+'\n')
+    data=json.loads((out/'workbook_data.json').read_text());data['collection_issues']=issues
     (out/'workbook_data.json').write_text(json.dumps(data,indent=2)+'\n')
     return out
 

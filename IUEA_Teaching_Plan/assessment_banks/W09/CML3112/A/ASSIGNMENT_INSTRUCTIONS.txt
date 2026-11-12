@@ -6,6 +6,8 @@
 **Submit:** ONE completed notebook (.ipynb) on this form: https://docs.google.com/forms/d/e/1FAIpQLSfTe7OkZ7tZEVzG-mup0-8liXg1jKy_KmsDWZiPK9EWMJ9InA/viewform
 **Block quiz:** one sitting in the last 20 minutes of Class 2 (Tuesday 10 November), 2 short quizzes, 10 marks.
 
+Does this count? No. From 10 November 2026 the Week 8 to 11 block assignments (A7 to A11) and block quizzes (Q7 to Q10) are practice and do not count toward your final mark (only A1 to A5 and Q1 to Q5 count). Still do the work: it is collected, you get feedback, and it prepares you for the project sitting.
+
 ## Do this
 
 1. Keep these files together: W09_student.ipynb, classification_case.csv, engineering_data.csv. In Colab choose File, then Open notebook, then Upload, and add the CSV files in the Files sidebar.
@@ -21,4 +23,4 @@
 - Submit only the notebook. Do not submit the ZIP, guided_practice.ipynb or the CSV files.
 - Leave Team ID blank. The file must be at most 10 MB. A resubmission before the deadline replaces the earlier one and must be the complete notebook.
 - guided_practice.ipynb is for practice in class. It is not marked.
-- A part that is not submitted scores zero. Submit each part as you finish it.
+- A part that is not submitted gets no feedback. Submit each part as you finish it.

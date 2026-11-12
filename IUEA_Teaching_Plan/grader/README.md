@@ -100,13 +100,12 @@ Create a `Grades` sheet using `Grades_template.csv` and paste `gradebook.gs` int
 
 | Component | Weight | Rule |
 |---|---:|---|
-| Quizzes | 15% | Weeks 1 to 5: best 3 of 5, each /5 (Week 6 waived); Block 1 Q7 + Q8 /10; Block 2 Q9 + Q10 /10; total /35 (Q11, Q12 retired) |
-| Challenges | 15% | Weeks 1 to 5: best 3 of 5, each /20; Block 1 A7 + A8 /40; Block 2 A9 + A10 + A11 /60; total /160 |
-| Data analysis project | 10% | /100 |
-| Practical Test 1 | 15% | /100 |
-| Engineering ML project | 45% | Part A coded notebook /30 (column `ML Project Part A`) + Part B decision memo /15 (column `ML Project Part B`). Individual, timed 3-hour Colab sitting in the Week 12 class slot (proposed: CML3112 Tue 1 Dec, CML3113 and CML3111 Fri 4 Dec; lecturer to confirm), fully automatic, Weeks 1 to 11 only; graded by `second_half/Project/grader_spec/grade_project.py` |
+| Assignments | 20% | A1 to A5 (columns `W01` to `W05`), each /20, all five count equally (each worth 4). Component = sum of the five / 5 |
+| Quizzes | 20% | Q1 to Q5, each /5, all five count equally (each worth 4). Component = sum of the five x 4 / 5 |
+| Practical Test 1 | 20% | /100 scaled to 20 (mark / 5) |
+| Engineering ML project | 40% | Part A coded notebook /30 (column `ML Project Part A`) + Part B decision memo /15 (column `ML Project Part B`) = 45 raw, scaled to 40. Counts only when BOTH parts are marked. Individual, timed 3-hour Colab sitting in the Week 12 class slot (proposed: CML3112 Tue 1 Dec, CML3113 and CML3111 Fri 4 Dec; lecturer to confirm), fully automatic, Weeks 1 to 11 only; graded by `second_half/Project/grader_spec/grade_project.py` |
 
-Practical Test 2 was dropped on 2 November 2026 and the demo on 3 November 2026. The table above replaces the 10/10/10/15/20/25/10 weights. The weights sum to 100. Until both project columns hold a mark the sheet shows `Semester 1 provisional: x of 55 marks, y percent` and `Project: PENDING`, and leaves Final % and Band blank; see the 3 November section at the end.
+Policy of 10 November 2026 (source of truth `../../data/assessment_policy_20261110.json`, note `../Grading_Policy_2026-11-10.md`). A missing or not-yet-marked item scores 0. Not counted: Q6 onward and the block quizzes, A6 onward (`W06`, `W08` to `W12`) and the block assignments, the Data Analysis project, Practical Test 2 and the demo. Their columns may stay in the sheet and their receipts are kept; they add nothing to the final mark. The best-3-of-5 rule and the Week 6 waiver are retired. Each component is rounded to two decimals (halves up); the final is the rounded sum of the rounded components. The weights sum to 100. Until both project columns hold a mark the sheet shows `Semester 1 provisional: x of 60 marks, y percent` (assignments + quizzes + Practical Test 1) and `Project: PENDING`, and leaves Final % and Band blank; an unmarked project is never counted as zero. The sections below on the 19 October waiver, the 2 November blocks and the 3 November weights are history and are superseded by this table.
 
 Letter bands remain placeholders until verified against the Faculty's actual rules. The weighted percentage is separate from that policy. Existing Week 1 marks cannot be overwritten by the results importer.
 
@@ -237,22 +236,30 @@ W08 uses the calibrated atomic criterion mode with local qwen3.5:4b; its full ca
 
 The standard and atomic visual candidates both failed known-answer checks. Neither authorizes final visual-design marks. A document upload working correctly does not mean every criterion in that document can yet be assessed reliably. The remaining coverage is listed in `review/2026-09-14/REWORK_STATUS.md` at the project root.
 
-### A6 and Quiz 6 waiver — 19 October 2026
+### A6 and Quiz 6 waiver — 19 October 2026 (history: superseded 10 November 2026, Q6 and A6 no longer count for anybody)
 
 CML3112 and CML3113: exclude W06 and Q6 from final marks and missing-work flags. The updated gradebook uses best 7 of 10 assignments and best 9 of 11 quizzes, preserving the normal drop allowance and 10% weight for each component. Raw submissions and marks are retained. CML3111 stays best 8 of 11 and best 10 of 12. See `../Practical_Revision_Week6_Waiver.md`. Use this updated `gradebook.gs` for any future gradebook installation. The current collection workbook holds responses and the waiver register; it does not have a `Grades` sheet.
 
 <!-- BLOCK_ASSESSMENT_20261102 -->
-## Block arrangement from Week 8 (updated 2 November 2026)
+## Block arrangement from Week 8 (updated 2 November 2026; history, no longer used by the gradebook from 10 November 2026)
 
 The best-of rules above apply to Weeks 1 to 5 only (best 3 of 5; Week 6 is waived). From Week 8 the A7 to A11 submissions and the Q7 to Q10 quizzes are combined per block and are never dropped: Block 1 = A7 + A8 (40 marks) and Q7 + Q8 (10); Block 2 = A9 + A10 + A11 (60 marks) and Q9 + Q10 (10). Q11 and Q12 are retired. Quizzes are out of 35 and assignments out of 160, 15 percent of the course each; Practical Test 2 is dropped. Each part is still graded by the same grader and form. See `../Block_Assessment_Arrangement_2026-11-02.md` and `../../data/assessment_blocks_20261102.json`. Apps Script files: `apply_block_windows_20261102.gs`, `block_quiz_sittings_20261102.gs`, `create_quiz_forms.gs`.
 
 <!-- BLOCK_ASSESSMENT_20261103 -->
-## Grading update of 3 November 2026 (no demo; provisional results)
+## Grading update of 3 November 2026 (no demo; provisional results; weights superseded 10 November 2026)
 
 - Weights: quizzes 15, assignments 15, data analysis project 10, Practical Test 1 15, Engineering ML project 45 (Part A /30, Part B /15). The demonstration is removed. Blocks, best-of rules and the 35 and 160 totals are unchanged.
-- Gradebook columns: `ML Project Part A`, `ML Project Part B`, then `Semester 1 provisional` and `Project` (written by the script), then `Final %`, `Band`. Run `prepareGradesColumns()` once on the live sheet to add any that are missing; it never deletes anything. The old `ML Project` and `Demo` columns are ignored.
+- Gradebook columns: `ML Project Part A`, `ML Project Part B`, then `Semester 1 provisional` and `Project` (written by the script), then `Final %`, `Band`. Run `prepareGradesColumns()` once on the live sheet to add any that are missing; it never deletes anything. The old `ML Project` and `Demo` columns are ignored. From 10 November 2026 the `Data Analysis Project` column is ignored too and `Grades_template.csv` no longer has it.
 - Provisional mode: a blank project column means the project is not marked yet. The sheet shows `Semester 1 provisional: x of 55 marks, y percent` (quizzes, assignments, data analysis project and Test 1) and `Project: PENDING`. Final % and Band stay blank. Once both columns hold a number the sheet shows the full total out of 100. Type 0 and 0 for a student who submitted no project.
 - A missing quiz or assignment part still scores zero. A blank data analysis project or Practical Test 1 also scores zero and is listed under Missing.
 - CA ledger and totals: `python3 IUEA_Teaching_Plan/grader/continuous_assessment.py --source SOURCE_DIR --out LEDGER.json --totals-out TOTALS.csv` (add `--results RESULTS.json`, `--timing TIMING.json` and `--test-ledger LEDGER.json` as before). Project marks go in `results.json` as `part_scores` (`{"A": 24.5}` while only Part A is marked, status `PART_MARKED`; both parts and status `GRADED` when finished).
 - Source of truth: `../../data/assessment_blocks_20261103.json`. Note: `Block_Assessment_Arrangement_2026-11-03.md`. By-hand steps: `Grading_Update_By_Hand_2026-11-03.md`.
 - Submission project: `retire_demo_forms_20261103.gs` closes and retires the three DEMO forms (run `retireDemoForms()` once, then `showDemoRetirement()`). It opens no form window.
+
+<!-- GRADING_POLICY_20261110 -->
+## Grading update of 10 November 2026 (20 / 20 / 20 / 40)
+
+- Final mark /100 = assignments 20 (A1 to A5) + quizzes 20 (Q1 to Q5) + Practical Test 1 20 + Engineering ML project 40. See the table near the top of this file. Source of truth: `../../data/assessment_policy_20261110.json`; plain note `../Grading_Policy_2026-11-10.md`.
+- `gradebook.gs` now counts only `Q1` to `Q5` and `W01` to `W05`. The columns `Q6` to `Q12` and `W06`, `W08` to `W12` can stay in the Grades sheet and are ignored. `importMarkedResults` still accepts the `W` columns, `Practical Test 1` and the two project parts, and no longer accepts `Data Analysis Project`.
+- Paste the new `gradebook.gs` into the Apps Script editor by hand, then run `recomputeAll()`. The `Missing` column now reads like `Practical Test 1; quizzes: Q3, Q4; assignments: A2` and the provisional line reads `Semester 1 provisional: x of 60 marks, y percent`.
+- Offline copy: `../IUEA_ML_Gradebook_Semester1.xlsx` (built by `scripts/build_gradebook_xlsx_20261103.py`, verified by `scripts/verify_gradebook_xlsx_20261103.py`).

@@ -1,6 +1,6 @@
 # CML3112: practical revision before Test 1
 
-A6 and Quiz 6 are waived for this cohort. This is ungraded practical revision. No assignment upload or quiz response is required. Previous submissions remain on record but do not count towards coursework marks.
+A6 and Quiz 6 are not assigned for this cohort and do not count toward the final mark (only A1 to A5 and Q1 to Q5 count). This is ungraded practical revision. No assignment upload or quiz response is required.
 
 1. Bring your laptop and sign in to Google Colab.
 2. Finish the Week 6 cleaning examples with guided_practice.ipynb and engineering_data.csv.
@@ -11,4 +11,4 @@ A6 and Quiz 6 are waived for this cohort. This is ungraded practical revision. N
 
 The actual test uses different files released through the timed test portal. Wait for the lecturer to announce its date and time. The test-day section of the Week 7 slides explains the real submission process; do not submit practice files there.
 
-Coursework: best 9 of 11 assigned quizzes (10%); best 7 of 10 assigned weekly assignments (10%). A6 and Quiz 6 are excluded, including any previously recorded marks. Other assessments keep their weights.
+Coursework: A6 and Quiz 6 are not assigned and do not count toward the final mark, including any previously recorded marks. Only A1 to A5 and Q1 to Q5 count (20 percent each). See Grading_Policy_2026-11-10.md.

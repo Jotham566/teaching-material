@@ -1,4 +1,4 @@
-# NOTE (4 November 2026): Its output was written for the 15-week plan (Test 2, Demo Day, Weeks 13 to 15, old weights); the live files were patched IN PLACE on 2 to 4 November 2026 (see patch_*_2026110*.py). Running this generator overwrites those patches. Do not run it for the current semester without re-applying them.
+# NOTE (4 November 2026): Its output was written for the 15-week plan (Test 2, Demo Day, Weeks 13 to 15, old weights); the live files were patched IN PLACE on 2 to 4 November 2026 (see patch_*_2026110*.py). Running this generator overwrites those patches. Do not run it for the current semester without re-applying them. Update of 10 November 2026: the grading policy changed again (Grading_Policy_2026-11-10.md); the live documents were patched IN PLACE by scripts/apply_policy_20261110.py and this generator still carries the older weights and rules on purpose.
 # -*- coding: utf-8 -*-
 """
 IUEA Year 3 Engineering — Semester 1 Master Teaching Plan

@@ -363,9 +363,8 @@ def week4(code):
     s = s_points(prs, "Before you leave the room",
                  [("This week's quiz — five minutes, and it counts",
                    "Five questions on this session. QR code on the screen, answers on your phone, score and "
-                   "an explanation immediately. Worth one per cent. There are twelve across the semester and "
-                   "the best ten count, so a missed session costs you nothing and there are no resits to "
-                   "arrange."),
+                   "an explanation immediately. Worth one mark. Quizzes 1 to 5 all count, so a missed one costs "
+                   "marks and there are no resits to arrange."),
                   ("Assignment A4 — due at the start of Week 5",
                    "Your reading report script, including the skipped-row count, plus 150 words on the most "
                    "interesting thing you found in the Investigation Lab and why an engineer should care about "
@@ -483,7 +482,7 @@ def week4(code):
     s = s_quiz(prs, 4,
                "An accumulator reset inside the loop, a range off by one, and a skipped-row count nobody "
                         "reported.", qr_path=qrp(code, 4))
-    notes(s, "The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
+    notes(s, "The last five minutes of every teaching session. Five questions, one mark each, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Quizzes 1 to 5 all count, each worth four of the twenty quiz marks.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
 
     s = s_closing(prs, "You just investigated a file\nnobody explained to you.",
                   "Four weeks ago most of you had never written a line of code. Next week the same work takes "
@@ -842,7 +841,7 @@ def week5(code):
                 "Register the engineering question you will answer with it.\n\n"
                 "Deliverable in Week 8: a cleaned dataset, a question-driven analysis notebook, four or more "
                 "charts each answering a stated question, and one page of findings.\n\n"
-                "Worth 10 per cent. An individual contribution log is required.",
+                "Practice only: it does not count toward the final mark. An individual contribution log is required.",
                 "Assignment A5 — due Week 6",
                 ["Your Twelve Questions notebook,",
                  "with every answer stated in",
@@ -960,7 +959,7 @@ def week5(code):
     s = s_quiz(prs, 5,
                "A mask confused with a filtered frame, a groupby result misread, and a numeric column with dtype "
                         "'object'.", qr_path=qrp(code, 5))
-    notes(s, "The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
+    notes(s, "The last five minutes of every teaching session. Five questions, one mark each, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Quizzes 1 to 5 all count, each worth four of the twenty quiz marks.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
 
     s = s_closing(prs, "Three lines, and you know\nwhat all three of them do.",
                   "Last week you wrote sixty lines to answer one question. The reason this week feels easy is "
@@ -1299,11 +1298,11 @@ def week6(code):
                    "have never seen from your own discipline. You profile it, find and handle its defects with "
                    "a written justification for each, answer three stated questions with evidence, produce "
                    "three charts each captioned with the question it answers, list five findings and make one "
-                   "recommendation. Worth 15 per cent. The rubric is published today."),
+                   "recommendation. Worth 20 of the 100 course marks. The rubric is published today."),
                   ("This week's quiz — five minutes, and it counts",
                    "Five questions on this session: a zero-coded missing value, a chart that does not answer "
-                   "its question, and an extreme value to judge. Worth one per cent, best ten of twelve "
-                   "count.")],
+                   "its question, and an extreme value to judge. Worth one mark; Quizzes 1 to 5 all count."
+                   "")],
                  kicker="TEST 1 AND THIS WEEK'S QUIZ", numbered=False)
     notes(s, "The Test 1 rubric is published today, so you will not meet the marking scheme for the first time "
              "in the assessment. The weighting is the part to note: the written justification for each cleaning "
@@ -1421,7 +1420,7 @@ def week6(code):
     s = s_quiz(prs, 6,
                "A zero-coded missing value, a chart that does not answer its question, and an extreme value to "
                         "judge.", qr_path=qrp(code, 6))
-    notes(s, "The last five minutes of every teaching session. Five questions, one per cent, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Twelve run across the semester and the best ten count.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
+    notes(s, "The last five minutes of every teaching session. Five questions, one mark each, and you see your score as you submit.\n\nNothing on it can be answered without reading what it shows you, so there is nothing to revise for it beyond having done the session. Quizzes 1 to 5 all count, each worth four of the twenty quiz marks.\n\nTO TEACH: open the Form, project the QR, and give it exactly five minutes. Afterwards look at the responses-by-question view — any question most of the room got wrong is next week's five-minute reteach.")
 
     s = s_closing(prs, "You answered the same question twice\nand got two different numbers.",
                   "You answered today's question twice — once on the broken data and once on the cleaned data "

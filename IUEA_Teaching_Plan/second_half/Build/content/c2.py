@@ -515,10 +515,10 @@ def build(code):
                          'A convergence warning is only a warning, and it appears when features are not standardised. And a name error means you skipped a cell above. Read the last line of any message first.')))
 
     S.append(dict(kind='list', title='How this class counts towards your coursework',
-                  items=['Block 1 is Class 1 and Class 2.', 'Assignment part A (A7, regression) comes from the Class 1 lab. Part B (A8, classification) comes from today\'s lab.',
+                  items=['Block 1 is Class 1 and Class 2. It is practice: it does not count toward your final mark.', 'Assignment part A (A7, regression) comes from the Class 1 lab. Part B (A8, classification) comes from today\'s lab.',
                          f'The Block 1 assignment closes on {C.COHORTS[code]["b1_close"]} (Kampala time).', 'A short quiz of five questions covers both classes. It opens in the last 20 minutes of today\'s class and stays open for 24 hours.'],
                   icons=['folder', 'doc', 'clock', 'bell'],
-                  notes=('A word on how this counts. Block 1 is Class 1 and Class 2 together. The assignment has two parts. Part A is on regression and comes from the lab you did last time, and part B is on classification and comes from today\'s lab. '
+                  notes=('A word on how this counts. The block work is practice: it does not count toward your final mark (only A1 to A5 and Q1 to Q5 do), but it is collected and you get feedback. Block 1 is Class 1 and Class 2 together. The assignment has two parts. Part A is on regression and comes from the lab you did last time, and part B is on classification and comes from today\'s lab. '
                          f'Both parts close on {C.COHORTS[code]["b1_close"]}, Kampala time. There is a short quiz of five questions covering both classes. It opens in the last twenty minutes of the class today and stays open for twenty-four hours. Keep your saved notebooks.')))
 
     # ------------------------------------------------------------------ facilitator

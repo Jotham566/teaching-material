@@ -316,6 +316,26 @@ def fig_assessment():
     return save(fig, "assessment.png")
 
 
+def fig_assessment_20261110():
+    """Semester 1 weights from the policy of 10 November 2026 (data/assessment_policy_20261110.json)."""
+    comp = [("Assignments (A1 to A5)", 20), ("Quizzes (Q1 to Q5)", 20),
+            ("Practical Test 1", 20), ("Engineering ML Project", 40)]
+    labels = [c[0] for c in comp][::-1]
+    vals = [c[1] for c in comp][::-1]
+    cols = [ORANGE, "#8FA6BC", "#4A6B84", "#5E8C7F"][::-1]
+    fig, ax = plt.subplots(figsize=(10.6, 4.6))
+    ypos = np.arange(len(vals))
+    ax.barh(ypos, vals, color=cols, height=0.66)
+    for i, v in enumerate(vals):
+        ax.text(v + 0.55, i, f"{v}%", va="center", fontsize=12, fontweight="bold", color=INK)
+    ax.set_yticks(ypos); ax.set_yticklabels(labels, fontsize=11.5)
+    ax.set_xlim(0, 48); ax.set_xticks([])
+    ax.spines["bottom"].set_visible(False); ax.spines["left"].set_visible(False)
+    ax.set_title("No written examination. All of the mark is individual.",
+                 fontsize=12, color=MUTED, loc="left", pad=14)
+    return save(fig, "assessment_20261110.png")
+
+
 # =============================================================== 8. ladder
 def fig_ladder():
     steps = [("Week 1", '"I have never programmed."'),
@@ -4648,7 +4668,7 @@ def fig_repo_structure():
 
 
 if __name__ == "__main__":
-    made = [fig_nested(), fig_rules_vs_learning(), fig_four_limits(), fig_assessment(),
+    made = [fig_nested(), fig_rules_vs_learning(), fig_four_limits(), fig_assessment(), fig_assessment_20261110(),
             fig_ladder(), fig_arc(), fig_clock(),
             *[fig_clock_week(w) for w in range(1, 16)],
             fig_roadmap_journey(), fig_roadmap_coverage(), fig_career_paths(),

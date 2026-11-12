@@ -1,3 +1,6 @@
+<!-- SUPERSEDED_20261110 -->
+> **Superseded on 10 November 2026 by `Grading_Policy_2026-11-10.md`.** The weights, the best-3-of-5 rule, the Week 6 waiver, the block rule and the provisional total out of 55 recorded below are history. From 10 November only A1 to A5 and Q1 to Q5 count: the final mark is assignments 20 + quizzes 20 + Practical Test 1 20 + Engineering ML project 40, and provisional results are out of 60. The body below is left unchanged as a record.
+
 # Weeks 8 to 12 rebuild: what changed, how it was checked, and coverage against industry standards
 
 > Superseded by Block_Assessment_Arrangement_2026-11-03.md and second_half/Plan_Weeks_8-12.pdf: the semester ends at Week 12, Weeks 8 to 11 are four classes in second_half/, the project is an individual timed sitting in Week 12, and there is no Practical Test 2, demo or Weeks 13 to 15. Kept as a record.

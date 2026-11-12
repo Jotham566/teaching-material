@@ -39,7 +39,7 @@ def instructions_js():
     """The project's student instructions as the portal inserts them (cell 0 of every issued notebook)."""
     text = '''# __COURSE__ Engineering ML project: supervised timed sitting
 
-Individual work • Part A 30 marks and Part B 15 marks (45 percent of the course) • Up to three hours from **Start test**.
+Individual work • Part A 30 marks and Part B 15 marks (45 marks, scaled to 40 percent of the course) • Up to three hours from **Start test**.
 
 __DEADLINE__
 The timer includes setup, internet interruptions and submission. It cannot be paused or restarted by refreshing, changing devices or reopening Colab. Your deadline is the earlier of three hours after starting or the class closing time. Colab may still allow editing afterwards, but late work is not accepted for grading.

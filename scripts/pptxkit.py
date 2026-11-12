@@ -738,8 +738,8 @@ def s_quiz(prs, week, topic, integrative=False, qr_path=None):
     rows = ['Enter your own Student Registration Number exactly as recorded.',
             "One attempt, from the Google account you are signed in to.",
             'Open for 24 hours from lecturer activation, then it closes.',
-            "One per cent each. Tap View score and read the feedback.",
-            "Twelve this semester, best ten count. No resits."]
+            "One mark each. Tap View score and read the feedback.",
+            "Q1 to Q5 all count. No resits."]
     if integrative:
         rows.insert(1, "Two of the five come from earlier weeks.")
     rw = 7.1

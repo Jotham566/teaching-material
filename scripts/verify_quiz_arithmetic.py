@@ -565,14 +565,14 @@ for _code, _c in payload.items():
     _by = {w["week"]: w for w in _c["weeks"]}
     ok(f"{_code}: Week 12 and 13 forms carry the RETIRED notice and the retired flag",
        all(_by[w].get("retired") and _by[w]["intro"].startswith("RETIRED.") for w in (12, 13)))
-    ok(f"{_code}: Weeks 8 to 11 intros describe the block sitting and the 35-mark quiz total",
-       all("last 20 minutes of Class" in _by[w]["intro"] and "35 marks" in _by[w]["intro"] for w in (8, 9, 10, 11)))
+    ok(f"{_code}: Weeks 8 to 11 intros describe the block sitting and say it is practice that does not count",
+       all("last 20 minutes of Class" in _by[w]["intro"] and "do not count toward your final mark" in _by[w]["intro"] for w in (8, 9, 10, 11)))
     ok(f"{_code}: Block 1 forms say Class 2 and Block 2 forms say Class 4",
        "Class 2" in _by[8]["intro"] and "Class 2" in _by[9]["intro"] and "Class 4" in _by[10]["intro"] and "Class 4" in _by[11]["intro"])
     ok(f"{_code}: no live intro still says 'best ten of twelve' or 'nine of eleven'",
        not any(("best ten of twelve" in w["intro"] or "nine of eleven" in w["intro"]) for w in _c["weeks"]))
-    ok(f"{_code}: Weeks 1 to 5 intros state best three and 15%",
-       all(("best three" in _by[w]["intro"] and "15%" in _by[w]["intro"]) for w in (1, 2, 3, 4, 5)))
+    ok(f"{_code}: Weeks 1 to 5 intros say all five count and 20%",
+       all(("all five count" in _by[w]["intro"] and "20%" in _by[w]["intro"]) for w in (1, 2, 3, 4, 5)))
     ok(f"{_code}: Week 11 form title names the new topic", "choosing a model" in _by[11]["title"])
     ok(f"{_code}: Week 11 form has 5 questions, one correct option each",
        len(_by[11]["questions"]) == 5 and all(sum(ch["correct"] for ch in q["choices"]) == 1 for q in _by[11]["questions"]))

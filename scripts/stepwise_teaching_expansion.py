@@ -72,7 +72,7 @@ def apply():
     core.append(s)
    core[0]=copy.deepcopy(old[0])
    if d['cohort']=='CML3111':
-    core[1]=idea('Today: inspect, clean, check and plot','First inspect the original CSV. Then apply the cleaning rules, check the result, and explain the cleaned charts.\n\nThis walkthrough supports the existing Week 6 assignment and quiz. Their requirements are unchanged.')
+    core[1]=idea('Today: inspect, clean, check and plot','First inspect the original CSV. Then apply the cleaning rules, check the result, and explain the cleaned charts.\n\nThis walkthrough is practice for Week 6. A6 and Quiz 6 do not count toward the final mark.')
     start=next(i for i,s in enumerate(old) if s['title'] in ('Your issued assignment','Your issued task','Ungraded cleaning practice'))
     tail=old[start:]
    else:

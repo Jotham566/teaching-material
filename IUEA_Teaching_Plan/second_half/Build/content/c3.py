@@ -526,10 +526,10 @@ def build(code):
                          'And if your numbers differ a little from the slide, check that random_state equals seventeen in every tree, except in Step 5, where we try other seeds on purpose. Read the last line of any error first.')))
 
     S.append(dict(kind='list', title='How this class counts towards your coursework',
-                  items=['Nothing is submitted today.', 'Block 2 is Classes 3 and 4. Its assignment has three parts: A9 (validation and trust, from today\'s lab), A10 (features) and A11 (model recommendation), both from Class 4.',
+                  items=['Nothing is submitted today.', 'Block 2 is Classes 3 and 4. Its assignment has three parts: A9 (validation and trust, from today\'s lab), A10 (features) and A11 (model recommendation), both from Class 4. Block 2 is practice: it does not count toward your final mark, but it is collected and you get feedback.',
                          f'The Block 2 assignment closes on {C.COHORTS[code]["b2_close"]} (Kampala time).', 'The Block 2 quiz opens in the last 20 minutes of Class 4, stays open for 24 hours, and covers Classes 3 and 4.'],
                   icons=['lock', 'doc', 'clock', 'bell'],
-                  notes=('A word on how this counts. Nothing is submitted today. Block 2 is this class and the next one. Its assignment has three parts: A9 on validation and trust, which repeats the steps of today\'s lab, and A10 and A11 on features and on recommending a model, which come from Class 4. '
+                  notes=('A word on how this counts. The block work is practice: it does not count toward your final mark (only A1 to A5 and Q1 to Q5 do), but it is collected and you get feedback. Nothing is submitted today. Block 2 is this class and the next one. Its assignment has three parts: A9 on validation and trust, which repeats the steps of today\'s lab, and A10 and A11 on features and on recommending a model, which come from Class 4. '
                          f'All three close on {C.COHORTS[code]["b2_close"]}, Kampala time. The Block 2 quiz opens in the last twenty minutes of Class 4, stays open for twenty-four hours, and covers both classes. Keep your saved notebook, because next class we extend it.')))
 
     s['facilitator'] = dict(

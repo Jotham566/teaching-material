@@ -75,7 +75,7 @@ COHORTS = {
 # Week 10 and 11 forms are Q9 and Q10 (Block 2, Class 4). Weeks 12 and 13 (Q11, Q12) are retired.
 BLOCK_OF_WEEK = {8: (1, 2, "Q7"), 9: (1, 2, "Q8"), 10: (2, 4, "Q9"), 11: (2, 4, "Q10")}
 RETIRED_INTRO = ("RETIRED. This quiz is not part of the course and is not marked. The semester now ends at Week 12, so the "
-                 "two block quizzes are Q7 and Q8 (Block 1) and Q9 and Q10 (Block 2). Do not submit this form.")
+                 "block quizzes Q7 to Q10 are practice and do not count toward the final mark. Do not submit this form.")
 
 
 def block_intro(topic_line, wk):
@@ -90,8 +90,8 @@ def block_intro(topic_line, wk):
               "You cannot reopen it or change an answer, so read each question once, properly."
             + "\n• The first box asks for your registration number. It is the number printed on your student card, "
               "and it is how the mark reaches your record."
-            + f"\n• Five questions, one mark each. The two Block {block} quizzes together are out of 10 marks and a block always counts. "
-              "All quizzes together are out of 35 marks and count for 15% of the course."
+            + f"\n• Five questions, one mark each. The two Block {block} quizzes together are out of 10 marks. "
+              "These block quizzes are practice: they do not count toward your final mark (only Q1 to Q5 do), but do them anyway. The feedback shows you what to fix before the project sitting."
             + "\n• When you submit, tap View score. You get a tick or a cross on each question with the feedback underneath. "
               "Your mark is the number of ticks, and the feedback on anything you got wrong is the part worth reading."
             + "\n• A question left blank scores the same as one answered wrongly, so answer all five.")
@@ -136,12 +136,12 @@ def build_payload():
                 + "\n• A question left blank scores the same as one "
                   "answered wrongly, so answer all five.")
             if code in ('CML3111','CML3112','CML3113'):
-                # Policy of 2 November 2026 (data/assessment_blocks_20261102.json): Weeks 1 to 5 weekly, best 3 of 5,
-                # Week 6 waived; two block sittings from Week 8; quizzes out of 35 marks and 15% of the course.
-                intro=intro.replace('Five questions, one mark each, worth 1% of your final mark.', 'Five questions, one mark each. All quizzes together are out of 35 marks and count for 15% of the course.')
-                intro=intro.replace('Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.', 'Quiz 6 is not assigned. Of the Week 1 to 5 quizzes your best three count, and there are no resits.')
+                # Policy of 10 November 2026 (data/assessment_policy_20261110.json): Q1 to Q5 all count (20%); Q6 onward and the block quizzes are practice. Earlier: Weeks 1 to 5 weekly, best 3 of 5,
+                # Week 6 waived; two block sittings from Week 8. Superseded 10 November 2026: only Q1 to Q5 count (each /5, 20% of the course); the block quizzes are practice.
+                intro=intro.replace('Five questions, one mark each, worth 1% of your final mark.', 'Five questions, one mark each. Quizzes Q1 to Q5 are each out of 5, all five count equally, and together they are worth 20% of the course.')
+                intro=intro.replace('Your best ten of twelve quizzes count. Missing two costs you nothing, and there are no resits.', 'All five of the Week 1 to 5 quizzes count. There is no best-of rule and there are no resits.')
                 assert 'best ten of twelve' not in intro and 'worth 1%' not in intro, 'quiz intro wording was not updated'
-                if wk==6:intro='NOT ASSIGNED: Quiz 6 is waived for practical revision. No submission or mark is required.'
+                if wk==6:intro='NOT ASSIGNED: Quiz 6 is not set (practical revision) and does not count toward the final mark. No submission or mark is required.'
                 if wk in BLOCK_OF_WEEK:intro=block_intro(q['intro'],wk)
                 if q.get('retired'):intro=RETIRED_INTRO
             entry = {
