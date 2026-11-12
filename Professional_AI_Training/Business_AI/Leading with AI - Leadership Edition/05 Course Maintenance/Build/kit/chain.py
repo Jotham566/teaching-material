@@ -1,0 +1,52 @@
+"""The thread of Leading with AI (Leadership Edition, 11 November 2026): for every session, what it builds on, what it adds and what it feeds.
+
+Used by kit/deck.py to draw the 'How today connects' slide. One short phrase per link (under about 45 characters). `on` lists up to three earlier ideas.
+Keep in step with kit/sessions_plan.py and LEADERSHIP_BIBLE.md.
+"""
+SHORT = {0: 'Landscape', 1: 'See, read', 2: 'Predict', 3: 'Any good?', 4: 'Language', 5: 'Chatbots', 6: 'Market', 7: 'Prompting',
+         8: 'Your docs', 9: 'Failures', 10: 'Agents', 11: 'Workflow', 12: 'People', 13: 'Governance', 14: '90-day plan'}
+
+CHAIN = {
+    1: dict(on=[(0, 'a model learns from examples'), (0, 'your chosen industry')],
+            adds='AI that sees images, reads documents, hears speech',
+            leads='Session 2: the same learning, on your records'),
+    2: dict(on=[(1, 'learning from labelled examples'), (0, 'the four jobs AI does')],
+            adds='Prediction: yes or no, a number, a ranking',
+            leads='Session 3: every prediction can be wrong'),
+    3: dict(on=[(2, 'predictions and held-back test cases'), (1, 'pictures that differ from the examples')],
+            adds='False alarms, misses, the dial, bias',
+            leads='Session 4: language, judged the same way'),
+    4: dict(on=[(2, 'sorting is prediction'), (3, 'judging accuracy')],
+            adds='Sort, search by meaning, translate, summarise',
+            leads='Session 5: from understanding text to writing it'),
+    5: dict(on=[(4, 'text as meaning'), (3, 'checking what comes out')],
+            adds='How chatbots write; fluent is not true',
+            leads='Session 6: who makes the models, and how to choose'),
+    6: dict(on=[(5, 'what a chatbot is'), (3, 'judging a vendor’s 95% claim')],
+            adds='Models, vendors; rent, host or build',
+            leads='Session 7: getting good work from the tools'),
+    7: dict(on=[(5, 'a chatbot continues your text'), (6, 'the tools you chose')],
+            adds='Briefs that work, tested; the jagged frontier',
+            leads='Session 8: making AI know your documents'),
+    8: dict(on=[(4, 'search by meaning'), (7, 'a tested brief')],
+            adds='Assistants that answer from your documents',
+            leads='Session 9: what still goes wrong'),
+    9: dict(on=[(3, 'false alarms and misses'), (5, 'chatbots invent'), (8, 'the wrong page fetched')],
+            adds='Five failures, liability, a checking routine',
+            leads='Session 10: AI that acts, not only answers'),
+    10: dict(on=[(7, 'clear instructions'), (9, 'hidden instructions, cost of errors')],
+             adds='Agents: tools, loop, permissions, approval',
+             leads='Session 11: redesigning your workflows'),
+    11: dict(on=[(9, 'checking, and the cost of errors'), (10, 'levels of freedom'), (0, 'your AI Opportunity Portfolio')],
+             adds='Workflow map, value, payback, scored portfolio',
+             leads='Session 12: the people whose work changes'),
+    12: dict(on=[(11, 'the tasks that change'), (7, 'the jagged frontier')],
+             adds='Roles, skills, adoption, change plan',
+             leads='Session 13: the rules around it'),
+    13: dict(on=[(6, 'vendors and data location'), (9, 'failures and their cost'), (12, 'your people plan')],
+             adds='Use policy, risk register, vendor checks',
+             leads='Session 14: data readiness and the plan'),
+    14: dict(on=[(8, 'answers need good documents'), (13, 'policy and data classification'), (11, 'the scored portfolio')],
+             adds='Data inventory, scorecard, roadmap, 90 days',
+             leads='After the course: check-ins at day 30, 60 and 90'),
+}

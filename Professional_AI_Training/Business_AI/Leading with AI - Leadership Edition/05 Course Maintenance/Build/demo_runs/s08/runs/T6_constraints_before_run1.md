@@ -1,0 +1,1 @@
+Make a vegetarian bean and tomato stew over rice, which works for all four of you. Start the rice first; it takes about 20 minutes. Fry chopped onions until soft, then add diced tomatoes, garlic, cumin, paprika and salt. Stir in the beans and simmer for 15 minutes. Serve it over the rice, with a fried egg on top for anyone who wants one.

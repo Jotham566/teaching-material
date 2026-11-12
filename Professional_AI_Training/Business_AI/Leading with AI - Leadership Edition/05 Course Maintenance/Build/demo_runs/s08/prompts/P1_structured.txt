@@ -1,0 +1,18 @@
+You are helping the customer desk at Nile Valley Foods Ltd, a food distributor in Jinja, Uganda. Turn each customer message below into one record.
+
+Return only a JSON array, with no other text. One object per message, with exactly these fields:
+- id: the message number as an integer
+- customer: the customer's name or business, or null if not given
+- type: one of "order", "payment", "complaint", "question"
+- items: a list of objects {"product": text, "quantity": integer or null}; an empty list if no product is named
+- amount_ugx: an integer amount in Ugandan shillings, or null if none is stated
+- urgency: one of "low", "normal", "high"
+- reference: any invoice or payment reference quoted, or null
+
+Use only what the message says. If a field is not stated, use null. Do not guess.
+
+Messages:
+1. "Hi, this is Mary from Kamuli Fresh Mart. Please send 40 bags of maize flour 25kg and 20 bags of sugar 25kg to our Kamuli shop by Friday. Thanks."
+2. "Okello Traders here. Invoice INV-2291 for UGX 4,350,000 was paid on 2 November by mobile money, reference MM88231. Can you confirm you received it?"
+3. "The cooking oil jerrycans delivered yesterday to Busia were leaking and 6 of them are unusable. I want a replacement today or my money back. This is the third time."
+4. "Do you stock 5kg packs of rice and what is the price? No rush."

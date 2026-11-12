@@ -1,0 +1,13 @@
+Run of 7 November 2026, GPT-2 small (124M), CPU, python live_s05.py "Thank you for your" (phone keyboard example, Session 5 slide 10)
+TOKENS: ['Thank', ' you', ' for', ' your'] 4 tokens
+TOP 10 NEXT PIECES:
+  ' support'      30.4%
+  ' continued'    10.3%
+  ' patience'      5.4%
+  ' interest'      4.4%
+  ' help'          3.2%
+  ' time'          3.2%
+  ' understanding'   2.3%
+  ' consideration'   2.0%
+  ' feedback'      1.8%
+  ' comments'      1.6%

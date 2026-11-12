@@ -1,0 +1,80 @@
+{
+ "repo": "HuggingFaceTB/SmolLM2-135M-Instruct",
+ "stored_numbers": 134515008,
+ "files": {
+  "fp32": 538090376,
+  "fp16": 269060248,
+  "int8": 135012040,
+  "int4": 75768008
+ },
+ "quality": {
+  "fp32": {
+   "avg_loss": 4.5715,
+   "top3_next_word_capital_city_of_Uganda_is": [
+    [
+     " U",
+     0.1129
+    ],
+    [
+     " known",
+     0.1045
+    ],
+    [
+     " the",
+     0.0751
+    ]
+   ]
+  },
+  "fp16": {
+   "avg_loss": 4.5715,
+   "top3_next_word_capital_city_of_Uganda_is": [
+    [
+     " U",
+     0.1129
+    ],
+    [
+     " known",
+     0.1045
+    ],
+    [
+     " the",
+     0.0751
+    ]
+   ]
+  },
+  "int8": {
+   "avg_loss": 4.5588,
+   "top3_next_word_capital_city_of_Uganda_is": [
+    [
+     " U",
+     0.1145
+    ],
+    [
+     " known",
+     0.1018
+    ],
+    [
+     " a",
+     0.0707
+    ]
+   ]
+  },
+  "int4": {
+   "avg_loss": 5.0855,
+   "top3_next_word_capital_city_of_Uganda_is": [
+    [
+     " the",
+     0.5609
+    ],
+    [
+     " a",
+     0.0623
+    ],
+    [
+     " U",
+     0.0345
+    ]
+   ]
+  }
+ }
+}

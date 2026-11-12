@@ -1,0 +1,4 @@
+staff_handbook_excerpt.txt words 829 tokens (cl100k_base) 1074
+supplier_agreement_busoga_oils.txt words 576 tokens (cl100k_base) 747
+meeting_notes_raw.txt words 753 tokens (cl100k_base) 1176
+vendor_proposal_orbitdesk.txt words 606 tokens (cl100k_base) 791

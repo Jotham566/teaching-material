@@ -1,0 +1,7 @@
+CHECK token ids match | Nile Valley Foods delivers maize flour to Mbale.
+CHECK token ids match | Invoice INV-2041 for UGX 1,250,000 is overdue.
+CHECK token ids match | Busoga Oils Ltd renewed the supply agreement automatically.
+CHECK token ids match | Unbelievably, the warehouse was reorganised.
+CHECK token ids match | Habari, tunataka sukari magunia kumi.
+'Please pay the invoice within thirty' [(' (', 69.33), (' days', 17.81), ('-', 10.18), (' minutes', 0.43), (' business', 0.38)]
+'Please pay the invoice within thirty (' [('30', 99.42), ('31', 0.19), ('35', 0.06), ('60', 0.06), ('29', 0.05)]

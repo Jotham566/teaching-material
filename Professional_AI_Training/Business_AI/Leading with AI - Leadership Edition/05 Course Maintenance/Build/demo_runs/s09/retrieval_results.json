@@ -1,0 +1,416 @@
+{
+ "chunks": [
+  {
+   "id": "1.1",
+   "text": "Office staff work Monday to Friday, 8:00 am to 5:00 pm, with a one-hour lunch break."
+  },
+  {
+   "id": "1.2",
+   "text": "Depot and warehouse staff work in two shifts. The first shift runs from 6:00 am to 2:00 pm and the second from 2:00 pm to 10:00 pm. The Warehouse Supervisor posts the roster every Friday for the following week."
+  },
+  {
+   "id": "1.3",
+   "text": "Overtime must be approved by the line manager before it is worked. Approved overtime is paid at 1.5 times the normal hourly rate on weekdays and 2 times the normal hourly rate on Sundays and public holidays."
+  },
+  {
+   "id": "1.4",
+   "text": "A staff member who expects to arrive more than 30 minutes late must tell the line manager before the shift starts."
+  },
+  {
+   "id": "1.5",
+   "text": "Staff sign in and out at the depot gate book or on the office attendance sheet. The line manager reviews the attendance records at the end of each month."
+  },
+  {
+   "id": "2.1",
+   "text": "Full-time staff earn 21 working days of paid annual leave in each leave year. The leave year runs from 1 January to 31 December."
+  },
+  {
+   "id": "2.2",
+   "text": "Leave requests go to the line manager on the leave form at least 14 days before the first day of leave. The line manager answers within 3 working days."
+  },
+  {
+   "id": "2.3",
+   "text": "Up to 5 unused days may be carried over to the next leave year. Carried-over days must be used by 31 March."
+  },
+  {
+   "id": "2.4",
+   "text": "A staff member who is sick must tell the line manager by 9:00 am on the first day of absence. After 2 consecutive days of absence the staff member gives the line manager a medical note."
+  },
+  {
+   "id": "2.5",
+   "text": "Public holidays declared by the Government of Uganda are paid days off."
+  },
+  {
+   "id": "2.6",
+   "text": "Annual leave may not be taken in the last 5 working days of a month for staff in the Finance office, because of month-end closing. The Finance Manager may agree an exception in writing."
+  },
+  {
+   "id": "3.1",
+   "text": "Staff may claim reasonable business expenses. Receipts must reach the Finance office within 14 days of the spending."
+  },
+  {
+   "id": "3.2",
+   "text": "Approval limits for one expense claim are as follows. Up to UGX 200,000: the line manager. From UGX 200,001 to UGX 2,000,000: the Finance Manager. Above UGX 2,000,000: the Managing Director."
+  },
+  {
+   "id": "3.3",
+   "text": "A staff member travelling outside Jinja on company business receives a meal allowance of UGX 40,000 a day. The Operations office books accommodation in advance. The cost may not exceed UGX 180,000 a night."
+  },
+  {
+   "id": "3.4",
+   "text": "Only the Finance Manager may issue a cash advance. The staff member accounts for the advance with receipts within 7 days."
+  },
+  {
+   "id": "3.5",
+   "text": "Approved claims are paid with the monthly salary."
+  },
+  {
+   "id": "3.6",
+   "text": "A claim without a receipt is paid only if the line manager signs a short written explanation. The Finance Manager may refuse a claim that breaks these rules."
+  },
+  {
+   "id": "4.1",
+   "text": "Company data lives in Google Workspace. Customer lists, price lists and supplier contracts stay in the company Drive. Nobody copies them to a personal email account, a personal phone or a personal cloud account."
+  },
+  {
+   "id": "4.2",
+   "text": "Every staff member turns on 2-step verification for the company Google account. Passwords are never shared, even with a manager."
+  },
+  {
+   "id": "4.3",
+   "text": "Personal data of customers and staff is used only for the purpose it was collected for. It is shared inside the company only with people who need it for their work."
+  },
+  {
+   "id": "4.4",
+   "text": "Staff must not paste customer personal data, price lists or contracts into a public AI tool or website unless the Managing Director has approved that tool in writing."
+  },
+  {
+   "id": "4.5",
+   "text": "Company laptops and phones are for work. Limited personal use is allowed outside working hours. Only the Operations office installs software on company devices."
+  },
+  {
+   "id": "4.6",
+   "text": "Staff use their company email address for company business. Orders and payment confirmations received on WhatsApp are recorded in the company order sheet on the same day."
+  },
+  {
+   "id": "5.1",
+   "text": "An incident is an accident, an injury, a theft, a loss of data, a lost or stolen device, a suspected fraud or a food safety concern."
+  },
+  {
+   "id": "5.2",
+   "text": "Injuries and food safety concerns are reported to the Warehouse Supervisor straight away. The staff member then completes the incident form and gives it to the Operations Manager within 24 hours."
+  },
+  {
+   "id": "5.3",
+   "text": "A lost or stolen laptop or phone, and any suspected loss of data, is reported to the Operations Manager within 4 hours of discovery."
+  },
+  {
+   "id": "5.4",
+   "text": "A suspected fraud is reported directly to the Managing Director."
+  },
+  {
+   "id": "5.5",
+   "text": "Nobody is punished for reporting an incident in good faith."
+  },
+  {
+   "id": "5.6",
+   "text": "The Operations Manager keeps the incident log. Serious incidents go to the Managing Director within 2 working days."
+  },
+  {
+   "id": "5.7",
+   "text": "A near miss is an event that could have caused harm but did not. Near misses are reported on the incident form in the same way, so that the company can fix the cause before someone is hurt."
+  }
+ ],
+ "results": [
+  {
+   "id": "Q01",
+   "question": "How many working days of paid annual leave does a full-time staff member earn in each leave year?",
+   "answer_clause": "2.1",
+   "top5": [
+    {
+     "clause": "2.1",
+     "score": 0.88
+    },
+    {
+     "clause": "2.6",
+     "score": 0.545
+    },
+    {
+     "clause": "2.3",
+     "score": 0.509
+    },
+    {
+     "clause": "1.1",
+     "score": 0.482
+    },
+    {
+     "clause": "2.5",
+     "score": 0.423
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q02",
+   "question": "How long before the first day of leave must a leave request reach the line manager?",
+   "answer_clause": "2.2",
+   "top5": [
+    {
+     "clause": "2.2",
+     "score": 0.9
+    },
+    {
+     "clause": "2.4",
+     "score": 0.65
+    },
+    {
+     "clause": "1.4",
+     "score": 0.64
+    },
+    {
+     "clause": "2.3",
+     "score": 0.565
+    },
+    {
+     "clause": "2.1",
+     "score": 0.511
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q03",
+   "question": "Who must approve an expense claim of UGX 1,500,000?",
+   "answer_clause": "3.2",
+   "top5": [
+    {
+     "clause": "3.2",
+     "score": 0.73
+    },
+    {
+     "clause": "3.1",
+     "score": 0.466
+    },
+    {
+     "clause": "3.5",
+     "score": 0.457
+    },
+    {
+     "clause": "3.6",
+     "score": 0.396
+    },
+    {
+     "clause": "3.3",
+     "score": 0.29
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q04",
+   "question": "Within how many days of spending must receipts reach the Finance office?",
+   "answer_clause": "3.1",
+   "top5": [
+    {
+     "clause": "3.1",
+     "score": 0.795
+    },
+    {
+     "clause": "3.4",
+     "score": 0.654
+    },
+    {
+     "clause": "2.3",
+     "score": 0.464
+    },
+    {
+     "clause": "3.2",
+     "score": 0.436
+    },
+    {
+     "clause": "3.6",
+     "score": 0.434
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q05",
+   "question": "How is approved overtime paid on a Sunday?",
+   "answer_clause": "1.3",
+   "top5": [
+    {
+     "clause": "1.3",
+     "score": 0.761
+    },
+    {
+     "clause": "3.5",
+     "score": 0.445
+    },
+    {
+     "clause": "1.1",
+     "score": 0.442
+    },
+    {
+     "clause": "2.5",
+     "score": 0.422
+    },
+    {
+     "clause": "2.1",
+     "score": 0.373
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q06",
+   "question": "May a staff member paste a customer price list into a public AI tool?",
+   "answer_clause": "4.4",
+   "top5": [
+    {
+     "clause": "4.4",
+     "score": 0.749
+    },
+    {
+     "clause": "4.3",
+     "score": 0.358
+    },
+    {
+     "clause": "4.1",
+     "score": 0.329
+    },
+    {
+     "clause": "3.1",
+     "score": 0.261
+    },
+    {
+     "clause": "3.6",
+     "score": 0.199
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q07",
+   "question": "How soon must a lost company laptop be reported, and to whom?",
+   "answer_clause": "5.3",
+   "top5": [
+    {
+     "clause": "5.3",
+     "score": 0.711
+    },
+    {
+     "clause": "5.6",
+     "score": 0.453
+    },
+    {
+     "clause": "5.2",
+     "score": 0.398
+    },
+    {
+     "clause": "4.5",
+     "score": 0.321
+    },
+    {
+     "clause": "5.4",
+     "score": 0.299
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q08",
+   "question": "What is the most the company will pay for one night of accommodation on company travel?",
+   "answer_clause": "3.3",
+   "top5": [
+    {
+     "clause": "3.3",
+     "score": 0.401
+    },
+    {
+     "clause": "3.5",
+     "score": 0.338
+    },
+    {
+     "clause": "2.1",
+     "score": 0.33
+    },
+    {
+     "clause": "2.5",
+     "score": 0.293
+    },
+    {
+     "clause": "3.2",
+     "score": 0.269
+    }
+   ],
+   "answer_clause_in_top3": true,
+   "answer_clause_rank": 1
+  },
+  {
+   "id": "Q09",
+   "question": "How many days of paid sick leave does a staff member get each year?",
+   "answer_clause": "none",
+   "top5": [
+    {
+     "clause": "2.1",
+     "score": 0.7
+    },
+    {
+     "clause": "2.4",
+     "score": 0.537
+    },
+    {
+     "clause": "2.3",
+     "score": 0.521
+    },
+    {
+     "clause": "2.6",
+     "score": 0.489
+    },
+    {
+     "clause": "1.1",
+     "score": 0.45
+    }
+   ],
+   "answer_clause_in_top3": null,
+   "answer_clause_rank": null
+  },
+  {
+   "id": "Q10",
+   "question": "What rate per kilometre does the company pay when a staff member uses a private car for work?",
+   "answer_clause": "none",
+   "top5": [
+    {
+     "clause": "4.3",
+     "score": 0.32
+    },
+    {
+     "clause": "3.3",
+     "score": 0.295
+    },
+    {
+     "clause": "3.1",
+     "score": 0.292
+    },
+    {
+     "clause": "4.5",
+     "score": 0.291
+    },
+    {
+     "clause": "4.1",
+     "score": 0.287
+    }
+   ],
+   "answer_clause_in_top3": null,
+   "answer_clause_rank": null
+  }
+ ]
+}

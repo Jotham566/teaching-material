@@ -1,0 +1,1 @@
+Try a lemon-garlic chicken stir-fry. Slice chicken breast and sear it in a hot pan with oil. Add garlic, bell peppers, broccoli and snap peas. Stir in soy sauce, honey, lemon juice and a little cornstarch slurry, and cook until glossy. Serve over rice or noodles. It's ready in about 25 minutes, and you can swap the chicken for tofu or shrimp.

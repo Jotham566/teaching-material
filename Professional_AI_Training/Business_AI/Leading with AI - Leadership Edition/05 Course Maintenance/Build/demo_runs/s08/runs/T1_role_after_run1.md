@@ -1,0 +1,1 @@
+Imagine a chocolate bar costs 1,000 shillings today. Next year, the same bar costs 1,200 shillings. The chocolate didn't change, but the price went up. That's inflation! It means prices slowly rise over time, so the same money buys a bit less than before. That's why your grandparents remember sweets being much cheaper!

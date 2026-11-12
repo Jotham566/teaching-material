@@ -1,0 +1,17 @@
+Goal: work out two figures for one employee's payslip at Nile Valley Foods for this month: (1) the net pay the worker receives, and (2) the total cost of the worker to the company.
+
+Facts:
+- Monthly salary UGX 1,800,000, for 160 working hours a month.
+- This month: 12 hours of weekday overtime, 6 hours of Sunday work, 1 day of unpaid leave.
+
+Company rules:
+- Normal hourly rate is monthly salary divided by 160.
+- Weekday overtime is paid at 1.5 times the hourly rate; Sunday work at 2 times.
+- Unpaid leave is deducted at monthly salary divided by 22 working days, per day.
+- Gross pay is salary plus overtime pay minus the leave deduction.
+- The employee pays 5 percent of gross pay into the pension fund; the employer adds 10 percent of gross pay.
+- A salary advance of UGX 150,000 is repaid this month, taken from pay after the pension contribution.
+- Net pay is gross pay minus the employee pension contribution minus the advance repayment.
+- Total cost to the company is gross pay plus the employer contribution.
+
+What I need back: the net pay and the total cost, each rounded to the nearest shilling, with the working shown so that I can check each line. If any rule is unclear, say which one and what you assumed. Check your answer by re-adding the lines before you reply.

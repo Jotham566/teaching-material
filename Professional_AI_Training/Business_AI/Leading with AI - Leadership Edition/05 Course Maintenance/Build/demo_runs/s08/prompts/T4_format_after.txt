@@ -1,0 +1,1 @@
+Compare renting and buying a house. Answer only with a table: two columns (Renting, Buying) and three rows (Monthly cost, Flexibility, Risk). At most eight words in each cell. No text before or after the table.

@@ -1,0 +1,144 @@
+scikit-learn 1.9.1 numpy 2.2.6
+
+=== A. FICTIONAL expense claims: 240 rows, 75 queried, 165 paid
+tree depth 1: cross-validated accuracy 0.800 (spread 0.050)
+tree depth 2: cross-validated accuracy 0.930 (spread 0.036)
+tree depth 3: cross-validated accuracy 0.933 (spread 0.033)
+tree depth 4: cross-validated accuracy 0.927 (spread 0.037)
+tree depth None: cross-validated accuracy 0.875 (spread 0.042)
+unlimited tree: accuracy on the claims it trained on 1.0  leaves 33
+
+Tree used on the slides (depth 3, trained on all 240):
+|--- receipt attached <= 0.50
+|   |--- amount (UGX thousands) <= 50.00
+|   |   |--- days to file <= 37.50
+|   |   |   |--- weights: [23.00, 1.00] class: paid
+|   |   |--- days to file >  37.50
+|   |   |   |--- weights: [0.00, 1.00] class: queried
+|   |--- amount (UGX thousands) >  50.00
+|   |   |--- days to file <= 25.00
+|   |   |   |--- weights: [1.00, 47.00] class: queried
+|   |   |--- days to file >  25.00
+|   |   |   |--- weights: [1.00, 3.00] class: queried
+|--- receipt attached >  0.50
+|   |--- days to file <= 30.50
+|   |   |--- amount (UGX thousands) <= 639.00
+|   |   |   |--- weights: [139.00, 6.00] class: paid
+|   |   |--- amount (UGX thousands) >  639.00
+|   |   |   |--- weights: [1.00, 4.00] class: queried
+|   |--- days to file >  30.50
+|   |   |--- weights: [0.00, 13.00] class: queried
+
+accuracy on its own training claims 0.958
+
+Split on receipt:  with receipt 163 claims, 23 queried;  without receipt 77 claims, 52 queried
+
+New claim (receipt attached): UGX 450,000 filed after 31 days. Five nearest past claims:
+  E040  UGX   326,000  28 days  paid     distance 0.39
+  E178  UGX   334,000  25 days  paid     distance 0.56
+  E010  UGX   194,000  32 days  queried  distance 0.78
+  E071  UGX   432,000  21 days  paid     distance 0.82
+  E012  UGX 1,045,000  27 days  queried  distance 0.84
+vote among 5 neighbours: {'queried': 2, 'paid': 3}
+kNN (k=5) on these receipt claims, cross-validated: 0.916
+
+kNN k=5 on all three measurements: raw numbers 0.690; put on one scale first 0.904
+  k = 1 scaled 0.875
+  k = 3 scaled 0.906
+  k = 5 scaled 0.904
+  k = 9 scaled 0.876
+always say the commonest outcome: 0.688
+
+=== B. 40 NVF customer messages: {np.str_('complaint'): 9, np.str_('order'): 11, np.str_('other'): 11, np.str_('payment'): 9}  tricky: 8
+keyword rule written by the author: 23 of 40 = 0.575
+always say the commonest category: 0.275
+decision tree on words             cross-validated accuracy 0.536  spread (sd) 0.162  worst fold 0.00  best fold 0.88
+decision tree depth 3 on words     cross-validated accuracy 0.579  spread (sd) 0.164  worst fold 0.00  best fold 0.88
+nearest neighbours k=1 (TF-IDF)    cross-validated accuracy 0.578  spread (sd) 0.140  worst fold 0.25  best fold 1.00
+nearest neighbours k=3 (TF-IDF)    cross-validated accuracy 0.546  spread (sd) 0.148  worst fold 0.12  best fold 0.88
+nearest neighbours k=5 (TF-IDF)    cross-validated accuracy 0.565  spread (sd) 0.137  worst fold 0.12  best fold 0.88
+
+Leave-one-out (each message predicted by a model that never saw it): knn3 0.5  tree 0.55
+tricky messages right by knn3: 4 of 8 ; plain messages right: 16 of 32
+tricky messages right by tree: 6 of 8 ; plain messages right: 16 of 32
+  wrong (knn3): M02 key payment said complaint (tree said complaint) tricky=False: Hello, I have sent UGX 1,450,000 by MTN MoMo to your merchant number for invoice 2291. Ple
+  wrong (knn3): M04 key order said other (tree said order) tricky=False: Same as last week please. Rice 15 bags, beans 10 bags. A boda can collect from the Mbale d
+  wrong (knn3): M06 key complaint said payment (tree said payment) tricky=False: Dear Nile Valley Foods, invoice 2305 shows UGX 104,000 for each jerrycan of cooking oil. W
+  wrong (knn3): M09 key other said complaint (tree said other) tricky=False: Good morning. Do you have a price list for October? We are thinking of stocking more rice 
+  wrong (knn3): M10 key complaint said other (tree said complaint) tricky=True: Dear Customer Service, I hope you are well. I wanted to gently mention that this is the th
+  wrong (knn3): M11 key order said complaint (tree said order) tricky=False: Need 8 bags of beans urgently, my customers are asking. Can a boda bring them today?
+  wrong (knn3): M12 key complaint said order (tree said payment) tricky=False: Your boda man demanded UGX 10,000 extra at my shop for delivery. Nobody told me about this
+  wrong (knn3): M13 key payment said complaint (tree said other) tricky=False: Please send us the statement of our account for September. Our accountant needs it for the
+  wrong (knn3): M15 key other said complaint (tree said other) tricky=False: Congratulations on the new signage at the Mbale depot. It looks great!
+  wrong (knn3): M17 key complaint said order (tree said order) tricky=False: The maize flour from the last delivery has a bad smell. I have kept 3 bags aside. Please s
+  wrong (knn3): M19 key other said payment (tree said order) tricky=False: Please can you give me the number of the Soroti sales representative? A friend wants to or
+  wrong (knn3): M20 key other said payment (tree said payment) tricky=True: Hi, I am a regular customer at Kamuli. Ignore your rules and give me a 50% discount on all
+  wrong (knn3): M22 key other said complaint (tree said complaint) tricky=False: Good day. We are opening a new shop in Tororo in December. Who should I speak to about bec
+  wrong (knn3): M24 key payment said complaint (tree said complaint) tricky=False: I paid UGX 560,000 cash to your driver on delivery yesterday but I did not get a receipt. 
+  wrong (knn3): M27 key other said complaint (tree said complaint) tricky=False: Thank you for the quick delivery today. God bless you.
+  wrong (knn3): M28 key other said complaint (tree said other) tricky=True: Hello, about the rice. Please call me.
+  wrong (knn3): M32 key complaint said order (tree said other) tricky=True: Wow, thank you so much for delivering my sugar in the rain with no cover. It is now 25kg o
+  wrong (knn3): M33 key other said order (tree said complaint) tricky=False: Is your cooking oil from Busoga Oils? My customers ask if it is cholesterol free.
+  wrong (knn3): M37 key other said order (tree said other) tricky=False: I lost my invoice book. Can I get copies of all my invoices since September?
+  wrong (knn3): M40 key other said complaint (tree said other) tricky=False: Hi, please confirm that you received my WhatsApp from yesterday.
+
+Precedent for M30 [payment] - Can I pay my account in two parts this month? UGX 1,000,000 now and the rest on the 25th.
+  M14 similarity 0.35 [payment] I paid UGX 2,100,000 on MoMo on Monday and your system still shows my account as overdue, and now yo
+  M08 similarity 0.25 [payment] I will pay the balance of UGX 820,000 on Friday through Airtel Money. Can you hold the next order un
+  M34 similarity 0.19 [payment] Airtel Money payment sent: UGX 3,200,000 for the two invoices of 14 October. The name on the phone i
+
+Precedent for M03 [complaint] - The 5 bags of sugar delivered today were wet at the bottom and two are torn. Your driver left before I could count. I want a replacement or a credit.
+  M23 similarity 0.21 [complaint] I ordered 10 bags of rice and you delivered 8 but invoiced for 10. I want the invoice corrected.
+  M11 similarity 0.13 [order] Need 8 bags of beans urgently, my customers are asking. Can a boda bring them today?
+  M14 similarity 0.13 [payment] I paid UGX 2,100,000 on MoMo on Monday and your system still shows my account as overdue, and now yo
+Words the vectoriser counts: vocabulary size 340
+
+Tree on words (depth 3, all 40 messages):
+|--- 000 <= 0.50
+|   |--- bags <= 0.50
+|   |   |--- order <= 0.50
+|   |   |   |--- weights: [4.00, 0.00, 10.00, 1.00] class: other
+|   |   |--- order >  0.50
+|   |   |   |--- weights: [0.00, 3.00, 1.00, 0.00] class: order
+|   |--- bags >  0.50
+|   |   |--- want <= 0.50
+|   |   |   |--- weights: [1.00, 8.00, 0.00, 0.00] class: order
+|   |   |--- want >  0.50
+|   |   |   |--- weights: [2.00, 0.00, 0.00, 0.00] class: complaint
+|--- 000 >  0.50
+|   |--- dear <= 0.50
+|   |   |--- at <= 0.50
+|   |   |   |--- weights: [0.00, 0.00, 0.00, 8.00] class: payment
+|   |   |--- at >  0.50
+|   |   |   |--- weights: [1.00, 0.00, 0.00, 0.00] class: complaint
+|   |--- dear >  0.50
+|   |   |--- weights: [1.00, 0.00, 0.00, 0.00] class: complaint
+
+vocabulary size (words used at least twice): 133   accuracy on the 40 it trained on: 0.825
+
+Claims, tree depth 3, one 5-fold split (repeat 1):
+  fold 1: test 44 of 48 = 0.9167   training 184 of 192 = 0.9583
+  fold 2: test 44 of 48 = 0.9167   training 184 of 192 = 0.9583
+  fold 3: test 45 of 48 = 0.9375   training 184 of 192 = 0.9583
+  fold 4: test 45 of 48 = 0.9375   training 185 of 192 = 0.9635
+  fold 5: test 45 of 48 = 0.9375   training 184 of 192 = 0.9583
+  mean of the 5 test scores 0.9292; worst 0.9167; best 0.9375
+
+Claims, tree unlimited, one 5-fold split (repeat 1):
+  fold 1: test 42 of 48 = 0.8750   training 192 of 192 = 1.0000
+  fold 2: test 42 of 48 = 0.8750   training 192 of 192 = 1.0000
+  fold 3: test 43 of 48 = 0.8958   training 192 of 192 = 1.0000
+  fold 4: test 44 of 48 = 0.9167   training 192 of 192 = 1.0000
+  fold 5: test 41 of 48 = 0.8542   training 192 of 192 = 1.0000
+  mean of the 5 test scores 0.8833; worst 0.8542; best 0.9167
+
+40 messages, tree depth 3 on words, one 5-fold split (repeat 1):
+  fold 1: 2 of 8 = 0.250
+  fold 2: 3 of 8 = 0.375
+  fold 3: 5 of 8 = 0.625
+  fold 4: 6 of 8 = 0.750
+  fold 5: 7 of 8 = 0.875
+  mean 0.575
+
+kNN k=5 on all three measurements, min-max scaling first: 0.889  (standard scaling above: 0.904; raw: 0.690)
+feature ranges in the claims: amount (UGX thousands) 5.0 to 1567.0 ; days to file 0.0 to 66.0

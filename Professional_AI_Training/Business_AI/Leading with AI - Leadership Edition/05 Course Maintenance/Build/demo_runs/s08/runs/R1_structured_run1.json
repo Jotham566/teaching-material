@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "customer": "Mary, Kamuli Fresh Mart",
+    "type": "order",
+    "items": [
+      {"product": "maize flour 25kg bags", "quantity": 40},
+      {"product": "sugar 25kg bags", "quantity": 20}
+    ],
+    "amount_ugx": null,
+    "urgency": "normal",
+    "reference": null
+  },
+  {
+    "id": 2,
+    "customer": "Okello Traders",
+    "type": "payment",
+    "items": [],
+    "amount_ugx": 4350000,
+    "urgency": "normal",
+    "reference": "INV-2291, MM88231"
+  },
+  {
+    "id": 3,
+    "customer": null,
+    "type": "complaint",
+    "items": [
+      {"product": "cooking oil jerrycans", "quantity": 6}
+    ],
+    "amount_ugx": null,
+    "urgency": "high",
+    "reference": null
+  },
+  {
+    "id": 4,
+    "customer": null,
+    "type": "question",
+    "items": [
+      {"product": "rice 5kg packs", "quantity": null}
+    ],
+    "amount_ugx": null,
+    "urgency": "low",
+    "reference": null
+  }
+]

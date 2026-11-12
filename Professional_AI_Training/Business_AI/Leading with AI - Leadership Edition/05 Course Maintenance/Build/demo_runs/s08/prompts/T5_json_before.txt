@@ -1,0 +1,1 @@
+A customer at a restaurant says: "Two chapati and a tea for table 4, no sugar please." Write down this order for the kitchen.

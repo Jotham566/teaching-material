@@ -1,0 +1,167 @@
+{
+ "clause": {
+  "n_chunks": 30,
+  "answered_by_top_chunk": 8,
+  "of": 8,
+  "rows": [
+   {
+    "q": "Q01",
+    "top_score": 0.88,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "Full-time staff earn 21 working days of paid annual leave in each leave year. The leave year runs from 1 January to 31 December."
+   },
+   {
+    "q": "Q02",
+    "top_score": 0.9,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "Leave requests go to the line manager on the leave form at least 14 days before the first day of leave. The line manager answers within 3 working days."
+   },
+   {
+    "q": "Q03",
+    "top_score": 0.73,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "Approval limits for one expense claim are as follows. Up to UGX 200,000: the line manager. From UGX 200,001 to UGX 2,000,000: the Finance Manager. Above UGX 2,000,000: the Managing Director."
+   },
+   {
+    "q": "Q04",
+    "top_score": 0.795,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "Staff may claim reasonable business expenses. Receipts must reach the Finance office within 14 days of the spending."
+   },
+   {
+    "q": "Q05",
+    "top_score": 0.761,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "Overtime must be approved by the line manager before it is worked. Approved overtime is paid at 1.5 times the normal hourly rate on weekdays and 2 times the normal hourly rate on Sundays and public holidays."
+   },
+   {
+    "q": "Q06",
+    "top_score": 0.749,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "Staff must not paste customer personal data, price lists or contracts into a public AI tool or website unless the Managing Director has approved that tool in writing."
+   },
+   {
+    "q": "Q07",
+    "top_score": 0.711,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "A lost or stolen laptop or phone, and any suspected loss of data, is reported to the Operations Manager within 4 hours of discovery."
+   },
+   {
+    "q": "Q08",
+    "top_score": 0.401,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "A staff member travelling outside Jinja on company business receives a meal allowance of UGX 40,000 a day. The Operations office books accommodation in advance. The cost may not exceed UGX 180,000 a night."
+   }
+  ]
+ },
+ "fixed 150 characters": {
+  "n_chunks": 30,
+  "answered_by_top_chunk": 5,
+  "of": 8,
+  "rows": [
+   {
+    "q": "Q01",
+    "top_score": 0.539,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "tendance records at the end of each month. 2.1 Full-time staff earn 21 working days of paid annual leave in each leave year. The leave year runs from "
+   },
+   {
+    "q": "Q02",
+    "top_score": 0.874,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "1 January to 31 December. 2.2 Leave requests go to the line manager on the leave form at least 14 days before the first day of leave. The line manager"
+   },
+   {
+    "q": "Q03",
+    "top_score": 0.567,
+    "top_chunk_holds_answer": false,
+    "top_chunk": "3.1 Staff may claim reasonable business expenses. Receipts must reach the Finance office within 14 days of the spending. 3.2 Approval limits for one e"
+   },
+   {
+    "q": "Q04",
+    "top_score": 0.772,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "3.1 Staff may claim reasonable business expenses. Receipts must reach the Finance office within 14 days of the spending. 3.2 Approval limits for one e"
+   },
+   {
+    "q": "Q05",
+    "top_score": 0.591,
+    "top_chunk_holds_answer": false,
+    "top_chunk": "ek. 1.3 Overtime must be approved by the line manager before it is worked. Approved overtime is paid at 1.5 times the normal hourly rate on weekdays a"
+   },
+   {
+    "q": "Q06",
+    "top_score": 0.696,
+    "top_chunk_holds_answer": false,
+    "top_chunk": " people who need it for their work. 4.4 Staff must not paste customer personal data, price lists or contracts into a public AI tool or website unless "
+   },
+   {
+    "q": "Q07",
+    "top_score": 0.54,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "olen laptop or phone, and any suspected loss of data, is reported to the Operations Manager within 4 hours of discovery. 5.4 A suspected fraud is repo"
+   },
+   {
+    "q": "Q08",
+    "top_score": 0.5,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "ooks accommodation in advance. The cost may not exceed UGX 180,000 a night. 3.4 Only the Finance Manager may issue a cash advance. The staff member ac"
+   }
+  ]
+ },
+ "fixed 300 characters": {
+  "n_chunks": 15,
+  "answered_by_top_chunk": 8,
+  "of": 8,
+  "rows": [
+   {
+    "q": "Q01",
+    "top_score": 0.578,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "e manager before the shift starts. 1.5 Staff sign in and out at the depot gate book or on the office attendance sheet. The line manager reviews the attendance records at the end of each month. 2.1 Full-time staff earn 21 working days of paid annual leave in each leave year. The leave year runs from "
+   },
+   {
+    "q": "Q02",
+    "top_score": 0.873,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "1 January to 31 December. 2.2 Leave requests go to the line manager on the leave form at least 14 days before the first day of leave. The line manager answers within 3 working days. 2.3 Up to 5 unused days may be carried over to the next leave year. Carried-over days must be used by 31 March. 2.4 A "
+   },
+   {
+    "q": "Q03",
+    "top_score": 0.503,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "xpense claim are as follows. Up to UGX 200,000: the line manager. From UGX 200,001 to UGX 2,000,000: the Finance Manager. Above UGX 2,000,000: the Managing Director. 3.3 A staff member travelling outside Jinja on company business receives a meal allowance of UGX 40,000 a day. The Operations office b"
+   },
+   {
+    "q": "Q04",
+    "top_score": 0.754,
+    "top_chunk_holds_answer": true,
+    "top_chunk": " last 5 working days of a month for staff in the Finance office, because of month-end closing. The Finance Manager may agree an exception in writing. 3.1 Staff may claim reasonable business expenses. Receipts must reach the Finance office within 14 days of the spending. 3.2 Approval limits for one e"
+   },
+   {
+    "q": "Q05",
+    "top_score": 0.613,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "ek. 1.3 Overtime must be approved by the line manager before it is worked. Approved overtime is paid at 1.5 times the normal hourly rate on weekdays and 2 times the normal hourly rate on Sundays and public holidays. 1.4 A staff member who expects to arrive more than 30 minutes late must tell the lin"
+   },
+   {
+    "q": "Q06",
+    "top_score": 0.56,
+    "top_chunk_holds_answer": true,
+    "top_chunk": " people who need it for their work. 4.4 Staff must not paste customer personal data, price lists or contracts into a public AI tool or website unless the Managing Director has approved that tool in writing. 4.5 Company laptops and phones are for work. Limited personal use is allowed outside working "
+   },
+   {
+    "q": "Q07",
+    "top_score": 0.588,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "olen laptop or phone, and any suspected loss of data, is reported to the Operations Manager within 4 hours of discovery. 5.4 A suspected fraud is reported directly to the Managing Director. 5.5 Nobody is punished for reporting an incident in good faith. 5.6 The Operations Manager keeps the incident "
+   },
+   {
+    "q": "Q08",
+    "top_score": 0.461,
+    "top_chunk_holds_answer": true,
+    "top_chunk": "ooks accommodation in advance. The cost may not exceed UGX 180,000 a night. 3.4 Only the Finance Manager may issue a cash advance. The staff member accounts for the advance with receipts within 7 days. 3.5 Approved claims are paid with the monthly salary. 3.6 A claim without a receipt is paid only i"
+   }
+  ]
+ }
+}

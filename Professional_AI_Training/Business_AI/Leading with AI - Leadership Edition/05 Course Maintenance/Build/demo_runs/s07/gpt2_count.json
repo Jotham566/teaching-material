@@ -1,0 +1,98 @@
+{
+ "sentence_pieces": [
+  "Please",
+  " pay",
+  " the",
+  " invoice",
+  " within",
+  " thirty"
+ ],
+ "sentence_ids": [
+  5492,
+  1414,
+  262,
+  45458,
+  1626,
+  12277
+ ],
+ "first_piece_numbers": [
+  0.043,
+  0.052,
+  0.059,
+  0.034
+ ],
+ "invoice_piece_numbers": [
+  0.069,
+  -0.302,
+  0.157,
+  -0.214
+ ],
+ "total": 124439808,
+ "blocks": 12,
+ "heads": 12,
+ "numbers_per_token": 768,
+ "vocab": 50257,
+ "context": 1024,
+ "per_block": 7087872,
+ "block_attention": 2362368,
+ "block_neuron_layers": 4722432,
+ "block_other": 3072,
+ "all_blocks": 85054464,
+ "piece_table": 38597376,
+ "position_table": 786432,
+ "final_norm": 1536,
+ "block0_neuron_layer_shape": [
+  768,
+  3072
+ ],
+ "block0_neuron_layer_first_5x6": [
+  [
+   0.094,
+   0.098,
+   -0.032,
+   0.067,
+   -0.115,
+   0.003
+  ],
+  [
+   -0.126,
+   -0.067,
+   0.031,
+   -0.012,
+   -0.046,
+   -0.003
+  ],
+  [
+   0.05,
+   -0.037,
+   -0.048,
+   -0.005,
+   0.123,
+   0.138
+  ],
+  [
+   -0.012,
+   0.158,
+   0.255,
+   -0.148,
+   0.268,
+   -0.179
+  ],
+  [
+   -0.04,
+   -0.068,
+   -0.554,
+   -0.102,
+   -0.229,
+   -0.288
+  ]
+ ],
+ "block0_neuron_layer_first_bias": [
+  0.04,
+  -0.088,
+  -0.14,
+  -0.033,
+  -0.016,
+  -0.015
+ ]
+}

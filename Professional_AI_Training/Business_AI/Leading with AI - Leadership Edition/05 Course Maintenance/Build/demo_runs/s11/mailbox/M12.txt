@@ -1,0 +1,8 @@
+FICTIONAL TEACHING DOCUMENT. Invented demonstration mailbox. All people, firms and addresses are invented (example.com).
+
+From: Lakeview Dental Clinic (fictional) <reminders@lakeviewdental.example.com>
+To: Grace Akello <grace.akello@nilevalleyfoods.example.com>
+Date: Fri, 6 Nov 2026 06:30
+Subject: Appointment reminder: Monday 9 November, 8:30am
+
+This is a reminder of your check-up on Monday 9 November at 8:30am. Reply CANCEL if you cannot come.

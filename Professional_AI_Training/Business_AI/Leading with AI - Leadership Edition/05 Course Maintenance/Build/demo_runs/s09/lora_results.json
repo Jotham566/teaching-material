@@ -1,0 +1,62 @@
+{
+ "versions": {
+  "peft": "0.21.2",
+  "transformers": "5.22.1",
+  "torch": "2.15.0"
+ },
+ "total_params": 124439808,
+ "trainable_params": 294912,
+ "epochs": 4,
+ "train_examples": 48,
+ "losses": [
+  4.743256092071533,
+  4.678627014160156,
+  4.553445816040039,
+  4.318690776824951,
+  4.108697414398193,
+  3.792715311050415,
+  3.4900615215301514,
+  3.3201687335968018,
+  2.9211585521698,
+  2.6808202266693115,
+  2.270622968673706,
+  2.300848960876465,
+  2.053654193878174,
+  1.9536194801330566,
+  1.7864733934402466,
+  1.6874977350234985,
+  1.6887165307998657,
+  1.8401801586151123,
+  1.5177185535430908,
+  1.5234737396240234,
+  1.3978404998779297,
+  1.3153380155563354,
+  1.3018745183944702,
+  1.2111897468566895
+ ],
+ "signoff": "Thank you for choosing Nile Valley Foods. Customer Care, Jinja",
+ "before": [
+  "Reply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:\nReply:",
+  "The invoice shows the wrong quantity of sugar\nReply:\nThe invoice shows the wrong quantity of sugar\nReply:\nThe invoice shows the wrong quantity of sugar\nReply:\nThe invoice shows the wrong quantity of sugar",
+  "I am sorry for the inconvenience. I will be back soon.\nReply: I am sorry for the inconvenience. I will be back soon.\nReply: I am sorry for the inconvenience. I will be back soon.",
+  "I have been cooking for a while now and I have been using this recipe for a while now. I have been using this recipe for a while now and I have been using this recipe for a while now. I have been",
+  "I am a customer of the company. I am not a customer of the company.\nReply:\nI am a customer of the company.\nReply:\nI am a customer of the company.\nReply:",
+  "I was told that the truck was late. I was told that the truck was late.\nReply: I was told that the truck was late.\nReply: I was told that the truck was late.\nReply:"
+ ],
+ "after": [
+  "Hello Ms Nye. Yes, we can deliver beans to Mbale next week. We will deliver the beans to the customer directly. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.",
+  "Hello Ms Nanda. We can confirm that the invoice is incorrect. We will email you the correct quantity of sugar today. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.",
+  "Hello Ms Nanda. We will cancel your order for rice on Wednesday. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.",
+  "Hello Ms Nye. We will arrive on Monday. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.",
+  "Hello Ms Kato. We will confirm your phone number is on the account today. Thank you for choosing Nile Valley Foods. Customer Care, Jinja.",
+  "Hello Ms Kato. We are sorry about the delay. We will pick you up the next delivery on Wednesday. Thank you for choosing Nile Valley Foods. Customer Care, Jinja."
+ ],
+ "tests": [
+  "can you deliver beans to Mbale next week",
+  "the invoice shows the wrong quantity of sugar",
+  "I want to cancel my order for rice",
+  "when will my cooking oil arrive",
+  "please change my phone number on the account",
+  "my truck delivery was two hours late"
+ ]
+}

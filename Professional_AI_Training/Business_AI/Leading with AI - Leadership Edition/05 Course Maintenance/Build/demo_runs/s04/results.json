@@ -1,0 +1,2422 @@
+{
+ "tool": "Python 3.12.10, scikit-learn 1.9.1, sentence-transformers 6.2.0, model all-MiniLM-L6-v2",
+ "run_date": "2026-11-06",
+ "bow": {
+  "ids": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "texts": [
+   "Please send 20 bags of maize flour to Mbale",
+   "The maize flour was late and the invoice is wrong",
+   "Please send the invoice for the rice order",
+   "Rice delivery was late again, please call me"
+  ],
+  "vocab": [
+   "20",
+   "again",
+   "and",
+   "bags",
+   "call",
+   "delivery",
+   "flour",
+   "for",
+   "invoice",
+   "is",
+   "late",
+   "maize",
+   "mbale",
+   "me",
+   "of",
+   "order",
+   "please",
+   "rice",
+   "send",
+   "the",
+   "to",
+   "was",
+   "wrong"
+  ],
+  "counts": [
+   [
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    1,
+    1
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+   ]
+  ]
+ },
+ "tfidf": {
+  "vocab": [
+   "20",
+   "again",
+   "and",
+   "bags",
+   "call",
+   "delivery",
+   "flour",
+   "for",
+   "invoice",
+   "is",
+   "late",
+   "maize",
+   "mbale",
+   "me",
+   "of",
+   "order",
+   "please",
+   "rice",
+   "send",
+   "the",
+   "to",
+   "was",
+   "wrong"
+  ],
+  "weights": [
+   [
+    0.371,
+    0.0,
+    0.0,
+    0.371,
+    0.0,
+    0.0,
+    0.292,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.292,
+    0.371,
+    0.0,
+    0.371,
+    0.0,
+    0.237,
+    0.0,
+    0.292,
+    0.0,
+    0.371,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.341,
+    0.0,
+    0.0,
+    0.0,
+    0.269,
+    0.0,
+    0.269,
+    0.341,
+    0.269,
+    0.269,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.538,
+    0.0,
+    0.269,
+    0.341
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.385,
+    0.303,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.385,
+    0.246,
+    0.303,
+    0.303,
+    0.607,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.399,
+    0.0,
+    0.0,
+    0.399,
+    0.399,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.315,
+    0.0,
+    0.0,
+    0.399,
+    0.0,
+    0.0,
+    0.255,
+    0.315,
+    0.0,
+    0.0,
+    0.0,
+    0.315,
+    0.0
+   ]
+  ],
+  "idf": {
+   "20": 1.916,
+   "again": 1.916,
+   "and": 1.916,
+   "bags": 1.916,
+   "call": 1.916,
+   "delivery": 1.916,
+   "flour": 1.511,
+   "for": 1.916,
+   "invoice": 1.511,
+   "is": 1.916,
+   "late": 1.511,
+   "maize": 1.511,
+   "mbale": 1.916,
+   "me": 1.916,
+   "of": 1.916,
+   "order": 1.916,
+   "please": 1.223,
+   "rice": 1.511,
+   "send": 1.511,
+   "the": 1.511,
+   "to": 1.916,
+   "was": 1.511,
+   "wrong": 1.916
+  }
+ },
+ "m06_words": [
+  {
+   "word": "104",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "2305",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "98",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "agreed",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "correct",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "each",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "jerrycan",
+   "count": 1,
+   "in_messages": 1,
+   "simple": 40.0,
+   "real": 0.217
+  },
+  {
+   "word": "foods",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "invoice",
+   "count": 2,
+   "in_messages": 4,
+   "simple": 20.0,
+   "real": 0.335
+  },
+  {
+   "word": "nile",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "one",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "shows",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "us",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "valley",
+   "count": 1,
+   "in_messages": 2,
+   "simple": 20.0,
+   "real": 0.195
+  },
+  {
+   "word": "new",
+   "count": 1,
+   "in_messages": 3,
+   "simple": 13.3,
+   "real": 0.179
+  },
+  {
+   "word": "dear",
+   "count": 1,
+   "in_messages": 4,
+   "simple": 10.0,
+   "real": 0.167
+  },
+  {
+   "word": "000",
+   "count": 2,
+   "in_messages": 10,
+   "simple": 8.0,
+   "real": 0.25
+  },
+  {
+   "word": "cooking",
+   "count": 1,
+   "in_messages": 5,
+   "simple": 8.0,
+   "real": 0.158
+  },
+  {
+   "word": "ugx",
+   "count": 2,
+   "in_messages": 10,
+   "simple": 8.0,
+   "real": 0.25
+  },
+  {
+   "word": "we",
+   "count": 1,
+   "in_messages": 5,
+   "simple": 8.0,
+   "real": 0.158
+  },
+  {
+   "word": "oil",
+   "count": 1,
+   "in_messages": 6,
+   "simple": 6.7,
+   "real": 0.149
+  },
+  {
+   "word": "and",
+   "count": 1,
+   "in_messages": 8,
+   "simple": 5.0,
+   "real": 0.136
+  },
+  {
+   "word": "send",
+   "count": 1,
+   "in_messages": 8,
+   "simple": 5.0,
+   "real": 0.136
+  },
+  {
+   "word": "for",
+   "count": 1,
+   "in_messages": 13,
+   "simple": 3.1,
+   "real": 0.112
+  },
+  {
+   "word": "please",
+   "count": 1,
+   "in_messages": 17,
+   "simple": 2.4,
+   "real": 0.098
+  },
+  {
+   "word": "of",
+   "count": 1,
+   "in_messages": 22,
+   "simple": 1.8,
+   "real": 0.085
+  },
+  {
+   "word": "the",
+   "count": 1,
+   "in_messages": 22,
+   "simple": 1.8,
+   "real": 0.085
+  }
+ ],
+ "tfidf40": {
+  "n_messages": 40,
+  "vocab_size": 340,
+  "docfreq": {
+   "the": 22,
+   "please": 17,
+   "and": 8,
+   "to": 11,
+   "my": 15,
+   "of": 22,
+   "bags": 11,
+   "sugar": 3,
+   "invoice": 4,
+   "jerrycans": 3,
+   "maize": 5,
+   "flour": 5,
+   "late": 2,
+   "damaged": null,
+   "wet": 1,
+   "credit": 2,
+   "mbale": 4
+  },
+  "idf": {
+   "the": 1.578,
+   "please": 1.823,
+   "bags": 2.229,
+   "invoice": 3.104,
+   "jerrycans": 3.327,
+   "sugar": 3.327,
+   "wet": 4.02
+  },
+  "tops": {
+   "M01": {
+    "text": "Good morning. Please send me 20 bags of maize flour 25kg and 6 jerrycans of cooking oil 20L. Delivery to Bugembe market by Friday. Thanks.",
+    "top": [
+     [
+      "market",
+      0.271,
+      1
+     ],
+     [
+      "bugembe",
+      0.271,
+      1
+     ],
+     [
+      "thanks",
+      0.271,
+      1
+     ],
+     [
+      "by",
+      0.243,
+      1
+     ],
+     [
+      "20",
+      0.243,
+      1
+     ]
+    ],
+    "n_words": 24
+   },
+   "M03": {
+    "text": "The 5 bags of sugar delivered today were wet at the bottom and two are torn. Your driver left before I could count. I want a replacement or a credit.",
+    "top": [
+     [
+      "left",
+      0.243,
+      1
+     ],
+     [
+      "or",
+      0.243,
+      1
+     ],
+     [
+      "torn",
+      0.243,
+      1
+     ],
+     [
+      "replacement",
+      0.243,
+      1
+     ],
+     [
+      "count",
+      0.243,
+      1
+     ]
+    ],
+    "n_words": 25
+   },
+   "M06": {
+    "text": "Dear Nile Valley Foods, invoice 2305 shows UGX 104,000 for each jerrycan of cooking oil. We agreed UGX 98,000. Please correct the invoice and send us a new one.",
+    "top": [
+     [
+      "invoice",
+      0.335,
+      2
+     ],
+     [
+      "000",
+      0.25,
+      2
+     ],
+     [
+      "ugx",
+      0.25,
+      2
+     ],
+     [
+      "agreed",
+      0.217,
+      1
+     ],
+     [
+      "2305",
+      0.217,
+      1
+     ]
+    ],
+    "n_words": 30
+   },
+   "M08": {
+    "text": "I will pay the balance of UGX 820,000 on Friday through Airtel Money. Can you hold the next order until then?",
+    "top": [
+     [
+      "through",
+      0.274,
+      1
+     ],
+     [
+      "hold",
+      0.274,
+      1
+     ],
+     [
+      "until",
+      0.274,
+      1
+     ],
+     [
+      "820",
+      0.274,
+      1
+     ],
+     [
+      "next",
+      0.274,
+      1
+     ]
+    ],
+    "n_words": 21
+   }
+  }
+ },
+ "model_modules": [
+  "Transformer",
+  "Pooling",
+  "Normalize"
+ ],
+ "dim": 384,
+ "skins": {
+  "contracts": {
+   "title": "Contract clauses",
+   "ids": [
+    "K1",
+    "K2",
+    "K3",
+    "K4",
+    "K5",
+    "K6",
+    "K7",
+    "K8",
+    "K9",
+    "K10"
+   ],
+   "heads": [
+    "Force majeure",
+    "Indemnity",
+    "Limitation of liability",
+    "Termination for convenience",
+    "Confidentiality",
+    "Automatic renewal",
+    "Price adjustment",
+    "Governing law",
+    "Assignment",
+    "Data protection"
+   ],
+   "queries": [
+    {
+     "qid": "Q1",
+     "query": "What happens if heavy rain floods the road and the delivery cannot get through?",
+     "want": "K1",
+     "top3": [
+      {
+       "id": "K1",
+       "head": "Force majeure",
+       "cosine": 0.361
+      },
+      {
+       "id": "K3",
+       "head": "Limitation of liability",
+       "cosine": 0.241
+      },
+      {
+       "id": "K2",
+       "head": "Indemnity",
+       "cosine": 0.198
+      }
+     ],
+     "hit_at1": true,
+     "want_rank": 1,
+     "keyword_top": [],
+     "keyword_hit_at1": false,
+     "keyword_matches": 0,
+     "dists_to_top_cos": {
+      "cos": 0.361,
+      "dot": 0.361,
+      "euclid": 1.13,
+      "manhattan": 17.89
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "K1",
+      "euclidean": "K1",
+      "manhattan": "K1",
+      "dot": "K1"
+     },
+     "raw_norm_query": 5.734,
+     "raw_norm_range": [
+      3.448,
+      4.89
+     ]
+    },
+    {
+     "qid": "Q2",
+     "query": "Who pays us back if the supplier's mistake costs us money?",
+     "want": "K2",
+     "top3": [
+      {
+       "id": "K2",
+       "head": "Indemnity",
+       "cosine": 0.627
+      },
+      {
+       "id": "K3",
+       "head": "Limitation of liability",
+       "cosine": 0.423
+      },
+      {
+       "id": "K7",
+       "head": "Price adjustment",
+       "cosine": 0.419
+      }
+     ],
+     "hit_at1": true,
+     "want_rank": 1,
+     "keyword_top": [
+      {
+       "id": "K2",
+       "head": "Indemnity",
+       "score": 0.488
+      },
+      {
+       "id": "K3",
+       "head": "Limitation of liability",
+       "score": 0.264
+      },
+      {
+       "id": "K7",
+       "head": "Price adjustment",
+       "score": 0.254
+      }
+     ],
+     "keyword_hit_at1": true,
+     "keyword_matches": 3,
+     "dists_to_top_cos": {
+      "cos": 0.627,
+      "dot": 0.627,
+      "euclid": 0.864,
+      "manhattan": 12.96
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "K2",
+      "euclidean": "K2",
+      "manhattan": "K2",
+      "dot": "K2"
+     },
+     "raw_norm_query": 5.131,
+     "raw_norm_range": [
+      3.448,
+      4.89
+     ]
+    },
+    {
+     "qid": "Q3",
+     "query": "Can we walk away from the deal without giving any reason?",
+     "want": "K4",
+     "top3": [
+      {
+       "id": "K4",
+       "head": "Termination for convenience",
+       "cosine": 0.363
+      },
+      {
+       "id": "K9",
+       "head": "Assignment",
+       "cosine": 0.257
+      },
+      {
+       "id": "K6",
+       "head": "Automatic renewal",
+       "cosine": 0.246
+      }
+     ],
+     "hit_at1": true,
+     "want_rank": 1,
+     "keyword_top": [
+      {
+       "id": "K4",
+       "head": "Termination for convenience",
+       "score": 0.505
+      },
+      {
+       "id": "K7",
+       "head": "Price adjustment",
+       "score": 0.188
+      },
+      {
+       "id": "K1",
+       "head": "Force majeure",
+       "score": 0.0
+      }
+     ],
+     "keyword_hit_at1": true,
+     "keyword_matches": 2,
+     "dists_to_top_cos": {
+      "cos": 0.363,
+      "dot": 0.363,
+      "euclid": 1.129,
+      "manhattan": 17.03
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "K4",
+      "euclidean": "K4",
+      "manhattan": "K4",
+      "dot": "K4"
+     },
+     "raw_norm_query": 4.38,
+     "raw_norm_range": [
+      3.448,
+      4.89
+     ]
+    },
+    {
+     "qid": "Q4",
+     "query": "The contract keeps running every year unless we say something in time.",
+     "want": "K6",
+     "top3": [
+      {
+       "id": "K6",
+       "head": "Automatic renewal",
+       "cosine": 0.539
+      },
+      {
+       "id": "K4",
+       "head": "Termination for convenience",
+       "cosine": 0.378
+      },
+      {
+       "id": "K3",
+       "head": "Limitation of liability",
+       "cosine": 0.287
+      }
+     ],
+     "hit_at1": true,
+     "want_rank": 1,
+     "keyword_top": [
+      {
+       "id": "K6",
+       "head": "Automatic renewal",
+       "score": 0.447
+      },
+      {
+       "id": "K1",
+       "head": "Force majeure",
+       "score": 0.0
+      },
+      {
+       "id": "K2",
+       "head": "Indemnity",
+       "score": 0.0
+      }
+     ],
+     "keyword_hit_at1": true,
+     "keyword_matches": 1,
+     "dists_to_top_cos": {
+      "cos": 0.539,
+      "dot": 0.539,
+      "euclid": 0.96,
+      "manhattan": 15.0
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": false,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "K6",
+      "euclidean": "K6",
+      "manhattan": "K6",
+      "dot": "K6"
+     },
+     "raw_norm_query": 4.458,
+     "raw_norm_range": [
+      3.448,
+      4.89
+     ]
+    }
+   ]
+  },
+  "finance": {
+   "title": "Finance and invoice terms",
+   "ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8",
+    "F9",
+    "F10"
+   ],
+   "heads": [
+    "Accounts payable",
+    "Accounts receivable",
+    "Accrual",
+    "Credit note",
+    "Bank reconciliation",
+    "Depreciation",
+    "Petty cash",
+    "Purchase order",
+    "Three-way match",
+    "Bad debt write-off"
+   ],
+   "queries": [
+    {
+     "qid": "Q5",
+     "query": "The money we still have to pay the maize miller for flour already delivered.",
+     "want": "F1",
+     "top3": [
+      {
+       "id": "F6",
+       "head": "Depreciation",
+       "cosine": 0.314
+      },
+      {
+       "id": "F1",
+       "head": "Accounts payable",
+       "cosine": 0.293
+      },
+      {
+       "id": "F2",
+       "head": "Accounts receivable",
+       "cosine": 0.224
+      }
+     ],
+     "hit_at1": false,
+     "want_rank": 2,
+     "keyword_top": [
+      {
+       "id": "F10",
+       "head": "Bad debt write-off",
+       "score": 0.381
+      },
+      {
+       "id": "F2",
+       "head": "Accounts receivable",
+       "score": 0.233
+      },
+      {
+       "id": "F1",
+       "head": "Accounts payable",
+       "score": 0.224
+      }
+     ],
+     "keyword_hit_at1": false,
+     "keyword_matches": 3,
+     "dists_to_top_cos": {
+      "cos": 0.314,
+      "dot": 0.314,
+      "euclid": 1.171,
+      "manhattan": 18.18
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": false,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": false,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": false,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "F6",
+      "euclidean": "F6",
+      "manhattan": "F1",
+      "dot": "F6"
+     },
+     "raw_norm_query": 5.04,
+     "raw_norm_range": [
+      3.711,
+      5.337
+     ]
+    },
+    {
+     "qid": "Q6",
+     "query": "The shop sent back damaged bags and we want to reduce what they owe.",
+     "want": "F4",
+     "top3": [
+      {
+       "id": "F2",
+       "head": "Accounts receivable",
+       "cosine": 0.45
+      },
+      {
+       "id": "F10",
+       "head": "Bad debt write-off",
+       "cosine": 0.423
+      },
+      {
+       "id": "F1",
+       "head": "Accounts payable",
+       "cosine": 0.42
+      }
+     ],
+     "hit_at1": false,
+     "want_rank": 4,
+     "keyword_top": [
+      {
+       "id": "F2",
+       "head": "Accounts receivable",
+       "score": 0.299
+      },
+      {
+       "id": "F8",
+       "head": "Purchase order",
+       "score": 0.292
+      },
+      {
+       "id": "F1",
+       "head": "Accounts payable",
+       "score": 0.0
+      }
+     ],
+     "keyword_hit_at1": false,
+     "keyword_matches": 2,
+     "dists_to_top_cos": {
+      "cos": 0.45,
+      "dot": 0.45,
+      "euclid": 1.049,
+      "manhattan": 16.38
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": false
+     },
+     "raw_top1": {
+      "cosine": "F2",
+      "euclidean": "F2",
+      "manhattan": "F2",
+      "dot": "F10"
+     },
+     "raw_norm_query": 4.832,
+     "raw_norm_range": [
+      3.711,
+      5.337
+     ]
+    },
+    {
+     "qid": "Q7",
+     "query": "Make sure our books match what the bank says.",
+     "want": "F5",
+     "top3": [
+      {
+       "id": "F10",
+       "head": "Bad debt write-off",
+       "cosine": 0.514
+      },
+      {
+       "id": "F5",
+       "head": "Bank reconciliation",
+       "cosine": 0.461
+      },
+      {
+       "id": "F9",
+       "head": "Three-way match",
+       "cosine": 0.306
+      }
+     ],
+     "hit_at1": false,
+     "want_rank": 2,
+     "keyword_top": [
+      {
+       "id": "F10",
+       "head": "Bad debt write-off",
+       "score": 0.354
+      },
+      {
+       "id": "F5",
+       "head": "Bank reconciliation",
+       "score": 0.279
+      },
+      {
+       "id": "F1",
+       "head": "Accounts payable",
+       "score": 0.0
+      }
+     ],
+     "keyword_hit_at1": false,
+     "keyword_matches": 2,
+     "dists_to_top_cos": {
+      "cos": 0.514,
+      "dot": 0.514,
+      "euclid": 0.986,
+      "manhattan": 15.25
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": false,
+      "manhattan": false,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "F10",
+      "euclidean": "F5",
+      "manhattan": "F5",
+      "dot": "F10"
+     },
+     "raw_norm_query": 5.196,
+     "raw_norm_range": [
+      3.711,
+      5.337
+     ]
+    },
+    {
+     "qid": "Q8",
+     "query": "Before we pay a bill, check that the order, the delivery and the bill all agree.",
+     "want": "F9",
+     "top3": [
+      {
+       "id": "F9",
+       "head": "Three-way match",
+       "cosine": 0.666
+      },
+      {
+       "id": "F3",
+       "head": "Accrual",
+       "cosine": 0.419
+      },
+      {
+       "id": "F10",
+       "head": "Bad debt write-off",
+       "cosine": 0.368
+      }
+     ],
+     "hit_at1": true,
+     "want_rank": 1,
+     "keyword_top": [
+      {
+       "id": "F9",
+       "head": "Three-way match",
+       "score": 0.376
+      },
+      {
+       "id": "F10",
+       "head": "Bad debt write-off",
+       "score": 0.289
+      },
+      {
+       "id": "F1",
+       "head": "Accounts payable",
+       "score": 0.0
+      }
+     ],
+     "keyword_hit_at1": true,
+     "keyword_matches": 2,
+     "dists_to_top_cos": {
+      "cos": 0.666,
+      "dot": 0.666,
+      "euclid": 0.817,
+      "manhattan": 12.88
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "F9",
+      "euclidean": "F9",
+      "manhattan": "F9",
+      "dot": "F9"
+     },
+     "raw_norm_query": 4.312,
+     "raw_norm_range": [
+      3.711,
+      5.337
+     ]
+    }
+   ]
+  },
+  "hr": {
+   "title": "HR policy paragraphs",
+   "ids": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "H7",
+    "H8",
+    "H9",
+    "H10"
+   ],
+   "heads": [
+    "Probation",
+    "Annual leave",
+    "Sick leave",
+    "Grievance procedure",
+    "Disciplinary procedure",
+    "Whistleblowing",
+    "Overtime",
+    "Expense claims",
+    "Resignation and notice",
+    "Staff records"
+   ],
+   "queries": [
+    {
+     "qid": "Q9",
+     "query": "I saw a colleague stealing stock and I am afraid to say so.",
+     "want": "H6",
+     "top3": [
+      {
+       "id": "H6",
+       "head": "Whistleblowing",
+       "cosine": 0.402
+      },
+      {
+       "id": "H10",
+       "head": "Staff records",
+       "cosine": 0.173
+      },
+      {
+       "id": "H5",
+       "head": "Disciplinary procedure",
+       "cosine": 0.126
+      }
+     ],
+     "hit_at1": true,
+     "want_rank": 1,
+     "keyword_top": [],
+     "keyword_hit_at1": false,
+     "keyword_matches": 0,
+     "dists_to_top_cos": {
+      "cos": 0.402,
+      "dot": 0.402,
+      "euclid": 1.093,
+      "manhattan": 16.55
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "H6",
+      "euclidean": "H6",
+      "manhattan": "H6",
+      "dot": "H6"
+     },
+     "raw_norm_query": 4.808,
+     "raw_norm_range": [
+      3.127,
+      4.966
+     ]
+    },
+    {
+     "qid": "Q10",
+     "query": "I am unhappy with how my supervisor speaks to me and want to complain.",
+     "want": "H4",
+     "top3": [
+      {
+       "id": "H5",
+       "head": "Disciplinary procedure",
+       "cosine": 0.363
+      },
+      {
+       "id": "H4",
+       "head": "Grievance procedure",
+       "cosine": 0.35
+      },
+      {
+       "id": "H9",
+       "head": "Resignation and notice",
+       "cosine": 0.301
+      }
+     ],
+     "hit_at1": false,
+     "want_rank": 2,
+     "keyword_top": [],
+     "keyword_hit_at1": false,
+     "keyword_matches": 0,
+     "dists_to_top_cos": {
+      "cos": 0.363,
+      "dot": 0.363,
+      "euclid": 1.129,
+      "manhattan": 17.3
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": false,
+      "manhattan": false,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "H5",
+      "euclidean": "H4",
+      "manhattan": "H4",
+      "dot": "H5"
+     },
+     "raw_norm_query": 4.406,
+     "raw_norm_range": [
+      3.127,
+      4.966
+     ]
+    },
+    {
+     "qid": "Q11",
+     "query": "I have malaria and cannot come to work tomorrow.",
+     "want": "H3",
+     "top3": [
+      {
+       "id": "H3",
+       "head": "Sick leave",
+       "cosine": 0.418
+      },
+      {
+       "id": "H7",
+       "head": "Overtime",
+       "cosine": 0.258
+      },
+      {
+       "id": "H2",
+       "head": "Annual leave",
+       "cosine": 0.107
+      }
+     ],
+     "hit_at1": true,
+     "want_rank": 1,
+     "keyword_top": [
+      {
+       "id": "H4",
+       "head": "Grievance procedure",
+       "score": 0.259
+      },
+      {
+       "id": "H7",
+       "head": "Overtime",
+       "score": 0.257
+      },
+      {
+       "id": "H1",
+       "head": "Probation",
+       "score": 0.243
+      }
+     ],
+     "keyword_hit_at1": false,
+     "keyword_matches": 4,
+     "dists_to_top_cos": {
+      "cos": 0.418,
+      "dot": 0.418,
+      "euclid": 1.079,
+      "manhattan": 17.17
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": false,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "H3",
+      "euclidean": "H3",
+      "manhattan": "H3",
+      "dot": "H3"
+     },
+     "raw_norm_query": 6.232,
+     "raw_norm_range": [
+      3.127,
+      4.966
+     ]
+    },
+    {
+     "qid": "Q12",
+     "query": "I want to quit. How much warning do I have to give?",
+     "want": "H9",
+     "top3": [
+      {
+       "id": "H5",
+       "head": "Disciplinary procedure",
+       "cosine": 0.341
+      },
+      {
+       "id": "H9",
+       "head": "Resignation and notice",
+       "cosine": 0.299
+      },
+      {
+       "id": "H1",
+       "head": "Probation",
+       "cosine": 0.294
+      }
+     ],
+     "hit_at1": false,
+     "want_rank": 2,
+     "keyword_top": [
+      {
+       "id": "H5",
+       "head": "Disciplinary procedure",
+       "score": 0.641
+      },
+      {
+       "id": "H1",
+       "head": "Probation",
+       "score": 0.0
+      },
+      {
+       "id": "H2",
+       "head": "Annual leave",
+       "score": 0.0
+      }
+     ],
+     "keyword_hit_at1": false,
+     "keyword_matches": 1,
+     "dists_to_top_cos": {
+      "cos": 0.341,
+      "dot": 0.341,
+      "euclid": 1.148,
+      "manhattan": 17.62
+     },
+     "norms": {
+      "query": 1.0,
+      "passage_min": 1.0,
+      "passage_max": 1.0
+     },
+     "same_top1": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "same_top3_set": {
+      "cosine": true,
+      "euclidean": true,
+      "manhattan": true,
+      "dot": true
+     },
+     "raw_same_top1": {
+      "cosine": true,
+      "euclidean": false,
+      "manhattan": false,
+      "dot": true
+     },
+     "raw_top1": {
+      "cosine": "H5",
+      "euclidean": "H1",
+      "manhattan": "H1",
+      "dot": "H5"
+     },
+     "raw_norm_query": 5.069,
+     "raw_norm_range": [
+      3.127,
+      4.966
+     ]
+    }
+   ]
+  }
+ },
+ "pca": {
+  "explained": [
+   0.105,
+   0.0769
+  ],
+  "total": 0.182,
+  "points": [
+   {
+    "id": "K1",
+    "kind": "passage",
+    "label": "Force majeure",
+    "skin": "contracts",
+    "x": -0.0737,
+    "y": 0.357
+   },
+   {
+    "id": "K2",
+    "kind": "passage",
+    "label": "Indemnity",
+    "skin": "contracts",
+    "x": 0.4374,
+    "y": 0.1663
+   },
+   {
+    "id": "K3",
+    "kind": "passage",
+    "label": "Limitation of liability",
+    "skin": "contracts",
+    "x": 0.136,
+    "y": 0.1308
+   },
+   {
+    "id": "K4",
+    "kind": "passage",
+    "label": "Termination for convenience",
+    "skin": "contracts",
+    "x": -0.211,
+    "y": 0.365
+   },
+   {
+    "id": "K5",
+    "kind": "passage",
+    "label": "Confidentiality",
+    "skin": "contracts",
+    "x": -0.0293,
+    "y": 0.6157
+   },
+   {
+    "id": "K6",
+    "kind": "passage",
+    "label": "Automatic renewal",
+    "skin": "contracts",
+    "x": -0.236,
+    "y": 0.2722
+   },
+   {
+    "id": "K7",
+    "kind": "passage",
+    "label": "Price adjustment",
+    "skin": "contracts",
+    "x": 0.1609,
+    "y": -0.208
+   },
+   {
+    "id": "K8",
+    "kind": "passage",
+    "label": "Governing law",
+    "skin": "contracts",
+    "x": -0.0213,
+    "y": 0.5018
+   },
+   {
+    "id": "K9",
+    "kind": "passage",
+    "label": "Assignment",
+    "skin": "contracts",
+    "x": -0.0908,
+    "y": 0.5946
+   },
+   {
+    "id": "K10",
+    "kind": "passage",
+    "label": "Data protection",
+    "skin": "contracts",
+    "x": -0.031,
+    "y": 0.4669
+   },
+   {
+    "id": "Q1",
+    "kind": "query",
+    "label": "What happens if heavy rain floods the road and the delivery cannot get through?",
+    "skin": "contracts",
+    "x": 0.0605,
+    "y": -0.011
+   },
+   {
+    "id": "Q2",
+    "kind": "query",
+    "label": "Who pays us back if the supplier's mistake costs us money?",
+    "skin": "contracts",
+    "x": 0.5046,
+    "y": -0.0177
+   },
+   {
+    "id": "Q3",
+    "kind": "query",
+    "label": "Can we walk away from the deal without giving any reason?",
+    "skin": "contracts",
+    "x": -0.062,
+    "y": 0.272
+   },
+   {
+    "id": "Q4",
+    "kind": "query",
+    "label": "The contract keeps running every year unless we say something in time.",
+    "skin": "contracts",
+    "x": -0.1424,
+    "y": 0.0939
+   },
+   {
+    "id": "F1",
+    "kind": "passage",
+    "label": "Accounts payable",
+    "skin": "finance",
+    "x": 0.4202,
+    "y": -0.118
+   },
+   {
+    "id": "F2",
+    "kind": "passage",
+    "label": "Accounts receivable",
+    "skin": "finance",
+    "x": 0.5266,
+    "y": -0.1147
+   },
+   {
+    "id": "F3",
+    "kind": "passage",
+    "label": "Accrual",
+    "skin": "finance",
+    "x": 0.304,
+    "y": -0.1663
+   },
+   {
+    "id": "F4",
+    "kind": "passage",
+    "label": "Credit note",
+    "skin": "finance",
+    "x": 0.2317,
+    "y": -0.1559
+   },
+   {
+    "id": "F5",
+    "kind": "passage",
+    "label": "Bank reconciliation",
+    "skin": "finance",
+    "x": 0.1348,
+    "y": 0.0275
+   },
+   {
+    "id": "F6",
+    "kind": "passage",
+    "label": "Depreciation",
+    "skin": "finance",
+    "x": 0.2528,
+    "y": -0.2395
+   },
+   {
+    "id": "F7",
+    "kind": "passage",
+    "label": "Petty cash",
+    "skin": "finance",
+    "x": 0.1744,
+    "y": -0.2515
+   },
+   {
+    "id": "F8",
+    "kind": "passage",
+    "label": "Purchase order",
+    "skin": "finance",
+    "x": 0.3461,
+    "y": -0.1344
+   },
+   {
+    "id": "F9",
+    "kind": "passage",
+    "label": "Three-way match",
+    "skin": "finance",
+    "x": 0.3135,
+    "y": -0.0552
+   },
+   {
+    "id": "F10",
+    "kind": "passage",
+    "label": "Bad debt write-off",
+    "skin": "finance",
+    "x": 0.2339,
+    "y": -0.0726
+   },
+   {
+    "id": "Q5",
+    "kind": "query",
+    "label": "The money we still have to pay the maize miller for flour already delivered.",
+    "skin": "finance",
+    "x": 0.2265,
+    "y": -0.0386
+   },
+   {
+    "id": "Q6",
+    "kind": "query",
+    "label": "The shop sent back damaged bags and we want to reduce what they owe.",
+    "skin": "finance",
+    "x": 0.3376,
+    "y": -0.1511
+   },
+   {
+    "id": "Q7",
+    "kind": "query",
+    "label": "Make sure our books match what the bank says.",
+    "skin": "finance",
+    "x": 0.1467,
+    "y": 0.0184
+   },
+   {
+    "id": "Q8",
+    "kind": "query",
+    "label": "Before we pay a bill, check that the order, the delivery and the bill all agree.",
+    "skin": "finance",
+    "x": 0.2186,
+    "y": -0.0698
+   },
+   {
+    "id": "H1",
+    "kind": "passage",
+    "label": "Probation",
+    "skin": "hr",
+    "x": -0.4602,
+    "y": -0.2443
+   },
+   {
+    "id": "H2",
+    "kind": "passage",
+    "label": "Annual leave",
+    "skin": "hr",
+    "x": -0.2497,
+    "y": -0.1796
+   },
+   {
+    "id": "H3",
+    "kind": "passage",
+    "label": "Sick leave",
+    "skin": "hr",
+    "x": -0.4793,
+    "y": -0.2778
+   },
+   {
+    "id": "H4",
+    "kind": "passage",
+    "label": "Grievance procedure",
+    "skin": "hr",
+    "x": -0.3132,
+    "y": -0.3834
+   },
+   {
+    "id": "H5",
+    "kind": "passage",
+    "label": "Disciplinary procedure",
+    "skin": "hr",
+    "x": -0.3646,
+    "y": -0.1319
+   },
+   {
+    "id": "H6",
+    "kind": "passage",
+    "label": "Whistleblowing",
+    "skin": "hr",
+    "x": -0.1987,
+    "y": 0.0568
+   },
+   {
+    "id": "H7",
+    "kind": "passage",
+    "label": "Overtime",
+    "skin": "hr",
+    "x": -0.2952,
+    "y": -0.0901
+   },
+   {
+    "id": "H8",
+    "kind": "passage",
+    "label": "Expense claims",
+    "skin": "hr",
+    "x": 0.029,
+    "y": -0.2547
+   },
+   {
+    "id": "H9",
+    "kind": "passage",
+    "label": "Resignation and notice",
+    "skin": "hr",
+    "x": -0.5022,
+    "y": -0.1509
+   },
+   {
+    "id": "H10",
+    "kind": "passage",
+    "label": "Staff records",
+    "skin": "hr",
+    "x": -0.3702,
+    "y": 0.2157
+   },
+   {
+    "id": "Q9",
+    "kind": "query",
+    "label": "I saw a colleague stealing stock and I am afraid to say so.",
+    "skin": "hr",
+    "x": 0.0513,
+    "y": 0.0019
+   },
+   {
+    "id": "Q10",
+    "kind": "query",
+    "label": "I am unhappy with how my supervisor speaks to me and want to complain.",
+    "skin": "hr",
+    "x": -0.368,
+    "y": -0.2806
+   },
+   {
+    "id": "Q11",
+    "kind": "query",
+    "label": "I have malaria and cannot come to work tomorrow.",
+    "skin": "hr",
+    "x": -0.3028,
+    "y": -0.1943
+   },
+   {
+    "id": "Q12",
+    "kind": "query",
+    "label": "I want to quit. How much warning do I have to give?",
+    "skin": "hr",
+    "x": -0.4452,
+    "y": -0.1646
+   }
+  ]
+ },
+ "tsne": {
+  "perplexity": 8,
+  "points": [
+   {
+    "id": "K1",
+    "x": -105.224,
+    "y": -103.067
+   },
+   {
+    "id": "K2",
+    "x": 65.979,
+    "y": -37.488
+   },
+   {
+    "id": "K3",
+    "x": 92.311,
+    "y": -23.542
+   },
+   {
+    "id": "K4",
+    "x": 55.863,
+    "y": 96.142
+   },
+   {
+    "id": "K5",
+    "x": -0.333,
+    "y": 849.864
+   },
+   {
+    "id": "K6",
+    "x": 36.161,
+    "y": 108.521
+   },
+   {
+    "id": "K7",
+    "x": 34.917,
+    "y": -1.223
+   },
+   {
+    "id": "K8",
+    "x": 113.553,
+    "y": 72.688
+   },
+   {
+    "id": "K9",
+    "x": 81.422,
+    "y": 69.357
+   },
+   {
+    "id": "K10",
+    "x": 2.222,
+    "y": -239.019
+   },
+   {
+    "id": "Q1",
+    "x": -99.847,
+    "y": -131.384
+   },
+   {
+    "id": "Q2",
+    "x": 38.679,
+    "y": -36.403
+   },
+   {
+    "id": "Q3",
+    "x": 81.079,
+    "y": 130.294
+   },
+   {
+    "id": "Q4",
+    "x": 28.706,
+    "y": 137.66
+   },
+   {
+    "id": "F1",
+    "x": 90.968,
+    "y": -82.486
+   },
+   {
+    "id": "F2",
+    "x": 89.182,
+    "y": -107.847
+   },
+   {
+    "id": "F3",
+    "x": 121.165,
+    "y": -69.071
+   },
+   {
+    "id": "F4",
+    "x": 35.562,
+    "y": -118.982
+   },
+   {
+    "id": "F5",
+    "x": -21.496,
+    "y": -175.014
+   },
+   {
+    "id": "F6",
+    "x": -49.017,
+    "y": -32.822
+   },
+   {
+    "id": "F7",
+    "x": 137.053,
+    "y": -119.612
+   },
+   {
+    "id": "F8",
+    "x": 45.671,
+    "y": -79.406
+   },
+   {
+    "id": "F9",
+    "x": 11.712,
+    "y": -92.17
+   },
+   {
+    "id": "F10",
+    "x": 31.548,
+    "y": -153.098
+   },
+   {
+    "id": "Q5",
+    "x": -19.98,
+    "y": -41.57
+   },
+   {
+    "id": "Q6",
+    "x": 84.477,
+    "y": -148.364
+   },
+   {
+    "id": "Q7",
+    "x": 4.21,
+    "y": -163.045
+   },
+   {
+    "id": "Q8",
+    "x": -11.28,
+    "y": -85.756
+   },
+   {
+    "id": "H1",
+    "x": -65.326,
+    "y": 147.454
+   },
+   {
+    "id": "H2",
+    "x": -38.061,
+    "y": 93.773
+   },
+   {
+    "id": "H3",
+    "x": -98.903,
+    "y": 73.984
+   },
+   {
+    "id": "H4",
+    "x": -101.072,
+    "y": 111.195
+   },
+   {
+    "id": "H5",
+    "x": -104.586,
+    "y": 151.354
+   },
+   {
+    "id": "H6",
+    "x": -89.935,
+    "y": 185.385
+   },
+   {
+    "id": "H7",
+    "x": -6.713,
+    "y": 72.238
+   },
+   {
+    "id": "H8",
+    "x": 137.648,
+    "y": -34.28
+   },
+   {
+    "id": "H9",
+    "x": -61.947,
+    "y": 93.812
+   },
+   {
+    "id": "H10",
+    "x": -178.902,
+    "y": 56.403
+   },
+   {
+    "id": "Q9",
+    "x": -79.009,
+    "y": 211.735
+   },
+   {
+    "id": "Q10",
+    "x": -136.972,
+    "y": 121.367
+   },
+   {
+    "id": "Q11",
+    "x": -104.479,
+    "y": 45.424
+   },
+   {
+    "id": "Q12",
+    "x": -136.943,
+    "y": 168.007
+   }
+  ]
+ },
+ "pair_examples": [
+  {
+   "skin": "hr",
+   "qid": "Q10",
+   "query": "I am unhappy with how my supervisor speaks to me and want to complain.",
+   "normalised": {
+    "H4": {
+     "euclid": 1.141,
+     "manhattan": 17.4,
+     "dot": 0.35,
+     "cosine": 0.35,
+     "length": 1.0
+    },
+    "H5": {
+     "euclid": 1.129,
+     "manhattan": 17.3,
+     "dot": 0.363,
+     "cosine": 0.363,
+     "length": 1.0
+    },
+    "query_length": 1.0
+   },
+   "raw": {
+    "H4": {
+     "euclid": 4.422,
+     "manhattan": 68.31,
+     "dot": 4.816,
+     "cosine": 0.35,
+     "length": 3.127
+    },
+    "H5": {
+     "euclid": 4.763,
+     "manhattan": 73.3,
+     "dot": 6.422,
+     "cosine": 0.363,
+     "length": 4.014
+    },
+    "query_length": 4.406
+   }
+  },
+  {
+   "skin": "finance",
+   "qid": "Q7",
+   "query": "Make sure our books match what the bank says.",
+   "normalised": {
+    "F5": {
+     "euclid": 1.038,
+     "manhattan": 15.96,
+     "dot": 0.461,
+     "cosine": 0.461,
+     "length": 1.0
+    },
+    "F10": {
+     "euclid": 0.986,
+     "manhattan": 15.25,
+     "dot": 0.514,
+     "cosine": 0.514,
+     "length": 1.0
+    },
+    "query_length": 1.0
+   },
+   "raw": {
+    "F5": {
+     "euclid": 5.065,
+     "manhattan": 77.96,
+     "dot": 10.753,
+     "cosine": 0.461,
+     "length": 4.49
+    },
+    "F10": {
+     "euclid": 5.195,
+     "manhattan": 80.33,
+     "dot": 14.251,
+     "cosine": 0.514,
+     "length": 5.337
+    },
+    "query_length": 5.196
+   }
+  },
+  {
+   "skin": "hr",
+   "qid": "Q12",
+   "query": "I want to quit. How much warning do I have to give?",
+   "normalised": {
+    "H9": {
+     "euclid": 1.184,
+     "manhattan": 18.51,
+     "dot": 0.299,
+     "cosine": 0.299,
+     "length": 1.0
+    },
+    "H1": {
+     "euclid": 1.188,
+     "manhattan": 18.45,
+     "dot": 0.294,
+     "cosine": 0.294,
+     "length": 1.0
+    },
+    "query_length": 1.0
+   },
+   "raw": {
+    "H9": {
+     "euclid": 5.68,
+     "manhattan": 89.02,
+     "dot": 6.814,
+     "cosine": 0.299,
+     "length": 4.495
+    },
+    "H1": {
+     "euclid": 5.231,
+     "manhattan": 81.25,
+     "dot": 5.154,
+     "cosine": 0.294,
+     "length": 3.461
+    },
+    "query_length": 5.069
+   }
+  }
+ ],
+ "sample_vectors": {
+  "query": "What happens if heavy rain floods the road and the delivery cannot get through?",
+  "first8": {
+   "query": [
+    -0.008,
+    -0.011,
+    0.098,
+    0.065,
+    0.016,
+    -0.072,
+    0.025,
+    -0.026
+   ],
+   "K1": [
+    0.017,
+    -0.001,
+    0.047,
+    0.005,
+    0.098,
+    0.033,
+    -0.067,
+    -0.046
+   ],
+   "K8": [
+    -0.019,
+    0.06,
+    -0.028,
+    -0.065,
+    -0.082,
+    -0.081,
+    -0.05,
+    -0.068
+   ]
+  },
+  "cos_q_K1": 0.361,
+  "cos_q_K8": 0.03,
+  "dim": 384
+ },
+ "summary": {
+  "n_queries": 12,
+  "emb_hit1": 7,
+  "emb_hit3": 11,
+  "kw_hit1": 4,
+  "all_four_agree_top1": 11,
+  "euclid_same_top1": 12,
+  "manhattan_same_top1": 11,
+  "dot_same_top1": 12,
+  "raw_all_four_agree_top1": 7,
+  "raw_euclid_same_top1": 9,
+  "raw_dot_same_top1": 11,
+  "raw_manhattan_same_top1": 8
+ }
+}

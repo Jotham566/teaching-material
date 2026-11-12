@@ -1,0 +1,1845 @@
+{
+ "AGR-01": {
+  "org": "PlantVillage Nuru (KE/TZ)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S10",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-02": {
+  "org": "Makerere AI Lab / mCROPS (UG)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S10",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-03": {
+  "org": "Apollo Agriculture (KE)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S2",
+   "S11",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-04": {
+  "org": "Digital Green Farmer.Chat (KE/IN)",
+  "region": "",
+  "themes": [
+   "S3",
+   "S4",
+   "S5",
+   "S6",
+   "S9",
+   "S10",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-05": {
+  "org": "Gro Intelligence (KE/US)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S10",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-06": {
+  "org": "Dimitra + NACCU coffee (KE)",
+  "region": "",
+  "themes": [
+   "S7",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-07": {
+  "org": "One Acre Fund Burundi",
+  "region": "",
+  "themes": [
+   "S1",
+   "S11",
+   "S12",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-08": {
+  "org": "Farmerline Darli (GH)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S5",
+   "S6"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-09": {
+  "org": "Sunbird AI Sunflower (UG)",
+  "region": "",
+  "themes": [
+   "S5",
+   "S6",
+   "S7"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-10": {
+  "org": "ICRISAT + Microsoft sowing app (IN)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S12",
+   "S14"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-11": {
+  "org": "Kisan e-Mitra, Govt of India",
+  "region": "",
+  "themes": [
+   "S4",
+   "S5",
+   "S6",
+   "S9",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-12": {
+  "org": "ITC Krishi Mitra (IN)",
+  "region": "",
+  "themes": [
+   "S5",
+   "S6",
+   "S7",
+   "S9"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "AGR-13": {
+  "org": "John Deere See & Spray (US)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S7",
+   "S10",
+   "S11",
+   "S12"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-01": {
+  "org": "P&G field experiment (US)",
+  "region": "",
+  "themes": [
+   "S5",
+   "S8",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-02": {
+  "org": "Coca-Cola AI Christmas ad",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-03": {
+  "org": "Coca-Cola AI suggested orders",
+  "region": "",
+  "themes": [
+   "S2",
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-04": {
+  "org": "Coca-Cola HBC (Europe and Africa)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S2",
+   "S5",
+   "S7",
+   "S12",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-05": {
+  "org": "AB InBev BEES / Nile Breweries (UG)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S12",
+   "S14"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-06": {
+  "org": "KBL / EABL Diageo One (KE)",
+  "region": "",
+  "themes": [
+   "S12",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-07": {
+  "org": "Unilever + Accenture digital twins",
+  "region": "",
+  "themes": [
+   "S2",
+   "S7",
+   "S11",
+   "S12",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-08": {
+  "org": "Unilever AI video interviews (HireVue)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S7",
+   "S10",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-09": {
+  "org": "Nestl\u00e9 NesGPT",
+  "region": "",
+  "themes": [
+   "S5",
+   "S8",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-10": {
+  "org": "GE Predix (US)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S7",
+   "S10",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-11": {
+  "org": "Heidelberg Materials + Carbon Re (CZ)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S7",
+   "S11",
+   "S12"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-12": {
+  "org": "Heineken Beverages Sedibeng (ZA)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S7",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "MFG-13": {
+  "org": "NTT DATA manufacturing survey (global; Kenya commentary)",
+  "region": "",
+  "themes": [
+   "S5",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_agri_manufacturing.md"
+ },
+ "BNK-01": {
+  "org": "Equity Group",
+  "region": "Kenya/EA",
+  "themes": [
+   "S5",
+   "S8",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-02": {
+  "org": "KCB Group",
+  "region": "Kenya",
+  "themes": [
+   "S2",
+   "S12",
+   "S14"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-03": {
+  "org": "Numida",
+  "region": "Uganda",
+  "themes": [
+   "S2",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-04": {
+  "org": "Bank of Uganda",
+  "region": "Uganda",
+  "themes": [
+   "S2",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-05": {
+  "org": "Mulla Pride (KeCredit, Faircash)",
+  "region": "Kenya",
+  "themes": [
+   "S10",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-06": {
+  "org": "Soko Lending (SokoLoan)",
+  "region": "Nigeria",
+  "themes": [
+   "S10",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-07": {
+  "org": "Capitec Bank",
+  "region": "South Africa",
+  "themes": [
+   "S2",
+   "S3",
+   "S5",
+   "S8",
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-08": {
+  "org": "Access, GTCO, UBA, Wema",
+  "region": "Nigeria",
+  "themes": [
+   "S2",
+   "S3",
+   "S12"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-09": {
+  "org": "Commonwealth Bank of Australia",
+  "region": "Australia",
+  "themes": [
+   "S3",
+   "S5",
+   "S10",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-10": {
+  "org": "Klarna",
+  "region": "Sweden",
+  "themes": [
+   "S3",
+   "S5",
+   "S10",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-11": {
+  "org": "DBS Bank",
+  "region": "Singapore",
+  "themes": [
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-12": {
+  "org": "Morgan Stanley Wealth Management",
+  "region": "US",
+  "themes": [
+   "S4",
+   "S5",
+   "S6",
+   "S8",
+   "S9",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-13": {
+  "org": "Goldman Sachs / Apple Card (NYDFS)",
+  "region": "US",
+  "themes": [
+   "S2",
+   "S3",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "BNK-14": {
+  "org": "Bank of America (Erica)",
+  "region": "US",
+  "themes": [
+   "S4",
+   "S5",
+   "S8",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-01": {
+  "org": "Safaricom and NCBA (formerly CBA): M-Shwari",
+  "region": "Kenya",
+  "themes": [
+   "S2",
+   "S3",
+   "S14"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-02": {
+  "org": "Safaricom, NCBA, KCB: Fuliza and digital credit harms",
+  "region": "Kenya/Tanzania",
+  "themes": [
+   "S2",
+   "S3",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-03": {
+  "org": "Safaricom: M-Pesa AML and fraud AI",
+  "region": "Kenya",
+  "themes": [
+   "S2",
+   "S3",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-04": {
+  "org": "Safaricom: Zuri chatbot and credit algorithms in court",
+  "region": "Kenya",
+  "themes": [
+   "S2",
+   "S5",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-05": {
+  "org": "Airtel Africa: AI spam alert",
+  "region": "Uganda, Tanzania, 13 markets",
+  "themes": [
+   "S2",
+   "S3",
+   "S12"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-06": {
+  "org": "Airtel Money Uganda and GnuGrid CRB",
+  "region": "Uganda",
+  "themes": [
+   "S2",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-07": {
+  "org": "MTN Ghana: MoMo fraud AI",
+  "region": "Ghana",
+  "themes": [
+   "S2",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-08": {
+  "org": "JUMO with MTN, Airtel, Tigo",
+  "region": "Pan-African",
+  "themes": [
+   "S2",
+   "S6",
+   "S7",
+   "S12",
+   "S14"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-09": {
+  "org": "Orange with OpenAI and Meta",
+  "region": "West Africa / 18 markets",
+  "themes": [
+   "S1",
+   "S5",
+   "S6",
+   "S7",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-10": {
+  "org": "Vodacom Group and Google Cloud",
+  "region": "South Africa + 7 markets",
+  "themes": [
+   "S2",
+   "S5",
+   "S6",
+   "S7",
+   "S14"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-11": {
+  "org": "BT Group",
+  "region": "UK",
+  "themes": [
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "TEL-12": {
+  "org": "Lingo Telecom (FCC action)",
+  "region": "US",
+  "themes": [
+   "S1",
+   "S5",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_banking_telecom.md"
+ },
+ "ENR-01": {
+  "org": "Kenya Power (KPLC)",
+  "region": "",
+  "themes": [
+   "S5",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "ENR-02": {
+  "org": "M-KOPA",
+  "region": "",
+  "themes": [
+   "S2",
+   "S7",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "ENR-03": {
+  "org": "Shell + C3 AI",
+  "region": "",
+  "themes": [
+   "S2",
+   "S6",
+   "S7",
+   "S12",
+   "S14"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "ENR-04": {
+  "org": "Rio Tinto",
+  "region": "",
+  "themes": [
+   "S1",
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "ENR-05": {
+  "org": "Octopus Energy",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S7",
+   "S9",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "RTL-01": {
+  "org": "Air Canada",
+  "region": "",
+  "themes": [
+   "S5",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "RTL-02": {
+  "org": "DPD (UK)",
+  "region": "",
+  "themes": [
+   "S5",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "RTL-03": {
+  "org": "McDonald's + IBM",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S6",
+   "S10",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "RTL-04": {
+  "org": "Amazon",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S12",
+   "S14"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "RTL-05": {
+  "org": "Jumia",
+  "region": "",
+  "themes": [
+   "S5",
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "RTL-06": {
+  "org": "Kenya Airways",
+  "region": "",
+  "themes": [
+   "S2",
+   "S6",
+   "S7",
+   "S8",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "RTL-07": {
+  "org": "Uber Eats (UK)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S10",
+   "S11",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "EDU-01": {
+  "org": "Edo State, Nigeria (World Bank)",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "EDU-02": {
+  "org": "Rising Academies \"Rori\" (Ghana)",
+  "region": "",
+  "themes": [
+   "S5",
+   "S12"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "EDU-03": {
+  "org": "Harvard physics AI tutor",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S9",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "EDU-04": {
+  "org": "EIDU (Kenya)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S5",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "EDU-05": {
+  "org": "Georgia State University",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "EDU-06": {
+  "org": "Australian Catholic University",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "EDU-07": {
+  "org": "Chegg",
+  "region": "",
+  "themes": [
+   "S5",
+   "S10",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "LGL-01": {
+  "org": "Mata v Avianca (US)",
+  "region": "",
+  "themes": [
+   "S4",
+   "S5",
+   "S8",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "LGL-02": {
+  "org": "Mavundla (South Africa)",
+  "region": "",
+  "themes": [
+   "S4",
+   "S5",
+   "S8",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "LGL-03": {
+  "org": "Ayinde / Al-Haroun (UK)",
+  "region": "",
+  "themes": [
+   "S4",
+   "S5",
+   "S8",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "LGL-04": {
+  "org": "Deloitte Australia",
+  "region": "",
+  "themes": [
+   "S5",
+   "S7",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "LGL-05": {
+  "org": "Allen & Overy + Harvey",
+  "region": "",
+  "themes": [
+   "S4",
+   "S5",
+   "S6",
+   "S7",
+   "S8",
+   "S9",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "LGL-06": {
+  "org": "PwC + OpenAI",
+  "region": "",
+  "themes": [
+   "S5",
+   "S6",
+   "S7",
+   "S8",
+   "S9",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "LGL-07": {
+  "org": "Kenya Judiciary draft AI policy",
+  "region": "",
+  "themes": [
+   "S5",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_energy_retail_edu_legal.md"
+ },
+ "HLT-01": {
+  "org": "Penda Health (KE)",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S6",
+   "S9",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-02": {
+  "org": "Jacaranda Health (KE)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S5",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-03": {
+  "org": "Kinondo Kwetu clinic (KE)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-04": {
+  "org": "Makerere AI Health Lab (UG)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S7",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-05": {
+  "org": "Social Health Authority (KE)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S10",
+   "S11",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-06": {
+  "org": "Babyl / Babylon Health (RW)",
+  "region": "",
+  "themes": [
+   "S6",
+   "S7",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-07": {
+  "org": "Qure.ai qXR in NE Nigeria + WHO",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S6",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-08": {
+  "org": "Discovery, GEMS, Medscheme (ZA)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S10",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-09": {
+  "org": "Google Health, Thailand MoPH",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S10",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-10": {
+  "org": "MASAI trial (Sweden)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-11": {
+  "org": "Epic Sepsis Model (US)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S6",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-12": {
+  "org": "Optum Impact Pro (US)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S10",
+   "S14"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-13": {
+  "org": "UnitedHealth / naviHealth (US)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S10",
+   "S11",
+   "S13"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "HLT-14": {
+  "org": "Lemonade (US/UK)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S2",
+   "S10",
+   "S11",
+   "S12",
+   "S13"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-01": {
+  "org": "Uganda Revenue Authority",
+  "region": "",
+  "themes": [
+   "S2",
+   "S7",
+   "S12",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-02": {
+  "org": "Kenya Revenue Authority",
+  "region": "",
+  "themes": [
+   "S1",
+   "S2",
+   "S11",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-03": {
+  "org": "South African Revenue Service",
+  "region": "",
+  "themes": [
+   "S2",
+   "S11",
+   "S12",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-04": {
+  "org": "Judiciary of Kenya",
+  "region": "",
+  "themes": [
+   "S1",
+   "S3",
+   "S5",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-05": {
+  "org": "Uganda national ID (NIRA)",
+  "region": "",
+  "themes": [
+   "S1",
+   "S10",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-06": {
+  "org": "National AI policies (RW, KE, UG, NG)",
+  "region": "",
+  "themes": [
+   "S6",
+   "S7",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-07": {
+  "org": "Togo Novissi",
+  "region": "",
+  "themes": [
+   "S1",
+   "S2",
+   "S3",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-08": {
+  "org": "Edo State / World Bank (NG)",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S8",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-09": {
+  "org": "Mavundla case, KZN High Court (ZA)",
+  "region": "",
+  "themes": [
+   "S4",
+   "S5",
+   "S8",
+   "S10",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-10": {
+  "org": "UK Government (GDS) Copilot trial",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S7",
+   "S8",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-11": {
+  "org": "Dutch Tax Administration",
+  "region": "",
+  "themes": [
+   "S2",
+   "S10",
+   "S11",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-12": {
+  "org": "Robodebt (Australia)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S10",
+   "S11",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-13": {
+  "org": "Michigan UIA MiDAS (US)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S7",
+   "S10",
+   "S11"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "PUB-14": {
+  "org": "Ofqual (UK)",
+  "region": "",
+  "themes": [
+   "S2",
+   "S3",
+   "S10",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_health_public.md"
+ },
+ "GAP-01": {
+  "org": "Telstra (Ask Telstra)",
+  "region": "Global",
+  "themes": [
+   "S3",
+   "S4",
+   "S5",
+   "S9",
+   "S12",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-02": {
+  "org": "McKinsey (Lilli)",
+  "region": "Global",
+  "themes": [
+   "S4",
+   "S5",
+   "S7",
+   "S8",
+   "S9",
+   "S11",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-03": {
+  "org": "UK Government (Consult)",
+  "region": "Global",
+  "themes": [
+   "S3",
+   "S4",
+   "S5",
+   "S7",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-04": {
+  "org": "NBER support-agent field study",
+  "region": "Global",
+  "themes": [
+   "S3",
+   "S5",
+   "S8",
+   "S9",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-05": {
+  "org": "Standard Bank",
+  "region": "Rest of Africa",
+  "themes": [
+   "S4",
+   "S5",
+   "S8",
+   "S9",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-06": {
+  "org": "Absa Group",
+  "region": "Rest of Africa",
+  "themes": [
+   "S5",
+   "S6",
+   "S8",
+   "S11",
+   "S12",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-07": {
+  "org": "Webber Wentzel (Legora)",
+  "region": "Rest of Africa",
+  "themes": [
+   "S4",
+   "S5",
+   "S6",
+   "S7",
+   "S9"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-08": {
+  "org": "ULII and Uganda Judiciary",
+  "region": "Uganda",
+  "themes": [
+   "S1",
+   "S4",
+   "S5",
+   "S9",
+   "S10",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-09": {
+  "org": "Sunbird AI (Sunflower evaluation)",
+  "region": "Uganda",
+  "themes": [
+   "S3",
+   "S5",
+   "S6",
+   "S7",
+   "S14"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-10": {
+  "org": "Lelapa AI (InkubaLM, Vulavula)",
+  "region": "Rest of Africa",
+  "themes": [
+   "S1",
+   "S3",
+   "S5",
+   "S6",
+   "S7"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-11": {
+  "org": "Masakhane",
+  "region": "Rest of Africa",
+  "themes": [
+   "S3",
+   "S5",
+   "S6",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-12": {
+  "org": "Jacaranda Health (UlizaLlama)",
+  "region": "Kenya",
+  "themes": [
+   "S3",
+   "S5",
+   "S6",
+   "S7",
+   "S9",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-13": {
+  "org": "Nigeria FMCIDE, NCAIR, Awarri (N-ATLaS)",
+  "region": "Rest of Africa",
+  "themes": [
+   "S5",
+   "S6",
+   "S7",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-14": {
+  "org": "Cassava Technologies and Nvidia",
+  "region": "Rest of Africa",
+  "themes": [
+   "S7",
+   "S13"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-15": {
+  "org": "Microsoft and G42 (Kenya)",
+  "region": "Kenya",
+  "themes": [
+   "S6",
+   "S7",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-16": {
+  "org": "AirQo (Makerere) and KCCA",
+  "region": "Uganda",
+  "themes": [
+   "S1",
+   "S2",
+   "S3",
+   "S7",
+   "S13",
+   "S14"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-17": {
+  "org": "Uganda PDPO v Google LLC",
+  "region": "Uganda",
+  "themes": [
+   "S7",
+   "S10",
+   "S13"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-18": {
+  "org": "Uganda MoICT&NG (data and AI strategies)",
+  "region": "Uganda",
+  "themes": [
+   "S7",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-19": {
+  "org": "Centenary Group and Huawei",
+  "region": "Uganda",
+  "themes": [
+   "S2",
+   "S6",
+   "S7",
+   "S11",
+   "PEOPLE"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-20": {
+  "org": "MTN MoMo Uganda",
+  "region": "Uganda",
+  "themes": [
+   "S2",
+   "S3",
+   "S13"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "GAP-21": {
+  "org": "Farmers Companion App (Mbale)",
+  "region": "Uganda",
+  "themes": [
+   "S1",
+   "S7"
+  ],
+  "file": "cases_search_knowledge_uganda.md"
+ },
+ "PPL-01": {
+  "org": "NBER customer support study",
+  "region": "",
+  "themes": [
+   "S5",
+   "S8",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-02": {
+  "org": "BCG/Harvard jagged frontier",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S8",
+   "S10",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-03": {
+  "org": "GitHub Copilot lab experiment",
+  "region": "",
+  "themes": [
+   "S5",
+   "S8",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-04": {
+  "org": "Copilot field experiments (Microsoft, Accenture, F100)",
+  "region": "",
+  "themes": [
+   "S8",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-05": {
+  "org": "Klarna AI assistant + reversal",
+  "region": "",
+  "themes": [
+   "S3",
+   "S5",
+   "S10",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-06": {
+  "org": "IBM back-office hiring",
+  "region": "",
+  "themes": [
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-07": {
+  "org": "Duolingo \"AI-first\" memo",
+  "region": "",
+  "themes": [
+   "S10",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-08": {
+  "org": "WEF Future of Jobs 2025",
+  "region": "",
+  "themes": [
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-09": {
+  "org": "IMF job exposure (2024)",
+  "region": "",
+  "themes": [
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-10": {
+  "org": "ILO GenAI exposure index (2025)",
+  "region": "",
+  "themes": [
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-11": {
+  "org": "Microsoft Work Trend Index 2024 (shadow AI)",
+  "region": "",
+  "themes": [
+   "S8",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-12": {
+  "org": "BCG AI at Work 2025",
+  "region": "",
+  "themes": [
+   "S8",
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "PPL-13": {
+  "org": "Microsoft AI skilling pledges, Kenya and Nigeria",
+  "region": "",
+  "themes": [
+   "S8",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-01": {
+  "org": "McKinsey State of AI 2025",
+  "region": "",
+  "themes": [
+   "S11",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-02": {
+  "org": "MIT NANDA GenAI Divide",
+  "region": "",
+  "themes": [
+   "S7",
+   "S10",
+   "S12",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-03": {
+  "org": "Gartner: 30% GenAI PoCs abandoned",
+  "region": "",
+  "themes": [
+   "S10",
+   "S12",
+   "S14"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-04": {
+  "org": "Gartner: 40% agentic projects cancelled",
+  "region": "",
+  "themes": [
+   "S6",
+   "S10",
+   "S11",
+   "S12"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-05": {
+  "org": "Microsoft AI Diffusion H2 2025 (East Africa)",
+  "region": "",
+  "themes": [
+   "S8",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-06": {
+  "org": "Microsoft AI Diffusion Q1 2026 (Africa)",
+  "region": "",
+  "themes": [
+   "S8",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-07": {
+  "org": "GSMA AI for Africa use cases",
+  "region": "",
+  "themes": [
+   "S2",
+   "S7",
+   "S14"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-08": {
+  "org": "PwC / Google Cloud: African firms' AI returns",
+  "region": "",
+  "themes": [
+   "S12"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "ADO-09": {
+  "org": "IMF: AI and sub-Saharan Africa (2026)",
+  "region": "",
+  "themes": [
+   "S7",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-01": {
+  "org": "Uganda DPPA 2019",
+  "region": "",
+  "themes": [
+   "S7",
+   "S13",
+   "S14"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-02": {
+  "org": "Uganda PDPO v Google LLC",
+  "region": "",
+  "themes": [
+   "S7",
+   "S10",
+   "S13",
+   "S14"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-03": {
+  "org": "Uganda first DPPA criminal conviction",
+  "region": "",
+  "themes": [
+   "S10",
+   "S13"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-04": {
+  "org": "Uganda national AI strategy (status)",
+  "region": "",
+  "themes": [
+   "S13",
+   "S14"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-05": {
+  "org": "Uganda National Data Strategy",
+  "region": "",
+  "themes": [
+   "S13",
+   "S14"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-06": {
+  "org": "Kenya ODPC penalty notices",
+  "region": "",
+  "themes": [
+   "S10",
+   "S13"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-07": {
+  "org": "Kenya National AI Strategy 2025-2030",
+  "region": "",
+  "themes": [
+   "S7",
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-08": {
+  "org": "Nigeria NDPC: Fidelity Bank",
+  "region": "",
+  "themes": [
+   "S10",
+   "S13",
+   "S14"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-09": {
+  "org": "Nigeria NDPC: Multichoice",
+  "region": "",
+  "themes": [
+   "S7",
+   "S10",
+   "S13"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-10": {
+  "org": "Nigeria National AI Strategy",
+  "region": "",
+  "themes": [
+   "S13"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-11": {
+  "org": "Rwanda National AI Policy",
+  "region": "",
+  "themes": [
+   "S13",
+   "S14",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-12": {
+  "org": "AU Continental AI Strategy",
+  "region": "",
+  "themes": [
+   "S13"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-13": {
+  "org": "EU AI Act timeline + 2026 Digital Omnibus",
+  "region": "",
+  "themes": [
+   "S13",
+   "PEOPLE"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-14": {
+  "org": "ISO/IEC 42001",
+  "region": "",
+  "themes": [
+   "S13"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ },
+ "GOV-15": {
+  "org": "NIST AI RMF",
+  "region": "",
+  "themes": [
+   "S3",
+   "S13"
+  ],
+  "file": "evidence_people_adoption_failures_governance.md"
+ }
+}

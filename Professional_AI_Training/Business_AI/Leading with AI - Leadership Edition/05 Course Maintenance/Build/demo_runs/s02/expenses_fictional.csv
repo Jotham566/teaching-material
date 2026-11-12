@@ -1,0 +1,241 @@
+claim_id,category,amount_ugx,receipt_attached,days_to_file,outcome
+E001,stationery,103000,1,8,paid
+E002,meals,60000,0,0,queried
+E003,fuel,166000,0,16,queried
+E004,meals,95000,0,3,queried
+E005,fuel,20000,1,5,paid
+E006,meals,70000,1,14,paid
+E007,transport hire,24000,1,11,paid
+E008,airtime,48000,1,4,paid
+E009,repairs,160000,0,2,queried
+E010,airtime,194000,1,32,queried
+E011,airtime,146000,1,4,paid
+E012,transport hire,1045000,1,27,queried
+E013,stationery,42000,1,3,queried
+E014,transport hire,60000,1,4,paid
+E015,meals,46000,0,0,paid
+E016,fuel,19000,1,8,paid
+E017,meals,24000,0,18,paid
+E018,repairs,770000,1,12,paid
+E019,fuel,42000,1,0,paid
+E020,repairs,39000,1,15,paid
+E021,meals,117000,0,8,queried
+E022,stationery,34000,1,4,paid
+E023,repairs,22000,1,9,paid
+E024,airtime,104000,1,10,paid
+E025,transport hire,208000,1,13,paid
+E026,airtime,78000,1,1,paid
+E027,stationery,8000,1,7,paid
+E028,airtime,427000,1,11,paid
+E029,transport hire,247000,1,9,paid
+E030,airtime,166000,0,4,queried
+E031,transport hire,28000,0,9,paid
+E032,airtime,19000,1,1,paid
+E033,transport hire,30000,1,1,paid
+E034,stationery,89000,0,3,queried
+E035,meals,140000,1,15,paid
+E036,meals,64000,0,34,queried
+E037,fuel,51000,1,0,paid
+E038,meals,150000,1,1,paid
+E039,meals,32000,0,4,queried
+E040,transport hire,326000,1,28,paid
+E041,transport hire,34000,0,5,paid
+E042,repairs,553000,1,9,paid
+E043,airtime,172000,1,20,paid
+E044,fuel,5000,0,21,paid
+E045,stationery,105000,0,0,queried
+E046,repairs,117000,0,21,queried
+E047,meals,122000,1,5,paid
+E048,meals,104000,1,1,paid
+E049,airtime,90000,1,14,paid
+E050,transport hire,28000,0,9,paid
+E051,airtime,42000,0,47,queried
+E052,fuel,17000,1,33,queried
+E053,transport hire,67000,0,15,queried
+E054,transport hire,65000,1,0,paid
+E055,meals,24000,1,0,paid
+E056,meals,678000,0,4,queried
+E057,transport hire,26000,0,14,paid
+E058,stationery,71000,1,4,paid
+E059,meals,81000,1,1,paid
+E060,fuel,722000,1,11,queried
+E061,airtime,13000,1,10,paid
+E062,fuel,10000,1,11,paid
+E063,repairs,371000,1,5,paid
+E064,repairs,49000,0,17,paid
+E065,repairs,354000,1,7,paid
+E066,transport hire,856000,1,0,queried
+E067,transport hire,127000,1,15,paid
+E068,meals,133000,1,29,paid
+E069,transport hire,1561000,1,5,queried
+E070,stationery,43000,1,11,paid
+E071,meals,432000,1,21,paid
+E072,transport hire,28000,0,2,paid
+E073,repairs,99000,1,12,paid
+E074,stationery,193000,1,45,queried
+E075,transport hire,47000,1,31,queried
+E076,stationery,68000,1,8,paid
+E077,airtime,118000,0,4,queried
+E078,repairs,157000,1,2,paid
+E079,transport hire,110000,1,5,paid
+E080,meals,64000,0,7,queried
+E081,transport hire,28000,1,5,paid
+E082,fuel,200000,1,8,paid
+E083,meals,31000,1,12,queried
+E084,stationery,106000,1,0,paid
+E085,transport hire,19000,0,28,paid
+E086,meals,70000,1,12,paid
+E087,fuel,194000,1,3,paid
+E088,airtime,29000,1,6,paid
+E089,stationery,44000,1,10,paid
+E090,fuel,306000,0,6,queried
+E091,fuel,179000,1,0,paid
+E092,stationery,32000,1,5,queried
+E093,fuel,421000,0,1,queried
+E094,transport hire,37000,1,15,paid
+E095,repairs,57000,1,7,paid
+E096,airtime,62000,0,11,queried
+E097,meals,41000,1,11,paid
+E098,transport hire,134000,1,30,paid
+E099,stationery,1567000,0,3,queried
+E100,airtime,118000,1,2,paid
+E101,stationery,34000,1,35,queried
+E102,repairs,167000,1,13,paid
+E103,transport hire,31000,1,8,paid
+E104,transport hire,37000,1,28,paid
+E105,repairs,42000,0,17,paid
+E106,repairs,556000,1,3,paid
+E107,repairs,355000,1,5,paid
+E108,fuel,91000,1,10,paid
+E109,stationery,284000,0,19,queried
+E110,repairs,28000,1,24,paid
+E111,airtime,191000,1,10,paid
+E112,stationery,357000,1,66,queried
+E113,meals,22000,1,6,paid
+E114,transport hire,32000,1,2,paid
+E115,transport hire,164000,0,10,queried
+E116,repairs,132000,0,18,queried
+E117,airtime,111000,0,10,queried
+E118,stationery,83000,1,5,paid
+E119,fuel,256000,1,18,paid
+E120,repairs,413000,0,20,queried
+E121,meals,67000,0,1,queried
+E122,transport hire,13000,1,23,paid
+E123,transport hire,83000,1,20,paid
+E124,meals,21000,0,6,paid
+E125,fuel,221000,1,22,paid
+E126,stationery,12000,1,6,paid
+E127,airtime,43000,1,3,paid
+E128,meals,26000,1,3,paid
+E129,meals,12000,1,21,paid
+E130,transport hire,291000,1,12,paid
+E131,stationery,67000,0,15,queried
+E132,fuel,23000,1,5,paid
+E133,stationery,181000,1,47,queried
+E134,transport hire,37000,1,29,paid
+E135,airtime,40000,0,21,paid
+E136,repairs,40000,1,4,paid
+E137,repairs,182000,1,18,paid
+E138,repairs,203000,0,14,queried
+E139,stationery,628000,0,31,queried
+E140,stationery,67000,1,5,paid
+E141,repairs,273000,1,2,paid
+E142,transport hire,164000,1,10,paid
+E143,fuel,46000,1,20,paid
+E144,repairs,220000,0,15,queried
+E145,fuel,115000,1,4,paid
+E146,stationery,170000,1,2,paid
+E147,airtime,67000,0,8,queried
+E148,stationery,20000,1,0,paid
+E149,airtime,55000,1,1,paid
+E150,transport hire,97000,1,3,paid
+E151,transport hire,151000,1,3,queried
+E152,stationery,29000,0,2,paid
+E153,transport hire,69000,1,47,queried
+E154,stationery,87000,1,38,queried
+E155,repairs,81000,1,14,paid
+E156,meals,78000,1,6,paid
+E157,transport hire,96000,0,23,queried
+E158,fuel,35000,0,16,paid
+E159,transport hire,80000,0,11,queried
+E160,stationery,255000,1,22,paid
+E161,transport hire,80000,1,22,paid
+E162,airtime,51000,0,7,queried
+E163,meals,384000,1,7,paid
+E164,transport hire,37000,1,1,paid
+E165,stationery,129000,0,6,paid
+E166,repairs,41000,0,20,paid
+E167,transport hire,64000,0,10,queried
+E168,repairs,240000,1,4,paid
+E169,airtime,248000,0,16,queried
+E170,fuel,290000,1,7,paid
+E171,stationery,102000,0,3,queried
+E172,airtime,36000,1,6,paid
+E173,meals,368000,1,4,queried
+E174,repairs,327000,1,11,paid
+E175,transport hire,75000,0,1,queried
+E176,repairs,61000,1,11,paid
+E177,meals,32000,0,11,paid
+E178,meals,334000,1,25,paid
+E179,meals,85000,1,17,paid
+E180,meals,74000,0,8,queried
+E181,airtime,71000,1,7,paid
+E182,meals,136000,0,7,queried
+E183,meals,68000,1,2,queried
+E184,transport hire,216000,1,16,paid
+E185,repairs,38000,1,6,paid
+E186,airtime,66000,1,17,paid
+E187,meals,18000,0,9,paid
+E188,fuel,8000,1,17,paid
+E189,transport hire,73000,1,19,paid
+E190,transport hire,28000,0,4,paid
+E191,stationery,61000,1,26,paid
+E192,fuel,27000,1,14,paid
+E193,fuel,94000,1,18,paid
+E194,fuel,282000,0,17,queried
+E195,stationery,30000,1,10,paid
+E196,meals,27000,1,3,paid
+E197,stationery,195000,0,28,queried
+E198,repairs,99000,1,12,paid
+E199,airtime,14000,0,1,paid
+E200,transport hire,15000,0,0,paid
+E201,airtime,98000,1,3,paid
+E202,repairs,384000,1,4,paid
+E203,repairs,108000,0,8,queried
+E204,transport hire,260000,1,6,paid
+E205,stationery,32000,1,10,paid
+E206,meals,150000,1,22,paid
+E207,airtime,106000,0,27,paid
+E208,transport hire,51000,1,10,paid
+E209,stationery,118000,1,2,paid
+E210,stationery,192000,1,0,paid
+E211,repairs,929000,1,48,queried
+E212,stationery,163000,1,45,queried
+E213,repairs,60000,0,20,queried
+E214,airtime,97000,0,0,queried
+E215,airtime,24000,1,15,paid
+E216,transport hire,54000,1,14,paid
+E217,fuel,35000,1,8,paid
+E218,meals,77000,1,36,queried
+E219,transport hire,102000,1,20,paid
+E220,repairs,89000,1,6,paid
+E221,repairs,10000,1,1,paid
+E222,repairs,130000,0,0,queried
+E223,transport hire,76000,0,1,queried
+E224,meals,17000,1,63,queried
+E225,airtime,13000,1,4,paid
+E226,transport hire,20000,1,0,paid
+E227,repairs,110000,1,1,paid
+E228,repairs,9000,0,4,paid
+E229,transport hire,122000,0,17,queried
+E230,airtime,72000,0,10,queried
+E231,stationery,22000,0,0,paid
+E232,fuel,104000,1,8,paid
+E233,airtime,24000,1,2,paid
+E234,airtime,367000,1,9,paid
+E235,airtime,31000,1,3,paid
+E236,stationery,101000,0,1,queried
+E237,repairs,26000,1,0,paid
+E238,transport hire,57000,0,2,queried
+E239,fuel,42000,1,20,paid
+E240,fuel,127000,0,4,queried

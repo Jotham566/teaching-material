@@ -1,0 +1,10 @@
+FICTIONAL TEACHING DOCUMENT. Invented demonstration mailbox. All people, firms and addresses are invented (example.com).
+
+From: Joseph Mugisha <joseph.mugisha@nilevalleyfoods.example.com>
+To: Grace Akello <grace.akello@nilevalleyfoods.example.com>
+Date: Wed, 4 Nov 2026 09:05
+Subject: Busoga Oils invoice BO-2026-0452: no PO number
+
+Grace, the Busoga Oils invoice BO-2026-0452 (UGX 14,610,760) came in without a purchase order number. I will not put it in Friday's supplier payment run until you confirm which PO it belongs to. The payment run closes Friday 6 November at 3pm. Can you tell me the PO today or tomorrow?
+
+Joseph

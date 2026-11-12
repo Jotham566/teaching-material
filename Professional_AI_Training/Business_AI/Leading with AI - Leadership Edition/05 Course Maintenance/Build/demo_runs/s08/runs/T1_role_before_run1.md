@@ -1,0 +1,1 @@
+Inflation is the general rise in prices across an economy over time, so each unit of money buys less than it did before. It is usually measured yearly with a price index such as the Consumer Price Index. Common causes are demand growing faster than supply, higher production costs, and rapid growth in the money supply.
