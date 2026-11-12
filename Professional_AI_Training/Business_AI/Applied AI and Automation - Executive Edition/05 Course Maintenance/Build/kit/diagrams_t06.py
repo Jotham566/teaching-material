@@ -460,7 +460,7 @@ def perplexity(w, h, **_):
     s.box(x2, 0.1, pw, h - 0.2, '', fill=PAPER, edge=INK, lw=1.6)
     put(s, x2 + pw / 2, h - 0.45, 'Perplexity undoes the ln', size=17, weight='bold', color=RED)
     mt(s, x2 + pw / 2, h - 1.15, r'$\mathrm{perplexity} = e^{L}$', size=22, ha='center')
-    put(s, x2 + 0.2, h - 2.0, wrap('e to the power undoes ln, as e did in softmax (Session 5). Blind guess among 4: perplexity 4.', pw - 0.4, 15), size=15, ha='left')
+    put(s, x2 + 0.2, h - 2.0, wrap('e to the power undoes ln, as e did in softmax (Session 5).', pw - 0.4, 15) + '\n' + wrap('A blind guess among 4 words: perplexity 4.', pw - 0.4, 15), size=15, ha='left')
     mt(s, x2 + 0.2, 0.95, r'Our text: $L = 1.26$, $e^{1.26} \approx 3.5$', size=16, ha='left')
     put(s, x2 + 0.2, 0.45, 'As unsure as 3.5 equal words', size=15, weight='bold', ha='left')
     # panel 3: how to read it

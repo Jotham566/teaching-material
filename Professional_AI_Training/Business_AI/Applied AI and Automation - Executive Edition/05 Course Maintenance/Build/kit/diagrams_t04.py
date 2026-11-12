@@ -79,7 +79,7 @@ def numbers(w, h, **_):
         s.text(0.05, y + rh * 0.62, nm, size=17, weight='bold', ha='left')
         s.text(0.05, y + rh * 0.22, sub[:36] + ('...' if len(sub) > 36 else ''), size=14, color=BODY, ha='left') if False else None
         for j, v in enumerate(vec):
-            s.box(x0 + j * cw, y + 0.2, cw - 0.05, 0.62, f'{v:+.2f}'.replace('-', '−'), size=15, fill=GOLD if (cs and cs > 0.3) else PAPER, lw=1.3, r=0.04)
+            s.box(x0 + j * cw, y + 0.2, cw - 0.05, 0.62, ('0.00' if abs(v) < 0.005 else f'{v:+.2f}'.replace('-', '−')), size=15, fill=GOLD if (cs and cs > 0.3) else PAPER, lw=1.3, r=0.04)
         s.text(x0 + 8 * cw + 0.2, y + 0.51, '...', size=20, weight='bold')
         s.text(w - 1.2, y + 0.51, '' if cs is None else f'{cs:.2f}', size=24, weight='bold')
     return s
@@ -665,7 +665,7 @@ def network(w, h, **_):
     s.text(5.2, cy - 1.3, 'drawn small: the real one is much bigger', size=14, color=MUTE)
     s.text(9.5, cy + 1.45, '384 numbers out', size=17, weight='bold')
     for j, v in enumerate(V[:6]):
-        s.box(8.55, cy + 0.95 - j * 0.38, 1.9, 0.34, f'{v:+.2f}'.replace('-', '−'), size=14, fill=GOLD, lw=1.3, r=0.04)
+        s.box(8.55, cy + 0.95 - j * 0.38, 1.9, 0.34, ('0.00' if abs(v) < 0.005 else f'{v:+.2f}'.replace('-', '−')), size=14, fill=GOLD, lw=1.3, r=0.04)
     s.text(9.5, cy - 1.3, '... and 378 more', size=14, color=MUTE)
     s.box(0.1, 0.02, w - 0.2, 0.42, 'Fine-tuned on more than a billion pairs of related sentences, so that similar meanings land close (model card).', size=14, fill=PALE, lw=1.2)
     return s

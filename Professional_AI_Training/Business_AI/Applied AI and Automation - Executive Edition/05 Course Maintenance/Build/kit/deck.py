@@ -419,12 +419,15 @@ def k_decision(d, sl):
     gap = 0.3
     bw = (XW - gap * (n - 1)) / n
     icons = [o.get('icon') or ic for o, ic in zip(opts, ['check', 'chart', 'pin', 'shield'])]
+    # one size for every option text and every head, so no box looks smaller than its neighbours
+    s_txt = min(K.fitted_text(X0, Y0, bw - 0.4, 1.5, o['text'], size_max=20, size_min=16)[1] for o in opts)
+    s_head = min(K.fitted_text(X0, Y0, bw - 1.2, 0.8, o['head'], size_max=24, size_min=14, bold=True)[1] for o in opts)
     for i, o in enumerate(opts):
         x = X0 + i * (bw + gap)
         objs.append(K.rect_obj(x, Y0 + 1.5, bw, 2.6, fill=None, line='111111', line_w=1.5, radius=0.05))
         objs.append(icon_img(icons[i], 0.8, x + 0.15, Y0 + 1.62))
-        objs.append(text(x + 1.05, Y0 + 1.62, bw - 1.2, 0.8, o['head'], 24, 14, bold=True, valign='middle'))
-        objs.append(text(x + 0.2, Y0 + 2.55, bw - 0.4, 1.5, o['text'], 20, 16, color=B.BODY))
+        objs.append(text(x + 1.05, Y0 + 1.62, bw - 1.2, 0.8, o['head'], s_head, s_head, bold=True, valign='middle'))
+        objs.append(text(x + 0.2, Y0 + 2.55, bw - 0.4, 1.5, o['text'], s_txt, s_txt, color=B.BODY))
     objs.append(text(X0, 6.5, XW, 0.4, sl.get('record', 'Write your decision and the reason in your workbook.'), 22, 18, color=B.MUTE))
     return objs
 
@@ -457,7 +460,7 @@ def add_cover(d):
     ts, tl = K.fit_lines(s['title'], 'bold', 11.0, 2.6, 56, 34, lead=1.1)
     qy = 2.3 + len(tl) * ts * 1.1 / 72 + 0.5
     q = text(X0, qy, 10.8, 1.4, s['question'], 30, 22, color=B.GOLD, italic=True)
-    meta = K.text_obj(X0, 6.55, 11.8, 0.5, text=(f'{COURSE}  |  Session {s["num"]} of {NSESS}' if s['num'] else f'{COURSE}  |  Session 0, the introduction') + '\nKLAi Professional Learning  |  Jotham Martin Wambi', size=16, color='B5B5B5', lead=1.45)
+    meta = K.text_obj(X0, 6.55, 11.8, 0.5, text=(f'{COURSE}  |  Session {s["num"]} of the {NSESS + 1} (Sessions 0 to {NSESS})' if s['num'] else f'{COURSE}  |  Session 0 of the {NSESS + 1}, the introduction') + '\nKLAi Professional Learning  |  Jotham Martin Wambi', size=16, color='B5B5B5', lead=1.45)
     sl = {'layout': 'dark', 'section': 'Opening', 'title': {'text': K.balance(s['title'], ts, 'bold', 11.0), 'size': ts, 'lead': round(ts * 1.1, 1)}, 'title_raw': None, 'objects': [q, meta],
           'notes': cover_script(s)}
     d.slides.append(sl)

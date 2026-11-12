@@ -268,10 +268,11 @@ def temp_samples(w, h, **_):
         s.box(x0, 0.05, pw, h - 0.1, '', fill=PAPER, edge=INK, lw=1.6, r=0.05)
         put(s, x0 + 0.15, h - 0.35, 'Temperature %s' % st['T'], size=18, weight='bold', color=RED, ha='left')
         y = h - 0.75
-        for sm in st['samples'][:3]:
+        step = (h - 0.85) / 4
+        for sm in st['samples'][:4]:
             lines = textwrap.wrap(sm.strip(), 36)[:3]
             put(s, x0 + 0.15, y - 0.35, '\n'.join(lines), size=15, ha='left')
-            y -= 1.0
+            y -= step
             s.line(x0 + 0.1, y + 0.3, x0 + pw - 0.1, y + 0.3, color=HAIR, lw=1)
     return s
 
