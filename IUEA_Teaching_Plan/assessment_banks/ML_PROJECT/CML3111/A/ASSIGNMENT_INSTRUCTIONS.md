@@ -1,39 +1,9 @@
-> **SUPERSEDED (4 November 2026).** The Engineering ML project is now an individual, timed, auto-graded 3-hour sitting in Week 12 (Fri 4 Dec 2026, 11:00 to 14:00 Kampala, proposed, lecturer to confirm), worth 40 (Part A coded notebook 30 and Part B decision memo 15, 45 marks scaled to 40), entered and submitted like Practical Test 1. There is no report, no DOCX or PDF upload, no team and no demo. The current brief is `second_half/Project/Student_Brief_CML3111.pdf`. The take-home text below is the old bank and is not used.
+CML3111 ML_PROJECT: Engineering ML project, online, 3 hours from Start test. The window opens Monday 23 November 2026, 00:00 and closes Wednesday 25 November 2026, 23:59 Kampala time.
 
-# CML3111 ML_PROJECT — Engineering ML project
-
-**Submit:** one completed notebook (.ipynb) with the decision memo form inside it, through the Submit test cell and form of the timed portal.
-
-**Sitting:** Fri 4 Dec 2026, 11:00 to 14:00 Kampala (proposed, lecturer to confirm). The old December deadline no longer applies.
-
-## 1. Start
-
-Open **ML_PROJECT_student.ipynb**. Keep these supporting files beside it: engineering_data.csv.
-
-In Colab: File → Open notebook → Upload. Add any supplied CSV files through the Files sidebar. Save your own copy in Drive.
-
-## 2. Work down the notebook
-
-1. Set STUDENT_ID to your own Student Registration Number, keeping quotes and slashes. Keep COHORT="CML3111".
-2. Answer each numbered task immediately below its prompt. Keep the required names exactly as shown.
-
-3. Part B is the decision memo form inside the notebook. There is no separate report.
-
-## 3. Check and save
-
-Restart and run all cells from the top. Fix errors, then download/save the completed notebook. For the filename only, replace slashes in your registration number with underscores and add _ML_PROJECT.ipynb.
-
-## 4. Hand in
-
-Use the Submit test cell in the notebook and the generated form, as in Practical Test 1, before your personal deadline. Keep the confirmation.
-
-## Help only if needed
-
-Need help opening, saving or uploading? Use STUDENT_HOW_TO.md only for the step you are stuck on. It is a reference, not extra homework.
-
-Preparation only until the lecturer releases this assessment. This guide does not open its form.
-
-<!-- PANDAS_WORKFLOW_20261015 -->
-## Pandas workflow
-
-Run the supplied pandas loading cell first. Analyse tables with pandas inside the required functions; return the exact list or dictionary requested. Where supplied, use records_from_table when a return needs Python None values. Correct existing loop-based solutions remain accepted.
+1. Open the entry page, enter your name, Google email and Student Registration Number, and press Start test. Your 3 hours start then.
+   Start by Wednesday 25 November 2026, 20:59 to get the full 3 hours.
+2. Press Open my test in Colab. Run the countdown cell, then the setup cell. The data file is inside the notebook: no upload or download.
+3. Complete Tasks 1 to 7 and the Part B memo form (Task 8). Choose Runtime, then Restart session and run all.
+4. Run the last cell, click Submit test, open the form link, check your details and press Submit before your personal deadline.
+Rules: the same as Practical Test 1. Individual work. No AI or outside help. You may add your own cells. Your work is marked wherever it is, as long as the required function names exist when the notebook runs from the top.
+Help: the class channel, 08:00 to 20:00 each day of the window (lecturer to confirm these hours). A technical failure: report it at once on the class channel with a screenshot.

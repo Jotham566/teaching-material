@@ -328,8 +328,8 @@
     "original_opens_at": "2026-11-24T11:00:00+03:00",
     "original_closes_at": "2026-12-15T11:00:00+03:00",
     "original_week": 15,
-    "status": "SITTING_TO_BE_CONFIRMED",
-    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project: one supervised 3-hour sitting in Google Colab in the Week 12 class slot, entered and submitted like Practical Test 1 (update of 4 November 2026; there is no take-home and no demo). One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 11 only. Proposed sitting (lecturer to confirm): Tuesday 1 December 2026 11:00 to 14:00 Kampala. Unmarked rehearsal released after Class 4. It is collected by the Colab test collector under the key CML3112|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null until the lecturer sets the Test windows row.",
+    "status": "WINDOW_CONFIRMED",
+    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project, sat online from anywhere in Google Colab (own laptop, own Google account, internet; no room and no in-person invigilation), entered and submitted like Practical Test 1 (update of 13 November 2026; there is no take-home and no demo). One window for all three cohorts: opens Monday 23 November 2026, 00:00 Kampala, closes Wednesday 25 November 2026, 23:59. Each student has 3 hours (180 minutes) from pressing Start test, capped at the window's close; start by Wednesday 25 November, 20:59 for the full 3 hours. One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 10 only (the first half plus Classes 1 to 3). The Week 11 tasks are cut and the model-choice rule is a supplied cell. Real data, the same file for every student with no variants: UCI Steel Industry Energy Consumption (DAEWOO Steel, 2018, 35,040 rows, CC BY 4.0, doi 10.24432/C52G8C), built into the notebook; split by month (train January to August, validation September to October, test November to December). Students may add their own cells; work is marked wherever it is, as long as the required function names exist when the notebook runs from the top. Unmarked rehearsal released after Class 3 (2026-11-17). Lecturer support on the class channel 08:00 to 20:00 each day of the window (hours: lecturer to confirm); one fresh attempt may be authorised after a reported technical failure, still capped at the window's close. Marks final by Wednesday 2 December 2026. It is collected by the Colab test collector under the key CML3112|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null; the window is set in the Test windows row.",
     "parts": [
       {
         "part": "A",
@@ -348,16 +348,18 @@
         "marking": "Fully automatic: the memo form inside the notebook, marked by key and keyword and length rules (15)."
       }
     ],
-    "scope": "Only what was taught this semester, Weeks 1 to 11 (Classes 1 to 4 of the second half included).",
-    "proposed_released_after_class_4": "2026-11-24",
-    "proposed_status": "proposed, lecturer to confirm",
+    "scope": "Only what was taught this semester, Weeks 1 to 10 (the first half plus Classes 1 to 3 of the second half). Week 11 (Class 4) is not assessed in the project.",
+    "rehearsal_released_after_class_3": "2026-11-17",
+    "window_status": "confirmed 13 November 2026",
     "mode": "individual, timed (180 minutes), fully auto-graded",
-    "proposed_sitting": {
-      "date": "2026-12-01",
-      "start": "11:00",
-      "end": "14:00",
+    "window": {
+      "opens_at": "2026-11-23T00:00:00+03:00",
+      "closes_at": "2026-11-25T23:59:00+03:00",
       "timezone": "Africa/Kampala",
-      "duration_minutes": 180
+      "duration_minutes": 180,
+      "start_by": "2026-11-25T20:59:00+03:00",
+      "support_hours": "08:00 to 20:00 each day (lecturer to confirm)",
+      "results_final_by": "2026-12-02"
     }
   },
   {
@@ -383,7 +385,7 @@
     "original_closes_at": "2026-12-15T14:00:00+03:00",
     "original_week": 15,
     "status": "RETIRED",
-    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. Week 12 is the individual timed project sitting; nobody presents. No form window is opened and nothing is marked on this form.",
+    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. The Engineering ML project is an individual, timed test sat online in the window of 23 to 25 November 2026; nobody presents. No form window is opened and nothing is marked on this form.",
     "retired": true
   },
   {
@@ -715,8 +717,8 @@
     "original_opens_at": "2026-11-27T08:00:00+03:00",
     "original_closes_at": "2026-12-18T08:00:00+03:00",
     "original_week": 15,
-    "status": "SITTING_TO_BE_CONFIRMED",
-    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project: one supervised 3-hour sitting in Google Colab in the Week 12 class slot, entered and submitted like Practical Test 1 (update of 4 November 2026; there is no take-home and no demo). One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 11 only. Proposed sitting (lecturer to confirm): Friday 4 December 2026 08:00 to 11:00 Kampala. Unmarked rehearsal released after Class 4. It is collected by the Colab test collector under the key CML3113|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null until the lecturer sets the Test windows row.",
+    "status": "WINDOW_CONFIRMED",
+    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project, sat online from anywhere in Google Colab (own laptop, own Google account, internet; no room and no in-person invigilation), entered and submitted like Practical Test 1 (update of 13 November 2026; there is no take-home and no demo). One window for all three cohorts: opens Monday 23 November 2026, 00:00 Kampala, closes Wednesday 25 November 2026, 23:59. Each student has 3 hours (180 minutes) from pressing Start test, capped at the window's close; start by Wednesday 25 November, 20:59 for the full 3 hours. One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 10 only (the first half plus Classes 1 to 3). The Week 11 tasks are cut and the model-choice rule is a supplied cell. Real data, the same file for every student with no variants: UCI Steel Industry Energy Consumption (DAEWOO Steel, 2018, 35,040 rows, CC BY 4.0, doi 10.24432/C52G8C), built into the notebook; split by month (train January to August, validation September to October, test November to December). Students may add their own cells; work is marked wherever it is, as long as the required function names exist when the notebook runs from the top. Unmarked rehearsal released after Class 3 (2026-11-20). Lecturer support on the class channel 08:00 to 20:00 each day of the window (hours: lecturer to confirm); one fresh attempt may be authorised after a reported technical failure, still capped at the window's close. Marks final by Wednesday 2 December 2026. It is collected by the Colab test collector under the key CML3113|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null; the window is set in the Test windows row.",
     "parts": [
       {
         "part": "A",
@@ -735,16 +737,18 @@
         "marking": "Fully automatic: the memo form inside the notebook, marked by key and keyword and length rules (15)."
       }
     ],
-    "scope": "Only what was taught this semester, Weeks 1 to 11 (Classes 1 to 4 of the second half included).",
-    "proposed_released_after_class_4": "2026-11-27",
-    "proposed_status": "proposed, lecturer to confirm",
+    "scope": "Only what was taught this semester, Weeks 1 to 10 (the first half plus Classes 1 to 3 of the second half). Week 11 (Class 4) is not assessed in the project.",
+    "rehearsal_released_after_class_3": "2026-11-20",
+    "window_status": "confirmed 13 November 2026",
     "mode": "individual, timed (180 minutes), fully auto-graded",
-    "proposed_sitting": {
-      "date": "2026-12-04",
-      "start": "08:00",
-      "end": "11:00",
+    "window": {
+      "opens_at": "2026-11-23T00:00:00+03:00",
+      "closes_at": "2026-11-25T23:59:00+03:00",
       "timezone": "Africa/Kampala",
-      "duration_minutes": 180
+      "duration_minutes": 180,
+      "start_by": "2026-11-25T20:59:00+03:00",
+      "support_hours": "08:00 to 20:00 each day (lecturer to confirm)",
+      "results_final_by": "2026-12-02"
     }
   },
   {
@@ -770,7 +774,7 @@
     "original_closes_at": "2026-12-18T11:00:00+03:00",
     "original_week": 15,
     "status": "RETIRED",
-    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. Week 12 is the individual timed project sitting; nobody presents. No form window is opened and nothing is marked on this form.",
+    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. The Engineering ML project is an individual, timed test sat online in the window of 23 to 25 November 2026; nobody presents. No form window is opened and nothing is marked on this form.",
     "retired": true
   },
   {
@@ -1098,8 +1102,8 @@
     "original_opens_at": "2026-11-27T11:00:00+03:00",
     "original_closes_at": "2026-12-18T11:00:00+03:00",
     "original_week": 15,
-    "status": "SITTING_TO_BE_CONFIRMED",
-    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project: one supervised 3-hour sitting in Google Colab in the Week 12 class slot, entered and submitted like Practical Test 1 (update of 4 November 2026; there is no take-home and no demo). One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 11 only. Proposed sitting (lecturer to confirm): Friday 4 December 2026 11:00 to 14:00 Kampala. Unmarked rehearsal released after Class 4. It is collected by the Colab test collector under the key CML3111|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null until the lecturer sets the Test windows row.",
+    "status": "WINDOW_CONFIRMED",
+    "delivery_note": "Individual, timed and fully auto-graded Engineering ML project, sat online from anywhere in Google Colab (own laptop, own Google account, internet; no room and no in-person invigilation), entered and submitted like Practical Test 1 (update of 13 November 2026; there is no take-home and no demo). One window for all three cohorts: opens Monday 23 November 2026, 00:00 Kampala, closes Wednesday 25 November 2026, 23:59. Each student has 3 hours (180 minutes) from pressing Start test, capped at the window's close; start by Wednesday 25 November, 20:59 for the full 3 hours. One notebook with two parts: Part A coded project notebook (30), Part B decision memo form inside the notebook (15). Covers Weeks 1 to 10 only (the first half plus Classes 1 to 3). The Week 11 tasks are cut and the model-choice rule is a supplied cell. Real data, the same file for every student with no variants: UCI Steel Industry Energy Consumption (DAEWOO Steel, 2018, 35,040 rows, CC BY 4.0, doi 10.24432/C52G8C), built into the notebook; split by month (train January to August, validation September to October, test November to December). Students may add their own cells; work is marked wherever it is, as long as the required function names exist when the notebook runs from the top. Unmarked rehearsal released after Class 3 (2026-11-20). Lecturer support on the class channel 08:00 to 20:00 each day of the window (hours: lecturer to confirm); one fresh attempt may be authorised after a reported technical failure, still capped at the window's close. Marks final by Wednesday 2 December 2026. It is collected by the Colab test collector under the key CML3111|ML_PROJECT (second_half/Project/deploy), not by an upload form in the submission project: keep this entry's upload form closed. opens_at and closes_at stay null; the window is set in the Test windows row.",
     "parts": [
       {
         "part": "A",
@@ -1118,16 +1122,18 @@
         "marking": "Fully automatic: the memo form inside the notebook, marked by key and keyword and length rules (15)."
       }
     ],
-    "scope": "Only what was taught this semester, Weeks 1 to 11 (Classes 1 to 4 of the second half included).",
-    "proposed_released_after_class_4": "2026-11-27",
-    "proposed_status": "proposed, lecturer to confirm",
+    "scope": "Only what was taught this semester, Weeks 1 to 10 (the first half plus Classes 1 to 3 of the second half). Week 11 (Class 4) is not assessed in the project.",
+    "rehearsal_released_after_class_3": "2026-11-20",
+    "window_status": "confirmed 13 November 2026",
     "mode": "individual, timed (180 minutes), fully auto-graded",
-    "proposed_sitting": {
-      "date": "2026-12-04",
-      "start": "11:00",
-      "end": "14:00",
+    "window": {
+      "opens_at": "2026-11-23T00:00:00+03:00",
+      "closes_at": "2026-11-25T23:59:00+03:00",
       "timezone": "Africa/Kampala",
-      "duration_minutes": 180
+      "duration_minutes": 180,
+      "start_by": "2026-11-25T20:59:00+03:00",
+      "support_hours": "08:00 to 20:00 each day (lecturer to confirm)",
+      "results_final_by": "2026-12-02"
     }
   },
   {
@@ -1153,7 +1159,7 @@
     "original_closes_at": "2026-12-18T14:00:00+03:00",
     "original_week": 15,
     "status": "RETIRED",
-    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. Week 12 is the individual timed project sitting; nobody presents. No form window is opened and nothing is marked on this form.",
+    "delivery_note": "The demo was dropped on 3 November 2026. There is no demo and no demonstration mark. The Engineering ML project is an individual, timed test sat online in the window of 23 to 25 November 2026; nobody presents. No form window is opened and nothing is marked on this form.",
     "retired": true
   },
   {

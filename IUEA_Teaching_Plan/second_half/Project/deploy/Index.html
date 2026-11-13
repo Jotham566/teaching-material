@@ -29,18 +29,18 @@
 <p class="muted">If you scan the QR code on a phone, open this same page on your laptop and enter the same details. Start only when you are ready to work on a laptop. Refreshing the page does not change your allocation.</p>
 </section></main><script>
 const testKey=<?!= JSON.stringify(testKey) ?>;
-document.getElementById('heading').textContent=testKey.replace('|ML_PROJECT',' — Engineering ML project (3-hour sitting)').replace('|TEST',' — Test ');
+document.getElementById('heading').textContent=testKey.replace('|ML_PROJECT',': Engineering ML project (online, 3 hours)').replace('|TEST',' — Test ');
 let timerInterval;
 let objectUrls=[];
 const windows={
  'CML3111|TEST1':'24 October 2026, 11:00 AM – 29 October 2026, 11:59 PM',
  'CML3113|TEST1':'24 October 2026, 11:00 AM – 29 October 2026, 11:59 PM',
  'CML3112|TEST1':'27 October 2026, 7:00 PM – 2 November 2026, 11:59 PM',
- 'CML3112|ML_PROJECT':'Tuesday 1 December 2026, 11:00 – 14:00 (Kampala time; proposed, lecturer to confirm)',
- 'CML3113|ML_PROJECT':'Friday 4 December 2026, 08:00 – 11:00 (Kampala time; proposed, lecturer to confirm)',
- 'CML3111|ML_PROJECT':'Friday 4 December 2026, 11:00 – 14:00 (Kampala time; proposed, lecturer to confirm)'
+ 'CML3112|ML_PROJECT':'Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59; start by 20:59 on 25 November for the full 3 hours',
+ 'CML3113|ML_PROJECT':'Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59; start by 20:59 on 25 November for the full 3 hours',
+ 'CML3111|ML_PROJECT':'Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59; start by 20:59 on 25 November for the full 3 hours'
 };
-if(testKey.endsWith('|ML_PROJECT')){document.getElementById('test1Only').hidden=true;document.querySelector('.brand').textContent='IUEA • ENGINEERING ML PROJECT';}
+if(testKey.endsWith('|ML_PROJECT')){document.getElementById('test1Only').hidden=true;document.getElementById('csv').hidden=true;document.querySelector('.brand').textContent='IUEA • ENGINEERING ML PROJECT';}
 if(windows[testKey]){document.getElementById('takehome').hidden=false;
  document.getElementById('test1Rules').hidden=false;document.getElementById('window').textContent='Available: '+windows[testKey]+' (Kampala time).';document.getElementById('get').textContent='Start test / Resume my test';}
 function showTimed(result){
@@ -53,7 +53,7 @@ function showTimed(result){
  document.getElementById('csv').textContent='Backup CSV download';
  document.getElementById('openStep').textContent='Click Open my test in Colab above. Sign in with the same Google account, then choose File → Save a copy in Drive. Work in your saved copy, not the read-only original. Click Connect if shown. To resume later, reopen your saved copy from Google Drive; the entry page opens the original test, not your answers.';
  if(result.workingMode==='DIRECT'){document.getElementById('openStep').textContent='Click '+direct.textContent+' above. Work in this private editable notebook; no separate copy is needed. Save regularly with File → Save. After a closed tab, disconnection or shutdown, return to this page with the same email and registration number and click Resume. Only work saved before the interruption can be recovered.';}else{document.getElementById('openStep').textContent='If you already worked in a saved copy, reopen that copy from Google Drive or Colab Recent notebooks. The original link above does not contain those answers. For a first start with this older file, use File → Save a copy in Drive.';}
- document.getElementById('dataStep').textContent=testKey.endsWith('|ML_PROJECT')?'Run Check details and countdown near the top, then Prepare the data and the libraries. This creates engineering_data.csv automatically: no upload is needed. Rerun both after a runtime reset. The countdown does not pause or extend your deadline.':'Run Check details and countdown near the top (if present), then Prepare CSV and libraries. This creates engineering_data.csv automatically. For Test 1, write your own pandas code to read it into raw_data in Task 1. Rerun the countdown and setup after a runtime reset. The countdown does not pause or extend your deadline; older copies without it can use the timer on this page.';
+ document.getElementById('dataStep').textContent=testKey.endsWith('|ML_PROJECT')?'Run Check details and countdown near the top, then Prepare the data and the libraries. The data file is stored inside that cell and is written out for you: no upload or download is needed. Rerun both after a runtime reset. The countdown does not pause or extend your deadline.':'Run Check details and countdown near the top (if present), then Prepare CSV and libraries. This creates engineering_data.csv automatically. For Test 1, write your own pandas code to read it into raw_data in Task 1. Rerun the countdown and setup after a runtime reset. The countdown does not pause or extend your deadline; older copies without it can use the timer on this page.';
  const offset=Date.parse(result.serverNow)-Date.now();
  const tick=()=>{const left=Math.max(0,Date.parse(result.personalDeadline)-(Date.now()+offset)),seconds=Math.ceil(left/1000);document.getElementById('timer').textContent=left?'Time remaining: '+Math.floor(seconds/3600)+'h '+Math.floor(seconds%3600/60)+'m '+seconds%60+'s. Finish the submission form before time runs out.':'Your test time has ended. Late submissions are not accepted for grading.';};
  tick();timerInterval=setInterval(tick,1000);

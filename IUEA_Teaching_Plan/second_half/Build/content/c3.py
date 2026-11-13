@@ -15,6 +15,12 @@ TREE_SEED = 17
 TOL = 1.05        # a depth is within the tolerance of the best one when its validation MAE is within 5 percent of the lowest
 _CACHE = {}
 
+# the Engineering ML project (decision of 13 November 2026): one online window for all three cohorts, Kampala time
+WINDOW = 'Monday 23 November 00:00 to Wednesday 25 November 23:59'
+PROJECT_NEXT = {'CML3112': 'The project, online, Mon 23 Nov 00:00 to Wed 25 Nov 23:59 (Kampala time). Class 4 is on Tue 24 Nov.',
+                'CML3113': 'The project, online, Mon 23 Nov 00:00 to Wed 25 Nov 23:59 (Kampala time). Class 4 is on Fri 27 Nov.',
+                'CML3111': 'The project, online, Mon 23 Nov 00:00 to Wed 25 Nov 23:59 (Kampala time). Class 4 is on Fri 27 Nov.'}
+
 
 # ------------------------------------------------------------------ reference calculations
 def _fit_predict(tr_df, te_df, depth, extra=(), fill_df=None, seed=TREE_SEED):
@@ -156,10 +162,10 @@ def build(code):
                'CML3111': ['A model is built from data on four motors and then used on a fifth motor at another site.', 'A winding temperature warning is based on the model’s prediction.',
                            'If the prediction is wrong, a winding burns or a motor stops when it did not need to.']}[code]
 
-    clock = [(10, 'Recall from Class 2, and why trust matters'), (40, 'Concepts, part 1: overfitting, validation curve, cross-validation'), (30, 'Concepts, part 2: data leakage, random seed, pipeline'), (15, 'Break'),
-             (75, 'Lab: validation curve, cross-validation, leakage, seeds'), (10, 'Close and how this class counts')]
-    plan_note = ('We have three hours. The first eighty minutes are concepts only, with no laptop, so you can listen and ask. Then a break. '
-                 'Then the lab, about an hour and a quarter, where you run everything on your own data. The ideas come first and the code comes second.')
+    clock = [(10, 'Recall from Class 2, and why trust matters'), (40, 'Concepts, part 1: overfitting, validation curve, cross-validation'), (25, 'Concepts, part 2: data leakage, random seed, pipeline'), (15, 'Break'),
+             (70, 'Lab: curve, cross-validation, leakage, seeds, records'), (20, 'The project, and how this class counts')]
+    plan_note = ('We have three hours. The first seventy-five minutes are concepts only, with no laptop, so you can listen and ask. Then a break. '
+                 'Then the lab, about seventy minutes, where you run everything on your own data. In the last twenty minutes I explain the project, which opens online on Monday 23 November.')
 
     # recall and false positives from threshold 0.5 to 0.3, with a branch for each one that does not change
     rec_said = (f'Recall stayed at {d2(t3["recall"])}.' if d2(t5['recall']) == d2(t3['recall']) else f'Recall rose from {d2(t5["recall"])} to {d2(t3["recall"])}.')
@@ -180,7 +186,7 @@ def build(code):
         outcome_icons=['chart', 'calculator', 'grid', 'shield'],
         outcome_note=('Here is what you can do by the end of today. You can explain underfitting, a good fit and overfitting, the bias-variance trade-off, and you can tune max_depth, a hyperparameter, by looking at a validation curve. '
                       'You can work out the training error, the validation error, the generalisation gap, and the mean and standard deviation of cross-validation scores, by hand. You can score a model with K-fold and GroupKFold. '
-                      'And you can name three kinds of data leakage and keep a checklist that blocks them. Nothing is submitted today. At the end I explain how the class counts.'),
+                      'And you can name three kinds of data leakage and keep a checklist that blocks them. Nothing is submitted today. At the end I explain the project, which opens online on Monday 23 November, and how this class counts.'),
         clock=clock, plan_title='Your three hours: ideas first, then the lab', plan_note=plan_note,
         plan_caption='Concepts first, with no laptops. Then the lab, with the notebook open.',
         recall_from='Class 2',
@@ -194,13 +200,13 @@ def build(code):
         words_note=('Five words for today. Overfitting is when a model fits the noise in its training set and does worse on new rows. Underfitting is the opposite: too simple to learn the pattern. Cross-validation means scoring a model K times. The rows are cut into K parts called folds, and each fold takes one turn as the validation fold, which some books call the held-out fold. '
                     'Data leakage is information the model would not have at prediction time, such as held-out rows or the target itself, reaching it while it is trained, so the score looks better than it is. The bias-variance trade-off is the industry name for the balance between too simple and too flexible. '
                     'And a random seed, set with random_state, makes a random choice repeat exactly. We use all five before the end.'),
-        keep='Your saved lab notebook, the chosen max_depth, and the five-question checklist for trusting a score.',
+        keep='Your saved lab notebook, the five-question checklist, and the project window: online, Monday 23 to Wednesday 25 November.',
         keep_visual=dict(kind='card', title='Take away', fields=[dict(label='Notebook', value='Restart, run all, save'), dict(label='max_depth', value='Chosen on the validation set'),
-                                                              dict(label='Checklist', value='Five questions'), dict(label='Next class', value='Features and models')]),
-        keep_title='Save the notebook and keep the checklist',
-        next='Class 4: features and choosing a model, plus the project brief.', next_label='Next class',
+                                                              dict(label='Rehearsal', value='Released today, not marked'), dict(label='Project', value='Online, 23 to 25 November')]),
+        keep_title='Save the notebook, then do the rehearsal before the project opens',
+        next=PROJECT_NEXT[code], next_label='Next',
         keep_note=('Before you go, restart the notebook, run all cells from the top and save it. Keep the max_depth you chose and the checklist, because you will use both again. '
-                   'Next class we look at which columns the model should use and how to choose between models, and I explain how the project sitting works. If anything today was unclear, write the question down and bring it.'),
+                   'The rehearsal is released right after this class. Do it before Monday 23 November, when the project window opens. If anything today was unclear, ask on the class channel.'),
         cover_note=(f'Welcome back. In the first two classes you built models that predict {short} and models that answer yes or no. Today we ask the question an engineer must always ask: can I trust this? '
                     'A score that looks good is not enough. We learn how a model fools us, and how to test it so that it cannot.'),
         friday_note='the same deck and the same clock as the Tuesday cohort. There is no separate recap version for this class.',
@@ -240,20 +246,6 @@ def build(code):
                          'The second understood the ideas, so the marks are good on both papers. That is a good fit. The third memorised last year’s answers. Perfect on the practice paper and poor on the new paper. '
                          'That is overfitting: the model fits the noise, which the industry calls high variance. Balancing the two is the bias-variance trade-off. The practice paper stands for the training set, the new paper for held-out rows, and the marks are made up. '
                          'Can you think of someone who passed by memory and then struggled on the job?')))
-
-    lin = b['reg']['linear']
-    S.append(dict(kind='formula', title='Reminder from Class 1: MAE and RMSE measure the prediction error',
-                  size=20,
-                  formulas=[('MAE: mean absolute error', r'$\mathrm{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$'),
-                            ('MSE and RMSE', r'$\mathrm{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \quad \mathrm{RMSE} = \sqrt{\mathrm{MSE}}$')],
-                  symbols=[['MAE', 'The mean size of the error. The bars drop any minus sign', f'Class 1 model: {d2(lin["mae"])} {unit}'],
-                           ['MSE, RMSE', 'MSE: mean of the squared errors. RMSE: its square root, in the target unit', f'Class 1 model: RMSE {d2(lin["rmse"])} {unit}'],
-                           ['n, i, y, ŷ', 'n rows scored; i is the row number; y_i is the actual target of row i; ŷ_i (y-hat) is its prediction', f'{n_va} validation rows; {short} in {unit}']],
-                  widths=[1.9, 6.0, 4.0],
-                  note='Illustrative example (made up): errors of 1, 2 and 3 give MAE = 2, MSE = 4.67 and RMSE = 2.16.',
-                  notes=('Before we use the word MAE all class, here is a reminder from Class 1. For every row, take the actual target and the prediction, and look at the size of the prediction error. The MAE is the mean of those errors, and the bars mean we drop any minus sign. '
-                         'The RMSE squares each error first, averages, and then takes the square root, so one big error counts for more. '
-                         f'Our linear regression model from Class 1 had an MAE of {d2(lin["mae"])} {unit} and an RMSE of {d2(lin["rmse"])} {unit} on the validation rows. Today we mostly use the MAE. Why would one very large error matter more to an engineer?')))
 
     ov = N['over_from']
     wa = N['worst_after']
@@ -320,7 +312,7 @@ def build(code):
                   points=[f'Only {n_va} validation rows, so a score can move by luck. Never tune on the test set.',
                           'Test set rule: open it once, after the model and any threshold are chosen. Refit the chosen model on E1 to E5, score it once on E6.'],
                   notes=(f'How did we choose depth {best}? We looked at the validation set only. The picture shows the three sets: training from groups E1 to E4, validation from group E5, and test from group E6. '
-                         'The test set has one rule. It is opened once, at the very end, after the model and any decision threshold are chosen. For that final number the chosen model is refitted on all development rows, E1 to E5, and scored once on E6. Class 4 shows this step. '
+                         'The test set has one rule. It is opened once, at the very end, after the model and any decision threshold are chosen. For that final number the chosen model is refitted on all development rows, E1 to E5, and scored once on E6. In the project a supplied cell opens the test set once for you, and Class 4 shows the step in full. '
                          f'The validation set has only {n_va} rows, so its scores are noisy. We need a rule that does not chase small differences. Why would the lowest score alone be risky?')))
 
     d3 = lambda v: f'{v:.3f}'
@@ -374,23 +366,15 @@ def build(code):
                          'The standard deviation asks how far each score sits from the average, squares those distances so plus and minus cannot cancel, adds them, divides by k minus 1, and takes the square root. '
                          'Dividing by k minus 1 gives the sample standard deviation, the usual choice for a few scores and the one the project asks for. In NumPy you write ddof equals 1, because np.std divides by k unless you say so. '
                          f'Our five scores give a mean of {d2(cv5["mean"])} {unit} and a standard deviation of {d2(cv5["std"])} {unit}. '
-                         'A small standard deviation means the folds agree. A large one means the score depends on which fold you ask. First we do it by hand with four easy numbers.')))
-
-    S.append(dict(kind='table', title='By hand with four illustrative scores: the mean is 3 and the standard deviation is 0.82',
-                  headers=['Fold', 'Score (MAE)', 'Distance from the mean', 'Squared distance'],
-                  rows=[['1', '2', '-1', '1'], ['2', '3', '0', '0'], ['3', '3', '0', '0'], ['4', '4', '+1', '1']], widths=[1.4, 2.2, 3.4, 3.0], icons=False,
-                  note='Mean = (2 + 3 + 3 + 4) / 4 = 3. Sum of the squared distances = 2. Divide by k - 1 = 3: 2 / 3 = 0.67 (the sample variance). The square root of 0.67 is 0.82, the standard deviation. These four scores are illustrative (made up).',
-                  notes=('Let us do it by hand with four illustrative, made-up fold scores: two, three, three and four. The mean is twelve divided by four, which is three. Now the standard deviation. How far is each score from the mean? Minus one, zero, zero and plus one. '
-                         'Square them, so that plus and minus cannot cancel: one, zero, zero, one. They add up to two. Divide by k minus 1, which is three: two thirds, or 0.67, the sample variance. The square root of 0.67 is 0.82. '
-                         'That number is the standard deviation, the typical distance of a fold score from the mean. Check the 0.82 on your own page.')))
+                         'A small standard deviation means the folds agree. A large one means the score depends on which fold you ask. Next we work it by hand on our five scores.')))
 
     ss = sum(cv5['sq'])
-    S.append(dict(kind='table', title='The same steps on our five real fold scores give their mean and standard deviation',
+    S.append(dict(kind='table', title='By hand: our five fold scores give their mean and standard deviation',
                   headers=['Fold', f'Score (MAE, {unit})', 'Distance from the mean', 'Squared distance'],
                   rows=[[str(j + 1), d2(x), f'{x - cv5["mean"]:+.2f}', f'{(x - cv5["mean"]) ** 2:.3f}'] for j, x in enumerate(cv5['scores'])] + [['Sum', d2(sum(cv5['scores'])), '0.00', f'{ss:.3f}']],
                   widths=[1.4, 2.8, 3.4, 2.8], icons=False,
                   note=f'Mean = {sum(cv5["scores"]):.2f} / 5 = {d2(cv5["mean"])} {unit}. Sum of squares / (k - 1) = {ss:.3f} / 4 = {cv5["var"]:.3f}. Square root = {d2(cv5["std"])} {unit}, the standard deviation. Worked from unrounded scores, so the last digit can differ.',
-                  notes=(f'Now the same steps on the five real scores from our depth-4 tree. The scores add up to {sum(cv5["scores"]):.2f}, so the mean is {d2(cv5["mean"])} {unit}. '
+                  notes=(f'Let us work it by hand on the five real scores from our depth-4 tree. The scores add up to {sum(cv5["scores"]):.2f}, so the mean is {d2(cv5["mean"])} {unit}. '
                          f'Each score has a distance from that mean, some above and some below, and the distances add up to zero. We square them, and the squares add up to {ss:.3f}. '
                          f'Divide by k minus 1, which is four, to get {cv5["var"]:.3f}, and the square root of that is {d2(cv5["std"])} {unit}. That is the standard deviation you will see in the notebook. '
                          'Compare it with the mean. Is it small or large?')))
@@ -400,23 +384,10 @@ def build(code):
                               summary=f'Mean {grp["mean"]:.2f} {unit}   Standard deviation {grp["std"]:.2f} {unit}', unit=f'MAE ({unit})', row_word='Fold', held='Validation group'),
                   lead='GroupKFold keeps each group whole: each of E1 to E4 is held out once (scikit-learn picks the order).',
                   points=[f'Plain K-fold put every {thing} in every fold. Here the tree trains on three groups and is scored on the fourth, like a new site.',
-                          'One score per fold; mean and standard deviation as before.'],
+                          'Score s_g: MAE on group g. Mean and sample standard deviation as before (divide by 3).'],
                   notes=(f'Plain K-fold mixes rows from every group, so the model has already seen the same {thing} while it is trained. In real use a new {thing} arrives, and nobody has seen it. '
                          'GroupKFold fixes that by keeping each equipment group whole. In each fold it holds out one group, trains on the other three, and scores the held-out group. Each of E1 to E4 takes one turn, in an order scikit-learn chooses to balance the fold sizes. '
-                         f'The four scores run from {grp["lo"]:.2f} to {grp["hi"]:.2f} {unit}, with a mean of {grp["mean"]:.2f}. In Class 4 and the project, E5 also takes a turn, giving five folds. Which design looks more like your work?')))
-
-    S.append(dict(kind='formula', title='GroupKFold uses the same formulas, with equipment groups as the folds',
-                  size=22,
-                  formulas=[('Score of group g', r'$s_g = \frac{1}{n_g} \sum_{i \in g} |y_i - \hat{y}_i|$'),
-                            ('Mean and standard deviation, 4 groups', r'$\bar{s} = \frac{1}{4} \sum_{g} s_g, \quad \sigma_s = \sqrt{\frac{1}{3} \sum_{g} (s_g - \bar{s})^2}$')],
-                  symbols=[['g', 'The group held out in one fold: E1, E2, E3 or E4', 'E1 to E4, one per fold'],
-                           ['n_g', 'Number of rows in group g', ', '.join(f'{g} {n}' for g, n in grp['sizes'].items()) + ' rows'],
-                           ['s_g', 'MAE on group g, using a tree that was never trained on g', ', '.join(f'{g} {v:.2f}' for g, v in grp['scores'].items()) + f' {unit}'],
-                           ['s̄, σ_s', 'Mean of the 4 scores; sample standard deviation (divide by 3)', f'{d2(grp["mean"])} and {d2(grp["std"])} {unit}']],
-                  widths=[2.1, 5.4, 4.4],
-                  notes=('GroupKFold needs no new maths. The score for a group g is the MAE on the rows of that group, using a tree trained on the other three groups that never saw g. '
-                         'Then we take the mean of the four scores and their standard deviation, with the same two formulas as before, with four in place of k, so the standard deviation divides by three. '
-                         f'Our four scores have a mean of {d2(grp["mean"])} {unit} and a standard deviation of {d2(grp["std"])} {unit}. Which group was hardest to predict?')))
+                         f'The four scores run from {grp["lo"]:.2f} to {grp["hi"]:.2f} {unit}, with a mean of {grp["mean"]:.2f} and a sample standard deviation of {grp["std"]:.2f}, the same two formulas with four scores. In the project the groups are months, and Class 4 shows a five-group version. Which design looks more like your work?')))
 
     far = max((va4 - cv5['mean']) / cv5['std'], (va4 - grp['mean']) / grp['std']) > 1.5
     e5_said = ('Group E5 scores higher than both means by more than one and a half standard deviations, so it looks harder than the average group.' if far
@@ -525,7 +496,7 @@ def build(code):
     S.append(dict(kind='wide', title='Trust comes from four habits',
                   visual=dict(kind='icons', items=[dict(icon='lock', head='Held-out data', text='Score on rows the model never saw'), dict(icon='grid', head='Cross-validation', text='Report mean and standard deviation'),
                                                    dict(icon='shield', head='No leakage', text='Fit every preprocessing step on the training set'), dict(icon='notebook', head='Reproducibility', text='Record seed, file, versions')]),
-                  caption='Next class: features and choosing a model, using these four habits.',
+                  caption='The project uses all four habits, and Class 4 builds on them.',
                   notes=('Let us gather it up in four habits. Score on rows the model never saw. Use cross-validation, so you report a mean with a standard deviation, and GroupKFold when the model will meet new machines. '
                          'Fit every preprocessing step, the imputer and the scaler, on the training set only. And keep a record for reproducibility: the random seed, the data file and the versions. '
                          'With these four habits, a score becomes something you can defend. Before the break, say aloud which habit you are most likely to forget.')))
@@ -543,14 +514,15 @@ def build(code):
                          'Please open the notebook now, and keep the slides closed except for the check slides at the end of the deck. I will walk around. Raise your hand if a cell gives an error. '
                          'Remember to run the cells in order from the top.')))
 
-    S.append(dict(kind='steps', title='The lab has six steps, and the first five end with a check',
-                  steps=[dict(head='1 Prepare', text='Load, clean and split the data again', icon='folder'), dict(head='2 Validation curve', text='Train 10 depths, plot the curve, choose max_depth', icon='chart'),
+    S.append(dict(kind='steps', title='The lab has seven steps, and the first six end with a check',
+                  steps=[dict(head='1 Prepare', text='Load, clean and split the data again', icon='folder'), dict(head='2 Validation curve', text='Train 10 depths, choose max_depth', icon='chart'),
                          dict(head='3 K-fold CV', text='KFold and GroupKFold', icon='grid'), dict(head='4 Data leakage', text='Three kinds, planted on purpose', icon='shield'),
-                         dict(head='5 Random seed', text='Change the seed, print the run record', icon='clock'), dict(head='6 Save', text='Write three sentences, run all, save', icon='notebook')],
-                  caption='In each step, predict first, run second, then read the output. Each of Steps 1 to 5 ends with a CHECK of the numbers you should see.',
-                  notes=('Here are the six steps. One, prepare the data again, briefly. Two, train trees of depth one to ten, plot the validation curve and choose max_depth using the validation set only. '
-                         'Three, run K-fold and GroupKFold cross-validation and print the mean and the standard deviation. Four, reproduce the three kinds of leakage: contamination, a fill value from all rows, and a feature built from the target. '
-                         'Five, change the random seed and watch a number move, even the chosen depth, then print the run record. Each of the first five steps ends with a CHECK line. Six is your short conclusion and a save.')))
+                         dict(head='5 Random seed', text='Change the seed, print the run record', icon='clock'), dict(head='6 Records', text='A function on records, as in the project', icon='doc'),
+                         dict(head='7 Save', text='Three sentences, run all, save', icon='notebook')],
+                  caption='In each step: predict, run, then read the output. Steps 1 to 6 end with a CHECK of your numbers.',
+                  notes=('Here are the seven steps. One, prepare the data again, briefly. Two, train trees of depth one to ten, plot the validation curve and choose max_depth using the validation set only. '
+                         'Three, run K-fold and GroupKFold cross-validation and print the mean and the standard deviation. Four, reproduce the three kinds of leakage. Five, change the random seed and print the run record. '
+                         'Six is new and the project needs it: you wrap a pipeline in a function that takes records, a list of dictionaries, and you rank models with a list comprehension and sorted. Seven is your short conclusion and a save.')))
 
     S.append(dict(kind='table', title='Check your numbers against these before you move on',
                   headers=['What you print', 'You should see'],
@@ -572,24 +544,69 @@ def build(code):
                          'Negative scores are not a bug. scikit-learn gives errors a minus sign so that bigger is better, so put a minus in front. '
                          'And if your numbers differ a little from the slide, check that random_state equals seventeen in every tree, except in Step 5, where we try other seeds on purpose. Read the last line of any error first.')))
 
+    c4day = 'Tuesday 24 November, while the window is still open' if code == 'CML3112' else 'Friday 27 November, after the window has closed'
     S.append(dict(kind='list', title='How this class counts towards your coursework',
-                  items=['Nothing is submitted today. Block 2 (Classes 3 and 4) is practice: it does not count toward your final mark, but you get feedback.',
-                         'Its assignment has three parts: A9 (validation and trust, today\'s lab), then A10 (features) and A11 (model recommendation) from Class 4.',
-                         f'The Block 2 assignment closes on {C.COHORTS[code]["b2_close"]} (Kampala time).', 'The Block 2 quiz opens in the last 20 minutes of Class 4, stays open 24 hours, and covers both classes.'],
-                  icons=['lock', 'doc', 'clock', 'bell'],
-                  notes=('A word on how this counts. The block work is practice: it does not count toward your final mark (only A1 to A5, Q1 to Q5, Practical Test 1 and the Week 12 project do), but it is collected and you get feedback. Nothing is submitted today. Block 2 is this class and the next one. Its assignment has three parts: A9 on validation and trust, which repeats the steps of today\'s lab, and A10 and A11 on features and on recommending a model, which come from Class 4. '
-                         f'All three close on {C.COHORTS[code]["b2_close"]}, Kampala time. The Block 2 quiz opens in the last twenty minutes of Class 4, stays open for twenty-four hours, and covers both classes. Keep your saved notebook, because next class we extend it.')))
+                  items=['Nothing is submitted today. Block 2 (Classes 3 and 4) is practice with feedback. It does not count toward your final mark.',
+                         f'Its assignment (A9 from today, A10 and A11 from Class 4) closes on {C.COHORTS[code]["b2_close"]}, Kampala time.',
+                         'The Block 2 quiz opens in the last 20 minutes of Class 4, stays open 24 hours, and covers both classes.',
+                         'Your final mark: A1 to A5, Q1 to Q5, Practical Test 1 and the Engineering ML project (40 percent).'],
+                  icons=['lock', 'doc', 'bell', 'check'],
+                  notes=('A word on how this counts. The block work is practice: it is collected and you get feedback, but it does not count toward your final mark. Nothing is submitted today. Block 2 is this class and the next one. '
+                         'Its assignment has three parts: A9 on validation and trust, which repeats the steps of today\'s lab, and A10 and A11, which come from Class 4. '
+                         f'All three close on {C.COHORTS[code]["b2_close"]}, Kampala time. The Block 2 quiz opens in the last twenty minutes of Class 4 and stays open for twenty-four hours. '
+                         'Your final mark comes from A1 to A5, Q1 to Q5, Practical Test 1 and the Engineering ML project, which is worth 40 percent. This is the last class before the project, so the next three slides are about it.')))
+
+    S.append(dict(kind='steps', title='The project is one online sitting of 3 hours between 23 and 25 November',
+                  steps=[dict(head='1 Rehearse', text='Practice, not marked, released today', icon='folder'),
+                         dict(head='2 Open the link', text='Any time from Mon 23 Nov 00:00 to Wed 25 Nov 23:59', icon='calendar'),
+                         dict(head='3 Press Start', text='Your 3 hours (180 minutes) begin', icon='clock'),
+                         dict(head='4 Code and decide', text='Part A notebook, 30 marks. Part B memo form, 15 marks', icon='gear'),
+                         dict(head='5 Submit test', text='Before your countdown ends', icon='check')],
+                  highlight=None,
+                  caption='Individual, online, auto-graded, 40 percent. Kampala time. Start by Wednesday 20:59 for the full 3 hours: the window closes at 23:59.',
+                  notes=('This is the last class before the Engineering ML project, so here is how it works. It is individual, it is online, and the computer marks it. It counts 40 percent of the course. '
+                         'Part A is a coded notebook worth 30 marks. Part B is a decision memo form inside the notebook, worth 15. '
+                         'The window opens on Monday 23 November at midnight and closes on Wednesday 25 November at 23:59, Kampala time. You choose when to start inside it. When you press Start, you have three hours. '
+                         'The window still closes at 23:59 on Wednesday, so if you start after 20:59 you lose time. Which day will you sit it?')))
+
+    S.append(dict(kind='table', title='You sit the project online from anywhere, with your own laptop and your own Google account',
+                  headers=['Item', 'What you do'],
+                  rows=[['What you need', 'Your own laptop, your own Google account and the internet. There is no room and no invigilator.'],
+                        ['Entry and Start', 'Open the project entry link, sign in with your own Google account and press Start. A countdown shows your 3 hours.'],
+                        ['Submit', 'Restart and run all, save, then run the Submit test cell, as in Practical Test 1.'],
+                        ['Questions', 'Ask about wording or technical problems on the class channel, 08:00 to 20:00 each day of the window.'],
+                        ['Technical failure', 'Report it at once on the class channel with a screenshot. I can allow one fresh attempt. It still closes on Wednesday at 23:59.']],
+                  widths=[3.2, 8.7], icons=['gear', 'pin', 'check', 'bell', 'flag'],
+                  notes=('You sit the project from anywhere, on your own laptop, signed in to your own Google account, with an internet connection. There is no room and nobody invigilates you in person. '
+                         'Open the entry link, sign in and press Start. The countdown shows how much of your three hours is left. When you finish, restart and run all, save, then run the Submit test cell, exactly as in Practical Test 1. '
+                         'I answer questions about wording or technical problems on the class channel from 08:00 to 20:00 each day. '
+                         'If your laptop or connection fails, post a screenshot on the class channel at once. I can allow one fresh attempt, and it still closes on Wednesday at 23:59. What will you check on your laptop before Monday?')))
+
+    S.append(dict(kind='table', title='The project covers Classes 1 to 3 and Weeks 1 to 7, and you work alone',
+                  headers=['Item', 'What to know'],
+                  rows=[['What it covers', 'Weeks 1 to 7 and Classes 1 to 3: regression, classification, the cost table, group cross-validation, the test set opened once, functions on records.'],
+                        ['The data', 'One real dataset for everyone: the energy use of a steel plant, in kWh. It is split by month, so the model is judged on months it has not seen.'],
+                        ['Class 4', 'Not in the project, so no feature ablation. The rule for choosing a model is given in the notebook.'],
+                        ['AI and help', 'No AI tool (ChatGPT, Gemini, Copilot or similar), no help from anyone. Allowed: Colab, course slides, lab notebooks, your notes.'],
+                        ['Checks', 'Submitting declares the work is yours. Copy and identity checks run. After the window, anyone may be asked online to explain or change their code.']],
+                  widths=[3.0, 8.9], icons=['book', 'chart', 'calendar', 'shield', 'key'],
+                  notes=('The project tests Weeks 1 to 7 and Classes 1 to 3, including the functions on records you practised today. '
+                         'The data are real: one dataset for every student, the energy use of a steel plant in kilowatt hours. The rows are split by month, so your model is judged on months it has not seen, and the group cross-validation folds are months. '
+                         f'Class 4 is not in it. Your Class 4 is on {c4day}. The rule for choosing a model is given in the notebook, and you apply it. '
+                         'You work alone, with no AI tool and no help from anyone. Copy and identity checks run, and after the window I may ask any student, on an online call, to explain or change their code. Which part will you practise in the rehearsal?')))
 
     s['facilitator'] = dict(
         prep=['Before the class, run the notebook in real Colab and compare the depth-10 numbers for random_state 1, 17 and 99 with the row "Depth-10 tree, random_state 1, 17, 99" of the table below (correct for every cohort; real scikit-learn 1.9.1 gives exactly these). Another version may differ in the second decimal.',
               'The slide map below shows the CML3112 titles. Titles carry no cohort numbers, but the numbers on the slides differ by cohort: use the per-cohort table.',
               'Decision on choosing max_depth (tuning a hyperparameter): the simplest depth within 5 percent of the lowest validation MAE. The slides say plainly where the curve is flat, where the chosen tree also overfits its training rows, and that the chosen depth moves with the seed (CML3111 and CML3112: 6, 7, 8 for seeds 1, 17, 99; CML3113: 5 for all three).',
-              'Cross-validation spread is the sample standard deviation (divide by k - 1, np.std(scores, ddof=1)), as in the project Task 5. The Class 2 StandardScaler divides by n: say once that these are two different jobs.',
+              'Cross-validation spread is the sample standard deviation (divide by k - 1, np.std(scores, ddof=1)), as in the project. The Class 2 StandardScaler divides by n: say once that these are two different jobs.',
               'Open the deck in Slide Show mode and the lab notebook in Colab before anyone arrives. Run the notebook from the top once so you know it works on your account.',
               'Put the lab notebook and engineering_data.csv in the shared class folder and post the link. Learners need both files in Colab, in the Files panel.',
               'Write the "check your numbers" table on the board before the lab (numbers for your cohort are in the table below).',
               'Say early that the test group E6 stays sealed. It is opened once, after the model and any threshold are chosen; the chosen model is then refitted on E1 to E5 and scored once on E6 (Class 4 shows this). Say that the validation fold in K-fold cross-validation is a different thing from the test set E6.',
-              'The deck has seven formula slides (MAE and RMSE, training and validation error, the generalisation gap, the simplest-model-within-a-tolerance rule, K-fold mean and standard deviation, GroupKFold, the pipeline rule). Each names every symbol and works the cohort numbers. Students can revise from the PDF alone.',
+              'The deck has five formula slides (training and validation error, the generalisation gap, the simplest-model-within-a-tolerance rule, K-fold mean and standard deviation, the pipeline rule). Each names every symbol and works the cohort numbers. The GroupKFold slide states that the same formulas apply with four groups. Students can revise from the PDF alone.',
+              'This is the last class before the Engineering ML project. Keep the last 20 minutes for the three project slides: online window Monday 23 November 00:00 to Wednesday 25 November 23:59 Kampala time, 3 hours from Start (start by 20:59 on Wednesday for the full time), 40 percent, Part A 30 and Part B 15, auto-graded; own laptop and Google account; support on the class channel 08:00 to 20:00 each day (confirm these hours before you say them); one fresh attempt after a reported technical failure; covers Classes 1 to 3 and Weeks 1 to 7, no feature ablation, the model-choice rule given in the notebook; the AI rule, the declaration and the understanding check. The project uses one real dataset for every student (a steel plant\'s energy use in kWh, split by month, folds are months): describe it in those general terms only.',
+              'Have the rehearsal (practice notebook and practice data, not marked) and the entry link ready to release right after the class: CML3112 Tuesday 17 November, CML3113 and CML3111 Friday 20 November.',
               'All three cohorts use the same deck and the same clock for this class.'],
         misconceptions=[('The model with the lowest training error is the best model', 'Training error can reach zero by overfitting (fitting the noise in the training set). Judge on held-out rows.'),
                         ('More folds in cross-validation always give a better model', 'Folds give a better estimate of the score. They do not change the model itself.'),
@@ -614,13 +631,16 @@ def build(code):
                    ('Step 3: cross-validation', 'Five fold scores with the groups in each validation fold (all four every time), a mean and a sample standard deviation (ddof=1), then four group scores, sorted E1 to E4 (scikit-learn holds them out in its own order). The shortcut with cross_val_score must give the same means.'),
                    ('Step 4: data leakage', 'Honest and leaky MAE at depth 10. The leaky one is 0.00 or 0.01. The preprocessing leakage demo prints two different medians and the same MAE. The target-leakage feature gives a very small error.'),
                    ('Step 5: seeds and record', 'Three seeds, three different numbers, and the chosen max_depth for each seed. The run record prints versions: they will differ from the stand-in used to check the notebook, which is fine.'),
-                   ('Step 6: conclusion and save', 'Three written sentences, then restart and run all, then save a copy.')],
-        rescue=['If the concepts run over, skip the by-hand table with the illustrative scores and say: the standard deviation is the typical distance of a fold score from the mean. You can do the arithmetic in the lab.',
-                'If the concepts still run over, skip the GroupKFold formula slide: it repeats the K-fold formulas with groups as the folds.',
-                'If only thirty minutes of lab remain, do steps 1 to 3 and the first kind of leakage in step 4. Set the rest as practice for next time.',
+                   ('Step 6: records', 'The project form: a pipeline wrapped in predict_records, which takes lists of dictionaries and returns a list. A list comprehension gives one error per row, and sorted with key=lambda ranks three models by validation MAE. Linear regression comes first in every cohort.'),
+                   ('Step 7: conclusion and save', 'Three written sentences, then restart and run all, then save a copy.')],
+        rescue=['If the concepts run over, skip the by-hand table of the five fold scores and say: the standard deviation is the typical distance of a fold score from the mean. The notebook does the arithmetic.',
+                'If the concepts still run over, show the run record slide briefly: the notebook prints the record in Step 5.',
+                'If only thirty minutes of lab remain, do steps 1 to 3, the first kind of leakage in step 4, and step 6 (records), which the project needs. Set the rest as practice before the rehearsal.',
+                'Never cut the three project slides at the end. If time is short, read them aloud and post them on the class channel.',
                 'If wifi fails in the room, the notebook runs unchanged in VS Code with the same libraries.',
                 'If several learners are stuck at the same cell, stop the room, run that cell on the projector and let them copy the fix.'],
-        after=['Share the lab notebook and engineering_data.csv again so absent learners can follow.', 'Tell the class that nothing is submitted today, and that the lecturer confirms assignment instructions and deadlines in writing.',
+        after=['Share the lab notebook and engineering_data.csv again so absent learners can follow.', 'Release the rehearsal right after the class and post the project window, the entry link and the support hours on the class channel.',
+               'Tell the class that nothing is submitted today, and that the lecturer confirms assignment instructions and deadlines in writing.',
                'Note any question you could not answer and start the next class with it.'])
     s['numbers_fn'] = 'numbers'
     return s

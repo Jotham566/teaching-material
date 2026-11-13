@@ -1,6 +1,6 @@
 """Record lecturer-verified identity decisions in the private identity policy.
 
-  confirm_identity.py alias CML3113 '24/925/BSPE-S' '24/925/BSPE-J'   # a mistyped registration
+  confirm_identity.py alias CML3113 '99/001/BSXX-S' '99/001/BSXX-J'   # a mistyped registration
   confirm_identity.py release RESPONSE_ID                             # accept a held notebook receipt
 
 The policy file is private and survives regrades. Rerun reconcile-identities afterwards.

@@ -671,7 +671,7 @@ def build(code):
                          'The Block 1 quiz is two online forms, Q7 (Class 1) and Q8 (Class 2). They open in the last 20 minutes today, each for 24 hours.'],
                   icons=['folder', 'doc', 'clock', 'bell'],
                   notes=('A word on how this counts. The block work is practice: it does not count toward your final mark, but it is collected and you get feedback, and it is the best preparation for the project. '
-                         'Your final mark is A1 to A5, Q1 to Q5, Practical Test 1 and the Week 12 project, which is 40 percent. Part A of the Block 1 assignment is on regression and part B on classification and cost, each in the assignment notebook. '
+                         'Your final mark is A1 to A5, Q1 to Q5, Practical Test 1 and the Engineering ML project, which is 40 percent. Part A of the Block 1 assignment is on regression and part B on classification and cost, each in the assignment notebook. '
                          f'Both parts close on {C.COHORTS[code]["b1_close"]}, Kampala time. The quiz is two short online forms, Q7 and Q8. They open in the last twenty minutes today and each stays open for twenty-four hours. Keep your saved notebooks.')))
 
     # ------------------------------------------------------------------ facilitator (cohort-neutral words: the per-cohort numbers are in the guide table)

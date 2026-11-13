@@ -102,7 +102,7 @@ def coding_questions(folder,detail=None):
   out[g.get('response_id')]=dict(cohort=g.get('cohort'),reg=g.get('student_id'),a=g.get('assessment'),q={q:[float(v.get('awarded',0)),float(v.get('marks',0)),str(v.get('msg',''))] for q,v in qs.items()})
  for v in out.values():
   chg=(detail or {}).get((v['cohort'],v['reg'],v['a']))
-  for q,new in re.findall(r'(q\d+)\s*[\d.]*\s*->\s*([\d.]+)',chg or ''):
+  for q,new in re.findall(r'(q\d+):?\s*[\d.]*\s*->\s*([\d.]+)',chg or ''):
    if q in v['q']:v['q'][q][0]=max(v['q'][q][0],float(new))
  return out
 
@@ -374,8 +374,8 @@ def write_workbook(rows,policy,path,ledger_stamp,source_note):
 def main(argv=None):
  ap=argparse.ArgumentParser(description=__doc__,formatter_class=argparse.RawDescriptionHelpFormatter)
  ap.add_argument('--ledger',required=True);ap.add_argument('--tests');ap.add_argument('--project-marks');ap.add_argument('--overrides',help='approved regrade marks CSV (cohort, reg_number, assessment, mark)')
- ap.add_argument('--test-detail',help='Test1_rerun_proposals.csv: applies the per-question regrade changes to the Status column')
- ap.add_argument('--notebook-grades',help='folder of per-notebook grading JSON (assessment_operations/private/notebook_grades)');ap.add_argument('--coding-detail',help='A2-A5_rerun_proposals.csv: applies the coding re-run changes')
+ ap.add_argument('--test-detail',action='append',help='Test1_rerun_proposals.csv: applies the per-question regrade changes to the Status column (repeat for more files)')
+ ap.add_argument('--notebook-grades',help='folder of per-notebook grading JSON (assessment_operations/private/notebook_grades)');ap.add_argument('--coding-detail',action='append',help='A2-A5_rerun_proposals.csv: applies the coding re-run changes (repeat for more files)')
  ap.add_argument('--quiz-dir',help='folder of *_quiz.json exports (assessment_operations/private/reconciled)')
  ap.add_argument('--aliases',help='CSV cohort,alias_id,real_id: a mistyped or variant registration number and the real one; the two are merged into one student')
  ap.add_argument('--test-issues',help='collection_issues.json from the test grading output: students whose Test 1 upload could not be collected')
@@ -390,13 +390,17 @@ def main(argv=None):
    pm[r['student_id']]=dict(A=float(r['part_a']) if r.get('part_a') not in (None,'') else None,B=float(r['part_b']) if r.get('part_b') not in (None,'') else None)
  ov=load_overrides(a.overrides) if a.overrides else {}
  td={}
- if a.test_detail:
-  for r in csv.DictReader(open(a.test_detail,encoding='utf-8')):
-   if r.get('status','').startswith('PROPOSED'):td[(r['cohort'],r['reg_number'])]=r.get('per_question_changes','')
+ for path in ([a.test_detail] if isinstance(a.test_detail,str) else a.test_detail or []):
+  for r in csv.DictReader(open(path,encoding='utf-8')):
+   if r.get('status','').startswith('PROPOSED'):
+    k=(r['cohort'],r['reg_number']);td[k]=(td[k]+'; ' if td.get(k) else '')+r.get('per_question_changes','')
  cd={}
- if a.coding_detail:
-  am={'A2':'W02','A3':'W03','A4':'W04','A5':'W05'}
-  for r in csv.DictReader(open(a.coding_detail,encoding='utf-8')):cd[(r['cohort'],r['reg_number'],am.get(r['assessment'],r['assessment']))]=r.get('per_question','')
+ am={'A2':'W02','A3':'W03','A4':'W04','A5':'W05'}
+ for path in ([a.coding_detail] if isinstance(a.coding_detail,str) else a.coding_detail or []):
+  for r in csv.DictReader(open(path,encoding='utf-8')):
+   if r.get('status') and not r['status'].startswith('PROPOSED'):continue
+   k=(r['cohort'],r['reg_number'],am.get(r['assessment'],r['assessment']));v=r.get('per_question') or r.get('per_question_changes') or ''
+   cd[k]=(cd[k]+'; ' if cd.get(k) else '')+v
  al=[(r['alias_id'],r['real_id']) for r in csv.DictReader(open(a.aliases,encoding='utf-8'))] if a.aliases else []
  ti=json.load(open(a.test_issues,encoding='utf-8')) if a.test_issues else []
  tests=tests+[dict(cohort=r[1],student_registration_number=r[6],full_name=r[4]) for r in ti]

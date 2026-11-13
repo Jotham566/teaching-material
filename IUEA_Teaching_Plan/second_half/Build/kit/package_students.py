@@ -8,6 +8,10 @@ LAB = BUILD.parent / 'Lab Notebooks'
 OUT = BUILD.parent / 'Student Packages'
 NAMES = {1: 'First_Model', 2: 'Classification', 3: 'Trust', 4: 'Features_and_Model_Choice'}
 OUT.mkdir(exist_ok=True)
+# the Engineering ML project is online, Monday 23 November 00:00 to Wednesday 25 November 23:59 (Kampala time), and covers Classes 1 to 3
+PROJECT_NOTE = {1: ' The Engineering ML project (online, 23 to 25 November) uses these steps.', 2: ' The Engineering ML project (online, 23 to 25 November) uses these steps.',
+                3: ' This is the last class before the Engineering ML project (online, 23 to 25 November). The rehearsal is released right after this class.',
+                4: ' Class 4 content is not in the Engineering ML project.'}
 for code in ('CML3112', 'CML3113', 'CML3111'):
     c = C.COHORTS[code]
     for n, nm in NAMES.items():
@@ -17,7 +21,7 @@ for code in ('CML3112', 'CML3113', 'CML3111'):
         text = (f'# {code}, Class {n} (Week {C.WEEK_OF_CLASS[n]}): lab pack\n\n1. Open Google Colab and upload `{nbp.name}`.\n2. In the Files panel (folder icon) upload `engineering_data.csv`.\n'
                 '3. Run the cells in order with Shift and Enter. Read the PREDICT, READ and CHANGE boxes and type your answers in the lines that start with `>`.\n'
                 '4. At the end choose Runtime, Restart session and run all. If nothing fails, save a copy in Drive.\n\n'
-                'This notebook is for learning in class. It is not an upload. Your lecturer shares the block assignment separately: it is practice, collected with feedback, and does not count toward your final mark. The Week 12 project uses the same steps.\n\n'
+                'This notebook is for learning in class. It is not an upload. Your lecturer shares the block assignment separately: it is practice, collected with feedback, and does not count toward your final mark.' + PROJECT_NOTE[n] + '\n\n'
                 f'The data are synthetic teaching data about {c["short"]} ({c["unit"]}).\n')
         with zipfile.ZipFile(OUT / f'{code}_Class{n}_lab_pack.zip', 'w', zipfile.ZIP_DEFLATED) as z:
             z.write(nbp, nbp.name)

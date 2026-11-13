@@ -1,5 +1,5 @@
-"""Class 4 (Week 11): features and choosing a model, and your project. Features and feature ablation, one-hot encoding and scaling, ridge regression and k-nearest neighbours as previews,
-a fair model comparison table, the decision memo and the project rules, then the lab. Built once, re-skinned for three cohorts.
+"""Class 4 (Week 11): features and choosing a model. Features and feature ablation, one-hot encoding and scaling, ridge regression and k-nearest neighbours as previews,
+a fair model comparison table, the client's rule and the decision memo, then the lab. Built once, re-skinned for three cohorts.
 
 Every number comes from the NumPy reference (ref/week_reference_numpy.py) or from `compute(code)` below, which only calls reference helpers (linreg_fit, ridge_fit, ridge_fit_raw,
 knn_fit_predict, tree_reg_fit, scaler_fit). The held-out test set E6 is never used."""
@@ -12,7 +12,7 @@ R = C.R
 _CACHE = {}
 
 MODEL_NAMES = ['Baseline model', 'Linear regression', 'Decision tree, depth 4', 'Ridge regression, alpha 1', 'k-NN, k = 3']
-# the project's client limits and prediction times (Task 7) and costs (Task 4): invented teaching numbers, labelled so on every slide that uses them
+# the project's client limits and prediction times and costs: invented teaching numbers, labelled so on every slide that uses them
 MAX_MAE = {'CML3111': 2.0, 'CML3112': 2.0, 'CML3113': 1.0}
 MAX_MS = 50
 LATENCY_MS = {'Baseline model': 1, 'Linear regression': 3, 'Decision tree, depth 4': 30, 'Ridge regression, alpha 1': 3, 'k-NN, k = 3': 60}
@@ -129,20 +129,20 @@ def compute(code):
     assert abs(cand[4]['mae'] - o['knn'][3]) < 1e-12
     o['best_val'] = min(cand[1:], key=lambda d: d['mae'])['name']
 
-    # ---- the project's rule (Task 7): keep the models within both client limits, then the lowest validation MAE; ties by latency, then name
+    # ---- the project's rule: keep the models within both client limits, then the lowest validation MAE; ties by latency, then name
     mx = MAX_MAE[code]
     kept = [d for d in cand if d['mae'] <= mx and d['latency'] <= MAX_MS]
     ranked = sorted(kept, key=lambda d: (d['mae'], d['latency'], d['name']))
     o['rule'] = dict(max_mae=mx, kept=[d['name'] for d in ranked], chosen=ranked[0]['name'] if ranked else None)
     assert o['rule']['chosen'] == 'Linear regression', 'the slides assume the rule chooses linear regression'
 
-    # ---- the warning threshold chosen by cost (Class 2, project Task 4): cost = 5 FN + 1 FP; lowest cost, a tie goes to the higher threshold
+    # ---- the warning threshold chosen by cost (Class 2): cost = 5 FN + 1 FP; lowest cost, a tie goes to the higher threshold
     ct = [dict(th=t['th'], tp=t['tp'], fp=t['fp'], fn=t['fn'], tn=t['tn'], recall=t['recall'], precision=t['precision'], cost=MISSED_COST * t['fn'] + FALSE_ALARM_COST * t['fp'])
           for t in b['thresholds']]
     o['cost_tab'] = ct
     o['threshold'] = sorted(ct, key=lambda r: (r['cost'], -r['th']))[0]
 
-    # ---- the project's group cross-validation (Task 5): linear regression, rows with no missing value, each of E1 to E5 held out in turn
+    # ---- five-group cross-validation after the choice: linear regression, rows with no missing value, each of E1 to E5 held out in turn
     dev = pd.concat([tr, va])
     comp = dev[dev.ambient_c.notna()]
     cv5 = []
@@ -173,7 +173,12 @@ def compute(code):
     return o
 
 
-PROJ = {'CML3112': 'Tuesday 1 December, 11:00 to 14:00', 'CML3113': 'Friday 4 December, 08:00 to 11:00', 'CML3111': 'Friday 4 December, 11:00 to 14:00'}
+# the Engineering ML project window (decision of 13 November 2026): Monday 23 November 00:00 to Wednesday 25 November 23:59, Kampala time.
+# Class 4 is taught on 24 November (CML3112, window still open) or 27 November (CML3113, CML3111, window closed). Class 4 content is not in the project.
+PROJ = {'CML3112': ('The project window opened on Monday 23 November and is still open today. It closes on Wednesday 25 November at 23:59, Kampala time.',
+                    'The project window (23 to 25 November) is open until Wednesday 23:59. Class 4 content is not in it.'),
+        'CML3113': ('The project window ran from Monday 23 November 00:00 to Wednesday 25 November 23:59, Kampala time. It has closed.', 'The project window was 23 to 25 November and has closed. Class 4 content was not in it.'),
+        'CML3111': ('The project window ran from Monday 23 November 00:00 to Wednesday 25 November 23:59, Kampala time. It has closed.', 'The project window was 23 to 25 November and has closed. Class 4 content was not in it.')}
 PAYER = {'CML3112': 'the client who pays for the cooling plant', 'CML3113': 'the mine manager who pays for the crusher power', 'CML3111': 'the maintenance manager who pays for the motors'}
 
 
@@ -209,8 +214,8 @@ def build(code):
     kt = k['knn_tab']
     q1, q2 = k['query_scaled']
 
-    clock = [(10, 'Recall from Class 3'), (35, 'Concepts, part 1: features, scaling and two new models'), (35, 'Concepts, part 2: choosing a model, the memo, the project'),
-             (15, 'Break'), (55, 'Lab: the comparison table and the client’s rule'), (10, 'Close and questions on the project'), (20, 'Block 2 quiz: the forms open (they stay open 24 hours)')]
+    clock = [(10, 'Recall from Class 3'), (35, 'Concepts, part 1: features, scaling and two new models'), (35, 'Concepts, part 2: choosing a model, the test set, the memo'),
+             (15, 'Break'), (55, 'Lab: the comparison table and the client’s rule'), (10, 'Close and questions'), (20, 'Block 2 quiz: the forms open (they stay open 24 hours)')]
     plan_note = ('This is the last full class of the semester. The first part is concepts only, with no laptop: new features, two new models, a fair way to compare them, the client’s rule for choosing, and how to write the decision down. '
                  'Then a break. Then the lab, where you build the comparison table on your own data and apply the rule. The Block 2 quiz opens in the last 20 minutes of this class and stays open for 24 hours.')
 
@@ -227,14 +232,14 @@ def build(code):
 
     s = dict(
         code=code, cohort_name=f['name'], num=4, week=11, when=f['dates'][4] + ', ' + f['slot'], short_title='Features and choosing a model',
-        title='Features and choosing a model, and your project',
+        title='Features and choosing a model',
         question=f'Which model should we recommend for predicting {short}, and how do we explain the choice to someone who pays?',
         outcome_head='By the end of today you can',
         outcomes=['Build a new feature, test it with a feature ablation (ablation study) and say what the result shows', 'Compare five candidate models with the same protocol and choose one by the client’s limits on error and latency (model selection)',
-                  'Choose a warning threshold by cost, open the test set once, write a one-page decision memo and explain how the project works'],
+                  'Choose a warning threshold by cost, open the test set once, and write a one-page decision memo'],
         outcome_icons=['gear', 'check', 'doc'],
         outcome_note=(f'By the end of today you can do three things. You can build a new feature from what you know about the {thing}, test it with a feature ablation, also called an ablation study, and say what the result shows. '
-                      'You can compare five candidate models with the same protocol and choose one by the client’s limits on error and on prediction time, which is model selection, exactly as the project asks. '
+                      'You can compare five candidate models with the same protocol and choose one by the client’s limits on error and on prediction time, which is model selection, with the same rule that the project states as an instruction. '
                       'And you can choose a warning threshold by cost, open the test set once, and write the choice down in a one-page decision memo. The quiz for this block opens in the last 20 minutes of the class.'),
         clock=clock, plan_title='Your three hours: models and memo first, then the lab', plan_note=plan_note,
         plan_caption='Concepts first, with no laptops. Then the lab. The quiz opens in the last 20 minutes (open 24 hours).',
@@ -254,12 +259,12 @@ def build(code):
                     'And latency, also called prediction time or inference time, is how long a trained model takes to give one prediction. A client cares about it as much as about the error.'),
         keep='Your lab notebook, saved with all cells run in order, and your decision memo with its sentences filled in.',
         keep_visual=dict(kind='card', title='Take away', fields=[dict(label='Saved notebook', value='Restart and run all, then save'), dict(label='Comparison table', value='Five models, one protocol'),
-                                                              dict(label='The client’s rule', value='Limits, then lowest MAE'), dict(label='Next', value='Week 12: project sitting')]),
-        keep_title='Save the notebook and keep your memo for the project',
-        next='Week 12 (proposed): the timed Engineering ML project, 3 hours in your usual class slot. A rehearsal version is released after this class.', next_label='Next class',
-        keep_note=('Before you go, restart the notebook, run all cells from the top and save it. Keep the model comparison table, the rule, the cost table and your memo, because the project uses the same steps. '
-                   f'The project is an individual, timed, auto-graded sitting of three hours in your Week 12 class slot. My proposed time for your cohort is {proj}, and your lecturer confirms it. '
-                   'A practice version, the rehearsal, is released right after this class and is not marked. Use it.'),
+                                                              dict(label='The client’s rule', value='Limits, then lowest MAE'), dict(label='Next semester', value='More models')]),
+        keep_title='Save the notebook and keep your memo',
+        next='Next semester: more models (support vector machines, random forests, boosting). Project marks are final by Wednesday 2 December.', next_label='Next',
+        keep_note=('Before you go, restart the notebook, run all cells from the top and save it. Keep the model comparison table, the rule, the cost table and your memo: they are the steps of real model selection, and next semester builds on them. '
+                   f'{proj[0]} Nothing taught today is marked in the project. '
+                   'Project marks are final by Wednesday 2 December. The Block 2 quiz and assignment are your practice on today\'s content.'),
         cover_note=(f'Welcome to the last teaching class of the semester. Over three weeks you have built a model, judged it, and learned how to trust it. Today you compare several models and choose one. '
                     f'In real work you will have several candidate models for predicting {short}, and you must choose one fairly and explain the choice to {payer}. '
                     'The ideas come first, then the lab, then the quiz for this block.'),
@@ -438,7 +443,7 @@ def build(code):
                   points=['Each bar is the k-NN validation MAE for one k. Shorter is better.', 'k = 1 copies one row, noise included. k = 20 averages so many rows that the pattern is lost.'],
                   notes=(f'Same validation rows, three values of k. With k equal to one, the model copies its single nearest row, noise and all, and the error is {f2(k["knn"][1])} {u}. With k equal to three it is {f2(k["knn"][3])}, the best of the three. '
                          f'With k equal to twenty, it averages so many rows that it flattens the pattern, and the error is {f2(k["knn"][20])}. So k is a hyperparameter, chosen before training, and we choose it with the validation set. '
-                         'Ridge regression and k-NN are previews today, and the project does not test them. Support vector machines, random forests and boosting are planned for next semester. What would k equal to the whole training set predict?')))
+                         'Ridge regression and k-NN are previews today. Support vector machines, random forests and boosting are planned for next semester. What would k equal to the whole training set predict?')))
 
     # 15 the protocol
     S.append(dict(kind='steps', title='A fair model comparison keeps four things the same for every model',
@@ -471,7 +476,7 @@ def build(code):
                   rows=[[d['name'], f2(d['mae']), f2(d['rmse']), f2(d['cv_mean']), f2(d['cv_sd']), f'{f2(d["cv_min"])} to {f2(d["cv_max"])}'] for d in k['cand']],
                   widths=[2.9, 1.6, 1.6, 1.8, 1.9, 2.2], icons=['cross', 'chart', 'gear', 'lock', 'pin'],
                   note=(f'Errors in {u}; lower is better. A fold is one held-out group, E1 to E4. '
-                        f'The tree keeps max_depth 4, as in the project. Class 3’s tuned depth (seed 17), {tuned["depth"]}, scores {f2(tuned["mae"])} {u}.'),
+                        f'The tree keeps max_depth 4, as in Class 1. Class 3’s tuned depth (seed 17), {tuned["depth"]}, scores {f2(tuned["mae"])} {u}.'),
                   notes=('This is the model comparison table, the centre of today. Each row is one model. The first two numbers are the error on the same validation rows. '
                          'The last three come from cross-validation on the training rows, where each equipment group takes a turn as the held-out group: the mean, the standard deviation and the range from the best fold to the worst. '
                          f'The baseline model has an MAE of {f2(plain["mae"])} {u}. Linear regression, ridge regression and k-NN all do far better. The decision tree sits in between, even at the depth Class 3 tuned. Read the table slowly before we choose.')))
@@ -479,21 +484,21 @@ def build(code):
     # 18 latency
     S.append(dict(kind='idea', title='Latency is the time a model takes to give one prediction, and the client sets a limit on it',
                   visual=dict(kind='latency', items=[dict(label=n, value=LATENCY_MS[n]) for n in MODEL_NAMES], limit=MAX_MS, unit=' ms',
-                              note='Invented teaching numbers, the same as in the project'),
+                              note='Invented teaching numbers'),
                   lead='Latency (prediction time, inference time) is how long a trained model takes to give one prediction, in milliseconds (ms).',
                   points=['The red dashed line is the client’s limit, 50 ms. A red bar is over the limit.',
                           'k-NN is slow because it compares each new row with every training row. A control system that must answer within 50 ms cannot wait for it.'],
                   notes=(f'So far we judged models on error alone. A client also cares about time. Latency, also called prediction time or inference time, is how long a trained model takes to give one prediction. For a {thing}, a control system or an alarm may need an answer within a fraction of a second, so the client sets a limit: 50 milliseconds. '
-                         'These numbers are invented for teaching, and the project uses the same ones: baseline 1, linear regression 3, tree 30. Ridge regression is as fast as linear regression. k-NN takes 60, because to predict one row it measures the distance to every training row. Which models pass the limit?')))
+                         'These numbers are invented for teaching: baseline 1, linear regression 3, tree 30. Ridge regression is as fast as linear regression. k-NN takes 60, because to predict one row it measures the distance to every training row. Which models pass the limit?')))
 
     # 19 the client's rule
     S.append(dict(kind='idea', title='Model selection follows the client’s rule: meet both limits, then take the lowest validation MAE',
                   visual=dict(kind='ladder', items=[dict(head=f'1 Keep: validation MAE at most {mx} {u}'), dict(head='2 Keep: latency at most 50 ms'),
                                                     dict(head='3 Choose the lowest validation MAE of those kept', hl=True), dict(head='4 A tie: smaller latency, then name A to Z')]),
-                  lead='This is the project’s rule. The client’s two limits are invented teaching numbers.',
+                  lead='The project states this rule too. The two limits are invented teaching numbers.',
                   points=['Parsimony (prefer the simpler model) is why a client sets limits: good enough and fast beats slightly better and slow.',
                           'The test set never takes part. Cross-validation is reported, and it does not choose.'],
-                  notes=(f'The project uses one rule, and so do we. First, keep only the models whose validation MAE is at most the client’s limit, {mx} {u}. Second, keep only the models whose latency is at most 50 milliseconds. '
+                  notes=(f'We use one rule, the same one the project states. First, keep only the models whose validation MAE is at most the client’s limit, {mx} {u}. Second, keep only the models whose latency is at most 50 milliseconds. '
                          'Third, of the models left, choose the one with the lowest validation MAE. Fourth, if two tie, take the faster one, and if they still tie, the name that comes first in the alphabet. '
                          'Parsimony is the reason the client sets limits at all: a model that is good enough, cheap and fast is worth more than one that is slightly better and slow. The test set never takes part in the choice.')))
 
@@ -510,12 +515,11 @@ def build(code):
                   headers=['Model', f'Validation MAE ({u})', f'MAE at most {mx}?', 'Latency (ms, invented)', 'At most 50 ms?', 'Kept?'],
                   rows=[rrow(d) for d in k['cand']], widths=[3.1, 1.9, 1.8, 2.0, 1.7, 1.5],
                   icons=['check' if d['name'] in rule['kept'] else 'cross' for d in k['cand']],
-                  note=(f'Kept, sorted by validation MAE: ' + '; '.join(f'{lc(n)}: {f2(cand[n]["mae"])}' for n in rule['kept']) + f'. The first is chosen: {lc(rule["chosen"])}. '
-                        'In the project the candidates are the baseline model, linear regression and the tree.'),
+                  note=(f'Kept, sorted by validation MAE: ' + '; '.join(f'{lc(n)}: {f2(cand[n]["mae"])}' for n in rule['kept']) + f'. The first is chosen: {lc(rule["chosen"])}. The test set takes no part.'),
                   notes=(f'Now apply the rule by hand, one row at a time. The baseline model is fast but its error, {f2(plain["mae"])} {u}, is far over the limit of {mx}. '
                          f'The tree is fast enough at 30 milliseconds, and its error is {f2(tree["mae"])}. k-NN has an error of {f2(knn["mae"])} but takes 60 milliseconds, over the limit. '
                          f'That leaves {" and ".join(lc(n) for n in rule["kept"])}. Sort them by validation MAE and take the first: {lc(rule["chosen"])}, with {f2(chosen["mae"])} {u}. '
-                         'In the project you write this rule as a Python function, and the lab rehearses it.')))
+                         'In the lab you write this rule in a few lines of Python.')))
 
     # 21 the warning threshold, recalled from Class 2
     lim = b['limit']
@@ -524,9 +528,9 @@ def build(code):
                   headers=['Decision threshold', 'TP', 'FP', 'FN', 'TN', 'Recall', 'Precision', 'Cost: 5 x FN + 1 x FP'],
                   rows=[[f'{t["th"]:g}', str(t['tp']), str(t['fp']), str(t['fn']), str(t['tn']), f2(t['recall']), prec(t), str(t['cost'])] for t in k['cost_tab']],
                   widths=[2.2, 0.9, 0.9, 0.9, 0.9, 1.3, 2.2, 2.6], icons=['check' if t['th'] == th['th'] else 'cross' for t in k['cost_tab']],
-                  note=(f'Recall from Class 2. Warning: target at or above {lim:g} {u}. Invented costs, as in the project: FN 5, FP 1. '
+                  note=(f'Recall from Class 2. Warning: target at or above {lim:g} {u}. Invented costs, as in Class 2: FN 5, FP 1. '
                         'The lowest cost wins; a tie takes the higher threshold.'),
-                  notes=(f'The project asks two questions, so the memo recommends two things: a model for the {short} and a decision threshold for the warning. The threshold comes from Class 2. '
+                  notes=(f'The client asks two questions, so the memo recommends two things: a model for the {short} and a decision threshold for the warning. The threshold comes from Class 2. '
                          f'A missed warning, a false negative, costs 5, and a false alarm, a false positive, costs 1. These are invented teaching costs. Cost equals five times FN plus FP. '
                          f'On the validation rows, threshold {th["th"]:g} has the lowest cost, {th["cost"]}. If two thresholds had the same cost, we would take the higher one, which raises fewer alarms. Check one row by hand.')))
 
@@ -541,13 +545,13 @@ def build(code):
                          'A good report says its limits out loud, because the person who pays will find them anyway. The project asks you to pick the true limits from a list.')))
 
     # 23 the project's five-group cross-validation, after the choice
-    S.append(dict(kind='table', title='After the choice, the project’s cross-validation holds out each of E1 to E5 in turn',
+    S.append(dict(kind='table', title='After the choice, group cross-validation can hold out each of E1 to E5 in turn',
                   headers=['Held-out group', 'Rows held out', 'Rows trained on', f'Linear regression MAE ({u})'],
                   rows=[[d['group'], str(d['n']), str(d['n_train']), f2(d['mae'])] for d in cv5['folds']] + [['Mean of the 5 folds', '', '', f2(cv5['mean'])], ['Sample standard deviation (divide by 5 − 1 = 4)', '', '', f2(cv5['sd'])]],
                   widths=[4.6, 2.0, 2.2, 3.1], icons=['pin'] * 5 + ['chart', 'calculator'],
-                  note=(f'Project Task 5: linear regression on the {cv5["n"]} development rows with no missing value. E5 joins because the choice is made. '
+                  note=(f'Linear regression on the {cv5["n"]} development rows with no missing value. E5 joins because the choice is made. '
                         'In Python: np.std(folds, ddof=1).'),
-                  notes=('Once the model is chosen, the validation group has done its job, so it can join the cross-validation. The project does exactly this. It holds out each of E1 to E5 in turn, five folds, trains linear regression on the other four groups and scores the held-out group. '
+                  notes=('Once the model is chosen, the validation group has done its job, so it can join the cross-validation. The project does the same, with months as the groups. Here we hold out each of E1 to E5 in turn, five folds, trains linear regression on the other four groups and scores the held-out group. '
                          f'It uses the rows with no missing value, so no imputation is needed inside the folds. The mean of the five fold errors is {f2(cv5["mean"])} {u}. '
                          f'The sample standard deviation squares each fold’s gap from the mean, adds them, divides by four, and takes the square root: {f2(cv5["sd"])}. More folds give a steadier picture of new equipment.')))
 
@@ -561,7 +565,7 @@ def build(code):
                   lead='The held-out test set (hold-out set, group E6) gives one honest score for the model and the decision threshold you chose.',
                   points=['The refit on E1 to E5 is allowed: the choice is fixed, more rows make a better model, and E6 is still unseen.',
                           'The threshold is tested on E6 at the same time. Report the result and never change the choice.'],
-                  notes=('Here is the last step, the one the project marks most strictly. First you choose, using E1 to E4 to learn and E5 to score. E6 stays sealed. '
+                  notes=('Here is the last step, and the one to treat most strictly. First you choose, using E1 to E4 to learn and E5 to score. E6 stays sealed. '
                          f'Then, once, you refit the chosen model on all {dev_n} development rows, E1 to E5, and score it on E6. Why is the refit allowed? The choice is already made, so E5 cannot bias it any more. More rows give a better model. And E6 is still unseen. '
                          'The warning threshold you chose is tested at the same moment. Think of an exam paper: if you read it and then revise, the mark no longer tells us what you know.')))
 
@@ -578,36 +582,13 @@ def build(code):
                          f'The recommendation names two things: the model and the warning threshold. The next step is what you would do after the test: collect real data from more {thing}s and check again with group cross-validation. '
                          f'The person who pays, {payer}, will read this and nothing else. Which part would you be most tempted to leave out?')))
 
-    # 26 the project: how it works
-    S.append(dict(kind='steps', title='Your project is an individual, timed practical sitting that the computer grades',
-                  steps=[dict(head='1 Rehearse', text='Practice version, not marked, released after this class', icon='folder'), dict(head='2 Sit', text='Week 12 slot: 3 hours, alone, in Colab', icon='clock'),
-                         dict(head='3 Code', text='Part A: coded notebook, 30 marks', icon='gear'), dict(head='4 Decide', text='Part B: structured decision memo form, 15 marks', icon='doc'),
-                         dict(head='5 Submit', text='Same submit steps as Test 1', icon='check')],
-                  highlight=None, caption='The five stages of the project: it is individual, timed and auto-graded, covers only Weeks 1 to 11, and is worth 40 percent. There is no demo, no presentation and no clinic.',
-                  notes=('Now your project. It works like Practical Test 1. It is individual, timed, highly automated and auto-graded. You sit it alone, for three hours, supervised, in Colab, in your Week 12 class slot. '
-                         'It covers only what we taught in Weeks 1 to 11, and it counts for 40 percent of the course. Part A is the coded notebook, out of 30. Part B is a structured decision memo form inside the notebook, out of 15. '
-                         'There is no demo, no presentation and no clinic. Right after this class you get a practice version, the rehearsal, which is not marked. Which step do you want to practise first?')))
-
-    # 27 the project: marks, rehearsal, sitting and submission
-    S.append(dict(kind='table', title='The project is worth 40 percent, and a rehearsal comes first',
-                  headers=['Item', 'What you need to know'],
-                  rows=[['Format and marks', 'Individual, timed, auto-graded, 3 hours in Colab, like Practical Test 1. Part A, coded notebook: 30 marks. Part B, memo form: 15 marks. Scaled to 40 percent.'],
-                        ['How Part B is marked', 'Structured fields are cross-checked against your own results, plus keyword checks on two short answers.'],
-                        ['Rehearsal', 'A practice version, released right after Class 4. It is not marked.'],
-                        ['Sitting and submission', f'Proposed: {proj} (lecturer to confirm). Restart and run all, save, then the submit cell, as in Practical Test 1. The Practical Test 1 rule on AI and copying applies.']],
-                  widths=[3.4, 8.5], icons=['clock', 'doc', 'folder', 'check'],
-                  note='Everything the project tests is taught by the end of today, including the client’s rule, the cost table and the test set opened once.',
-                  notes=('This slide says what the project is and how you get ready for it. Part A, the coded notebook, is out of 30. Part B, the decision memo form inside the notebook, is out of 15. Both are auto-graded, and the 45 marks are scaled to 40 percent of the course. '
-                         'Part B is checked by structured fields that are cross-checked against your own results, plus keyword checks on two short answers. '
-                         f'The rehearsal is released right after this class and is not marked. The proposed sitting for your cohort is {proj}, and your lecturer confirms it. When will you do the rehearsal?')))
-
     # 28 the bridge: code recipe for the client's rule on records
     S.append(dict(kind='code', title='Read the recipe before you write it: the client’s rule in four lines of Python',
                   code='kept = [c for c in candidates\n        if c["validation_mae"] <= MAX_MAE\n        and c["latency_ms"] <= MAX_MS]\n'
                        'ranked = sorted(kept, key=lambda c: (\n    c["validation_mae"], c["latency_ms"], c["name"]))\nchosen = ranked[0]["name"] if ranked else None',
                   reads=['candidates is a list of records: one dictionary per model, with its name, validation_mae and latency_ms.', 'The list comprehension keeps only the records that meet both limits.',
                          'sorted with key=lambda sorts by validation MAE, then latency, then name, so a tie is broken the way the rule says.', 'The first record after sorting is the choice. If no model qualifies, the answer is None.'],
-                  notes=('Before the break, read the recipe you will use in the lab and again in the project. Each candidate is a record, a dictionary with its name, its validation MAE and its latency. '
+                  notes=('Before the break, read the recipe you will use in the lab. Each candidate is a record, a dictionary with its name, its validation MAE and its latency. '
                          'The first line is a list comprehension: it keeps each record that meets both limits. Then sorted orders the kept records. The key is a small function, written with lambda, that gives three things to sort by: the error first, then the latency, then the name. '
                          'The first record after sorting is the chosen model. If nothing qualifies, the answer is None. Can you read the four lines aloud in plain words?')))
 
@@ -635,7 +616,7 @@ def build(code):
                   caption='The twelve notebook steps, in five groups. In each step: predict, run, then read.',
                   notes=('The notebook has twelve steps, in five groups. Steps one to three: prepare the data, run one loop with three models, and test the new feature with a feature ablation. '
                          'Steps four to six: one-hot encoding, then standardisation and ridge regression, then k-NN with a few values of k. Step seven is the model comparison table of five models. '
-                         'Steps eight to ten are the project rehearsal: the client’s rule written as a function on records, the warning threshold chosen by cost, then five-group cross-validation and opening the test set once. '
+                         'Steps eight to ten: the client’s rule applied to a list of records, the warning threshold chosen by cost, then five-group cross-validation and opening the test set once. '
                          'Steps eleven and twelve: write the memo, then restart, run all and save. Predict before you run each cell.')))
 
     S.append(dict(kind='table', title='Check your numbers against these before you move on',
@@ -665,21 +646,21 @@ def build(code):
 
     S.append(dict(kind='list', title='How this class counts towards your coursework',
                   items=['The Block 2 quiz (forms Q9 and Q10) opens in the last 20 minutes of this class and stays open for 24 hours.', f'The Block 2 assignment (A9, A10, A11) closes on {C.COHORTS[code]["b2_close"]} (Kampala time).',
-                         'Block work is practice. Your final mark is A1 to A5, Q1 to Q5, Practical Test 1 and the project.',
-                         f'The project: 3 hours, 40 percent. Proposed: {proj}, lecturer to confirm. The rehearsal comes first.'],
+                         'Block work is practice. Your final mark is A1 to A5, Q1 to Q5, Practical Test 1 and the project (40 percent).',
+                         proj[1]],
                   icons=['clock', 'doc', 'check', 'lock'],
                   notes=('A word on how this counts. The Block 2 quiz has two forms, Q9 and Q10. They open in the last twenty minutes of this class, after the lab, and stay open for twenty-four hours. '
                          f'The Block 2 assignment, A9, A10 and A11, closes on {C.COHORTS[code]["b2_close"]}, Kampala time. The block work is practice: it is collected and you get feedback, but it does not count toward your final mark. '
                          'Your final mark is A1 to A5, Q1 to Q5, Practical Test 1 and the Engineering ML project, which is worth 40 percent. '
-                         f'The proposed project sitting for your cohort is {proj}, and your lecturer confirms it. The rehearsal is released right after this class. Use it to practise.')))
+                         f'{proj[0]} Nothing from today is in the project, so today counts as practice and as the base for next semester. Project marks are final by Wednesday 2 December.')))
 
     s['facilitator'] = dict(
         prep=['Open the deck in Slide Show mode and the lab notebook in Colab before anyone arrives. Run the notebook from the top once so you know it works on your account.',
               'Put the lab notebook and engineering_data.csv in the shared class folder and post the link. Every learner needs both files in Colab, in the Files panel.',
               'Write the "check your numbers" table on the board before the lab (numbers for your cohort are in the table below).',
               f'Prepare the Block 2 quiz (forms Q9 and Q10) for the end of the class. The deck and the student guide say it opens in the last 20 minutes of the class and each form stays open for 24 hours; the last 20 minutes of the clock are for it. The deck has {len(S)} authored slides, so keep the formula slides brisk.',
-              'Have the rehearsal (the practice version of the project) ready to release right after the class. The project is an individual, timed, auto-graded 3-hour sitting in the Week 12 class slot, covering Weeks 1 to 11, worth 40 percent (Part A 30, Part B 15, scaled from 45). The deck gives the proposed times as lecturer to confirm (CML3112 Tue 1 Dec 11:00 to 14:00, CML3113 Fri 4 Dec 08:00 to 11:00, CML3111 Fri 4 Dec 11:00 to 14:00). Confirm them in writing.',
-              'The deck teaches the project’s own rule for choosing a model (Task 7: client limits on validation MAE, 2.0 deg C, 2.0 kW or 1.0 kWh/t, and on latency, 50 ms; then the lowest validation MAE), the cost table for the threshold (Task 4), the five-group cross-validation with ddof=1 (Task 5) and the refit on E1 to E5 before the one test opening (Task 8). The latencies and costs are the project’s invented teaching numbers.'],
+              'The Engineering ML project ran online from Monday 23 November 00:00 to Wednesday 25 November 23:59, Kampala time, and Class 4 content is not in it. For CML3112 (Tuesday 24 November) the window is still open during this class: say so, remind the class of the support hours on the class channel, and do not answer project questions in the room in a way the other cohorts cannot see. Project marks are final by Wednesday 2 December.',
+              'The deck teaches the rule the project states as an instruction (client limits on validation MAE, 2.0 deg C, 2.0 kW or 1.0 kWh/t, and on latency, 50 ms; then the lowest validation MAE; ties by latency, then name). It also recalls the cost table for the threshold (Class 2), shows five-group cross-validation with ddof=1 and the refit on E1 to E5 before the one test opening. The latencies and costs are invented teaching numbers.'],
         misconceptions=[('A clever new feature must help', 'Test it. Here the load_x_ambient column changes the error by hardly anything.'),
                         ('The model with the lowest number on the table is the one to choose', 'Only if it meets the client’s limits on error and latency. For CML3113, k-NN has the lowest validation MAE but takes 60 ms, so linear regression is chosen.'),
                         ('Equipment_id should be a feature because it is in the file', 'The model must work on equipment it has never met, and a new group has no column of its own.'),
@@ -704,16 +685,16 @@ def build(code):
                    ('Step 5: standardisation and ridge regression', 'Ridge regression on two features gets slightly worse as alpha grows. The degree-6 curve on load alone improves at alpha 1 (CML3113: no better) and worsens at alpha 100, and its biggest weight shrinks from thousands to single figures.'),
                    ('Step 6: k-NN', 'k = 3 is best of 1, 3 and 20. The three neighbours of the first validation row are printed, and their average is the prediction.'),
                    ('Step 7: the model comparison table', 'Five rows, with the cross-validated mean and the sample standard deviation (ddof=1). The GroupKFold fold order is chosen by scikit-learn; only the set of groups matters.'),
-                   ('Step 8: the client’s rule', 'A function on records (lists of dictionaries), a list comprehension and sorted with key=lambda, as in the project. Linear regression is chosen in every cohort; for CML3113 k-NN has the lowest MAE but fails the 50 ms limit.'),
+                   ('Step 8: the client’s rule', 'The candidates are records (a list of dictionaries) built from the Step 7 results. A list comprehension keeps the models within both limits, and sorted with key=lambda ranks them. Class 3 practised the records form. Linear regression is chosen in every cohort; for CML3113 k-NN has the lowest MAE but fails the 50 ms limit.'),
                    ('Step 9: the threshold by cost', 'The cost table of Class 2 for 0.3, 0.5 and 0.7. CML3111 and CML3112 choose 0.3, CML3113 chooses 0.5.'),
                    ('Step 10: five-group CV and the test set', 'Five folds E1 to E5 on the rows with no missing value, sample standard deviation. Then one refit on E1 to E5 and one test opening; the test numbers are in the table below for you, and are not on the slides.'),
                    ('Steps 11 and 12: memo and save', 'Collect one memo sentence from three learners. Insist on restart and run all before saving.')],
-        rescue=['If the concepts run over, the ridge regression and k-NN formula slides are previews the project does not test: read the formula aloud, point at one worked line and move on. Keep the slides on latency, the client’s rule, the cost table, the five-group cross-validation and the test set: the project tests all of them.',
-                'If only forty minutes of lab remain, do steps 1, 2, 7, 8, 9 and 10, and set the feature ablation, ridge regression and k-NN as practice in the rehearsal.',
+        rescue=['If the concepts run over, the ridge regression and k-NN formula slides are previews: read the formula aloud, point at one worked line and move on. Keep the slides on latency, the client’s rule, the cost table, the five-group cross-validation and the test set: they pull Classes 2 and 3 together into one model choice.',
+                'If only forty minutes of lab remain, do steps 1, 2, 7, 8, 9 and 10, and set the feature ablation, ridge regression and k-NN as practice at home.',
                 'If wifi fails in the room, the notebook runs unchanged in VS Code, as in Week 2.', 'If several learners are stuck at the same cell, stop the room, run that cell on the projector and let them copy the fix.',
                 'If time runs short before the quiz, cut the memo write-up and ask learners to finish it at home.'],
-        after=['Share the lab notebook and engineering_data.csv again so absent learners can follow.', 'Release the rehearsal version of the project (not marked) and confirm the proposed sitting time for your cohort in writing.',
-               'Note any question you could not answer and ask it before the Week 12 sitting.'])
+        after=['Share the lab notebook and engineering_data.csv again so absent learners can follow.', 'Remind the class when project marks will be final (by Wednesday 2 December).',
+               'Note any question you could not answer and answer it on the class channel.'])
     s['numbers_fn'] = 'numbers'
     return s
 

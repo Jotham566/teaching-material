@@ -18,7 +18,7 @@ equal to 30 (Part A) or 15 (Part B); score between 0 and the maximum; every stud
 and checks all of it before it writes, so the import cannot stop half way. Run in the gradebook: importMarkedResults('<Drive file id>', 'ML Project Part A')
 and again with the Part B file and 'ML Project Part B'; then recomputeAll().
 
-Students held back (identity mismatch, data variant mismatch, the grader could not run the notebook; copy suspicions are NOT held back, you decide after the spot check) are NOT in the import files. They are written
+Students held back (identity mismatch, the grader could not run the notebook; copy suspicions are NOT held back, you decide after the spot check) are NOT in the import files. They are written
 to ML_Project_held_back.csv. After you have looked at them, release them with --release <registration> ... (or fix their mark with grade_project.py --overrides).
 A student with only one of the two columns filled stays PENDING in the sheet, so holding someone back never produces a wrong total.
 --roster takes any CSV with a student_id column (for example an export of the Grades sheet). Students on the roster who submitted nothing get no row, unless
@@ -33,7 +33,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 COLUMNS = {'ML Project Part A': ('part_a', 30, 'ML_Project_Part_A_import.csv'), 'ML Project Part B': ('part_b', 15, 'ML_Project_Part_B_import.csv')}
-HOLD = {'IDENTITY_MISMATCH', 'VARIANT_MISMATCH', 'GRADER_STATUS'}
+HOLD = {'IDENTITY_MISMATCH', 'GRADER_STATUS'}
 ACCEPTED = {'OK', 'ERRORS', 'AUTO_SCORED'}
 
 

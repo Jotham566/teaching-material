@@ -41,13 +41,15 @@ function showMlProjectWindows(){
  rows.slice(1).filter(function(r){return /\|ML_PROJECT$/.test(r[0]);}).forEach(function(r){console.log(r[0]+' | opens '+r[1]+' | closes '+r[2]+' | enabled '+r[3]+' | minutes '+r[4]);});
 }
 /** Sets one project window. Run ONLY after you have confirmed the date with the students. confirm must be the word CONFIRMED.
- * Example: setMlProjectWindow('CML3112','2026-12-01T11:00:00+03:00','2026-12-01T14:00:00+03:00','CONFIRMED'). Then run syncColabExams. */
+ * The confirmed window (13 November 2026) is the same for all three courses:
+ * setMlProjectWindow('CML3112','2026-11-23T00:00:00+03:00','2026-11-25T23:59:00+03:00','CONFIRMED'), then CML3113 and CML3111, then run syncColabExams. */
 function setMlProjectWindow(cohort,opensIso,closesIso,confirm){
  if(confirm!=='CONFIRMED')throw Error('Pass CONFIRMED as the fourth argument once the date is confirmed.');
  var key=String(cohort)+'|ML_PROJECT';
  if(!/^CML311[123]\|ML_PROJECT$/.test(key))throw Error('Use CML3111, CML3112 or CML3113.');
  if(!isFinite(Date.parse(opensIso))||!isFinite(Date.parse(closesIso))||Date.parse(closesIso)<=Date.parse(opensIso))throw Error('Use real dates with the Kampala offset, closing after opening.');
- if(Date.parse(closesIso)-Date.parse(opensIso)>ML_PROJECT_MINUTES*60000+15*60000)throw Error('The window is more than 3 hours 15 minutes. The sitting window should be the class slot.');
+ if(Date.parse(closesIso)-Date.parse(opensIso)>72*3600000)throw Error('The window is more than 72 hours. The project window is 23 November 00:00 to 25 November 23:59.');
+ if(Date.parse(closesIso)-Date.parse(opensIso)<ML_PROJECT_MINUTES*60000)throw Error('The window is shorter than 3 hours.');
  var c=examConfig_(),sheet=SpreadsheetApp.openById(c.bookId).getSheetByName('Test windows'),rows=sheet.getDataRange().getValues();
  var at=rows.findIndex(function(r,i){return i>0&&r[0]===key;});
  if(at<0)throw Error('No Test windows row for '+key+'. Run installMlProjectCollection first.');

@@ -1,5 +1,7 @@
 # Semester 1 grading policy (from 10 November 2026)
 
+> Note of 13 November 2026: the Engineering ML project is now sat online, in one window for all three cohorts, from Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59 Kampala time (3 hours per student from pressing Start test). Part A is still /30 and Part B /15. The weights below are unchanged.
+
 Source of truth: `data/assessment_policy_20261110.json`. It replaces the 3 November weights (15 / 15 / 10 / 15 / 45), the block rule of 2 November and the best-3-of-5 rule.
 
 | Component | What counts | Out of | Contributes |
@@ -22,6 +24,6 @@ How each part is worked out:
 
 Not counted: Q6 to Q10 and the Week 8 to 11 block quizzes, A6 to A11 and the Week 8 to 11 block assignments, the Data Analysis project, Practical Test 2 and the demonstration. Their receipts are still collected and kept; they add nothing to the final mark.
 
-Until the project is marked (Week 12 sittings), results are provisional out of 60: assignments 20 + quizzes 20 + test 20. An unmarked project is never counted as zero.
+Until the project is marked (Week 12 online window, 23 to 25 November), results are provisional out of 60: assignments 20 + quizzes 20 + test 20. An unmarked project is never counted as zero.
 
 The simplified results workbook is built by `grader/final_marks_export.py` (see that file for the command).

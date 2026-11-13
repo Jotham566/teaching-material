@@ -3,9 +3,10 @@
 const fs = require('fs'), path = require('path'), vm = require('vm'), assert = require('assert/strict'), crypto = require('crypto');
 const deploy = __dirname;
 const out = process.argv[2];
-let now = Date.parse('2026-12-01T07:59:00Z'), rows = [['headers']], fileCount = 0, driveCalls = [], props = {};
+let now = Date.parse('2026-11-22T20:59:00Z'), rows = [['headers']], fileCount = 0, driveCalls = [], props = {};
 let windowKey = 'CML3112|ML_PROJECT', windowRow = null;
-const open = '2026-12-01T08:00:00Z', close = '2026-12-01T11:00:00Z';   // 11:00 to 14:00 Kampala, the proposed CML3112 slot
+const open = '2026-11-22T21:00:00Z', close = '2026-11-25T20:59:00Z';   // 23 November 00:00 to 25 November 23:59 Kampala, the confirmed window
+const H3 = 180 * 60000;
 class Clock extends Date { constructor(x) { super(x === undefined ? now : x); } static now() { return now; } }
 const range = (row, col = 1, height = 1, width = 1) => ({
   getValues: () => rows.slice(row - 1, row - 1 + height).map(r => r.slice(col - 1, col - 1 + width)),
@@ -36,20 +37,20 @@ const input = { test: windowKey, registration: 'DEMO / ML 1', email: 'synthetic@
 
 // 1. before the window, after the window, wrong keys
 assert.throws(() => ctx.requestTestFiles(input), /opens on/);
-now = Date.parse('2026-12-01T11:00:01Z'); assert.throws(() => ctx.requestTestFiles(input), /closed/);
+now = Date.parse(close) + 1000; assert.throws(() => ctx.requestTestFiles(input), /closed/);
 assert.throws(() => ctx.requestTestFiles({ ...input, test: 'CML3112|ML_PROJECTX' }), /Use your lecturer/);
 assert.throws(() => ctx.requestTestFiles({ ...input, test: 'CML3112|TEST9' }), /Use your lecturer/);
 assert.equal(ctx.doGet({ parameter: { test: 'CML3112|ML_PROJECT' } }).title, 'CML3112 ML_PROJECT test files');
 assert.match(ctx.doGet({ parameter: { test: 'CML3112|ML_PROJECTX' } }).message, /Use the test link/);
 
-// 2. the sitting starts at 11:00 Kampala: the personal deadline is the earlier of start + 180 minutes and the class closing time
-rows = [['headers']]; now = Date.parse(open);
+// 2. the personal deadline is the earlier of start + 180 minutes and the window's close
+rows = [['headers']]; now = Date.parse('2026-11-24T06:00:00Z');
 let result = ctx.requestTestFiles(input);
-assert.equal(result.personalDeadline, new Date(close).toISOString(), 'a student starting at 11:00 sharp has until 14:00');
+assert.equal(result.personalDeadline, new Date(now + H3).toISOString(), 'a student starting on Tuesday at 09:00 has until 12:00');
 assert.equal(result.workingMode, 'DIRECT'); assert.equal(result.resumed, false); assert.equal(rows.length, 2);
-// a late arrival does not get extra time
-rows = [['headers']]; now = Date.parse('2026-12-01T08:20:00Z'); const late = ctx.requestTestFiles(input);
-assert.equal(late.personalDeadline, new Date(close).toISOString(), 'starting at 11:20 still ends at 14:00');
+// a start after 20:59 on the last day gets only the time left until the close
+rows = [['headers']]; now = Date.parse(close) - 3600000; const late = ctx.requestTestFiles(input);
+assert.equal(late.personalDeadline, new Date(close).toISOString(), 'starting at 22:59 on 25 November still ends at 23:59');
 // refresh and a second device return the same notebook and deadline, never a new timer
 now += 600000; const again = ctx.requestTestFiles(input); assert.equal(again.personalDeadline, late.personalDeadline); assert.equal(again.colabUrl, late.colabUrl); assert.equal(again.resumed, true); assert.equal(fileCount, 2 - 0 > 0 ? fileCount : 0);
 // after the deadline nothing restarts
@@ -72,7 +73,8 @@ for (const cohort of ['CML3111', 'CML3112', 'CML3113']) for (const variant of ['
   assert(nb.cells[3].source.includes(JSON.stringify(packet.csv)), 'the exact CSV of this variant is restored by the setup cell');
   const last = nb.cells.at(-1).source; assert(last.includes('_IUEA_DEADLINE = ' + JSON.stringify(issued.personalDeadline)) && last.includes('VARIANT = "' + variant + '"') && last.includes("TEST_ID in ('TEST1', 'ML_PROJECT')"));
   assert.equal(nb.metadata.iuea_allocation_code, rows[1][3]);
-  assert.equal(issued.personalDeadline, new Date(close).toISOString());
+  assert.equal(issued.personalDeadline, new Date(now + H3).toISOString());
+  assert.equal(issued.csv, '', 'the data is inside the notebook; no CSV is sent');
   const base = JSON.parse(packet.notebook);
   for (let i = 4; i < nb.cells.length - 1; i++) if (base.cells[i].cell_type === 'code') assert.deepEqual(nb.cells[i].source, base.cells[i].source);
   if (cohort === 'CML3112') issuedNb[variant] = nb;
@@ -88,7 +90,7 @@ const vals = { 'Full name': 'Synthetic learner', 'Student Registration Number': 
 const response = { getId: () => 'late', getTimestamp: () => new Date(Date.parse(close) + 1000), getRespondentEmail: () => input.email,
   getItemResponses: () => Object.entries(vals).map(([k, v]) => ({ getItem: () => ({ getTitle: () => k }), getResponse: () => v })) };
 ctx.examCollect_(response, windowKey, { bookId: 'book' });
-assert.equal(collected[0][10], 'OUTSIDE_WINDOW', 'after the class closing time the form is outside the window');
+assert.equal(collected[0][10], 'OUTSIDE_WINDOW', 'after the window closes the form is outside the window');
 const bytes = Buffer.from(JSON.stringify({ nbformat: 4, cells: [], metadata: { iuea_allocation_code: rows[1][3] } }));
 vals['Snapshot file ID'] = 'synthetic-snapshot-id'; vals['Snapshot SHA-256'] = crypto.createHash('sha256').update(bytes).digest('hex');
 ctx.Utilities.DigestAlgorithm = { SHA_256: 'sha256' }; ctx.Utilities.computeDigest = (_, b) => [...crypto.createHash('sha256').update(b).digest()];
@@ -96,10 +98,10 @@ ctx.DriveApp.getFileById = () => ({ getOwner: () => ({ getEmail: () => input.ema
 response.getId = () => 'ontime'; response.getTimestamp = () => new Date(now + 120 * 60000);
 ctx.examCollect_(response, windowKey, { bookId: 'book', folderId: 'private-folder' });
 assert.equal(collected.at(-1)[10], 'COLLECTED'); assert.equal(collected.at(-1)[9], started.personalDeadline);
-// a student who started late has a personal deadline that is the same cutoff, and a form after it is OUTSIDE_PERSONAL_WINDOW only when the personal deadline is earlier: simulate a 12:30 start under a 14:30 close
-windowRows = [['key', 'open', 'close', 'enabled', 'duration'], [windowKey, open, '2026-12-01T12:00:00Z', 'YES', 180]]; now = Date.parse(open) + 60000;
+// a form after the personal 3 hours, while the window is still open, is OUTSIDE_PERSONAL_WINDOW
+now = Date.parse(open) + 60000;
 rows = [['headers']]; const early = ctx.requestTestFiles({ ...input, test: windowKey, registration: 'DEMO / ML 2', email: 'two@example.com' });
-assert.equal(early.personalDeadline, '2026-12-01T11:01:00.000Z', 'with a longer window the personal 3 hours apply');
+assert.equal(early.personalDeadline, new Date(Date.parse(open) + 60000 + H3).toISOString(), 'the personal 3 hours apply inside the long window');
 vals['Student Registration Number'] = 'DEMO / ML 2'; vals['Test allocation code'] = rows[1][3]; response.getId = () => 'late-personal'; response.getRespondentEmail = () => 'two@example.com';
 response.getTimestamp = () => new Date(Date.parse(early.personalDeadline) + 60000);
 ctx.examCollect_(response, windowKey, { bookId: 'book' }); assert.equal(collected.at(-1)[10], 'OUTSIDE_PERSONAL_WINDOW');
@@ -115,9 +117,13 @@ assert.equal(windowRows.length, 4); windowRows.slice(1).forEach(r => { assert.ma
 const saved = JSON.parse(props.IUEA_COLAB_EXAMS_V1); assert.equal(Object.keys(saved.forms).length, 4);
 ctx.installMlProjectCollection(); assert.equal(formsMade.length, 3, 'a second run creates nothing');
 assert.throws(() => ctx.setMlProjectWindow('CML3112', open, close), /CONFIRMED/);
-assert.throws(() => ctx.setMlProjectWindow('CML3112', '2026-12-01T08:00:00Z', '2026-12-01T13:00:00Z', 'CONFIRMED'), /more than 3 hours/);
-ctx.setMlProjectWindow('CML3112', '2026-12-01T11:00:00+03:00', '2026-12-01T14:00:00+03:00', 'CONFIRMED');
+assert.throws(() => ctx.setMlProjectWindow('CML3112', '2026-11-23T00:00:00+03:00', '2026-11-27T00:00:00+03:00', 'CONFIRMED'), /more than 72 hours/);
+assert.throws(() => ctx.setMlProjectWindow('CML3112', '2026-11-23T00:00:00+03:00', '2026-11-23T02:00:00+03:00', 'CONFIRMED'), /shorter than 3 hours/);
+ctx.setMlProjectWindow('CML3112', '2026-11-23T00:00:00+03:00', '2026-11-25T23:59:00+03:00', 'CONFIRMED');
 assert.equal(JSON.stringify(windowRows.find(r => r[0] === 'CML3112|ML_PROJECT').slice(3)), JSON.stringify(['YES', 180]));
 assert.throws(() => ctx.authoriseFreshTestAttempt('CML3112|ML_PROJECT', 'REG1', 'technical failure at 11:30', ''), /No Test allocations sheet|allocation/);
 assert.throws(() => ctx.authoriseFreshTestAttempt('CML3112|TEST9', 'REG1', 'technical failure at 11:30', ''), /Use an assessment key/);
-console.log('PASS ML_PROJECT deployment bundle: window, personal deadline (earlier of start+180 and class end), resume, packets for 3 cohorts x 3 variants, collector acceptance and refusal, form creation (closed), window setter guards.');
+// 6. size: the gateway reads at most 4 MiB from Apps Script
+const one = JSON.stringify({ notebook: JSON.stringify(issuedNb.A) });
+assert(Buffer.byteLength(one) < 2 * 1024 * 1024, 'an issued notebook stays far below the gateway limit: ' + Buffer.byteLength(one));
+console.log('PASS ML_PROJECT deployment bundle: window 23 to 25 November, personal deadline (earlier of start+180 and the window close), resume, one notebook per course for the 3 allocation labels (issued size ' + Math.round(Buffer.byteLength(one) / 1024) + ' KiB), collector acceptance and refusal, form creation (closed), window setter guards.');

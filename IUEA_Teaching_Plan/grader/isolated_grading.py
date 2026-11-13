@@ -148,7 +148,7 @@ class Namespace:
         return default if isinstance(value, str) and value == '__MISSING__' else value
 
 
-def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_timeout, fairness=None):
+def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_timeout, fairness=None, repair=None):
     if assignment == 'TEST1' and fairness is None and os.environ.get('IUEA_TEST1_FAIRNESS', '1') != '0':
         # Test 1 (10 Nov 2026): the original run, unchanged, then a Colab-shim / own-cell /
         # alias / reference-input run; each question keeps the higher award.
@@ -163,6 +163,23 @@ def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_t
     extra = {}
     if fair:
         extra = dict(colab_shims=True, watch=gf.watch_names(assignment, cohort or getattr(spec, 'DEFAULT_COHORT', '')))
+        import ownwork_fairness
+        if ownwork_fairness.enabled():
+            # Own-work credit (13 Nov 2026): record printed/displayed values and figures.
+            extra['ownwork'] = True
+    if repair is not None:
+        if repair:
+            extra['repair'] = repair
+    elif fair:
+        import review_fairness
+        if review_fairness.enabled():
+            # Review of 13 Nov 2026: the ordinary result first (unchanged), then, only when
+            # the notebook has a cell that cannot run here as written, a second run with the
+            # repaired cells; each question keeps the higher award.
+            first = evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_timeout,
+                             fairness=fairness, repair={})
+            return review_fairness.review_ca(evaluate, first, work, spec_path, hidden_path, assignment,
+                                             cohort, per_cell, total_timeout, fairness)
     worker = Worker(work, total_timeout)
     try:
         meta = worker.request(op='init', timeout=total_timeout, cell_timeout=per_cell, **extra)
@@ -197,15 +214,17 @@ def evaluate(work, spec_path, hidden_path, assignment, cohort, per_cell, total_t
         result['fingerprint'] = ig.answer_fingerprint(questions, ns)
         if fair:
             result['fairness'] = _fairness_pass(ig, gf, worker, per_cell, ns, meta, assignment,
-                                                use_cohort, questions, result)
+                                                use_cohort, questions, result,
+                                                notebook=notebook if extra.get('ownwork') else None)
         return result
     finally:
         worker.close()
 
 
-def _fairness_pass(ig, gf, worker, per_cell, ns, meta, assignment, cohort, questions, result):
+def _fairness_pass(ig, gf, worker, per_cell, ns, meta, assignment, cohort, questions, result, notebook=None):
     """Own-cell snapshots and name aliases (grader_fairness). Only ever adds credit; any
-    problem here keeps the ordinary result."""
+    problem here keeps the ordinary result. With `notebook` (IUEA_OWNWORK_FAIRNESS=1) the
+    own-work pass (ownwork_fairness) follows; a problem there keeps the 10 Nov result."""
     import copy
     before = copy.deepcopy(result['questions'])
     try:
@@ -222,7 +241,20 @@ def _fairness_pass(ig, gf, worker, per_cell, ns, meta, assignment, cohort, quest
         names = worker.request(op='names')
         notes = gf.rescore(ig, assignment, cohort, questions, result['questions'],
                            namespaces, names if isinstance(names, list) else [])
-        return dict(enabled=True, snapshots=len(snaps), notes=notes, worker_notes=meta.get('notes') or [])
+        out = dict(enabled=True, snapshots=len(snaps), notes=notes, worker_notes=meta.get('notes') or [])
+        if notebook is not None:
+            import ownwork_fairness
+            kept = copy.deepcopy(result['questions'])
+            out['before_ownwork'] = {k: v['awarded'] for k, v in kept.items()}
+            try:
+                out['ownwork'] = ownwork_fairness.run_ca(ig, gf, worker, assignment, cohort, questions,
+                                                         result['questions'], namespaces, notebook,
+                                                         names if isinstance(names, list) else [])
+            except Exception as exc:  # noqa: BLE001
+                result['questions'] = kept
+                out['ownwork'] = dict(version=ownwork_fairness.OWNWORK_VERSION, notes={}, flags=[],
+                                      error='%s: %s' % (type(exc).__name__, str(exc)[:200]))
+        return out
     except Exception as exc:  # noqa: BLE001
         result['questions'] = before
         return dict(enabled=True, error='%s: %s' % (type(exc).__name__, str(exc)[:200]), notes={},

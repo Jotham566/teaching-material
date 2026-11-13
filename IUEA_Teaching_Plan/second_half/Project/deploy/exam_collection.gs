@@ -94,7 +94,7 @@ function examFormInstructions_(form,w){
  if(isFinite(Date.parse(w.open))&&isFinite(Date.parse(w.close))){
   text+='\n\nOpens: '+Utilities.formatDate(new Date(w.open),'Africa/Kampala','d MMM yyyy HH:mm')+' Kampala. Closes: '+Utilities.formatDate(new Date(w.close),'Africa/Kampala','d MMM yyyy HH:mm')+' Kampala.';
  }
- if(w.minutes)text+='\n\n'+(/ML_PROJECT/.test(form.getTitle())?'TIMED PROJECT SITTING':'TAKE-HOME TEST')+': '+w.minutes+' minutes from Start test. Your personal deadline may be earlier than the class closing time above. Complete this form before your personal deadline shown on the entry page. A form confirmation does not override the deadline: late responses are retained for review but are not graded.';
+ if(w.minutes)text+='\n\n'+(/ML_PROJECT/.test(form.getTitle())?'TIMED ONLINE PROJECT':'TAKE-HOME TEST')+': '+w.minutes+' minutes from Start test. Your personal deadline may be earlier than the class closing time above. Complete this form before your personal deadline shown on the entry page. A form confirmation does not override the deadline: late responses are retained for review but are not graded.';
  if(form.getDescription()!==text)form.setDescription(text);
  form.getItems(FormApp.ItemType.TEXT).forEach(function(item){var i=item.asTextItem();if(/^Snapshot /.test(i.getTitle())&&i.getHelpText()!=='Automatically filled by the notebook button. Do not change this value.')i.setHelpText('Automatically filled by the notebook button. Do not change this value.');});
 }

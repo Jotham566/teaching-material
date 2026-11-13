@@ -103,9 +103,10 @@ class ScheduleTests(unittest.TestCase):
    d=rows[f'{code}|DEMO'];self.assertTrue(d.get('retired'));self.assertEqual(d['status'],'RETIRED');self.assertIsNone(d['opens_at']);self.assertIsNone(d['closes_at'])
    m=rows[f'{code}|ML_PROJECT'];self.assertFalse(m.get('retired'));self.assertEqual(m['maximum'],45);self.assertEqual([(p['part'],p['maximum']) for p in m['parts']],list(PROJECT_PARTS))
    self.assertIsNone(m['opens_at']);self.assertIsNone(m['closes_at'])   # no form window is opened by the 3 November decision
-   sl=pol['engineering_ml_project']['sitting']['slots'][code];self.assertNotIn('proposed_closes_at',m);self.assertEqual((m['proposed_sitting']['date'],m['proposed_sitting']['start'],m['proposed_sitting']['end']),(sl['date'],sl['start'],sl['end']));self.assertIn('proposed',m['proposed_status'])
+   # 13 November 2026: one confirmed online window for all cohorts replaces the proposed per-cohort sittings
+   self.assertNotIn('proposed_closes_at',m);self.assertNotIn('proposed_sitting',m);self.assertNotIn('proposed_status',m);self.assertEqual((m['window']['opens_at'],m['window']['closes_at'],m['window']['duration_minutes']),('2026-11-23T00:00:00+03:00','2026-11-25T23:59:00+03:00',180));self.assertIn('confirmed',m['window_status'])
    self.assertEqual(m['grading'],'automatic');self.assertEqual(m['formats'],['ipynb']);self.assertNotIn('take-home',m['delivery_note'].lower().replace('no take-home',''))
-   self.assertEqual(m['proposed_released_after_class_4'],pol['engineering_ml_project']['released']['dates'][code])
+   self.assertEqual(m['rehearsal_released_after_class_3'],{'CML3112':'2026-11-17','CML3113':'2026-11-20','CML3111':'2026-11-20'}[code])
  def test_grades_template_has_no_practical_test_2_column(self):
   head=(Path(__file__).resolve().parents[1]/'IUEA_Teaching_Plan/grader/Grades_template.csv').read_text().splitlines()[0].split(',')
   self.assertNotIn('Practical Test 2',head);self.assertIn('Practical Test 1',head)

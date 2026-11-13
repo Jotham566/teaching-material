@@ -160,28 +160,16 @@ def build(code):
     nb.code('print("The test set has", len(test_df), "rows. We have not used it.")')
 
     mx = c4.MAX_MAE[code]
-    nb.step(8, 'Choose a model by the client’s rule, with a function on records', 'The project gives you rows as **records**: each row is a dictionary, and a table is a list of dictionaries. Its functions take records and return lists. This step rehearses that form. '
-            '`predict_records` wraps a pipeline in a function: it trains on a list of training records and returns one prediction per new record. A *list comprehension* builds a new list in one line. `sorted(..., key=lambda c: ...)` sorts records by the values the small `lambda` function gives. '
-            f'The rule, as in the project: keep the models whose validation MAE is at most the client’s limit ({mx:.1f} {unit}) **and** whose latency (prediction time) is at most 50 ms; choose the lowest validation MAE; break a tie by the smaller latency, then by the name. The limits and latencies are invented teaching numbers. The test set never takes part.')
+    nb.step(8, 'Choose a model by the client’s rule', 'Each candidate model becomes a **record**: a dictionary with its name, its validation MAE from Step 7 and its latency. The candidates form a list of records, the form you practised in Class 3. '
+            'A *list comprehension* keeps the records that meet both limits. `sorted(..., key=lambda c: ...)` sorts the kept records by the values the small `lambda` function gives. '
+            f'The rule: keep the models whose validation MAE is at most the client’s limit ({mx:.1f} {unit}) **and** whose latency (prediction time) is at most 50 ms; choose the lowest validation MAE; break a tie by the smaller latency, then by the name. The limits and latencies are invented teaching numbers. The test set never takes part.')
     nb.predict('Which model has the lowest validation MAE of all five? Will it pass both limits?')
     nb.code(f'MAX_MAE = {mx}      # the client accepts a validation MAE of at most this many {unit} (invented teaching number)\n'
             'MAX_MS = 50         # and a prediction time of at most 50 milliseconds (invented teaching number)\n'
             'LATENCY_MS = {"Baseline model": 1, "Linear regression": 3, "Decision tree, depth 4": 30,\n              "Ridge regression, alpha 1": 3, "k-NN, k = 3": 60}   # invented teaching numbers; k-NN compares each new row with every training row\n\n'
-            'record_columns = ["record_id", "equipment_id", "load_pct", "ambient_c", "target"]\n'
-            'train_records = train_df[record_columns].to_dict("records")    # a list of dictionaries, one per row\n'
-            'valid_records = valid_df[record_columns].to_dict("records")\n'
-            'print("first training record:", train_records[0])\n\n'
-            'def predict_records(model, training_records, new_records):\n'
-            '    """Train the pipeline on a list of records and return one prediction per new record, in order."""\n'
-            '    table = pd.DataFrame(training_records)\n'
-            '    new_table = pd.DataFrame(new_records)\n'
-            '    model.fit(table[feature_columns], table["target"])\n'
-            '    return model.predict(new_table[feature_columns]).tolist()\n\n'
-            'valid_features = [{key: value for key, value in r.items() if key != "target"} for r in valid_records]   # the new rows have no target\n'
-            'valid_actual = [r["target"] for r in valid_records]\n\n'
-            'candidates = []\nfor name, model in models.items():\n'
-            '    predictions = predict_records(model, train_records, valid_features)\n'
-            '    candidates.append({"name": name, "validation_mae": mean_absolute_error(valid_actual, predictions), "latency_ms": LATENCY_MS[name]})\n\n'
+            '# one record per model, from the Step 7 loop: rows holds [name, valid MAE, valid RMSE, CV mean, ...] for each model\n'
+            'candidates = [{"name": row[0], "validation_mae": row[1], "latency_ms": LATENCY_MS[row[0]]} for row in rows]\n'
+            'print("first candidate:", candidates[0])\n\n'
             'kept = [c for c in candidates if c["validation_mae"] <= MAX_MAE and c["latency_ms"] <= MAX_MS]\n'
             'ranked = sorted(kept, key=lambda c: (c["validation_mae"], c["latency_ms"], c["name"]))\n'
             'for c in ranked:\n'
@@ -192,8 +180,8 @@ def build(code):
     nb.change('Set `MAX_MS = 100` and run the cell again. Which model is chosen now, and why?')
 
     lim = f['b']['limit']
-    nb.step(9, 'Choose the warning threshold by cost (recall Class 2)', f'The project asks a second question: which rows should raise a warning? A row is a warning (1) when its target is at or above {lim:g} {unit}. A logistic regression pipeline gives each validation row a probability, and the decision threshold turns it into 0 or 1. '
-            'A missed warning (a false negative, FN) costs 5 and a false alarm (a false positive, FP) costs 1. These are invented teaching costs, the same as in the project: cost = 5 x FN + 1 x FP. We try thresholds 0.3, 0.5 and 0.7 and keep the lowest cost; if two tie, the higher threshold.')
+    nb.step(9, 'Choose the warning threshold by cost (recall Class 2)', f'The client asks a second question: which rows should raise a warning? A row is a warning (1) when its target is at or above {lim:g} {unit}. A logistic regression pipeline gives each validation row a probability, and the decision threshold turns it into 0 or 1. '
+            'A missed warning (a false negative, FN) costs 5 and a false alarm (a false positive, FP) costs 1. These are invented teaching costs, the same as in Class 2: cost = 5 x FN + 1 x FP. We try thresholds 0.3, 0.5 and 0.7 and keep the lowest cost; if two tie, the higher threshold.')
     nb.predict('A lower threshold raises more warnings. Will it lower the cost or raise it?')
     nb.code('from sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import confusion_matrix, recall_score, precision_score\n\n'
             f'LIMIT = {lim}                          # a row is a warning (1) at or above this many {unit}\n'
@@ -212,8 +200,8 @@ def build(code):
             'print("Chosen threshold:", chosen_threshold)')
     nb.read('Check one cost by hand: 5 x FN + 1 x FP. Why does the minus sign in the sort key give the higher threshold when two costs tie?')
 
-    nb.step(10, 'After the choice: five-group cross-validation, then open the test set once', 'Now the model and the threshold are chosen, the validation group E5 is no longer needed for choosing, so it can join the cross-validation. As in project Task 5, part A holds out each of E1 to E5 in turn, trains linear regression on the other four groups (rows with no missing value, so no imputation is needed) and reports the mean and the sample standard deviation of the five fold MAEs (`np.std(folds, ddof=1)`, which divides by 5 minus 1 = 4). '
-            'Part B opens the held-out test set **once**, as in project Task 8: the chosen model is refitted on all development rows (training plus validation, E1 to E5) and scored on E6, and the chosen threshold is tested at the same time. The refit is allowed because the choice is already fixed and E6 is still unseen. Run part B one time only, and never change your choice after it.')
+    nb.step(10, 'After the choice: five-group cross-validation, then open the test set once', 'Now the model and the threshold are chosen, the validation group E5 is no longer needed for choosing, so it can join the cross-validation. Part A holds out each of E1 to E5 in turn, trains linear regression on the other four groups (rows with no missing value, so no imputation is needed) and reports the mean and the sample standard deviation of the five fold MAEs (`np.std(folds, ddof=1)`, which divides by 5 minus 1 = 4). '
+            'Part B opens the held-out test set **once**: the chosen model is refitted on all development rows (training plus validation, E1 to E5) and scored on E6, and the chosen threshold is tested at the same time. The refit is allowed because the choice is already fixed and E6 is still unseen. Run part B one time only, and never change your choice after it.')
     nb.predict('Will the five-fold mean be close to the four-fold mean of step 7? Will the test MAE be larger or smaller than the validation MAE?')
     nb.code('# part A: group cross-validation over all five development groups, E1 to E5\n'
             'development_df = pd.concat([train_df, valid_df])                    # E1 to E5\n'
@@ -248,7 +236,7 @@ def build(code):
           '6. **Recommendation.** I recommend ... with a warning threshold of ..., because ... \n\n'
           '7. **Next step.** Before anyone relies on it, we should ... ')
 
-    nb.step(12, 'Save your work', 'Choose **Runtime, then Restart session and run all**. If every cell runs without an error, choose **File, then Save a copy in Drive**. Keep the notebook and your memo: the project uses these steps. The Engineering ML project is an individual, timed, auto-graded 3-hour sitting in Week 12 (proposed, lecturer to confirm), and a practice version, the rehearsal, is released right after Class 4.')
+    nb.step(12, 'Save your work', 'Choose **Runtime, then Restart session and run all**. If every cell runs without an error, choose **File, then Save a copy in Drive**. Keep the notebook and your memo: they are the steps of a real model choice, and next semester builds on them.')
     return nb
 
 

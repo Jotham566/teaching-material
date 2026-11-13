@@ -213,7 +213,7 @@ def _tolerant_decode(value):
     return decode(strip(value))
 
 
-def _q7_fraction(worker, per_call, scope, course, name):
+def _q7_fraction(worker, per_call, scope, course, name, keyfix=False):
     import pandas as pd
     from engineering_contracts import clean, dataset
     from test1_coding_v3 import equal
@@ -227,6 +227,10 @@ def _q7_fraction(worker, per_call, scope, course, name):
                                                          timeout=per_call, **scope))
             except Exception:  # noqa: BLE001
                 result = None
+            if keyfix:
+                # Review (13 Nov 2026, R7): keys compared ignoring case and spaces.
+                import review_fairness
+                result = review_fairness.norm_keys(result, ('mean', 'sum', 'median')) or result
             for key in ('mean', 'sum', 'median'):
                 try:
                     checks.append(isinstance(result, dict) and equal(result.get(key), getattr(table[column], key)()))
@@ -278,7 +282,28 @@ def evaluate(evaluate_plain, work, spec_path, hidden_path, cohort, per_cell, tot
     except Exception as exc:  # noqa: BLE001
         plain['fairness'] = dict(version=FAIRNESS_VERSION, error='%s: %s' % (type(exc).__name__, str(exc)[:200]))
         return plain
-    return combine(plain, fair)
+    out = combine(plain, fair)
+    import review_fairness
+    if review_fairness.enabled():
+        # Review (13 Nov 2026): when a cell cannot run as written (one broken line, Colab's
+        # Python 3.12) or Q7 lost keys to one failing calculation, a further fairness run
+        # with the repaired cells; each question keeps the higher award.
+        try:
+            q7 = out['questions'].get('q7', {})
+            repair, kinds = review_fairness.repairs(notebook, 'TEST1',
+                                                    q7=q7.get('awarded', 0) < q7.get('marks', 0) - 1e-9)
+            errors = list(plain.get('cell_errors') or []) + list(fair.get('cell_errors') or [])
+            if any(q['awarded'] < q['marks'] - 1e-9 for q in out['questions'].values()) and \
+                    review_fairness.needs_run(repair, kinds, errors):
+                second = fairness_run(work, spec_path, hidden_path, cohort or plain.get('cohort', ''), per_cell,
+                                      total_timeout, notebook, version, repair=repair)
+                review_fairness.merge(out, second, kinds, repair=repair)
+            else:
+                out['fairness']['review_repair'] = dict(version=review_fairness.REVIEW_VERSION, kinds=[], notes={})
+        except Exception as exc:  # noqa: BLE001
+            out['fairness']['review_repair'] = dict(version=review_fairness.REVIEW_VERSION, notes={},
+                                                    error='%s: %s' % (type(exc).__name__, str(exc)[:200]))
+    return out
 
 
 def combine(plain, fair):
@@ -297,19 +322,27 @@ def combine(plain, fair):
                            original_questions={k: v['awarded'] for k, v in plain['questions'].items()},
                            fair_cell_errors=fair.get('cell_errors', []), worker_notes=fair.get('worker_notes', []),
                            error=fair.get('error', ''))
+    if 'ownwork' in fair:
+        out['fairness']['ownwork'] = fair['ownwork']
+        out['fairness']['before_ownwork'] = fair.get('before_ownwork', {})
+    if 'review' in fair:
+        out['fairness']['review'] = fair['review']
     return out
 
 
-def fairness_run(work, spec_path, hidden_path, cohort, per_cell, total_timeout, notebook, version):
+def fairness_run(work, spec_path, hidden_path, cohort, per_cell, total_timeout, notebook, version, repair=None):
     import iuea_grader as ig
     import grader_fairness as gf
     import pandas as pd
     from pathlib import Path
     from isolated_grading import Worker
+    import ownwork_fairness
     spec = ig.load_spec('TEST1', spec_path, include_hidden=True, hidden_path=hidden_path)
     worker = Worker(work, total_timeout + 180)
+    own = ownwork_fairness.enabled()
     try:
-        meta = worker.request(op='init', timeout=total_timeout, cell_timeout=per_cell, colab_shims=True, watch=WATCH)
+        meta = worker.request(op='init', timeout=total_timeout, cell_timeout=per_cell, colab_shims=True, watch=WATCH,
+                              **({'ownwork': True} if own else {}), **({'repair': repair} if repair else {}))
         use_cohort = cohort or str(meta.get('cohort', ''))
         questions = ig.resolve_questions(spec, use_cohort)
         tasks = dict(zip([q for q, _ in questions], TASKS))
@@ -342,6 +375,7 @@ def fairness_run(work, spec_path, hidden_path, cohort, per_cell, total_timeout, 
         # Reference inputs for the dependent questions.
         cells = task_cells(notebook)
         reference_ok = None
+        reran = {}
         for qid, kind in RERUN.items():
             res = results.get(qid)
             if not res or res['awarded'] >= res['marks'] - 1e-9 or not cells.get(tasks[qid]):
@@ -356,6 +390,7 @@ def fairness_run(work, spec_path, hidden_path, cohort, per_cell, total_timeout, 
                 break
             ran = worker.request(op='rerun', key=qid, cells=cells[tasks[qid]], cell_timeout=per_cell,
                                  preset=[REFERENCE_RAW if kind == 'raw' else REFERENCE_CLEAN])
+            reran[qid] = kind
             r = ig.run_check(qid, dict(lenient)[qid], _RerunNamespace(final, qid))
             if r.awarded > res['awarded'] + 1e-9:
                 res.update(ok=r.ok, awarded=r.awarded, msg=r.message,
@@ -371,6 +406,7 @@ def fairness_run(work, spec_path, hidden_path, cohort, per_cell, total_timeout, 
                 and not equal(final.get('raw_data'), assigned):
             ran = worker.request(op='rerun', key='q1', cells=cells['eda'], cell_timeout=per_cell,
                                  preset=[REFERENCE_RAW], drop_assign=['raw_data'])
+            reran['q1'] = 'raw'
             r = ig.run_check('q1', dict(lenient)['q1'], _RerunNamespace(final, 'q1'))
             credit = max(0.0, r.awarded - RAW_DATA_MARKS)
             if credit > res['awarded'] + 1e-9:
@@ -396,6 +432,118 @@ def fairness_run(work, spec_path, hidden_path, cohort, per_cell, total_timeout, 
                         res.update(awarded=round(credit, 4), ok=credit >= res['marks'] - 1e-9,
                                    fix='Q7 per-key check' if tier in ('same', 'spelling') else 'name alias (half marks, different name)',
                                    detail='%s called with the reference tables, each key checked on its own (%s)' % (name, label))
-        return dict(questions=results, cell_errors=meta.get('cell_errors', []), worker_notes=meta.get('notes') or [])
+        out = dict(questions=results, cell_errors=meta.get('cell_errors', []), worker_notes=meta.get('notes') or [])
+        if own:
+            before = copy.deepcopy(results)
+            out['before_ownwork'] = {k: v['awarded'] for k, v in before.items()}
+            try:
+                out['ownwork'] = ownwork_pass(ig, gf, worker, per_cell, use_cohort, lenient, results, namespaces,
+                                              final, notebook, cells, tasks, reran,
+                                              names if isinstance(names, list) else [], snaps)
+            except Exception as exc:  # noqa: BLE001
+                out['questions'] = before
+                out['ownwork'] = dict(version=ownwork_fairness.OWNWORK_VERSION, notes={}, flags=[],
+                                      error='%s: %s' % (type(exc).__name__, str(exc)[:200]))
+        import review_fairness
+        if review_fairness.enabled():
+            # Review (13 Nov 2026, R7-R9): dictionary keys, grouped columns, doubled points.
+            kept = copy.deepcopy(out['questions'])
+            try:
+                scopes = dict(ns=list(namespaces),
+                              rerun={q: ('the reference-input re-run of %s' % q, _RerunNamespace(final, q)) for q in reran},
+                              q7=[('the whole notebook', {})] + [('cell %s' % cell, {'state': i}) for i, cell in enumerate(snaps)])
+                out['review'] = dict(version=review_fairness.REVIEW_VERSION,
+                                     notes=review_fairness.view_pass_t1(ig, worker, per_cell, use_cohort, lenient,
+                                                                        out['questions'], scopes))
+            except Exception as exc:  # noqa: BLE001
+                out['questions'] = kept
+                out['review'] = dict(version=review_fairness.REVIEW_VERSION, notes={},
+                                     error='%s: %s' % (type(exc).__name__, str(exc)[:200]))
+        return out
     finally:
         worker.close()
+
+
+FIGURES = {'q2': 'before_figure', 'q4': 'after_figure'}
+
+
+def ownwork_pass(ig, gf, worker, per_cell, cohort, lenient, results, namespaces, final, notebook, cells, tasks,
+                 reran, names, snaps):
+    """Own-work credit (13 Nov 2026, ownwork_fairness): different names in full when
+    unambiguous, printed/displayed answers, charts on the student's own figure. Read in
+    the whole notebook, the best own-cell snapshot and the question's reference-input
+    re-run. Only raises a question."""
+    import ownwork_fairness as ow
+    outputs = worker.request(op='outputs')
+    outputs = outputs if isinstance(outputs, list) else []
+    notes, flags = {}, []
+    for qid, question in lenient:
+        res = results[qid]
+        if res['awarded'] >= res['marks'] - 1e-9:
+            continue
+        own_cells = cells.get(tasks[qid], [])
+        local = ow.assigned_names(notebook, own_cells)
+        foreign = ow.foreign_names(notebook, cells, tasks[qid])
+        moved = ow.moved_names(notebook, cells, tasks[qid])
+        if qid == 'q7':
+            note, f = _ownwork_q7(gf, worker, per_cell, cohort, res, names, local, snaps, foreign | moved)
+        else:
+            q = ow.with_cells(question, own_cells)
+            extra = [('the reference-input re-run of Task %d' % (TASKS.index(tasks[qid]) + 1),
+                      _RerunNamespace(final, qid), qid)] if qid in reran and qid != 'q1' else []
+            scopes = ow.pick_scopes(ig, qid, q, namespaces, extra)
+            fig = (FIGURES[qid],) if qid in FIGURES else ()
+            note, f = ow.rescore(ig, gf, qid, q, res, scopes, REQUIRED[qid], WATCH, local, names, outputs, fig, foreign, moved)
+            if qid == 'q1' and 'q1' in reran:
+                # raw_data itself was wrong: the other Task 1 lines on the reference raw_data,
+                # with the printed/renamed evidence; the reading marks stay lost.
+                trial = dict(res)
+                n2, f2 = ow.rescore(ig, gf, qid, q, trial, [('the reference-input re-run of Task 1',
+                                                             _RerunNamespace(final, 'q1'), 'q1')],
+                                    REQUIRED[qid], WATCH, local, names, outputs, fig, foreign, moved)
+                f.extend(f2)
+                if n2:
+                    credit = max(0.0, trial['awarded'] - RAW_DATA_MARKS)
+                    if credit > res['awarded'] + 1e-9:
+                        n2.update(original=res['awarded'], awarded=credit,
+                                  detail=n2['detail'] + '; the %g marks for reading raw_data stay lost' % RAW_DATA_MARKS)
+                        res.update(awarded=credit, ok=False, fix=n2['fix'], detail=n2['detail'])
+                        note = n2
+        flags.extend(f)
+        if note:
+            notes[qid] = note
+    return dict(version=ow.OWNWORK_VERSION, notes=notes, flags=flags, outputs=len(outputs))
+
+
+def _ownwork_q7(gf, worker, per_cell, cohort, res, names, local, snaps, foreign=()):
+    """Q7 under another function name: full credit when it is the only function the
+    student defined in Task 7 (or the only one sharing a word with the required name)."""
+    import ownwork_fairness as ow
+    from isolated_grading import Namespace
+    final = Namespace(worker, per_cell)
+    moved_or_foreign = foreign = set(foreign)
+    pool = [c for c in names if c != FUNCTION and not c.startswith('_') and c not in gf.NOT_ALIASES
+            and c not in foreign and gf.alias_tier(FUNCTION, c)]
+    pool += [c for c in local if c != FUNCTION and c not in pool and not c.startswith('_') and c not in moved_or_foreign]
+    funcs = [c for c in pool if ow.family(ow._safe_get(final, c)) == 'callable']
+    shared = [c for c in funcs if gf.alias_tier(FUNCTION, c)]
+    clear = funcs if len(funcs) == 1 else shared if len(shared) == 1 else []
+    flags = []
+    if not clear and len(funcs) > 1:
+        flags.append('AMBIGUOUS_NAME q7: several functions (%s) and none is the only clear candidate' % ', '.join(funcs[:6]))
+        return None, flags
+    if not clear:
+        return None, flags
+    name = clear[0]
+    scopes = [('the whole notebook', {})] + [('cell %s' % cell, {'state': i}) for i, cell in enumerate(snaps)]
+    best = None
+    for label, scope in scopes:
+        credit = _q7_fraction(worker, per_cell, scope, cohort, name) * res['marks']
+        if credit > res['awarded'] + 1e-9 and (best is None or credit > best[0] + 1e-9):
+            best = (credit, label)
+    if not best:
+        return None, flags
+    note = dict(original=res['awarded'], awarded=round(best[0], 4), fix=ow.FIX_NAME,
+                detail='%s called with the reference tables, each key checked on its own (%s)' % (name, best[1]))
+    res.update(awarded=note['awarded'], ok=note['awarded'] >= res['marks'] - 1e-9, fix=note['fix'], detail=note['detail'])
+    return note, flags
