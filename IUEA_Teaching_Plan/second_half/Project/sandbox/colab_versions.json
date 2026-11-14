@@ -1,0 +1,26 @@
+{
+  "source": "https://github.com/googlecolab/backend-info (os-info.txt and pip-freeze.txt, main branch), read on 13 November 2026",
+  "note": "Colab's own file says the list may lag the live runtime by a few days. Re-read it before the window and rebuild if a version moved.",
+  "os": "Ubuntu 24.04.5 LTS",
+  "python": "3.13.18",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3",
+    "matplotlib": "3.10.0",
+    "ipython": "7.34.0",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0",
+    "python-dateutil": "2.9.0.post0",
+    "pytz": "2025.2",
+    "tzdata": "2026.6",
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "fonttools": "4.68.0",
+    "kiwisolver": "1.5.1",
+    "packaging": "26.3",
+    "pillow": "11.3.0",
+    "pyparsing": "3.3.3"
+  }
+}

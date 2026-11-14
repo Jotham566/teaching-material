@@ -8,9 +8,9 @@ LAB = BUILD.parent / 'Lab Notebooks'
 OUT = BUILD.parent / 'Student Packages'
 NAMES = {1: 'First_Model', 2: 'Classification', 3: 'Trust', 4: 'Features_and_Model_Choice'}
 OUT.mkdir(exist_ok=True)
-# the Engineering ML project is online, Monday 23 November 00:00 to Wednesday 25 November 23:59 (Kampala time), and covers Classes 1 to 3
+# the Engineering ML project is online, Monday 23 November 00:00 to Wednesday 25 November 23:59 (Kampala time); Week 10 is a revision class on the rehearsal
 PROJECT_NOTE = {1: ' The Engineering ML project (online, 23 to 25 November) uses these steps.', 2: ' The Engineering ML project (online, 23 to 25 November) uses these steps.',
-                3: ' This is the last class before the Engineering ML project (online, 23 to 25 November). The rehearsal is released right after this class.',
+                3: ' Week 10 is a revision class that works through the project rehearsal, so read these slides and do this lab at home. The Engineering ML project is online, 23 to 25 November.',
                 4: ' Class 4 content is not in the Engineering ML project.'}
 for code in ('CML3112', 'CML3113', 'CML3111'):
     c = C.COHORTS[code]

@@ -7,3 +7,11 @@ Share these with the rehearsal (after Class 3) and again before the window. The 
 | CML3112 | Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59 | [https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3112%7CML_PROJECT](https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3112%7CML_PROJECT) |
 | CML3113 | Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59 | [https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3113%7CML_PROJECT](https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3113%7CML_PROJECT) |
 | CML3111 | Monday 23 November 2026, 00:00 to Wednesday 25 November 2026, 23:59 | [https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3111%7CML_PROJECT](https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3111%7CML_PROJECT) |
+
+## Rehearsal links (unmarked, never locked)
+
+| Course | Rehearsal entry link |
+|---|---|
+| CML3112 | [https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3112%7CML_REHEARSAL](https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3112%7CML_REHEARSAL) |
+| CML3113 | [https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3113%7CML_REHEARSAL](https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3113%7CML_REHEARSAL) |
+| CML3111 | [https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3111%7CML_REHEARSAL](https://iuea-test-entry.jothammartin-wambi.workers.dev/?test=CML3111%7CML_REHEARSAL) |

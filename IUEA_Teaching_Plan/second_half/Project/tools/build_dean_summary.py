@@ -24,26 +24,22 @@ import project_content as PC  # noqa: E402
 FONT = 'Lato'
 OUT = PC.PROJECT / 'Dean_Summary_ML_Project.docx'
 
-PART_A = [('Clean the rows (dates, an empty reading, impossible values, a column that leaks the answer)', 3),
-          ('Split the year by month into training, validation and test sets', 2),
-          ('Train a baseline model, linear regression and a decision tree', 4),
-          ('Measure the error: MAE and RMSE', 2),
-          ('Warning probabilities with logistic regression', 2),
-          ('Confusion matrix, precision, recall, F1, cost and AUC at a chosen threshold', 4),
-          ('Cross-validation by month', 4),
-          ('Results on the data file', 1),
-          ('The test-set result for the chosen model', 2),
-          ('Test set opened once, after the choice', 2),
-          ('No data leakage: preprocessing fitted on training rows only', 2),
-          ('Reproducible with a fixed random seed', 1),
-          ('Two labelled charts and the required functions present', 1)]
-PART_B = [('Recommended model and decision threshold', 3), ('Validation error of the three models', 3), ('Test-set error and warning recall', 2),
-          ('Cross-validation mean error', 1), ('Three true limits of the study, chosen from ten statements', 3), ('Best next step, chosen from five', 1),
-          ('Two short written answers: why this model, and why the test set is opened only once', 2)]
+PART_A = [('Clean the real data (dates, an all-zero reading, a column that leaks the answer, impossible values)', 7),
+          ('Two labelled charts of the data', 2),
+          ('Split the year by month into training, validation and test sets (the rule is given)', 2),
+          ('Train a baseline model, linear regression and a decision tree, each with missing values filled from training rows', 6),
+          ('Measure the error: MAE and RMSE', 3),
+          ('No data leakage: anything learned from the data comes from training rows only', 2),
+          ('Warning question: logistic regression, with the confusion matrix, precision and recall at a cut-off of 0.5', 3),
+          ('Test set opened once, after the model is chosen, and its result', 2),
+          ('Results on the data file, a fixed random seed, the required functions present', 3)]
+PART_B = [('Recommended model', 3), ('Validation error of the three models', 3), ('Test-set error and warning recall', 2),
+          ('How much better the recommended model is than the baseline', 1), ('Three true limits of the study, chosen from ten statements', 3),
+          ('Best next step, chosen from five', 1), ('Two short written answers: why this model, and why the test set is opened only once', 2)]
 
 
 def check_facts():
-    assert sum(m for _, m in PART_A) == PC.AUTO_MARKS == 30
+    assert sum(m for _, m in PART_A) == PC.AUTO_MARKS == 30 and len(PART_A) == 9
     assert sum(m for _, m in PART_B) == PC.PART_B == 15
     assert PC.WINDOW['opens'] == 'Monday 23 November 2026, 00:00' and PC.WINDOW['closes'] == 'Wednesday 25 November 2026, 23:59'
     assert PC.WINDOW['last_full_start'] == 'Wednesday 25 November 2026, 20:59'
@@ -133,7 +129,7 @@ def build():
 
     para(d, 'International University of East Africa, Faculty of Engineering', True, 10.5, after=10)
     for k, v in [('To', 'The Dean, Faculty of Engineering'), ('From', 'Jotham Martin Wambi, lecturer, Machine Learning for Engineers'),
-                 ('Courses', 'CML3111, CML3112 and CML3113 (Year 3)'), ('Date', '13 November 2026'),
+                 ('Courses', 'CML3111, CML3112 and CML3113 (Year 3)'), ('Date', '14 November 2026'),
                  ('Subject', 'Final practical project for Semester 1: the questions, the instructions and how it will be taken')]:
         p = para(d, after=2)
         run(p, f'{k}: ', True); run(p, v)
@@ -148,13 +144,17 @@ def build():
               '(Kampala time). There is no room booking.', 'Window.')
     bullet(d, 'Each student works alone for 3 hours, counted on our server from the moment they press Start. The clock cannot be paused. '
               'A student who starts after 20:59 on Wednesday only has the time left before 23:59.', 'Time.')
-    bullet(d, 'Students use their own laptop and Google account and work in Google Colab. They sign in on the same entry page we used for '
-              'Practical Test 1, receive their own notebook, and submit it from its last cell. Late submissions are kept but not marked.', 'Setup.')
+    bullet(d, 'Students use their own laptop and Google account and work in Google Colab. They sign in on an entry page that checks their '
+              'registration number against the class list. Pressing Start creates their own copy of the notebook in my Google Drive and '
+              'shares it with them.', 'Setup.')
+    bullet(d, 'There is no submit button to forget. At each student\'s deadline their access ends and the work saved by then is '
+              'collected automatically. The notebook also keeps a backup every five minutes, so a student who runs out of time, loses '
+              'power or works in a copy of the file still has their work marked. Nothing saved after the deadline counts.', 'Collection.')
     bullet(d, 'I answer questions about wording and technical problems on the class channel from 08:00 to 20:00 on each day of the window. '
               'If a student\'s laptop or connection fails, they report it at once with a screenshot and I can give one fresh attempt, still '
               'ending at the window\'s close.', 'Support.')
     bullet(d, f'Students get an unmarked practice version right after Class 3: CML3112 on {rehearsal["CML3112"]}, CML3113 and CML3111 on '
-              f'{rehearsal["CML3111"]}. It uses the same file with a different target, so it does not give away the real questions.', 'Rehearsal.')
+              f'{rehearsal["CML3111"]}. It uses the same file with a different target, so it does not give away the real questions. I will work through it with each class in that week\'s revision class.', 'Rehearsal.')
 
     heading(d, '2. The data')
     para(d, 'Every student gets the same real dataset: one year (2018) of electricity readings from a steel plant in Gwangyang, South Korea, '
@@ -171,20 +171,22 @@ def build():
     bullet(d, 'How much energy will the plant use in each 15-minute period, in kWh, for months the model has not seen? Students compare three '
               'models (a simple baseline that predicts the average, linear regression and a decision tree) and report the errors.', 'Question 1.')
     bullet(d, 'Should a reading raise a warning? A reading at or above 60 kWh in a quarter hour is a warning, since that is when peak-demand '
-              'charges build up. Students estimate a probability for each reading with logistic regression, choose a cut-off using a table '
-              'of costs (a missed warning costs five times a false alarm), and report how many warnings they catch and miss.', 'Question 2.')
+              'charges build up. Students estimate a probability for each reading with logistic regression and, at a cut-off of 0.5, report how '
+              'many warnings they catch, miss and raise wrongly. This question carries only 3 of the 30 marks.', 'Question 2.')
     para(d, 'They train on January to August, check on September and October, and keep November and December as a test set that they may '
-            'open only once, after they have chosen their model. They finish with a short decision memo for the manager. The 60 kWh limit, '
-            'the costs and the manager\'s limits on error (10 kWh) and response time (50 ms) are set by me for teaching and are stated as '
-            'such in the brief.', before=3)
+            'open only once, after they have chosen their model. They finish with a short decision memo for the manager. The 60 kWh limit '
+            'and the manager\'s limits on error (10 kWh) and response time (50 ms) are set by me for teaching and are stated as such in the '
+            'brief. The rule for choosing the model is given to them in the notebook.', before=3)
 
     heading(d, '4. Tasks and marks')
     para(d, 'Part A is the coded notebook, 30 marks. Students write the code for each step as a function.', after=3)
     table(d, [[t, m] for t, m in PART_A] + [['Total', 30]], [13.6, 2.6], ['Part A task', 'Marks'])
     para(d, 'Part B is the decision memo, 15 marks, written as a short form inside the notebook.', after=3)
     table(d, [[t, m] for t, m in PART_B] + [['Total', 15]], [13.6, 2.6], ['Part B field', 'Marks'])
-    para(d, 'The 45 marks are scaled to 40 percent. Everything tested was taught in Weeks 1 to 10, up to Class 3. The material from Class 4 '
-            '(Week 11) is left out, because two of the three classes meet for it after the window.')
+    para(d, 'The 45 marks are scaled to 40 percent. The project rests on what all three classes have been taught: Python and data handling '
+            '(Weeks 1 to 7) and the regression workflow of Week 8. The warning question uses Week 9, which two classes had as a lecture; '
+            'all three meet it again in next week\'s revision class. I have left out cross-validation and the later topics, which there was '
+            'no time to teach before the window.')
 
     heading(d, '5. Rules for students')
     bullet(d, 'Colab, the course slides, their lab notebooks, the revision guide and their own notes.', 'Allowed:')
@@ -194,9 +196,11 @@ def build():
               'I applied the same rule when re-checking Practical Test 1 and the coding assignments.', 'Own cells:')
 
     heading(d, '6. Marking')
-    bullet(d, 'The notebooks are marked by computer, as Practical Test 1 was. Each student\'s functions are run on rows they have never seen, '
-              'so they need working code, and copying another student\'s printed numbers earns almost nothing (1 mark of 30).', 'Automatic.')
-    bullet(d, 'Before release I ran the marking on 149 prepared notebooks, correct, partly correct, wrong and dishonest ones, and each received '
+    bullet(d, 'The notebooks are marked by computer, as Practical Test 1 was, but now as each one arrives, in a locked-down copy of the '
+              'Colab setup. Each student\'s functions are run on rows they have never seen, so they need working code, and copying another '
+              'student\'s printed numbers earns almost nothing (1 mark of 30). On submitting, a student sees at once that the notebook arrived, '
+              'runs from the top and has every required part. The marks are released after the window closes.', 'Automatic.')
+    bullet(d, 'Before release I ran the marking on 161 prepared notebooks, correct, partly correct, wrong and dishonest ones, and each received '
               'the mark it should.', 'Tested.')
     bullet(d, 'The computer compares all notebooks for copied code and copied written answers, and checks each notebook against the identity '
               'used at entry. I look at every flagged case myself. Because the project is unsupervised, I may also ask any student to explain or '
@@ -205,7 +209,7 @@ def build():
               'feedback for each task.', 'Results.')
 
     heading(d, '7. Still to be done before the window')
-    bullet(d, 'Set up the submission forms and run the whole process once in Colab myself, from entry to marked result.')
+    bullet(d, 'Switch on the automatic marking and the submission page, then run the whole process once in Colab myself, from entry to marked result.')
     bullet(d, 'Confirm the 08:00 to 20:00 support hours with the three classes.')
     bullet(d, 'Any student with approved extra time or another arrangement: I would be grateful to know by 20 November so it can be set up.')
 

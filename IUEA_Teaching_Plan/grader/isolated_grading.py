@@ -15,7 +15,9 @@ import sys
 import time
 import uuid
 
-IMAGE = 'iuea-notebooks:2026.09'
+# The sandbox image. Tests 1 and 2 and A2-A5 keep the default; the ML project sets IUEA_NOTEBOOK_IMAGE to its Colab-matching image
+# (second_half/Project/sandbox, 13 November 2026). Every other docker run option below is the same for both.
+IMAGE = os.environ.get('IUEA_NOTEBOOK_IMAGE', 'iuea-notebooks:2026.09')
 HERE = Path(__file__).resolve().parent
 MAX_MESSAGE = 8 * 1024 * 1024
 

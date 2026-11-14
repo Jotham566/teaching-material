@@ -1,0 +1,45 @@
+PASS  class list: loaded by the script function from a gradebook CSV (made-up rows)
+PASS  setup: the every-minute deadline trigger is installed once
+PASS  entry page: a registration on the list shows the name to confirm  [{'ok': True, 'result': {'registration': '26/E2E/001/AAA', 'nameHint': 'Test L. A.', 'course': 'CML3112'}}]
+PASS  wrong-course registration: refused with the right course named  [This registration number is on the CML3113 class list, not CML3112. Use the CML3113 project link from your lecturer.]
+PASS  wrong-course registration: no notebook is issued  [This registration number is on the CML3113 class list, not CML3112. Use the CML3113 project link from your lecturer.]
+PASS  Start: the notebook is a Drive file shared with the Google email as an editor, recorded against the allocation
+PASS  the identity cell is information only: name from the class list, the allocation code, no token, no deadline logic
+PASS  the countdown reminds the student to press Ctrl+S at 30 and 10 minutes
+PASS  wrong account: the same registration with another Google email is refused  [These details do not match the earlier allocation. Use the same Google email and registration number, or ask your lecturer for help.]
+PASS  wrong account: Colab signed in as another account cannot save to the issued notebook
+PASS  bootstrap: without the one-time file pushed by the setup script the route refuses  [{'ok': False, 'error': 'The request could not be completed. Try again; if it keeps failing, tell your lecturer.'}]
+PASS  wrong account: one call gives a fresh attempt; the new notebook is shared with the right account and the old one is read only  [None]
+PASS  I have finished: only the entry page itself can ask (same origin)
+PASS  I have finished: collected at once, from the saved notebook  [{'ok': True, 'result': {'course': 'CML3112', 'rehearsal': False, 'state': 'collected', 'deadline': '2026-11-14 08:47:55', 'collected': {'source': 'your saved notebook', 'time': '2026-11-14 06:37:56'}, 'last_backup': '', ]
+PASS  I have finished: editing stops (read only), so a later save is refused
+PASS  backup: sent from Colab (no Origin), timestamped by the server, the issued file  [{'ok': True, 'result': {'received_at': '2026-11-14 06:47:56', 'on_time': True, 'other_file': False, 'closed': False}}]
+PASS  Check my work: the saved notebook is sent for the structural checks  [{'ok': True, 'result': {'check': 'C-2889064148b74eeaa65d', 'checked_version': '2026-11-14 06:47:56', 'issued_file': True, 'pending': True}}]
+PASS  Check my work: at most one check every two minutes  [Wait two minutes between checks. The last result is shown below.]
+PASS  Check my work: the page shows runs from the top, functions and MEMO found, the issued file, and no mark  [{'runs_from_top': True, 'first_failed_cell': '', 'missing_functions': [], 'memo_found': True, 'issued_file': True, 'checked': '2026-11-14 06:48:06'}]
+PASS  saved a copy: the backup still arrives and the server says it is another file (the cell shows the warning)  [{'ok': True, 'result': {'received_at': '2026-11-14 07:28:06', 'on_time': True, 'other_file': True, 'closed': False}}]
+PASS  whole-class extension: one call moves every CML3113 deadline and the window close, and is logged  [{'ok': True, 'changed': 1}]
+PASS  deadline: the trigger collects every project attempt past its deadline and none before  [['26/E2E/001/AAA', '26/E2E/002/BBB', '26/E2E/003/CCC', '26/E2E/005/EEE', '26/E2E/006/FFF', '26/E2E/007/GGG', '26/E2E/008/HHH', '26/E2E/009/III']]
+PASS  deadline: editing stops (read only); the newer of the last save and the last backup is used  [Collected (deadline) from the newest on-time backup saved 2026-11-14 06:47:56; the Drive file was last saved 2026-11-14 06:47:56.]
+PASS  saved a copy: the newest on-time backup is marked, with the source on the row  [Collected (deadline) from the newest on-time backup saved 2026-11-14 07:28:06; the Drive file was last saved 2026-11-14 05:47:55; backups came from another file: file0000000013.]
+PASS  laptop died at minute 170: the newest of the last save (minute 160) and the last backup (minute 165) is collected  [Collected (deadline) from the newest on-time backup saved 2026-11-14 08:33:07; the Drive file was last saved 2026-11-14 08:28:06.]
+PASS  stopped the backup thread: the last Drive save is collected
+PASS  pressed Start and nothing else: the issued notebook is collected (it will mark 0)
+PASS  never pressed anything: no allocation, nothing collected
+PASS  a backup after the deadline is kept and not used  [{'ok': True, 'result': {'received_at': '2026-11-14 08:53:07', 'on_time': False, 'other_file': False, 'closed': True}}]
+PASS  one-student extension: the attempt is opened again (editing restored) without touching any sheet by hand
+PASS  whole-class extension: K is collected only after the extended deadline
+PASS  one-student extension: G is collected again at the new deadline
+PASS  rehearsal: never locked (still an editor after the deadline and after I have finished) and nothing in Collection
+PASS  rehearsal: the checks are shown at once and there is never a mark  [{'course': 'CML3112', 'rehearsal': True, 'state': 'open', 'deadline': '2026-11-14 08:47:56', 'collected': None, 'last_backup': '', 'checks': {'runs_from_top': True, 'first_failed_cell': '', 'missing_functions': [], 'memo]
+PASS  no mark before the release switch
+PASS  release switch on, window still open: still no mark
+PASS  release switch on and window closed: the mark is shown  [Part A 30, Part B 15, total 45 (final after the lecturer's checks)]
+PASS  final run: one command re-grades, writes the gradebook files and agrees with Actions
+PASS  marks: full work collected from a save or a backup earns 45 (A, B, C, G, I, K)  [{'A': 45.0, 'B': 45.0, 'C': 45.0, 'G': 45.0, 'I': 45.0, 'K': 45.0}]
+PASS  marks: the mistake collected at the deadline costs marks; the corrected late backup does not count (F)  [43.8]
+PASS  marks: Start and nothing else earns 0 and is flagged NO_WORK (E, H)  [(0.0, 0.0)]
+PASS  spot-check list: the source and time are listed with no action needed (backup, other file, late backup)  [{'B': ['COPY_CODE', 'SAME_WRITTEN_ANSWERS', 'COLLECTED_FROM_BACKUP', 'WORKED_IN_OTHER_FILE'], 'C': ['COPY_CODE', 'SAME_WRITTEN_ANSWERS', 'COLLECTED_FROM_BACKUP'], 'F': ['COPY_CODE', 'SAME_WRITTEN_ANSWERS', 'COLLECTED_FRO]
+PASS  never pressed anything: 0 and 0 in the gradebook files (no submission)  [{'student_id': '26/E2E/004/DDD', 'status': 'AUTO_SCORED', 'score': '0', 'maximum': '30'}]
+
+43 of 43 pipeline checks pass (image iuea-notebooks:colab-2026.11).

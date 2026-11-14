@@ -1,38 +1,22 @@
 /** Add this file to the lecturer-owned collector project (the one that holds exam_collection.gs), AFTER replacing exam_collection.gs with deploy/exam_collection.gs.
- * Creates the three ML_PROJECT submission forms exactly as installColabExamCollection created the Test 1 and Test 2 forms, and the three Test windows rows
- * with duration_minutes=180. Nothing is opened: every row is created with enabled NO and empty times. Run installMlProjectCollection() once.
+ * Creates the three ML_PROJECT Test windows rows with duration_minutes=180. Nothing is opened: every row is created with enabled NO and empty times.
+ * The project has no Google Form: notebooks arrive through the submission web app (deploy/ml_project_pipeline.gs). Run installMlProjectCollection() once.
  */
 var ML_PROJECT_MINUTES = 180;
 function installMlProjectCollection(){
  var lock=LockService.getScriptLock();lock.waitLock(30000);
  try{
   var c=examConfig_();
-  if(!c.bookId||!c.folderId)throw Error('Run installColabExamCollection first: the collector workbook does not exist yet.');
-  c.forms=c.forms||{};
-  var book=SpreadsheetApp.openById(c.bookId);
-  var windows=book.getSheetByName('Test windows');
+  if(!c.bookId)throw Error('Run installColabExamCollection first: the collector workbook does not exist yet.');
+  var windows=SpreadsheetApp.openById(c.bookId).getSheetByName('Test windows');
   if(!windows)throw Error('The Test windows sheet is missing.');
-  var created=[];
+  var have=windows.getDataRange().getValues().map(function(r){return r[0];}),created=[];
   ['CML3111','CML3112','CML3113'].forEach(function(cohort){
-   var key=cohort+'|ML_PROJECT';
-   if(c.forms[key])return;
-   var form=FormApp.create(cohort+' ML_PROJECT — Colab test submission');
-   form.setDescription('Use the Submit test button at the end of your issued Colab notebook. It prepares the fields below. Sign in with the same Google account used in Colab. Submit before your personal deadline. Your exact notebook snapshot is copied to the lecturer’s private folder. No download or file upload is required.');
-   form.setCollectEmail(true).setLimitOneResponsePerUser(true).setAllowResponseEdits(false);
-   var names=['Full name','Student Registration Number','Variant','Snapshot file ID','Snapshot SHA-256'];var items={};
-   names.forEach(function(name){var item=form.addTextItem().setTitle(name).setRequired(true);if(name==='Student Registration Number')item.clearValidation().setHelpText('Enter your own registration number exactly as on your university record. Any format is accepted.');items[name]=item.getId();});
-   form.setConfirmationMessage('Your response has been recorded. The lecturer’s system will verify and collect the notebook snapshot. Keep your snapshot in Drive until grades are released. If the button or form reported an error, tell the lecturer immediately. Grades are calculated after the sitting. One submission is allowed per Google account and per Student Registration Number. Responses cannot be edited. Contact your lecturer if a correction is needed.');
-   form.setDestination(FormApp.DestinationType.SPREADSHEET,c.bookId);
-   if(typeof form.setPublished==='function')form.setPublished(true);
-   form.setAcceptingResponses(false);
-   var prefill=form.createResponse();form.getItems(FormApp.ItemType.TEXT).forEach(function(item){prefill.withItemResponse(item.asTextItem().createResponse('PLACEHOLDER_'+item.getId()));});
-   c.forms[key]={formId:form.getId(),url:form.getPublishedUrl(),prefill:prefill.toPrefilledUrl(),items:items};examSave_(c);
-   windows.appendRow([key,'','','NO',ML_PROJECT_MINUTES]);
-   ScriptApp.newTrigger('collectColabExamResponse').forForm(form).onFormSubmit().create();
-   created.push(key);
+   var key=cohort+'|ML_PROJECT';if(have.indexOf(key)>=0)return;
+   windows.appendRow([key,'','','NO',ML_PROJECT_MINUTES]);created.push(key);
   });
-  console.log('Created forms: '+(created.join(', ')||'none (all three already existed)')+'. Every Test windows row is enabled NO. Nothing was opened.');
-  console.log('PUBLIC_NOTEBOOK_CONFIG '+JSON.stringify({lecturer_email:EXAM_OWNER,forms:c.forms}));
+  console.log('Test windows rows created: '+(created.join(', ')||'none (all three already existed)')+'. Every row is enabled NO. Nothing was opened.');
+  console.log('Collector workbook id (BOOK_ID for the submission web app): '+c.bookId);
  }finally{lock.releaseLock();}
 }
 /** Read only. Logs the three ML_PROJECT Test windows rows so you can check the typed times and the duration. */

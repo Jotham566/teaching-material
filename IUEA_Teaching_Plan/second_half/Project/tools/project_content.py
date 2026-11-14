@@ -38,10 +38,10 @@ MINUTES = 180
 REHEARSAL_TEXT = {c: f'{COHORT[c]["class3"]}, right after Class 3' for c in COHORT}
 AUTO_MARKS = K.PART_A_MAX                         # 30
 PART_B = K.PART_B_MAX                             # 15
-TIME_PLAN = [('Setup: open your notebook, run the first cells', 10), ('Tasks 1 and 2: clean the rows, split by month', 35),
-             ('Task 3: the three models', 30), ('Task 4: warnings and the cost table', 25), ('Task 5: cross-validation by month', 15),
-             ('Tasks 6 and 7: choose a model, open the test set once', 10), ('Task 8: the Part B memo form', 25),
-             ('Check, restart and run all, submit', 20), ('Spare time (breaks, reconnecting)', 10)]
+TIME_PLAN = [('Setup: open your notebook, run the first cells', 10), ('Task 1: clean the rows, Chart 1', 40), ('Task 2: split by month', 10),
+             ('Task 3: the three models, MAE and RMSE, Chart 2', 35), ('Task 4: the warning question', 15),
+             ('Tasks 5 and 6: choose a model, open the test set once', 10), ('Task 7: the Part B memo form', 25),
+             ('Check my notebook, restart and run all, submit', 25), ('Spare time (breaks, reconnecting)', 10)]
 assert sum(m for _, m in TIME_PLAN) == MINUTES
 OWN_CELLS = ('You may add your own cells. Your work is marked wherever it is, as long as the required function names exist when '
              'the notebook runs from the top.')
@@ -54,8 +54,8 @@ FEATURE_TEXT = {P.LAG: 'lagging reactive power (kVarh)', P.LEAD: 'leading reacti
 
 def numbers(cfg=P.EXAM):
     p = P.pipeline(cfg)
-    test = P.test_expected(p['chosen_model'], p['chosen_threshold'], cfg)
-    return dict(p=p, chosen=p['chosen_model'], threshold=p['chosen_threshold'], test=test)
+    test = P.test_expected(p['chosen_model'], cfg)
+    return dict(p=p, chosen=p['chosen_model'], threshold=P.THRESHOLD, test=test)
 
 
 def options(code, v=None):
@@ -69,6 +69,11 @@ def packed_data(width=100):
 
 
 _PACKED = None
+
+
+def _backup_code():
+    import pipeline_cells as PL
+    return PL.backup_code()
 
 
 def setup_cell(cfg=P.EXAM):
@@ -96,7 +101,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.dummy import DummyRegressor
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.metrics import confusion_matrix, precision_score, recall_score, roc_auc_score
 
 DATA_FILE = {P.DATA_NAME!r}
 DATA_SHA256 = {P.DATA_SHA256!r}
@@ -120,7 +125,7 @@ LIMIT = {cfg["limit"]!r}          # a reading is a WARNING (1) when its target i
 MAX_MAE = {cfg["max_mae"]!r}         # the client accepts a typical prediction error (MAE) of at most this many {cfg["unit"]} (invented teaching number)
 MAX_MS = {P.MAX_MS}               # and a prediction time of at most this many milliseconds (invented teaching number)
 LATENCY_MS = {P.LATENCY_MS!r}   # invented teaching numbers
-MISSED_COST, FALSE_ALARM_COST = {P.MISS_COST}, {P.ALARM_COST}   # invented teaching costs (a false negative costs 5, a false positive costs 1)
+THRESHOLD = {P.THRESHOLD}       # the decision threshold: a warning when the probability is at or above 0.5 (fixed for the whole project)
 
 def records_from_table(table):
     """A list of dictionaries, one per row. Missing values (NaN) become None."""
@@ -133,7 +138,7 @@ development_records = [r for r in all_records if int(r["date"][3:5]) <= 10]   # 
 print("Rows in the file:", len(raw_table))
 print("Rows you may develop with (January to October):", len(development_records))
 print(raw_table.head())
-'''
+''' + _backup_code()
 
 
 def choose_cell():
@@ -157,20 +162,18 @@ TEST_OPEN_LOG = []
 TEST_OUTCOMES = []
 _TEST_FILE = "test_first_opening.json"
 
-def open_test_set(model_name, threshold):
-    """Evaluate ONE chosen model and ONE chosen decision threshold on the test set (November and December), with the functions you wrote."""
+def open_test_set(model_name):
+    """Evaluate ONE chosen model on the test set (November and December), with the functions you wrote. Warnings use THRESHOLD (0.5)."""
     if model_name not in ("baseline", "linear", "tree"):
         raise ValueError('model_name must be "baseline", "linear" or "tree"')
-    if not isinstance(threshold, (int, float)) or not 0 < threshold < 1:
-        raise ValueError("threshold must be a number between 0 and 1")
     first = _json.load(open(_TEST_FILE)) if os.path.exists(_TEST_FILE) else None
     if first is None:
-        _json.dump({"model": model_name, "threshold": threshold}, open(_TEST_FILE, "w"))
-    TEST_OPEN_LOG.append([model_name, threshold])
-    changed = first is not None and (first["model"] != model_name or first["threshold"] != threshold)
-    if changed:
-        print("WARNING: THE TEST SET WAS ALREADY OPENED with model", first["model"], "and threshold", first["threshold"],
-              "- opening it again with a different choice means it is no longer an honest test.")
+        _json.dump({"model": model_name}, open(_TEST_FILE, "w"))
+    TEST_OPEN_LOG.append([model_name, THRESHOLD])
+    changed = first is not None and first["model"] != model_name
+    if first is not None:
+        print("WARNING: THE TEST SET WAS ALREADY OPENED with model", first["model"],
+              "- opening it again means it is no longer an honest test.")
     cleaned = clean_rows(all_records)
     development = [r for r in cleaned if r["month"] <= 10]
     held_out = [r for r in cleaned if r["month"] >= 11]
@@ -178,13 +181,15 @@ def open_test_set(model_name, threshold):
     actual = [r[TARGET] for r in held_out]
     errors = regression_errors(actual, fit_predict_regression(development, features)[model_name])
     probability = warning_probabilities(development, features, LIMIT)
-    warning = classification_scores([1 if v >= LIMIT else 0 for v in actual], probability, threshold)
-    outcome = {"model": model_name, "threshold": threshold, "n_rows": len(held_out), "mae": errors["mae"], "rmse": errors["rmse"],
+    warning_actual_test = [1 if v >= LIMIT else 0 for v in actual]
+    warning = classification_scores(warning_actual_test, probability)
+    outcome = {"model": model_name, "n_rows": len(held_out), "mae": errors["mae"], "rmse": errors["rmse"],
                "warning": warning, "changed_after_opening": bool(changed)}
     TEST_OUTCOMES.append(outcome)
-    print("Test set opened with", model_name, "and threshold", threshold, "on", len(held_out), "rows")
+    print("Test set opened with", model_name, "on", len(held_out), "rows")
     print("  MAE", round(errors["mae"], 3), TARGET_UNIT, "| RMSE", round(errors["rmse"], 3), TARGET_UNIT)
-    print("  warnings: precision", round(warning["precision"], 3), "recall", round(warning["recall"], 3), "F1", round(warning["f1"], 3), "AUC", round(warning["auc"], 3))
+    print("  warnings at threshold", THRESHOLD, ": precision", round(warning["precision"], 3), "recall", round(warning["recall"], 3))
+    print("  (for interest, not marked) AUC", round(float(roc_auc_score(warning_actual_test, probability)), 3))
     return outcome
 '''
 
@@ -298,7 +303,7 @@ print("Training rows:", len(train_rows), "| validation rows:", len(valid_rows))
 ''')]))
 
     feats = ', '.join(f'`{c}`' for c in cfg['features'])
-    out.append(dict(key='regression', title='Question 1: a baseline model, a linear regression and a decision tree', week='Weeks 8 and 9', marks=dict(regression=marks['regression'], errors=marks['errors']),
+    out.append(dict(key='regression', title='Question 1: a baseline model, a linear regression and a decision tree', week='Weeks 8 and 9', marks=dict(regression=marks['regression'], errors=marks['errors'], leakage=marks['leakage'], charts=marks['charts']),
                      intro=f'''**Question 1.** How much is {cfg['what']}, in {u}, for months the model has never seen?
 
 `fit_predict_regression(training_records, feature_records)` trains (fits) three models on the training records and predicts for the feature records. Use the columns in `FEATURES` ({feats}), in that order. The feature records have **no target**.
@@ -309,7 +314,11 @@ print("Training rows:", len(train_rows), "| validation rows:", len(valid_rows))
 
 Return a dictionary with three lists of predictions, in the order of the feature records. The baseline model must use the **training** rows only: a baseline built with validation or test targets has **leaked**.
 
-`regression_errors(actual, predicted)` returns `{{"mae": ..., "rmse": ...}}` over the same pairs, not rounded. A **residual** is actual minus predicted. MAE (mean absolute error) is the mean of the absolute residuals. RMSE (root mean squared error) is the square root of the mean of the squared residuals.''',
+`regression_errors(actual, predicted)` returns `{{"mae": ..., "rmse": ...}}` over the same pairs, not rounded. A **residual** is actual minus predicted. MAE (mean absolute error) is the mean of the absolute residuals. RMSE (root mean squared error) is the square root of the mean of the squared residuals.
+
+**No leakage ({marks['leakage']} marks).** The marking computer gives your function extra feature rows with extreme values and checks that the predictions for the other rows do not change (the imputer learned its medians from the training rows only), and it shifts the training targets to check that the baseline predicts the mean of the training targets it was given.
+
+**Charts ({marks['charts']} marks).** One mark for Chart 1 (Task 1) and one for Chart 2 (below): each needs a title, both axis names, the unit on the y axis, and the right data.''',
                      cells=[('''def fit_predict_regression(training_records, feature_records):
     """Return {"baseline": [...], "linear": [...], "tree": [...]}."""
     # TODO 1: table = pd.DataFrame(training_records); new = pd.DataFrame(feature_records)
@@ -372,14 +381,12 @@ plt.show()
     reason = ('A quarter hour at or above 60 kWh means the plant is drawing at least 240 kW on average, which is when peak-demand charges build up. '
               'The column `Load_Type` is not used for the warning: it follows the clock (a time-of-day band), so it says nothing about what the meter measured.'
               if cfg['key'] == 'exam' else 'A high lagging reactive power is when the plant is most likely to pay a power-factor penalty.')
-    out.append(dict(key='warning', title='Question 2: which readings should raise a warning?', week='Weeks 9 and 10', marks=dict(warning=marks['warning'], scores=marks['scores']),
+    out.append(dict(key='warning', title='Question 2: which readings should raise a warning?', week='Weeks 9 and 10', marks=dict(warning=marks['warning']),
                      intro=f'''**Question 2.** A reading is a **warning** (1, the positive class) when its `{t}` is at or above `LIMIT` ({cfg['limit']:g} {u}) and **no warning** (0, the negative class) below it. {reason} The limit is an invented teaching number. Which readings should raise a warning?
 
-`warning_probabilities(training_records, feature_records, limit)` returns the probability of a warning, for each feature record, from a pipeline of `SimpleImputer(strategy="median")`, `StandardScaler()` and `LogisticRegression(max_iter=1000)` (binary classification), fitted on the training records only. The label is `1` when the training target is `>= limit`. Use the columns in `FEATURES`.
+`warning_probabilities(training_records, feature_records, limit)` returns the probability of a warning, for each feature record, from a pipeline of `SimpleImputer(strategy="median")`, `StandardScaler()` and `LogisticRegression(max_iter=1000)` (binary classification), fitted on the training records only. The label is `1` when the training target is `>= limit`. Use the columns in `FEATURES`. (1 mark)
 
-`classification_scores(actual, probability, threshold)` predicts a warning when the probability is `>= threshold` (the **decision threshold**), then returns a dictionary with the confusion matrix counts `tp`, `fp`, `fn`, `tn` (true positives, false positives, false negatives, true negatives) and `precision`, `recall`, `f1`, `cost` and `auc`. A false negative (a missed warning) costs `MISSED_COST` and a false positive (a false alarm) costs `FALSE_ALARM_COST` (invented teaching costs), so `cost = 5 * fn + 1 * fp`. When a ratio has a zero denominator, use 0. `auc` is the ROC AUC of the probabilities and does not depend on the threshold.
-
-Then try decision thresholds 0.3, 0.5 and 0.7 on the validation set, and keep the one with the lowest cost as `chosen_threshold` (if two tie, take the higher one).''',
+`classification_scores(actual, probability)` predicts a warning when the probability is at or above `THRESHOLD` (0.5, the **decision threshold**, the same for the whole project), then returns a dictionary with the confusion matrix counts `tp`, `fp`, `fn`, `tn` (true positives, false positives, false negatives, true negatives), `precision` and `recall`. When a ratio has a zero denominator, use 0. (2 marks)''',
                      cells=[('''def warning_probabilities(training_records, feature_records, limit):
     """Return a list of warning probabilities, one per feature record."""
     # TODO 1: tables as before; y_train = (training target >= limit) turned into 0 and 1 (astype(int)).
@@ -394,80 +401,35 @@ Then try decision thresholds 0.3, 0.5 and 0.7 on the validation set, and keep th
     model.fit(table[FEATURES].astype(float), y_train)
     return [float(v) for v in model.predict_proba(new[FEATURES].astype(float))[:, 1]]
 '''),
-                            ('''def classification_scores(actual, probability, threshold):
-    """Return tp, fp, fn, tn, precision, recall, f1, cost and auc."""
-    # TODO 1: predicted = 1 where the probability is at or above the threshold, else 0 (a list comprehension).
+                            ('''def classification_scores(actual, probability):
+    """Return tp, fp, fn, tn, precision and recall, with a warning when the probability is at or above THRESHOLD."""
+    # TODO 1: predicted = 1 where the probability is at or above THRESHOLD, else 0 (a list comprehension).
     # TODO 2: tn, fp, fn, tp = confusion_matrix(actual, predicted, labels=[0, 1]).ravel()   (see Class 2)
-    # TODO 3: precision_score, recall_score and f1_score with zero_division=0; roc_auc_score(actual, probability).
-    # TODO 4: cost = MISSED_COST * fn + FALSE_ALARM_COST * fp. Turn numpy numbers into int() and float() before returning.
+    # TODO 3: precision_score and recall_score with zero_division=0. Turn numpy numbers into int() and float() before returning.
     return None
-''', '''def classification_scores(actual, probability, threshold):
-    """Return tp, fp, fn, tn, precision, recall, f1, cost and auc."""
-    predicted = [1 if p >= threshold else 0 for p in probability]
+''', '''def classification_scores(actual, probability):
+    """Return tp, fp, fn, tn, precision and recall, with a warning when the probability is at or above THRESHOLD."""
+    predicted = [1 if p >= THRESHOLD else 0 for p in probability]
     tn, fp, fn, tp = confusion_matrix(actual, predicted, labels=[0, 1]).ravel()
     return {"tp": int(tp), "fp": int(fp), "fn": int(fn), "tn": int(tn),
             "precision": float(precision_score(actual, predicted, zero_division=0)),
-            "recall": float(recall_score(actual, predicted, zero_division=0)),
-            "f1": float(f1_score(actual, predicted, zero_division=0)),
-            "cost": int(MISSED_COST * fn + FALSE_ALARM_COST * fp),
-            "auc": float(roc_auc_score(actual, probability))}
+            "recall": float(recall_score(actual, predicted, zero_division=0))}
 '''),
                             ('''warning_actual = None        # TODO: 1 or 0 for each validation row: is the target at or above LIMIT?
 warning_probability = None   # TODO: warning_probabilities(train_rows, validation_features, LIMIT)
-threshold_table = {}         # TODO: for each threshold in 0.3, 0.5, 0.7: threshold_table[threshold] = classification_scores(...)
-warning_auc = None           # TODO: the "auc" value of any one entry of threshold_table
-chosen_threshold = None      # TODO: the threshold with the lowest cost (if two tie, the higher threshold)
-for threshold, scores in threshold_table.items():
-    print(threshold, scores)
-print("Chosen threshold:", chosen_threshold)
+warning_scores = None        # TODO: classification_scores(warning_actual, warning_probability)
+print("Warnings on the validation set:", warning_scores)
 ''', '''warning_actual = [1 if r[TARGET] >= LIMIT else 0 for r in valid_rows]
 warning_probability = warning_probabilities(train_rows, validation_features, LIMIT)
-threshold_table = {}
-for threshold in (0.3, 0.5, 0.7):
-    threshold_table[threshold] = classification_scores(warning_actual, warning_probability, threshold)
-warning_auc = threshold_table[0.5]["auc"]
-chosen_threshold = sorted(threshold_table, key=lambda th: (threshold_table[th]["cost"], -th))[0]
-for threshold, scores in threshold_table.items():
-    print(threshold, scores)
-print("Chosen threshold:", chosen_threshold)
-''')]))
-
-    out.append(dict(key='monthcv', title='Can you trust it? Cross-validation by month', week='Week 10', marks=dict(monthcv=marks['monthcv']), intro='''One validation set of two months can mislead. **Cross-validation by month** (group K-fold cross-validation where each group is one month, the idea of `GroupKFold`) gives each month a turn as the unseen month.
-
-`month_cv_mae(records)` receives clean records with **no missing values**. Hold out each month from 1 to 10 in turn (January to October; months 11 and 12 are never used). For each fold, fit `LinearRegression` on `FEATURES` using the other nine months, and compute the MAE on the held-out month. Return `{"folds": [...], "mean": ..., "spread": ...}`: the ten MAEs in month order, their mean, and their sample standard deviation (`ddof=1`). Do not round.
-
-**Data leakage check, in your own head:** the imputer, the StandardScaler (standardisation) and the baseline model's mean are all fitted on the training rows only. If any of them had seen validation or test rows, the scores would look better than they are.''',
-                     cells=[('''def month_cv_mae(records):
-    """Return {"folds": [ten MAEs, January to October], "mean": ..., "spread": ...}."""
-    # TODO 1: table = pd.DataFrame(records); keep only the rows whose month is 1 to 10.
-    # TODO 2: for month in range(1, 11): train = the rows of the OTHER months, test = the rows of this month.
-    # TODO 3: fit LinearRegression on train[FEATURES]; the MAE on test is np.mean(np.abs(...)).
-    # TODO 4: mean = np.mean(folds); spread = np.std(folds, ddof=1).
-    return None
-''', '''def month_cv_mae(records):
-    """Return {"folds": [ten MAEs, January to October], "mean": ..., "spread": ...}."""
-    table = pd.DataFrame(records)
-    table = table[table["month"].between(1, 10)]
-    folds = []
-    for month in range(1, 11):
-        train, test = table[table["month"] != month], table[table["month"] == month]
-        model = LinearRegression().fit(train[FEATURES].astype(float), train[TARGET])
-        folds.append(float(np.mean(np.abs(test[TARGET] - model.predict(test[FEATURES].astype(float))))))
-    return {"folds": folds, "mean": float(np.mean(folds)), "spread": float(np.std(folds, ddof=1))}
-'''),
-                            ('''complete_rows = None    # TODO: the development rows with no missing value in FEATURES or TARGET
-cv_summary = None       # TODO: month_cv_mae(complete_rows)
-print("Cross-validated MAE (" + TARGET_UNIT + "):", cv_summary)
-''', '''complete_rows = [r for r in development_rows if all(r[c] is not None for c in FEATURES + [TARGET])]
-cv_summary = month_cv_mae(complete_rows)
-print("Cross-validated MAE (" + TARGET_UNIT + "):", cv_summary)
+warning_scores = classification_scores(warning_actual, warning_probability)
+print("Warnings on the validation set:", warning_scores)
 ''')]))
 
     out.append(dict(key='choose', title='Choose one model with the supplied rule', week='Week 10', marks={}, intro=f'''The model-choice rule is supplied (the cell below says Do not edit this cell). Run it, then use it. The rule: keep the models whose validation MAE is at most `MAX_MAE` **and** whose prediction time is at most `MAX_MS` (both limits included); among those, choose the smallest validation MAE; break a tie by the shorter time, then by the name. If no model qualifies, the rule returns `None`. Never use the test set to choose.
 
 The client for this project is {PAYER}. The client accepts a typical prediction error of at most `MAX_MAE` ({cfg['max_mae']:g} {u}) and a prediction time of at most `MAX_MS` ({P.MAX_MS} ms). Both numbers are invented for teaching.
 
-Your part: build `candidate_table`, one dictionary per model with `name`, `validation_mae` (your own Task 3 value) and `latency_ms` (from `LATENCY_MS`), and call `choose_model(candidate_table, MAX_MAE, MAX_MS)`.''',
+Your part: build `candidate_table`, one dictionary per model with `name`, `validation_mae` (your own Task 3 value) and `latency_ms` (from `LATENCY_MS`), and call `choose_model(candidate_table, MAX_MAE, MAX_MS)`. This task has no marks of its own: your chosen model counts in the results mark and in Part B.''',
                      cells=[('__CHOOSE__', '__CHOOSE__'),
                             ('''candidate_table = []     # TODO: one dictionary per model (baseline, linear, tree): name, validation_mae (from your Task 3 results), latency_ms (from LATENCY_MS)
 chosen_model = None      # TODO: choose_model(candidate_table, MAX_MAE, MAX_MS)
@@ -481,12 +443,12 @@ print("Chosen model:", chosen_model)
 
     out.append(dict(key='test', title='Open the test set, once', week='Week 10', marks=dict(test=marks['test']), intro='''November and December are the **test set**: two months that nothing so far has used. They give **one** honest estimate for the model you chose.
 
-How it works. The supplied cell below is marked Do not edit this cell. Run it once to define `open_test_set(model_name, threshold)`. Then call it **one time**, with the model you chose in Task 6 and the decision threshold you chose in Task 4. It cleans the whole file with your `clean_rows`, trains your functions on all the development months (January to October), evaluates on November and December, prints the result and writes your choice to a small file. If you call it again, the notebook counts a second opening: you lose the "opened once" mark even when the choice is the same, and you lose more if the choice is different.
+How it works. The supplied cell below is marked Do not edit this cell. Run it once to define `open_test_set(model_name)`. Then call it **one time**, with the model you chose in Task 5. It cleans the whole file with your `clean_rows`, **refits** your functions on all the development months (January to October, more rows than training alone), evaluates on November and December (warnings at the threshold 0.5), prints the result and writes your choice to a small file. If you call it again, the notebook counts a second opening and you lose part of this task's marks, more if the model is different.
 
-You must not use November or December to choose a model, a threshold or anything else, and you must not look at them before this call. Report whatever the result is in your Part B form.''',
+You must not use November or December to choose a model or anything else, and you must not look at them before this call. Report whatever the result is in your Part B form.''',
                      cells=[('__TEST__', '__TEST__'),
-                            ('''test_result = None     # TODO: open_test_set(chosen_model, chosen_threshold)
-''', '''test_result = open_test_set(chosen_model, chosen_threshold)
+                            ('''test_result = None     # TODO: open_test_set(chosen_model)
+''', '''test_result = open_test_set(chosen_model)
 ''')]))
     return out
 
@@ -527,13 +489,12 @@ _checks.append(_try("fit_predict_regression returns baseline, linear and tree, o
 _checks.append(_try("the baseline model predicts the mean of the TRAINING targets (7.0)", lambda: abs(fit_predict_regression(_toy, _new)["baseline"][0] - 7.0) < 1e-9))
 _checks.append(_try("regression_errors([1, 3], [2, 5]) has mae 1.5 and rmse sqrt(2.5)",
                     lambda: abs(regression_errors([1, 3], [2, 5])["mae"] - 1.5) < 1e-9 and abs(regression_errors([1, 3], [2, 5])["rmse"] - 2.5 ** 0.5) < 1e-9))
-_checks.append(_try("classification_scores on a known case (tp 1, fp 1, fn 1, tn 1, cost 6, auc 0.75)",
-                    lambda: (lambda s: (s["tp"], s["fp"], s["fn"], s["tn"], s["cost"], round(s["auc"], 2)) == (1, 1, 1, 1, 6, 0.75))(classification_scores([1, 0, 1, 0], [0.9, 0.8, 0.2, 0.1], 0.5))))
+_checks.append(_try("classification_scores on a known case (tp 1, fp 1, fn 1, tn 1, precision 0.5, recall 0.5)",
+                    lambda: (lambda s: (s["tp"], s["fp"], s["fn"], s["tn"], s["precision"], s["recall"]) == (1, 1, 1, 1, 0.5, 0.5))(classification_scores([1, 0, 1, 0], [0.9, 0.8, 0.2, 0.1]))))
+_checks.append(_try("a probability of exactly 0.5 counts as a warning", lambda: classification_scores([1], [0.5])["tp"] == 1))
 _checks.append(_try("warning_probabilities gives numbers between 0 and 1",
                     lambda: all(0 <= p <= 1 for p in warning_probabilities(_toy, _new, 8.0))))
-_checks.append(_try("month_cv_mae returns ten folds, a mean and a spread",
-                    lambda: len(month_cv_mae(complete_rows)["folds"]) == 10 and {"mean", "spread"} <= set(month_cv_mae(complete_rows))))
-for _name in ["validation_mae", "cv_summary", "warning_auc", "candidate_table", "chosen_model", "chosen_threshold"]:
+for _name in ["validation_mae", "warning_scores", "candidate_table", "chosen_model"]:
     _checks.append(_try("the variable " + _name + " has been calculated (it is not None)", lambda: globals().get(_name) is not None))
 _checks.append(_try("the test set has been opened exactly once", lambda: len(TEST_OPEN_LOG) == 1))
 _checks.append(_try("Chart 1 and Chart 2 each have a title, named axes and the unit",
@@ -557,9 +518,8 @@ def _near(a, b):
 
 _memo_checks = [
     _memo_try("recommended_model is one of the models you trained", lambda: MEMO["recommended_model"] in validation_mae),
-    _memo_try("recommended_threshold is 0.3, 0.5 or 0.7", lambda: MEMO["recommended_threshold"] in (0.3, 0.5, 0.7)),
     _memo_try("validation_mae has your three validation MAE values (two decimals are enough)", lambda: all(_near(MEMO["validation_mae"][k], validation_mae[k]) for k in ("baseline", "linear", "tree"))),
-    _memo_try("cv_mean_mae is your cross-validated mean MAE", lambda: _near(MEMO["cv_mean_mae"], cv_summary["mean"])),
+    _memo_try("improvement_over_baseline is the baseline's validation MAE minus your recommended model's", lambda: _near(MEMO["improvement_over_baseline"], validation_mae["baseline"] - validation_mae[MEMO["recommended_model"]])),
     _memo_try("test_mae is the test MAE you saw when you opened the test set", lambda: _near(MEMO["test_mae"], test_result["mae"])),
     _memo_try("test_recall is the test recall you saw (between 0 and 1)", lambda: _near(MEMO["test_recall"], test_result["warning"]["recall"])),
     _memo_try("limits has three different letters", lambda: len({str(x).strip().upper() for x in MEMO["limits"] if str(x).strip()}) == 3),
@@ -572,7 +532,7 @@ print(sum(_memo_checks), "of", len(_memo_checks), "memo self-checks pass.")
 '''
 
 
-def memo_markdown(code, cfg=P.EXAM, task_no=8):
+def memo_markdown(code, cfg=P.EXAM, task_no=7):
     limit_opts, next_opts = options(code)
     lim = '\n'.join(f'- **{letter}.** {text}' for letter, text, _, _ in limit_opts)
     nxt = '\n'.join(f'- **{letter}.** {text}' for letter, text, _, _ in next_opts)
@@ -581,10 +541,10 @@ Your memo is a **form**. You write it for **{PAYER}**. Fill in the dictionary `M
 
 | Field | What to enter | Marks |
 |---|---|---|
-| `recommended_model`, `recommended_threshold` | One of the models you trained (`"baseline"`, `"linear"`, `"tree"`) and one decision threshold (0.3, 0.5 or 0.7). They must be the model and threshold your rule and cost table chose. | 3 |
+| `recommended_model` | One of the models you trained (`"baseline"`, `"linear"`, `"tree"`). It must be the model the supplied rule chose and the model you opened the test set with. | 3 |
 | `validation_mae` | The validation MAE of each of the three models, as your notebook computed them. | 3 |
 | `test_mae`, `test_recall` | The MAE and the warning recall on the test set from your ONE opening (recall is between 0 and 1). The marking computer recomputes them from your own functions. | 2 |
-| `cv_mean_mae` | The mean MAE from your cross-validation by month. | 1 |
+| `improvement_over_baseline` | The validation MAE of the baseline model minus the validation MAE of your recommended model, in {cfg['unit']} (0 if you recommend the baseline). | 1 |
 | `limits` | The letters of the **three** statements below that are **true limits of this study**. Three different letters. One mark for each true one. | 3 |
 | `next_step` | One letter: the best next step. | 1 |
 | `answer_choice`, `answer_test_set` | Two short written answers of 8 to 80 words each. One mark each. | 2 |
@@ -605,11 +565,10 @@ Each course has its own lettering of these lists.'''
 MEMO_STARTER = '''#@title Part B: the decision memo form (fill in every field; do not rename a field)
 MEMO = {
     "recommended_model": "",                  # "baseline", "linear" or "tree"
-    "recommended_threshold": None,            # 0.3, 0.5 or 0.7
     "validation_mae": {"baseline": None, "linear": None, "tree": None},   # your validation MAE values, in UNIT
-    "cv_mean_mae": None,                      # your mean cross-validated MAE, in UNIT
     "test_mae": None,                         # the test MAE from your ONE opening, in UNIT
     "test_recall": None,                      # the test recall from your ONE opening (0 to 1)
+    "improvement_over_baseline": None,        # baseline validation MAE minus your recommended model's, in UNIT
     "limits": ["", "", ""],                   # three different letters from the Limits list
     "next_step": "",                          # one letter from the Next step list
     "answer_choice": "",                      # one or two sentences
@@ -634,14 +593,38 @@ def memo_solution(code, cfg=P.EXAM):
           "information would leak and the test score would be optimistic.")
     return f'''MEMO = {{
     "recommended_model": chosen_model,
-    "recommended_threshold": chosen_threshold,
     "validation_mae": {{name: round(value, 3) for name, value in validation_mae.items()}},
-    "cv_mean_mae": round(cv_summary["mean"], 3),
     "test_mae": round(test_result["mae"], 3),
     "test_recall": round(test_result["warning"]["recall"], 3),
+    "improvement_over_baseline": round(validation_mae["baseline"] - validation_mae[chosen_model], 3),
     "limits": {limits!r},
     "next_step": {nxt!r},
     "answer_choice": {a1!r},
     "answer_test_set": {a2!r},
 }}
 '''
+
+
+# ------------------------------------------------------------------------------------------------ rehearsal self-study notes
+# Short notes for a student who missed the revision class (pipeline brief item 2; blueprint "Weeks 1-8 core"). Shown in the rehearsal only,
+# right before the task that needs them. Each one points to the Class 2 or Class 3 slide by its title.
+REHEARSAL_NOTES = {
+    'split': '''### Self-study note: why split by month, and why a random split leaks
+Readings 15 minutes apart are almost the same. If you shuffle the rows and split at random, the validation set is full of near-copies of training rows, and the model also learns from days that come after the ones it is checked on. The score then looks better than it will be next month. That is **leakage**: information the model would not have when it is really used reaches it during training.
+Splitting by month keeps whole months apart and keeps the future in the future: train on January to August, check on September and October, and keep November and December closed for the final test.
+Slides: Class 3, "Train-test contamination: validation rows in the training set make the score look perfect" and "We choose max_depth on the validation set and keep the test set sealed".''',
+    'regression': '''### Self-study note: fit on the training rows only (leakage)
+Every step that learns a number from data (the median used to fill a missing value, the mean of the baseline model, the mean and standard deviation of a scaler) must learn it from the **training rows only**, then apply the same numbers to the validation rows. A pipeline does this for you: `make_pipeline(SimpleImputer(strategy="median"), model)` learns the medians inside `fit` and only reuses them inside `predict`.
+If the medians or the mean came from all the rows, the model would have seen the rows it is judged on, and the error would look smaller than it really is.
+Slides: Class 3, "Data leakage is information the model would not have at prediction time reaching it during training" and "The pipeline rule: fit on the training set only, then apply the same numbers".''',
+    'warning': '''### Self-study note: logistic regression, the confusion matrix, precision and recall
+**Logistic regression** gives each row a score (a weighted sum of the features plus a constant) and passes it through the **sigmoid** function, 1 / (1 + e^(-score)). The result is between 0 and 1: the **probability** of a warning. `predict_proba(X)[:, 1]` gives that probability for each row.
+The **decision threshold** turns a probability into a yes or no. In this project it is fixed at 0.5: a warning when the probability is 0.5 or more.
+The **confusion matrix** counts four kinds of answer: **TP** (a warning that was right), **FP** (a false alarm), **FN** (a missed warning) and **TN** (no warning, rightly). `confusion_matrix(actual, predicted, labels=[0, 1]).ravel()` gives them in the order tn, fp, fn, tp.
+**Precision** = TP / (TP + FP): of the warnings raised, the share that were right. **Recall** = TP / (TP + FN): of the real high readings, the share we caught. If a denominator is 0, use 0 (`zero_division=0`).
+Slides: Class 2, "Logistic regression passes a linear score through the sigmoid (logistic) function, which stays between 0 and 1", "Logistic regression in three lines: score, probability, prediction", "The confusion matrix counts true and false positives and negatives", "Accuracy and precision are worked out from the four counts TP, FP, FN and TN" and "Recall (sensitivity) and F1: how many actual positives we find, and one blended score".''',
+    'test': '''### Self-study note: open the test set once, then refit
+The validation set is for choosing; the test set is for **one honest estimate** of the model you chose. If you looked at the test set and then changed your choice, the test set would have helped choose, and its score would be too good to trust.
+So: choose the model on the validation set (Task 5), then call `open_test_set` **one time**. It **refits** your functions on all the development months (January to October, more data than training alone) and measures the error on November and December, which nothing has used so far. Whatever the result, you report it.
+Slides: Class 3, "We choose max_depth on the validation set and keep the test set sealed" and "Keep this checklist: five questions before you trust a score".''',
+}
